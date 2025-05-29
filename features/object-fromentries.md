@@ -69,6 +69,7 @@ const result = Object.fromEntries(
 
 In this example, we’re `filter`ing the object to only get keys of length `1`, that is, only the keys `x` and `y`, but not the key `abc`. We then `map` over the remaining entries and return an updated key-value pair for each. In this example, we double each value by multiplying it by `2`. The end result is a new object, with only properties `x` and `y`, and the new values.
 
+<!--truncate-->
 ## Objects vs. maps
 
 JavaScript also supports `Map`s, which are often a more suitable data structure than regular objects. So in code that you have full control over, you might be using maps instead of objects. However, as a developer, you do not always get to choose the representation. Sometimes the data you’re operating on comes from an external API or from some library function that gives you an object instead of a map.

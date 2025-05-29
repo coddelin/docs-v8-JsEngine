@@ -33,6 +33,7 @@ try {
 
 Unfortunately the above solution is laborious, since one needs to create its own `CustomError`. And, even worse, no developer tool is capable of providing helpful diagnosing messages to unexpected exceptions, since there is no consensus on how to properly represent these errors.
 
+<!--truncate-->
 What has been missing so far is a standard way to chain errors. JavaScript now supports error causes. An additional options parameter can be added to the `Error` constructor with a `cause` property, the value of which will be assigned to the error instances. Errors can then easily be chained.
 
 ```js

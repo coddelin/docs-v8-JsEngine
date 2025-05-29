@@ -20,6 +20,7 @@ Large numeric literals are difficult for the human eye to parse quickly, especia
 
 To improve readability, [a new JavaScript language feature](https://github.com/tc39/proposal-numeric-separator) enables underscores as separators in numeric literals. So, the above can now be rewritten to group the digits per thousand, for example:
 
+<!--truncate-->
 ```js
 1_000_000_000_000
     1_019_436_871.42

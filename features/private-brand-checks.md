@@ -52,6 +52,7 @@ A.test(new SubA()); // true
 
 But objects created with with `Object.create` (or that have the prototype set later via the `__proto__` setter or `Object.setPrototypeOf`) don't receive the private fields as own-properties. Because private field lookup only works on own-properties, the `in` operator does not find these inherited fields:
 
+<!--truncate-->
 ```javascript
 const a = new A();
 const o = Object.create(a);

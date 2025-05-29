@@ -18,6 +18,7 @@ JSON.stringify('\uD800');
 
 [The “well-formed `JSON.stringify`” proposal](https://github.com/tc39/proposal-well-formed-stringify) changes `JSON.stringify` so it outputs escape sequences for lone surrogates, making its output valid Unicode (and representable in UTF-8):
 
+<!--truncate-->
 ```js
 JSON.stringify('\uD800');
 // → '"\\ud800"'

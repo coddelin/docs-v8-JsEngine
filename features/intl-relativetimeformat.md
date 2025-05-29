@@ -13,6 +13,7 @@ tweet: '1054387117571354624'
 ---
 Modern web applications often use phrases like “yesterday”, “42 seconds ago”, or “in 3 months” instead of full dates and timestamps. Such _relative time-formatted values_ have become so common that several popular libraries implement utility functions that format them in a localized manner. (Examples include [Moment.js](https://momentjs.com/), [Globalize](https://github.com/globalizejs/globalize), and [date-fns](https://date-fns.org/docs/).)
 
+<!--truncate-->
 One problem with implementing a localized relative time formatter is that you need a list of customary words or phrases (such as “yesterday” or “last quarter”) for each language you want to support. [The Unicode CLDR](http://cldr.unicode.org/) provides this data, but to use it in JavaScript, it has to be embedded and shipped alongside the other library code. This unfortunately increases the bundle size for such libraries, which negatively impacts load times, parse/compile cost, and memory consumption.
 
 The brand new `Intl.RelativeTimeFormat` API shifts that burden to the JavaScript engine, which can ship the locale data and make it directly available to JavaScript developers. `Intl.RelativeTimeFormat` enables localized formatting of relative times without sacrificing performance.

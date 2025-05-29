@@ -39,3 +39,5 @@ if (Object.hasOwn(object, 'foo')) {
                  safari="yes https://bugs.webkit.org/show_bug.cgi?id=226291"
                  nodejs="no"
                  babel="yes https://github.com/zloirock/core-js#accessible-objectprototypehasownproperty"></feature-support>
+
+<!--truncate-->

@@ -13,6 +13,7 @@ tweet: 'TODO'
 ---
 When dealing with [internationalization APIs](/features/tags/intl), it’s common to pass strings representing locale IDs to the various `Intl` constructors, such as `'en'` for English. [The new `Intl.Locale` API](https://github.com/tc39/proposal-intl-locale) offers a more powerful mechanism to deal with such locales.
 
+<!--truncate-->
 It enables easily extracting locale-specific preferences such as not only the language, but also the calendar, the numbering system, the hour cycle, the region, and so on.
 
 ```js

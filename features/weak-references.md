@@ -39,6 +39,7 @@ const wm = new WeakMap();
 // can be garbage-collected now, even though it’s a key in `wm` to
 // which we still have access.
 
+<!--truncate-->
 const ws = new WeakSet();
 {
   const ref = {};

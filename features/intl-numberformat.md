@@ -21,6 +21,7 @@ You might already be familiar with the `Intl.NumberFormat` API, as it’s been s
 
 In its most basic form, `Intl.NumberFormat` lets you create a reusable formatter instance that supports locale-aware number formatting. Just like other `Intl.*Format` APIs, a formatter instance supports both a `format` and a `formatToParts` method:
 
+<!--truncate-->
 ```js
 const formatter = new Intl.NumberFormat('en');
 formatter.format(987654.321);

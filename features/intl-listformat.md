@@ -22,6 +22,7 @@ A text-based game might have a different kind of list:
 
 Since each language has different list formatting conventions and words, implementing a localized list formatter is non-trivial. Not only does this require a list of all the words (such as “and” or “or” in the above examples) for each language you want to support — in addition you need to encode the exact formatting conventions for all those languages! [The Unicode CLDR](http://cldr.unicode.org/translation/lists) provides this data, but to use it in JavaScript, it has to be embedded and shipped alongside the other library code. This unfortunately increases the bundle size for such libraries, which negatively impacts load times, parse/compile cost, and memory consumption.
 
+<!--truncate-->
 The brand new `Intl.ListFormat` API shifts that burden to the JavaScript engine, which can ship the locale data and make it directly available to JavaScript developers. `Intl.ListFormat` enables localized formatting of lists without sacrificing performance.
 
 ## Usage examples

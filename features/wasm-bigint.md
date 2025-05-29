@@ -12,6 +12,7 @@ tweet: '1331966281571037186'
 ---
 The [JS-BigInt-Integration](https://github.com/WebAssembly/JS-BigInt-integration) feature makes it easy to pass 64-bit integers between JavaScript and WebAssembly. This post explains what that means and why it’s useful, which includes making things simpler for developers, letting code run more quickly, and also speeding up build times.
 
+<!--truncate-->
 ## 64-bit integers
 
 JavaScript Numbers are doubles, that is, 64-bit floating-point values. Such a value can contain any 32-bit integer with full precision, but not all 64-bit ones. WebAssembly, on the other hand, has full support for 64-bit integers, the `i64` type. A problem occurs when connecting the two: If a Wasm function returns an i64, for example, then the VM throws an exception if you call it from JavaScript, something like this:

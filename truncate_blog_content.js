@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const BLOG_DIR = path.join(__dirname, 'blog');
+const BLOG_DIR = path.join(__dirname, 'features');
 const TRUNCATE_MARK = '<!--truncate-->';
 const PARAGRAPH_CHAR_LIMIT = 200;
 

@@ -37,6 +37,7 @@ string.trim(); // ES5
 // → 'hello world'
 ```
 
+<!--truncate-->
 ## `String.prototype.trim{Start,End}` support
 
 <feature-support chrome="66 /blog/v8-release-66#string-trimming"

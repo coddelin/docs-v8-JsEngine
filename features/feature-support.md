@@ -32,6 +32,7 @@ For cutting-edge features, it’s common to see mixed support across environment
 
 The goal is to provide a quick overview of a feature’s maturity not just in V8 and Chrome, but across the wider JavaScript ecosystem. Note that this is not limited to native implementations in actively-developed JavaScript VMs such as V8, but also includes tooling support, represented using the [Babel](https://babeljs.io/) icon here.
 
+<!--truncate-->
 The Babel entry covers various meanings:
 
 - For syntactic language features such as [class fields](/features/class-fields), it refers to transpilation support.

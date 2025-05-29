@@ -13,6 +13,7 @@ The new `at` method on `Array.prototype`, the various TypedArray prototypes, and
 
 Accessing the Nth element from the end of a collection is a common operation. However, the usual ways to do so are verbose, like `my_array[my_array.length - N]`, or might not be performant, like `my_array.slice(-N)[0]`. The new `at` method makes this operation more ergonomic by interpreting negative indices to mean "from the end". The previous examples may be expressed as `my_array.at(-N)`.
 
+<!--truncate-->
 For uniformity, positive indices are also supported, and are equivalent to ordinary property access.
 
 This new method is small enough that its full semantics may be understood by this compliant polyfill implementation below:

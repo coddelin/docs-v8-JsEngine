@@ -13,6 +13,7 @@ tweet: '1193917549060280320'
 ---
 If you’ve ever dealt with strings in JavaScript, chances are you came across the `String#replace` method. `String.prototype.replace(searchValue, replacement)` returns a string with some matches replaced, based on the parameters you specify:
 
+<!--truncate-->
 ```js
 'abc'.replace('b', '_');
 // → 'a_c'

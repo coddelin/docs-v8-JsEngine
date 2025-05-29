@@ -71,6 +71,7 @@ for (const match of string.matchAll(regex)) {
   console.log(`→ repo: ${match.groups.repo}`);
 }
 
+<!--truncate-->
 // Output:
 //
 // tc39/ecma262 at 23 with 'Favorite GitHub repos: tc39/ecma262 v8/v8.dev'

@@ -14,6 +14,7 @@ The [nullish coalescing proposal](https://github.com/tc39/proposal-nullish-coale
 
 You might already be familiar with the other short-circuiting operators `&&` and `||`. Both of these operators handle “truthy” and “falsy” values. Imagine the code sample `lhs && rhs`. If `lhs` (read, _left-hand side_) is falsy, the expression evaluates to `lhs`. Otherwise, it evaluates to `rhs` (read, _right-hand side_). The opposite is true for the code sample `lhs || rhs`. If `lhs` is truthy, the expression evaluates to `lhs`. Otherwise, it evaluates to `rhs`.
 
+<!--truncate-->
 But what exactly does “truthy” and “falsy” mean? In spec terms, it equates to the [`ToBoolean`](https://tc39.es/ecma262/#sec-toboolean) abstract operation. For us regular JavaScript developers, **everything** is truthy except the falsy values `undefined`, `null`, `false`, `0`, `NaN`, and the empty string `''`. (Technically, the value associated with `document.all` is also falsy, but we’ll get to that later.)
 
 So, what’s the issue with `&&` and `||`? And why do we need a new nullish coalescing operator? It’s because this definition of truthy and falsy doesn’t fit every scenario and this leads to bugs. Imagine the following:

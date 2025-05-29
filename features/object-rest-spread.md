@@ -52,6 +52,7 @@ console.log(firstName); // Sebastian
 console.log(lastName); // Markbåge
 console.log(rest); // { country: 'USA', state: 'CA' }
 
+<!--truncate-->
 // Spread properties for object literals:
 const personCopy = { firstName, lastName, ...rest };
 console.log(personCopy);

@@ -25,6 +25,7 @@ This article explains how to use JS modules, how to deploy them responsibly, and
 
 JS modules (also known as “ES modules” or “ECMAScript modules”) are a major new feature, or rather a collection of new features. You may have used a userland JavaScript module system in the past. Maybe you used [CommonJS like in Node.js](https://nodejs.org/docs/latest-v10.x/api/modules.html), or maybe [AMD](https://github.com/amdjs/amdjs-api/blob/master/AMD.md), or maybe something else. All of these module systems have one thing in common: they allow you to import and export stuff.
 
+<!--truncate-->
 JavaScript now has standardized syntax for exactly that. Within a module, you can use the `export` keyword to export just about anything. You can export a `const`, a `function`, or any other variable binding or declaration. Just prefix the variable statement or declaration with `export` and you’re all set:
 
 ```js

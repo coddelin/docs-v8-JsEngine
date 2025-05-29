@@ -12,6 +12,7 @@ tweet: '1166360971914481669'
 ---
 Long chains of property accesses in JavaScript can be error-prone, as any of them might evaluate to `null` or `undefined` (also known as “nullish” values). Checking for property existence on each step easily turns into a deeply-nested structure of `if`-statements or a long `if`-condition replicating the property access chain:
 
+<!--truncate-->
 ```js
 // Error prone-version, could throw.
 const nameLength = db.user.name.length;

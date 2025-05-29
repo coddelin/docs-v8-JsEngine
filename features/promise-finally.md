@@ -29,6 +29,7 @@ const fetchAndDisplay = ({ url, element }) => {
     });
 };
 
+<!--truncate-->
 fetchAndDisplay({
   url: someUrl,
   element: document.querySelector('#output')

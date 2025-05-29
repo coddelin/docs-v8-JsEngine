@@ -13,6 +13,7 @@ tweet: '1232333889005334529'
 ---
 Web applications that reach a global audience need to show the display names of languages, regions, scripts, and currencies in many different languages. The translations of those names require data, which is available in the [Unicode CLDR](http://cldr.unicode.org/translation/). Packaging the data as part of the application incurs a cost on developer time. Users are likely to prefer consistent translations of language and region names, and keeping that data up to date with the world's geopolitical happenings requires constant maintenance.
 
+<!--truncate-->
 Luckily, most JavaScript runtimes already ship and keep up-to-date that very same translation data. The new `Intl.DisplayNames` API gives JavaScript developers direct access to those translations, allowing applications to more easily display localized names.
 
 ## Usage examples

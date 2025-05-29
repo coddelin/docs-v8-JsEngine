@@ -14,6 +14,7 @@ tweet: ''
 
 V8 shipped the [import assertions](https://chromestatus.com/feature/5765269513306112) feature in v9.1. This feature allowed module import statements to include additional information by using the `assert` keyword. This additional information is currently used to import JSON and CSS modules inside JavaScript modules.
 
+<!--truncate-->
 ## Import attributes
 
 Since then, import assertions has evolved into [import attributes](https://github.com/tc39/proposal-import-attributes). The point of the feature remains the same: to allow module import statements to include additional information.

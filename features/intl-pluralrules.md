@@ -27,6 +27,7 @@ pr.select(1.5); // 'other' (e.g. '0.5 cats')
 pr.select(2);   // 'other' (e.g. '0.5 cats')
 ```
 
+<!--truncate-->
 Unlike other internationalization APIs, `Intl.PluralRules` is a low-level API that does not perform any formatting itself. Instead, you can build your own formatter on top of it:
 
 ```js

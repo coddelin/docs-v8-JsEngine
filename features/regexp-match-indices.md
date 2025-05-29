@@ -12,6 +12,7 @@ tweet: '1206970814400270338'
 ---
 JavaScript is now equipped with a new regular expression enhancement, called “match indices”. Imagine you want to find invalid variable names in JavaScript code that coincide with reserved words, and output a caret and an “underline” under the variable name, like:
 
+<!--truncate-->
 ```js
 const function = foo;
       ^------- Invalid variable name

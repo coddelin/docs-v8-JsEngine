@@ -13,6 +13,7 @@ tweet: '1309118447377358848'
 ---
 [`Atomics.wait`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/wait) and [`Atomics.notify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/notify) are low-level synchronization primitives useful for implementing mutexes and other means of synchronization. However, since `Atomics.wait` is blocking, it’s not possible to call it on the main thread (trying to do so throws a `TypeError`).
 
+<!--truncate-->
 Starting from version 8.7, V8 supports a non-blocking version, [`Atomics.waitAsync`](https://github.com/tc39/proposal-atomics-wait-async/blob/master/PROPOSAL.md), which is also usable on the main thread.
 
 In this post, we explain how to use these low-level APIs to implement a mutex that works both synchronously (for worker threads) and asynchronously (for worker threads or the main thread).

@@ -27,6 +27,7 @@ const PS = eval('"\u2029"');
 
 This is problematic because JSON strings _can_ contain these characters. As a result, developers had to implement specialized post-processing logic when embedding valid JSON into ECMAScript programs to handle these characters. Without such logic, the code would have subtle bugs, or even [security issues](#security)!
 
+<!--truncate-->
 ## The new behavior
 
 In ES2019, string literals can now contain raw U+2028 and U+2029 characters, removing the confusing mismatch between ECMAScript and JSON.

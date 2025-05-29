@@ -11,6 +11,7 @@ description: 'Function.prototype.toString now returns exact slices of source cod
 ---
 [`Function.prototype.toString()`](https://tc39.es/Function-prototype-toString-revision/) now returns exact slices of source code text, including whitespace and comments. Here’s an example comparing the old and the new behavior:
 
+<!--truncate-->
 ```js
 // Note the comment between the `function` keyword
 // and the function name, as well as the space following

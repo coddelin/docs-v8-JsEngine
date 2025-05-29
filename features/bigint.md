@@ -13,6 +13,7 @@ tweet: '990991035630206977'
 ---
 `BigInt`s are a new numeric primitive in JavaScript that can represent integers with arbitrary precision. With `BigInt`s, you can safely store and operate on large integers even beyond the safe integer limit for `Number`s. This article walks through some use cases and explains the new functionality in Chrome 67 by comparing `BigInt`s to `Number`s in JavaScript.
 
+<!--truncate-->
 ## Use cases
 
 Arbitrary-precision integers unlock lots of new use cases for JavaScript.

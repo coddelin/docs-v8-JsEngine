@@ -13,6 +13,7 @@ tweet: '1453354998063149066'
 
 Finding an element that satisfies some condition in an `Array` is a common task and is done with the `find` and `findIndex` methods on `Array.prototype` and the various TypedArray prototypes. `Array.prototype.find` takes a predicate and returns the first element in the array for which that predicate returns `true`. If the predicate doesn't return `true` for any element, the method returns `undefined`.
 
+<!--truncate-->
 ```js
 const inputArray = [{v:1}, {v:2}, {v:3}, {v:4}, {v:5}];
 inputArray.find((element) => element.v % 2 === 0);

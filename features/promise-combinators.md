@@ -17,6 +17,7 @@ Since the introduction of promises in ES2015, JavaScript has supported exactly t
 
 Two new proposals are currently making their way through the standardization process: `Promise.allSettled`, and `Promise.any`. With those additions, there’ll be a total of four promise combinators in JavaScript, each enabling different use cases.
 
+<!--truncate-->
 Here’s an overview of the four combinators:
 
 

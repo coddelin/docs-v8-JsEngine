@@ -39,3 +39,5 @@ try {
                  safari="yes https://trac.webkit.org/changeset/220068/webkit"
                  nodejs="10 https://github.com/nodejs/node/blob/master/doc/changelogs/CHANGELOG_V10.md#2018-04-24-version-1000-current-jasnell"
                  babel="yes"></feature-support>
+
+<!--truncate-->

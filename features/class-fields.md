@@ -50,6 +50,7 @@ class IncreasingCounter {
 
 The class installs the `value` getter and an `increment` method on the prototype. More interestingly, the class has a constructor that creates an instance property `_count` and sets its default value to `0`. We currently tend to use the underscore prefix to denote that `_count` should not be used directly by consumers of the class, but that’s just a convention; it’s not _really_ a “private” property with special semantics enforced by the language.
 
+<!--truncate-->
 ```js
 const counter = new IncreasingCounter();
 counter.value;

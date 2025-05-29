@@ -29,6 +29,7 @@ const doggos = [
 doggos.sort((a, b) => b.rating - a.rating);
 ```
 
+<!--truncate-->
 The array is pre-sorted alphabetically by name. To sort by rating instead (so we get the highest-rated dogs first), we use `Array#sort`, passing in a custom callback that compares the ratings. This is the result that you’d probably expect:
 
 ```js

@@ -12,6 +12,7 @@ tweet: ''
 
 The new [import assertions](https://github.com/tc39/proposal-import-assertions) feature allows module import statements to include additional information alongside the module specifier. An initial use for the feature is to enable JSON documents to be imported as [JSON modules](https://github.com/tc39/proposal-json-modules):
 
+<!--truncate-->
 ```json
 // foo.json
 { "answer": 42 }

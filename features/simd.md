@@ -10,6 +10,7 @@ tweet: '1222944308183085058'
 ---
 SIMD stands for _Single Instruction, Multiple Data_. SIMD instructions are a special class of instructions that exploit data parallelism in applications by simultaneously performing the same operation on multiple data elements. Compute intensive applications like audio/video codecs, image processors, are all examples of applications that take advantage of SIMD instructions to accelerate performance. Most modern architectures support some variants of SIMD instructions.
 
+<!--truncate-->
 The WebAssembly SIMD proposal defines a portable, performant subset of SIMD operations that are available across most modern architectures. This proposal derived many elements from the [SIMD.js proposal](https://github.com/tc39/ecmascript_simd), which in turn was originally derived from the [Dart SIMD](https://www.researchgate.net/publication/261959129_A_SIMD_programming_model_for_dart_javascriptand_other_dynamically_typed_scripting_languages) specification. The SIMD.js proposal was an API proposed at TC39 with new types and functions for performing SIMD computations, but this was archived in favor of supporting SIMD operations more transparently in WebAssembly. The [WebAssembly SIMD proposal](https://github.com/WebAssembly/simd) was introduced as a way for browsers to take advantage of the data level parallelism using the underlying hardware.
 
 ## WebAssembly SIMD proposal

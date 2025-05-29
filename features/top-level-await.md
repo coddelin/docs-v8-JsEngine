@@ -12,6 +12,7 @@ tweet: '1181581262399643650'
 ---
 [Top-level `await`](https://github.com/tc39/proposal-top-level-await) enables developers to use the `await` keyword outside of async functions. It acts like a big async function causing other modules who `import` them to wait before they start evaluating their body.
 
+<!--truncate-->
 ## The old behavior
 
 When `async`/`await` was first introduced, attempting to use an `await` outside of an `async` function resulted in a `SyntaxError`. Many developers utilized immediately-invoked async function expressions as a way to get access to the feature.

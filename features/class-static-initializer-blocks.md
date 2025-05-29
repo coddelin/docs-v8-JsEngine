@@ -11,6 +11,7 @@ tweet: '1376925666780798989'
 ---
 The new class static initialization block syntax lets developers gather code that should run once for a given class definition and put them in a single place. Consider the following example where a pseudo-random number generator uses a static block to initialize an entropy pool once, when the `class MyPRNG` definition is evaluated.
 
+<!--truncate-->
 ```js
 class MyPRNG {
   constructor(seed) {
