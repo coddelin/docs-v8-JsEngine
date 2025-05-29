@@ -1,6 +1,6 @@
 ---
-title: &apos;Integration der GDB JIT-Kompilierungsschnittstelle&apos;
-description: &apos;Die Integration der GDB JIT-Kompilierungsschnittstelle ermöglicht es V8, GDB mit Symbolen und Debugging-Informationen für nativen Code zu versorgen, der aus der V8-Laufzeitumgebung stammt.&apos;
+title: 'Integration der GDB JIT-Kompilierungsschnittstelle'
+description: 'Die Integration der GDB JIT-Kompilierungsschnittstelle ermöglicht es V8, GDB mit Symbolen und Debugging-Informationen für nativen Code zu versorgen, der aus der V8-Laufzeitumgebung stammt.'
 ---
 Die Integration der GDB JIT-Kompilierungsschnittstelle ermöglicht es V8, GDB mit Symbolen und Debugging-Informationen für nativen Code zu versorgen, der aus der V8-Laufzeitumgebung stammt.
 

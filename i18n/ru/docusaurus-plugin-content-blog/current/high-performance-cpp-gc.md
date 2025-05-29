@@ -1,17 +1,17 @@
 ---
-title: &apos;Высокопроизводительный сборщик мусора для C++&apos;
-author: &apos;Антон Бикинеев, Омер Катц ([@omerktz](https://twitter.com/omerktz)), и Михаэль Липпаутц ([@mlippautz](https://twitter.com/mlippautz)), эксперты по памяти C++&apos;
+title: 'Высокопроизводительный сборщик мусора для C++'
+author: 'Антон Бикинеев, Омер Катц ([@omerktz](https://twitter.com/omerktz)), и Михаэль Липпаутц ([@mlippautz](https://twitter.com/mlippautz)), эксперты по памяти C++'
 avatars:
-  - &apos;anton-bikineev&apos;
-  - &apos;omer-katz&apos;
-  - &apos;michael-lippautz&apos;
+  - 'anton-bikineev'
+  - 'omer-katz'
+  - 'michael-lippautz'
 date: 2020-05-26
 tags:
   - internals
   - memory
   - cppgc
-description: &apos;В этом посте описывается сборщик мусора Oilpan для C++, его использование в Blink и то, как он оптимизирует процесс очистки, то есть восстановление недоступной памяти.&apos;
-tweet: &apos;1265304883638480899&apos;
+description: 'В этом посте описывается сборщик мусора Oilpan для C++, его использование в Blink и то, как он оптимизирует процесс очистки, то есть восстановление недоступной памяти.'
+tweet: '1265304883638480899'
 ---
 
 В прошлом мы [уже](https://v8.dev/blog/trash-talk) [писали](https://v8.dev/blog/concurrent-marking) [статьи](https://v8.dev/blog/tracing-js-dom) о сборке мусора для JavaScript, объектной модели документа (DOM) и о том, как все это реализовано и оптимизировано в V8. Однако не весь Chromium написан на JavaScript — большая часть браузера и его движка рендеринга Blink, где встроен V8, написаны на C++. JavaScript используется для взаимодействия с DOM, который затем обрабатывается рендерингом.
@@ -81,8 +81,8 @@ class GCed : public GarbageCollected<GCed> {
     visitor->Trace(other_);
   }
   ~GCed() {
-    other_->DoSomething();  // ошибка: Финализатор &apos;~GCed&apos; обращается
-                            // к потенциально финализированному полю &apos;other_&apos;.
+    other_->DoSomething();  // ошибка: Финализатор '~GCed' обращается
+                            // к потенциально финализированному полю 'other_'.
   }
  private:
   Member<GCed> other_;

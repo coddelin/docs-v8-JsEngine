@@ -153,12 +153,12 @@ const data = { foo: 42, bar: 1337 }; // 🐌
 …可以以JSON字符串形式表示，然后在运行时进行JSON解析：
 
 ```js
-const data = JSON.parse(&apos;{"foo":42,"bar":1337}&apos;); // 🚀
+const data = JSON.parse('{"foo":42,"bar":1337}'); // 🚀
 ```
 
 只要JSON字符串仅被解析一次，与JavaScript对象字面量相比，[使用`JSON.parse`方法](https://github.com/GoogleChromeLabs/json-parse-benchmark)会更快，尤其是冷启动时。一个好的经验法则是对大小达到10 kB或更大的对象应用这种技巧——但和所有性能建议一样，在做出任何更改之前请测量实际影响。
 
-![`JSON.parse(&apos;…&apos;)` 的解析、编译和执行速度比等效的JavaScript字面量快得多——不仅在V8（快1.7倍），在所有主流JavaScript引擎里也是如此。](/_img/cost-of-javascript-2019/json.svg)
+![`JSON.parse('…')` 的解析、编译和执行速度比等效的JavaScript字面量快得多——不仅在V8（快1.7倍），在所有主流JavaScript引擎里也是如此。](/_img/cost-of-javascript-2019/json.svg)
 
 以下视频更详细地讲解了性能差异的来源，从02:10时间开始。
 

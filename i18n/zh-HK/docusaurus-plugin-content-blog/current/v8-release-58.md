@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 發佈 v5.8&apos;
-author: &apos;V8 團隊&apos;
+title: 'V8 發佈 v5.8'
+author: 'V8 團隊'
 date: 2017-03-20 13:33:37
 tags:
   - 發佈
-description: &apos;V8 v5.8 支援使用任意堆積大小並提升啟動效能。&apos;
+description: 'V8 v5.8 支援使用任意堆積大小並提升啟動效能。'
 ---
 每六週，我們會從 V8 的 Git主分支建立一個新分支，作為我們[發佈過程](/docs/release-process)的一部分。每個版本在 Chrome Beta 里程碑之前立即從 V8 的 Git master 分支分支出來。今天我們很高興地宣布我們的最新分支，[V8 版本 5.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.8)，它將進入 Beta 測試，直到幾週後與 Chrome 58 Stable 一起正式釋出。V8 5.8 充滿了各種面向開發者的亮點。我們希望在正式發佈前向您預覽一些重點功能。
 

@@ -1,12 +1,12 @@
 ---
-title: &apos;빠른 `for`-`in` V8&apos;
-author: &apos;Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))&apos;
+title: '빠른 `for`-`in` V8'
+author: 'Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))'
 avatars:
-  - &apos;camillo-bruni&apos;
+  - 'camillo-bruni'
 date: 2017-03-01 13:33:37
 tags:
   - internals
-description: &apos;이 기술적인 심층 다이브는 V8이 JavaScript의 for-in을 가능한 한 빠르게 만든 방법을 설명합니다.&apos;
+description: '이 기술적인 심층 다이브는 V8이 JavaScript의 for-in을 가능한 한 빠르게 만든 방법을 설명합니다.'
 ---
 `for`-`in`은 많은 프레임워크에서 널리 사용되는 언어 기능입니다. 그 보편성에도 불구하고, 구현 관점에서는 비교적 모호한 언어 구조 중 하나입니다. V8은 이 기능을 가능한 한 빠르게 만들기 위해 많은 노력을 기울였습니다. 지난 1년 동안, `for`-`in`은 완전히 사양을 준수하게 되었고 문맥에 따라 최대 3배 빨라졌습니다.
 
@@ -31,15 +31,15 @@ _**요약:** 성능상의 이유로 for-in 반복 구문은 모호하게 정의�
 const proxy = new Proxy({ a: 1, b: 1},
   {
     getPrototypeOf(target) {
-    console.log(&apos;getPrototypeOf&apos;);
+    console.log('getPrototypeOf');
     return null;
   },
   ownKeys(target) {
-    console.log(&apos;ownKeys&apos;);
+    console.log('ownKeys');
     return Reflect.ownKeys(target);
   },
   getOwnPropertyDescriptor(target, prop) {
-    console.log(&apos;getOwnPropertyDescriptor name=&apos; + prop);
+    console.log('getOwnPropertyDescriptor name=' + prop);
     return Reflect.getOwnPropertyDescriptor(target, prop);
   }
 });
@@ -94,7 +94,7 @@ b
 function* EnumerateObjectProperties(obj) {
   const visited = new Set();
   for (const key of Reflect.ownKeys(obj)) {
-    if (typeof key === &apos;symbol&apos;) continue;
+    if (typeof key === 'symbol') continue;
     const desc = Reflect.getOwnPropertyDescriptor(obj, key);
     if (desc && !visited.has(key)) {
       visited.add(key);
@@ -115,11 +115,11 @@ function* EnumerateObjectProperties(obj) {
 
 `for`-`in` 생성기의 예제 구현은 키를 수집하고 내보내는 점진적 패턴을 따릅니다. V8에서는 속성 키를 첫 단계에서 수집하고 나서야 반복 단계에서 사용됩니다. V8에서는 이를 통해 몇 가지 작업을 보다 쉽게 처리할 수 있습니다. 그 이유를 이해하려면 객체 모델을 살펴볼 필요가 있습니다.
 
-`{a:&apos;value a&apos;, b:&apos;value b&apos;, c:&apos;value c&apos;}` 같은 간단한 객체는 자세한 속성에 관한 후속 게시물에서 보여드릴 V8 내 다양한 내부 표현을 가질 수 있습니다. 이는 우리가 가진 속성의 종류 — 객체 내 속성, 빠른 속성, 느린 속성 —에 따라 실제 속성 이름이 저장되는 위치가 달라지기 때문입니다. 따라서 열거 가능한 키를 수집하는 것은 간단한 일이 아닙니다.
+`{a:'value a', b:'value b', c:'value c'}` 같은 간단한 객체는 자세한 속성에 관한 후속 게시물에서 보여드릴 V8 내 다양한 내부 표현을 가질 수 있습니다. 이는 우리가 가진 속성의 종류 — 객체 내 속성, 빠른 속성, 느린 속성 —에 따라 실제 속성 이름이 저장되는 위치가 달라지기 때문입니다. 따라서 열거 가능한 키를 수집하는 것은 간단한 일이 아닙니다.
 
 V8은 숨겨진 클래스 또는 소위 맵을 통해 객체의 구조를 추적합니다. 동일한 맵을 가진 객체는 같은 구조를 가집니다. 또한 각 맵은 속성에 대한 세부 정보를 포함하는 공용 데이터 구조, 설명자 배열을 공유합니다. 여기에는 속성이 저장된 위치, 속성 이름, 열거 가능성과 같은 세부 정보가 포함됩니다.
 
-우리의 JavaScript 객체가 최종 형태에 도달했으며 더 이상 속성이 추가되거나 제거되지 않는다고 가정해 봅시다. 이 경우 설명자 배열을 키의 소스로 사용할 수 있습니다. 이는 열거 가능한 속성만 있는 경우에만 작동합니다. 각 열거에서 비열거 속성을 필터링하는 작업의 오버헤드를 피하기 위해 V8은 맵&apos;s의 설명자 배열을 통해 액세스할 수 있는 별도의 EnumCache를 사용합니다.
+우리의 JavaScript 객체가 최종 형태에 도달했으며 더 이상 속성이 추가되거나 제거되지 않는다고 가정해 봅시다. 이 경우 설명자 배열을 키의 소스로 사용할 수 있습니다. 이는 열거 가능한 속성만 있는 경우에만 작동합니다. 각 열거에서 비열거 속성을 필터링하는 작업의 오버헤드를 피하기 위해 V8은 맵's의 설명자 배열을 통해 액세스할 수 있는 별도의 EnumCache를 사용합니다.
 
 ![](/_img/fast-for-in/enum-cache.png)
 
@@ -252,7 +252,7 @@ var o = {
   __proto__ : {b: 3},
   a: 1
 };
-Object.defineProperty(o, &apos;b&apos;, {});
+Object.defineProperty(o, 'b', {});
 
 for (var k in o) console.log(k);
 ```
@@ -299,31 +299,31 @@ b
 ```js
 var fastProperties = {
   __proto__ : null,
-  &apos;property 1&apos;: 1,
+  'property 1': 1,
   …
-  &apos;property 10&apos;: n
+  'property 10': n
 };
 
 var fastPropertiesWithPrototype = {
-  &apos;property 1&apos;: 1,
+  'property 1': 1,
   …
-  &apos;property 10&apos;: n
+  'property 10': n
 };
 
 var slowProperties = {
   __proto__ : null,
-  &apos;dummy&apos;: null,
-  &apos;property 1&apos;: 1,
+  'dummy': null,
+  'property 1': 1,
   …
-  &apos;property 10&apos;: n
+  'property 10': n
 };
-delete slowProperties[&apos;dummy&apos;]
+delete slowProperties['dummy']
 
 var elements = {
   __proto__: null,
-  &apos;1&apos;: 1,
+  '1': 1,
   …
-  &apos;10&apos;: n
+  '10': n
 }
 ```
 

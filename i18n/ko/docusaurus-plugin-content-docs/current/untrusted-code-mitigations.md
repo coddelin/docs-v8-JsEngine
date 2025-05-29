@@ -1,6 +1,6 @@
 ---
-title: &apos;신뢰할 수 없는 코드 완화&apos;
-description: &apos;V8을 내장하여 신뢰할 수 없는 JavaScript 코드를 실행하는 경우, 투기적 부작용 공격으로부터 보호하기 위해 V8의 완화를 활성화하세요.&apos;
+title: '신뢰할 수 없는 코드 완화'
+description: 'V8을 내장하여 신뢰할 수 없는 JavaScript 코드를 실행하는 경우, 투기적 부작용 공격으로부터 보호하기 위해 V8의 완화를 활성화하세요.'
 ---
 2018년 초, Google의 Project Zero 연구자들은 [새로운 종류의 공격](https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html)을 공개했으며, 이는 많은 CPU에서 사용되는 투기적 실행 최적화를 [악용](https://security.googleblog.com/2018/01/more-details-about-mitigations-for-cpu_4.html)합니다. V8은 TurboFan이라는 최적화된 JIT 컴파일러를 사용하여 JavaScript를 빠르게 실행하므로, 특정 상황에서 공개된 부작용 공격에 취약할 수 있습니다.
 

@@ -1,6 +1,6 @@
 ---
-title: &apos;ChromiumのV8プロファイリング&apos;
-description: &apos;このドキュメントでは、ChromiumでV8のCPUプロファイラーとヒーププロファイラーを使用する方法を説明します。&apos;
+title: 'ChromiumのV8プロファイリング'
+description: 'このドキュメントでは、ChromiumでV8のCPUプロファイラーとヒーププロファイラーを使用する方法を説明します。'
 ---
 [V8のCPU & ヒーププロファイラー](/docs/profile)は、V8のシェルでは簡単に使用できますが、Chromiumで使用する方法は少し混乱するかもしれません。このページでは、その方法を説明します。
 
@@ -18,7 +18,7 @@ Chromiumは複雑なアプリケーションであり、V8シェルとは異な�
 プロセスの開始時からCPUプロファイルを取得するためには、以下のようにChromiumを実行します:
 
 ```bash
-./Chromium --no-sandbox --user-data-dir=`mktemp -d` --incognito --js-flags=&apos;--prof&apos;
+./Chromium --no-sandbox --user-data-dir=`mktemp -d` --incognito --js-flags='--prof'
 ```
 
 開発者ツールでプロファイルは表示されませんのでご注意ください。すべてのデータはファイルにログされ、開発者ツールにはログされません。
@@ -48,7 +48,7 @@ Android上のChromeはプロファイリングを少し複雑にするいくつ�
 以下のコマンドはAndroid上でのプロファイリングを有効にします:
 
 ```bash
-./build/android/adb_chrome_public_command_line --no-sandbox --single-process --js-flags=&apos;--logfile=/storage/emulated/0/Download/%t.log,--prof&apos;
+./build/android/adb_chrome_public_command_line --no-sandbox --single-process --js-flags='--logfile=/storage/emulated/0/Download/%t.log,--prof'
 <Androidデバイス上でChromeを閉じて再起動>
 adb pull /storage/emulated/0/Download/<logfile>
 ./src/v8/tools/linux-tick-processor --apk-embedded-library=out/Release/lib.unstripped/libchrome.so --preprocess <logfile>

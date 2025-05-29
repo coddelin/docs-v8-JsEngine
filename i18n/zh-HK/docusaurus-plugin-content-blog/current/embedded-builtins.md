@@ -1,13 +1,13 @@
 ---
-title: &apos;嵌入式內建函數&apos;
-author: &apos;Jakob Gruber ([@schuay](https://twitter.com/schuay))&apos;
+title: '嵌入式內建函數'
+author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
 avatars:
-  - &apos;jakob-gruber&apos;
+  - 'jakob-gruber'
 date: 2018-08-14 13:33:37
 tags:
   - internals
-description: &apos;V8 v6.9 將內建程式碼嵌入到二進位檔的 .text 區段中，將每個網站的V8堆積大小中位數減少了19%。&apos;
-tweet: &apos;1029382366693937162&apos;
+description: 'V8 v6.9 將內建程式碼嵌入到二進位檔的 .text 區段中，將每個網站的V8堆積大小中位數減少了19%。'
+tweet: '1029382366693937162'
 ---
 V8 的內建函數 (builtins) 在每個 V8 實例中消耗記憶體。內建函數的數量、平均大小以及每個 Chrome 瀏覽器分頁的 V8 實例數量顯著增加。本文介紹了我們如何在過去一年內將每個網站的V8堆積大小中位數減少了19%。
 

@@ -78,13 +78,13 @@ Aber diese strikten Gleichheitstests für nur `undefined` sind nicht immer wüns
 
 ```js
 // Prägnantes Nullish-Coalescing
-const link = document.querySelector(&apos;link&apos;) ?? document.createElement(&apos;link&apos;);
+const link = document.querySelector('link') ?? document.createElement('link');
 
 // Standard-Dekonstruktion mit Boilerplate
 const {
-  link = document.createElement(&apos;link&apos;),
+  link = document.createElement('link'),
 } = {
-  link: document.querySelector(&apos;link&apos;) || undefined
+  link: document.querySelector('link') || undefined
 };
 ```
 
@@ -92,11 +92,11 @@ Außerdem funktionieren bestimmte neue Features wie [optionale Verkettung](/feat
 
 ```js
 // Optionale Verkettung und nullish coalescing zusammen
-const link = obj.deep?.container.link ?? document.createElement(&apos;link&apos;);
+const link = obj.deep?.container.link ?? document.createElement('link');
 
 // Standard-Dekonstruktion mit optionaler Verkettung
 const {
-  link = document.createElement(&apos;link&apos;),
+  link = document.createElement('link'),
 } = (obj.deep?.container || {});
 ```
 

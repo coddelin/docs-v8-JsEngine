@@ -1,11 +1,11 @@
 ---
-title: &apos;Релиз V8 версии v6.6&apos;
-author: &apos;Команда V8&apos;
+title: 'Релиз V8 версии v6.6'
+author: 'Команда V8'
 date: 2018-03-27 13:33:37
 tags:
   - выпуск
-description: &apos;V8 версии 6.6 включает необязательные параметры для блока catch, расширенные методы обрезки строк, улучшения производительности парсинга/компиляции/исполнения и многое другое!&apos;
-tweet: &apos;978534399938584576&apos;
+description: 'V8 версии 6.6 включает необязательные параметры для блока catch, расширенные методы обрезки строк, улучшения производительности парсинга/компиляции/исполнения и многое другое!'
+tweet: '978534399938584576'
 ---
 Каждые шесть недель мы создаем новую ветку V8 в рамках нашего [процесса релизов](/docs/release-process). Каждая версия формируется из основной ветки V8 перед бета-этапом Chrome. Сегодня мы рады объявить о нашей новой ветке, [V8 версии 6.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.6), которая будет находиться в бета-версии до выпуска одновременно со стабильной версией Chrome 66 через несколько недель. V8 v6.6 наполнен множеством полезностей для разработчиков. Этот пост предоставляет предварительный обзор некоторых из интересных моментов перед релизом.
 
@@ -23,13 +23,13 @@ function /* комментарий */ foo () {}
 
 // Ранее:
 foo.toString();
-// → &apos;function foo() {}&apos;
+// → 'function foo() {}'
 //             ^ комментарий отсутствует
 //                ^ пробел отсутствует
 
 // Теперь:
 foo.toString();
-// → &apos;function /* comment */ foo () {}&apos;
+// → 'function /* comment */ foo () {}'
 ```
 
 ### JSON ⊂ ECMAScript
@@ -53,13 +53,13 @@ try {
 В дополнение к `String.prototype.trim()`, V8 теперь реализует [`String.prototype.trimStart()` и `String.prototype.trimEnd()`](/features/string-trimming). Эта функциональность ранее была доступна через нестандартные методы `trimLeft()` и `trimRight()`, которые остаются доступными как синонимы новых методов для обеспечения обратной совместимости.
 
 ```js
-const string = &apos;  hello world  &apos;;
+const string = '  hello world  ';
 string.trimStart();
-// → &apos;hello world  &apos;
+// → 'hello world  '
 string.trimEnd();
-// → &apos;  hello world&apos;
+// → '  hello world'
 string.trim();
-// → &apos;hello world&apos;
+// → 'hello world'
 ```
 
 ### `Array.prototype.values`

@@ -1,15 +1,15 @@
 ---
-title: &apos;Melhorando expressões regulares no V8&apos;
-author: &apos;Patrick Thier e Ana Peško, expressadores regulares de opiniões sobre expressões regulares&apos;
+title: 'Melhorando expressões regulares no V8'
+author: 'Patrick Thier e Ana Peško, expressadores regulares de opiniões sobre expressões regulares'
 avatars:
-  - &apos;patrick-thier&apos;
-  - &apos;ana-pesko&apos;
+  - 'patrick-thier'
+  - 'ana-pesko'
 date: 2019-10-04 15:24:16
 tags:
   - internals
   - RegExp
-description: &apos;Neste post de blog, descrevemos como aproveitamos as vantagens de interpretar expressões regulares e mitigamos as desvantagens.&apos;
-tweet: &apos;1180131710568030208&apos;
+description: 'Neste post de blog, descrevemos como aproveitamos as vantagens de interpretar expressões regulares e mitigamos as desvantagens.'
+tweet: '1180131710568030208'
 ---
 Na configuração padrão, o V8 compila expressões regulares para código nativo na primeira execução. Como parte do nosso trabalho no [V8 sem JIT](/blog/jitless), introduzimos um interpretador para expressões regulares. Interpretar expressões regulares tem a vantagem de usar menos memória, mas vem com uma penalidade de desempenho. Neste post de blog, descrevemos como aproveitamos as vantagens de interpretar expressões regulares enquanto mitigamos as desvantagens.
 
@@ -42,15 +42,15 @@ Antes de falarmos sobre a otimização de peephole de bytecode, vamos observar u
 
 ```js
 const re = /[^_]*/;
-const str = &apos;a0b*c_ef&apos;;
+const str = 'a0b*c_ef';
 re.exec(str);
-// → corresponde a &apos;a0b*c&apos;
+// → corresponde a 'a0b*c'
 ```
 
 Para este padrão simples, o compilador RegExp cria 3 bytecodes que são executados para cada caractere. Em um nível alto, eles são:
 
 1. Carregar o caractere atual.
-1. Verifique se o caractere é igual a `&apos;_&apos;`.
+1. Verifique se o caractere é igual a `'_'`.
 1. Caso contrário, avance a posição atual na string de assunto e `vá para 1`.
 
 Para nossa string de assunto, interpretamos 17 bytecodes até encontrar um caractere que não corresponda. A ideia da otimização de peephole é substituir sequências de bytecodes por um novo bytecode otimizado que combina a funcionalidade de múltiplos bytecodes. No nosso exemplo, podemos até lidar explicitamente com o loop implícito criado pelo `goto` no novo bytecode, assim um único bytecode lida com todos os caracteres correspondentes, economizando 16 dispatches.

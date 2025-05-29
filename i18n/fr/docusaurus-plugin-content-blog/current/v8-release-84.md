@@ -1,13 +1,13 @@
 ---
-title: &apos;Sortie V8 v8.4&apos;
-author: &apos;Camillo Bruni, profitant de nouveaux booléens&apos;
+title: 'Sortie V8 v8.4'
+author: 'Camillo Bruni, profitant de nouveaux booléens'
 avatars:
- - &apos;camillo-bruni&apos;
+ - 'camillo-bruni'
 date: 2020-06-30
 tags:
  - sortie
-description: &apos;V8 v8.4 propose des références faibles et des performances améliorées pour WebAssembly.&apos;
-tweet: &apos;1277983235641761795&apos;
+description: 'V8 v8.4 propose des références faibles et des performances améliorées pour WebAssembly.'
+tweet: '1277983235641761795'
 ---
 Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de sortie](https://v8.dev/docs/release-process). Chaque version est dérivée du maître Git de V8 juste avant une étape Beta de Chrome. Aujourd’hui, nous sommes ravis d’annoncer notre nouvelle branche, [V8 version 8.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.4), qui est en phase beta jusqu’à sa sortie en coordination avec la version stable de Chrome 84 dans quelques semaines. V8 v8.4 regorge de nombreuses fonctionnalités axées sur les développeurs. Ce poste fournit un aperçu de certains faits saillants en prévision de la sortie.
 
@@ -39,7 +39,7 @@ JavaScript est un langage à gestion automatique de la mémoire, ce qui signifie
 
 ```js
 const globalRef = {
-  callback() { console.log(&apos;foo&apos;); }
+  callback() { console.log('foo'); }
 };
 // Tant que globalRef est accessible via la portée globale,
 // ni lui ni la fonction dans sa propriété callback ne seront collectés.
@@ -49,7 +49,7 @@ Les programmeurs JavaScript peuvent désormais conserver des objets faiblement g
 
 ```js
 const globalWeakRef = new WeakRef({
-  callback() { console.log(&apos;foo&apos;); }
+  callback() { console.log('foo'); }
 });
 
 (async function() {
@@ -58,7 +58,7 @@ const globalWeakRef = new WeakRef({
   // pour le premier tour de la boucle d’événements après sa création.
 
   await new Promise((resolve, reject) => {
-    setTimeout(() => { resolve(&apos;foo&apos;); }, 42);
+    setTimeout(() => { resolve('foo'); }, 42);
   });
   // Attendre un tour de la boucle d’événements.
 

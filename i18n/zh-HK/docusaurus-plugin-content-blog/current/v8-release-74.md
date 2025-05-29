@@ -1,11 +1,11 @@
 ---
-title: &apos;V8 發佈 v7.4&apos;
-author: &apos;Georg Neis&apos;
+title: 'V8 發佈 v7.4'
+author: 'Georg Neis'
 date: 2019-03-22 16:30:42
 tags:
   - 發佈
-description: &apos;V8 v7.4 特性包括 WebAssembly 執行緒/原子操作、私有類欄位、性能和記憶體改進等等！&apos;
-tweet: &apos;1109094755936489472&apos;
+description: 'V8 v7.4 特性包括 WebAssembly 執行緒/原子操作、私有類欄位、性能和記憶體改進等等！'
+tweet: '1109094755936489472'
 ---
 每六週，我們會按照[發佈流程](/docs/release-process)建立一個新的 V8 分支。每個版本都從 V8 的 Git 主分支在 Chrome Beta 里程碑之前立即分支出來。今天，我們很高興宣布我們最新的分支 [V8 版本 7.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.4)，它目前處於測試階段，並將在數週內與 Chrome 74 穩定版一同發佈。V8 v7.4 充滿了各種面向開發者的精彩功能。這篇文章為即將到來的釋出提供了一些亮點預覽。
 
@@ -102,7 +102,7 @@ V8 v7.2 增加了對公共類字段語法的支持。類字段通過避免僅用
 class IncreasingCounter {
   #count = 0;
   get value() {
-    console.log(&apos;獲取當前值！&apos;);
+    console.log('獲取當前值！');
     return this.#count;
   }
   increment() {
@@ -125,22 +125,22 @@ counter.#count = 42;
 
 ### `Intl.Locale`
 
-JavaScript 應用通常使用類似 `&apos;en-US&apos;` 或 `&apos;de-CH&apos;` 的字串來識別本地化設定。`Intl.Locale` 提供了一種更強大的機制來處理本地化設置，並能輕鬆提取語言、日曆、數字系統、時間周期等特定於本地化的偏好設置。
+JavaScript 應用通常使用類似 `'en-US'` 或 `'de-CH'` 的字串來識別本地化設定。`Intl.Locale` 提供了一種更強大的機制來處理本地化設置，並能輕鬆提取語言、日曆、數字系統、時間周期等特定於本地化的偏好設置。
 
 ```js
-const locale = new Intl.Locale(&apos;es-419-u-hc-h12&apos;, {
-  calendar: &apos;gregory&apos;
+const locale = new Intl.Locale('es-419-u-hc-h12', {
+  calendar: 'gregory'
 });
 locale.language;
-// → &apos;es&apos;
+// → 'es'
 locale.calendar;
-// → &apos;gregory&apos;
+// → 'gregory'
 locale.hourCycle;
-// → &apos;h12&apos;
+// → 'h12'
 locale.region;
-// → &apos;419&apos;
+// → '419'
 locale.toString();
-// → &apos;es-419-u-ca-gregory-hc-h12&apos;
+// → 'es-419-u-ca-gregory-hc-h12'
 ```
 
 ### Hashbang 語法

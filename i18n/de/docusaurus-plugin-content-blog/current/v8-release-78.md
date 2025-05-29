@@ -1,13 +1,13 @@
 ---
-title: &apos;V8-Veröffentlichung v7.8&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), der faule Zauberer&apos;
+title: 'V8-Veröffentlichung v7.8'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), der faule Zauberer'
 avatars:
-  - &apos;ingvar-stepanyan&apos;
+  - 'ingvar-stepanyan'
 date: 2019-09-27
 tags:
   - release
-description: &apos;V8 v7.8 bietet Streaming-Kompilierung beim Preload, WebAssembly C API, schnellere Objekt-Destrukturierung und reguläre Ausdrucks-Matching sowie verbesserte Startzeiten.&apos;
-tweet: &apos;1177600702861971459&apos;
+description: 'V8 v7.8 bietet Streaming-Kompilierung beim Preload, WebAssembly C API, schnellere Objekt-Destrukturierung und reguläre Ausdrucks-Matching sowie verbesserte Startzeiten.'
+tweet: '1177600702861971459'
 ---
 Alle sechs Wochen erstellen wir einen neuen Branch von V8 im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process). Jede Version wird direkt vor einem Chrome-Beta-Meilenstein von V8’s Git-Master verzweigt. Heute freuen wir uns, unseren neuesten Branch anzukündigen, [V8 Version 7.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.8), der sich in der Beta-Phase befindet, bis er in einigen Wochen zusammen mit Chrome 78 Stable veröffentlicht wird. V8 v7.8 ist vollgepackt mit verschiedenen Verbesserungen für Entwickler. Dieser Beitrag bietet eine Vorschau auf einige Highlights als Vorgeschmack auf die Veröffentlichung.
 
@@ -77,8 +77,8 @@ const y = object.y;
 … mit der Ausnahme, dass sie auch einen speziellen Fehler werfen muss, wenn `object` `undefined` oder `null` ist…
 
 ```
-$ v8 -e &apos;const object = undefined; const {x, y} = object;&apos;
-unnamed:1: TypeError: Kann die Eigenschaft `x` von &apos;undefined&apos; oder &apos;null&apos; nicht destrukturieren.
+$ v8 -e 'const object = undefined; const {x, y} = object;'
+unnamed:1: TypeError: Kann die Eigenschaft `x` von 'undefined' oder 'null' nicht destrukturieren.
 const object = undefined; const {x, y} = object;
                                  ^
 ```
@@ -86,8 +86,8 @@ const object = undefined; const {x, y} = object;
 … anstatt des normalen Fehlers, den Sie erhalten würden, wenn Sie versuchen, auf `undefined` zuzugreifen:
 
 ```
-$ v8 -e &apos;const object = undefined; object.x&apos;
-unnamed:1: TypeError: Kann die Eigenschaft &apos;x&apos; von undefined nicht lesen
+$ v8 -e 'const object = undefined; object.x'
+unnamed:1: TypeError: Kann die Eigenschaft 'x' von undefined nicht lesen
 const object = undefined; object.x
                                  ^
 ```

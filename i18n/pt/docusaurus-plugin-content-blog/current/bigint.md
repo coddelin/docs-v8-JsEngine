@@ -119,7 +119,7 @@ Por exemplo, se percebemos que BigInts relativamente pequenos (até 64 bits) sã
 
 ```js
 {
-  type: &apos;BigInt-Int64&apos;,
+  type: 'BigInt-Int64',
   value: 0x12…,
 }
 ```

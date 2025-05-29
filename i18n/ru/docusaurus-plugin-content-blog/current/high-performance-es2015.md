@@ -1,12 +1,12 @@
 ---
-title: &apos;Высокопроизводительные ES2015 и новее&apos;
-author: &apos;Бенедикт Мойрер [@bmeurer](https://twitter.com/bmeurer), инженер по производительности ECMAScript&apos;
+title: 'Высокопроизводительные ES2015 и новее'
+author: 'Бенедикт Мойрер [@bmeurer](https://twitter.com/bmeurer), инженер по производительности ECMAScript'
 avatars:
-  - &apos;benedikt-meurer&apos;
+  - 'benedikt-meurer'
 date: 2017-02-17 13:33:37
 tags:
   - ECMAScript
-description: &apos;Производительность V8 для языковых возможностей ES2015+ теперь сопоставима с их транспилированными эквивалентами на ES5.&apos;
+description: 'Производительность V8 для языковых возможностей ES2015+ теперь сопоставима с их транспилированными эквивалентами на ES5.'
 ---
 За последние несколько месяцев команда V8 сосредоточилась на повышении производительности недавно добавленных возможностей JavaScript [ES2015](https://www.ecma-international.org/ecma-262/6.0/) и даже более современных функций до уровня их транспилированных [ES5](https://www.ecma-international.org/ecma-262/5.1/) эквивалентов.
 
@@ -35,7 +35,7 @@ function todoApp(state = initialState, action) {
 В приведенном коде есть две вещи, требующие транспиляции: параметр `по умолчанию` для `state` и распространение `state` внутрь объектного литерала. Babel генерирует следующий код на ES5:
 
 ```js
-&apos;use strict&apos;;
+'use strict';
 
 var _extends = Object.assign || function(target) {
   for (var i = 1; i < arguments.length; i++) {
@@ -82,7 +82,7 @@ async function* readLines(path) {
 Babel переводит эти 187 символов (150 байт в сжатом виде) в невероятные 2987 символов (971 байт в сжатом виде) кода ES5, не считая [regenerator runtime](https://babeljs.io/docs/plugins/transform-regenerator/), который необходим в качестве дополнительной зависимости:
 
 ```js
-&apos;use strict&apos;;
+'use strict';
 
 var _asyncGenerator = function() {
   function AwaitValue(value) {
@@ -116,27 +116,27 @@ var _asyncGenerator = function() {
         var value = result.value;
         if (value instanceof AwaitValue) {
           Promise.resolve(value.value).then(function(arg) {
-            resume(&apos;next&apos;, arg);
+            resume('next', arg);
           }, function(arg) {
-            resume(&apos;throw&apos;, arg);
+            resume('throw', arg);
           });
         } else {
-          settle(result.done ? &apos;return&apos; : &apos;normal&apos;, result.value);
+          settle(result.done ? 'return' : 'normal', result.value);
         }
       } catch (err) {
-        settle(&apos;throw&apos;, err);
+        settle('throw', err);
       }
     }
 
     function settle(type, value) {
       switch (type) {
-        case &apos;return&apos;:
+        case 'return':
           front.resolve({
             value: value,
             done: true
           });
           break;
-        case &apos;throw&apos;:
+        case 'throw':
           front.reject(value);
           break;
         default:
@@ -154,23 +154,23 @@ var _asyncGenerator = function() {
       }
     }
     this._invoke = send;
-    if (typeof gen.return !== &apos;function&apos;) {
+    if (typeof gen.return !== 'function') {
       this.return = undefined;
     }
   }
-  if (typeof Symbol === &apos;function&apos; && Symbol.asyncIterator) {
+  if (typeof Symbol === 'function' && Symbol.asyncIterator) {
     AsyncGenerator.prototype[Symbol.asyncIterator] = function() {
       return this;
     };
   }
   AsyncGenerator.prototype.next = function(arg) {
-    return this._invoke(&apos;next&apos;, arg);
+    return this._invoke('next', arg);
   };
   AsyncGenerator.prototype.throw = function(arg) {
-    return this._invoke(&apos;throw&apos;, arg);
+    return this._invoke('throw', arg);
   };
   AsyncGenerator.prototype.return = function(arg) {
-    return this._invoke(&apos;return&apos;, arg);
+    return this._invoke('return', arg);
   };
   return {
     wrap: function wrap(fn) {
@@ -224,7 +224,7 @@ var readLines = function () {
             return _context.finish(11);
 
           case 15:
-          case &apos;end&apos;:
+          case 'end':
             return _context.stop();
         }
       }
@@ -288,7 +288,7 @@ function fn() {
 …и значительно быстрее (и короче), чем код, сгенерированный Babel:
 
 ```js
-&apos;use strict&apos;;
+'use strict';
 
 var _slicedToArray = function() {
   function sliceIterator(arr, i) {
@@ -306,7 +306,7 @@ var _slicedToArray = function() {
       _e = err;
     } finally {
       try {
-        if (!_n && _i[&apos;return&apos;]) _i[&apos;return&apos;]();
+        if (!_n && _i['return']) _i['return']();
       } finally {
         if (_d) throw _e;
       }
@@ -319,7 +319,7 @@ var _slicedToArray = function() {
     } else if (Symbol.iterator in Object(arr)) {
       return sliceIterator(arr, i);
     } else {
-      throw new TypeError(&apos;Invalid attempt to destructure non-iterable instance&apos;);
+      throw new TypeError('Invalid attempt to destructure non-iterable instance');
     }
   };
 }();

@@ -1,8 +1,8 @@
 ---
-title: &apos;Combinadores de Promise&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Combinadores de Promise'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-06-12
 tags:
   - ECMAScript
@@ -10,8 +10,8 @@ tags:
   - ES2021
   - io19
   - Node.js 16
-description: &apos;Existem quatro combinadores de Promise em JavaScript: Promise.all, Promise.race, Promise.allSettled, e Promise.any.&apos;
-tweet: &apos;1138819493956710400&apos;
+description: 'Existem quatro combinadores de Promise em JavaScript: Promise.all, Promise.race, Promise.allSettled, e Promise.any.'
+tweet: '1138819493956710400'
 ---
 Desde a introdução de promises no ES2015, o JavaScript suporta exatamente dois combinadores de promise: os métodos estáticos `Promise.all` e `Promise.race`.
 
@@ -45,9 +45,9 @@ Imagine que o usuário clica em um botão e você deseja carregar algumas folhas
 
 ```js
 const promises = [
-  fetch(&apos;/component-a.css&apos;),
-  fetch(&apos;/component-b.css&apos;),
-  fetch(&apos;/component-c.css&apos;),
+  fetch('/component-a.css'),
+  fetch('/component-b.css'),
+  fetch('/component-c.css'),
 ];
 try {
   const styleResponses = await Promise.all(promises);
@@ -105,9 +105,9 @@ Por exemplo, você pode iniciar uma série de chamadas de API independentes e us
 
 ```js
 const promises = [
-  fetch(&apos;/api-call-1&apos;),
-  fetch(&apos;/api-call-2&apos;),
-  fetch(&apos;/api-call-3&apos;),
+  fetch('/api-call-1'),
+  fetch('/api-call-2'),
+  fetch('/api-call-3'),
 ];
 // Imagine que algumas dessas requisições falhem e outras sejam bem-sucedidas.
 
@@ -128,15 +128,15 @@ removeLoadingIndicator();
 
 ```js
 const promises = [
-  fetch(&apos;/endpoint-a&apos;).then(() => &apos;a&apos;),
-  fetch(&apos;/endpoint-b&apos;).then(() => &apos;b&apos;),
-  fetch(&apos;/endpoint-c&apos;).then(() => &apos;c&apos;),
+  fetch('/endpoint-a').then(() => 'a'),
+  fetch('/endpoint-b').then(() => 'b'),
+  fetch('/endpoint-c').then(() => 'c'),
 ];
 try {
   const first = await Promise.any(promises);
   // Qualquer uma das promessas foi cumprida.
   console.log(first);
-  // → por exemplo &apos;b&apos;
+  // → por exemplo 'b'
 } catch (error) {
   // Todas as promessas foram rejeitadas.
   console.assert(error instanceof AggregateError);
@@ -155,5 +155,5 @@ Este exemplo de código verifica qual endpoint responde mais rapidamente e, em s
 `Promise.any` pode representar múltiplos erros ao mesmo tempo. Para suportar isso no nível da linguagem, um novo tipo de erro chamado `AggregateError` foi introduzido. Além do uso básico no exemplo acima, objetos `AggregateError` também podem ser programaticamente construídos, assim como outros tipos de erros:
 
 ```js
-const aggregateError = new AggregateError([errorA, errorB, errorC], &apos;Algo deu errado!&apos;);
+const aggregateError = new AggregateError([errorA, errorB, errorC], 'Algo deu errado!');
 ```

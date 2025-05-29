@@ -1,6 +1,6 @@
 ---
-title: &apos;在 C++ 上改裝時間記憶體安全性&apos;
-author: &apos;Anton Bikineev, Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), Hannes Payer ([@PayerHannes](https://twitter.com/PayerHannes))&apos;
+title: '在 C++ 上改裝時間記憶體安全性'
+author: 'Anton Bikineev, Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), Hannes Payer ([@PayerHannes](https://twitter.com/PayerHannes))'
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -10,7 +10,7 @@ tags:
   - 內部構造
   - 記憶體
   - 安全性
-description: &apos;透過堆積掃描在 Chrome 中消除釋放後使用的漏洞。&apos;
+description: '透過堆積掃描在 Chrome 中消除釋放後使用的漏洞。'
 ---
 :::note
 **注意:** 本文最初發表於 [Google 安全部落格](https://security.googleblog.com/2022/05/retrofitting-temporal-memory-safety-on-c.html)。

@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 發佈 v6.0&apos;
-author: &apos;V8 團隊&apos;
+title: 'V8 發佈 v6.0'
+author: 'V8 團隊'
 date: 2017-06-09 13:33:37
 tags:
   - 發佈
-description: &apos;V8 v6.0 帶來了多項性能改進，並引入了對 `SharedArrayBuffer` 和物件的剩餘/展開屬性的支援。&apos;
+description: 'V8 v6.0 帶來了多項性能改進，並引入了對 `SharedArrayBuffer` 和物件的剩餘/展開屬性的支援。'
 ---
 每六週，我們會根據 [發佈流程](/docs/release-process) 創建一個新的 V8 分支。每個版本都是從 V8 的 Git 主分支在 Chrome Beta 里程碑前立即分支出來的。今天，我們很高興地向大家宣布我們最新的分支，[V8 版本 6.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.0)，該版本將進入 Beta 阶段，直到幾週後與 Chrome 60 Stable 一同發佈。V8 6.0 包含了各種面向開發者的功能。我們希望在正式發佈之前為大家介紹一些亮點。
 
@@ -24,20 +24,20 @@ V8 v6.0 引入了對 [`SharedArrayBuffer`](https://developer.mozilla.org/en-US/d
 ```js
 // 對象解構賦值的剩餘屬性:
 const person = {
-  firstName: &apos;Sebastian&apos;,
-  lastName: &apos;Markbåge&apos;,
-  country: &apos;USA&apos;,
-  state: &apos;CA&apos;,
+  firstName: 'Sebastian',
+  lastName: 'Markbåge',
+  country: 'USA',
+  state: 'CA',
 };
 const { firstName, lastName, ...rest } = person;
 console.log(firstName); // Sebastian
 console.log(lastName); // Markbåge
-console.log(rest); // { country: &apos;USA&apos;, state: &apos;CA&apos; }
+console.log(rest); // { country: 'USA', state: 'CA' }
 
 // 對象字面量的展開屬性:
 const personCopy = { firstName, lastName, ...rest };
 console.log(personCopy);
-// { firstName: &apos;Sebastian&apos;, lastName: &apos;Markbåge&apos;, country: &apos;USA&apos;, state: &apos;CA&apos; }
+// { firstName: 'Sebastian', lastName: 'Markbåge', country: 'USA', state: 'CA' }
 ```
 
 如需更多資訊，請參閱 [我們關於物件的剩餘和展開屬性的解釋文檔](/features/object-rest-spread)。

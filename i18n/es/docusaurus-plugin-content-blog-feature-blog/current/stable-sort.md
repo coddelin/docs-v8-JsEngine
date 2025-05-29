@@ -1,28 +1,28 @@
 ---
-title: &apos;Array.prototype.sort` estable&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Array.prototype.sort` estable'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-07-02
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: &apos;Ahora se garantiza que Array.prototype.sort sea estable.&apos;
-tweet: &apos;1146067251302244353&apos;
+description: 'Ahora se garantiza que Array.prototype.sort sea estable.'
+tweet: '1146067251302244353'
 ---
 Supongamos que tienes un array de perros, donde cada perro tiene un nombre y una calificación. (Si esto suena a un ejemplo extraño, debes saber que hay una cuenta de Twitter que se especializa exactamente en esto… ¡No preguntes!)
 
 ```js
 // Nota cómo el array está preordenado alfabéticamente por `name`.
 const doggos = [
-  { name: &apos;Abby&apos;,   rating: 12 },
-  { name: &apos;Bandit&apos;, rating: 13 },
-  { name: &apos;Choco&apos;,  rating: 14 },
-  { name: &apos;Daisy&apos;,  rating: 12 },
-  { name: &apos;Elmo&apos;,   rating: 12 },
-  { name: &apos;Falco&apos;,  rating: 13 },
-  { name: &apos;Ghost&apos;,  rating: 14 },
+  { name: 'Abby',   rating: 12 },
+  { name: 'Bandit', rating: 13 },
+  { name: 'Choco',  rating: 14 },
+  { name: 'Daisy',  rating: 12 },
+  { name: 'Elmo',   rating: 12 },
+  { name: 'Falco',  rating: 13 },
+  { name: 'Ghost',  rating: 14 },
 ];
 // Ordena los perros por `rating` en orden descendente.
 // (Esto actualiza `doggos` directamente).
@@ -34,13 +34,13 @@ El array está preordenado alfabéticamente por nombre. Para ordenar por calific
 
 ```js
 [
-  { name: &apos;Choco&apos;,  rating: 14 },
-  { name: &apos;Ghost&apos;,  rating: 14 },
-  { name: &apos;Bandit&apos;, rating: 13 },
-  { name: &apos;Falco&apos;,  rating: 13 },
-  { name: &apos;Abby&apos;,   rating: 12 },
-  { name: &apos;Daisy&apos;,  rating: 12 },
-  { name: &apos;Elmo&apos;,   rating: 12 },
+  { name: 'Choco',  rating: 14 },
+  { name: 'Ghost',  rating: 14 },
+  { name: 'Bandit', rating: 13 },
+  { name: 'Falco',  rating: 13 },
+  { name: 'Abby',   rating: 12 },
+  { name: 'Daisy',  rating: 12 },
+  { name: 'Elmo',   rating: 12 },
 ]
 ```
 
@@ -50,13 +50,13 @@ Sin embargo, para obtener este resultado, el motor de JavaScript no puede usar _
 
 ```js
 [
-  { name: &apos;Ghost&apos;,  rating: 14 }, // 😢
-  { name: &apos;Choco&apos;,  rating: 14 }, // 😢
-  { name: &apos;Bandit&apos;, rating: 13 },
-  { name: &apos;Falco&apos;,  rating: 13 },
-  { name: &apos;Abby&apos;,   rating: 12 },
-  { name: &apos;Daisy&apos;,  rating: 12 },
-  { name: &apos;Elmo&apos;,   rating: 12 },
+  { name: 'Ghost',  rating: 14 }, // 😢
+  { name: 'Choco',  rating: 14 }, // 😢
+  { name: 'Bandit', rating: 13 },
+  { name: 'Falco',  rating: 13 },
+  { name: 'Abby',   rating: 12 },
+  { name: 'Daisy',  rating: 12 },
+  { name: 'Elmo',   rating: 12 },
 ]
 ```
 

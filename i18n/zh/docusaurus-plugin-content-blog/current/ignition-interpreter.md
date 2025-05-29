@@ -1,12 +1,12 @@
 ---
-title: &apos;启动 Ignition 解释器&apos;
-author: &apos;Ross McIlroy, V8 Ignition 初学者&apos;
+title: '启动 Ignition 解释器'
+author: 'Ross McIlroy, V8 Ignition 初学者'
 avatars:
-  - &apos;ross-mcilroy&apos;
+  - 'ross-mcilroy'
 date: 2016-08-23 13:33:37
 tags:
   - 内部结构
-description: &apos;通过 Ignition 解释器，V8 将 JavaScript 函数编译为精简的字节码，其大小仅为相应基础机器代码的 50% 到 25%。&apos;
+description: '通过 Ignition 解释器，V8 将 JavaScript 函数编译为精简的字节码，其大小仅为相应基础机器代码的 50% 到 25%。'
 ---
 V8 和其他现代 JavaScript 引擎通过 [即时（JIT）编译](https://en.wikipedia.org/wiki/Just-in-time_compilation) 将脚本转换为本机机器代码以获得执行速度，而这通常是在执行前立即进行的。代码最初由基础编译器快速生成非优化的机器代码，在运行时进行分析，并根据需要动态使用更高级的优化编译器进行重编译以实现更优性能。在 V8 中，这种脚本执行管道包含各种特殊情况和条件，因而需要复杂的机制在基础编译器和两个优化编译器 Crankshaft 与 TurboFan 之间切换。
 

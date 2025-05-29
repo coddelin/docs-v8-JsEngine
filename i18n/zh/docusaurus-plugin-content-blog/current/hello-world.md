@@ -1,8 +1,8 @@
 ---
-title: &apos;你好，世界！&apos;
-author: &apos;V8团队&apos;
+title: '你好，世界！'
+author: 'V8团队'
 date: 2015-07-10 13:33:37
-description: &apos;V8项目现在有一个博客了！&apos;
+description: 'V8项目现在有一个博客了！'
 ---
 欢迎来到V8开发者博客！
 

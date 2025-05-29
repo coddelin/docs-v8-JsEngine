@@ -1,13 +1,13 @@
 ---
-title: &apos;Lançamento do V8 v9.0&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), em linha contínua&apos;
+title: 'Lançamento do V8 v9.0'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), em linha contínua'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-03-17
 tags:
  - lançamento
-description: &apos;O lançamento do V8 v9.0 traz suporte para índices de correspondência RegExp e várias melhorias de desempenho.&apos;
-tweet: &apos;1372227274712494084&apos;
+description: 'O lançamento do V8 v9.0 traz suporte para índices de correspondência RegExp e várias melhorias de desempenho.'
+tweet: '1372227274712494084'
 ---
 A cada seis semanas, criamos uma nova ramificação do V8 como parte do nosso [processo de lançamento](https://v8.dev/docs/release-process). Cada versão é ramificada do Git master do V8 imediatamente antes de um marco beta do Chrome. Hoje temos o prazer de anunciar nossa nova ramificação, [V8 versão 9.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.0), que está em beta até seu lançamento em coordenação com o Chrome 90 Stable nas próximas semanas. O V8 v9.0 está repleto de várias novidades para desenvolvedores. Este post fornece uma prévia de alguns destaques em antecipação ao seu lançamento.
 
@@ -20,7 +20,7 @@ A partir da v9.0, os desenvolvedores podem optar por obter um array com as posi�
 
 ```javascript
 const re = /(a)(b)/d;      // Observe a flag /d.
-const m = re.exec(&apos;ab&apos;);
+const m = re.exec('ab');
 console.log(m.indices[0]); // O índice 0 é a correspondência completa.
 // → [0, 2]
 console.log(m.indices[1]); // O índice 1 é o 1º grupo capturado.

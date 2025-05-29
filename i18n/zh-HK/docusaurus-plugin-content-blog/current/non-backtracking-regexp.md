@@ -1,17 +1,17 @@
 ---
-title: &apos;一個附加的無回溯正規表示法引擎&apos;
-author: &apos;Martin Bidlingmaier&apos;
+title: '一個附加的無回溯正規表示法引擎'
+author: 'Martin Bidlingmaier'
 date: 2021-01-11
 tags:
  - internals
  - RegExp
-description: &apos;V8 現在擁有一個附加的正規表示法引擎，作為備援並防止許多災難性回溯情況。&apos;
-tweet: &apos;1348635270762139650&apos;
+description: 'V8 現在擁有一個附加的正規表示法引擎，作為備援並防止許多災難性回溯情況。'
+tweet: '1348635270762139650'
 ---
 從 v8.8 開始，V8 提供一個新的實驗性無回溯正規表示法引擎（除了現有的 [Irregexp 引擎](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html)以外），該引擎保證相對於主串大小以線性時間執行。實驗性引擎可通過下面的功能標誌開啟。
 
 <!--truncate-->
-![Runtime of `/(a*)*b/.exec(&apos;a&apos;.repeat(n))` for n ≤ 100](/_img/non-backtracking-regexp/runtime-plot.svg)
+![Runtime of `/(a*)*b/.exec('a'.repeat(n))` for n ≤ 100](/_img/non-backtracking-regexp/runtime-plot.svg)
 
 以下是如何配置新正規表示法引擎：
 
@@ -28,15 +28,15 @@ tweet: &apos;1348635270762139650&apos;
 
 ## 背景：災難性回溯
 
-V8 中的正規表示法匹配由 Irregexp 引擎處理。Irregexp 將正則表達式 JIT 編譯為專門的原生代碼（或 [字節碼](/blog/regexp-tier-up)），因此對於大多數模式來說非常快。然而，對於某些模式，Irregexp 的運行時間可能隨輸入字符串大小而呈指數級增長。上面提到的例子 `/(a*)*b/.exec(&apos;a&apos;.repeat(100))` 如果使用 Irregexp 執行，在我們的生命週期內是不可能完成的。
+V8 中的正規表示法匹配由 Irregexp 引擎處理。Irregexp 將正則表達式 JIT 編譯為專門的原生代碼（或 [字節碼](/blog/regexp-tier-up)），因此對於大多數模式來說非常快。然而，對於某些模式，Irregexp 的運行時間可能隨輸入字符串大小而呈指數級增長。上面提到的例子 `/(a*)*b/.exec('a'.repeat(100))` 如果使用 Irregexp 執行，在我們的生命週期內是不可能完成的。
 
-所以這裡到底發生了什麼呢？Irregexp 是一個 *回溯* 引擎。當面臨匹配可以繼續的方式選擇時，Irregexp 會完整探索第一種替代方案，如果必要則回溯以探索第二種替代方案。比如，考慮模式 `/abc|[az][by][0-9]/` 與主串 `&apos;ab3&apos;` 匹配。此時 Irregexp 嘗試首先匹配 `/abc/`，並在第二個字符失敗。然後它回溯兩個字符並成功匹配第二個替代方案 `/[az][by][0-9]/`。在帶有量詞的模式例如 `/(abc)*xyz/` 中，Irregexp 必須在匹配主體之後選擇是再次匹配主體還是繼續剩餘模式。
+所以這裡到底發生了什麼呢？Irregexp 是一個 *回溯* 引擎。當面臨匹配可以繼續的方式選擇時，Irregexp 會完整探索第一種替代方案，如果必要則回溯以探索第二種替代方案。比如，考慮模式 `/abc|[az][by][0-9]/` 與主串 `'ab3'` 匹配。此時 Irregexp 嘗試首先匹配 `/abc/`，並在第二個字符失敗。然後它回溯兩個字符並成功匹配第二個替代方案 `/[az][by][0-9]/`。在帶有量詞的模式例如 `/(abc)*xyz/` 中，Irregexp 必須在匹配主體之後選擇是再次匹配主體還是繼續剩餘模式。
 
-讓我們試著理解當用小一些的主串例如 `&apos;aaa&apos;` 匹配 `/(a*)*b/` 時發生了什麼。該模式包含嵌套量詞，所以我們要求 Irregexp 匹配 `&apos;a&apos;` 的*序列的序列*，然後匹配 `&apos;b&apos;`。顯然沒有匹配，因為主串不包含 `&apos;b&apos;`。然而，`/(a*)*/` 匹配了，而且以指數級方式匹配了很多不同的方式：
+讓我們試著理解當用小一些的主串例如 `'aaa'` 匹配 `/(a*)*b/` 時發生了什麼。該模式包含嵌套量詞，所以我們要求 Irregexp 匹配 `'a'` 的*序列的序列*，然後匹配 `'b'`。顯然沒有匹配，因為主串不包含 `'b'`。然而，`/(a*)*/` 匹配了，而且以指數級方式匹配了很多不同的方式：
 
 ```js
-&apos;aaa&apos;           &apos;aa&apos;, &apos;a&apos;           &apos;aa&apos;, &apos;&apos;
-&apos;a&apos;, &apos;aa&apos;       &apos;a&apos;, &apos;a&apos;, &apos;a&apos;       &apos;a&apos;, &apos;a&apos;, &apos;&apos;
+'aaa'           'aa', 'a'           'aa', ''
+'a', 'aa'       'a', 'a', 'a'       'a', 'a', ''
 …
 ```
 
@@ -62,13 +62,13 @@ V8 中的正規表示法匹配由 Irregexp 引擎處理。Irregexp 將正則表�
 
 ```js
 const code = [
-  {opcode: &apos;FORK&apos;, forkPc: 4},
-  {opcode: &apos;CONSUME&apos;, char: &apos;1&apos;},
-  {opcode: &apos;CONSUME&apos;, char: &apos;2&apos;},
-  {opcode: &apos;JMP&apos;, jmpPc: 6},
-  {opcode: &apos;CONSUME&apos;, char: &apos;a&apos;},
-  {opcode: &apos;CONSUME&apos;, char: &apos;b&apos;},
-  {opcode: &apos;ACCEPT&apos;}
+  {opcode: 'FORK', forkPc: 4},
+  {opcode: 'CONSUME', char: '1'},
+  {opcode: 'CONSUME', char: '2'},
+  {opcode: 'JMP', jmpPc: 6},
+  {opcode: 'CONSUME', char: 'a'},
+  {opcode: 'CONSUME', char: 'b'},
+  {opcode: 'ACCEPT'}
 ];
 ```
 
@@ -81,7 +81,7 @@ const stack = []; // 回溯棧
 while (true) {
   const inst = code[pc];
   switch (inst.opcode) {
-    case &apos;CONSUME&apos;:
+    case 'CONSUME':
       if (ip < input.length && input[ip] === inst.char) {
         // 輸入匹配預期：繼續。
         ++ip;
@@ -96,15 +96,15 @@ while (true) {
         return false;
       }
       break;
-    case &apos;FORK&apos;:
+    case 'FORK':
       // 保存備選狀態以供稍後回溯。
       stack.push({ip: ip, pc: inst.forkPc});
       ++pc;
       break;
-    case &apos;JMP&apos;:
+    case 'JMP':
       pc = inst.jmpPc;
       break;
-    case &apos;ACCEPT&apos;:
+    case 'ACCEPT':
       return true;
   }
 }
@@ -121,12 +121,12 @@ while (true) {
 ```js
 // 輸入位置。
 let ip = 0;
-// 當前程序計數器值或找到匹配時的 `&apos;ACCEPT&apos;`。我們從程序計數器 0 開始，並按ε轉移跟進。
+// 當前程序計數器值或找到匹配時的 `'ACCEPT'`。我們從程序計數器 0 開始，並按ε轉移跟進。
 let pcs = followEpsilons([0]);
 
 while (true) {
   // 如果我們找到匹配，就完成了。
-  if (pcs === &apos;ACCEPT&apos;) return true;
+  if (pcs === 'ACCEPT') return true;
   // 或者如果我們已經耗盡輸入字符串。
   if (ip >= input.length) return false;
 
@@ -141,7 +141,7 @@ while (true) {
 }
 ```
 
-函數 `followEpsilons` 接受一個程序計數器列表，並計算通過ε轉移（僅執行FORK和JMP）可到達 `CONSUME` 指令程序計數器的列表。返回的列表不得包含重複項。如果可以到達 `ACCEPT` 指令，函數返回 `&apos;ACCEPT&apos;`。可以這樣實現：
+函數 `followEpsilons` 接受一個程序計數器列表，並計算通過ε轉移（僅執行FORK和JMP）可到達 `CONSUME` 指令程序計數器的列表。返回的列表不得包含重複項。如果可以到達 `ACCEPT` 指令，函數返回 `'ACCEPT'`。可以這樣實現：
 
 ```js
 function followEpsilons(pcs) {
@@ -158,17 +158,17 @@ function followEpsilons(pcs) {
 
     const inst = code[pc];
     switch (inst.opcode) {
-      case &apos;CONSUME&apos;:
+      case 'CONSUME':
         result.push(pc);
         break;
-      case &apos;FORK&apos;:
+      case 'FORK':
         pcs.push(pc + 1, inst.forkPc);
         break;
-      case &apos;JMP&apos;:
+      case 'JMP':
         pcs.push(inst.jmpPc);
         break;
-      case &apos;ACCEPT&apos;:
-        return &apos;ACCEPT&apos;;
+      case 'ACCEPT':
+        return 'ACCEPT';
     }
   }
 

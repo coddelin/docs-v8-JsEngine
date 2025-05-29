@@ -1,12 +1,12 @@
 ---
-title: &apos;Beschleunigung von Spread-Elementen&apos;
-author: &apos;Hai Dang & Georg Neis&apos;
+title: 'Beschleunigung von Spread-Elementen'
+author: 'Hai Dang & Georg Neis'
 date: 2018-12-04 16:57:21
 tags:
   - ECMAScript
   - Benchmarks
-description: &apos;V8 v7.2 / beschleunigt signifikant Array.from(array) sowie [...spread] für Arrays, Strings, Sets und Maps.&apos;
-tweet: &apos;1070344545685118976&apos;
+description: 'V8 v7.2 / beschleunigt signifikant Array.from(array) sowie [...spread] für Arrays, Strings, Sets und Maps.'
+tweet: '1070344545685118976'
 ---
 Während seines dreimonatigen Praktikums im V8-Team arbeitete Hai Dang daran, die Leistung von `[...array]`, `[...string]`, `[...set]`, `[...map.keys()]` und `[...map.values()]` zu verbessern (wenn die Spread-Elemente am Anfang des Array-Literals stehen). Er machte auch `Array.from(iterable)` deutlich schneller. Dieser Artikel erklärt einige Details seiner Änderungen, die ab V8 v7.2 enthalten sind.
 
@@ -25,19 +25,19 @@ const result = [1, ...a, 4, ...b];
 Ein weiteres Beispiel: Jeder String kann aufgebrochen werden, um ein Array seiner Zeichen (Unicode-Codepunkte) zu erstellen:
 
 ```js
-const str = &apos;こんにちは&apos;;
+const str = 'こんにちは';
 const result = [...str];
-// → [&apos;こ&apos;, &apos;ん&apos;, &apos;に&apos;, &apos;ち&apos;, &apos;は&apos;]
+// → ['こ', 'ん', 'に', 'ち', 'は']
 ```
 
 Auf ähnliche Weise kann jedes Set aufgebrochen werden, um ein Array seiner Elemente zu erstellen, sortiert nach Einfügereihenfolge:
 
 ```js
 const s = new Set();
-s.add(&apos;V8&apos;);
-s.add(&apos;TurboFan&apos;);
+s.add('V8');
+s.add('TurboFan');
 const result = [...s];
-// → [&apos;V8&apos;, &apos;TurboFan&apos;]
+// → ['V8', 'TurboFan']
 ```
 
 Im Allgemeinen geht die Syntax der Spread-Elemente `...x` in einem Array-Literal davon aus, dass `x` einen Iterator bereitstellt (zugänglich über `x[Symbol.iterator]()`). Dieser Iterator wird dann verwendet, um die in das resultierende Array einzufügenden Elemente zu erhalten.
@@ -128,7 +128,7 @@ const result = [...arr];
 
 ## Umgang mit _löchrigen_ Arrays
 
-Besondere Vorsicht ist auch geboten, wenn Arrays mit Löchern kopiert werden, d.h. Arrays wie `[&apos;a&apos;, , &apos;c&apos;]`, die einige Elemente fehlen. Das Ausbreiten eines solchen Arrays bewahrt die Löcher aufgrund des Iterationsprotokolls nicht, sondern ersetzt sie durch die Werte, die im Prototyp des Arrays an den entsprechenden Indizes gefunden werden. Standardmäßig gibt es keine Elemente im Prototyp eines Arrays, was bedeutet, dass alle Löcher mit `undefined` gefüllt werden. Zum Beispiel wird `[...[&apos;a&apos;, , &apos;c&apos;]]` zu einem neuen Array `[&apos;a&apos;, undefined, &apos;c&apos;]` ausgewertet.
+Besondere Vorsicht ist auch geboten, wenn Arrays mit Löchern kopiert werden, d.h. Arrays wie `['a', , 'c']`, die einige Elemente fehlen. Das Ausbreiten eines solchen Arrays bewahrt die Löcher aufgrund des Iterationsprotokolls nicht, sondern ersetzt sie durch die Werte, die im Prototyp des Arrays an den entsprechenden Indizes gefunden werden. Standardmäßig gibt es keine Elemente im Prototyp eines Arrays, was bedeutet, dass alle Löcher mit `undefined` gefüllt werden. Zum Beispiel wird `[...['a', , 'c']]` zu einem neuen Array `['a', undefined, 'c']` ausgewertet.
 
 Unser schneller Pfad ist intelligent genug, um Löcher in dieser Standardeinstellung zu behandeln. Anstatt blind den Speicher des Eingabe-Arrays zu kopieren, achtet er auf Löcher und kümmert sich darum, sie in `undefined`-Werte zu konvertieren. Die folgende Grafik enthält Messungen für ein Eingabe-Array der Länge 100.000, das nur (markierte) 600 Ganzzahlen enthält — der Rest sind Löcher. Es zeigt, dass das Ausbreiten eines solchen löchrigen Arrays jetzt über 4× schneller ist als die Verwendung der `clone`-Funktion. (Früher waren sie ungefähr gleich schnell, aber dies wird in der Grafik nicht gezeigt).
 

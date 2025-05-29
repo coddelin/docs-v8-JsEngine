@@ -141,17 +141,17 @@ unlock() {
                       /* old value >>> */  AsyncLock.LOCKED,
                       /* new value >>> */  AsyncLock.UNLOCKED);
   if (oldValue != AsyncLock.LOCKED) {
-    throw new Error(&apos;ミューテックスを保持していない状態でアンロックしようとしました&apos;);
+    throw new Error('ミューテックスを保持していない状態でアンロックしようとしました');
   }
   Atomics.notify(this.i32a, AsyncLock.INDEX, 1);
 }
 ```
 
-シンプルなケースの流れは次の通りです: ロックが空いており、スレッドT1が`Atomics.compareExchange`を使用してロック状態を変更することでロックを取得します。スレッドT2がロックを取得しようとして`Atomics.compareExchange`を呼び出しますが、ロック状態の変更に成功しません。T2は次に`Atomics.wait`を呼び出し、スレッドをブロックします。ある時点でT1がロックを解放し、`Atomics.notify`を呼び出します。それにより、T2での`Atomics.wait`呼び出しが`&apos;ok&apos;`を返し、T2を起こします。T2は再びロックを取得しようと試み、今回は成功します。
+シンプルなケースの流れは次の通りです: ロックが空いており、スレッドT1が`Atomics.compareExchange`を使用してロック状態を変更することでロックを取得します。スレッドT2がロックを取得しようとして`Atomics.compareExchange`を呼び出しますが、ロック状態の変更に成功しません。T2は次に`Atomics.wait`を呼び出し、スレッドをブロックします。ある時点でT1がロックを解放し、`Atomics.notify`を呼び出します。それにより、T2での`Atomics.wait`呼び出しが`'ok'`を返し、T2を起こします。T2は再びロックを取得しようと試み、今回は成功します。
 
 また、2つの角ケースがあります — これらは`Atomics.wait`および`Atomics.waitAsync`が特定のインデックス値を確認する理由を示しています。
 
-- T1がロックを保持しており、T2がそれを取得しようとしています。まず、T2は`Atomics.compareExchange`を使用してロック状態を変更しようとしますが、成功しません。しかし、T2が`Atomics.wait`を呼び出す前にT1がロックを解放します。T2が`Atomics.wait`を呼び出すと、それはすぐに`&apos;not-equal&apos;`の値を返します。その場合、T2は次のループ反復を続行し、再びロックを取得しようとします。
+- T1がロックを保持しており、T2がそれを取得しようとしています。まず、T2は`Atomics.compareExchange`を使用してロック状態を変更しようとしますが、成功しません。しかし、T2が`Atomics.wait`を呼び出す前にT1がロックを解放します。T2が`Atomics.wait`を呼び出すと、それはすぐに`'not-equal'`の値を返します。その場合、T2は次のループ反復を続行し、再びロックを取得しようとします。
 - T1がロックを保持しており、T2は`Atomics.wait`を使用してそれを待っています。T1がロックを解放すると、T2が起きます（`Atomics.wait`呼び出しが戻ります）そして、`Atomics.compareExchange`を試みてロックを取得します。ただし、別のスレッドT3がより早くロックを取得してしまいます。その結果、`Atomics.compareExchange`呼び出しがロックの取得に失敗し、T2は再び`Atomics.wait`を呼び出してT3がロックを解放するのを待ちます。
 
 この後者の角ケースのため、ミューテックスは“公平”ではありません。T2がロックが解放されるのを待っていたにもかかわらず、T3が来てすぐにそれを取得する可能性があります。より現実的なロック実装では、“ロック済み”と“競合によるロック済み”を区別するためにいくつかの状態を使用することがあります。

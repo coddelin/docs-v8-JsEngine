@@ -1,6 +1,6 @@
 ---
-title: &apos;Debugging eingebettete Funktionen mit GDB&apos;
-description: &apos;Ab V8 v6.9 ist es möglich, mit GDB Haltepunkte zu erstellen, um CSA / ASM / Torque eingebettete Funktionen zu debuggen.&apos;
+title: 'Debugging eingebettete Funktionen mit GDB'
+description: 'Ab V8 v6.9 ist es möglich, mit GDB Haltepunkte zu erstellen, um CSA / ASM / Torque eingebettete Funktionen zu debuggen.'
 ---
 Ab V8 v6.9 ist es möglich, mit GDB (und möglicherweise anderen Debuggern) Haltepunkte zu setzen, um CSA / ASM / Torque eingebettete Funktionen zu debuggen.
 

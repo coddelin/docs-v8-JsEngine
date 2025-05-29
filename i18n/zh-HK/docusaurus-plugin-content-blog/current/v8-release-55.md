@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 發佈版本 v5.5&apos;
-author: &apos;V8 團隊&apos;
+title: 'V8 發佈版本 v5.5'
+author: 'V8 團隊'
 date: 2016-10-24 13:33:37
 tags:
   - 發佈
-description: &apos;V8 v5.5 帶來了更低的記憶體消耗以及對 ECMAScript 語言功能的更高支援。&apos;
+description: 'V8 v5.5 帶來了更低的記憶體消耗以及對 ECMAScript 語言功能的更高支援。'
 ---
 每六周，我們會為 V8 創建一個新的分支，這是我們[發佈流程](/docs/release-process)的一部分。每個版本都是在 Chrome Beta 里程碑之前直接從 V8 的 Git 主分支中分出來的。今天，我們很高興地宣佈我們最新的分支，[V8 版本 5.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.5)，該版本將在未來幾周內與 Chrome 55 穩定版同步釋出之前進入 Beta 階段。V8 v5.5 充滿了各種面向開發者的好功能，我們希望向您預覽一些亮點，讓您期待該版本的到來。
 
@@ -24,7 +24,7 @@ function logFetch(url) {
     .then(text => {
       console.log(text);
     }).catch(err => {
-      console.error(&apos;fetch failed&apos;, err);
+      console.error('fetch failed', err);
     });
 }
 ```
@@ -37,7 +37,7 @@ async function logFetch(url) {
     const response = await fetch(url);
     console.log(await response.text());
   } catch (err) {
-    console.log(&apos;fetch failed&apos;, err);
+    console.log('fetch failed', err);
   }
 }
 ```
@@ -58,4 +58,4 @@ V8 v5.5 在記憶體佔用方面提供了一些關鍵改進。
 
 V8 檢測器已從 Chromium 遷移到 V8。檢測器代碼現在完全存在於 [V8 存儲庫](https://chromium.googlesource.com/v8/v8/+/master/src/inspector/)中。
 
-擁有[有效的 V8 檢出](/docs/source-code#using-git)的開發人員可以使用 `git checkout -b 5.5 -t branch-heads/5.5` 來試驗 V8 5.5 中的新功能。或者，您可以[訂閱 Chrome&apos;s Beta 頻道](https://www.google.com/chrome/browser/beta.html)並很快親自嘗試這些新功能。
+擁有[有效的 V8 檢出](/docs/source-code#using-git)的開發人員可以使用 `git checkout -b 5.5 -t branch-heads/5.5` 來試驗 V8 5.5 中的新功能。或者，您可以[訂閱 Chrome's Beta 頻道](https://www.google.com/chrome/browser/beta.html)並很快親自嘗試這些新功能。

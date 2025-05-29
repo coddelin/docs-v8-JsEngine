@@ -161,8 +161,8 @@ ConstexprDeclaration :
 Aquí hay un ejemplo de `base.tq` para los tipos de enteros con signo de 31 y 32 bits en Torque:
 
 ```torque
-type int32 generates &apos;TNode<Int32T>&apos; constexpr &apos;int32_t&apos;;
-type int31 extends int32 generates &apos;TNode<Int32T>&apos; constexpr &apos;int31_t&apos;;
+type int32 generates 'TNode<Int32T>' constexpr 'int32_t';
+type int31 extends int32 generates 'TNode<Int32T>' constexpr 'int31_t';
 ```
 
 #### Tipos de unión
@@ -424,7 +424,7 @@ En V8, los objetos del heap pueden cambiar de estructura en tiempo de ejecución
 // Un HeapObject con un mapa JSArray, y ya sea elementos rápidos empaquetados, o
 // elementos rápidos con huecos cuando el NoElementsProtector global no está invalidado.
 transient type FastJSArray extends JSArray
-    generates &apos;TNode<JSArray>&apos;;
+    generates 'TNode<JSArray>';
 ```
 
 Por ejemplo, en el caso de `FastJSArray`, el tipo transitorio se invalida si el arreglo cambia a elementos de diccionario o si el `NoElementsProtector` global se invalida. Para expresar esto en Torque, anota todas las funciones que podrían potencialmente hacer eso como `transitioning`. Por ejemplo, llamar a una función de JavaScript puede ejecutar JavaScript arbitrario, por lo que es `transitioning`.

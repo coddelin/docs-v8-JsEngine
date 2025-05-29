@@ -1,14 +1,14 @@
 ---
-title: &apos;トップレベルの`await`&apos;
-author: &apos;Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))&apos;
+title: 'トップレベルの`await`'
+author: 'Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))'
 avatars:
-  - &apos;myles-borins&apos;
+  - 'myles-borins'
 date: 2019-10-08
 tags:
   - ECMAScript
   - Node.js 14
-description: &apos;トップレベルの`await`がJavaScriptモジュールに登場！間もなく非同期関数に入ることなく`await`を使用できるようになります。&apos;
-tweet: &apos;1181581262399643650&apos;
+description: 'トップレベルの`await`がJavaScriptモジュールに登場！間もなく非同期関数に入ることなく`await`を使用できるようになります。'
+tweet: '1181581262399643650'
 ---
 [トップレベルの`await`](https://github.com/tc39/proposal-top-level-await)は、開発者が非同期関数の外部で`await`キーワードを使用できるようにします。それは、他のモジュールがそれらを`import`する際に、モジュールのボディを評価する前に待機する大きな非同期関数のように動作します。
 
@@ -18,11 +18,11 @@ tweet: &apos;1181581262399643650&apos;
 `async`/`await`が初めて導入されると、非同期関数の外部で`await`を使用しようとすると`SyntaxError`が発生しました。多くの開発者は即時実行される非同期関数式を利用することで、この機能にアクセスしました。
 
 ```js
-await Promise.resolve(console.log(&apos;🎉&apos;));
+await Promise.resolve(console.log('🎉'));
 // → SyntaxError: awaitは非同期関数内でのみ有効です
 
 (async function() {
-  await Promise.resolve(console.log(&apos;🎉&apos;));
+  await Promise.resolve(console.log('🎉'));
   // → 🎉
 }());
 ```
@@ -32,7 +32,7 @@ await Promise.resolve(console.log(&apos;🎉&apos;));
 トップレベルの`await`が導入されることで、上記のコードは[モジュール](/features/modules)内で期待通りに動作するようになります。
 
 ```js
-await Promise.resolve(console.log(&apos;🎉&apos;));
+await Promise.resolve(console.log('🎉'));
 // → 🎉
 ```
 
@@ -67,9 +67,9 @@ const connection = await dbConnector();
 ```js
 let jQuery;
 try {
-  jQuery = await import(&apos;https://cdn-a.example.com/jQuery&apos;);
+  jQuery = await import('https://cdn-a.example.com/jQuery');
 } catch {
-  jQuery = await import(&apos;https://cdn-b.example.com/jQuery&apos;);
+  jQuery = await import('https://cdn-b.example.com/jQuery');
 }
 ```
 

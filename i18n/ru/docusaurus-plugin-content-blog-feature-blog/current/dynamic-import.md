@@ -1,14 +1,14 @@
 ---
-title: &apos;Динамический `import()`&apos;
-author: &apos;Матиас Байненс ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Динамический `import()`'
+author: 'Матиас Байненс ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-11-21
 tags:
   - ECMAScript
   - ES2020
-description: &apos;Динамический import() открывает новые возможности по сравнению со статическим импортом. В этой статье сравниваются оба подхода и представлен обзор новшеств.&apos;
-tweet: &apos;932914724060254208&apos;
+description: 'Динамический import() открывает новые возможности по сравнению со статическим импортом. В этой статье сравниваются оба подхода и представлен обзор новшеств.'
+tweet: '932914724060254208'
 ---
 [Динамический `import()`](https://github.com/tc39/proposal-dynamic-import) представляет новую форму `import`, похожую на функцию, которая открывает новые возможности по сравнению со статическим `import`. В этой статье сравниваются оба варианта и представлен обзор новшеств.
 
@@ -22,12 +22,12 @@ Chrome 61 добавил поддержку оператора ES2015 `import` �
 ```js
 // Экспорт по умолчанию
 export default () => {
-  console.log(&apos;Привет от экспорта по умолчанию!&apos;);
+  console.log('Привет от экспорта по умолчанию!');
 };
 
 // Именованный экспорт `doStuff`
 export const doStuff = () => {
-  console.log(&apos;Делаю дела…&apos;);
+  console.log('Делаю дела…');
 };
 ```
 
@@ -35,11 +35,11 @@ export const doStuff = () => {
 
 ```html
 <script type="module">
-  import * as module from &apos;./utils.mjs&apos;;
+  import * as module from './utils.mjs';
   module.default();
-  // → выводит &apos;Привет от экспорта по умолчанию!&apos;
+  // → выводит 'Привет от экспорта по умолчанию!'
   module.doStuff();
-  // → выводит &apos;Делаю дела…&apos;
+  // → выводит 'Делаю дела…'
 </script>
 ```
 
@@ -69,13 +69,13 @@ export const doStuff = () => {
 
 ```html
 <script type="module">
-  const moduleSpecifier = &apos;./utils.mjs&apos;;
+  const moduleSpecifier = './utils.mjs';
   import(moduleSpecifier)
     .then((module) => {
       module.default();
-      // → выводит &apos;Привет от экспорта по умолчанию!&apos;
+      // → выводит 'Привет от экспорта по умолчанию!'
       module.doStuff();
-      // → выводит &apos;Делаю дела…&apos;
+      // → выводит 'Делаю дела…'
     });
 </script>
 ```
@@ -85,12 +85,12 @@ export const doStuff = () => {
 ```html
 <script type="module">
   (async () => {
-    const moduleSpecifier = &apos;./utils.mjs&apos;;
+    const moduleSpecifier = './utils.mjs';
     const module = await import(moduleSpecifier)
     module.default();
-    // → выводит &apos;Привет от экспорта по умолчанию!&apos;
+    // → выводит 'Привет от экспорта по умолчанию!'
     module.doStuff();
-    // → выводит &apos;Делаю дела…&apos;
+    // → выводит 'Делаю дела…'
   })();
 </script>
 ```
@@ -112,10 +112,10 @@ export const doStuff = () => {
 </nav>
 <main>Это запасное место для контента, который будет загружен по запросу.</main>
 <script>
-  const main = document.querySelector(&apos;main&apos;);
-  const links = document.querySelectorAll(&apos;nav > a&apos;);
+  const main = document.querySelector('main');
+  const links = document.querySelectorAll('nav > a');
   for (const link of links) {
-    link.addEventListener(&apos;click&apos;, async (event) => {
+    link.addEventListener('click', async (event) => {
       event.preventDefault();
       try {
         const module = await import(`/${link.dataset.entryModule}.mjs`);

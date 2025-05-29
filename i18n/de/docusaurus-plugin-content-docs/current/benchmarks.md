@@ -1,6 +1,6 @@
 ---
-title: &apos;Benchmarks lokal ausführen&apos;
-description: &apos;Dieses Dokument erklärt, wie man klassische Benchmark-Suiten in d8 ausführt.&apos;
+title: 'Benchmarks lokal ausführen'
+description: 'Dieses Dokument erklärt, wie man klassische Benchmark-Suiten in d8 ausführt.'
 ---
 Wir haben einen einfachen Arbeitsablauf für die Nutzung der „klassischen“ Benchmarks SunSpider, Kraken und Octane. Sie können mit verschiedenen Binärdateien und Flag-Kombinationen arbeiten, wobei die Ergebnisse über mehrere Durchläufe gemittelt werden.
 

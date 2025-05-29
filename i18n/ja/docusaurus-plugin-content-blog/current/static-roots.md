@@ -1,13 +1,13 @@
 ---
-title: &apos;Static Roots: コンパイル時に定数アドレスを持つオブジェクト&apos;
-author: &apos;Olivier Flückiger&apos;
+title: 'Static Roots: コンパイル時に定数アドレスを持つオブジェクト'
+author: 'Olivier Flückiger'
 avatars:
   - olivier-flueckiger
 date: 2024-02-05
 tags:
   - JavaScript
 description: "Static Rootsは、特定のJSオブジェクトのアドレスをコンパイル時の定数にします。"
-tweet: &apos;&apos;
+tweet: ''
 ---
 
 あなたは`undefined`、`true`、その他のコアJavaScriptオブジェクトがどこから来るのか考えたことがありますか？これらのオブジェクトは、任意のユーザー定義オブジェクトの基本単位であり、最初に存在している必要があります。V8はこれらを固定不変なルートと呼び、それらは専用のヒープ – 読み取り専用ヒープに住んでいます。これらは頻繁に使用されるため、迅速なアクセスが重要です。そしてコンパイル時にメモリアドレスを正しく予測するほど迅速な方法はないでしょうか？

@@ -1,14 +1,14 @@
 ---
-title: &apos;Almacenamiento en caché de código para desarrolladores de JavaScript&apos;
-author: &apos;[Leszek Swirski](https://twitter.com/leszekswirski), destructor de caché&apos;
+title: 'Almacenamiento en caché de código para desarrolladores de JavaScript'
+author: '[Leszek Swirski](https://twitter.com/leszekswirski), destructor de caché'
 avatars:
   - leszek-swirski
 date: 2019-04-08 13:33:37
 updated: 2020-06-16
 tags:
   - internals
-description: &apos;El almacenamiento en caché de (byte)código reduce el tiempo de inicio de sitios web visitados frecuentemente almacenando en caché el resultado del análisis y la compilación de JavaScript.&apos;
-tweet: &apos;1115264282675953664&apos;
+description: 'El almacenamiento en caché de (byte)código reduce el tiempo de inicio de sitios web visitados frecuentemente almacenando en caché el resultado del análisis y la compilación de JavaScript.'
+tweet: '1115264282675953664'
 ---
 El almacenamiento en caché de código (también conocido como _almacenamiento en caché de bytecode_) es una optimización importante en los navegadores. Reduce el tiempo de inicio de sitios web visitados frecuentemente almacenando en caché el resultado del análisis y la compilación. La mayoría de los [navegadores](https://blog.mozilla.org/javascript/2017/12/12/javascript-startup-bytecode-cache/) [populares](https://bugs.webkit.org/show_bug.cgi?id=192782) implementan alguna forma de almacenamiento en caché de código, y Chrome no es una excepción. De hecho, hemos [escrito](/blog/code-caching), [y](/blog/improved-code-caching) [hablado](https://www.youtube.com/watch?v=YqHOUy2rYZ8) sobre cómo Chrome y V8 almacenan en caché el código compilado en el pasado.
 
@@ -148,26 +148,26 @@ Un ejemplo típico de un sitio que utiliza un service worker registra el worker 
 
 ```js
 // main.mjs
-navigator.serviceWorker.register(&apos;/sw.js&apos;);
+navigator.serviceWorker.register('/sw.js');
 ```
 
 Y el service worker añade controladores de eventos para la instalación (creando una caché) y la obtención de recursos (sirviendo recursos, potencialmente desde la caché).
 
 ```js
 // sw.js
-self.addEventListener(&apos;install&apos;, (event) => {
+self.addEventListener('install', (event) => {
   async function buildCache() {
     const cache = await caches.open(cacheName);
     return cache.addAll([
-      &apos;/main.css&apos;,
-      &apos;/main.mjs&apos;,
-      &apos;/offline.html&apos;,
+      '/main.css',
+      '/main.mjs',
+      '/offline.html',
     ]);
   }
   event.waitUntil(buildCache());
 });
 
-self.addEventListener(&apos;fetch&apos;, (event) => {
+self.addEventListener('fetch', (event) => {
   async function cachedFetch(event) {
     const cache = await caches.open(cacheName);
     let response = await cache.match(event.request);

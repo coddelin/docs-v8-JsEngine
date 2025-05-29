@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 릴리즈 v8.4&apos;
-author: &apos;Camillo Bruni, 신선한 불값을 즐기는 중&apos;
+title: 'V8 릴리즈 v8.4'
+author: 'Camillo Bruni, 신선한 불값을 즐기는 중'
 avatars:
- - &apos;camillo-bruni&apos;
+ - 'camillo-bruni'
 date: 2020-06-30
 tags:
  - release
-description: &apos;V8 v8.4는 약한 참조와 개선된 WebAssembly 성능을 제공합니다.&apos;
-tweet: &apos;1277983235641761795&apos;
+description: 'V8 v8.4는 약한 참조와 개선된 WebAssembly 성능을 제공합니다.'
+tweet: '1277983235641761795'
 ---
 6주마다 우리는 [릴리즈 프로세스](https://v8.dev/docs/release-process)의 일환으로 V8의 새로운 브랜치를 만듭니다. 각 버전은 Chrome 베타 마일스톤 직전에 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 새 브랜치, [V8 버전 8.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.4)를 발표하게 되어 기쁩니다. 이 버전은 몇 주 후 Chrome 84 정식 버전 출시와 함께 출시될 때까지 베타 상태에 있습니다. V8 v8.4는 개발자를 위한 여러 가지 좋은 기능들로 가득합니다. 이 게시물은 출시를 앞둔 주요 하이라이트들을 미리 보여줍니다.
 
@@ -39,7 +39,7 @@ JavaScript는 가비지 컬렉션 언어이며, 이는 프로그램에서 더 �
 
 ```js
 const globalRef = {
-  callback() { console.log(&apos;foo&apos;); }
+  callback() { console.log('foo'); }
 };
 // globalRef가 전역 스코프를 통해 접근 가능한 한,
 // globalRef와 그 객체의 callback 속성에 있는 함수는 회수되지 않습니다.
@@ -49,7 +49,7 @@ JavaScript 프로그래머는 이제 `WeakRef` 기능을 통해 객체를 약한
 
 ```js
 const globalWeakRef = new WeakRef({
-  callback() { console.log(&apos;foo&apos;); }
+  callback() { console.log('foo'); }
 });
 
 (async function() {
@@ -58,7 +58,7 @@ const globalWeakRef = new WeakRef({
   // 생성된 이후 이벤트 루프의 첫 번째 턴 동안 살아있도록 보장됩니다.
 
   await new Promise((resolve, reject) => {
-    setTimeout(() => { resolve(&apos;foo&apos;); }, 42);
+    setTimeout(() => { resolve('foo'); }, 42);
   });
   // 이벤트 루프의 한 턴을 기다립니다.
 

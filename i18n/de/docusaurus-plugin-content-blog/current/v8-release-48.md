@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 Version v4.8&apos;
-author: &apos;Das V8-Team&apos;
+title: 'V8 Version v4.8'
+author: 'Das V8-Team'
 date: 2015-11-25 13:33:37
 tags:
   - Veröffentlichung
-description: &apos;V8 v4.8 fügt Unterstützung für mehrere neue ES2015-Sprachfunktionen hinzu.&apos;
+description: 'V8 v4.8 fügt Unterstützung für mehrere neue ES2015-Sprachfunktionen hinzu.'
 ---
 Etwa alle sechs Wochen erstellen wir einen neuen Branch von V8 im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process). Jede Version wird direkt vor der Verzweigung des Chrome-Beta-Meilensteins aus dem Git-Master von V8 abgezweigt. Heute freuen wir uns, unseren neuesten Branch, [V8 Version 4.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.8), anzukündigen, der sich in der Beta-Phase befindet, bis er zusammen mit Chrome 48 Stable veröffentlicht wird. V8 4.8 enthält eine Reihe von Funktionen, die für Entwickler wichtig sind, daher möchten wir Ihnen einen Vorgeschmack auf einige der Höhepunkte geben, die in einigen Wochen veröffentlicht werden.
 
@@ -19,7 +19,7 @@ Der Name für eine boolesche Eigenschaft, die, wenn sie `true` ist, anzeigt, das
 
 ```js
 (function() {
-  &apos;use strict&apos;;
+  'use strict';
   class AutomaticallySpreadingArray extends Array {
     get [Symbol.isConcatSpreadable]() {
       return true;
@@ -41,17 +41,17 @@ Der Name für eine Methode, die bei einem Objekt für implizite Konvertierungen 
 
 ```js
 (function(){
-  &apos;use strict&apos;;
+  'use strict';
   class V8 {
     [Symbol.toPrimitive](hint) {
-      if (hint === &apos;string&apos;) {
-        console.log(&apos;string&apos;);
-        return &apos;V8&apos;;
-      } else if (hint === &apos;number&apos;) {
-        console.log(&apos;number&apos;);
+      if (hint === 'string') {
+        console.log('string');
+        return 'V8';
+      } else if (hint === 'number') {
+        console.log('number');
         return 8;
       } else {
-        console.log(&apos;default:&apos; + hint);
+        console.log('default:' + hint);
         return 8;
       }
     }

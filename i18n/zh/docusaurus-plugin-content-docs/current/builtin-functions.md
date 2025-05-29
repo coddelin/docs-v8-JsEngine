@@ -1,6 +1,6 @@
 ---
-title: &apos;内置函数&apos;
-description: &apos;此文档解释了V8中的“内置函数”。&apos;
+title: '内置函数'
+description: '此文档解释了V8中的“内置函数”。'
 ---
 V8中的内置函数根据其功能、性能要求以及有时的历史开发进程，拥有不同的实现方式。
 

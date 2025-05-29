@@ -1,11 +1,11 @@
 ---
-title: &apos;V8 릴리즈 v7.4&apos;
-author: &apos;Georg Neis&apos;
+title: 'V8 릴리즈 v7.4'
+author: 'Georg Neis'
 date: 2019-03-22 16:30:42
 tags:
   - release
-description: &apos;V8 v7.4는 WebAssembly 스레드/Atomics, 비공개 클래스 필드, 성능 및 메모리 개선 등 다양한 기능을 제공합니다!&apos;
-tweet: &apos;1109094755936489472&apos;
+description: 'V8 v7.4는 WebAssembly 스레드/Atomics, 비공개 클래스 필드, 성능 및 메모리 개선 등 다양한 기능을 제공합니다!'
+tweet: '1109094755936489472'
 ---
 매 6주마다 우리는 [릴리즈 프로세스](/docs/release-process)의 일환으로 새로운 V8 브랜치를 생성합니다. 각 버전은 크롬 베타 마일스톤 직전 V8의 Git 마스터에서 브랜칭됩니다. 오늘 우리는 [V8 버전 7.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.4)라는 최신 브랜치를 발표하게 되어 기쁩니다. 이 버전은 몇 주 후에 Chrome 74 Stable과 함께 출시되기 전까지 베타 버전으로 제공됩니다. V8 v7.4는 개발자들이 사용할 수 있는 여러 가지 유용한 기능들로 가득합니다. 이 게시물은 출시를 앞두고 주목할 만한 부분에 대한 미리보기를 제공합니다.
 
@@ -102,7 +102,7 @@ V8 v7.2는 공개 클래스 필드 구문을 지원했습니다. 클래스 필�
 class IncreasingCounter {
   #count = 0;
   get value() {
-    console.log(&apos;현재 값을 가져옵니다!&apos;);
+    console.log('현재 값을 가져옵니다!');
     return this.#count;
   }
   increment() {
@@ -125,22 +125,22 @@ counter.#count = 42;
 
 ### `Intl.Locale`
 
-JavaScript 애플리케이션은 일반적으로 지역을 식별하기 위해 `&apos;en-US&apos;` 또는 `&apos;de-CH&apos;`와 같은 문자열을 사용합니다. `Intl.Locale`은 지역을 다루기 위한 더 강력한 메커니즘을 제공하며, 언어, 캘린더, 숫자 체계, 시간 주기 등과 같은 지역별 기본 설정을 쉽게 추출할 수 있게 합니다.
+JavaScript 애플리케이션은 일반적으로 지역을 식별하기 위해 `'en-US'` 또는 `'de-CH'`와 같은 문자열을 사용합니다. `Intl.Locale`은 지역을 다루기 위한 더 강력한 메커니즘을 제공하며, 언어, 캘린더, 숫자 체계, 시간 주기 등과 같은 지역별 기본 설정을 쉽게 추출할 수 있게 합니다.
 
 ```js
-const locale = new Intl.Locale(&apos;es-419-u-hc-h12&apos;, {
-  calendar: &apos;gregory&apos;
+const locale = new Intl.Locale('es-419-u-hc-h12', {
+  calendar: 'gregory'
 });
 locale.language;
-// → &apos;es&apos;
+// → 'es'
 locale.calendar;
-// → &apos;gregory&apos;
+// → 'gregory'
 locale.hourCycle;
-// → &apos;h12&apos;
+// → 'h12'
 locale.region;
-// → &apos;419&apos;
+// → '419'
 locale.toString();
-// → &apos;es-419-u-ca-gregory-hc-h12&apos;
+// → 'es-419-u-ca-gregory-hc-h12'
 ```
 
 ### 해시뱅 문법

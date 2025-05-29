@@ -1,13 +1,13 @@
 ---
-title: &apos;更快的 JavaScript 調用&apos;
-author: &apos;[Victor Gomes](https://twitter.com/VictorBFG)，框架撕裂者&apos;
+title: '更快的 JavaScript 調用'
+author: '[Victor Gomes](https://twitter.com/VictorBFG)，框架撕裂者'
 avatars:
-  - &apos;victor-gomes&apos;
+  - 'victor-gomes'
 date: 2021-02-15
 tags:
   - internals
-description: &apos;通過移除參數適配框架來實現更快的 JavaScript 調用&apos;
-tweet: &apos;1361337569057865735&apos;
+description: '通過移除參數適配框架來實現更快的 JavaScript 調用'
+tweet: '1361337569057865735'
 ---
 
 JavaScript 允許以與期望的參數數量不同的參數數量調用函數，即可以傳遞比聲明的正式參數數量更少或更多的參數。前者稱為低於應用，後者稱為超量應用。

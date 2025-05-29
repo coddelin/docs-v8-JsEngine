@@ -1,7 +1,7 @@
 ---
-title: &apos;The V8 Sandbox&apos;
-description: &apos;V8 提供了一個輕量級、進程內的沙箱，用於限制記憶體損壞漏洞的影響&apos;
-author: &apos;Samuel Groß&apos;
+title: 'The V8 Sandbox'
+description: 'V8 提供了一個輕量級、進程內的沙箱，用於限制記憶體損壞漏洞的影響'
+author: 'Samuel Groß'
 avatars:
   - samuel-gross
 date: 2024-04-04

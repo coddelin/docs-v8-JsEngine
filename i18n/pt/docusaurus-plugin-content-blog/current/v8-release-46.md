@@ -1,10 +1,10 @@
 ---
-title: &apos;Lançamento do V8 v4.6&apos;
-author: &apos;a equipe do V8&apos;
+title: 'Lançamento do V8 v4.6'
+author: 'a equipe do V8'
 date: 2015-08-28 13:33:37
 tags:
   - lançamento
-description: &apos;O V8 v4.6 vem com menos travamentos e suporte para novos recursos de linguagem ES2015.&apos;
+description: 'O V8 v4.6 vem com menos travamentos e suporte para novos recursos de linguagem ES2015.'
 ---
 Aproximadamente a cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](https://v8.dev/docs/release-process). Cada versão é criada a partir do Git master do V8 imediatamente antes de o Chrome criar um branch para uma versão Beta do Chrome. Hoje estamos felizes em anunciar nosso mais novo branch, [V8 versão 4.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.6), que estará em beta até ser lançado em coordenação com o Chrome 46 Stable. O V8 4.6 está repleto de novidades voltadas para desenvolvedores, e gostaríamos de oferecer um preview de alguns dos destaques em antecipação ao lançamento dentro de algumas semanas.
 
@@ -38,7 +38,7 @@ function myFunction(a, b, c) {
   console.log(b);
   console.log(c);
 }
-const argsInArray = [&apos;Oi &apos;, &apos;Operador &apos;, &apos;de espalhamento!&apos;];
+const argsInArray = ['Oi ', 'Operador ', 'de espalhamento!'];
 myFunction.apply(null, argsInArray);
 
 // Código com o operador de espalhamento
@@ -48,7 +48,7 @@ function myFunction (a,b,c) {
   console.log(c);
 }
 
-const argsInArray = [&apos;Oi &apos;, &apos;Operador &apos;, &apos;de espalhamento!&apos;];
+const argsInArray = ['Oi ', 'Operador ', 'de espalhamento!'];
 myFunction(...argsInArray);
 ```
 
@@ -61,9 +61,9 @@ Na prática, isso significa que você pode usar `new.target` para descobrir se u
 ```js
 function myFunction() {
   if (new.target === undefined) {
-    throw &apos;Tente chamá-la com new.&apos;;
+    throw 'Tente chamá-la com new.';
   }
-  console.log(&apos;Funciona!&apos;);
+  console.log('Funciona!');
 }
 
 // Falha:

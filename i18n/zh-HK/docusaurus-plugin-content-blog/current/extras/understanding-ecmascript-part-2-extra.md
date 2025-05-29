@@ -1,13 +1,13 @@
 ---
-title: &apos;額外內容：「理解 ECMAScript 規格，第二部分」&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh)，投機規格觀察者&apos;
+title: '額外內容：「理解 ECMAScript 規格，第二部分」'
+author: '[Marja Hölttä](https://twitter.com/marjakh)，投機規格觀察者'
 avatars:
   - marja-holtta
 date: 2020-03-02
 tags:
   - ECMAScript
-description: &apos;閱讀 ECMAScript 規格的教程&apos;
-tweet: &apos;&apos;
+description: '閱讀 ECMAScript 規格的教程'
+tweet: ''
 ---
 
 ### 為什麼 `o2.foo` 是一個 `AssignmentExpression`？
@@ -18,7 +18,7 @@ tweet: &apos;&apos;
 
 ```js
 function simple(a) {
-  console.log(&apos;這個參數是 &apos; + a);
+  console.log('這個參數是 ' + a);
 }
 simple(x = 1);
 // → 輸出「這個參數是 1」。

@@ -1,15 +1,15 @@
 ---
-title: &apos;Молниеносно быстрое разбор, часть 2: ленивый разбор&apos;
-author: &apos;Тун Вервеест ([@tverwaes](https://twitter.com/tverwaes)) и Марья Хёльтта ([@marjakh](https://twitter.com/marjakh)), упрощенные разборщики&apos;
+title: 'Молниеносно быстрое разбор, часть 2: ленивый разбор'
+author: 'Тун Вервеест ([@tverwaes](https://twitter.com/tverwaes)) и Марья Хёльтта ([@marjakh](https://twitter.com/marjakh)), упрощенные разборщики'
 avatars:
-  - &apos;toon-verwaest&apos;
-  - &apos;marja-holtta&apos;
+  - 'toon-verwaest'
+  - 'marja-holtta'
 date: 2019-04-15 17:03:37
 tags:
   - internals
   - parsing
-tweet: &apos;1117807107972243456&apos;
-description: &apos;Это вторая часть нашей серии статей, объясняющих, как V8 разбирает JavaScript максимально быстро.&apos;
+tweet: '1117807107972243456'
+description: 'Это вторая часть нашей серии статей, объясняющих, как V8 разбирает JavaScript максимально быстро.'
 ---
 Это вторая часть нашей серии, объясняющей, как V8 разбирает JavaScript максимально быстро. Первая часть объясняла, как мы сделали [сканер](/blog/scanner) V8 быстрым.
 

@@ -1,13 +1,13 @@
 ---
-title: &apos;`Object.hasOwn`&apos;
-author: &apos;Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))&apos;
+title: '`Object.hasOwn`'
+author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
 avatars:
-  - &apos;victor-gomes&apos;
+  - 'victor-gomes'
 date: 2021-07-01
 tags:
   - ECMAScript
-description: &apos;`Object.hasOwn`は`Object.prototype.hasOwnProperty`をより使いやすくします。&apos;
-tweet: &apos;1410577516943847424&apos;
+description: '`Object.hasOwn`は`Object.prototype.hasOwnProperty`をより使いやすくします。'
+tweet: '1410577516943847424'
 ---
 
 今日では、次のようなコードを書くことが非常に一般的です。
@@ -15,7 +15,7 @@ tweet: &apos;1410577516943847424&apos;
 ```js
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 
-if (hasOwnProperty.call(object, &apos;foo&apos;)) {
+if (hasOwnProperty.call(object, 'foo')) {
   // `object`にはプロパティ`foo`があります。
 }
 ```
@@ -25,7 +25,7 @@ if (hasOwnProperty.call(object, &apos;foo&apos;)) {
 [`Object.hasOwn`提案](https://github.com/tc39/proposal-accessible-object-hasownproperty)を使用することで、次のように簡単に記述できます。
 
 ```js
-if (Object.hasOwn(object, &apos;foo&apos;)) {
+if (Object.hasOwn(object, 'foo')) {
   // `object`にはプロパティ`foo`があります。
 }
 ```

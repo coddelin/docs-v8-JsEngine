@@ -1,40 +1,40 @@
 ---
-title: &apos;`String.prototype.trimStart` und `String.prototype.trimEnd`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`String.prototype.trimStart` und `String.prototype.trimEnd`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-03-26
 tags:
   - ECMAScript
   - ES2019
-description: &apos;ES2019 führt String.prototype.trimStart() und String.prototype.trimEnd() ein.&apos;
+description: 'ES2019 führt String.prototype.trimStart() und String.prototype.trimEnd() ein.'
 ---
 ES2019 führt [`String.prototype.trimStart()` und `String.prototype.trimEnd()`](https://github.com/tc39/proposal-string-left-right-trim) ein:
 
 ```js
-const string = &apos;  hallo welt  &apos;;
+const string = '  hallo welt  ';
 string.trimStart();
-// → &apos;hallo welt  &apos;
+// → 'hallo welt  '
 string.trimEnd();
-// → &apos;  hallo welt&apos;
+// → '  hallo welt'
 string.trim(); // ES5
-// → &apos;hallo welt&apos;
+// → 'hallo welt'
 ```
 
 Diese Funktionalität war zuvor über die nicht standardisierten Methoden `trimLeft()` und `trimRight()` verfügbar, welche aus Gründen der Abwärtskompatibilität weiterhin als Aliase für die neuen Methoden bestehen bleiben.
 
 ```js
-const string = &apos;  hallo welt  &apos;;
+const string = '  hallo welt  ';
 string.trimStart();
-// → &apos;hallo welt  &apos;
+// → 'hallo welt  '
 string.trimLeft();
-// → &apos;hallo welt  &apos;
+// → 'hallo welt  '
 string.trimEnd();
-// → &apos;  hallo welt&apos;
+// → '  hallo welt'
 string.trimRight();
-// → &apos;  hallo welt&apos;
+// → '  hallo welt'
 string.trim(); // ES5
-// → &apos;hallo welt&apos;
+// → 'hallo welt'
 ```
 
 <!--truncate-->

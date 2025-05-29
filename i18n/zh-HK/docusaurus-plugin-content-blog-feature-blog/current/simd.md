@@ -1,12 +1,12 @@
 ---
-title: &apos;快速、平行應用程式與 WebAssembly SIMD&apos;
-author: &apos;Deepti Gandluri ([@dptig](https://twitter.com/dptig))、Thomas Lively ([@tlively52](https://twitter.com/tlively52))、Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))&apos;
+title: '快速、平行應用程式與 WebAssembly SIMD'
+author: 'Deepti Gandluri ([@dptig](https://twitter.com/dptig))、Thomas Lively ([@tlively52](https://twitter.com/tlively52))、Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
 date: 2020-01-30
 updated: 2022-11-06
 tags:
   - WebAssembly
-description: &apos;將向量操作引入 WebAssembly&apos;
-tweet: &apos;1222944308183085058&apos;
+description: '將向量操作引入 WebAssembly'
+tweet: '1222944308183085058'
 ---
 SIMD 代表 _單指令，多資料_。SIMD 指令是一種特別的指令類型，通過同時對多個資料元素進行相同的操作來利用應用程式中的資料平行性。對計算密集型應用程式，例如音訊／影片編解碼器、影像處理器，都是利用 SIMD 指令加速性能的典型範例。大多數現代架構都支援某些種類的 SIMD 指令。
 
@@ -36,14 +36,14 @@ SIMD 指令集很大，並且在不同架構上有差異。WebAssembly SIMD 提�
 為確保所有使用者都能加載您的應用程式，您需要建立兩個不同版本 - 一個啟用了 SIMD，另一個沒有啟用 - 並根據功能檢測結果加載相應的版本。要在運行時檢測 SIMD，您可以使用 [`wasm-feature-detect`](https://github.com/GoogleChromeLabs/wasm-feature-detect) 庫，並像這樣加載相應模組：
 
 ```js
-import { simd } from &apos;wasm-feature-detect&apos;;
+import { simd } from 'wasm-feature-detect';
 
 (async () => {
   const hasSIMD = await simd();
   const module = await (
     hasSIMD
-      ? import(&apos;./module-with-simd.js&apos;)
-      : import(&apos;./module-without-simd.js&apos;)
+      ? import('./module-with-simd.js')
+      : import('./module-without-simd.js')
   );
   // …現在像通常那樣使用 `module`
 })();

@@ -139,7 +139,7 @@ Ainsi, les fonctions WebAssembly avec des paramètres et des valeurs de retour d
 Depuis JavaScript, seuls les BigInts peuvent être passés en tant que paramètre I64:
 
 ```js
-WebAssembly.instantiateStreaming(fetch(&apos;i64.wasm&apos;))
+WebAssembly.instantiateStreaming(fetch('i64.wasm'))
   .then(({ module, instance }) => {
     instance.exports.add(12n, 30n);
     // → 42n

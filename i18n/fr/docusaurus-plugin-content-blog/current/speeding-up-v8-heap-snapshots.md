@@ -1,7 +1,7 @@
 ---
-title: &apos;Accélération des instantanés de tas V8&apos;
-description: &apos;Cet article sur les instantanés de tas V8 présente des problèmes de performance rencontrés par les ingénieurs de Bloomberg, et la façon dont nous les avons résolus pour rendre l&apos;analyse mémoire JavaScript plus rapide que jamais.&apos;
-author: &apos;José Dapena Paz&apos;
+title: 'Accélération des instantanés de tas V8'
+description: 'Cet article sur les instantanés de tas V8 présente des problèmes de performance rencontrés par les ingénieurs de Bloomberg, et la façon dont nous les avons résolus pour rendre l'analyse mémoire JavaScript plus rapide que jamais.'
+author: 'José Dapena Paz'
 date: 2023-07-27
 tags:
  - mémoire
@@ -9,37 +9,37 @@ tags:
 ---
 *Cet article de blog a été rédigé par José Dapena Paz (Igalia), avec les contributions de Jason Williams (Bloomberg), Ashley Claymore (Bloomberg), Rob Palmer (Bloomberg), Joyee Cheung (Igalia) et Shu-yu Guo (Google).*
 
-Dans cet article sur les instantanés de tas V8, je vais parler de certains problèmes de performance rencontrés par les ingénieurs de Bloomberg et comment nous les avons résolus pour rendre l&apos;analyse mémoire JavaScript plus rapide que jamais.
+Dans cet article sur les instantanés de tas V8, je vais parler de certains problèmes de performance rencontrés par les ingénieurs de Bloomberg et comment nous les avons résolus pour rendre l'analyse mémoire JavaScript plus rapide que jamais.
 
 ## Le problème
 
-Les ingénieurs de Bloomberg travaillaient sur le diagnostic d&apos;une fuite mémoire dans une application JavaScript. Elle échouait avec des erreurs de type *Out-Of-Memory*. Pour l&apos;application testée, la limite du tas V8 était configurée autour de 1400 Mo. Normalement, le ramasse-miettes de V8 devrait pouvoir maintenir l&apos;utilisation du tas en dessous de cette limite, de sorte que les échecs indiquent probablement une fuite.
+Les ingénieurs de Bloomberg travaillaient sur le diagnostic d'une fuite mémoire dans une application JavaScript. Elle échouait avec des erreurs de type *Out-Of-Memory*. Pour l'application testée, la limite du tas V8 était configurée autour de 1400 Mo. Normalement, le ramasse-miettes de V8 devrait pouvoir maintenir l'utilisation du tas en dessous de cette limite, de sorte que les échecs indiquent probablement une fuite.
 
 <!--truncate-->
-Une technique courante pour déboguer un scénario de fuite mémoire de routine consiste à capturer un instantané de tas, puis à le charger dans l&apos;onglet "Mémoire" des DevTools et à découvrir ce qui utilise le plus de mémoire en inspectant les différents résumés et attributs d&apos;objets. Dans l&apos;interface utilisateur de DevTools, l&apos;instantané de tas peut être pris dans l&apos;onglet "Mémoire". Pour les applications Node.js, l&apos;instantané de tas [peut être déclenché de manière programmatique](https://nodejs.org/en/docs/guides/diagnostics/memory/using-heap-snapshot) en utilisant cette API:
+Une technique courante pour déboguer un scénario de fuite mémoire de routine consiste à capturer un instantané de tas, puis à le charger dans l'onglet "Mémoire" des DevTools et à découvrir ce qui utilise le plus de mémoire en inspectant les différents résumés et attributs d'objets. Dans l'interface utilisateur de DevTools, l'instantané de tas peut être pris dans l'onglet "Mémoire". Pour les applications Node.js, l'instantané de tas [peut être déclenché de manière programmatique](https://nodejs.org/en/docs/guides/diagnostics/memory/using-heap-snapshot) en utilisant cette API:
 
 ```js
-require(&apos;v8&apos;).writeHeapSnapshot();
+require('v8').writeHeapSnapshot();
 ```
 
-Ils voulaient capturer plusieurs instantanés à différents moments de la vie de l&apos;application, afin que le visualiseur de mémoire de DevTools puisse être utilisé pour montrer la différence entre les tas à différents moments. Le problème était que capturer un seul instantané de taille complète (500 Mo) prenait **plus de 30 minutes**!
+Ils voulaient capturer plusieurs instantanés à différents moments de la vie de l'application, afin que le visualiseur de mémoire de DevTools puisse être utilisé pour montrer la différence entre les tas à différents moments. Le problème était que capturer un seul instantané de taille complète (500 Mo) prenait **plus de 30 minutes**!
 
-C&apos;est cette lenteur dans le flux de travail d&apos;analyse mémoire que nous devions résoudre.
+C'est cette lenteur dans le flux de travail d'analyse mémoire que nous devions résoudre.
 
 ## Réduire le problème
 
-Ensuite, les ingénieurs de Bloomberg ont commencé à enquêter sur le problème en utilisant certains paramètres de V8. Comme décrit dans [cet article](https://blogs.igalia.com/dape/2023/05/18/javascript-memory-profiling-with-heap-snapshot/), Node.js et V8 ont quelques paramètres de ligne de commande utiles à cet effet. Ces options ont été utilisées pour créer les instantanés de tas, simplifier la reproduction et améliorer l&apos;observabilité :
+Ensuite, les ingénieurs de Bloomberg ont commencé à enquêter sur le problème en utilisant certains paramètres de V8. Comme décrit dans [cet article](https://blogs.igalia.com/dape/2023/05/18/javascript-memory-profiling-with-heap-snapshot/), Node.js et V8 ont quelques paramètres de ligne de commande utiles à cet effet. Ces options ont été utilisées pour créer les instantanés de tas, simplifier la reproduction et améliorer l'observabilité :
 
 - `--max-old-space-size=100`: Cela limite le tas à 100 mégaoctets et aide à reproduire le problème beaucoup plus rapidement.
-- `--heapsnapshot-near-heap-limit=10`: Il s&apos;agit d&apos;un paramètre de ligne de commande spécifique à Node.js qui indique à Node.js de générer un instantané chaque fois qu&apos;il approche de la limite de mémoire. Il est configuré pour générer jusqu&apos;à 10 instantanés au total. Cela évite la situation où le programme à court de mémoire passe beaucoup de temps à produire plus d&apos;instantanés que nécessaire.
+- `--heapsnapshot-near-heap-limit=10`: Il s'agit d'un paramètre de ligne de commande spécifique à Node.js qui indique à Node.js de générer un instantané chaque fois qu'il approche de la limite de mémoire. Il est configuré pour générer jusqu'à 10 instantanés au total. Cela évite la situation où le programme à court de mémoire passe beaucoup de temps à produire plus d'instantanés que nécessaire.
 - `--enable-etw-stack-walking`: Cela permet à des outils tels que ETW, WPA et xperf de voir la pile JS appelée dans V8. (disponible dans Node.js v20+)
 - `--interpreted-frames-native-stack`: Ce drapeau est utilisé en combinaison avec des outils comme ETW, WPA et xperf pour voir la pile native lors du profilage. (disponible dans Node.js v20+).
 
-Lorsque la taille du tas V8 approche de sa limite, V8 force un ramassage de mémoire pour réduire l&apos;utilisation. Il informe également l&apos;intégrateur à ce sujet. Le drapeau `--heapsnapshot-near-heap-limit` dans Node.js génère un nouvel instantané de tas après notification. Dans le cas de test, l&apos;utilisation de la mémoire diminue, mais, après plusieurs itérations, le ramassage de mémoire ne peut finalement pas libérer suffisamment d&apos;espace et l&apos;application est alors arrêtée avec une erreur *Out-Of-Memory*.
+Lorsque la taille du tas V8 approche de sa limite, V8 force un ramassage de mémoire pour réduire l'utilisation. Il informe également l'intégrateur à ce sujet. Le drapeau `--heapsnapshot-near-heap-limit` dans Node.js génère un nouvel instantané de tas après notification. Dans le cas de test, l'utilisation de la mémoire diminue, mais, après plusieurs itérations, le ramassage de mémoire ne peut finalement pas libérer suffisamment d'espace et l'application est alors arrêtée avec une erreur *Out-Of-Memory*.
 
-Ils ont effectué des enregistrements en utilisant Windows Performance Analyzer (voir ci-dessous) afin de réduire le problème. Cela a révélé que la majeure partie du temps CPU était passée dans l&apos;explorateur de tas V8. Plus précisément, cela prenait environ 30 minutes juste pour parcourir le tas, visiter chaque nœud et collecter le nom. Cela ne semblait pas avoir de sens — pourquoi enregistrer le nom de chaque propriété prendrait-il autant de temps ?
+Ils ont effectué des enregistrements en utilisant Windows Performance Analyzer (voir ci-dessous) afin de réduire le problème. Cela a révélé que la majeure partie du temps CPU était passée dans l'explorateur de tas V8. Plus précisément, cela prenait environ 30 minutes juste pour parcourir le tas, visiter chaque nœud et collecter le nom. Cela ne semblait pas avoir de sens — pourquoi enregistrer le nom de chaque propriété prendrait-il autant de temps ?
 
-C&apos;est à ce moment-là qu&apos;on m&apos;a demandé d&apos;examiner le problème.
+C'est à ce moment-là qu'on m'a demandé d'examiner le problème.
 
 ## Quantifier le problème
 

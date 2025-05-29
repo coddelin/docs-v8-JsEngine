@@ -1,6 +1,6 @@
 ---
-title: &apos;WebAssembly 编译管线&apos;
-description: &apos;本文讲解了 V8 的 WebAssembly 编译器及其在何时编译 WebAssembly 代码。&apos;
+title: 'WebAssembly 编译管线'
+description: '本文讲解了 V8 的 WebAssembly 编译器及其在何时编译 WebAssembly 代码。'
 ---
 
 WebAssembly 是一种二进制格式，它允许您高效且安全地在网页上运行 JavaScript 以外的编程语言的代码。在本文中，我们深入探讨 V8 的 WebAssembly 编译管线，并解释我们如何利用不同的编译器来提供良好的性能。

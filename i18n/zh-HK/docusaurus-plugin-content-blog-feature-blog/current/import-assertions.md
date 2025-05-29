@@ -1,13 +1,13 @@
 ---
-title: &apos;匯入聲明&apos;
-author: &apos;Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), 匯入聲明的強勢進口商&apos;
+title: '匯入聲明'
+author: 'Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), 匯入聲明的強勢進口商'
 avatars:
-  - &apos;dan-clark&apos;
+  - 'dan-clark'
 date: 2021-06-15
 tags:
   - ECMAScript
-description: &apos;匯入聲明允許模組匯入語句在模組規範之外附加額外的信息&apos;
-tweet: &apos;&apos;
+description: '匯入聲明允許模組匯入語句在模組規範之外附加額外的信息'
+tweet: ''
 ---
 
 全新的[匯入聲明](https://github.com/tc39/proposal-import-assertions)功能允許模組匯入語句在模組規範之外附加額外的信息。該功能的初始用途是啟用以[JSON 模組](https://github.com/tc39/proposal-json-modules)形式匯入 JSON 文件：
@@ -20,7 +20,7 @@ tweet: &apos;&apos;
 
 ```javascript
 // main.mjs
-import json from &apos;./foo.json&apos; assert { type: &apos;json&apos; };
+import json from './foo.json' assert { type: 'json' };
 console.log(json.answer); // 42
 ```
 
@@ -29,7 +29,7 @@ console.log(json.answer); // 42
 人們可能會問，為什麼不能簡單地如下匯入 JSON 模組：
 
 ```javascript
-import json from &apos;./foo.json&apos;;
+import json from './foo.json';
 ```
 
 在執行模組資源之前，Web 平台會檢查其 MIME 類型的有效性，理論上可以利用這個 MIME 類型來判定資源是 JSON 還是 JavaScript 模組。
@@ -43,7 +43,7 @@ import json from &apos;./foo.json&apos;;
 ```javascript
 // 如果 evil.com 回復一個
 // JavaScript MIME 類型（例如 `text/javascript`），則執行 JS！
-import data from &apos;https://evil.com/data.json&apos;;
+import data from 'https://evil.com/data.json';
 ```
 
 無法使用文件擴展名來判定模組類型，因為[在 Web 上文件擴展名並非可靠的內容類型指標](https://github.com/tc39/proposal-import-assertions/blob/master/content-type-vs-file-extension.md)。因此，我們使用匯入聲明來指示預期的模組類型以防止此類特權升高的陷阱。
@@ -52,7 +52,7 @@ import data from &apos;https://evil.com/data.json&apos;;
 
 ```javascript
 // 如果 evil.com 回復的不是 JSON MIME 類型，則失敗。
-import data from &apos;https://evil.com/data.json&apos; assert { type: &apos;json&apos; };
+import data from 'https://evil.com/data.json' assert { type: 'json' };
 ```
 
 ## 動態 `import()`
@@ -66,8 +66,8 @@ import data from &apos;https://evil.com/data.json&apos; assert { type: &apos;jso
 
 ```javascript
 // main.mjs
-const jsonModule = await import(&apos;./foo.json&apos;, {
-  assert: { type: &apos;json&apos; }
+const jsonModule = await import('./foo.json', {
+  assert: { type: 'json' }
 });
 console.log(jsonModule.default.answer); // 42
 ```

@@ -1,10 +1,10 @@
 ---
-title: &apos;Octaneの廃止&apos;
-author: &apos;V8チーム&apos;
+title: 'Octaneの廃止'
+author: 'V8チーム'
 date: 2017-04-12 13:33:37
 tags:
   - ベンチマーク
-description: &apos;V8チームは、Octaneを推奨ベンチマークとして廃止する時期が来たと考えています。&apos;
+description: 'V8チームは、Octaneを推奨ベンチマークとして廃止する時期が来たと考えています。'
 ---
 JavaScriptベンチマークの歴史は、絶え間ない進化の物語です。ウェブが単純な文書から動的なクライアントサイドアプリケーションへと拡張するにつれて、新しいJavaScriptベンチマークが作成され、新しいユースケースで重要なワークロードを測定するようになりました。この絶え間ない変化により、個々のベンチマークは有限の寿命を持つようになりました。ウェブブラウザや仮想マシン（VM）の実装が特定のテストケースに過度に最適化し始めると、ベンチマーク自体が元のユースケースの有効な代替物でなくなります。最初期のJavaScriptベンチマークの一つである[SunSpider](https://webkit.org/perf/sunspider/sunspider.html)は、初期の迅速な最適化コンパイラの提供にインセンティブを与えました。しかし、VMエンジニアが[マイクロベンチマークの限界](https://blog.mozilla.org/nnethercote/2014/06/16/a-browser-benchmarking-manifesto/)を発見し、[最適化](https://benediktmeurer.de/2016/12/16/the-truth-about-traditional-javascript-benchmarks/#the-notorious-sunspider-examples)する新しい方法を見つけた結果、ブラウザコミュニティは推奨ベンチマークとして[SunSpiderの廃止](https://trac.webkit.org/changeset/187526/webkit)を決定しました。
 

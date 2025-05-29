@@ -1,13 +1,13 @@
 ---
- title: &apos;V8에 미리 알리기: 명시적인 컴파일 힌트를 사용한 더 빠른 자바스크립트 시작&apos;
- author: &apos;마르야 홀타&apos;
+ title: 'V8에 미리 알리기: 명시적인 컴파일 힌트를 사용한 더 빠른 자바스크립트 시작'
+ author: '마르야 홀타'
  avatars:
    - marja-holtta
  date: 2025-04-29
  tags:
    - JavaScript
  description: "명시적인 컴파일 힌트로 어떤 자바스크립트 파일과 함수가 적극적으로 파싱되고 컴파일될지를 제어합니다"
- tweet: &apos;&apos;
+ tweet: ''
 ---
 
 빠르게 자바스크립트를 실행하는 것은 반응형 웹 앱을 위한 핵심입니다. V8의 고급 최적화에도 불구하고, 중요한 자바스크립트를 시작 시점에 파싱하고 컴파일하는 것은 여전히 성능 병목을 초래할 수 있습니다. 초기 스크립트 컴파일 동안 어떤 자바스크립트 함수를 컴파일할지를 알면 웹 페이지 로딩 속도를 높일 수 있습니다.
@@ -51,7 +51,7 @@ script1.js:
 
 ```js
 function testfunc1() {
-  console.log(&apos;testfunc1 호출됨!&apos;);
+  console.log('testfunc1 호출됨!');
 }
 
 testfunc1();
@@ -63,7 +63,7 @@ script2.js:
 //# allFunctionsCalledOnLoad
 
 function testfunc2() {
-  console.log(&apos;testfunc2 호출됨!&apos;);
+  console.log('testfunc2 호출됨!');
 }
 
 testfunc2();

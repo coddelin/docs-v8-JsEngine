@@ -1,6 +1,6 @@
 ---
-title: &apos;V8의 샘플 기반 프로파일러 사용&apos;
-description: &apos;이 문서는 V8의 샘플 기반 프로파일러 사용 방법을 설명합니다.&apos;
+title: 'V8의 샘플 기반 프로파일러 사용'
+description: '이 문서는 V8의 샘플 기반 프로파일러 사용 방법을 설명합니다.'
 ---
 V8에는 내장형 샘플 기반 프로파일링 기능이 있습니다. 프로파일링은 기본적으로 비활성화되어 있으며, `--prof` 명령줄 옵션으로 활성화할 수 있습니다. 샘플러는 JavaScript와 C/C++ 코드의 스택을 기록합니다.
 
@@ -116,7 +116,7 @@ $V8_PATH/tools/linux-tick-processor --preprocess > v8.json
 하지만 모든 브라우저에서 코드 실행 속도를 높이고 싶다면 어떻게 해야 할까요? 먼저 **CPU가 바쁘게 돌아가는 이유를 이해해야 합니다**. 아래 명령줄 옵션을 사용하여 Chrome(Windows 및 Linux [Canary](https://tools.google.com/dlpage/chromesxs))를 실행하면 지정된 URL(이 경우, 웹 워커 없이 Mandelbrot 데모의 로컬 버전)에 대해 프로파일러 틱 정보를 출력(v8.log 파일에 저장)합니다:
 
 ```bash
-./chrome --js-flags=&apos;--prof&apos; --no-sandbox &apos;http://localhost:8080/&apos;
+./chrome --js-flags='--prof' --no-sandbox 'http://localhost:8080/'
 ```
 
 테스트 케이스를 준비할 때 로드 시 바로 작업을 시작하도록 하고, 계산이 완료되면 Chrome을 종료(Alt+F4를 누르기)하여 로그 파일에 필요한 틱만 포함되도록 하세요. 또한 이 기술로 웹 워커는 아직 정확히 프로파일링되지 않는다는 점을 유의하십시오.

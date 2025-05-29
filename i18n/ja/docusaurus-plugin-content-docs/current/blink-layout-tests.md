@@ -1,6 +1,6 @@
 ---
-title: &apos;Blinkウェブテスト（旧称: レイアウトテスト）&apos;
-description: &apos;V8のインフラストラクチャは、Chromiumとの統合の問題を防ぐため、Blinkのウェブテストを継続的に実行しています。このドキュメントは、そのようなテストに失敗した場合に何をすべきかを説明します。&apos;
+title: 'Blinkウェブテスト（旧称: レイアウトテスト）'
+description: 'V8のインフラストラクチャは、Chromiumとの統合の問題を防ぐため、Blinkのウェブテストを継続的に実行しています。このドキュメントは、そのようなテストに失敗した場合に何をすべきかを説明します。'
 ---
 我々はChromiumとの統合の問題を防ぐため、[Blinkのウェブテスト（旧称: “レイアウトテスト”）](https://chromium.googlesource.com/chromium/src/+/master/docs/testing/web_tests.md)を[統合コンソール](https://ci.chromium.org/p/v8/g/integration/console)上で継続的に実行しています。
 

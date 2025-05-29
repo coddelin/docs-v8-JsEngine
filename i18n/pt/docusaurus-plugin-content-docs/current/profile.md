@@ -1,6 +1,6 @@
 ---
-title: &apos;Usando o profiler baseado em amostras do V8&apos;
-description: &apos;Este documento explica como usar o profiler baseado em amostras do V8.&apos;
+title: 'Usando o profiler baseado em amostras do V8'
+description: 'Este documento explica como usar o profiler baseado em amostras do V8.'
 ---
 O V8 possui um sistema de perfilamento baseado em amostras. O perfilamento está desativado por padrão, mas pode ser habilitado via a opção de linha de comando `--prof`. O amostrador registra pilhas de código tanto em JavaScript quanto em C/C++.
 
@@ -116,7 +116,7 @@ Vamos usar esse profiler para examinar o [demo explorador de Mandelbrot](https:/
 Mas e se você quiser que o código seja executado mais rápido em todos os navegadores? Você deve primeiro **entender o que mantém sua CPU ocupada**. Execute o Chrome (Windows e Linux [Canary](https://tools.google.com/dlpage/chromesxs)) com os seguintes parâmetros de linha de comando, o que fará com que ele gere informações de ticks do profiler (no arquivo `v8.log`) para a URL que você especificar, que no nosso caso era uma versão local da demo Mandelbrot sem web workers:
 
 ```bash
-./chrome --js-flags=&apos;--prof&apos; --no-sandbox &apos;http://localhost:8080/&apos;
+./chrome --js-flags='--prof' --no-sandbox 'http://localhost:8080/'
 ```
 
 Ao preparar o caso de teste, certifique-se de que ele comece seu trabalho imediatamente ao carregar e feche o Chrome quando o cálculo for concluído (pressione Alt+F4), para que você tenha apenas os ticks relevantes no arquivo de log. Além disso, observe que web workers ainda não são corretamente perfilados com esta técnica.

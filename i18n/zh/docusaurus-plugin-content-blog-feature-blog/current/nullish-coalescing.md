@@ -78,13 +78,13 @@ function Component(props) {
 
 ```js
 // 简洁的空值合并
-const link = document.querySelector(&apos;link&apos;) ?? document.createElement(&apos;link&apos;);
+const link = document.querySelector('link') ?? document.createElement('link');
 
 // 默认赋值解构，带样板代码
 const {
-  link = document.createElement(&apos;link&apos;),
+  link = document.createElement('link'),
 } = {
-  link: document.querySelector(&apos;link&apos;) || undefined
+  link: document.querySelector('link') || undefined
 };
 ```
 
@@ -92,11 +92,11 @@ const {
 
 ```js
 // 可选链与空值合并的联合使用
-const link = obj.deep?.container.link ?? document.createElement(&apos;link&apos;);
+const link = obj.deep?.container.link ?? document.createElement('link');
 
 // 使用可选链的默认赋值解构
 const {
-  link = document.createElement(&apos;link&apos;),
+  link = document.createElement('link'),
 } = (obj.deep?.container || {});
 ```
 

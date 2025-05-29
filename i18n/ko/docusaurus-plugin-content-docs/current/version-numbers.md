@@ -1,6 +1,6 @@
 ---
-title: &apos;V8의 버전 번호 체계&apos;
-description: &apos;이 문서는 V8의 버전 번호 체계를 설명합니다.&apos;
+title: 'V8의 버전 번호 체계'
+description: '이 문서는 V8의 버전 번호 체계를 설명합니다.'
 ---
 V8의 버전 번호는 `x.y.z.w` 형태를 가지며, 여기서:
 

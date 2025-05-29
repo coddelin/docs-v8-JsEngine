@@ -1,13 +1,13 @@
 ---
-title: &apos;停止發佈版本部落格文章&apos;
-author: &apos;郭書宇 ([@shu_](https://twitter.com/_shu))&apos;
+title: '停止發佈版本部落格文章'
+author: '郭書宇 ([@shu_](https://twitter.com/_shu))'
 avatars:
- - &apos;shu-yu-guo&apos;
+ - 'shu-yu-guo'
 date: 2022-06-17
 tags:
  - release
-description: &apos;V8 將停止版本部落格文章，改為根據 Chrome 發佈計劃和功能部落格文章進行更新。&apos;
-tweet: &apos;1537857497825824768&apos;
+description: 'V8 將停止版本部落格文章，改為根據 Chrome 發佈計劃和功能部落格文章進行更新。'
+tweet: '1537857497825824768'
 ---
 
 歷史上，每個 V8 的新版本分支都有一篇部落格文章發布。您可能注意到自 v9.9 以來沒有新的版本部落格文章了。從 v10.0 開始，我們將停止為每個新分支發佈版本部落格文章。但不用擔心，以前您從部落格文章中獲取的所有資訊仍然可以找到！繼續閱讀以了解前往何處獲取這些資訊。

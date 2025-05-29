@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 發佈 v5.3&apos;
-author: &apos;V8 團隊&apos;
+title: 'V8 發佈 v5.3'
+author: 'V8 團隊'
 date: 2016-07-18 13:33:37
 tags:
   - 發佈
-description: &apos;V8 v5.3 帶來性能提升和內存消耗減少。&apos;
+description: 'V8 v5.3 帶來性能提升和內存消耗減少。'
 ---
 大約每六週，我們會根據我們的[發佈流程](/docs/release-process)創建一個新的 V8 分支。每個版本都是在 Chrome Beta 里程碑進行分支之前，從 V8 的 Git 主分支進行分支。今天我們很高興宣佈我們最新的分支，[V8 版本 5.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.3)，該版本將處於 Beta 版本直到與 Chrome 53 正式穩定版一起發佈為止。V8 v5.3 包含眾多面向開發者的寶藏，為了迎接幾週後的正式發佈，我們希望為您預覽一些亮點。
 

@@ -161,8 +161,8 @@ ConstexprDeclaration :
 `base.tq`からTorqueの31ビットと32ビットの符号付き整数型の例を以下に示します:
 
 ```torque
-type int32 generates &apos;TNode<Int32T>&apos; constexpr &apos;int32_t&apos;;
-type int31 extends int32 generates &apos;TNode<Int32T>&apos; constexpr &apos;int31_t&apos;;
+type int32 generates 'TNode<Int32T>' constexpr 'int32_t';
+type int31 extends int32 generates 'TNode<Int32T>' constexpr 'int31_t';
 ```
 
 #### ユニオン型
@@ -589,14 +589,14 @@ intrinsic %RawObjectCast<A: type>(o: Object): A;
 intrinsic %RawPointerCast<A: type>(p: RawPtr): A;
 
 // %RawConstexprCastは、コンパイル時定数値を別の値に変換します。
-// ソース型と目的型の両方は&apos;constexpr&apos;でなければなりません。
+// ソース型と目的型の両方は'constexpr'でなければなりません。
 // %RawConstexprCastは生成されたC++コード内でstatic_castに変換されます。
 intrinsic %RawConstexprCast<To: type, From: type>(f: From): To;
 
 // %FromConstexprは、constexpr値を非constexpr値に変換します。現在のところ、次の非constexpr型への変換のみがサポートされています: Smi, Number, String, uintptr, intptr, int32
 intrinsic %FromConstexpr<To: type, From: type>(b: From): To;
 
-// %Allocateは、V8のGCヒープから&apos;size&apos;分の未初期化オブジェクトを割り当て、その結果得られるオブジェクトポインタを
+// %Allocateは、V8のGCヒープから'size'分の未初期化オブジェクトを割り当て、その結果得られるオブジェクトポインタを
 // 指定のTorqueクラスにより、コンストラクタがその後標準フィールドアクセスオペレーターを使用してオブジェクトを初期化できるようにします。
 // このintrinsicはTorqueコードから呼び出されるべきではありません。それは、'new'演算子を脱糖化するときに内部的に使用されます。
 // 内部的に使用されるものでTorqueコードから呼び出されるべきではありません。

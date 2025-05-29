@@ -1,6 +1,6 @@
 ---
-title: &apos;Revisando el código fuente de V8&apos;
-description: &apos;Este documento explica cómo revisar el código fuente de V8 localmente.&apos;
+title: 'Revisando el código fuente de V8'
+description: 'Este documento explica cómo revisar el código fuente de V8 localmente.'
 ---
 Este documento explica cómo revisar el código fuente de V8 localmente. Si solo deseas navegar por el código en línea, utiliza estos enlaces:
 

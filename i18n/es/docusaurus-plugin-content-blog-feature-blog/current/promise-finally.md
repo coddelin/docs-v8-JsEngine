@@ -1,14 +1,14 @@
 ---
-title: &apos;`Promise.prototype.finally`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`Promise.prototype.finally`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-10-23
 tags:
   - ECMAScript
   - ES2018
-description: &apos;Promise.prototype.finally permite registrar un callback que será invocado cuando una promesa sea resuelta (es decir, cumplida o rechazada).&apos;
-tweet: &apos;922459978857824261&apos;
+description: 'Promise.prototype.finally permite registrar un callback que será invocado cuando una promesa sea resuelta (es decir, cumplida o rechazada).'
+tweet: '922459978857824261'
 ---
 `Promise.prototype.finally` permite registrar un callback que será invocado cuando una promesa esté _resuelta_ (es decir, cumplida o rechazada).
 
@@ -32,7 +32,7 @@ const fetchAndDisplay = ({ url, element }) => {
 <!--truncate-->
 fetchAndDisplay({
   url: someUrl,
-  element: document.querySelector(&apos;#output&apos;)
+  element: document.querySelector('#output')
 });
 ```
 

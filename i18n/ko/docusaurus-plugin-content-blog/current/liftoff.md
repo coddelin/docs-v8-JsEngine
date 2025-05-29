@@ -1,14 +1,14 @@
 ---
-title: &apos;Liftoff: V8에서 WebAssembly의 새로운 기본 컴파일러&apos;
-author: &apos;Clemens Backes, WebAssembly 컴파일의 대가&apos;
+title: 'Liftoff: V8에서 WebAssembly의 새로운 기본 컴파일러'
+author: 'Clemens Backes, WebAssembly 컴파일의 대가'
 avatars:
-  - &apos;clemens-backes&apos;
+  - 'clemens-backes'
 date: 2018-08-20 15:45:12
 tags:
   - WebAssembly
   - internals
-description: &apos;Liftoff는 V8 v6.9에 탑재된 WebAssembly의 새로운 기본 컴파일러입니다.&apos;
-tweet: &apos;1031538167617413120&apos;
+description: 'Liftoff는 V8 v6.9에 탑재된 WebAssembly의 새로운 기본 컴파일러입니다.'
+tweet: '1031538167617413120'
 ---
 V8 [v6.9](/blog/v8-release-69)에는 WebAssembly의 새로운 기본 컴파일러인 Liftoff가 포함되어 있습니다. Liftoff는 데스크탑 시스템에서 기본적으로 활성화되어 있습니다. 이 글에서는 다른 컴파일 단계 추가의 동기를 상세히 설명하고 Liftoff의 구현 및 성능에 대해 설명합니다.
 

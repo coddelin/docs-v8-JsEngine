@@ -1,13 +1,13 @@
 ---
-title: &apos;V8リリース v9.4&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))&apos;
+title: 'V8リリース v9.4'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-09-06
 tags:
  - リリース
-description: &apos;V8リリースv9.4は、クラス静的初期化ブロックをJavaScriptに導入します。&apos;
-tweet: &apos;1434915404418277381&apos;
+description: 'V8リリースv9.4は、クラス静的初期化ブロックをJavaScriptに導入します。'
+tweet: '1434915404418277381'
 ---
 6週間ごとに、[リリースプロセス](https://v8.dev/docs/release-process)の一環として新しいV8のブランチを作成します。各バージョンは、Chrome Betaマイルストーンの直前にV8のGitマスターから分岐されます。本日、私たちは最新のブランチ、[V8バージョン9.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.4)を発表します。このバージョンは数週間後にChrome 94 Stableと連携してリリースされるまでベータ版として提供されます。V8 v9.4には、開発者向けのあらゆる種類の便利な新機能が詰まっています。この投稿では、リリースに先立ち、いくつかのハイライトをプレビューします。
 
@@ -21,7 +21,7 @@ tweet: &apos;1434915404418277381&apos;
 ```javascript
 class C {
   // このブロックはクラス自体が評価されるときに実行されます
-  static { console.log("C&apos;s static block"); }
+  static { console.log("C's static block"); }
 }
 ```
 

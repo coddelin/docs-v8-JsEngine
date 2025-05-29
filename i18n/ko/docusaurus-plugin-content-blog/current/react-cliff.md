@@ -1,15 +1,15 @@
 ---
-title: &apos;React에서의 V8 성능 저하 이야기&apos;
-author: &apos;Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) 및 Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'React에서의 V8 성능 저하 이야기'
+author: 'Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) 및 Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;benedikt-meurer&apos;
-  - &apos;mathias-bynens&apos;
+  - 'benedikt-meurer'
+  - 'mathias-bynens'
 date: 2019-08-28 16:45:00
 tags:
   - internals
   - presentations
-description: &apos;이 글에서는 V8이 다양한 JavaScript 값을 메모리에 최적으로 표현하는 방법과 그로 인해 Shape 기계에 어떤 영향을 미치는지를 설명합니다. 이를 통해 최근 React 핵심에서 발생한 V8 성능 저하 현상을 이해할 수 있습니다.&apos;
-tweet: &apos;1166723359696130049&apos;
+description: '이 글에서는 V8이 다양한 JavaScript 값을 메모리에 최적으로 표현하는 방법과 그로 인해 Shape 기계에 어떤 영향을 미치는지를 설명합니다. 이를 통해 최근 React 핵심에서 발생한 V8 성능 저하 현상을 이해할 수 있습니다.'
+tweet: '1166723359696130049'
 ---
 [이전](https://mathiasbynens.be/notes/shapes-ics)에는 Shapes와 Inline Caches를 사용하여 JavaScript 엔진이 객체 및 배열 접근을 최적화하는 방식을 논의했고, [프로토타입 속성 접근 속도를 높이는 방법](https://mathiasbynens.be/notes/prototypes)을 탐구했습니다. 이번 글에서는 V8이 다양한 JavaScript 값을 메모리에 최적으로 표현하는 방식을 설명하며, Shape 기계에 어떤 영향을 미치는지 — 이러한 모든 내용은 [React 핵심에서 발생한 최근 V8 성능 저하](https://github.com/facebook/react/issues/14365)를 이해하는 데 도움이 됩니다.
 
@@ -35,24 +35,24 @@ tweet: &apos;1166723359696130049&apos;
 
 ```js
 typeof 42;
-// → &apos;number&apos;
-typeof &apos;foo&apos;;
-// → &apos;string&apos;
-typeof Symbol(&apos;bar&apos;);
-// → &apos;symbol&apos;
+// → 'number'
+typeof 'foo';
+// → 'string'
+typeof Symbol('bar');
+// → 'symbol'
 typeof 42n;
-// → &apos;bigint&apos;
+// → 'bigint'
 typeof true;
-// → &apos;boolean&apos;
+// → 'boolean'
 typeof undefined;
-// → &apos;undefined&apos;
+// → 'undefined'
 typeof null;
-// → &apos;object&apos; 🤔
+// → 'object' 🤔
 typeof { x: 42 };
-// → &apos;object&apos;
+// → 'object'
 ```
 
-`typeof null`은 `&apos;object&apos;`를 반환하며, `&apos;null&apos;`을 반환하지 않습니다. 비록 `Null`이 하나의 독립된 타입이지만요. 이유를 이해하려면, 모든 JavaScript 타입 집합이 두 그룹으로 나뉜다는 것을 고려해보세요:
+`typeof null`은 `'object'`를 반환하며, `'null'`을 반환하지 않습니다. 비록 `Null`이 하나의 독립된 타입이지만요. 이유를 이해하려면, 모든 JavaScript 타입 집합이 두 그룹으로 나뉜다는 것을 고려해보세요:
 
 - _객체_ (즉, `Object` 타입)
 - _원시 값_ (즉, 객체가 아닌 모든 값)
@@ -61,7 +61,7 @@ typeof { x: 42 };
 
 ![](/_img/react-cliff/02-primitives-objects.svg)
 
-이러한 사고 방식을 따르며, Brendan Eich는 JavaScript를 설계하면서 `typeof`가 오른쪽에 있는 모든 값, 즉 모든 객체 및 `null` 값에 대해 `&apos;object&apos;`를 반환하도록 했습니다. 이는 Java의 정신에 따라 이루어진 것입니다. 이 때문에 사양에 별도의 `Null` 타입이 있음에도 불구하고 `typeof null === &apos;object&apos;`로 표시됩니다.
+이러한 사고 방식을 따르며, Brendan Eich는 JavaScript를 설계하면서 `typeof`가 오른쪽에 있는 모든 값, 즉 모든 객체 및 `null` 값에 대해 `'object'`를 반환하도록 했습니다. 이는 Java의 정신에 따라 이루어진 것입니다. 이 때문에 사양에 별도의 `Null` 타입이 있음에도 불구하고 `typeof null === 'object'`로 표시됩니다.
 
 ![](/_img/react-cliff/03-primitives-objects-typeof.svg)
 
@@ -73,7 +73,7 @@ JavaScript 엔진은 메모리에서 임의의 JavaScript 값을 표현할 수 �
 
 ```js
 typeof 42;
-// → &apos;number&apos;
+// → 'number'
 ```
 
 메모리에서 `42`와 같은 정수 숫자를 표현하는 방법은 여러 가지가 있습니다:
@@ -298,7 +298,7 @@ o.y = 0.1;
 
 ![](/_img/react-cliff/16-split-shape.svg)
 
-분할된 모양에서 시작하여, 우리가 `&apos;y&apos;`를 `Double` 표현으로 표시하여 이전의 모든 전환을 재현하는 새로운 전환 체인을 생성합니다. 그리고 이 새로운 전환 체인을 사용하여 `y`를 관리하며, 이전 하위 트리를 사용되지 않음으로 표시합니다. 마지막 단계에서 우리는 `o` 인스턴스를 새로운 모양으로 이동시키고, 이제는 `y`의 값을 보유하기 위해 `MutableHeapNumber`를 사용합니다. 이렇게 하면 새로운 객체는 이전 경로를 따라가지 않으며, 이전 모양에 대한 모든 참조가 없어지면 트리의 사용되지 않는 모양 부분이 사라지게 됩니다.
+분할된 모양에서 시작하여, 우리가 `'y'`를 `Double` 표현으로 표시하여 이전의 모든 전환을 재현하는 새로운 전환 체인을 생성합니다. 그리고 이 새로운 전환 체인을 사용하여 `y`를 관리하며, 이전 하위 트리를 사용되지 않음으로 표시합니다. 마지막 단계에서 우리는 `o` 인스턴스를 새로운 모양으로 이동시키고, 이제는 `y`의 값을 보유하기 위해 `MutableHeapNumber`를 사용합니다. 이렇게 하면 새로운 객체는 이전 경로를 따라가지 않으며, 이전 모양에 대한 모든 참조가 없어지면 트리의 사용되지 않는 모양 부분이 사라지게 됩니다.
 
 ## 확장성과 무결성 수준 전환
 
@@ -347,7 +347,7 @@ const b = { x: 2 };
 Object.preventExtensions(b);
 ```
 
-빈 모양에서 속성 `&apos;x&apos;`를 포함하는 새로운 모양으로의 전환부터 시작되는 것을 이미 알고 있습니다(이 속성은 `Smi`로 표시됨). 우리는 `b`에 대한 확장을 방지하며, 비확장 가능으로 표시된 새로운 모양으로 특별한 전환을 수행합니다. 이 특별한 전환은 새로운 속성을 추가하지 않습니다 — 단지 마커 역할을 합니다.
+빈 모양에서 속성 `'x'`를 포함하는 새로운 모양으로의 전환부터 시작되는 것을 이미 알고 있습니다(이 속성은 `Smi`로 표시됨). 우리는 `b`에 대한 확장을 방지하며, 비확장 가능으로 표시된 새로운 모양으로 특별한 전환을 수행합니다. 이 특별한 전환은 새로운 속성을 추가하지 않습니다 — 단지 마커 역할을 합니다.
 
 ![](/_img/react-cliff/17-shape-nonextensible.svg)
 
@@ -407,7 +407,7 @@ V8는 `node1`에 새로운 고립된 쉐이프를 부여하고, 나중에 동일
 
 ![](/_img/react-cliff/22-fix.svg)
 
-두 개의 `FiberNode` 인스턴스가 비확장성이 있는 쉐이프를 참조하며, 여기서 `&apos;actualStartTime&apos;`은 `Smi` 필드입니다. `node1.actualStartTime`의 첫 번째 할당이 발생하면 새로운 전환 체인이 생성되고 이전 체인은 폐기된 것으로 표시됩니다:
+두 개의 `FiberNode` 인스턴스가 비확장성이 있는 쉐이프를 참조하며, 여기서 `'actualStartTime'`은 `Smi` 필드입니다. `node1.actualStartTime`의 첫 번째 할당이 발생하면 새로운 전환 체인이 생성되고 이전 체인은 폐기된 것으로 표시됩니다:
 
 ![](/_img/react-cliff/23-fix-fibernode-shape-1.svg)
 

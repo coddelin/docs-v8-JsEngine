@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 릴리즈 v8.6&apos;
-author: &apos;잉그바르 스테파냔 ([@RReverser](https://twitter.com/RReverser)), 키보드 퍼저&apos;
+title: 'V8 릴리즈 v8.6'
+author: '잉그바르 스테파냔 ([@RReverser](https://twitter.com/RReverser)), 키보드 퍼저'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2020-09-21
 tags:
  - 릴리즈
-description: &apos;V8 릴리즈 v8.6은 존중하는 코드, 성능 개선, 및 규범적 변경사항을 제공합니다.&apos;
-tweet: &apos;1308062287731789825&apos;
+description: 'V8 릴리즈 v8.6은 존중하는 코드, 성능 개선, 및 규범적 변경사항을 제공합니다.'
+tweet: '1308062287731789825'
 ---
 매 6주마다 [릴리즈 과정](https://v8.dev/docs/release-process)의 일부로 V8의 새 브랜치를 만듭니다. 각 버전은 Chrome 베타 마일스톤 직전에 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 새 브랜치인 [V8 버전 8.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.6)을 발표하게 되어 기쁩니다. 이 버전은 몇 주 후에 Chrome 86 Stable과 함께 릴리즈될 때까지 베타 상태입니다. V8 v8.6은 다양한 개발자 친화적인 항목들로 채워져 있습니다. 이 게시물에서는 릴리즈를 기대하며 몇 가지 주요 내용을 미리 소개합니다.
 
@@ -36,9 +36,9 @@ JavaScript 숫자를 문자열로 변환하는 작업은 일반적인 경우에 
 
 ### 소규모 규범적 변경 사항
 
-- 익명 클래스는 이제 값이 빈 문자열 `&apos;&apos;`인 `.name` 속성을 가집니다. [사양 변경](https://github.com/tc39/ecma262/pull/1490).
+- 익명 클래스는 이제 값이 빈 문자열 `''`인 `.name` 속성을 가집니다. [사양 변경](https://github.com/tc39/ecma262/pull/1490).
 - `\8` 및 `\9` 이스케이프 시퀀스는 이제 [해이 모드](https://developer.mozilla.org/en-US/docs/Glossary/Sloppy_mode)의 템플릿 문자열 리터럴과 [엄격 모드](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode)에서 모든 문자열 리터럴에서 허용되지 않습니다. [사양 변경](https://github.com/tc39/ecma262/pull/2054).
-- 내장 `Reflect` 객체에는 이제 값이 `&apos;Reflect&apos;`인 `Symbol.toStringTag` 속성이 있습니다. [사양 변경](https://github.com/tc39/ecma262/pull/2057).
+- 내장 `Reflect` 객체에는 이제 값이 `'Reflect'`인 `Symbol.toStringTag` 속성이 있습니다. [사양 변경](https://github.com/tc39/ecma262/pull/2057).
 
 ## 웹어셈블리
 

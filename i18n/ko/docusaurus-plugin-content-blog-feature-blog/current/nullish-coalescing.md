@@ -1,21 +1,21 @@
 ---
-title: &apos;널 병합(nüllish coalescing)&apos;
-author: &apos;저스틴 리지웰(Justin Ridgewell)&apos;
+title: '널 병합(nüllish coalescing)'
+author: '저스틴 리지웰(Justin Ridgewell)'
 avatars:
-  - &apos;justin-ridgewell&apos;
+  - 'justin-ridgewell'
 date: 2019-09-17
 tags:
   - ECMAScript
   - ES2020
-description: &apos;JavaScript의 널 병합 연산자는 보다 안전한 기본값 표현식을 가능하게 합니다.&apos;
-tweet: &apos;1173971116865523714&apos;
+description: 'JavaScript의 널 병합 연산자는 보다 안전한 기본값 표현식을 가능하게 합니다.'
+tweet: '1173971116865523714'
 ---
 [널 병합 제안](https://github.com/tc39/proposal-nullish-coalescing/) (`??`)은 기본값을 처리하기 위한 새로운 단축 평가 연산자를 추가합니다.
 
 여러분은 이미 단축 평가 연산자인 `&&`와 `||`를 알고 있을 가능성이 높습니다. 이 연산자들은 “true값”과 “false값”을 처리합니다. 예를 들어 `lhs && rhs`라는 코드 샘플을 생각해 봅시다. `lhs`(좌측 피연산자)가 false값이면, 표현식은 `lhs`를 평가합니다. 그렇지 않으면 `rhs`(우측 피연산자)를 평가합니다. 반대로 `lhs || rhs`라는 코드 샘플의 경우에는, `lhs`가 true값이면 표현식은 `lhs`를 평가합니다. 그렇지 않으면 `rhs`를 평가합니다.
 
 <!--truncate-->
-하지만 “true값”과 “false값”이 정확히 무슨 의미일까요? 명세 용어로는 이것이 [`ToBoolean`](https://tc39.es/ecma262/#sec-toboolean) 추상 연산과 동등합니다. 일반적인 JavaScript 개발자들에게는, **모든 값**이 true값이며, false값은 `undefined`, `null`, `false`, `0`, `NaN`, 그리고 빈 문자열 `&apos;&apos;`뿐입니다. (기술적으로 `document.all`에 연결된 값도 false값이지만, 이것은 나중에 다룰 것입니다.)
+하지만 “true값”과 “false값”이 정확히 무슨 의미일까요? 명세 용어로는 이것이 [`ToBoolean`](https://tc39.es/ecma262/#sec-toboolean) 추상 연산과 동등합니다. 일반적인 JavaScript 개발자들에게는, **모든 값**이 true값이며, false값은 `undefined`, `null`, `false`, `0`, `NaN`, 그리고 빈 문자열 `''`뿐입니다. (기술적으로 `document.all`에 연결된 값도 false값이지만, 이것은 나중에 다룰 것입니다.)
 
 그렇다면 `&&`와 `||`의 문제는 무엇일까요? 왜 새로운 널 병합 연산자가 필요할까요? 그것은 true값과 false값의 정의가 모든 상황에 들어맞지 않아서 버그가 발생하기 때문입니다. 다음과 같은 예를 생각해 봅시다:
 
@@ -37,7 +37,7 @@ function Component(props) {
 }
 ```
 
-우리는 모든 false값에서 이러한 유형의 버그가 나타나는 것을 볼 수 있습니다. 이것은 아주 쉽게 선택적 문자열(빈 문자열 `&apos;&apos;`이 유효한 입력으로 간주되는 경우) 또는 선택적 숫자(`0`이 유효한 입력으로 간주되는 경우)가 될 수 있습니다. 이러한 문제는 매우 일반적이어서 이제 널 병합 연산자를 도입하여 기본값 할당을 처리하려 합니다:
+우리는 모든 false값에서 이러한 유형의 버그가 나타나는 것을 볼 수 있습니다. 이것은 아주 쉽게 선택적 문자열(빈 문자열 `''`이 유효한 입력으로 간주되는 경우) 또는 선택적 숫자(`0`이 유효한 입력으로 간주되는 경우)가 될 수 있습니다. 이러한 문제는 매우 일반적이어서 이제 널 병합 연산자를 도입하여 기본값 할당을 처리하려 합니다:
 
 ```js
 function Component(props) {
@@ -48,12 +48,12 @@ function Component(props) {
 
 널 병합 연산자 (`??`)는 `||` 연산자와 매우 비슷하게 작동하지만, 연산자를 평가할 때 “true값”을 사용하지 않습니다. 대신 “널 값(nullish)”의 정의를 사용합니다. 즉, 값이 `null` 또는 `undefined`와 엄격히 동등한지 여부를 판단합니다. 따라서 `lhs ?? rhs` 표현식을 생각해 보면, `lhs`가 널 값이 아니면 `lhs`를 평가합니다. 그렇지 않으면 `rhs`를 평가합니다.
 
-명시적으로, 이는 값 `false`, `0`, `NaN`, 그리고 빈 문자열 `&apos;&apos;` 모두가 false값이며, 널 값이 아님을 의미합니다. 이러한 false값이지만 널 값이 아닌 값들이 `lhs ?? rhs`의 좌측에 있을 때, 표현식은 우측이 아닌 해당 값을 평가합니다. 이제 버그는 사라집니다!
+명시적으로, 이는 값 `false`, `0`, `NaN`, 그리고 빈 문자열 `''` 모두가 false값이며, 널 값이 아님을 의미합니다. 이러한 false값이지만 널 값이 아닌 값들이 `lhs ?? rhs`의 좌측에 있을 때, 표현식은 우측이 아닌 해당 값을 평가합니다. 이제 버그는 사라집니다!
 
 ```js
 false ?? true;   // => false
 0 ?? 1;          // => 0
-&apos;&apos; ?? &apos;기본값&apos;; // => &apos;&apos;
+'' ?? '기본값'; // => ''
 
 null ?? [];      // => []
 undefined ?? []; // => []
@@ -78,13 +78,13 @@ function Component(props) {
 
 ```js
 // 간결한 널 병합
-const link = document.querySelector(&apos;link&apos;) ?? document.createElement(&apos;link&apos;);
+const link = document.querySelector('link') ?? document.createElement('link');
 
 // 기본 할당 구조 분해와 상용구
 const {
-  link = document.createElement(&apos;link&apos;),
+  link = document.createElement('link'),
 } = {
-  link: document.querySelector(&apos;link&apos;) || undefined
+  link: document.querySelector('link') || undefined
 };
 ```
 
@@ -92,11 +92,11 @@ const {
 
 ```js
 // 옵셔널 체이닝 및 Nullish 병합 연산자의 동시 사용
-const link = obj.deep?.container.link ?? document.createElement(&apos;link&apos;);
+const link = obj.deep?.container.link ?? document.createElement('link');
 
 // 옵셔널 체이닝과 기본 할당 구조 분해
 const {
-  link = document.createElement(&apos;link&apos;),
+  link = document.createElement('link'),
 } = (obj.deep?.container || {});
 ```
 

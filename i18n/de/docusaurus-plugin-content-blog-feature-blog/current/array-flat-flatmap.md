@@ -1,15 +1,15 @@
 ---
-title: &apos;`Array.prototype.flat` und `Array.prototype.flatMap`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`Array.prototype.flat` und `Array.prototype.flatMap`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-06-11
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: &apos;Array.prototype.flat reduziert ein Array bis zur angegebenen Tiefe. Array.prototype.flatMap entspricht einem Map gefolgt von einem separaten Flat.&apos;
-tweet: &apos;1138457106380709891&apos;
+description: 'Array.prototype.flat reduziert ein Array bis zur angegebenen Tiefe. Array.prototype.flatMap entspricht einem Map gefolgt von einem separaten Flat.'
+tweet: '1138457106380709891'
 ---
 ## `Array.prototype.flat`
 

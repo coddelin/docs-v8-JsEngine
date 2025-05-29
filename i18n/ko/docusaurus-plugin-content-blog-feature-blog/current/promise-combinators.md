@@ -1,8 +1,8 @@
 ---
-title: &apos;Promise 조합자들&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Promise 조합자들'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-06-12
 tags:
   - ECMAScript
@@ -10,8 +10,8 @@ tags:
   - ES2021
   - io19
   - Node.js 16
-description: &apos;자바스크립트에는 네 가지 Promise 조합자가 있습니다: Promise.all, Promise.race, Promise.allSettled, 그리고 Promise.any.&apos;
-tweet: &apos;1138819493956710400&apos;
+description: '자바스크립트에는 네 가지 Promise 조합자가 있습니다: Promise.all, Promise.race, Promise.allSettled, 그리고 Promise.any.'
+tweet: '1138819493956710400'
 ---
 ES2015에서 Promise가 도입된 이후, 자바스크립트는 정확히 두 가지 Promise 조합자: `Promise.all` 과 `Promise.race`를 지원했습니다.
 
@@ -45,9 +45,9 @@ ES2015에서 Promise가 도입된 이후, 자바스크립트는 정확히 두 �
 
 ```js
 const promises = [
-  fetch(&apos;/component-a.css&apos;),
-  fetch(&apos;/component-b.css&apos;),
-  fetch(&apos;/component-c.css&apos;),
+  fetch('/component-a.css'),
+  fetch('/component-b.css'),
+  fetch('/component-c.css'),
 ];
 try {
   const styleResponses = await Promise.all(promises);
@@ -105,9 +105,9 @@ try {
 
 ```js
 const promises = [
-  fetch(&apos;/api-call-1&apos;),
-  fetch(&apos;/api-call-2&apos;),
-  fetch(&apos;/api-call-3&apos;),
+  fetch('/api-call-1'),
+  fetch('/api-call-2'),
+  fetch('/api-call-3'),
 ];
 // 이 요청들 중 일부가 실패하고 일부가 성공한다고 가정해봅시다.
 
@@ -128,15 +128,15 @@ removeLoadingIndicator();
 
 ```js
 const promises = [
-  fetch(&apos;/endpoint-a&apos;).then(() => &apos;a&apos;),
-  fetch(&apos;/endpoint-b&apos;).then(() => &apos;b&apos;),
-  fetch(&apos;/endpoint-c&apos;).then(() => &apos;c&apos;),
+  fetch('/endpoint-a').then(() => 'a'),
+  fetch('/endpoint-b').then(() => 'b'),
+  fetch('/endpoint-c').then(() => 'c'),
 ];
 try {
   const first = await Promise.any(promises);
   // 어느 promise가 완료되었습니다.
   console.log(first);
-  // → 예: &apos;b&apos;
+  // → 예: 'b'
 } catch (error) {
   // 모든 promise가 실패했습니다.
   console.assert(error instanceof AggregateError);
@@ -155,5 +155,5 @@ try {
 `Promise.any`의 실패는 한 번에 여러 오류를 나타낼 수 있습니다. 이를 언어 수준에서 지원하기 위해 `AggregateError`라는 새로운 오류 유형이 도입되었습니다. 위의 예제에서 기본 사용법 외에도, 다른 오류 유형과 마찬가지로 `AggregateError` 객체를 프로그래밍적으로 생성할 수도 있습니다:
 
 ```js
-const aggregateError = new AggregateError([errorA, errorB, errorC], &apos;문제가 발생했습니다!&apos;);
+const aggregateError = new AggregateError([errorA, errorB, errorC], '문제가 발생했습니다!');
 ```

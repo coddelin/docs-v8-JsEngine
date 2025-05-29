@@ -1,6 +1,6 @@
 ---
-title: &apos;WebAssembly - 添加新指令碼&apos;
-description: &apos;本教學說明如何在 V8 中實現新的 WebAssembly 指令。&apos;
+title: 'WebAssembly - 添加新指令碼'
+description: '本教學說明如何在 V8 中實現新的 WebAssembly 指令。'
 ---
 [WebAssembly](https://webassembly.org/) (Wasm) 是一種基於堆疊的虛擬機的二進制指令格式。本教學將帶領讀者在 V8 中實現一個新的 WebAssembly 指令。
 
@@ -123,7 +123,7 @@ index 26df61ceb8..b1ee6edd71 100644
 執行測試：
 
 ```
-$ tools/dev/gm.py x64.debug &apos;cctest/test-run-wasm-simd/RunWasmTurbofan_I32Add1&apos;
+$ tools/dev/gm.py x64.debug 'cctest/test-run-wasm-simd/RunWasmTurbofan_I32Add1'
 ...
 === cctest/test-run-wasm/RunWasmTurbofan_Int32Add1 ===
 #
@@ -195,7 +195,7 @@ index f666bbb7c1..1d93601584 100644
 嘗試運行相同的測試會導致編譯失敗，並提示需要更改的地方：
 
 ```
-../../src/compiler/wasm-compiler.cc:717:34: error: no member named &apos;Int32Add1&apos; in &apos;v8::internal::compiler::MachineOperatorBuilder&apos;; did you mean &apos;Int32Add&apos;?
+../../src/compiler/wasm-compiler.cc:717:34: error: no member named 'Int32Add1' in 'v8::internal::compiler::MachineOperatorBuilder'; did you mean 'Int32Add'?
       return graph()->NewNode(m->Int32Add1(), input);
                                  ^~~~~~~~~
                                  Int32Add
@@ -343,12 +343,12 @@ index 9b8be0e0b5..7f5faeb87b 100644
 執行我們的測試，我們看到新的編譯錯誤：
 
 ```
-../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: error: enumeration value &apos;kX64Int32Add1&apos; not handled in switch [-Werror,-Wswitch]
+../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: error: enumeration value 'kX64Int32Add1' not handled in switch [-Werror,-Wswitch]
   switch (instr->arch_opcode()) {
           ^
 1 error generated.
 ...
-../../src/compiler/backend/x64/code-generator-x64.cc:733:11: error: enumeration value &apos;kX64Int32Add1&apos; not handled in switch [-Werror,-Wswitch]
+../../src/compiler/backend/x64/code-generator-x64.cc:733:11: error: enumeration value 'kX64Int32Add1' not handled in switch [-Werror,-Wswitch]
   switch (arch_opcode) {
           ^
 1 error generated.

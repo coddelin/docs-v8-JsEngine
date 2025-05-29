@@ -1,6 +1,6 @@
 ---
-title: &apos;入门集成 V8&apos;
-description: &apos;本文档介绍了一些 V8 的关键概念，并提供了一个“hello world”示例，帮助您开始使用 V8 代码。&apos;
+title: '入门集成 V8'
+description: '本文档介绍了一些 V8 的关键概念，并提供了一个“hello world”示例，帮助您开始使用 V8 代码。'
 ---
 本文档介绍了一些 V8 的关键概念，并提供了一个“hello world”示例，帮助您开始使用 V8 代码。
 

@@ -1,16 +1,16 @@
 ---
-title: &apos;공용 및 비공용 클래스 필드&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '공용 및 비공용 클래스 필드'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-12-13
 tags:
   - ECMAScript
   - ES2022
   - io19
   - Node.js 14
-description: &apos;여러 제안이 기존 JavaScript 클래스 문법을 새로운 기능으로 확장합니다. 이 글은 V8 v7.2와 Chrome 72에서 새로운 공용 클래스 필드 문법, 그리고 곧 출시될 비공용 클래스 필드 문법에 대해 설명합니다.&apos;
-tweet: &apos;1121395767170740225&apos;
+description: '여러 제안이 기존 JavaScript 클래스 문법을 새로운 기능으로 확장합니다. 이 글은 V8 v7.2와 Chrome 72에서 새로운 공용 클래스 필드 문법, 그리고 곧 출시될 비공용 클래스 필드 문법에 대해 설명합니다.'
+tweet: '1121395767170740225'
 ---
 여러 제안이 기존 JavaScript 클래스 문법을 새로운 기능으로 확장합니다. 이 글은 V8 v7.2와 Chrome 72에서 새로운 공용 클래스 필드 문법, 그리고 곧 출시될 비공용 클래스 필드 문법에 대해 설명합니다.
 
@@ -19,11 +19,11 @@ tweet: &apos;1121395767170740225&apos;
 ```js
 const counter = new IncreasingCounter();
 counter.value;
-// 로그 출력: &apos;현재 값을 가져오는 중!&apos;
+// 로그 출력: '현재 값을 가져오는 중!'
 // → 0
 counter.increment();
 counter.value;
-// 로그 출력: &apos;현재 값을 가져오는 중!&apos;
+// 로그 출력: '현재 값을 가져오는 중!'
 // → 1
 ```
 
@@ -39,7 +39,7 @@ class IncreasingCounter {
     this._count = 0;
   }
   get value() {
-    console.log(&apos;현재 값을 가져오는 중!&apos;);
+    console.log('현재 값을 가져오는 중!');
     return this._count;
   }
   increment() {
@@ -54,7 +54,7 @@ class IncreasingCounter {
 ```js
 const counter = new IncreasingCounter();
 counter.value;
-// 로그 출력: &apos;현재 값을 가져오는 중!&apos;
+// 로그 출력: '현재 값을 가져오는 중!'
 // → 0
 
 // `_count` 인스턴스 속성을 읽거나 변경하는 것을
@@ -63,7 +63,7 @@ counter._count;
 // → 0
 counter._count = 42;
 counter.value;
-// 로그 출력: &apos;현재 값을 가져오는 중!&apos;
+// 로그 출력: '현재 값을 가져오는 중!'
 // → 42
 ```
 
@@ -75,7 +75,7 @@ counter.value;
 class IncreasingCounter {
   _count = 0;
   get value() {
-    console.log(&apos;현재 값을 가져오는 중!&apos;);
+    console.log('현재 값을 가져오는 중!');
     return this._count;
   }
   increment() {
@@ -96,7 +96,7 @@ class IncreasingCounter {
 class IncreasingCounter {
   #count = 0;
   get value() {
-    console.log(&apos;현재 값을 가져오는 중!&apos;);
+    console.log('현재 값을 가져오는 중!');
     return this.#count;
   }
   increment() {
@@ -134,7 +134,7 @@ class FakeMath {
 
   // `random`은 공용 정적 메소드(ES2015 문법)로, `#computeRandomNumber`를 소비합니다.
   static random() {
-    console.log(&apos;랜덤 넘버를 좋아한다는 말을 들었어요…&apos;);
+    console.log('랜덤 넘버를 좋아한다는 말을 들었어요…');
     return FakeMath.#computeRandomNumber();
   }
 }
@@ -142,7 +142,7 @@ class FakeMath {
 FakeMath.PI;
 // → 3.142857142857143
 FakeMath.random();
-// 로그 출력: &apos;랜덤 넘버를 좋아한다는 말을 들었어요…&apos;
+// 로그 출력: '랜덤 넘버를 좋아한다는 말을 들었어요…'
 // → 4
 FakeMath.#totallyRandomNumber;
 // → SyntaxError
@@ -171,7 +171,7 @@ class Cat extends Animal {
     this.likesBaths = false;
   }
   meow() {
-    console.log(&apos;야옹!&apos;);
+    console.log('야옹!');
   }
 }
 ```
@@ -182,7 +182,7 @@ class Cat extends Animal {
 class Cat extends Animal {
   likesBaths = false;
   meow() {
-    console.log(&apos;야옹!&apos;);
+    console.log('야옹!');
   }
 }
 ```

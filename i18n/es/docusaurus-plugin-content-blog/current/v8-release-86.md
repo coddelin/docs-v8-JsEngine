@@ -1,13 +1,13 @@
 ---
-title: &apos;Lanzamiento de V8 v8.6&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), un fuzzer de teclado&apos;
+title: 'Lanzamiento de V8 v8.6'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), un fuzzer de teclado'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2020-09-21
 tags:
  - lanzamiento
-description: &apos;El lanzamiento de V8 v8.6 trae código respetuoso, mejoras de rendimiento y cambios normativos.&apos;
-tweet: &apos;1308062287731789825&apos;
+description: 'El lanzamiento de V8 v8.6 trae código respetuoso, mejoras de rendimiento y cambios normativos.'
+tweet: '1308062287731789825'
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](https://v8.dev/docs/release-process). Cada versión se deriva del maestro de Git de V8 inmediatamente antes de un hito Beta de Chrome. Hoy nos complace anunciar nuestra nueva rama, [V8 versión 8.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.6), que está en beta hasta su lanzamiento en coordinación con Chrome 86 Stable en varias semanas. V8 v8.6 está lleno de todo tipo de novedades para los desarrolladores. Esta publicación proporciona un adelanto de algunos de los aspectos destacados con anticipación al lanzamiento.
 
@@ -36,9 +36,9 @@ Pero, muchas veces, solo quieres imprimir un entero pequeño y simple (un “Smi
 
 ### Pequeños cambios normativos
 
-- Las clases anónimas ahora tienen una propiedad `.name` cuyo valor es la cadena vacía `&apos;&apos;`. [Cambio en la especificación](https://github.com/tc39/ecma262/pull/1490).
+- Las clases anónimas ahora tienen una propiedad `.name` cuyo valor es la cadena vacía `''`. [Cambio en la especificación](https://github.com/tc39/ecma262/pull/1490).
 - Las secuencias de escape `\8` y `\9` ahora son ilegales en literales de cadenas de plantilla en [modo permisivo](https://developer.mozilla.org/en-US/docs/Glossary/Sloppy_mode) y en todos los literales de cadenas en [modo estricto](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode). [Cambio en la especificación](https://github.com/tc39/ecma262/pull/2054).
-- El objeto incorporado `Reflect` ahora tiene una propiedad `Symbol.toStringTag` cuyo valor es `&apos;Reflect&apos;`. [Cambio en la especificación](https://github.com/tc39/ecma262/pull/2057).
+- El objeto incorporado `Reflect` ahora tiene una propiedad `Symbol.toStringTag` cuyo valor es `'Reflect'`. [Cambio en la especificación](https://github.com/tc39/ecma262/pull/2057).
 
 ## WebAssembly
 

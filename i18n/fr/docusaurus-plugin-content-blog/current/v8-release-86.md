@@ -1,20 +1,20 @@
 ---
-title: &apos;Version V8.6 de V8&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), un testeur de fuzzing pour clavier&apos;
+title: 'Version V8.6 de V8'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), un testeur de fuzzing pour clavier'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2020-09-21
 tags:
  - release
-description: &apos;La version V8.6 de V8 apporte un code respectueux, des améliorations de performance et des changements normatifs.&apos;
-tweet: &apos;1308062287731789825&apos;
+description: 'La version V8.6 de V8 apporte un code respectueux, des améliorations de performance et des changements normatifs.'
+tweet: '1308062287731789825'
 ---
-Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](https://v8.dev/docs/release-process). Chaque version est issue directement de la branche principale de V8 sur Git juste avant une étape Beta de Chrome. Aujourd&apos;hui, nous sommes ravis d&apos;annoncer notre toute nouvelle branche, [V8 version 8.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.6), qui est en bêta jusqu&apos;à sa publication en coordination avec Chrome 86 stable dans plusieurs semaines. V8 v8.6 regorge de toutes sortes de fonctionnalités destinées aux développeurs. Ce post offre un aperçu des principaux points à l&apos;approche de la sortie.
+Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](https://v8.dev/docs/release-process). Chaque version est issue directement de la branche principale de V8 sur Git juste avant une étape Beta de Chrome. Aujourd'hui, nous sommes ravis d'annoncer notre toute nouvelle branche, [V8 version 8.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.6), qui est en bêta jusqu'à sa publication en coordination avec Chrome 86 stable dans plusieurs semaines. V8 v8.6 regorge de toutes sortes de fonctionnalités destinées aux développeurs. Ce post offre un aperçu des principaux points à l'approche de la sortie.
 
 <!--truncate-->
 ## Code respectueux
 
-La version 8.6 rend le code de base de V8 [plus respectueux](https://v8.dev/docs/respectful-code). L&apos;équipe a rejoint un effort à l&apos;échelle de Chromium pour respecter les engagements de Google en matière d&apos;équité raciale en remplaçant certains termes insensibles dans le projet. Ce processus est toujours en cours et toute contribution externe est la bienvenue ! Vous pouvez voir la liste des tâches encore disponibles [ici](https://docs.google.com/document/d/1rK7NQK64c53-qbEG-N5xz7uY_QUVI45sUxinbyikCYM/edit).
+La version 8.6 rend le code de base de V8 [plus respectueux](https://v8.dev/docs/respectful-code). L'équipe a rejoint un effort à l'échelle de Chromium pour respecter les engagements de Google en matière d'équité raciale en remplaçant certains termes insensibles dans le projet. Ce processus est toujours en cours et toute contribution externe est la bienvenue ! Vous pouvez voir la liste des tâches encore disponibles [ici](https://docs.google.com/document/d/1rK7NQK64c53-qbEG-N5xz7uY_QUVI45sUxinbyikCYM/edit).
 
 ## JavaScript
 
@@ -22,23 +22,23 @@ La version 8.6 rend le code de base de V8 [plus respectueux](https://v8.dev/docs
 
 JS-Fuzzer est un fuzzing basé sur la mutation pour JavaScript, initialement développé par Oliver Chang. Il a été une pierre angulaire de la [stabilité](https://bugs.chromium.org/p/chromium/issues/list?q=ochang_js_fuzzer%20label%3AStability-Crash%20label%3AClusterfuzz%20-status%3AWontFix%20-status%3ADuplicate&can=1) et de la [sécurité](https://bugs.chromium.org/p/chromium/issues/list?q=ochang_js_fuzzer%20label%3ASecurity%20label%3AClusterfuzz%20-status%3AWontFix%20-status%3ADuplicate&can=1) de V8 par le passé et est maintenant [open source](https://chromium-review.googlesource.com/c/v8/v8/+/2320330).
 
-Le fuzzer modifie les cas de test existants entre moteurs en utilisant des transformations AST [Babel](https://babeljs.io/) configurées par des [classes de mutateurs](https://chromium.googlesource.com/v8/v8/+/320d98709f/tools/clusterfuzz/js_fuzzer/mutators/) extensibles. Nous avons également récemment commencé à exécuter une instance du fuzzer en mode de test différentiel pour détecter les [problèmes de correction](https://bugs.chromium.org/p/chromium/issues/list?q=blocking%3A1050674%20-status%3ADuplicate&can=1) de JavaScript. Les contributions sont les bienvenues ! Voir le [README](https://chromium.googlesource.com/v8/v8/+/master/tools/clusterfuzz/js_fuzzer/README.md) pour plus d&apos;informations.
+Le fuzzer modifie les cas de test existants entre moteurs en utilisant des transformations AST [Babel](https://babeljs.io/) configurées par des [classes de mutateurs](https://chromium.googlesource.com/v8/v8/+/320d98709f/tools/clusterfuzz/js_fuzzer/mutators/) extensibles. Nous avons également récemment commencé à exécuter une instance du fuzzer en mode de test différentiel pour détecter les [problèmes de correction](https://bugs.chromium.org/p/chromium/issues/list?q=blocking%3A1050674%20-status%3ADuplicate&can=1) de JavaScript. Les contributions sont les bienvenues ! Voir le [README](https://chromium.googlesource.com/v8/v8/+/master/tools/clusterfuzz/js_fuzzer/README.md) pour plus d'informations.
 
 ### Optimisation de `Number.prototype.toString`
 
-La conversion d&apos;un nombre JavaScript en chaîne de caractères peut être une opération étonnamment complexe dans le cas général ; il faut prendre en compte la précision du point flottant, la notation scientifique, les NaN, les infinis, l&apos;arrondi, et ainsi de suite. Nous ne savons même pas quelle sera la taille de la chaîne résultante avant de la calculer. Pour cette raison, notre implémentation de `Number.prototype.toString` devait appeler une fonction d&apos;exécution C++.
+La conversion d'un nombre JavaScript en chaîne de caractères peut être une opération étonnamment complexe dans le cas général ; il faut prendre en compte la précision du point flottant, la notation scientifique, les NaN, les infinis, l'arrondi, et ainsi de suite. Nous ne savons même pas quelle sera la taille de la chaîne résultante avant de la calculer. Pour cette raison, notre implémentation de `Number.prototype.toString` devait appeler une fonction d'exécution C++.
 
-Mais souvent, vous voulez juste afficher un simple petit entier (un “Smi”). C&apos;est une opération beaucoup plus simple, et les surcoûts d&apos;appeler une fonction d&apos;exécution C++ ne valent plus le coup. Nous avons donc travaillé avec nos amis de Microsoft pour ajouter un chemin rapide simple pour les petits entiers dans `Number.prototype.toString`, écrit en Torque, pour réduire ces surcoûts dans ce cas courant. Cela a amélioré les micro-benchmarks d&apos;impression de nombres d&apos;environ 75%.
+Mais souvent, vous voulez juste afficher un simple petit entier (un “Smi”). C'est une opération beaucoup plus simple, et les surcoûts d'appeler une fonction d'exécution C++ ne valent plus le coup. Nous avons donc travaillé avec nos amis de Microsoft pour ajouter un chemin rapide simple pour les petits entiers dans `Number.prototype.toString`, écrit en Torque, pour réduire ces surcoûts dans ce cas courant. Cela a amélioré les micro-benchmarks d'impression de nombres d'environ 75%.
 
 ### Suppression de `Atomics.wake`
 
-`Atomics.wake` a été renommé en `Atomics.notify` pour correspondre à un changement de spécification [dans la version 7.3](https://v8.dev/blog/v8-release-73#atomics.notify). L&apos;alias obsolète `Atomics.wake` est maintenant supprimé.
+`Atomics.wake` a été renommé en `Atomics.notify` pour correspondre à un changement de spécification [dans la version 7.3](https://v8.dev/blog/v8-release-73#atomics.notify). L'alias obsolète `Atomics.wake` est maintenant supprimé.
 
 ### Petits changements normatifs
 
-- Les classes anonymes ont désormais une propriété `.name` dont la valeur est la chaîne vide `&apos;&apos;`. [Changement de spécification](https://github.com/tc39/ecma262/pull/1490).
-- Les séquences d&apos;échappement `\8` et `\9` sont désormais illégales dans les littéraux de chaînes de modèles en [mode laxiste](https://developer.mozilla.org/en-US/docs/Glossary/Sloppy_mode) et dans tous les littéraux de chaînes en [mode strict](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode). [Changement de spécification](https://github.com/tc39/ecma262/pull/2054).
-- L&apos;objet intégré `Reflect` dispose désormais d&apos;une propriété `Symbol.toStringTag` dont la valeur est `&apos;Reflect&apos;`. [Changement de spécification](https://github.com/tc39/ecma262/pull/2057).
+- Les classes anonymes ont désormais une propriété `.name` dont la valeur est la chaîne vide `''`. [Changement de spécification](https://github.com/tc39/ecma262/pull/1490).
+- Les séquences d'échappement `\8` et `\9` sont désormais illégales dans les littéraux de chaînes de modèles en [mode laxiste](https://developer.mozilla.org/en-US/docs/Glossary/Sloppy_mode) et dans tous les littéraux de chaînes en [mode strict](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode). [Changement de spécification](https://github.com/tc39/ecma262/pull/2054).
+- L'objet intégré `Reflect` dispose désormais d'une propriété `Symbol.toStringTag` dont la valeur est `'Reflect'`. [Changement de spécification](https://github.com/tc39/ecma262/pull/2057).
 
 ## WebAssembly
 

@@ -1,6 +1,6 @@
 ---
-title: &apos;Flake bisect&apos;
-description: &apos;Este documento explica cómo bisectar pruebas inestables.&apos;
+title: 'Flake bisect'
+description: 'Este documento explica cómo bisectar pruebas inestables.'
 ---
 Las pruebas inestables se informan en un paso separado en los bots ([ejemplo de compilación](https://ci.chromium.org/ui/p/v8/builders/ci/V8%20Linux64%20TSAN/38630/overview)).
 
@@ -8,7 +8,7 @@ Cada log de prueba proporciona una línea de comando pre-rellena para activar un
 
 ```
 Activar bisectado de inestables en la línea de comandos:
-bb add v8/try.triggered/v8_flako -p &apos;to_revision="deadbeef"&apos; -p &apos;test_name="MyTest"&apos; ...
+bb add v8/try.triggered/v8_flako -p 'to_revision="deadbeef"' -p 'test_name="MyTest"' ...
 ```
 
 Antes de activar bisectados de inestables por primera vez, los usuarios deben iniciar sesión con una cuenta de google.com:

@@ -1,15 +1,15 @@
 ---
-title: &apos;2019年JavaScript的成本&apos;
-author: &apos;Addy Osmani（[@addyosmani](https://twitter.com/addyosmani)），JavaScript清道夫，與Mathias Bynens（[@mathias](https://twitter.com/mathias)），主線程解放者&apos;
+title: '2019年JavaScript的成本'
+author: 'Addy Osmani（[@addyosmani](https://twitter.com/addyosmani)），JavaScript清道夫，與Mathias Bynens（[@mathias](https://twitter.com/mathias)），主線程解放者'
 avatars:
-  - &apos;addy-osmani&apos;
-  - &apos;mathias-bynens&apos;
+  - 'addy-osmani'
+  - 'mathias-bynens'
 date: 2019-06-25
 tags:
   - internals
   - parsing
-description: &apos;處理JavaScript的主要成本是下載和CPU執行時間。&apos;
-tweet: &apos;1143531042361487360&apos;
+description: '處理JavaScript的主要成本是下載和CPU執行時間。'
+tweet: '1143531042361487360'
 ---
 :::note
 **注意:** 如果你比較喜歡觀看演講而非閱讀文章，請欣賞以下影片！如果不是，跳過影片繼續閱讀。
@@ -153,12 +153,12 @@ const data = { foo: 42, bar: 1337 }; // 🐌
 …更好地以 JSON 字符串化的形式表示，並在運行時進行 JSON 解析：
 
 ```js
-const data = JSON.parse(&apos;{"foo":42,"bar":1337}&apos;); // 🚀
+const data = JSON.parse('{"foo":42,"bar":1337}'); // 🚀
 ```
 
 只要 JSON 字符串只評估一次，`JSON.parse` 方法相比 JavaScript 對象字面量[快得多](https://github.com/GoogleChromeLabs/json-parse-benchmark)，尤其是在冷啟動時。一個良好的經驗法則是，對 10 kB 或更大的對象應用此技術 — 但正如所有性能建議所言，在進行更改之前，測量實際影響。
 
-![與等價的 JavaScript 字面量相比，`JSON.parse(&apos;…&apos;)` 在解析、編譯和執行方面[快得多](https://github.com/GoogleChromeLabs/json-parse-benchmark) — 不僅在 V8 上（快 1.7 倍），在所有主流 JavaScript 引擎上也是如此。](/_img/cost-of-javascript-2019/json.svg)
+![與等價的 JavaScript 字面量相比，`JSON.parse('…')` 在解析、編譯和執行方面[快得多](https://github.com/GoogleChromeLabs/json-parse-benchmark) — 不僅在 V8 上（快 1.7 倍），在所有主流 JavaScript 引擎上也是如此。](/_img/cost-of-javascript-2019/json.svg)
 
 下面這段視頻深入介紹了性能差異的來源，從 02:10 開始。
 

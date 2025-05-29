@@ -1,6 +1,6 @@
 ---
-title: &apos;Sparkplug — 最適化を行わないJavaScriptコンパイラー&apos;
-author: &apos;[Leszek Swirski](https://twitter.com/leszekswirski) — 一番明るい閃光ではないかもしれませんが、少なくとも一番早い閃光です&apos;
+title: 'Sparkplug — 最適化を行わないJavaScriptコンパイラー'
+author: '[Leszek Swirski](https://twitter.com/leszekswirski) — 一番明るい閃光ではないかもしれませんが、少なくとも一番早い閃光です'
 avatars:
   - leszek-swirski
 date: 2021-05-27
@@ -9,8 +9,8 @@ tags:
 extra_links:
   - href: https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap
     rel: stylesheet
-description: &apos;V8 v9.1では、Sparkplugという新しい非最適化JavaScriptコンパイラーによってV8の性能を5～15％向上させます。&apos;
-tweet: &apos;1397945205198835719&apos;
+description: 'V8 v9.1では、Sparkplugという新しい非最適化JavaScriptコンパイラーによってV8の性能を5～15％向上させます。'
+tweet: '1397945205198835719'
 ---
 
 <!-- markdownlint-capture -->

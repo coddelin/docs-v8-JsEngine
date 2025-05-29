@@ -1,12 +1,12 @@
 ---
-title: &apos;V8 中快速的 `for`-`in`&apos;
-author: &apos;Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))&apos;
+title: 'V8 中快速的 `for`-`in`'
+author: 'Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))'
 avatars:
-  - &apos;camillo-bruni&apos;
+  - 'camillo-bruni'
 date: 2017-03-01 13:33:37
 tags:
   - 内部机制
-description: &apos;这篇技术深度解析解释了 V8 如何让 JavaScript 的 for-in 尽可能快。&apos;
+description: '这篇技术深度解析解释了 V8 如何让 JavaScript 的 for-in 尽可能快。'
 ---
 `for`-`in` 是一种被许多框架广泛使用的语言特性。尽管它十分常见，但从实现角度来看，它是一种较为晦涩的语言构造。V8 付出了巨大努力，使得这一特性尽可能快。在过去的一年里，`for`-`in` 变得完全符合规范，并在某些情况下速度提高了 3 倍。
 
@@ -31,15 +31,15 @@ _**TL;DR;** 为性能原因，for-in 的迭代语义是模糊的。_
 const proxy = new Proxy({ a: 1, b: 1},
   {
     getPrototypeOf(target) {
-    console.log(&apos;getPrototypeOf&apos;);
+    console.log('getPrototypeOf');
     return null;
   },
   ownKeys(target) {
-    console.log(&apos;ownKeys&apos;);
+    console.log('ownKeys');
     return Reflect.ownKeys(target);
   },
   getOwnPropertyDescriptor(target, prop) {
-    console.log(&apos;getOwnPropertyDescriptor name=&apos; + prop);
+    console.log('getOwnPropertyDescriptor name=' + prop);
     return Reflect.getOwnPropertyDescriptor(target, prop);
   }
 });
@@ -94,7 +94,7 @@ b
 function* EnumerateObjectProperties(obj) {
   const visited = new Set();
   for (const key of Reflect.ownKeys(obj)) {
-    if (typeof key === &apos;symbol&apos;) continue;
+    if (typeof key === 'symbol') continue;
     const desc = Reflect.getOwnPropertyDescriptor(obj, key);
     if (desc && !visited.has(key)) {
       visited.add(key);
@@ -115,7 +115,7 @@ function* EnumerateObjectProperties(obj) {
 
 `for`-`in`生成器的示例实现遵循了一种增量收集并生成键值的模式。在V8中，属性键值首先被收集，然后在迭代阶段被使用。这种方式让V8实现起来更简单。要理解原因，我们需要看看对象模型。
 
-像`{a:&apos;value a&apos;, b:&apos;value b&apos;, c:&apos;value c&apos;}`这样的简单对象，在V8中可以有各种内部表示，如将在后续深入探讨属性的文章中所示。这意味着，根据属性的类型——是对象内的、快速的还是慢速的——实际的属性名会被存储在不同的地方。这使得收集可枚举键成为一项非平凡的任务。
+像`{a:'value a', b:'value b', c:'value c'}`这样的简单对象，在V8中可以有各种内部表示，如将在后续深入探讨属性的文章中所示。这意味着，根据属性的类型——是对象内的、快速的还是慢速的——实际的属性名会被存储在不同的地方。这使得收集可枚举键成为一项非平凡的任务。
 
 V8通过隐藏类或所谓的Map来跟踪对象的结构。具有相同Map的对象具有相同的结构。此外，每个Map都有一个共享的数据结构，即描述符数组，包含每个属性的详细信息，如属性存储的位置、属性名以及枚举性等细节。
 
@@ -252,7 +252,7 @@ var o = {
   __proto__ : {b: 3},
   a: 1
 };
-Object.defineProperty(o, &apos;b&apos;, {});
+Object.defineProperty(o, 'b', {});
 
 for (var k in o) console.log(k);
 ```

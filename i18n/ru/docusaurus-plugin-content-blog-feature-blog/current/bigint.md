@@ -1,15 +1,15 @@
 ---
-title: &apos;BigInt: целочисленные значения произвольной точности в JavaScript&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'BigInt: целочисленные значения произвольной точности в JavaScript'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-05-01
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: &apos;BigInts — новый числовой примитив в JavaScript, который может представлять целые числа произвольной точности. В этой статье рассматриваются возможные случаи использования и даётся объяснение новой функциональности в Chrome 67 путем сравнения BigInts с Numbers в JavaScript.&apos;
-tweet: &apos;990991035630206977&apos;
+description: 'BigInts — новый числовой примитив в JavaScript, который может представлять целые числа произвольной точности. В этой статье рассматриваются возможные случаи использования и даётся объяснение новой функциональности в Chrome 67 путем сравнения BigInts с Numbers в JavaScript.'
+tweet: '990991035630206977'
 ---
 `BigInt`s — это новый числовой примитив в JavaScript, который может представлять целые числа произвольной точности. С помощью `BigInt`s можно безопасно хранить и оперировать большими целыми числами даже за пределами допустимой границы для `Number`. В этой статье рассматриваются возможные случаи использования и объясняется новая функциональность в Chrome 67 путем сравнения `BigInt`s с `Number`s в JavaScript.
 
@@ -92,9 +92,9 @@ BigInt(Number.MAX_SAFE_INTEGER) + 2n;
 
 ```js
 typeof 123;
-// → &apos;number&apos;
+// → 'number'
 typeof 123n;
-// → &apos;bigint&apos;
+// → 'bigint'
 ```
 
 Поскольку `BigInt` — это отдельный тип, `BigInt` никогда не равен строго `Number`, например, `42n !== 42`. Чтобы сравнить `BigInt` и `Number`, преобразуйте один из них в тип другого перед сравнением или используйте абстрактное равенство (`==`):
@@ -110,11 +110,11 @@ typeof 123n;
 
 ```js
 if (0n) {
-  console.log(&apos;if&apos;);
+  console.log('if');
 } else {
-  console.log(&apos;else&apos;);
+  console.log('else');
 }
-// → logs &apos;else&apos;, потому что `0n` является ложным значением.
+// → logs 'else', потому что `0n` является ложным значением.
 ```
 
 ### Операторы
@@ -163,7 +163,7 @@ BigInt(123);
 // → 123n
 BigInt(1.5);
 // → RangeError
-BigInt(&apos;1.5&apos;);
+BigInt('1.5');
 // → SyntaxError
 ```
 
@@ -179,7 +179,7 @@ BigInt(123456789123456789);
 ```js
 123456789123456789n;
 // → 123456789123456789n ✅
-BigInt(&apos;123456789123456789&apos;);
+BigInt('123456789123456789');
 // → 123456789123456789n ✅
 ```
 
@@ -240,13 +240,13 @@ view[0];
 Более осуществимым и устойчивым решением является написание вашего кода с использованием [библиотеки JSBI](https://github.com/GoogleChromeLabs/jsbi#why) на данный момент. JSBI — это порт JavaScript реализации `BigInt` в V8 и Chrome — по дизайну он ведет себя точно так же, как и нативная функциональность `BigInt`. Разница в том, что вместо синтаксиса используется [API](https://github.com/GoogleChromeLabs/jsbi#how):
 
 ```js
-import JSBI from &apos;./jsbi.mjs&apos;;
+import JSBI from './jsbi.mjs';
 
 const max = JSBI.BigInt(Number.MAX_SAFE_INTEGER);
-const two = JSBI.BigInt(&apos;2&apos;);
+const two = JSBI.BigInt('2');
 const result = JSBI.add(max, two);
 console.log(result.toString());
-// → &apos;9007199254740993&apos;
+// → '9007199254740993'
 ```
 
 После того как `BigInt` будет нативно поддерживаться во всех браузерах, которые вы используете, вы можете [использовать `babel-plugin-transform-jsbi-to-bigint` для транспиляции вашего кода в нативный код `BigInt`](https://github.com/GoogleChromeLabs/babel-plugin-transform-jsbi-to-bigint) и отказаться от зависимости от JSBI. Например, приведенный выше пример транспилируется в:
@@ -256,7 +256,7 @@ const max = BigInt(Number.MAX_SAFE_INTEGER);
 const two = 2n;
 const result = max + two;
 console.log(result);
-// → &apos;9007199254740993&apos;
+// → '9007199254740993'
 ```
 
 ## Дополнительное чтение

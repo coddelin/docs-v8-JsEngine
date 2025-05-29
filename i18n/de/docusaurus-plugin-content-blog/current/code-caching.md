@@ -1,12 +1,12 @@
 ---
-title: &apos;Code-Caching&apos;
-author: &apos;Yang Guo ([@hashseed](https://twitter.com/hashseed)), Software Engineer&apos;
+title: 'Code-Caching'
+author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed)), Software Engineer'
 avatars:
-  - &apos;yang-guo&apos;
+  - 'yang-guo'
 date: 2015-07-27 13:33:37
 tags:
   - internals
-description: &apos;V8 unterstützt jetzt das (Byte-)Code-Caching, d.h. das Zwischenspeichern des Ergebnisses der JavaScript-Analyse und -Kompilierung.&apos;
+description: 'V8 unterstützt jetzt das (Byte-)Code-Caching, d.h. das Zwischenspeichern des Ergebnisses der JavaScript-Analyse und -Kompilierung.'
 ---
 V8 verwendet die [Just-in-Time-Kompilierung](https://de.wikipedia.org/wiki/Just-in-time-Kompilierung) (JIT), um JavaScript-Code auszuführen. Das bedeutet, dass ein Skript unmittelbar vor seiner Ausführung analysiert und kompiliert werden muss — was zu erheblichem Aufwand führen kann. Wie wir [kürzlich angekündigt haben](https://blog.chromium.org/2015/03/new-javascript-techniques-for-rapid.html), ist Code-Caching eine Technik, die diesen Aufwand verringert. Wenn ein Skript zum ersten Mal kompiliert wird, werden Cache-Daten erzeugt und gespeichert. Das nächste Mal, wenn V8 dasselbe Skript kompiliert, auch in einer anderen V8-Instanz, kann es die Cache-Daten nutzen, um das Kompilierungsergebnis erneut zu erstellen, anstatt von Grund auf zu kompilieren. Dadurch wird das Skript deutlich schneller ausgeführt.
 

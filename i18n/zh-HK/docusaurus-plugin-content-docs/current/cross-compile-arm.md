@@ -1,19 +1,19 @@
 ---
-title: &apos;交叉編譯及除錯 ARM/Android&apos;
-description: &apos;本文件解釋如何為 ARM/Android 交叉編譯 V8，以及如何除錯它。&apos;
+title: '交叉編譯及除錯 ARM/Android'
+description: '本文件解釋如何為 ARM/Android 交叉編譯 V8，以及如何除錯它。'
 ---
 首先，確保您能夠[使用 GN 建構](/docs/build-gn)。
 
 然後，在您的 `.gclient` 配置文件中添加 `android`。
 
 ```python
-target_os = [&apos;android&apos;]  # 添加此行以取得 Android 相關資料。
+target_os = ['android']  # 添加此行以取得 Android 相關資料。
 ```
 
 `target_os` 欄位是一個列表，因此如果您也在 Unix 平台上建構，則它將如下所示：
 
 ```python
-target_os = [&apos;android&apos;, &apos;unix&apos;]  # 多種目標作業系統。
+target_os = ['android', 'unix']  # 多種目標作業系統。
 ```
 
 運行 `gclient sync`，您將在 `./third_party/android_tools` 目錄下取得大量內容。
@@ -66,7 +66,7 @@ ninja -C out.gn/arm.release d8
 使用 `adb` 將二進制檔和快照檔案複製到手機：
 
 ```bash
-adb shell &apos;mkdir -p /data/local/tmp/v8/bin&apos;
+adb shell 'mkdir -p /data/local/tmp/v8/bin'
 adb push out.gn/arm.release/d8 /data/local/tmp/v8/bin
 adb push out.gn/arm.release/icudtl.dat /data/local/tmp/v8/bin
 adb push out.gn/arm.release/snapshot_blob.bin /data/local/tmp/v8/bin
@@ -79,7 +79,7 @@ bullhead:/data/local/tmp/v8/bin $ ls
 v8 icudtl.dat snapshot_blob.bin
 bullhead:/data/local/tmp/v8/bin $ ./d8
 V8 version 5.8.0 (candidate)
-d8> &apos;w00t!&apos;
+d8> 'w00t!'
 "w00t!"
 d8>
 ```

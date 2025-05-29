@@ -1,6 +1,6 @@
 ---
-title: &apos;使用模擬器進行 Arm 除錯&apos;
-description: &apos;Arm 模擬器和除錯器在處理 V8 代碼生成時非常有幫助。&apos;
+title: '使用模擬器進行 Arm 除錯'
+description: 'Arm 模擬器和除錯器在處理 V8 代碼生成時非常有幫助。'
 ---
 模擬器和除錯器在處理 V8 代碼生成時非常有幫助。
 
@@ -96,7 +96,7 @@ void CodeGenerator::AssembleCode() {
 
 ```simulator
 $ d8 \
-    # 啟用 &apos;%&apos; 作弊代碼 JS 函數。
+    # 啟用 '%' 作弊代碼 JS 函數。
     --allow-natives-syntax \
     # 反組譯我們的函數。
     --print-opt-code --print-opt-code-filter="add" --code-comments \
@@ -275,7 +275,7 @@ sim> continue
 # NZCV: N:0 Z:1 C:0 V:0
 0x00007f1e00082ca4  54000a81            b.ne #+0x150 (addr 0x7f1e00082df4)
 
-# 然後我們將標籤去除並將 &apos;a&apos; 和 &apos;b&apos; 相加。
+# 然後我們將標籤去除並將 'a' 和 'b' 相加。
 0x00007f1e00082ca8  13017c44            asr w4, w2, #1
 #    x4: 0x0000000000000005
 0x00007f1e00082cac  2b830484            adds w4, w4, w3, asr #1
@@ -321,12 +321,12 @@ $ out/arm.debug/d8 --allow-natives-syntax \
   0x488c2e20  e24fc00c       sub ip, pc, #12
 
 # 在已知的有趣地址中斷，我們開始
-# 加載 &apos;a&apos; 和 &apos;b&apos;。
+# 加載 'a' 和 'b'。
 sim> break 0x488c2e9c
 sim> continue
   0x488c2e9c  e59b200c       ldr r2, [fp, #+12]
 
-# 我們可以使用 &apos;disasm&apos; 向前查看。
+# 我們可以使用 'disasm' 向前查看。
 sim> disasm 10
   0x488c2e9c  e59b200c       ldr r2, [fp, #+12]
   0x488c2ea0  e3120001       tst r2, #1

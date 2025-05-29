@@ -1,10 +1,10 @@
 ---
-title: &apos;Ruhestand von Octane&apos;
-author: &apos;das V8-Team&apos;
+title: 'Ruhestand von Octane'
+author: 'das V8-Team'
 date: 2017-04-12 13:33:37
 tags:
   - Benchmarks
-description: &apos;Das V8-Team glaubt, dass es an der Zeit ist, Octane als empfohlenen Benchmark in den Ruhestand zu versetzen.&apos;
+description: 'Das V8-Team glaubt, dass es an der Zeit ist, Octane als empfohlenen Benchmark in den Ruhestand zu versetzen.'
 ---
 Die Geschichte der JavaScript-Benchmarks ist eine Geschichte ständiger Weiterentwicklung. Während sich das Web von einfachen Dokumenten zu dynamischen Client-seitigen Anwendungen entwickelte, wurden neue JavaScript-Benchmarks entwickelt, um Arbeitslasten zu messen, die für neue Anwendungsfälle wichtig wurden. Dieser ständige Wandel hat dazu geführt, dass einzelne Benchmarks eine begrenzte Lebensdauer haben. Wenn Webbrowser- und virtuelle Maschinen-Implementierungen (VM) beginnen, spezifische Testfälle übermäßig zu optimieren, hören Benchmarks auf, effektive Stellvertreter für ihre ursprünglichen Anwendungsfälle zu sein. Einer der ersten JavaScript-Benchmarks, [SunSpider](https://webkit.org/perf/sunspider/sunspider.html), bot frühzeitig Anreize zur Bereitstellung schneller optimierender Compiler. Allerdings stießen VM-Ingenieure auf die [Einschränkungen von Mikro-Benchmarks](https://blog.mozilla.org/nnethercote/2014/06/16/a-browser-benchmarking-manifesto/) und fanden neue Wege zur [Optimierung](https://benediktmeurer.de/2016/12/16/the-truth-about-traditional-javascript-benchmarks/#the-notorious-sunspider-examples) [um](https://bugzilla.mozilla.org/show_bug.cgi?id=787601) die SunSpider [Einschränkungen](https://bugs.webkit.org/show_bug.cgi?id=63864) herum, was dazu führte, dass die Browsergemeinschaft [SunSpider in den Ruhestand versetzte](https://trac.webkit.org/changeset/187526/webkit) als empfohlenen Benchmark.
 

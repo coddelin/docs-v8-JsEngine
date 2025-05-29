@@ -1,6 +1,6 @@
 ---
-title: &apos;為 V8 加速：使用可變堆數字&apos;
-author: &apos;[Victor Gomes](https://twitter.com/VictorBFG)，位移者&apos;
+title: '為 V8 加速：使用可變堆數字'
+author: '[Victor Gomes](https://twitter.com/VictorBFG)，位移者'
 avatars:
   - victor-gomes
 date: 2025-02-25
@@ -9,7 +9,7 @@ tags:
   - 基準測試
   - 內部機制
 description: "向腳本上下文添加可變堆數字"
-tweet: &apos;&apos;
+tweet: ''
 ---
 
 在 V8，我們不斷努力提升 JavaScript 的性能。作為這一努力的一部分，我們最近重新審視了 [JetStream2](https://browserbench.org/JetStream2.1/) 基準測試套件，以消除性能瓶頸。本篇文章詳細介紹了一項具體的優化，它使 `async-fs` 基準測試達到了顯著的 `2.5倍` 性能提升，並對整體得分帶來了可觀的增益。該優化受基準測試的啟發，但類似模式也出現在[真實世界代碼](https://github.com/WebAssembly/binaryen/blob/3339c1f38da5b68ce8bf410773fe4b5eee451ab8/scripts/fuzz_shell.js#L248)中。

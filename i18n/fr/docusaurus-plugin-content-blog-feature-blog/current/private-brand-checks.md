@@ -1,27 +1,27 @@
 ---
-title: &apos;Vérifications des marques privées alias `#foo in obj`&apos;
-author: &apos;Marja Hölttä ([@marjakh](https://twitter.com/marjakh))&apos;
+title: 'Vérifications des marques privées alias `#foo in obj`'
+author: 'Marja Hölttä ([@marjakh](https://twitter.com/marjakh))'
 avatars:
-  - &apos;marja-holtta&apos;
+  - 'marja-holtta'
 date: 2021-04-14
 tags:
   - ECMAScript
-description: &apos;Les vérifications des marques privées permettent de tester l&apos;existence d&apos;un champ privé dans un objet.&apos;
-tweet: &apos;1382327454975590401&apos;
+description: 'Les vérifications des marques privées permettent de tester l'existence d'un champ privé dans un objet.'
+tweet: '1382327454975590401'
 ---
 
-L&apos;[opérateur `in`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in) peut être utilisé pour tester si l&apos;objet donné (ou tout objet dans sa chaîne de prototypes) possède la propriété donnée :
+L'[opérateur `in`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in) peut être utilisé pour tester si l'objet donné (ou tout objet dans sa chaîne de prototypes) possède la propriété donnée :
 
 ```javascript
-const o1 = {&apos;foo&apos;: 0};
-console.log(&apos;foo&apos; in o1); // true
+const o1 = {'foo': 0};
+console.log('foo' in o1); // true
 const o2 = {};
-console.log(&apos;foo&apos; in o2); // false
+console.log('foo' in o2); // false
 const o3 = Object.create(o1);
-console.log(&apos;foo&apos; in o3); // true
+console.log('foo' in o3); // true
 ```
 
-La fonctionnalité des vérifications des marques privées étend l&apos;opérateur `in` pour prendre en charge les [champs privés des classes](https://v8.dev/features/class-fields#private-class-fields):
+La fonctionnalité des vérifications des marques privées étend l'opérateur `in` pour prendre en charge les [champs privés des classes](https://v8.dev/features/class-fields#private-class-fields):
 
 ```javascript
 class A {
@@ -38,10 +38,10 @@ class B {
   #foo = 0;
 }
 
-A.test(new B()); // false; ce n&apos;est pas le même #foo
+A.test(new B()); // false; ce n'est pas le même #foo
 ```
 
-Puisque les noms privés ne sont disponibles qu&apos;à l&apos;intérieur de la classe qui les définit, le test doit également avoir lieu à l&apos;intérieur de la classe, par exemple dans une méthode comme `static test` ci-dessus.
+Puisque les noms privés ne sont disponibles qu'à l'intérieur de la classe qui les définit, le test doit également avoir lieu à l'intérieur de la classe, par exemple dans une méthode comme `static test` ci-dessus.
 
 Les instances de sous-classe reçoivent les champs privés de la classe parente en tant que propriétés propres :
 
@@ -50,7 +50,7 @@ class SubA extends A {};
 A.test(new SubA()); // true
 ```
 
-Mais les objets créés avec `Object.create` (ou dont le prototype est défini ultérieurement via le modificateur `__proto__` ou `Object.setPrototypeOf`) ne reçoivent pas les champs privés en tant que propriétés propres. Comme la recherche de champs privés ne fonctionne que sur les propriétés propres, l&apos;opérateur `in` ne trouve pas ces champs hérités :
+Mais les objets créés avec `Object.create` (ou dont le prototype est défini ultérieurement via le modificateur `__proto__` ou `Object.setPrototypeOf`) ne reçoivent pas les champs privés en tant que propriétés propres. Comme la recherche de champs privés ne fonctionne que sur les propriétés propres, l'opérateur `in` ne trouve pas ces champs hérités :
 
 <!--truncate-->
 ```javascript
@@ -65,7 +65,7 @@ A.test(o2); // false, le champ privé est hérité et non possédé
 A.test(o2.__proto__); // true
 ```
 
-Accéder à un champ privé inexistant génère une erreur - contrairement aux propriétés normales, où l&apos;accès à une propriété inexistante retourne `undefined` mais ne génère pas d&apos;erreur. Avant les vérifications des marques privées, les développeurs étaient obligés d&apos;utiliser un `try`-`catch` pour implémenter un comportement de repli dans les cas où un objet n&apos;a pas le champ privé requis :
+Accéder à un champ privé inexistant génère une erreur - contrairement aux propriétés normales, où l'accès à une propriété inexistante retourne `undefined` mais ne génère pas d'erreur. Avant les vérifications des marques privées, les développeurs étaient obligés d'utiliser un `try`-`catch` pour implémenter un comportement de repli dans les cas où un objet n'a pas le champ privé requis :
 
 ```javascript
 class D {
@@ -73,14 +73,14 @@ class D {
     try {
       obj.#foo;
     } catch {
-      // Comportement de repli pour le cas où obj n&apos;avait pas #foo
+      // Comportement de repli pour le cas où obj n'avait pas #foo
     }
   }
   #foo = 0;
 }
 ```
 
-Maintenant, l&apos;existence du champ privé peut être testée en utilisant une vérification de marque privée :
+Maintenant, l'existence du champ privé peut être testée en utilisant une vérification de marque privée :
 
 ```javascript
 class E {
@@ -88,14 +88,14 @@ class E {
     if (#foo in obj) {
       obj.#foo;
     } else {
-      // Comportement de repli pour le cas où obj n&apos;avait pas #foo
+      // Comportement de repli pour le cas où obj n'avait pas #foo
     }
   }
   #foo = 0;
 }
 ```
 
-Mais attention - l&apos;existence d&apos;un champ privé ne garantit pas que l&apos;objet possède tous les champs privés déclarés dans une classe ! L&apos;exemple suivant montre un objet à moitié construit qui ne possède qu&apos;un des deux champs privés déclarés dans sa classe :
+Mais attention - l'existence d'un champ privé ne garantit pas que l'objet possède tous les champs privés déclarés dans une classe ! L'exemple suivant montre un objet à moitié construit qui ne possède qu'un des deux champs privés déclarés dans sa classe :
 
 ```javascript
 let halfConstructed;
@@ -107,7 +107,7 @@ class F {
   #x = 0;
   #y = (() => {
     halfConstructed = this;
-    throw &apos;error&apos;;
+    throw 'error';
   })();
 }
 

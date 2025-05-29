@@ -1,13 +1,13 @@
 ---
-title: &apos;JIT-loses V8&apos;
-author: &apos;Jakob Gruber ([@schuay](https://twitter.com/schuay))&apos;
+title: 'JIT-loses V8'
+author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
 avatars:
-  - &apos;jakob-gruber&apos;
+  - 'jakob-gruber'
 date: 2019-03-13 13:03:19
 tags:
   - internals
-description: &apos;V8 v7.4 unterstützt die JavaScript-Ausführung ohne Zuordnung ausführbaren Speichers zur Laufzeit.&apos;
-tweet: &apos;1105777150051999744&apos;
+description: 'V8 v7.4 unterstützt die JavaScript-Ausführung ohne Zuordnung ausführbaren Speichers zur Laufzeit.'
+tweet: '1105777150051999744'
 ---
 V8 v7.4 unterstützt nun die JavaScript-Ausführung ohne Zuordnung ausführbaren Speichers zur Laufzeit.
 

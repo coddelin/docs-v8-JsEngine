@@ -1,13 +1,13 @@
 ---
-title: &apos;Без JIT в V8&apos;
-author: &apos;Якоб Грубер ([@schuay](https://twitter.com/schuay))&apos;
+title: 'Без JIT в V8'
+author: 'Якоб Грубер ([@schuay](https://twitter.com/schuay))'
 avatars:
-  - &apos;jakob-gruber&apos;
+  - 'jakob-gruber'
 date: 2019-03-13 13:03:19
 tags:
   - internals
-description: &apos;V8 версии 7.4 поддерживает выполнение JavaScript без выделения исполняемой памяти во время выполнения.&apos;
-tweet: &apos;1105777150051999744&apos;
+description: 'V8 версии 7.4 поддерживает выполнение JavaScript без выделения исполняемой памяти во время выполнения.'
+tweet: '1105777150051999744'
 ---
 V8 версии 7.4 теперь поддерживает выполнение JavaScript без выделения исполняемой памяти во время выполнения.
 

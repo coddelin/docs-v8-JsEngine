@@ -1,13 +1,13 @@
 ---
-title: &apos;導入屬性&apos;
-author: &apos;郭書宇 ([@_shu](https://twitter.com/_shu))&apos;
+title: '導入屬性'
+author: '郭書宇 ([@_shu](https://twitter.com/_shu))'
 avatars:
-  - &apos;shu-yu-guo&apos;
+  - 'shu-yu-guo'
 date: 2024-01-31
 tags:
   - ECMAScript
-description: &apos;導入屬性：導入斷言的演進&apos;
-tweet: &apos;&apos;
+description: '導入屬性：導入斷言的演進'
+tweet: ''
 ---
 
 ## 之前
@@ -19,7 +19,7 @@ V8 在 v9.1 中發布了 [導入斷言](https://chromestatus.com/feature/5765269
 
 從那時起，導入斷言已經演進為 [導入屬性](https://github.com/tc39/proposal-import-attributes)。該功能的目的保持不變：允許模組導入語句包含額外資訊。
 
-最重要的區別在於，導入斷言具有僅斷言語義，而導入屬性具有更寬鬆的語義。僅斷言語義意味著額外資訊只影響模組是否被加載，而不影響模組如何被加載。例如，JSON 模組憑藉其 MIME 類型總是被加載為 JSON 模組，而 `assert { type: &apos;json&apos; }` 子句只能在請求模組的 MIME 類型不是 `application/json` 時導致加載失敗。
+最重要的區別在於，導入斷言具有僅斷言語義，而導入屬性具有更寬鬆的語義。僅斷言語義意味著額外資訊只影響模組是否被加載，而不影響模組如何被加載。例如，JSON 模組憑藉其 MIME 類型總是被加載為 JSON 模組，而 `assert { type: 'json' }` 子句只能在請求模組的 MIME 類型不是 `application/json` 時導致加載失敗。
 
 然而，僅斷言語義存在一個致命缺陷。在 Web 上，HTTP 請求的形態取決於所請求資源的類型。例如，[`Accept` 標頭](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept) 影響響應的 MIME 類型，而 [`Sec-Fetch-Dest` 元資料標頭](https://web.dev/articles/fetch-metadata) 影響網絡伺服器是否接受或拒絕請求。由於導入斷言無法影響模組的加載方式，其無法改變 HTTP 請求的形態。請求的資源類型也影響使用的 [內容安全政策](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)：導入斷言無法正確與 Web 的安全模型合作。
 
@@ -28,8 +28,8 @@ V8 在 v9.1 中發布了 [導入斷言](https://chromestatus.com/feature/5765269
 ```javascript
 // main.mjs
 //
-// 新的 &apos;with&apos; 語法。
-import json from &apos;./foo.json&apos; with { type: &apos;json&apos; };
+// 新的 'with' 語法。
+import json from './foo.json' with { type: 'json' };
 console.log(json.answer); // 42
 ```
 
@@ -40,9 +40,9 @@ console.log(json.answer); // 42
 ```javascript
 // main.mjs
 //
-// 新的 &apos;with&apos; 選項。
-const jsonModule = await import(&apos;./foo.json&apos;, {
-  with: { type: &apos;json&apos; }
+// 新的 'with' 選項。
+const jsonModule = await import('./foo.json', {
+  with: { type: 'json' }
 });
 console.log(jsonModule.default.answer); // 42
 ```

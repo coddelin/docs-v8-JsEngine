@@ -1,15 +1,15 @@
 ---
-title: &apos;Compressão de Ponteiros no V8&apos;
-author: &apos;Igor Sheludko e Santiago Aboy Solanes, *os* compressores de ponteiros&apos;
+title: 'Compressão de Ponteiros no V8'
+author: 'Igor Sheludko e Santiago Aboy Solanes, *os* compressores de ponteiros'
 avatars:
-  - &apos;igor-sheludko&apos;
-  - &apos;santiago-aboy-solanes&apos;
+  - 'igor-sheludko'
+  - 'santiago-aboy-solanes'
 date: 2020-03-30
 tags:
   - internos
   - memória
-description: &apos;O V8 reduziu o tamanho do seu heap em até 43%! Saiba como em “Compressão de Ponteiros no V8”!&apos;
-tweet: &apos;1244653541379182596&apos;
+description: 'O V8 reduziu o tamanho do seu heap em até 43%! Saiba como em “Compressão de Ponteiros no V8”!'
+tweet: '1244653541379182596'
 ---
 Há uma batalha constante entre memória e desempenho. Como usuários, gostaríamos que as coisas fossem rápidas e consumissem o menor espaço de memória possível. Infelizmente, normalmente melhorar o desempenho tem um custo no consumo de memória (e vice-versa).
 
@@ -392,7 +392,7 @@ Em arquiteturas de 64 bits, os valores de ponto flutuante têm o mesmo tamanho q
 Se a suposição quebrar para algum campo, digamos após executar esta linha:
 
 ```js
-const q = new Point(2, &apos;ab&apos;);
+const q = new Point(2, 'ab');
 ```
 
 então valores numéricos para a propriedade `y` devem ser armazenados encapsulados. Além disso, se houver código otimizado especulativamente em algum lugar que depende dessa suposição, ele não pode mais ser usado e deve ser descartado (desotimizado). A razão para tal generalização de “tipo de campo” é minimizar o número de formas de objetos criados a partir da mesma função construtora, o que, por sua vez, é necessário para um desempenho mais estável.

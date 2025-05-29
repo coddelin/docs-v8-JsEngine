@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 릴리스 v8.3&apos;
-author: &apos;[Victor Gomes](https://twitter.com/VictorBFG), 집에서 안전하게 작업 중&apos;
+title: 'V8 릴리스 v8.3'
+author: '[Victor Gomes](https://twitter.com/VictorBFG), 집에서 안전하게 작업 중'
 avatars:
- - &apos;victor-gomes&apos;
+ - 'victor-gomes'
 date: 2020-05-04
 tags:
  - release
-description: &apos;V8 v8.3는 더 빠른 ArrayBuffers, 더 큰 Wasm 메모리 및 사용 중단된 API를 제공합니다.&apos;
-tweet: &apos;1257333120115847171&apos;
+description: 'V8 v8.3는 더 빠른 ArrayBuffers, 더 큰 Wasm 메모리 및 사용 중단된 API를 제공합니다.'
+tweet: '1257333120115847171'
 ---
 
 6주마다 우리는 [릴리스 프로세스](https://v8.dev/docs/release-process)의 일환으로 V8의 새로운 브랜치를 만듭니다. 각 버전은 Chrome Beta 마일스톤 직전의 V8의 Git 마스터에서 브랜치됩니다. 오늘은 최신 브랜치인 [V8 버전 8.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.3)을 발표하게 되어 기쁩니다. 이 버전은 몇 주 후 Chrome 83 안정 버전과의 조정에 따라 정식 릴리스되기 전까지 베타 상태에 있습니다. V8 v8.3에는 개발자 중심의 다양한 기능이 추가되었습니다. 이 게시물에서는 릴리스를 앞두고 몇 가지 주요 내용을 미리 살펴봅니다.

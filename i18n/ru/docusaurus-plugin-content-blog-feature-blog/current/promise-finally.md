@@ -1,14 +1,14 @@
 ---
-title: &apos;`Promise.prototype.finally`&apos;
-author: &apos;Матиас Байненс ([@mathias](https://twitter.com/mathias))&apos;
+title: '`Promise.prototype.finally`'
+author: 'Матиас Байненс ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-10-23
 tags:
   - ECMAScript
   - ES2018
-description: &apos;Promise.prototype.finally позволяет зарегистрировать обратный вызов, который вызывается при завершении промиса (то есть при выполнении или отклонении).&apos;
-tweet: &apos;922459978857824261&apos;
+description: 'Promise.prototype.finally позволяет зарегистрировать обратный вызов, который вызывается при завершении промиса (то есть при выполнении или отклонении).'
+tweet: '922459978857824261'
 ---
 `Promise.prototype.finally` позволяет зарегистрировать обратный вызов, который вызывается при _завершении_ промиса (то есть при выполнении или отклонении).
 
@@ -32,7 +32,7 @@ const fetchAndDisplay = ({ url, element }) => {
 <!--truncate-->
 fetchAndDisplay({
   url: someUrl,
-  element: document.querySelector(&apos;#output&apos;)
+  element: document.querySelector('#output')
 });
 ```
 

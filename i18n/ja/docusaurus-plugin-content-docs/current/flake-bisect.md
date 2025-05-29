@@ -1,6 +1,6 @@
 ---
-title: &apos;フレークビセクト&apos;
-description: &apos;このドキュメントはフレークテストをビセクトする方法を説明します。&apos;
+title: 'フレークビセクト'
+description: 'このドキュメントはフレークテストをビセクトする方法を説明します。'
 ---
 フレークテストはボットでの別のステップで報告されます（[ビルド例](https://ci.chromium.org/ui/p/v8/builders/ci/V8%20Linux64%20TSAN/38630/overview)）。
 
@@ -8,7 +8,7 @@ description: &apos;このドキュメントはフレークテストをビセク�
 
 ```
 コマンドラインでフレークビセクトをトリガー:
-bb add v8/try.triggered/v8_flako -p &apos;to_revision="deadbeef"&apos; -p &apos;test_name="MyTest"&apos; ...
+bb add v8/try.triggered/v8_flako -p 'to_revision="deadbeef"' -p 'test_name="MyTest"' ...
 ```
 
 初めてフレークビセクトをトリガーする前に、ユーザーはgoogle.comアカウントでログインする必要があります:

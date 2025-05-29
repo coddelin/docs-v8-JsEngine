@@ -1,13 +1,13 @@
 ---
-title: &apos;V8-Version v7.7&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias)), entspannter Verfasser von Release-Notes&apos;
+title: 'V8-Version v7.7'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), entspannter Verfasser von Release-Notes'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-08-13 16:45:00
 tags:
   - freigabe
-description: &apos;V8 v7.7 bietet eine verzögerte Feedback-Zuweisung, schnellere WebAssembly-Hintergrundkompilierung, Stacktrace-Verbesserungen und neue Intl.NumberFormat-Funktionalität.&apos;
-tweet: &apos;1161287541611323397&apos;
+description: 'V8 v7.7 bietet eine verzögerte Feedback-Zuweisung, schnellere WebAssembly-Hintergrundkompilierung, Stacktrace-Verbesserungen und neue Intl.NumberFormat-Funktionalität.'
+tweet: '1161287541611323397'
 ---
 Alle sechs Wochen erstellen wir einen neuen Zweig von V8 im Rahmen unseres [Release-Prozesses](/docs/release-process). Jede Version wird direkt aus dem Git-Master von V8 vor einem Chrome-Beta-Meilenstein abgezweigt. Heute freuen wir uns, unseren neuesten Zweig bekannt zu geben, [V8-Version 7.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.7), der bis zur Veröffentlichung in Verbindung mit Chrome 77 Stable in einigen Wochen in der Beta-Version ist. V8 v7.7 ist voller Entwickler-freundlicher Neuerungen. Dieser Beitrag bietet eine Vorschau auf einige der Highlights, die vor der Veröffentlichung erwartet werden.
 
@@ -43,12 +43,12 @@ Während der letzten Versionen haben wir an einigen [internen Umstrukturierungen
 [Die `Intl.NumberFormat`-API](/features/intl-numberformat) für das lokalisierte Formatieren von Zahlen erhält in dieser Version neue Funktionalitäten! Sie unterstützt jetzt kompakte Notation, wissenschaftliche Notation, technische Notation, Vorzeichenanzeige und Maßeinheiten.
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;de&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;meter-per-second&apos;,
+const formatter = new Intl.NumberFormat('de', {
+  style: 'unit',
+  unit: 'meter-per-second',
 });
 formatter.format(299792458);
-// → &apos;299.792.458 m/s&apos;
+// → '299.792.458 m/s'
 ```
 
 Siehe [unsere Feature-Erklärung](/features/intl-numberformat) für weitere Details.

@@ -1,13 +1,13 @@
 ---
-title: &apos;내장 빌트인&apos;
-author: &apos;Jakob Gruber ([@schuay](https://twitter.com/schuay))&apos;
+title: '내장 빌트인'
+author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
 avatars:
-  - &apos;jakob-gruber&apos;
+  - 'jakob-gruber'
 date: 2018-08-14 13:33:37
 tags:
   - 내부 구조
-description: &apos;V8 v6.9은 내장 코드의 바이너리 .text 섹션에 포함하여 웹사이트당 평균 V8 힙 크기를 19% 줄였습니다.&apos;
-tweet: &apos;1029382366693937162&apos;
+description: 'V8 v6.9은 내장 코드의 바이너리 .text 섹션에 포함하여 웹사이트당 평균 V8 힙 크기를 19% 줄였습니다.'
+tweet: '1029382366693937162'
 ---
 V8 내장 함수(빌트인 함수)는 V8의 모든 인스턴스에서 메모리를 소비합니다. 빌트인 함수의 개수, 평균 크기, 그리고 크롬 브라우저 탭당 V8 인스턴스 수는 크게 증가해 왔습니다. 이 블로그 게시물에서는 지난 1년 동안 웹사이트당 평균 V8 힙 크기를 19% 줄이는 방법을 설명합니다.
 

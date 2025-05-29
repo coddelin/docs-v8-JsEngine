@@ -1,13 +1,13 @@
 ---
-title: &apos;Fehlerursachen&apos;
-author: &apos;Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))&apos;
+title: 'Fehlerursachen'
+author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
 avatars:
-  - &apos;victor-gomes&apos;
+  - 'victor-gomes'
 date: 2021-07-07
 tags:
   - ECMAScript
-description: &apos;JavaScript unterstützt jetzt Fehlerursachen.&apos;
-tweet: &apos;1412774651558862850&apos;
+description: 'JavaScript unterstützt jetzt Fehlerursachen.'
+tweet: '1412774651558862850'
 ---
 
 Stellen Sie sich vor, Sie haben eine Funktion, die zwei separate Arbeitslasten `doSomeWork` und `doMoreWork` aufruft. Beide Funktionen können dieselben Arten von Fehlern werfen, aber Sie müssen sie auf unterschiedliche Weise behandeln.
@@ -19,7 +19,7 @@ function doWork() {
   try {
     doSomeWork();
   } catch (err) {
-    throw new CustomError(&apos;Einige Arbeiten fehlgeschlagen&apos;, err);
+    throw new CustomError('Einige Arbeiten fehlgeschlagen', err);
   }
   doMoreWork();
 }
@@ -41,12 +41,12 @@ function doWork() {
   try {
     doSomeWork();
   } catch (err) {
-    throw new Error(&apos;Einige Arbeiten fehlgeschlagen&apos;, { cause: err });
+    throw new Error('Einige Arbeiten fehlgeschlagen', { cause: err });
   }
   try {
     doMoreWork();
   } catch (err) {
-    throw new Error(&apos;Mehr Arbeiten fehlgeschlagen&apos;, { cause: err });
+    throw new Error('Mehr Arbeiten fehlgeschlagen', { cause: err });
   }
 }
 
@@ -54,10 +54,10 @@ try {
   doWork();
 } catch (err) {
   switch(err.message) {
-    case &apos;Einige Arbeiten fehlgeschlagen&apos;:
+    case 'Einige Arbeiten fehlgeschlagen':
       handleSomeWorkFailure(err.cause);
       break;
-    case &apos;Mehr Arbeiten fehlgeschlagen&apos;:
+    case 'Mehr Arbeiten fehlgeschlagen':
       handleMoreWorkFailure(err.cause);
       break;
   }

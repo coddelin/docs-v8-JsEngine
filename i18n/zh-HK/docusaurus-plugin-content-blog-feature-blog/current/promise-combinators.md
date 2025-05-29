@@ -1,8 +1,8 @@
 ---
-title: &apos;Promise 組合子&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Promise 組合子'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-06-12
 tags:
   - ECMAScript
@@ -10,8 +10,8 @@ tags:
   - ES2021
   - io19
   - Node.js 16
-description: &apos;在 JavaScript 中有四種 Promise 組合子：Promise.all、Promise.race、Promise.allSettled 和 Promise.any。&apos;
-tweet: &apos;1138819493956710400&apos;
+description: '在 JavaScript 中有四種 Promise 組合子：Promise.all、Promise.race、Promise.allSettled 和 Promise.any。'
+tweet: '1138819493956710400'
 ---
 自從在 ES2015 引入 Promise 以來，JavaScript 就支持了兩種 Promise 組合子：靜態方法 `Promise.all` 和 `Promise.race`。
 
@@ -45,9 +45,9 @@ tweet: &apos;1138819493956710400&apos;
 
 ```js
 const promises = [
-  fetch(&apos;/component-a.css&apos;),
-  fetch(&apos;/component-b.css&apos;),
-  fetch(&apos;/component-c.css&apos;),
+  fetch('/component-a.css'),
+  fetch('/component-b.css'),
+  fetch('/component-c.css'),
 ];
 try {
   const styleResponses = await Promise.all(promises);
@@ -105,9 +105,9 @@ try {
 
 ```js
 const promises = [
-  fetch(&apos;/api-call-1&apos;),
-  fetch(&apos;/api-call-2&apos;),
-  fetch(&apos;/api-call-3&apos;),
+  fetch('/api-call-1'),
+  fetch('/api-call-2'),
+  fetch('/api-call-3'),
 ];
 // 假設這些請求有些失敗，有些成功。
 
@@ -128,15 +128,15 @@ removeLoadingIndicator();
 
 ```js
 const promises = [
-  fetch(&apos;/endpoint-a&apos;).then(() => &apos;a&apos;),
-  fetch(&apos;/endpoint-b&apos;).then(() => &apos;b&apos;),
-  fetch(&apos;/endpoint-c&apos;).then(() => &apos;c&apos;),
+  fetch('/endpoint-a').then(() => 'a'),
+  fetch('/endpoint-b').then(() => 'b'),
+  fetch('/endpoint-c').then(() => 'c'),
 ];
 try {
   const first = await Promise.any(promises);
   // 任一 Promise 成功。
   console.log(first);
-  // → 例如 &apos;b&apos;
+  // → 例如 'b'
 } catch (error) {
   // 所有的 Promise 都被拒絕。
   console.assert(error instanceof AggregateError);
@@ -155,5 +155,5 @@ try {
 `Promise.any` 的拒絕可以同時代表多個錯誤。為支持這一點，語言層面引入了一種類型的新錯誤，名為 `AggregateError`。除了在上述範例中的基本使用，`AggregateError` 物件還可以像其他錯誤類型一樣以程式方式構建：
 
 ```js
-const aggregateError = new AggregateError([errorA, errorB, errorC], &apos;發生了一些錯誤！&apos;);
+const aggregateError = new AggregateError([errorA, errorB, errorC], '發生了一些錯誤！');
 ```

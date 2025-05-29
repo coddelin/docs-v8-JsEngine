@@ -1,13 +1,13 @@
 ---
-title: &apos;V8-Version v7.2&apos;
-author: &apos;Andreas Haas, Verantwortlicher für Traps&apos;
+title: 'V8-Version v7.2'
+author: 'Andreas Haas, Verantwortlicher für Traps'
 avatars:
   - andreas-haas
 date: 2018-12-18 11:48:21
 tags:
   - Veröffentlichung
-description: &apos;V8 v7.2 bietet hochschnelles JavaScript-Parsing, schnellere Async-Await-Operationen, reduzierten Speicherverbrauch auf ia32, öffentliche Klassenfelder und vieles mehr!&apos;
-tweet: &apos;1074978755934863361&apos;
+description: 'V8 v7.2 bietet hochschnelles JavaScript-Parsing, schnellere Async-Await-Operationen, reduzierten Speicherverbrauch auf ia32, öffentliche Klassenfelder und vieles mehr!'
+tweet: '1074978755934863361'
 ---
 Alle sechs Wochen erstellen wir einen neuen Branch von V8 als Teil unseres [Veröffentlichungsprozesses](/docs/release-process). Jede Version wird direkt vor einem Chrome-Beta-Meilenstein vom Git-Master von V8 abgetrennt. Heute freuen wir uns, unseren neuesten Branch, [V8-Version 7.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.2), anzukündigen, der sich bis zur Veröffentlichung in mehreren Wochen in Koordination mit Chrome 72 Stable in der Beta-Phase befindet. V8 v7.2 ist voller Entwicklerfunktionen. Dieser Beitrag bietet eine Vorschau auf einige Highlights im Vorgriff auf die Veröffentlichung.
 
@@ -69,7 +69,7 @@ class Cat extends Animal {
     this.likesBaths = false;
   }
   meow() {
-    console.log(&apos;Meow!&apos;);
+    console.log('Meow!');
   }
 }
 ```
@@ -86,7 +86,7 @@ class Animal {
 class Cat extends Animal {
   likesBaths = false;
   meow() {
-    console.log(&apos;Meow!&apos;);
+    console.log('Meow!');
   }
 }
 ```
@@ -98,15 +98,15 @@ Die Unterstützung für [private Klassenfelder](/features/class-fields#private-c
 V8 v7.2 fügt Unterstützung für [den Vorschlag `Intl.ListFormat`](/features/intl-listformat) hinzu, was die lokalisierte Formatierung von Listen ermöglicht.
 
 ```js
-const lf = new Intl.ListFormat(&apos;en&apos;);
-lf.format([&apos;Frank&apos;]);
-// → &apos;Frank&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;]);
-// → &apos;Frank und Christine&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;]);
-// → &apos;Frank, Christine und Flora&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;, &apos;Harrison&apos;]);
-// → &apos;Frank, Christine, Flora und Harrison&apos;
+const lf = new Intl.ListFormat('en');
+lf.format(['Frank']);
+// → 'Frank'
+lf.format(['Frank', 'Christine']);
+// → 'Frank und Christine'
+lf.format(['Frank', 'Christine', 'Flora']);
+// → 'Frank, Christine und Flora'
+lf.format(['Frank', 'Christine', 'Flora', 'Harrison']);
+// → 'Frank, Christine, Flora und Harrison'
 ```
 
 Weitere Informationen und Anwendungsbeispiele finden Sie in [unserem `Intl.ListFormat`-Erklärer](/features/intl-listformat).
@@ -117,12 +117,12 @@ Weitere Informationen und Anwendungsbeispiele finden Sie in [unserem `Intl.ListF
 
 ```js
 // Altes Verhalten:
-JSON.stringify(&apos;\uD800&apos;);
-// → &apos;"�"&apos;
+JSON.stringify('\uD800');
+// → '"�"'
 
 // Neues Verhalten:
-JSON.stringify(&apos;\uD800&apos;);
-// → &apos;"\\ud800"&apos;
+JSON.stringify('\uD800');
+// → '"\\ud800"'
 ```
 
 Weitere Informationen finden Sie in [unserem Erklärer zu wohlgeformtem `JSON.stringify`](/features/well-formed-json-stringify).
@@ -132,19 +132,19 @@ Weitere Informationen finden Sie in [unserem Erklärer zu wohlgeformtem `JSON.st
 In [JavaScript-Modulen](/features/modules) war es bereits möglich, die folgende Syntax zu verwenden:
 
 ```js
-import * as utils from &apos;./utils.mjs&apos;;
+import * as utils from './utils.mjs';
 ```
 
 Allerdings existierte bis jetzt keine symmetrische `export`-Syntax… [bis jetzt](/features/module-namespace-exports):
 
 ```js
-export * as utils from &apos;./utils.mjs&apos;;
+export * as utils from './utils.mjs';
 ```
 
 Dies ist gleichbedeutend mit folgendem:
 
 ```js
-import * as utils from &apos;./utils.mjs&apos;;
+import * as utils from './utils.mjs';
 export { utils };
 ```
 

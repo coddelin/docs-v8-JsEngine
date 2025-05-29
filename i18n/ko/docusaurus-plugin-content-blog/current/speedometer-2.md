@@ -1,11 +1,11 @@
 ---
-title: &apos;크롬, Speedometer 2.0을 환영합니다!&apos;
-author: &apos;Blink 팀과 V8 팀&apos;
+title: '크롬, Speedometer 2.0을 환영합니다!'
+author: 'Blink 팀과 V8 팀'
 date: 2018-01-24 13:33:37
 tags:
   - 벤치마크
-description: &apos;Speedometer 2.0을 기반으로 Blink와 V8에서 지금까지 이룬 성능 향상에 대한 개요입니다.&apos;
-tweet: &apos;956232641736421377&apos;
+description: 'Speedometer 2.0을 기반으로 Blink와 V8에서 지금까지 이룬 성능 향상에 대한 개요입니다.'
+tweet: '956232641736421377'
 ---
 Speedometer 1.0이 2014년에 처음 출시된 이후, Blink와 V8 팀은 이 벤치마크를 인기 있는 JavaScript 프레임워크의 실제 사용을 위한 기준으로 삼아왔으며 상당한 속도 향상을 달성했습니다. 이러한 향상이 실제 사용자에게 주는 혜택을 실시간 웹사이트를 측정하여 독립적으로 확인했으며, 인기 있는 웹사이트의 페이지 로드 시간이 개선됨에 따라 Speedometer 점수도 향상되었습니다.
 

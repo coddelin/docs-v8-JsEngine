@@ -1,14 +1,14 @@
 ---
-title: &apos;Verständnis der ECMAScript-Spezifikation, Teil 2&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), spekulativer Spezifikationsbeobachter&apos;
+title: 'Verständnis der ECMAScript-Spezifikation, Teil 2'
+author: '[Marja Hölttä](https://twitter.com/marjakh), spekulativer Spezifikationsbeobachter'
 avatars:
   - marja-holtta
 date: 2020-03-02
 tags:
   - ECMAScript
   - Verständnis von ECMAScript
-description: &apos;Anleitung zum Lesen der ECMAScript-Spezifikation, Teil 2&apos;
-tweet: &apos;1234550773629014016&apos;
+description: 'Anleitung zum Lesen der ECMAScript-Spezifikation, Teil 2'
+tweet: '1234550773629014016'
 ---
 
 Lass uns unsere fantastischen Fähigkeiten im Lesen der Spezifikation weiter üben. Falls du dir die vorherige Folge noch nicht angeschaut hast, ist jetzt ein guter Zeitpunkt dafür!
@@ -179,7 +179,7 @@ MemberExpression :
   new MemberExpression Arguments
 ```
 
-Hier haben wir 7 Produktionen für `MemberExpression`. Eine `MemberExpression` kann einfach eine `PrimaryExpression` sein. Alternativ kann eine `MemberExpression` aus einer anderen `MemberExpression` und einer `Expression` zusammengesetzt werden: `MemberExpression [ Expression ]`, z.B. `o2[&apos;foo&apos;]`. Oder sie kann `MemberExpression . IdentifierName` sein, z.B. `o2.foo` – dies ist die Produktion, die für unser Beispiel relevant ist.
+Hier haben wir 7 Produktionen für `MemberExpression`. Eine `MemberExpression` kann einfach eine `PrimaryExpression` sein. Alternativ kann eine `MemberExpression` aus einer anderen `MemberExpression` und einer `Expression` zusammengesetzt werden: `MemberExpression [ Expression ]`, z.B. `o2['foo']`. Oder sie kann `MemberExpression . IdentifierName` sein, z.B. `o2.foo` – dies ist die Produktion, die für unser Beispiel relevant ist.
 
 Die Laufzeitsemantik für die Produktion `MemberExpression : MemberExpression . IdentifierName` definiert die Schritte, die bei der Auswertung durchzuführen sind:
 

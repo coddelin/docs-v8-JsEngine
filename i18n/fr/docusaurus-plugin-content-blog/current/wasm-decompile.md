@@ -1,19 +1,19 @@
 ---
-title: &apos;Qu&apos;y a-t-il dans ce `.wasm`? Présentation : `wasm-decompile`&apos;
-author: &apos;Wouter van Oortmerssen ([@wvo](https://twitter.com/wvo))&apos;
+title: 'Qu'y a-t-il dans ce `.wasm`? Présentation : `wasm-decompile`'
+author: 'Wouter van Oortmerssen ([@wvo](https://twitter.com/wvo))'
 avatars:
-  - &apos;wouter-van-oortmerssen&apos;
+  - 'wouter-van-oortmerssen'
 date: 2020-04-27
 tags:
   - WebAssembly
   - outils
-description: &apos;WABT propose un nouvel outil de décompilation qui peut faciliter la lecture du contenu des modules Wasm.&apos;
-tweet: &apos;1254829913561014272&apos;
+description: 'WABT propose un nouvel outil de décompilation qui peut faciliter la lecture du contenu des modules Wasm.'
+tweet: '1254829913561014272'
 ---
-Nous avons un nombre croissant de compilateurs et d&apos;autres outils qui génèrent ou manipulent des fichiers `.wasm`, et parfois, vous pourriez vouloir jeter un œil à l&apos;intérieur. Peut-être êtes-vous un développeur de cet outil ou, plus directement, vous êtes un programmeur ciblant Wasm et vous vous demandez à quoi ressemble le code généré, pour des raisons de performance ou autres.
+Nous avons un nombre croissant de compilateurs et d'autres outils qui génèrent ou manipulent des fichiers `.wasm`, et parfois, vous pourriez vouloir jeter un œil à l'intérieur. Peut-être êtes-vous un développeur de cet outil ou, plus directement, vous êtes un programmeur ciblant Wasm et vous vous demandez à quoi ressemble le code généré, pour des raisons de performance ou autres.
 
 <!--truncate-->
-Le problème est que Wasm est plutôt de bas niveau, un peu comme le code assembleur réel. En particulier, contrairement, par exemple, à la JVM, toutes les structures de données ont été compilées en opérations de chargement/stocks, plutôt qu&apos;en classes et champs nommés de manière conviviale. Les compilateurs comme LLVM peuvent effectuer une quantité impressionnante de transformations qui font que le code généré ne ressemble en rien au code original.
+Le problème est que Wasm est plutôt de bas niveau, un peu comme le code assembleur réel. En particulier, contrairement, par exemple, à la JVM, toutes les structures de données ont été compilées en opérations de chargement/stocks, plutôt qu'en classes et champs nommés de manière conviviale. Les compilateurs comme LLVM peuvent effectuer une quantité impressionnante de transformations qui font que le code généré ne ressemble en rien au code original.
 
 ## Désassembler ou... décompiler ?
 
@@ -54,9 +54,9 @@ Nous utilisons `clang dot.c -c -target wasm32 -O2` suivi de `wasm2wat -f dot.o` 
         (local.get 1))))))
 ```
 
-Ceci est un petit bout de code, mais déjà difficile à lire pour de nombreuses raisons. Outre l&apos;absence de syntaxe basée sur les expressions et la verbosité générale, devoir comprendre les structures de données comme des chargements de mémoire n&apos;est pas aisé. Maintenant, imaginez regarder la sortie d&apos;un grand programme, et les choses deviendront rapidement incompréhensibles.
+Ceci est un petit bout de code, mais déjà difficile à lire pour de nombreuses raisons. Outre l'absence de syntaxe basée sur les expressions et la verbosité générale, devoir comprendre les structures de données comme des chargements de mémoire n'est pas aisé. Maintenant, imaginez regarder la sortie d'un grand programme, et les choses deviendront rapidement incompréhensibles.
 
-Au lieu d&apos;utiliser `wasm2wat`, lancez `wasm-decompile dot.o`, et vous obtenez :
+Au lieu d'utiliser `wasm2wat`, lancez `wasm-decompile dot.o`, et vous obtenez :
 
 ```c
 function dot(a:{ a:float, b:float, c:float },
@@ -65,25 +65,25 @@ function dot(a:{ a:float, b:float, c:float },
 }
 ```
 
-Cela semble beaucoup plus familier. En plus d&apos;une syntaxe basée sur les expressions qui imite les langages de programmation que vous pourriez connaître, le décompilateur examine tous les chargements et sauvegardes dans une fonction, et essaie de déduire leur structure. Il annote ensuite chaque variable utilisée comme pointeur avec une déclaration de struct "inline". Il ne crée pas de déclarations de struct nommées car il ne sait pas nécessairement quelles utilisations de 3 flottants représentent le même concept.
+Cela semble beaucoup plus familier. En plus d'une syntaxe basée sur les expressions qui imite les langages de programmation que vous pourriez connaître, le décompilateur examine tous les chargements et sauvegardes dans une fonction, et essaie de déduire leur structure. Il annote ensuite chaque variable utilisée comme pointeur avec une déclaration de struct "inline". Il ne crée pas de déclarations de struct nommées car il ne sait pas nécessairement quelles utilisations de 3 flottants représentent le même concept.
 
 ## Décompiler vers quoi ?
 
-`wasm-decompile` produit une sortie qui tente de ressembler à un "langage de programmation très moyen" tout en restant fidèle au Wasm qu&apos;il représente.
+`wasm-decompile` produit une sortie qui tente de ressembler à un "langage de programmation très moyen" tout en restant fidèle au Wasm qu'il représente.
 
-Son objectif n°1 est la lisibilité : aider les lecteurs à comprendre ce qu&apos;il y a dans un `.wasm` avec un code aussi facile à suivre que possible. Son objectif n°2 est de représenter le Wasm aussi fidèlement que possible, afin de ne pas perdre son utilité en tant que désassembleur. Évidemment, ces deux objectifs ne sont pas toujours conciliables.
+Son objectif n°1 est la lisibilité : aider les lecteurs à comprendre ce qu'il y a dans un `.wasm` avec un code aussi facile à suivre que possible. Son objectif n°2 est de représenter le Wasm aussi fidèlement que possible, afin de ne pas perdre son utilité en tant que désassembleur. Évidemment, ces deux objectifs ne sont pas toujours conciliables.
 
-Cette sortie n&apos;est pas destinée à être un langage de programmation réel et il n&apos;y a actuellement aucun moyen de la recompiler en Wasm.
+Cette sortie n'est pas destinée à être un langage de programmation réel et il n'y a actuellement aucun moyen de la recompiler en Wasm.
 
 ### Chargements et sauvegardes
 
-Comme démontré ci-dessus, `wasm-decompile` examine tous les chargements et sauvegardes sur un pointeur particulier. S&apos;ils forment un ensemble continu d&apos;accès, il produira une de ces déclarations de struct "inline".
+Comme démontré ci-dessus, `wasm-decompile` examine tous les chargements et sauvegardes sur un pointeur particulier. S'ils forment un ensemble continu d'accès, il produira une de ces déclarations de struct "inline".
 
-Si tous les "champs" ne sont pas accessibles, il ne peut pas dire avec certitude si cela est censé être une struct, ou une autre forme d&apos;accès mémoire indépendant. Dans ce cas, il revient à des types plus simples comme `float_ptr` (si les types sont les mêmes), ou, dans le pire des cas, sortira un accès de tableau comme `o[2]:int`, ce qui signifie : `o` pointe vers des valeurs `int`, et nous accédons à la troisième.
+Si tous les "champs" ne sont pas accessibles, il ne peut pas dire avec certitude si cela est censé être une struct, ou une autre forme d'accès mémoire indépendant. Dans ce cas, il revient à des types plus simples comme `float_ptr` (si les types sont les mêmes), ou, dans le pire des cas, sortira un accès de tableau comme `o[2]:int`, ce qui signifie : `o` pointe vers des valeurs `int`, et nous accédons à la troisième.
 
-Ce dernier cas se produit plus souvent qu&apos;on ne le pense, car les variables locales Wasm fonctionnent davantage comme des registres que comme des variables, donc un code optimisé peut partager le même pointeur pour des objets indépendants.
+Ce dernier cas se produit plus souvent qu'on ne le pense, car les variables locales Wasm fonctionnent davantage comme des registres que comme des variables, donc un code optimisé peut partager le même pointeur pour des objets indépendants.
 
-Le décompilateur essaie d&apos;être intelligent à propos des indexations et détecte des motifs tels que `(base + (index << 2))[0]:int` qui résultent d&apos;opérations d&apos;indexation de tableau C régulières comme `base[index]` où `base` pointe vers un type de 4 octets. Ceux-ci sont très courants dans le code puisque Wasm n&apos;a que des offsets constants sur les chargements et sauvegardes. La sortie de `wasm-decompile` les transforme en retour en `base[index]:int`.
+Le décompilateur essaie d'être intelligent à propos des indexations et détecte des motifs tels que `(base + (index << 2))[0]:int` qui résultent d'opérations d'indexation de tableau C régulières comme `base[index]` où `base` pointe vers un type de 4 octets. Ceux-ci sont très courants dans le code puisque Wasm n'a que des offsets constants sur les chargements et sauvegardes. La sortie de `wasm-decompile` les transforme en retour en `base[index]:int`.
 
 De plus, il sait quand les adresses absolues se réfèrent à la section des données.
 

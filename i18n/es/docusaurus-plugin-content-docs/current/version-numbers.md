@@ -1,6 +1,6 @@
 ---
-title: &apos;Esquema de numeración de versiones de V8&apos;
-description: &apos;Este documento explica el esquema de numeración de versiones de V8.&apos;
+title: 'Esquema de numeración de versiones de V8'
+description: 'Este documento explica el esquema de numeración de versiones de V8.'
 ---
 Los números de versión de V8 tienen la forma `x.y.z.w`, donde:
 

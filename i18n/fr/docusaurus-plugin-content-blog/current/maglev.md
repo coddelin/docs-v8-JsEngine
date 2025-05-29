@@ -1,6 +1,6 @@
 ---
-title: &apos;Maglev - Le JIT d’Optimisation le Plus Rapide de V8&apos;
-author: &apos;[Toon Verwaest](https://twitter.com/tverwaes), [Leszek Swirski](https://twitter.com/leszekswirski), [Victor Gomes](https://twitter.com/VictorBFG), Olivier Flückiger, Darius Mercadier et Camillo Bruni — pas trop de cuisiniers pour gâcher la sauce&apos;
+title: 'Maglev - Le JIT d’Optimisation le Plus Rapide de V8'
+author: '[Toon Verwaest](https://twitter.com/tverwaes), [Leszek Swirski](https://twitter.com/leszekswirski), [Victor Gomes](https://twitter.com/VictorBFG), Olivier Flückiger, Darius Mercadier et Camillo Bruni — pas trop de cuisiniers pour gâcher la sauce'
 avatars:
   - toon-verwaest
   - leszek-swirski
@@ -11,8 +11,8 @@ avatars:
 date: 2023-12-05
 tags:
   - JavaScript
-description: "Le nouveau compilateur de V8, Maglev, améliore les performances tout en réduisant la consommation d&apos;énergie"
-tweet: &apos;&apos;
+description: "Le nouveau compilateur de V8, Maglev, améliore les performances tout en réduisant la consommation d'énergie"
+tweet: ''
 ---
 
 Dans Chrome M117, nous avons introduit un nouveau compilateur d’optimisation : Maglev. Maglev se situe entre nos compilateurs existants Sparkplug et TurboFan, et joue le rôle d’un compilateur rapide d’optimisation qui génère un code suffisamment performant de manière suffisamment rapide.
@@ -20,30 +20,30 @@ Dans Chrome M117, nous avons introduit un nouveau compilateur d’optimisation :
 
 # Contexte
 
-Jusqu&apos;en 2021, V8 avait deux principaux niveaux d&apos;exécution : Ignition, l&apos;interpréteur ; et [TurboFan](/docs/turbofan), le compilateur d&apos;optimisation de V8 axé sur les performances maximales. Tout le code JavaScript est d&apos;abord compilé en bytecode Ignition, puis exécuté par interprétation. Pendant l&apos;exécution, V8 suit le comportement du programme, y compris les formes et types des objets. Les métadonnées d&apos;exécution et le bytecode sont ensuite utilisés par le compilateur d&apos;optimisation pour générer un code machine performant, souvent spéculatif, qui s&apos;exécute beaucoup plus rapidement que l&apos;interpréteur.
+Jusqu'en 2021, V8 avait deux principaux niveaux d'exécution : Ignition, l'interpréteur ; et [TurboFan](/docs/turbofan), le compilateur d'optimisation de V8 axé sur les performances maximales. Tout le code JavaScript est d'abord compilé en bytecode Ignition, puis exécuté par interprétation. Pendant l'exécution, V8 suit le comportement du programme, y compris les formes et types des objets. Les métadonnées d'exécution et le bytecode sont ensuite utilisés par le compilateur d'optimisation pour générer un code machine performant, souvent spéculatif, qui s'exécute beaucoup plus rapidement que l'interpréteur.
 
 <!--truncate-->
 Ces améliorations sont clairement visibles sur des benchmarks comme [JetStream](https://browserbench.org/JetStream2.1/), un ensemble de benchmarks JavaScript traditionnels mesurant le démarrage, la latence et les performances maximales. TurboFan aide V8 à exécuter le suite 4,35 fois plus rapidement ! JetStream insiste moins sur les performances maximales par rapport aux benchmarks passés (comme le [Octane benchmark retraité](/blog/retiring-octane)), mais en raison de la simplicité de nombreux éléments, le code optimisé reste celui où le temps est le plus passé.
 
-[Speedometer](https://browserbench.org/Speedometer2.1/) est un type de benchmark différent de JetStream. Il est conçu pour mesurer la réactivité d&apos;une application web en chronométrant des interactions simulées de l&apos;utilisateur. Au lieu de petites applications JavaScript statiques autonomes, la suite se compose de pages web complètes, dont la plupart sont construites avec des frameworks populaires. Comme lors de la plupart des chargements de pages web, les éléments de Speedometer passent beaucoup moins de temps à exécuter des boucles JavaScript serrées et beaucoup plus de temps à exécuter un code qui interagit avec le reste du navigateur.
+[Speedometer](https://browserbench.org/Speedometer2.1/) est un type de benchmark différent de JetStream. Il est conçu pour mesurer la réactivité d'une application web en chronométrant des interactions simulées de l'utilisateur. Au lieu de petites applications JavaScript statiques autonomes, la suite se compose de pages web complètes, dont la plupart sont construites avec des frameworks populaires. Comme lors de la plupart des chargements de pages web, les éléments de Speedometer passent beaucoup moins de temps à exécuter des boucles JavaScript serrées et beaucoup plus de temps à exécuter un code qui interagit avec le reste du navigateur.
 
-TurboFan a toujours beaucoup d&apos;impact sur Speedometer : il s&apos;exécute plus de 1,5 fois plus rapidement ! Mais l&apos;impact est nettement moindre que sur JetStream. Une partie de cette différence résulte du fait que les pages complètes [passent simplement moins de temps dans du pur JavaScript](/blog/real-world-performance#making-a-real-difference). Mais en partie, c&apos;est dû au fait que le benchmark passe beaucoup de temps dans des fonctions qui ne deviennent pas suffisamment chaudes pour être optimisées par TurboFan.
+TurboFan a toujours beaucoup d'impact sur Speedometer : il s'exécute plus de 1,5 fois plus rapidement ! Mais l'impact est nettement moindre que sur JetStream. Une partie de cette différence résulte du fait que les pages complètes [passent simplement moins de temps dans du pur JavaScript](/blog/real-world-performance#making-a-real-difference). Mais en partie, c'est dû au fait que le benchmark passe beaucoup de temps dans des fonctions qui ne deviennent pas suffisamment chaudes pour être optimisées par TurboFan.
 
-![Benchmarks de performance web comparant l&apos;exécution non optimisée et optimisée](/_img/maglev/I-IT.svg)
+![Benchmarks de performance web comparant l'exécution non optimisée et optimisée](/_img/maglev/I-IT.svg)
 
 ::: note
 Tous les scores des benchmarks dans ce post ont été mesurés avec Chrome 117.0.5897.3 sur un Macbook Air M2 de 13”.
 :::
 
-Étant donné la grande différence de vitesse d&apos;exécution et de temps de compilation entre Ignition et TurboFan, en 2021, nous avons introduit un nouveau JIT de base appelé [Sparkplug](/blog/sparkplug). Il est conçu pour compiler le bytecode en code machine équivalent presque instantanément.
+Étant donné la grande différence de vitesse d'exécution et de temps de compilation entre Ignition et TurboFan, en 2021, nous avons introduit un nouveau JIT de base appelé [Sparkplug](/blog/sparkplug). Il est conçu pour compiler le bytecode en code machine équivalent presque instantanément.
 
-Sur JetStream, Sparkplug améliore considérablement les performances par rapport à Ignition (+45%). Même lorsque TurboFan est également présent, nous constatons toujours une solide amélioration des performances (+8%). Sur Speedometer, nous voyons une amélioration de 41% par rapport à Ignition, le rapprochant des performances de TurboFan, et une amélioration de 22% par rapport à Ignition + TurboFan ! Étant donné que Sparkplug est si rapide, nous pouvons facilement le déployer très largement et obtenir une augmentation de vitesse constante. Si un code ne repose pas uniquement sur des boucles JavaScript longues et faciles à optimiser, c&apos;est un excellent ajout.
+Sur JetStream, Sparkplug améliore considérablement les performances par rapport à Ignition (+45%). Même lorsque TurboFan est également présent, nous constatons toujours une solide amélioration des performances (+8%). Sur Speedometer, nous voyons une amélioration de 41% par rapport à Ignition, le rapprochant des performances de TurboFan, et une amélioration de 22% par rapport à Ignition + TurboFan ! Étant donné que Sparkplug est si rapide, nous pouvons facilement le déployer très largement et obtenir une augmentation de vitesse constante. Si un code ne repose pas uniquement sur des boucles JavaScript longues et faciles à optimiser, c'est un excellent ajout.
 
 ![Benchmarks de performance web avec Sparkplug ajouté](/_img/maglev/I-IS-IT-IST.svg)
 
-La simplicité de Sparkplug impose une limite relativement basse sur l&apos;accélération qu&apos;il peut fournir. Cela est démontré par le grand écart entre Ignition + Sparkplug et Ignition + TurboFan.
+La simplicité de Sparkplug impose une limite relativement basse sur l'accélération qu'il peut fournir. Cela est démontré par le grand écart entre Ignition + Sparkplug et Ignition + TurboFan.
 
-C&apos;est là que Maglev entre en jeu, notre nouveau JIT d&apos;optimisation qui génère un code beaucoup plus rapide que celui de Sparkplug, mais qui est créé beaucoup plus rapidement que TurboFan.
+C'est là que Maglev entre en jeu, notre nouveau JIT d'optimisation qui génère un code beaucoup plus rapide que celui de Sparkplug, mais qui est créé beaucoup plus rapidement que TurboFan.
 
 
 # Maglev : Un Compilateur JIT Basé sur SSA Simple

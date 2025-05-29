@@ -1,13 +1,13 @@
 ---
-title: &apos;クラスの静的初期化ブロック&apos;
-author: &apos;Shu-yu Guo ([@_shu](https://twitter.com/_shu))&apos;
+title: 'クラスの静的初期化ブロック'
+author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
 avatars:
-  - &apos;shu-yu-guo&apos;
+  - 'shu-yu-guo'
 date: 2021-03-30
 tags:
   - ECMAScript
-description: &apos;JavaScript クラスに静的初期化専用の構文が登場しました。&apos;
-tweet: &apos;1376925666780798989&apos;
+description: 'JavaScript クラスに静的初期化専用の構文が登場しました。'
+tweet: '1376925666780798989'
 ---
 新しいクラス静的初期化ブロック構文により、クラス定義ごとに1度だけ実行するコードをまとめて1つの場所に配置することができます。以下の例では、疑似乱数生成器が静的ブロックを使用してエントロピーのプールを初期化し、`class MyPRNG` の定義が評価される際に1度だけ実行されることを示しています。
 
@@ -17,7 +17,7 @@ class MyPRNG {
   constructor(seed) {
     if (seed === undefined) {
       if (MyPRNG.entropyPool.length === 0) {
-        throw new Error(&apos;エントロピープールが枯渇しました&apos;);
+        throw new Error('エントロピープールが枯渇しました');
       }
       seed = MyPRNG.entropyPool.pop();
     }
@@ -40,22 +40,22 @@ class MyPRNG {
 各静的初期化ブロックは自身の `var` と `let`/`const` のスコープを持っています。静的フィールドの初期化と同様に、静的ブロック内の `this` 値はクラスコンストラクタそのものを指します。同様に、静的ブロック内の `super.property` は親クラスの静的プロパティを参照します。
 
 ```js
-var y = &apos;外部の y&apos;;
+var y = '外部の y';
 class A {
-  static fieldA = &apos;A.fieldA&apos;;
+  static fieldA = 'A.fieldA';
 }
 class B extends A {
-  static fieldB = &apos;B.fieldB&apos;;
+  static fieldB = 'B.fieldB';
   static {
     let x = super.fieldA;
-    // → &apos;A.fieldA&apos;
+    // → 'A.fieldA'
     var y = this.fieldB;
-    // → &apos;B.fieldB&apos;
+    // → 'B.fieldB'
   }
 }
 // 静的ブロックは独自の `var` スコープであるため、`var` はホイスティングされません！
 y;
-// → &apos;外部の y&apos;
+// → '外部の y'
 ```
 
 ## 複数のブロック
@@ -64,13 +64,13 @@ y;
 
 ```js
 class C {
-  static field1 = console.log(&apos;フィールド 1&apos;);
+  static field1 = console.log('フィールド 1');
   static {
-    console.log(&apos;静的ブロック 1&apos;);
+    console.log('静的ブロック 1');
   }
-  static field2 = console.log(&apos;フィールド 2&apos;);
+  static field2 = console.log('フィールド 2');
   static {
-    console.log(&apos;静的ブロック 2&apos;);
+    console.log('静的ブロック 2');
   }
 }
 // → フィールド 1
@@ -94,7 +94,7 @@ class D {
     getDPrivateField = (d) => d.#privateField;
   }
 }
-getDPrivateField(new D(&apos;プライベート&apos;));
+getDPrivateField(new D('プライベート'));
 // → プライベート
 ```
 

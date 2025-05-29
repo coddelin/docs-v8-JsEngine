@@ -1,13 +1,13 @@
 ---
-title: &apos;コードキャッシュの改善&apos;
-author: &apos;Mythri Alle, 主任コードキャッシャー&apos;
+title: 'コードキャッシュの改善'
+author: 'Mythri Alle, 主任コードキャッシャー'
 date: 2018-04-24 13:33:37
 avatars:
-  - &apos;mythri-alle&apos;
+  - 'mythri-alle'
 tags:
   - internals
-tweet: &apos;988728000677142528&apos;
-description: &apos;Chrome 66から、V8はトップレベルの実行後にキャッシュを作成することで、（バイト）コードをより多くキャッシュします。&apos;
+tweet: '988728000677142528'
+description: 'Chrome 66から、V8はトップレベルの実行後にキャッシュを作成することで、（バイト）コードをより多くキャッシュします。'
 ---
 V8は、頻繁に使用されるスクリプトのために生成されたコードをキャッシュするために[コードキャッシング](/blog/code-caching)を使用します。Chrome 66から、トップレベルの実行後にキャッシュを作成することで、より多くのコードをキャッシュしています。これにより、初回読み込み時の解析時間とコンパイル時間が20〜40％削減されます。
 

@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 릴리스 v5.1&apos;
-author: &apos;V8 팀&apos;
+title: 'V8 릴리스 v5.1'
+author: 'V8 팀'
 date: 2016-04-23 13:33:37
 tags:
   - release
-description: &apos;V8 v5.1은 성능 개선, 지터 감소, 메모리 소비 감소 및 ECMAScript 언어 기능 지원 증가를 제공합니다.&apos;
+description: 'V8 v5.1은 성능 개선, 지터 감소, 메모리 소비 감소 및 ECMAScript 언어 기능 지원 증가를 제공합니다.'
 ---
 V8 [릴리스 프로세스](/docs/release-process)의 첫 번째 단계는 약 6주마다 Chrome 베타 마일스톤을 위해 Chromium이 분기되기 직전에 Git 마스터에서 새 분기를 만드는 것입니다. 우리의 최신 릴리스 분기는 [V8 v5.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.1)이며, Chrome 51 Stable과 함께 안정적인 빌드를 릴리스할 때까지 베타 상태를 유지할 것입니다. 이번 V8 버전에서 개발자들이 주목해야 할 새로운 기능을 소개합니다.
 
@@ -41,7 +41,7 @@ class Container {
 }
 const c = new Container;
 console.log(c[Symbol.iterator].name);
-// → &apos;[Symbol.iterator]&apos;
+// → '[Symbol.iterator]'
 ```
 
 ### `Array.prototype.values`
@@ -60,7 +60,7 @@ V8 v5.1은 다음 JavaScript 기능과 관련하여 몇 가지 주목할 만한 
 - `Array.prototype.push`
 - `Object.keys`
 - `Array.prototype.join` & `Array.prototype.toString`
-- 반복 문자열 평탄화 예: `&apos;.&apos;.repeat(1000)`
+- 반복 문자열 평탄화 예: `'.'.repeat(1000)`
 
 ## WebAssembly (Wasm)
 

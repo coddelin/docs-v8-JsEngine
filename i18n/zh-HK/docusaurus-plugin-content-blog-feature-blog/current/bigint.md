@@ -1,15 +1,15 @@
 ---
-title: &apos;BigInt：JavaScript 中的任意精度整數&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'BigInt：JavaScript 中的任意精度整數'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-05-01
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: &apos;BigInts 是 JavaScript 中一種新的數值型原始類型，能夠表示具有任意精度的整數。本文通過一些使用案例，並將 BigInt 與 JavaScript 中的數值進行比較，來解釋 Chrome 67 中的新功能。&apos;
-tweet: &apos;990991035630206977&apos;
+description: 'BigInts 是 JavaScript 中一種新的數值型原始類型，能夠表示具有任意精度的整數。本文通過一些使用案例，並將 BigInt 與 JavaScript 中的數值進行比較，來解釋 Chrome 67 中的新功能。'
+tweet: '990991035630206977'
 ---
 `BigInt` 是 JavaScript 中一種新的數值型原始類型，能夠表示具有任意精度的整數。通過 `BigInt`，您可以安全地存儲並操作超出數值類型安全整數範圍的大整數。本文通過一些使用案例，並將 `BigInt` 與 JavaScript 中的 `Number` 進行比較，來解釋 Chrome 67 中的新功能。
 
@@ -92,9 +92,9 @@ BigInt(Number.MAX_SAFE_INTEGER) + 2n;
 
 ```js
 typeof 123;
-// → &apos;number&apos;
+// → 'number'
 typeof 123n;
-// → &apos;bigint&apos;
+// → 'bigint'
 ```
 
 因為 `BigInt` 是一個獨立的型別，所以 `BigInt` 與 `Number` 在嚴格相等時永遠不相等，例如 `42n !== 42`。要將 `BigInt` 與 `Number` 進行比較，請在執行比較之前將其中之一轉換為另一個型別，或者使用抽象等於 (`==`):
@@ -110,11 +110,11 @@ typeof 123n;
 
 ```js
 if (0n) {
-  console.log(&apos;if&apos;);
+  console.log('if');
 } else {
-  console.log(&apos;else&apos;);
+  console.log('else');
 }
-// → logs &apos;else&apos;, 因為 `0n` 是假值。
+// → logs 'else', 因為 `0n` 是假值。
 ```
 
 ### 運算子
@@ -163,7 +163,7 @@ BigInt(123);
 // → 123n
 BigInt(1.5);
 // → RangeError
-BigInt(&apos;1.5&apos;);
+BigInt('1.5');
 // → SyntaxError
 ```
 
@@ -179,7 +179,7 @@ BigInt(123456789123456789);
 ```js
 123456789123456789n;
 // → 123456789123456789n ✅
-BigInt(&apos;123456789123456789&apos;);
+BigInt('123456789123456789');
 // → 123456789123456789n ✅
 ```
 
@@ -238,13 +238,13 @@ view[0];
 更可行和面向未來的解決方案是暫時使用 [JSBI 庫](https://github.com/GoogleChromeLabs/jsbi#why)來撰寫程式碼。JSBI 是 `BigInt` 在 V8 和 Chrome 的 JavaScript 移植版本——根據設計，它的行為與原生 `BigInt` 功能完全一致。不同之處在於它不是依賴語法，而是公開 [一個 API](https://github.com/GoogleChromeLabs/jsbi#how)：
 
 ```js
-import JSBI from &apos;./jsbi.mjs&apos;;
+import JSBI from './jsbi.mjs';
 
 const max = JSBI.BigInt(Number.MAX_SAFE_INTEGER);
-const two = JSBI.BigInt(&apos;2&apos;);
+const two = JSBI.BigInt('2');
 const result = JSBI.add(max, two);
 console.log(result.toString());
-// → &apos;9007199254740993&apos;
+// → '9007199254740993'
 ```
 
 一旦你關心的所有瀏覽器都原生支援 `BigInt`，你可以[使用 `babel-plugin-transform-jsbi-to-bigint` 將你的程式碼轉譯為原生 `BigInt` 程式碼](https://github.com/GoogleChromeLabs/babel-plugin-transform-jsbi-to-bigint)，並移除對 JSBI 的依賴。例如，上述範例會轉譯為：
@@ -254,7 +254,7 @@ const max = BigInt(Number.MAX_SAFE_INTEGER);
 const two = 2n;
 const result = max + two;
 console.log(result);
-// → &apos;9007199254740993&apos;
+// → '9007199254740993'
 ```
 
 ## 延伸閱讀

@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 릴리스 v9.7&apos;
-author: &apos;잉그바르 스테파냔 ([@RReverser](https://twitter.com/RReverser))&apos;
+title: 'V8 릴리스 v9.7'
+author: '잉그바르 스테파냔 ([@RReverser](https://twitter.com/RReverser))'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-11-05
 tags:
  - 릴리스
-description: &apos;V8 릴리스 v9.7에서는 배열에서 역방향으로 검색할 수 있는 새로운 JavaScript 메소드를 제공합니다.&apos;
-tweet: &apos;&apos;
+description: 'V8 릴리스 v9.7에서는 배열에서 역방향으로 검색할 수 있는 새로운 JavaScript 메소드를 제공합니다.'
+tweet: ''
 ---
 매 4주마다, 우리는 우리의 [릴리스 프로세스](https://v8.dev/docs/release-process)의 일부로 V8의 새로운 브랜치를 만듭니다. 각 버전은 Chrome Beta 마일스톤 직전에 V8의 Git 메인에서 분기됩니다. 오늘 우리는 새로운 브랜치인 [V8 버전 9.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.7)을 발표하게 되어 기쁩니다. 이는 몇 주 후 Chrome 97 Stable과 함께 릴리스될 때까지 베타 상태에 있습니다. V8 v9.7은 개발자들을 위한 다양한 풍부한 콘텐츠로 가득 차 있습니다. 이 글은 릴리스 이전에 일부 주요 내용을 미리 보여줍니다.
 

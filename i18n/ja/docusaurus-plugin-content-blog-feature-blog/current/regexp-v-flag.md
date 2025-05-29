@@ -59,17 +59,17 @@ re.test('👨🏾‍⚕️'); // '\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F'
 
 上記の例では、正規表現が 👨🏾‍⚕️ 絵文字に一致しないのは、それが複数のコードポイントから構成されており、`Emoji` が Unicode の _文字_ プロパティであるためです。
 
-幸いなことに、Unicode Standardではいくつかの[文字列プロパティ](https://www.unicode.org/reports/tr18/#domain_of_properties)も定義されています。これらのプロパティは、1つ以上のコードポイントを含む文字列のセットに拡張されます。正規表現では、文字列プロパティは選択肢のセットに変換されます。これを説明するために、文字列`&apos;a&apos;`、`&apos;b&apos;`、`&apos;c&apos;`、`&apos;W&apos;`、`&apos;xy&apos;`、および`&apos;xyz&apos;`に適用されるUnicodeプロパティを想像してください。このプロパティは次の正規表現パターン（選択肢を使用）に変換されます：`xyz|xy|a|b|c|W`または`xyz|xy|[a-cW]`。(`&apos;xy&apos;`のような接頭辞が`&apos;xyz&apos;`のようなより長い文字列を隠さないように、最も長い文字列を先に書きます)。現在のUnicodeプロパティエスケープとは異なり、このパターンは複数文字の文字列にマッチすることができます。ここに文字列プロパティを使用した例があります：
+幸いなことに、Unicode Standardではいくつかの[文字列プロパティ](https://www.unicode.org/reports/tr18/#domain_of_properties)も定義されています。これらのプロパティは、1つ以上のコードポイントを含む文字列のセットに拡張されます。正規表現では、文字列プロパティは選択肢のセットに変換されます。これを説明するために、文字列`'a'`、`'b'`、`'c'`、`'W'`、`'xy'`、および`'xyz'`に適用されるUnicodeプロパティを想像してください。このプロパティは次の正規表現パターン（選択肢を使用）に変換されます：`xyz|xy|a|b|c|W`または`xyz|xy|[a-cW]`。(`'xy'`のような接頭辞が`'xyz'`のようなより長い文字列を隠さないように、最も長い文字列を先に書きます)。現在のUnicodeプロパティエスケープとは異なり、このパターンは複数文字の文字列にマッチすることができます。ここに文字列プロパティを使用した例があります：
 
 ```js
 const re = /^\p{RGI_Emoji}$/v;
 
 // 1つのコードポイントのみで構成される絵文字にマッチ：
-re.test(&apos;⚽&apos;); // &apos;\u26BD&apos;
+re.test('⚽'); // '\u26BD'
 // → true ✅
 
 // 複数のコードポイントで構成される絵文字にマッチ：
-re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F&apos;
+re.test('👨🏾‍⚕️'); // '\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F'
 // → true ✅
 ```
 
@@ -102,7 +102,7 @@ re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\
 例えば、ギリシャ文字全体にマッチさせたいけれど、文字`π`は除外したい場合どうしますか？ セット表記を使えば、簡単に解決できます：
 
 ```js
-/[\p{Script_Extensions=Greek}--π]/v.test(&apos;π&apos;); // → false
+/[\p{Script_Extensions=Greek}--π]/v.test('π'); // → false
 ```
 
 `--`を使うことで差分/減算を表現でき、正規表現エンジンが面倒な処理を行いつつ、コードを読みやすくし、保守性を維持します。
@@ -110,15 +110,15 @@ re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\
 単一文字ではなく、文字集合`α`、`β`、`γ`を引く場合でも問題ありません。ネストされた文字クラスを使用して、その内容を差し引くことができます：
 
 ```js
-/[\p{Script_Extensions=Greek}--[αβγ]]/v.test(&apos;α&apos;); // → false
-/[\p{Script_Extensions=Greek}--[α-γ]]/v.test(&apos;β&apos;); // → false
+/[\p{Script_Extensions=Greek}--[αβγ]]/v.test('α'); // → false
+/[\p{Script_Extensions=Greek}--[α-γ]]/v.test('β'); // → false
 ```
 
 別の例として、非ASCII数字にマッチする場合があります（後でそれらをASCII数字に変換するためなどの用途）：
 
 ```js
-/[\p{Decimal_Number}--[0-9]]/v.test(&apos;𑜹&apos;); // → true
-/[\p{Decimal_Number}--[0-9]]/v.test(&apos;4&apos;); // → false
+/[\p{Decimal_Number}--[0-9]]/v.test('𑜹'); // → true
+/[\p{Decimal_Number}--[0-9]]/v.test('4'); // → false
 ```
 
 セット表記は新しい文字列プロパティでも使用できます：
@@ -126,8 +126,8 @@ re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\
 ```js
 // 注: 🏴は7つのコードポイントから構成されます。
 
-/^\p{RGI_Emoji_Tag_Sequence}$/v.test(&apos;🏴&apos;); // → true
-/^[\p{RGI_Emoji_Tag_Sequence}--\q{🏴}]$/v.test(&apos;🏴&apos;); // → false
+/^\p{RGI_Emoji_Tag_Sequence}$/v.test('🏴'); // → true
+/^[\p{RGI_Emoji_Tag_Sequence}--\q{🏴}]$/v.test('🏴'); // → false
 ```
 
 この例では、スコットランドの国旗を除くすべてのRGI絵文字タグシーケンスにマッチしています。`\q{…}`の使用に注目してください。これは文字クラス内での文字列リテラルのための新しい構文です。例えば、`\q{a|bc|def}`は文字列`a`、`bc`、`def`にマッチします。`\q{…}`がなければ、複数文字列の文字列を引くことはできません。
@@ -139,17 +139,17 @@ re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\
 ```js
 const re = /[\p{Script_Extensions=Greek}&&\p{Letter}]/v;
 // U+03C0 ギリシャ小文字のパイ
-re.test(&apos;π&apos;); // → true
+re.test('π'); // → true
 // U+1018A ギリシャゼロ記号
-re.test(&apos;𐆊&apos;); // → false
+re.test('𐆊'); // → false
 ```
 
 すべてのASCII空白文字にマッチする場合：
 
 ```js
 const re = /[\p{White_Space}&&\p{ASCII}]/v;
-re.test(&apos;\n&apos;); // → true
-re.test(&apos;\u2028&apos;); // → false
+re.test('\n'); // → true
+re.test('\u2028'); // → false
 ```
 
 または、すべてのモンゴル数字にマッチする場合：
@@ -157,9 +157,9 @@ re.test(&apos;\u2028&apos;); // → false
 ```js
 const re = /[\p{Script_Extensions=Mongolian}&&\p{Number}]/v;
 // U+1817 モンゴル数字の7
-re.test(&apos;᠗&apos;); // → true
+re.test('᠗'); // → true
 // U+1834 モンゴル文字チャ
-re.test(&apos;ᠴ&apos;); // → false
+re.test('ᠴ'); // → false
 ```
 
 ### 和集合
@@ -169,12 +169,12 @@ re.test(&apos;ᠴ&apos;); // → false
 ```js
 const re = /^[\p{Emoji_Keycap_Sequence}\p{ASCII}\q{🇧🇪|abc}xyz0-9]$/v;
 
-re.test(&apos;4️⃣&apos;); // → true
-re.test(&apos;_&apos;); // → true
-re.test(&apos;🇧🇪&apos;); // → true
-re.test(&apos;abc&apos;); // → true
-re.test(&apos;x&apos;); // → true
-re.test(&apos;4&apos;); // → true
+re.test('4️⃣'); // → true
+re.test('_'); // → true
+re.test('🇧🇪'); // → true
+re.test('abc'); // → true
+re.test('x'); // → true
+re.test('4'); // → true
 ```
 
 このパターンの文字クラスは次を組み合わせています：
@@ -190,13 +190,13 @@ re.test(&apos;4&apos;); // → true
 ```js
 const reFlag = /[\p{RGI_Emoji_Flag_Sequence}\p{RGI_Emoji_Tag_Sequence}]/v;
 // 2つのコードポイントで構成される旗のシーケンス（ベルギーの旗）:
-reFlag.test(&apos;🇧🇪&apos;); // → true
+reFlag.test('🇧🇪'); // → true
 // 7つのコードポイントで構成されるタグシーケンス（イングランドの旗）:
-reFlag.test(&apos;🏴&apos;); // → true
+reFlag.test('🏴'); // → true
 // 2つのコードポイントで構成される旗のシーケンス（スイスの旗）:
-reFlag.test(&apos;🇨🇭&apos;); // → true
+reFlag.test('🇨🇭'); // → true
 // 7つのコードポイントで構成されるタグシーケンス（ウェールズの旗）:
-reFlag.test(&apos;🏴&apos;); // → true
+reFlag.test('🏴'); // → true
 ```
 
 ## 改善された大文字小文字を無視したマッチング
@@ -216,13 +216,13 @@ const re2 = /[^\P{Lowercase_Letter}]/giu;
 const re1 = /\p{Lowercase_Letter}/giu;
 const re2 = /[^\P{Lowercase_Letter}]/giu;
 
-const string = &apos;aAbBcC4#&apos;;
+const string = 'aAbBcC4#';
 
-string.replaceAll(re1, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re1, 'X');
+// → 'XXXXXX4#'
 
-string.replaceAll(re2, &apos;X&apos;);
-// → &apos;aAbBcC4#&apos;&apos;
+string.replaceAll(re2, 'X');
+// → 'aAbBcC4#''
 ```
 
 新しい`v`フラグでは、このような驚きの少ない振る舞いになります。`u`フラグの代わりに`v`フラグを使用すると、両方のパターンが同じように振る舞います:
@@ -231,13 +231,13 @@ string.replaceAll(re2, &apos;X&apos;);
 const re1 = /\p{Lowercase_Letter}/giv;
 const re2 = /[^\P{Lowercase_Letter}]/giv;
 
-const string = &apos;aAbBcC4#&apos;;
+const string = 'aAbBcC4#';
 
-string.replaceAll(re1, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re1, 'X');
+// → 'XXXXXX4#'
 
-string.replaceAll(re2, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re2, 'X');
+// → 'XXXXXX4#'
 ```
 
 より一般的に言えば、`v`フラグは`[^\p{X}]` ≍ `[\P{X}]` ≍ `\P{X}` そして `[^\P{X}]` ≍ `[\p{X}]` ≍ `\p{X}`にします。ただし、`i` フラグが設定されているかどうかに関係なく。

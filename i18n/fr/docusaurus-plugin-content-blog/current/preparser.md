@@ -1,15 +1,15 @@
 ---
-title: &apos;Parsing ultra-rapide, partie 2 : analyse syntaxique paresseuse&apos;
-author: &apos;Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)) et Marja Hölttä ([@marjakh](https://twitter.com/marjakh)), parsers plus légers&apos;
+title: 'Parsing ultra-rapide, partie 2 : analyse syntaxique paresseuse'
+author: 'Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)) et Marja Hölttä ([@marjakh](https://twitter.com/marjakh)), parsers plus légers'
 avatars:
-  - &apos;toon-verwaest&apos;
-  - &apos;marja-holtta&apos;
+  - 'toon-verwaest'
+  - 'marja-holtta'
 date: 2019-04-15 17:03:37
 tags:
   - internals
   - parsing
-tweet: &apos;1117807107972243456&apos;
-description: &apos;Voici la deuxième partie de notre série d’articles expliquant comment V8 analyse JavaScript aussi rapidement que possible.&apos;
+tweet: '1117807107972243456'
+description: 'Voici la deuxième partie de notre série d’articles expliquant comment V8 analyse JavaScript aussi rapidement que possible.'
 ---
 Voici la deuxième partie de notre série expliquant comment V8 analyse JavaScript aussi rapidement que possible. La première partie expliquait comment nous avons rendu le [scanner](/blog/scanner) de V8 rapide.
 

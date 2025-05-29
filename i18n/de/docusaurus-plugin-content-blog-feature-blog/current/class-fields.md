@@ -1,16 +1,16 @@
 ---
-title: &apos;Öffentliche und private Klassenfelder&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Öffentliche und private Klassenfelder'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-12-13
 tags:
   - ECMAScript
   - ES2022
   - io19
   - Node.js 14
-description: &apos;Mehrere Vorschläge erweitern die bestehende JavaScript-Klassensyntax um neue Funktionen. Dieser Artikel erklärt die neue Syntax von öffentlichen Klassenfeldern in V8 v7.2 und Chrome 72 sowie die kommende Syntax von privaten Klassenfeldern.&apos;
-tweet: &apos;1121395767170740225&apos;
+description: 'Mehrere Vorschläge erweitern die bestehende JavaScript-Klassensyntax um neue Funktionen. Dieser Artikel erklärt die neue Syntax von öffentlichen Klassenfeldern in V8 v7.2 und Chrome 72 sowie die kommende Syntax von privaten Klassenfeldern.'
+tweet: '1121395767170740225'
 ---
 Mehrere Vorschläge erweitern die bestehende JavaScript-Klassensyntax um neue Funktionen. Dieser Artikel erklärt die neue Syntax von öffentlichen Klassenfeldern in V8 v7.2 und Chrome 72 sowie die kommende Syntax von privaten Klassenfeldern.
 
@@ -19,11 +19,11 @@ Hier ist ein Codebeispiel, das eine Instanz einer Klasse namens `IncreasingCount
 ```js
 const counter = new IncreasingCounter();
 counter.value;
-// protokolliert &apos;Den aktuellen Wert abrufen!&apos;
+// protokolliert 'Den aktuellen Wert abrufen!'
 // → 0
 counter.increment();
 counter.value;
-// protokolliert &apos;Den aktuellen Wert abrufen!&apos;
+// protokolliert 'Den aktuellen Wert abrufen!'
 // → 1
 ```
 
@@ -39,7 +39,7 @@ class IncreasingCounter {
     this._count = 0;
   }
   get value() {
-    console.log(&apos;Den aktuellen Wert abrufen!&apos;);
+    console.log('Den aktuellen Wert abrufen!');
     return this._count;
   }
   increment() {
@@ -54,7 +54,7 @@ Die Klasse installiert den `value`-Getter und eine `increment`-Methode auf dem P
 ```js
 const counter = new IncreasingCounter();
 counter.value;
-// protokolliert &apos;Den aktuellen Wert abrufen!&apos;
+// protokolliert 'Den aktuellen Wert abrufen!'
 // → 0
 
 // Nichts hindert die Leute daran, die
@@ -63,7 +63,7 @@ counter._count;
 // → 0
 counter._count = 42;
 counter.value;
-// protokolliert &apos;Den aktuellen Wert abrufen!&apos;
+// protokolliert 'Den aktuellen Wert abrufen!'
 // → 42
 ```
 
@@ -75,7 +75,7 @@ Die neue Syntax für öffentliche Klassenfelder erlaubt es uns, die Klassendefin
 class IncreasingCounter {
   _count = 0;
   get value() {
-    console.log(&apos;Den aktuellen Wert abrufen!&apos;);
+    console.log('Den aktuellen Wert abrufen!');
     return this._count;
   }
   increment() {
@@ -96,7 +96,7 @@ Hier kommen die privaten Klassenfelder ins Spiel. Die neue Syntax für private F
 class IncreasingCounter {
   #count = 0;
   get value() {
-    console.log(&apos;Den aktuellen Wert abrufen!&apos;);
+    console.log('Den aktuellen Wert abrufen!');
     return this.#count;
   }
   increment() {
@@ -135,7 +135,7 @@ class FakeMath {
   // `random` ist eine statische öffentliche Methode (ES2015-Syntax)
   // die `#computeRandomNumber` verwendet.
   static random() {
-    console.log(&apos;Ich habe gehört, du magst Zufallszahlen…&apos;);
+    console.log('Ich habe gehört, du magst Zufallszahlen…');
     return FakeMath.#computeRandomNumber();
   }
 }
@@ -143,7 +143,7 @@ class FakeMath {
 FakeMath.PI;
 // → 3.142857142857143
 FakeMath.random();
-// protokolliert &apos;Ich habe gehört, du magst Zufallszahlen…&apos;
+// protokolliert 'Ich habe gehört, du magst Zufallszahlen…'
 // → 4
 FakeMath.#totallyRandomNumber;
 // → SyntaxError
@@ -172,7 +172,7 @@ class Cat extends Animal {
     this.likesBaths = false;
   }
   meow() {
-    console.log(&apos;Miau!&apos;);
+    console.log('Miau!');
   }
 }
 ```
@@ -183,7 +183,7 @@ Das ist eine Menge Boilerplate-Code, nur um anzugeben, dass Katzen keine Bäder 
 class Cat extends Animal {
   likesBaths = false;
   meow() {
-    console.log(&apos;Miau!&apos;);
+    console.log('Miau!');
   }
 }
 ```

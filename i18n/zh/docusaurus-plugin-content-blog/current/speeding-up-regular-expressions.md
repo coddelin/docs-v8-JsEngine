@@ -34,17 +34,17 @@ V8 的正则表达式实现基于 [Irregexp](https://blog.chromium.org/2009/02/i
 
 ```js
 const re = /./g;
-re.exec(&apos;&apos;);  // 快速路径。
-re.new_property = &apos;慢&apos;;
-RegExp.prototype.new_property = &apos;也很慢&apos;;
-re.exec(&apos;&apos;);  // 慢速路径。
+re.exec('');  // 快速路径。
+re.new_property = '慢';
+RegExp.prototype.new_property = '也很慢';
+re.exec('');  // 慢速路径。
 ```
 
 尽管有时候子类化正则表达式可能非常有用，但请注意，子类化的正则表达式实例需要更通用的处理，因此会走慢速路径:
 
 ```js
 class SlowRegExp extends RegExp {}
-new SlowRegExp(".", "g").exec(&apos;&apos;);  // 慢速路径。
+new SlowRegExp(".", "g").exec('');  // 慢速路径。
 ```
 
 完整的正则表达式迁移将会在V8 v5.7中可用。

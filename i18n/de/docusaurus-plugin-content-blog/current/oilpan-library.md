@@ -1,6 +1,6 @@
 ---
-title: &apos;Oilpan-Bibliothek&apos;
-author: &apos;Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)) und Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), effiziente und effektive Dateibeweger&apos;
+title: 'Oilpan-Bibliothek'
+author: 'Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)) und Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), effiziente und effektive Dateibeweger'
 avatars:
   - anton-bikineev
   - omer-katz
@@ -10,8 +10,8 @@ tags:
   - internals
   - speicher
   - cppgc
-description: &apos;V8 wird mit Oilpan geliefert, einer Garbage-Collection-Bibliothek zur Verwaltung des verwalteten C++-Speichers.&apos;
-tweet: &apos;1458406645181165574&apos;
+description: 'V8 wird mit Oilpan geliefert, einer Garbage-Collection-Bibliothek zur Verwaltung des verwalteten C++-Speichers.'
+tweet: '1458406645181165574'
 ---
 
 Während der Titel dieses Beitrags möglicherweise darauf hinweist, tief in eine Sammlung von Büchern über Ölpfannen – ein Thema mit überraschend viel Literatur, wenn man Konstruktionstechniken für Pfannen berücksichtigt – einzutauchen, schauen wir stattdessen genauer auf Oilpan, einen C++ Garbage Collector, der seit V8 v9.4 als Bibliothek über V8 bereitgestellt wird.

@@ -1,15 +1,15 @@
 ---
-title: &apos;`Intl.NumberFormat`について&apos;
-author: &apos;Mathias Bynens（[@mathias](https://twitter.com/mathias)）とShane F. Carr&apos;
+title: '`Intl.NumberFormat`について'
+author: 'Mathias Bynens（[@mathias](https://twitter.com/mathias)）とShane F. Carr'
 avatars:
-  - &apos;mathias-bynens&apos;
-  - &apos;shane-carr&apos;
+  - 'mathias-bynens'
+  - 'shane-carr'
 date: 2019-08-08
 tags:
   - Intl
   - io19
-description: &apos;Intl.NumberFormatは、ロケールに対応した数値のフォーマットを可能にします。&apos;
-tweet: &apos;1159476407329873920&apos;
+description: 'Intl.NumberFormatは、ロケールに対応した数値のフォーマットを可能にします。'
+tweet: '1159476407329873920'
 ---
 すでにご存知かもしれませんが、`Intl.NumberFormat` APIはモダンな環境でしばらくの間サポートされてきました。
 
@@ -23,16 +23,16 @@ tweet: &apos;1159476407329873920&apos;
 
 <!--truncate-->
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;);
+const formatter = new Intl.NumberFormat('en');
 formatter.format(987654.321);
-// → &apos;987,654.321&apos;
+// → '987,654.321'
 formatter.formatToParts(987654.321);
 // → [
-// →   { type: &apos;integer&apos;, value: &apos;987&apos; },
-// →   { type: &apos;group&apos;, value: &apos;,&apos; },
-// →   { type: &apos;integer&apos;, value: &apos;654&apos; },
-// →   { type: &apos;decimal&apos;, value: &apos;.&apos; },
-// →   { type: &apos;fraction&apos;, value: &apos;321&apos; }
+// →   { type: 'integer', value: '987' },
+// →   { type: 'group', value: ',' },
+// →   { type: 'integer', value: '654' },
+// →   { type: 'decimal', value: '.' },
+// →   { type: 'fraction', value: '321' }
 // → ]
 ```
 
@@ -45,14 +45,14 @@ formatter.formatToParts(987654.321);
 `Number`だけではなく、`Intl.NumberFormat`は現在[`BigInt`](/features/bigint)もフォーマット可能です。
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;fr&apos;);
+const formatter = new Intl.NumberFormat('fr');
 formatter.format(12345678901234567890n);
-// → &apos;12 345 678 901 234 567 890&apos;
+// → '12 345 678 901 234 567 890'
 formatter.formatToParts(123456n);
 // → [
-// →   { type: &apos;integer&apos;, value: &apos;123&apos; },
-// →   { type: &apos;group&apos;, value: &apos; &apos; },
-// →   { type: &apos;integer&apos;, value: &apos;456&apos; }
+// →   { type: 'integer', value: '123' },
+// →   { type: 'group', value: ' ' },
+// →   { type: 'integer', value: '456' }
 // → ]
 ```
 
@@ -79,14 +79,14 @@ formatter.formatToParts(123456n);
 ローカライズされた単位で数値をフォーマットするには、`style`と`unit`オプションを使用します。
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;kilobyte&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'kilobyte',
 });
 formatter.format(1.234);
-// → &apos;1.234 kB&apos;
+// → '1.234 kB'
 formatter.format(123.4);
-// → &apos;123.4 kB&apos;
+// → '123.4 kB'
 ```
 
 時間とともに、より多くの単位のサポートが追加される可能性があります。最新の情報については仕様の[最新リスト](https://tc39.es/proposal-unified-intl-numberformat/section6/locales-currencies-tz_proposed_out.html#table-sanctioned-simple-unit-identifiers)をご覧ください。
@@ -94,12 +94,12 @@ formatter.format(123.4);
 上記の単純単位を組み合わせて、「1エーカーあたりのリットル」や「1秒あたりのメートル」のような複合単位を表現することができます。
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;meter-per-second&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'meter-per-second',
 });
 formatter.format(299792458);
-// → &apos;299,792,458 m/s&apos;
+// → '299,792,458 m/s'
 ```
 
 <feature-support chrome="77"
@@ -115,28 +115,28 @@ _コンパクト記法_はローカルに対応した記号を使用して大き
 ```js
 {
   // 標準記法のテスト。
-  const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-    notation: &apos;standard&apos;, // デフォルトの設定。
+  const formatter = new Intl.NumberFormat('en', {
+    notation: 'standard', // デフォルトの設定。
   });
   formatter.format(1234.56);
-  // → &apos;1,234.56&apos;
+  // → '1,234.56'
   formatter.format(123456);
-  // → &apos;123,456&apos;
+  // → '123,456'
   formatter.format(123456789);
-  // → &apos;123,456,789&apos;
+  // → '123,456,789'
 }
 
 {
   // コンパクト記法のテスト。
-  const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-    notation: &apos;compact&apos;,
+  const formatter = new Intl.NumberFormat('en', {
+    notation: 'compact',
   });
   formatter.format(1234.56);
-  // → &apos;1.2K&apos;
+  // → '1.2K'
   formatter.format(123456);
-  // → &apos;123K&apos;
+  // → '123K'
   formatter.format(123456789);
-  // → &apos;123M&apos;
+  // → '123M'
 }
 ```
 
@@ -147,25 +147,25 @@ _コンパクト記法_はローカルに対応した記号を使用して大き
 `Intl.NumberFormat`は、[科学記数法](https://en.wikipedia.org/wiki/Scientific_notation)で数値をフォーマットすることもできます:
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;meter-per-second&apos;,
-  notation: &apos;scientific&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'meter-per-second',
+  notation: 'scientific',
 });
 formatter.format(299792458);
-// → &apos;2.998E8 m/s&apos;
+// → '2.998E8 m/s'
 ```
 
 [工学記数法](https://en.wikipedia.org/wiki/Engineering_notation)もサポートされています:
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;meter-per-second&apos;,
-  notation: &apos;engineering&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'meter-per-second',
+  notation: 'engineering',
 });
 formatter.format(299792458);
-// → &apos;299.792E6 m/s&apos;
+// → '299.792E6 m/s'
 ```
 
 <feature-support chrome="77"
@@ -179,57 +179,57 @@ formatter.format(299792458);
 特定の状況（例えば差分を表示する場合）では、数値が正であっても符号を明示的に表示することが役立ちます。新しい`signDisplay`オプションを使用するとこれが可能になります:
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;percent&apos;,
-  signDisplay: &apos;always&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'percent',
+  signDisplay: 'always',
 });
 formatter.format(-12.34);
-// → &apos;-12.34%&apos;
+// → '-12.34%'
 formatter.format(12.34);
-// → &apos;+12.34%&apos;
+// → '+12.34%'
 formatter.format(0);
-// → &apos;+0%&apos;
+// → '+0%'
 formatter.format(-0);
-// → &apos;-0%&apos;
+// → '-0%'
 ```
 
-値が`0`のときに符号を表示しないようにするには、`signDisplay: &apos;exceptZero&apos;`を使用します:
+値が`0`のときに符号を表示しないようにするには、`signDisplay: 'exceptZero'`を使用します:
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;percent&apos;,
-  signDisplay: &apos;exceptZero&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'percent',
+  signDisplay: 'exceptZero',
 });
 formatter.format(-12.34);
-// → &apos;-12.34%&apos;
+// → '-12.34%'
 formatter.format(12.34);
-// → &apos;+12.34%&apos;
+// → '+12.34%'
 formatter.format(0);
-// → &apos;0%&apos;
+// → '0%'
 // 注意: -0は期待通りに符号付きで表示されます:
 formatter.format(-0);
-// → &apos;-0%&apos;
+// → '-0%'
 ```
 
 通貨の場合、`currencySign`オプションにより_会計フォーマット_が有効になります。これは負の通貨額をローカル固有のフォーマットで表示します。例えば、金額を括弧内に表示するなどです:
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;currency&apos;,
-  currency: &apos;USD&apos;,
-  signDisplay: &apos;exceptZero&apos;,
-  currencySign: &apos;accounting&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'currency',
+  currency: 'USD',
+  signDisplay: 'exceptZero',
+  currencySign: 'accounting',
 });
 formatter.format(-12.34);
-// → &apos;($12.34)&apos;
+// → '($12.34)'
 formatter.format(12.34);
-// → &apos;+$12.34&apos;
+// → '+$12.34'
 formatter.format(0);
-// → &apos;$0.00&apos;
+// → '$0.00'
 formatter.format(-0);
-// → &apos;($0.00)&apos;
+// → '($0.00)'
 ```
 
 <feature-support chrome="77"

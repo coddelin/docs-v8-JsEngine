@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 выпуск v7.6&apos;
-author: &apos;Адам Кляйн&apos;
+title: 'V8 выпуск v7.6'
+author: 'Адам Кляйн'
 avatars:
-  - &apos;adam-klein&apos;
+  - 'adam-klein'
 date: 2019-06-19 16:45:00
 tags:
   - release
-description: &apos;V8 v7.6 включает Promise.allSettled, более быструю JSON.parse, локализованные BigInt, ускоренные замороженные/запечатанные массивы и многое другое!&apos;
-tweet: &apos;1141356209179516930&apos;
+description: 'V8 v7.6 включает Promise.allSettled, более быструю JSON.parse, локализованные BigInt, ускоренные замороженные/запечатанные массивы и многое другое!'
+tweet: '1141356209179516930'
 ---
 Каждые шесть недель мы создаём новую ветку V8 в рамках нашего [процесса выпуска](/docs/release-process). Каждая версия создаётся из главной ветки Git V8 непосредственно перед этапом Beta Chrome. Сегодня мы рады объявить о создании нашей новой ветки, [V8 версии 7.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.6), которая будет находиться в бета-версии до её выпуска вместе со стабильной версией Chrome 76 через несколько недель. V8 v7.6 наполнен разнообразными обновлениями для разработчиков. В этом посте представлен предварительный обзор некоторых из основных изменений перед официальным выпуском.
 
@@ -55,23 +55,23 @@ tweet: &apos;1141356209179516930&apos;
 [`BigInt`](/features/bigint) теперь имеет лучшую поддержку API в языке. Теперь вы можете форматировать `BigInt` с учетом локали, используя метод `toLocaleString`. Это работает так же, как для обычных чисел:
 
 ```js
-12345678901234567890n.toLocaleString(&apos;en&apos;); // 🐌
-// → &apos;12,345,678,901,234,567,890&apos;
-12345678901234567890n.toLocaleString(&apos;de&apos;); // 🐌
-// → &apos;12.345.678.901.234.567.890&apos;
+12345678901234567890n.toLocaleString('en'); // 🐌
+// → '12,345,678,901,234,567,890'
+12345678901234567890n.toLocaleString('de'); // 🐌
+// → '12.345.678.901.234.567.890'
 ```
 
 Если вы планируете форматировать несколько чисел или `BigInt`, используя одну и ту же локаль, более эффективно использовать API `Intl.NumberFormat`, который теперь поддерживает `BigInt` в своих методах `format` и `formatToParts`. Таким образом, вы можете создать единый переиспользуемый экземпляр форматировщика.
 
 ```js
-const nf = new Intl.NumberFormat(&apos;fr&apos;);
+const nf = new Intl.NumberFormat('fr');
 nf.format(12345678901234567890n); // 🚀
-// → &apos;12 345 678 901 234 567 890&apos;
+// → '12 345 678 901 234 567 890'
 nf.formatToParts(123456n); // 🚀
 // → [
-// →   { type: &apos;integer&apos;, value: &apos;123&apos; },
-// →   { type: &apos;group&apos;, value: &apos; &apos; },
-// →   { type: &apos;integer&apos;, value: &apos;456&apos; }
+// →   { type: 'integer', value: '123' },
+// →   { type: 'group', value: ' ' },
+// →   { type: 'integer', value: '456' }
 // → ]
 ```
 
@@ -80,38 +80,38 @@ nf.formatToParts(123456n); // 🚀
 Приложения часто отображают интервалы или диапазоны дат, чтобы показать продолжительность события, такого как бронь в гостинице, расчетный период услуги или музыкальный фестиваль. API `Intl.DateTimeFormat` теперь поддерживает методы `formatRange` и `formatRangeToParts` для удобного форматирования диапазонов дат с учетом локализации.
 
 ```js
-const start = new Date(&apos;2019-05-07T09:20:00&apos;);
-// → &apos;7 мая 2019 г.&apos;
-const end = new Date(&apos;2019-05-09T16:00:00&apos;);
-// → &apos;9 мая 2019 г.&apos;
-const fmt = new Intl.DateTimeFormat(&apos;ru&apos;, {
-  year: &apos;numeric&apos;,
-  month: &apos;long&apos;,
-  day: &apos;numeric&apos;,
+const start = new Date('2019-05-07T09:20:00');
+// → '7 мая 2019 г.'
+const end = new Date('2019-05-09T16:00:00');
+// → '9 мая 2019 г.'
+const fmt = new Intl.DateTimeFormat('ru', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
 });
 const output = fmt.formatRange(start, end);
-// → &apos;7 – 9 мая 2019 г.&apos;
+// → '7 – 9 мая 2019 г.'
 const parts = fmt.formatRangeToParts(start, end);
 // → [
-// →   { &apos;type&apos;: &apos;month&apos;,   &apos;value&apos;: &apos;май&apos;,  &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;literal&apos;, &apos;value&apos;: &apos; &apos;,    &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;day&apos;,     &apos;value&apos;: &apos;7&apos;,    &apos;source&apos;: &apos;startRange&apos; },
-// →   { &apos;type&apos;: &apos;literal&apos;, &apos;value&apos;: &apos; – &apos;,  &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;day&apos;,     &apos;value&apos;: &apos;9&apos;,    &apos;source&apos;: &apos;endRange&apos; },
-// →   { &apos;type&apos;: &apos;literal&apos;, &apos;value&apos;: &apos;, &apos;,   &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;year&apos;,    &apos;value&apos;: &apos;2019&apos;, &apos;source&apos;: &apos;shared&apos; },
+// →   { 'type': 'month',   'value': 'май',  'source': 'shared' },
+// →   { 'type': 'literal', 'value': ' ',    'source': 'shared' },
+// →   { 'type': 'day',     'value': '7',    'source': 'startRange' },
+// →   { 'type': 'literal', 'value': ' – ',  'source': 'shared' },
+// →   { 'type': 'day',     'value': '9',    'source': 'endRange' },
+// →   { 'type': 'literal', 'value': ', ',   'source': 'shared' },
+// →   { 'type': 'year',    'value': '2019', 'source': 'shared' },
 // → ]
 ```
 
 Кроме того, методы `format`, `formatToParts` и `formatRangeToParts` теперь поддерживают новые параметры `timeStyle` и `dateStyle`:
 
 ```js
-const dtf = new Intl.DateTimeFormat(&apos;ru&apos;, {
-  timeStyle: &apos;medium&apos;,
-  dateStyle: &apos;short&apos;
+const dtf = new Intl.DateTimeFormat('ru', {
+  timeStyle: 'medium',
+  dateStyle: 'short'
 });
 dtf.format(Date.now());
-// → &apos;19.06.19, 13:33:37&apos;
+// → '19.06.19, 13:33:37'
 ```
 
 ## Нативный просмотр стэка

@@ -1,12 +1,12 @@
 ---
-title: &apos;V8 版本 v8.5&apos;
-author: &apos;Zeynep Cankara，追蹤一些地圖&apos;
+title: 'V8 版本 v8.5'
+author: 'Zeynep Cankara，追蹤一些地圖'
 avatars:
- - &apos;zeynep-cankara&apos;
+ - 'zeynep-cankara'
 date: 2020-07-21
 tags:
  - 發佈
-description: &apos;V8 版本 v8.5 的特性包括 Promise.any, String#replaceAll, 邏輯賦值運算符, WebAssembly 多值及 BigInt 支持，以及性能改進。&apos;
+description: 'V8 版本 v8.5 的特性包括 Promise.any, String#replaceAll, 邏輯賦值運算符, WebAssembly 多值及 BigInt 支持，以及性能改進。'
 tweet:
 ---
 每六週，我們會根據我們的 [發佈流程](https://v8.dev/docs/release-process) 創建一個新的 V8 分支。每個版本都是在 Chrome Beta 里程碑發布之前，從 V8 的 Git 主分支分出來的。今天我們很高興地宣布我們的最新分支 [V8 版本 8.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.5)，該版本目前處於測試階段，幾週後將與 Chrome 85 穩定版同步發佈。V8 v8.5 為開發者帶來了各種實用新功能。這篇文章對即將發布的亮點進行了預覽。
@@ -20,15 +20,15 @@ tweet:
 
 ```js
 const promises = [
-  fetch(&apos;/endpoint-a&apos;).then(() => &apos;a&apos;),
-  fetch(&apos;/endpoint-b&apos;).then(() => &apos;b&apos;),
-  fetch(&apos;/endpoint-c&apos;).then(() => &apos;c&apos;),
+  fetch('/endpoint-a').then(() => 'a'),
+  fetch('/endpoint-b').then(() => 'b'),
+  fetch('/endpoint-c').then(() => 'c'),
 ];
 try {
   const first = await Promise.any(promises);
   // 任意一個承諾已完成。
   console.log(first);
-  // → 例如 &apos;b&apos;
+  // → 例如 'b'
 } catch (error) {
   // 所有承諾都被拒絕。
   console.assert(error instanceof AggregateError);
@@ -46,15 +46,15 @@ try {
 `String.prototype.replaceAll` 提供了一種不用創建全域 `RegExp` 就能替換所有子字符串的簡單方法。
 
 ```js
-const queryString = &apos;q=query+string+parameters&apos;;
+const queryString = 'q=query+string+parameters';
 
 // 可以使用，但需要在正則表達式中進行轉義。
-queryString.replace(/\+/g, &apos; &apos;);
-// → &apos;q=query string parameters&apos;
+queryString.replace(/\+/g, ' ');
+// → 'q=query string parameters'
 
 // 更簡單！
-queryString.replaceAll(&apos;+&apos;, &apos; &apos;);
-// → &apos;q=query string parameters&apos;
+queryString.replaceAll('+', ' ');
+// → 'q=query string parameters'
 ```
 
 請參考[我們的解釋文檔](https://v8.dev/features/string-replaceall)了解更多。
@@ -139,7 +139,7 @@ WebAssembly 支援 [從 WebAssembly 的 I64 值與 JavaScript 的 BigInt 相互�
 從 JavaScript 僅能使用 BigInt 作為 I64 的參數：
 
 ```js
-WebAssembly.instantiateStreaming(fetch(&apos;i64.wasm&apos;))
+WebAssembly.instantiateStreaming(fetch('i64.wasm'))
   .then(({ module, instance }) => {
     instance.exports.add(12n, 30n);
     // → 42n

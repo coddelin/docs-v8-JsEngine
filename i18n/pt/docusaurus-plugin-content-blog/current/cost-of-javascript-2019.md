@@ -153,12 +153,12 @@ const data = { foo: 42, bar: 1337 }; // 🐌
 …ele pode ser representado na forma de JSON-stringificada e, em seguida, analisado em JSON em tempo real:
 
 ```js
-const data = JSON.parse(&apos;{"foo":42,"bar":1337}&apos;); // 🚀
+const data = JSON.parse('{"foo":42,"bar":1337}'); // 🚀
 ```
 
 Contanto que a string JSON seja avaliada apenas uma vez, a abordagem `JSON.parse` é [muito mais rápida](https://github.com/GoogleChromeLabs/json-parse-benchmark) em comparação com o literal do objeto JavaScript, especialmente para carregamentos frios. Uma boa regra prática é aplicar essa técnica para objetos de 10 kB ou maior — mas, como sempre, com conselhos de performance, meça o impacto real antes de fazer qualquer alteração.
 
-![`JSON.parse(&apos;…&apos;)` é [muito mais rápido](https://github.com/GoogleChromeLabs/json-parse-benchmark) para analisar, compilar e executar em comparação com um literal JavaScript equivalente — não apenas no V8 (1.7× mais rápido), mas em todos os principais motores JavaScript.](/_img/cost-of-javascript-2019/json.svg)
+![`JSON.parse('…')` é [muito mais rápido](https://github.com/GoogleChromeLabs/json-parse-benchmark) para analisar, compilar e executar em comparação com um literal JavaScript equivalente — não apenas no V8 (1.7× mais rápido), mas em todos os principais motores JavaScript.](/_img/cost-of-javascript-2019/json.svg)
 
 O vídeo a seguir explica em mais detalhes de onde vem a diferença de desempenho, começando no minuto 02:10.
 

@@ -1,9 +1,9 @@
 ---
-title: &apos;Rastreamento de slack no V8&apos;
-author: &apos;Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), renomado mestre do *slack*&apos;
-description: &apos;Um olhar detalhado sobre o mecanismo de rastreamento de slack no V8.&apos;
+title: 'Rastreamento de slack no V8'
+author: 'Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), renomado mestre do *slack*'
+description: 'Um olhar detalhado sobre o mecanismo de rastreamento de slack no V8.'
 avatars:
- - &apos;michael-stanton&apos;
+ - 'michael-stanton'
 date: 2020-09-24 14:00:00
 tags:
  - internals
@@ -19,7 +19,7 @@ function Peak(name, height) {
   this.height = height;
 }
 
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
+const m1 = new Peak('Matterhorn', 4478);
 ```
 
 Você pode pensar que o mecanismo tem tudo o que precisa para funcionar bem — afinal, você informou que o objeto tem duas propriedades. No entanto, V8 realmente não faz ideia do que virá a seguir. Este objeto `m1` pode ser passado para outra função que adiciona mais 10 propriedades a ele. O rastreamento de slack surge dessa necessidade de ser responsivo ao que virá a seguir em um ambiente sem compilação estática para inferir a estrutura geral. É como muitos outros mecanismos no V8, cuja base são apenas coisas que você pode dizer geralmente sobre a execução, como:
@@ -98,7 +98,7 @@ function Peak(name, height) {
   this.height = height;
 }
 
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
+const m1 = new Peak('Matterhorn', 4478);
 ```
 
 De acordo com o cálculo em `JSFunction::CalculateExpectedNofProperties` e nossa função `Peak()`, devemos ter 2 propriedades internas no objeto, e graças ao rastreamento de margem, mais 8 extras. Podemos imprimir `m1` com `%DebugPrint()` (_essa função útil expõe a estrutura do mapa. Você pode usá-la executando `d8` com o sinalizador `--allow-natives-syntax`_):
@@ -195,13 +195,13 @@ Agora, uma árvore de mapas cresce a partir do mapa inicial, com um ramo para ca
 Essas transições baseadas em nomes de propriedades são como o [“toupeira cega”](https://www.google.com/search?q=blind+mole&tbm=isch)" do JavaScript constrói seus mapas por trás de você. Esse mapa inicial também é armazenado na função `Peak`, então, quando é usado como construtor, esse mapa pode ser usado para configurar o objeto `this`.
 
 ```js
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
-const m2 = new Peak(&apos;Mont Blanc&apos;, 4810);
-const m3 = new Peak(&apos;Zinalrothorn&apos;, 4221);
-const m4 = new Peak(&apos;Wendelstein&apos;, 1838);
-const m5 = new Peak(&apos;Zugspitze&apos;, 2962);
-const m6 = new Peak(&apos;Watzmann&apos;, 2713);
-const m7 = new Peak(&apos;Eiger&apos;, 3970);
+const m1 = new Peak('Matterhorn', 4478);
+const m2 = new Peak('Mont Blanc', 4810);
+const m3 = new Peak('Zinalrothorn', 4221);
+const m4 = new Peak('Wendelstein', 1838);
+const m5 = new Peak('Zugspitze', 2962);
+const m6 = new Peak('Watzmann', 2713);
+const m7 = new Peak('Eiger', 3970);
 ```
 
 A coisa legal aqui é que depois de criar `m7`, executar `%DebugPrint(m1)` novamente produz um novo resultado incrível:
@@ -295,7 +295,7 @@ O diagrama abaixo reflete que o rastreamento de slack está **finalizado** para 
 Agora que o rastreamento de slack está finalizado, o que acontece se adicionarmos outra propriedade a um desses objetos `Peak`?
 
 ```js
-m1.country = &apos;Switzerland&apos;;
+m1.country = 'Switzerland';
 ```
 
 O V8 precisa acessar o armazenamento de propriedades. Acabamos com o seguinte layout de objeto:
@@ -339,13 +339,13 @@ function Peak(name, height, prominence, isClimbed) {
 Você adiciona algumas dessas variantes diferentes:
 
 ```js
-const m1 = new Peak(&apos;Wendelstein&apos;, 1838);
-const m2 = new Peak(&apos;Matterhorn&apos;, 4478, 1040, true);
-const m3 = new Peak(&apos;Zugspitze&apos;, 2962);
-const m4 = new Peak(&apos;Mont Blanc&apos;, 4810, 4695, true);
-const m5 = new Peak(&apos;Watzmann&apos;, 2713);
-const m6 = new Peak(&apos;Zinalrothorn&apos;, 4221, 490, true);
-const m7 = new Peak(&apos;Eiger&apos;, 3970);
+const m1 = new Peak('Wendelstein', 1838);
+const m2 = new Peak('Matterhorn', 4478, 1040, true);
+const m3 = new Peak('Zugspitze', 2962);
+const m4 = new Peak('Mont Blanc', 4810, 4695, true);
+const m5 = new Peak('Watzmann', 2713);
+const m6 = new Peak('Zinalrothorn', 4221, 490, true);
+const m7 = new Peak('Eiger', 3970);
 ```
 
 Neste caso, os objetos `m1`, `m3`, `m5` e `m7` têm um map, e os objetos `m2`, `m4` e `m6` têm um map mais abaixo na cadeia de descendentes do map inicial por causa das propriedades adicionais. Quando o rastreamento de slack está finalizado para essa família de maps, há **4** propriedades dentro do objeto em vez de **2** como antes, porque o rastreamento de slack garante espaço suficiente para o maior número de propriedades dentro do objeto usadas por quaisquer descendentes na árvore de maps abaixo do map inicial.
@@ -364,10 +364,10 @@ function foo(a1, a2, a3, a4) {
 }
 
 %PrepareFunctionForOptimization(foo);
-const m1 = foo(&apos;Wendelstein&apos;, 1838);
-const m2 = foo(&apos;Matterhorn&apos;, 4478, 1040, true);
+const m1 = foo('Wendelstein', 1838);
+const m2 = foo('Matterhorn', 4478, 1040, true);
 %OptimizeFunctionOnNextCall(foo);
-foo(&apos;Zugspitze&apos;, 2962);
+foo('Zugspitze', 2962);
 ```
 
 Isso deve ser suficiente para compilar e executar código otimizado. Fazemos algo no TurboFan (o compilador otimizador) chamado [**Create Lowering**](https://source.chromium.org/chromium/chromium/src/+/master:v8/src/compiler/js-create-lowering.h;l=32;drc=ee9e7e404e5a3f75a3ca0489aaf80490f625ca27), onde ajustamos a alocação de objetos. Isso significa que o código nativo que produzimos emite instruções para pedir ao GC o tamanho da instância do objeto a ser alocado e, em seguida, inicializa cuidadosamente esses campos. No entanto, esse código seria inválido se o rastreamento de folga parasse em algum momento posterior. O que podemos fazer em relação a isso?

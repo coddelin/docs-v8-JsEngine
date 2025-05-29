@@ -1,8 +1,8 @@
 ---
-title: &apos;API de trace de pile&apos;
-description: &apos;Ce document décrit l&apos;API de trace de pile JavaScript de V8.&apos;
+title: 'API de trace de pile'
+description: 'Ce document décrit l'API de trace de pile JavaScript de V8.'
 ---
-Toutes les erreurs internes levées dans V8 capturent une trace de pile lorsqu'elles sont créées. Cette trace de pile peut être accédée depuis JavaScript via la propriété non standard `error.stack`. V8 dispose également de divers crochets pour contrôler la manière dont les traces de pile sont collectées et formatées, et pour permettre aux erreurs personnalisées de capturer également des traces de pile. Ce document décrit l&apos;API de trace de pile JavaScript de V8.
+Toutes les erreurs internes levées dans V8 capturent une trace de pile lorsqu'elles sont créées. Cette trace de pile peut être accédée depuis JavaScript via la propriété non standard `error.stack`. V8 dispose également de divers crochets pour contrôler la manière dont les traces de pile sont collectées et formatées, et pour permettre aux erreurs personnalisées de capturer également des traces de pile. Ce document décrit l'API de trace de pile JavaScript de V8.
 
 ## Traces de pile basiques
 
@@ -37,7 +37,7 @@ La définir à `0` désactive la collecte des traces de pile. Toute valeur enti�
 Pour passer cette option à V8 lors de l'exécution de Google Chrome, utilisez :
 
 ```bash
---js-flags=&apos;--stack-trace-limit <value>&apos;
+--js-flags='--stack-trace-limit <value>'
 ```
 
 ## Traces de pile asynchrones
@@ -60,7 +60,7 @@ Le mécanisme de trace de pile utilisé pour les erreurs intégrées est implém
 Error.captureStackTrace(error, constructorOpt)
 ```
 
-ajoute une propriété stack à l&apos;objet `error` donné qui fournit la trace de pile au moment où `captureStackTrace` a été appelé. Les traces de pile collectées via `Error.captureStackTrace` sont immédiatement collectées, formatées et attachées à l&apos;objet `error` donné.
+ajoute une propriété stack à l'objet `error` donné qui fournit la trace de pile au moment où `captureStackTrace` a été appelé. Les traces de pile collectées via `Error.captureStackTrace` sont immédiatement collectées, formatées et attachées à l'objet `error` donné.
 
 Le paramètre optionnel `constructorOpt` vous permet de passer une valeur de fonction. Lors de la collecte de la trace de pile, tous les cadres au-dessus du premier appel à cette fonction, y compris cet appel, sont laissés hors de la trace de pile. Cela peut être utile pour masquer les détails d'implémentation qui ne seront pas utiles à l'utilisateur. La façon habituelle de définir une erreur personnalisée qui capture une trace de pile serait :
 

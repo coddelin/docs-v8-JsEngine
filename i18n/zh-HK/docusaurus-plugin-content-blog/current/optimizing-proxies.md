@@ -1,15 +1,15 @@
 ---
-title: &apos;優化 V8 中的 ES2015 代理&apos;
-author: &apos;Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 代理優化專家&apos;
+title: '優化 V8 中的 ES2015 代理'
+author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 代理優化專家'
 avatars:
-  - &apos;maya-armyanova&apos;
+  - 'maya-armyanova'
 date: 2017-10-05 13:33:37
 tags:
   - ECMAScript
   - 基準測試
   - 內部結構
-description: &apos;本文解釋了 V8 如何提升 JavaScript 代理的性能。&apos;
-tweet: &apos;915846050447003648&apos;
+description: '本文解釋了 V8 如何提升 JavaScript 代理的性能。'
+tweet: '915846050447003648'
 ---
 代理自 ES2015 起便成為 JavaScript 的重要部分。它們允許攔截物件上的基本操作並自訂其行為。代理是像 [jsdom](https://github.com/tmpvar/jsdom) 和 [Comlink RPC 函式庫](https://github.com/GoogleChrome/comlink) 等項目的核心部分。最近，我們在提升 V8 中代理的性能方面投入了大量精力。本文著重於 V8 中的一般性能改進模式以及代理的特定改進。
 
@@ -25,7 +25,7 @@ const callTracer = new Proxy(target, {
   }
 });
 
-callTracer.property = &apos;value&apos;;
+callTracer.property = 'value';
 console.log(callTracer.property);
 // get 被呼叫: property
 // value
@@ -88,11 +88,11 @@ function run() {
   return new P();
 }
 const N = 1e5;
-console.time(&apos;run&apos;);
+console.time('run');
 for (let i = 0; i < N; ++i) {
   run();
 }
-console.timeEnd(&apos;run&apos;);
+console.timeEnd('run');
 ```
 
 結果顯示大部分時間花在 `NewObject` 與其調用的函數上，因此我們開始計劃如何在未來版本中加速這個部分。

@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 發佈 v7.6&apos;
-author: &apos;Adam Klein&apos;
+title: 'V8 發佈 v7.6'
+author: 'Adam Klein'
 avatars:
-  - &apos;adam-klein&apos;
+  - 'adam-klein'
 date: 2019-06-19 16:45:00
 tags:
   - release
-description: &apos;V8 v7.6 支持 Promise.allSettled、更快速的 JSON.parse、本地化的 BigInt、更快的凍結/密封陣列等更多功能！&apos;
-tweet: &apos;1141356209179516930&apos;
+description: 'V8 v7.6 支持 Promise.allSettled、更快速的 JSON.parse、本地化的 BigInt、更快的凍結/密封陣列等更多功能！'
+tweet: '1141356209179516930'
 ---
 每六週，我們會創建一個 V8 的新分支作為我們[發佈過程](/docs/release-process)的一部分。每個版本都從 V8 的 Git 主分支分叉，時間為 Chrome Beta 里程碑之前。今天，我們很高興宣布我們最新的分支 [V8 版本 7.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.6)，該版本目前處於測試版本，並將於幾週內隨 Chrome 76 穩定版一起釋出。V8 v7.6 提供了多種面向開發者的新功能。本文為即將發布的亮點提供預覽。
 
@@ -55,23 +55,23 @@ tweet: &apos;1141356209179516930&apos;
 [`BigInt`](/features/bigint) 現在在語言中獲得了更好的 API 支援。您現在可以使用 `toLocaleString` 方法以基於語言的方式格式化 `BigInt`，其工作方式與普通數字相同：
 
 ```js
-12345678901234567890n.toLocaleString(&apos;en&apos;); // 🐌
-// → &apos;12,345,678,901,234,567,890&apos;
-12345678901234567890n.toLocaleString(&apos;de&apos;); // 🐌
-// → &apos;12.345.678.901.234.567.890&apos;
+12345678901234567890n.toLocaleString('en'); // 🐌
+// → '12,345,678,901,234,567,890'
+12345678901234567890n.toLocaleString('de'); // 🐌
+// → '12.345.678.901.234.567.890'
 ```
 
 如果您打算使用同一語言格式化多個數字或 `BigInt`，使用 `Intl.NumberFormat` API 更加高效，該 API 現在支持 `BigInt` 的 `format` 和 `formatToParts` 方法。這樣，您可以創建一個可重複使用的格式化實例。
 
 ```js
-const nf = new Intl.NumberFormat(&apos;fr&apos;);
+const nf = new Intl.NumberFormat('fr');
 nf.format(12345678901234567890n); // 🚀
-// → &apos;12 345 678 901 234 567 890&apos;
+// → '12 345 678 901 234 567 890'
 nf.formatToParts(123456n); // 🚀
 // → [
-// →   { type: &apos;integer&apos;, value: &apos;123&apos; },
-// →   { type: &apos;group&apos;, value: &apos; &apos; },
-// →   { type: &apos;integer&apos;, value: &apos;456&apos; }
+// →   { type: 'integer', value: '123' },
+// →   { type: 'group', value: ' ' },
+// →   { type: 'integer', value: '456' }
 // → ]
 ```
 
@@ -80,38 +80,38 @@ nf.formatToParts(123456n); // 🚀
 應用程式通常會顯示日期區間或日期範圍，例如酒店預訂、服務的計費期間或音樂節的時間跨度。現在 `Intl.DateTimeFormat` API 支援 `formatRange` 和 `formatRangeToParts` 方法，以方便在特定語言環境下格式化日期範圍。
 
 ```js
-const start = new Date(&apos;2019-05-07T09:20:00&apos;);
-// → &apos;2019年5月7日&apos;
-const end = new Date(&apos;2019-05-09T16:00:00&apos;);
-// → &apos;2019年5月9日&apos;
-const fmt = new Intl.DateTimeFormat(&apos;zh-Hant&apos;, {
-  year: &apos;numeric&apos;,
-  month: &apos;long&apos;,
-  day: &apos;numeric&apos;,
+const start = new Date('2019-05-07T09:20:00');
+// → '2019年5月7日'
+const end = new Date('2019-05-09T16:00:00');
+// → '2019年5月9日'
+const fmt = new Intl.DateTimeFormat('zh-Hant', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
 });
 const output = fmt.formatRange(start, end);
-// → &apos;2019年5月7日–9日&apos;
+// → '2019年5月7日–9日'
 const parts = fmt.formatRangeToParts(start, end);
 // → [
-// →   { &apos;type&apos;: &apos;month&apos;,   &apos;value&apos;: &apos;5月&apos;,  &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;literal&apos;, &apos;value&apos;: &apos; &apos;,   &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;day&apos;,     &apos;value&apos;: &apos;7&apos;,   &apos;source&apos;: &apos;startRange&apos; },
-// →   { &apos;type&apos;: &apos;literal&apos;, &apos;value&apos;: &apos;–&apos;,  &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;day&apos;,     &apos;value&apos;: &apos;9&apos;,   &apos;source&apos;: &apos;endRange&apos; },
-// →   { &apos;type&apos;: &apos;literal&apos;, &apos;value&apos;: &apos;, &apos;,  &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;year&apos;,    &apos;value&apos;: &apos;2019&apos;, &apos;source&apos;: &apos;shared&apos; },
+// →   { 'type': 'month',   'value': '5月',  'source': 'shared' },
+// →   { 'type': 'literal', 'value': ' ',   'source': 'shared' },
+// →   { 'type': 'day',     'value': '7',   'source': 'startRange' },
+// →   { 'type': 'literal', 'value': '–',  'source': 'shared' },
+// →   { 'type': 'day',     'value': '9',   'source': 'endRange' },
+// →   { 'type': 'literal', 'value': ', ',  'source': 'shared' },
+// →   { 'type': 'year',    'value': '2019', 'source': 'shared' },
 // → ]
 ```
 
 此外，`format`、`formatToParts` 和 `formatRangeToParts` 方法現在支援新的 `timeStyle` 和 `dateStyle` 選項：
 
 ```js
-const dtf = new Intl.DateTimeFormat(&apos;zh-Hant&apos;, {
-  timeStyle: &apos;medium&apos;,
-  dateStyle: &apos;short&apos;
+const dtf = new Intl.DateTimeFormat('zh-Hant', {
+  timeStyle: 'medium',
+  dateStyle: 'short'
 });
 dtf.format(Date.now());
-// → &apos;2019/06/19, 13:33:37&apos;
+// → '2019/06/19, 13:33:37'
 ```
 
 ## 原生堆疊行走

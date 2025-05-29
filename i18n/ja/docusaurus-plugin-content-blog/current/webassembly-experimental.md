@@ -1,10 +1,10 @@
 ---
-title: &apos;V8でのWebAssemblyの実験的サポート&apos;
-author: &apos;Seth Thompson, WebAssembly担当&apos;
+title: 'V8でのWebAssemblyの実験的サポート'
+author: 'Seth Thompson, WebAssembly担当'
 date: 2016-03-15 13:33:37
 tags:
   - WebAssembly
-description: &apos;本日より、V8とChromiumでWebAssemblyの実験的サポートがフラグの後ろで利用可能になりました。&apos;
+description: '本日より、V8とChromiumでWebAssemblyの実験的サポートがフラグの後ろで利用可能になりました。'
 ---
 _WebAssemblyの包括的な概要と将来のコミュニティコラボレーションのロードマップについては、Mozilla Hacksブログの[A WebAssembly Milestone](https://hacks.mozilla.org/2016/03/a-webassembly-milestone/)をご覧ください。_
 

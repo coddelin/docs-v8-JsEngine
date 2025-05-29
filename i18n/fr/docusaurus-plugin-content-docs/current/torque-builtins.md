@@ -1,6 +1,6 @@
 ---
-title: &apos;V8 Torque functions intégrées&apos;
-description: &apos;Ce document est destiné à introduire l&apos;écriture des fonctions intégrées Torque, et s&apos;adresse aux développeurs V8.&apos;
+title: 'V8 Torque functions intégrées'
+description: 'Ce document est destiné à introduire l'écriture des fonctions intégrées Torque, et s'adresse aux développeurs V8.'
 ---
 Ce document est destiné à introduire l'écriture des fonctions intégrées Torque, et s'adresse aux développeurs V8. Torque remplace CodeStubAssembler comme méthode recommandée pour implémenter de nouvelles fonctions intégrées. Voir [CodeStubAssembler functions intégrées](/docs/csa-builtins) pour la version CSA de ce guide.
 
@@ -32,7 +32,7 @@ Si vous souhaitez suivre localement, le code suivant est basé sur la révision 
 
 ## Définir `MathIs42`
 
-Le code Torque est localisé dans les fichiers `src/builtins/*.tq`, approximativement organisés par sujet. Puisque nous écrirons une fonction intégrée `Math`, nous mettrons notre définition dans `src/builtins/math.tq`. Puisque ce fichier n&apos;existe pas encore, nous devons l&apos;ajouter à [`torque_files`](https://cs.chromium.org/chromium/src/v8/BUILD.gn?l=914&rcl=589af9f257166f66774b4fb3008cd09f192c2614) dans [`BUILD.gn`](https://cs.chromium.org/chromium/src/v8/BUILD.gn).
+Le code Torque est localisé dans les fichiers `src/builtins/*.tq`, approximativement organisés par sujet. Puisque nous écrirons une fonction intégrée `Math`, nous mettrons notre définition dans `src/builtins/math.tq`. Puisque ce fichier n'existe pas encore, nous devons l'ajouter à [`torque_files`](https://cs.chromium.org/chromium/src/v8/BUILD.gn?l=914&rcl=589af9f257166f66774b4fb3008cd09f192c2614) dans [`BUILD.gn`](https://cs.chromium.org/chromium/src/v8/BUILD.gn).
 
 ```torque
 namespace math {
@@ -60,7 +60,7 @@ namespace math {
 }
 ```
 
-Nous plaçons la définition dans l'espace de noms Torque `math`. Étant donné que cet espace de noms n&apos;existait pas avant, nous devons l&apos;ajouter à [`torque_namespaces`](https://cs.chromium.org/chromium/src/v8/BUILD.gn?l=933&rcl=589af9f257166f66774b4fb3008cd09f192c2614) dans [`BUILD.gn`](https://cs.chromium.org/chromium/src/v8/BUILD.gn).
+Nous plaçons la définition dans l'espace de noms Torque `math`. Étant donné que cet espace de noms n'existait pas avant, nous devons l'ajouter à [`torque_namespaces`](https://cs.chromium.org/chromium/src/v8/BUILD.gn?l=933&rcl=589af9f257166f66774b4fb3008cd09f192c2614) dans [`BUILD.gn`](https://cs.chromium.org/chromium/src/v8/BUILD.gn).
 
 ## Attacher `Math.is42`
 
@@ -80,7 +80,7 @@ Maintenant que `is42` est attaché, il peut être appelé depuis JS :
 $ out/debug/d8
 d8> Math.is42(42);
 true
-d8> Math.is42(&apos;42.0&apos;);
+d8> Math.is42('42.0');
 true
 d8> Math.is42(true);
 false

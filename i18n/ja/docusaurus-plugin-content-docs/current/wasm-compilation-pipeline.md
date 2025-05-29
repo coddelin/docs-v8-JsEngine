@@ -1,6 +1,6 @@
 ---
-title: &apos;WebAssemblyのコンパイルパイプライン&apos;
-description: &apos;この記事では、V8のWebAssemblyコンパイラとWebAssemblyコードがいつコンパイルされるかについて説明します。&apos;
+title: 'WebAssemblyのコンパイルパイプライン'
+description: 'この記事では、V8のWebAssemblyコンパイラとWebAssemblyコードがいつコンパイルされるかについて説明します。'
 ---
 
 WebAssemblyはバイナリ形式で、JavaScript以外のプログラミング言語のコードを効率的かつ安全にウェブ上で実行することができます。この文書では、V8におけるWebAssemblyのコンパイルパイプラインを掘り下げ、さまざまなコンパイラを使用して良好なパフォーマンスを提供する方法を説明します。

@@ -1,14 +1,14 @@
 ---
-title: &apos;Comprendre la spécification ECMAScript, partie 2&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), spectatrice spéculative des spécifications&apos;
+title: 'Comprendre la spécification ECMAScript, partie 2'
+author: '[Marja Hölttä](https://twitter.com/marjakh), spectatrice spéculative des spécifications'
 avatars:
   - marja-holtta
 date: 2020-03-02
 tags:
   - ECMAScript
   - Comprendre ECMAScript
-description: &apos;Tutoriel sur la lecture de la spécification ECMAScript, partie 2&apos;
-tweet: &apos;1234550773629014016&apos;
+description: 'Tutoriel sur la lecture de la spécification ECMAScript, partie 2'
+tweet: '1234550773629014016'
 ---
 
 Continuons à pratiquer nos incroyables compétences de lecture des spécifications. Si vous n’avez pas jeté un œil au premier épisode, c’est le moment de le faire !
@@ -35,7 +35,7 @@ o2.foo;
 
 ## Où est défini le parcours de la chaîne de prototypes ?
 
-Essayons de découvrir où ce comportement est défini. Une bonne entrée en matière est la liste des [Méthodes Interne d&apos;Objet](https://tc39.es/ecma262/#sec-object-internal-methods-and-internal-slots).
+Essayons de découvrir où ce comportement est défini. Une bonne entrée en matière est la liste des [Méthodes Interne d'Objet](https://tc39.es/ecma262/#sec-object-internal-methods-and-internal-slots).
 
 Il y a à la fois `[[GetOwnProperty]]` et `[[Get]]` — nous sommes intéressés par la version qui ne se limite pas aux propriétés _propres_, donc nous choisirons `[[Get]]`.
 
@@ -179,7 +179,7 @@ MemberExpression :
   new MemberExpression Arguments
 ```
 
-Ici, nous avons 7 productions pour `MemberExpression`. Une `MemberExpression` peut être simplement une `PrimaryExpression`. Alternativement, une `MemberExpression` peut être construite à partir d'une autre `MemberExpression` et d'une `Expression` en les assemblant : `MemberExpression [ Expression ]`, par exemple `o2[&apos;foo&apos;]`. Ou cela peut être `MemberExpression . IdentifierName`, par exemple `o2.foo` — c'est la production pertinente pour notre exemple.
+Ici, nous avons 7 productions pour `MemberExpression`. Une `MemberExpression` peut être simplement une `PrimaryExpression`. Alternativement, une `MemberExpression` peut être construite à partir d'une autre `MemberExpression` et d'une `Expression` en les assemblant : `MemberExpression [ Expression ]`, par exemple `o2['foo']`. Ou cela peut être `MemberExpression . IdentifierName`, par exemple `o2.foo` — c'est la production pertinente pour notre exemple.
 
 Les sémantiques d'exécution pour la production `MemberExpression : MemberExpression . IdentifierName` définissent l'ensemble des étapes à suivre pour l'évaluer :
 

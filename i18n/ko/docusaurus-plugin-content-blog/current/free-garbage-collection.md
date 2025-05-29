@@ -1,14 +1,14 @@
 ---
-title: &apos;무료로 가비지 컬렉션을 얻다&apos;
-author: &apos;Hannes Payer and Ross McIlroy, Idle Garbage Collectors&apos;
+title: '무료로 가비지 컬렉션을 얻다'
+author: 'Hannes Payer and Ross McIlroy, Idle Garbage Collectors'
 avatars:
-  - &apos;hannes-payer&apos;
-  - &apos;ross-mcilroy&apos;
+  - 'hannes-payer'
+  - 'ross-mcilroy'
 date: 2015-08-07 13:33:37
 tags:
   - internals
   - memory
-description: &apos;Chrome 41은 사용되지 않는 작은 유휴 시간 조각 안에서 고비용의 메모리 관리 작업을 숨겨서 끊김 현상을 줄입니다.&apos;
+description: 'Chrome 41은 사용되지 않는 작은 유휴 시간 조각 안에서 고비용의 메모리 관리 작업을 숨겨서 끊김 현상을 줄입니다.'
 ---
 JavaScript 성능은 Chrome의 핵심 가치 중 하나로, 특히 부드러운 사용자 경험을 제공하는 데 중요한 요소입니다. Chrome 41부터 V8은 웹 애플리케이션의 반응성을 높이기 위해 고비용의 메모리 관리 작업을 사용되지 않는 작은 유휴 시간 조각 안에서 숨기는 새로운 기술을 활용합니다. 그 결과, 가비지 컬렉션으로 인한 끊김 현상이 크게 줄어들면서 웹 개발자는 더 부드러운 스크롤링과 버터 같은 애니메이션을 기대할 수 있습니다.
 

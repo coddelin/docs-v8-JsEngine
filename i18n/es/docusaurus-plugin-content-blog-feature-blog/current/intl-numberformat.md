@@ -1,15 +1,15 @@
 ---
-title: &apos;`Intl.NumberFormat`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias)) y Shane F. Carr&apos;
+title: '`Intl.NumberFormat`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)) y Shane F. Carr'
 avatars:
-  - &apos;mathias-bynens&apos;
-  - &apos;shane-carr&apos;
+  - 'mathias-bynens'
+  - 'shane-carr'
 date: 2019-08-08
 tags:
   - Intl
   - io19
-description: &apos;Intl.NumberFormat permite el formato de números adaptado al idioma.&apos;
-tweet: &apos;1159476407329873920&apos;
+description: 'Intl.NumberFormat permite el formato de números adaptado al idioma.'
+tweet: '1159476407329873920'
 ---
 Es posible que ya estés familiarizado con la API `Intl.NumberFormat`, ya que ha sido compatible con varios entornos modernos durante algún tiempo.
 
@@ -23,16 +23,16 @@ En su forma más básica, `Intl.NumberFormat` te permite crear una instancia de 
 
 <!--truncate-->
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;);
+const formatter = new Intl.NumberFormat('en');
 formatter.format(987654.321);
-// → &apos;987,654.321&apos;
+// → '987,654.321'
 formatter.formatToParts(987654.321);
 // → [
-// →   { type: &apos;integer&apos;, value: &apos;987&apos; },
-// →   { type: &apos;group&apos;, value: &apos;,&apos; },
-// →   { type: &apos;integer&apos;, value: &apos;654&apos; },
-// →   { type: &apos;decimal&apos;, value: &apos;.&apos; },
-// →   { type: &apos;fraction&apos;, value: &apos;321&apos; }
+// →   { type: 'integer', value: '987' },
+// →   { type: 'group', value: ',' },
+// →   { type: 'integer', value: '654' },
+// →   { type: 'decimal', value: '.' },
+// →   { type: 'fraction', value: '321' }
 // → ]
 ```
 
@@ -45,14 +45,14 @@ Recientemente, la API `Intl.NumberFormat` ha adquirido nuevas capacidades.
 Además de los `Number`s, `Intl.NumberFormat` ahora también puede formatear [`BigInt`s](/features/bigint):
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;fr&apos;);
+const formatter = new Intl.NumberFormat('fr');
 formatter.format(12345678901234567890n);
-// → &apos;12 345 678 901 234 567 890&apos;
+// → '12 345 678 901 234 567 890'
 formatter.formatToParts(123456n);
 // → [
-// →   { type: &apos;integer&apos;, value: &apos;123&apos; },
-// →   { type: &apos;group&apos;, value: &apos; &apos; },
-// →   { type: &apos;integer&apos;, value: &apos;456&apos; }
+// →   { type: 'integer', value: '123' },
+// →   { type: 'group', value: ' ' },
+// →   { type: 'integer', value: '456' }
 // → ]
 ```
 
@@ -79,14 +79,14 @@ formatter.formatToParts(123456n);
 Para formatear números con unidades localizadas, utiliza las opciones `style` y `unit`:
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;kilobyte&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'kilobyte',
 });
 formatter.format(1.234);
-// → &apos;1.234 kB&apos;
+// → '1.234 kB'
 formatter.format(123.4);
-// → &apos;123.4 kB&apos;
+// → '123.4 kB'
 ```
 
 Ten en cuenta que con el tiempo se pueden agregar más unidades. Por favor, consulta la especificación para [la lista más actualizada](https://tc39.es/proposal-unified-intl-numberformat/section6/locales-currencies-tz_proposed_out.html#table-sanctioned-simple-unit-identifiers).
@@ -94,12 +94,12 @@ Ten en cuenta que con el tiempo se pueden agregar más unidades. Por favor, cons
 Las unidades simples mencionadas anteriormente se pueden combinar en pares arbitrarios de numerador y denominador para expresar unidades compuestas como “litros por acre” o “metros por segundo”:
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;meter-per-second&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'meter-per-second',
 });
 formatter.format(299792458);
-// → &apos;299,792,458 m/s&apos;
+// → '299,792,458 m/s'
 ```
 
 <feature-support chrome="77"
@@ -115,28 +115,28 @@ La _notación compacta_ utiliza símbolos específicos del idioma para represent
 ```js
 {
   // Prueba la notación estándar.
-  const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-    notation: &apos;standard&apos;, // Este es el valor predeterminado implícito.
+  const formatter = new Intl.NumberFormat('en', {
+    notation: 'standard', // Este es el valor predeterminado implícito.
   });
   formatter.format(1234.56);
-  // → &apos;1,234.56&apos;
+  // → '1,234.56'
   formatter.format(123456);
-  // → &apos;123,456&apos;
+  // → '123,456'
   formatter.format(123456789);
-  // → &apos;123,456,789&apos;
+  // → '123,456,789'
 }
 
 {
   // Prueba la notación compacta.
-  const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-    notation: &apos;compact&apos;,
+  const formatter = new Intl.NumberFormat('en', {
+    notation: 'compact',
   });
   formatter.format(1234.56);
-  // → &apos;1.2K&apos;
+  // → '1.2K'
   formatter.format(123456);
-  // → &apos;123K&apos;
+  // → '123K'
   formatter.format(123456789);
-  // → &apos;123M&apos;
+  // → '123M'
 }
 ```
 
@@ -147,25 +147,25 @@ La _notación compacta_ utiliza símbolos específicos del idioma para represent
 `Intl.NumberFormat` también puede formatear números en [notación científica](https://en.wikipedia.org/wiki/Scientific_notation):
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;meter-per-second&apos;,
-  notation: &apos;scientific&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'meter-per-second',
+  notation: 'scientific',
 });
 formatter.format(299792458);
-// → &apos;2.998E8 m/s&apos;
+// → '2.998E8 m/s'
 ```
 
 [La notación de ingeniería](https://en.wikipedia.org/wiki/Engineering_notation) también es compatible:
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;meter-per-second&apos;,
-  notation: &apos;engineering&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'meter-per-second',
+  notation: 'engineering',
 });
 formatter.format(299792458);
-// → &apos;299.792E6 m/s&apos;
+// → '299.792E6 m/s'
 ```
 
 <feature-support chrome="77"
@@ -179,57 +179,57 @@ formatter.format(299792458);
 En ciertas situaciones (como presentar diferencias) ayuda mostrar explícitamente el signo, incluso cuando el número es positivo. La nueva opción `signDisplay` lo permite:
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;percent&apos;,
-  signDisplay: &apos;always&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'percent',
+  signDisplay: 'always',
 });
 formatter.format(-12.34);
-// → &apos;-12.34%&apos;
+// → '-12.34%'
 formatter.format(12.34);
-// → &apos;+12.34%&apos;
+// → '+12.34%'
 formatter.format(0);
-// → &apos;+0%&apos;
+// → '+0%'
 formatter.format(-0);
-// → &apos;-0%&apos;
+// → '-0%'
 ```
 
-Para evitar mostrar el signo cuando el valor es `0`, usa `signDisplay: &apos;exceptZero&apos;`:
+Para evitar mostrar el signo cuando el valor es `0`, usa `signDisplay: 'exceptZero'`:
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;percent&apos;,
-  signDisplay: &apos;exceptZero&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'percent',
+  signDisplay: 'exceptZero',
 });
 formatter.format(-12.34);
-// → &apos;-12.34%&apos;
+// → '-12.34%'
 formatter.format(12.34);
-// → &apos;+12.34%&apos;
+// → '+12.34%'
 formatter.format(0);
-// → &apos;0%&apos;
+// → '0%'
 // Nota: -0 aún se muestra con signo, como se espera:
 formatter.format(-0);
-// → &apos;-0%&apos;
+// → '-0%'
 ```
 
 Para monedas, la opción `currencySign` permite el _formato contable_, que habilita un formato específico por ubicación para cantidades negativas de moneda; por ejemplo, envolver la cantidad en paréntesis:
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;currency&apos;,
-  currency: &apos;USD&apos;,
-  signDisplay: &apos;exceptZero&apos;,
-  currencySign: &apos;accounting&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'currency',
+  currency: 'USD',
+  signDisplay: 'exceptZero',
+  currencySign: 'accounting',
 });
 formatter.format(-12.34);
-// → &apos;($12.34)&apos;
+// → '($12.34)'
 formatter.format(12.34);
-// → &apos;+$12.34&apos;
+// → '+$12.34'
 formatter.format(0);
-// → &apos;$0.00&apos;
+// → '$0.00'
 formatter.format(-0);
-// → &apos;($0.00)&apos;
+// → '($0.00)'
 ```
 
 <feature-support chrome="77"

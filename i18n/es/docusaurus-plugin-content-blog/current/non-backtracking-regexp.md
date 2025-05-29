@@ -62,13 +62,13 @@ Revisemos el algoritmo de retroceso en el que se basa Irregexp y describámoslo 
 
 ```js
 const code = [
-  {opcode: &apos;FORK&apos;, forkPc: 4},
-  {opcode: &apos;CONSUME&apos;, char: &apos;1&apos;},
-  {opcode: &apos;CONSUME&apos;, char: &apos;2&apos;},
-  {opcode: &apos;JMP&apos;, jmpPc: 6},
-  {opcode: &apos;CONSUME&apos;, char: &apos;a&apos;},
-  {opcode: &apos;CONSUME&apos;, char: &apos;b&apos;},
-  {opcode: &apos;ACCEPT&apos;}
+  {opcode: 'FORK', forkPc: 4},
+  {opcode: 'CONSUME', char: '1'},
+  {opcode: 'CONSUME', char: '2'},
+  {opcode: 'JMP', jmpPc: 6},
+  {opcode: 'CONSUME', char: 'a'},
+  {opcode: 'CONSUME', char: 'b'},
+  {opcode: 'ACCEPT'}
 ];
 ```
 
@@ -81,7 +81,7 @@ const stack = []; // Pila de retroceso.
 while (true) {
   const inst = code[pc];
   switch (inst.opcode) {
-    case &apos;CONSUME&apos;:
+    case 'CONSUME':
       if (ip < input.length && input[ip] === inst.char) {
         // La entrada coincide con lo que esperamos: Continuar.
         ++ip;
@@ -96,15 +96,15 @@ while (true) {
         return false;
       }
       break;
-    case &apos;FORK&apos;:
+    case 'FORK':
       // Guardar la alternativa para retroceder más tarde.
       stack.push({ip: ip, pc: inst.forkPc});
       ++pc;
       break;
-    case &apos;JMP&apos;:
+    case 'JMP':
       pc = inst.jmpPc;
       break;
-    case &apos;ACCEPT&apos;:
+    case 'ACCEPT':
       return true;
   }
 }
@@ -121,13 +121,13 @@ Una implementación simple en JavaScript se parece a esto:
 ```js
 // Posición de entrada.
 let ip = 0;
-// Lista de valores de pc actuales, o `&apos;ACCEPT&apos;` si hemos encontrado una coincidencia. Comenzamos en
+// Lista de valores de pc actuales, o `'ACCEPT'` si hemos encontrado una coincidencia. Comenzamos en
 // pc 0 y seguimos las transiciones epsilon.
 let pcs = followEpsilons([0]);
 
 while (true) {
   // Hemos terminado si hemos encontrado una coincidencia…
-  if (pcs === &apos;ACCEPT&apos;) return true;
+  if (pcs === 'ACCEPT') return true;
   // …o si hemos agotado la cadena de entrada.
   if (ip >= input.length) return false;
 
@@ -142,7 +142,7 @@ while (true) {
 }
 ```
 
-Aquí `followEpsilons` es una función que toma una lista de contadores de programa y calcula la lista de contadores de programa en instrucciones `CONSUME` que se pueden alcanzar mediante transiciones epsilon (es decir, solo ejecutando FORK y JMP). La lista devuelta no debe contener duplicados. Si se puede alcanzar una instrucción `ACCEPT`, la función devuelve `&apos;ACCEPT&apos;`. Se puede implementar así:
+Aquí `followEpsilons` es una función que toma una lista de contadores de programa y calcula la lista de contadores de programa en instrucciones `CONSUME` que se pueden alcanzar mediante transiciones epsilon (es decir, solo ejecutando FORK y JMP). La lista devuelta no debe contener duplicados. Si se puede alcanzar una instrucción `ACCEPT`, la función devuelve `'ACCEPT'`. Se puede implementar así:
 
 ```js
 function followEpsilons(pcs) {
@@ -159,7 +159,7 @@ function followEpsilons(pcs) {
 
     const inst = code[pc];
     switch (inst.opcode) {
-      case &apos;CONSUME&apos;:
+      case 'CONSUME':
         result.push(pc);
         break;
       case 'FORK':

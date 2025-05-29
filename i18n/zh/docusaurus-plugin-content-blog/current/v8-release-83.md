@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 版本 v8.3&apos;
-author: &apos;[Victor Gomes](https://twitter.com/VictorBFG)，在家安全办公&apos;
+title: 'V8 版本 v8.3'
+author: '[Victor Gomes](https://twitter.com/VictorBFG)，在家安全办公'
 avatars:
- - &apos;victor-gomes&apos;
+ - 'victor-gomes'
 date: 2020-05-04
 tags:
  - release
-description: &apos;V8 v8.3 提供更快的 ArrayBuffers、更大的 Wasm 内存以及弃用的 API。&apos;
-tweet: &apos;1257333120115847171&apos;
+description: 'V8 v8.3 提供更快的 ArrayBuffers、更大的 Wasm 内存以及弃用的 API。'
+tweet: '1257333120115847171'
 ---
 
 每六周，我们会根据 [发布流程](https://v8.dev/docs/release-process)创建一个新的 V8 分支。每个版本都是从 V8 的 Git 主分支在 Chrome Beta 里程碑之前立即分支出来的。今天我们很高兴宣布我们的最新分支 [V8 版本 8.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.3)，该版本在发布前与 Chrome 83 稳定版协调几周内保持 Beta 状态。V8 v8.3 向开发者提供了各种功能改进。本篇文章将预览一些重要功能以期待正式发布。

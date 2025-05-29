@@ -1,36 +1,36 @@
 ---
-title: &apos;BigInt : entiers à précision arbitraire en JavaScript&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'BigInt : entiers à précision arbitraire en JavaScript'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-05-01
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: &apos;Les BigInts sont un nouveau type primitif numérique en JavaScript qui peut représenter des entiers avec une précision arbitraire. Cet article examine quelques cas d&apos;utilisation et explique les nouvelles fonctionnalités de Chrome 67 en comparant les BigInts aux Numbers en JavaScript.&apos;
-tweet: &apos;990991035630206977&apos;
+description: 'Les BigInts sont un nouveau type primitif numérique en JavaScript qui peut représenter des entiers avec une précision arbitraire. Cet article examine quelques cas d'utilisation et explique les nouvelles fonctionnalités de Chrome 67 en comparant les BigInts aux Numbers en JavaScript.'
+tweet: '990991035630206977'
 ---
-Les `BigInt` sont un nouveau type primitif numérique en JavaScript qui peuvent représenter des entiers avec une précision arbitraire. Avec les `BigInt`, vous pouvez stocker et manipuler en toute sécurité de grands entiers même au-delà de la limite des entiers sûrs pour les `Number`. Cet article examine quelques cas d&apos;utilisation et explique les nouvelles fonctionnalités de Chrome 67 en comparant les `BigInt` aux `Number` en JavaScript.
+Les `BigInt` sont un nouveau type primitif numérique en JavaScript qui peuvent représenter des entiers avec une précision arbitraire. Avec les `BigInt`, vous pouvez stocker et manipuler en toute sécurité de grands entiers même au-delà de la limite des entiers sûrs pour les `Number`. Cet article examine quelques cas d'utilisation et explique les nouvelles fonctionnalités de Chrome 67 en comparant les `BigInt` aux `Number` en JavaScript.
 
 <!--truncate-->
-## Cas d&apos;utilisation
+## Cas d'utilisation
 
-Les entiers à précision arbitraire débloquent de nombreux nouveaux cas d&apos;utilisation pour JavaScript.
+Les entiers à précision arbitraire débloquent de nombreux nouveaux cas d'utilisation pour JavaScript.
 
-Les `BigInt` permettent d&apos;effectuer correctement des opérations arithmétiques entières sans débordement. Cela ouvre à lui seul d&apos;innombrables nouvelles possibilités. Les opérations mathématiques sur de grands nombres sont couramment utilisées dans la technologie financière, par exemple.
+Les `BigInt` permettent d'effectuer correctement des opérations arithmétiques entières sans débordement. Cela ouvre à lui seul d'innombrables nouvelles possibilités. Les opérations mathématiques sur de grands nombres sont couramment utilisées dans la technologie financière, par exemple.
 
 Les [identifiants entiers de grande taille](https://developer.twitter.com/en/docs/basics/twitter-ids) et les [horodatages à haute précision](https://github.com/nodejs/node/pull/20220) ne peuvent pas être représentés de manière sûre en tant que `Number` en JavaScript. Cela conduit [souvent](https://github.com/stedolan/jq/issues/1399) à des [bugs réels](https://github.com/nodejs/node/issues/12115), et pousse les développeurs JavaScript à les représenter sous forme de chaînes. Grâce au `BigInt`, ces données peuvent désormais être représentées comme des valeurs numériques.
 
-Le `BigInt` pourrait constituer la base d&apos;une future implémentation `BigDecimal`. Cela serait utile pour représenter des sommes d&apos;argent avec une précision décimale, et pour effectuer des calculs précis (c&apos;est-à-dire le problème `0.10 + 0.20 !== 0.30`).
+Le `BigInt` pourrait constituer la base d'une future implémentation `BigDecimal`. Cela serait utile pour représenter des sommes d'argent avec une précision décimale, et pour effectuer des calculs précis (c'est-à-dire le problème `0.10 + 0.20 !== 0.30`).
 
-Auparavant, les applications JavaScript avec l&apos;un de ces cas d&apos;utilisation devaient recourir à des bibliothèques externes qui émulent des fonctionnalités similaires à `BigInt`. Lorsque `BigInt` devient largement disponible, ces applications peuvent abandonner ces dépendances en faveur des `BigInt` natifs. Cela permet de réduire le temps de chargement, de parsing et de compilation, et apporte par-dessus tout des améliorations significatives des performances d&apos;exécution.
+Auparavant, les applications JavaScript avec l'un de ces cas d'utilisation devaient recourir à des bibliothèques externes qui émulent des fonctionnalités similaires à `BigInt`. Lorsque `BigInt` devient largement disponible, ces applications peuvent abandonner ces dépendances en faveur des `BigInt` natifs. Cela permet de réduire le temps de chargement, de parsing et de compilation, et apporte par-dessus tout des améliorations significatives des performances d'exécution.
 
-![L&apos;implémentation native `BigInt` dans Chrome est plus performante que les bibliothèques externes populaires.](/_img/bigint/performance.svg)
+![L'implémentation native `BigInt` dans Chrome est plus performante que les bibliothèques externes populaires.](/_img/bigint/performance.svg)
 
-## L&apos;état actuel : `Number`
+## L'état actuel : `Number`
 
-Les `Number` en JavaScript sont représentés comme des [flottants en double précision](https://en.wikipedia.org/wiki/Floating-point_arithmetic). Cela signifie qu&apos;ils ont une précision limitée. La constante `Number.MAX_SAFE_INTEGER` donne le plus grand entier possible qui peut être incrémenté en toute sécurité. Sa valeur est `2**53-1`.
+Les `Number` en JavaScript sont représentés comme des [flottants en double précision](https://en.wikipedia.org/wiki/Floating-point_arithmetic). Cela signifie qu'ils ont une précision limitée. La constante `Number.MAX_SAFE_INTEGER` donne le plus grand entier possible qui peut être incrémenté en toute sécurité. Sa valeur est `2**53-1`.
 
 ```js
 const max = Number.MAX_SAFE_INTEGER;
@@ -41,7 +41,7 @@ const max = Number.MAX_SAFE_INTEGER;
 **Remarque :** Pour plus de lisibilité, je regroupe les chiffres de ce grand nombre par millier, en utilisant des soulignés comme séparateurs. [La proposition sur les séparateurs de littéraux numériques](/features/numeric-separators) permet exactement cela pour les littéraux numériques en JavaScript.
 :::
 
-L&apos;incrémentation donne le résultat attendu :
+L'incrémentation donne le résultat attendu :
 
 ```js
 max + 1;
@@ -55,13 +55,13 @@ max + 2;
 // → 9_007_199_254_740_992 ❌
 ```
 
-Notez comment `max + 1` donne le même résultat que `max + 2`. Chaque fois que nous obtenons cette valeur particulière en JavaScript, il est impossible de savoir si elle est précise ou non. Tout calcul sur des entiers en dehors de la plage des entiers sûrs (c&apos;est-à-dire de `Number.MIN_SAFE_INTEGER` à `Number.MAX_SAFE_INTEGER`) perd potentiellement en précision. Pour cette raison, nous ne pouvons nous fier qu&apos;aux valeurs numériques entières dans la plage sûre.
+Notez comment `max + 1` donne le même résultat que `max + 2`. Chaque fois que nous obtenons cette valeur particulière en JavaScript, il est impossible de savoir si elle est précise ou non. Tout calcul sur des entiers en dehors de la plage des entiers sûrs (c'est-à-dire de `Number.MIN_SAFE_INTEGER` à `Number.MAX_SAFE_INTEGER`) perd potentiellement en précision. Pour cette raison, nous ne pouvons nous fier qu'aux valeurs numériques entières dans la plage sûre.
 
 ## La nouveauté : `BigInt`
 
 Les `BigInt` sont un nouveau type primitif numérique en JavaScript qui peuvent représenter des entiers avec une [précision arbitraire](https://en.wikipedia.org/wiki/Arbitrary-precision_arithmetic). Avec les `BigInt`, vous pouvez stocker et manipuler en toute sécurité de grands entiers même au-delà de la limite des entiers sûrs pour les `Number`.
 
-Pour créer un `BigInt`, ajoutez le suffixe `n` à tout littéral entier. Par exemple, `123` devient `123n`. La fonction globale `BigInt(number)` peut être utilisée pour convertir un `Number` en `BigInt`. En d&apos;autres termes, `BigInt(123) === 123n`. Utilisons ces deux techniques pour résoudre le problème que nous avons rencontré plus tôt :
+Pour créer un `BigInt`, ajoutez le suffixe `n` à tout littéral entier. Par exemple, `123` devient `123n`. La fonction globale `BigInt(number)` peut être utilisée pour convertir un `Number` en `BigInt`. En d'autres termes, `BigInt(123) === 123n`. Utilisons ces deux techniques pour résoudre le problème que nous avons rencontré plus tôt :
 
 ```js
 BigInt(Number.MAX_SAFE_INTEGER) + 2n;
@@ -92,9 +92,9 @@ Les `BigInt` sont un nouveau type primitif dans le langage JavaScript. En tant q
 
 ```js
 typeof 123;
-// → &apos;number&apos;
+// → 'number'
 typeof 123n;
-// → &apos;bigint&apos;
+// → 'bigint'
 ```
 
 Étant donné que les `BigInt` sont un type distinct, un `BigInt` n'est jamais strictement égal à un `Number`, par exemple `42n !== 42`. Pour comparer un `BigInt` à un `Number`, convertissez l'un d'eux dans le type de l'autre avant de faire la comparaison ou utilisez l'égalité abstraite (`==`) :
@@ -110,11 +110,11 @@ Lorsqu'ils sont convertis en booléens (ce qui se produit lors de l'utilisation 
 
 ```js
 if (0n) {
-  console.log(&apos;if&apos;);
+  console.log('if');
 } else {
-  console.log(&apos;else&apos;);
+  console.log('else');
 }
-// → logs &apos;else&apos;, parce que `0n` est falsy.
+// → logs 'else', parce que `0n` est falsy.
 ```
 
 ### Opérateurs
@@ -163,7 +163,7 @@ BigInt(123);
 // → 123n
 BigInt(1.5);
 // → RangeError
-BigInt(&apos;1.5&apos;);
+BigInt('1.5');
 // → SyntaxError
 ```
 
@@ -179,7 +179,7 @@ Pour cette raison, nous recommandons soit d'utiliser la notation littérale `Big
 ```js
 123456789123456789n;
 // → 123456789123456789n ✅
-BigInt(&apos;123456789123456789&apos;);
+BigInt('123456789123456789');
 // → 123456789123456789n ✅
 ```
 
@@ -240,13 +240,13 @@ La proposition `BigInt` [modifie le comportement des opérateurs](#operators) (c
 Une solution plus réalisable et durable est d'écrire votre code en utilisant [la bibliothèque JSBI](https://github.com/GoogleChromeLabs/jsbi#why) pour l'instant. JSBI est un port JavaScript de l'implémentation de `BigInt` dans V8 et Chrome — par conception, il se comporte exactement comme la fonctionnalité native de `BigInt`. La différence est qu'au lieu de s'appuyer sur la syntaxe, il expose [une API](https://github.com/GoogleChromeLabs/jsbi#how) :
 
 ```js
-import JSBI from &apos;./jsbi.mjs&apos;;
+import JSBI from './jsbi.mjs';
 
 const max = JSBI.BigInt(Number.MAX_SAFE_INTEGER);
-const two = JSBI.BigInt(&apos;2&apos;);
+const two = JSBI.BigInt('2');
 const result = JSBI.add(max, two);
 console.log(result.toString());
-// → &apos;9007199254740993&apos;
+// → '9007199254740993'
 ```
 
 Une fois que les `BigInt` sont nativement supportés dans tous les navigateurs qui vous intéressent, vous pouvez [utiliser `babel-plugin-transform-jsbi-to-bigint` pour transpiler votre code en code natif `BigInt`](https://github.com/GoogleChromeLabs/babel-plugin-transform-jsbi-to-bigint) et supprimer la dépendance JSBI. Par exemple, l'exemple ci-dessus se transpile en :
@@ -256,7 +256,7 @@ const max = BigInt(Number.MAX_SAFE_INTEGER);
 const two = 2n;
 const result = max + two;
 console.log(result);
-// → &apos;9007199254740993&apos;
+// → '9007199254740993'
 ```
 
 ## Lectures complémentaires

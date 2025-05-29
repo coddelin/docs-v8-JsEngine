@@ -1,16 +1,16 @@
 ---
-title: &apos;公開與私有類別字段&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '公開與私有類別字段'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-12-13
 tags:
   - ECMAScript
   - ES2022
   - io19
   - Node.js 14
-description: &apos;多個提案擴展了現有的 JavaScript 類別語法，提供了新功能。本文章解釋了 V8 v7.2 和 Chrome 72 中新增的公開類別字段語法，以及即將推出的私有類別字段語法。&apos;
-tweet: &apos;1121395767170740225&apos;
+description: '多個提案擴展了現有的 JavaScript 類別語法，提供了新功能。本文章解釋了 V8 v7.2 和 Chrome 72 中新增的公開類別字段語法，以及即將推出的私有類別字段語法。'
+tweet: '1121395767170740225'
 ---
 多個提案擴展了現有的 JavaScript 類別語法，提供了新功能。本文章解釋了 V8 v7.2 和 Chrome 72 中新增的公開類別字段語法，以及即將推出的私有類別字段語法。
 
@@ -19,11 +19,11 @@ tweet: &apos;1121395767170740225&apos;
 ```js
 const counter = new IncreasingCounter();
 counter.value;
-// 記錄 &apos;獲取目前的值！&apos;
+// 記錄 '獲取目前的值！'
 // → 0
 counter.increment();
 counter.value;
-// 記錄 &apos;獲取目前的值！&apos;
+// 記錄 '獲取目前的值！'
 // → 1
 ```
 
@@ -39,7 +39,7 @@ class IncreasingCounter {
     this._count = 0;
   }
   get value() {
-    console.log(&apos;獲取目前的值！&apos;);
+    console.log('獲取目前的值！');
     return this._count;
   }
   increment() {
@@ -54,7 +54,7 @@ class IncreasingCounter {
 ```js
 const counter = new IncreasingCounter();
 counter.value;
-// 記錄 &apos;獲取目前的值！&apos;
+// 記錄 '獲取目前的值！'
 // → 0
 
 // 沒有什麼能阻止人們閱讀或修改
@@ -63,7 +63,7 @@ counter._count;
 // → 0
 counter._count = 42;
 counter.value;
-// 記錄 &apos;獲取目前的值！&apos;
+// 記錄 '獲取目前的值！'
 // → 42
 ```
 
@@ -75,7 +75,7 @@ counter.value;
 class IncreasingCounter {
   _count = 0;
   get value() {
-    console.log(&apos;獲取目前的值！&apos;);
+    console.log('獲取目前的值！');
     return this._count;
   }
   increment() {
@@ -96,7 +96,7 @@ class IncreasingCounter {
 class IncreasingCounter {
   #count = 0;
   get value() {
-    console.log(&apos;獲取目前的值！&apos;);
+    console.log('獲取目前的值！');
     return this.#count;
   }
   increment() {
@@ -135,7 +135,7 @@ class FakeMath {
   // `random` 是公開的靜態方法 (ES2015 語法)
   // 使用了 `#computeRandomNumber`。
   static random() {
-    console.log(&apos;我聽說你喜歡隨機數...&apos;);
+    console.log('我聽說你喜歡隨機數...');
     return FakeMath.#computeRandomNumber();
   }
 }
@@ -143,7 +143,7 @@ class FakeMath {
 FakeMath.PI;
 // → 3.142857142857143
 FakeMath.random();
-// 記錄 &apos;我聽說你喜歡隨機數...&apos;
+// 記錄 '我聽說你喜歡隨機數...'
 // → 4
 FakeMath.#totallyRandomNumber;
 // → SyntaxError
@@ -172,7 +172,7 @@ class Cat extends Animal {
     this.likesBaths = false;
   }
   meow() {
-    console.log(&apos;喵！&apos;);
+    console.log('喵！');
   }
 }
 ```
@@ -183,7 +183,7 @@ class Cat extends Animal {
 class Cat extends Animal {
   likesBaths = false;
   meow() {
-    console.log(&apos;喵！&apos;);
+    console.log('喵！');
   }
 }
 ```

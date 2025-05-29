@@ -1,6 +1,6 @@
 ---
-title: &apos;Nicht vertrauenswürdige Code-Mitigierungen&apos;
-description: &apos;Wenn Sie V8 einbetten und nicht vertrauenswürdigen JavaScript-Code ausführen, aktivieren Sie die V8-Maßnahmen, um sich vor spekulativen Seitenkanalangriffen zu schützen.&apos;
+title: 'Nicht vertrauenswürdige Code-Mitigierungen'
+description: 'Wenn Sie V8 einbetten und nicht vertrauenswürdigen JavaScript-Code ausführen, aktivieren Sie die V8-Maßnahmen, um sich vor spekulativen Seitenkanalangriffen zu schützen.'
 ---
 Anfang 2018 veröffentlichten Forscher von Googles Project Zero [eine neue Klasse von Angriffen](https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html), die die spekulativen Ausführungsoptimierungen vieler CPUs [ausnutzen](https://security.googleblog.com/2018/01/more-details-about-mitigations-for-cpu_4.html). Da V8 einen optimierenden JIT-Compiler, TurboFan, verwendet, um JavaScript schnell auszuführen, ist es unter bestimmten Umständen anfällig für die in der Offenlegung beschriebenen Seitenkanalangriffe.
 

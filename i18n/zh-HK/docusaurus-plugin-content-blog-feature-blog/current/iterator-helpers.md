@@ -1,13 +1,13 @@
 ---
-title: &apos;迭代器輔助工具&apos;
-author: &apos;Rezvan Mahdavi Hezaveh&apos;
+title: '迭代器輔助工具'
+author: 'Rezvan Mahdavi Hezaveh'
 avatars:
-  - &apos;rezvan-mahdavi-hezaveh&apos;
+  - 'rezvan-mahdavi-hezaveh'
 date: 2024-03-27
 tags:
   - ECMAScript
-description: &apos;幫助一般使用和消耗迭代器的介面。&apos;
-tweet: &apos;&apos;
+description: '幫助一般使用和消耗迭代器的介面。'
+tweet: ''
 ---
 
 *迭代器輔助工具* 是在 Iterator 原型上新增的一組方法，用於幫助迭代器的一般使用。由於這些輔助方法在迭代器原型上，因此任何在其原型鏈上具有 `Iterator.prototype` 的對象（例如陣列迭代器）都可以使用這些方法。在以下子部分中，我們解釋了迭代器輔助工具。所有提供的範例都是在一個包含博客文章列表的博客歸檔頁面上運作，展示如何使用迭代器輔助工具來尋找和操作文章。你可在 [V8 博客頁面](https://v8.dev/blog) 上嘗試它們！
@@ -20,7 +20,7 @@ tweet: &apos;&apos;
 
 ```javascript
 // 從博客歸檔頁面選擇文章列表。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // 獲取文章列表，返回其文字內容（標題）並輸出它們。
 for (const post of posts.values().map((x) => x.textContent)) {
@@ -34,10 +34,10 @@ for (const post of posts.values().map((x) => x.textContent)) {
 
 ```javascript
 // 從博客歸檔頁面選擇文章列表。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // 篩選包含 `V8` 的文章並輸出它們。
-for (const post of posts.values().filter((x) => x.textContent.includes(&apos;V8&apos;))) {
+for (const post of posts.values().filter((x) => x.textContent.includes('V8'))) {
   console.log(post);
 } 
 ```
@@ -48,7 +48,7 @@ for (const post of posts.values().filter((x) => x.textContent.includes(&apos;V8&
 
 ```javascript
 // 從博客歸檔頁面選擇文章列表。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // 選擇最近的10篇文章並輸出它們。
 for (const post of posts.values().take(10)) {
@@ -62,7 +62,7 @@ for (const post of posts.values().take(10)) {
 
 ```javascript
 // 從博客歸檔頁面選擇文章列表。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // 跳過最近的10篇文章並輸出剩下的文章。
 for (const post of posts.values().drop(10)) {
@@ -76,10 +76,10 @@ for (const post of posts.values().drop(10)) {
 
 ```javascript
 // 從博客歸檔頁面選擇文章列表。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // 獲取所有文章的標籤列表並輸出它們。每篇文章可以有多個標籤。
-for (const tag of posts.values().flatMap((x) => x.querySelectorAll(&apos;.tag&apos;).values())) {
+for (const tag of posts.values().flatMap((x) => x.querySelectorAll('.tag').values())) {
     console.log(tag.textContent);
 }
 ```
@@ -90,16 +90,16 @@ for (const tag of posts.values().flatMap((x) => x.querySelectorAll(&apos;.tag&ap
 
 ```javascript
 // 從博客歸檔頁面選擇文章列表。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // 獲取所有文章的標籤列表。
-const tagLists = posts.values().flatMap((x) => x.querySelectorAll(&apos;.tag&apos;).values());
+const tagLists = posts.values().flatMap((x) => x.querySelectorAll('.tag').values());
 
 // 獲取標籤列表中每個標籤的文字內容。
 const tags = tagLists.map((x) => x.textContent);
 
 // 計算帶有“安全”標籤的文章數量。
-const count = tags.reduce((sum , value) => sum + (value === &apos;security&apos; ? 1 : 0), 0);
+const count = tags.reduce((sum , value) => sum + (value === 'security' ? 1 : 0), 0);
 console.log(count);
 ```
 
@@ -109,7 +109,7 @@ console.log(count);
 
 ```javascript
 // 從博客歸檔頁面選擇文章列表。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // 從最近的10篇文章列表創建一個數組。
 const arr = posts.values().take(10).toArray();
@@ -121,11 +121,11 @@ const arr = posts.values().take(10).toArray();
 
 ```javascript
 // 從博客歸檔頁面選擇文章列表。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // 獲取至少有一篇博客文章發佈的日期並記錄它們。
 const dates = new Set();
-const forEach = posts.values().forEach((x) => dates.add(x.querySelector(&apos;time&apos;)));
+const forEach = posts.values().forEach((x) => dates.add(x.querySelector('time')));
 console.log(dates);
 ```
 
@@ -135,10 +135,10 @@ console.log(dates);
 
 ```javascript
 // 從博客歸檔頁面選擇博客文章列表。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // 檢查任意博客文章的文本內容（標題）是否包含 `Iterators` 關鍵字。
-posts.values().some((x) => x.textContent.includes(&apos;Iterators&apos;));
+posts.values().some((x) => x.textContent.includes('Iterators'));
 ```
 
 ## .every(fn)
@@ -147,10 +147,10 @@ posts.values().some((x) => x.textContent.includes(&apos;Iterators&apos;));
 
 ```javascript
 // 從博客歸檔頁面選擇博客文章列表。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // 確定所有博客文章的文本內容（標題）是否包含 `V8` 關鍵字。
-posts.values().every((x) => x.textContent.includes(&apos;V8&apos;));
+posts.values().every((x) => x.textContent.includes('V8'));
 ```
 
 ## .find(fn)
@@ -159,10 +159,10 @@ posts.values().every((x) => x.textContent.includes(&apos;V8&apos;));
 
 ```javascript
 // 從博客歸檔頁面選擇博客文章列表。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // 記錄最近一篇包含 `V8` 關鍵字的博客文章的文本內容（標題）。
-console.log(posts.values().find((x) => x.textContent.includes(&apos;V8&apos;)).textContent);
+console.log(posts.values().find((x) => x.textContent.includes('V8')).textContent);
 ```
 
 ## Iterator.from(object)
@@ -171,11 +171,11 @@ console.log(posts.values().find((x) => x.textContent.includes(&apos;V8&apos;)).t
 
 ```javascript
 // 從博客歸檔頁面選擇博客文章列表。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // 首先從帖子中創建一個迭代器。然後，記錄最近一篇包含 `V8` 關鍵字的
 // 博客文章的文本內容（標題）。
-console.log(Iterator.from(posts).find((x) => x.textContent.includes(&apos;V8&apos;)).textContent);
+console.log(Iterator.from(posts).find((x) => x.textContent.includes('V8')).textContent);
 ```
 
 ## 可用性

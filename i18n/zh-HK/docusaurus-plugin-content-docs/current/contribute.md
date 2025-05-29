@@ -1,6 +1,6 @@
 ---
-title: &apos;貢獻至 V8&apos;
-description: &apos;本文檔說明了如何為 V8 貢獻。&apos;
+title: '貢獻至 V8'
+description: '本文檔說明了如何為 V8 貢獻。'
 ---
 本頁面提供的信息解釋了如何為 V8 貢獻。請在提交貢獻之前確保完整閱讀。
 

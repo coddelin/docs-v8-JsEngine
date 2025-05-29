@@ -323,11 +323,11 @@ const array = new Array(3);
 // Das Array ist zu diesem Zeitpunkt spärlich, daher wird es als
 // `HOLEY_SMI_ELEMENTS` markiert, also die spezifischste Möglichkeit
 // basierend auf den aktuellen Informationen.
-array[0] = &apos;a&apos;;
+array[0] = 'a';
 // Moment, das ist ein String anstelle eines kleinen ganzen Werts …
 // Daher erfolgt ein Übergang zu `HOLEY_ELEMENTS`.
-array[1] = &apos;b&apos;;
-array[2] = &apos;c&apos;;
+array[1] = 'b';
+array[2] = 'c';
 // Zu diesem Zeitpunkt sind alle drei Positionen im Array belegt,
 // sodass das Array vollständig ist (d.h. nicht mehr spärlich).
 // Wir können jedoch nicht zu einer spezifischeren Art wie `PACKED_ELEMENTS`
@@ -339,7 +339,7 @@ Einmal als holey markiert, bleibt das Array für immer holey – selbst wenn sp�
 Eine bessere Möglichkeit, ein Array zu erstellen, ist die Verwendung eines Literals:
 
 ```js
-const array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
+const array = ['a', 'b', 'c'];
 // Elemente-Art: PACKED_ELEMENTS
 ```
 

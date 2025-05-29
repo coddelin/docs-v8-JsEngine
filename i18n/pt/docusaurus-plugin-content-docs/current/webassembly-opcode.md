@@ -123,7 +123,7 @@ index 26df61ceb8..b1ee6edd71 100644
 Execute o teste:
 
 ```
-$ tools/dev/gm.py x64.debug &apos;cctest/test-run-wasm-simd/RunWasmTurbofan_I32Add1&apos;
+$ tools/dev/gm.py x64.debug 'cctest/test-run-wasm-simd/RunWasmTurbofan_I32Add1'
 ...
 === cctest/test-run-wasm/RunWasmTurbofan_Int32Add1 ===
 #
@@ -195,7 +195,7 @@ index f666bbb7c1..1d93601584 100644
 Tentar executar o mesmo teste leva a uma falha de compilação que hints onde fazer alterações:
 
 ```
-../../src/compiler/wasm-compiler.cc:717:34: erro: nenhum membro chamado &apos;Int32Add1&apos; em &apos;v8::internal::compiler::MachineOperatorBuilder&apos;; você quis dizer &apos;Int32Add&apos;?
+../../src/compiler/wasm-compiler.cc:717:34: erro: nenhum membro chamado 'Int32Add1' em 'v8::internal::compiler::MachineOperatorBuilder'; você quis dizer 'Int32Add'?
       return graph()->NewNode(m->Int32Add1(), input);
                                  ^~~~~~~~~
                                  Int32Add
@@ -343,12 +343,12 @@ index 9b8be0e0b5..7f5faeb87b 100644
 Executando nosso teste, vemos novos erros de compilação:
 
 ```
-../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: erro: valor de enumeração &apos;kX64Int32Add1&apos; não tratado no switch [-Werror,-Wswitch]
+../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: erro: valor de enumeração 'kX64Int32Add1' não tratado no switch [-Werror,-Wswitch]
   switch (instr->arch_opcode()) {
           ^
 1 erro gerado.
 ...
-../../src/compiler/backend/x64/code-generator-x64.cc:733:11: erro: valor de enumeração &apos;kX64Int32Add1&apos; não tratado no switch [-Werror,-Wswitch]
+../../src/compiler/backend/x64/code-generator-x64.cc:733:11: erro: valor de enumeração 'kX64Int32Add1' não tratado no switch [-Werror,-Wswitch]
   switch (arch_opcode) {
           ^
 1 erro gerado.

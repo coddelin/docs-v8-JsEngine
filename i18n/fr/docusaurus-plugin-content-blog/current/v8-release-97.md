@@ -1,13 +1,13 @@
 ---
-title: &apos;Publication de V8 v9.7&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))&apos;
+title: 'Publication de V8 v9.7'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-11-05
 tags:
  - publication
-description: &apos;La version V8 v9.7 introduit de nouvelles méthodes JavaScript pour rechercher à rebours dans les tableaux.&apos;
-tweet: &apos;&apos;
+description: 'La version V8 v9.7 introduit de nouvelles méthodes JavaScript pour rechercher à rebours dans les tableaux.'
+tweet: ''
 ---
 Toutes les quatre semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](https://v8.dev/docs/release-process). Chaque version est dérivée du dépôt Git principal de V8 juste avant une étape bêta de Chrome. Aujourd'hui, nous sommes ravis d'annoncer notre nouvelle branche, [V8 version 9.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.7), qui est en version bêta jusqu'à sa publication en coordination avec Chrome 97 Stable dans quelques semaines. V8 v9.7 regorge de nouvelles fonctionnalités pour les développeurs. Cet article offre un aperçu de certains des points forts attendus lors de la publication.
 

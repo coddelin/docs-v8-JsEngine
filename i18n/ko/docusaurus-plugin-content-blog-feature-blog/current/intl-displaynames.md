@@ -1,15 +1,15 @@
 ---
-title: &apos;`Intl.DisplayNames`&apos;
-author: &apos;Shu-yu Guo ([@_shu](https://twitter.com/_shu)) 과 Frank Yung-Fong Tang&apos;
+title: '`Intl.DisplayNames`'
+author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu)) 과 Frank Yung-Fong Tang'
 avatars:
-  - &apos;shu-yu-guo&apos;
-  - &apos;frank-tang&apos;
+  - 'shu-yu-guo'
+  - 'frank-tang'
 date: 2020-02-13
 tags:
   - Intl
   - Node.js 14
-description: &apos;Intl.DisplayNames API는 언어, 지역, 스크립트, 통화의 로컬화된 이름을 제공합니다.&apos;
-tweet: &apos;1232333889005334529&apos;
+description: 'Intl.DisplayNames API는 언어, 지역, 스크립트, 통화의 로컬화된 이름을 제공합니다.'
+tweet: '1232333889005334529'
 ---
 전 세계를 대상으로 하는 웹 애플리케이션은 다양한 언어로 언어, 지역, 스크립트, 통화의 표시 이름을 보여줄 필요가 있습니다. 이러한 이름의 번역에는 데이터가 필요하며, 이는 [Unicode CLDR](http://cldr.unicode.org/translation/)에서 제공됩니다. 애플리케이션의 일부로 데이터를 포함시키는 것은 개발자 시간에 비용이 발생합니다. 사용자들은 언어 및 지역 이름의 일관된 번역을 선호할 가능성이 있으며, 세계의 지리적 변화에 맞춰 해당 데이터를 최신 상태로 유지하려면 지속적인 유지 관리가 필요합니다.
 
@@ -21,65 +21,65 @@ tweet: &apos;1232333889005334529&apos;
 다음 예제는 [ISO-3166 2글자 국가 코드](https://www.iso.org/iso-3166-country-codes.html)를 사용하여 영어로 지역 이름을 얻기 위해 `Intl.DisplayNames` 객체를 생성하는 방법을 보여줍니다.
 
 ```js
-const regionNames = new Intl.DisplayNames([&apos;en&apos;], { type: &apos;region&apos; });
-regionNames.of(&apos;US&apos;);
-// → &apos;United States&apos;
-regionNames.of(&apos;BA&apos;);
-// → &apos;Bosnia & Herzegovina&apos;
-regionNames.of(&apos;MM&apos;);
-// → &apos;Myanmar (Burma)&apos;
+const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+regionNames.of('US');
+// → 'United States'
+regionNames.of('BA');
+// → 'Bosnia & Herzegovina'
+regionNames.of('MM');
+// → 'Myanmar (Burma)'
 ```
 
-다음 예제는 [Unicode&apos;s 언어 식별자 문법](http://unicode.org/reports/tr35/#Unicode_language_identifier)을 사용하여 번체 중국어로 언어 이름을 가져옵니다.
+다음 예제는 [Unicode's 언어 식별자 문법](http://unicode.org/reports/tr35/#Unicode_language_identifier)을 사용하여 번체 중국어로 언어 이름을 가져옵니다.
 
 ```js
-const languageNames = new Intl.DisplayNames([&apos;zh-Hant&apos;], { type: &apos;language&apos; });
-languageNames.of(&apos;fr&apos;);
-// → &apos;法文&apos;
-languageNames.of(&apos;zh&apos;);
-// → &apos;中文&apos;
-languageNames.of(&apos;de&apos;);
-// → &apos;德文&apos;
+const languageNames = new Intl.DisplayNames(['zh-Hant'], { type: 'language' });
+languageNames.of('fr');
+// → '法文'
+languageNames.of('zh');
+// → '中文'
+languageNames.of('de');
+// → '德文'
 ```
 
 다음 예제는 [ISO-4217 3글자 통화 코드](https://www.iso.org/iso-4217-currency-codes.html)를 사용하여 간체 중국어로 통화 이름을 가져옵니다. 특정 언어에서 단수형 및 복수형이 구분되는 경우, 통화 이름은 단수형입니다. 복수형은 [`Intl.NumberFormat`](https://v8.dev/features/intl-numberformat)을 사용할 수 있습니다.
 
 ```js
-const currencyNames = new Intl.DisplayNames([&apos;zh-Hans&apos;], {type: &apos;currency&apos;});
-currencyNames.of(&apos;USD&apos;);
-// → &apos;美元&apos;
-currencyNames.of(&apos;EUR&apos;);
-// → &apos;欧元&apos;
-currencyNames.of(&apos;JPY&apos;);
-// → &apos;日元&apos;
-currencyNames.of(&apos;CNY&apos;);
-// → &apos;人民币&apos;
+const currencyNames = new Intl.DisplayNames(['zh-Hans'], {type: 'currency'});
+currencyNames.of('USD');
+// → '美元'
+currencyNames.of('EUR');
+// → '欧元'
+currencyNames.of('JPY');
+// → '日元'
+currencyNames.of('CNY');
+// → '人民币'
 ```
 
 다음 예제는 [ISO-15924 4글자 스크립트 코드](http://unicode.org/iso15924/iso15924-codes.html)를 사용하여 영어로 스크립트를 보여줍니다.
 
 ```js
-const scriptNames = new Intl.DisplayNames([&apos;en&apos;], { type: &apos;script&apos; });
-scriptNames.of(&apos;Latn&apos;);
-// → &apos;Latin&apos;
-scriptNames.of(&apos;Arab&apos;);
-// → &apos;Arabic&apos;
-scriptNames.of(&apos;Kana&apos;);
-// → &apos;Katakana&apos;
+const scriptNames = new Intl.DisplayNames(['en'], { type: 'script' });
+scriptNames.of('Latn');
+// → 'Latin'
+scriptNames.of('Arab');
+// → 'Arabic'
+scriptNames.of('Kana');
+// → 'Katakana'
 ```
 
 더 정교한 사용을 위해 두 번째 `options` 매개변수는 `style` 속성을 지원합니다. `style` 속성은 표시 이름의 길이와 관련되며, `"long"`, `"short"`, `"narrow"` 중 하나일 수 있습니다. 서로 다른 스타일의 값이 항상 차이가 있는 것은 아닙니다. 기본값은 `"long"`입니다.
 
 ```js
-const longLanguageNames = new Intl.DisplayNames([&apos;en&apos;], { type: &apos;language&apos; });
-longLanguageNames.of(&apos;en-US&apos;);
-// → &apos;American English&apos;
-const shortLanguageNames = new Intl.DisplayNames([&apos;en&apos;], { type: &apos;language&apos;, style: &apos;short&apos; });
-shortLanguageNames.of(&apos;en-US&apos;);
-// → &apos;US English&apos;
-const narrowLanguageNames = new Intl.DisplayNames([&apos;en&apos;], { type: &apos;language&apos;, style: &apos;narrow&apos; });
-narrowLanguageNames.of(&apos;en-US&apos;);
-// → &apos;US English&apos;
+const longLanguageNames = new Intl.DisplayNames(['en'], { type: 'language' });
+longLanguageNames.of('en-US');
+// → 'American English'
+const shortLanguageNames = new Intl.DisplayNames(['en'], { type: 'language', style: 'short' });
+shortLanguageNames.of('en-US');
+// → 'US English'
+const narrowLanguageNames = new Intl.DisplayNames(['en'], { type: 'language', style: 'narrow' });
+narrowLanguageNames.of('en-US');
+// → 'US English'
 ```
 
 ## 전체 API

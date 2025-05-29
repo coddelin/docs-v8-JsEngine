@@ -1,13 +1,13 @@
 ---
-title: &apos;Hay `Math.random()`, y luego hay `Math.random()`&apos;
-author: &apos;Yang Guo ([@hashseed](https://twitter.com/hashseed)), ingeniero de software y diseñador de dados&apos;
+title: 'Hay `Math.random()`, y luego hay `Math.random()`'
+author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed)), ingeniero de software y diseñador de dados'
 avatars:
-  - &apos;yang-guo&apos;
+  - 'yang-guo'
 date: 2015-12-17 13:33:37
 tags:
   - ECMAScript
   - internals
-description: &apos;La implementación de Math.random en V8 ahora utiliza un algoritmo llamado xorshift128+, mejorando la aleatoriedad en comparación con la antigua implementación MWC1616.&apos;
+description: 'La implementación de Math.random en V8 ahora utiliza un algoritmo llamado xorshift128+, mejorando la aleatoriedad en comparación con la antigua implementación MWC1616.'
 ---
 > `Math.random()` devuelve un valor de tipo `Number` con signo positivo, mayor o igual a `0` pero menor que `1`, elegido aleatoriamente o pseudo-aleatoriamente con una distribución aproximadamente uniforme en ese rango, utilizando un algoritmo o estrategia dependiente de la implementación. Esta función no toma argumentos.
 

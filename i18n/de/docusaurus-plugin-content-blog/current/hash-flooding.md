@@ -1,12 +1,12 @@
 ---
-title: &apos;Über die Hash-Flooding-Sicherheitslücke in Node.js…&apos;
-author: &apos;Yang Guo ([@hashseed](https://twitter.com/hashseed))&apos;
+title: 'Über die Hash-Flooding-Sicherheitslücke in Node.js…'
+author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed))'
 avatars:
-  - &apos;yang-guo&apos;
+  - 'yang-guo'
 date: 2017-08-11 13:33:37
 tags:
   - sicherheit
-description: &apos;Node.js litt unter einer Hash-Flooding-Sicherheitslücke. Dieser Beitrag liefert Hintergrundinformationen und erklärt die Lösung in V8.&apos;
+description: 'Node.js litt unter einer Hash-Flooding-Sicherheitslücke. Dieser Beitrag liefert Hintergrundinformationen und erklärt die Lösung in V8.'
 ---
 Anfang Juli dieses Jahres hat Node.js ein [Sicherheitsupdate](https://nodejs.org/en/blog/vulnerability/july-2017-security-releases/) für alle derzeit gepflegten Zweige veröffentlicht, um eine Hash-Flooding-Sicherheitslücke zu beheben. Dieser Zwischenfix geht jedoch auf Kosten einer signifikanten Verschlechterung der Startleistung. In der Zwischenzeit hat V8 eine Lösung implementiert, die die Leistungseinbußen vermeidet.
 

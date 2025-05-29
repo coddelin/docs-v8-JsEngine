@@ -140,7 +140,7 @@ locale.hourCycle;
 locale.region;
 // → '419'
 locale.toString();
-// → &apos;es-419-u-ca-gregory-hc-h12&apos;
+// → 'es-419-u-ca-gregory-hc-h12'
 ```
 
 ### Hashbang 语法

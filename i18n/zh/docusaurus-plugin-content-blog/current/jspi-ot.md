@@ -1,7 +1,7 @@
 ---
-title: &apos;WebAssembly JSPI 即将进入原始试验&apos;
-description: &apos;我们将解释 JSPI 原始试验的开始&apos;
-author: &apos;Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl&apos;
+title: 'WebAssembly JSPI 即将进入原始试验'
+description: '我们将解释 JSPI 原始试验的开始'
+author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
 date: 2024-03-06
 tags:
   - WebAssembly

@@ -1,13 +1,13 @@
 ---
-title: &apos;Mejor almacenamiento en caché del código&apos;
-author: &apos;Mythri Alle, Jefa del Almacenamiento en Caché de Código&apos;
+title: 'Mejor almacenamiento en caché del código'
+author: 'Mythri Alle, Jefa del Almacenamiento en Caché de Código'
 date: 2018-04-24 13:33:37
 avatars:
-  - &apos;mythri-alle&apos;
+  - 'mythri-alle'
 tags:
   - internals
-tweet: &apos;988728000677142528&apos;
-description: &apos;A partir de Chrome 66, V8 almacena más (byte)código en caché al generar el caché después de la ejecución a nivel superior.&apos;
+tweet: '988728000677142528'
+description: 'A partir de Chrome 66, V8 almacena más (byte)código en caché al generar el caché después de la ejecución a nivel superior.'
 ---
 V8 utiliza [almacenamiento en caché de código](/blog/code-caching) para guardar el código generado de scripts usados frecuentemente. A partir de Chrome 66, almacenamos más código en caché al generar el caché después de la ejecución a nivel superior. Esto genera una reducción del 20–40% en el tiempo de análisis y compilación durante la carga inicial.
 

@@ -1,15 +1,15 @@
 ---
-title: &apos;BigInt：JavaScriptにおける任意精度整数&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'BigInt：JavaScriptにおける任意精度整数'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-05-01
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: &apos;BigIntはJavaScriptにおける新しい数値プリミティブで、任意精度の整数を表現できます。本記事ではいくつかの使用例を紹介し、JavaScriptのNumberと比較することでChrome 67における新しい機能について説明します。&apos;
-tweet: &apos;990991035630206977&apos;
+description: 'BigIntはJavaScriptにおける新しい数値プリミティブで、任意精度の整数を表現できます。本記事ではいくつかの使用例を紹介し、JavaScriptのNumberと比較することでChrome 67における新しい機能について説明します。'
+tweet: '990991035630206977'
 ---
 `BigInt`はJavaScriptにおける新しい数値プリミティブで、任意精度の整数を表現できます。`BigInt`を使用すると、`Number`で安全な整数制限を超える大きな整数を安全に保存し操作することができます。本記事ではいくつかの使用例を紹介し、JavaScriptの`Number`と比較することでChrome 67における新機能を説明します。
 
@@ -239,13 +239,13 @@ view[0];
 現在は、より実行可能で未来志向の解決策として[JSBIライブラリ](https://github.com/GoogleChromeLabs/jsbi#why)を使用してコードを書くことです。JSBIはV8およびChromeの`BigInt`実装をJavaScriptに移植したもので、設計上、ネイティブの`BigInt`機能と完全に同じように動作します。その違いは、構文に依存する代わりに[API](https://github.com/GoogleChromeLabs/jsbi#how)を公開することです。
 
 ```js
-import JSBI from &apos;./jsbi.mjs&apos;;
+import JSBI from './jsbi.mjs';
 
 const max = JSBI.BigInt(Number.MAX_SAFE_INTEGER);
-const two = JSBI.BigInt(&apos;2&apos;);
+const two = JSBI.BigInt('2');
 const result = JSBI.add(max, two);
 console.log(result.toString());
-// → &apos;9007199254740993&apos;
+// → '9007199254740993'
 ```
 
 関心のあるすべてのブラウザがネイティブの`BigInt`をサポートするようになったら、[`babel-plugin-transform-jsbi-to-bigint`を使用してコードをネイティブの`BigInt`コードにトランスパイル](https://github.com/GoogleChromeLabs/babel-plugin-transform-jsbi-to-bigint)し、JSBI依存を削除できます。例えば、上記の例は次のようにトランスパイルされます。
@@ -255,7 +255,7 @@ const max = BigInt(Number.MAX_SAFE_INTEGER);
 const two = 2n;
 const result = max + two;
 console.log(result);
-// → &apos;9007199254740993&apos;
+// → '9007199254740993'
 ```
 
 ## さらなる学び

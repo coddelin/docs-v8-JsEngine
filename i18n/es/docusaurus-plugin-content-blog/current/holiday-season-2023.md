@@ -1,6 +1,6 @@
 ---
-title: &apos;¡V8 es más rápido y seguro que nunca!&apos;
-author: &apos;[Victor Gomes](https://twitter.com/VictorBFG), el experto en Glühwein&apos;
+title: '¡V8 es más rápido y seguro que nunca!'
+author: '[Victor Gomes](https://twitter.com/VictorBFG), el experto en Glühwein'
 avatars:
   - victor-gomes
 date: 2023-12-14
@@ -10,7 +10,7 @@ tags:
   - seguridad
   - benchmarks
 description: "Los impresionantes logros de V8 en 2023"
-tweet: &apos;&apos;
+tweet: ''
 ---
 
 Bienvenido al emocionante mundo de V8, donde la velocidad no es solo una característica, sino un estilo de vida. Al despedirnos de 2023, es hora de celebrar los impresionantes logros que V8 ha alcanzado este año.
@@ -50,7 +50,7 @@ Este año llegaron muchas nuevas características y mejoras de rendimiento para 
 
 # Recolección de basura para WebAssembly
 
-Hablando de llevar nuevas clases de aplicaciones a la web, finalmente lanzamos la Recolección de Basura de WebAssembly (WasmGC) después de varios años de trabajo en la [propuesta](https://github.com/WebAssembly/gc/blob/main/proposals/gc/MVP.md)&apos;s de estandarización e [implementación](https://bugs.chromium.org/p/v8/issues/detail?id=7748). Wasm ahora tiene una forma integrada de asignar objetos y matrices que son gestionados por el recolector de basura existente de V8. Eso permite compilar aplicaciones escritas en Java, Kotlin, Dart y lenguajes similares a Wasm – donde generalmente se ejecutan aproximadamente el doble de rápido que cuando se compilan a JavaScript. Vea [nuestra entrada de blog](https://v8.dev/blog/wasm-gc-porting) para obtener muchos más detalles.
+Hablando de llevar nuevas clases de aplicaciones a la web, finalmente lanzamos la Recolección de Basura de WebAssembly (WasmGC) después de varios años de trabajo en la [propuesta](https://github.com/WebAssembly/gc/blob/main/proposals/gc/MVP.md)'s de estandarización e [implementación](https://bugs.chromium.org/p/v8/issues/detail?id=7748). Wasm ahora tiene una forma integrada de asignar objetos y matrices que son gestionados por el recolector de basura existente de V8. Eso permite compilar aplicaciones escritas en Java, Kotlin, Dart y lenguajes similares a Wasm – donde generalmente se ejecutan aproximadamente el doble de rápido que cuando se compilan a JavaScript. Vea [nuestra entrada de blog](https://v8.dev/blog/wasm-gc-porting) para obtener muchos más detalles.
 
 # Seguridad
 

@@ -1,6 +1,6 @@
 ---
-title: &apos;Integración de `perf` en Linux de V8&apos;
-description: &apos;Este documento explica cómo analizar el rendimiento del código generado por JIT de V8 utilizando la herramienta `perf` de Linux.&apos;
+title: 'Integración de `perf` en Linux de V8'
+description: 'Este documento explica cómo analizar el rendimiento del código generado por JIT de V8 utilizando la herramienta `perf` de Linux.'
 ---
 V8 tiene soporte integrado para la herramienta `perf` de Linux. Se habilita mediante las opciones de línea de comandos `--perf-prof`.
 V8 escribe datos de rendimiento durante la ejecución en un archivo que puede ser utilizado para analizar el rendimiento del código generado por JIT de V8 (incluidos los nombres de las funciones de JS) con la herramienta `perf` de Linux.
@@ -15,7 +15,7 @@ V8 escribe datos de rendimiento durante la ejecución en un archivo que puede se
 Para usar la integración de V8 con `perf` de Linux, necesitas construirlo con la bandera gn `enable_profiling = true`:
 
 ```bash
-echo &apos;enable_profiling = true&apos; >> out/x64.release/args.gn
+echo 'enable_profiling = true' >> out/x64.release/args.gn
 autoninja -C out/x64.release
 ```
 
@@ -30,9 +30,9 @@ tools/profiling/linux-perf-d8.py out/x64.release/d8 path/to/test.js;
 Un ejemplo más completo:
 
 ```bash
-echo &apos;(function f() {
+echo '(function f() {
     var s = 0; for (var i = 0; i < 1000000000; i++) { s += i; } return s;
-  })();&apos; > test.js;
+  })();' > test.js;
 
 # Usar banderas personalizadas de V8 y un directorio de salida separado para menos desorden:
 mkdir perf_results
@@ -122,7 +122,7 @@ perf report --input=perf.data.jitted;
     out/x64.release/chrome \
         --user-data-dir=`mktemp -d` \
         --no-sandbox --incognito --enable-benchmarking \
-        --js-flags=&apos;--perf-prof --no-write-protect-code-memory --interpreted-frames-native-stack&apos;
+        --js-flags='--perf-prof --no-write-protect-code-memory --interpreted-frames-native-stack'
     ```
 
 1. Después de iniciar Chrome, encuentre el ID del proceso de renderizador utilizando el Administrador de Tareas y úselo para comenzar a perfilar:

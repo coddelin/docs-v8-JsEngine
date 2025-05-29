@@ -1,12 +1,12 @@
 ---
-title: &apos;Schnelle Eigenschaften in V8&apos;
-author: &apos;Camillo Bruni ([@camillobruni](https://twitter.com/camillobruni)), ebenfalls Autor von [„Schnelles `for`-`in`”](/blog/fast-for-in)&apos;
+title: 'Schnelle Eigenschaften in V8'
+author: 'Camillo Bruni ([@camillobruni](https://twitter.com/camillobruni)), ebenfalls Autor von [„Schnelles `for`-`in`”](/blog/fast-for-in)'
 avatars:
-  - &apos;camillo-bruni&apos;
+  - 'camillo-bruni'
 date: 2017-08-30 13:33:37
 tags:
   - internals
-description: &apos;Dieser technische Deep-Dive erklärt, wie V8 JavaScript-Eigenschaften im Hintergrund verwaltet.&apos;
+description: 'Dieser technische Deep-Dive erklärt, wie V8 JavaScript-Eigenschaften im Hintergrund verwaltet.'
 ---
 In diesem Blogbeitrag möchten wir erklären, wie V8 intern JavaScript-Eigenschaften verarbeitet. Aus JavaScript-Sicht sind nur wenige Unterscheidungen für Eigenschaften notwendig. JavaScript-Objekte verhalten sich meist wie Wörterbücher, mit Zeichenketten als Schlüsseln und beliebigen Objekten als Werten. Die Spezifikation behandelt jedoch während der [Iteration](https://tc39.es/ecma262/#sec-ordinaryownpropertykeys) ganzzahlig indizierte Eigenschaften anders als andere Eigenschaften. Abgesehen davon verhalten sich die verschiedenen Eigenschaften im Wesentlichen gleich, unabhängig davon, ob sie ganzzahlig indiziert sind oder nicht.
 

@@ -1,13 +1,13 @@
 ---
-title: &apos;Kurze eingebaute Aufrufe&apos;
-author: &apos;[Toon Verwaest](https://twitter.com/tverwaes), Der große Short&apos;
+title: 'Kurze eingebaute Aufrufe'
+author: '[Toon Verwaest](https://twitter.com/tverwaes), Der große Short'
 avatars:
   - toon-verwaest
 date: 2021-05-06
 tags:
   - JavaScript
-description: &apos;In V8 v9.1 haben wir die eingebetteten Builtins vorübergehend auf Desktop deaktiviert, um Leistungsprobleme zu vermeiden, die durch weit entfernte indirekte Aufrufe verursacht werden.&apos;
-tweet: &apos;1394267917013897216&apos;
+description: 'In V8 v9.1 haben wir die eingebetteten Builtins vorübergehend auf Desktop deaktiviert, um Leistungsprobleme zu vermeiden, die durch weit entfernte indirekte Aufrufe verursacht werden.'
+tweet: '1394267917013897216'
 ---
 
 In V8 v9.1 haben wir die [eingebetteten Builtins](https://v8.dev/blog/embedded-builtins) vorübergehend auf Desktop deaktiviert. Obwohl das Einbetten von Builtins die Speichernutzung erheblich verbessert, haben wir festgestellt, dass Funktionsaufrufe zwischen eingebetteten Builtins und JIT-kompiliertem Code zu erheblichen Leistungseinbußen führen können. Diese Kosten hängen von der Mikroarchitektur der CPU ab. In diesem Beitrag erklären wir, warum dies passiert, wie die Leistung aussieht und was wir planen, um dieses Problem langfristig zu lösen.
@@ -37,7 +37,7 @@ Während bei ARM64 der architektonische Aufrufbereich für direkte Aufrufe auf 1
 
 ## Temporäre Lösung: Builtins kopieren
 
-Um die Kosten häufiger Fehlvorhersagen zu vermeiden und unnötige Abhängigkeit von der Zweigvorhersage auf x86-64 zu reduzieren, haben wir entschieden, die Builtins vorübergehend in V8&apos;s Zeigerkompressionskäfig auf Desktop-Geräten mit ausreichendem Speicher zu kopieren. Damit wird der kopierte Builtin-Code nahe am dynamisch generierten Code platziert. Die Leistungsergebnisse hängen stark von der Gerätekonfiguration ab, aber hier sind einige Ergebnisse von unseren Leistungsbots:
+Um die Kosten häufiger Fehlvorhersagen zu vermeiden und unnötige Abhängigkeit von der Zweigvorhersage auf x86-64 zu reduzieren, haben wir entschieden, die Builtins vorübergehend in V8's Zeigerkompressionskäfig auf Desktop-Geräten mit ausreichendem Speicher zu kopieren. Damit wird der kopierte Builtin-Code nahe am dynamisch generierten Code platziert. Die Leistungsergebnisse hängen stark von der Gerätekonfiguration ab, aber hier sind einige Ergebnisse von unseren Leistungsbots:
 
 ![Browsing-Benchmarks, die von Live-Seiten aufgezeichnet wurden](/_img/short-builtin-calls/v8-browsing.svg)
 

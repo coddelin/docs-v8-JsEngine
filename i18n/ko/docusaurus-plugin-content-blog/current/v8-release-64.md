@@ -1,11 +1,11 @@
 ---
-title: &apos;V8 릴리즈 v6.4&apos;
-author: &apos;V8 팀&apos;
+title: 'V8 릴리즈 v6.4'
+author: 'V8 팀'
 date: 2017-12-19 13:33:37
 tags:
   - 릴리즈
-description: &apos;V8 v6.4는 성능 향상, 새로운 JavaScript 언어 기능 등을 포함하고 있습니다.&apos;
-tweet: &apos;943057597481082880&apos;
+description: 'V8 v6.4는 성능 향상, 새로운 JavaScript 언어 기능 등을 포함하고 있습니다.'
+tweet: '943057597481082880'
 ---
 매 6주마다 [릴리즈 프로세스](/docs/release-process)의 일환으로 V8의 새로운 브랜치를 생성합니다. 각 버전은 Chrome Beta 마일스톤 직전에 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 [V8 버전 6.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.4)의 새로운 브랜치를 발표하게 되어 기쁩니다. 이 버전은 몇 주 후 Chrome 64 Stable과 함께 릴리즈될 때까지 베타 상태입니다. V8 v6.4는 개발자들에게 유용한 여러 기능들로 가득 차 있습니다. 이 게시물은 릴리즈를 앞두고 주요 내용을 미리 살펴봅니다.
 
@@ -52,7 +52,7 @@ V8의 내장 코드 객체와 바이트코드 핸들러는 이제 스냅샷에�
 
 ```js
 const regexGreekSymbol = /\p{Script_Extensions=Greek}/u;
-regexGreekSymbol.test(&apos;π&apos;);
+regexGreekSymbol.test('π');
 // → true
 ```
 
@@ -60,10 +60,10 @@ regexGreekSymbol.test(&apos;π&apos;);
 
 ```js
 const pattern = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/u;
-const result = pattern.exec(&apos;2017-12-15&apos;);
-// result.groups.year === &apos;2017&apos;
-// result.groups.month === &apos;12&apos;
-// result.groups.day === &apos;15&apos;
+const result = pattern.exec('2017-12-15');
+// result.groups.year === '2017'
+// result.groups.month === '12'
+// result.groups.day === '15'
 ```
 
 이 기능들에 대한 자세한 내용은 [다가오는 정규 표현식 기능](https://developers.google.com/web/updates/2017/07/upcoming-regexp-features)이라는 블로그 게시물에서 확인할 수 있습니다.

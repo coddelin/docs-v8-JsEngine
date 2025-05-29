@@ -1,14 +1,14 @@
 ---
-title: &apos;Ordenando las cosas en V8&apos;
-author: &apos;Simon Zünd ([@nimODota](https://twitter.com/nimODota)), comparador consistente&apos;
+title: 'Ordenando las cosas en V8'
+author: 'Simon Zünd ([@nimODota](https://twitter.com/nimODota)), comparador consistente'
 avatars:
   - simon-zuend
 date: 2018-09-28 11:20:37
 tags:
   - ECMAScript
   - internals
-description: &apos;A partir de V8 v7.0 / Chrome 70, Array.prototype.sort es estable.&apos;
-tweet: &apos;1045656758700650502&apos;
+description: 'A partir de V8 v7.0 / Chrome 70, Array.prototype.sort es estable.'
+tweet: '1045656758700650502'
 ---
 `Array.prototype.sort` fue una de las últimas funciones integradas implementadas en JavaScript autohospedado en V8. Trasladarlo nos dio la oportunidad de experimentar con diferentes algoritmos y estrategias de implementación y finalmente [hacerlo estable](https://mathiasbynens.be/demo/sort-stability) en V8 v7.0 / Chrome 70.
 
@@ -41,7 +41,7 @@ const array = [4, 2, 5, 3, 1];
 array.push({
   toString() {
     // Aquí puede ir código arbitrario, por ejemplo `array.push(1);`.
-    return &apos;42&apos;;
+    return '42';
   }
 });
 
@@ -60,14 +60,14 @@ El primer ejemplo muestra un array con algunos accesorios (es decir, getters y s
 ```js
 const array = [0, 1, 2];
 
-Object.defineProperty(array, &apos;0&apos;, {
-  get() { console.log(&apos;get 0&apos;); return 0; },
-  set(v) { console.log(&apos;set 0&apos;); }
+Object.defineProperty(array, '0', {
+  get() { console.log('get 0'); return 0; },
+  set(v) { console.log('set 0'); }
 });
 
-Object.defineProperty(array, &apos;1&apos;, {
-  get() { console.log(&apos;get 1&apos;); return 1; },
-  set(v) { console.log(&apos;set 1&apos;); }
+Object.defineProperty(array, '1', {
+  get() { console.log('get 1'); return 1; },
+  set(v) { console.log('set 1'); }
 });
 
 array.sort();
@@ -111,26 +111,26 @@ El próximo ejemplo muestra interacciones con la cadena de prototipos. Por motiv
 
 ```js
 const object = {
- 1: &apos;d1&apos;,
- 2: &apos;c1&apos;,
- 3: &apos;b1&apos;,
+ 1: 'd1',
+ 2: 'c1',
+ 3: 'b1',
  4: undefined,
  __proto__: {
    length: 10000,
-   1: &apos;e2&apos;,
-   10: &apos;a2&apos;,
-   100: &apos;b2&apos;,
-   1000: &apos;c2&apos;,
+   1: 'e2',
+   10: 'a2',
+   100: 'b2',
+   1000: 'c2',
    2000: undefined,
-   8000: &apos;d2&apos;,
-   12000: &apos;XX&apos;,
+   8000: 'd2',
+   12000: 'XX',
    __proto__: {
-     0: &apos;e3&apos;,
-     1: &apos;d3&apos;,
-     2: &apos;c3&apos;,
-     3: &apos;b3&apos;,
-     4: &apos;f3&apos;,
-     5: &apos;a3&apos;,
+     0: 'e3',
+     1: 'd3',
+     2: 'c3',
+     3: 'b3',
+     4: 'f3',
+     5: 'a3',
      6: undefined,
    },
  },
@@ -142,16 +142,16 @@ La salida muestra el `object` después de haber sido ordenado. Nuevamente, no ha
 
 ```js
 // Chakra
-[&apos;a2&apos;, &apos;a3&apos;, &apos;b1&apos;, &apos;b2&apos;, &apos;c1&apos;, &apos;c2&apos;, &apos;d1&apos;, &apos;d2&apos;, &apos;e3&apos;, undefined, undefined, undefined]
+['a2', 'a3', 'b1', 'b2', 'c1', 'c2', 'd1', 'd2', 'e3', undefined, undefined, undefined]
 
 // JavaScriptCore
-[&apos;a2&apos;, &apos;a2&apos;, &apos;a3&apos;, &apos;b1&apos;, &apos;b2&apos;, &apos;b2&apos;, &apos;c1&apos;, &apos;c2&apos;, &apos;d1&apos;, &apos;d2&apos;, &apos;e3&apos;, undefined]
+['a2', 'a2', 'a3', 'b1', 'b2', 'b2', 'c1', 'c2', 'd1', 'd2', 'e3', undefined]
 
 // V8
-[&apos;a2&apos;, &apos;a3&apos;, &apos;b1&apos;, &apos;b2&apos;, &apos;c1&apos;, &apos;c2&apos;, &apos;d1&apos;, &apos;d2&apos;, &apos;e3&apos;, undefined, undefined, undefined]
+['a2', 'a3', 'b1', 'b2', 'c1', 'c2', 'd1', 'd2', 'e3', undefined, undefined, undefined]
 
 // SpiderMonkey
-[&apos;a2&apos;, &apos;a3&apos;, &apos;b1&apos;, &apos;b2&apos;, &apos;c1&apos;, &apos;c2&apos;, &apos;d1&apos;, &apos;d2&apos;, &apos;e3&apos;, undefined, undefined, undefined]
+['a2', 'a3', 'b1', 'b2', 'c1', 'c2', 'd1', 'd2', 'e3', undefined, undefined, undefined]
 ```
 
 ### Lo que hace V8 antes y después de ordenar

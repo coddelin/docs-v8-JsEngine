@@ -1,22 +1,22 @@
 ---
-title: &apos;Indicium : outil de traçage du runtime V8&apos;
-author: &apos;Zeynep Cankara ([@ZeynepCankara](https://twitter.com/ZeynepCankara))&apos;
+title: 'Indicium : outil de traçage du runtime V8'
+author: 'Zeynep Cankara ([@ZeynepCankara](https://twitter.com/ZeynepCankara))'
 avatars:
-  - &apos;zeynep-cankara&apos;
+  - 'zeynep-cankara'
 date: 2020-10-01 11:56:00
 tags:
   - outils
   - analyseur-système
-description: &apos;Indicium : outil d&apos;analyse système V8 pour analyser les événements Map/IC.&apos;
-tweet: &apos;1311689392608731140&apos;
+description: 'Indicium : outil d'analyse système V8 pour analyser les événements Map/IC.'
+tweet: '1311689392608731140'
 ---
 # Indicium : analyseur système V8
 
-Les trois derniers mois ont été une expérience d&apos;apprentissage extraordinaire pour moi depuis que j&apos;ai rejoint l&apos;équipe V8 (Google Londres) en tant que stagiaire et que j&apos;ai travaillé sur un nouvel outil appelé [*Indicium*](https://v8.dev/tools/head/system-analyzer).
+Les trois derniers mois ont été une expérience d'apprentissage extraordinaire pour moi depuis que j'ai rejoint l'équipe V8 (Google Londres) en tant que stagiaire et que j'ai travaillé sur un nouvel outil appelé [*Indicium*](https://v8.dev/tools/head/system-analyzer).
 
 Cet analyseur système est une interface web unifiée pour tracer, déboguer et analyser les modèles de création et modification des Inline Caches (IC) et des Maps dans des applications réelles.
 
-V8 dispose déjà d&apos;une infrastructure de traçage pour les [ICs](https://mathiasbynens.be/notes/shapes-ics) et les [Maps](https://v8.dev/blog/fast-properties) permettant de traiter et analyser les événements IC grâce au [IC Explorer](https://v8.dev/tools/v8.7/ic-explorer.html) et les événements Map grâce au [Map Processor](https://v8.dev/tools/v8.7/map-processor.html). Cependant, les outils précédents ne permettaient pas d&apos;analyser les Maps et ICs de manière holistique, ce qui est maintenant possible avec l&apos;analyseur système.
+V8 dispose déjà d'une infrastructure de traçage pour les [ICs](https://mathiasbynens.be/notes/shapes-ics) et les [Maps](https://v8.dev/blog/fast-properties) permettant de traiter et analyser les événements IC grâce au [IC Explorer](https://v8.dev/tools/v8.7/ic-explorer.html) et les événements Map grâce au [Map Processor](https://v8.dev/tools/v8.7/map-processor.html). Cependant, les outils précédents ne permettaient pas d'analyser les Maps et ICs de manière holistique, ce qui est maintenant possible avec l'analyseur système.
 
 <!--truncate-->
 ![Indicium](/_img/system-analyzer/indicium-logo.png)
@@ -49,24 +49,24 @@ for (let i = 0; i < 10e5; i++) {
   dotProduct = a.dotProduct(b);
 }
 
-console.time(&apos;snippet1&apos;);
+console.time('snippet1');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet1&apos;);
+console.timeEnd('snippet1');
 
 a = new Point(-1, -1);
 b = new Point(-2, -2);
-console.time(&apos;snippet2&apos;);
+console.time('snippet2');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet2&apos;);
+console.timeEnd('snippet2');
 ```
 
-Ici, nous avons une classe `Point` qui stocke deux coordonnées et un booléen supplémentaire basé sur les valeurs des coordonnées. La classe `Point` a une méthode `dotProduct` qui renvoie le produit scalaire entre l&apos;objet passé et le récepteur.
+Ici, nous avons une classe `Point` qui stocke deux coordonnées et un booléen supplémentaire basé sur les valeurs des coordonnées. La classe `Point` a une méthode `dotProduct` qui renvoie le produit scalaire entre l'objet passé et le récepteur.
 
-Pour faciliter l&apos;explication du programme, décomposons-le en deux extraits (en ignorant la phase d&apos;échauffement) :
+Pour faciliter l'explication du programme, décomposons-le en deux extraits (en ignorant la phase d'échauffement) :
 
 ### *extrait 1*
 
@@ -75,11 +75,11 @@ let a = new Point(1, 1);
 let b = new Point(2, 2);
 let dotProduct;
 
-console.time(&apos;snippet1&apos;);
+console.time('snippet1');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet1&apos;);
+console.timeEnd('snippet1');
 ```
 
 ### *extrait 2*
@@ -87,22 +87,22 @@ console.timeEnd(&apos;snippet1&apos;);
 ```javascript
 a = new Point(-1, -1);
 b = new Point(-2, -2);
-console.time(&apos;snippet2&apos;);
+console.time('snippet2');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet2&apos;);
+console.timeEnd('snippet2');
 ```
 
-Une fois que nous exécutons le programme, nous remarquons une régression de performance. Même en mesurant les performances de deux extraits similaires ; les propriétés `x` et `y` des instances d&apos;objet `Point` sont accédées en appelant la fonction `dotProduct` dans une boucle for.
+Une fois que nous exécutons le programme, nous remarquons une régression de performance. Même en mesurant les performances de deux extraits similaires ; les propriétés `x` et `y` des instances d'objet `Point` sont accédées en appelant la fonction `dotProduct` dans une boucle for.
 
-L&apos;extrait 1 s&apos;exécute environ 3 fois plus vite que l&apos;extrait 2. La seule différence étant que nous utilisons des valeurs négatives pour les propriétés `x` et `y` de l&apos;objet `Point` dans l&apos;extrait 2.
+L'extrait 1 s'exécute environ 3 fois plus vite que l'extrait 2. La seule différence étant que nous utilisons des valeurs négatives pour les propriétés `x` et `y` de l'objet `Point` dans l'extrait 2.
 
 ![Analyse des performances des extraits.](/_img/system-analyzer/initial-program-performance.png)
 
-Pour analyser cette différence de performance, nous pouvons utiliser diverses options de journalisation disponibles avec V8. C&apos;est là que l&apos;analyseur système est brillant. Il peut afficher les événements de journalisation et les lier avec les événements Map, nous permettant d&apos;explorer la magie cachée dans V8.
+Pour analyser cette différence de performance, nous pouvons utiliser diverses options de journalisation disponibles avec V8. C'est là que l'analyseur système est brillant. Il peut afficher les événements de journalisation et les lier avec les événements Map, nous permettant d'explorer la magie cachée dans V8.
 
-Avant d&apos;approfondir l&apos;étude de cas, familiarisons-nous avec les panneaux de l&apos;outil d&apos;analyseur système. L&apos;outil dispose de quatre panneaux principaux :
+Avant d'approfondir l'étude de cas, familiarisons-nous avec les panneaux de l'outil d'analyseur système. L'outil dispose de quatre panneaux principaux :
 
 - un panneau de chronologie pour analyser les événements Map/IC au fil du temps,
 - un panneau Map pour visualiser les arbres de transition des Maps,
@@ -115,7 +115,7 @@ Avant d&apos;approfondir l&apos;étude de cas, familiarisons-nous avec les panne
 
 Nous analysons comment la fonction `dotProduct` pourrait provoquer cette différence de performance. Alors nous regroupons les événements IC par nom de fonction pour obtenir des informations détaillées sur les événements IC associés à la fonction `dotProduct`.
 
-La première chose que nous remarquons est que nous avons deux transitions d&apos;état IC distinctes enregistrées par les événements IC dans cette fonction. L&apos;une passant de l&apos;état non initialisé à monomorphique et l&apos;autre passant de monomorphique à polymorphique. L&apos;état IC polymorphique indique que nous suivons maintenant plus d&apos;un Map associé aux objets `Point` et cet état polymorphique est moins performant, car nous devons effectuer des vérifications supplémentaires.
+La première chose que nous remarquons est que nous avons deux transitions d'état IC distinctes enregistrées par les événements IC dans cette fonction. L'une passant de l'état non initialisé à monomorphique et l'autre passant de monomorphique à polymorphique. L'état IC polymorphique indique que nous suivons maintenant plus d'un Map associé aux objets `Point` et cet état polymorphique est moins performant, car nous devons effectuer des vérifications supplémentaires.
 
 Nous voulons savoir pourquoi nous créons plusieurs formes de Map pour le même type d'objets. Pour ce faire, nous basculons le bouton d'information sur l'état IC afin d'obtenir plus d'informations sur les adresses Map passant de non initialisées à monomorphiques.
 

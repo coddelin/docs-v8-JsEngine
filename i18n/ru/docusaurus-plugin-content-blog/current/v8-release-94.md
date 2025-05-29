@@ -21,7 +21,7 @@ tweet: '1434915404418277381'
 ```javascript
 class C {
   // Этот блок выполнится при выполнении самого класса
-  static { console.log("C&apos;s static block"); }
+  static { console.log("C's static block"); }
 }
 ```
 

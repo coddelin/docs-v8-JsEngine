@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 リリース v8.6&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), キーボードファザー&apos;
+title: 'V8 リリース v8.6'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), キーボードファザー'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2020-09-21
 tags:
  - リリース
-description: &apos;V8 リリース v8.6 は、尊重するコード、パフォーマンスの向上、規範的な変更をもたらします。&apos;
-tweet: &apos;1308062287731789825&apos;
+description: 'V8 リリース v8.6 は、尊重するコード、パフォーマンスの向上、規範的な変更をもたらします。'
+tweet: '1308062287731789825'
 ---
 私たちは6週間ごとに、新しいバージョンのV8を[リリースプロセス](https://v8.dev/docs/release-process)の一環として作成します。各バージョンは、Chrome Beta のマイルストーン直前に V8 の Git マスターから分岐されます。本日は、新しいブランチ [V8 バージョン 8.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.6)を正式発表します。このバージョンは、数週間後に Chrome 86 Stable と連携してリリースされるまで Beta 段階にあります。V8 v8.6 には、開発者向けの様々な機能が詰め込まれています。この投稿ではリリースを前にそのハイライトの一部をプレビューします。
 
@@ -36,9 +36,9 @@ JavaScript 数値を文字列に変換する操作は、一般的な場合には
 
 ### 小さな規範的な変更
 
-- 無名クラスには、値が空文字列 `&apos;&apos;` である `.name` プロパティが追加されました。[仕様変更](https://github.com/tc39/ecma262/pull/1490)。
+- 無名クラスには、値が空文字列 `''` である `.name` プロパティが追加されました。[仕様変更](https://github.com/tc39/ecma262/pull/1490)。
 - テンプレート文字列リテラルでは、[スローピーモード](https://developer.mozilla.org/en-US/docs/Glossary/Sloppy_mode)で `\8` と `\9` のエスケープシーケンスが禁止されました。また、[厳格モード](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode)ではすべての文字列リテラルで禁止されます。[仕様変更](https://github.com/tc39/ecma262/pull/2054)。
-- ビルトインの `Reflect` オブジェクトは、値が `&apos;Reflect&apos;` である `Symbol.toStringTag` プロパティを持つようになりました。[仕様変更](https://github.com/tc39/ecma262/pull/2057)。
+- ビルトインの `Reflect` オブジェクトは、値が `'Reflect'` である `Symbol.toStringTag` プロパティを持つようになりました。[仕様変更](https://github.com/tc39/ecma262/pull/2057)。
 
 ## WebAssembly
 

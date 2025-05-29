@@ -1,12 +1,12 @@
 ---
-title: &apos;Lanzamiento de V8 v8.5&apos;
-author: &apos;Zeynep Cankara, siguiendo algunos Mapas&apos;
+title: 'Lanzamiento de V8 v8.5'
+author: 'Zeynep Cankara, siguiendo algunos Mapas'
 avatars:
- - &apos;zeynep-cankara&apos;
+ - 'zeynep-cankara'
 date: 2020-07-21
 tags:
  - lanzamiento
-description: &apos;El lanzamiento de V8 v8.5 incluye Promise.any, String#replaceAll, operadores de asignación lógica, soporte para WebAssembly multi-value y BigInt, y mejoras de rendimiento.&apos;
+description: 'El lanzamiento de V8 v8.5 incluye Promise.any, String#replaceAll, operadores de asignación lógica, soporte para WebAssembly multi-value y BigInt, y mejoras de rendimiento.'
 tweet:
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](https://v8.dev/docs/release-process). Cada versión se deriva del maestro de Git de V8 inmediatamente antes de un hito de Chrome Beta. Hoy nos complace anunciar nuestra nueva rama, [V8 versión 8.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.5), que está en beta hasta su lanzamiento en coordinación con Chrome 85 Estable en varias semanas. V8 v8.5 está lleno de todo tipo de novedades orientadas a los desarrolladores. Este post ofrece un adelanto de algunos de los aspectos más destacados en anticipación al lanzamiento.
@@ -20,15 +20,15 @@ Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso d
 
 ```js
 const promises = [
-  fetch(&apos;/endpoint-a&apos;).then(() => &apos;a&apos;),
-  fetch(&apos;/endpoint-b&apos;).then(() => &apos;b&apos;),
-  fetch(&apos;/endpoint-c&apos;).then(() => &apos;c&apos;),
+  fetch('/endpoint-a').then(() => 'a'),
+  fetch('/endpoint-b').then(() => 'b'),
+  fetch('/endpoint-c').then(() => 'c'),
 ];
 try {
   const first = await Promise.any(promises);
   // Alguna de las promesas fue cumplida.
   console.log(first);
-  // → p. ej. &apos;b&apos;
+  // → p. ej. 'b'
 } catch (error) {
   // Todas las promesas fueron rechazadas.
   console.assert(error instanceof AggregateError);
@@ -46,15 +46,15 @@ Consulta [nuestra explicación](https://v8.dev/features/promise-combinators#prom
 `String.prototype.replaceAll` proporciona una forma fácil de reemplazar todas las ocurrencias de una subcadena sin crear un `RegExp` global.
 
 ```js
-const queryString = &apos;q=query+string+parameters&apos;;
+const queryString = 'q=query+string+parameters';
 
 // Funciona, pero requiere escapar dentro de expresiones regulares.
-queryString.replace(/\+/g, &apos; &apos;);
-// → &apos;q=query string parameters&apos;
+queryString.replace(/\+/g, ' ');
+// → 'q=query string parameters'
 
 // ¡Más simple!
-queryString.replaceAll(&apos;+&apos;, &apos; &apos;);
-// → &apos;q=query string parameters&apos;
+queryString.replaceAll('+', ' ');
+// → 'q=query string parameters'
 ```
 
 Consulta [nuestra explicación](https://v8.dev/features/string-replaceall) para más información.
@@ -139,7 +139,7 @@ Por lo tanto, las funciones de WebAssembly con parámetros i64 y valores de reto
 Desde JavaScript, solo los BigInts pueden pasarse como parámetro I64:
 
 ```js
-WebAssembly.instantiateStreaming(fetch(&apos;i64.wasm&apos;))
+WebAssembly.instantiateStreaming(fetch('i64.wasm'))
   .then(({ module, instance }) => {
     instance.exports.add(12n, 30n);
     // → 42n

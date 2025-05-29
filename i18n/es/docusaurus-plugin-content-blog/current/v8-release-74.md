@@ -1,11 +1,11 @@
 ---
-title: &apos;Lanzamiento de V8 v7.4&apos;
-author: &apos;Georg Neis&apos;
+title: 'Lanzamiento de V8 v7.4'
+author: 'Georg Neis'
 date: 2019-03-22 16:30:42
 tags:
   - lanzamiento
-description: &apos;V8 v7.4 incluye hilos/atómicos de WebAssembly, campos privados de clase, mejoras de rendimiento y memoria, ¡y mucho más!&apos;
-tweet: &apos;1109094755936489472&apos;
+description: 'V8 v7.4 incluye hilos/atómicos de WebAssembly, campos privados de clase, mejoras de rendimiento y memoria, ¡y mucho más!'
+tweet: '1109094755936489472'
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se deriva del maestro de Git de V8 inmediatamente antes de un hito de Chrome Beta. Hoy nos complace anunciar nuestra nueva rama, [V8 versión 7.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.4), que está en beta hasta su lanzamiento en coordinación con Chrome 74 Stable en varias semanas. V8 v7.4 está repleto de todo tipo de beneficios para desarrolladores. Esta publicación ofrece un adelanto de algunos de los aspectos destacados en anticipación al lanzamiento.
 
@@ -102,7 +102,7 @@ V8 v7.2 agregó soporte para la sintaxis de campos públicos en clases. Los camp
 class IncreasingCounter {
   #count = 0;
   get value() {
-    console.log(&apos;¡Obteniendo el valor actual!&apos;);
+    console.log('¡Obteniendo el valor actual!');
     return this.#count;
   }
   increment() {
@@ -125,22 +125,22 @@ Para más información, lee nuestro [explicador sobre campos públicos y privado
 
 ### `Intl.Locale`
 
-Las aplicaciones de JavaScript generalmente utilizan cadenas como `&apos;en-US&apos;` o `&apos;de-CH&apos;` para identificar configuraciones regionales. `Intl.Locale` ofrece un mecanismo más potente para manejar configuraciones regionales, y permite extraer fácilmente preferencias específicas de la región como el idioma, el calendario, el sistema de numeración, el ciclo horario, y más.
+Las aplicaciones de JavaScript generalmente utilizan cadenas como `'en-US'` o `'de-CH'` para identificar configuraciones regionales. `Intl.Locale` ofrece un mecanismo más potente para manejar configuraciones regionales, y permite extraer fácilmente preferencias específicas de la región como el idioma, el calendario, el sistema de numeración, el ciclo horario, y más.
 
 ```js
-const locale = new Intl.Locale(&apos;es-419-u-hc-h12&apos;, {
-  calendar: &apos;gregory&apos;
+const locale = new Intl.Locale('es-419-u-hc-h12', {
+  calendar: 'gregory'
 });
 locale.language;
-// → &apos;es&apos;
+// → 'es'
 locale.calendar;
-// → &apos;gregory&apos;
+// → 'gregory'
 locale.hourCycle;
-// → &apos;h12&apos;
+// → 'h12'
 locale.region;
-// → &apos;419&apos;
+// → '419'
 locale.toString();
-// → &apos;es-419-u-ca-gregory-hc-h12&apos;
+// → 'es-419-u-ca-gregory-hc-h12'
 ```
 
 ### Gramática de Hashbang

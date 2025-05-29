@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 release v9.0&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 줄바꿈 포함&apos;
+title: 'V8 release v9.0'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 줄바꿈 포함'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-03-17
 tags:
  - 릴리스
-description: &apos;V8 release v9.0은 정규 표현식 매칭 인덱스와 다양한 성능 개선 사항을 지원합니다.&apos;
-tweet: &apos;1372227274712494084&apos;
+description: 'V8 release v9.0은 정규 표현식 매칭 인덱스와 다양한 성능 개선 사항을 지원합니다.'
+tweet: '1372227274712494084'
 ---
 매 6주마다 우리는 [릴리스 프로세스](https://v8.dev/docs/release-process)의 일환으로 V8의 새로운 브랜치를 생성합니다. 각 버전은 Chrome Beta 마일스톤 직전 바로 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 최신 브랜치 [V8 버전 9.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.0)을 발표하게 되어 기쁩니다. 이 브랜치는 몇 주 뒤 Chrome 90 Stable과 함께 릴리스될 때까지 베타 상태에 있습니다. V8 v9.0은 개발자에게 유용한 다양한 기능들로 가득 차 있습니다. 이 게시물은 릴리스에 앞서 몇 가지 하이라이트를 미리 보여줍니다.
 
@@ -20,7 +20,7 @@ v9.0부터 개발자는 정규 표현식 매칭에서 캡처 그룹의 시작과
 
 ```javascript
 const re = /(a)(b)/d;      // /d 플래그에 주목하세요.
-const m = re.exec(&apos;ab&apos;);
+const m = re.exec('ab');
 console.log(m.indices[0]); // 인덱스 0은 전체 매칭입니다.
 // → [0, 2]
 console.log(m.indices[1]); // 인덱스 1은 첫 번째 캡처 그룹입니다.

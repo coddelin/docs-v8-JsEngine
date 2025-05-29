@@ -1,6 +1,6 @@
 ---
-title: &apos;V8 ist schneller und sicherer als je zuvor!&apos;
-author: &apos;[Victor Gomes](https://twitter.com/VictorBFG), der Glühwein-Experte&apos;
+title: 'V8 ist schneller und sicherer als je zuvor!'
+author: '[Victor Gomes](https://twitter.com/VictorBFG), der Glühwein-Experte'
 avatars:
   - victor-gomes
 date: 2023-12-14
@@ -9,8 +9,8 @@ tags:
   - WebAssembly
   - Sicherheit
   - Benchmarks
-description: "V8&apos;s beeindruckende Errungenschaften im Jahr 2023"
-tweet: &apos;&apos;
+description: "V8's beeindruckende Errungenschaften im Jahr 2023"
+tweet: ''
 ---
 
 Willkommen in der spannenden Welt von V8, wo Geschwindigkeit nicht nur ein Feature, sondern eine Lebensweise ist. Während wir uns von 2023 verabschieden, ist es Zeit, die beeindruckenden Errungenschaften zu feiern, die V8 in diesem Jahr erreicht hat.
@@ -50,7 +50,7 @@ Viele neue Funktionen und Leistungsverbesserungen wurden dieses Jahr für Wasm e
 
 # WebAssembly-Garbage Collection
 
-Im Zusammenhang mit der Einführung neuer Anwendungsklassen ins Web haben wir auch endlich WebAssembly Garbage Collection (WasmGC) ausgeliefert, nachdem wir mehrere Jahre an der [Standardisierung des Vorschlags](https://github.com/WebAssembly/gc/blob/main/proposals/gc/MVP.md) und [Implementierung](https://bugs.chromium.org/p/v8/issues/detail?id=7748) gearbeitet haben. Wasm besitzt jetzt eine eingebaute Methode, um Objekte und Arrays zuzuweisen, die von V8&apos;s bestehender Garbage Collection verwaltet werden. Das ermöglicht die Kompilierung von Anwendungen, die in Java, Kotlin, Dart und ähnlichen sprachen mit Garbage Collection geschrieben sind, zu Wasm – wo sie typischerweise etwa doppelt so schnell laufen wie wenn sie in JavaScript kompiliert werden. Weitere Details finden Sie in [unserem Blogpost](https://v8.dev/blog/wasm-gc-porting).
+Im Zusammenhang mit der Einführung neuer Anwendungsklassen ins Web haben wir auch endlich WebAssembly Garbage Collection (WasmGC) ausgeliefert, nachdem wir mehrere Jahre an der [Standardisierung des Vorschlags](https://github.com/WebAssembly/gc/blob/main/proposals/gc/MVP.md) und [Implementierung](https://bugs.chromium.org/p/v8/issues/detail?id=7748) gearbeitet haben. Wasm besitzt jetzt eine eingebaute Methode, um Objekte und Arrays zuzuweisen, die von V8's bestehender Garbage Collection verwaltet werden. Das ermöglicht die Kompilierung von Anwendungen, die in Java, Kotlin, Dart und ähnlichen sprachen mit Garbage Collection geschrieben sind, zu Wasm – wo sie typischerweise etwa doppelt so schnell laufen wie wenn sie in JavaScript kompiliert werden. Weitere Details finden Sie in [unserem Blogpost](https://v8.dev/blog/wasm-gc-porting).
 
 # Sicherheit
 

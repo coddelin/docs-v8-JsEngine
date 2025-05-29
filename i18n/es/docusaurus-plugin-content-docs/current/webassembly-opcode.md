@@ -1,6 +1,6 @@
 ---
-title: &apos;WebAssembly - agregar un nuevo opcode&apos;
-description: &apos;Este tutorial explica cómo implementar una nueva instrucción de WebAssembly en V8.&apos;
+title: 'WebAssembly - agregar un nuevo opcode'
+description: 'Este tutorial explica cómo implementar una nueva instrucción de WebAssembly en V8.'
 ---
 [WebAssembly](https://webassembly.org/) (Wasm) es un formato de instrucción binaria para una máquina virtual basada en pila. Este tutorial guía al lector a través de la implementación de una nueva instrucción de WebAssembly en V8.
 
@@ -123,7 +123,7 @@ index 26df61ceb8..b1ee6edd71 100644
 Ejecute la prueba:
 
 ```
-$ tools/dev/gm.py x64.debug &apos;cctest/test-run-wasm-simd/RunWasmTurbofan_I32Add1&apos;
+$ tools/dev/gm.py x64.debug 'cctest/test-run-wasm-simd/RunWasmTurbofan_I32Add1'
 ...
 === cctest/test-run-wasm/RunWasmTurbofan_Int32Add1 ===
 #
@@ -195,7 +195,7 @@ index f666bbb7c1..1d93601584 100644
 Intentar ejecutar la misma prueba lleva a un fallo de compilación que indica dónde realizar cambios:
 
 ```
-../../src/compiler/wasm-compiler.cc:717:34: error: no member named &apos;Int32Add1&apos; en &apos;v8::internal::compiler::MachineOperatorBuilder&apos;; ¿querías decir &apos;Int32Add&apos;?
+../../src/compiler/wasm-compiler.cc:717:34: error: no member named 'Int32Add1' en 'v8::internal::compiler::MachineOperatorBuilder'; ¿querías decir 'Int32Add'?
       return graph()->NewNode(m->Int32Add1(), input);
                                  ^~~~~~~~~
                                  Int32Add
@@ -343,12 +343,12 @@ diff --git a/src/compiler/backend/x64/instruction-codes-x64.h b/src/compiler/bac
 Ejecutando nuestra prueba, vemos nuevos errores de compilación:
 
 ```
-../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: error: el valor de la enumeración &apos;kX64Int32Add1&apos; no se maneja en el switch [-Werror,-Wswitch]
+../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: error: el valor de la enumeración 'kX64Int32Add1' no se maneja en el switch [-Werror,-Wswitch]
   switch (instr->arch_opcode()) {
           ^
 1 error generado.
 ...
-../../src/compiler/backend/x64/code-generator-x64.cc:733:11: error: el valor de la enumeración &apos;kX64Int32Add1&apos; no se maneja en el switch [-Werror,-Wswitch]
+../../src/compiler/backend/x64/code-generator-x64.cc:733:11: error: el valor de la enumeración 'kX64Int32Add1' no se maneja en el switch [-Werror,-Wswitch]
   switch (arch_opcode) {
           ^
 1 error generado.

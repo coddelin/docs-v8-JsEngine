@@ -1,6 +1,6 @@
 ---
-title: &apos;使用V8进行Chromium性能分析&apos;
-description: &apos;本文档解释了如何在Chromium中使用V8的CPU和内存分析工具。&apos;
+title: '使用V8进行Chromium性能分析'
+description: '本文档解释了如何在Chromium中使用V8的CPU和内存分析工具。'
 ---
 [V8的CPU和内存分析工具](/docs/profile)从V8的shell中使用非常简单，但与Chromium结合使用可能会显得有些混乱。此页面应该可以帮助您解决问题。
 
@@ -18,7 +18,7 @@ Chromium是一个复杂的应用程序，不同于V8的shell。以下列出了�
 以下是运行Chromium以从进程开始获取CPU分析的方法：
 
 ```bash
-./Chromium --no-sandbox --user-data-dir=`mktemp -d` --incognito --js-flags=&apos;--prof&apos;
+./Chromium --no-sandbox --user-data-dir=`mktemp -d` --incognito --js-flags='--prof'
 ```
 
 请注意，您无法在开发者工具中看到分析结果，因为所有数据都记录到文件中，而不是开发者工具中。
@@ -48,7 +48,7 @@ Chromium是一个复杂的应用程序，不同于V8的shell。以下列出了�
 以下命令启用安卓上的性能分析：
 
 ```bash
-./build/android/adb_chrome_public_command_line --no-sandbox --single-process --js-flags=&apos;--logfile=/storage/emulated/0/Download/%t.log,--prof&apos;
+./build/android/adb_chrome_public_command_line --no-sandbox --single-process --js-flags='--logfile=/storage/emulated/0/Download/%t.log,--prof'
 <关闭并重新启动安卓设备上的Chrome>
 adb pull /storage/emulated/0/Download/<日志文件>
 ./src/v8/tools/linux-tick-processor --apk-embedded-library=out/Release/lib.unstripped/libchrome.so --preprocess <日志文件>

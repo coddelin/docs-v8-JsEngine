@@ -1,15 +1,15 @@
 ---
-title: &apos;`Intl.NumberFormat`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias)) 그리고 Shane F. Carr&apos;
+title: '`Intl.NumberFormat`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)) 그리고 Shane F. Carr'
 avatars:
-  - &apos;mathias-bynens&apos;
-  - &apos;shane-carr&apos;
+  - 'mathias-bynens'
+  - 'shane-carr'
 date: 2019-08-08
 tags:
   - Intl
   - io19
-description: &apos;Intl.NumberFormat는 지역별 숫자 형식을 지원합니다.&apos;
-tweet: &apos;1159476407329873920&apos;
+description: 'Intl.NumberFormat는 지역별 숫자 형식을 지원합니다.'
+tweet: '1159476407329873920'
 ---
 현재 `Intl.NumberFormat` API에 대해 알고 있을 수도 있습니다. 이 API는 현대 환경에서 이미 오랫동안 지원되고 있습니다.
 
@@ -23,16 +23,16 @@ tweet: &apos;1159476407329873920&apos;
 
 <!--truncate-->
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;);
+const formatter = new Intl.NumberFormat('en');
 formatter.format(987654.321);
-// → &apos;987,654.321&apos;
+// → '987,654.321'
 formatter.formatToParts(987654.321);
 // → [
-// →   { type: &apos;integer&apos;, value: &apos;987&apos; },
-// →   { type: &apos;group&apos;, value: &apos;,&apos; },
-// →   { type: &apos;integer&apos;, value: &apos;654&apos; },
-// →   { type: &apos;decimal&apos;, value: &apos;.&apos; },
-// →   { type: &apos;fraction&apos;, value: &apos;321&apos; }
+// →   { type: 'integer', value: '987' },
+// →   { type: 'group', value: ',' },
+// →   { type: 'integer', value: '654' },
+// →   { type: 'decimal', value: '.' },
+// →   { type: 'fraction', value: '321' }
 // → ]
 ```
 
@@ -45,14 +45,14 @@ formatter.formatToParts(987654.321);
 `Number`와 더불어 `Intl.NumberFormat`은 이제 [`BigInt`]도 (/features/bigint) 형식을 지원합니다:
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;fr&apos;);
+const formatter = new Intl.NumberFormat('fr');
 formatter.format(12345678901234567890n);
-// → &apos;12 345 678 901 234 567 890&apos;
+// → '12 345 678 901 234 567 890'
 formatter.formatToParts(123456n);
 // → [
-// →   { type: &apos;integer&apos;, value: &apos;123&apos; },
-// →   { type: &apos;group&apos;, value: &apos; &apos; },
-// →   { type: &apos;integer&apos;, value: &apos;456&apos; }
+// →   { type: 'integer', value: '123' },
+// →   { type: 'group', value: ' ' },
+// →   { type: 'integer', value: '456' }
 // → ]
 ```
 
@@ -79,14 +79,14 @@ formatter.formatToParts(123456n);
 지역화된 단위로 숫자를 포맷하려면 `style` 및 `unit` 옵션을 사용하세요:
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;kilobyte&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'kilobyte',
 });
 formatter.format(1.234);
-// → &apos;1.234 kB&apos;
+// → '1.234 kB'
 formatter.format(123.4);
-// → &apos;123.4 kB&apos;
+// → '123.4 kB'
 ```
 
 시간이 지나면서 더 많은 단위가 지원될 수 있습니다. 최신 목록은 [사양](https://tc39.es/proposal-unified-intl-numberformat/section6/locales-currencies-tz_proposed_out.html#table-sanctioned-simple-unit-identifiers)을 참조하세요.
@@ -94,12 +94,12 @@ formatter.format(123.4);
 위에 나열된 단순 단위를 분자와 분모로 결합하여 '에이커당 리터' 또는 '초당 미터'와 같은 복합 단위를 표현할 수 있습니다:
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;meter-per-second&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'meter-per-second',
 });
 formatter.format(299792458);
-// → &apos;299,792,458 m/s&apos;
+// → '299,792,458 m/s'
 ```
 
 <feature-support chrome="77"
@@ -115,28 +115,28 @@ _압축 표기법_은 더 큰 숫자를 표현하기 위해 지역별 기호를 
 ```js
 {
   // 표준 표기법 테스트.
-  const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-    notation: &apos;standard&apos;, // 이는 기본값으로 암시됩니다.
+  const formatter = new Intl.NumberFormat('en', {
+    notation: 'standard', // 이는 기본값으로 암시됩니다.
   });
   formatter.format(1234.56);
-  // → &apos;1,234.56&apos;
+  // → '1,234.56'
   formatter.format(123456);
-  // → &apos;123,456&apos;
+  // → '123,456'
   formatter.format(123456789);
-  // → &apos;123,456,789&apos;
+  // → '123,456,789'
 }
 
 {
   // 압축 표기법 테스트.
-  const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-    notation: &apos;compact&apos;,
+  const formatter = new Intl.NumberFormat('en', {
+    notation: 'compact',
   });
   formatter.format(1234.56);
-  // → &apos;1.2K&apos;
+  // → '1.2K'
   formatter.format(123456);
-  // → &apos;123K&apos;
+  // → '123K'
   formatter.format(123456789);
-  // → &apos;123M&apos;
+  // → '123M'
 }
 ```
 
@@ -147,25 +147,25 @@ _압축 표기법_은 더 큰 숫자를 표현하기 위해 지역별 기호를 
 `Intl.NumberFormat`는 [과학적 표기법](https://en.wikipedia.org/wiki/Scientific_notation)으로 숫자를 형식화할 수 있습니다:
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;meter-per-second&apos;,
-  notation: &apos;scientific&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'meter-per-second',
+  notation: 'scientific',
 });
 formatter.format(299792458);
-// → &apos;2.998E8 m/s&apos;
+// → '2.998E8 m/s'
 ```
 
 [공학 표기법](https://en.wikipedia.org/wiki/Engineering_notation)도 지원됩니다:
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;meter-per-second&apos;,
-  notation: &apos;engineering&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'meter-per-second',
+  notation: 'engineering',
 });
 formatter.format(299792458);
-// → &apos;299.792E6 m/s&apos;
+// → '299.792E6 m/s'
 ```
 
 <feature-support chrome="77"
@@ -179,57 +179,57 @@ formatter.format(299792458);
 특정 상황(예: 변화량 표시)에서는 숫자가 양수일 때에도 명시적으로 부호를 표시하는 것이 도움이 됩니다. 새로운 `signDisplay` 옵션이 이를 가능하게 합니다:
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;percent&apos;,
-  signDisplay: &apos;always&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'percent',
+  signDisplay: 'always',
 });
 formatter.format(-12.34);
-// → &apos;-12.34%&apos;
+// → '-12.34%'
 formatter.format(12.34);
-// → &apos;+12.34%&apos;
+// → '+12.34%'
 formatter.format(0);
-// → &apos;+0%&apos;
+// → '+0%'
 formatter.format(-0);
-// → &apos;-0%&apos;
+// → '-0%'
 ```
 
-값이 `0`일 때 부호 표시를 방지하려면 `signDisplay: &apos;exceptZero&apos;`를 사용하세요:
+값이 `0`일 때 부호 표시를 방지하려면 `signDisplay: 'exceptZero'`를 사용하세요:
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;percent&apos;,
-  signDisplay: &apos;exceptZero&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'percent',
+  signDisplay: 'exceptZero',
 });
 formatter.format(-12.34);
-// → &apos;-12.34%&apos;
+// → '-12.34%'
 formatter.format(12.34);
-// → &apos;+12.34%&apos;
+// → '+12.34%'
 formatter.format(0);
-// → &apos;0%&apos;
+// → '0%'
 // 참고로: -0은 예상대로 부호가 표시됩니다:
 formatter.format(-0);
-// → &apos;-0%&apos;
+// → '-0%'
 ```
 
 통화의 경우, `currencySign` 옵션은 로케일별 부정 통화 금액을 위한 설정인 _회계 형식_을 활성화합니다; 예를 들어 통화 금액을 괄호로 감싸는 형식이 포함됩니다:
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;currency&apos;,
-  currency: &apos;USD&apos;,
-  signDisplay: &apos;exceptZero&apos;,
-  currencySign: &apos;accounting&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'currency',
+  currency: 'USD',
+  signDisplay: 'exceptZero',
+  currencySign: 'accounting',
 });
 formatter.format(-12.34);
-// → &apos;($12.34)&apos;
+// → '($12.34)'
 formatter.format(12.34);
-// → &apos;+$12.34&apos;
+// → '+$12.34'
 formatter.format(0);
-// → &apos;$0.00&apos;
+// → '$0.00'
 formatter.format(-0);
-// → &apos;($0.00)&apos;
+// → '($0.00)'
 ```
 
 <feature-support chrome="77"

@@ -1,15 +1,15 @@
 ---
-title: &apos;Logische Zuweisung&apos;
-author: &apos;Shu-yu Guo ([@_shu](https://twitter.com/_shu))&apos;
+title: 'Logische Zuweisung'
+author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
 avatars:
-  - &apos;shu-yu-guo&apos;
+  - 'shu-yu-guo'
 date: 2020-05-07
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: &apos;JavaScript unterstützt jetzt zusammengesetzte Zuweisungen mit logischen Operationen.&apos;
-tweet: &apos;1258387483823345665&apos;
+description: 'JavaScript unterstützt jetzt zusammengesetzte Zuweisungen mit logischen Operationen.'
+tweet: '1258387483823345665'
 ---
 JavaScript unterstützt eine Reihe von [zusammengesetzten Zuweisungsoperatoren](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators), mit denen Programmierer eine binäre Operation zusammen mit einer Zuweisung prägnant ausdrücken können. Derzeit werden nur mathematische oder bitweise Operationen unterstützt.
 
@@ -69,14 +69,14 @@ Lassen Sie uns dies mit einem Beispiel konkretisieren, das zwei Versionen einer 
 // Weist nur zu innerHTML zu, wenn es leer ist. Verursacht nicht,
 // dass die inneren Elemente von msgElement den Fokus verlieren.
 function setDefaultMessage() {
-  msgElement.innerHTML ||= &apos;<p>Keine Nachrichten<p>&apos;;
+  msgElement.innerHTML ||= '<p>Keine Nachrichten<p>';
 }
 
 // Zeigt eine Standardnachricht an, wenn sie nichts überschreibt.
 // Fehlerhaft! Kann dazu führen, dass die inneren Elemente von
 // msgElement jedes Mal den Fokus verlieren, wenn sie aufgerufen wird.
 function setDefaultMessageBuggy() {
-  msgElement.innerHTML = msgElement.innerHTML || &apos;<p>Keine Nachrichten<p>&apos;;
+  msgElement.innerHTML = msgElement.innerHTML || '<p>Keine Nachrichten<p>';
 }
 ```
 

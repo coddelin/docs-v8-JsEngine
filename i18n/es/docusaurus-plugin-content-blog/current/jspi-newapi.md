@@ -1,7 +1,7 @@
 ---
-title: &apos;WebAssembly JSPI tiene una nueva API&apos;
-description: &apos;Este artículo detalla algunos cambios próximos en la API de Integración de Promesas de JavaScript (JSPI).&apos;
-author: &apos;Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl&apos;
+title: 'WebAssembly JSPI tiene una nueva API'
+description: 'Este artículo detalla algunos cambios próximos en la API de Integración de Promesas de JavaScript (JSPI).'
+author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
 date: 2024-06-04
 tags:
   - WebAssembly
@@ -21,7 +21,7 @@ Puedes obtener más información sobre JSPI y cómo usarlo [en este artículo de
 
 En enero de 2024, el subgrupo Stacks del Wasm CG [votó](https://github.com/WebAssembly/meetings/blob/297ac8b5ac00e6be1fe33b1f4a146cc7481b631d/stack/2024/stack-2024-01-29.md) para modificar la API de JSPI. Específicamente, en lugar de un objeto `Suspender` explícito, usaremos el límite entre JavaScript y WebAssembly como delimitador para determinar qué cálculos se suspenden.
 
-La diferencia es relativamente pequeña pero potencialmente significativa: cuando un cálculo debe ser suspendido, la llamada más reciente a una exportación de WebAssembly envuelta determina el &apos;punto de corte&apos; de lo que se suspende.
+La diferencia es relativamente pequeña pero potencialmente significativa: cuando un cálculo debe ser suspendido, la llamada más reciente a una exportación de WebAssembly envuelta determina el 'punto de corte' de lo que se suspende.
 
 La implicación de esto es que un desarrollador que use JSPI tiene un poco menos de control sobre ese punto de corte. Por otro lado, no tener que gestionar explícitamente objetos `Suspender` hace que la API sea significativamente más fácil de usar.
 

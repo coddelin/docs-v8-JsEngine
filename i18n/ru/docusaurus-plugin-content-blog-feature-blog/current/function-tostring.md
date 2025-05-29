@@ -1,13 +1,13 @@
 ---
-title: &apos;Обновленный `Function.prototype.toString`&apos;
-author: &apos;Матиас Биненс ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Обновленный `Function.prototype.toString`'
+author: 'Матиас Биненс ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-03-25
 tags:
   - ECMAScript
   - ES2019
-description: &apos;Function.prototype.toString теперь возвращает точно такие же фрагменты текста исходного кода, включая пробелы и комментарии.&apos;
+description: 'Function.prototype.toString теперь возвращает точно такие же фрагменты текста исходного кода, включая пробелы и комментарии.'
 ---
 [`Function.prototype.toString()`](https://tc39.es/Function-prototype-toString-revision/) теперь возвращает точно такие же фрагменты текста исходного кода, включая пробелы и комментарии. Вот пример, сравнивающий старое и новое поведение:
 
@@ -20,13 +20,13 @@ function /* комментарий */ foo () {}
 
 // Ранее, в V8:
 foo.toString();
-// → &apos;function foo() {}&apos;
+// → 'function foo() {}'
 //             ^ комментарий отсутствует
 //                ^ пробел отсутствует
 
 // Теперь:
 foo.toString();
-// → &apos;function /* комментарий */ foo () {}&apos;
+// → 'function /* комментарий */ foo () {}'
 ```
 
 ## Поддержка функции

@@ -1,8 +1,8 @@
 ---
-title: &apos;機能サポート&apos;
+title: '機能サポート'
 permalink: /features/support/
 layout: layouts/base.njk
-description: &apos;この文書では、V8ウェブサイトで使用されているJavaScriptおよびWebAssembly言語機能サポートリストについて説明します。&apos;
+description: 'この文書では、V8ウェブサイトで使用されているJavaScriptおよびWebAssembly言語機能サポートリストについて説明します。'
 ---
 # JavaScript/Wasm機能サポート
 

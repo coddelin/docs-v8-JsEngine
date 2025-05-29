@@ -1,6 +1,6 @@
 ---
-title: &apos;GNを使用してV8をビルドする&apos;
-description: &apos;このドキュメントは、GNを使用してV8を構築する方法を説明しています。&apos;
+title: 'GNを使用してV8をビルドする'
+description: 'このドキュメントは、GNを使用してV8を構築する方法を説明しています。'
 ---
 V8は[GN](https://gn.googlesource.com/gn/+/master/docs/)を使用して構築されます。GNは他の多くのビルドシステムのためのビルドファイルを生成するためのメタビルドシステムです。そのため、どの”バックエンド”のビルドシステムやコンパイラを使用するかによって、ビルド手順が変わります。
 以下の手順は、既に[V8のチェックアウト](/docs/source-code)を行い、[ビルド依存関係をインストール](/docs/build)していることを前提としています。
@@ -66,7 +66,7 @@ gn args out/foo
 これによりエディタウィンドウが開き、[`gn`の引数](https://gn.googlesource.com/gn/+/master/docs/reference.md)を指定できます。また、引数をコマンドラインで渡すこともできます:
 
 ```bash
-gn gen out/foo --args=&apos;is_debug=false target_cpu="x64" v8_target_cpu="arm64" use_goma=true&apos;
+gn gen out/foo --args='is_debug=false target_cpu="x64" v8_target_cpu="arm64" use_goma=true'
 ```
 
 これにより、arm64シミュレータを使用したリリースモードで`goma`を使用してV8をコンパイルするためのビルドファイルが生成されます。
@@ -100,7 +100,7 @@ v8gen list -m client.v8
 `client.v8`ウォーターフォールの特定のボットのようにフォルダ`foo`でビルドする:
 
 ```bash
-v8gen -b &apos;V8 Linux64 - debug builder&apos; -m client.v8 foo
+v8gen -b 'V8 Linux64 - debug builder' -m client.v8 foo
 ```
 
 ### ステップ 2: V8をコンパイルする

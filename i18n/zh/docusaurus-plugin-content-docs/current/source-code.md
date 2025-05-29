@@ -1,6 +1,6 @@
 ---
-title: &apos;检查 V8 源代码&apos;
-description: &apos;本文档说明如何在本地检查 V8 源代码。&apos;
+title: '检查 V8 源代码'
+description: '本文档说明如何在本地检查 V8 源代码。'
 ---
 本文档说明如何在本地检查 V8 源代码。如果您只想在线浏览源代码，请使用以下链接：
 

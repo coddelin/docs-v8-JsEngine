@@ -1,13 +1,13 @@
 ---
-title: &apos;JSON ⊂ ECMAScript 제안&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'JSON ⊂ ECMAScript 제안'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-08-14
 tags:
   - ES2019
-description: &apos;JSON이 이제 ECMAScript의 문법적 하위 집합이 되었습니다.&apos;
-tweet: &apos;1161649929904885762&apos;
+description: 'JSON이 이제 ECMAScript의 문법적 하위 집합이 되었습니다.'
+tweet: '1161649929904885762'
 ---
 [_JSON ⊂ ECMAScript_ 제안](https://github.com/tc39/proposal-json-superset)을 통해 JSON은 ECMAScript의 문법적 하위 집합이 되었습니다. 이것이 이미 그렇지 않았다는 사실에 놀란다면, 당신은 혼자가 아닙니다!
 
@@ -17,11 +17,11 @@ ES2018에서는 ECMA스크립트 문자열 리터럴은 U+2028 LINE SEPARATOR와
 
 ```js
 // U+2028 문자가 포함된 문자열입니다.
-const LS = &apos; &apos;;
+const LS = ' ';
 // → ES2018: SyntaxError
 
 // eval로 생성된 U+2029 문자가 포함된 문자열입니다:
-const PS = eval(&apos;"\u2029"&apos;);
+const PS = eval('"\u2029"');
 // → ES2018: SyntaxError
 ```
 
@@ -34,12 +34,12 @@ ES2019에서는 문자열 리터럴에 이제 U+2028 및 U+2029 문자를 포함
 
 ```js
 // U+2028 문자가 포함된 문자열입니다.
-const LS = &apos; &apos;;
+const LS = ' ';
 // → ES2018: SyntaxError
 // → ES2019: 예외 없음
 
 // eval로 생성된 U+2029 문자가 포함된 문자열입니다:
-const PS = eval(&apos;"\u2029"&apos;);
+const PS = eval('"\u2029"');
 // → ES2018: SyntaxError
 // → ES2019: 예외 없음
 ```
@@ -55,8 +55,8 @@ const PS = eval(&apos;"\u2029"&apos;);
 ```js
 // 일부 데이터를 나타내는 JavaScript 객체(또는 배열, 문자열).
 const data = {
-  LineTerminators: &apos;\n\r  &apos;,
-  // 주의: 문자열에는 4개의 문자가 포함되어 있습니다: &apos;\n\r\u2028\u2029&apos;.
+  LineTerminators: '\n\r  ',
+  // 주의: 문자열에는 4개의 문자가 포함되어 있습니다: '\n\r\u2028\u2029'.
 };
 
 // 데이터를 JSON 문자열 형식으로 변환합니다. JSON ⊂
@@ -66,7 +66,7 @@ const jsObjectLiteral = JSON.stringify(data);
 
 // 데이터를 객체 리터럴로 포함하는 유효한 ECMAScript 프로그램을 생성합니다.
 const program = `const data = ${ jsObjectLiteral };`;
-// → &apos;const data = {"LineTerminators":"…"};&apos;
+// → 'const data = {"LineTerminators":"…"};'
 // (대상에 인라인 <script>가 있는 경우 추가적인 이스케이프 처리 필요.)
 
 // ECMAScript 프로그램이 포함된 파일을 디스크에 씁니다.
@@ -90,7 +90,7 @@ const data = { foo: 42, bar: 1337 }; // 🐌
 …데이터를 JSON 문자열 형식으로 표현한 다음 런타임에 JSON을 파싱하여, 대형 객체(10 kB 이상)의 경우 성능이 개선될 수 있습니다:
 
 ```js
-const data = JSON.parse(&apos;{"foo":42,"bar":1337}&apos;); // 🚀
+const data = JSON.parse('{"foo":42,"bar":1337}'); // 🚀
 ```
 
 다음은 구현 예제입니다:
@@ -98,8 +98,8 @@ const data = JSON.parse(&apos;{"foo":42,"bar":1337}&apos;); // 🚀
 ```js
 // 일부 데이터를 나타내는 JavaScript 객체(또는 배열, 문자열).
 const data = {
-  LineTerminators: &apos;\n\r  &apos;,
-  // 주의: 문자열에는 4개의 문자가 포함되어 있습니다: &apos;\n\r\u2028\u2029&apos;.
+  LineTerminators: '\n\r  ',
+  // 주의: 문자열에는 4개의 문자가 포함되어 있습니다: '\n\r\u2028\u2029'.
 };
 
 // 데이터를 JSON 문자열 형식으로 변환합니다.
@@ -113,7 +113,7 @@ const jsStringLiteral = JSON.stringify(json);
 // JSON 데이터를 표현하는 JavaScript 문자열 리터럴을
 // `JSON.parse` 호출 내에 포함하는 유효한 ECMAScript 프로그램을 생성합니다.
 const program = `const data = JSON.parse(${ jsStringLiteral });`;
-// → &apos;const data = JSON.parse("…");&apos;
+// → 'const data = JSON.parse("…");'
 // (타겟이 인라인 <script>일 경우 추가 이스케이프가 필요합니다.)
 
 // ECMAScript 프로그램이 포함된 파일을 디스크에 저장합니다.
@@ -148,13 +148,13 @@ JSON ⊂ ECMAScript는 문자열 리터럴의 경우에 JSON과 ECMAScript 간�
 ```html
 <script>
   // 디버그 정보:
-  // User-Agent: "사용자가 제공한 문자열<U+2028>  alert(&apos;XSS&apos;);//"
+  // User-Agent: "사용자가 제공한 문자열<U+2028>  alert('XSS');//"
 </script>
 <!-- …다음과 동일합니다: -->
 <script>
   // 디버그 정보:
   // User-Agent: "사용자가 제공한 문자열
-  alert(&apos;XSS&apos;);//"
+  alert('XSS');//"
 </script>
 ```
 

@@ -1,17 +1,17 @@
 ---
-title: &apos;Ein leichteres V8&apos;
-author: &apos;Mythri Alle, Dan Elphick und [Ross McIlroy](https://twitter.com/rossmcilroy), V8-Gewichtsüberwacher&apos;
+title: 'Ein leichteres V8'
+author: 'Mythri Alle, Dan Elphick und [Ross McIlroy](https://twitter.com/rossmcilroy), V8-Gewichtsüberwacher'
 avatars:
-  - &apos;mythri-alle&apos;
-  - &apos;dan-elphick&apos;
-  - &apos;ross-mcilroy&apos;
+  - 'mythri-alle'
+  - 'dan-elphick'
+  - 'ross-mcilroy'
 date: 2019-09-12 12:44:37
 tags:
   - internals
   - speicher
   - präsentationen
-description: &apos;Das V8 Lite-Projekt hat den Speicheraufwand von V8 auf typischen Websites erheblich reduziert, so haben wir es gemacht.&apos;
-tweet: &apos;1172155403343298561&apos;
+description: 'Das V8 Lite-Projekt hat den Speicheraufwand von V8 auf typischen Websites erheblich reduziert, so haben wir es gemacht.'
+tweet: '1172155403343298561'
 ---
 Ende 2018 starteten wir ein Projekt namens V8 Lite, das darauf abzielte, den Speicherverbrauch von V8 drastisch zu reduzieren. Ursprünglich war dieses Projekt als separater *Lite-Modus* von V8 gedacht, der speziell für mobile Geräte mit geringem Speicher oder Embedding-Anwendungsfälle konzipiert wurde, bei denen es mehr auf reduzierten Speicherverbrauch als auf Durchsatzgeschwindigkeit ankommt. Im Verlauf dieser Arbeit stellten wir jedoch fest, dass viele der Speicheroptimierungen, die wir für diesen *Lite-Modus* vorgenommen hatten, auch auf das reguläre V8 übertragen werden konnten, wodurch alle V8-Benutzer profitieren konnten.
 

@@ -1,14 +1,14 @@
 ---
-title: &apos;Anunciando o Benchmark de Ferramentas Web&apos;
-author: &apos;Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), Equilibrista de Performance em JavaScript&apos;
+title: 'Anunciando o Benchmark de Ferramentas Web'
+author: 'Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), Equilibrista de Performance em JavaScript'
 avatars:
-  - &apos;benedikt-meurer&apos;
+  - 'benedikt-meurer'
 date: 2017-11-06 13:33:37
 tags:
   - benchmarks
   - Node.js
-description: &apos;O novíssimo Benchmark de Ferramentas Web ajuda a identificar e corrigir gargalos de desempenho do V8 em Babel, TypeScript e outros projetos do mundo real.&apos;
-tweet: &apos;927572065598824448&apos;
+description: 'O novíssimo Benchmark de Ferramentas Web ajuda a identificar e corrigir gargalos de desempenho do V8 em Babel, TypeScript e outros projetos do mundo real.'
+tweet: '927572065598824448'
 ---
 O desempenho do JavaScript sempre foi importante para a equipe do V8, e neste post gostaríamos de discutir um novo [Benchmark de Ferramentas Web](https://v8.github.io/web-tooling-benchmark) que temos usado recentemente para identificar e corrigir alguns gargalos de desempenho no V8. Você já pode estar ciente do [forte compromisso do V8 com o Node.js](/blog/v8-nodejs), e este benchmark estende esse compromisso ao executar testes de desempenho especificamente baseados em ferramentas comuns de desenvolvedores construídas sobre Node.js. As ferramentas no Benchmark de Ferramentas Web são as mesmas usadas por desenvolvedores e designers hoje para criar sites modernos e aplicativos baseados em nuvem. Continuando nossos esforços contínuos para focar no [desempenho do mundo real](/blog/real-world-performance/) em vez de benchmarks artificiais, criamos o benchmark usando código real que os desenvolvedores executam diariamente.
 

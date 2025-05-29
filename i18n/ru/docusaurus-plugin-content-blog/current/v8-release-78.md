@@ -1,13 +1,13 @@
 ---
-title: &apos;Релиз V8 v7.8&apos;
-author: &apos;Ингвар Степанян ([@RReverser](https://twitter.com/RReverser)), ленивый разработчик&apos;
+title: 'Релиз V8 v7.8'
+author: 'Ингвар Степанян ([@RReverser](https://twitter.com/RReverser)), ленивый разработчик'
 avatars:
-  - &apos;ingvar-stepanyan&apos;
+  - 'ingvar-stepanyan'
 date: 2019-09-27
 tags:
   - релиз
-description: &apos;V8 v7.8 включает потоковую компиляцию при предварительной загрузке, API WebAssembly C, более быструю деструктуризацию объектов и сопоставление RegExp, а также улучшенное время запуска.&apos;
-tweet: &apos;1177600702861971459&apos;
+description: 'V8 v7.8 включает потоковую компиляцию при предварительной загрузке, API WebAssembly C, более быструю деструктуризацию объектов и сопоставление RegExp, а также улучшенное время запуска.'
+tweet: '1177600702861971459'
 ---
 Каждые шесть недель мы создаем новую ветку V8 в рамках нашего [процесса релиза](/docs/release-process). Каждая версия создается из основной ветки Git перед бета-вехой Chrome. Сегодня мы рады объявить о нашей новой ветке, [V8 версии 7.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.8), которая находится в бета-версии до выпуска вместе с Chrome 78 Stable через несколько недель. V8 v7.8 наполнен полезными инструментами для разработчиков. В этом посте мы предлагаем краткий обзор некоторых основных моментов перед релизом.
 
@@ -77,8 +77,8 @@ const y = object.y;
 …за исключением того, что она должна выбрасывать особую ошибку, если `object` равен `undefined` или `null`...
 
 ```
-$ v8 -e &apos;const object = undefined; const {x, y} = object;&apos;
-unnamed:1: TypeError: Cannot destructure property `x` of &apos;undefined&apos; or &apos;null&apos;.
+$ v8 -e 'const object = undefined; const {x, y} = object;'
+unnamed:1: TypeError: Cannot destructure property `x` of 'undefined' or 'null'.
 const object = undefined; const {x, y} = object;
                                  ^
 ```
@@ -86,8 +86,8 @@ const object = undefined; const {x, y} = object;
 …в отличие от обычной ошибки, которую вы получили бы при попытке разыменовать `undefined`:
 
 ```
-$ v8 -e &apos;const object = undefined; object.x&apos;
-unnamed:1: TypeError: Cannot read property &apos;x&apos; of undefined
+$ v8 -e 'const object = undefined; object.x'
+unnamed:1: TypeError: Cannot read property 'x' of undefined
 const object = undefined; object.x
                                  ^
 ```

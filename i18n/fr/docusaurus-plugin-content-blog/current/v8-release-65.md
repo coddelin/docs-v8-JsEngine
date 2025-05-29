@@ -1,11 +1,11 @@
 ---
-title: &apos;Publication de V8 version v6.5&apos;
-author: &apos;l&apos;équipe V8&apos;
+title: 'Publication de V8 version v6.5'
+author: 'l'équipe V8'
 date: 2018-02-01 13:33:37
 tags:
   - publication
-description: &apos;V8 v6.5 ajoute la prise en charge de la compilation WebAssembly en streaming et inclut un nouveau “mode code non fiable”.&apos;
-tweet: &apos;959174292406640640&apos;
+description: 'V8 v6.5 ajoute la prise en charge de la compilation WebAssembly en streaming et inclut un nouveau “mode code non fiable”.'
+tweet: '959174292406640640'
 ---
 Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](/docs/release-process). Chaque version est créée depuis le dépôt Git principal de V8 juste avant un jalon de Chrome Beta. Aujourd’hui, nous sommes ravis d’annoncer notre plus récente branche, [V8 version 6.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.5), qui est en phase bêta jusqu’à sa publication en coordination avec Chrome 65 Stable dans quelques semaines. V8 v6.5 est rempli de toutes sortes de nouveautés dédiées aux développeurs. Ce post donne un aperçu de certains des points forts en prévision de la publication.
 
@@ -19,7 +19,7 @@ En réponse à la dernière attaque spéculative par canal caché appelée Spect
 L’API WebAssembly fournit une fonction spéciale pour prendre en charge la [compilation en streaming](https://developers.google.com/web/updates/2018/04/loading-wasm) en combinaison avec l’API `fetch()` :
 
 ```js
-const module = await WebAssembly.compileStreaming(fetch(&apos;foo.wasm&apos;));
+const module = await WebAssembly.compileStreaming(fetch('foo.wasm'));
 ```
 
 Cette API est disponible depuis V8 v6.1 et Chrome 61, bien que l’implémentation initiale ne faisait pas réellement usage de la compilation en streaming. Cependant, avec V8 v6.5 et Chrome 65, nous exploitons cette API et compilons les modules WebAssembly pendant que nous téléchargeons encore les octets du module. Dès que nous téléchargeons tous les octets d’une fonction unique, nous la transmettons à un thread d’arrière-plan pour la compiler.

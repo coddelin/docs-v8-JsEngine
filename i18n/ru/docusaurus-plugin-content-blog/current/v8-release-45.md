@@ -1,10 +1,10 @@
 ---
-title: &apos;Релиз V8 версии v4.5&apos;
-author: &apos;Команда V8&apos;
+title: 'Релиз V8 версии v4.5'
+author: 'Команда V8'
 date: 2015-07-17 13:33:37
 tags:
   - релиз
-description: &apos;V8 v4.5 включает улучшения производительности и добавляет поддержку нескольких функций ES2015.&apos;
+description: 'V8 v4.5 включает улучшения производительности и добавляет поддержку нескольких функций ES2015.'
 ---
 Примерно каждые шесть недель мы создаем новую ветку V8 в рамках нашего [процесса релиза](https://v8.dev/docs/release-process). Каждая версия создается из основной ветки V8 в Git непосредственно перед созданием ветки Chrome для этапа Chrome Beta. Сегодня мы рады представить нашу новейшую ветвь, [V8 версии 4.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.5), которая будет находиться в бета-версии до выпуска совместно с Chrome 45 Stable. V8 v4.5 полна всевозможных радостей для разработчиков, поэтому мы хотели бы предоставить вам предварительный обзор некоторых основных моментов в преддверии выпуска через несколько недель.
 
@@ -27,12 +27,12 @@ const convertedData = data.map(value => value * 2);
 console.log(convertedData);
 ```
 
-Лексическое связывание &apos;this&apos; является еще одним важным преимуществом стрелочных функций. В результате использование обратных вызовов в методах становится значительно проще.
+Лексическое связывание 'this' является еще одним важным преимуществом стрелочных функций. В результате использование обратных вызовов в методах становится значительно проще.
 
 ```js
 class MyClass {
-  constructor() { this.a = &apos;Привет, &apos;; }
-  hello() { setInterval(() => console.log(this.a + &apos;мир!&apos;), 1000); }
+  constructor() { this.a = 'Привет, '; }
+  hello() { setInterval(() => console.log(this.a + 'мир!'), 1000); }
 }
 const myInstance = new MyClass();
 myInstance.hello();
@@ -47,8 +47,8 @@ myInstance.hello();
 [`Object.assign`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) позволяет разработчикам быстро объединять и клонировать объекты.
 
 ```js
-const target = { a: &apos;Привет, &apos; };
-const source = { b: &apos;мир!&apos; };
+const target = { a: 'Привет, ' };
+const source = { b: 'мир!' };
 // Объединить объекты.
 Object.assign(target, source);
 console.log(target.a + target.b);
@@ -62,13 +62,13 @@ console.log(target.a + target.b);
 
 Одна из целей разработки нового оптимизирующего компилятора V8, [TurboFan](/blog/turbofan-jit), — это стать в конечном итоге способным оптимизировать весь JavaScript, включая функции ECMAScript 2015. В V8 v4.5 мы начали использовать TurboFan для оптимизации некоторых функций языка, которые не поддерживаются Crankshaft: `for`-`of`, `class`, `with` и вычисляемые имена свойств.
 
-Вот пример кода, который использует &apos;for-of&apos;, теперь может быть скомпилирован TurboFan:
+Вот пример кода, который использует 'for-of', теперь может быть скомпилирован TurboFan:
 
 ```js
-const sequence = [&apos;Первый&apos;, &apos;Второй&apos;, &apos;Третий&apos;];
+const sequence = ['Первый', 'Второй', 'Третий'];
 for (const value of sequence) {
   // Этот блок теперь оптимизируемый.
-  const object = {a: &apos;Привет, &apos;, b: &apos;мир!&apos;, c: value};
+  const object = {a: 'Привет, ', b: 'мир!', c: value};
   console.log(object.a + object.b + object.c);
 }
 ```

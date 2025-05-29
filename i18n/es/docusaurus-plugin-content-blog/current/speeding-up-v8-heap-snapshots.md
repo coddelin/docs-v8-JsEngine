@@ -1,7 +1,7 @@
 ---
-title: &apos;Acelerando las instantáneas de montón de V8&apos;
-description: &apos;Esta publicación sobre instantáneas de montón de V8 presenta algunos problemas de rendimiento encontrados por ingenieros de Bloomberg, y cómo los solucionamos para que el análisis de memoria de JavaScript sea más rápido que nunca.&apos;
-author: &apos;Jose Dapena Paz&apos;
+title: 'Acelerando las instantáneas de montón de V8'
+description: 'Esta publicación sobre instantáneas de montón de V8 presenta algunos problemas de rendimiento encontrados por ingenieros de Bloomberg, y cómo los solucionamos para que el análisis de memoria de JavaScript sea más rápido que nunca.'
+author: 'Jose Dapena Paz'
 date: 2023-07-27
 tags:
  - memoria
@@ -19,7 +19,7 @@ Los ingenieros de Bloomberg estaban trabajando en diagnosticar una fuga de memor
 Una técnica común para depurar un escenario de fuga de memoria rutinario como este es capturar primero una instantánea de montón, luego cargarla en la pestaña “Memoria” de DevTools y averiguar qué está consumiendo más memoria inspeccionando los distintos resúmenes y atributos de los objetos. En la interfaz de DevTools, la instantánea de montón puede tomarse en la pestaña “Memoria”. Para aplicaciones de Node.js, la instantánea de montón [puede activarse programáticamente](https://nodejs.org/en/docs/guides/diagnostics/memory/using-heap-snapshot) utilizando esta API:
 
 ```js
-require(&apos;v8&apos;).writeHeapSnapshot();
+require('v8').writeHeapSnapshot();
 ```
 
 Querían capturar varias instantáneas en diferentes puntos de la vida útil de la aplicación, de modo que el visor de memoria de DevTools pudiera mostrar la diferencia entre los montones en diferentes momentos. El problema era que capturar una sola instantánea de tamaño completo (500 MB) estaba tomando **más de 30 minutos**!

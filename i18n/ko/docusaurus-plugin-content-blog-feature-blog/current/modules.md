@@ -118,7 +118,7 @@ import shout from './lib.mjs';
 
 <script type="module" src="module.mjs"></script>
 <script type="module" src="module.mjs"></script>
-<script type="module">import &apos;./module.mjs&apos;;</script>
+<script type="module">import './module.mjs';</script>
 <!-- module.mjs는 한 번만 실행됩니다. -->
 ```
 
@@ -141,10 +141,10 @@ import shout from './lib.mjs';
 
 ### 모듈 지정자
 
-모듈을 `import`할 때, 모듈의 위치를 지정하는 문자열을 “모듈 지정자” 또는 “import 지정자”라고 합니다. 이전 예제에서 모듈 지정자는 `&apos;./lib.mjs&apos;`입니다:
+모듈을 `import`할 때, 모듈의 위치를 지정하는 문자열을 “모듈 지정자” 또는 “import 지정자”라고 합니다. 이전 예제에서 모듈 지정자는 `'./lib.mjs'`입니다:
 
 ```js
-import {shout} from &apos;./lib.mjs&apos;;
+import {shout} from './lib.mjs';
 //                  ^^^^^^^^^^^
 ```
 
@@ -152,19 +152,19 @@ import {shout} from &apos;./lib.mjs&apos;;
 
 ```js
 // 아직 지원되지 않습니다:
-import {shout} from &apos;jquery&apos;;
-import {shout} from &apos;lib.mjs&apos;;
-import {shout} from &apos;modules/lib.mjs&apos;;
+import {shout} from 'jquery';
+import {shout} from 'lib.mjs';
+import {shout} from 'modules/lib.mjs';
 ```
 
 반면, 다음 예제는 모두 지원됩니다:
 
 ```js
 // 지원됨:
-import {shout} from &apos;./lib.mjs&apos;;
-import {shout} from &apos;../lib.mjs&apos;;
-import {shout} from &apos;/modules/lib.mjs&apos;;
-import {shout} from &apos;https://simple.example/modules/lib.mjs&apos;;
+import {shout} from './lib.mjs';
+import {shout} from '../lib.mjs';
+import {shout} from '/modules/lib.mjs';
+import {shout} from 'https://simple.example/modules/lib.mjs';
 ```
 
 현재로서는, 모듈 지정자는 풀 URL이거나, `/`, `./`, `../`로 시작하는 상대 URL이어야 합니다.
@@ -186,12 +186,12 @@ import {shout} from &apos;https://simple.example/modules/lib.mjs&apos;;
 ```html
 <script type="module">
   (async () => {
-    const moduleSpecifier = &apos;./lib.mjs&apos;;
+    const moduleSpecifier = './lib.mjs';
     const {repeat, shout} = await import(moduleSpecifier);
-    repeat(&apos;hello&apos;);
-    // → &apos;hello hello&apos;
-    shout(&apos;Dynamic import in action&apos;);
-    // → &apos;DYNAMIC IMPORT IN ACTION!&apos;
+    repeat('hello');
+    // → 'hello hello'
+    shout('Dynamic import in action');
+    // → 'DYNAMIC IMPORT IN ACTION!'
   })();
 </script>
 ```
@@ -216,7 +216,7 @@ function loadThumbnail(relativePath) {
   return image;
 }
 
-const thumbnail = loadThumbnail(&apos;../img/thumbnail.png&apos;);
+const thumbnail = loadThumbnail('../img/thumbnail.png');
 container.append(thumbnail);
 ```
 
@@ -266,7 +266,7 @@ export function zip() { /* … */ }
 코드 베이스에서 실제로 `pluck` 기능만 필요하다면, 다음과 같이 가져올 것입니다:
 
 ```js
-import {pluck} from &apos;./util.mjs&apos;;
+import {pluck} from './util.mjs';
 ```
 
 이 경우 (빌드 시 번들링 단계 없이), 브라우저는 실제로 한 가지 내보내기만 필요해도 여전히 전체 `./util.mjs` 모듈을 다운로드, 구문 분석 및 컴파일해야 합니다. 이는 낭비입니다!
@@ -280,7 +280,7 @@ export function pluck() { /* … */ }
 이제 `drop` 및 `zip`에 대한 과부하 없이 `pluck`을 가져올 수 있습니다:
 
 ```js
-import {pluck} from &apos;./pluck.mjs&apos;;
+import {pluck} from './pluck.mjs';
 ```
 
 :::note
@@ -335,7 +335,7 @@ Chrome은 이제 [워크릿](https://drafts.css-houdini.org/worklets/)을 구현
 Chrome 65는 DOM 요소의 페인팅 방식을 제어하기 위한 [`PaintWorklet`](https://developers.google.com/web/updates/2018/01/paintapi) (CSS Paint API라고도 함)을 지원합니다.
 
 ```js
-const result = await css.paintWorklet.addModule(&apos;paint-worklet.mjs&apos;);
+const result = await css.paintWorklet.addModule('paint-worklet.mjs');
 ```
 
 Chrome 66은 [`AudioWorklet`](https://developers.google.com/web/updates/2017/12/audio-worklet)을 지원하여 사용자 코드를 사용하여 오디오 처리를 제어할 수 있습니다. 같은 크롬 버전에서 [`AnimationWorklet`](https://groups.google.com/a/chromium.org/d/msg/blink-dev/AZ-PYPMS7EA/DEqbe2u5BQAJ)을 위한 [OriginTrial](https://groups.google.com/a/chromium.org/d/msg/blink-dev/AZ-PYPMS7EA/DEqbe2u5BQAJ)이 시작되었으며, 스크롤 연결된 고성능 절차적 애니메이션을 생성할 수 있게 합니다.
@@ -345,14 +345,14 @@ Chrome 66은 [`AudioWorklet`](https://developers.google.com/web/updates/2017/12/
 크롬에서는 전용 웹 워커에서 JS 모듈을 사용하는 지원을 추가하기 위해 [작업 중입니다](https://bugs.chromium.org/p/chromium/issues/detail?id=680046). 이미 `chrome://flags/#enable-experimental-web-platform-features`를 활성화하여 이 기능을 시도할 수 있습니다.
 
 ```js
-const worker = new Worker(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
+const worker = new Worker('worker.mjs', { type: 'module' });
 ```
 
 공유 워커와 서비스 워커에 대한 JS 모듈 지원도 곧 제공될 예정입니다:
 
 ```js
-const worker = new SharedWorker(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
-const registration = await navigator.serviceWorker.register(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
+const worker = new SharedWorker('worker.mjs', { type: 'module' });
+const registration = await navigator.serviceWorker.register('worker.mjs', { type: 'module' });
 ```
 
 ### Import maps
@@ -360,8 +360,8 @@ const registration = await navigator.serviceWorker.register(&apos;worker.mjs&apo
 Node.js/npm에서는 JS 모듈을 '패키지 이름'으로 가져오는 것이 일반적입니다. 예를 들어:
 
 ```js
-import moment from &apos;moment&apos;;
-import {pluck} from &apos;lodash-es&apos;;
+import moment from 'moment';
+import {pluck} from 'lodash-es';
 ```
 
 현재 [HTML 사양에 따르면](https://html.spec.whatwg.org/multipage/webappapis.html#resolve-a-module-specifier), 이러한 '베어 가져오기 지정자'는 예외를 발생시킵니다. [우리의 import maps 제안](https://github.com/domenic/import-maps)은 이러한 코드가 프로덕션 앱을 포함하여 웹에서 작동할 수 있도록 허용합니다. import map은 브라우저가 베어 가져오기 지정자를 전체 URL로 변환하도록 돕는 JSON 리소스입니다.

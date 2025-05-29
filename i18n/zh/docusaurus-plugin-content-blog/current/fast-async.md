@@ -165,16 +165,16 @@ http.createServer(async (req, res) => {
 const p = Promise.resolve();
 
 (async () => {
-  await p; console.log(&apos;after:await&apos;);
+  await p; console.log('after:await');
 })();
 
-p.then(() => console.log(&apos;tick:a&apos;))
- .then(() => console.log(&apos;tick:b&apos;));
+p.then(() => console.log('tick:a'))
+ .then(() => console.log('tick:b'));
 ```
 
 上面的程序创建了一个已完成的 Promise `p`，并 `await` 它的结果，同时还链接了两个处理程序。在你看来，`console.log` 的调用会以什么顺序执行呢？
 
-由于 `p` 已完成，你可能认为它会先打印 `&apos;after:await&apos;`，然后是 `&apos;tick&apos;`。事实上，在 Node.js 8 中确实如此：
+由于 `p` 已完成，你可能认为它会先打印 `'after:await'`，然后是 `'tick'`。事实上，在 Node.js 8 中确实如此：
 
 ![Node.js 8 中的 `await` bug](/_img/fast-async/await-bug-node-8.svg)
 
@@ -383,7 +383,7 @@ async function foo() {
 
 async function bar() {
   await Promise.resolve();
-  throw new Error(&apos;BEEP BEEP&apos;);
+  throw new Error('BEEP BEEP');
 }
 
 foo().catch(error => console.log(error.stack));

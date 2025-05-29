@@ -1,27 +1,27 @@
 ---
-title: &apos;Intégration de WebAssembly avec JavaScript BigInt&apos;
-author: &apos;Alon Zakai&apos;
+title: 'Intégration de WebAssembly avec JavaScript BigInt'
+author: 'Alon Zakai'
 avatars:
-  - &apos;alon-zakai&apos;
+  - 'alon-zakai'
 date: 2020-11-12
 tags:
   - WebAssembly
   - ECMAScript
-description: &apos;Les BigInts permettent de passer facilement des entiers 64 bits entre JavaScript et WebAssembly. Cet article explique ce que cela signifie et pourquoi c&apos;est utile, y compris la simplification pour les développeurs, l&apos;accélération de l&apos;exécution du code, et également la réduction des temps de compilation.&apos;
-tweet: &apos;1331966281571037186&apos;
+description: 'Les BigInts permettent de passer facilement des entiers 64 bits entre JavaScript et WebAssembly. Cet article explique ce que cela signifie et pourquoi c'est utile, y compris la simplification pour les développeurs, l'accélération de l'exécution du code, et également la réduction des temps de compilation.'
+tweet: '1331966281571037186'
 ---
-La fonctionnalité [JS-BigInt-Integration](https://github.com/WebAssembly/JS-BigInt-integration) permet de passer facilement des entiers 64 bits entre JavaScript et WebAssembly. Cet article explique ce que cela signifie et pourquoi c&apos;est utile, y compris la simplification pour les développeurs, l&apos;accélération de l&apos;exécution du code, et également la réduction des temps de compilation.
+La fonctionnalité [JS-BigInt-Integration](https://github.com/WebAssembly/JS-BigInt-integration) permet de passer facilement des entiers 64 bits entre JavaScript et WebAssembly. Cet article explique ce que cela signifie et pourquoi c'est utile, y compris la simplification pour les développeurs, l'accélération de l'exécution du code, et également la réduction des temps de compilation.
 
 <!--truncate-->
 ## Entiers 64 bits
 
-Les nombres en JavaScript sont des nombres à virgule flottante 64 bits. Une telle valeur peut contenir un entier 32 bits avec une précision complète, mais pas tous les entiers 64 bits. WebAssembly, en revanche, prend entièrement en charge les entiers 64 bits, avec le type `i64`. Un problème survient lors de la connexion des deux : si une fonction Wasm retourne un `i64`, par exemple, la machine virtuelle lance une exception si vous l&apos;appelez depuis JavaScript, quelque chose comme ceci :
+Les nombres en JavaScript sont des nombres à virgule flottante 64 bits. Une telle valeur peut contenir un entier 32 bits avec une précision complète, mais pas tous les entiers 64 bits. WebAssembly, en revanche, prend entièrement en charge les entiers 64 bits, avec le type `i64`. Un problème survient lors de la connexion des deux : si une fonction Wasm retourne un `i64`, par exemple, la machine virtuelle lance une exception si vous l'appelez depuis JavaScript, quelque chose comme ceci :
 
 ```
 TypeError: Wasm function signature contains illegal type
 ```
 
-Comme le dit l&apos;erreur, `i64` n&apos;est pas un type valide pour JavaScript.
+Comme le dit l'erreur, `i64` n'est pas un type valide pour JavaScript.
 
 Historiquement, la meilleure solution pour cela était la « légalisation » du Wasm. La légalisation consiste à convertir les imports et exports Wasm pour utiliser des types valides pour JavaScript. En pratique, cela effectuait deux choses :
 
@@ -46,13 +46,13 @@ La légalisation le transformerait en cela :
     ..))
 ```
 
-La légalisation est effectuée côté outils, avant que cela n&apos;atteigne la machine virtuelle qui l&apos;exécute. Par exemple, la bibliothèque d&apos;outils [Binaryen](https://github.com/WebAssembly/binaryen) possède une étape appelée [LegalizeJSInterface](https://github.com/WebAssembly/binaryen/blob/fd7e53fe0ae99bd27179cb35d537e4ce5ec1fe11/src/passes/LegalizeJSInterface.cpp) qui effectue cette transformation, laquelle est exécutée automatiquement dans [Emscripten](https://emscripten.org/) lorsque cela est nécessaire.
+La légalisation est effectuée côté outils, avant que cela n'atteigne la machine virtuelle qui l'exécute. Par exemple, la bibliothèque d'outils [Binaryen](https://github.com/WebAssembly/binaryen) possède une étape appelée [LegalizeJSInterface](https://github.com/WebAssembly/binaryen/blob/fd7e53fe0ae99bd27179cb35d537e4ce5ec1fe11/src/passes/LegalizeJSInterface.cpp) qui effectue cette transformation, laquelle est exécutée automatiquement dans [Emscripten](https://emscripten.org/) lorsque cela est nécessaire.
 
 ## Inconvénients de la légalisation
 
 La légalisation fonctionne bien pour de nombreuses choses, mais elle a des inconvénients, comme le travail supplémentaire nécessaire pour combiner ou diviser les morceaux 32 bits en valeurs 64 bits. Bien que cela soit rare sur un chemin critique, lorsque cela se produit, le ralentissement peut être notable - nous verrons quelques chiffres plus tard.
 
-Un autre inconvénient est que la légalisation est perceptible par les utilisateurs, car elle modifie l&apos;interface entre JavaScript et Wasm. Voici un exemple :
+Un autre inconvénient est que la légalisation est perceptible par les utilisateurs, car elle modifie l'interface entre JavaScript et Wasm. Voici un exemple :
 
 ```c
 // example.c
@@ -76,7 +76,7 @@ mergeInto(LibraryManager.library, {
 });
 ```
 
-Ceci est un petit programme C qui appelle une fonction de [bibliothèque JavaScript](https://emscripten.org/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.html#implement-c-in-javascript) (c&apos;est-à-dire que nous définissons une fonction externe C en C, et nous l&apos;implémentons en JavaScript, comme un moyen simple et de bas niveau pour appeler entre Wasm et JavaScript). Tout ce que fait ce programme, c&apos;est envoyer un `i64` à JavaScript, où nous essayons de l&apos;imprimer.
+Ceci est un petit programme C qui appelle une fonction de [bibliothèque JavaScript](https://emscripten.org/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.html#implement-c-in-javascript) (c'est-à-dire que nous définissons une fonction externe C en C, et nous l'implémentons en JavaScript, comme un moyen simple et de bas niveau pour appeler entre Wasm et JavaScript). Tout ce que fait ce programme, c'est envoyer un `i64` à JavaScript, où nous essayons de l'imprimer.
 
 Nous pouvons le construire avec
 
@@ -84,14 +84,14 @@ Nous pouvons le construire avec
 emcc example.c --js-library example.js -o out.js
 ```
 
-Lorsque nous l&apos;exécutons, nous n&apos;obtenons pas ce à quoi nous nous attendions :
+Lorsque nous l'exécutons, nous n'obtenons pas ce à quoi nous nous attendions :
 
 ```
 node out.js
 JS received: 0x12345678
 ```
 
-Nous avons envoyé `0xABCD12345678` mais n&apos;avons reçu que `0x12345678` 😔. Ce qui se passe ici, c&apos;est que la légalisation a transformé ce `i64` en deux `i32`, et notre code n&apos;a reçu que les 32 bits de poids faible, en ignorant un autre paramètre qui a été envoyé. Pour gérer les choses correctement, nous devrions faire quelque chose comme ceci :
+Nous avons envoyé `0xABCD12345678` mais n'avons reçu que `0x12345678` 😔. Ce qui se passe ici, c'est que la légalisation a transformé ce `i64` en deux `i32`, et notre code n'a reçu que les 32 bits de poids faible, en ignorant un autre paramètre qui a été envoyé. Pour gérer les choses correctement, nous devrions faire quelque chose comme ceci :
 
 ```javascript
   // Le i64 est divisé en deux paramètres 32 bits, « low » et « high ».

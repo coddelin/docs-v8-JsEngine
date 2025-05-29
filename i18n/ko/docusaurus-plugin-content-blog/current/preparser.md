@@ -1,15 +1,15 @@
 ---
-title: &apos;번개처럼 빠른 파싱, 2부: 지연 파싱&apos;
-author: &apos;툰 베르와스트 ([@tverwaes](https://twitter.com/tverwaes))와 마르야 횔타 ([@marjakh](https://twitter.com/marjakh)), 더 얇은 파서&apos;
+title: '번개처럼 빠른 파싱, 2부: 지연 파싱'
+author: '툰 베르와스트 ([@tverwaes](https://twitter.com/tverwaes))와 마르야 횔타 ([@marjakh](https://twitter.com/marjakh)), 더 얇은 파서'
 avatars:
-  - &apos;toon-verwaest&apos;
-  - &apos;marja-holtta&apos;
+  - 'toon-verwaest'
+  - 'marja-holtta'
 date: 2019-04-15 17:03:37
 tags:
   - internals
   - parsing
-tweet: &apos;1117807107972243456&apos;
-description: &apos;이 시리즈는 V8이 자바스크립트를 가능한 가장 빠르게 파싱하는 방법을 설명하는 두 번째 기사입니다.&apos;
+tweet: '1117807107972243456'
+description: '이 시리즈는 V8이 자바스크립트를 가능한 가장 빠르게 파싱하는 방법을 설명하는 두 번째 기사입니다.'
 ---
 이 시리즈는 V8이 자바스크립트를 가능하게 가장 빠르게 파싱하는 방법을 설명합니다. 첫 번째 글에서는 V8의 [스캐너](/blog/scanner)가 빠르게 작동하도록 만든 방법을 설명했습니다.
 

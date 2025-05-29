@@ -1,14 +1,14 @@
 ---
-title: &apos;更快且功能更豐富的國際化 API&apos;
-author: &apos;[சத்யா குணசேகரன் (Sathya Gunasekaran)](https://twitter.com/_gsathya)&apos;
+title: '更快且功能更豐富的國際化 API'
+author: '[சத்யா குணசேகரன் (Sathya Gunasekaran)](https://twitter.com/_gsathya)'
 date: 2019-04-25 16:45:37
 avatars:
-  - &apos;sathya-gunasekaran&apos;
+  - 'sathya-gunasekaran'
 tags:
   - ECMAScript
   - Intl
-description: &apos;JavaScript 的國際化 API 正在擴展，其中 V8 的實現速度正在加快！&apos;
-tweet: &apos;1121424877142122500&apos;
+description: 'JavaScript 的國際化 API 正在擴展，其中 V8 的實現速度正在加快！'
+tweet: '1121424877142122500'
 ---
 [ECMAScript 國際化 API 規範](https://tc39.es/ecma402/) (ECMA-402 或 `Intl`) 提供了關鍵的區域特定功能，例如日期格式化、數字格式化、複數形式選擇和排序。Chrome V8 和 Google 國際化團隊合作為 V8 的 ECMA-402 實現添加功能，同時清理技術債務並改善效能和與其他瀏覽器的互操作性。
 

@@ -1,6 +1,6 @@
 ---
-title: &apos;Mesclagem & aplicação de patches&apos;
-description: &apos;Este documento explica como mesclar patches do V8 para um branch de lançamento.&apos;
+title: 'Mesclagem & aplicação de patches'
+description: 'Este documento explica como mesclar patches do V8 para um branch de lançamento.'
 ---
 Se você tem um patch no branch `main` (por exemplo, uma correção importante de bug) que precisa ser mesclado em um dos branches de lançamento do V8 (refs/branch-heads/12.5), continue lendo.
 
@@ -22,7 +22,7 @@ Mais informações podem ser encontradas na [página relevante do Chromium](http
 
 ## O processo de mesclagem
 
-O processo de mesclagem no rastreador do V8 é conduzido por atributos. Portanto, por favor, defina o atributo &apos;Merge-Request&apos; para o marco relevante do Chrome. Caso a mesclagem afete apenas um [port](https://v8.dev/docs/ports) do V8, ajuste o atributo HW de forma correspondente. Exemplo:
+O processo de mesclagem no rastreador do V8 é conduzido por atributos. Portanto, por favor, defina o atributo 'Merge-Request' para o marco relevante do Chrome. Caso a mesclagem afete apenas um [port](https://v8.dev/docs/ports) do V8, ajuste o atributo HW de forma correspondente. Exemplo:
 
 ```
 Merge-Request: 123

@@ -1,15 +1,15 @@
 ---
-title: &apos;BigInt: Ganzzahlen mit beliebiger Genauigkeit in JavaScript&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'BigInt: Ganzzahlen mit beliebiger Genauigkeit in JavaScript'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-05-01
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: &apos;BigInts sind eine neue numerische Primitive in JavaScript, die Ganzzahlen mit beliebiger Genauigkeit darstellen können. Dieser Artikel erklärt einige Anwendungsfälle und vergleicht die neue Funktionalität in Chrome 67 durch den Vergleich von BigInts mit Zahlen in JavaScript.&apos;
-tweet: &apos;990991035630206977&apos;
+description: 'BigInts sind eine neue numerische Primitive in JavaScript, die Ganzzahlen mit beliebiger Genauigkeit darstellen können. Dieser Artikel erklärt einige Anwendungsfälle und vergleicht die neue Funktionalität in Chrome 67 durch den Vergleich von BigInts mit Zahlen in JavaScript.'
+tweet: '990991035630206977'
 ---
 `BigInt`s sind eine neue numerische Primitive in JavaScript, die Ganzzahlen mit beliebiger Genauigkeit darstellen können. Mit `BigInt`s können Sie große Ganzzahlen sicher speichern und bearbeiten, sogar über die sichere Ganzzahlen-Grenze von `Number`s hinaus. Dieser Artikel erklärt einige Anwendungsfälle und vergleicht die neue Funktionalität in Chrome 67 mit `Number`s in JavaScript.
 
@@ -92,9 +92,9 @@ Die Grenzen sicherer Ganzzahlen für `Number`s gelten nicht für `BigInt`s. Dahe
 
 ```js
 typeof 123;
-// → &apos;number&apos;
+// → 'number'
 typeof 123n;
-// → &apos;bigint&apos;
+// → 'bigint'
 ```
 
 Da `BigInt`s ein separater Typ sind, ist ein `BigInt` niemals streng gleich (`strictly equal`) einer `Number`, z. B. `42n !== 42`. Um ein `BigInt` mit einer `Number` zu vergleichen, konvertieren Sie entweder das eine in den Typ des anderen, bevor Sie den Vergleich durchführen, oder verwenden Sie die abstrakte Gleichheit (`==`):
@@ -110,11 +110,11 @@ Wenn `BigInt`s in einen booleschen Wert (z. B. beim Verwenden von `if`, `&&`, `|
 
 ```js
 if (0n) {
-  console.log(&apos;if&apos;);
+  console.log('if');
 } else {
-  console.log(&apos;else&apos;);
+  console.log('else');
 }
-// → schreibt &apos;else&apos; in die Konsole, da `0n` falsy ist.
+// → schreibt 'else' in die Konsole, da `0n` falsy ist.
 ```
 
 ### Operatoren
@@ -163,7 +163,7 @@ BigInt(123);
 // → 123n
 BigInt(1.5);
 // → RangeError
-BigInt(&apos;1.5&apos;);
+BigInt('1.5');
 // → SyntaxError
 ```
 
@@ -179,7 +179,7 @@ Aus diesem Grund empfehlen wir, entweder die `BigInt`-Literalnotation (mit dem `
 ```js
 123456789123456789n;
 // → 123456789123456789n ✅
-BigInt(&apos;123456789123456789&apos;);
+BigInt('123456789123456789');
 // → 123456789123456789n ✅
 ```
 
@@ -240,13 +240,13 @@ Der `BigInt`-Vorschlag [ändert das Verhalten von Operatoren](#operators) (wie `
 Eine machbarere und zukunftssichere Lösung besteht darin, Ihren Code vorerst mit der [JSBI-Bibliothek](https://github.com/GoogleChromeLabs/jsbi#why) zu schreiben. JSBI ist eine JavaScript-Portierung der `BigInt`-Implementierung in V8 und Chrome — sie verhält sich designbedingt genau wie die native `BigInt`-Funktionalität. Der Unterschied besteht darin, dass sie anstelle der Syntax [eine API](https://github.com/GoogleChromeLabs/jsbi#how) bereitstellt:
 
 ```js
-import JSBI from &apos;./jsbi.mjs&apos;;
+import JSBI from './jsbi.mjs';
 
 const max = JSBI.BigInt(Number.MAX_SAFE_INTEGER);
-const two = JSBI.BigInt(&apos;2&apos;);
+const two = JSBI.BigInt('2');
 const result = JSBI.add(max, two);
 console.log(result.toString());
-// → &apos;9007199254740993&apos;
+// → '9007199254740993'
 ```
 
 Sobald `BigInt`s in allen von Ihnen verwendeten Browsern nativ unterstützt werden, können Sie [mithilfe von `babel-plugin-transform-jsbi-to-bigint` Ihren Code in nativen `BigInt`-Code transpiliert](https://github.com/GoogleChromeLabs/babel-plugin-transform-jsbi-to-bigint) und die JSBI-Abhängigkeit entfernen. Zum Beispiel wird das obige Beispiel auf Folgendes transpiliert:
@@ -256,7 +256,7 @@ const max = BigInt(Number.MAX_SAFE_INTEGER);
 const two = 2n;
 const result = max + two;
 console.log(result);
-// → &apos;9007199254740993&apos;
+// → '9007199254740993'
 ```
 
 ## Weiterführende Literatur

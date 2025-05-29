@@ -1,10 +1,10 @@
 ---
-title: &apos;V8-Version v4.9&apos;
-author: &apos;das V8-Team&apos;
+title: 'V8-Version v4.9'
+author: 'das V8-Team'
 date: 2016-01-26 13:33:37
 tags:
   - Veröffentlichung
-description: &apos;V8 v4.9 kommt mit einer verbesserten `Math.random`-Implementierung und Unterstützung für mehrere neue ES2015-Sprachfeatures.&apos;
+description: 'V8 v4.9 kommt mit einer verbesserten `Math.random`-Implementierung und Unterstützung für mehrere neue ES2015-Sprachfeatures.'
 ---
 Etwa alle sechs Wochen erstellen wir einen neuen Branch von V8 im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process). Jede Version wird direkt aus dem Git-Master von V8 branchiert, unmittelbar bevor Chrome für einen Chrome-Beta-Meilenstein branchiert. Heute freuen wir uns, unseren neuesten Branch, [V8-Version 4.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.9), bekannt zu geben, der bis zur Veröffentlichung in Abstimmung mit Chrome 49 Stable Beta sein wird. V8 4.9 ist vollgepackt mit allerlei Entwickler-Goodies, und wir möchten Ihnen einen Vorgeschmack auf einige der Highlights geben, die in mehreren Wochen veröffentlicht werden.
 
@@ -50,14 +50,14 @@ Um ein Objekt zu proxen, müssen Sie ein Handler-Placeholder-Objekt erstellen, d
 ```js
 const target = {};
 const handler = {
-  get(target, name=&apos;world&apos;) {
+  get(target, name='world') {
     return `Hallo, ${name}!`;
   }
 };
 
 const foo = new Proxy(target, handler);
 foo.bar;
-// → &apos;Hallo, bar!&apos;
+// → 'Hallo, bar!'
 ```
 
 Das Proxy-Objekt wird von dem Reflect-Modul begleitet, das geeignete Standardwerte für alle Proxy-Fallen definiert:
@@ -74,9 +74,9 @@ const debugMe = new Proxy({}, {
   }
 });
 
-debugMe.name = &apos;John Doe&apos;;
+debugMe.name = 'John Doe';
 // Debug: Feld: name, Wert: John Doe
-const title = `Herr ${debugMe.name}`; // → &apos;Herr John Doe&apos;
+const title = `Herr ${debugMe.name}`; // → 'Herr John Doe'
 // Debug: Zugriff auf Feld: name
 ```
 
@@ -88,8 +88,8 @@ In ES5 und früher erforderten optionale Parameter in Funktionsdefinitionen Boil
 
 ```js
 function sublist(list, start, end) {
-  if (typeof start === &apos;undefined&apos;) start = 0;
-  if (typeof end === &apos;undefined&apos;) end = list.length;
+  if (typeof start === 'undefined') start = 0;
+  if (typeof end === 'undefined') end = list.length;
   ...
 }
 ```
@@ -123,13 +123,13 @@ Mit `Symbol.toStringTag` können benutzerdefinierte Typen jetzt angepasste Ausga
 ```js
 class Custom {
   get [Symbol.toStringTag]() {
-    return &apos;Custom&apos;;
+    return 'Custom';
   }
 }
 Object.prototype.toString.call(new Custom);
-// → &apos;[object Custom]&apos;
+// → '[object Custom]'
 String(new Custom);
-// → &apos;[object Custom]&apos;
+// → '[object Custom]'
 ```
 
 ## Verbesserte `Math.random()`

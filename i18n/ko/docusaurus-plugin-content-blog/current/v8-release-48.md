@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 릴리즈 v4.8&apos;
-author: &apos;V8 팀&apos;
+title: 'V8 릴리즈 v4.8'
+author: 'V8 팀'
 date: 2015-11-25 13:33:37
 tags:
   - 릴리즈
-description: &apos;V8 v4.8은 여러 새로운 ES2015 언어 기능을 지원합니다.&apos;
+description: 'V8 v4.8은 여러 새로운 ES2015 언어 기능을 지원합니다.'
 ---
 대략 6주마다, 우리는 V8의 [릴리즈 프로세스](/docs/release-process)의 일환으로 새로운 브랜치를 만듭니다. 각 버전은 크롬 베타 마일스톤을 위해 크롬이 브랜치되기 직전에 V8의 Git 마스터에서 브랜치됩니다. 오늘 우리는 최신 브랜치인 [V8 버전 4.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.8)을 발표하게 되어 기쁩니다. 이 버전은 Chrome 48 안정 버전과 협조하여 출시되기 전까지 베타 상태에 있을 것입니다. V8 4.8은 개발자들이 사용할 수 있는 여러 가지 기능을 포함하고 있으므로, 몇 주 후 출시를 앞두고 몇 가지 주요 사항을 미리 보여드리고자 합니다.
 
@@ -19,7 +19,7 @@ description: &apos;V8 v4.8은 여러 새로운 ES2015 언어 기능을 지원합
 
 ```js
 (function() {
-  &apos;use strict&apos;;
+  'use strict';
   class AutomaticallySpreadingArray extends Array {
     get [Symbol.isConcatSpreadable]() {
       return true;
@@ -41,17 +41,17 @@ description: &apos;V8 v4.8은 여러 새로운 ES2015 언어 기능을 지원합
 
 ```js
 (function(){
-  &apos;use strict&apos;;
+  'use strict';
   class V8 {
     [Symbol.toPrimitive](hint) {
-      if (hint === &apos;string&apos;) {
-        console.log(&apos;string&apos;);
-        return &apos;V8&apos;;
-      } else if (hint === &apos;number&apos;) {
-        console.log(&apos;number&apos;);
+      if (hint === 'string') {
+        console.log('string');
+        return 'V8';
+      } else if (hint === 'number') {
+        console.log('number');
         return 8;
       } else {
-        console.log(&apos;default:&apos; + hint);
+        console.log('default:' + hint);
         return 8;
       }
     }

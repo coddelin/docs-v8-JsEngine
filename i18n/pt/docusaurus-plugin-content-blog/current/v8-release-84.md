@@ -1,13 +1,13 @@
 ---
-title: &apos;Lançamento do V8 v8.4&apos;
-author: &apos;Camillo Bruni, aproveitando alguns booleanos frescos&apos;
+title: 'Lançamento do V8 v8.4'
+author: 'Camillo Bruni, aproveitando alguns booleanos frescos'
 avatars:
- - &apos;camillo-bruni&apos;
+ - 'camillo-bruni'
 date: 2020-06-30
 tags:
  - lançamento
-description: &apos;O V8 v8.4 apresenta referências fracas e desempenho aprimorado do WebAssembly.&apos;
-tweet: &apos;1277983235641761795&apos;
+description: 'O V8 v8.4 apresenta referências fracas e desempenho aprimorado do WebAssembly.'
+tweet: '1277983235641761795'
 ---
 A cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](https://v8.dev/docs/release-process). Cada versão é ramificada do Git master do V8 imediatamente antes de um marco Beta do Chrome. Hoje estamos felizes em anunciar nosso branch mais recente, [V8 versão 8.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.4), que está em beta até seu lançamento em coordenação com o Chrome 84 Stable em algumas semanas. O V8 v8.4 está repleto de novidades voltadas para desenvolvedores. Este post fornece uma prévia de alguns dos destaques em antecipação ao lançamento.
 
@@ -39,7 +39,7 @@ JavaScript é uma linguagem com coleta de lixo, o que significa que a memória o
 
 ```js
 const globalRef = {
-  callback() { console.log(&apos;foo&apos;); }
+  callback() { console.log('foo'); }
 };
 // Enquanto globalRef for acessível através do escopo global,
 // nem ele nem a função em sua propriedade callback serão coletados.
@@ -49,7 +49,7 @@ Os programadores em JavaScript agora podem manter objetos de forma fraca via o r
 
 ```js
 const globalWeakRef = new WeakRef({
-  callback() { console.log(&apos;foo&apos;); }
+  callback() { console.log('foo'); }
 });
 
 (async function() {
@@ -58,7 +58,7 @@ const globalWeakRef = new WeakRef({
   // no primeiro turno do loop de eventos após ser criado.
 
   await new Promise((resolve, reject) => {
-    setTimeout(() => { resolve(&apos;foo&apos;); }, 42);
+    setTimeout(() => { resolve('foo'); }, 42);
   });
   // Aguarda um turno do loop de eventos.
 

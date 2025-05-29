@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 릴리스 v5.0&apos;
-author: &apos;V8 팀&apos;
+title: 'V8 릴리스 v5.0'
+author: 'V8 팀'
 date: 2016-03-15 13:33:37
 tags:
   - 릴리스
-description: &apos;V8 v5.0은 성능 향상을 제공하며 여러 새로운 ES2015 언어 기능을 지원합니다.&apos;
+description: 'V8 v5.0은 성능 향상을 제공하며 여러 새로운 ES2015 언어 기능을 지원합니다.'
 ---
 V8 [릴리스 프로세스](/docs/release-process)의 첫 번째 단계는 크롬 베타 마일스톤을 위해 Chromium이 분기하기 직전에 Git 마스터에서 새 브랜치를 만드는 것입니다(약 6주마다). 우리의 최신 릴리스 브랜치는 [V8 v5.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.0)이며, 이 브랜치는 Chrome 50 Stable과 함께 안정적인 빌드를 릴리스하기 전까지 베타 상태를 유지합니다. 이번 V8 버전에서 새롭게 개발자에게 제공되는 기능을 강조하여 소개합니다.
 
@@ -22,23 +22,23 @@ V8 v5.0은 정규 표현식(regex) 매칭과 관련된 여러 ES2015 기능을 �
 [RegExp Unicode 플래그](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp#Parameters), `u`는 정규 표현식 매칭을 위한 새로운 유니코드 모드를 활성화합니다. Unicode 플래그는 패턴과 regex 문자열을 Unicode 코드포인트의 시리즈로 취급합니다. 또한 Unicode 코드포인트 이스케이프 구문을 노출합니다.
 
 ```js
-/😊{2}/.test(&apos;😊😊&apos;);
+/😊{2}/.test('😊😊');
 // false
 
-/😊{2}/u.test(&apos;😊😊&apos;);
+/😊{2}/u.test('😊😊');
 // true
 
-/\u{76}\u{38}/u.test(&apos;v8&apos;);
+/\u{76}\u{38}/u.test('v8');
 // true
 
-/\u{1F60A}/u.test(&apos;😊&apos;);
+/\u{1F60A}/u.test('😊');
 // true
 ```
 
 `u` 플래그는 `.` 원자(단일 문자 매칭기라 불림)가 기본 다국어 평면(BMP)에 있는 문자뿐만 아니라 모든 유니코드 기호를 매칭하도록 합니다.
 
 ```js
-const string = &apos;the 🅛 train&apos;;
+const string = 'the 🅛 train';
 
 /the\s.\strain/.test(string);
 // false

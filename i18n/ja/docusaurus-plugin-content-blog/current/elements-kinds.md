@@ -1,14 +1,14 @@
 ---
-title: &apos;V8におけるElementsの種類&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'V8におけるElementsの種類'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-09-12 13:33:37
 tags:
   - internals
   - presentations
-description: &apos;この記事では、V8が配列操作を裏で最適化する仕組みと、それがJavaScript開発者にとって何を意味するかを技術的に深掘りします。&apos;
-tweet: &apos;907608362191376384&apos;
+description: 'この記事では、V8が配列操作を裏で最適化する仕組みと、それがJavaScript開発者にとって何を意味するかを技術的に深掘りします。'
+tweet: '907608362191376384'
 ---
 :::note
 **注:** 記事を読むよりプレゼンを見る方が好みの方には、以下の動画をぜひお楽しみください！
@@ -55,7 +55,7 @@ const array = [1, 2, 3];
 // elements種類: PACKED_SMI_ELEMENTS
 array.push(4.56);
 // elements種類: PACKED_DOUBLE_ELEMENTS
-array.push(&apos;x&apos;);
+array.push('x');
 // elements種類: PACKED_ELEMENTS
 ```
 
@@ -80,7 +80,7 @@ DoubleはSmiのより一般的な変種であり、通常のelementsはDoubleの
 これまで、密なまたは詰まった配列を扱ってきました。配列に空穴を作る（つまり配列をスパースにする）と、elementsの種類が「HOLEY」の変種に降格されます：
 
 ```js
-const array = [1, 2, 3, 4.56, &apos;x&apos;];
+const array = [1, 2, 3, 4.56, 'x'];
 // elements種類: PACKED_ELEMENTS
 array.length; // 5
 array[9] = 1; // array[5]からarray[8]は現在空穴
@@ -320,10 +320,10 @@ V8における単形性 vs 多形性の別の例は、オブジェクトの形�
 const array = new Array(3);
 // この時点で配列はスパースです。そのため `HOLEY_SMI_ELEMENTS` としてマークされます。
 // つまり、現在の情報から得られる最も具体的な可能性です。
-array[0] = &apos;a&apos;;
+array[0] = 'a';
 // あれ、これは小さい整数ではなく文字列です…種類が `HOLEY_ELEMENTS’ に移行します。
-array[1] = &apos;b&apos;;
-array[2] = &apos;c&apos;;
+array[1] = 'b';
+array[2] = 'c';
 // この時点で、配列内の3つすべての位置が埋まっているため、
 // 配列はパックされます（つまり、もはやスパースではありません）。しかし、
 // `PACKED_ELEMENTS` などのより具体的な種類に移行することはできません。要素の種類は
@@ -335,7 +335,7 @@ array[2] = &apos;c&apos;;
 配列を作成するより良い方法は、リテラルを使用することです：
 
 ```js
-const array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
+const array = ['a', 'b', 'c'];
 // 要素の種類: PACKED_ELEMENTS
 ```
 

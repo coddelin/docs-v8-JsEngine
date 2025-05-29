@@ -1,15 +1,15 @@
 ---
-title: &apos;RegExp `v` flag con notación de conjuntos y propiedades de cadenas&apos;
-author: &apos;Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer y Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'RegExp `v` flag con notación de conjuntos y propiedades de cadenas'
+author: 'Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer y Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mark-davis&apos;
-  - &apos;markus-scherer&apos;
-  - &apos;mathias-bynens&apos;
+  - 'mark-davis'
+  - 'markus-scherer'
+  - 'mathias-bynens'
 date: 2022-06-27
 tags:
   - ECMAScript
-description: &apos;El nuevo flag `v` de RegExp activa el modo `unicodeSets`, habilitando soporte para clases de caracteres extendidas, incluyendo propiedades Unicode de cadenas, notación de conjuntos y una mejor coincidencia sin distinción de mayúsculas y minúsculas.&apos;
-tweet: &apos;1541419838513594368&apos;
+description: 'El nuevo flag `v` de RegExp activa el modo `unicodeSets`, habilitando soporte para clases de caracteres extendidas, incluyendo propiedades Unicode de cadenas, notación de conjuntos y una mejor coincidencia sin distinción de mayúsculas y minúsculas.'
+tweet: '1541419838513594368'
 ---
 JavaScript ha soportado expresiones regulares desde ECMAScript 3 (1999). Dieciséis años después, ES2015 introdujo [el modo Unicode (el flag `u`)](https://mathiasbynens.be/notes/es6-unicode-regex), [el modo sticky (el flag `y`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky#description), y el [getter `RegExp.prototype.flags`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/flags). Tres años más tarde, ES2018 introdujo [el modo `dotAll` (el flag `s`)](https://mathiasbynens.be/notes/es-regexp-proposals#dotAll), [las aseveraciones lookbehind](https://mathiasbynens.be/notes/es-regexp-proposals#lookbehinds), [los grupos de captura con nombre](https://mathiasbynens.be/notes/es-regexp-proposals#named-capture-groups), y [los escapes de propiedades de carácter Unicode](https://mathiasbynens.be/notes/es-unicode-property-escapes). Y en ES2020, [`String.prototype.matchAll`](https://v8.dev/features/string-matchall) facilitó trabajar con expresiones regulares. Las expresiones regulares en JavaScript han recorrido un largo camino y siguen mejorando.
 
@@ -38,7 +38,7 @@ Los escapes de propiedades de carácter Unicode introducidos en ES2018 permiten 
 
 ```js
 const regexGreekSymbol = /\p{Script_Extensions=Greek}/u;
-regexGreekSymbol.test(&apos;π&apos;);
+regexGreekSymbol.test('π');
 // → true
 ```
 
@@ -49,27 +49,27 @@ Por definición, las propiedades de carácter Unicode se expanden a un conjunto 
 const re = /^\p{Emoji}$/u;
 
 // Coincidir un emoji que consiste en solo 1 punto de código:
-re.test(&apos;⚽&apos;); // &apos;\u26BD&apos;
+re.test('⚽'); // '\u26BD'
 // → true ✅
 
 // Coincidir un emoji que consiste en múltiples puntos de código:
-re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F&apos;
+re.test('👨🏾‍⚕️'); // '\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F'
 // → false ❌
 ```
 
 En el ejemplo anterior, la expresión regular no coincide con el emoji 👨🏾‍⚕️ porque está formado por múltiples puntos de código, y `Emoji` es una propiedad Unicode de _carácter_.
 
-Afortunadamente, el Estándar Unicode también define varias [propiedades de cadenas](https://www.unicode.org/reports/tr18/#domain_of_properties). Estas propiedades se expanden a un conjunto de cadenas, cada una de las cuales contiene uno o más puntos de código. En las expresiones regulares, las propiedades de cadenas se traducen en un conjunto de alternativas. Para ilustrarlo, imaginemos una propiedad Unicode que se aplica a las cadenas `&apos;a&apos;`, `&apos;b&apos;`, `&apos;c&apos;`, `&apos;W&apos;`, `&apos;xy&apos;` y `&apos;xyz&apos;`. Esta propiedad se traduce en cualquiera de los siguientes patrones de expresiones regulares (utilizando alternancia): `xyz|xy|a|b|c|W` o `xyz|xy|[a-cW]`. (Primero las cadenas más largas, para que un prefijo como `&apos;xy&apos;` no oculte una cadena más larga como `&apos;xyz&apos;`). A diferencia de los escapes existentes de propiedades Unicode, este patrón puede coincidir con cadenas de varios caracteres. Aquí hay un ejemplo de una propiedad de cadenas en uso:
+Afortunadamente, el Estándar Unicode también define varias [propiedades de cadenas](https://www.unicode.org/reports/tr18/#domain_of_properties). Estas propiedades se expanden a un conjunto de cadenas, cada una de las cuales contiene uno o más puntos de código. En las expresiones regulares, las propiedades de cadenas se traducen en un conjunto de alternativas. Para ilustrarlo, imaginemos una propiedad Unicode que se aplica a las cadenas `'a'`, `'b'`, `'c'`, `'W'`, `'xy'` y `'xyz'`. Esta propiedad se traduce en cualquiera de los siguientes patrones de expresiones regulares (utilizando alternancia): `xyz|xy|a|b|c|W` o `xyz|xy|[a-cW]`. (Primero las cadenas más largas, para que un prefijo como `'xy'` no oculte una cadena más larga como `'xyz'`). A diferencia de los escapes existentes de propiedades Unicode, este patrón puede coincidir con cadenas de varios caracteres. Aquí hay un ejemplo de una propiedad de cadenas en uso:
 
 ```js
 const re = /^\p{RGI_Emoji}$/v;
 
 // Coincidir con un emoji que consiste en solo 1 punto de código:
-re.test(&apos;⚽&apos;); // &apos;\u26BD&apos;
+re.test('⚽'); // '\u26BD'
 // → verdadero ✅
 
 // Coincidir con un emoji que consiste en múltiples puntos de código:
-re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F&apos;
+re.test('👨🏾‍⚕️'); // '\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F'
 // → verdadero ✅
 ```
 
@@ -102,7 +102,7 @@ La sintaxis `A--B` puede usarse para coincidir con cadenas _en `A` pero no en `B
 Por ejemplo, ¿qué pasa si queremos coincidir con todos los símbolos griegos excepto por la letra `π`? Con la notación de conjuntos, resolver esto es trivial:
 
 ```js
-/[\p{Script_Extensions=Greek}--π]/v.test(&apos;π&apos;); // → falso
+/[\p{Script_Extensions=Greek}--π]/v.test('π'); // → falso
 ```
 
 Al usar `--` para diferencia/resta, el motor de expresiones regulares hace el trabajo duro por ti mientras mantiene tu código legible y mantenible.
@@ -110,15 +110,15 @@ Al usar `--` para diferencia/resta, el motor de expresiones regulares hace el tr
 ¿Qué pasa si en lugar de un solo carácter, queremos restar el conjunto de caracteres `α`, `β` y `γ`? No hay problema: podemos usar una clase de caracteres anidada y restar su contenido:
 
 ```js
-/[\p{Script_Extensions=Greek}--[αβγ]]/v.test(&apos;α&apos;); // → falso
-/[\p{Script_Extensions=Greek}--[α-γ]]/v.test(&apos;β&apos;); // → falso
+/[\p{Script_Extensions=Greek}--[αβγ]]/v.test('α'); // → falso
+/[\p{Script_Extensions=Greek}--[α-γ]]/v.test('β'); // → falso
 ```
 
 Otro ejemplo es coincidir con dígitos no ASCII, por ejemplo, para convertirlos en dígitos ASCII más adelante:
 
 ```js
-/[\p{Decimal_Number}--[0-9]]/v.test(&apos;𑜹&apos;); // → verdadero
-/[\p{Decimal_Number}--[0-9]]/v.test(&apos;4&apos;); // → falso
+/[\p{Decimal_Number}--[0-9]]/v.test('𑜹'); // → verdadero
+/[\p{Decimal_Number}--[0-9]]/v.test('4'); // → falso
 ```
 
 La notación de conjuntos también se puede usar con las nuevas propiedades de cadenas:
@@ -126,8 +126,8 @@ La notación de conjuntos también se puede usar con las nuevas propiedades de c
 ```js
 // Nota: 🏴 consiste en 7 puntos de código.
 
-/^\p{RGI_Emoji_Tag_Sequence}$/v.test(&apos;🏴&apos;); // → verdadero
-/^[\p{RGI_Emoji_Tag_Sequence}--\q{🏴}]$/v.test(&apos;🏴&apos;); // → falso
+/^\p{RGI_Emoji_Tag_Sequence}$/v.test('🏴'); // → verdadero
+/^[\p{RGI_Emoji_Tag_Sequence}--\q{🏴}]$/v.test('🏴'); // → falso
 ```
 
 Este ejemplo coincide con cualquier secuencia de etiquetas emoji RGI _excepto_ por la bandera de Escocia. Ten en cuenta el uso de `\q{…}`, que es otra nueva pieza de sintaxis para literales de cadenas dentro de clases de caracteres. Por ejemplo, `\q{a|bc|def}` coincide con las cadenas `a`, `bc` y `def`. Sin `\q{…}` no sería posible restar cadenas de varios caracteres literalizadas.
@@ -139,17 +139,17 @@ La sintaxis `A&&B` coincide con cadenas que están _en ambos `A` y `B`_, tambié
 ```js
 const re = /[\p{Script_Extensions=Greek}&&\p{Letter}]/v;
 // U+03C0 LETRA PEQUEÑA GRIEGA PI
-re.test(&apos;π&apos;); // → verdadero
+re.test('π'); // → verdadero
 // U+1018A SIGNO CERO GRIEGO
-re.test(&apos;𐆊&apos;); // → falso
+re.test('𐆊'); // → falso
 ```
 
 Coincidir con todos los espacios en blanco ASCII:
 
 ```js
 const re = /[\p{White_Space}&&\p{ASCII}]/v;
-re.test(&apos;\n&apos;); // → verdadero
-re.test(&apos;\u2028&apos;); // → falso
+re.test('\n'); // → verdadero
+re.test('\u2028'); // → falso
 ```
 
 O coincidir con todos los números mongoles:
@@ -157,9 +157,9 @@ O coincidir con todos los números mongoles:
 ```js
 const re = /[\p{Script_Extensions=Mongolian}&&\p{Number}]/v;
 // U+1817 DÍGITO MONGOL SIETE
-re.test(&apos;᠗&apos;); // → verdadero
+re.test('᠗'); // → verdadero
 // U+1834 LETRA MONGOL CHA
-re.test(&apos;ᠴ&apos;); // → falso
+re.test('ᠴ'); // → falso
 ```
 
 ### Unión
@@ -169,12 +169,12 @@ Coincidir con cadenas que están _en A o en B_ ya era posible anteriormente para
 ```js
 const re = /^[\p{Emoji_Keycap_Sequence}\p{ASCII}\q{🇧🇪|abc}xyz0-9]$/v;
 
-re.test(&apos;4️⃣&apos;); // → verdadero
-re.test(&apos;_&apos;); // → verdadero
-re.test(&apos;🇧🇪&apos;); // → verdadero
-re.test(&apos;abc&apos;); // → verdadero
-re.test(&apos;x&apos;); // → verdadero
-re.test(&apos;4&apos;); // → verdadero
+re.test('4️⃣'); // → verdadero
+re.test('_'); // → verdadero
+re.test('🇧🇪'); // → verdadero
+re.test('abc'); // → verdadero
+re.test('x'); // → verdadero
+re.test('4'); // → verdadero
 ```
 
 La clase de caracteres en este patrón combina:
@@ -190,13 +190,13 @@ Otro ejemplo es hacer coincidir todos los emoji de banderas de uso común, indep
 ```js
 const reFlag = /[\p{RGI_Emoji_Flag_Sequence}\p{RGI_Emoji_Tag_Sequence}]/v;
 // Una secuencia de bandera, que consta de 2 puntos de código (bandera de Bélgica):
-reFlag.test(&apos;🇧🇪&apos;); // → true
+reFlag.test('🇧🇪'); // → true
 // Una secuencia de etiqueta, que consta de 7 puntos de código (bandera de Inglaterra):
-reFlag.test(&apos;🏴&apos;); // → true
+reFlag.test('🏴'); // → true
 // Una secuencia de bandera, que consta de 2 puntos de código (bandera de Suiza):
-reFlag.test(&apos;🇨🇭&apos;); // → true
+reFlag.test('🇨🇭'); // → true
 // Una secuencia de etiqueta, que consta de 7 puntos de código (bandera de Gales):
-reFlag.test(&apos;🏴&apos;); // → true
+reFlag.test('🏴'); // → true
 ```
 
 ## Mejora en la coincidencia insensible a mayúsculas y minúsculas
@@ -216,13 +216,13 @@ Intuitivamente, podría esperar que ambas expresiones regulares se comporten igu
 const re1 = /\p{Lowercase_Letter}/giu;
 const re2 = /[^\P{Lowercase_Letter}]/giu;
 
-const string = &apos;aAbBcC4#&apos;;
+const string = 'aAbBcC4#';
 
-string.replaceAll(re1, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re1, 'X');
+// → 'XXXXXX4#'
 
-string.replaceAll(re2, &apos;X&apos;);
-// → &apos;aAbBcC4#&apos;&apos;
+string.replaceAll(re2, 'X');
+// → 'aAbBcC4#''
 ```
 
 La nueva bandera `v` tiene un comportamiento menos sorprendente. Con la bandera `v` en lugar de la `u`, ambos patrones se comportan igual:
@@ -231,13 +231,13 @@ La nueva bandera `v` tiene un comportamiento menos sorprendente. Con la bandera 
 const re1 = /\p{Lowercase_Letter}/giv;
 const re2 = /[^\P{Lowercase_Letter}]/giv;
 
-const string = &apos;aAbBcC4#&apos;;
+const string = 'aAbBcC4#';
 
-string.replaceAll(re1, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re1, 'X');
+// → 'XXXXXX4#'
 
-string.replaceAll(re2, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re2, 'X');
+// → 'XXXXXX4#'
 ```
 
 Más generalmente, la bandera `v` hace que `[^\p{X}]` ≍ `[\P{X}]` ≍ `\P{X}` y `[^\P{X}]` ≍ `[\p{X}]` ≍ `\p{X}`, ya sea que la bandera `i` esté configurada o no.

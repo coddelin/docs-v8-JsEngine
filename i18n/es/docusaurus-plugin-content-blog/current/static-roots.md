@@ -1,13 +1,13 @@
 ---
-title: &apos;Raíces Estáticas: Objetos con Direcciones Constantes en Tiempo de Compilación&apos;
-author: &apos;Olivier Flückiger&apos;
+title: 'Raíces Estáticas: Objetos con Direcciones Constantes en Tiempo de Compilación'
+author: 'Olivier Flückiger'
 avatars:
   - olivier-flueckiger
 date: 2024-02-05
 tags:
   - JavaScript
 description: "Raíces estáticas hace que las direcciones de ciertos objetos JS sean constantes en tiempo de compilación."
-tweet: &apos;&apos;
+tweet: ''
 ---
 
 ¿Alguna vez te has preguntado de dónde provienen `undefined`, `true` y otros objetos centrales de JavaScript? Estos objetos son los átomos de cualquier objeto definido por el usuario y necesitan estar ahí primero. V8 los llama raíces inmutables inamovibles y viven en su propio montón: el montón de solo lectura. Dado que se utilizan constantemente, el acceso rápido es crucial. ¿Y qué podría ser más rápido que adivinar correctamente su dirección de memoria en tiempo de compilación?

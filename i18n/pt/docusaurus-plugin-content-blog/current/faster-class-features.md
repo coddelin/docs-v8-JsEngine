@@ -1,13 +1,13 @@
 ---
-title: &apos;Inicialização mais rápida de instâncias com novos recursos de classe&apos;
-author: &apos;[Joyee Cheung](https://twitter.com/JoyeeCheung), inicializador de instâncias&apos;
+title: 'Inicialização mais rápida de instâncias com novos recursos de classe'
+author: '[Joyee Cheung](https://twitter.com/JoyeeCheung), inicializador de instâncias'
 avatars:
-  - &apos;joyee-cheung&apos;
+  - 'joyee-cheung'
 date: 2022-04-20
 tags:
   - internals
-description: &apos;As inicializações de instâncias com novos recursos de classe se tornaram mais rápidas desde o V8 v9.7.&apos;
-tweet: &apos;1517041137378373632&apos;
+description: 'As inicializações de instâncias com novos recursos de classe se tornaram mais rápidas desde o V8 v9.7.'
+tweet: '1517041137378373632'
 ---
 
 Os campos de classe foram introduzidos no V8 desde a versão v7.2 e os métodos privados de classe foram incluídos desde a versão v8.4. Após as propostas alcançarem o estágio 4 em 2021, começou o trabalho de aprimorar o suporte aos novos recursos de classe no V8 - até então, havia dois principais problemas que impactavam sua adoção:
@@ -93,9 +93,9 @@ Tecnicamente, essas duas classes não são equivalentes, mesmo ignorando a difer
 class A {
   constructor() {
     // O que a chamada %AddPrivateField() traduz aproximadamente:
-    const _a = %PrivateSymbol(&apos;#a&apos;)
+    const _a = %PrivateSymbol('#a')
     if (_a in this) {
-      throw TypeError(&apos;Não é possível inicializar #a duas vezes no mesmo objeto&apos;);
+      throw TypeError('Não é possível inicializar #a duas vezes no mesmo objeto');
     }
     Object.defineProperty(this, _a, {
       writable: true,
@@ -104,7 +104,7 @@ class A {
       value: 0
     });
     // O que a chamada %CreateDataProperty() traduz aproximadamente:
-    Object.defineProperty(this, &apos;b&apos;, {
+    Object.defineProperty(this, 'b', {
       writable: true,
       configurable: true,
       enumerable: true,

@@ -1,10 +1,10 @@
 ---
-title: &apos;Publication de V8 v5.7&apos;
-author: &apos;l&apos;équipe de V8&apos;
+title: 'Publication de V8 v5.7'
+author: 'l'équipe de V8'
 date: 2017-02-06 13:33:37
 tags:
   - publication
-description: &apos;V8 v5.7 active WebAssembly par défaut, inclut des améliorations de performance et un support accru des fonctionnalités du langage ECMAScript.&apos;
+description: 'V8 v5.7 active WebAssembly par défaut, inclut des améliorations de performance et un support accru des fonctionnalités du langage ECMAScript.'
 ---
 Toutes les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](/docs/release-process). Chaque version est branchée à partir du maître Git de V8 juste avant une étape de Chrome Beta. Aujourd'hui, nous sommes ravis d'annoncer notre dernière branche, [V8 version 5.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.7), qui sera en bêta jusqu'à sa sortie en coordination avec Chrome 57 Stable dans plusieurs semaines. V8 5.7 est rempli de toutes sortes de nouveautés pour les développeurs. Nous souhaitons vous donner un aperçu de certains des points forts en prévision de la publication.
 

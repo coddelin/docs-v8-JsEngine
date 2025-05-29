@@ -1,6 +1,6 @@
 ---
-title: &apos;Clasificación de problemas&apos;
-description: &apos;Este documento explica cómo gestionar problemas en el rastreador de errores de V8.&apos;
+title: 'Clasificación de problemas'
+description: 'Este documento explica cómo gestionar problemas en el rastreador de errores de V8.'
 ---
 Este documento explica cómo gestionar problemas en el [rastreador de errores de V8](/bugs).
 

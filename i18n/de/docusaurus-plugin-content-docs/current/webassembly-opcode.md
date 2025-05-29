@@ -123,7 +123,7 @@ index 26df61ceb8..b1ee6edd71 100644
 Führen Sie den Test aus:
 
 ```
-$ tools/dev/gm.py x64.debug &apos;cctest/test-run-wasm-simd/RunWasmTurbofan_I32Add1&apos;
+$ tools/dev/gm.py x64.debug 'cctest/test-run-wasm-simd/RunWasmTurbofan_I32Add1'
 ...
 === cctest/test-run-wasm/RunWasmTurbofan_Int32Add1 ===
 #
@@ -195,7 +195,7 @@ index f666bbb7c1..1d93601584 100644
 Der Versuch, denselben Test auszuführen, führt zu einem Kompilierungsfehler, der darauf hinweist, wo Änderungen vorgenommen werden müssen:
 
 ```
-../../src/compiler/wasm-compiler.cc:717:34: Fehler: kein Mitglied namens &apos;Int32Add1&apos; in &apos;v8::internal::compiler::MachineOperatorBuilder&apos;; meinten Sie &apos;Int32Add&apos;?
+../../src/compiler/wasm-compiler.cc:717:34: Fehler: kein Mitglied namens 'Int32Add1' in 'v8::internal::compiler::MachineOperatorBuilder'; meinten Sie 'Int32Add'?
       return graph()->NewNode(m->Int32Add1(), input);
                                  ^~~~~~~~~
                                  Int32Add
@@ -342,12 +342,12 @@ index 9b8be0e0b5..7f5faeb87b 100644
 Wenn wir unseren Test ausführen, sehen wir neue Kompilierungsfehler:
 
 ```
-../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: Fehler: Enumerationswert &apos;kX64Int32Add1&apos; nicht im Switch behandelt [-Werror,-Wswitch]
+../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: Fehler: Enumerationswert 'kX64Int32Add1' nicht im Switch behandelt [-Werror,-Wswitch]
   switch (instr->arch_opcode()) {
           ^
 1 Fehler generiert.
 ...
-../../src/compiler/backend/x64/code-generator-x64.cc:733:11: Fehler: Enumerationswert &apos;kX64Int32Add1&apos; nicht im Switch behandelt [-Werror,-Wswitch]
+../../src/compiler/backend/x64/code-generator-x64.cc:733:11: Fehler: Enumerationswert 'kX64Int32Add1' nicht im Switch behandelt [-Werror,-Wswitch]
   switch (arch_opcode) {
           ^
 1 Fehler generiert.

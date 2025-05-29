@@ -1,6 +1,6 @@
 ---
-title: &apos;Встроенные функции CodeStubAssembler&apos;
-description: &apos;Этот документ предназначен для введения в написание встроенных функций CodeStubAssembler и ориентирован на разработчиков V8.&apos;
+title: 'Встроенные функции CodeStubAssembler'
+description: 'Этот документ предназначен для введения в написание встроенных функций CodeStubAssembler и ориентирован на разработчиков V8.'
 ---
 Этот документ предназначен для введения в написание встроенных функций CodeStubAssembler и ориентирован на разработчиков V8.
 
@@ -154,7 +154,7 @@ SimpleInstallFunction(math, "is42", Builtins::kMathIs42, 1, true);
 $ out/debug/d8
 d8> Math.is42(42);
 true
-d8> Math.is42(&apos;42.0&apos;);
+d8> Math.is42('42.0');
 true
 d8> Math.is42(true);
 false

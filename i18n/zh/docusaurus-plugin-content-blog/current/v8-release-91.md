@@ -1,13 +1,13 @@
 ---
-title: &apos;V8版本发布v9.1&apos;
-author: &apos;Ingvar Stepanyan（[@RReverser](https://twitter.com/RReverser)），测试我的私人品牌&apos;
+title: 'V8版本发布v9.1'
+author: 'Ingvar Stepanyan（[@RReverser](https://twitter.com/RReverser)），测试我的私人品牌'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-05-04
 tags:
  - 发布
-description: &apos;V8版本发布v9.1带来了对私有品牌检查的支持、默认启用顶层await以及性能改进。&apos;
-tweet: &apos;1389613320953532417&apos;
+description: 'V8版本发布v9.1带来了对私有品牌检查的支持、默认启用顶层await以及性能改进。'
+tweet: '1389613320953532417'
 ---
 每隔六周，我们会创建一个新的V8分支，作为[发布流程](https://v8.dev/docs/release-process)的一部分。每个版本都在Chrome Beta里程碑之前的V8主分支中分出。今天我们很高兴地宣布最新的分支，[V8版本9.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.1)，该分支将在与Chrome 91稳定版协调发布的几周内处于测试阶段。V8 v9.1充满了各种面向开发者的精彩功能。这篇文章提供了发版前的一些亮点预览。
 

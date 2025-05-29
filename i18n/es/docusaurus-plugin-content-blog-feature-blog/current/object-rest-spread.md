@@ -1,14 +1,14 @@
 ---
-title: &apos;Propiedades de reposo y propagación de objetos&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Propiedades de reposo y propagación de objetos'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-06-06
 tags:
   - ECMAScript
   - ES2018
-description: &apos;Este artículo explica cómo funcionan las propiedades de reposo y propagación de objetos en JavaScript, y revisa los elementos de reposo y propagación de arrays.&apos;
-tweet: &apos;890269994688315394&apos;
+description: 'Este artículo explica cómo funcionan las propiedades de reposo y propagación de objetos en JavaScript, y revisa los elementos de reposo y propagación de arrays.'
+tweet: '890269994688315394'
 ---
 Antes de discutir _propiedades de reposo y propagación de objetos_, hagamos un viaje al pasado y recordemos una característica muy similar.
 
@@ -42,34 +42,34 @@ console.log(primesCopy); // [2, 3, 5, 7, 11]
 ```js
 // Propiedades de reposo para la asignación de desestructuración de objetos:
 const person = {
-    firstName: &apos;Sebastian&apos;,
-    lastName: &apos;Markbåge&apos;,
-    country: &apos;USA&apos;,
-    state: &apos;CA&apos;,
+    firstName: 'Sebastian',
+    lastName: 'Markbåge',
+    country: 'USA',
+    state: 'CA',
 };
 const { firstName, lastName, ...rest } = person;
 console.log(firstName); // Sebastian
 console.log(lastName); // Markbåge
-console.log(rest); // { country: &apos;USA&apos;, state: &apos;CA&apos; }
+console.log(rest); // { country: 'USA', state: 'CA' }
 
 <!--truncate-->
 // Propiedades de propagación para literales de objetos:
 const personCopy = { firstName, lastName, ...rest };
 console.log(personCopy);
-// { firstName: &apos;Sebastian&apos;, lastName: &apos;Markbåge&apos;, country: &apos;USA&apos;, state: &apos;CA&apos; }
+// { firstName: 'Sebastian', lastName: 'Markbåge', country: 'USA', state: 'CA' }
 ```
 
 Las propiedades de propagación ofrecen una alternativa más elegante a [`Object.assign()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) en muchas situaciones:
 
 ```js
 // Clonar un objeto superficialmente:
-const data = { x: 42, y: 27, label: &apos;Treasure&apos; };
+const data = { x: 42, y: 27, label: 'Treasure' };
 // La manera antigua:
 const clone1 = Object.assign({}, data);
 // La manera nueva:
 const clone2 = { ...data };
 // Ambos resultan en:
-// { x: 42, y: 27, label: &apos;Treasure&apos; }
+// { x: 42, y: 27, label: 'Treasure' }
 
 // Fusionar dos objetos:
 const defaultSettings = { logWarnings: false, logErrors: false };

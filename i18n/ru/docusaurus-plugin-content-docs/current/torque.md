@@ -1,6 +1,6 @@
 ---
-title: &apos;Руководство пользователя V8 Torque&apos;
-description: &apos;Этот документ объясняет язык V8 Torque, используемый в кодовой базе V8.&apos;
+title: 'Руководство пользователя V8 Torque'
+description: 'Этот документ объясняет язык V8 Torque, используемый в кодовой базе V8.'
 ---
 V8 Torque — это язык, который позволяет разработчикам, участвующим в проекте V8, выражать изменения в виртуальной машине, сосредотачиваясь на _намерении_ своих изменений, а не на несвязанных деталях реализации. Язык был разработан таким образом, чтобы быть достаточно простым для прямого перевода [спецификации ECMAScript](https://tc39.es/ecma262/) в реализацию V8, но в то же время достаточно мощным, чтобы выразить низкоуровневые оптимизации V8, такие как создание быстрых путей на основе тестов на определенные формы объектов.
 
@@ -19,7 +19,7 @@ Torque предоставляет языковые конструкции для
 ```torque
 @export
 macro PrintHelloWorld(): void {
-  Print(&apos;Hello world!&apos;);
+  Print('Hello world!');
 }
 ```
 
@@ -161,8 +161,8 @@ ConstexprDeclaration :
 Пример из `base.tq` для 31- и 32-битных типов целых чисел Torque:
 
 ```torque
-type int32 generates &apos;TNode<Int32T>&apos; constexpr &apos;int32_t&apos;;
-type int31 extends int32 generates &apos;TNode<Int32T>&apos; constexpr &apos;int31_t&apos;;
+type int32 generates 'TNode<Int32T>' constexpr 'int32_t';
+type int31 extends int32 generates 'TNode<Int32T>' constexpr 'int31_t';
 ```
 
 #### Типы объединения
@@ -425,7 +425,7 @@ type CompareBuiltinFn = builtin(implicit context: Context)(Object, Object, Objec
 // быстрыми дырявыми элементами, если глобальный NoElementsProtector не
 // аннулирован.
 transient type FastJSArray extends JSArray
-    generates &apos;TNode<JSArray>&apos;;
+    generates 'TNode<JSArray>';
 ```
 
 Например, в случае `FastJSArray` временный тип аннулируется, если массив меняется на элементы словаря или если глобальный `NoElementsProtector` аннулируется. Чтобы выразить это в Torque, аннотируйте все вызываемые объекты, которые потенциально могут сделать это, как `transitioning`. Например, вызов функции JavaScript может выполнить произвольный JavaScript, поэтому он является `transitioning`.
@@ -593,7 +593,7 @@ intrinsic %RawObjectCast<A: type>(o: Object): A;
 intrinsic %RawPointerCast<A: type>(p: RawPtr): A;
 
 // %RawConstexprCast преобразует одно значение времени компиляции в другое.
-// И исходный, и целевой типы должны быть &apos;constexpr&apos;.
+// И исходный, и целевой типы должны быть 'constexpr'.
 // %RawConstexprCast транслируется в static_cast в сгенерированном C++ коде.
 intrinsic %RawConstexprCast<To: type, From: type>(f: From): To;
 
@@ -601,7 +601,7 @@ intrinsic %RawConstexprCast<To: type, From: type>(f: From): To;
 // В настоящее время поддерживаются следующие не-constexpr типы: Smi, Number, String, uintptr, intptr, и int32.
 intrinsic %FromConstexpr<To: type, From: type>(b: From): To;
 
-// %Allocate выделяет неинициализированный объект размером &apos;size&apos; из кучи
+// %Allocate выделяет неинициализированный объект размером 'size' из кучи
 // V8 GC и "reinterpret casts" указатель на объект в целевой тип.
 // указан Torque класс, позволяющий конструкторам впоследствии использовать
 // стандартные операторы доступа к полям для инициализации объекта.

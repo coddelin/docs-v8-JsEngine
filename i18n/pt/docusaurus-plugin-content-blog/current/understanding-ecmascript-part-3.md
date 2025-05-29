@@ -1,14 +1,14 @@
 ---
-title: &apos;Compreendendo a especificação do ECMAScript, parte 3&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), espectadora especulativa da especificação&apos;
+title: 'Compreendendo a especificação do ECMAScript, parte 3'
+author: '[Marja Hölttä](https://twitter.com/marjakh), espectadora especulativa da especificação'
 avatars:
   - marja-holtta
 date: 2020-04-01
 tags:
   - ECMAScript
   - Compreendendo ECMAScript
-description: &apos;Tutorial sobre como ler a especificação do ECMAScript&apos;
-tweet: &apos;1245400717667577857&apos;
+description: 'Tutorial sobre como ler a especificação do ECMAScript'
+tweet: '1245400717667577857'
 ---
 
 [Todos os episódios](/blog/tags/understanding-ecmascript)
@@ -57,8 +57,8 @@ Aqui, o primeiro `/` é o início de um `RegularExpressionLiteral`.
 Modelos introduzem uma ambiguidade semelhante — a interpretação de <code>}`</code> depende do contexto em que ocorre:
 
 ```js
-const what1 = &apos;temp&apos;;
-const what2 = &apos;late&apos;;
+const what1 = 'temp';
+const what2 = 'late';
 const t = `Eu sou um(a) ${ what1 + what2 }`;
 ```
 

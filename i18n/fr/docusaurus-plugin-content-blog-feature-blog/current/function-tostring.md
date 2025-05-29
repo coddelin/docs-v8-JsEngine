@@ -1,13 +1,13 @@
 ---
-title: &apos;Révision de `Function.prototype.toString`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Révision de `Function.prototype.toString`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-03-25
 tags:
   - ECMAScript
   - ES2019
-description: &apos;Function.prototype.toString retourne désormais des extraits exacts du texte du code source, y compris les espaces et les commentaires.&apos;
+description: 'Function.prototype.toString retourne désormais des extraits exacts du texte du code source, y compris les espaces et les commentaires.'
 ---
 [`Function.prototype.toString()`](https://tc39.es/Function-prototype-toString-revision/) retourne désormais des extraits exacts du texte du code source, y compris les espaces et les commentaires. Voici un exemple comparant l’ancien comportement au nouveau :
 
@@ -20,13 +20,13 @@ function /* un commentaire */ foo () {}
 
 // Auparavant, dans V8 :
 foo.toString();
-// → &apos;function foo() {}&apos;
+// → 'function foo() {}'
 //             ^ pas de commentaire
 //                ^ pas d’espace
 
 // Maintenant :
 foo.toString();
-// → &apos;function /* commentaire */ foo () {}&apos;
+// → 'function /* commentaire */ foo () {}'
 ```
 
 ## Prise en charge de la fonctionnalité

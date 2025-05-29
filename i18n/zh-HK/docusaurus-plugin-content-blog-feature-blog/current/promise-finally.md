@@ -1,14 +1,14 @@
 ---
-title: &apos;`Promise.prototype.finally`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`Promise.prototype.finally`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-10-23
 tags:
   - ECMAScript
   - ES2018
-description: &apos;Promise.prototype.finally 讓您可以註冊一個回調函數，在 Promise 被處理完成（即已解決或已拒絕）時被調用。&apos;
-tweet: &apos;922459978857824261&apos;
+description: 'Promise.prototype.finally 讓您可以註冊一個回調函數，在 Promise 被處理完成（即已解決或已拒絕）時被調用。'
+tweet: '922459978857824261'
 ---
 `Promise.prototype.finally` 讓您可以註冊一個回調函數，在 Promise 處於 _處理完成_ （即已解決或已拒絕）時被調用。
 
@@ -32,7 +32,7 @@ const fetchAndDisplay = ({ url, element }) => {
 <!--truncate-->
 fetchAndDisplay({
   url: someUrl,
-  element: document.querySelector(&apos;#output&apos;)
+  element: document.querySelector('#output')
 });
 ```
 

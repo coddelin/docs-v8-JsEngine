@@ -1,14 +1,14 @@
 ---
-title: &apos;Опциональная цепочка&apos;
-author: &apos;Майя Армянова ([@Zmayski](https://twitter.com/Zmayski)), разрыватель опциональных цепочек&apos;
+title: 'Опциональная цепочка'
+author: 'Майя Армянова ([@Zmayski](https://twitter.com/Zmayski)), разрыватель опциональных цепочек'
 avatars:
-  - &apos;maya-armyanova&apos;
+  - 'maya-armyanova'
 date: 2019-08-27
 tags:
   - ECMAScript
   - ES2020
-description: &apos;Опциональная цепочка позволяет выразить доступ к свойствам с проверкой на null более читабельным и кратким образом.&apos;
-tweet: &apos;1166360971914481669&apos;
+description: 'Опциональная цепочка позволяет выразить доступ к свойствам с проверкой на null более читабельным и кратким образом.'
+tweet: '1166360971914481669'
 ---
 Длинные цепочки доступа к свойствам в JavaScript могут быть рискованными, так как любое из них может оцениваться как `null` или `undefined` (также известные как "значения nullish"). Проверка существования свойства на каждом шаге легко превращается в глубокую вложенную структуру `if`-условий или длинное `if`-условие, воспроизводящее цепочку доступа к свойствам:
 
@@ -68,7 +68,7 @@ const adminOption = db?.user?.validateAdminAndGetPrefs?.().option;
 ```js
 // Расширяет возможности статического доступа к свойствам
 // с динамически генерируемым именем свойства.
-const optionName = &apos;опциональная настройка&apos;;
+const optionName = 'опциональная настройка';
 const optionLength = db?.user?.preferences?.[optionName].length;
 ```
 
@@ -84,22 +84,22 @@ const userName = usersArray?.[userIndex].name;
 Оператор опциональной цепочки можно комбинировать с [оператором слияния nullish `??`](/features/nullish-coalescing), когда требуется значение по умолчанию, отличное от `undefined`. Это позволяет безопасно осуществлять доступ к свойствам в глубине с указанным значением по умолчанию, решая общий случай использования, который ранее требовал сторонних библиотек, таких как [`_.get` lodash](https://lodash.dev/docs/4.17.15#get):
 
 ```js
-const object = { id: 123, names: { first: &apos;Алиса&apos;, last: &apos;Смит&apos; }};
+const object = { id: 123, names: { first: 'Алиса', last: 'Смит' }};
 
 { // С lodash:
-  const firstName = _.get(object, &apos;names.first&apos;);
-  // → &apos;Алиса&apos;
+  const firstName = _.get(object, 'names.first');
+  // → 'Алиса'
 
-  const middleName = _.get(object, &apos;names.middle&apos;, &apos;(нет второго имени)&apos;);
-  // → &apos;(нет второго имени)&apos;
+  const middleName = _.get(object, 'names.middle', '(нет второго имени)');
+  // → '(нет второго имени)'
 }
 
 { // С опциональной цепочкой и слиянием nullish:
-  const firstName = object?.names?.first ?? &apos;(нет первого имени)&apos;;
-  // → &apos;Алиса&apos;
+  const firstName = object?.names?.first ?? '(нет первого имени)';
+  // → 'Алиса'
 
-  const middleName = object?.names?.middle ?? &apos;(нет второго имени)&apos;;
-  // → &apos;(нет второго имени)&apos;
+  const middleName = object?.names?.middle ?? '(нет второго имени)';
+  // → '(нет второго имени)'
 }
 ```
 

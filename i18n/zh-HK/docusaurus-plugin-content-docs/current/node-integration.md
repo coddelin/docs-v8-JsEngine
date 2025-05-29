@@ -1,6 +1,6 @@
 ---
-title: &apos;如果您的 CL 導致 Node.js 整合構建失敗，該怎麼辦&apos;
-description: &apos;本文檔說明如果您的 CL 導致 Node.js 整合構建失敗，該如何處理。&apos;
+title: '如果您的 CL 導致 Node.js 整合構建失敗，該怎麼辦'
+description: '本文檔說明如果您的 CL 導致 Node.js 整合構建失敗，該如何處理。'
 ---
 [Node.js](https://github.com/nodejs/node) 使用 V8 的穩定版或測試版。為了進一步整合，V8 團隊使用 V8 的[主分支](https://chromium.googlesource.com/v8/v8/+/refs/heads/main) 构建 Node.js，即使用當前的 V8 版本。我們為 [Linux](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Linux64) 提供了整合機器人，[Windows](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Win64) 和 [Mac](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Mac64) 正在開發中。
 
@@ -66,6 +66,6 @@ git push <your-user-name> $BRANCH_NAME
 git checkout -b update-deps
 gclient setdep --var=node_revision=<merged-commit-hash>
 git add DEPS
-git commit -m &apos;更新 Node&apos;
+git commit -m '更新 Node'
 git cl upload
 ```

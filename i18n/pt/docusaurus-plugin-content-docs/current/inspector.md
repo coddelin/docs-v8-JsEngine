@@ -1,6 +1,6 @@
 ---
-title: &apos;Depuração pelo V8 Inspector Protocol&apos;
-description: &apos;Esta página tem o objetivo de fornecer aos embutidores as ferramentas básicas necessárias para implementar suporte à depuração no V8.&apos;
+title: 'Depuração pelo V8 Inspector Protocol'
+description: 'Esta página tem o objetivo de fornecer aos embutidores as ferramentas básicas necessárias para implementar suporte à depuração no V8.'
 ---
 O V8 oferece ampla funcionalidade de depuração para usuários e embutidores. Normalmente, os usuários interagem com o depurador V8 através da interface [Chrome DevTools](https://developer.chrome.com/devtools). Os embutidores (incluindo DevTools) precisam contar diretamente com o [Inspector Protocol](https://chromedevtools.github.io/debugger-protocol-viewer/tot/).
 
@@ -23,7 +23,7 @@ Enquanto isso, o frontend estabelece um canal para mensagens enviadas do V8 para
 ```cpp
 void Send(const v8_inspector::StringView& string) {
   // [...] Transformações de string.
-  // Obtém a propriedade global chamada &apos;receive&apos; do contexto atual.
+  // Obtém a propriedade global chamada 'receive' do contexto atual.
   Local<String> callback_name =
       v8::String::NewFromUtf8(isolate_, "receive", v8::NewStringType::kNormal)
           .ToLocalChecked();
@@ -52,13 +52,13 @@ function receive(message) {
 
 const msg = JSON.stringify({
   id: 0,
-  method: &apos;Debugger.enable&apos;,
+  method: 'Debugger.enable',
 });
 
 // Chama a função fornecida pelo d8.
 send(msg);
 
-// Execute este arquivo com o comando &apos;d8 --enable-inspector inspector-demo.js&apos;.
+// Execute este arquivo com o comando 'd8 --enable-inspector inspector-demo.js'.
 ```
 
 ## Documentação adicional

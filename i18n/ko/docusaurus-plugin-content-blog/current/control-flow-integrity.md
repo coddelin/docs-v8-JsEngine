@@ -1,7 +1,7 @@
 ---
-title: &apos;V8에서의 제어 흐름 무결성&apos;
-description: &apos;이 블로그 포스트는 V8에서 제어 흐름 무결성을 구현하려는 계획에 대해 논의합니다.&apos;
-author: &apos;Stephen Röttger&apos;
+title: 'V8에서의 제어 흐름 무결성'
+description: '이 블로그 포스트는 V8에서 제어 흐름 무결성을 구현하려는 계획에 대해 논의합니다.'
+author: 'Stephen Röttger'
 date: 2023-10-09
 tags:
  - security

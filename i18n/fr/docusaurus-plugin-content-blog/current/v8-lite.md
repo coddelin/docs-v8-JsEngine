@@ -1,22 +1,22 @@
 ---
-title: &apos;Un V8 plus léger&apos;
-author: &apos;Mythri Alle, Dan Elphick, et [Ross McIlroy](https://twitter.com/rossmcilroy), observateurs de poids du V8&apos;
+title: 'Un V8 plus léger'
+author: 'Mythri Alle, Dan Elphick, et [Ross McIlroy](https://twitter.com/rossmcilroy), observateurs de poids du V8'
 avatars:
-  - &apos;mythri-alle&apos;
-  - &apos;dan-elphick&apos;
-  - &apos;ross-mcilroy&apos;
+  - 'mythri-alle'
+  - 'dan-elphick'
+  - 'ross-mcilroy'
 date: 2019-09-12 12:44:37
 tags:
   - internes
   - mémoire
   - présentations
-description: &apos;Le projet V8 Lite a considérablement réduit la surcharge mémoire de V8 sur des sites web typiques, voici comment nous l&apos;avons fait.&apos;
-tweet: &apos;1172155403343298561&apos;
+description: 'Le projet V8 Lite a considérablement réduit la surcharge mémoire de V8 sur des sites web typiques, voici comment nous l'avons fait.'
+tweet: '1172155403343298561'
 ---
-Fin 2018, nous avons lancé un projet nommé V8 Lite, visant à réduire drastiquement la consommation de mémoire de V8. Initialement, ce projet était conçu comme un mode *Lite* distinct de V8, destiné spécifiquement aux appareils mobiles à faible mémoire ou aux cas d&apos;utilisations embarqués privilégiant la réduction de l&apos;utilisation de la mémoire plutôt que la vitesse d&apos;exécution. Cependant, au cours de ce travail, nous avons réalisé que bon nombre des optimisations mémoire que nous avions conçues pour ce mode *Lite* pouvaient être intégrées au V8 ordinaire, bénéficiant ainsi à tous les utilisateurs de V8.
+Fin 2018, nous avons lancé un projet nommé V8 Lite, visant à réduire drastiquement la consommation de mémoire de V8. Initialement, ce projet était conçu comme un mode *Lite* distinct de V8, destiné spécifiquement aux appareils mobiles à faible mémoire ou aux cas d'utilisations embarqués privilégiant la réduction de l'utilisation de la mémoire plutôt que la vitesse d'exécution. Cependant, au cours de ce travail, nous avons réalisé que bon nombre des optimisations mémoire que nous avions conçues pour ce mode *Lite* pouvaient être intégrées au V8 ordinaire, bénéficiant ainsi à tous les utilisateurs de V8.
 
 <!--truncate-->
-Dans cet article, nous mettons en lumière certaines des optimisations principales que nous avons développées et les économies de mémoire qu&apos;elles ont apportées dans des charges de travail réelles.
+Dans cet article, nous mettons en lumière certaines des optimisations principales que nous avons développées et les économies de mémoire qu'elles ont apportées dans des charges de travail réelles.
 
 :::note
 **Note :** Si vous préférez regarder une présentation plutôt que lire des articles, profitez de la vidéo ci-dessous ! Sinon, passez la vidéo et continuez votre lecture.
@@ -31,24 +31,24 @@ Dans cet article, nous mettons en lumière certaines des optimisations principal
 
 ## Mode Lite
 
-Pour optimiser l&apos;utilisation de la mémoire de V8, il nous fallait d&apos;abord comprendre comment la mémoire est utilisée par V8 et quels types d&apos;objets contribuent à une grande proportion de la taille du tas de V8. Nous avons utilisé les outils de [visualisation de la mémoire](/blog/optimizing-v8-memory#memory-visualization) de V8 pour tracer la composition du tas sur un certain nombre de pages web typiques.
+Pour optimiser l'utilisation de la mémoire de V8, il nous fallait d'abord comprendre comment la mémoire est utilisée par V8 et quels types d'objets contribuent à une grande proportion de la taille du tas de V8. Nous avons utilisé les outils de [visualisation de la mémoire](/blog/optimizing-v8-memory#memory-visualization) de V8 pour tracer la composition du tas sur un certain nombre de pages web typiques.
 
 <figure>
   <img src="/_img/v8-lite/memory-categorization.svg" width="950" height="440" alt="" loading="lazy"/>
-  <figcaption>Pourcentage du tas de V8 utilisé par différents types d&apos;objets lors du chargement du site Times of India.</figcaption>
+  <figcaption>Pourcentage du tas de V8 utilisé par différents types d'objets lors du chargement du site Times of India.</figcaption>
 </figure>
 
-Ce faisant, nous avons déterminé qu&apos;une proportion significative du tas de V8 était dédiée à des objets non essentiels à l&apos;exécution de JavaScript, mais utilisés pour optimiser l&apos;exécution de JavaScript et gérer des situations exceptionnelles. Voici quelques exemples : du code optimisé ; des retours d&apos;information de types utilisés pour déterminer comment optimiser le code ; des métadonnées redondantes pour les liaisons entre les objets C++ et JavaScript ; des métadonnées nécessaires uniquement dans des circonstances exceptionnelles telles que la symbolisation des traces de pile ; et du code bytecode pour les fonctions qui ne sont exécutées que quelques fois lors du chargement de la page.
+Ce faisant, nous avons déterminé qu'une proportion significative du tas de V8 était dédiée à des objets non essentiels à l'exécution de JavaScript, mais utilisés pour optimiser l'exécution de JavaScript et gérer des situations exceptionnelles. Voici quelques exemples : du code optimisé ; des retours d'information de types utilisés pour déterminer comment optimiser le code ; des métadonnées redondantes pour les liaisons entre les objets C++ et JavaScript ; des métadonnées nécessaires uniquement dans des circonstances exceptionnelles telles que la symbolisation des traces de pile ; et du code bytecode pour les fonctions qui ne sont exécutées que quelques fois lors du chargement de la page.
 
-En conséquence, nous avons commencé à travailler sur un mode *Lite* de V8 qui privilégie les économies de mémoire en réduisant considérablement l&apos;allocation de ces objets optionnels, au détriment de la vitesse d&apos;exécution de JavaScript.
+En conséquence, nous avons commencé à travailler sur un mode *Lite* de V8 qui privilégie les économies de mémoire en réduisant considérablement l'allocation de ces objets optionnels, au détriment de la vitesse d'exécution de JavaScript.
 
 ![](/_img/v8-lite/v8-lite.png)
 
-Un certain nombre de modifications du mode *Lite* pouvaient être effectuées en configurant les paramètres existants de V8, par exemple, en désactivant le compilateur TurboFan de V8. Cependant, d&apos;autres nécessitaient des modifications plus approfondies de V8.
+Un certain nombre de modifications du mode *Lite* pouvaient être effectuées en configurant les paramètres existants de V8, par exemple, en désactivant le compilateur TurboFan de V8. Cependant, d'autres nécessitaient des modifications plus approfondies de V8.
 
-En particulier, nous avons décidé que puisque le mode *Lite* n&apos;optimise pas le code, nous pouvions éviter de collecter les retours d&apos;information de types requis par le compilateur optimisant. Lors de l&apos;exécution du code dans l&apos;interpréteur Ignition, V8 collecte des informations sur les types d&apos;opérandes passés à diverses opérations (par exemple, `+` ou `o.foo`), afin d&apos;adapter ultérieurement l&apos;optimisation à ces types. Ces informations sont stockées dans des *vecteurs de feedback* qui constituent une part significative de l&apos;utilisation mémoire du tas de V8. Le mode *Lite* pouvait éviter d&apos;allouer ces vecteurs de feedback, mais l&apos;interpréteur et certaines parties de l&apos;infrastructure de cache inline de V8 s&apos;attendaient à ce que ces vecteurs de feedback soient disponibles, nécessitant ainsi un important remaniement pour pouvoir prendre en charge cette exécution sans feedback.
+En particulier, nous avons décidé que puisque le mode *Lite* n'optimise pas le code, nous pouvions éviter de collecter les retours d'information de types requis par le compilateur optimisant. Lors de l'exécution du code dans l'interpréteur Ignition, V8 collecte des informations sur les types d'opérandes passés à diverses opérations (par exemple, `+` ou `o.foo`), afin d'adapter ultérieurement l'optimisation à ces types. Ces informations sont stockées dans des *vecteurs de feedback* qui constituent une part significative de l'utilisation mémoire du tas de V8. Le mode *Lite* pouvait éviter d'allouer ces vecteurs de feedback, mais l'interpréteur et certaines parties de l'infrastructure de cache inline de V8 s'attendaient à ce que ces vecteurs de feedback soient disponibles, nécessitant ainsi un important remaniement pour pouvoir prendre en charge cette exécution sans feedback.
 
-Le mode *Lite* a été lancé dans V8 v7.3 et offre une réduction de 22 % de la taille du tas typique des pages web par rapport à V8 v7.1 en désactivant l&apos;optimisation du code, en n&apos;allouant pas de vecteurs de feedback et en vieillissant le bytecode rarement exécuté (décrit ci-dessous). Cela représente un bon résultat pour les applications qui souhaitent explicitement sacrifier les performances pour une meilleure utilisation de la mémoire. Cependant, au cours de ce travail, nous avons réalisé que nous pouvions atteindre la majorité des économies de mémoire du mode *Lite* sans aucun impact sur les performances en rendant V8 plus paresseux dans ses allocations.
+Le mode *Lite* a été lancé dans V8 v7.3 et offre une réduction de 22 % de la taille du tas typique des pages web par rapport à V8 v7.1 en désactivant l'optimisation du code, en n'allouant pas de vecteurs de feedback et en vieillissant le bytecode rarement exécuté (décrit ci-dessous). Cela représente un bon résultat pour les applications qui souhaitent explicitement sacrifier les performances pour une meilleure utilisation de la mémoire. Cependant, au cours de ce travail, nous avons réalisé que nous pouvions atteindre la majorité des économies de mémoire du mode *Lite* sans aucun impact sur les performances en rendant V8 plus paresseux dans ses allocations.
 
 ## Allocation paresseuse des feedbacks
 

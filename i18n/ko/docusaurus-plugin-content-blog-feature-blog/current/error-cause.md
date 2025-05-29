@@ -1,13 +1,13 @@
 ---
-title: &apos;오류 원인&apos;
-author: &apos;Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))&apos;
+title: '오류 원인'
+author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
 avatars:
-  - &apos;victor-gomes&apos;
+  - 'victor-gomes'
 date: 2021-07-07
 tags:
   - ECMAScript
-description: &apos;JavaScript는 이제 오류 원인을 지원합니다.&apos;
-tweet: &apos;1412774651558862850&apos;
+description: 'JavaScript는 이제 오류 원인을 지원합니다.'
+tweet: '1412774651558862850'
 ---
 
 두 개의 별도 작업 `doSomeWork`와 `doMoreWork`를 호출하는 함수를 상상해보세요. 두 함수는 동일한 종류의 오류를 던질 수 있지만, 각각 다른 방식으로 처리해야 합니다.
@@ -19,7 +19,7 @@ function doWork() {
   try {
     doSomeWork();
   } catch (err) {
-    throw new CustomError(&apos;작업 중 오류가 발생했습니다&apos;, err);
+    throw new CustomError('작업 중 오류가 발생했습니다', err);
   }
   doMoreWork();
 }
@@ -41,12 +41,12 @@ function doWork() {
   try {
     doSomeWork();
   } catch (err) {
-    throw new Error(&apos;작업 중 오류가 발생했습니다&apos;, { cause: err });
+    throw new Error('작업 중 오류가 발생했습니다', { cause: err });
   }
   try {
     doMoreWork();
   } catch (err) {
-    throw new Error(&apos;추가 작업 중 오류가 발생했습니다&apos;, { cause: err });
+    throw new Error('추가 작업 중 오류가 발생했습니다', { cause: err });
   }
 }
 
@@ -54,10 +54,10 @@ try {
   doWork();
 } catch (err) {
   switch(err.message) {
-    case &apos;작업 중 오류가 발생했습니다&apos;:
+    case '작업 중 오류가 발생했습니다':
       handleSomeWorkFailure(err.cause);
       break;
-    case &apos;추가 작업 중 오류가 발생했습니다&apos;:
+    case '추가 작업 중 오류가 발생했습니다':
       handleMoreWorkFailure(err.cause);
       break;
   }

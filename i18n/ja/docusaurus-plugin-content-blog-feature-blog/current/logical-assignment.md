@@ -1,15 +1,15 @@
 ---
-title: &apos;論理代入&apos;
-author: &apos;Shu-yu Guo ([@_shu](https://twitter.com/_shu))&apos;
+title: '論理代入'
+author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
 avatars:
-  - &apos;shu-yu-guo&apos;
+  - 'shu-yu-guo'
 date: 2020-05-07
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: &apos;JavaScriptは論理演算を伴う複合代入をサポートするようになりました。&apos;
-tweet: &apos;1258387483823345665&apos;
+description: 'JavaScriptは論理演算を伴う複合代入をサポートするようになりました。'
+tweet: '1258387483823345665'
 ---
 JavaScriptは、代入と二項演算を簡潔に表現できる一連の[複合代入演算子](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators)をサポートしています。現在は、数学的またはビット演算のみがサポートされています。
 
@@ -67,14 +67,14 @@ x ?? (x = y);
 // innerHTML が空の場合のみ代入します。msgElement の inner 要素
 // がフォーカスを失うことはありません。
 function setDefaultMessage() {
-  msgElement.innerHTML ||= &apos;<p>メッセージがありません<p>&apos;;
+  msgElement.innerHTML ||= '<p>メッセージがありません<p>';
 }
 
 // 何も上書きされていない場合、デフォルトメッセージを表示します。
 // 不具合あり！呼び出されるたびに msgElement の inner 要素
 // がフォーカスを失う可能性があります。
 function setDefaultMessageBuggy() {
-  msgElement.innerHTML = msgElement.innerHTML || &apos;<p>メッセージがありません<p>&apos;;
+  msgElement.innerHTML = msgElement.innerHTML || '<p>メッセージがありません<p>';
 }
 ```
 

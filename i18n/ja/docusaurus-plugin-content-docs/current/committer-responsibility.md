@@ -1,6 +1,6 @@
 ---
-title: &apos;V8コミッターとレビュアーの責任&apos;
-description: &apos;このドキュメントはV8の貢献者のためのガイドラインを示しています。&apos;
+title: 'V8コミッターとレビュアーの責任'
+description: 'このドキュメントはV8の貢献者のためのガイドラインを示しています。'
 ---
 V8のリポジトリにコミットする際には、次のガイドラインに従うようにしてください（https://dev.chromium.org/developers/committers-responsibility を元に作成）。
 

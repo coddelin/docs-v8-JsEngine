@@ -1,14 +1,14 @@
 ---
-title: &apos;`Promise.prototype.finally`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`Promise.prototype.finally`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-10-23
 tags:
   - ECMAScript
   - ES2018
-description: &apos;Promise.prototype.finally는 프로미스가 정산될 때(즉, 완료 또는 거부됨)에 호출될 콜백을 등록할 수 있도록 합니다.&apos;
-tweet: &apos;922459978857824261&apos;
+description: 'Promise.prototype.finally는 프로미스가 정산될 때(즉, 완료 또는 거부됨)에 호출될 콜백을 등록할 수 있도록 합니다.'
+tweet: '922459978857824261'
 ---
 `Promise.prototype.finally`는 프로미스가 _정산_될 때(즉, 완료 또는 거부됨)에 호출될 콜백을 등록할 수 있도록 합니다.
 
@@ -32,7 +32,7 @@ const fetchAndDisplay = ({ url, element }) => {
 <!--truncate-->
 fetchAndDisplay({
   url: someUrl,
-  element: document.querySelector(&apos;#output&apos;)
+  element: document.querySelector('#output')
 });
 ```
 

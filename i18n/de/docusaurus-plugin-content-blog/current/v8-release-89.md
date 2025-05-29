@@ -1,13 +1,13 @@
 ---
-title: &apos;V8-Version v8.9&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), wartet auf einen Anruf&apos;
+title: 'V8-Version v8.9'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), wartet auf einen Anruf'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-02-04
 tags:
  - veröffentlichung
-description: &apos;V8-Version v8.9 bringt Leistungsverbesserungen für Aufrufe mit Argumentgrößenabweichungen.&apos;
-tweet: &apos;1357358418902802434&apos;
+description: 'V8-Version v8.9 bringt Leistungsverbesserungen für Aufrufe mit Argumentgrößenabweichungen.'
+tweet: '1357358418902802434'
 ---
 Alle sechs Wochen erstellen wir einen neuen Zweig von V8 im Rahmen unseres [Veröffentlichungsprozesses](https://v8.dev/docs/release-process). Jede Version wird direkt vor einem Chrome-Beta-Meilenstein aus dem V8-Git-Master verzweigt. Heute freuen wir uns, unseren neuesten Zweig [V8-Version 8.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.9) bekanntzugeben, der sich bis zu seiner Veröffentlichung in Zusammenarbeit mit Chrome 89 Stable in einigen Wochen in der Beta-Phase befindet. V8 v8.9 ist vollgepackt mit allerlei Entwicklerfreundlichen Neuerungen. Dieser Beitrag bietet einen Vorgeschmack auf einige der Highlights in Erwartung der Veröffentlichung.
 

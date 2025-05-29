@@ -1,16 +1,16 @@
 ---
-title: &apos;L&apos;enchaînement optionnel&apos;
-author: &apos;Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), briseuse d&apos;enchaînements optionnels&apos;
+title: 'L'enchaînement optionnel'
+author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), briseuse d'enchaînements optionnels'
 avatars:
-  - &apos;maya-armyanova&apos;
+  - 'maya-armyanova'
 date: 2019-08-27
 tags:
   - ECMAScript
   - ES2020
-description: &apos;L&apos;enchaînement optionnel permet une expression lisible et concise des accès aux propriétés avec une vérification intégrée des valeurs nulles.&apos;
-tweet: &apos;1166360971914481669&apos;
+description: 'L'enchaînement optionnel permet une expression lisible et concise des accès aux propriétés avec une vérification intégrée des valeurs nulles.'
+tweet: '1166360971914481669'
 ---
-Les longues chaînes d&apos;accès aux propriétés en JavaScript peuvent être sujettes à des erreurs, car chacune d&apos;entre elles peut s&apos;évaluer à `null` ou `undefined` (aussi connues sous le nom de valeurs nulles). Vérifier l&apos;existence des propriétés à chaque étape peut facilement se transformer en une structure profondément imbriquée avec des déclarations `if` ou une condition `if` longue répliquant la chaîne d&apos;accès aux propriétés :
+Les longues chaînes d'accès aux propriétés en JavaScript peuvent être sujettes à des erreurs, car chacune d'entre elles peut s'évaluer à `null` ou `undefined` (aussi connues sous le nom de valeurs nulles). Vérifier l'existence des propriétés à chaque étape peut facilement se transformer en une structure profondément imbriquée avec des déclarations `if` ou une condition `if` longue répliquant la chaîne d'accès aux propriétés :
 
 <!--truncate-->
 ```js
@@ -23,7 +23,7 @@ if (db && db.user && db.user.name)
   nameLength = db.user.name.length;
 ```
 
-Ce qui précède peut également être exprimé en utilisant l&apos;opérateur ternaire, ce qui n&apos;aide pas vraiment à la lisibilité :
+Ce qui précède peut également être exprimé en utilisant l'opérateur ternaire, ce qui n'aide pas vraiment à la lisibilité :
 
 ```js
 const nameLength =
@@ -36,39 +36,39 @@ const nameLength =
     : undefined);
 ```
 
-## Introduction de l&apos;opérateur d&apos;enchaînement optionnel
+## Introduction de l'opérateur d'enchaînement optionnel
 
-Vous ne voulez certainement pas écrire du code comme ça, donc il est souhaitable d&apos;avoir une alternative. Certains autres langages offrent une solution élégante à ce problème en utilisant une fonctionnalité appelée « enchaînement optionnel ». Selon [une proposition de spécification récente](https://github.com/tc39/proposal-optional-chaining), « une chaîne optionnelle est une chaîne d&apos;un ou plusieurs accès à des propriétés et appels de fonctions, dont le premier commence par le token `?.` ».
+Vous ne voulez certainement pas écrire du code comme ça, donc il est souhaitable d'avoir une alternative. Certains autres langages offrent une solution élégante à ce problème en utilisant une fonctionnalité appelée « enchaînement optionnel ». Selon [une proposition de spécification récente](https://github.com/tc39/proposal-optional-chaining), « une chaîne optionnelle est une chaîne d'un ou plusieurs accès à des propriétés et appels de fonctions, dont le premier commence par le token `?.` ».
 
-En utilisant le nouvel opérateur d&apos;enchaînement optionnel, nous pouvons réécrire l&apos;exemple ci-dessus comme suit :
+En utilisant le nouvel opérateur d'enchaînement optionnel, nous pouvons réécrire l'exemple ci-dessus comme suit :
 
 ```js
 // Vérifie toujours les erreurs et est beaucoup plus lisible.
 const nameLength = db?.user?.name?.length;
 ```
 
-Que se passe-t-il lorsque `db`, `user`, ou `name` est `undefined` ou `null` ? Avec l&apos;opérateur d&apos;enchaînement optionnel, JavaScript initialise `nameLength` à `undefined` au lieu de générer une exception.
+Que se passe-t-il lorsque `db`, `user`, ou `name` est `undefined` ou `null` ? Avec l'opérateur d'enchaînement optionnel, JavaScript initialise `nameLength` à `undefined` au lieu de générer une exception.
 
-Notez que ce comportement est également plus robuste que notre vérification avec `if (db && db.user && db.user.name)`. Par exemple, que se passe-t-il si `name` est toujours garanti d&apos;être une chaîne ? Nous pourrions changer `name?.length` en `name.length`. Ensuite, si `name` est une chaîne vide, nous obtiendrions toujours la longueur correcte de `0`. Cela est dû au fait que la chaîne vide est une valeur falsy : elle se comporte comme `false` dans une clause `if`. L&apos;opérateur d&apos;enchaînement optionnel corrige cette source courante de bogues.
+Notez que ce comportement est également plus robuste que notre vérification avec `if (db && db.user && db.user.name)`. Par exemple, que se passe-t-il si `name` est toujours garanti d'être une chaîne ? Nous pourrions changer `name?.length` en `name.length`. Ensuite, si `name` est une chaîne vide, nous obtiendrions toujours la longueur correcte de `0`. Cela est dû au fait que la chaîne vide est une valeur falsy : elle se comporte comme `false` dans une clause `if`. L'opérateur d'enchaînement optionnel corrige cette source courante de bogues.
 
 ## Formes syntaxiques supplémentaires : appels et propriétés dynamiques
 
-Il existe également une version de l&apos;opérateur pour appeler des méthodes optionnelles :
+Il existe également une version de l'opérateur pour appeler des méthodes optionnelles :
 
 ```js
-// Étend l&apos;interface avec une méthode optionnelle, présente
+// Étend l'interface avec une méthode optionnelle, présente
 // uniquement pour les utilisateurs administrateurs.
 const adminOption = db?.user?.validateAdminAndGetPrefs?.().option;
 ```
 
-La syntaxe peut sembler inattendue, car `?.()` est réellement l&apos;opérateur, qui s&apos;applique à l&apos;expression _avant_ lui.
+La syntaxe peut sembler inattendue, car `?.()` est réellement l'opérateur, qui s'applique à l'expression _avant_ lui.
 
-Il existe une troisième utilisation de l&apos;opérateur, à savoir l&apos;accès dynamique aux propriétés optionnelles, qui est effectué via `?.[]`. Il retourne soit la valeur référencée par l&apos;argument dans les crochets, soit `undefined` s&apos;il n&apos;y a aucun objet à partir duquel récupérer la valeur. Voici un cas d&apos;utilisation possible, suivant l&apos;exemple ci-dessus :
+Il existe une troisième utilisation de l'opérateur, à savoir l'accès dynamique aux propriétés optionnelles, qui est effectué via `?.[]`. Il retourne soit la valeur référencée par l'argument dans les crochets, soit `undefined` s'il n'y a aucun objet à partir duquel récupérer la valeur. Voici un cas d'utilisation possible, suivant l'exemple ci-dessus :
 
 ```js
-// Étend les capacités de l&apos;accès aux propriétés statiques
+// Étend les capacités de l'accès aux propriétés statiques
 // avec un nom de propriété généré dynamiquement.
-const optionName = &apos;réglage optionnel&apos;;
+const optionName = 'réglage optionnel';
 const optionLength = db?.user?.preferences?.[optionName].length;
 ```
 
@@ -76,38 +76,38 @@ Cette dernière forme est également disponible pour indexer optionnellement des
 
 ```js
 // Si `usersArray` est `null` ou `undefined`,
-// alors `userName` s&apos;évalue gracieusement à `undefined`.
+// alors `userName` s'évalue gracieusement à `undefined`.
 const userIndex = 42;
 const userName = usersArray?.[userIndex].name;
 ```
 
-L&apos;opérateur d&apos;enchaînement optionnel peut être combiné avec l&apos;[opérateur de coalescence des valeurs nulles `??`](/features/nullish-coalescing) lorsqu&apos;une valeur par défaut non-`undefined` est nécessaire. Cela permet un accès sûr et profond aux propriétés avec une valeur par défaut spécifiée, répondant à un cas d&apos;utilisation courant qui nécessitait auparavant des bibliothèques tierces comme [`_.get` de lodash](https://lodash.dev/docs/4.17.15#get) :
+L'opérateur d'enchaînement optionnel peut être combiné avec l'[opérateur de coalescence des valeurs nulles `??`](/features/nullish-coalescing) lorsqu'une valeur par défaut non-`undefined` est nécessaire. Cela permet un accès sûr et profond aux propriétés avec une valeur par défaut spécifiée, répondant à un cas d'utilisation courant qui nécessitait auparavant des bibliothèques tierces comme [`_.get` de lodash](https://lodash.dev/docs/4.17.15#get) :
 
 ```js
-const object = { id: 123, names: { first: &apos;Alice&apos;, last: &apos;Smith&apos; }};
+const object = { id: 123, names: { first: 'Alice', last: 'Smith' }};
 
 { // Avec lodash :
-  const firstName = _.get(object, &apos;names.first&apos;);
-  // → &apos;Alice&apos;
+  const firstName = _.get(object, 'names.first');
+  // → 'Alice'
 
-  const middleName = _.get(object, &apos;names.middle&apos;, &apos;(aucun deuxième prénom)&apos;);
-  // → &apos;(aucun deuxième prénom)&apos;
+  const middleName = _.get(object, 'names.middle', '(aucun deuxième prénom)');
+  // → '(aucun deuxième prénom)'
 }
 
-{ // Avec l&apos;enchaînement optionnel et la coalescence des valeurs nulles :
-  const firstName = object?.names?.first ?? &apos;(aucun prénom)&apos;;
-  // → &apos;Alice&apos;
+{ // Avec l'enchaînement optionnel et la coalescence des valeurs nulles :
+  const firstName = object?.names?.first ?? '(aucun prénom)';
+  // → 'Alice'
 
-  const middleName = object?.names?.middle ?? &apos;(aucun deuxième prénom)&apos;;
-  // → &apos;(aucun deuxième prénom)&apos;
+  const middleName = object?.names?.middle ?? '(aucun deuxième prénom)';
+  // → '(aucun deuxième prénom)'
 }
 ```
 
-## Propriétés de l&apos;opérateur d&apos;enchaînement optionnel
+## Propriétés de l'opérateur d'enchaînement optionnel
 
-L&apos;opérateur d&apos;enchaînement optionnel possède plusieurs propriétés intéressantes : _court-circuitage_, _empilage_ et _suppression optionnelle_. Examinons chacune de ces propriétés avec un exemple.
+L'opérateur d'enchaînement optionnel possède plusieurs propriétés intéressantes : _court-circuitage_, _empilage_ et _suppression optionnelle_. Examinons chacune de ces propriétés avec un exemple.
 
-_Court-circuitage_ signifie qu&apos;on n&apos;évalue pas le reste de l&apos;expression si un opérateur d&apos;enchaînement optionnel renvoie prématurément :
+_Court-circuitage_ signifie qu'on n'évalue pas le reste de l'expression si un opérateur d'enchaînement optionnel renvoie prématurément :
 
 ```js
 // `age` est incrémenté uniquement si `db` et `user` sont définis.

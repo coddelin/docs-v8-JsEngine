@@ -1,6 +1,6 @@
 ---
-title: &apos;V8 比以往更快、更安全！&apos;
-author: &apos;[Victor Gomes](https://twitter.com/VictorBFG)，Glühwein 專家&apos;
+title: 'V8 比以往更快、更安全！'
+author: '[Victor Gomes](https://twitter.com/VictorBFG)，Glühwein 專家'
 avatars:
   - victor-gomes
 date: 2023-12-14
@@ -10,7 +10,7 @@ tags:
   - 安全性
   - 基準測試
 description: "V8 在 2023 年的令人印象深刻的成就"
-tweet: &apos;&apos;
+tweet: ''
 ---
 
 歡迎來到令人興奮的 V8 世界，在這裡速度不僅僅是一項功能，而是一種生活方式。當我們向 2023 年告別時，是時候慶祝 V8 今年取得的令人印象深刻的成就了。
@@ -50,7 +50,7 @@ JavaScript 繼續隨著新標準化功能而進化，今年也不例外。我們
 
 # WebAssembly 垃圾回收
 
-說到為 Web 帶來新的應用類別，我們終於在經過數年對[提案](https://github.com/WebAssembly/gc/blob/main/proposals/gc/MVP.md)&apos;s 標準化和[實現](https://bugs.chromium.org/p/v8/issues/detail?id=7748)的努力後，推出了 WebAssembly 垃圾回收（WasmGC）。Wasm 現在有了一種內建的分配物件和陣列的方法，這些物件和陣列由 V8 現有的垃圾回收器管理。這使得用 Java、Kotlin、Dart 和類似垃圾回收語言編寫的應用程式可以編譯到 Wasm——在這些應用程式中，它們的運行速度通常是編譯到 JavaScript 時的兩倍。更多詳情請參閱[我們的部落格文章](https://v8.dev/blog/wasm-gc-porting)。
+說到為 Web 帶來新的應用類別，我們終於在經過數年對[提案](https://github.com/WebAssembly/gc/blob/main/proposals/gc/MVP.md)'s 標準化和[實現](https://bugs.chromium.org/p/v8/issues/detail?id=7748)的努力後，推出了 WebAssembly 垃圾回收（WasmGC）。Wasm 現在有了一種內建的分配物件和陣列的方法，這些物件和陣列由 V8 現有的垃圾回收器管理。這使得用 Java、Kotlin、Dart 和類似垃圾回收語言編寫的應用程式可以編譯到 Wasm——在這些應用程式中，它們的運行速度通常是編譯到 JavaScript 時的兩倍。更多詳情請參閱[我們的部落格文章](https://v8.dev/blog/wasm-gc-porting)。
 
 # 安全性
 

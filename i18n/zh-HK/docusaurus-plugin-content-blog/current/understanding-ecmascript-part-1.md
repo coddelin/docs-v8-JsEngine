@@ -1,14 +1,14 @@
 ---
-title: &apos;理解 ECMAScript 規範，第一部分&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh)，推測性規範觀察者&apos;
+title: '理解 ECMAScript 規範，第一部分'
+author: '[Marja Hölttä](https://twitter.com/marjakh)，推測性規範觀察者'
 avatars:
   - marja-holtta
 date: 2020-02-03 13:33:37
 tags:
   - ECMAScript
   - 理解 ECMAScript
-description: &apos;閱讀 ECMAScript 規範的教程&apos;
-tweet: &apos;1224363301146189824&apos;
+description: '閱讀 ECMAScript 規範的教程'
+tweet: '1224363301146189824'
 ---
 
 [全部集數](/blog/tags/understanding-ecmascript)
@@ -24,8 +24,8 @@ tweet: &apos;1224363301146189824&apos;
 
 ```js
 const o = { foo: 1 };
-o.hasOwnProperty(&apos;foo&apos;); // true
-o.hasOwnProperty(&apos;bar&apos;); // false
+o.hasOwnProperty('foo'); // true
+o.hasOwnProperty('bar'); // false
 ```
 
 在這個例子中，`o` 沒有一個名為 `hasOwnProperty` 的屬性，所以我們沿著原型鏈查找。我們在 `o` 的原型中找到了它，這就是 `Object.prototype`。

@@ -1,11 +1,11 @@
 ---
-title: &apos;V8リリース v6.5&apos;
-author: &apos;V8チーム&apos;
+title: 'V8リリース v6.5'
+author: 'V8チーム'
 date: 2018-02-01 13:33:37
 tags:
   - リリース
-description: &apos;V8 v6.5はストリーミングWebAssemblyコンパイルのサポートを追加し、新しい「非信頼コードモード」を含みます。&apos;
-tweet: &apos;959174292406640640&apos;
+description: 'V8 v6.5はストリーミングWebAssemblyコンパイルのサポートを追加し、新しい「非信頼コードモード」を含みます。'
+tweet: '959174292406640640'
 ---
 6週間ごとに、[リリースプロセス](/docs/release-process)の一環としてV8の新しいブランチを作成しています。各バージョンは、Chrome Betaマイルストーンの直前にV8のGitマスターからブランチされます。本日、最新のブランチ、[V8バージョン6.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.5)を発表します。このバージョンは数週間後のChrome 65安定版と連携してリリースされるまでベータ版です。V8 v6.5は、開発者向けのさまざまな新機能を備えています。この投稿では、リリースを控えた注目のハイライトをいくつか紹介します。
 
@@ -19,7 +19,7 @@ tweet: &apos;959174292406640640&apos;
 WebAssembly APIは、`fetch()` APIと組み合わせて[ストリーミングコンパイル](https://developers.google.com/web/updates/2018/04/loading-wasm)をサポートするための特別な関数を提供します:
 
 ```js
-const module = await WebAssembly.compileStreaming(fetch(&apos;foo.wasm&apos;));
+const module = await WebAssembly.compileStreaming(fetch('foo.wasm'));
 ```
 
 このAPIはV8 v6.1およびChrome 61以降で利用可能ですが、初期の実装ではストリーミングコンパイルは実際には使用されていませんでした。しかし、V8 v6.5およびChrome 65では、このAPIを利用してモジュールのバイトをダウンロード中にすでにWebAssemblyモジュールをコンパイルします。個々の関数のバイトをすべてダウンロードするとすぐに、その関数をバックグラウンドスレッドに渡してコンパイルします。

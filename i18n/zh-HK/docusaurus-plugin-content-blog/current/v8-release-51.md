@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 發行版本 v5.1&apos;
-author: &apos;V8 團隊&apos;
+title: 'V8 發行版本 v5.1'
+author: 'V8 團隊'
 date: 2016-04-23 13:33:37
 tags:
   - 發行
-description: &apos;V8 v5.1 提供性能改進、降低停滯和記憶體消耗，以及增加對 ECMAScript 語言功能的支援。&apos;
+description: 'V8 v5.1 提供性能改進、降低停滯和記憶體消耗，以及增加對 ECMAScript 語言功能的支援。'
 ---
 V8 [發行流程](/docs/release-process) 的第一步是在 Chromium 為 Chrome Beta 里程碑（大約每六週）的分支之前從 Git 主倉創建新分支。我們最新的發行分支是 [V8 v5.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.1)，其將保持 Beta 狀態，直到我們與 Chrome 51 穩定版本一起發佈穩定版本。以下是此版本 V8 的新開發者功能亮點。
 
@@ -41,7 +41,7 @@ class Container {
 }
 const c = new Container;
 console.log(c[Symbol.iterator].name);
-// → &apos;[Symbol.iterator]&apos;
+// → '[Symbol.iterator]'
 ```
 
 ### `Array.prototype.values`
@@ -60,7 +60,7 @@ V8 v5.1 還帶來了一些 JavaScript 功能的重要性能改進：
 - `Array.prototype.push`
 - `Object.keys`
 - `Array.prototype.join` 和 `Array.prototype.toString`
-- 壓縮重復字串，例如 `&apos;.&apos;.repeat(1000)`
+- 壓縮重復字串，例如 `'.'.repeat(1000)`
 
 ## WebAssembly (Wasm)
 

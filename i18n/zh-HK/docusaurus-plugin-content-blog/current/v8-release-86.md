@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 發佈 v8.6&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))，一位鍵盤模糊測試者&apos;
+title: 'V8 發佈 v8.6'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))，一位鍵盤模糊測試者'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2020-09-21
 tags:
  - release
-description: &apos;V8 發佈 v8.6 帶來了更尊重的代碼、性能改進和規範性更改。&apos;
-tweet: &apos;1308062287731789825&apos;
+description: 'V8 發佈 v8.6 帶來了更尊重的代碼、性能改進和規範性更改。'
+tweet: '1308062287731789825'
 ---
 每六周，我們會根據我們的[發佈流程](https://v8.dev/docs/release-process)創建一個新的 V8 分支。每個版本都會在 Chrome Beta 里程碑之前從 V8 的 Git 主分支中分出來。今天我們很高興宣佈我們最新的分支，[V8 版本 8.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.6)，這版本目前處於測試階段，並將在數週內與 Chrome 86 Stable 一同發佈。V8 v8.6 包含了各種開發人員可享用的功能。本文章旨在提前介紹一些亮點，以期待此次發佈。
 
@@ -36,9 +36,9 @@ JS-Fuzzer 是由 Oliver Chang 原創的一個基於變異的 JavaScript 模糊�
 
 ### 小規範更改
 
-- 匿名類現在有一個 `.name` 屬性，其值為空字符串 `&apos;&apos;`。[規範變更](https://github.com/tc39/ecma262/pull/1490)。
+- 匿名類現在有一個 `.name` 屬性，其值為空字符串 `''`。[規範變更](https://github.com/tc39/ecma262/pull/1490)。
 - `\8` 和 `\9` 轉義序列現在在[寬鬆模式](https://developer.mozilla.org/en-US/docs/Glossary/Sloppy_mode)中的模板字符串字面量以及[嚴格模式](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode)中的所有字符串字面量中都是非法的。[規範變更](https://github.com/tc39/ecma262/pull/2054)。
-- 內建的 `Reflect` 對象現在有一個 `Symbol.toStringTag` 屬性，其值為 `&apos;Reflect&apos;`。[規範變更](https://github.com/tc39/ecma262/pull/2057)。
+- 內建的 `Reflect` 對象現在有一個 `Symbol.toStringTag` 屬性，其值為 `'Reflect'`。[規範變更](https://github.com/tc39/ecma262/pull/2057)。
 
 ## WebAssembly
 

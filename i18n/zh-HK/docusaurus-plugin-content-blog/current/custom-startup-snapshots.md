@@ -1,12 +1,12 @@
 ---
-title: &apos;自訂啟動快照&apos;
-author: &apos;Yang Guo ([@hashseed](https://twitter.com/hashseed)), 軟體工程師和引擎預熱供應商&apos;
+title: '自訂啟動快照'
+author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed)), 軟體工程師和引擎預熱供應商'
 avatars:
-  - &apos;yang-guo&apos;
+  - 'yang-guo'
 date: 2015-09-25 13:33:37
 tags:
   - internals
-description: &apos;V8 嵌入者可以利用快照以跳過 JavaScript 程式初始化所需的啟動時間。&apos;
+description: 'V8 嵌入者可以利用快照以跳過 JavaScript 程式初始化所需的啟動時間。'
 ---
 JavaScript 規範包括許多內建功能，從[數學函數](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math)到一個[功能完善的正則表達式引擎](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions)。每個新創建的 V8 context 從一開始就可以使用這些功能。為了達到這一點，必須在 context 被創建時，將全域物件（例如，在瀏覽器中的 window 物件）和所有內建功能設置並初始化到 V8 的 heap 中。從零開始完成這些操作需要相當多的時間。
 

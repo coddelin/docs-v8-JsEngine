@@ -1,17 +1,17 @@
 ---
-title: &apos;Eine zusätzliche nicht-backtracking RegExp-Engine&apos;
-author: &apos;Martin Bidlingmaier&apos;
+title: 'Eine zusätzliche nicht-backtracking RegExp-Engine'
+author: 'Martin Bidlingmaier'
 date: 2021-01-11
 tags:
  - Interna
  - RegExp
-description: &apos;V8 verfügt nun über eine zusätzliche RegExp-Engine, die als Fallback dient und viele Fälle von katastrophalem Backtracking verhindert.&apos;
-tweet: &apos;1348635270762139650&apos;
+description: 'V8 verfügt nun über eine zusätzliche RegExp-Engine, die als Fallback dient und viele Fälle von katastrophalem Backtracking verhindert.'
+tweet: '1348635270762139650'
 ---
 Ab Version v8.8 wird V8 mit einer neuen experimentellen nicht-backtracking RegExp-Engine ausgeliefert (zusätzlich zur bestehenden [Irregexp-Engine](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html)), die garantiert, dass die Ausführung in linearer Zeit in Bezug auf die Größe der Eingabestrings erfolgt. Die experimentelle Engine ist hinter den unten erwähnten Feature-Flags verfügbar.
 
 <!--truncate-->
-![Laufzeit von `/(a*)*b/.exec(&apos;a&apos;.repeat(n))` für n ≤ 100](/_img/non-backtracking-regexp/runtime-plot.svg)
+![Laufzeit von `/(a*)*b/.exec('a'.repeat(n))` für n ≤ 100](/_img/non-backtracking-regexp/runtime-plot.svg)
 
 So können Sie die neue RegExp-Engine konfigurieren:
 
@@ -28,15 +28,15 @@ Der Fallback-Mechanismus gilt nicht für alle Muster. Damit der Fallback-Mechani
 
 ## Hintergrund: Katastrophales Backtracking
 
-Die RegExp-Verarbeitung in V8 erfolgt durch die Irregexp-Engine. Irregexp JIT-kompiliert RegExps zu spezialisiertem nativen Code (oder [Bytecode](/blog/regexp-tier-up)) und ist daher für die meisten Muster extrem schnell. Für einige Muster kann Irregexps Laufzeit jedoch exponentiell ansteigen, abhängig von der Größe der Eingabestrings. Im obigen Beispiel, `/(a*)*b/.exec(&apos;a&apos;.repeat(100))`, wird die Ausführung durch Irregexp innerhalb unserer Lebenszeit nicht abgeschlossen.
+Die RegExp-Verarbeitung in V8 erfolgt durch die Irregexp-Engine. Irregexp JIT-kompiliert RegExps zu spezialisiertem nativen Code (oder [Bytecode](/blog/regexp-tier-up)) und ist daher für die meisten Muster extrem schnell. Für einige Muster kann Irregexps Laufzeit jedoch exponentiell ansteigen, abhängig von der Größe der Eingabestrings. Im obigen Beispiel, `/(a*)*b/.exec('a'.repeat(100))`, wird die Ausführung durch Irregexp innerhalb unserer Lebenszeit nicht abgeschlossen.
 
-Was geschieht hier also genau? Irregexp ist eine *Backtracking*-Engine. Bei einer Auswahl, wie ein Muster fortgesetzt werden kann, erkundet Irregexp zunächst die erste Alternative vollständig und backtracked dann bei Bedarf, um die zweite Alternative zu untersuchen. Betrachten Sie z. B. das Muster `/abc|[az][by][0-9]/`, das mit dem Eingabestring `&apos;ab3&apos;` abgeglichen wird. Hier versucht Irregexp zunächst, `/abc/` zu matchen und scheitert nach dem zweiten Zeichen. Es backtracked dann um zwei Zeichen zurück und matcht erfolgreich die zweite Alternative `/[az][by][0-9]/`. In Mustern mit Quantifizierern wie `/(abc)*xyz/` muss Irregexp nach einem Treffer des Hauptteils entscheiden, ob der Hauptteil erneut gematcht oder das restliche Muster fortgesetzt werden soll.
+Was geschieht hier also genau? Irregexp ist eine *Backtracking*-Engine. Bei einer Auswahl, wie ein Muster fortgesetzt werden kann, erkundet Irregexp zunächst die erste Alternative vollständig und backtracked dann bei Bedarf, um die zweite Alternative zu untersuchen. Betrachten Sie z. B. das Muster `/abc|[az][by][0-9]/`, das mit dem Eingabestring `'ab3'` abgeglichen wird. Hier versucht Irregexp zunächst, `/abc/` zu matchen und scheitert nach dem zweiten Zeichen. Es backtracked dann um zwei Zeichen zurück und matcht erfolgreich die zweite Alternative `/[az][by][0-9]/`. In Mustern mit Quantifizierern wie `/(abc)*xyz/` muss Irregexp nach einem Treffer des Hauptteils entscheiden, ob der Hauptteil erneut gematcht oder das restliche Muster fortgesetzt werden soll.
 
-Lassen Sie uns versuchen zu verstehen, was geschieht, wenn `/(a*)*b/` mit einem kleineren Eingabestring wie `&apos;aaa&apos;` abgeglichen wird. Dieses Muster enthält verschachtelte Quantifizierer, sodass wir Irregexp bitten, eine *Sequenz von Sequenzen* von `&apos;a&apos;` zu matchen und dann `&apos;b&apos;` zu matchen. Offensichtlich gibt es keinen Treffer, da der Eingabestring kein `&apos;b&apos;` enthält. Jedoch matcht `/(a*)*/`, und dies in exponentiell vielen verschiedenen Wegen:
+Lassen Sie uns versuchen zu verstehen, was geschieht, wenn `/(a*)*b/` mit einem kleineren Eingabestring wie `'aaa'` abgeglichen wird. Dieses Muster enthält verschachtelte Quantifizierer, sodass wir Irregexp bitten, eine *Sequenz von Sequenzen* von `'a'` zu matchen und dann `'b'` zu matchen. Offensichtlich gibt es keinen Treffer, da der Eingabestring kein `'b'` enthält. Jedoch matcht `/(a*)*/`, und dies in exponentiell vielen verschiedenen Wegen:
 
 ```js
-&apos;aaa&apos;           &apos;aa&apos;, &apos;a&apos;           &apos;aa&apos;, &apos;&apos;
-&apos;a&apos;, &apos;aa&apos;       &apos;a&apos;, &apos;a&apos;, &apos;a&apos;       &apos;a&apos;, &apos;a&apos;, &apos;&apos;
+'aaa'           'aa', 'a'           'aa', ''
+'a', 'aa'       'a', 'a', 'a'       'a', 'a', ''
 …
 ```
 
@@ -62,13 +62,13 @@ Lassen Sie uns den Backtracking-Algorithmus, auf dem Irregexp basiert, noch einm
 
 ```js
 const code = [
-  {opcode: &apos;FORK&apos;, forkPc: 4},
-  {opcode: &apos;CONSUME&apos;, char: &apos;1&apos;},
-  {opcode: &apos;CONSUME&apos;, char: &apos;2&apos;},
-  {opcode: &apos;JMP&apos;, jmpPc: 6},
-  {opcode: &apos;CONSUME&apos;, char: &apos;a&apos;},
-  {opcode: &apos;CONSUME&apos;, char: &apos;b&apos;},
-  {opcode: &apos;ACCEPT&apos;}
+  {opcode: 'FORK', forkPc: 4},
+  {opcode: 'CONSUME', char: '1'},
+  {opcode: 'CONSUME', char: '2'},
+  {opcode: 'JMP', jmpPc: 6},
+  {opcode: 'CONSUME', char: 'a'},
+  {opcode: 'CONSUME', char: 'b'},
+  {opcode: 'ACCEPT'}
 ];
 ```
 
@@ -81,7 +81,7 @@ const stack = []; // Backtracking-Stack.
 while (true) {
   const inst = code[pc];
   switch (inst.opcode) {
-    case &apos;CONSUME&apos;:
+    case 'CONSUME':
       if (ip < input.length && input[ip] === inst.char) {
         // Die Eingabe stimmt überein: Weiter.
         ++ip;
@@ -96,15 +96,15 @@ while (true) {
         return false;
       }
       break;
-    case &apos;FORK&apos;:
+    case 'FORK':
       // Alternative für späteres Backtracking speichern.
       stack.push({ip: ip, pc: inst.forkPc});
       ++pc;
       break;
-    case &apos;JMP&apos;:
+    case 'JMP':
       pc = inst.jmpPc;
       break;
-    case &apos;ACCEPT&apos;:
+    case 'ACCEPT':
       return true;
   }
 }
@@ -121,13 +121,13 @@ Eine einfache Implementierung in JavaScript sieht etwa so aus:
 ```js
 // Eingabeposition.
 let ip = 0;
-// Liste der aktuellen pc-Werte oder `&apos;ACCEPT&apos;`, wenn wir eine Übereinstimmung gefunden haben. Wir starten bei
+// Liste der aktuellen pc-Werte oder `'ACCEPT'`, wenn wir eine Übereinstimmung gefunden haben. Wir starten bei
 // pc 0 und folgen Epsilon-Übergängen.
 let pcs = followEpsilons([0]);
 
 while (true) {
   // Wir sind fertig, wenn wir eine Übereinstimmung gefunden haben...
-  if (pcs === &apos;ACCEPT&apos;) return true;
+  if (pcs === 'ACCEPT') return true;
   // ...oder wenn wir die Eingabezeichenkette erschöpft haben.
   if (ip >= input.length) return false;
 
@@ -142,7 +142,7 @@ while (true) {
 }
 ```
 
-Hier ist `followEpsilons` eine Funktion, die eine Liste von Programmcountern erhält und die Liste von Programmcountern bei `CONSUME`-Anweisungen berechnet, die über Epsilon-Übergänge erreicht werden können (d.h. nur durch Ausführen von FORK und JMP). Die zurückgegebene Liste darf keine Duplikate enthalten. Wenn eine `ACCEPT`-Anweisung erreicht werden kann, gibt die Funktion `&apos;ACCEPT&apos;` zurück. Sie kann so implementiert werden:
+Hier ist `followEpsilons` eine Funktion, die eine Liste von Programmcountern erhält und die Liste von Programmcountern bei `CONSUME`-Anweisungen berechnet, die über Epsilon-Übergänge erreicht werden können (d.h. nur durch Ausführen von FORK und JMP). Die zurückgegebene Liste darf keine Duplikate enthalten. Wenn eine `ACCEPT`-Anweisung erreicht werden kann, gibt die Funktion `'ACCEPT'` zurück. Sie kann so implementiert werden:
 
 ```js
 function followEpsilons(pcs) {
@@ -159,17 +159,17 @@ function followEpsilons(pcs) {
 
     const inst = code[pc];
     switch (inst.opcode) {
-      case &apos;CONSUME&apos;:
+      case 'CONSUME':
         result.push(pc);
         break;
-      case &apos;FORK&apos;:
+      case 'FORK':
         pcs.push(pc + 1, inst.forkPc);
         break;
-      case &apos;JMP&apos;:
+      case 'JMP':
         pcs.push(inst.jmpPc);
         break;
-      case &apos;ACCEPT&apos;:
-        return &apos;ACCEPT&apos;;
+      case 'ACCEPT':
+        return 'ACCEPT';
     }
   }
 

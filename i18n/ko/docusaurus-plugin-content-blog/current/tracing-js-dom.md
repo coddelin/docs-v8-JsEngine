@@ -1,16 +1,16 @@
 ---
-title: &apos;JS에서 DOM로, 그리고 다시 되돌아오는 경로 추적&apos;
-author: &apos;DOM의 동맹 — 울란 데겐바에브, 알렉세이 필리포브, 미하엘 립파우츠, 그리고 한네스 페이어&apos;
+title: 'JS에서 DOM로, 그리고 다시 되돌아오는 경로 추적'
+author: 'DOM의 동맹 — 울란 데겐바에브, 알렉세이 필리포브, 미하엘 립파우츠, 그리고 한네스 페이어'
 avatars:
-  - &apos;ulan-degenbaev&apos;
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'ulan-degenbaev'
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2018-03-01 13:33:37
 tags:
   - internals
   - memory
-description: &apos;Chrome DevTools는 이제 C++ DOM 객체를 추적하고 스냅샷을 찍을 수 있으며 JavaScript에서 참조된 모든 접근 가능한 DOM 객체를 표시할 수 있습니다.&apos;
-tweet: &apos;969184997545562112&apos;
+description: 'Chrome DevTools는 이제 C++ DOM 객체를 추적하고 스냅샷을 찍을 수 있으며 JavaScript에서 참조된 모든 접근 가능한 DOM 객체를 표시할 수 있습니다.'
+tweet: '969184997545562112'
 ---
 Chrome 66에서 메모리 누수를 디버깅하는 것이 훨씬 쉬워졌습니다. Chrome DevTools는 이제 C++ DOM 객체를 추적하고 스냅샷을 찍을 수 있으며 JavaScript에서 참조된 모든 접근 가능한 DOM 객체를 표시할 수 있습니다. 이 기능은 V8 가비지 컬렉터의 새로운 C++ 추적 메커니즘의 이점 중 하나입니다.
 
@@ -23,16 +23,16 @@ Chrome 66에서 메모리 누수를 디버깅하는 것이 훨씬 쉬워졌습�
 
 ```js
 // 메인 창:
-const iframe = document.createElement(&apos;iframe&apos;);
-iframe.src = &apos;iframe.html&apos;;
+const iframe = document.createElement('iframe');
+iframe.src = 'iframe.html';
 document.body.appendChild(iframe);
-iframe.addEventListener(&apos;load&apos;, function() {
+iframe.addEventListener('load', function() {
   const localVariable = iframe.contentWindow;
   function leakingListener() {
     // `localVariable`로 뭔가를 합니다.
     if (localVariable) {}
   }
-  document.body.addEventListener(&apos;my-debug-event&apos;, leakingListener);
+  document.body.addEventListener('my-debug-event', leakingListener);
   document.body.removeChild(iframe);
   // 버그: `leakingListener` 등록 해제를 잊음.
 });

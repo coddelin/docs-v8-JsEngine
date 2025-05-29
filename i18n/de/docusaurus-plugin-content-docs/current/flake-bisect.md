@@ -1,6 +1,6 @@
 ---
-title: &apos;Flake bisektieren&apos;
-description: &apos;Dieses Dokument erklärt, wie man instabile Tests bisektieren kann.&apos;
+title: 'Flake bisektieren'
+description: 'Dieses Dokument erklärt, wie man instabile Tests bisektieren kann.'
 ---
 Instabile Tests werden in einem separaten Schritt auf den Bots gemeldet ([Beispiel-Build](https://ci.chromium.org/ui/p/v8/builders/ci/V8%20Linux64%20TSAN/38630/overview)).
 
@@ -8,7 +8,7 @@ Jedes Testprotokoll bietet eine vorab ausgefüllte Befehlszeile zum Auslösen ei
 
 ```
 Flake bisektieren über die Befehlszeile auslösen:
-bb add v8/try.triggered/v8_flako -p &apos;to_revision="deadbeef"&apos; -p &apos;test_name="MyTest"&apos; ...
+bb add v8/try.triggered/v8_flako -p 'to_revision="deadbeef"' -p 'test_name="MyTest"' ...
 ```
 
 Bevor Benutzer zum ersten Mal Flake-Bisects auslösen, müssen sie sich mit einem google.com-Konto anmelden:

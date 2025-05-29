@@ -1,6 +1,6 @@
 ---
-title: &apos;Directives pour la revue de conception&apos;
-description: &apos;Ce document explique les directives de revue de conception du projet V8.&apos;
+title: 'Directives pour la revue de conception'
+description: 'Ce document explique les directives de revue de conception du projet V8.'
 ---
 Veuillez vous assurer de suivre les directives suivantes lorsque cela est applicable.
 
@@ -26,7 +26,7 @@ La solution proposée repose sur les hypothèses/piliers suivants :
 1. Le processus proposé met le Contributeur Individuel (CI) aux commandes. Ils sont ceux qui facilitent le processus.
 1. Leurs TLs les guident afin de les aider à naviguer et trouver les bons fournisseurs de LGTM.
 1. Si une fonctionnalité est non controversée, il ne devrait y avoir presque aucun surcoût.
-1. S'il y a beaucoup de controverses, la fonctionnalité peut être &apos;escaladée&apos; à la réunion des propriétaires des revues techniques de V8, où des étapes supplémentaires sont décidées.
+1. S'il y a beaucoup de controverses, la fonctionnalité peut être 'escaladée' à la réunion des propriétaires des revues techniques de V8, où des étapes supplémentaires sont décidées.
 
 ## Rôles
 

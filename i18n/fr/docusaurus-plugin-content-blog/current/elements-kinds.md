@@ -1,14 +1,14 @@
 ---
-title: &apos;Types d&apos;éléments dans V8&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Types d'éléments dans V8'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-09-12 13:33:37
 tags:
   - internals
   - presentations
-description: &apos;Cette plongée technique explique comment V8 optimise les opérations sur les tableaux en coulisses, et ce que cela signifie pour les développeurs JavaScript.&apos;
-tweet: &apos;907608362191376384&apos;
+description: 'Cette plongée technique explique comment V8 optimise les opérations sur les tableaux en coulisses, et ce que cela signifie pour les développeurs JavaScript.'
+tweet: '907608362191376384'
 ---
 :::note
 **Note :** Si vous préférez regarder une présentation plutôt que lire des articles, profitez de la vidéo ci-dessous !
@@ -20,16 +20,16 @@ tweet: &apos;907608362191376384&apos;
   </div>
 </figure>
 
-Les objets JavaScript peuvent avoir des propriétés arbitraires associées à eux. Les noms des propriétés d&apos;objet peuvent contenir n&apos;importe quel caractère. L&apos;un des cas intéressants que le moteur JavaScript peut choisir d&apos;optimiser concerne les propriétés dont les noms sont purement numériques, plus précisément les [indices de tableau](https://tc39.es/ecma262/#array-index).
+Les objets JavaScript peuvent avoir des propriétés arbitraires associées à eux. Les noms des propriétés d'objet peuvent contenir n'importe quel caractère. L'un des cas intéressants que le moteur JavaScript peut choisir d'optimiser concerne les propriétés dont les noms sont purement numériques, plus précisément les [indices de tableau](https://tc39.es/ecma262/#array-index).
 
 <!--truncate-->
-Dans V8, les propriétés avec des noms entiers — la forme la plus courante étant les objets générés par le constructeur `Array` — sont traitées de manière spéciale. Bien que ces propriétés indexées numériquement se comportent souvent comme d&apos;autres propriétés, V8 choisit de les stocker séparément pour des raisons d&apos;optimisation. En interne, V8 donne même un nom spécial à ces propriétés : _éléments_. Les objets possèdent des [propriétés](/blog/fast-properties) qui mappent aux valeurs, tandis que les tableaux ont des indices qui mappent aux éléments.
+Dans V8, les propriétés avec des noms entiers — la forme la plus courante étant les objets générés par le constructeur `Array` — sont traitées de manière spéciale. Bien que ces propriétés indexées numériquement se comportent souvent comme d'autres propriétés, V8 choisit de les stocker séparément pour des raisons d'optimisation. En interne, V8 donne même un nom spécial à ces propriétés : _éléments_. Les objets possèdent des [propriétés](/blog/fast-properties) qui mappent aux valeurs, tandis que les tableaux ont des indices qui mappent aux éléments.
 
-Bien que ces détails internes ne soient jamais exposés directement aux développeurs JavaScript, ils expliquent pourquoi certains modèles de code sont plus rapides que d&apos;autres.
+Bien que ces détails internes ne soient jamais exposés directement aux développeurs JavaScript, ils expliquent pourquoi certains modèles de code sont plus rapides que d'autres.
 
-## Types d&apos;éléments courants
+## Types d'éléments courants
 
-Lors de l&apos;exécution de code JavaScript, V8 garde une trace du type d&apos;éléments contenus dans chaque tableau. Ces informations permettent à V8 d&apos;optimiser les opérations sur le tableau spécifiquement pour ce type d&apos;élément. Par exemple, lorsque vous appelez `reduce`, `map` ou `forEach` sur un tableau, V8 peut optimiser ces opérations en fonction du type d&apos;éléments que contient le tableau.
+Lors de l'exécution de code JavaScript, V8 garde une trace du type d'éléments contenus dans chaque tableau. Ces informations permettent à V8 d'optimiser les opérations sur le tableau spécifiquement pour ce type d'élément. Par exemple, lorsque vous appelez `reduce`, `map` ou `forEach` sur un tableau, V8 peut optimiser ces opérations en fonction du type d'éléments que contient le tableau.
 
 Prenons cet exemple de tableau :
 
@@ -37,29 +37,29 @@ Prenons cet exemple de tableau :
 const array = [1, 2, 3];
 ```
 
-Quel type d&apos;éléments contient-il ? Si vous posiez la question à l&apos;opérateur `typeof`, il vous dirait que le tableau contient des `number`s. Au niveau du langage, c&apos;est tout ce que vous obtenez : JavaScript ne distingue pas entre entiers, flottants et doubles — ce sont tous juste des nombres. Cependant, au niveau du moteur, nous pouvons faire des distinctions plus précises. Le type d&apos;éléments pour ce tableau est `PACKED_SMI_ELEMENTS`. Dans V8, le terme Smi fait référence au format particulier utilisé pour stocker les petits entiers. (Nous parlerons de la partie `PACKED` dans une minute.)
+Quel type d'éléments contient-il ? Si vous posiez la question à l'opérateur `typeof`, il vous dirait que le tableau contient des `number`s. Au niveau du langage, c'est tout ce que vous obtenez : JavaScript ne distingue pas entre entiers, flottants et doubles — ce sont tous juste des nombres. Cependant, au niveau du moteur, nous pouvons faire des distinctions plus précises. Le type d'éléments pour ce tableau est `PACKED_SMI_ELEMENTS`. Dans V8, le terme Smi fait référence au format particulier utilisé pour stocker les petits entiers. (Nous parlerons de la partie `PACKED` dans une minute.)
 
-L&apos;ajout ultérieur d&apos;un nombre en virgule flottante au même tableau le fait passer à un type d&apos;éléments plus générique :
-
-```js
-const array = [1, 2, 3];
-// type d&apos;éléments : PACKED_SMI_ELEMENTS
-array.push(4.56);
-// type d&apos;éléments : PACKED_DOUBLE_ELEMENTS
-```
-
-L&apos;ajout d&apos;une chaine de caractères au tableau modifie son type d&apos;éléments une fois de plus.
+L'ajout ultérieur d'un nombre en virgule flottante au même tableau le fait passer à un type d'éléments plus générique :
 
 ```js
 const array = [1, 2, 3];
-// type d&apos;éléments : PACKED_SMI_ELEMENTS
+// type d'éléments : PACKED_SMI_ELEMENTS
 array.push(4.56);
-// type d&apos;éléments : PACKED_DOUBLE_ELEMENTS
-array.push(&apos;x&apos;);
-// type d&apos;éléments : PACKED_ELEMENTS
+// type d'éléments : PACKED_DOUBLE_ELEMENTS
 ```
 
-Nous avons vu trois types d&apos;éléments distincts jusqu&apos;ici, avec les types de base suivants :
+L'ajout d'une chaine de caractères au tableau modifie son type d'éléments une fois de plus.
+
+```js
+const array = [1, 2, 3];
+// type d'éléments : PACKED_SMI_ELEMENTS
+array.push(4.56);
+// type d'éléments : PACKED_DOUBLE_ELEMENTS
+array.push('x');
+// type d'éléments : PACKED_ELEMENTS
+```
+
+Nous avons vu trois types d'éléments distincts jusqu'ici, avec les types de base suivants :
 
 - <b>Pet</b>its <b>i</b>ntégers, également connus sous le nom de Smi.
 - Doubles, pour les nombres en virgule flottante et les entiers qui ne peuvent pas être représentés comme un Smi.
@@ -67,24 +67,24 @@ Nous avons vu trois types d&apos;éléments distincts jusqu&apos;ici, avec les t
 
 Notez que les doubles forment une variante plus générique des Smi, et les éléments réguliers sont une autre généralisation au-dessus des doubles. Les nombres pouvant être représentés en tant que Smi sont un sous-ensemble des nombres pouvant être représentés en tant que double.
 
-Ce qui est important ici, c&apos;est que les transitions de type d&apos;éléments ne vont que dans une direction : du spécifique (par exemple `PACKED_SMI_ELEMENTS`) au plus général (par exemple `PACKED_ELEMENTS`). Une fois qu&apos;un tableau est marqué comme `PACKED_ELEMENTS`, il ne peut pas revenir à `PACKED_DOUBLE_ELEMENTS`, par exemple.
+Ce qui est important ici, c'est que les transitions de type d'éléments ne vont que dans une direction : du spécifique (par exemple `PACKED_SMI_ELEMENTS`) au plus général (par exemple `PACKED_ELEMENTS`). Une fois qu'un tableau est marqué comme `PACKED_ELEMENTS`, il ne peut pas revenir à `PACKED_DOUBLE_ELEMENTS`, par exemple.
 
-Jusqu&apos;ici, nous avons appris ce qui suit :
+Jusqu'ici, nous avons appris ce qui suit :
 
-- V8 attribue un type d&apos;éléments à chaque tableau.
-- Le type d&apos;éléments d&apos;un tableau n&apos;est pas figé — il peut changer à l&apos;exécution. Dans l&apos;exemple précédent, nous sommes passés de `PACKED_SMI_ELEMENTS` à `PACKED_ELEMENTS`.
-- Les transitions de type d&apos;éléments ne peuvent aller que de types spécifiques vers des types plus généraux.
+- V8 attribue un type d'éléments à chaque tableau.
+- Le type d'éléments d'un tableau n'est pas figé — il peut changer à l'exécution. Dans l'exemple précédent, nous sommes passés de `PACKED_SMI_ELEMENTS` à `PACKED_ELEMENTS`.
+- Les transitions de type d'éléments ne peuvent aller que de types spécifiques vers des types plus généraux.
 
 ## Types `PACKED` vs. `HOLEY`
 
-Jusqu&apos;ici, nous n&apos;avons traité que des tableaux denses ou compacts. Créer des trous dans le tableau (c&apos;est-à-dire rendre le tableau clairsemé) dégrade le type d&apos;éléments vers sa variante “holey” :
+Jusqu'ici, nous n'avons traité que des tableaux denses ou compacts. Créer des trous dans le tableau (c'est-à-dire rendre le tableau clairsemé) dégrade le type d'éléments vers sa variante “holey” :
 
 ```js
-const array = [1, 2, 3, 4.56, &apos;x&apos;];
-// type d&apos;éléments : PACKED_ELEMENTS
+const array = [1, 2, 3, 4.56, 'x'];
+// type d'éléments : PACKED_ELEMENTS
 array.length; // 5
 array[9] = 1; // array[5] à array[8] sont maintenant des trous
-// type d&apos;éléments : HOLEY_ELEMENTS
+// type d'éléments : HOLEY_ELEMENTS
 ```
 
 V8 fait cette distinction car les opérations sur des tableaux uniformes (packed) peuvent être optimisées de manière plus agressive que celles sur des tableaux clairsemés (holey). Pour les tableaux uniformes, la plupart des opérations peuvent être effectuées efficacement. En revanche, les opérations sur des tableaux clairsemés nécessitent des vérifications supplémentaires et des recherches coûteuses dans la chaîne de prototypes.
@@ -324,11 +324,11 @@ const array = new Array(3);
 // Le tableau est éparse à ce moment, donc il est marqué comme
 // `HOLEY_SMI_ELEMENTS`, c'est-à-dire la possibilité la plus spécifique donnée
 // les informations actuelles.
-array[0] = &apos;a&apos;;
+array[0] = 'a';
 // Attendez, c'est une chaîne de caractères au lieu d'un petit entier… Donc le type
 // passe à `HOLEY_ELEMENTS`.
-array[1] = &apos;b&apos;;
-array[2] = &apos;c&apos;;
+array[1] = 'b';
+array[2] = 'c';
 // À ce stade, les trois positions dans le tableau sont remplies, donc
 // le tableau est compact (c'est-à-dire non plus éparse). Cependant, nous ne pouvons pas
 // passer à un type plus spécifique tel que `PACKED_ELEMENTS`. Le
@@ -340,7 +340,7 @@ Une fois que le tableau est marqué comme éparse, il reste éparse pour toujour
 Une meilleure façon de créer un tableau est d'utiliser un littéral à la place :
 
 ```js
-const array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
+const array = ['a', 'b', 'c'];
 // type d'éléments : PACKED_ELEMENTS
 ```
 

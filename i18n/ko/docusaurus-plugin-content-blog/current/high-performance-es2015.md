@@ -1,12 +1,12 @@
 ---
-title: &apos;고성능 ES2015 및 이후&apos;
-author: &apos;베네딕트 뮤어러 [@bmeurer](https://twitter.com/bmeurer), ECMAScript 성능 엔지니어&apos;
+title: '고성능 ES2015 및 이후'
+author: '베네딕트 뮤어러 [@bmeurer](https://twitter.com/bmeurer), ECMAScript 성능 엔지니어'
 avatars:
-  - &apos;베네딕트-뮤어러&apos;
+  - '베네딕트-뮤어러'
 date: 2017-02-17 13:33:37
 tags:
   - ECMAScript
-description: &apos;V8의 ES2015+ 언어 기능 성능은 이제 해당 기능의 변환된 ES5 버전과 동등합니다.&apos;
+description: 'V8의 ES2015+ 언어 기능 성능은 이제 해당 기능의 변환된 ES5 버전과 동등합니다.'
 ---
 지난 몇 달 동안 V8 팀은 새롭게 추가된 [ES2015](https://www.ecma-international.org/ecma-262/6.0/) 및 기타 최신 JavaScript 기능의 성능을 그들의 변환된 [ES5](https://www.ecma-international.org/ecma-262/5.1/) 버전과 동등하게 만드는 작업에 집중했습니다.
 
@@ -35,7 +35,7 @@ function todoApp(state = initialState, action) {
 해당 코드에는 두 가지 변환 요구 사항이 있습니다: state의 기본 매개변수와 객체 리터럴로 state를 확장하는 것입니다. Babel은 다음과 같은 ES5 코드를 생성합니다:
 
 ```js
-&apos;use strict&apos;;
+'use strict';
 
 var _extends = Object.assign || function(target) {
   for (var i = 1; i < arguments.length; i++) {
@@ -288,7 +288,7 @@ function fn() {
 …뿐만 아니라 Babel에서 생성된 코드보다 훨씬 빠르고 짧습니다:
 
 ```js
-&apos;use strict&apos;;
+'use strict';
 
 var _slicedToArray = function() {
   function sliceIterator(arr, i) {
@@ -306,7 +306,7 @@ var _slicedToArray = function() {
       _e = err;
     } finally {
       try {
-        if (!_n && _i[&apos;return&apos;]) _i[&apos;return&apos;]();
+        if (!_n && _i['return']) _i['return']();
       } finally {
         if (_d) throw _e;
       }
@@ -319,7 +319,7 @@ var _slicedToArray = function() {
     } else if (Symbol.iterator in Object(arr)) {
       return sliceIterator(arr, i);
     } else {
-      throw new TypeError(&apos;Invalid attempt to destructure non-iterable instance&apos;);
+      throw new TypeError('Invalid attempt to destructure non-iterable instance');
     }
   };
 }();

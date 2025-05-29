@@ -1,6 +1,6 @@
 ---
-title: &apos;CodeStubAssembler 内蔵機能&apos;
-description: &apos;このドキュメントはCodeStubAssembler内蔵機能の記述の導入を目的としており、V8の開発者を対象としています。&apos;
+title: 'CodeStubAssembler 内蔵機能'
+description: 'このドキュメントはCodeStubAssembler内蔵機能の記述の導入を目的としており、V8の開発者を対象としています。'
 ---
 このドキュメントはCodeStubAssembler内蔵機能の記述の導入を目的としており、V8の開発者を対象としています。
 
@@ -151,7 +151,7 @@ SimpleInstallFunction(math, "is42", Builtins::kMathIs42, 1, true);
 $ out/debug/d8
 d8> Math.is42(42);
 true
-d8> Math.is42(&apos;42.0&apos;);
+d8> Math.is42('42.0');
 true
 d8> Math.is42(true);
 false

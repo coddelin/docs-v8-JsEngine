@@ -1,11 +1,11 @@
 ---
-title: &apos;Более быстрые релизы&apos;
-author: &apos;Ингвар Степанян ([@RReverser](https://twitter.com/RReverser))&apos;
+title: 'Более быстрые релизы'
+author: 'Ингвар Степанян ([@RReverser](https://twitter.com/RReverser))'
 avatars:
-  - &apos;ingvar-stepanyan&apos;
+  - 'ingvar-stepanyan'
 date: 2021-03-04
-description: &apos;Ускорение цикла релизов V8&apos;
-tweet: &apos;1367546733643919370&apos;
+description: 'Ускорение цикла релизов V8'
+tweet: '1367546733643919370'
 ---
 Чтобы быстрее предоставлять новые функции и исправления пользователям, Chrome [ускоряет свой цикл релизов](https://developer.chrome.com/blog/faster-release-cycle/).
 

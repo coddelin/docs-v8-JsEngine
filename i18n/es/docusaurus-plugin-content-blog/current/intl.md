@@ -1,14 +1,14 @@
 ---
-title: &apos;APIs de internacionalización más rápidas y con más características&apos;
-author: &apos;[சத்யா குணசேகரன் (Sathya Gunasekaran)](https://twitter.com/_gsathya)&apos;
+title: 'APIs de internacionalización más rápidas y con más características'
+author: '[சத்யா குணசேகரன் (Sathya Gunasekaran)](https://twitter.com/_gsathya)'
 date: 2019-04-25 16:45:37
 avatars:
-  - &apos;sathya-gunasekaran&apos;
+  - 'sathya-gunasekaran'
 tags:
   - ECMAScript
   - Intl
-description: &apos;¡La API de Internacionalización de JavaScript está creciendo, y su implementación en V8 está volviéndose más rápida!&apos;
-tweet: &apos;1121424877142122500&apos;
+description: '¡La API de Internacionalización de JavaScript está creciendo, y su implementación en V8 está volviéndose más rápida!'
+tweet: '1121424877142122500'
 ---
 [La especificación de la API de Internacionalización de ECMAScript](https://tc39.es/ecma402/) (ECMA-402, o `Intl`) proporciona funcionalidades clave específicas de locales como formato de fechas, formato de números, selección de formas plurales y ordenación. Los equipos de Chrome V8 y Google Internationalization han estado colaborando para añadir características a la implementación ECMA-402 de V8, mientras eliminan deuda técnica y mejoran el rendimiento y la interoperabilidad con otros navegadores.
 

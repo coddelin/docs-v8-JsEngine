@@ -122,7 +122,7 @@ async function processData(response) {
   }
  // readerResource[Symbol.dispose]() 会被自动调用。
 
- readFile(&apos;https://example.com/largefile.dat&apos;);
+ readFile('https://example.com/largefile.dat');
 ```
 
 ## `DisposableStack` 和 `AsyncDisposableStack`
@@ -139,7 +139,7 @@ async function processData(response) {
         reader: response.body.getReader(),
         [Symbol.dispose]() {
             this.reader.releaseLock();
-            console.log(&apos;读取器锁已释放。&apos;);
+            console.log('读取器锁已释放。');
         },
     };
     using stack = new DisposableStack();
@@ -156,7 +156,7 @@ async function processData(response) {
     stack.adopt(
       response.body.getReader(), reader = > {
         reader.releaseLock();
-        console.log(&apos;读取器锁已释放。&apos;);
+        console.log('读取器锁已释放。');
       });
 }
 // 读取器锁已释放。
@@ -180,7 +180,7 @@ async function processData(response) {
     stack.adopt(
       response.body.getReader(), reader = > {
         reader.releaseLock();
-        console.log(&apos;读取器锁已释放。&apos;);
+        console.log('读取器锁已释放。');
       });
     using newStack = stack.move();
 }
@@ -196,7 +196,7 @@ async function processData(response) {
         reader: response.body.getReader(),
         [Symbol.dispose]() {
             this.reader.releaseLock();
-            console.log(&apos;读取器锁已释放。&apos;);
+            console.log('读取器锁已释放。');
         },
     };
     let stack = new DisposableStack();

@@ -1,21 +1,21 @@
 ---
-title: &apos;`String.prototype.matchAll`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`String.prototype.matchAll`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-02-02
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: &apos;String.prototype.matchAllは、指定された正規表現が生成するすべてのマッチオブジェクトを簡単に反復処理する方法を提供します。&apos;
+description: 'String.prototype.matchAllは、指定された正規表現が生成するすべてのマッチオブジェクトを簡単に反復処理する方法を提供します。'
 ---
 文字列に対して同じ正規表現を繰り返し適用し、すべての一致を取得することは一般的です。ある程度、`String#match`メソッドを使用することでこれを今日行うことは可能です。
 
 この例では、16進数の数字のみで構成されたすべての単語を見つけ、それぞれの一致をログに記録します:
 
 ```js
-const string = &apos;Magic hex numbers: DEADBEEF CAFE&apos;;
+const string = 'Magic hex numbers: DEADBEEF CAFE';
 const regex = /\b\p{ASCII_Hex_Digit}+\b/gu;
 for (const match of string.match(regex)) {
   console.log(match);
@@ -23,8 +23,8 @@ for (const match of string.match(regex)) {
 
 // 出力:
 //
-// &apos;DEADBEEF&apos;
-// &apos;CAFE&apos;
+// 'DEADBEEF'
+// 'CAFE'
 ```
 
 しかし、これでは一致する_サブ文字列_しか得られません。通常、サブ文字列だけではなく、各サブ文字列のインデックスや各一致内のキャプチャグループなどの追加情報も必要です。
@@ -32,7 +32,7 @@ for (const match of string.match(regex)) {
 独自のループを書き、マッチオブジェクトを自分自身で追跡することでこれを達成することはすでに可能ですが、それは少し面倒であまり便利ではありません:
 
 ```js
-const string = &apos;Magic hex numbers: DEADBEEF CAFE&apos;;
+const string = 'Magic hex numbers: DEADBEEF CAFE';
 const regex = /\b\p{ASCII_Hex_Digit}+\b/gu;
 let match;
 while (match = regex.exec(string)) {
@@ -41,14 +41,14 @@ while (match = regex.exec(string)) {
 
 // 出力:
 //
-// [ &apos;DEADBEEF&apos;, index: 19, input: &apos;Magic hex numbers: DEADBEEF CAFE&apos; ]
-// [ &apos;CAFE&apos;,     index: 28, input: &apos;Magic hex numbers: DEADBEEF CAFE&apos; ]
+// [ 'DEADBEEF', index: 19, input: 'Magic hex numbers: DEADBEEF CAFE' ]
+// [ 'CAFE',     index: 28, input: 'Magic hex numbers: DEADBEEF CAFE' ]
 ```
 
 新しい`String#matchAll`APIにより、これまでよりも簡単になりました: シンプルな`for`-`of`ループを書くことで、すべてのマッチオブジェクトを取得できます。
 
 ```js
-const string = &apos;Magic hex numbers: DEADBEEF CAFE&apos;;
+const string = 'Magic hex numbers: DEADBEEF CAFE';
 const regex = /\b\p{ASCII_Hex_Digit}+\b/gu;
 for (const match of string.matchAll(regex)) {
   console.log(match);
@@ -56,17 +56,17 @@ for (const match of string.matchAll(regex)) {
 
 // 出力:
 //
-// [ &apos;DEADBEEF&apos;, index: 19, input: &apos;Magic hex numbers: DEADBEEF CAFE&apos; ]
-// [ &apos;CAFE&apos;,     index: 28, input: &apos;Magic hex numbers: DEADBEEF CAFE&apos; ]
+// [ 'DEADBEEF', index: 19, input: 'Magic hex numbers: DEADBEEF CAFE' ]
+// [ 'CAFE',     index: 28, input: 'Magic hex numbers: DEADBEEF CAFE' ]
 ```
 
 `String#matchAll`は特にキャプチャグループを持つ正規表現に役立ちます。個々の一致ごとの完全な情報を、キャプチャグループを含めて提供します。
 
 ```js
-const string = &apos;Favorite GitHub repos: tc39/ecma262 v8/v8.dev&apos;;
+const string = 'Favorite GitHub repos: tc39/ecma262 v8/v8.dev';
 const regex = /\b(?<owner>[a-z0-9]+)\/(?<repo>[a-z0-9\.]+)\b/g;
 for (const match of string.matchAll(regex)) {
-  console.log(`${match[0]} at ${match.index} with &apos;${match.input}&apos;`);
+  console.log(`${match[0]} at ${match.index} with '${match.input}'`);
   console.log(`→ owner: ${match.groups.owner}`);
   console.log(`→ repo: ${match.groups.repo}`);
 }
@@ -74,10 +74,10 @@ for (const match of string.matchAll(regex)) {
 <!--truncate-->
 // 出力:
 //
-// tc39/ecma262 at 23 with &apos;Favorite GitHub repos: tc39/ecma262 v8/v8.dev&apos;
+// tc39/ecma262 at 23 with 'Favorite GitHub repos: tc39/ecma262 v8/v8.dev'
 // → owner: tc39
 // → repo: ecma262
-// v8/v8.dev at 36 with &apos;Favorite GitHub repos: tc39/ecma262 v8/v8.dev&apos;
+// v8/v8.dev at 36 with 'Favorite GitHub repos: tc39/ecma262 v8/v8.dev'
 // → owner: v8
 // → repo: v8.dev
 ```

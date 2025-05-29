@@ -1,28 +1,28 @@
 ---
-title: &apos;穩定的 `Array.prototype.sort`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '穩定的 `Array.prototype.sort`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-07-02
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: &apos;現在可以保證 Array.prototype.sort 是穩定的。&apos;
-tweet: &apos;1146067251302244353&apos;
+description: '現在可以保證 Array.prototype.sort 是穩定的。'
+tweet: '1146067251302244353'
 ---
 假設你有一個狗狗的陣列，每隻狗有一個名字和一個評級。（如果這聽起來是個奇怪的例子，你應該知道，Twitter 上有一個專門做這件事的賬號……請不要深究！）
 
 ```js
 // 注意，陣列已按 `name` 字母序排序。
 const doggos = [
-  { name: &apos;Abby&apos;,   rating: 12 },
-  { name: &apos;Bandit&apos;, rating: 13 },
-  { name: &apos;Choco&apos;,  rating: 14 },
-  { name: &apos;Daisy&apos;,  rating: 12 },
-  { name: &apos;Elmo&apos;,   rating: 12 },
-  { name: &apos;Falco&apos;,  rating: 13 },
-  { name: &apos;Ghost&apos;,  rating: 14 },
+  { name: 'Abby',   rating: 12 },
+  { name: 'Bandit', rating: 13 },
+  { name: 'Choco',  rating: 14 },
+  { name: 'Daisy',  rating: 12 },
+  { name: 'Elmo',   rating: 12 },
+  { name: 'Falco',  rating: 13 },
+  { name: 'Ghost',  rating: 14 },
 ];
 // 按 `rating` 降序排序狗狗。
 // （會就地更新 `doggos`。）
@@ -34,13 +34,13 @@ doggos.sort((a, b) => b.rating - a.rating);
 
 ```js
 [
-  { name: &apos;Choco&apos;,  rating: 14 },
-  { name: &apos;Ghost&apos;,  rating: 14 },
-  { name: &apos;Bandit&apos;, rating: 13 },
-  { name: &apos;Falco&apos;,  rating: 13 },
-  { name: &apos;Abby&apos;,   rating: 12 },
-  { name: &apos;Daisy&apos;,  rating: 12 },
-  { name: &apos;Elmo&apos;,   rating: 12 },
+  { name: 'Choco',  rating: 14 },
+  { name: 'Ghost',  rating: 14 },
+  { name: 'Bandit', rating: 13 },
+  { name: 'Falco',  rating: 13 },
+  { name: 'Abby',   rating: 12 },
+  { name: 'Daisy',  rating: 12 },
+  { name: 'Elmo',   rating: 12 },
 ]
 ```
 
@@ -50,13 +50,13 @@ doggos.sort((a, b) => b.rating - a.rating);
 
 ```js
 [
-  { name: &apos;Ghost&apos;,  rating: 14 }, // 😢
-  { name: &apos;Choco&apos;,  rating: 14 }, // 😢
-  { name: &apos;Bandit&apos;, rating: 13 },
-  { name: &apos;Falco&apos;,  rating: 13 },
-  { name: &apos;Abby&apos;,   rating: 12 },
-  { name: &apos;Daisy&apos;,  rating: 12 },
-  { name: &apos;Elmo&apos;,   rating: 12 },
+  { name: 'Ghost',  rating: 14 }, // 😢
+  { name: 'Choco',  rating: 14 }, // 😢
+  { name: 'Bandit', rating: 13 },
+  { name: 'Falco',  rating: 13 },
+  { name: 'Abby',   rating: 12 },
+  { name: 'Daisy',  rating: 12 },
+  { name: 'Elmo',   rating: 12 },
 ]
 ```
 

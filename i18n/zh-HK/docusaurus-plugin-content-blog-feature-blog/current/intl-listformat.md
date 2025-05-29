@@ -1,16 +1,16 @@
 ---
-title: &apos;`Intl.ListFormat`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias)) 和 Frank Yung-Fong Tang&apos;
+title: '`Intl.ListFormat`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)) 和 Frank Yung-Fong Tang'
 avatars:
-  - &apos;mathias-bynens&apos;
-  - &apos;frank-tang&apos;
+  - 'mathias-bynens'
+  - 'frank-tang'
 date: 2018-12-18
 tags:
   - Intl
   - Node.js 12
   - io19
-description: &apos;Intl.ListFormat API 讓本地化的列表格式化成為可能，同時不犧牲性能。&apos;
-tweet: &apos;1074966915557351424&apos;
+description: 'Intl.ListFormat API 讓本地化的列表格式化成為可能，同時不犧牲性能。'
+tweet: '1074966915557351424'
 ---
 現代的網絡應用通常使用包含動態數據的列表。例如，一個相片查看應用可能顯示如下內容：
 
@@ -30,43 +30,43 @@ tweet: &apos;1074966915557351424&apos;
 以下範例展示了如何使用英語創建一個用於連詞的列表格式化器：
 
 ```js
-const lf = new Intl.ListFormat(&apos;en&apos;);
-lf.format([&apos;Frank&apos;]);
-// → &apos;Frank&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;]);
-// → &apos;Frank and Christine&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;]);
-// → &apos;Frank, Christine, and Flora&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;, &apos;Harrison&apos;]);
-// → &apos;Frank, Christine, Flora, and Harrison&apos;
+const lf = new Intl.ListFormat('en');
+lf.format(['Frank']);
+// → 'Frank'
+lf.format(['Frank', 'Christine']);
+// → 'Frank and Christine'
+lf.format(['Frank', 'Christine', 'Flora']);
+// → 'Frank, Christine, and Flora'
+lf.format(['Frank', 'Christine', 'Flora', 'Harrison']);
+// → 'Frank, Christine, Flora, and Harrison'
 ```
 
 分列（如英語中的 “or”）也可以通過可選的 `options` 參數支持：
 
 ```js
-const lf = new Intl.ListFormat(&apos;en&apos;, { type: &apos;disjunction&apos; });
-lf.format([&apos;Frank&apos;]);
-// → &apos;Frank&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;]);
-// → &apos;Frank or Christine&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;]);
-// → &apos;Frank, Christine, or Flora&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;, &apos;Harrison&apos;]);
-// → &apos;Frank, Christine, Flora, or Harrison&apos;
+const lf = new Intl.ListFormat('en', { type: 'disjunction' });
+lf.format(['Frank']);
+// → 'Frank'
+lf.format(['Frank', 'Christine']);
+// → 'Frank or Christine'
+lf.format(['Frank', 'Christine', 'Flora']);
+// → 'Frank, Christine, or Flora'
+lf.format(['Frank', 'Christine', 'Flora', 'Harrison']);
+// → 'Frank, Christine, Flora, or Harrison'
 ```
 
 以下是一個使用不同語言（如中文，語言代碼 `zh`）的範例：
 
 ```js
-const lf = new Intl.ListFormat(&apos;zh&apos;);
-lf.format([&apos;永鋒&apos;]);
-// → &apos;永鋒&apos;
-lf.format([&apos;永鋒&apos;, &apos;新宇&apos;]);
-// → &apos;永鋒和新宇&apos;
-lf.format([&apos;永鋒&apos;, &apos;新宇&apos;, &apos;芳遠&apos;]);
-// → &apos;永鋒、新宇和芳遠&apos;
-lf.format([&apos;永鋒&apos;, &apos;新宇&apos;, &apos;芳遠&apos;, &apos;澤遠&apos;]);
-// → &apos;永鋒、新宇、芳遠和澤遠&apos;
+const lf = new Intl.ListFormat('zh');
+lf.format(['永鋒']);
+// → '永鋒'
+lf.format(['永鋒', '新宇']);
+// → '永鋒和新宇'
+lf.format(['永鋒', '新宇', '芳遠']);
+// → '永鋒、新宇和芳遠'
+lf.format(['永鋒', '新宇', '芳遠', '澤遠']);
+// → '永鋒、新宇、芳遠和澤遠'
 ```
 
 `options` 參數支持更高級的使用方式。以下是各項選項及其組合的概覽，以及它們如何與 [UTS#35](https://unicode.org/reports/tr35/tr35-general.html#ListPatterns) 定義的列表模式相對應：
@@ -74,11 +74,11 @@ lf.format([&apos;永鋒&apos;, &apos;新宇&apos;, &apos;芳遠&apos;, &apos;澤
 
 | 類型                  | 選項                                   | 描述                                                                                     | 範例                  |
 | --------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------- | -------------------------------- |
-| 標準（或無類型）        | `{}` （預設）                            | 對任意佔位符適用的典型 “和” 列表                                                             | `&apos;January, February, and March&apos;` |
-| 或                    | `{ type: &apos;disjunction&apos; }`                 | 對任意佔位符適用的典型 “或” 列表                                                             | `&apos;January, February, or March&apos;`  |
-| 單位                  | `{ type: &apos;unit&apos; }`                        | 適用於寬單位的列表                                                                  | `&apos;3 feet, 7 inches&apos;`             |
-| 簡短單位              | `{ type: &apos;unit&apos;, style: &apos;short&apos; }`        | 適用於簡短單位的列表                                                                 | `&apos;3 ft, 7 in&apos;`                   |
-| 狹窄單位              | `{ type: &apos;unit&apos;, style: &apos;narrow&apos; }`       | 適用於狹窄單位的列表，適合螢幕空間非常有限的情況                     | `&apos;3′ 7″&apos;`                        |
+| 標準（或無類型）        | `{}` （預設）                            | 對任意佔位符適用的典型 “和” 列表                                                             | `'January, February, and March'` |
+| 或                    | `{ type: 'disjunction' }`                 | 對任意佔位符適用的典型 “或” 列表                                                             | `'January, February, or March'`  |
+| 單位                  | `{ type: 'unit' }`                        | 適用於寬單位的列表                                                                  | `'3 feet, 7 inches'`             |
+| 簡短單位              | `{ type: 'unit', style: 'short' }`        | 適用於簡短單位的列表                                                                 | `'3 ft, 7 in'`                   |
+| 狹窄單位              | `{ type: 'unit', style: 'narrow' }`       | 適用於狹窄單位的列表，適合螢幕空間非常有限的情況                     | `'3′ 7″'`                        |
 
 
 注意，在許多語言（例如英文）中，這些列表可能之間並沒有明顯的區別。在其他語言中，間距、連詞的長度或存在性以及分隔符可能有所變化。

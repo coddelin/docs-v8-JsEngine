@@ -1,16 +1,16 @@
 ---
-title: &apos;JavaScriptからDOMへ、そして再び戻るまでのトレース&apos;
-author: &apos;ウラン・デゲンバエフ、アレクセイ・フィリポフ、マイケル・リッパウツ、ハンネス・ペイヤー — DOMの仲間&apos;
+title: 'JavaScriptからDOMへ、そして再び戻るまでのトレース'
+author: 'ウラン・デゲンバエフ、アレクセイ・フィリポフ、マイケル・リッパウツ、ハンネス・ペイヤー — DOMの仲間'
 avatars:
-  - &apos;ウラン・デゲンバエフ&apos;
-  - &apos;マイケル・リッパウツ&apos;
-  - &apos;ハンネス・ペイヤー&apos;
+  - 'ウラン・デゲンバエフ'
+  - 'マイケル・リッパウツ'
+  - 'ハンネス・ペイヤー'
 date: 2018-03-01 13:33:37
 tags:
   - internals
   - memory
-description: &apos;ChromeのDevToolsは、JavaScriptから参照されるC++ DOMオブジェクトをトレースし、スナップショットを取得して、JavaScriptから到達可能なすべてのDOMオブジェクトを参照付きで表示できるようになりました。&apos;
-tweet: &apos;969184997545562112&apos;
+description: 'ChromeのDevToolsは、JavaScriptから参照されるC++ DOMオブジェクトをトレースし、スナップショットを取得して、JavaScriptから到達可能なすべてのDOMオブジェクトを参照付きで表示できるようになりました。'
+tweet: '969184997545562112'
 ---
 Chrome 66では、メモリリークのデバッグが格段に簡単になりました。ChromeのDevToolsは、JavaScriptから参照可能なすべてのC++ DOMオブジェクトをトレースおよびスナップショットを取得して、その参照とともに表示することができます。この機能は、V8ガベージコレクタの新しいC++トレースメカニズムの恩恵の一つです。
 
@@ -23,16 +23,16 @@ Chrome 66では、メモリリークのデバッグが格段に簡単になり�
 
 ```js
 // メインウィンドウ:
-const iframe = document.createElement(&apos;iframe&apos;);
-iframe.src = &apos;iframe.html&apos;;
+const iframe = document.createElement('iframe');
+iframe.src = 'iframe.html';
 document.body.appendChild(iframe);
-iframe.addEventListener(&apos;load&apos;, function() {
+iframe.addEventListener('load', function() {
   const localVariable = iframe.contentWindow;
   function leakingListener() {
     // `localVariable`を使って何かを行う。
     if (localVariable) {}
   }
-  document.body.addEventListener(&apos;my-debug-event&apos;, leakingListener);
+  document.body.addEventListener('my-debug-event', leakingListener);
   document.body.removeChild(iframe);
   // バグ: `leakingListener`の登録解除を忘れた。
 });

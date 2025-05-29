@@ -1,14 +1,14 @@
 ---
-title: &apos;V8의 Elements 종류&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'V8의 Elements 종류'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-09-12 13:33:37
 tags:
   - internals
   - presentations
-description: &apos;이 기술적 심층 분석은 V8이 배열 작업을 최적화하는 방법과 그것이 JavaScript 개발자들에게 어떤 의미를 가지는지 설명합니다.&apos;
-tweet: &apos;907608362191376384&apos;
+description: '이 기술적 심층 분석은 V8이 배열 작업을 최적화하는 방법과 그것이 JavaScript 개발자들에게 어떤 의미를 가지는지 설명합니다.'
+tweet: '907608362191376384'
 ---
 :::note
 **참고:** 기사 읽기 대신 발표를 보는 것을 선호하는 경우 아래 비디오를 즐기세요!
@@ -55,7 +55,7 @@ const array = [1, 2, 3];
 // elements 종류: PACKED_SMI_ELEMENTS
 array.push(4.56);
 // elements 종류: PACKED_DOUBLE_ELEMENTS
-array.push(&apos;x&apos;);
+array.push('x');
 // elements 종류: PACKED_ELEMENTS
 ```
 
@@ -80,7 +80,7 @@ doubles는 Smi의 더 일반적인 변형을 형성하고, regular elements는 d
 지금까지 우리는 밀집된(dense) 또는 패킹된(packed) 배열만 다루었습니다. 배열에 구멍(hole)을 만듦(즉, 배열을 희박하게 만듦)으로써 elements 종류가 “holey” 변형으로 강등됩니다:
 
 ```js
-const array = [1, 2, 3, 4.56, &apos;x&apos;];
+const array = [1, 2, 3, 4.56, 'x'];
 // elements 종류: PACKED_ELEMENTS
 array.length; // 5
 array[9] = 1; // array[5]에서 array[8]는 이제 구멍입니다
@@ -209,9 +209,9 @@ JavaScript에는 특히 DOM에서 배열처럼 보이지만 실제 배열이 아
 
 ```js
 const arrayLike = {};
-arrayLike[0] = &apos;a&apos;;
-arrayLike[1] = &apos;b&apos;;
-arrayLike[2] = &apos;c&apos;;
+arrayLike[0] = 'a';
+arrayLike[1] = 'b';
+arrayLike[2] = 'c';
 arrayLike.length = 3;
 ```
 
@@ -221,7 +221,7 @@ arrayLike.length = 3;
 Array.prototype.forEach.call(arrayLike, (value, index) => {
   console.log(`${ index }: ${ value }`);
 });
-// 이는 &apos;0: a&apos;, &apos;1: b&apos;, 그리고 최종적으로 &apos;2: c&apos;를 출력합니다.
+// 이는 '0: a', '1: b', 그리고 최종적으로 '2: c'를 출력합니다.
 ```
 
 이 코드는 배열 유사 객체에 대해 내장된 `Array.prototype.forEach`를 호출하며 예상대로 작동합니다. 하지만 이 작업은 V8에서 고도로 최적화된 적절한 배열을 사용하는 것보다 느립니다. 배열 내장 함수(array built-ins)를 이 객체에서 여러 번 사용하려는 경우, 사전에 실제 배열로 변환하는 것을 고려하십시오:
@@ -231,7 +231,7 @@ const actualArray = Array.prototype.slice.call(arrayLike, 0);
 actualArray.forEach((value, index) => {
   console.log(`${ index }: ${ value }`);
 });
-// 이는 &apos;0: a&apos;, &apos;1: b&apos;, 그리고 최종적으로 &apos;2: c&apos;를 출력합니다.
+// 이는 '0: a', '1: b', 그리고 최종적으로 '2: c'를 출력합니다.
 ```
 
 한 번의 변환 비용은 나중의 최적화를 위해 가치가 있을 수 있습니다. 특히 배열에서 많은 작업을 수행하려는 경우 더욱 그렇습니다.
@@ -244,8 +244,8 @@ const logArgs = function() {
     console.log(`${ index }: ${ value }`);
   });
 };
-logArgs(&apos;a&apos;, &apos;b&apos;, &apos;c&apos;);
-// 이는 &apos;0: a&apos;, &apos;1: b&apos;, 그리고 최종적으로 &apos;2: c&apos;를 출력합니다.
+logArgs('a', 'b', 'c');
+// 이는 '0: a', '1: b', 그리고 최종적으로 '2: c'를 출력합니다.
 ```
 
 ES2015의 rest parameter는 여기서 도움을 줄 수 있습니다. 이것은 배열 유사 `arguments` 객체 대신 사용할 수 있는 적절한 배열을 생성합니다.
@@ -256,8 +256,8 @@ const logArgs = (...args) => {
     console.log(`${ index }: ${ value }`);
   });
 };
-logArgs(&apos;a&apos;, &apos;b&apos;, &apos;c&apos;);
-// 이는 &apos;0: a&apos;, &apos;1: b&apos;, 그리고 최종적으로 &apos;2: c&apos;를 출력합니다.
+logArgs('a', 'b', 'c');
+// 이는 '0: a', '1: b', 그리고 최종적으로 '2: c'를 출력합니다.
 ```
 
 오늘날에는 `arguments` 객체를 직접 사용하는 이유가 거의 없습니다.
@@ -281,7 +281,7 @@ const doSomething = (item) => console.log(item);
 
 each([], () => {});
 
-each([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], doSomething);
+each(['a', 'b', 'c'], doSomething);
 // `each`는 `PACKED_ELEMENTS`로 호출됩니다. V8은 이 특정 요소 유형으로 `each`가 호출된다는 것을 기억하기 위해 인라인 캐시
 // (또는 “IC”)를 사용합니다. V8은 낙관적이며, `each` 함수 내부의 `array.length` 및 `array[index]` 접근이 모노모픽적인
 // (즉, 단일 요소 유형만 받는) 것으로 가정합니다. 이후 `each`를 호출할 때마다 V8은 요소 유형이 `PACKED_ELEMENTS`인지 확인합니다.
@@ -317,11 +317,11 @@ const array = new Array(3);
 // 배열은 이 시점에서 스파스(sparse)하며, 따라서
 // `HOLEY_SMI_ELEMENTS`로 표시됩니다. 즉,
 // 현재 정보로 가능한 가장 특정한 요소 종류입니다.
-array[0] = &apos;a&apos;;
+array[0] = 'a';
 // 잠시만요, 작은 정수 대신 문자열이네요… 그래서
 // 종류가 `HOLEY_ELEMENTS`로 전환됩니다.
-array[1] = &apos;b&apos;;
-array[2] = &apos;c&apos;;
+array[1] = 'b';
+array[2] = 'c';
 // 이 시점에서, 배열의 세 위치가 모두 채워졌으므로
 // 배열은 패킹됩니다(더 이상 스파스하지 않습니다). 그러나
 // `PACKED_ELEMENTS`와 같은 더 특정한 종류로 전환할 수 없습니다.
@@ -333,7 +333,7 @@ array[2] = &apos;c&apos;;
 배열을 생성하는 더 나은 방법은 리터럴(literal)을 사용하는 것입니다:
 
 ```js
-const array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
+const array = ['a', 'b', 'c'];
 // 요소 종류: PACKED_ELEMENTS
 ```
 

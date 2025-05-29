@@ -1,15 +1,15 @@
 ---
-title: &apos;BigInt: enteros de precisión arbitraria en JavaScript&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'BigInt: enteros de precisión arbitraria en JavaScript'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-05-01
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: &apos;BigInts son un nuevo tipo de primitiva numérica en JavaScript que puede representar enteros con precisión arbitraria. Este artículo presenta algunos casos de uso y explica la nueva funcionalidad en Chrome 67 al comparar BigInts con Numbers en JavaScript.&apos;
-tweet: &apos;990991035630206977&apos;
+description: 'BigInts son un nuevo tipo de primitiva numérica en JavaScript que puede representar enteros con precisión arbitraria. Este artículo presenta algunos casos de uso y explica la nueva funcionalidad en Chrome 67 al comparar BigInts con Numbers en JavaScript.'
+tweet: '990991035630206977'
 ---
 `BigInt`s son un nuevo tipo de primitiva numérica en JavaScript que puede representar enteros con precisión arbitraria. Con `BigInt`s, puedes almacenar y operar de manera segura con enteros grandes incluso más allá del límite seguro de enteros para `Number`s. Este artículo presenta algunos casos de uso y explica la nueva funcionalidad en Chrome 67 al comparar `BigInt`s con `Number`s en JavaScript.
 
@@ -92,9 +92,9 @@ Los `BigInt` son un nuevo tipo primitivo en el lenguaje JavaScript. Como tal, ti
 
 ```js
 typeof 123;
-// → &apos;number&apos;
+// → 'number'
 typeof 123n;
-// → &apos;bigint&apos;
+// → 'bigint'
 ```
 
 Debido a que los `BigInt` son un tipo independiente, un `BigInt` nunca es estrictamente igual a un `Number`, por ejemplo, `42n !== 42`. Para comparar un `BigInt` con un `Number`, convierte uno de ellos al tipo del otro antes de realizar la comparación o utiliza la igualdad abstracta (`==`):
@@ -110,11 +110,11 @@ Cuando se convierten a booleanos (lo que ocurre al usar `if`, `&&`, `||`, o `Boo
 
 ```js
 if (0n) {
-  console.log(&apos;if&apos;);
+  console.log('if');
 } else {
-  console.log(&apos;else&apos;);
+  console.log('else');
 }
-// → logs &apos;else&apos;, porque `0n` es falsy.
+// → logs 'else', porque `0n` es falsy.
 ```
 
 ### Operadores
@@ -163,7 +163,7 @@ BigInt(123);
 // → 123n
 BigInt(1.5);
 // → RangeError
-BigInt(&apos;1.5&apos;);
+BigInt('1.5');
 // → SyntaxError
 ```
 
@@ -179,7 +179,7 @@ Por esta razón, recomendamos utilizar ya sea la notación literal de `BigInt` (
 ```js
 123456789123456789n;
 // → 123456789123456789n ✅
-BigInt(&apos;123456789123456789&apos;);
+BigInt('123456789123456789');
 // → 123456789123456789n ✅
 ```
 
@@ -240,13 +240,13 @@ La propuesta de `BigInt` [cambia el comportamiento de los operadores](#operators
 Una solución más viable y preparada para el futuro es escribir tu código utilizando [la biblioteca JSBI](https://github.com/GoogleChromeLabs/jsbi#why) por ahora. JSBI es un puerto de JavaScript de la implementación de `BigInt` en V8 y Chrome — por diseño, funciona exactamente como la funcionalidad nativa de `BigInt`. La diferencia es que, en lugar de depender de la sintaxis, expone [una API](https://github.com/GoogleChromeLabs/jsbi#how):
 
 ```js
-import JSBI from &apos;./jsbi.mjs&apos;;
+import JSBI from './jsbi.mjs';
 
 const max = JSBI.BigInt(Number.MAX_SAFE_INTEGER);
-const two = JSBI.BigInt(&apos;2&apos;);
+const two = JSBI.BigInt('2');
 const result = JSBI.add(max, two);
 console.log(result.toString());
-// → &apos;9007199254740993&apos;
+// → '9007199254740993'
 ```
 
 Una vez que `BigInt` esté soportado nativamente en todos los navegadores que te importan, puedes [usar `babel-plugin-transform-jsbi-to-bigint` para transpilar tu código a código nativo de `BigInt`](https://github.com/GoogleChromeLabs/babel-plugin-transform-jsbi-to-bigint) y eliminar la dependencia de JSBI. Por ejemplo, el ejemplo anterior se transpila a:
@@ -256,7 +256,7 @@ const max = BigInt(Number.MAX_SAFE_INTEGER);
 const two = 2n;
 const result = max + two;
 console.log(result);
-// → &apos;9007199254740993&apos;
+// → '9007199254740993'
 ```
 
 ## Lecturas adicionales

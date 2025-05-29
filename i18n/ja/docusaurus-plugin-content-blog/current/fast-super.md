@@ -1,13 +1,13 @@
 ---
-title: &apos;超高速な`super`プロパティのアクセス&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), super optimizer&apos;
+title: '超高速な`super`プロパティのアクセス'
+author: '[Marja Hölttä](https://twitter.com/marjakh), super optimizer'
 avatars:
   - marja-holtta
 date: 2021-02-18
 tags:
   - JavaScript
-description: &apos;V8 v9.0におけるより高速なsuperプロパティアクセス&apos;
-tweet: &apos;1362465295848333316&apos;
+description: 'V8 v9.0におけるより高速なsuperプロパティアクセス'
+tweet: '1362465295848333316'
 ---
 
 [`super`キーワード](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super)は、オブジェクトの親に存在するプロパティや関数にアクセスするために使用できます。
@@ -106,7 +106,7 @@ V8のデータ駆動型インラインキャッシュ(IC)システムは、速�
 
 ```javascript
 const myproto = {
-  __proto__: { &apos;x&apos;: 100 },
+  __proto__: { 'x': 100 },
   m() { return super.x; }
 };
 const o = { __proto__: myproto };

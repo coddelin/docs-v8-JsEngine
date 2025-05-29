@@ -1,14 +1,14 @@
 ---
-title: &apos;Indicium: V8 運行時追蹤工具&apos;
-author: &apos;Zeynep Cankara ([@ZeynepCankara](https://twitter.com/ZeynepCankara))&apos;
+title: 'Indicium: V8 運行時追蹤工具'
+author: 'Zeynep Cankara ([@ZeynepCankara](https://twitter.com/ZeynepCankara))'
 avatars:
-  - &apos;zeynep-cankara&apos;
+  - 'zeynep-cankara'
 date: 2020-10-01 11:56:00
 tags:
   - 工具
   - 系統分析器
-description: &apos;Indicium: V8 系統分析器工具，用於分析 Map/IC 事件。&apos;
-tweet: &apos;1311689392608731140&apos;
+description: 'Indicium: V8 系統分析器工具，用於分析 Map/IC 事件。'
+tweet: '1311689392608731140'
 ---
 # Indicium: V8 系統分析器
 
@@ -49,19 +49,19 @@ for (let i = 0; i < 10e5; i++) {
   dotProduct = a.dotProduct(b);
 }
 
-console.time(&apos;snippet1&apos;);
+console.time('snippet1');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet1&apos;);
+console.timeEnd('snippet1');
 
 a = new Point(-1, -1);
 b = new Point(-2, -2);
-console.time(&apos;snippet2&apos;);
+console.time('snippet2');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet2&apos;);
+console.timeEnd('snippet2');
 ```
 
 在這裡，我們有一個 `Point` 類，它存儲了兩個坐標以及基於坐標值的額外布爾值。這個 `Point` 類有一個 `dotProduct` 方法，返回傳入對象與接收者的點積。
@@ -75,11 +75,11 @@ let a = new Point(1, 1);
 let b = new Point(2, 2);
 let dotProduct;
 
-console.time(&apos;snippet1&apos;);
+console.time('snippet1');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet1&apos;);
+console.timeEnd('snippet1');
 ```
 
 ### *snippet 2*
@@ -87,11 +87,11 @@ console.timeEnd(&apos;snippet1&apos;);
 ```javascript
 a = new Point(-1, -1);
 b = new Point(-2, -2);
-console.time(&apos;snippet2&apos;);
+console.time('snippet2');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet2&apos;);
+console.timeEnd('snippet2');
 ```
 
 執行程式後，我們注意到性能有所下降。儘管測量的是兩個相似程式段的性能；通過在 for 循環中調用 `dotProduct` 函數來訪問 `Point` 對象實例的 `x` 和 `y` 屬性。

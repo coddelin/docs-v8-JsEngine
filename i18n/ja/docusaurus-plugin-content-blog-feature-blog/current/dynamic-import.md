@@ -1,14 +1,14 @@
 ---
-title: &apos;動的`import()`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '動的`import()`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-11-21
 tags:
   - ECMAScript
   - ES2020
-description: &apos;動的import()は静的importと比べて新しい可能性を解放します。この記事では両者を比較し、新しい内容の概要を説明します。&apos;
-tweet: &apos;932914724060254208&apos;
+description: '動的import()は静的importと比べて新しい可能性を解放します。この記事では両者を比較し、新しい内容の概要を説明します。'
+tweet: '932914724060254208'
 ---
 [動的`import()`](https://github.com/tc39/proposal-dynamic-import)は、静的`import`と比べて新しい可能性を引き出す、関数のような形式の新しい`import`を導入します。この記事では両者を比較し、新しい内容の概要を説明します。
 
@@ -22,12 +22,12 @@ Chrome 61では、[モジュール](/features/modules)内でのES2015 `import`�
 ```js
 // デフォルトエクスポート
 export default () => {
-  console.log(&apos;デフォルトエクスポートからこんにちは！&apos;);
+  console.log('デフォルトエクスポートからこんにちは！');
 };
 
 // 名前付きエクスポート`doStuff`
 export const doStuff = () => {
-  console.log(&apos;作業中…&apos;);
+  console.log('作業中…');
 };
 ```
 
@@ -35,11 +35,11 @@ export const doStuff = () => {
 
 ```html
 <script type="module">
-  import * as module from &apos;./utils.mjs&apos;;
+  import * as module from './utils.mjs';
   module.default();
-  // → &apos;デフォルトエクスポートからこんにちは！&apos;をログに出力
+  // → 'デフォルトエクスポートからこんにちは！'をログに出力
   module.doStuff();
-  // → &apos;作業中…&apos;をログに出力
+  // → '作業中…'をログに出力
 </script>
 ```
 
@@ -69,13 +69,13 @@ export const doStuff = () => {
 
 ```html
 <script type="module">
-  const moduleSpecifier = &apos;./utils.mjs&apos;;
+  const moduleSpecifier = './utils.mjs';
   import(moduleSpecifier)
     .then((module) => {
       module.default();
-      // → &apos;デフォルトエクスポートからこんにちは！&apos;をログに出力
+      // → 'デフォルトエクスポートからこんにちは！'をログに出力
       module.doStuff();
-      // → &apos;作業中…&apos;をログに出力
+      // → '作業中…'をログに出力
     });
 </script>
 ```
@@ -85,12 +85,12 @@ export const doStuff = () => {
 ```html
 <script type="module">
   (async () => {
-    const moduleSpecifier = &apos;./utils.mjs&apos;;
+    const moduleSpecifier = './utils.mjs';
     const module = await import(moduleSpecifier)
     module.default();
-    // → &apos;デフォルトエクスポートからこんにちは！&apos;をログに出力
+    // → 'デフォルトエクスポートからこんにちは！'をログに出力
     module.doStuff();
-    // → &apos;作業中…&apos;をログに出力
+    // → '作業中…'をログに出力
   })();
 </script>
 ```
@@ -112,10 +112,10 @@ export const doStuff = () => {
 </nav>
 <main>オンデマンドでロードされるコンテンツ用のプレースホルダです。</main>
 <script>
-  const main = document.querySelector(&apos;main&apos;);
-  const links = document.querySelectorAll(&apos;nav > a&apos;);
+  const main = document.querySelector('main');
+  const links = document.querySelectorAll('nav > a');
   for (const link of links) {
-    link.addEventListener(&apos;click&apos;, async (event) => {
+    link.addEventListener('click', async (event) => {
       event.preventDefault();
       try {
         const module = await import(`/${link.dataset.entryModule}.mjs`);

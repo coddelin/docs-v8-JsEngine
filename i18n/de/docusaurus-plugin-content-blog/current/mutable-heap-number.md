@@ -1,6 +1,6 @@
 ---
-title: &apos;Turbocharging V8 mit veränderlichen Heap-Zahlen&apos;
-author: &apos;[Victor Gomes](https://twitter.com/VictorBFG), der Bit-Shifter&apos;
+title: 'Turbocharging V8 mit veränderlichen Heap-Zahlen'
+author: '[Victor Gomes](https://twitter.com/VictorBFG), der Bit-Shifter'
 avatars:
   - victor-gomes
 date: 2025-02-25
@@ -9,7 +9,7 @@ tags:
   - Benchmarks
   - Internals
 description: "Hinzufügen von veränderlichen Heap-Zahlen zum Skriptkontext"
-tweet: &apos;&apos;
+tweet: ''
 ---
 
 Bei V8 streben wir ständig danach, die Leistung von JavaScript zu verbessern. Im Rahmen dieser Bemühungen haben wir kürzlich die [JetStream2](https://browserbench.org/JetStream2.1/)-Benchmark-Suite geprüft, um Leistungseinbrüche zu beseitigen. Dieser Beitrag beschreibt eine spezifische Optimierung, die eine signifikante Verbesserung von `2.5x` im `async-fs`-Benchmark ergab und zu einem spürbaren Anstieg der Gesamtpunktzahl beitrug. Die Optimierung wurde durch den Benchmark inspiriert, aber solche Muster finden sich auch im [echten Code](https://github.com/WebAssembly/binaryen/blob/3339c1f38da5b68ce8bf410773fe4b5eee451ab8/scripts/fuzz_shell.js#L248).
@@ -36,7 +36,7 @@ Math.random = (function() {
 
 Die entscheidende Variable hier ist `seed`. Sie wird bei jedem Aufruf von `Math.random` aktualisiert und erzeugt die pseudozufällige Sequenz. Wesentlich ist, dass `seed` in einem `ScriptContext` gespeichert wird.
 
-Ein `ScriptContext` dient als Speicherort für Werte, die innerhalb eines bestimmten Skripts zugänglich sind. Intern wird dieses Kontext als ein Array von V8&apos;s markierten Werten dargestellt. Für die Standardkonfiguration von V8 auf 64-Bit-Systemen belegt jeder dieser markierten Werte 32 Bit. Das am wenigsten signifikante Bit jedes Wertes dient als Markierung. Ein `0` zeigt ein 31-Bit _Small Integer_ (`SMI`) an. Der tatsächliche Integer-Wert wird direkt gespeichert, um ein Bit nach links verschoben. Ein `1` zeigt auf einen [komprimierten Zeiger](https://v8.dev/blog/pointer-compression), der auf ein Heap-Objekt verweist, wobei der komprimierte Zeigerwert um eins erhöht wird.
+Ein `ScriptContext` dient als Speicherort für Werte, die innerhalb eines bestimmten Skripts zugänglich sind. Intern wird dieses Kontext als ein Array von V8's markierten Werten dargestellt. Für die Standardkonfiguration von V8 auf 64-Bit-Systemen belegt jeder dieser markierten Werte 32 Bit. Das am wenigsten signifikante Bit jedes Wertes dient als Markierung. Ein `0` zeigt ein 31-Bit _Small Integer_ (`SMI`) an. Der tatsächliche Integer-Wert wird direkt gespeichert, um ein Bit nach links verschoben. Ein `1` zeigt auf einen [komprimierten Zeiger](https://v8.dev/blog/pointer-compression), der auf ein Heap-Objekt verweist, wobei der komprimierte Zeigerwert um eins erhöht wird.
 
 ![`ScriptContext` Layout: Blaue Slots sind Zeiger auf die Kontext-Metadaten und das globale Objekt (`NativeContext`). Der gelbe Slot zeigt einen nicht markierten Double-Precision-Gleitkommawert an.](/_img/mutable-heap-number/script-context.svg)
 

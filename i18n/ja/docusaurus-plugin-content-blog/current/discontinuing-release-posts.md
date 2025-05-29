@@ -1,13 +1,13 @@
 ---
-title: &apos;リリースブログ投稿を終了&apos;
-author: &apos;Shu-yu Guo ([@shu_](https://twitter.com/_shu))&apos;
+title: 'リリースブログ投稿を終了'
+author: 'Shu-yu Guo ([@shu_](https://twitter.com/_shu))'
 avatars:
- - &apos;shu-yu-guo&apos;
+ - 'shu-yu-guo'
 date: 2022-06-17
 tags:
  - release
-description: &apos;V8はChromeのリリーススケジュールや機能に関するブログ投稿を支持し、リリースブログ投稿を終了します。&apos;
-tweet: &apos;1537857497825824768&apos;
+description: 'V8はChromeのリリーススケジュールや機能に関するブログ投稿を支持し、リリースブログ投稿を終了します。'
+tweet: '1537857497825824768'
 ---
 
 V8の新しいリリースブランチごとにブログ投稿が行われてきましたが、v9.9以降、リリースブログ投稿がないことにお気づきかもしれません。v10.0以降、新しいブランチごとのリリースブログ投稿を終了します。しかしご安心ください。リリースブログ投稿で入手できていた情報はすべて引き続き入手可能です！今後その情報をどこで見つけられるかを以下にお読みください。

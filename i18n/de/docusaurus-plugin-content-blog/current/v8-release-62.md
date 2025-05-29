@@ -54,8 +54,8 @@ Die Unterstützung für [den `dotAll`-Modus](https://github.com/tc39/proposal-re
 [Lookbehind Assertions](https://github.com/tc39/proposal-regexp-lookbehind), ein weiteres neues Feature für reguläre Ausdrücke, sind jetzt standardmäßig verfügbar. Der Name beschreibt die Bedeutung bereits ziemlich gut. Lookbehind Assertions bieten eine Möglichkeit, ein Muster so einzuschränken, dass es nur dann übereinstimmt, wenn es von dem Muster in der Lookbehind-Gruppe vorangegangen wird. Sie sind sowohl in übereinstimmenden als auch in nicht übereinstimmenden Varianten verfügbar:
 
 ```js
-/(?<=\$)\d+/.exec(&apos;$1 is worth about ¥123&apos;); // [&apos;1&apos;]
-/(?<!\$)\d+/.exec(&apos;$1 is worth about ¥123&apos;); // [&apos;123&apos;]
+/(?<=\$)\d+/.exec('$1 is worth about ¥123'); // ['1']
+/(?<!\$)\d+/.exec('$1 is worth about ¥123'); // ['123']
 ```
 
 Weitere Details zu diesen Features finden Sie in unserem Blogbeitrag mit dem Titel [Upcoming regular expression features](https://developers.google.com/web/updates/2017/07/upcoming-regexp-features).

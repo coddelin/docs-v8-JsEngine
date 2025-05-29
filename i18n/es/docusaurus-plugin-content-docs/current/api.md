@@ -1,6 +1,6 @@
 ---
-title: &apos;API pública de V8&apos;
-description: &apos;Este documento analiza la estabilidad de la API pública de V8 y cómo los desarrolladores pueden realizar cambios en ella.&apos;
+title: 'API pública de V8'
+description: 'Este documento analiza la estabilidad de la API pública de V8 y cómo los desarrolladores pueden realizar cambios en ella.'
 ---
 Este documento analiza la estabilidad de la API pública de V8 y cómo los desarrolladores pueden realizar cambios en ella.
 

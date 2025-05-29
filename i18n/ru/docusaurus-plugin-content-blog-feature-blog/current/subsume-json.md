@@ -115,7 +115,7 @@ const jsStringLiteral = JSON.stringify(json);
 // Создайте допустимую программу ECMAScript, которая встраивает строковый литерал JavaScript,
 // представляющий данные JSON, в вызов `JSON.parse`.
 const program = `const data = JSON.parse(${ jsStringLiteral });`;
-// → &apos;const data = JSON.parse("…");&apos;
+// → 'const data = JSON.parse("…");'
 // (Дополнительное экранирование необходимо, если цель — встроенный <script>.)
 
 // Запишите файл, содержащий программу ECMAScript, на диск.
@@ -150,13 +150,13 @@ JSON ⊂ ECMAScript уменьшает разрыв между JSON и ECMAScrip
 ```html
 <script>
   // Информация для отладки:
-  // User-Agent: "Строка от пользователя<U+2028>  alert(&apos;XSS&apos;);//"
+  // User-Agent: "Строка от пользователя<U+2028>  alert('XSS');//"
 </script>
 <!-- …эквивалентно: -->
 <script>
   // Информация для отладки:
   // User-Agent: "Строка от пользователя
-  alert(&apos;XSS&apos;);//"
+  alert('XSS');//"
 </script>
 ```
 

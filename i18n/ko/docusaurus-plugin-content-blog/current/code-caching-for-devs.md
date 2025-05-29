@@ -1,14 +1,14 @@
 ---
-title: &apos;JavaScript 개발자를 위한 코드 캐싱&apos;
-author: &apos;[Leszek Swirski](https://twitter.com/leszekswirski), 캐시 스매셔&apos;
+title: 'JavaScript 개발자를 위한 코드 캐싱'
+author: '[Leszek Swirski](https://twitter.com/leszekswirski), 캐시 스매셔'
 avatars:
   - leszek-swirski
 date: 2019-04-08 13:33:37
 updated: 2020-06-16
 tags:
   - internals
-description: &apos;(바이트)코드 캐싱은 JavaScript 파싱 + 컴파일 결과를 캐싱하여 자주 방문하는 웹사이트의 시작 시간을 줄입니다.&apos;
-tweet: &apos;1115264282675953664&apos;
+description: '(바이트)코드 캐싱은 JavaScript 파싱 + 컴파일 결과를 캐싱하여 자주 방문하는 웹사이트의 시작 시간을 줄입니다.'
+tweet: '1115264282675953664'
 ---
 코드 캐싱(바이트코드 캐싱이라고도 함)은 브라우저에서 중요한 최적화 기술입니다. 이것은 파싱 + 컴파일 결과를 캐싱하여 자주 접속하는 웹사이트의 시작 시간을 줄입니다. 대부분의 [인기](https://blog.mozilla.org/javascript/2017/12/12/javascript-startup-bytecode-cache/) [브라우저](https://bugs.webkit.org/show_bug.cgi?id=192782)에서 어떤 형태로든 코드 캐싱을 구현하고 있으며, Chrome도 예외는 아닙니다. 실제로 우리는 Chrome과 V8이 컴파일된 코드를 어떻게 캐싱하는지에 대해 [작성](/blog/code-caching)하고, [개선](/blog/improved-code-caching)하며, [설명](https://www.youtube.com/watch?v=YqHOUy2rYZ8)한 바 있습니다.
 
@@ -148,26 +148,26 @@ HTML에 인라인된 소스의 스크립트 태그는 관련된 외부 소스 �
 
 ```js
 // main.mjs
-navigator.serviceWorker.register(&apos;/sw.js&apos;);
+navigator.serviceWorker.register('/sw.js');
 ```
 
 그리고 서비스 워커는 설치(캐시 생성) 및 데이터 가져오기(캐시에서 잠재적으로 리소스 제공)의 이벤트 핸들러를 추가합니다.
 
 ```js
 // sw.js
-self.addEventListener(&apos;install&apos;, (event) => {
+self.addEventListener('install', (event) => {
   async function buildCache() {
     const cache = await caches.open(cacheName);
     return cache.addAll([
-      &apos;/main.css&apos;,
-      &apos;/main.mjs&apos;,
-      &apos;/offline.html&apos;,
+      '/main.css',
+      '/main.mjs',
+      '/offline.html',
     ]);
   }
   event.waitUntil(buildCache());
 });
 
-self.addEventListener(&apos;fetch&apos;, (event) => {
+self.addEventListener('fetch', (event) => {
   async function cachedFetch(event) {
     const cache = await caches.open(cacheName);
     let response = await cache.match(event.request);

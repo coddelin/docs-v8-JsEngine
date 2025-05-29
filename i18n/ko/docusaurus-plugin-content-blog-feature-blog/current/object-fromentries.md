@@ -1,15 +1,15 @@
 ---
-title: &apos;`Object.fromEntries`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias)), JavaScript 전문가&apos;
+title: '`Object.fromEntries`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), JavaScript 전문가'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-06-18
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: &apos;Object.fromEntries는 Object.entries를 보완하는 유용한 자바스크립트 내장 라이브러리 추가 기능입니다.&apos;
-tweet: &apos;1140993821897121796&apos;
+description: 'Object.fromEntries는 Object.entries를 보완하는 유용한 자바스크립트 내장 라이브러리 추가 기능입니다.'
+tweet: '1140993821897121796'
 ---
 `Object.fromEntries`는 자바스크립트 내장 라이브러리에 유용한 추가 기능입니다. 무엇을 하는지 설명하기 전에 기존의 `Object.entries` API를 이해하는 것이 도움이 됩니다.
 
@@ -30,7 +30,7 @@ tweet: &apos;1140993821897121796&apos;
 ```js
 const object = { x: 42, y: 50 };
 const entries = Object.entries(object);
-// → [[&apos;x&apos;, 42], [&apos;y&apos;, 50]]
+// → [['x', 42], ['y', 50]]
 
 for (const [key, value] of entries) {
   console.log(`The value of ${key} is ${value}.`);
@@ -49,7 +49,7 @@ for (const [key, value] of entries) {
 ```js
 const object = { x: 42, y: 50 };
 const entries = Object.entries(object);
-// → [[&apos;x&apos;, 42], [&apos;y&apos;, 50]]
+// → [['x', 42], ['y', 50]]
 
 const result = Object.fromEntries(entries);
 // → { x: 42, y: 50 }
@@ -77,7 +77,7 @@ const result = Object.fromEntries(
 `Object.entries`는 객체를 맵으로 변환하는 것을 쉽게 만듭니다:
 
 ```js
-const object = { language: &apos;JavaScript&apos;, coolness: 9001 };
+const object = { language: 'JavaScript', coolness: 9001 };
 
 // 객체를 맵으로 변환:
 const map = new Map(Object.entries(object));
@@ -88,7 +88,7 @@ const map = new Map(Object.entries(object));
 ```js
 // 맵을 다시 객체로 변환:
 const objectCopy = Object.fromEntries(map);
-// → { language: &apos;JavaScript&apos;, coolness: 9001 }
+// → { language: 'JavaScript', coolness: 9001 }
 ```
 
 `Object.entries`와 `Object.fromEntries` 모두를 사용하여 이제 맵과 객체 간 변환을 쉽게 수행할 수 있습니다.
@@ -99,13 +99,13 @@ const objectCopy = Object.fromEntries(map);
 
 ```js
 const map = new Map([
-  [{}, &apos;a&apos;],
-  [{}, &apos;b&apos;],
+  [{}, 'a'],
+  [{}, 'b'],
 ]);
 Object.fromEntries(map);
-// → { &apos;[object Object]&apos;: &apos;b&apos; }
-// 참고: 값 &apos;a&apos;는 어디에도 없으며, 두 키 모두
-// &apos;[object Object]&apos;로 문자열 변환됩니다.
+// → { '[object Object]': 'b' }
+// 참고: 값 'a'는 어디에도 없으며, 두 키 모두
+// '[object Object]'로 문자열 변환됩니다.
 ```
 
 `Object.fromEntries` 또는 다른 기술을 사용하여 맵을 객체로 변환하기 전에, 맵의 키가 고유한 `toString` 결과를 생성하는지 확인하십시오.

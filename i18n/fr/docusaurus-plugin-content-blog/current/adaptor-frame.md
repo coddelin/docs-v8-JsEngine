@@ -1,23 +1,23 @@
 ---
-title: &apos;Appels JavaScript plus rapides&apos;
-author: &apos;[Victor Gomes](https://twitter.com/VictorBFG), le déchiqueteur de frames&apos;
+title: 'Appels JavaScript plus rapides'
+author: '[Victor Gomes](https://twitter.com/VictorBFG), le déchiqueteur de frames'
 avatars:
-  - &apos;victor-gomes&apos;
+  - 'victor-gomes'
 date: 2021-02-15
 tags:
   - internals
-description: &apos;Appels JavaScript plus rapides en supprimant le frame adaptateur d&apos;arguments&apos;
-tweet: &apos;1361337569057865735&apos;
+description: 'Appels JavaScript plus rapides en supprimant le frame adaptateur d'arguments'
+tweet: '1361337569057865735'
 ---
 
-JavaScript permet d&apos;appeler une fonction avec un nombre d&apos;arguments différent de celui attendu par les paramètres formels, c&apos;est-à-dire que l&apos;on peut passer moins ou plus d&apos;arguments que les paramètres déclarés. Le premier cas est appelé sous-application, et le second est appelé sur-application.
+JavaScript permet d'appeler une fonction avec un nombre d'arguments différent de celui attendu par les paramètres formels, c'est-à-dire que l'on peut passer moins ou plus d'arguments que les paramètres déclarés. Le premier cas est appelé sous-application, et le second est appelé sur-application.
 
 <!--truncate-->
-Dans le cas de sous-application, les paramètres restants se voient attribuer la valeur undefined. Dans le cas de sur-application, les arguments supplémentaires peuvent être accédés en utilisant le paramètre rest et la propriété `arguments`, ou ils sont simplement superflus et peuvent être ignorés. De nombreux frameworks Web/Node.js utilisent aujourd&apos;hui cette fonctionnalité de JS pour accepter des paramètres optionnels et créer une API plus flexible.
+Dans le cas de sous-application, les paramètres restants se voient attribuer la valeur undefined. Dans le cas de sur-application, les arguments supplémentaires peuvent être accédés en utilisant le paramètre rest et la propriété `arguments`, ou ils sont simplement superflus et peuvent être ignorés. De nombreux frameworks Web/Node.js utilisent aujourd'hui cette fonctionnalité de JS pour accepter des paramètres optionnels et créer une API plus flexible.
 
-Jusqu&apos;à récemment, V8 avait un mécanisme spécial pour gérer les écarts de taille entre les arguments : le frame adaptateur d&apos;arguments. Malheureusement, l&apos;adaptation des arguments a un coût en termes de performances, mais elle est couramment nécessaire dans les frameworks modernes de front-end et de middleware. Il s&apos;avère qu&apos;avec une astuce ingénieuse, nous pouvons supprimer ce frame supplémentaire, simplifier la base de code de V8 et éliminer presque entièrement les surcoûts.
+Jusqu'à récemment, V8 avait un mécanisme spécial pour gérer les écarts de taille entre les arguments : le frame adaptateur d'arguments. Malheureusement, l'adaptation des arguments a un coût en termes de performances, mais elle est couramment nécessaire dans les frameworks modernes de front-end et de middleware. Il s'avère qu'avec une astuce ingénieuse, nous pouvons supprimer ce frame supplémentaire, simplifier la base de code de V8 et éliminer presque entièrement les surcoûts.
 
-Nous pouvons calculer l&apos;impact sur les performances de la suppression du frame adaptateur d&apos;arguments à l&apos;aide d&apos;un micro-benchmark.
+Nous pouvons calculer l'impact sur les performances de la suppression du frame adaptateur d'arguments à l'aide d'un micro-benchmark.
 
 ```js
 console.time();
@@ -28,23 +28,23 @@ for (let i = 0; i <  N; i++) {
 console.timeEnd();
 ```
 
-![Impact sur les performances de la suppression du frame adaptateur d&apos;arguments, mesuré à l&apos;aide d&apos;un micro-benchmark.](/_img/v8-release-89/perf.svg)
+![Impact sur les performances de la suppression du frame adaptateur d'arguments, mesuré à l'aide d'un micro-benchmark.](/_img/v8-release-89/perf.svg)
 
-Le graphique montre qu&apos;il n&apos;y a plus de surcoût lorsqu&apos;on exécute en [mode sans JIT](https://v8.dev/blog/jitless) (Ignition) avec une amélioration des performances de 11,2 %. Lorsqu&apos;on utilise [TurboFan](https://v8.dev/docs/turbofan), on obtient jusqu&apos;à 40 % de gain de vitesse.
+Le graphique montre qu'il n'y a plus de surcoût lorsqu'on exécute en [mode sans JIT](https://v8.dev/blog/jitless) (Ignition) avec une amélioration des performances de 11,2 %. Lorsqu'on utilise [TurboFan](https://v8.dev/docs/turbofan), on obtient jusqu'à 40 % de gain de vitesse.
 
-Ce micro-benchmark a naturellement été conçu pour maximiser l&apos;impact du frame adaptateur d&apos;arguments. Cependant, nous avons observé une nette amélioration dans de nombreux benchmarks, comme dans [notre benchmark interne JSTests/Array](https://chromium.googlesource.com/v8/v8/+/b7aa85fe00c521a704ca83cc8789354e86482a60/test/js-perf-test/JSTests.json) (7 %) et dans [Octane2](https://github.com/chromium/octane) (4,6 % dans Richards et 6,1 % dans EarleyBoyer).
+Ce micro-benchmark a naturellement été conçu pour maximiser l'impact du frame adaptateur d'arguments. Cependant, nous avons observé une nette amélioration dans de nombreux benchmarks, comme dans [notre benchmark interne JSTests/Array](https://chromium.googlesource.com/v8/v8/+/b7aa85fe00c521a704ca83cc8789354e86482a60/test/js-perf-test/JSTests.json) (7 %) et dans [Octane2](https://github.com/chromium/octane) (4,6 % dans Richards et 6,1 % dans EarleyBoyer).
 
 ## TL;DR: Inverser les arguments
 
-L&apos;objectif principal de ce projet était de supprimer le frame adaptateur d&apos;arguments, qui offre une interface cohérente à la fonction appelée lors de l&apos;accès à ses arguments dans la pile. Pour ce faire, nous devions inverser les arguments dans la pile et ajouter un nouvel emplacement dans le frame de la fonction appelée contenant le nombre réel d&apos;arguments. La figure ci-dessous montre l&apos;exemple d&apos;un frame typique avant et après le changement.
+L'objectif principal de ce projet était de supprimer le frame adaptateur d'arguments, qui offre une interface cohérente à la fonction appelée lors de l'accès à ses arguments dans la pile. Pour ce faire, nous devions inverser les arguments dans la pile et ajouter un nouvel emplacement dans le frame de la fonction appelée contenant le nombre réel d'arguments. La figure ci-dessous montre l'exemple d'un frame typique avant et après le changement.
 
-![Un frame de pile JavaScript typique avant et après la suppression du frame adaptateur d&apos;arguments.](/_img/adaptor-frame/frame-diff.svg)
+![Un frame de pile JavaScript typique avant et après la suppression du frame adaptateur d'arguments.](/_img/adaptor-frame/frame-diff.svg)
 
 ## Accélérer les appels JavaScript
 
-Pour apprécier ce que nous avons fait pour rendre les appels plus rapides, voyons comment V8 effectue un appel et comment fonctionne le frame adaptateur d&apos;arguments.
+Pour apprécier ce que nous avons fait pour rendre les appels plus rapides, voyons comment V8 effectue un appel et comment fonctionne le frame adaptateur d'arguments.
 
-Que se passe-t-il à l&apos;intérieur de V8 lorsque nous invoquons un appel de fonction en JS ? Supposons le script JS suivant :
+Que se passe-t-il à l'intérieur de V8 lorsque nous invoquons un appel de fonction en JS ? Supposons le script JS suivant :
 
 ```js
 function add42(x) {
@@ -53,23 +53,23 @@ function add42(x) {
 add42(3);
 ```
 
-![Flux d&apos;exécution à l&apos;intérieur de V8 pendant un appel de fonction.](/_img/adaptor-frame/flow.svg)
+![Flux d'exécution à l'intérieur de V8 pendant un appel de fonction.](/_img/adaptor-frame/flow.svg)
 
 ## Ignition
 
-V8 est une machine virtuelle multi-niveaux. Son premier niveau est appelé [Ignition](https://v8.dev/docs/ignition), c&apos;est une machine à pile basée sur du bytecode avec un registre accumulateur. V8 commence par compiler le code en [bytecode Ignition](https://medium.com/dailyjs/understanding-v8s-bytecode-317d46c94775). L&apos;appel ci-dessus est compilé comme suit :
+V8 est une machine virtuelle multi-niveaux. Son premier niveau est appelé [Ignition](https://v8.dev/docs/ignition), c'est une machine à pile basée sur du bytecode avec un registre accumulateur. V8 commence par compiler le code en [bytecode Ignition](https://medium.com/dailyjs/understanding-v8s-bytecode-317d46c94775). L'appel ci-dessus est compilé comme suit :
 
 ```
-0d              LdaUndefined              ;; Charger undefined dans l&apos;accumulateur
+0d              LdaUndefined              ;; Charger undefined dans l'accumulateur
 26 f9           Star r2                   ;; Le stocker dans le registre r2
 13 01 00        LdaGlobal [1]             ;; Charger la valeur globale pointée par const 1 (add42)
 26 fa           Star r1                   ;; La stocker dans le registre r1
-0c 03           LdaSmi [3]                ;; Charger le petit entier 3 dans l&apos;accumulateur
+0c 03           LdaSmi [3]                ;; Charger le petit entier 3 dans l'accumulateur
 26 f8           Star r3                   ;; Le stocker dans le registre r3
-5f fa f9 02     CallNoFeedback r1, r2-r3  ;; Invoquer l&apos;appel
+5f fa f9 02     CallNoFeedback r1, r2-r3  ;; Invoquer l'appel
 ```
 
-Le premier argument d&apos;un appel est généralement désigné comme le récepteur. Le récepteur est l&apos;objet `this` à l&apos;intérieur d&apos;une JSFunction, et chaque appel de fonction JS doit en avoir un. Le gestionnaire de bytecode de `CallNoFeedback` doit appeler l&apos;objet `r1` avec les arguments de la liste de registres `r2-r3`.
+Le premier argument d'un appel est généralement désigné comme le récepteur. Le récepteur est l'objet `this` à l'intérieur d'une JSFunction, et chaque appel de fonction JS doit en avoir un. Le gestionnaire de bytecode de `CallNoFeedback` doit appeler l'objet `r1` avec les arguments de la liste de registres `r2-r3`.
 
 Avant de plonger dans le gestionnaire de bytecode, notez comment les registres sont codés dans le bytecode. Ce sont des entiers négatifs sur un seul octet : `r1` est codé en `fa`, `r2` en `f9` et `r3` en `f8`. Nous pouvons référencer tout registre ri comme `fb - i`, en réalité, comme nous le verrons, le codage correct est `- 2 - kFixedFrameHeaderSize - i`. Les listes de registres sont codées en utilisant le premier registre et la taille de la liste, donc `r2-r3` est `f9 02`.
 

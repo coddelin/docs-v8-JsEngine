@@ -1,30 +1,30 @@
 ---
-title: &apos;`Intl.PluralRules`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`Intl.PluralRules`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-10-04
 tags:
   - Intl
-description: &apos;Работа с множественными числами — это одна из многих задач, которая может показаться простой, пока вы не осознаете, что в каждом языке свои правила множественного числа. API Intl.PluralRules может помочь!&apos;
-tweet: &apos;915542989493202944&apos;
+description: 'Работа с множественными числами — это одна из многих задач, которая может показаться простой, пока вы не осознаете, что в каждом языке свои правила множественного числа. API Intl.PluralRules может помочь!'
+tweet: '915542989493202944'
 ---
 Иñtërnâtiônàlizætiøn — это сложно. Работа с множественными числами — это одна из многих задач, которая может показаться простой, пока вы не осознаете, что каждый язык имеет свои правила множественного числа.
 
 Для английского языка существует лишь два возможных результата множественного числа. Давайте возьмем слово «cat» в качестве примера:
 
-- 1 cat, т.е. форма `&apos;one&apos;`, известная как единственное число в английском
-- 2 cats, но также 42 cats, 0.5 cats и т.д., т.е. форма `&apos;other&apos;` (единственная другая), известная как множественное число в английском.
+- 1 cat, т.е. форма `'one'`, известная как единственное число в английском
+- 2 cats, но также 42 cats, 0.5 cats и т.д., т.е. форма `'other'` (единственная другая), известная как множественное число в английском.
 
 Совершенно новый [`Intl.PluralRules` API](https://github.com/tc39/proposal-intl-plural-rules) сообщает, какая форма применяется в выбранном вами языке на основе заданного числа.
 
 ```js
-const pr = new Intl.PluralRules(&apos;en-US&apos;);
-pr.select(0);   // &apos;other&apos; (например, &apos;0 cats&apos;)
-pr.select(0.5); // &apos;other&apos; (например, &apos;0.5 cats&apos;)
-pr.select(1);   // &apos;one&apos;   (например, &apos;1 cat&apos;)
-pr.select(1.5); // &apos;other&apos; (например, &apos;1.5 cats&apos;)
-pr.select(2);   // &apos;other&apos; (например, &apos;2 cats&apos;)
+const pr = new Intl.PluralRules('en-US');
+pr.select(0);   // 'other' (например, '0 cats')
+pr.select(0.5); // 'other' (например, '0.5 cats')
+pr.select(1);   // 'one'   (например, '1 cat')
+pr.select(1.5); // 'other' (например, '1.5 cats')
+pr.select(2);   // 'other' (например, '2 cats')
 ```
 
 <!--truncate-->
@@ -34,50 +34,50 @@ pr.select(2);   // &apos;other&apos; (например, &apos;2 cats&apos;)
 const suffixes = new Map([
   // Замечание: в реальных сценариях вы бы не захардкодили множественные формы
   // таким образом; они были бы частью ваших файлов переводов.
-  [&apos;one&apos;,   &apos;cat&apos;],
-  [&apos;other&apos;, &apos;cats&apos;],
+  ['one',   'cat'],
+  ['other', 'cats'],
 ]);
-const pr = new Intl.PluralRules(&apos;en-US&apos;);
+const pr = new Intl.PluralRules('en-US');
 const formatCats = (n) => {
   const rule = pr.select(n);
   const suffix = suffixes.get(rule);
   return `${n} ${suffix}`;
 };
 
-formatCats(1);   // &apos;1 cat&apos;
-formatCats(0);   // &apos;0 cats&apos;
-formatCats(0.5); // &apos;0.5 cats&apos;
-formatCats(1.5); // &apos;1.5 cats&apos;
-formatCats(2);   // &apos;2 cats&apos;
+formatCats(1);   // '1 cat'
+formatCats(0);   // '0 cats'
+formatCats(0.5); // '0.5 cats'
+formatCats(1.5); // '1.5 cats'
+formatCats(2);   // '2 cats'
 ```
 
 Для относительно простых правил множественного числа в английском это, возможно, выглядит избыточно; однако не все языки следуют одним и тем же правилам. Некоторые языки имеют только одну форму множественного числа, а некоторые — несколько. У [валлийского языка](http://unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#rules), например, шесть разных форм множественного числа!
 
 ```js
 const suffixes = new Map([
-  [&apos;zero&apos;,  &apos;cathod&apos;],
-  [&apos;one&apos;,   &apos;gath&apos;],
-  // Замечание: для данного слова форма `&apos;two&apos;` совпадает с формой `&apos;one&apos;`,
+  ['zero',  'cathod'],
+  ['one',   'gath'],
+  // Замечание: для данного слова форма `'two'` совпадает с формой `'one'`,
   // но это не так для всех слов в валлийском.
-  [&apos;two&apos;,   &apos;gath&apos;],
-  [&apos;few&apos;,   &apos;cath&apos;],
-  [&apos;many&apos;,  &apos;chath&apos;],
-  [&apos;other&apos;, &apos;cath&apos;],
+  ['two',   'gath'],
+  ['few',   'cath'],
+  ['many',  'chath'],
+  ['other', 'cath'],
 ]);
-const pr = new Intl.PluralRules(&apos;cy&apos;);
+const pr = new Intl.PluralRules('cy');
 const formatWelshCats = (n) => {
   const rule = pr.select(n);
   const suffix = suffixes.get(rule);
   return `${n} ${suffix}`;
 };
 
-formatWelshCats(0);   // &apos;0 cathod&apos;
-formatWelshCats(1);   // &apos;1 gath&apos;
-formatWelshCats(1.5); // &apos;1.5 cath&apos;
-formatWelshCats(2);   // &apos;2 gath&apos;
-formatWelshCats(3);   // &apos;3 cath&apos;
-formatWelshCats(6);   // &apos;6 chath&apos;
-formatWelshCats(42);  // &apos;42 cath&apos;
+formatWelshCats(0);   // '0 cathod'
+formatWelshCats(1);   // '1 gath'
+formatWelshCats(1.5); // '1.5 cath'
+formatWelshCats(2);   // '2 gath'
+formatWelshCats(3);   // '3 cath'
+formatWelshCats(6);   // '6 chath'
+formatWelshCats(42);  // '42 cath'
 ```
 
 Для корректной реализации множественного числа с поддержкой нескольких языков требуется база данных языков и их правил множественного числа. [Unicode CLDR](http://cldr.unicode.org/) включает в себя эти данные, но чтобы использовать их в JavaScript, их нужно встроить и поставлять вместе с вашим JavaScript-кодом, что увеличивает время загрузки, время разбора и использование памяти. API `Intl.PluralRules` перекладывает эту задачу на JavaScript-движок, позволяя более производительную интернационализацию множественных чисел.
@@ -88,17 +88,17 @@ formatWelshCats(42);  // &apos;42 cath&apos;
 
 ## Порядковые числа
 
-API `Intl.PluralRules` поддерживает различные правила выбора через свойство `type` в необязательном аргументе `options`. Его неявное значение по умолчанию (используемое в приведённых выше примерах) — `&apos;cardinal&apos;`. Чтобы вместо этого определить порядковый индикатор для заданного числа (например, `1` → `1st`, `2` → `2nd` и т.д.), используйте `{ type: &apos;ordinal&apos; }`:
+API `Intl.PluralRules` поддерживает различные правила выбора через свойство `type` в необязательном аргументе `options`. Его неявное значение по умолчанию (используемое в приведённых выше примерах) — `'cardinal'`. Чтобы вместо этого определить порядковый индикатор для заданного числа (например, `1` → `1st`, `2` → `2nd` и т.д.), используйте `{ type: 'ordinal' }`:
 
 ```js
-const pr = new Intl.PluralRules(&apos;en-US&apos;, {
-  type: &apos;ordinal&apos;
+const pr = new Intl.PluralRules('en-US', {
+  type: 'ordinal'
 });
 const suffixes = new Map([
-  [&apos;one&apos;,   &apos;st&apos;],
-  [&apos;two&apos;,   &apos;nd&apos;],
-  [&apos;few&apos;,   &apos;rd&apos;],
-  [&apos;other&apos;, &apos;th&apos;],
+  ['one',   'st'],
+  ['two',   'nd'],
+  ['few',   'rd'],
+  ['other', 'th'],
 ]);
 const formatOrdinals = (n) => {
   const rule = pr.select(n);
@@ -106,15 +106,15 @@ const formatOrdinals = (n) => {
   return `${n}${suffix}`;
 };
 
-formatOrdinals(0);   // &apos;0th&apos;
-formatOrdinals(1);   // &apos;1st&apos;
-formatOrdinals(2);   // &apos;2nd&apos;
-formatOrdinals(3);   // &apos;3rd&apos;
-formatOrdinals(4);   // &apos;4th&apos;
-formatOrdinals(11);  // &apos;11th&apos;
-formatOrdinals(21);  // &apos;21st&apos;
-formatOrdinals(42);  // &apos;42nd&apos;
-formatOrdinals(103); // &apos;103rd&apos;
+formatOrdinals(0);   // '0th'
+formatOrdinals(1);   // '1st'
+formatOrdinals(2);   // '2nd'
+formatOrdinals(3);   // '3rd'
+formatOrdinals(4);   // '4th'
+formatOrdinals(11);  // '11th'
+formatOrdinals(21);  // '21st'
+formatOrdinals(42);  // '42nd'
+formatOrdinals(103); // '103rd'
 ```
 
 `Intl.PluralRules` — это низкоуровневый API, особенно по сравнению с другими функциями интернационализации. Таким образом, даже если вы не используете его напрямую, возможно, вы используете библиотеку или фреймворк, которые зависят от него.

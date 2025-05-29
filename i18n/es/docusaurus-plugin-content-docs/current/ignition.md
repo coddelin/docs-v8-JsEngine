@@ -1,6 +1,6 @@
 ---
-title: &apos;Ignition&apos;
-description: &apos;Este documento reúne recursos sobre Ignition, el intérprete de V8.&apos;
+title: 'Ignition'
+description: 'Este documento reúne recursos sobre Ignition, el intérprete de V8.'
 ---
 V8 cuenta con un intérprete llamado Ignition. Ignition es un intérprete rápido de bajo nivel basado en registros, escrito utilizando el backend de [TurboFan](/docs/turbofan). La publicación en el blog de V8 presenta una [visión general de alto nivel](/blog/ignition-interpreter) del intérprete Ignition. Se pueden encontrar más detalles en los siguientes recursos:
 

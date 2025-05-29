@@ -1,13 +1,13 @@
 ---
-title: &apos;V8リリース v8.4&apos;
-author: &apos;Camillo Bruni、新鮮なブール値を楽しんでいます&apos;
+title: 'V8リリース v8.4'
+author: 'Camillo Bruni、新鮮なブール値を楽しんでいます'
 avatars:
- - &apos;camillo-bruni&apos;
+ - 'camillo-bruni'
 date: 2020-06-30
 tags:
  - リリース
-description: &apos;V8 v8.4は弱参照と改善されたWebAssemblyパフォーマンスを備えています。&apos;
-tweet: &apos;1277983235641761795&apos;
+description: 'V8 v8.4は弱参照と改善されたWebAssemblyパフォーマンスを備えています。'
+tweet: '1277983235641761795'
 ---
 6週間ごとに、新しいV8のブランチを[リリースプロセス](https://v8.dev/docs/release-process)の一環として作成します。各バージョンはChrome Betaのマイルストーン直前にV8のGitマスターからブランチ分けされます。本日、私たちは最新のブランチ[V8バージョン8.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.4)をご紹介します。このブランチは数週間後にChrome 84 Stableと連携してリリースされるまでベータ版にあります。V8 v8.4は開発者向けのさまざまな便利な機能で満たされています。この記事では、リリースを前にハイライトのいくつかをプレビューします。
 
@@ -39,7 +39,7 @@ JavaScriptはガベージコレクトされた言語であり、プログラム�
 
 ```js
 const globalRef = {
-  callback() { console.log(&apos;foo&apos;); }
+  callback() { console.log('foo'); }
 };
 // globalRefがグローバルスコープを通じて参照可能である限り、
 // それ自身およびそのcallbackプロパティ内の関数は解放されません。
@@ -49,7 +49,7 @@ JavaScriptのプログラマーは、`WeakRef`機能を使用してオブジェ�
 
 ```js
 const globalWeakRef = new WeakRef({
-  callback() { console.log(&apos;foo&apos;); }
+  callback() { console.log('foo'); }
 });
 
 (async function() {
@@ -58,7 +58,7 @@ const globalWeakRef = new WeakRef({
   // 作成後のイベントループの最初のターンまで生きていることが保証されています。
 
   await new Promise((resolve, reject) => {
-    setTimeout(() => { resolve(&apos;foo&apos;); }, 42);
+    setTimeout(() => { resolve('foo'); }, 42);
   });
   // イベントループのターンを待機します。
 

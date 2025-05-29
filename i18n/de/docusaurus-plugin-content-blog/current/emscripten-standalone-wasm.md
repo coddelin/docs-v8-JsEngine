@@ -1,14 +1,14 @@
 ---
-title: &apos;Außerhalb des Webs: eigenständige WebAssembly-Binärdateien mit Emscripten&apos;
-author: &apos;Alon Zakai&apos;
+title: 'Außerhalb des Webs: eigenständige WebAssembly-Binärdateien mit Emscripten'
+author: 'Alon Zakai'
 avatars:
-  - &apos;alon-zakai&apos;
+  - 'alon-zakai'
 date: 2019-11-21
 tags:
   - WebAssembly
   - Tools
-description: &apos;Emscripten unterstützt jetzt eigenständige Wasm-Dateien, die kein JavaScript benötigen.&apos;
-tweet: &apos;1197547645729988608&apos;
+description: 'Emscripten unterstützt jetzt eigenständige Wasm-Dateien, die kein JavaScript benötigen.'
+tweet: '1197547645729988608'
 ---
 Emscripten hat sich immer zuerst auf das Kompilieren für das Web und andere JavaScript-Umgebungen wie Node.js konzentriert. Aber da WebAssembly beginnt, *ohne* JavaScript verwendet zu werden, entstehen neue Anwendungsfälle, und deshalb haben wir daran gearbeitet, [**eigenständige Wasm**](https://github.com/emscripten-core/emscripten/wiki/WebAssembly-Standalone)-Dateien aus Emscripten zu generieren, die nicht auf die Emscripten-JavaScript-Laufzeit angewiesen sind! Dieser Beitrag erklärt, warum das interessant ist.
 
@@ -62,14 +62,14 @@ Eine nette Sache an einer eigenständigen Wasm-Datei wie dieser ist, dass Sie ei
 
 ```js
 // load-add.js
-const binary = require(&apos;fs&apos;).readFileSync(&apos;add.wasm&apos;);
+const binary = require('fs').readFileSync('add.wasm');
 
 WebAssembly.instantiate(binary).then(({ instance }) => {
   console.log(instance.exports.add(40, 2));
 });
 ```
 
-Nur 4 Zeilen! Das Ausführen davon gibt erwartungsgemäß `42` aus. Beachten Sie, dass dieses Beispiel sehr einfach ist, aber es gibt Fälle, in denen Sie einfach nicht viel JavaScript benötigen und möglicherweise besser abschneiden als die Standard-JavaScript-Laufzeit von Emscripten (die eine Vielzahl von Umgebungen und Optionen unterstützt). Ein reales Beispiel dafür findet sich in [zeux&apos; meshoptimizer](https://github.com/zeux/meshoptimizer/blob/bdc3006532dd29b03d83dc819e5fa7683815b88e/js/meshopt_decoder.js) – nur 57 Zeilen, einschließlich Speicherverwaltung, Wachstum usw.!
+Nur 4 Zeilen! Das Ausführen davon gibt erwartungsgemäß `42` aus. Beachten Sie, dass dieses Beispiel sehr einfach ist, aber es gibt Fälle, in denen Sie einfach nicht viel JavaScript benötigen und möglicherweise besser abschneiden als die Standard-JavaScript-Laufzeit von Emscripten (die eine Vielzahl von Umgebungen und Optionen unterstützt). Ein reales Beispiel dafür findet sich in [zeux' meshoptimizer](https://github.com/zeux/meshoptimizer/blob/bdc3006532dd29b03d83dc819e5fa7683815b88e/js/meshopt_decoder.js) – nur 57 Zeilen, einschließlich Speicherverwaltung, Wachstum usw.!
 
 ### Ausführung in Wasm-Laufzeiten
 

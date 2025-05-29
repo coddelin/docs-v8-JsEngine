@@ -1,13 +1,13 @@
 ---
-title: &apos;Optimierung von Hashtabellen: Verbergen des Hashcodes&apos;
-author: &apos;[Sathya Gunasekaran](https://twitter.com/_gsathya), Hüter der Hashcodes&apos;
+title: 'Optimierung von Hashtabellen: Verbergen des Hashcodes'
+author: '[Sathya Gunasekaran](https://twitter.com/_gsathya), Hüter der Hashcodes'
 avatars:
-  - &apos;sathya-gunasekaran&apos;
+  - 'sathya-gunasekaran'
 date: 2018-01-29 13:33:37
 tags:
   - internals
-tweet: &apos;958046113390411776&apos;
-description: &apos;Mehrere JavaScript-Datenstrukturen wie Map, Set, WeakSet und WeakMap verwenden unter der Haube Hashtabellen. Dieser Artikel erklärt, wie V8 v6.3 die Leistung von Hashtabellen verbessert.&apos;
+tweet: '958046113390411776'
+description: 'Mehrere JavaScript-Datenstrukturen wie Map, Set, WeakSet und WeakMap verwenden unter der Haube Hashtabellen. Dieser Artikel erklärt, wie V8 v6.3 die Leistung von Hashtabellen verbessert.'
 ---
 ECMAScript 2015 führte mehrere neue Datenstrukturen wie Map, Set, WeakSet und WeakMap ein, die alle unter der Haube Hashtabellen verwenden. Dieser Beitrag beschreibt die [jüngsten Verbesserungen](https://bugs.chromium.org/p/v8/issues/detail?id=6404) in der Art und Weise, wie [V8 v6.3+](/blog/v8-release-63) die Schlüssel in Hashtabellen speichert.
 
@@ -46,8 +46,8 @@ Der Elemente-Backing-Store wird verwendet, um Eigenschaften zu speichern, die wi
 
 ```js
 const x = {};
-x[1] = &apos;bar&apos;;      // ← gespeichert in Elemente
-x[&apos;foo&apos;] = &apos;bar&apos;;  // ← gespeichert in Eigenschaften
+x[1] = 'bar';      // ← gespeichert in Elemente
+x['foo'] = 'bar';  // ← gespeichert in Eigenschaften
 ```
 
 ## Verbergen des Hashcodes

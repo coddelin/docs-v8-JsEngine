@@ -1,12 +1,12 @@
 ---
-title: &apos;Node.js에서의 해시 플러딩 취약점에 대해…&apos;
-author: &apos;Yang Guo ([@hashseed](https://twitter.com/hashseed))&apos;
+title: 'Node.js에서의 해시 플러딩 취약점에 대해…'
+author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed))'
 avatars:
-  - &apos;yang-guo&apos;
+  - 'yang-guo'
 date: 2017-08-11 13:33:37
 tags:
   - security
-description: &apos;Node.js는 해시 플러딩 취약점에 직면했습니다. 이 게시물에서는 해당 취약점의 배경과 V8에서의 해결 방법을 설명합니다.&apos;
+description: 'Node.js는 해시 플러딩 취약점에 직면했습니다. 이 게시물에서는 해당 취약점의 배경과 V8에서의 해결 방법을 설명합니다.'
 ---
 올해 7월 초, Node.js는 해시 플러딩 취약점을 해결하기 위해 현재 유지되고 있는 모든 브랜치에 대해 [보안 업데이트](https://nodejs.org/en/blog/vulnerability/july-2017-security-releases/)를 발표했습니다. 이 중간 수정은 상당한 시작 성능 저하를 대가로 합니다. 한편, V8은 성능 페널티를 피하는 해결책을 구현했습니다.
 

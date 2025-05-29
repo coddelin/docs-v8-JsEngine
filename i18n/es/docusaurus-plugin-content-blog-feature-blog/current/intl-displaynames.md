@@ -1,15 +1,15 @@
 ---
-title: &apos;`Intl.DisplayNames`&apos;
-author: &apos;Shu-yu Guo ([@_shu](https://twitter.com/_shu)) y Frank Yung-Fong Tang&apos;
+title: '`Intl.DisplayNames`'
+author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu)) y Frank Yung-Fong Tang'
 avatars:
-  - &apos;shu-yu-guo&apos;
-  - &apos;frank-tang&apos;
+  - 'shu-yu-guo'
+  - 'frank-tang'
 date: 2020-02-13
 tags:
   - Intl
   - Node.js 14
-description: &apos;La API Intl.DisplayNames permite nombres localizados de idiomas, regiones, escrituras y monedas.&apos;
-tweet: &apos;1232333889005334529&apos;
+description: 'La API Intl.DisplayNames permite nombres localizados de idiomas, regiones, escrituras y monedas.'
+tweet: '1232333889005334529'
 ---
 Las aplicaciones web que alcanzan una audiencia global necesitan mostrar los nombres de visualización de idiomas, regiones, escrituras y monedas en muchos idiomas diferentes. Las traducciones de esos nombres requieren datos, que están disponibles en el [Unicode CLDR](http://cldr.unicode.org/translation/). Incluir los datos como parte de la aplicación implica un costo de tiempo de desarrollo. Es probable que los usuarios prefieran traducciones consistentes de los nombres de idiomas y regiones, y mantener esos datos actualizados con los acontecimientos geopolíticos del mundo requiere mantenimiento constante.
 
@@ -21,65 +21,65 @@ Afortunadamente, la mayoría de los entornos de ejecución de JavaScript ya incl
 El siguiente ejemplo muestra cómo crear un objeto `Intl.DisplayNames` para obtener nombres de regiones en inglés utilizando [códigos de países de 2 letras según ISO-3166](https://www.iso.org/iso-3166-country-codes.html).
 
 ```js
-const regionNames = new Intl.DisplayNames([&apos;en&apos;], { type: &apos;region&apos; });
-regionNames.of(&apos;US&apos;);
-// → &apos;United States&apos;
-regionNames.of(&apos;BA&apos;);
-// → &apos;Bosnia & Herzegovina&apos;
-regionNames.of(&apos;MM&apos;);
-// → &apos;Myanmar (Burma)&apos;
+const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+regionNames.of('US');
+// → 'United States'
+regionNames.of('BA');
+// → 'Bosnia & Herzegovina'
+regionNames.of('MM');
+// → 'Myanmar (Burma)'
 ```
 
 El siguiente ejemplo obtiene nombres de idiomas en chino tradicional utilizando [gramática del identificador de idioma Unicode](http://unicode.org/reports/tr35/#Unicode_language_identifier).
 
 ```js
-const languageNames = new Intl.DisplayNames([&apos;zh-Hant&apos;], { type: &apos;language&apos; });
-languageNames.of(&apos;fr&apos;);
-// → &apos;法文&apos;
-languageNames.of(&apos;zh&apos;);
-// → &apos;中文&apos;
-languageNames.of(&apos;de&apos;);
-// → &apos;德文&apos;
+const languageNames = new Intl.DisplayNames(['zh-Hant'], { type: 'language' });
+languageNames.of('fr');
+// → '法文'
+languageNames.of('zh');
+// → '中文'
+languageNames.of('de');
+// → '德文'
 ```
 
 El siguiente ejemplo obtiene nombres de monedas en chino simplificado utilizando [códigos de moneda de 3 letras según ISO-4217](https://www.iso.org/iso-4217-currency-codes.html). En idiomas que tienen formas singulares y plurales distintas, los nombres de las monedas son singulares. Para las formas plurales, se puede usar [`Intl.NumberFormat`](https://v8.dev/features/intl-numberformat).
 
 ```js
-const currencyNames = new Intl.DisplayNames([&apos;zh-Hans&apos;], {type: &apos;currency&apos;});
-currencyNames.of(&apos;USD&apos;);
-// → &apos;美元&apos;
-currencyNames.of(&apos;EUR&apos;);
-// → &apos;欧元&apos;
-currencyNames.of(&apos;JPY&apos;);
-// → &apos;日元&apos;
-currencyNames.of(&apos;CNY&apos;);
-// → &apos;人民币&apos;
+const currencyNames = new Intl.DisplayNames(['zh-Hans'], {type: 'currency'});
+currencyNames.of('USD');
+// → '美元'
+currencyNames.of('EUR');
+// → '欧元'
+currencyNames.of('JPY');
+// → '日元'
+currencyNames.of('CNY');
+// → '人民币'
 ```
 
 El siguiente ejemplo muestra el tipo final que se admite, escrituras, en inglés, utilizando [códigos de escrituras de 4 letras según ISO-15924](http://unicode.org/iso15924/iso15924-codes.html).
 
 ```js
-const scriptNames = new Intl.DisplayNames([&apos;en&apos;], { type: &apos;script&apos; });
-scriptNames.of(&apos;Latn&apos;);
-// → &apos;Latin&apos;
-scriptNames.of(&apos;Arab&apos;);
-// → &apos;Arabic&apos;
-scriptNames.of(&apos;Kana&apos;);
-// → &apos;Katakana&apos;
+const scriptNames = new Intl.DisplayNames(['en'], { type: 'script' });
+scriptNames.of('Latn');
+// → 'Latin'
+scriptNames.of('Arab');
+// → 'Arabic'
+scriptNames.of('Kana');
+// → 'Katakana'
 ```
 
 Para un uso más avanzado, el segundo parámetro `options` también admite la propiedad `style`. La propiedad `style` corresponde a la dimensión del nombre de visualización y puede ser `"long"`, `"short"`, o `"narrow"`. Los valores para los diferentes estilos no siempre difieren. El valor predeterminado es `"long"`.
 
 ```js
-const longLanguageNames = new Intl.DisplayNames([&apos;en&apos;], { type: &apos;language&apos; });
-longLanguageNames.of(&apos;en-US&apos;);
-// → &apos;American English&apos;
-const shortLanguageNames = new Intl.DisplayNames([&apos;en&apos;], { type: &apos;language&apos;, style: &apos;short&apos; });
-shortLanguageNames.of(&apos;en-US&apos;);
-// → &apos;US English&apos;
-const narrowLanguageNames = new Intl.DisplayNames([&apos;en&apos;], { type: &apos;language&apos;, style: &apos;narrow&apos; });
-narrowLanguageNames.of(&apos;en-US&apos;);
-// → &apos;US English&apos;
+const longLanguageNames = new Intl.DisplayNames(['en'], { type: 'language' });
+longLanguageNames.of('en-US');
+// → 'American English'
+const shortLanguageNames = new Intl.DisplayNames(['en'], { type: 'language', style: 'short' });
+shortLanguageNames.of('en-US');
+// → 'US English'
+const narrowLanguageNames = new Intl.DisplayNames(['en'], { type: 'language', style: 'narrow' });
+narrowLanguageNames.of('en-US');
+// → 'US English'
 ```
 
 ## API completa

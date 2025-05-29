@@ -1,13 +1,13 @@
 ---
-title: &apos;Chrome 96でWebAssembly Dynamic Tieringを試す準備が整いました&apos;
-author: &apos;Andreas Haas — Tierisch fun&apos;
+title: 'Chrome 96でWebAssembly Dynamic Tieringを試す準備が整いました'
+author: 'Andreas Haas — Tierisch fun'
 avatars:
   - andreas-haas
 date: 2021-10-29
 tags:
   - WebAssembly
-description: &apos;V8 v9.6およびChrome 96で、コマンドラインフラグまたはオリジントライアルを通じてWebAssembly Dynamic Tieringを試す準備が整いました&apos;
-tweet: &apos;1454158971674271760&apos;
+description: 'V8 v9.6およびChrome 96で、コマンドラインフラグまたはオリジントライアルを通じてWebAssembly Dynamic Tieringを試す準備が整いました'
+tweet: '1454158971674271760'
 ---
 
 V8には、WebAssemblyコードを機械コードにコンパイルして実行できる2つのコンパイラが存在します。それは__Liftoff__（ベースラインコンパイラ）と__TurboFan__（最適化コンパイラ）です。LiftoffはTurboFanよりも高速にコードを生成できるため、迅速な起動時間を実現します。一方、TurboFanはより高速なコードを生成できるため、高いピークパフォーマンスが可能になります。

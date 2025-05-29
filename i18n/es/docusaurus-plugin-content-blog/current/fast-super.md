@@ -1,13 +1,13 @@
 ---
-title: &apos;Acceso súper rápido a propiedades `super`&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), optimizadora super&apos;
+title: 'Acceso súper rápido a propiedades `super`'
+author: '[Marja Hölttä](https://twitter.com/marjakh), optimizadora super'
 avatars:
   - marja-holtta
 date: 2021-02-18
 tags:
   - JavaScript
-description: &apos;Acceso más rápido a propiedades super en V8 v9.0&apos;
-tweet: &apos;1362465295848333316&apos;
+description: 'Acceso más rápido a propiedades super en V8 v9.0'
+tweet: '1362465295848333316'
 ---
 
 La palabra clave [`super`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super) puede ser utilizada para acceder a propiedades y funciones en el objeto padre.
@@ -106,7 +106,7 @@ El código optimizado se volvió aún más óptimo cuando movimos el objeto de o
 
 ```javascript
 const myproto = {
-  __proto__: { &apos;x&apos;: 100 },
+  __proto__: { 'x': 100 },
   m() { return super.x; }
 };
 const o = { __proto__: myproto };

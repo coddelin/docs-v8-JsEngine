@@ -1,21 +1,21 @@
 ---
-title: &apos;Coalescencia nula&apos;
-author: &apos;Justin Ridgewell&apos;
+title: 'Coalescencia nula'
+author: 'Justin Ridgewell'
 avatars:
-  - &apos;justin-ridgewell&apos;
+  - 'justin-ridgewell'
 date: 2019-09-17
 tags:
   - ECMAScript
   - ES2020
-description: &apos;El operador de coalescencia nula de JavaScript permite expresiones predeterminadas más seguras.&apos;
-tweet: &apos;1173971116865523714&apos;
+description: 'El operador de coalescencia nula de JavaScript permite expresiones predeterminadas más seguras.'
+tweet: '1173971116865523714'
 ---
 La [propuesta de coalescencia nula](https://github.com/tc39/proposal-nullish-coalescing/) (`??`) agrega un nuevo operador de cortocircuito destinado a manejar valores predeterminados.
 
 Probablemente ya estés familiarizado con los otros operadores de cortocircuito `&&` y `||`. Ambos operadores manejan valores “truthy” y “falsy”. Imagina el ejemplo de código `lhs && rhs`. Si `lhs` (_lado izquierdo_) es falsy, la expresión se evalúa como `lhs`. De lo contrario, se evalúa como `rhs` (_lado derecho_). Lo opuesto ocurre con el ejemplo de código `lhs || rhs`. Si `lhs` es truthy, la expresión se evalúa como `lhs`. De lo contrario, se evalúa como `rhs`.
 
 <!--truncate-->
-Pero, ¿qué significan exactamente “truthy” y “falsy”? En términos de la especificación, equivale a la operación abstracta [`ToBoolean`](https://tc39.es/ecma262/#sec-toboolean). Para los desarrolladores regulares de JavaScript, **todo** es truthy excepto los valores falsy `undefined`, `null`, `false`, `0`, `NaN`, y la cadena vacía `&apos;&apos;`. (Técnicamente, el valor asociado con `document.all` también es falsy, pero llegaremos a eso más tarde).
+Pero, ¿qué significan exactamente “truthy” y “falsy”? En términos de la especificación, equivale a la operación abstracta [`ToBoolean`](https://tc39.es/ecma262/#sec-toboolean). Para los desarrolladores regulares de JavaScript, **todo** es truthy excepto los valores falsy `undefined`, `null`, `false`, `0`, `NaN`, y la cadena vacía `''`. (Técnicamente, el valor asociado con `document.all` también es falsy, pero llegaremos a eso más tarde).
 
 Entonces, ¿cuál es el problema con `&&` y `||`? ¿Y por qué necesitamos un nuevo operador de coalescencia nula? Es porque esta definición de truthy y falsy no se ajusta a todos los escenarios y esto conduce a errores. Imagina lo siguiente:
 
@@ -37,7 +37,7 @@ function Component(props) {
 }
 ```
 
-Vemos este tipo de errores surgir con todos los valores falsy. Esto podría haberse tratado fácilmente de una cadena opcional (donde la cadena vacía `&apos;&apos;` es considerada una entrada válida), o un número opcional (donde `0` es considerado una entrada válida). Este es un problema tan común que estamos introduciendo el operador de coalescencia nula para manejar este tipo de asignación de valores predeterminados:
+Vemos este tipo de errores surgir con todos los valores falsy. Esto podría haberse tratado fácilmente de una cadena opcional (donde la cadena vacía `''` es considerada una entrada válida), o un número opcional (donde `0` es considerado una entrada válida). Este es un problema tan común que estamos introduciendo el operador de coalescencia nula para manejar este tipo de asignación de valores predeterminados:
 
 ```js
 function Component(props) {
@@ -48,12 +48,12 @@ function Component(props) {
 
 El operador de coalescencia nula (`??`) actúa de manera muy similar al operador `||`, excepto que no usamos “truthy” al evaluar el operador. En su lugar, usamos la definición de “nulo”, que significa “es el valor estrictamente igual a `null` o `undefined`”. Así que imagina la expresión `lhs ?? rhs`: si `lhs` no es nulo, se evalúa como `lhs`. De lo contrario, se evalúa como `rhs`.
 
-Explícitamente, eso significa que los valores `false`, `0`, `NaN`, y la cadena vacía `&apos;&apos;` son todos valores falsy que no son nulos. Cuando estos valores falsy-pero-no-nulos están en el lado izquierdo de un `lhs ?? rhs`, la expresión se evalúa como ellos en lugar del lado derecho. ¡Adiós a los errores!
+Explícitamente, eso significa que los valores `false`, `0`, `NaN`, y la cadena vacía `''` son todos valores falsy que no son nulos. Cuando estos valores falsy-pero-no-nulos están en el lado izquierdo de un `lhs ?? rhs`, la expresión se evalúa como ellos en lugar del lado derecho. ¡Adiós a los errores!
 
 ```js
 false ?? true;   // => false
 0 ?? 1;          // => 0
-&apos;&apos; ?? &apos;default&apos;; // => &apos;&apos;
+'' ?? 'default'; // => ''
 
 null ?? [];      // => []
 undefined ?? []; // => []
@@ -78,13 +78,13 @@ Pero estas pruebas de igualdad estricta solo para `undefined` no siempre son des
 
 ```js
 // Coalescencia nula concisa
-const link = document.querySelector(&apos;link&apos;) ?? document.createElement(&apos;link&apos;);
+const link = document.querySelector('link') ?? document.createElement('link');
 
 // Estructuración predeterminada con plantilla inicial
 const {
-  link = document.createElement(&apos;link&apos;),
+  link = document.createElement('link'),
 } = {
-  link: document.querySelector(&apos;link&apos;) || undefined
+  link: document.querySelector('link') || undefined
 };
 ```
 
@@ -92,11 +92,11 @@ Además, ciertas características nuevas como [chaining opcional](/features/opti
 
 ```js
 // Chaining opcional y coalescencia nulosa combinados
-const link = obj.deep?.container.link ?? document.createElement(&apos;link&apos;);
+const link = obj.deep?.container.link ?? document.createElement('link');
 
 // Estructuración predeterminada con chaining opcional
 const {
-  link = document.createElement(&apos;link&apos;),
+  link = document.createElement('link'),
 } = (obj.deep?.container || {});
 ```
 

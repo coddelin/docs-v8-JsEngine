@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 リリース v7.6&apos;
-author: &apos;Adam Klein&apos;
+title: 'V8 リリース v7.6'
+author: 'Adam Klein'
 avatars:
-  - &apos;adam-klein&apos;
+  - 'adam-klein'
 date: 2019-06-19 16:45:00
 tags:
   - リリース
-description: &apos;V8 v7.6では、Promise.allSettled、高速なJSON.parse、ローカライズされたBigInts、より迅速な凍結/封印された配列など、多くの新機能が追加されています！&apos;
-tweet: &apos;1141356209179516930&apos;
+description: 'V8 v7.6では、Promise.allSettled、高速なJSON.parse、ローカライズされたBigInts、より迅速な凍結/封印された配列など、多くの新機能が追加されています！'
+tweet: '1141356209179516930'
 ---
 6週間ごとに、私たちはV8の新しいブランチを作成します。これは[リリースプロセス](/docs/release-process)の一環です。各バージョンはChrome Betaマイルストーンの直前にV8のGitマスターから分岐します。本日、数週間後にChrome 76 Stableと協調してリリースされるまでベータ版である、最新のブランチ[V8 バージョン 7.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.6)を発表できることを嬉しく思います。V8 v7.6には開発者向けの数多くの機能が盛り込まれています。この投稿では、リリース前に注目すべきポイントのいくつかを紹介します。
 
@@ -55,23 +55,23 @@ V8 v7.5まで、JSONパーサーは受信JSONデータのネスト深度に応�
 [`BigInt`](/features/bigint)は、言語内のAPIサポートが改善されました。`toLocaleString`メソッドを使用することで、`BigInt`をローカルに対応した形式でフォーマットできるようになりました。これは通常の数値と同様に動作します。
 
 ```js
-12345678901234567890n.toLocaleString(&apos;en&apos;); // 🐌
-// → &apos;12,345,678,901,234,567,890&apos;
-12345678901234567890n.toLocaleString(&apos;de&apos;); // 🐌
-// → &apos;12.345.678.901.234.567.890&apos;
+12345678901234567890n.toLocaleString('en'); // 🐌
+// → '12,345,678,901,234,567,890'
+12345678901234567890n.toLocaleString('de'); // 🐌
+// → '12.345.678.901.234.567.890'
 ```
 
 複数の数値や`BigInt`を同じロケールでフォーマットする予定がある場合は、現在`BigInt`をサポートしている`Intl.NumberFormat` APIの`format`と`formatToParts`メソッドを使用すると効率的です。この方法では、再利用可能な単一のフォーマットインスタンスを作成できます。
 
 ```js
-const nf = new Intl.NumberFormat(&apos;fr&apos;);
+const nf = new Intl.NumberFormat('fr');
 nf.format(12345678901234567890n); // 🚀
-// → &apos;12 345 678 901 234 567 890&apos;
+// → '12 345 678 901 234 567 890'
 nf.formatToParts(123456n); // 🚀
 // → [
-// →   { type: &apos;integer&apos;, value: &apos;123&apos; },
-// →   { type: &apos;group&apos;, value: &apos; &apos; },
-// →   { type: &apos;integer&apos;, value: &apos;456&apos; }
+// →   { type: 'integer', value: '123' },
+// →   { type: 'group', value: ' ' },
+// →   { type: 'integer', value: '456' }
 // → ]
 ```
 
@@ -80,38 +80,38 @@ nf.formatToParts(123456n); // 🚀
 アプリは通常、ホテルの予約、サービスの請求期間、音楽フェスティバルなどのイベントの期間を示すために、日時間隔や範囲を表示します。`Intl.DateTimeFormat` API は、ロケール固有の形式で日時範囲を便利にフォーマットするための `formatRange` および `formatRangeToParts` メソッドをサポートするようになりました。
 
 ```js
-const start = new Date(&apos;2019-05-07T09:20:00&apos;);
-// → &apos;2019年5月7日&apos;
-const end = new Date(&apos;2019-05-09T16:00:00&apos;);
-// → &apos;2019年5月9日&apos;
-const fmt = new Intl.DateTimeFormat(&apos;en&apos;, {
-  year: &apos;numeric&apos;,
-  month: &apos;long&apos;,
-  day: &apos;numeric&apos;,
+const start = new Date('2019-05-07T09:20:00');
+// → '2019年5月7日'
+const end = new Date('2019-05-09T16:00:00');
+// → '2019年5月9日'
+const fmt = new Intl.DateTimeFormat('en', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
 });
 const output = fmt.formatRange(start, end);
-// → &apos;2019年5月7日～9日&apos;
+// → '2019年5月7日～9日'
 const parts = fmt.formatRangeToParts(start, end);
 // → [
-// →   { &apos;type&apos;: &apos;month&apos;,   &apos;value&apos;: &apos;May&apos;,  &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;literal&apos;, &apos;value&apos;: &apos; &apos;,    &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;day&apos;,     &apos;value&apos;: &apos;7&apos;,    &apos;source&apos;: &apos;startRange&apos; },
-// →   { &apos;type&apos;: &apos;literal&apos;, &apos;value&apos;: &apos; – &apos;,  &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;day&apos;,     &apos;value&apos;: &apos;9&apos;,    &apos;source&apos;: &apos;endRange&apos; },
-// →   { &apos;type&apos;: &apos;literal&apos;, &apos;value&apos;: &apos;, &apos;,   &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;year&apos;,    &apos;value&apos;: &apos;2019&apos;, &apos;source&apos;: &apos;shared&apos; },
+// →   { 'type': 'month',   'value': 'May',  'source': 'shared' },
+// →   { 'type': 'literal', 'value': ' ',    'source': 'shared' },
+// →   { 'type': 'day',     'value': '7',    'source': 'startRange' },
+// →   { 'type': 'literal', 'value': ' – ',  'source': 'shared' },
+// →   { 'type': 'day',     'value': '9',    'source': 'endRange' },
+// →   { 'type': 'literal', 'value': ', ',   'source': 'shared' },
+// →   { 'type': 'year',    'value': '2019', 'source': 'shared' },
 // → ]
 ```
 
 さらに、`format`、`formatToParts`、および `formatRangeToParts` メソッドでは、新しい `timeStyle` および `dateStyle` オプションがサポートされるようになりました:
 
 ```js
-const dtf = new Intl.DateTimeFormat(&apos;de&apos;, {
-  timeStyle: &apos;medium&apos;,
-  dateStyle: &apos;short&apos;
+const dtf = new Intl.DateTimeFormat('de', {
+  timeStyle: 'medium',
+  dateStyle: 'short'
 });
 dtf.format(Date.now());
-// → &apos;19.06.19, 13:33:37&apos;
+// → '19.06.19, 13:33:37'
 ```
 
 ## ネイティブスタックウォーキング

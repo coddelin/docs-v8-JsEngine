@@ -1,13 +1,13 @@
 ---
-title: &apos;Importbedingungen&apos;
-author: &apos;Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), entschlossener Importeur von Importbedingungen&apos;
+title: 'Importbedingungen'
+author: 'Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), entschlossener Importeur von Importbedingungen'
 avatars:
-  - &apos;dan-clark&apos;
+  - 'dan-clark'
 date: 2021-06-15
 tags:
   - ECMAScript
-description: &apos;Importbedingungen ermöglichen es, dass Modulimportanweisungen zusätzliche Informationen neben dem Modulspezifizierer enthalten&apos;
-tweet: &apos;&apos;
+description: 'Importbedingungen ermöglichen es, dass Modulimportanweisungen zusätzliche Informationen neben dem Modulspezifizierer enthalten'
+tweet: ''
 ---
 
 Die neue Funktion [Importbedingungen](https://github.com/tc39/proposal-import-assertions) ermöglicht es, dass Modulimportanweisungen zusätzliche Informationen neben dem Modulspezifizierer enthalten. Eine erste Anwendung dieser Funktion besteht darin, JSON-Dokumente als [JSON-Module](https://github.com/tc39/proposal-json-modules) zu importieren:
@@ -20,7 +20,7 @@ Die neue Funktion [Importbedingungen](https://github.com/tc39/proposal-import-as
 
 ```javascript
 // main.mjs
-import json from &apos;./foo.json&apos; assert { type: &apos;json&apos; };
+import json from './foo.json' assert { type: 'json' };
 console.log(json.answer); // 42
 ```
 
@@ -29,7 +29,7 @@ console.log(json.answer); // 42
 Eine natürliche Frage wäre, warum ein JSON-Modul nicht einfach wie folgt importiert werden könnte:
 
 ```javascript
-import json from &apos;./foo.json&apos;;
+import json from './foo.json';
 ```
 
 Die Webplattform überprüft den MIME-Typ einer Modulressource auf Gültigkeit, bevor sie ausgeführt wird, und theoretisch könnte dieser MIME-Typ auch verwendet werden, um zu bestimmen, ob die Ressource als JSON- oder als JavaScript-Modul behandelt werden soll.
@@ -43,7 +43,7 @@ Allerdings kann ein bösartiges Drittanbieterskript in diesem Szenario tatsächl
 ```javascript
 // Führt JS aus, wenn evil.com mit einem
 // JavaScript-MIME-Typ antwortet (z. B. `text/javascript`)!
-import data from &apos;https://evil.com/data.json&apos;;
+import data from 'https://evil.com/data.json';
 ```
 
 Dateiendungen können nicht verwendet werden, um die Bestimmung des Modultyps zu treffen, da sie [kein verlässlicher Indikator für den Inhaltstyp im Web sind](https://github.com/tc39/proposal-import-assertions/blob/master/content-type-vs-file-extension.md). Stattdessen verwenden wir Importbedingungen, um den erwarteten Modultyp anzugeben und diesen Privilegieneskalationsfehler zu verhindern.
@@ -52,7 +52,7 @@ Wenn ein Entwickler ein JSON-Modul importieren möchte, muss er eine Importbedin
 
 ```javascript
 // Schlägt fehl, wenn evil.com eine Antwort mit einem Nicht-JSON-MIME-Typ gibt.
-import data from &apos;https://evil.com/data.json&apos; assert { type: &apos;json&apos; };
+import data from 'https://evil.com/data.json' assert { type: 'json' };
 ```
 
 ## Dynamischer `import()`
@@ -66,8 +66,8 @@ Importbedingungen können auch an [dynamische `import()`](https://v8.dev/feature
 
 ```javascript
 // main.mjs
-const jsonModule = await import(&apos;./foo.json&apos;, {
-  assert: { type: &apos;json&apos; }
+const jsonModule = await import('./foo.json', {
+  assert: { type: 'json' }
 });
 console.log(jsonModule.default.answer); // 42
 ```

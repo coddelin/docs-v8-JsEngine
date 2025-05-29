@@ -1,14 +1,14 @@
 ---
-title: &apos;ECMAScript 사양 이해하기, 파트 2&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), 추측적 사양 관찰자&apos;
+title: 'ECMAScript 사양 이해하기, 파트 2'
+author: '[Marja Hölttä](https://twitter.com/marjakh), 추측적 사양 관찰자'
 avatars:
   - marja-holtta
 date: 2020-03-02
 tags:
   - ECMAScript
   - ECMAScript 이해하기
-description: &apos;ECMAScript 사양 읽기에 대한 튜토리얼, 파트 2&apos;
-tweet: &apos;1234550773629014016&apos;
+description: 'ECMAScript 사양 읽기에 대한 튜토리얼, 파트 2'
+tweet: '1234550773629014016'
 ---
 
 우리는 사양 읽기 기술을 더 연습해볼 것입니다. 이전 에피소드를 아직 보지 않았다면, 지금 확인해보세요!
@@ -179,7 +179,7 @@ MemberExpression :
   new MemberExpression Arguments
 ```
 
-여기서는 `MemberExpression`에 대한 7개의 프로덕션을 정의하고 있습니다. `MemberExpression`은 단순히 `PrimaryExpression` 일 수 있습니다. 또는, 다른 `MemberExpression`과 `Expression`을 조합하여 `MemberExpression [ Expression ]`, 예를 들어 `o2[&apos;foo&apos;]` 처럼 구성할 수 있습니다. 혹은 `MemberExpression . IdentifierName`, 예를 들어 `o2.foo`와 같이 될 수 있는데, 이것이 우리의 예제에서 관련된 프로덕션입니다.
+여기서는 `MemberExpression`에 대한 7개의 프로덕션을 정의하고 있습니다. `MemberExpression`은 단순히 `PrimaryExpression` 일 수 있습니다. 또는, 다른 `MemberExpression`과 `Expression`을 조합하여 `MemberExpression [ Expression ]`, 예를 들어 `o2['foo']` 처럼 구성할 수 있습니다. 혹은 `MemberExpression . IdentifierName`, 예를 들어 `o2.foo`와 같이 될 수 있는데, 이것이 우리의 예제에서 관련된 프로덕션입니다.
 
 `MemberExpression : MemberExpression . IdentifierName` 프로덕션의 런타임 의미는 이를 평가할 때 수행해야 할 단계들을 정의합니다:
 

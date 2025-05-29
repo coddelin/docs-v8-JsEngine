@@ -1,13 +1,13 @@
 ---
-title: &apos;V8-Version v9.0&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), steht inline&apos;
+title: 'V8-Version v9.0'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), steht inline'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-03-17
 tags:
  - Veröffentlichung
-description: &apos;Die V8-Version v9.0 bringt Unterstützung für RegExp-Match-Indizes und verschiedene Leistungsverbesserungen.&apos;
-tweet: &apos;1372227274712494084&apos;
+description: 'Die V8-Version v9.0 bringt Unterstützung für RegExp-Match-Indizes und verschiedene Leistungsverbesserungen.'
+tweet: '1372227274712494084'
 ---
 Alle sechs Wochen erstellen wir einen neuen Branch von V8 im Rahmen unseres [Veröffentlichungsprozesses](https://v8.dev/docs/release-process). Jede Version wird direkt vor einem Chrome-Beta-Meilenstein aus V8s Git-Master verzweigt. Heute freuen wir uns, unseren neuesten Branch, [V8-Version 9.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.0), ankündigen zu können, der bis zur Veröffentlichung in Zusammenarbeit mit Chrome 90 Stable in einigen Wochen in der Beta-Version bleibt. V8 v9.0 ist vollgepackt mit allerlei Entwickler-Features. Dieser Beitrag bietet eine Vorschau auf einige der Highlights zur Vorbereitung auf die Veröffentlichung.
 
@@ -20,7 +20,7 @@ Ab Version 9.0 können Entwickler optional ein Array mit den Start- und Endposit
 
 ```javascript
 const re = /(a)(b)/d;      // Beachten Sie das /d-Flag.
-const m = re.exec(&apos;ab&apos;);
+const m = re.exec('ab');
 console.log(m.indices[0]); // Index 0 ist das gesamte Match.
 // → [0, 2]
 console.log(m.indices[1]); // Index 1 ist die 1. Erfassungsgruppe.

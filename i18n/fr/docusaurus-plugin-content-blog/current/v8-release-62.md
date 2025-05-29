@@ -54,8 +54,8 @@ Le support [du mode `dotAll`](https://github.com/tc39/proposal-regexp-dotall-fla
 [Assertions de lookbehind](https://github.com/tc39/proposal-regexp-lookbehind), une autre nouvelle fonctionnalité des expressions régulières, sont désormais disponibles par défaut. Le nom décrit déjà assez bien leur signification. Les assertions de lookbehind offrent une manière de restreindre un motif afin qu'il ne corresponde que s'il est précédé par le motif du groupe de lookbehind. Cela existe sous forme assortie et non assortie :
 
 ```js
-/(?<=\$)\d+/.exec(&apos;$1 vaut environ ¥123&apos;); // [&apos;1&apos;]
-/(?<!\$)\d+/.exec(&apos;$1 vaut environ ¥123&apos;); // [&apos;123&apos;]
+/(?<=\$)\d+/.exec('$1 vaut environ ¥123'); // ['1']
+/(?<!\$)\d+/.exec('$1 vaut environ ¥123'); // ['123']
 ```
 
 Plus de détails sur ces fonctionnalités sont disponibles dans notre article de blog intitulé [Fonctionnalités futures des expressions régulières](https://developers.google.com/web/updates/2017/07/upcoming-regexp-features).

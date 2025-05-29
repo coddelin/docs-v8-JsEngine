@@ -1,13 +1,13 @@
 ---
-title: &apos;Llamadas internas cortas&apos;
-author: &apos;[Toon Verwaest](https://twitter.com/tverwaes), The Big Short&apos;
+title: 'Llamadas internas cortas'
+author: '[Toon Verwaest](https://twitter.com/tverwaes), The Big Short'
 avatars:
   - toon-verwaest
 date: 2021-05-06
 tags:
   - JavaScript
-description: &apos;En V8 v9.1 hemos deshabilitado temporalmente los builtins incrustados en el escritorio para evitar problemas de rendimiento debido a llamadas indirectas lejanas.&apos;
-tweet: &apos;1394267917013897216&apos;
+description: 'En V8 v9.1 hemos deshabilitado temporalmente los builtins incrustados en el escritorio para evitar problemas de rendimiento debido a llamadas indirectas lejanas.'
+tweet: '1394267917013897216'
 ---
 
 En V8 v9.1 hemos deshabilitado temporalmente los [builtins incrustados](https://v8.dev/blog/embedded-builtins) en el escritorio. Si bien incrustar builtins mejora significativamente el uso de memoria, nos hemos dado cuenta de que las llamadas a funciones entre builtins incrustados y código compilado por JIT pueden conllevar un considerable costo de rendimiento. Este costo depende de la microarquitectura de la CPU. En esta publicación explicaremos por qué sucede esto, cómo se ve el rendimiento y qué planeamos hacer para resolverlo a largo plazo.

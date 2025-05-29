@@ -1,11 +1,11 @@
 ---
-title: &apos;Referencias débiles y finalizadores&apos;
-author: &apos;Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), y Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))&apos;
+title: 'Referencias débiles y finalizadores'
+author: 'Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), y Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))'
 avatars:
-- &apos;sathya-gunasekaran&apos;
-- &apos;mathias-bynens&apos;
-- &apos;shu-yu-guo&apos;
-- &apos;leszek-swirski&apos;
+- 'sathya-gunasekaran'
+- 'mathias-bynens'
+- 'shu-yu-guo'
+- 'leszek-swirski'
 date: 2019-07-09
 updated: 2020-06-19
 tags:
@@ -13,8 +13,8 @@ tags:
   - ES2021
   - io19
   - Node.js 14
-description: &apos;¡Referencias débiles y finalizadores están llegando a JavaScript! Este artículo explica la nueva funcionalidad.&apos;
-tweet: &apos;1148603966848151553&apos;
+description: '¡Referencias débiles y finalizadores están llegando a JavaScript! Este artículo explica la nueva funcionalidad.'
+tweet: '1148603966848151553'
 ---
 Generalmente, las referencias a los objetos se mantienen _fuertemente_ en JavaScript, lo que significa que mientras tengas una referencia al objeto, no será recolectado por el recolector de basura.
 
@@ -30,7 +30,7 @@ Actualmente, `WeakMap`s y `WeakSet`s son la única forma de referenciar de maner
 const wm = new WeakMap();
 {
   const ref = {};
-  const metaData = &apos;foo&apos;;
+  const metaData = 'foo';
   wm.set(ref, metaData);
   wm.get(ref);
   // → metaData
@@ -68,7 +68,7 @@ class MovingAvg {
     this.events = [];
     this.socket = socket;
     this.listener = (ev) => { this.events.push(ev); };
-    socket.addEventListener(&apos;message&apos;, this.listener);
+    socket.addEventListener('message', this.listener);
   }
 
   compute(n) {
@@ -124,11 +124,11 @@ class MovingAvg {
     this.events = [];
     this.socket = socket;
     this.listener = (ev) => { this.events.push(ev); };
-    socket.addEventListener(&apos;message&apos;, this.listener);
+    socket.addEventListener('message', this.listener);
   }
 
   dispose() {
-    this.socket.removeEventListener(&apos;message&apos;, this.listener);
+    this.socket.removeEventListener('message', this.listener);
   }
 
   // …
@@ -143,7 +143,7 @@ Los `WeakRef` hacen posible resolver este dilema creando una _referencia débil_
 function addWeakListener(socket, listener) {
   const weakRef = new WeakRef(listener);
   const wrapper = (ev) => { weakRef.deref()?.(ev); };
-  socket.addEventListener(&apos;message&apos;, wrapper);
+  socket.addEventListener('message', wrapper);
 }
 
 class MovingAvg {
@@ -187,14 +187,14 @@ Podemos registrar una devolución de llamada con un `FinalizationRegistry` para 
 
 ```js
 const gListenersRegistry = new FinalizationRegistry(({ socket, wrapper }) => {
-  socket.removeEventListener(&apos;message&apos;, wrapper); // 6
+  socket.removeEventListener('message', wrapper); // 6
 });
 
 function addWeakListener(socket, listener) {
   const weakRef = new WeakRef(listener); // 2
   const wrapper = (ev) => { weakRef.deref()?.(ev); }; // 3
   gListenersRegistry.register(listener, { socket, wrapper }); // 4
-  socket.addEventListener(&apos;message&apos;, wrapper); // 5
+  socket.addEventListener('message', wrapper); // 5
 }
 
 class MovingAvg {

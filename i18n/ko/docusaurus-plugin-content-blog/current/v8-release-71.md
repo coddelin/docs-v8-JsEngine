@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 릴리즈 v7.1&apos;
-author: &apos;Stephan Herhut ([@herhut](https://twitter.com/herhut)), 클론 클론에서 클론된 클론자&apos;
+title: 'V8 릴리즈 v7.1'
+author: 'Stephan Herhut ([@herhut](https://twitter.com/herhut)), 클론 클론에서 클론된 클론자'
 avatars:
   - stephan-herhut
 date: 2018-10-31 15:44:37
 tags:
   - release
-description: &apos;V8 v7.1은 임베디드 바이트코드 핸들러, 개선된 TurboFan 탈출 분석, postMessage(wasmModule), Intl.RelativeTimeFormat, 그리고 globalThis를 제공합니다!&apos;
-tweet: &apos;1057645773465235458&apos;
+description: 'V8 v7.1은 임베디드 바이트코드 핸들러, 개선된 TurboFan 탈출 분석, postMessage(wasmModule), Intl.RelativeTimeFormat, 그리고 globalThis를 제공합니다!'
+tweet: '1057645773465235458'
 ---
 매 6주마다 우리는 [릴리즈 프로세스](/docs/release-process)의 일환으로 새로운 V8 브랜치를 생성합니다. 각 버전은 Chrome 베타 마일스톤 직전에 V8의 Git 마스터로부터 브랜치됩니다. 오늘 우리는 최신 브랜치 [V8 버전 7.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.1)을 발표하게 되어 기쁩니다. 이는 몇 주 내에 Chrome 71 안정 버전과 함께 출시될 때까지 베타 상태에 있습니다. V8 v7.1은 모든 종류의 개발자 친화적인 기능으로 가득합니다. 이 게시물은 릴리즈를 앞두고 몇 가지 주요 사항을 미리 살펴봅니다.
 
@@ -57,25 +57,25 @@ function sum2(x, y) {
 
 ```js
 // 항상 숫자 값을 출력에 사용할 필요가 없는 영어용 상대 시간 포맷터를 만듭니다.
-const rtf = new Intl.RelativeTimeFormat(&apos;en&apos;, { numeric: &apos;auto&apos; });
+const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 
-rtf.format(-1, &apos;day&apos;);
-// → &apos;어제&apos;
+rtf.format(-1, 'day');
+// → '어제'
 
-rtf.format(0, &apos;day&apos;);
-// → &apos;오늘&apos;
+rtf.format(0, 'day');
+// → '오늘'
 
-rtf.format(1, &apos;day&apos;);
-// → &apos;내일&apos;
+rtf.format(1, 'day');
+// → '내일'
 
-rtf.format(-1, &apos;week&apos;);
-// → &apos;지난 주&apos;
+rtf.format(-1, 'week');
+// → '지난 주'
 
-rtf.format(0, &apos;week&apos;);
-// → &apos;이번 주&apos;
+rtf.format(0, 'week');
+// → '이번 주'
 
-rtf.format(1, &apos;week&apos;);
-// → &apos;다음 주&apos;
+rtf.format(1, 'week');
+// → '다음 주'
 ```
 
 [우리 `Intl.RelativeTimeFormat` 분석서](/features/intl-relativetimeformat)를 읽고 더 많은 정보를 얻으세요.

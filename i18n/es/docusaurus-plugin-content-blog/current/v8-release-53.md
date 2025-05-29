@@ -1,10 +1,10 @@
 ---
-title: &apos;Lanzamiento de V8 v5.3&apos;
-author: &apos;el equipo de V8&apos;
+title: 'Lanzamiento de V8 v5.3'
+author: 'el equipo de V8'
 date: 2016-07-18 13:33:37
 tags:
   - lanzamiento
-description: &apos;V8 v5.3 incluye mejoras de rendimiento y un menor consumo de memoria.&apos;
+description: 'V8 v5.3 incluye mejoras de rendimiento y un menor consumo de memoria.'
 ---
 Aproximadamente cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se toma de la rama principal de Git de V8 inmediatamente antes de que Chrome cree una rama para un hito de Chrome Beta. Hoy nos complace anunciar nuestra nueva rama, [la versión 5.3 de V8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.3), que estará en beta hasta que se lance en coordinación con Chrome 53 Stable. V8 v5.3 está llena de todo tipo de novedades para desarrolladores, por lo que nos gustaría ofrecerte un adelanto de algunos de los aspectos destacados en anticipación al lanzamiento en varias semanas.
 

@@ -1,6 +1,6 @@
 ---
-title: &apos;Utilisation du profileur basé sur échantillons de V8&apos;
-description: &apos;Ce document explique comment utiliser le profileur basé sur échantillons de V8.&apos;
+title: 'Utilisation du profileur basé sur échantillons de V8'
+description: 'Ce document explique comment utiliser le profileur basé sur échantillons de V8.'
 ---
 V8 dispose d'un profilage intégré basé sur des échantillons. Le profilage est désactivé par défaut, mais peut être activé via l'option de ligne de commande `--prof`. L'échantillonneur enregistre les piles de code JavaScript et de code C/C++.
 
@@ -116,7 +116,7 @@ Utilisons ce profileur pour examiner la démo [Mandelbrot Explorer](https://web.
 Mais que faire si vous voulez que le code s'exécute plus rapidement sur tous les navigateurs ? Vous devriez d'abord **comprendre ce qui occupe votre CPU**. Exécutez Chrome (Windows et Linux [Canary](https://tools.google.com/dlpage/chromesxs)) avec les options de ligne de commande suivantes, ce qui lui permet de générer des informations sur les ticks du profileur (dans le fichier `v8.log`) pour l'URL que vous spécifiez, ce qui dans notre cas était une version locale de la démo Mandelbrot sans web workers :
 
 ```bash
-./chrome --js-flags=&apos;--prof&apos; --no-sandbox &apos;http://localhost:8080/&apos;
+./chrome --js-flags='--prof' --no-sandbox 'http://localhost:8080/'
 ```
 
 Lors de la préparation du cas de test, assurez-vous qu'il commence son travail immédiatement après le chargement et fermez Chrome une fois le calcul terminé (appuyez sur Alt+F4), afin que seuls les ticks pertinents soient dans le fichier journal. Notez également que les web workers ne sont pas encore correctement profilés avec cette technique.

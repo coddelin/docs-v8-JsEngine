@@ -1,13 +1,13 @@
 ---
-title: &apos;Statische Initialisierungsblöcke von Klassen&apos;
-author: &apos;Shu-yu Guo ([@_shu](https://twitter.com/_shu))&apos;
+title: 'Statische Initialisierungsblöcke von Klassen'
+author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
 avatars:
-  - &apos;shu-yu-guo&apos;
+  - 'shu-yu-guo'
 date: 2021-03-30
 tags:
   - ECMAScript
-description: &apos;JavaScript-Klassen erhalten eigens entwickelte Syntax für statische Initialisierung.&apos;
-tweet: &apos;1376925666780798989&apos;
+description: 'JavaScript-Klassen erhalten eigens entwickelte Syntax für statische Initialisierung.'
+tweet: '1376925666780798989'
 ---
 Die neue Syntax der statischen Initialisierungsblöcke ermöglicht es Entwicklern, Code zu bündeln, der einmal für eine bestimmte Klassendefinition ausgeführt werden soll, und ihn an einem einzigen Ort zu platzieren. Betrachten Sie das folgende Beispiel, bei dem ein Pseudo-Zufallszahlengenerator einen statischen Block verwendet, um einmalig einen Entropie-Pool zu initialisieren, wenn die `class MyPRNG`-Definition ausgewertet wird.
 
@@ -17,7 +17,7 @@ class MyPRNG {
   constructor(seed) {
     if (seed === undefined) {
       if (MyPRNG.entropyPool.length === 0) {
-        throw new Error(&apos;Entropie-Pool erschöpft&apos;);
+        throw new Error('Entropie-Pool erschöpft');
       }
       seed = MyPRNG.entropyPool.pop();
     }
@@ -40,22 +40,22 @@ class MyPRNG {
 Jeder statische Initialisierungsblock hat seinen eigenen `var`- und `let`/`const`-Scope. Wie bei statischen Feldinitialisierungen bezieht sich der `this`-Wert in statischen Blöcken auf die Klassenkonstruktorfunktion selbst. Ebenso bezieht sich `super.property` innerhalb eines statischen Blocks auf die statische Eigenschaft der Superklasse.
 
 ```js
-var y = &apos;äußeres y&apos;;
+var y = 'äußeres y';
 class A {
-  static fieldA = &apos;A.fieldA&apos;;
+  static fieldA = 'A.fieldA';
 }
 class B extends A {
-  static fieldB = &apos;B.fieldB&apos;;
+  static fieldB = 'B.fieldB';
   static {
     let x = super.fieldA;
-    // → &apos;A.fieldA&apos;
+    // → 'A.fieldA'
     var y = this.fieldB;
-    // → &apos;B.fieldB&apos;
+    // → 'B.fieldB'
   }
 }
 // Da statische Blöcke ihren eigenen `var`-Scope haben, werden `var`s nicht gehoben!
 y;
-// → &apos;äußeres y&apos;
+// → 'äußeres y'
 ```
 
 ## Mehrere Blöcke
@@ -64,13 +64,13 @@ Eine Klasse kann mehr als einen statischen Initialisierungsblock haben. Diese Bl
 
 ```js
 class C {
-  static field1 = console.log(&apos;Feld 1&apos;);
+  static field1 = console.log('Feld 1');
   static {
-    console.log(&apos;statischer Block 1&apos;);
+    console.log('statischer Block 1');
   }
-  static field2 = console.log(&apos;Feld 2&apos;);
+  static field2 = console.log('Feld 2');
   static {
-    console.log(&apos;statischer Block 2&apos;);
+    console.log('statischer Block 2');
   }
 }
 // → Feld 1
@@ -94,7 +94,7 @@ class D {
     getDPrivateField = (d) => d.#privateField;
   }
 }
-getDPrivateField(new D(&apos;privat&apos;));
+getDPrivateField(new D('privat'));
 // → privat
 ```
 

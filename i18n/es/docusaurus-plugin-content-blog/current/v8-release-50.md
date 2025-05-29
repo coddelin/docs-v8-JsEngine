@@ -1,10 +1,10 @@
 ---
-title: &apos;Lanzamiento de V8 v5.0&apos;
-author: &apos;el equipo de V8&apos;
+title: 'Lanzamiento de V8 v5.0'
+author: 'el equipo de V8'
 date: 2016-03-15 13:33:37
 tags:
   - lanzamiento
-description: &apos;V8 v5.0 viene con mejoras de rendimiento y agrega soporte para varias características nuevas del lenguaje ES2015.&apos;
+description: 'V8 v5.0 viene con mejoras de rendimiento y agrega soporte para varias características nuevas del lenguaje ES2015.'
 ---
 El primer paso en el [proceso de lanzamiento](/docs/release-process) de V8 es una nueva rama desde el Git master justo antes de que Chromium divida una rama para un hito Beta de Chrome (aproximadamente cada seis semanas). Nuestra última rama de lanzamiento es [V8 v5.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.0), la cual permanecerá en beta hasta que lancemos una versión estable junto con Chrome 50 Stable. Aquí hay un resumen de las nuevas características dirigidas a los desarrolladores en esta versión de V8.
 
@@ -22,23 +22,23 @@ V8 v5.0 contiene varias características de ES2015 relacionadas con el emparejam
 La [bandera Unicode de RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp#Parameters), `u`, activa un nuevo modo Unicode para el emparejamiento de expresiones regulares. La bandera Unicode trata patrones y cadenas regex como una serie de puntos de código Unicode. También expone nueva sintaxis para escapes de puntos de código Unicode.
 
 ```js
-/😊{2}/.test(&apos;😊😊&apos;);
+/😊{2}/.test('😊😊');
 // false
 
-/😊{2}/u.test(&apos;😊😊&apos;);
+/😊{2}/u.test('😊😊');
 // true
 
-/\u{76}\u{38}/u.test(&apos;v8&apos;);
+/\u{76}\u{38}/u.test('v8');
 // true
 
-/\u{1F60A}/u.test(&apos;😊&apos;);
+/\u{1F60A}/u.test('😊');
 // true
 ```
 
 La bandera `u` también hace que el átomo `.` (también conocido como el emparejador de caracteres único) empareje cualquier símbolo Unicode en lugar de solo los caracteres en el Plano Multilingüe Básico (BMP).
 
 ```js
-const string = &apos;el 🅛 tren&apos;;
+const string = 'el 🅛 tren';
 
 /el\s.\stren/.test(string);
 // false

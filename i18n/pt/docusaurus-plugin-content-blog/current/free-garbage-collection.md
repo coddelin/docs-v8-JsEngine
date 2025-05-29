@@ -1,14 +1,14 @@
 ---
-title: &apos;Obtendo coleta de lixo gratuitamente&apos;
-author: &apos;Hannes Payer e Ross McIlroy, Idle Garbage Collectors&apos;
+title: 'Obtendo coleta de lixo gratuitamente'
+author: 'Hannes Payer e Ross McIlroy, Idle Garbage Collectors'
 avatars:
-  - &apos;hannes-payer&apos;
-  - &apos;ross-mcilroy&apos;
+  - 'hannes-payer'
+  - 'ross-mcilroy'
 date: 2015-08-07 13:33:37
 tags:
   - internals
   - memória
-description: &apos;O Chrome 41 oculta operações caras de gerenciamento de memória dentro de pequenos períodos de tempo ocioso não utilizados, reduzindo o atraso.&apos;
+description: 'O Chrome 41 oculta operações caras de gerenciamento de memória dentro de pequenos períodos de tempo ocioso não utilizados, reduzindo o atraso.'
 ---
 O desempenho do JavaScript continua sendo um dos aspectos-chave dos valores do Chrome, especialmente quando se trata de proporcionar uma experiência suave. A partir do Chrome 41, o V8 aproveita uma nova técnica para aumentar a responsividade de aplicativos web, ocultando operações caras de gerenciamento de memória dentro de pequenos períodos de tempo ocioso não utilizados. Como resultado, os desenvolvedores web devem esperar rolagem suave e animações fluídas com muito menos atrasos devido à coleta de lixo.
 

@@ -1,15 +1,15 @@
 ---
-title: &apos;RegExp `v` 標誌與集合符號及字符串屬性&apos;
-author: &apos;Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'RegExp `v` 標誌與集合符號及字符串屬性'
+author: 'Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mark-davis&apos;
-  - &apos;markus-scherer&apos;
-  - &apos;mathias-bynens&apos;
+  - 'mark-davis'
+  - 'markus-scherer'
+  - 'mathias-bynens'
 date: 2022-06-27
 tags:
   - ECMAScript
-description: &apos;新的 RegExp `v` 標誌啟用了 `unicodeSets` 模式，解鎖了擴展字符類的支持，包括字符串的 Unicode 屬性、集合符號和改進的大小寫不敏感匹配。&apos;
-tweet: &apos;1541419838513594368&apos;
+description: '新的 RegExp `v` 標誌啟用了 `unicodeSets` 模式，解鎖了擴展字符類的支持，包括字符串的 Unicode 屬性、集合符號和改進的大小寫不敏感匹配。'
+tweet: '1541419838513594368'
 ---
 JavaScript 自 ECMAScript 3（1999 年）以來便支持正則表達式。十六年後，ES2015 引入了[Unicode 模式（`u` 標誌）](https://mathiasbynens.be/notes/es6-unicode-regex)、[粘性模式（`y` 標誌）](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky#description)和[ `RegExp.prototype.flags` 的取數器](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/flags)。再過三年，ES2018 引入了[`dotAll` 模式（`s` 標誌）](https://mathiasbynens.be/notes/es-regexp-proposals#dotAll)、[後行斷言](https://mathiasbynens.be/notes/es-regexp-proposals#lookbehinds)、[命名捕獲組](https://mathiasbynens.be/notes/es-regexp-proposals#named-capture-groups)以及[Unicode 字符屬性逃脫](https://mathiasbynens.be/notes/es-unicode-property-escapes)。而在 ES2020 中，[`String.prototype.matchAll`](https://v8.dev/features/string-matchall) 讓使用正則表達式變得更簡單。JavaScript 正則表達式已走過很長一段路，並仍在改進。
 
@@ -38,7 +38,7 @@ ES2018 Unicode 字符屬性逃脫使得在 ECMAScript 正則表達式中可以�
 
 ```js
 const regexGreekSymbol = /\p{Script_Extensions=Greek}/u;
-regexGreekSymbol.test(&apos;π&apos;);
+regexGreekSymbol.test('π');
 // → true
 ```
 
@@ -49,27 +49,27 @@ regexGreekSymbol.test(&apos;π&apos;);
 const re = /^\p{Emoji}$/u;
 
 // 匹配僅由 1 個代碼點組成的表情符號：
-re.test(&apos;⚽&apos;); // &apos;\u26BD&apos;
+re.test('⚽'); // '\u26BD'
 // → true ✅
 
 // 匹配由多個代碼點組成的表情符號：
-re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F&apos;
+re.test('👨🏾‍⚕️'); // '\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F'
 // → false ❌
 ```
 
 在上述示例中，正則表達式未匹配 👨🏾‍⚕️ 表情符號，因為它恰好由多個代碼點組成，而 `Emoji` 是 Unicode 的_字符_屬性。
 
-幸運的是，Unicode 標準也定義了一些[字串的屬性](https://www.unicode.org/reports/tr18/#domain_of_properties)。這些屬性擴展到一組字串，每個字串包含一個或多個代碼點。在正則表達式中，字串的屬性轉化為一組替代。為了說明這一點，想像一下有一個適用於字串的 Unicode 屬性，包括 `&apos;a&apos;`、`&apos;b&apos;`、`&apos;c&apos;`、`&apos;W&apos;`、`&apos;xy&apos;` 和 `&apos;xyz&apos;`。此屬性可以轉化為以下任一正則表達式模式（使用替代方式）：`xyz|xy|a|b|c|W` 或 `xyz|xy|[a-cW]`。（最長的字串優先，因此像 `&apos;xy&apos;` 的前綴不會隱藏更長的字串如 `&apos;xyz&apos;`。）不同於現有的 Unicode 屬性轉義，此模式可以匹配多字符字串。以下是使用字串屬性的示例：
+幸運的是，Unicode 標準也定義了一些[字串的屬性](https://www.unicode.org/reports/tr18/#domain_of_properties)。這些屬性擴展到一組字串，每個字串包含一個或多個代碼點。在正則表達式中，字串的屬性轉化為一組替代。為了說明這一點，想像一下有一個適用於字串的 Unicode 屬性，包括 `'a'`、`'b'`、`'c'`、`'W'`、`'xy'` 和 `'xyz'`。此屬性可以轉化為以下任一正則表達式模式（使用替代方式）：`xyz|xy|a|b|c|W` 或 `xyz|xy|[a-cW]`。（最長的字串優先，因此像 `'xy'` 的前綴不會隱藏更長的字串如 `'xyz'`。）不同於現有的 Unicode 屬性轉義，此模式可以匹配多字符字串。以下是使用字串屬性的示例：
 
 ```js
 const re = /^\p{RGI_Emoji}$/v;
 
 // 匹配僅由 1 個代碼點組成的 emoji:
-re.test(&apos;⚽&apos;); // &apos;\u26BD&apos;
+re.test('⚽'); // '\u26BD'
 // → true ✅
 
 // 匹配由多個代碼點組成的 emoji:
-re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F&apos;
+re.test('👨🏾‍⚕️'); // '\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F'
 // → true ✅
 ```
 
@@ -102,7 +102,7 @@ re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\
 例如，如果您想匹配所有希臘符號，但不包括字母 `π`？使用集合表示法，解決這很簡單：
 
 ```js
-/[\p{Script_Extensions=Greek}--π]/v.test(&apos;π&apos;); // → false
+/[\p{Script_Extensions=Greek}--π]/v.test('π'); // → false
 ```
 
 通過使用 `--` 進行差異／減法，正則表達式引擎為您完成了繁重的工作，同時讓您的代碼保持可讀性和可維護性。
@@ -110,15 +110,15 @@ re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\
 如果不僅僅一個字符，我們想減去字符集合 `α`、`β` 和 `γ`，怎麼辦？沒有問題——我們可以使用嵌套字符類並減去其內容：
 
 ```js
-/[\p{Script_Extensions=Greek}--[αβγ]]/v.test(&apos;α&apos;); // → false
-/[\p{Script_Extensions=Greek}--[α-γ]]/v.test(&apos;β&apos;); // → false
+/[\p{Script_Extensions=Greek}--[αβγ]]/v.test('α'); // → false
+/[\p{Script_Extensions=Greek}--[α-γ]]/v.test('β'); // → false
 ```
 
 另一個示例是匹配非 ASCII 數字，例如稍後將其轉換為 ASCII 數字：
 
 ```js
-/[\p{Decimal_Number}--[0-9]]/v.test(&apos;𑜹&apos;); // → true
-/[\p{Decimal_Number}--[0-9]]/v.test(&apos;4&apos;); // → false
+/[\p{Decimal_Number}--[0-9]]/v.test('𑜹'); // → true
+/[\p{Decimal_Number}--[0-9]]/v.test('4'); // → false
 ```
 
 集合表示法也可與新的字串屬性一起使用：
@@ -126,8 +126,8 @@ re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\
 ```js
 // 注意: 🏴 包括 7 個代碼點。
 
-/^\p{RGI_Emoji_Tag_Sequence}$/v.test(&apos;🏴&apos;); // → true
-/^[\p{RGI_Emoji_Tag_Sequence}--\q{🏴}]$/v.test(&apos;🏴&apos;); // → false
+/^\p{RGI_Emoji_Tag_Sequence}$/v.test('🏴'); // → true
+/^[\p{RGI_Emoji_Tag_Sequence}--\q{🏴}]$/v.test('🏴'); // → false
 ```
 
 此示例匹配任何 RGI emoji 標籤序列_除了_蘇格蘭旗幟。注意使用 `\q{…}`，它是在字符類中用於字串字面量的另一新語法。例如，`\q{a|bc|def}` 匹配字串 `a`、`bc` 和 `def`。如果沒有 `\q{…}`，不可能減去硬編碼的多字符字串。
@@ -139,17 +139,17 @@ re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\
 ```js
 const re = /[\p{Script_Extensions=Greek}&&\p{Letter}]/v;
 // U+03C0 希臘小寫字母 PI
-re.test(&apos;π&apos;); // → true
+re.test('π'); // → true
 // U+1018A 希臘零符號
-re.test(&apos;𐆊&apos;); // → false
+re.test('𐆊'); // → false
 ```
 
 匹配所有 ASCII 空格：
 
 ```js
 const re = /[\p{White_Space}&&\p{ASCII}]/v;
-re.test(&apos;\n&apos;); // → true
-re.test(&apos;\u2028&apos;); // → false
+re.test('\n'); // → true
+re.test('\u2028'); // → false
 ```
 
 或匹配所有蒙古數字：
@@ -157,9 +157,9 @@ re.test(&apos;\u2028&apos;); // → false
 ```js
 const re = /[\p{Script_Extensions=Mongolian}&&\p{Number}]/v;
 // U+1817 蒙古數字七
-re.test(&apos;᠗&apos;); // → true
+re.test('᠗'); // → true
 // U+1834 蒙古字母 CHA
-re.test(&apos;ᠴ&apos;); // → false
+re.test('ᠴ'); // → false
 ```
 
 ### 聯集
@@ -169,12 +169,12 @@ re.test(&apos;ᠴ&apos;); // → false
 ```js
 const re = /^[\p{Emoji_Keycap_Sequence}\p{ASCII}\q{🇧🇪|abc}xyz0-9]$/v;
 
-re.test(&apos;4️⃣&apos;); // → true
-re.test(&apos;_&apos;); // → true
-re.test(&apos;🇧🇪&apos;); // → true
-re.test(&apos;abc&apos;); // → true
-re.test(&apos;x&apos;); // → true
-re.test(&apos;4&apos;); // → true
+re.test('4️⃣'); // → true
+re.test('_'); // → true
+re.test('🇧🇪'); // → true
+re.test('abc'); // → true
+re.test('x'); // → true
+re.test('4'); // → true
 ```
 
 此模式中的字符類結合了：
@@ -190,13 +190,13 @@ re.test(&apos;4&apos;); // → true
 ```js
 const reFlag = /[\p{RGI_Emoji_Flag_Sequence}\p{RGI_Emoji_Tag_Sequence}]/v;
 // 一個旗幟序列，由2個碼位組成（比利時的旗幟）：
-reFlag.test(&apos;🇧🇪&apos;); // → true
+reFlag.test('🇧🇪'); // → true
 // 一個標籤序列，由7個碼位組成（英格蘭的旗幟）：
-reFlag.test(&apos;🏴&apos;); // → true
+reFlag.test('🏴'); // → true
 // 一個旗幟序列，由2個碼位組成（瑞士的旗幟）：
-reFlag.test(&apos;🇨🇭&apos;); // → true
+reFlag.test('🇨🇭'); // → true
 // 一個標籤序列，由7個碼位組成（威爾士的旗幟）：
-reFlag.test(&apos;🏴&apos;); // → true
+reFlag.test('🏴'); // → true
 ```
 
 ## 改進的大小寫不敏感匹配
@@ -216,13 +216,13 @@ const re2 = /[^\P{Lowercase_Letter}]/giu;
 const re1 = /\p{Lowercase_Letter}/giu;
 const re2 = /[^\P{Lowercase_Letter}]/giu;
 
-const string = &apos;aAbBcC4#&apos;;
+const string = 'aAbBcC4#';
 
-string.replaceAll(re1, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re1, 'X');
+// → 'XXXXXX4#'
 
-string.replaceAll(re2, &apos;X&apos;);
-// → &apos;aAbBcC4#&apos;&apos;
+string.replaceAll(re2, 'X');
+// → 'aAbBcC4#''
 ```
 
 新的 `v` 標誌具有更少令人驚訝的行為。使用 `v` 標誌代替 `u` 標誌，兩個模式將表現相同：
@@ -231,13 +231,13 @@ string.replaceAll(re2, &apos;X&apos;);
 const re1 = /\p{Lowercase_Letter}/giv;
 const re2 = /[^\P{Lowercase_Letter}]/giv;
 
-const string = &apos;aAbBcC4#&apos;;
+const string = 'aAbBcC4#';
 
-string.replaceAll(re1, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re1, 'X');
+// → 'XXXXXX4#'
 
-string.replaceAll(re2, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re2, 'X');
+// → 'XXXXXX4#'
 ```
 
 更普遍情況下，`v` 標誌使得 `[^\p{X}]` ≍ `[\P{X}]` ≍ `\P{X}` 和 `[^\P{X}]` ≍ `[\p{X}]` ≍ `\p{X}`，無論是否設置 `i` 標誌。

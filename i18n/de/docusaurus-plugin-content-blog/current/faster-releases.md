@@ -1,11 +1,11 @@
 ---
-title: &apos;Schnellere Veröffentlichungen&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))&apos;
+title: 'Schnellere Veröffentlichungen'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
 avatars:
-  - &apos;ingvar-stepanyan&apos;
+  - 'ingvar-stepanyan'
 date: 2021-03-04
-description: &apos;Beschleunigung des V8-Veröffentlichungszyklus&apos;
-tweet: &apos;1367546733643919370&apos;
+description: 'Beschleunigung des V8-Veröffentlichungszyklus'
+tweet: '1367546733643919370'
 ---
 Um neue Funktionen und Fehlerbehebungen schneller an seine Nutzer auszuliefern, beschleunigt Chrome [seinen Veröffentlichungszyklus](https://developer.chrome.com/blog/faster-release-cycle/).
 

@@ -1,14 +1,14 @@
 ---
-title: &apos;Blitzschnelles Parsing, Teil 1: Optimierung des Scanners&apos;
-author: &apos;Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)), aufsehenerregender Optimierer&apos;
+title: 'Blitzschnelles Parsing, Teil 1: Optimierung des Scanners'
+author: 'Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)), aufsehenerregender Optimierer'
 avatars:
-  - &apos;toon-verwaest&apos;
+  - 'toon-verwaest'
 date: 2019-03-25 13:33:37
 tags:
   - internals
   - parsing
-tweet: &apos;1110205101652787200&apos;
-description: &apos;Der Grundstein für die Parser-Leistung ist ein schneller Scanner. Dieser Artikel erklärt, wie der JavaScript-Scanner von V8 kürzlich bis zu 2,1× schneller wurde.&apos;
+tweet: '1110205101652787200'
+description: 'Der Grundstein für die Parser-Leistung ist ein schneller Scanner. Dieser Artikel erklärt, wie der JavaScript-Scanner von V8 kürzlich bis zu 2,1× schneller wurde.'
 ---
 Um ein JavaScript-Programm auszuführen, muss der Quelltext verarbeitet werden, damit V8 ihn verstehen kann. V8 beginnt damit, den Quelltext in einen abstrakten Syntaxbaum (AST) zu parsen, eine Menge von Objekten, die die Programmstruktur darstellen. Dieser AST wird von Ignition zu Bytecode kompiliert. Die Leistung dieser Parse- und Kompilierungsphasen ist entscheidend: V8 kann keinen Code ausführen, bevor die Kompilierung abgeschlossen ist. In dieser Blogserie konzentrieren wir uns auf das Parsing und die Arbeit, die in V8 geleistet wurde, um einen blitzschnellen Parser bereitzustellen.
 

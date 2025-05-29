@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 ❤️ Node.js&apos;
-author: &apos;Franziska Hinkelmann, Node Monkey Patcher&apos;
+title: 'V8 ❤️ Node.js'
+author: 'Franziska Hinkelmann, Node Monkey Patcher'
 date: 2016-12-15 13:33:37
 tags:
   - Node.js
-description: &apos;本篇部落格文章突顯了近期為了讓 Node.js 在 V8 和 Chrome DevTools 中得到更好支持而付出的努力。&apos;
+description: '本篇部落格文章突顯了近期為了讓 Node.js 在 V8 和 Chrome DevTools 中得到更好支持而付出的努力。'
 ---
 Node.js 的受歡迎程度在過去幾年中穩步增長，我們一直致力於讓 Node.js 表現得更好。本篇文章突顯了在 V8 和 DevTools 中的一些近期努力。
 

@@ -1,6 +1,6 @@
 ---
-title: &apos;ソースからV8をビルドする&apos;
-description: &apos;このドキュメントでは、ソースからV8をビルドする方法を説明します。&apos;
+title: 'ソースからV8をビルドする'
+description: 'このドキュメントでは、ソースからV8をビルドする方法を説明します。'
 ---
 Windows/Linux/macOS用x64でV8を最初からビルドするためには、以下の手順に従ってください。
 

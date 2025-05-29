@@ -1,16 +1,16 @@
 ---
-title: &apos;Campos de classe públicos e privados&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Campos de classe públicos e privados'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-12-13
 tags:
   - ECMAScript
   - ES2022
   - io19
   - Node.js 14
-description: &apos;Várias propostas expandem a sintaxe de classes JavaScript existente com novas funcionalidades. Este artigo explica a nova sintaxe de campos de classe públicos no V8 v7.2 e Chrome 72, assim como a futura sintaxe de campos de classe privados.&apos;
-tweet: &apos;1121395767170740225&apos;
+description: 'Várias propostas expandem a sintaxe de classes JavaScript existente com novas funcionalidades. Este artigo explica a nova sintaxe de campos de classe públicos no V8 v7.2 e Chrome 72, assim como a futura sintaxe de campos de classe privados.'
+tweet: '1121395767170740225'
 ---
 Várias propostas expandem a sintaxe de classes JavaScript existente com novas funcionalidades. Este artigo explica a nova sintaxe de campos de classe públicos no V8 v7.2 e Chrome 72, assim como a futura sintaxe de campos de classe privados.
 
@@ -19,11 +19,11 @@ Aqui está um exemplo de código que cria uma instância de uma classe chamada `
 ```js
 const counter = new IncreasingCounter();
 counter.value;
-// registra &apos;Obtendo o valor atual!&apos;
+// registra 'Obtendo o valor atual!'
 // → 0
 counter.increment();
 counter.value;
-// registra &apos;Obtendo o valor atual!&apos;
+// registra 'Obtendo o valor atual!'
 // → 1
 ```
 
@@ -39,7 +39,7 @@ class IncreasingCounter {
     this._count = 0;
   }
   get value() {
-    console.log(&apos;Obtendo o valor atual!&apos;);
+    console.log('Obtendo o valor atual!');
     return this._count;
   }
   increment() {
@@ -54,7 +54,7 @@ A classe instala o getter `value` e um método `increment` no protótipo. Mais i
 ```js
 const counter = new IncreasingCounter();
 counter.value;
-// registra &apos;Obtendo o valor atual!&apos;
+// registra 'Obtendo o valor atual!'
 // → 0
 
 // Nada impede que as pessoas leiam ou alterem a
@@ -63,7 +63,7 @@ counter._count;
 // → 0
 counter._count = 42;
 counter.value;
-// registra &apos;Obtendo o valor atual!&apos;
+// registra 'Obtendo o valor atual!'
 // → 42
 ```
 
@@ -75,7 +75,7 @@ A nova sintaxe de campos de classe públicos nos permite simplificar a definiç�
 class IncreasingCounter {
   _count = 0;
   get value() {
-    console.log(&apos;Obtendo o valor atual!&apos;);
+    console.log('Obtendo o valor atual!');
     return this._count;
   }
   increment() {
@@ -96,7 +96,7 @@ No entanto, o campo `_count` ainda é uma propriedade pública. Neste exemplo es
 class IncreasingCounter {
   #count = 0;
   get value() {
-    console.log(&apos;Obtendo o valor atual!&apos;);
+    console.log('Obtendo o valor atual!');
     return this.#count;
   }
   increment() {
@@ -135,7 +135,7 @@ class FakeMath {
   // `random` é um método estático público (sintaxe ES2015)
   // que consome `#computeRandomNumber`.
   static random() {
-    console.log(&apos;Ouvi dizer que você gosta de números aleatórios…&apos;);
+    console.log('Ouvi dizer que você gosta de números aleatórios…');
     return FakeMath.#computeRandomNumber();
   }
 }
@@ -143,7 +143,7 @@ class FakeMath {
 FakeMath.PI;
 // → 3.142857142857143
 FakeMath.random();
-// registra &apos;Ouvi dizer que você gosta de números aleatórios…&apos;
+// registra 'Ouvi dizer que você gosta de números aleatórios…'
 // → 4
 FakeMath.#totallyRandomNumber;
 // → SyntaxError
@@ -172,7 +172,7 @@ class Cat extends Animal {
     this.likesBaths = false;
   }
   meow() {
-    console.log(&apos;Miau!&apos;);
+    console.log('Miau!');
   }
 }
 ```
@@ -183,7 +183,7 @@ Isso é muito código boilerplate apenas para indicar que gatos não gostam de t
 class Cat extends Animal {
   likesBaths = false;
   meow() {
-    console.log(&apos;Miau!&apos;);
+    console.log('Miau!');
   }
 }
 ```

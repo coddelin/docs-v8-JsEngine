@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 릴리스 v7.2&apos;
-author: &apos;Andreas Haas, 트랩 관리자&apos;
+title: 'V8 릴리스 v7.2'
+author: 'Andreas Haas, 트랩 관리자'
 avatars:
   - andreas-haas
 date: 2018-12-18 11:48:21
 tags:
   - release
-description: &apos;V8 v7.2는 고속 JavaScript 파싱, 더 빠른 async-await, ia32에서의 메모리 소비 감소, 공개 클래스 필드 등 다양한 기능을 제공합니다!&apos;
-tweet: &apos;1074978755934863361&apos;
+description: 'V8 v7.2는 고속 JavaScript 파싱, 더 빠른 async-await, ia32에서의 메모리 소비 감소, 공개 클래스 필드 등 다양한 기능을 제공합니다!'
+tweet: '1074978755934863361'
 ---
 V8의 [릴리스 프로세스](/docs/release-process)에 따라 우리는 매 6주마다 새로운 브랜치를 생성합니다. V8의 Git 마스터에서 Chrome 베타 마일스톤 직전에 각 버전이 브랜치됩니다. 오늘 우리는 새로운 브랜치인 [V8 버전 7.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.2)를 발표하게 되어 기쁩니다. 이는 몇 주 동안의 Chrome 72 Stable과의 조정된 릴리스까지 베타 상태로 유지됩니다. V8 v7.2는 개발자를 위한 다양한 기능을 제공합니다. 이 포스트에서 주요 하이라이트에 대해 미리 살펴보겠습니다.
 
@@ -69,7 +69,7 @@ class Cat extends Animal {
     this.likesBaths = false;
   }
   meow() {
-    console.log(&apos;Meow!&apos;);
+    console.log('Meow!');
   }
 }
 ```
@@ -86,7 +86,7 @@ class Animal {
 class Cat extends Animal {
   likesBaths = false;
   meow() {
-    console.log(&apos;Meow!&apos;);
+    console.log('Meow!');
   }
 }
 ```
@@ -98,15 +98,15 @@ class Cat extends Animal {
 V8 v7.2는 [`Intl.ListFormat` 제안](/features/intl-listformat)을 지원하여 목록의 지역화된 포맷을 가능하게 합니다.
 
 ```js
-const lf = new Intl.ListFormat(&apos;en&apos;);
-lf.format([&apos;Frank&apos;]);
-// → &apos;Frank&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;]);
-// → &apos;Frank and Christine&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;]);
-// → &apos;Frank, Christine, and Flora&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;, &apos;Harrison&apos;]);
-// → &apos;Frank, Christine, Flora, and Harrison&apos;
+const lf = new Intl.ListFormat('en');
+lf.format(['Frank']);
+// → 'Frank'
+lf.format(['Frank', 'Christine']);
+// → 'Frank and Christine'
+lf.format(['Frank', 'Christine', 'Flora']);
+// → 'Frank, Christine, and Flora'
+lf.format(['Frank', 'Christine', 'Flora', 'Harrison']);
+// → 'Frank, Christine, Flora, and Harrison'
 ```
 
 자세한 정보와 사용 예시는 [`Intl.ListFormat` 설명서](/features/intl-listformat)을 참조하세요.
@@ -117,12 +117,12 @@ lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;, &apos;Ha
 
 ```js
 // 이전 동작:
-JSON.stringify(&apos;\uD800&apos;);
-// → &apos;"�"&apos;
+JSON.stringify('\uD800');
+// → '"�"'
 
 // 새로운 동작:
-JSON.stringify(&apos;\uD800&apos;);
-// → &apos;"\\ud800"&apos;
+JSON.stringify('\uD800');
+// → '"\\ud800"'
 ```
 
 자세한 내용은 [올바른 형태의 `JSON.stringify` 설명서](/features/well-formed-json-stringify)을 참조하세요.
@@ -132,19 +132,19 @@ JSON.stringify(&apos;\uD800&apos;);
 [JavaScript 모듈](/features/modules)에서는 다음 구문을 사용하는 것이 가능했습니다:
 
 ```js
-import * as utils from &apos;./utils.mjs&apos;;
+import * as utils from './utils.mjs';
 ```
 
 그러나 대칭적인 `export` 구문은 존재하지 않았습니다… [지금까지는](/features/module-namespace-exports):
 
 ```js
-export * as utils from &apos;./utils.mjs&apos;;
+export * as utils from './utils.mjs';
 ```
 
 이는 다음과 동등합니다:
 
 ```js
-import * as utils from &apos;./utils.mjs&apos;;
+import * as utils from './utils.mjs';
 export { utils };
 ```
 

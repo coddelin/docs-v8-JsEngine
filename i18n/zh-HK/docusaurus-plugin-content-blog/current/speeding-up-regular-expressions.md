@@ -1,13 +1,13 @@
 ---
-title: &apos;加速 V8 正規表達式&apos;
-author: &apos;Jakob Gruber，一名正規軟體工程師&apos;
+title: '加速 V8 正規表達式'
+author: 'Jakob Gruber，一名正規軟體工程師'
 avatars:
-  - &apos;jakob-gruber&apos;
+  - 'jakob-gruber'
 date: 2017-01-10 13:33:37
 tags:
   - 内部
   - RegExp
-description: &apos;V8 最近將 RegExp 的內建函數從一個自託管的 JavaScript 實現遷移到直接掛接到我們基於 TurboFan 的新代碼生成架構上。&apos;
+description: 'V8 最近將 RegExp 的內建函數從一個自託管的 JavaScript 實現遷移到直接掛接到我們基於 TurboFan 的新代碼生成架構上。'
 ---
 這篇博客文章涉及 V8 最近將 RegExp 的內建函數從一個自託管的 JavaScript 實現遷移到直接掛接到我們基於 [TurboFan](/blog/v8-release-56) 的新代碼生成架構上。
 
@@ -34,17 +34,17 @@ V8 的 RegExp 實現是基於 [Irregexp](https://blog.chromium.org/2009/02/irreg
 
 ```js
 const re = /./g;
-re.exec(&apos;&apos;);  // 快速路徑。
-re.new_property = &apos;慢&apos;;
-RegExp.prototype.new_property = &apos;也慢&apos;;
-re.exec(&apos;&apos;);  // 慢速路徑。
+re.exec('');  // 快速路徑。
+re.new_property = '慢';
+RegExp.prototype.new_property = '也慢';
+re.exec('');  // 慢速路徑。
 ```
 
 雖然正則表達式子類在某些時候可能非常有用，但請注意，子類化的正則表達式實例需要更通用的處理，因此採用慢速路徑：
 
 ```js
 class SlowRegExp extends RegExp {}
-new SlowRegExp(".", "g").exec(&apos;&apos;);  // 慢速路徑。
+new SlowRegExp(".", "g").exec('');  // 慢速路徑。
 ```
 
 完整的正則表達式遷移將在 V8 v5.7 中提供。

@@ -1,15 +1,15 @@
 ---
-title: &apos;Optimierung von ES2015-Proxys in V8&apos;
-author: &apos;Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), Optimierer von Proxys&apos;
+title: 'Optimierung von ES2015-Proxys in V8'
+author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), Optimierer von Proxys'
 avatars:
-  - &apos;maya-armyanova&apos;
+  - 'maya-armyanova'
 date: 2017-10-05 13:33:37
 tags:
   - ECMAScript
   - Benchmarks
   - Interna
-description: &apos;Dieser Artikel erklärt, wie V8 die Leistung von JavaScript-Proxys verbessert hat.&apos;
-tweet: &apos;915846050447003648&apos;
+description: 'Dieser Artikel erklärt, wie V8 die Leistung von JavaScript-Proxys verbessert hat.'
+tweet: '915846050447003648'
 ---
 Proxys sind seit ES2015 ein integraler Bestandteil von JavaScript. Sie ermöglichen das Abfangen grundlegender Operationen an Objekten und die Anpassung ihres Verhaltens. Proxys sind ein Kernbestandteil von Projekten wie [jsdom](https://github.com/tmpvar/jsdom) und der [Comlink RPC-Bibliothek](https://github.com/GoogleChrome/comlink). Kürzlich haben wir viel Aufwand in die Verbesserung der Leistung von Proxys in V8 investiert. Dieser Artikel beleuchtet allgemeine Muster zur Leistungsverbesserung in V8 und speziell für Proxys.
 
@@ -25,7 +25,7 @@ const callTracer = new Proxy(target, {
   }
 });
 
-callTracer.property = &apos;value&apos;;
+callTracer.property = 'value';
 console.log(callTracer.property);
 // get wurde aufgerufen für: property
 // value
@@ -88,11 +88,11 @@ function ausführen() {
   return new P();
 }
 const N = 1e5;
-console.time(&apos;ausführen&apos;);
+console.time('ausführen');
 for (let i = 0; i < N; ++i) {
   ausführen();
 }
-console.timeEnd(&apos;ausführen&apos;);
+console.timeEnd('ausführen');
 ```
 
 Es stellte sich heraus, dass die meiste Zeit in `NeuesObjekt` sowie in den Funktionen, die dieses aufruft, verbracht wird, daher begannen wir zu planen, wie wir dies in zukünftigen Versionen beschleunigen können.

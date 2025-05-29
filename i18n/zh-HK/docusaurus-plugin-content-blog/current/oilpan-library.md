@@ -1,6 +1,6 @@
 ---
-title: &apos;Oilpan 圖書館&apos;
-author: &apos;Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), 和 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), 高效能與有效的檔案搬運者&apos;
+title: 'Oilpan 圖書館'
+author: 'Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), 和 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), 高效能與有效的檔案搬運者'
 avatars:
   - anton-bikineev
   - omer-katz
@@ -10,8 +10,8 @@ tags:
   - internals
   - memory
   - cppgc
-description: &apos;V8 附帶經由 Oilpan 的垃圾回收圖書館來管理 C++ 記憶體。&apos;
-tweet: &apos;1458406645181165574&apos;
+description: 'V8 附帶經由 Oilpan 的垃圾回收圖書館來管理 C++ 記憶體。'
+tweet: '1458406645181165574'
 ---
 
 雖然這篇文章的標題可能暗示我們要深入探討關於油底殼的書籍集合——考慮到油底殼的建造規範，這是一個有著驚人文獻的話題——但實際上我們會更深入探討 Oilpan，一個由 V8 作為圖書館自 V8 v9.4 起托管的 C++ 垃圾回收器。

@@ -1,13 +1,13 @@
 ---
-title: &apos;Acelerando las expresiones regulares en V8&apos;
-author: &apos;Jakob Gruber, Ingeniero de Software Regular&apos;
+title: 'Acelerando las expresiones regulares en V8'
+author: 'Jakob Gruber, Ingeniero de Software Regular'
 avatars:
-  - &apos;jakob-gruber&apos;
+  - 'jakob-gruber'
 date: 2017-01-10 13:33:37
 tags:
   - internals
   - RegExp
-description: &apos;V8 recientemente migró las funciones integradas de RegExp de una implementación autohospedada en JavaScript a una que se conecta directamente a nuestra nueva arquitectura de generación de código basada en TurboFan.&apos;
+description: 'V8 recientemente migró las funciones integradas de RegExp de una implementación autohospedada en JavaScript a una que se conecta directamente a nuestra nueva arquitectura de generación de código basada en TurboFan.'
 ---
 Esta publicación del blog aborda la reciente migración de las funciones integradas de RegExp en V8 de una implementación autohospedada en JavaScript a una que se conecta directamente a nuestra nueva arquitectura de generación de código basada en [TurboFan](/blog/v8-release-56).
 
@@ -34,17 +34,17 @@ Entonces, ¿cómo puedes asegurarte, como desarrollador de JavaScript, de que tu
 
 ```js
 const re = /./g;
-re.exec(&apos;&apos;);  // Ruta rápida.
-re.new_property = &apos;lento&apos;;
-RegExp.prototype.new_property = &apos;también lento&apos;;
-re.exec(&apos;&apos;);  // Ruta lenta.
+re.exec('');  // Ruta rápida.
+re.new_property = 'lento';
+RegExp.prototype.new_property = 'también lento';
+re.exec('');  // Ruta lenta.
 ```
 
 Y aunque la subclassificación de RegExp puede ser bastante útil en ocasiones, ten en cuenta que las instancias de RegExp subclassificadas requieren un manejo más genérico y, por lo tanto, siguen la ruta lenta:
 
 ```js
 class SlowRegExp extends RegExp {}
-new SlowRegExp(".", "g").exec(&apos;&apos;);  // Ruta lenta.
+new SlowRegExp(".", "g").exec('');  // Ruta lenta.
 ```
 
 La migración completa de RegExp estará disponible en V8 v5.7.

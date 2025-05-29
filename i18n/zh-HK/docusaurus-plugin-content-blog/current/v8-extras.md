@@ -1,12 +1,12 @@
 ---
-title: &apos;V8 附加功能&apos;
-author: &apos;Domenic Denicola ([@domenic](https://twitter.com/domenic)), Streams 魔法師&apos;
+title: 'V8 附加功能'
+author: 'Domenic Denicola ([@domenic](https://twitter.com/domenic)), Streams 魔法師'
 avatars:
-  - &apos;domenic-denicola&apos;
+  - 'domenic-denicola'
 date: 2016-02-04 13:33:37
 tags:
   - internals
-description: &apos;V8 v4.8 包含 “V8 附加功能”，一個簡單的介面，旨在允許嵌入者編寫高效能的自托管 API。&apos;
+description: 'V8 v4.8 包含 “V8 附加功能”，一個簡單的介面，旨在允許嵌入者編寫高效能的自托管 API。'
 ---
 V8 用 JavaScript 自身實現了 JavaScript 語言內建物件和函數的一個大子集。例如，您可以看到我們的 [Promise 實現](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js) 是用 JavaScript 編寫的。這樣的內建物件被稱為 _自托管_。這些實現被包含在我們的 [啟動快照](/blog/custom-startup-snapshots) 中，以便可以快速創建新上下文，而不需要在運行時設置和初始化自托管的內建物件。
 
@@ -21,10 +21,10 @@ V8 附加功能是 V8 的一項新功能，自從 [v4.8 版本](/blog/v8-release
 
 ```js
 (function(global, binding, v8) {
-  &apos;use strict&apos;;
+  'use strict';
   const Object = global.Object;
-  const x = v8.createPrivateSymbol(&apos;x&apos;);
-  const y = v8.createPrivateSymbol(&apos;y&apos;);
+  const x = v8.createPrivateSymbol('x');
+  const y = v8.createPrivateSymbol('y');
 
   class Vec2 {
     constructor(theX, theY) {
@@ -37,7 +37,7 @@ V8 附加功能是 V8 的一項新功能，自從 [v4.8 版本](/blog/v8-release
     }
   }
 
-  Object.defineProperty(global, &apos;Vec2&apos;, {
+  Object.defineProperty(global, 'Vec2', {
     value: Vec2,
     enumerable: false,
     configurable: true,
@@ -59,7 +59,7 @@ V8 附加功能是 V8 的一項新功能，自從 [v4.8 版本](/blog/v8-release
 最後，為了告訴 V8 我們將要編譯一個附加功能，我們需要在項目的 gypfile 中添加一行：
 
 ```js
-&apos;v8_extra_library_files&apos;: [&apos;./Vec2.js&apos;]
+'v8_extra_library_files': ['./Vec2.js']
 ```
 
 （您可以在 [V8 的 gypfile](https://code.google.com/p/chromium/codesearch#chromium/src/v8/build/standalone.gypi&sq=package:chromium&type=cs&l=170) 中看到這樣的實例。）

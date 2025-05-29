@@ -1,14 +1,14 @@
 ---
-title: &apos;物件的剩餘與展開特性&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '物件的剩餘與展開特性'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-06-06
 tags:
   - ECMAScript
   - ES2018
-description: &apos;本文解釋了 JavaScript 中物件剩餘與展開特性的運作方式，並回顧了陣列的剩餘與展開元素。&apos;
-tweet: &apos;890269994688315394&apos;
+description: '本文解釋了 JavaScript 中物件剩餘與展開特性的運作方式，並回顧了陣列的剩餘與展開元素。'
+tweet: '890269994688315394'
 ---
 在討論 _物件的剩餘與展開特性_ 之前，我們先回顧一下非常相似的一個功能。
 
@@ -42,34 +42,34 @@ console.log(primesCopy); // [2, 3, 5, 7, 11]
 ```js
 // 物件解構賦值中的剩餘特性：
 const person = {
-    firstName: &apos;Sebastian&apos;,
-    lastName: &apos;Markbåge&apos;,
-    country: &apos;USA&apos;,
-    state: &apos;CA&apos;,
+    firstName: 'Sebastian',
+    lastName: 'Markbåge',
+    country: 'USA',
+    state: 'CA',
 };
 const { firstName, lastName, ...rest } = person;
 console.log(firstName); // Sebastian
 console.log(lastName); // Markbåge
-console.log(rest); // { country: &apos;USA&apos;, state: &apos;CA&apos; }
+console.log(rest); // { country: 'USA', state: 'CA' }
 
 <!--truncate-->
 // 物件字面值中的展開特性：
 const personCopy = { firstName, lastName, ...rest };
 console.log(personCopy);
-// { firstName: &apos;Sebastian&apos;, lastName: &apos;Markbåge&apos;, country: &apos;USA&apos;, state: &apos;CA&apos; }
+// { firstName: 'Sebastian', lastName: 'Markbåge', country: 'USA', state: 'CA' }
 ```
 
 展開特性在許多情況下提供了一個比 [`Object.assign()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) 更優雅的替代方案：
 
 ```js
 // 淺拷貝一個物件：
-const data = { x: 42, y: 27, label: &apos;Treasure&apos; };
+const data = { x: 42, y: 27, label: 'Treasure' };
 // 舊方法：
 const clone1 = Object.assign({}, data);
 // 新方法：
 const clone2 = { ...data };
 // 結果相同：
-// { x: 42, y: 27, label: &apos;Treasure&apos; }
+// { x: 42, y: 27, label: 'Treasure' }
 
 // 合併兩個物件：
 const defaultSettings = { logWarnings: false, logErrors: false };

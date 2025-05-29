@@ -1,36 +1,36 @@
 ---
-title: &apos;Publication de V8 v6.6&apos;
-author: &apos;l&apos;équipe V8&apos;
+title: 'Publication de V8 v6.6'
+author: 'l'équipe V8'
 date: 2018-03-27 13:33:37
 tags:
   - version
-description: &apos;V8 v6.6 inclut des liaisons optionnelles dans catch, une extension du découpage des chaînes, plusieurs améliorations des performances de l&apos;analyse/l&apos;exécution/l&apos;compilation, et bien plus encore !&apos;
-tweet: &apos;978534399938584576&apos;
+description: 'V8 v6.6 inclut des liaisons optionnelles dans catch, une extension du découpage des chaînes, plusieurs améliorations des performances de l'analyse/l'exécution/l'compilation, et bien plus encore !'
+tweet: '978534399938584576'
 ---
-Toutes les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](/docs/release-process). Chaque version est dérivée de la branche master de V8 juste avant une étape de bêta de Chrome. Aujourd&apos;hui, nous sommes ravis d&apos;annoncer notre nouvelle branche, [V8 version 6.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.6), qui est en bêta jusqu&apos;à sa publication en coordination avec Chrome 66 Stable dans quelques semaines. V8 v6.6 est remplie de nouvelles fonctionnalités destinées aux développeurs. Ce post offre un aperçu des points forts en préparation au lancement.
+Toutes les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](/docs/release-process). Chaque version est dérivée de la branche master de V8 juste avant une étape de bêta de Chrome. Aujourd'hui, nous sommes ravis d'annoncer notre nouvelle branche, [V8 version 6.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.6), qui est en bêta jusqu'à sa publication en coordination avec Chrome 66 Stable dans quelques semaines. V8 v6.6 est remplie de nouvelles fonctionnalités destinées aux développeurs. Ce post offre un aperçu des points forts en préparation au lancement.
 
 <!--truncate-->
 ## Fonctionnalités du langage JavaScript
 
 ### Révision de `Function.prototype.toString`  #function-tostring
 
-[`Function.prototype.toString()`](/features/function-tostring) renvoie désormais des tranches exactes du texte du code source, y compris les espaces et les commentaires. Voici un exemple comparant l&apos;ancien comportement avec le nouveau :
+[`Function.prototype.toString()`](/features/function-tostring) renvoie désormais des tranches exactes du texte du code source, y compris les espaces et les commentaires. Voici un exemple comparant l'ancien comportement avec le nouveau :
 
 ```js
 // Notez le commentaire entre le mot-clé `function`
-// et le nom de la fonction, ainsi que l&apos;espace suivant
+// et le nom de la fonction, ainsi que l'espace suivant
 // le nom de la fonction.
 function /* un commentaire */ foo () {}
 
 // Précédemment :
 foo.toString();
-// → &apos;function foo() {}&apos;
+// → 'function foo() {}'
 //             ^ pas de commentaire
-//                ^ pas d&apos;espace
+//                ^ pas d'espace
 
 // Maintenant :
 foo.toString();
-// → &apos;function /* commentaire */ foo () {}&apos;
+// → 'function /* commentaire */ foo () {}'
 ```
 
 ### JSON ⊂ ECMAScript
@@ -39,7 +39,7 @@ Les caractères séparateurs de ligne (U+2028) et séparateurs de paragraphe (U+
 
 ### Liaison optionnelle dans `catch`
 
-L&apos;instruction `catch` dans les blocs `try` peut désormais être [utilisée sans paramètre](/features/optional-catch-binding). Cela est utile si vous n&apos;avez pas besoin de l&apos;objet `exception` dans le code qui gère cette exception.
+L'instruction `catch` dans les blocs `try` peut désormais être [utilisée sans paramètre](/features/optional-catch-binding). Cela est utile si vous n'avez pas besoin de l'objet `exception` dans le code qui gère cette exception.
 
 ```js
 try {
@@ -54,26 +54,26 @@ try {
 En plus de `String.prototype.trim()`, V8 implémente maintenant [`String.prototype.trimStart()` et `String.prototype.trimEnd()`](/features/string-trimming). Cette fonctionnalité était auparavant disponible via les méthodes non standard `trimLeft()` et `trimRight()`, qui restent des alias des nouvelles méthodes pour assurer la compatibilité avec les versions antérieures.
 
 ```js
-const string = &apos;  bonjour le monde  &apos;;
+const string = '  bonjour le monde  ';
 string.trimStart();
-// → &apos;bonjour le monde  &apos;
+// → 'bonjour le monde  '
 string.trimEnd();
-// → &apos;  bonjour le monde&apos;
+// → '  bonjour le monde'
 string.trim();
-// → &apos;bonjour le monde&apos;
+// → 'bonjour le monde'
 ```
 
 ### `Array.prototype.values`
 
-[La méthode `Array.prototype.values()`](https://tc39.es/ecma262/#sec-array.prototype.values) donne aux tableaux la même interface d&apos;itération que les collections `Map` et `Set` d&apos;ES2015 : tous peuvent désormais être parcourus par `keys`, `values` ou `entries` en appelant la méthode du même nom. Ce changement peut potentiellement être incompatible avec le code JavaScript existant. Si vous rencontrez des comportements étranges ou des erreurs sur un site web, essayez de désactiver cette fonctionnalité via `chrome://flags/#enable-array-prototype-values` et [soumettre un rapport d&apos;erreur](https://bugs.chromium.org/p/v8/issues/entry?template=Defect+report+from+user).
+[La méthode `Array.prototype.values()`](https://tc39.es/ecma262/#sec-array.prototype.values) donne aux tableaux la même interface d'itération que les collections `Map` et `Set` d'ES2015 : tous peuvent désormais être parcourus par `keys`, `values` ou `entries` en appelant la méthode du même nom. Ce changement peut potentiellement être incompatible avec le code JavaScript existant. Si vous rencontrez des comportements étranges ou des erreurs sur un site web, essayez de désactiver cette fonctionnalité via `chrome://flags/#enable-array-prototype-values` et [soumettre un rapport d'erreur](https://bugs.chromium.org/p/v8/issues/entry?template=Defect+report+from+user).
 
 ## Mise en cache du code après exécution
 
 Les termes _chargement froid_ et _chargement chaud_ sont peut-être familiers pour les personnes préoccupées par les performances de chargement. Dans V8, il existe également le concept de _chargement actif_. Expliquons les différents niveaux avec Chrome intégrant V8 comme exemple :
 
-- **Chargement froid :** Chrome visite la page web pour la première fois et n&apos;a aucune donnée mise en cache.
+- **Chargement froid :** Chrome visite la page web pour la première fois et n'a aucune donnée mise en cache.
 - **Chargement chaud :** Chrome se souvient que la page web a déjà été visitée et peut récupérer certains éléments (par exemple, des images et des fichiers sources de script) depuis le cache. V8 reconnaît que la page contient le même fichier de script et met en cache le code compilé avec le fichier de script dans le cache disque.
-- **Chargement actif :** Au troisième visite de la page web, lorsque Chrome charge le fichier de script depuis le cache disque, il fournit également à V8 le code mis en cache lors du chargement précédent. V8 peut utiliser ce code mis en cache pour éviter d&apos;avoir à analyser et compiler le script à partir de zéro.
+- **Chargement actif :** Au troisième visite de la page web, lorsque Chrome charge le fichier de script depuis le cache disque, il fournit également à V8 le code mis en cache lors du chargement précédent. V8 peut utiliser ce code mis en cache pour éviter d'avoir à analyser et compiler le script à partir de zéro.
 
 Avant la version 6.6 de V8, nous mettions en cache le code généré immédiatement après la compilation de niveau supérieur. V8 ne compile que les fonctions qui sont connues pour être exécutées immédiatement lors de la compilation de niveau supérieur et marque les autres fonctions pour une compilation paresseuse. Cela signifiait que le code mis en cache incluait uniquement le code de niveau supérieur, tandis que toutes les autres fonctions devaient être compilées lentement à partir de zéro à chaque chargement de la page. À partir de la version 6.6, V8 met en cache le code généré après l'exécution de niveau supérieur du script. Au fur et à mesure que nous exécutons le script, davantage de fonctions sont compilées paresseusement et peuvent être incluses dans le cache. En conséquence, ces fonctions n'ont pas besoin d'être compilées lors de futurs chargements de pages, réduisant ainsi le temps de compilation et d'analyse dans les scénarios de chargement intensif de 20 à 60 %. Le changement visible pour l'utilisateur est un fil principal moins congestionné, offrant ainsi une expérience de chargement plus fluide et plus rapide.
 

@@ -114,7 +114,7 @@ const jsStringLiteral = JSON.stringify(json);
 // 创建一个嵌入 JavaScript 字符串字面量表示的 JSON 数据
 // 于 `JSON.parse` 调用中的有效 ECMAScript 程序。
 const program = `const data = JSON.parse(${ jsStringLiteral });`;
-// → &apos;const data = JSON.parse("…");&apos;
+// → 'const data = JSON.parse("…");'
 // （如果目标是行内 <script>，需要额外的转义。）
 
 // 将包含 ECMAScript 程序的文件写入磁盘。
@@ -149,13 +149,13 @@ JSON ⊂ ECMAScript 特别是在字符串文字的情况下减少了 JSON 和 EC
 ```html
 <script>
   // 调试信息：
-  // 用户代理："用户提供的字符串<U+2028>  alert(&apos;XSS&apos;);//"
+  // 用户代理："用户提供的字符串<U+2028>  alert('XSS');//"
 </script>
 <!-- …等效于： -->
 <script>
   // 调试信息：
   // 用户代理："用户提供的字符串
-  alert(&apos;XSS&apos;);//"
+  alert('XSS');//"
 </script>
 ```
 

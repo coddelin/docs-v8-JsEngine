@@ -1,15 +1,15 @@
 ---
-title: &apos;ReactにおけるV8の性能の崖についての物語&apos;
-author: &apos;Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) と Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'ReactにおけるV8の性能の崖についての物語'
+author: 'Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) と Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;benedikt-meurer&apos;
-  - &apos;mathias-bynens&apos;
+  - 'benedikt-meurer'
+  - 'mathias-bynens'
 date: 2019-08-28 16:45:00
 tags:
   - internals
   - presentations
-description: &apos;この記事では、V8がさまざまなJavaScript値に対して最適なメモリ内表現を選択する方法と、それがShapeの仕組みにどのように影響を与えるかについて説明しています。これらすべては、Reactコアにおける最近のV8の性能の崖を説明する助けとなります。&apos;
-tweet: &apos;1166723359696130049&apos;
+description: 'この記事では、V8がさまざまなJavaScript値に対して最適なメモリ内表現を選択する方法と、それがShapeの仕組みにどのように影響を与えるかについて説明しています。これらすべては、Reactコアにおける最近のV8の性能の崖を説明する助けとなります。'
+tweet: '1166723359696130049'
 ---
 [以前](https://mathiasbynens.be/notes/shapes-ics)に、JavaScriptエンジンがShapesとInline Cachesを使用してオブジェクトと配列のアクセスを最適化する方法や、[エンジンがプロトタイプのプロパティアクセスを高速化する仕組み](https://mathiasbynens.be/notes/prototypes)について詳しく探りました。この記事では、V8がさまざまなJavaScript値に対して最適なメモリ内表現を選択する方法と、それがShapeの仕組みにどのように影響を与えるかについて説明しています。これらすべては[Reactコアにおける最近のV8の性能の崖](https://github.com/facebook/react/issues/14365)を説明する助けとなります。
 
@@ -35,24 +35,24 @@ JavaScriptでは、これらの型は`typeof`演算子を使用して観察可�
 
 ```js
 typeof 42;
-// → &apos;number&apos;
-typeof &apos;foo&apos;;
-// → &apos;string&apos;
-typeof Symbol(&apos;bar&apos;);
-// → &apos;symbol&apos;
+// → 'number'
+typeof 'foo';
+// → 'string'
+typeof Symbol('bar');
+// → 'symbol'
 typeof 42n;
-// → &apos;bigint&apos;
+// → 'bigint'
 typeof true;
-// → &apos;boolean&apos;
+// → 'boolean'
 typeof undefined;
-// → &apos;undefined&apos;
+// → 'undefined'
 typeof null;
-// → &apos;object&apos; 🤔
+// → 'object' 🤔
 typeof { x: 42 };
-// → &apos;object&apos;
+// → 'object'
 ```
 
-`typeof null`は`&apos;object&apos;`を返し、`&apos;null&apos;`ではありません。これにもかかわらず、`Null`は独自の型です。なぜそうなるのかを理解するためには、すべてのJavaScript型の集合が2つのグループに分けられることを考慮してください:
+`typeof null`は`'object'`を返し、`'null'`ではありません。これにもかかわらず、`Null`は独自の型です。なぜそうなるのかを理解するためには、すべてのJavaScript型の集合が2つのグループに分けられることを考慮してください:
 
 - _オブジェクト_ (`Object`型)
 - _プリミティブ_ (非オブジェクト値)
@@ -61,7 +61,7 @@ typeof { x: 42 };
 
 ![](/_img/react-cliff/02-primitives-objects.svg)
 
-この考え方に従い、Brendan Eichは、JavaScriptを設計する際に、Javaの精神で右側のすべての値（すなわちすべてのオブジェクトと`null`値）に対して`typeof`が`&apos;object&apos;`を返すようにしました。これが仕様に独立した`Null`型が存在するにもかかわらず、`typeof null === &apos;object&apos;`となる理由です。
+この考え方に従い、Brendan Eichは、JavaScriptを設計する際に、Javaの精神で右側のすべての値（すなわちすべてのオブジェクトと`null`値）に対して`typeof`が`'object'`を返すようにしました。これが仕様に独立した`Null`型が存在するにもかかわらず、`typeof null === 'object'`となる理由です。
 
 ![](/_img/react-cliff/03-primitives-objects-typeof.svg)
 
@@ -73,7 +73,7 @@ JavaScriptエンジンは、任意のJavaScript値をメモリに表現できる
 
 ```js
 typeof 42;
-// → &apos;number&apos;
+// → 'number'
 ```
 
 `42`のような整数をメモリに表現する方法は複数あります:
@@ -274,7 +274,7 @@ y = a.x;
 
 ![](/_img/react-cliff/13-shape.svg)
 
-`b.x` が `Double` 表現に変化すると、V8 は `x` が `Double` 表現に割り当てられ、空の形状に戻る新しい形状を割り当てます。V8 はまた、新しい値 `0.2` を保持するために `x` プロパティ用の `MutableHeapNumber` を割り当てます。そして、この新しい形状を指すようにオブジェクト `b` を更新し、オブジェクト内のスロットを先ほど割り当てた `MutableHeapNumber` を指すように変更します。最後に、古い形状を非推奨としてマークし、遷移ツリーからのリンクを解除します。これは、空の形状から新しく作成した形状への `&apos;x&apos;` 用の新しい遷移を持つことで行います。
+`b.x` が `Double` 表現に変化すると、V8 は `x` が `Double` 表現に割り当てられ、空の形状に戻る新しい形状を割り当てます。V8 はまた、新しい値 `0.2` を保持するために `x` プロパティ用の `MutableHeapNumber` を割り当てます。そして、この新しい形状を指すようにオブジェクト `b` を更新し、オブジェクト内のスロットを先ほど割り当てた `MutableHeapNumber` を指すように変更します。最後に、古い形状を非推奨としてマークし、遷移ツリーからのリンクを解除します。これは、空の形状から新しく作成した形状への `'x'` 用の新しい遷移を持つことで行います。
 
 ![](/_img/react-cliff/14-shape-transition.svg)
 
@@ -298,7 +298,7 @@ o.y = 0.1;
 
 ![](/_img/react-cliff/16-split-shape.svg)
 
-分割シェイプから始めて、以前のすべての遷移を再生する新しい`y`の遷移チェーンを作成しますが、`&apos;y&apos;`が`Double`の表現であるとマークされるようにします。そして、この新しい遷移チェーンを`y`に使用し、古いサブツリーを非推奨としてマークします。最後のステップで、インスタンス`o`を新しいシェイプに移行し、現在`y`の値を保持するための`MutableHeapNumber`を使用します。この方法で、新しいオブジェクトは古いパスを取りません。そして、古いシェイプへのすべての参照がなくなると、ツリ内の非推奨シェイプ部分が消えます。
+分割シェイプから始めて、以前のすべての遷移を再生する新しい`y`の遷移チェーンを作成しますが、`'y'`が`Double`の表現であるとマークされるようにします。そして、この新しい遷移チェーンを`y`に使用し、古いサブツリーを非推奨としてマークします。最後のステップで、インスタンス`o`を新しいシェイプに移行し、現在`y`の値を保持するための`MutableHeapNumber`を使用します。この方法で、新しいオブジェクトは古いパスを取りません。そして、古いシェイプへのすべての参照がなくなると、ツリ内の非推奨シェイプ部分が消えます。
 
 ## 拡張性と整合性レベルの遷移
 
@@ -347,7 +347,7 @@ const b = { x: 2 };
 Object.preventExtensions(b);
 ```
 
-最初は、空のシェイプからプロパティ`&apos;x&apos;`（`Smi`として表現）を保持する新しいシェイプへの遷移のようになります。`b`の拡張を防ぐとき、新しいシェイプへの特別な遷移を実行し、それを非拡張可能としてマークします。この特別な遷移は新しいプロパティを導入するわけではありません — 単なるマーカーです。
+最初は、空のシェイプからプロパティ`'x'`（`Smi`として表現）を保持する新しいシェイプへの遷移のようになります。`b`の拡張を防ぐとき、新しいシェイプへの特別な遷移を実行し、それを非拡張可能としてマークします。この特別な遷移は新しいプロパティを導入するわけではありません — 単なるマーカーです。
 
 ![](/_img/react-cliff/17-shape-nonextensible.svg)
 
@@ -407,7 +407,7 @@ V8は`node1`に新しい孤立した形状を割り当て、しばらくして�
 
 ![](/_img/react-cliff/22-fix.svg)
 
-2つの`FiberNode`インスタンスは、`&apos;actualStartTime&apos;`が`Smi`フィールドである拡張不可能な形状を指します。最初に`node1.actualStartTime`への代入が行われると、新しい移行チェーンが作成され、以前のチェーンは廃止されます:
+2つの`FiberNode`インスタンスは、`'actualStartTime'`が`Smi`フィールドである拡張不可能な形状を指します。最初に`node1.actualStartTime`への代入が行われると、新しい移行チェーンが作成され、以前のチェーンは廃止されます:
 
 ![](/_img/react-cliff/23-fix-fibernode-shape-1.svg)
 

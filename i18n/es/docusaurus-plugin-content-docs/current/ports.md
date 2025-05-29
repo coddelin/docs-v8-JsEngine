@@ -1,6 +1,6 @@
 ---
-title: &apos;Manejo de puertos&apos;
-description: &apos;Este documento describe cómo se deben manejar los puertos específicos de la arquitectura de V8.&apos;
+title: 'Manejo de puertos'
+description: 'Este documento describe cómo se deben manejar los puertos específicos de la arquitectura de V8.'
 ---
 Este documento describe cómo se deben manejar los puertos.
 

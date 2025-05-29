@@ -1,6 +1,6 @@
 ---
-title: &apos;Blink 웹 테스트 (일명 레이아웃 테스트)&apos;
-description: &apos;V8의 인프라는 통합 시 Chromium과의 문제를 방지하기 위해 지속적으로 Blink 웹 테스트를 실행합니다. 이 문서는 테스트 실패 시 어떻게 해야 하는지에 대해 설명합니다.&apos;
+title: 'Blink 웹 테스트 (일명 레이아웃 테스트)'
+description: 'V8의 인프라는 통합 시 Chromium과의 문제를 방지하기 위해 지속적으로 Blink 웹 테스트를 실행합니다. 이 문서는 테스트 실패 시 어떻게 해야 하는지에 대해 설명합니다.'
 ---
 우리는 [Blink 웹 테스트 (이전에 “레이아웃 테스트”로 알려졌던 것)](https://chromium.googlesource.com/chromium/src/+/master/docs/testing/web_tests.md)을 [통합 콘솔](https://ci.chromium.org/p/v8/g/integration/console)에서 지속적으로 실행하여 Chromium과의 통합 문제를 방지합니다.
 

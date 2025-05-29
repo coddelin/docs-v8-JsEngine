@@ -1,21 +1,21 @@
 ---
-title: &apos;`String.prototype.matchAll`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`String.prototype.matchAll`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-02-02
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: &apos;String.prototype.matchAll facilita iterar por todos los objetos de coincidencia que produce una expresión regular dada.&apos;
+description: 'String.prototype.matchAll facilita iterar por todos los objetos de coincidencia que produce una expresión regular dada.'
 ---
 Es común aplicar repetidamente la misma expresión regular en una cadena para obtener todas las coincidencias. Hasta cierto punto, esto ya es posible hoy en día utilizando el método `String#match`.
 
 En este ejemplo, encontramos todas las palabras que consisten únicamente en dígitos hexadecimales y luego registramos cada coincidencia:
 
 ```js
-const string = &apos;Números hex mágicos: DEADBEEF CAFE&apos;;
+const string = 'Números hex mágicos: DEADBEEF CAFE';
 const regex = /\b\p{ASCII_Hex_Digit}+\b/gu;
 for (const match of string.match(regex)) {
   console.log(match);
@@ -23,8 +23,8 @@ for (const match of string.match(regex)) {
 
 // Salida:
 //
-// &apos;DEADBEEF&apos;
-// &apos;CAFE&apos;
+// 'DEADBEEF'
+// 'CAFE'
 ```
 
 Sin embargo, esto solo te da las _subcadenas_ que coinciden. Normalmente, no solo quieres las subcadenas, también deseas información adicional como el índice de cada subcadena o los grupos de captura dentro de cada coincidencia.
@@ -32,7 +32,7 @@ Sin embargo, esto solo te da las _subcadenas_ que coinciden. Normalmente, no sol
 Ya es posible lograr esto escribiendo tu propio bucle y haciendo un seguimiento de los objetos de coincidencia tú mismo, pero es un poco tedioso y no muy conveniente:
 
 ```js
-const string = &apos;Números hex mágicos: DEADBEEF CAFE&apos;;
+const string = 'Números hex mágicos: DEADBEEF CAFE';
 const regex = /\b\p{ASCII_Hex_Digit}+\b/gu;
 let match;
 while (match = regex.exec(string)) {
@@ -41,14 +41,14 @@ while (match = regex.exec(string)) {
 
 // Salida:
 //
-// [ &apos;DEADBEEF&apos;, índice: 19, entrada: &apos;Números hex mágicos: DEADBEEF CAFE&apos; ]
-// [ &apos;CAFE&apos;,     índice: 28, entrada: &apos;Números hex mágicos: DEADBEEF CAFE&apos; ]
+// [ 'DEADBEEF', índice: 19, entrada: 'Números hex mágicos: DEADBEEF CAFE' ]
+// [ 'CAFE',     índice: 28, entrada: 'Números hex mágicos: DEADBEEF CAFE' ]
 ```
 
 La nueva API `String#matchAll` lo hace más fácil que nunca: ahora puedes escribir un simple bucle `for`-`of` para obtener todos los objetos de coincidencia.
 
 ```js
-const string = &apos;Números hex mágicos: DEADBEEF CAFE&apos;;
+const string = 'Números hex mágicos: DEADBEEF CAFE';
 const regex = /\b\p{ASCII_Hex_Digit}+\b/gu;
 for (const match of string.matchAll(regex)) {
   console.log(match);
@@ -56,17 +56,17 @@ for (const match of string.matchAll(regex)) {
 
 // Salida:
 //
-// [ &apos;DEADBEEF&apos;, índice: 19, entrada: &apos;Números hex mágicos: DEADBEEF CAFE&apos; ]
-// [ &apos;CAFE&apos;,     índice: 28, entrada: &apos;Números hex mágicos: DEADBEEF CAFE&apos; ]
+// [ 'DEADBEEF', índice: 19, entrada: 'Números hex mágicos: DEADBEEF CAFE' ]
+// [ 'CAFE',     índice: 28, entrada: 'Números hex mágicos: DEADBEEF CAFE' ]
 ```
 
 `String#matchAll` es especialmente útil para expresiones regulares con grupos de captura. Te proporciona toda la información de cada coincidencia individual, incluidos los grupos de captura.
 
 ```js
-const string = &apos;Repositorios favoritos de GitHub: tc39/ecma262 v8/v8.dev&apos;;
+const string = 'Repositorios favoritos de GitHub: tc39/ecma262 v8/v8.dev';
 const regex = /\b(?<owner>[a-z0-9]+)\/(?<repo>[a-z0-9\.]+)\b/g;
 for (const match of string.matchAll(regex)) {
-  console.log(`${match[0]} en ${match.index} con &apos;${match.input}&apos;`);
+  console.log(`${match[0]} en ${match.index} con '${match.input}'`);
   console.log(`→ owner: ${match.groups.owner}`);
   console.log(`→ repo: ${match.groups.repo}`);
 }
@@ -74,10 +74,10 @@ for (const match of string.matchAll(regex)) {
 <!--truncate-->
 // Salida:
 //
-// tc39/ecma262 en 23 con &apos;Repositorios favoritos de GitHub: tc39/ecma262 v8/v8.dev&apos;
+// tc39/ecma262 en 23 con 'Repositorios favoritos de GitHub: tc39/ecma262 v8/v8.dev'
 // → owner: tc39
 // → repo: ecma262
-// v8/v8.dev en 36 con &apos;Repositorios favoritos de GitHub: tc39/ecma262 v8/v8.dev&apos;
+// v8/v8.dev en 36 con 'Repositorios favoritos de GitHub: tc39/ecma262 v8/v8.dev'
 // → owner: v8
 // → repo: v8.dev
 ```

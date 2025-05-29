@@ -1,13 +1,13 @@
 ---
-title: &apos;類別靜態初始化區塊&apos;
-author: &apos;Shu-yu Guo ([@_shu](https://twitter.com/_shu))&apos;
+title: '類別靜態初始化區塊'
+author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
 avatars:
-  - &apos;shu-yu-guo&apos;
+  - 'shu-yu-guo'
 date: 2021-03-30
 tags:
   - ECMAScript
-description: &apos;JavaScript 類別獲得用於靜態初始化的專用語法。&apos;
-tweet: &apos;1376925666780798989&apos;
+description: 'JavaScript 類別獲得用於靜態初始化的專用語法。'
+tweet: '1376925666780798989'
 ---
 新的類別靜態初始化區塊語法允許開發者將應該在某個類別定義中執行一次的代碼集中到一個地方。以下是一個示例，其中一個偽隨機數生成器使用靜態區塊在 `class MyPRNG` 定義被評估時初始化熵池一次。
 
@@ -17,7 +17,7 @@ class MyPRNG {
   constructor(seed) {
     if (seed === undefined) {
       if (MyPRNG.entropyPool.length === 0) {
-        throw new Error(&apos;熵池耗盡&apos;);
+        throw new Error('熵池耗盡');
       }
       seed = MyPRNG.entropyPool.pop();
     }
@@ -40,22 +40,22 @@ class MyPRNG {
 每個靜態初始化區塊都有自己獨立的 `var` 和 `let`/`const` 範疇。就像在靜態字段初始化器中一樣，靜態區塊中的 `this` 值是類別構造函數本身。同樣，靜態區塊中的 `super.property` 指的是父類的靜態屬性。
 
 ```js
-var y = &apos;外部的 y&apos;;
+var y = '外部的 y';
 class A {
-  static fieldA = &apos;A.fieldA&apos;;
+  static fieldA = 'A.fieldA';
 }
 class B extends A {
-  static fieldB = &apos;B.fieldB&apos;;
+  static fieldB = 'B.fieldB';
   static {
     let x = super.fieldA;
-    // → &apos;A.fieldA&apos;
+    // → 'A.fieldA'
     var y = this.fieldB;
-    // → &apos;B.fieldB&apos;
+    // → 'B.fieldB'
   }
 }
 // 由於靜態區塊是它自己的 `var` 範疇，因此 `var` 不會提升！
 y;
-// → &apos;外部的 y&apos;
+// → '外部的 y'
 ```
 
 ## 多個靜態區塊
@@ -64,13 +64,13 @@ y;
 
 ```js
 class C {
-  static field1 = console.log(&apos;字段 1&apos;);
+  static field1 = console.log('字段 1');
   static {
-    console.log(&apos;靜態區塊 1&apos;);
+    console.log('靜態區塊 1');
   }
-  static field2 = console.log(&apos;字段 2&apos;);
+  static field2 = console.log('字段 2');
   static {
-    console.log(&apos;靜態區塊 2&apos;);
+    console.log('靜態區塊 2');
   }
 }
 // → 字段 1
@@ -94,7 +94,7 @@ class D {
     getDPrivateField = (d) => d.#privateField;
   }
 }
-getDPrivateField(new D(&apos;私有&apos;));
+getDPrivateField(new D('私有'));
 // → 私有
 ```
 

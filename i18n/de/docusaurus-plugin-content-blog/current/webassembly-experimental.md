@@ -1,10 +1,10 @@
 ---
-title: &apos;Experimentelle Unterstützung für WebAssembly in V8&apos;
-author: &apos;Seth Thompson, WebAssembly-Evangelist&apos;
+title: 'Experimentelle Unterstützung für WebAssembly in V8'
+author: 'Seth Thompson, WebAssembly-Evangelist'
 date: 2016-03-15 13:33:37
 tags:
   - WebAssembly
-description: &apos;Ab heute ist experimentelle Unterstützung für WebAssembly in V8 und Chromium hinter einem Flag verfügbar.&apos;
+description: 'Ab heute ist experimentelle Unterstützung für WebAssembly in V8 und Chromium hinter einem Flag verfügbar.'
 ---
 _Für einen umfassenden Überblick über WebAssembly und einen Fahrplan für die zukünftige Zusammenarbeit in der Community, siehe [Ein Meilenstein für WebAssembly](https://hacks.mozilla.org/2016/03/a-webassembly-milestone/) auf dem Mozilla Hacks Blog._
 

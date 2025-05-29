@@ -1,12 +1,12 @@
 ---
-title: &apos;Eine neue Methode, um programmiersprachen mit Garbage Collection effizient in WebAssembly zu integrieren&apos;
-author: &apos;Alon Zakai&apos;
+title: 'Eine neue Methode, um programmiersprachen mit Garbage Collection effizient in WebAssembly zu integrieren'
+author: 'Alon Zakai'
 avatars:
-  - &apos;alon-zakai&apos;
+  - 'alon-zakai'
 date: 2023-11-01
 tags:
   - WebAssembly
-tweet: &apos;1720161507324076395&apos;
+tweet: '1720161507324076395'
 ---
 
 Ein kürzlich erschienener Artikel über [WebAssembly Garbage Collection (WasmGC)](https://developer.chrome.com/blog/wasmgc) erklärt auf hoher Ebene, wie der [Garbage Collection (GC) Vorschlag](https://github.com/WebAssembly/gc) darauf abzielt, die Unterstützung von Programmiersprachen mit Garbage Collection in Wasm zu verbessern, was angesichts ihrer Beliebtheit sehr wichtig ist. In diesem Artikel werden wir uns mit den technischen Details befassen, wie GC-Sprachen wie Java, Kotlin, Dart, Python und C# nach Wasm portiert werden können. Es gibt tatsächlich zwei Hauptansätze:

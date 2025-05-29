@@ -1,13 +1,13 @@
 ---
-title: &apos;JSONをECMAScriptの部分集合として統合する（Subsume JSON a.k.a. JSON ⊂ ECMAScript）&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'JSONをECMAScriptの部分集合として統合する（Subsume JSON a.k.a. JSON ⊂ ECMAScript）'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-08-14
 tags:
   - ES2019
-description: &apos;JSONは現在、ECMAScriptの構文的部分集合になりました。&apos;
-tweet: &apos;1161649929904885762&apos;
+description: 'JSONは現在、ECMAScriptの構文的部分集合になりました。'
+tweet: '1161649929904885762'
 ---
 [_JSON ⊂ ECMAScript_ 提案](https://github.com/tc39/proposal-json-superset)により、JSONはECMAScriptの構文的部分集合となりました。これがすでにそうでなかったことに驚いたなら、あなたは一人ではありません！
 
@@ -17,11 +17,11 @@ ES2018では、ECMAScriptの文字列リテラルにはエスケープされて�
 
 ```js
 // 未エスケープのU+2028文字を含む文字列。
-const LS = &apos; &apos;;
+const LS = ' ';
 // → ES2018: SyntaxError
 
 // `eval`によって生成された、未エスケープのU+2029文字を含む文字列:
-const PS = eval(&apos;"\u2029"&apos;);
+const PS = eval('"\u2029"');
 // → ES2018: SyntaxError
 ```
 
@@ -34,12 +34,12 @@ ES2019では、文字列リテラルに未エスケープのU+2028とU+2029文�
 
 ```js
 // 未エスケープのU+2028文字を含む文字列。
-const LS = &apos; &apos;;
+const LS = ' ';
 // → ES2018: SyntaxError
 // → ES2019: 例外なし
 
 // `eval`によって生成された、未エスケープのU+2029文字を含む文字列:
-const PS = eval(&apos;"\u2029"&apos;);
+const PS = eval('"\u2029"');
 // → ES2018: SyntaxError
 // → ES2019: 例外なし
 ```
@@ -55,8 +55,8 @@ const PS = eval(&apos;"\u2029"&apos;);
 ```js
 // 一部のデータを表すJavaScriptオブジェクト（または配列、文字列）。
 const data = {
-  LineTerminators: &apos;\n\r  &apos;,
-  // 注: 文字列には4文字が含まれています: &apos;\n\r\u2028\u2029&apos;.
+  LineTerminators: '\n\r  ',
+  // 注: 文字列には4文字が含まれています: '\n\r\u2028\u2029'.
 };
 
 // データをJSON文字列化した形式に変換します。JSON ⊂
@@ -66,7 +66,7 @@ const jsObjectLiteral = JSON.stringify(data);
 
 // データをオブジェクトリテラルとして埋め込む有効なECMAScriptプログラムを作成します。
 const program = `const data = ${ jsObjectLiteral };`;
-// → &apos;const data = {"LineTerminators":"…"};&apos;
+// → 'const data = {"LineTerminators":"…"};'
 // （対象がインライン< script >の場合は追加のエスケープが必要です。）
 
 // ECMAScriptプログラムを含むファイルをディスクに書き込みます。
@@ -90,7 +90,7 @@ const data = { foo: 42, bar: 1337 }; // 🐌
 …データをJSON文字列化した形式で表現し、それをランタイムでJSONパースすることで、大規模なオブジェクト（10kB以上）の場合のパフォーマンス向上が見込まれます：
 
 ```js
-const data = JSON.parse(&apos;{"foo":42,"bar":1337}&apos;); // 🚀
+const data = JSON.parse('{"foo":42,"bar":1337}'); // 🚀
 ```
 
 以下は実装例です：
@@ -98,8 +98,8 @@ const data = JSON.parse(&apos;{"foo":42,"bar":1337}&apos;); // 🚀
 ```js
 // 一部のデータを表すJavaScriptオブジェクト（または配列、文字列）。
 const data = {
-  LineTerminators: &apos;\n\r  &apos;,
-  // 注: 文字列には4文字が含まれています: &apos;\n\r\u2028\u2029&apos;.
+  LineTerminators: '\n\r  ',
+  // 注: 文字列には4文字が含まれています: '\n\r\u2028\u2029'.
 };
 
 // データをJSON文字列化した形式に変換します。
@@ -113,7 +113,7 @@ const jsStringLiteral = JSON.stringify(json);
 // JavaScript文字列リテラルをJSONを表現する`JSON.parse`呼び出し内に埋め込んだ、有効な
 // ECMAScriptプログラムを作成します。
 const program = `const data = JSON.parse(${ jsStringLiteral });`;
-// → &apos;const data = JSON.parse("…");&apos;
+// → 'const data = JSON.parse("…");'
 // （ターゲットがインラインの<script>の場合は追加のエスケープが必要です。）
 
 // ECMAScriptプログラムをファイルに書き込む。
@@ -148,13 +148,13 @@ JSON ⊂ ECMAScriptは、特に文字列リテラルの場合のJSONとECMAScrip
 ```html
 <script>
   // デバッグ情報:
-  // User-Agent: "ユーザー提供文字列<U+2028>  alert(&apos;XSS&apos;);//"
+  // User-Agent: "ユーザー提供文字列<U+2028>  alert('XSS');//"
 </script>
 <!-- …は次と同じ意味: -->
 <script>
   // デバッグ情報:
   // User-Agent: "ユーザー提供文字列
-  alert(&apos;XSS&apos;);//"
+  alert('XSS');//"
 </script>
 ```
 

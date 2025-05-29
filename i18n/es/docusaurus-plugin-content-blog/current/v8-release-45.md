@@ -1,10 +1,10 @@
 ---
-title: &apos;Lanzamiento de V8 v4.5&apos;
-author: &apos;el equipo de V8&apos;
+title: 'Lanzamiento de V8 v4.5'
+author: 'el equipo de V8'
 date: 2015-07-17 13:33:37
 tags:
   - lanzamiento
-description: &apos;V8 v4.5 llega con mejoras de rendimiento y añade soporte para varias características de ES2015.&apos;
+description: 'V8 v4.5 llega con mejoras de rendimiento y añade soporte para varias características de ES2015.'
 ---
 Aproximadamente cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](https://v8.dev/docs/release-process). Cada versión se deriva del maestro de Git de V8 inmediatamente antes de que Chrome derive para un hito de Chrome Beta. Hoy nos complace anunciar nuestra rama más nueva, [V8 versión 4.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.5), que estará en beta hasta que sea lanzada en coordinación con Chrome 45 Stable. V8 v4.5 está llena de todo tipo de novedades para desarrolladores, por lo que nos gustaría darles un adelanto de algunos aspectos destacados en anticipación al lanzamiento en unas semanas.
 
@@ -27,12 +27,12 @@ const convertedData = data.map(value => value * 2);
 console.log(convertedData);
 ```
 
-La vinculación léxica de &apos;this&apos; es otro gran beneficio de las funciones flecha. Como resultado, usar callbacks en métodos es mucho más fácil.
+La vinculación léxica de 'this' es otro gran beneficio de las funciones flecha. Como resultado, usar callbacks en métodos es mucho más fácil.
 
 ```js
 class MyClass {
-  constructor() { this.a = &apos;Hola, &apos;; }
-  hello() { setInterval(() => console.log(this.a + &apos;Mundo!&apos;), 1000); }
+  constructor() { this.a = 'Hola, '; }
+  hello() { setInterval(() => console.log(this.a + 'Mundo!'), 1000); }
 }
 const myInstance = new MyClass();
 myInstance.hello();
@@ -47,8 +47,8 @@ Todos los nuevos métodos en [Arrays y TypedArrays](https://developer.mozilla.or
 [`Object.assign`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) permite a los desarrolladores fusionar y clonar objetos rápidamente.
 
 ```js
-const target = { a: &apos;Hola, &apos; };
-const source = { b: &apos;mundo!&apos; };
+const target = { a: 'Hola, ' };
+const source = { b: 'mundo!' };
 // Fusiona los objetos.
 Object.assign(target, source);
 console.log(target.a + target.b);
@@ -62,13 +62,13 @@ Durante muchos años, el compilador optimizador tradicional de V8, [Crankshaft](
 
 Uno de los objetivos de diseño del nuevo compilador optimizador de V8, [TurboFan](/blog/turbofan-jit), es poder eventualmente optimizar todo JavaScript, incluidas las características de ECMAScript 2015. En V8 v4.5, hemos comenzado a usar TurboFan para optimizar algunas características del lenguaje que no son compatibles con Crankshaft: `for`-`of`, `class`, `with` y nombres de propiedades calculadas.
 
-Aquí hay un ejemplo de código que usa &apos;for-of&apos;, que ahora puede ser compilado por TurboFan:
+Aquí hay un ejemplo de código que usa 'for-of', que ahora puede ser compilado por TurboFan:
 
 ```js
-const sequence = [&apos;Primero&apos;, &apos;Segundo&apos;, &apos;Tercero&apos;];
+const sequence = ['Primero', 'Segundo', 'Tercero'];
 for (const value of sequence) {
   // Este bloque ahora es optimizable.
-  const object = {a: &apos;Hola, &apos;, b: &apos;mundo!&apos;, c: value};
+  const object = {a: 'Hola, ', b: 'mundo!', c: value};
   console.log(object.a + object.b + object.c);
 }
 ```

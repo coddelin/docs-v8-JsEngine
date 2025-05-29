@@ -94,7 +94,7 @@ Estos pasos parecen tediosos, sin embargo, la especificación también contiene 
 function* EnumerateObjectProperties(obj) {
   const visited = new Set();
   for (const key of Reflect.ownKeys(obj)) {
-    if (typeof key === &apos;symbol&apos;) continue;
+    if (typeof key === 'symbol') continue;
     const desc = Reflect.getOwnPropertyDescriptor(obj, key);
     if (desc && !visited.has(key)) {
       visited.add(key);
@@ -115,7 +115,7 @@ Ahora que has llegado hasta aquí, tal vez hayas notado en el ejemplo anterior q
 
 La implementación ejemplar del generador `for`-`in` sigue un patrón incremental de recolección y generación de claves. En V8, las claves de propiedad se recopilan en un primer paso y solo luego se utilizan en la fase de iteración. Para V8 esto facilita algunas cosas. Para entender por qué, necesitamos analizar el modelo de objetos.
 
-Un objeto simple como `{a:&apos;value a&apos;, b:&apos;value b&apos;, c:&apos;value c&apos;}` puede tener varias representaciones internas en V8 como mostraremos en una publicación detallada de seguimiento sobre propiedades. Esto significa que, dependiendo del tipo de propiedades que tengamos —en el objeto, rápidas o lentas—, los nombres de las propiedades reales se almacenan en diferentes lugares. Esto hace que recopilar claves enumerables sea una tarea no trivial.
+Un objeto simple como `{a:'value a', b:'value b', c:'value c'}` puede tener varias representaciones internas en V8 como mostraremos en una publicación detallada de seguimiento sobre propiedades. Esto significa que, dependiendo del tipo de propiedades que tengamos —en el objeto, rápidas o lentas—, los nombres de las propiedades reales se almacenan en diferentes lugares. Esto hace que recopilar claves enumerables sea una tarea no trivial.
 
 V8 realiza un seguimiento de la estructura de los objetos mediante una clase oculta o un llamado Map. Los objetos con el mismo Map tienen la misma estructura. Además, cada Map tiene una estructura de datos compartida, el descriptor array, que contiene detalles sobre cada propiedad, como dónde se almacenan las propiedades en el objeto, el nombre de la propiedad y detalles como la enumerabilidad.
 
@@ -252,7 +252,7 @@ var o = {
   __proto__ : {b: 3},
   a: 1
 };
-Object.defineProperty(o, &apos;b&apos;, {});
+Object.defineProperty(o, 'b', {});
 
 for (var k in o) console.log(k);
 ```
@@ -299,31 +299,31 @@ Para ilustrar que la implementación que cumple con las especificaciones es más
 ```js
 var fastProperties = {
   __proto__ : null,
-  &apos;property 1&apos;: 1,
+  'property 1': 1,
   …
-  &apos;property 10&apos;: n
+  'property 10': n
 };
 
 var fastPropertiesWithPrototype = {
-  &apos;property 1&apos;: 1,
+  'property 1': 1,
   …
-  &apos;property 10&apos;: n
+  'property 10': n
 };
 
 var slowProperties = {
   __proto__ : null,
-  &apos;dummy&apos;: null,
-  &apos;property 1&apos;: 1,
+  'dummy': null,
+  'property 1': 1,
   …
-  &apos;property 10&apos;: n
+  'property 10': n
 };
-delete slowProperties[&apos;dummy&apos;]
+delete slowProperties['dummy']
 
 var elements = {
   __proto__: null,
-  &apos;1&apos;: 1,
+  '1': 1,
   …
-  &apos;10&apos;: n
+  '10': n
 }
 ```
 

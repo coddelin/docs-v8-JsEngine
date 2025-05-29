@@ -1,14 +1,14 @@
 ---
-title: &apos;瞭解 ECMAScript 規範，第 3 部分&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh)，推測規範觀察者&apos;
+title: '瞭解 ECMAScript 規範，第 3 部分'
+author: '[Marja Hölttä](https://twitter.com/marjakh)，推測規範觀察者'
 avatars:
   - marja-holtta
 date: 2020-04-01
 tags:
   - ECMAScript
   - 瞭解 ECMAScript
-description: &apos;閱讀 ECMAScript 規範的教程&apos;
-tweet: &apos;1245400717667577857&apos;
+description: '閱讀 ECMAScript 規範的教程'
+tweet: '1245400717667577857'
 ---
 
 [所有集數](/blog/tags/understanding-ecmascript)
@@ -57,8 +57,8 @@ const r = /foo/;
 模板引入了類似的歧義—`}` 的解釋取決於其出現的上下文：
 
 ```js
-const what1 = &apos;temp&apos;;
-const what2 = &apos;late&apos;;
+const what1 = 'temp';
+const what2 = 'late';
 const t = `I am a ${ what1 + what2 }`;
 ```
 

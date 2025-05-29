@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 릴리즈 v9.5&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))&apos;
+title: 'V8 릴리즈 v9.5'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-09-21
 tags:
  - 릴리즈
-description: &apos;V8 릴리즈 v9.5는 업데이트된 국제화 API와 WebAssembly 예외 처리 지원을 제공합니다.&apos;
-tweet: &apos;1440296019623759872&apos;
+description: 'V8 릴리즈 v9.5는 업데이트된 국제화 API와 WebAssembly 예외 처리 지원을 제공합니다.'
+tweet: '1440296019623759872'
 ---
 매 4주마다 우리는 [릴리즈 프로세스](https://v8.dev/docs/release-process)의 일환으로 V8의 새로운 브랜치를 생성합니다. 각 버전은 크롬 베타 마일스톤 직전에 V8의 Git 마스터에서 브랜칭됩니다. 오늘 우리는 최신 브랜치인 [V8 버전 9.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.5)를 발표하게 되어 기쁩니다. 이번 브랜치는 크롬 95 안정 릴리즈와 함께 몇 주 동안 베타 단계에 있습니다. V8 v9.5는 개발자를 위한 다양한 기능으로 가득합니다. 이 글에서는 릴리즈를 기대하며 주요 하이라이트를 미리 소개합니다.
 
@@ -19,24 +19,24 @@ tweet: &apos;1440296019623759872&apos;
 v8.1에서는 크롬 81에서 [`Intl.DisplayNames` API](https://v8.dev/features/intl-displaynames)를 출시했으며, 지원되는 유형으로는 “language”, “region”, “script”, “currency”가 있었습니다. v9.5에서는 이제 “calendar”와 “dateTimeField”라는 두 가지 새로운 지원 유형이 추가되었습니다. 이는 각각 다른 캘린더 유형과 날짜 및 시간 필드의 표시 이름을 반환합니다:
 
 ```js
-const esCalendarNames = new Intl.DisplayNames([&apos;es&apos;], { type: &apos;calendar&apos; });
-const frDateTimeFieldNames = new Intl.DisplayNames([&apos;fr&apos;], { type: &apos;dateTimeField&apos; });
-esCalendarNames.of(&apos;roc&apos;);  // "calendario de la República de China"
-frDateTimeFieldNames.of(&apos;month&apos;); // "mois"
+const esCalendarNames = new Intl.DisplayNames(['es'], { type: 'calendar' });
+const frDateTimeFieldNames = new Intl.DisplayNames(['fr'], { type: 'dateTimeField' });
+esCalendarNames.of('roc');  // "calendario de la República de China"
+frDateTimeFieldNames.of('month'); // "mois"
 ```
 
 또한 “language” 유형에 대한 지원을 강화하여 languageDisplay 옵션을 추가했습니다. 이 옵션은 “standard” 또는 “dialect”(명시되지 않은 경우 기본값)일 수 있습니다:
 
 ```js
-const jaDialectLanguageNames = new Intl.DisplayNames([&apos;ja&apos;], { type: &apos;language&apos; });
-const jaStandardLanguageNames = new Intl.DisplayNames([&apos;ja&apos;], { type: &apos;language&apos; , languageDisplay: &apos;standard&apos;});
-jaDialectLanguageNames.of(&apos;en-US&apos;)  // "アメリカ英語"
-jaDialectLanguageNames.of(&apos;en-AU&apos;)  // "オーストラリア英語"
-jaDialectLanguageNames.of(&apos;en-GB&apos;)  // "イギリス英語"
+const jaDialectLanguageNames = new Intl.DisplayNames(['ja'], { type: 'language' });
+const jaStandardLanguageNames = new Intl.DisplayNames(['ja'], { type: 'language' , languageDisplay: 'standard'});
+jaDialectLanguageNames.of('en-US')  // "アメリカ英語"
+jaDialectLanguageNames.of('en-AU')  // "オーストラリア英語"
+jaDialectLanguageNames.of('en-GB')  // "イギリス英語"
 
-jaStandardLanguageNames.of(&apos;en-US&apos;) // "英語 (アメリカ合衆国)"
-jaStandardLanguageNames.of(&apos;en-AU&apos;) // "英語 (オーストラリア)"
-jaStandardLanguageNames.of(&apos;en-GB&apos;) // "英語 (イギリス)"
+jaStandardLanguageNames.of('en-US') // "英語 (アメリカ合衆国)"
+jaStandardLanguageNames.of('en-AU') // "英語 (オーストラリア)"
+jaStandardLanguageNames.of('en-GB') // "英語 (イギリス)"
 ```
 
 ### 확장된 `timeZoneName` 옵션

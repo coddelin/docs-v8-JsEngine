@@ -1,15 +1,15 @@
 ---
-title: &apos;BigInt: JavaScript에서 임의 정밀도를 가진 정수&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'BigInt: JavaScript에서 임의 정밀도를 가진 정수'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-05-01
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: &apos;BigInt는 JavaScript에서 임의 정밀도의 정수를 표현할 수 있는 새로운 숫자형 원시 자료형입니다. 이 글은 몇 가지 사용 사례를 살펴보고 BigInt와 JavaScript의 Number를 비교하여 Chrome 67에서 추가된 새로운 기능을 설명합니다.&apos;
-tweet: &apos;990991035630206977&apos;
+description: 'BigInt는 JavaScript에서 임의 정밀도의 정수를 표현할 수 있는 새로운 숫자형 원시 자료형입니다. 이 글은 몇 가지 사용 사례를 살펴보고 BigInt와 JavaScript의 Number를 비교하여 Chrome 67에서 추가된 새로운 기능을 설명합니다.'
+tweet: '990991035630206977'
 ---
 `BigInt`는 JavaScript에서 임의 정밀도로 정수를 표현할 수 있는 새로운 숫자형 원시 자료형입니다. `BigInt`를 사용하면 `Number`의 안전한 정수 범위를 초과하는 큰 정수를 안전하게 저장하고 연산할 수 있습니다. 이 글은 몇 가지 사용 사례를 살펴보고 `BigInt`와 `Number`를 비교하여 Chrome 67에서 추가된 새로운 기능을 설명합니다.
 
@@ -92,9 +92,9 @@ BigInt(Number.MAX_SAFE_INTEGER) + 2n;
 
 ```js
 typeof 123;
-// → &apos;number&apos;
+// → 'number'
 typeof 123n;
-// → &apos;bigint&apos;
+// → 'bigint'
 ```
 
 `BigInt`는 별도의 타입으로, 예를 들어 `42n !== 42`처럼 `Number`와 절대적으로 같지 않습니다. `BigInt`를 `Number`와 비교하려면 비교를 수행하기 전에 한 유형에서 다른 유형으로 변환하거나 추상적 동등(`==`)을 사용하십시오:
@@ -110,11 +110,11 @@ typeof 123n;
 
 ```js
 if (0n) {
-  console.log(&apos;if&apos;);
+  console.log('if');
 } else {
-  console.log(&apos;else&apos;);
+  console.log('else');
 }
-// → logs &apos;else&apos;, because `0n` is falsy.
+// → logs 'else', because `0n` is falsy.
 ```
 
 ### 연산자
@@ -163,7 +163,7 @@ BigInt(123);
 // → 123n
 BigInt(1.5);
 // → RangeError
-BigInt(&apos;1.5&apos;);
+BigInt('1.5');
 // → SyntaxError
 ```
 
@@ -179,7 +179,7 @@ BigInt(123456789123456789);
 ```js
 123456789123456789n;
 // → 123456789123456789n ✅
-BigInt(&apos;123456789123456789&apos;);
+BigInt('123456789123456789');
 // → 123456789123456789n ✅
 ```
 
@@ -238,13 +238,13 @@ view[0];
 보다 실행 가능하고 미래 지향적인 해결책은 [JSBI 라이브러리](https://github.com/GoogleChromeLabs/jsbi#why)를 사용하여 코드를 작성하는 것입니다. JSBI는 V8 및 Chrome의 `BigInt` 구현을 JavaScript로 포팅한 것으로, 본래 `BigInt` 기능처럼 정확히 작동합니다. 차이점은 구문에 의존하는 대신 [API](https://github.com/GoogleChromeLabs/jsbi#how)를 노출한다는 점입니다:
 
 ```js
-import JSBI from &apos;./jsbi.mjs&apos;;
+import JSBI from './jsbi.mjs';
 
 const max = JSBI.BigInt(Number.MAX_SAFE_INTEGER);
-const two = JSBI.BigInt(&apos;2&apos;);
+const two = JSBI.BigInt('2');
 const result = JSBI.add(max, two);
 console.log(result.toString());
-// → &apos;9007199254740993&apos;
+// → '9007199254740993'
 ```
 
 모든 브라우저에서 `BigInt`가 기본적으로 지원되면 [`babel-plugin-transform-jsbi-to-bigint`를 사용하여 코드를 네이티브 `BigInt` 코드로 트랜스파일링](https://github.com/GoogleChromeLabs/babel-plugin-transform-jsbi-to-bigint)하고 JSBI 종속성을 제거할 수 있습니다. 예를 들어 위 예제는 다음으로 트랜스파일됩니다:
@@ -254,7 +254,7 @@ const max = BigInt(Number.MAX_SAFE_INTEGER);
 const two = 2n;
 const result = max + two;
 console.log(result);
-// → &apos;9007199254740993&apos;
+// → '9007199254740993'
 ```
 
 ## 추가 읽기 자료

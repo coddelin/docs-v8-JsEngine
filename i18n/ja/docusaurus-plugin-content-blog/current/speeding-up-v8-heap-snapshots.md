@@ -1,7 +1,7 @@
 ---
-title: &apos;V8ヒープスナップショットの高速化&apos;
-description: &apos;この投稿では、Bloombergのエンジニアが発見したV8ヒープスナップショットに関するパフォーマンスの問題と、それを解決してJavaScriptのメモリ分析をこれまで以上に高速化する方法について説明します。&apos;
-author: &apos;Jose Dapena Paz&apos;
+title: 'V8ヒープスナップショットの高速化'
+description: 'この投稿では、Bloombergのエンジニアが発見したV8ヒープスナップショットに関するパフォーマンスの問題と、それを解決してJavaScriptのメモリ分析をこれまで以上に高速化する方法について説明します。'
+author: 'Jose Dapena Paz'
 date: 2023-07-27
 tags:
  - memory
@@ -19,7 +19,7 @@ Bloombergのエンジニアは、JavaScriptアプリケーションのメモリ�
 このような通常のメモリリークシナリオをデバッグする一般的な手法は、まずヒープスナップショットをキャプチャし、それをDevToolsの「メモリ」タブでロードして、さまざまな要約やオブジェクト属性を調査することで最もメモリを消費しているものを見つけることです。DevTools UIでは、「メモリ」タブでヒープスナップショットを取得できます。Node.jsアプリケーションの場合、ヒープスナップショットは[このAPI](https://nodejs.org/en/docs/guides/diagnostics/memory/using-heap-snapshot)を使用してプログラムでトリガーできます:
 
 ```js
-require(&apos;v8&apos;).writeHeapSnapshot();
+require('v8').writeHeapSnapshot();
 ```
 
 彼らはアプリケーションのライフサイクルのさまざまなポイントで複数のスナップショットをキャプチャし、DevToolsメモリビューアを使用して異なる時点でのヒープの違いを表示したいと考えていました。しかし、500 MBのフルサイズのスナップショットを1つキャプチャするのに**30分以上**かかっていました！

@@ -1,16 +1,16 @@
 ---
-title: &apos;Des fonctions asynchrones et des promesses plus rapides&apos;
-author: &apos;Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), anticipatrice toujours en attente, et Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), garant professionnel de performance&apos;
+title: 'Des fonctions asynchrones et des promesses plus rapides'
+author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), anticipatrice toujours en attente, et Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), garant professionnel de performance'
 avatars:
-  - &apos;maya-armyanova&apos;
-  - &apos;benedikt-meurer&apos;
+  - 'maya-armyanova'
+  - 'benedikt-meurer'
 date: 2018-11-12 16:45:07
 tags:
   - ECMAScript
   - benchmarks
   - présentations
-description: &apos;Des fonctions asynchrones plus rapides et plus faciles à déboguer, ainsi que des promesses, arrivent avec V8 v7.2 / Chrome 72.&apos;
-tweet: &apos;1062000102909169670&apos;
+description: 'Des fonctions asynchrones plus rapides et plus faciles à déboguer, ainsi que des promesses, arrivent avec V8 v7.2 / Chrome 72.'
+tweet: '1062000102909169670'
 ---
 Le traitement asynchrone en JavaScript avait traditionnellement la réputation de ne pas être particulièrement rapide. Pour aggraver les choses, le débogage d'applications JavaScript en direct — en particulier des serveurs Node.js — n'est pas chose aisée, _surtout_ lorsqu'il s'agit de programmation asynchrone. Heureusement, les temps changent. Cet article explore comment nous avons optimisé les fonctions asynchrones et les promesses dans V8 (et dans une certaine mesure dans d'autres moteurs JavaScript également), et décrit comment nous avons amélioré l'expérience de débogage de code asynchrone.
 
@@ -81,15 +81,15 @@ Avec les fonctions asynchrones, le code devient plus succinct, et le flux de con
 Un autre paradigme asynchrone, particulièrement fréquent dans Node.js, est celui des [`ReadableStream`s](https://nodejs.org/api/stream.html#stream_readable_streams). Voici un exemple :
 
 ```js
-const http = require(&apos;http&apos;);
+const http = require('http');
 
 http.createServer((req, res) => {
-  let body = &apos;&apos;;
-  req.setEncoding(&apos;utf8&apos;);
-  req.on(&apos;data&apos;, (chunk) => {
+  let body = '';
+  req.setEncoding('utf8');
+  req.on('data', (chunk) => {
     body += chunk;
   });
-  req.on(&apos;end&apos;, () => {
+  req.on('end', () => {
     res.write(body);
     res.end();
   });
@@ -101,12 +101,12 @@ Ce code peut être un peu difficile à suivre : les données entrantes sont trai
 Heureusement, une fonctionnalité ES2018 innovante appelée [itération asynchrone](http://2ality.com/2016/10/asynchronous-iteration.html) peut simplifier ce code :
 
 ```js
-const http = require(&apos;http&apos;);
+const http = require('http');
 
 http.createServer(async (req, res) => {
   try {
-    let body = &apos;&apos;;
-    req.setEncoding(&apos;utf8&apos;);
+    let body = '';
+    req.setEncoding('utf8');
     for await (const chunk of req) {
       body += chunk;
     }
@@ -119,7 +119,7 @@ http.createServer(async (req, res) => {
 }).listen(1337);
 ```
 
-Au lieu de placer la logique de traitement des requêtes dans deux callbacks différents — celui de `&apos;data&apos;` et celui de `&apos;end&apos;` — nous pouvons désormais tout insérer dans une seule fonction asynchrone, et utiliser la nouvelle boucle `for await…of` pour itérer à travers les morceaux de manière asynchrone. Nous avons également ajouté un bloc `try-catch` pour éviter le problème de `unhandledRejection`[^1].
+Au lieu de placer la logique de traitement des requêtes dans deux callbacks différents — celui de `'data'` et celui de `'end'` — nous pouvons désormais tout insérer dans une seule fonction asynchrone, et utiliser la nouvelle boucle `for await…of` pour itérer à travers les morceaux de manière asynchrone. Nous avons également ajouté un bloc `try-catch` pour éviter le problème de `unhandledRejection`[^1].
 
 [^1]: Merci à [Matteo Collina](https://twitter.com/matteocollina) de nous avoir signalé [ce problème](https://github.com/mcollina/make-promises-safe/blob/master/README.md#the-unhandledrejection-problem).
 
@@ -165,16 +165,16 @@ Et enfin, il y avait un bug pratique dans Node.js 8 qui faisait que `await` saut
 const p = Promise.resolve();
 
 (async () => {
-  await p; console.log(&apos;après:await&apos;);
+  await p; console.log('après:await');
 })();
 
-p.then(() => console.log(&apos;tick:a&apos;))
- .then(() => console.log(&apos;tick:b&apos;));
+p.then(() => console.log('tick:a'))
+ .then(() => console.log('tick:b'));
 ```
 
 Le programme ci-dessus crée une promesse `p` remplie, et `await` son résultat, mais aussi enchaîne deux gestionnaires dessus. Dans quel ordre vous attendriez-vous à ce que les appels `console.log` s'exécutent ?
 
-Étant donné que `p` est remplie, vous pourriez vous attendre à ce qu'il imprime `&apos;après:await&apos;` en premier, puis les `&apos;tick&apos;`. En fait, c'est le comportement que vous obtiendriez dans Node.js 8 :
+Étant donné que `p` est remplie, vous pourriez vous attendre à ce qu'il imprime `'après:await'` en premier, puis les `'tick'`. En fait, c'est le comportement que vous obtiendriez dans Node.js 8 :
 
 ![Le bug `await` dans Node.js 8](/_img/fast-async/await-bug-node-8.svg)
 
@@ -383,7 +383,7 @@ async function foo() {
 
 async function bar() {
   await Promise.resolve();
-  throw new Error(&apos;BEEP BEEP&apos;);
+  throw new Error('BEEP BEEP');
 }
 
 foo().catch(error => console.log(error.stack));

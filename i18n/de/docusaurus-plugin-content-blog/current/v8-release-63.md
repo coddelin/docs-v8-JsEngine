@@ -1,11 +1,11 @@
 ---
-title: &apos;V8-Version v6.3&apos;
-author: &apos;das V8-Team&apos;
+title: 'V8-Version v6.3'
+author: 'das V8-Team'
 date: 2017-10-25 13:33:37
 tags:
   - Veröffentlichung
-description: &apos;V8 v6.3 enthält Leistungsverbesserungen, reduzierte Speichernutzung und Unterstützung neuer JavaScript-Sprachfunktionen.&apos;
-tweet: &apos;923168001108643840&apos;
+description: 'V8 v6.3 enthält Leistungsverbesserungen, reduzierte Speichernutzung und Unterstützung neuer JavaScript-Sprachfunktionen.'
+tweet: '923168001108643840'
 ---
 Alle sechs Wochen erstellen wir im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process) einen neuen Branch von V8. Jede Version wird kurz vor einem Chrome-Beta-Meilenstein aus dem Git-Master von V8 abgezweigt. Heute freuen wir uns, unseren neuesten Branch, [V8-Version 6.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.3), anzukündigen, der bis zu seiner Veröffentlichung in Zusammenarbeit mit Chrome 63 Stable in einigen Wochen im Beta-Modus ist. V8 v6.3 ist vollgepackt mit allerlei Entwickler-Features. Dieser Beitrag bietet eine Vorschau auf einige der Highlights in Erwartung der Veröffentlichung.
 

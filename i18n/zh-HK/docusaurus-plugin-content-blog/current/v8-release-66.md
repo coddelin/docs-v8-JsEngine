@@ -1,11 +1,11 @@
 ---
-title: &apos;V8 發佈版本 v6.6&apos;
-author: &apos;V8 團隊&apos;
+title: 'V8 發佈版本 v6.6'
+author: 'V8 團隊'
 date: 2018-03-27 13:33:37
 tags:
   - 發佈
-description: &apos;V8 v6.6 包括可選的 catch 綁定、擴展的字串修剪、多項解析/編譯/運行時性能改進，以及更多內容！&apos;
-tweet: &apos;978534399938584576&apos;
+description: 'V8 v6.6 包括可選的 catch 綁定、擴展的字串修剪、多項解析/編譯/運行時性能改進，以及更多內容！'
+tweet: '978534399938584576'
 ---
 每六週，我們會按照[發佈流程](/docs/release-process)創建 V8 新分支。每個版本是在 Chrome Beta 里程碑之前直接從 V8 的 Git 主分支分支出來的。今天，我們很高興地宣佈我們的最新分支，[V8 版本 6.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.6)，該版本目前是 Beta 版，幾週後將與 Chrome 66 穩定版一同發佈。V8 v6.6 包含了各種針對開發者的豐富功能。這篇文章提供了一些亮點的預覽，敬請期待發佈。
 
@@ -23,13 +23,13 @@ function /* 一個註釋 */ foo () {}
 
 // 以前:
 foo.toString();
-// → &apos;function foo() {}&apos;
+// → 'function foo() {}'
 //             ^ 沒有註釋
 //                ^ 沒有空格
 
 // 現在:
 foo.toString();
-// → &apos;function /* 註釋 */ foo () {}&apos;
+// → 'function /* 註釋 */ foo () {}'
 ```
 
 ### JSON ⊂ ECMAScript
@@ -53,13 +53,13 @@ try {
 除了 `String.prototype.trim()`，V8 現在實現了 [`String.prototype.trimStart()` 和 `String.prototype.trimEnd()`](/features/string-trimming)。此前，這些功能可以通過非標準的 `trimLeft()` 和 `trimRight()` 方法實現，這些方法仍作為新方法的別名以保持向後相容。
 
 ```js
-const string = &apos;  hello world  &apos;;
+const string = '  hello world  ';
 string.trimStart();
-// → &apos;hello world  &apos;
+// → 'hello world  '
 string.trimEnd();
-// → &apos;  hello world&apos;
+// → '  hello world'
 string.trim();
-// → &apos;hello world&apos;
+// → 'hello world'
 ```
 
 ### `Array.prototype.values`

@@ -1,14 +1,14 @@
 ---
-title: &apos;Indicium: Werkzeug zur Analyse der V8-Laufzeit&apos;
-author: &apos;Zeynep Cankara ([@ZeynepCankara](https://twitter.com/ZeynepCankara))&apos;
+title: 'Indicium: Werkzeug zur Analyse der V8-Laufzeit'
+author: 'Zeynep Cankara ([@ZeynepCankara](https://twitter.com/ZeynepCankara))'
 avatars:
-  - &apos;zeynep-cankara&apos;
+  - 'zeynep-cankara'
 date: 2020-10-01 11:56:00
 tags:
   - tools
   - system-analyzer
-description: &apos;Indicium: V8-Systemanalysetool zur Analyse von Map/IC-Ereignissen.&apos;
-tweet: &apos;1311689392608731140&apos;
+description: 'Indicium: V8-Systemanalysetool zur Analyse von Map/IC-Ereignissen.'
+tweet: '1311689392608731140'
 ---
 # Indicium: V8-Systemanalysator
 
@@ -49,19 +49,19 @@ for (let i = 0; i < 10e5; i++) {
   dotProduct = a.dotProduct(b);
 }
 
-console.time(&apos;snippet1&apos;);
+console.time('snippet1');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet1&apos;);
+console.timeEnd('snippet1');
 
 a = new Point(-1, -1);
 b = new Point(-2, -2);
-console.time(&apos;snippet2&apos;);
+console.time('snippet2');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet2&apos;);
+console.timeEnd('snippet2');
 ```
 
 Hier haben wir eine `Point`-Klasse, die zwei Koordinaten und einen zusätzlichen Boolean basierend auf den Werten der Koordinaten speichert. Die `Point`-Klasse hat eine `dotProduct`-Methode, die das Skalarprodukt zwischen dem übergebenen Objekt und dem Empfänger zurückgibt.
@@ -75,11 +75,11 @@ let a = new Point(1, 1);
 let b = new Point(2, 2);
 let dotProduct;
 
-console.time(&apos;snippet1&apos;);
+console.time('snippet1');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet1&apos;);
+console.timeEnd('snippet1');
 ```
 
 ### *Abschnitt 2*
@@ -87,11 +87,11 @@ console.timeEnd(&apos;snippet1&apos;);
 ```javascript
 a = new Point(-1, -1);
 b = new Point(-2, -2);
-console.time(&apos;snippet2&apos;);
+console.time('snippet2');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet2&apos;);
+console.timeEnd('snippet2');
 ```
 
 Wenn wir das Programm ausführen, bemerken wir einen Leistungsabfall. Obwohl wir die Leistung von zwei ähnlichen Abschnitten messen, greifen wir in einer Schleife auf die Eigenschaften `x` und `y` der `Point`-Objektinstanzen zu, indem wir die Funktion `dotProduct` aufrufen.

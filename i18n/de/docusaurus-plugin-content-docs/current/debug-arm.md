@@ -1,6 +1,6 @@
 ---
-title: &apos;Arm-Debugging mit dem Simulator&apos;
-description: &apos;Der Arm-Simulator und Debugger können sehr hilfreich sein, wenn man mit der V8-Codegenerierung arbeitet.&apos;
+title: 'Arm-Debugging mit dem Simulator'
+description: 'Der Arm-Simulator und Debugger können sehr hilfreich sein, wenn man mit der V8-Codegenerierung arbeitet.'
 ---
 Der Simulator und Debugger können sehr hilfreich sein, wenn man mit der V8-Codegenerierung arbeitet.
 
@@ -96,7 +96,7 @@ Und lassen Sie uns das ausführen:
 
 ```simulator
 $ d8 \
-    # Aktivieren von &apos;%&apos; Cheat-Code JS-Funktionen.
+    # Aktivieren von '%' Cheat-Code JS-Funktionen.
     --allow-natives-syntax \
     # Unsere Funktion disassemblieren.
     --print-opt-code --print-opt-code-filter="add" --code-comments \
@@ -262,7 +262,7 @@ sim> continue
 #    x2: 0x00007f1e00082be0
 (...)
 
-# Wir laden zuerst die Argumente &apos;a&apos; und &apos;b&apos; vom Stack und überprüfen, ob sie
+# Wir laden zuerst die Argumente 'a' und 'b' vom Stack und überprüfen, ob sie
 # markierte Zahlen sind. Dies wird durch das niedrigstwertige Bit, das 0 ist, angezeigt.
 0x00007f1e00082c90  f9401fe2            ldr x2, [sp, #56]
 #    x2: 0x000000000000000a <- 0x00007f1f821f0278

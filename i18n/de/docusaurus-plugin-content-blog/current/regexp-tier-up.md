@@ -1,15 +1,15 @@
 ---
-title: &apos;Verbesserung der regulären Ausdrücke in V8&apos;
-author: &apos;Patrick Thier und Ana Peško, regelmäßige Meinungsäußerungen über reguläre Ausdrücke&apos;
+title: 'Verbesserung der regulären Ausdrücke in V8'
+author: 'Patrick Thier und Ana Peško, regelmäßige Meinungsäußerungen über reguläre Ausdrücke'
 avatars:
-  - &apos;patrick-thier&apos;
-  - &apos;ana-pesko&apos;
+  - 'patrick-thier'
+  - 'ana-pesko'
 date: 2019-10-04 15:24:16
 tags:
   - internals
   - RegExp
-description: &apos;In diesem Blog-Beitrag beschreiben wir, wie wir die Vorteile der Interpretation von regulären Ausdrücken nutzen und gleichzeitig die Nachteile mindern.&apos;
-tweet: &apos;1180131710568030208&apos;
+description: 'In diesem Blog-Beitrag beschreiben wir, wie wir die Vorteile der Interpretation von regulären Ausdrücken nutzen und gleichzeitig die Nachteile mindern.'
+tweet: '1180131710568030208'
 ---
 In der Standardkonfiguration kompiliert V8 reguläre Ausdrücke beim ersten Ausführen in nativen Code. Im Rahmen unserer Arbeit an [JIT-less V8](/blog/jitless) haben wir einen Interpreter für reguläre Ausdrücke eingeführt. Das Interpretieren von regulären Ausdrücken hat den Vorteil, weniger Speicher zu verwenden, geht jedoch mit einem Leistungseinbußen einher. In diesem Blog-Beitrag beschreiben wir, wie wir die Vorteile des Interpretierens von regulären Ausdrücken nutzen und die Nachteile mindern.
 
@@ -42,15 +42,15 @@ Bevor wir über Bytecode-Peephole-Optimierung sprechen, werfen wir einen Blick a
 
 ```js
 const re = /[^_]*/;
-const str = &apos;a0b*c_ef&apos;;
+const str = 'a0b*c_ef';
 re.exec(str);
-// → findet &apos;a0b*c&apos;
+// → findet 'a0b*c'
 ```
 
 Für dieses einfache Muster erstellt der RegExp-Compiler 3 Bytecodes, die für jedes Zeichen ausgeführt werden. Auf einer hohen Ebene sind diese:
 
 1. Aktuelles Zeichen laden.
-1. Prüfen, ob das Zeichen `&apos;_&apos;` entspricht.
+1. Prüfen, ob das Zeichen `'_'` entspricht.
 1. Wenn nicht, aktuelle Position im Zielstring vorwärts bewegen und `goto 1`.
 
 Für unseren Zielstring interpretieren wir 17 Bytecodes, bis wir ein nicht passendes Zeichen finden. Die Idee der Peephole-Optimierung besteht darin, Sequenzen von Bytecodes durch neue optimierte Bytecodes zu ersetzen, die die Funktionalität mehrerer Bytecodes kombinieren. In unserem Beispiel können wir sogar die durch `goto` implizit erstellte Schleife explizit in den neuen Bytecode einbauen, sodass ein einzelner Bytecode alle passenden Zeichen verarbeitet und 16 Dispatches einspart.

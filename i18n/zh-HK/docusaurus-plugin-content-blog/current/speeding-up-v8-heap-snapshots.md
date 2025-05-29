@@ -1,7 +1,7 @@
 ---
-title: &apos;加速 V8 堆快照&apos;
-description: &apos;本文有關 V8 堆快照，展示了 Bloomberg 工程師發現的一些性能問題，以及我們如何解決這些問題，使 JavaScript 記憶體分析比以往更快。&apos;
-author: &apos;Jose Dapena Paz&apos;
+title: '加速 V8 堆快照'
+description: '本文有關 V8 堆快照，展示了 Bloomberg 工程師發現的一些性能問題，以及我們如何解決這些問題，使 JavaScript 記憶體分析比以往更快。'
+author: 'Jose Dapena Paz'
 date: 2023-07-27
 tags:
  - 記憶體
@@ -19,7 +19,7 @@ Bloomberg 工程師正在診斷一個 JavaScript 應用程式中的記憶體洩�
 調試這類常見記憶體洩漏情景的常用技術是首先捕獲堆快照，然後將其載入 DevTools 的“記憶體”標籤中，通過檢查各種摘要和物件屬性來找出佔用記憶體最多的部分。在 DevTools 的 UI 中，可以在“記憶體”標籤中拍攝堆快照。對於 Node.js 應用，堆快照可以通過以下 API [以程式化方式觸發](https://nodejs.org/en/docs/guides/diagnostics/memory/using-heap-snapshot)：
 
 ```js
-require(&apos;v8&apos;).writeHeapSnapshot();
+require('v8').writeHeapSnapshot();
 ```
 
 他們希望在應用程式生命週期的不同時間點拍攝多個快照，以便使用 DevTools 記憶體檢視器顯示不同時間點堆之間的差異。問題是，拍攝一個完整的大型（500 MB）的快照需要耗時 **超過 30 分鐘**！

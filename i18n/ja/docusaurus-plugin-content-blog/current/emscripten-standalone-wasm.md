@@ -1,14 +1,14 @@
 ---
-title: &apos;ウェブ外: Emscriptenを使用した単独のWebAssemblyバイナリ&apos;
-author: &apos;Alon Zakai&apos;
+title: 'ウェブ外: Emscriptenを使用した単独のWebAssemblyバイナリ'
+author: 'Alon Zakai'
 avatars:
-  - &apos;alon-zakai&apos;
+  - 'alon-zakai'
 date: 2019-11-21
 tags:
   - WebAssembly
   - tooling
-description: &apos;Emscriptenは、JavaScriptを必要としない単独のWasmファイルをサポートします。&apos;
-tweet: &apos;1197547645729988608&apos;
+description: 'Emscriptenは、JavaScriptを必要としない単独のWasmファイルをサポートします。'
+tweet: '1197547645729988608'
 ---
 Emscriptenは常に、ウェブやNode.jsのような他のJavaScript環境へのコンパイルを最優先にしてきました。しかし、WebAssemblyがJavaScriptなしで使用され始めると、新しいユースケースが登場し、それに合わせてEmscriptenのJSランタイムに依存しない[**単独のWasm**](https://github.com/emscripten-core/emscripten/wiki/WebAssembly-Standalone)ファイルの生成をサポートするようになりました。この投稿では、その理由が興味深い点について説明します。
 
@@ -62,14 +62,14 @@ emcc -O3 add.c -o add.wasm
 
 ```js
 // load-add.js
-const binary = require(&apos;fs&apos;).readFileSync(&apos;add.wasm&apos;);
+const binary = require('fs').readFileSync('add.wasm');
 
 WebAssembly.instantiate(binary).then(({ instance }) => {
   console.log(instance.exports.add(40, 2));
 });
 ```
 
-わずか4行！これを実行すると予想通り`42`が出力されます。この例は非常にシンプルですが、場合によってはあまり多くのJavaScriptが不要で、EmscriptenのデフォルトのJavaScriptランタイムよりも軽量な実装が可能です（Emscriptenのランタイムは多くの環境とオプションをサポートしています）。その実例として[zeux&apos;s meshoptimizer](https://github.com/zeux/meshoptimizer/blob/bdc3006532dd29b03d83dc819e5fa7683815b88e/js/meshopt_decoder.js)があります。わずか57行でメモリ管理や成長などを含みます！
+わずか4行！これを実行すると予想通り`42`が出力されます。この例は非常にシンプルですが、場合によってはあまり多くのJavaScriptが不要で、EmscriptenのデフォルトのJavaScriptランタイムよりも軽量な実装が可能です（Emscriptenのランタイムは多くの環境とオプションをサポートしています）。その実例として[zeux's meshoptimizer](https://github.com/zeux/meshoptimizer/blob/bdc3006532dd29b03d83dc819e5fa7683815b88e/js/meshopt_decoder.js)があります。わずか57行でメモリ管理や成長などを含みます！
 
 ### Wasmランタイムでの実行
 

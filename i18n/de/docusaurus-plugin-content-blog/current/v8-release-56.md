@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 Version v5.6&apos;
-author: &apos;das V8-Team&apos;
+title: 'V8 Version v5.6'
+author: 'das V8-Team'
 date: 2016-12-02 13:33:37
 tags:
   - Veröffentlichung
-description: &apos;V8 v5.6 kommt mit einer neuen Compiler-Pipeline, Leistungsverbesserungen und erweitertem Support für ECMAScript-Sprachfunktionen.&apos;
+description: 'V8 v5.6 kommt mit einer neuen Compiler-Pipeline, Leistungsverbesserungen und erweitertem Support für ECMAScript-Sprachfunktionen.'
 ---
 Alle sechs Wochen erstellen wir im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process) einen neuen V8-Zweig. Jede Version wird direkt vor einem Chrome-Beta-Meilenstein von V8s Git-Master verzweigt. Heute freuen wir uns, unseren neuesten Zweig, [V8 Version 5.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.6), anzukündigen, der bis zur Veröffentlichung in Zusammenarbeit mit Chrome 56 Stable in einigen Wochen in der Beta-Phase sein wird. V8 5.6 ist vollgepackt mit allerlei Entwickler-Features, daher möchten wir Ihnen einen Vorgeschmack auf einige Highlights geben, die mit der Veröffentlichung erwartet werden.
 

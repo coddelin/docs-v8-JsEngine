@@ -1,12 +1,12 @@
 ---
-title: &apos;Aplicaciones rápidas y paralelas con WebAssembly SIMD&apos;
-author: &apos;Deepti Gandluri ([@dptig](https://twitter.com/dptig)), Thomas Lively ([@tlively52](https://twitter.com/tlively52)), Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))&apos;
+title: 'Aplicaciones rápidas y paralelas con WebAssembly SIMD'
+author: 'Deepti Gandluri ([@dptig](https://twitter.com/dptig)), Thomas Lively ([@tlively52](https://twitter.com/tlively52)), Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
 date: 2020-01-30
 updated: 2022-11-06
 tags:
   - WebAssembly
-description: &apos;Trayendo operaciones vectoriales a WebAssembly&apos;
-tweet: &apos;1222944308183085058&apos;
+description: 'Trayendo operaciones vectoriales a WebAssembly'
+tweet: '1222944308183085058'
 ---
 SIMD significa _Single Instruction, Multiple Data_ (Instrucción Única, Múltiples Datos). Las instrucciones SIMD son una clase especial de instrucciones que aprovechan el paralelismo de datos en las aplicaciones al realizar simultáneamente la misma operación en múltiples elementos de datos. Las aplicaciones intensivas en cálculo, como códecs de audio/video, procesadores de imágenes, son ejemplos de aplicaciones que se benefician de las instrucciones SIMD para acelerar el rendimiento. La mayoría de las arquitecturas modernas admiten algunas variantes de instrucciones SIMD.
 
@@ -36,14 +36,14 @@ Primero, tenga en cuenta que SIMD es una característica nueva y aún no está d
 Para garantizar que todos los usuarios puedan cargar su aplicación, necesitará construir dos versiones diferentes: una con SIMD habilitado y otra sin él, y cargar la versión correspondiente según los resultados de detección de características. Para detectar SIMD en tiempo de ejecución, puede usar la biblioteca [`wasm-feature-detect`](https://github.com/GoogleChromeLabs/wasm-feature-detect) y cargar el módulo correspondiente de esta manera:
 
 ```js
-import { simd } from &apos;wasm-feature-detect&apos;;
+import { simd } from 'wasm-feature-detect';
 
 (async () => {
   const hasSIMD = await simd();
   const module = await (
     hasSIMD
-      ? import(&apos;./module-with-simd.js&apos;)
-      : import(&apos;./module-without-simd.js&apos;)
+      ? import('./module-with-simd.js')
+      : import('./module-without-simd.js')
   );
   // …ahora use el `module` como lo haría normalmente
 })();

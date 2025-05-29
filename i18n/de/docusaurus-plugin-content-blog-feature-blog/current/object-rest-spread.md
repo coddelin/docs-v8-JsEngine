@@ -1,14 +1,14 @@
 ---
-title: &apos;Objekt Rest- und Spread-Eigenschaften&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Objekt Rest- und Spread-Eigenschaften'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-06-06
 tags:
   - ECMAScript
   - ES2018
-description: &apos;Dieser Artikel erklärt, wie Objekt-Rest- und Spread-Eigenschaften in JavaScript funktionieren, und geht noch einmal auf Array-Rest- und Spread-Elemente ein.&apos;
-tweet: &apos;890269994688315394&apos;
+description: 'Dieser Artikel erklärt, wie Objekt-Rest- und Spread-Eigenschaften in JavaScript funktionieren, und geht noch einmal auf Array-Rest- und Spread-Elemente ein.'
+tweet: '890269994688315394'
 ---
 Bevor wir über _Objekt-Rest- und Spread-Eigenschaften_ sprechen, machen wir eine Reise in die Vergangenheit und erinnern uns an ein sehr ähnliches Merkmal.
 
@@ -42,34 +42,34 @@ Was gibt es also Neues? Nun, ein [Vorschlag](https://github.com/tc39/proposal-ob
 ```js
 // Rest-Eigenschaften für Objekt-Destrukturierungszuweisung:
 const person = {
-    firstName: &apos;Sebastian&apos;,
-    lastName: &apos;Markbåge&apos;,
-    country: &apos;USA&apos;,
-    state: &apos;CA&apos;,
+    firstName: 'Sebastian',
+    lastName: 'Markbåge',
+    country: 'USA',
+    state: 'CA',
 };
 const { firstName, lastName, ...rest } = person;
 console.log(firstName); // Sebastian
 console.log(lastName); // Markbåge
-console.log(rest); // { country: &apos;USA&apos;, state: &apos;CA&apos; }
+console.log(rest); // { country: 'USA', state: 'CA' }
 
 <!--truncate-->
 // Spread-Eigenschaften für Objektliterale:
 const personCopy = { firstName, lastName, ...rest };
 console.log(personCopy);
-// { firstName: &apos;Sebastian&apos;, lastName: &apos;Markbåge&apos;, country: &apos;USA&apos;, state: &apos;CA&apos; }
+// { firstName: 'Sebastian', lastName: 'Markbåge', country: 'USA', state: 'CA' }
 ```
 
 Spread-Eigenschaften bieten eine elegantere Alternative zu [`Object.assign()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) in vielen Situationen:
 
 ```js
 // Ein Objekt flach klonen:
-const data = { x: 42, y: 27, label: &apos;Schatz&apos; };
+const data = { x: 42, y: 27, label: 'Schatz' };
 // Der alte Weg:
 const clone1 = Object.assign({}, data);
 // Der neue Weg:
 const clone2 = { ...data };
 // Beide ergeben:
-// { x: 42, y: 27, label: &apos;Schatz&apos; }
+// { x: 42, y: 27, label: 'Schatz' }
 
 // Zwei Objekte zusammenführen:
 const defaultSettings = { logWarnings: false, logErrors: false };

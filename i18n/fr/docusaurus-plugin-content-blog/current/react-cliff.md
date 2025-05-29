@@ -275,7 +275,7 @@ Cela commence par deux objets pointant vers la même forme, où `x` est marqué 
 
 ![](/_img/react-cliff/13-shape.svg)
 
-Lorsque `b.x` passe à une représentation `Double`, V8 alloue une nouvelle forme où `x` est attribué à la représentation `Double`, et qui pointe vers la forme vide. V8 alloue également un `MutableHeapNumber` pour conserver la nouvelle valeur `0.2` pour la propriété `x`. Ensuite, nous mettons à jour l'objet `b` pour qu'il pointe vers cette nouvelle forme et changeons l'emplacement dans l'objet pour pointer vers le `MutableHeapNumber` précédemment alloué à l'offset 0. Enfin, nous marquons l'ancienne forme comme dépréciée et la désolidarisons de l'arbre de transition. Cela s'effectue en créant une nouvelle transition pour `&apos;x&apos;` de la forme vide vers la forme nouvellement créée.
+Lorsque `b.x` passe à une représentation `Double`, V8 alloue une nouvelle forme où `x` est attribué à la représentation `Double`, et qui pointe vers la forme vide. V8 alloue également un `MutableHeapNumber` pour conserver la nouvelle valeur `0.2` pour la propriété `x`. Ensuite, nous mettons à jour l'objet `b` pour qu'il pointe vers cette nouvelle forme et changeons l'emplacement dans l'objet pour pointer vers le `MutableHeapNumber` précédemment alloué à l'offset 0. Enfin, nous marquons l'ancienne forme comme dépréciée et la désolidarisons de l'arbre de transition. Cela s'effectue en créant une nouvelle transition pour `'x'` de la forme vide vers la forme nouvellement créée.
 
 ![](/_img/react-cliff/14-shape-transition.svg)
 
@@ -299,7 +299,7 @@ Dans ce cas, V8 doit trouver la forme dite _fractionnée_, qui est la dernière 
 
 ![](/_img/react-cliff/16-split-shape.svg)
 
-À partir de la forme divisée, nous créons une nouvelle chaîne de transition pour `y` qui rejoue toutes les transitions précédentes, mais avec `&apos;y&apos;` marqué comme représentation `Double`. Et nous utilisons cette nouvelle chaîne de transition pour `y`, marquant l'ancien sous-arbre comme obsolète. Dans la dernière étape, nous migrons l'instance `o` vers la nouvelle forme, en utilisant un `MutableHeapNumber` pour contenir la valeur de `y` maintenant. De cette manière, les nouveaux objets ne suivent pas l'ancien chemin, et une fois que toutes les références à l'ancienne forme ont disparu, la partie obsolète de la forme de l'arbre disparaît.
+À partir de la forme divisée, nous créons une nouvelle chaîne de transition pour `y` qui rejoue toutes les transitions précédentes, mais avec `'y'` marqué comme représentation `Double`. Et nous utilisons cette nouvelle chaîne de transition pour `y`, marquant l'ancien sous-arbre comme obsolète. Dans la dernière étape, nous migrons l'instance `o` vers la nouvelle forme, en utilisant un `MutableHeapNumber` pour contenir la valeur de `y` maintenant. De cette manière, les nouveaux objets ne suivent pas l'ancien chemin, et une fois que toutes les références à l'ancienne forme ont disparu, la partie obsolète de la forme de l'arbre disparaît.
 
 ## Transitions d'extensibilité et de niveau d'intégrité
 
@@ -348,7 +348,7 @@ const b = { x: 2 };
 Object.preventExtensions(b);
 ```
 
-Cela commence comme nous le savons déjà, avec une transition de la forme vide vers une nouvelle forme contenant l'attribut `&apos;x&apos;` (représenté comme `Smi`). Lorsque nous empêchons les extensions à `b`, nous effectuons une transition spéciale vers une nouvelle forme marquée comme non extensible. Cette transition spéciale n'introduit aucun nouvel attribut — c'est vraiment juste un marqueur.
+Cela commence comme nous le savons déjà, avec une transition de la forme vide vers une nouvelle forme contenant l'attribut `'x'` (représenté comme `Smi`). Lorsque nous empêchons les extensions à `b`, nous effectuons une transition spéciale vers une nouvelle forme marquée comme non extensible. Cette transition spéciale n'introduit aucun nouvel attribut — c'est vraiment juste un marqueur.
 
 ![](/_img/react-cliff/17-shape-nonextensible.svg)
 
@@ -408,7 +408,7 @@ Heureusement, [nous avons corrigé cette chute de performance](https://chromium-
 
 ![](/_img/react-cliff/22-fix.svg)
 
-Les deux instances de `FiberNode` pointent vers la forme non extensible où `&apos;actualStartTime&apos;` est un champ `Smi`. Lorsque la première affectation à `node1.actualStartTime` a lieu, une nouvelle chaîne de transition est créée et l'ancienne chaîne est marquée comme dépréciée:
+Les deux instances de `FiberNode` pointent vers la forme non extensible où `'actualStartTime'` est un champ `Smi`. Lorsque la première affectation à `node1.actualStartTime` a lieu, une nouvelle chaîne de transition est créée et l'ancienne chaîne est marquée comme dépréciée:
 
 ![](/_img/react-cliff/23-fix-fibernode-shape-1.svg)
 

@@ -1,13 +1,13 @@
 ---
-title: &apos;Super schnelle `super`-Eigenschaftszugriffe&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), Super-Optimierer&apos;
+title: 'Super schnelle `super`-Eigenschaftszugriffe'
+author: '[Marja Hölttä](https://twitter.com/marjakh), Super-Optimierer'
 avatars:
   - marja-holtta
 date: 2021-02-18
 tags:
   - JavaScript
-description: &apos;Schnellere `super`-Eigenschaftszugriffe in V8 v9.0&apos;
-tweet: &apos;1362465295848333316&apos;
+description: 'Schnellere `super`-Eigenschaftszugriffe in V8 v9.0'
+tweet: '1362465295848333316'
 ---
 
 Das [`super`-Schlüsselwort](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/super) kann verwendet werden, um auf Eigenschaften und Funktionen des Elternobjekts eines Objekts zuzugreifen.
@@ -106,7 +106,7 @@ Der optimierte Code wurde noch effizienter, als wir das Home-Objekt aus der `JSF
 
 ```javascript
 const myproto = {
-  __proto__: { &apos;x&apos;: 100 },
+  __proto__: { 'x': 100 },
   m() { return super.x; }
 };
 const o = { __proto__: myproto };

@@ -1,6 +1,6 @@
 ---
-title: &apos;本地執行基準測試&apos;
-description: &apos;本文件解釋了如何在 d8 中執行經典基準測試套件。&apos;
+title: '本地執行基準測試'
+description: '本文件解釋了如何在 d8 中執行經典基準測試套件。'
 ---
 我們有一個簡單的工作流程，可以用於執行 SunSpider、Kraken 和 Octane 的“經典”基準測試。您可以使用不同的二進制文件和標誌組合執行測試，結果是多次執行的平均值。
 

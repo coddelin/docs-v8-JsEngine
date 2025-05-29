@@ -1,13 +1,13 @@
 ---
-title: &apos;`Object.hasOwn`&apos;
-author: &apos;Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))&apos;
+title: '`Object.hasOwn`'
+author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
 avatars:
-  - &apos;victor-gomes&apos;
+  - 'victor-gomes'
 date: 2021-07-01
 tags:
   - ECMAScript
-description: &apos;`Object.hasOwn`은 `Object.prototype.hasOwnProperty`를 더 쉽게 접근할 수 있도록 만듭니다.&apos;
-tweet: &apos;1410577516943847424&apos;
+description: '`Object.hasOwn`은 `Object.prototype.hasOwnProperty`를 더 쉽게 접근할 수 있도록 만듭니다.'
+tweet: '1410577516943847424'
 ---
 
 오늘날, 아래와 같은 코드를 작성하는 것이 매우 일반적입니다:
@@ -15,7 +15,7 @@ tweet: &apos;1410577516943847424&apos;
 ```js
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 
-if (hasOwnProperty.call(object, &apos;foo&apos;)) {
+if (hasOwnProperty.call(object, 'foo')) {
   // `object`에 `foo`라는 속성이 있습니다.
 }
 ```
@@ -25,7 +25,7 @@ if (hasOwnProperty.call(object, &apos;foo&apos;)) {
 [`Object.hasOwn` 제안](https://github.com/tc39/proposal-accessible-object-hasownproperty)을 통해, 우리는 단순히 다음과 같이 작성할 수 있습니다:
 
 ```js
-if (Object.hasOwn(object, &apos;foo&apos;)) {
+if (Object.hasOwn(object, 'foo')) {
   // `object`에 `foo`라는 속성이 있습니다.
 }
 ```

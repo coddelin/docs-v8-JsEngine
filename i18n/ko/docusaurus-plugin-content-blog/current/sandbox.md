@@ -1,7 +1,7 @@
 ---
-title: &apos;V8 샌드박스&apos;
-description: &apos;V8는 메모리 손상 버그의 영향을 제한하기 위해 경량의 프로세스 내 샌드박스를 제공합니다&apos;
-author: &apos;사무엘 그로스&apos;
+title: 'V8 샌드박스'
+description: 'V8는 메모리 손상 버그의 영향을 제한하기 위해 경량의 프로세스 내 샌드박스를 제공합니다'
+author: '사무엘 그로스'
 avatars:
   - samuel-gross
 date: 2024-04-04
@@ -9,7 +9,7 @@ tags:
  - security
 ---
 
-약 3년간 [초기 설계 문서](https://docs.google.com/document/d/1FM4fQmIhEqPG8uGp5o9A-mnPB5BOeScZYpkHjo0KKA8/edit?usp=sharing) 및 그동안의 [수백개의 CL](https://github.com/search?q=repo%3Av8%2Fv8+%5Bsandbox%5D&type=commits&s=committer-date&o=desc) 이후, V8 샌드박스 — V8를 위한 경량의 프로세스 내 샌드박스 — 는 이제 더 이상 실험적 보안 기능으로 간주되지 않을 만큼 발전했습니다. 오늘부터 [V8 샌드박스는 Chrome&apos;s Vulnerability Reward Program](https://g.co/chrome/vrp/#v8-sandbox-bypass-rewards) (VRP)에 포함되었습니다. 강력한 보안 경계를 형성하기 전에 해결해야 할 문제들이 아직 남아 있지만, VRP 포함은 해당 방향으로 중요한 단계입니다. 따라서 Chrome 123은 샌드박스의 일종의 "베타" 릴리스로 간주될 수 있습니다. 이 블로그 게시물은 샌드박스의 동기를 논의하고, V8에서의 메모리 손상이 호스트 프로세스 내에서 확산되는 것을 어떻게 방지하는지 보여주며, 궁극적으로 왜 메모리 안전을 향한 필수 단계인지 설명하는 기회로 사용됩니다.
+약 3년간 [초기 설계 문서](https://docs.google.com/document/d/1FM4fQmIhEqPG8uGp5o9A-mnPB5BOeScZYpkHjo0KKA8/edit?usp=sharing) 및 그동안의 [수백개의 CL](https://github.com/search?q=repo%3Av8%2Fv8+%5Bsandbox%5D&type=commits&s=committer-date&o=desc) 이후, V8 샌드박스 — V8를 위한 경량의 프로세스 내 샌드박스 — 는 이제 더 이상 실험적 보안 기능으로 간주되지 않을 만큼 발전했습니다. 오늘부터 [V8 샌드박스는 Chrome's Vulnerability Reward Program](https://g.co/chrome/vrp/#v8-sandbox-bypass-rewards) (VRP)에 포함되었습니다. 강력한 보안 경계를 형성하기 전에 해결해야 할 문제들이 아직 남아 있지만, VRP 포함은 해당 방향으로 중요한 단계입니다. 따라서 Chrome 123은 샌드박스의 일종의 "베타" 릴리스로 간주될 수 있습니다. 이 블로그 게시물은 샌드박스의 동기를 논의하고, V8에서의 메모리 손상이 호스트 프로세스 내에서 확산되는 것을 어떻게 방지하는지 보여주며, 궁극적으로 왜 메모리 안전을 향한 필수 단계인지 설명하는 기회로 사용됩니다.
 
 <!--truncate-->
 

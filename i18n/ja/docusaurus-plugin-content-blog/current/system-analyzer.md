@@ -1,14 +1,14 @@
 ---
-title: &apos;Indicium: V8 ランタイムトレーサーツール&apos;
-author: &apos;ゼイネプ・キャンカラ ([@ZeynepCankara](https://twitter.com/ZeynepCankara))&apos;
+title: 'Indicium: V8 ランタイムトレーサーツール'
+author: 'ゼイネプ・キャンカラ ([@ZeynepCankara](https://twitter.com/ZeynepCankara))'
 avatars:
-  - &apos;zeynep-cankara&apos;
+  - 'zeynep-cankara'
 date: 2020-10-01 11:56:00
 tags:
   - tools
   - system-analyzer
-description: &apos;Indicium: V8 システム解析ツール。Map/IC イベントを分析する。&apos;
-tweet: &apos;1311689392608731140&apos;
+description: 'Indicium: V8 システム解析ツール。Map/IC イベントを分析する。'
+tweet: '1311689392608731140'
 ---
 # Indicium: V8 システム解析ツール
 
@@ -49,19 +49,19 @@ for (let i = 0; i < 10e5; i++) {
   dotProduct = a.dotProduct(b);
 }
 
-console.time(&apos;snippet1&apos;);
+console.time('snippet1');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet1&apos;);
+console.timeEnd('snippet1');
 
 a = new Point(-1, -1);
 b = new Point(-2, -2);
-console.time(&apos;snippet2&apos;);
+console.time('snippet2');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet2&apos;);
+console.timeEnd('snippet2');
 ```
 
 ここでは、`Point`クラスを使用して2つの座標と座標値に基づく追加のboolean値を保存しています。`Point`クラスには、渡されたオブジェクトとレシーバー間の内積を返す`dotProduct`メソッドがあります。
@@ -75,11 +75,11 @@ let a = new Point(1, 1);
 let b = new Point(2, 2);
 let dotProduct;
 
-console.time(&apos;snippet1&apos;);
+console.time('snippet1');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet1&apos;);
+console.timeEnd('snippet1');
 ```
 
 ### *スニペット2*
@@ -87,11 +87,11 @@ console.timeEnd(&apos;snippet1&apos;);
 ```javascript
 a = new Point(-1, -1);
 b = new Point(-2, -2);
-console.time(&apos;snippet2&apos;);
+console.time('snippet2');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet2&apos;);
+console.timeEnd('snippet2');
 ```
 
 プログラムを実行すると、パフォーマンスの低下に気づきます。この2つのスニペットのパフォーマンスを測定していますが、どちらも`dotProduct`関数を使って`Point`オブジェクトインスタンスのプロパティ`x`と`y`にアクセスしています。

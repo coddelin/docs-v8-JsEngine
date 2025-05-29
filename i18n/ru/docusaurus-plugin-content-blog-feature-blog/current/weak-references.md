@@ -1,11 +1,11 @@
 ---
-title: &apos;Слабые ссылки и финализаторы&apos;
-author: &apos;Сатья Гунасекаран ([@_gsathya](https://twitter.com/_gsathya)), Матиас Биненс ([@mathias](https://twitter.com/mathias)), Шу-ю Го ([@_shu](https://twitter.com/_shu)) и Лешек Свирски ([@leszekswirski](https://twitter.com/leszekswirski))&apos;
+title: 'Слабые ссылки и финализаторы'
+author: 'Сатья Гунасекаран ([@_gsathya](https://twitter.com/_gsathya)), Матиас Биненс ([@mathias](https://twitter.com/mathias)), Шу-ю Го ([@_shu](https://twitter.com/_shu)) и Лешек Свирски ([@leszekswirski](https://twitter.com/leszekswirski))'
 avatars:
-- &apos;sathya-gunasekaran&apos;
-- &apos;mathias-bynens&apos;
-- &apos;shu-yu-guo&apos;
-- &apos;leszek-swirski&apos;
+- 'sathya-gunasekaran'
+- 'mathias-bynens'
+- 'shu-yu-guo'
+- 'leszek-swirski'
 date: 2019-07-09
 updated: 2020-06-19
 tags:
@@ -13,8 +13,8 @@ tags:
   - ES2021
   - io19
   - Node.js 14
-description: &apos;Слабые ссылки и финализаторы приходят в JavaScript! Эта статья объясняет новую функциональность.&apos;
-tweet: &apos;1148603966848151553&apos;
+description: 'Слабые ссылки и финализаторы приходят в JavaScript! Эта статья объясняет новую функциональность.'
+tweet: '1148603966848151553'
 ---
 В общем случае ссылки на объекты в JavaScript являются _сильно удерживаемыми_, что означает, что пока у вас есть ссылка на объект, он не будет удален сборщиком мусора.
 
@@ -30,7 +30,7 @@ const ref = { x: 42, y: 51 };
 const wm = new WeakMap();
 {
   const ref = {};
-  const metaData = &apos;foo&apos;;
+  const metaData = 'foo';
   wm.set(ref, metaData);
   wm.get(ref);
   // → metaData
@@ -68,7 +68,7 @@ class MovingAvg {
     this.events = [];
     this.socket = socket;
     this.listener = (ev) => { this.events.push(ev); };
-    socket.addEventListener(&apos;message&apos;, this.listener);
+    socket.addEventListener('message', this.listener);
   }
 
   compute(n) {
@@ -124,11 +124,11 @@ class MovingAvg {
     this.events = [];
     this.socket = socket;
     this.listener = (ev) => { this.events.push(ev); };
-    socket.addEventListener(&apos;message&apos;, this.listener);
+    socket.addEventListener('message', this.listener);
   }
 
   dispose() {
-    this.socket.removeEventListener(&apos;message&apos;, this.listener);
+    this.socket.removeEventListener('message', this.listener);
   }
 
   // …
@@ -143,7 +143,7 @@ class MovingAvg {
 function addWeakListener(socket, listener) {
   const weakRef = new WeakRef(listener);
   const wrapper = (ev) => { weakRef.deref()?.(ev); };
-  socket.addEventListener(&apos;message&apos;, wrapper);
+  socket.addEventListener('message', wrapper);
 }
 
 class MovingAvg {
@@ -180,21 +180,21 @@ class MovingAvg {
 Но здесь остается проблема: мы добавили уровень косвенности к `listener`, обернув его в `WeakRef`, но `wrapper` в `addWeakListener` все еще создает утечку по той же причине, по которой изначально создавал утечку `listener`. Допустим, это меньшая утечка, поскольку утечка состоит только из обертки, а не целого экземпляра `MovingAvg`, но это все равно утечка. Решением этой проблемы является сопряженная функция для `WeakRef`, а именно `FinalizationRegistry`. С новым API `FinalizationRegistry` мы можем зарегистрировать обратный вызов, который будет выполнен, когда сборщик мусора уничтожит зарегистрированный объект. Такие обратные вызовы называются _финализаторами_.
 
 :::note
-**Примечание:** Колбек финализации не запускается сразу после сборки мусора для слушателя событий, поэтому не используйте его для важной логики или метрик. Время сборки мусора и вызовов колбеков финализации не определено. На самом деле, движок, который никогда не запускает сборку мусора, будет полностью совместим. Однако можно предположить, что движки _будут_ собирать мусор, и колбеки финализации будут вызываться позднее, если только среда не будет уничтожена (например, закрытие вкладки или завершение работы worker&apos;а). Учитывайте эту неопределенность при написании кода.
+**Примечание:** Колбек финализации не запускается сразу после сборки мусора для слушателя событий, поэтому не используйте его для важной логики или метрик. Время сборки мусора и вызовов колбеков финализации не определено. На самом деле, движок, который никогда не запускает сборку мусора, будет полностью совместим. Однако можно предположить, что движки _будут_ собирать мусор, и колбеки финализации будут вызываться позднее, если только среда не будет уничтожена (например, закрытие вкладки или завершение работы worker'а). Учитывайте эту неопределенность при написании кода.
 :::
 
 Мы можем зарегистрировать колбек с помощью `FinalizationRegistry`, чтобы удалить `wrapper` из сокета, когда внутренний слушатель событий будет собран сборщиком мусора. Наш окончательный вариант реализации выглядит следующим образом:
 
 ```js
 const gListenersRegistry = new FinalizationRegistry(({ socket, wrapper }) => {
-  socket.removeEventListener(&apos;message&apos;, wrapper); // 6
+  socket.removeEventListener('message', wrapper); // 6
 });
 
 function addWeakListener(socket, listener) {
   const weakRef = new WeakRef(listener); // 2
   const wrapper = (ev) => { weakRef.deref()?.(ev); }; // 3
   gListenersRegistry.register(listener, { socket, wrapper }); // 4
-  socket.addEventListener(&apos;message&apos;, wrapper); // 5
+  socket.addEventListener('message', wrapper); // 5
 }
 
 class MovingAvg {

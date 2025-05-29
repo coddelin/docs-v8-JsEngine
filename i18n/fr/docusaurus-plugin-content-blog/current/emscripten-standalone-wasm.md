@@ -1,21 +1,21 @@
 ---
-title: &apos;En dehors du web : binaires WebAssembly autonomes avec Emscripten&apos;
-author: &apos;Alon Zakai&apos;
+title: 'En dehors du web : binaires WebAssembly autonomes avec Emscripten'
+author: 'Alon Zakai'
 avatars:
-  - &apos;alon-zakai&apos;
+  - 'alon-zakai'
 date: 2019-11-21
 tags:
   - WebAssembly
   - outils
-description: &apos;Emscripten supporte désormais les fichiers Wasm autonomes, qui n&apos;ont pas besoin de JavaScript.&apos;
-tweet: &apos;1197547645729988608&apos;
+description: 'Emscripten supporte désormais les fichiers Wasm autonomes, qui n'ont pas besoin de JavaScript.'
+tweet: '1197547645729988608'
 ---
-Emscripten s'est toujours concentré en priorité sur la compilation pour le web et autres environnements JavaScript comme Node.js. Mais à mesure que WebAssembly commence à être utilisé *sans* JavaScript, de nouveaux cas d&apos;utilisation apparaissent, et nous avons travaillé sur la prise en charge de l&apos;émission de fichiers [**Wasm autonomes**](https://github.com/emscripten-core/emscripten/wiki/WebAssembly-Standalone) à partir d&apos;Emscripten, qui ne dépendent pas de l&apos;environnement d&apos;exécution JavaScript d&apos;Emscripten ! Ce post explique pourquoi cela est intéressant.
+Emscripten s'est toujours concentré en priorité sur la compilation pour le web et autres environnements JavaScript comme Node.js. Mais à mesure que WebAssembly commence à être utilisé *sans* JavaScript, de nouveaux cas d'utilisation apparaissent, et nous avons travaillé sur la prise en charge de l'émission de fichiers [**Wasm autonomes**](https://github.com/emscripten-core/emscripten/wiki/WebAssembly-Standalone) à partir d'Emscripten, qui ne dépendent pas de l'environnement d'exécution JavaScript d'Emscripten ! Ce post explique pourquoi cela est intéressant.
 
 <!--truncate-->
 ## Utiliser le mode autonome dans Emscripten
 
-Tout d&apos;abord, voyons ce que vous pouvez faire avec cette nouvelle fonctionnalité ! Similaire à [ce post](https://hacks.mozilla.org/2018/01/shrinking-webassembly-and-javascript-code-sizes-in-emscripten/), commençons par un programme type "hello world" qui exporte une fonction unique pour ajouter deux nombres :
+Tout d'abord, voyons ce que vous pouvez faire avec cette nouvelle fonctionnalité ! Similaire à [ce post](https://hacks.mozilla.org/2018/01/shrinking-webassembly-and-javascript-code-sizes-in-emscripten/), commençons par un programme type "hello world" qui exporte une fonction unique pour ajouter deux nombres :
 
 ```c
 // add.c
@@ -27,7 +27,7 @@ int add(int x, int y) {
 }
 ```
 
-Nous compilerions normalement cela avec une commande comme `emcc -O3 add.c -o add.js` qui émettrait `add.js` et `add.wasm`. Cette fois, demandons à `emcc` d&apos;émettre uniquement du Wasm :
+Nous compilerions normalement cela avec une commande comme `emcc -O3 add.c -o add.js` qui émettrait `add.js` et `add.wasm`. Cette fois, demandons à `emcc` d'émettre uniquement du Wasm :
 
 ```
 emcc -O3 add.c -o add.wasm
@@ -54,22 +54,22 @@ et une fonction supplémentaire, `_start`,
 )
 ```
 
-`_start` fait partie des spécifications [WASI](https://github.com/WebAssembly/WASI), et le mode autonome d&apos;Emscripten l&apos;émet afin que nous puissions exécuter dans des environnements WASI. (Normalement, `_start` ferait une initialisation globale, mais ici nous n'en avons tout simplement pas besoin donc elle est vide.)
+`_start` fait partie des spécifications [WASI](https://github.com/WebAssembly/WASI), et le mode autonome d'Emscripten l'émet afin que nous puissions exécuter dans des environnements WASI. (Normalement, `_start` ferait une initialisation globale, mais ici nous n'en avons tout simplement pas besoin donc elle est vide.)
 
 ### Écrire votre propre chargeur JavaScript
 
-Un aspect pratique d&apos;un fichier Wasm autonome comme celui-ci est que vous pouvez écrire un code JavaScript personnalisé pour le charger et l&apos;exécuter, qui peut être très minimal selon votre cas d&apos;utilisation. Par exemple, nous pouvons faire cela dans Node.js :
+Un aspect pratique d'un fichier Wasm autonome comme celui-ci est que vous pouvez écrire un code JavaScript personnalisé pour le charger et l'exécuter, qui peut être très minimal selon votre cas d'utilisation. Par exemple, nous pouvons faire cela dans Node.js :
 
 ```js
 // load-add.js
-const binary = require(&apos;fs&apos;).readFileSync(&apos;add.wasm&apos;);
+const binary = require('fs').readFileSync('add.wasm');
 
 WebAssembly.instantiate(binary).then(({ instance }) => {
   console.log(instance.exports.add(40, 2));
 });
 ```
 
-Seulement 4 lignes ! Cela affiche `42` comme attendu. Notez que bien que cet exemple soit très simple, il existe des cas où vous n&apos;avez simplement pas besoin de beaucoup de JavaScript et vous pourriez faire mieux que l&apos;environnement d&apos;exécution JavaScript par défaut d&apos;Emscripten (qui prend en charge un ensemble d&apos;environnements et de paramètres). Un exemple réel est dans [meshoptimizer de zeux](https://github.com/zeux/meshoptimizer/blob/bdc3006532dd29b03d83dc819e5fa7683815b88e/js/meshopt_decoder.js) — seulement 57 lignes, incluant la gestion de la mémoire, la croissance, etc. !
+Seulement 4 lignes ! Cela affiche `42` comme attendu. Notez que bien que cet exemple soit très simple, il existe des cas où vous n'avez simplement pas besoin de beaucoup de JavaScript et vous pourriez faire mieux que l'environnement d'exécution JavaScript par défaut d'Emscripten (qui prend en charge un ensemble d'environnements et de paramètres). Un exemple réel est dans [meshoptimizer de zeux](https://github.com/zeux/meshoptimizer/blob/bdc3006532dd29b03d83dc819e5fa7683815b88e/js/meshopt_decoder.js) — seulement 57 lignes, incluant la gestion de la mémoire, la croissance, etc. !
 
 ### Exécution dans des environnements Wasm
 
@@ -85,7 +85,7 @@ int main() {
 }
 ```
 
-Nous pouvons le compiler et l&apos;exécuter dans l&apos;un de ces environnements :
+Nous pouvons le compiler et l'exécuter dans l'un de ces environnements :
 
 ```bash
 $ emcc hello.cpp -O3 -o hello.wasm
@@ -97,11 +97,11 @@ $ wavm run hello.wasm
 Bonjour, monde!
 ```
 
-Emscripten utilise autant que possible les API WASI, ainsi ces programmes finissent par utiliser 100% WASI et peuvent s&apos;exécuter dans des environnements prenant en charge WASI (voir les remarques plus tard sur les programmes nécessitant plus que WASI).
+Emscripten utilise autant que possible les API WASI, ainsi ces programmes finissent par utiliser 100% WASI et peuvent s'exécuter dans des environnements prenant en charge WASI (voir les remarques plus tard sur les programmes nécessitant plus que WASI).
 
 ### Créer des plugins Wasm
 
-Au-delà du web et du serveur, un domaine passionnant pour Wasm est **les plugins**. Par exemple, un éditeur d&apos;images pourrait avoir des plugins Wasm capables d&apos;appliquer des filtres et d&apos;autres opérations à l&apos;image. Pour ce type de cas d&apos;utilisation, vous voulez un binaire Wasm autonome, comme dans les exemples ci-dessus, mais où il dispose également d&apos;une API appropriée pour l&apos;application embarquée.
+Au-delà du web et du serveur, un domaine passionnant pour Wasm est **les plugins**. Par exemple, un éditeur d'images pourrait avoir des plugins Wasm capables d'appliquer des filtres et d'autres opérations à l'image. Pour ce type de cas d'utilisation, vous voulez un binaire Wasm autonome, comme dans les exemples ci-dessus, mais où il dispose également d'une API appropriée pour l'application embarquée.
 
 Les plugins sont parfois liés aux bibliothèques dynamiques, car ces dernières sont une manière de les implémenter. Emscripten prend en charge les bibliothèques dynamiques avec l'option [SIDE_MODULE](https://github.com/emscripten-core/emscripten/wiki/Linking#general-dynamic-linking), et cela a été une méthode pour créer des plugins Wasm. La nouvelle option Wasm autonome décrite ici représente une amélioration à plusieurs égards : Premièrement, une bibliothèque dynamique a une mémoire relocalisable, ce qui ajoute une surcharge si vous n'en avez pas besoin (et vous n'en avez pas besoin si vous ne liez pas le Wasm avec un autre Wasm après l'avoir chargé). Deuxièmement, la sortie autonome est conçue pour fonctionner également dans les runtimes Wasm, comme mentionné précédemment.
 

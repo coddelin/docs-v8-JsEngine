@@ -190,13 +190,13 @@ re.test('4'); // → true
 ```js
 const reFlag = /[\p{RGI_Emoji_Flag_Sequence}\p{RGI_Emoji_Tag_Sequence}]/v;
 // 一个旗帜序列，由 2 个代码点组成（比利时的国旗）：
-reFlag.test(&apos;🇧🇪&apos;); // → true
+reFlag.test('🇧🇪'); // → true
 // 一个标记序列，由 7 个代码点组成（英格兰的国旗）：
-reFlag.test(&apos;🏴&apos;); // → true
+reFlag.test('🏴'); // → true
 // 一个旗帜序列，由 2 个代码点组成（瑞士的国旗）：
-reFlag.test(&apos;🇨🇭&apos;); // → true
+reFlag.test('🇨🇭'); // → true
 // 一个标记序列，由 7 个代码点组成（威尔士的国旗）：
-reFlag.test(&apos;🏴&apos;); // → true
+reFlag.test('🏴'); // → true
 ```
 
 ## 改进的大小写不敏感匹配
@@ -216,13 +216,13 @@ const re2 = /[^\P{Lowercase_Letter}]/giu;
 const re1 = /\p{Lowercase_Letter}/giu;
 const re2 = /[^\P{Lowercase_Letter}]/giu;
 
-const string = &apos;aAbBcC4#&apos;;
+const string = 'aAbBcC4#';
 
-string.replaceAll(re1, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re1, 'X');
+// → 'XXXXXX4#'
 
-string.replaceAll(re2, &apos;X&apos;);
-// → &apos;aAbBcC4#&apos;&apos;
+string.replaceAll(re2, 'X');
+// → 'aAbBcC4#''
 ```
 
 新的 `v` 标志有更少令人意外的行为。用 `v` 标志替代 `u` 标志时，两个模式的行为相同：
@@ -231,13 +231,13 @@ string.replaceAll(re2, &apos;X&apos;);
 const re1 = /\p{Lowercase_Letter}/giv;
 const re2 = /[^\P{Lowercase_Letter}]/giv;
 
-const string = &apos;aAbBcC4#&apos;;
+const string = 'aAbBcC4#';
 
-string.replaceAll(re1, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re1, 'X');
+// → 'XXXXXX4#'
 
-string.replaceAll(re2, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re2, 'X');
+// → 'XXXXXX4#'
 ```
 
 更普遍地说，`v` 标志使得 `[^\p{X}]` ≍ `[\P{X}]` ≍ `\P{X}` 和 `[^\P{X}]` ≍ `[\p{X}]` ≍ `\p{X}`，无论是否设置了 `i` 标志。

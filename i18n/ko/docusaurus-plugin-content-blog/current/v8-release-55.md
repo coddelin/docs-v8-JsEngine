@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 릴리즈 v5.5&apos;
-author: &apos;V8 팀&apos;
+title: 'V8 릴리즈 v5.5'
+author: 'V8 팀'
 date: 2016-10-24 13:33:37
 tags:
   - 릴리즈
-description: &apos;V8 v5.5는 메모리 소비 감소와 ECMAScript 언어 기능 지원 증가를 제공합니다.&apos;
+description: 'V8 v5.5는 메모리 소비 감소와 ECMAScript 언어 기능 지원 증가를 제공합니다.'
 ---
 매 6주마다 [릴리즈 프로세스](/docs/release-process)의 일환으로 V8의 새로운 브랜치를 만듭니다. 각 버전은 Chrome 베타 마일스톤 전 바로 V8의 Git 마스터에서 분기됩니다. 오늘은 새로운 브랜치인 [V8 버전 5.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.5)를 발표하게 되어 기쁩니다. 이 버전은 몇 주 후 Chrome 55 Stable과의 협업을 통해 출시되기 전까지 베타 상태에 있습니다. V8 v5.5에는 개발자에게 유용한 다양한 기능이 포함되어 있으므로, 릴리즈를 기대하며 몇 가지 주요 사항을 미리 살펴보고자 합니다.
 
@@ -24,7 +24,7 @@ function logFetch(url) {
     .then(text => {
       console.log(text);
     }).catch(err => {
-      console.error(&apos;가져오기 실패&apos;, err);
+      console.error('가져오기 실패', err);
     });
 }
 ```
@@ -37,7 +37,7 @@ async function logFetch(url) {
     const response = await fetch(url);
     console.log(await response.text());
   } catch (err) {
-    console.log(&apos;가져오기 실패&apos;, err);
+    console.log('가져오기 실패', err);
   }
 }
 ```
@@ -58,4 +58,4 @@ API 변경사항 [요약](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7
 
 V8 인스펙터가 Chromium에서 V8로 이전되었습니다. 이제 인스펙터 코드는 [V8 저장소](https://chromium.googlesource.com/v8/v8/+/master/src/inspector/)에 완전히 포함되어 있습니다.
 
-앱 [활성 V8 체크아웃](/docs/source-code#using-git)이 있는 개발자는 `git checkout -b 5.5 -t branch-heads/5.5`를 사용하여 V8 5.5의 새로운 기능을 실험해볼 수 있습니다. 또는 [Chrome&apos;s Beta 채널](https://www.google.com/chrome/browser/beta.html)을 구독하여 곧 새로운 기능을 직접 사용해보실 수 있습니다.
+앱 [활성 V8 체크아웃](/docs/source-code#using-git)이 있는 개발자는 `git checkout -b 5.5 -t branch-heads/5.5`를 사용하여 V8 5.5의 새로운 기능을 실험해볼 수 있습니다. 또는 [Chrome's Beta 채널](https://www.google.com/chrome/browser/beta.html)을 구독하여 곧 새로운 기능을 직접 사용해보실 수 있습니다.

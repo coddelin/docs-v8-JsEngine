@@ -1,6 +1,6 @@
 ---
-title: &apos;Oilpanライブラリ&apos;
-author: &apos;Anton Bikineev、Omer Katz（[@omerktz](https://twitter.com/omerktz)）、Michael Lippautz（[@mlippautz](https://twitter.com/mlippautz)）効率的で効果的なファイル移動者たち&apos;
+title: 'Oilpanライブラリ'
+author: 'Anton Bikineev、Omer Katz（[@omerktz](https://twitter.com/omerktz)）、Michael Lippautz（[@mlippautz](https://twitter.com/mlippautz)）効率的で効果的なファイル移動者たち'
 avatars:
   - anton-bikineev
   - omer-katz
@@ -10,8 +10,8 @@ tags:
   - internals
   - memory
   - cppgc
-description: &apos;V8は、管理されたC++メモリをホストするためのガベージコレクションライブラリOilpanを搭載しています。&apos;
-tweet: &apos;1458406645181165574&apos;
+description: 'V8は、管理されたC++メモリをホストするためのガベージコレクションライブラリOilpanを搭載しています。'
+tweet: '1458406645181165574'
 ---
 
 この投稿のタイトルから、オイルパンに関する書籍のコレクションを深掘りするのかと思うかもしれませんが、今回は違います。その代わりに、V8 v9.4以降ライブラリとしてホストされているC++ガベージコレクターであるOilpanについて詳しく見ていきます。

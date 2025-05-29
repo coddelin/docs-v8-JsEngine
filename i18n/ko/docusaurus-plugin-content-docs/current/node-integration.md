@@ -1,6 +1,6 @@
 ---
-title: &apos;CL이 Node.js 통합 빌드를 중단했을 경우 해야 할 일&apos;
-description: &apos;이 문서는 CL이 Node.js 통합 빌드를 중단했을 경우 해야 할 일을 설명합니다.&apos;
+title: 'CL이 Node.js 통합 빌드를 중단했을 경우 해야 할 일'
+description: '이 문서는 CL이 Node.js 통합 빌드를 중단했을 경우 해야 할 일을 설명합니다.'
 ---
 [Node.js](https://github.com/nodejs/node)는 V8 안정 버전 또는 베타 버전을 사용합니다. 추가 통합을 위해 V8 팀은 V8의 [메인 브랜치](https://chromium.googlesource.com/v8/v8/+/refs/heads/main)를 사용하여 Node를 빌드하며, 이는 오늘 기준의 V8 버전입니다. 우리는 [Linux](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Linux64)에 대한 통합 봇을 제공하며, [Windows](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Win64)와 [Mac](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Mac64)은 작업 중에 있습니다.
 
@@ -66,6 +66,6 @@ V8의 Node.js 포크에 대한 풀 리퀘스트가 병합되면, node-ci의 `DEP
 git checkout -b update-deps
 gclient setdep --var=node_revision=<merged-commit-hash>
 git add DEPS
-git commit -m &apos;Update Node&apos;
+git commit -m 'Update Node'
 git cl upload
 ```

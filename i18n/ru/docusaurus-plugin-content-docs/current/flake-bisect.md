@@ -1,6 +1,6 @@
 ---
-title: &apos;Flake bisect&apos;
-description: &apos;Этот документ объясняет, как разбивать на части нестабильные тесты.&apos;
+title: 'Flake bisect'
+description: 'Этот документ объясняет, как разбивать на части нестабильные тесты.'
 ---
 Нестабильные тесты сообщаются на отдельном этапе на ботах ([пример сборки](https://ci.chromium.org/ui/p/v8/builders/ci/V8%20Linux64%20TSAN/38630/overview)).
 
@@ -8,7 +8,7 @@ description: &apos;Этот документ объясняет, как разб
 
 ```
 Запуск разбиения нестабильных тестов в командной строке:
-bb add v8/try.triggered/v8_flako -p &apos;to_revision="deadbeef"&apos; -p &apos;test_name="MyTest"&apos; ...
+bb add v8/try.triggered/v8_flako -p 'to_revision="deadbeef"' -p 'test_name="MyTest"' ...
 ```
 
 Перед запуском разбиения нестабильных тестов в первый раз пользователи должны войти в систему с аккаунтом google.com:

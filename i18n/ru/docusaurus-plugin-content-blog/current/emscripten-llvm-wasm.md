@@ -1,14 +1,14 @@
 ---
-title: &apos;Emscripten и LLVM WebAssembly backend&apos;
-author: &apos;Алон Закай&apos;
+title: 'Emscripten и LLVM WebAssembly backend'
+author: 'Алон Закай'
 avatars:
-  - &apos;alon-zakai&apos;
+  - 'alon-zakai'
 date: 2019-07-01 16:45:00
 tags:
   - WebAssembly
   - инструменты
-description: &apos;Emscripten переходит на LLVM WebAssembly backend, что приводит к значительно более быстрой сборке и многим другим преимуществам.&apos;
-tweet: &apos;1145704863377981445&apos;
+description: 'Emscripten переходит на LLVM WebAssembly backend, что приводит к значительно более быстрой сборке и многим другим преимуществам.'
+tweet: '1145704863377981445'
 ---
 WebAssembly обычно компилируется из исходного языка, что означает, что разработчикам нужны *инструменты* для его использования. По этой причине команда V8 работает над соответствующими open-source проектами, такими как [LLVM](http://llvm.org/), [Emscripten](https://emscripten.org/), [Binaryen](https://github.com/WebAssembly/binaryen/) и [WABT](https://github.com/WebAssembly/wabt). В этом посте описана часть работы, которая выполнена над Emscripten и LLVM, и которая скоро позволит Emscripten по умолчанию перейти на [LLVM WebAssembly backend](https://github.com/llvm/llvm-project/tree/main/llvm/lib/Target/WebAssembly) — пожалуйста, протестируйте его и сообщите о любых проблемах!
 

@@ -1,6 +1,6 @@
 ---
-title: &apos;Vérification du code source de V8&apos;
-description: &apos;Ce document explique comment vérifier le code source de V8 localement.&apos;
+title: 'Vérification du code source de V8'
+description: 'Ce document explique comment vérifier le code source de V8 localement.'
 ---
 Ce document explique comment vérifier le code source de V8 localement. Si vous souhaitez simplement parcourir le code source en ligne, utilisez ces liens :
 
@@ -10,25 +10,25 @@ Ce document explique comment vérifier le code source de V8 localement. Si vous 
 
 ## Utilisation de Git
 
-Le dépôt Git de V8 est situé à l&apos;adresse https://chromium.googlesource.com/v8/v8.git, avec un miroir officiel sur GitHub : https://github.com/v8/v8.
+Le dépôt Git de V8 est situé à l'adresse https://chromium.googlesource.com/v8/v8.git, avec un miroir officiel sur GitHub : https://github.com/v8/v8.
 
-Ne vous contentez pas de ‘git clone’ l&apos;une de ces URL ! Si vous souhaitez construire V8 à partir de votre checkout, suivez plutôt les instructions ci-dessous pour tout configurer correctement.
+Ne vous contentez pas de ‘git clone’ l'une de ces URL ! Si vous souhaitez construire V8 à partir de votre checkout, suivez plutôt les instructions ci-dessous pour tout configurer correctement.
 
 ## Instructions
 
-1. Sous Linux ou macOS, installez d&apos;abord Git puis [`depot_tools`](https://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html#_setting_up).
+1. Sous Linux ou macOS, installez d'abord Git puis [`depot_tools`](https://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html#_setting_up).
 
     Sous Windows, suivez les instructions de Chromium ([pour les employés de Google](https://goto.google.com/building-chrome-win), [pour les non-employés de Google](https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md#Setting-up-Windows)) pour installer Git, Visual Studio, les outils de débogage pour Windows, et `depot_tools`.
 
-1. Mettez à jour `depot_tools` en exécutant la commande suivante dans votre terminal ou shell. Sous Windows, cela doit être fait dans l&apos;invite de commande (`cmd.exe`), et non dans PowerShell ou autres.
+1. Mettez à jour `depot_tools` en exécutant la commande suivante dans votre terminal ou shell. Sous Windows, cela doit être fait dans l'invite de commande (`cmd.exe`), et non dans PowerShell ou autres.
 
     ```
     gclient
     ```
 
-1. Pour **l&apos;accès en push**, vous devez configurer un fichier `.netrc` avec votre mot de passe Git :
+1. Pour **l'accès en push**, vous devez configurer un fichier `.netrc` avec votre mot de passe Git :
 
-    1. Allez sur https://chromium.googlesource.com/new-password et connectez-vous avec votre compte committer (généralement un compte `@chromium.org`). Remarque : créer un nouveau mot de passe ne révoque pas automatiquement les mots de passe précédemment créés. Veuillez vous assurer d&apos;utiliser le même email que celui défini pour `git config user.email`.
+    1. Allez sur https://chromium.googlesource.com/new-password et connectez-vous avec votre compte committer (généralement un compte `@chromium.org`). Remarque : créer un nouveau mot de passe ne révoque pas automatiquement les mots de passe précédemment créés. Veuillez vous assurer d'utiliser le même email que celui défini pour `git config user.email`.
     1. Regardez la grande boîte grise contenant les commandes shell. Collez ces lignes dans votre shell.
 
 1. Obtenez maintenant le code source de V8, y compris toutes les branches et les dépendances :
@@ -57,7 +57,7 @@ git new-branch fix-bug-1234
 
 ## Rester à jour
 
-Mettez à jour votre branche actuelle avec `git pull`. Notez que si vous n&apos;êtes pas sur une branche, `git pull` ne fonctionnera pas, et vous devrez utiliser `git fetch` à la place.
+Mettez à jour votre branche actuelle avec `git pull`. Notez que si vous n'êtes pas sur une branche, `git pull` ne fonctionnera pas, et vous devrez utiliser `git fetch` à la place.
 
 ```bash
 git pull
@@ -101,7 +101,7 @@ git cl land
 
 Cette section est uniquement utile pour les membres du projet V8.
 
-### Création d&apos;un job de test à partir de codereview
+### Création d'un job de test à partir de codereview
 
 1. Téléchargez un CL sur Gerrit.
 
@@ -115,15 +115,15 @@ Cette section est uniquement utile pour les membres du projet V8.
     git cl try
     ```
 
-1. Attendez que les robots de test construisent et que vous receviez un email avec le résultat. Vous pouvez également vérifier l&apos;état du test sur votre patch dans Gerrit.
+1. Attendez que les robots de test construisent et que vous receviez un email avec le résultat. Vous pouvez également vérifier l'état du test sur votre patch dans Gerrit.
 
-1. Si l&apos;application du patch échoue, vous devez soit rebaser votre patch, soit spécifier la révision de V8 pour synchroniser avec :
+1. Si l'application du patch échoue, vous devez soit rebaser votre patch, soit spécifier la révision de V8 pour synchroniser avec :
 
 ```bash
 git cl try --revision=1234
 ```
 
-### Création d&apos;un job de test à partir d&apos;une branche locale
+### Création d'un job de test à partir d'une branche locale
 
 1. Commitez certaines modifications à une branche git dans le repo local.
 
@@ -133,11 +133,11 @@ git cl try --revision=1234
     git cl try
     ```
 
-1. Attendez que les robots de test construisent et que vous receviez un email avec le résultat. Remarque : il y a des problèmes avec certaines des répliques actuellement. L&apos;envoi des jobs de test depuis codereview est recommandé.
+1. Attendez que les robots de test construisent et que vous receviez un email avec le résultat. Remarque : il y a des problèmes avec certaines des répliques actuellement. L'envoi des jobs de test depuis codereview est recommandé.
 
 ### Arguments utiles
 
-L&apos;argument de révision indique aux robots de test quelle révision de la base de code est utilisée pour appliquer vos modifications locales. Sans la révision, [la révision LKGR de V8](https://v8-status.appspot.com/lkgr) est utilisée comme base.
+L'argument de révision indique aux robots de test quelle révision de la base de code est utilisée pour appliquer vos modifications locales. Sans la révision, [la révision LKGR de V8](https://v8-status.appspot.com/lkgr) est utilisée comme base.
 
 ```bash
 git cl try --revision=1234

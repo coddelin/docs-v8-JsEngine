@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 릴리스 v7.9&apos;
-author: &apos;Santiago Aboy Solanes, 포인터 압축 전문가&apos;
+title: 'V8 릴리스 v7.9'
+author: 'Santiago Aboy Solanes, 포인터 압축 전문가'
 avatars:
-  - &apos;santiago-aboy-solanes&apos;
+  - 'santiago-aboy-solanes'
 date: 2019-11-20
 tags:
   - release
-description: &apos;V8 v7.9는 Double ⇒ Tagged 전환에 대한 폐기 제거, 내장 함수에서 API getter 처리, OSR 캐싱, 그리고 여러 코드 공간을 지원하는 Wasm 등 다양한 기능을 제공합니다.&apos;
-tweet: &apos;1197187184304050176&apos;
+description: 'V8 v7.9는 Double ⇒ Tagged 전환에 대한 폐기 제거, 내장 함수에서 API getter 처리, OSR 캐싱, 그리고 여러 코드 공간을 지원하는 Wasm 등 다양한 기능을 제공합니다.'
+tweet: '1197187184304050176'
 ---
 6주마다, 우리는 [릴리스 프로세스](/docs/release-process)의 일환으로 V8의 새로운 브랜치를 생성합니다. 각 버전은 Chrome Beta 마일스톤 직전에 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 최신 브랜치 [V8 버전 7.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.9)를 발표하게 되어 기쁩니다. 이 브랜치는 몇 주 후 Chrome 79 Stable과 함께 릴리스될 때까지 베타 상태입니다. V8 v7.9는 개발자에게 유용한 다양한 기능을 제공합니다. 이 글에서는 주요 하이라이트 중 일부를 미리 살펴봅니다.
 

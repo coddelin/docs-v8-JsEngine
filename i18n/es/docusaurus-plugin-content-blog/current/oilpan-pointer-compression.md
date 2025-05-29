@@ -226,8 +226,8 @@ La compresión de punteros en Oilpan se habilitó de manera predeterminada en **
 <!-- markdownlint-disable no-inline-html -->
 | Memoria de Blink | P50                                                 | P99                                               |
 | -----------: | :-------------------------------------------------: | :-----------------------------------------------: |
-| Windows      | **<span style={{color:&apos;green&apos;}}>-21% (-1,37MB)</span>** | **<span style={{color:&apos;green&apos;}}>-33% (-59MB)</span>** |
-| Android      | **<span style={{color:&apos;green&apos;}}>-6% (-0,1MB)</span>**   | **<span style={{color:&apos;green&apos;}}>-8% (-3,9MB)</span>** |
+| Windows      | **<span style={{color:'green'}}>-21% (-1,37MB)</span>** | **<span style={{color:'green'}}>-33% (-59MB)</span>** |
+| Android      | **<span style={{color:'green'}}>-6% (-0,1MB)</span>**   | **<span style={{color:'green'}}>-8% (-3,9MB)</span>** |
 <!-- markdownlint-enable no-inline-html -->
 
 

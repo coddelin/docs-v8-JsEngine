@@ -1,10 +1,10 @@
 ---
-title: &apos;V8リリース v4.9&apos;
-author: &apos;V8チーム&apos;
+title: 'V8リリース v4.9'
+author: 'V8チーム'
 date: 2016-01-26 13:33:37
 tags:
   - リリース
-description: &apos;V8 v4.9では改良された`Math.random`の実装が搭載され、いくつかの新しいES2015言語機能への対応が追加されました。&apos;
+description: 'V8 v4.9では改良された`Math.random`の実装が搭載され、いくつかの新しいES2015言語機能への対応が追加されました。'
 ---
 約6週間ごとに、私たちは[リリースプロセス](/docs/release-process)の一環として新しいV8ブランチを作成しています。各バージョンはV8のGitマスターから直前に分岐し、Chrome Betaマイルストーン用にChromeが分岐するタイミングで行われます。本日、最新のブランチ[V8バージョン4.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.9)を発表できることを嬉しく思います。このバージョンはChrome 49 Stableと連動してリリースされるまでベータ版です。V8 4.9は開発者向けの魅力的な機能が満載で、数週間後のリリースに先立ち、そのいくつかのハイライトを紹介したいと思います。
 
@@ -50,14 +50,14 @@ const [x, y = 0, z = 0] = [1, 2];               // x=1, y=2, z=0
 ```js
 const target = {};
 const handler = {
-  get(target, name=&apos;world&apos;) {
+  get(target, name='world') {
     return `Hello, ${name}!`;
   }
 };
 
 const foo = new Proxy(target, handler);
 foo.bar;
-// → &apos;Hello, bar!&apos;
+// → 'Hello, bar!'
 ```
 
 ProxyオブジェクトにはReflectモジュールが付随し、すべてのプロキシトラップに適切なデフォルトを定義します:
@@ -74,9 +74,9 @@ const debugMe = new Proxy({}, {
   }
 });
 
-debugMe.name = &apos;John Doe&apos;;
+debugMe.name = 'John Doe';
 // デバッグ: フィールドが設定されました: name 値: John Doe
-const title = `Mr. ${debugMe.name}`; // → &apos;Mr. John Doe&apos;
+const title = `Mr. ${debugMe.name}`; // → 'Mr. John Doe'
 // デバッグ: フィールドが取得されました: name
 ```
 
@@ -88,8 +88,8 @@ ES5以前では、関数定義におけるオプションパラメータには�
 
 ```js
 function sublist(list, start, end) {
-  if (typeof start === &apos;undefined&apos;) start = 0;
-  if (typeof end === &apos;undefined&apos;) end = list.length;
+  if (typeof start === 'undefined') start = 0;
+  if (typeof end === 'undefined') end = list.length;
   ...
 }
 ```
@@ -123,13 +123,13 @@ V8は正規表現での新しい[stickyフラグ](https://developer.mozilla.org/
 ```js
 class Custom {
   get [Symbol.toStringTag]() {
-    return &apos;Custom&apos;;
+    return 'Custom';
   }
 }
 Object.prototype.toString.call(new Custom);
-// → &apos;[object Custom]&apos;
+// → '[object Custom]'
 String(new Custom);
-// → &apos;[object Custom]&apos;
+// → '[object Custom]'
 ```
 
 ## 改良された`Math.random()`

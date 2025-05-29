@@ -1,15 +1,15 @@
 ---
-title: &apos;在 React 中 V8 性能崖的故事&apos;
-author: &apos;Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '在 React 中 V8 性能崖的故事'
+author: 'Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;benedikt-meurer&apos;
-  - &apos;mathias-bynens&apos;
+  - 'benedikt-meurer'
+  - 'mathias-bynens'
 date: 2019-08-28 16:45:00
 tags:
   - internals
   - presentations
-description: &apos;本文敘述 V8 如何為各種 JavaScript 值選擇最佳的內存表示方式，以及這如何影響形狀機制——這有助於解釋最近在 React 核心中出現的 V8 性能崖。&apos;
-tweet: &apos;1166723359696130049&apos;
+description: '本文敘述 V8 如何為各種 JavaScript 值選擇最佳的內存表示方式，以及這如何影響形狀機制——這有助於解釋最近在 React 核心中出現的 V8 性能崖。'
+tweet: '1166723359696130049'
 ---
 [之前](https://mathiasbynens.be/notes/shapes-ics)，我們討論了 JavaScript 引擎如何通過使用形狀和內線快取來優化物件和數組訪問，並探索了[引擎如何加速原型屬性訪問](https://mathiasbynens.be/notes/prototypes)。本文敘述 V8 如何為各種 JavaScript 值選擇最佳的內存表示方式，以及這如何影響形狀機制——這有助於解釋[React 核心中最近的 V8 性能崖](https://github.com/facebook/react/issues/14365)。
 
@@ -35,24 +35,24 @@ tweet: &apos;1166723359696130049&apos;
 
 ```js
 typeof 42;
-// → &apos;number&apos;
-typeof &apos;foo&apos;;
-// → &apos;string&apos;
-typeof Symbol(&apos;bar&apos;);
-// → &apos;symbol&apos;
+// → 'number'
+typeof 'foo';
+// → 'string'
+typeof Symbol('bar');
+// → 'symbol'
 typeof 42n;
-// → &apos;bigint&apos;
+// → 'bigint'
 typeof true;
-// → &apos;boolean&apos;
+// → 'boolean'
 typeof undefined;
-// → &apos;undefined&apos;
+// → 'undefined'
 typeof null;
-// → &apos;object&apos; 🤔
+// → 'object' 🤔
 typeof { x: 42 };
-// → &apos;object&apos;
+// → 'object'
 ```
 
-`typeof null` 返回 `&apos;object&apos;`，而不是 `&apos;null&apos;`，儘管 `Null` 是它自己的類型。要理解原因，請考慮所有 JavaScript 類型的集合分為兩組：
+`typeof null` 返回 `'object'`，而不是 `'null'`，儘管 `Null` 是它自己的類型。要理解原因，請考慮所有 JavaScript 類型的集合分為兩組：
 
 - _objects_（即 `Object` 類型）
 - _primitives_（即任何非物件的值）
@@ -61,7 +61,7 @@ typeof { x: 42 };
 
 ![](/_img/react-cliff/02-primitives-objects.svg)
 
-循著這種思想，Brendan Eich 設計了 JavaScript 使得 `typeof` 返回 `&apos;object&apos;` 給右側的所有值，即所有物件和 `null` 值，以符合 Java 的精神。這就是為什麼 `typeof null === &apos;object&apos;`，儘管規範中有一個獨立的 `Null` 類型。
+循著這種思想，Brendan Eich 設計了 JavaScript 使得 `typeof` 返回 `'object'` 給右側的所有值，即所有物件和 `null` 值，以符合 Java 的精神。這就是為什麼 `typeof null === 'object'`，儘管規範中有一個獨立的 `Null` 類型。
 
 ![](/_img/react-cliff/03-primitives-objects-typeof.svg)
 
@@ -73,7 +73,7 @@ JavaScript 引擎必須能夠在內存中表示任意的 JavaScript 值。然而
 
 ```js
 typeof 42;
-// → &apos;number&apos;
+// → 'number'
 ```
 
 有幾種方法可以在內存中表示整數值 `42`：
@@ -274,7 +274,7 @@ y = a.x;
 
 ![](/_img/react-cliff/13-shape.svg)
 
-當 `b.x` 更改為 `Double` 表示時，V8 分配一個新的結構，其中 `x` 被分配為 `Double` 表示，並且該結構指向初始的空結構。V8 同時分配一個 `MutableHeapNumber` 用於存放 `x` 屬性的值 `0.2`。然後我們更新對象 `b` 指向該新結構，並將對象中的槽位更新為指向剛分配的 `MutableHeapNumber` 偏移 0 的位置。最後，我們標記舊結構為廢棄並將其從遷移樹中解除鏈接。這是通過對空結構中的 `&apos;x&apos;` 添加到新創建的結構的轉換來完成的。
+當 `b.x` 更改為 `Double` 表示時，V8 分配一個新的結構，其中 `x` 被分配為 `Double` 表示，並且該結構指向初始的空結構。V8 同時分配一個 `MutableHeapNumber` 用於存放 `x` 屬性的值 `0.2`。然後我們更新對象 `b` 指向該新結構，並將對象中的槽位更新為指向剛分配的 `MutableHeapNumber` 偏移 0 的位置。最後，我們標記舊結構為廢棄並將其從遷移樹中解除鏈接。這是通過對空結構中的 `'x'` 添加到新創建的結構的轉換來完成的。
 
 ![](/_img/react-cliff/14-shape-transition.svg)
 
@@ -298,7 +298,7 @@ o.y = 0.1;
 
 ![](/_img/react-cliff/16-split-shape.svg)
 
-從分裂形狀開始，我們為 `y` 創建了一個新的過渡鏈，重播所有之前的過渡，但將 `&apos;y&apos;` 標記為 `Double` 表示。我們使用這個新的過渡鏈作為 `y` 的過渡，並將舊子樹標記為已棄用。在最後一步中，我們將實例 `o` 遷移到新形狀，現在使用 `MutableHeapNumber` 存儲 `y` 的值。這樣，新的對象就不會再走舊的路徑，並且一旦所有指向舊形狀的引用都消失，樹中已棄用的形狀部分就會消失。
+從分裂形狀開始，我們為 `y` 創建了一個新的過渡鏈，重播所有之前的過渡，但將 `'y'` 標記為 `Double` 表示。我們使用這個新的過渡鏈作為 `y` 的過渡，並將舊子樹標記為已棄用。在最後一步中，我們將實例 `o` 遷移到新形狀，現在使用 `MutableHeapNumber` 存儲 `y` 的值。這樣，新的對象就不會再走舊的路徑，並且一旦所有指向舊形狀的引用都消失，樹中已棄用的形狀部分就會消失。
 
 ## 可擴展性與完整性級別的過渡
 
@@ -347,7 +347,7 @@ const b = { x: 2 };
 Object.preventExtensions(b);
 ```
 
-一開始就像我們已知的一樣，從空形狀過渡到包含屬性 `&apos;x&apos;` 的新形狀(表示為 `Smi`)。當我們阻止對 `b` 的擴展時，我們執行了一個特別過渡到標記為不可擴展的新形狀。這種特殊過渡並未引入任何新屬性——它真的只是個標記。
+一開始就像我們已知的一樣，從空形狀過渡到包含屬性 `'x'` 的新形狀(表示為 `Smi`)。當我們阻止對 `b` 的擴展時，我們執行了一個特別過渡到標記為不可擴展的新形狀。這種特殊過渡並未引入任何新屬性——它真的只是個標記。
 
 ![](/_img/react-cliff/17-shape-nonextensible.svg)
 
@@ -407,7 +407,7 @@ V8 為 `node1` 分配了一個新的孤立形狀，稍後 `node2` 發生相同�
 
 ![](/_img/react-cliff/22-fix.svg)
 
-兩個 `FiberNode` 實例指向一個不可擴展的形狀，其中 `&apos;actualStartTime&apos;` 是一個 `Smi` 字段。當首次對 `node1.actualStartTime` 賦值時，創建了一條新的過渡鏈，並且先前的鏈被標記為已棄用：
+兩個 `FiberNode` 實例指向一個不可擴展的形狀，其中 `'actualStartTime'` 是一個 `Smi` 字段。當首次對 `node1.actualStartTime` 賦值時，創建了一條新的過渡鏈，並且先前的鏈被標記為已棄用：
 
 ![](/_img/react-cliff/23-fix-fibernode-shape-1.svg)
 

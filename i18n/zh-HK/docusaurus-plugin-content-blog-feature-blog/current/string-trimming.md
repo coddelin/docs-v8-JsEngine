@@ -1,40 +1,40 @@
 ---
-title: &apos;`String.prototype.trimStart` 和 `String.prototype.trimEnd`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`String.prototype.trimStart` 和 `String.prototype.trimEnd`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-03-26
 tags:
   - ECMAScript
   - ES2019
-description: &apos;ES2019 引入了 String.prototype.trimStart() 和 String.prototype.trimEnd().&apos;
+description: 'ES2019 引入了 String.prototype.trimStart() 和 String.prototype.trimEnd().'
 ---
 ES2019 引入了 [`String.prototype.trimStart()` 和 `String.prototype.trimEnd()`](https://github.com/tc39/proposal-string-left-right-trim):
 
 ```js
-const string = &apos;  hello world  &apos;;
+const string = '  hello world  ';
 string.trimStart();
-// → &apos;hello world  &apos;
+// → 'hello world  '
 string.trimEnd();
-// → &apos;  hello world&apos;
+// → '  hello world'
 string.trim(); // ES5
-// → &apos;hello world&apos;
+// → 'hello world'
 ```
 
 此功能之前可以通過非標準的 `trimLeft()` 和 `trimRight()` 方法實現，這些方法仍然作為新方法的別名保留，從而保證向後兼容性。
 
 ```js
-const string = &apos;  hello world  &apos;;
+const string = '  hello world  ';
 string.trimStart();
-// → &apos;hello world  &apos;
+// → 'hello world  '
 string.trimLeft();
-// → &apos;hello world  &apos;
+// → 'hello world  '
 string.trimEnd();
-// → &apos;  hello world&apos;
+// → '  hello world'
 string.trimRight();
-// → &apos;  hello world&apos;
+// → '  hello world'
 string.trim(); // ES5
-// → &apos;hello world&apos;
+// → 'hello world'
 ```
 
 <!--truncate-->

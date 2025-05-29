@@ -1,6 +1,6 @@
 ---
-title: &apos;不信任代码的缓解措施&apos;
-description: &apos;如果您嵌入了V8并运行不可信的JavaScript代码，请启用V8的缓解措施，以帮助防御推测性侧信道攻击。&apos;
+title: '不信任代码的缓解措施'
+description: '如果您嵌入了V8并运行不可信的JavaScript代码，请启用V8的缓解措施，以帮助防御推测性侧信道攻击。'
 ---
 2018年初，Google的Project Zero研究人员披露了[一类新的攻击](https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html)，这种攻击[利用](https://security.googleblog.com/2018/01/more-details-about-mitigations-for-cpu_4.html)许多CPU使用的推测执行优化。由于V8使用优化的JIT编译器TurboFan以提高JavaScript的运行速度，在某些情况下，它易受披露中描述的侧信道攻击的影响。
 

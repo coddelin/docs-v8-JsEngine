@@ -1,12 +1,12 @@
 ---
-title: &apos;V8中的快速属性&apos;
-author: &apos;Camillo Bruni ([@camillobruni](https://twitter.com/camillobruni))，也是[“Fast `for`-`in`”](/blog/fast-for-in)的作者&apos;
+title: 'V8中的快速属性'
+author: 'Camillo Bruni ([@camillobruni](https://twitter.com/camillobruni))，也是[“Fast `for`-`in`”](/blog/fast-for-in)的作者'
 avatars:
-  - &apos;camillo-bruni&apos;
+  - 'camillo-bruni'
 date: 2017-08-30 13:33:37
 tags:
   - internals
-description: &apos;本文深入解析了V8在幕后如何处理JavaScript属性。&apos;
+description: '本文深入解析了V8在幕后如何处理JavaScript属性。'
 ---
 在这篇博客中，我们想解释一下V8如何在内部处理JavaScript属性。从JavaScript的角度来看，属性的区分需求只有少数几种。JavaScript对象大多像字典一样工作，具有字符串键和任意对象值。然而，规范在[迭代期间](https://tc39.es/ecma262/#sec-ordinaryownpropertykeys)将整数索引属性和其他属性区别对待。除此之外，不论属性是否是整数索引，它们的行为大致相同。
 

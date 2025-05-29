@@ -1,6 +1,6 @@
 ---
-title: &apos;V8의 Maps (Hidden Classes)&apos;
-description: &apos;V8은 객체의 구조를 어떻게 추적하고 최적화합니까?&apos;
+title: 'V8의 Maps (Hidden Classes)'
+description: 'V8은 객체의 구조를 어떻게 추적하고 최적화합니까?'
 ---
 
 V8이 숨겨진 클래스를 어떻게 구성하는지 보여드리겠습니다. 주요 데이터 구조는 다음과 같습니다:

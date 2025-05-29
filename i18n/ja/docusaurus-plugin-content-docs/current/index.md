@@ -1,6 +1,6 @@
 ---
-title: &apos;ドキュメント&apos;
-description: &apos;V8プロジェクトのドキュメント&apos;
+title: 'ドキュメント'
+description: 'V8プロジェクトのドキュメント'
 slug: /
 ---
 V8は、Googleのオープンソースで高性能なJavaScriptおよびWebAssemblyエンジンで、C++で記述されています。ChromeやNode.jsなどで使用されています。

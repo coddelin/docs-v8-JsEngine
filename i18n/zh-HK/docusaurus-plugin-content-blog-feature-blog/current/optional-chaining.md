@@ -1,14 +1,14 @@
 ---
-title: &apos;可選鏈（Optional chaining）&apos;
-author: &apos;Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski))，可選鏈的破壞者&apos;
+title: '可選鏈（Optional chaining）'
+author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski))，可選鏈的破壞者'
 avatars:
-  - &apos;maya-armyanova&apos;
+  - 'maya-armyanova'
 date: 2019-08-27
 tags:
   - ECMAScript
   - ES2020
-description: &apos;可選鏈使屬性訪問的表達更加可讀且簡潔，並內建了空值檢查功能。&apos;
-tweet: &apos;1166360971914481669&apos;
+description: '可選鏈使屬性訪問的表達更加可讀且簡潔，並內建了空值檢查功能。'
+tweet: '1166360971914481669'
 ---
 在 JavaScript 中，長鏈的屬性訪問可能容易出錯，因為其中任何一步都可能評估為 `null` 或 `undefined`（也稱為“空值”）。在每一步進行屬性存在檢查，很容易變成深度嵌套的 `if` 語句或一個長長的 `if` 條件，複製屬性訪問的鏈路：
 
@@ -66,7 +66,7 @@ const adminOption = db?.user?.validateAdminAndGetPrefs?.().option;
 
 ```js
 // 擴展了靜態屬性訪問的功能，並使用動態生成的屬性名稱。
-const optionName = &apos;optional setting&apos;;
+const optionName = 'optional setting';
 const optionLength = db?.user?.preferences?.[optionName].length;
 ```
 
@@ -82,22 +82,22 @@ const userName = usersArray?.[userIndex].name;
 可選鏈操作符可以與[空值合併 `??` 操作符](/features/nullish-coalescing)結合使用，當需要非 `undefined` 的默認值時。這允許以指定的默認值安全地訪問深層屬性，解決了一個之前需要使用像 [lodash 的 `_.get`](https://lodash.dev/docs/4.17.15#get) 這樣的第三方庫常見的用例：
 
 ```js
-const object = { id: 123, names: { first: &apos;Alice&apos;, last: &apos;Smith&apos; }};
+const object = { id: 123, names: { first: 'Alice', last: 'Smith' }};
 
 { // 使用 lodash:
-  const firstName = _.get(object, &apos;names.first&apos;);
-  // → &apos;Alice&apos;
+  const firstName = _.get(object, 'names.first');
+  // → 'Alice'
 
-  const middleName = _.get(object, &apos;names.middle&apos;, &apos;(no middle name)&apos;);
-  // → &apos;(no middle name)&apos;
+  const middleName = _.get(object, 'names.middle', '(no middle name)');
+  // → '(no middle name)'
 }
 
 { // 使用可選鏈和空值合併:
-  const firstName = object?.names?.first ?? &apos;(no first name)&apos;;
-  // → &apos;Alice&apos;
+  const firstName = object?.names?.first ?? '(no first name)';
+  // → 'Alice'
 
-  const middleName = object?.names?.middle ?? &apos;(no middle name)&apos;;
-  // → &apos;(no middle name)&apos;
+  const middleName = object?.names?.middle ?? '(no middle name)';
+  // → '(no middle name)'
 }
 ```
 

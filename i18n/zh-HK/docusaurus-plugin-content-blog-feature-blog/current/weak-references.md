@@ -1,11 +1,11 @@
 ---
-title: &apos;弱引用與終結器&apos;
-author: &apos;Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), 和 Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))&apos;
+title: '弱引用與終結器'
+author: 'Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), 和 Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))'
 avatars:
-- &apos;sathya-gunasekaran&apos;
-- &apos;mathias-bynens&apos;
-- &apos;shu-yu-guo&apos;
-- &apos;leszek-swirski&apos;
+- 'sathya-gunasekaran'
+- 'mathias-bynens'
+- 'shu-yu-guo'
+- 'leszek-swirski'
 date: 2019-07-09
 updated: 2020-06-19
 tags:
@@ -13,8 +13,8 @@ tags:
   - ES2021
   - io19
   - Node.js 14
-description: &apos;弱引用與終結器即將加入 JavaScript！本文將解釋這項新功能。&apos;
-tweet: &apos;1148603966848151553&apos;
+description: '弱引用與終結器即將加入 JavaScript！本文將解釋這項新功能。'
+tweet: '1148603966848151553'
 ---
 通常，在 JavaScript 中對物件的引用是 _強引用_，這意味著只要你擁有對該物件的引用，它就不會被垃圾回收機制回收。
 
@@ -29,7 +29,7 @@ const ref = { x: 42, y: 51 };
 const wm = new WeakMap();
 {
   const ref = {};
-  const metaData = &apos;foo&apos;;
+  const metaData = 'foo';
   wm.set(ref, metaData);
   wm.get(ref);
   // → metaData
@@ -67,7 +67,7 @@ class MovingAvg {
     this.events = [];
     this.socket = socket;
     this.listener = (ev) => { this.events.push(ev); };
-    socket.addEventListener(&apos;message&apos;, this.listener);
+    socket.addEventListener('message', this.listener);
   }
 
   compute(n) {
@@ -123,11 +123,11 @@ class MovingAvg {
     this.events = [];
     this.socket = socket;
     this.listener = (ev) => { this.events.push(ev); };
-    socket.addEventListener(&apos;message&apos;, this.listener);
+    socket.addEventListener('message', this.listener);
   }
 
   dispose() {
-    this.socket.removeEventListener(&apos;message&apos;, this.listener);
+    this.socket.removeEventListener('message', this.listener);
   }
 
   // …
@@ -142,7 +142,7 @@ class MovingAvg {
 function addWeakListener(socket, listener) {
   const weakRef = new WeakRef(listener);
   const wrapper = (ev) => { weakRef.deref()?.(ev); };
-  socket.addEventListener(&apos;message&apos;, wrapper);
+  socket.addEventListener('message', wrapper);
 }
 
 class MovingAvg {
@@ -186,14 +186,14 @@ class MovingAvg {
 
 ```js
 const gListenersRegistry = new FinalizationRegistry(({ socket, wrapper }) => {
-  socket.removeEventListener(&apos;message&apos;, wrapper); // 6
+  socket.removeEventListener('message', wrapper); // 6
 });
 
 function addWeakListener(socket, listener) {
   const weakRef = new WeakRef(listener); // 2
   const wrapper = (ev) => { weakRef.deref()?.(ev); }; // 3
   gListenersRegistry.register(listener, { socket, wrapper }); // 4
-  socket.addEventListener(&apos;message&apos;, wrapper); // 5
+  socket.addEventListener('message', wrapper); // 5
 }
 
 class MovingAvg {

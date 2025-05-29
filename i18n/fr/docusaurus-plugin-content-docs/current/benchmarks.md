@@ -1,6 +1,6 @@
 ---
-title: &apos;Exécution des benchmarks localement&apos;
-description: &apos;Ce document explique comment exécuter les suites de benchmarks classiques dans d8.&apos;
+title: 'Exécution des benchmarks localement'
+description: 'Ce document explique comment exécuter les suites de benchmarks classiques dans d8.'
 ---
 Nous avons un flux de travail simple pour exécuter les benchmarks « classiques » de SunSpider, Kraken et Octane. Vous pouvez les exécuter avec différents binaires et combinaisons de flags, et les résultats sont moyennés sur plusieurs exécutions.
 

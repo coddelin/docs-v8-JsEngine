@@ -1,14 +1,14 @@
 ---
-title: &apos;Verstehen der ECMAScript-Spezifikation, Teil 1&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), spekulative Spezifikationsbeobachterin&apos;
+title: 'Verstehen der ECMAScript-Spezifikation, Teil 1'
+author: '[Marja Hölttä](https://twitter.com/marjakh), spekulative Spezifikationsbeobachterin'
 avatars:
   - marja-holtta
 date: 2020-02-03 13:33:37
 tags:
   - ECMAScript
   - Verstehen von ECMAScript
-description: &apos;Tutorial zum Lesen der ECMAScript-Spezifikation&apos;
-tweet: &apos;1224363301146189824&apos;
+description: 'Tutorial zum Lesen der ECMAScript-Spezifikation'
+tweet: '1224363301146189824'
 ---
 
 [Alle Episoden](/blog/tags/understanding-ecmascript)
@@ -24,8 +24,8 @@ Beginnen wir mit einem konkreten Beispiel und gehen durch die Spezifikation, um 
 
 ```js
 const o = { foo: 1 };
-o.hasOwnProperty(&apos;foo&apos;); // true
-o.hasOwnProperty(&apos;bar&apos;); // false
+o.hasOwnProperty('foo'); // true
+o.hasOwnProperty('bar'); // false
 ```
 
 Im Beispiel hat `o` keine Eigenschaft namens `hasOwnProperty`, also gehen wir die Prototypkette entlang und suchen danach. Wir finden sie im Prototyp von `o`, der `Object.prototype` ist.

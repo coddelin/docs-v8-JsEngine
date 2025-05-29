@@ -1,14 +1,14 @@
 ---
-title: &apos;Optionale Verkettung&apos;
-author: &apos;Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), Brecherin optionaler Verkettungen&apos;
+title: 'Optionale Verkettung'
+author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), Brecherin optionaler Verkettungen'
 avatars:
-  - &apos;maya-armyanova&apos;
+  - 'maya-armyanova'
 date: 2019-08-27
 tags:
   - ECMAScript
   - ES2020
-description: &apos;Optionale Verkettung ermöglicht eine lesbare und prägnante Ausdrucksweise von Eigenschaftszugriffen mit integriertem Nullwert-Check.&apos;
-tweet: &apos;1166360971914481669&apos;
+description: 'Optionale Verkettung ermöglicht eine lesbare und prägnante Ausdrucksweise von Eigenschaftszugriffen mit integriertem Nullwert-Check.'
+tweet: '1166360971914481669'
 ---
 Lange Reihen von Eigenschaftszugriffen in JavaScript können fehleranfällig sein, da jeder von ihnen den Wert `null` oder `undefined` (auch als „nullish“-Werte bekannt) ergeben könnte. Das Überprüfen der Existenz von Eigenschaften auf jedem Schritt verwandelt sich leicht in eine tief verschachtelte Struktur von `if`-Anweisungen oder eine lange `if`-Bedingung, die die Eigenschaftszugriffsreihe repliziert:
 
@@ -68,7 +68,7 @@ Es gibt eine dritte Verwendung des Operators, nämlich den optionalen Zugriff au
 ```js
 // Erweitert die Fähigkeiten des statischen Eigenschaftszugriffs
 // mit einem dynamisch generierten Eigenschaftsnamen.
-const optionName = &apos;optionale Einstellung&apos;;
+const optionName = 'optionale Einstellung';
 const optionLength = db?.user?.preferences?.[optionName].length;
 ```
 
@@ -81,25 +81,25 @@ const userIndex = 42;
 const userName = usersArray?.[userIndex].name;
 ```
 
-Der Operator für optionale Verkettung kann mit dem [Nullwert-verschmelzenden `??` Operator](/features/nullish-coalescing) kombiniert werden, wenn ein nicht-`undefined` Standardwert benötigt wird. Dies ermöglicht einen sicheren Zugriff auf tiefe Eigenschaften mit einem angegebenen Standardwert und adressiert einen häufigen Anwendungsfall, für den früher benutzerdefinierte Bibliotheken wie [lodash&apos;s `_.get`](https://lodash.dev/docs/4.17.15#get) erforderlich waren:
+Der Operator für optionale Verkettung kann mit dem [Nullwert-verschmelzenden `??` Operator](/features/nullish-coalescing) kombiniert werden, wenn ein nicht-`undefined` Standardwert benötigt wird. Dies ermöglicht einen sicheren Zugriff auf tiefe Eigenschaften mit einem angegebenen Standardwert und adressiert einen häufigen Anwendungsfall, für den früher benutzerdefinierte Bibliotheken wie [lodash's `_.get`](https://lodash.dev/docs/4.17.15#get) erforderlich waren:
 
 ```js
-const object = { id: 123, names: { first: &apos;Alice&apos;, last: &apos;Smith&apos; }};
+const object = { id: 123, names: { first: 'Alice', last: 'Smith' }};
 
 { // Mit lodash:
-  const firstName = _.get(object, &apos;names.first&apos;);
-  // → &apos;Alice&apos;
+  const firstName = _.get(object, 'names.first');
+  // → 'Alice'
 
-  const middleName = _.get(object, &apos;names.middle&apos;, &apos;(kein zweiter Name)&apos;);
-  // → &apos;(kein zweiter Name)&apos;
+  const middleName = _.get(object, 'names.middle', '(kein zweiter Name)');
+  // → '(kein zweiter Name)'
 }
 
 { // Mit optionaler Verkettung und Nullwert-Verschmelzung:
-  const firstName = object?.names?.first ?? &apos;(kein erster Name)&apos;;
-  // → &apos;Alice&apos;
+  const firstName = object?.names?.first ?? '(kein erster Name)';
+  // → 'Alice'
 
-  const middleName = object?.names?.middle ?? &apos;(kein zweiter Name)&apos;;
-  // → &apos;(kein zweiter Name)&apos;
+  const middleName = object?.names?.middle ?? '(kein zweiter Name)';
+  // → '(kein zweiter Name)'
 }
 ```
 

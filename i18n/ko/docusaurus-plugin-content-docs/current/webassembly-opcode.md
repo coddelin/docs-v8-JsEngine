@@ -123,7 +123,7 @@ index 26df61ceb8..b1ee6edd71 100644
 테스트 실행:
 
 ```
-$ tools/dev/gm.py x64.debug &apos;cctest/test-run-wasm-simd/RunWasmTurbofan_I32Add1&apos;
+$ tools/dev/gm.py x64.debug 'cctest/test-run-wasm-simd/RunWasmTurbofan_I32Add1'
 ...
 === cctest/test-run-wasm/RunWasmTurbofan_Int32Add1 ===
 #
@@ -343,12 +343,12 @@ index 9b8be0e0b5..7f5faeb87b 100644
 테스트를 실행하면 새 컴파일 오류를 확인할 수 있습니다:
 
 ```
-../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: error: 열거 값 &apos;kX64Int32Add1&apos;가 switch에서 처리되지 않음 [-Werror,-Wswitch]
+../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: error: 열거 값 'kX64Int32Add1'가 switch에서 처리되지 않음 [-Werror,-Wswitch]
   switch (instr->arch_opcode()) {
           ^
 1 error generated.
 ...
-../../src/compiler/backend/x64/code-generator-x64.cc:733:11: error: 열거 값 &apos;kX64Int32Add1&apos;가 switch에서 처리되지 않음 [-Werror,-Wswitch]
+../../src/compiler/backend/x64/code-generator-x64.cc:733:11: error: 열거 값 'kX64Int32Add1'가 switch에서 처리되지 않음 [-Werror,-Wswitch]
   switch (arch_opcode) {
           ^
 1 error generated.

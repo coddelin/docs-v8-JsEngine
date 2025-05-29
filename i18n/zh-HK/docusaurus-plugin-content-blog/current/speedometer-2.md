@@ -1,11 +1,11 @@
 ---
-title: &apos;Chrome 歡迎 Speedometer 2.0！&apos;
-author: &apos;Blink 和 V8 團隊&apos;
+title: 'Chrome 歡迎 Speedometer 2.0！'
+author: 'Blink 和 V8 團隊'
 date: 2018-01-24 13:33:37
 tags:
   - 基準測試
-description: &apos;基於 Speedometer 2.0，對於我們在 Blink 和 V8 中所作的性能改進概述。&apos;
-tweet: &apos;956232641736421377&apos;
+description: '基於 Speedometer 2.0，對於我們在 Blink 和 V8 中所作的性能改進概述。'
+tweet: '956232641736421377'
 ---
 自 2014 年 Speedometer 1.0 初次發布以來，Blink 和 V8 團隊一直將這個基準測試作為流行 JavaScript 框架實際使用的代理，我們在這個基準測試中取得了相當大的速度提升。我們獨立驗證了這些改進確實能轉化為實際用戶的好處，通過衡量真實世界的網站，觀察到流行網站的頁面加載時間的改進同樣提高了 Speedometer 的分數。
 

@@ -1,6 +1,6 @@
 ---
-title: &apos;V8 커미터와 리뷰어의 책임&apos;
-description: &apos;이 문서는 V8 기여자를 위한 지침을 나열합니다.&apos;
+title: 'V8 커미터와 리뷰어의 책임'
+description: '이 문서는 V8 기여자를 위한 지침을 나열합니다.'
 ---
 V8 리포지토리에 커밋할 때, 다음 지침을 준수해야 합니다 (https://dev.chromium.org/developers/committers-responsibility에서 수정됨):
 

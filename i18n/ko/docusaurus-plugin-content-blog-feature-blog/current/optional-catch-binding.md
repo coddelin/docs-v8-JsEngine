@@ -1,14 +1,14 @@
 ---
-title: &apos;옵션 `catch` 바인딩&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '옵션 `catch` 바인딩'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-03-27
 tags:
   - ECMAScript
   - ES2019
-description: &apos;ES2019에서, catch를 이제 매개변수 없이 사용할 수 있습니다.&apos;
-tweet: &apos;956209997808939008&apos;
+description: 'ES2019에서, catch를 이제 매개변수 없이 사용할 수 있습니다.'
+tweet: '956209997808939008'
 ---
 `try` 문장의 `catch` 절은 바인딩을 필요로 했습니다:
 

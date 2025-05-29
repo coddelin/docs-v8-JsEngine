@@ -1,13 +1,13 @@
 ---
-title: &apos;`Object.hasOwn`&apos;
-author: &apos;Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))&apos;
+title: '`Object.hasOwn`'
+author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
 avatars:
-  - &apos;victor-gomes&apos;
+  - 'victor-gomes'
 date: 2021-07-01
 tags:
   - ECMAScript
-description: &apos;`Object.hasOwn` 讓 `Object.prototype.hasOwnProperty` 更加易用。&apos;
-tweet: &apos;1410577516943847424&apos;
+description: '`Object.hasOwn` 讓 `Object.prototype.hasOwnProperty` 更加易用。'
+tweet: '1410577516943847424'
 ---
 
 今天，編寫像這樣的代碼很常見：
@@ -15,7 +15,7 @@ tweet: &apos;1410577516943847424&apos;
 ```js
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 
-if (hasOwnProperty.call(object, &apos;foo&apos;)) {
+if (hasOwnProperty.call(object, 'foo')) {
   // `object` 擁有屬性 `foo`。
 }
 ```
@@ -25,7 +25,7 @@ if (hasOwnProperty.call(object, &apos;foo&apos;)) {
 通過 [`Object.hasOwn` 提案](https://github.com/tc39/proposal-accessible-object-hasownproperty)，我們可以簡單地編寫：
 
 ```js
-if (Object.hasOwn(object, &apos;foo&apos;)) {
+if (Object.hasOwn(object, 'foo')) {
   // `object` 擁有屬性 `foo`。
 }
 ```

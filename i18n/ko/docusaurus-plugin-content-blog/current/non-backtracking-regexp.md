@@ -1,17 +1,17 @@
 ---
-title: &apos;추가적인 비백트래킹 정규 표현식 엔진&apos;
-author: &apos;마틴 비들링마이어&apos;
+title: '추가적인 비백트래킹 정규 표현식 엔진'
+author: '마틴 비들링마이어'
 date: 2021-01-11
 tags:
  - internals
  - RegExp
-description: &apos;V8은 이제 추가적인 정규 표현식 엔진을 갖추고 있으며, 이는 재귀적 백트래킹의 여러 사례를 방지하는 역할을 합니다.&apos;
-tweet: &apos;1348635270762139650&apos;
+description: 'V8은 이제 추가적인 정규 표현식 엔진을 갖추고 있으며, 이는 재귀적 백트래킹의 여러 사례를 방지하는 역할을 합니다.'
+tweet: '1348635270762139650'
 ---
 v8.8부터 V8은 새로운 실험적 비백트래킹 정규 표현식 엔진(기존의 [Irregexp 엔진](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html) 외에)을 갖추고 있으며, 이는 주제 문자열 크기에 따른 실행을 선형 시간으로 보장합니다. 실험적 엔진은 아래에 언급된 기능 플래그를 통해 사용할 수 있습니다.
 
 <!--truncate-->
-![`/(a*)*b/.exec(&apos;a&apos;.repeat(n))`의 실행 시간(n ≤ 100)](/_img/non-backtracking-regexp/runtime-plot.svg)
+![`/(a*)*b/.exec('a'.repeat(n))`의 실행 시간(n ≤ 100)](/_img/non-backtracking-regexp/runtime-plot.svg)
 
 새로운 정규 표현식 엔진을 설정하는 방법은 다음과 같습니다:
 
@@ -28,15 +28,15 @@ v8.8부터 V8은 새로운 실험적 비백트래킹 정규 표현식 엔진(기
 
 ## 배경: 재귀적 백트래킹
 
-V8에서 정규 표현식 매칭은 Irregexp 엔진에 의해 처리됩니다. Irregexp는 정규 표현식을 특수한 네이티브 코드나 [바이트코드](/blog/regexp-tier-up)로 JIT 컴파일하여 대부분의 패턴에서 매우 빠릅니다. 그러나 일부 패턴에서는 Irregexp의 실행 시간이 입력 문자열 크기에 비례하여 기하급수적으로 증가할 수 있습니다. 위의 예, `/(a*)*b/.exec(&apos;a&apos;.repeat(100))`는 Irregexp로 실행할 경우 우리 생애 내에 완료되지 않습니다.
+V8에서 정규 표현식 매칭은 Irregexp 엔진에 의해 처리됩니다. Irregexp는 정규 표현식을 특수한 네이티브 코드나 [바이트코드](/blog/regexp-tier-up)로 JIT 컴파일하여 대부분의 패턴에서 매우 빠릅니다. 그러나 일부 패턴에서는 Irregexp의 실행 시간이 입력 문자열 크기에 비례하여 기하급수적으로 증가할 수 있습니다. 위의 예, `/(a*)*b/.exec('a'.repeat(100))`는 Irregexp로 실행할 경우 우리 생애 내에 완료되지 않습니다.
 
-그럼 여기서 무슨 일이 벌어지고 있는 걸까요? Irregexp는 *백트래킹* 엔진입니다. 매칭이 계속될 수 있는 선택지가 있을 경우, Irregexp는 첫 번째 대안을 전부 탐색한 후 필요할 경우 두 번째 대안을 탐색하기 위해 백트래킹합니다. 예를 들어 `/abc|[az][by][0-9]/` 패턴을 주제 문자열 `&apos;ab3&apos;`로 매칭한다고 가정해 보세요. 여기서 Irregexp는 `/abc/`를 먼저 매칭하려고 시도하지만 두 번째 문자에서 실패합니다. 그런 다음 두 문자를 되돌아가 두 번째 대안인 `/[az][by][0-9]/`를 성공적으로 매칭합니다. `/(abc)*xyz/`와 같은 반복자를 포함하는 패턴에서는 Irregexp가 본문을 한 번 매칭한 후 본문을 계속 매칭할지 남은 패턴을 계속할지 선택해야 합니다.
+그럼 여기서 무슨 일이 벌어지고 있는 걸까요? Irregexp는 *백트래킹* 엔진입니다. 매칭이 계속될 수 있는 선택지가 있을 경우, Irregexp는 첫 번째 대안을 전부 탐색한 후 필요할 경우 두 번째 대안을 탐색하기 위해 백트래킹합니다. 예를 들어 `/abc|[az][by][0-9]/` 패턴을 주제 문자열 `'ab3'`로 매칭한다고 가정해 보세요. 여기서 Irregexp는 `/abc/`를 먼저 매칭하려고 시도하지만 두 번째 문자에서 실패합니다. 그런 다음 두 문자를 되돌아가 두 번째 대안인 `/[az][by][0-9]/`를 성공적으로 매칭합니다. `/(abc)*xyz/`와 같은 반복자를 포함하는 패턴에서는 Irregexp가 본문을 한 번 매칭한 후 본문을 계속 매칭할지 남은 패턴을 계속할지 선택해야 합니다.
 
-`/(a*)*b/`를 더 작은 주제 문자열 `&apos;aaa&apos;`로 매칭할 때 어떤 일이 벌어지는지 이해하려고 해봅시다. 이 패턴은 중첩된 반복자를 포함하고 있으므로 Irregexp에 *`&apos;a&apos;`의 시퀀스의 시퀀스*를 매칭한 다음 `&apos;b&apos;`를 매칭하도록 요청하는 것입니다. 명백히 매칭이 실패합니다. 왜냐하면 주제 문자열에 `&apos;b&apos;`가 포함되어 있지 않기 때문입니다. 그러나 `/(a*)*/`는 매칭되고 서술적으로 매우 다양한 방식으로 이루어집니다:
+`/(a*)*b/`를 더 작은 주제 문자열 `'aaa'`로 매칭할 때 어떤 일이 벌어지는지 이해하려고 해봅시다. 이 패턴은 중첩된 반복자를 포함하고 있으므로 Irregexp에 *`'a'`의 시퀀스의 시퀀스*를 매칭한 다음 `'b'`를 매칭하도록 요청하는 것입니다. 명백히 매칭이 실패합니다. 왜냐하면 주제 문자열에 `'b'`가 포함되어 있지 않기 때문입니다. 그러나 `/(a*)*/`는 매칭되고 서술적으로 매우 다양한 방식으로 이루어집니다:
 
 ```js
-&apos;aaa&apos;           &apos;aa&apos;, &apos;a&apos;           &apos;aa&apos;, &apos;&apos;
-&apos;a&apos;, &apos;aa&apos;       &apos;a&apos;, &apos;a&apos;, &apos;a&apos;       &apos;a&apos;, &apos;a&apos;, &apos;&apos;
+'aaa'           'aa', 'a'           'aa', ''
+'a', 'aa'       'a', 'a', 'a'       'a', 'a', ''
 …
 ```
 
@@ -62,13 +62,13 @@ Irregexp가 기반으로 하는 백트래킹 알고리즘을 다시 살펴보고
 
 ```js
 const code = [
-  {opcode: &apos;FORK&apos;, forkPc: 4},
-  {opcode: &apos;CONSUME&apos;, char: &apos;1&apos;},
-  {opcode: &apos;CONSUME&apos;, char: &apos;2&apos;},
-  {opcode: &apos;JMP&apos;, jmpPc: 6},
-  {opcode: &apos;CONSUME&apos;, char: &apos;a&apos;},
-  {opcode: &apos;CONSUME&apos;, char: &apos;b&apos;},
-  {opcode: &apos;ACCEPT&apos;}
+  {opcode: 'FORK', forkPc: 4},
+  {opcode: 'CONSUME', char: '1'},
+  {opcode: 'CONSUME', char: '2'},
+  {opcode: 'JMP', jmpPc: 6},
+  {opcode: 'CONSUME', char: 'a'},
+  {opcode: 'CONSUME', char: 'b'},
+  {opcode: 'ACCEPT'}
 ];
 ```
 
@@ -81,7 +81,7 @@ const stack = []; // 백트래킹 스택.
 while (true) {
   const inst = code[pc];
   switch (inst.opcode) {
-    case &apos;CONSUME&apos;:
+    case 'CONSUME':
       if (ip < input.length && input[ip] === inst.char) {
         // 예상한 입력이 일치합니다: 계속 진행합니다.
         ++ip;
@@ -96,15 +96,15 @@ while (true) {
         return false;
       }
       break;
-    case &apos;FORK&apos;:
+    case 'FORK':
       // 나중에 백트래킹할 대안을 저장합니다.
       stack.push({ip: ip, pc: inst.forkPc});
       ++pc;
       break;
-    case &apos;JMP&apos;:
+    case 'JMP':
       pc = inst.jmpPc;
       break;
-    case &apos;ACCEPT&apos;:
+    case 'ACCEPT':
       return true;
   }
 }
@@ -121,12 +121,12 @@ while (true) {
 ```js
 // 입력 위치.
 let ip = 0;
-// 현재 pc 값 목록 또는 `&apos;ACCEPT&apos;`. 일치하는 경우. 우리는 pc 0에서 시작하며 엡실론 전이를 따라갑니다.
+// 현재 pc 값 목록 또는 `'ACCEPT'`. 일치하는 경우. 우리는 pc 0에서 시작하며 엡실론 전이를 따라갑니다.
 let pcs = followEpsilons([0]);
 
 while (true) {
   // 일치하는 pc를 찾았는지 확인...
-  if (pcs === &apos;ACCEPT&apos;) return true;
+  if (pcs === 'ACCEPT') return true;
   // 또는 입력 문자열이 다 소진되었는지 확인합니다.
   if (ip >= input.length) return false;
 
@@ -141,7 +141,7 @@ while (true) {
 }
 ```
 
-여기서 `followEpsilons`는 프로그램 카운터 목록을 받아 엡실론 전이만 실행하여 도달할 수 있는 `CONSUME` 명령어에서의 프로그램 카운터 목록을 계산하는 함수입니다(`FORK` 및 `JMP`만 실행). 결과 목록은 중복을 포함하지 않아야 합니다. `ACCEPT` 명령어에 도달할 수 있는 경우, 이 함수는 `&apos;ACCEPT&apos;`를 반환합니다. 이는 다음과 같이 구현될 수 있습니다:
+여기서 `followEpsilons`는 프로그램 카운터 목록을 받아 엡실론 전이만 실행하여 도달할 수 있는 `CONSUME` 명령어에서의 프로그램 카운터 목록을 계산하는 함수입니다(`FORK` 및 `JMP`만 실행). 결과 목록은 중복을 포함하지 않아야 합니다. `ACCEPT` 명령어에 도달할 수 있는 경우, 이 함수는 `'ACCEPT'`를 반환합니다. 이는 다음과 같이 구현될 수 있습니다:
 
 ```js
 function followEpsilons(pcs) {
@@ -158,17 +158,17 @@ function followEpsilons(pcs) {
 
     const inst = code[pc];
     switch (inst.opcode) {
-      case &apos;CONSUME&apos;:
+      case 'CONSUME':
         결과.push(pc);
         break;
-      case &apos;FORK&apos;:
+      case 'FORK':
         pcs.push(pc + 1, inst.forkPc);
         break;
-      case &apos;JMP&apos;:
+      case 'JMP':
         pcs.push(inst.jmpPc);
         break;
-      case &apos;ACCEPT&apos;:
-        return &apos;ACCEPT&apos;;
+      case 'ACCEPT':
+        return 'ACCEPT';
     }
   }
 

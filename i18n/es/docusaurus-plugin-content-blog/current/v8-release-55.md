@@ -1,10 +1,10 @@
 ---
-title: &apos;Versión V8 v5.5&apos;
-author: &apos;el equipo de V8&apos;
+title: 'Versión V8 v5.5'
+author: 'el equipo de V8'
 date: 2016-10-24 13:33:37
 tags:
   - versión
-description: &apos;V8 v5.5 llega con un menor consumo de memoria y un mayor soporte para las características del lenguaje ECMAScript.&apos;
+description: 'V8 v5.5 llega con un menor consumo de memoria y un mayor soporte para las características del lenguaje ECMAScript.'
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se crea a partir de la rama maestra de Git de V8 inmediatamente antes de un hito beta de Chrome. Hoy nos complace anunciar nuestra nueva rama, la [versión V8 5.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.5), que estará en beta hasta su lanzamiento en coordinación con Chrome 55 Stable en varias semanas. V8 v5.5 está lleno de todo tipo de novedades para los desarrolladores, por lo que queremos ofrecerte un avance de algunos de los aspectos destacados en anticipo al lanzamiento.
 
@@ -24,7 +24,7 @@ function logFetch(url) {
     .then(text => {
       console.log(text);
     }).catch(err => {
-      console.error(&apos;fallo al obtener&apos;, err);
+      console.error('fallo al obtener', err);
     });
 }
 ```
@@ -37,7 +37,7 @@ async function logFetch(url) {
     const response = await fetch(url);
     console.log(await response.text());
   } catch (err) {
-    console.log(&apos;fallo al obtener&apos;, err);
+    console.log('fallo al obtener', err);
   }
 }
 ```

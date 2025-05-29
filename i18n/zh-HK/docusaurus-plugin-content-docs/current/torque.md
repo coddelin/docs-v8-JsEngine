@@ -1,6 +1,6 @@
 ---
-title: &apos;V8 Torque 使用手冊&apos;
-description: &apos;本文件講解 V8 Torque 語言，在 V8 程式碼庫中的使用方式。&apos;
+title: 'V8 Torque 使用手冊'
+description: '本文件講解 V8 Torque 語言，在 V8 程式碼庫中的使用方式。'
 ---
 V8 Torque 是一種語言，讓那些對 V8 專案進行貢獻的開發者能夠透過專注於他們對虛擬機器（VM）變更的目標，來表達改變，而非被無關的實現細節困擾。該語言被設計得足夠簡單，使得可以輕鬆將[ECMAScript 規範](https://tc39.es/ecma262/)直接翻譯成 V8 中的實現，同時亦足夠強大，可以以穩健的方式表達 V8 的低層次優化技巧，例如基於對特定物件形狀進行測試來創建快速路徑。
 
@@ -19,7 +19,7 @@ Torque 提供了語言構造體來表現 V8 實現中的高階、語意豐富的
 ```torque
 @export
 macro PrintHelloWorld(): void {
-  Print(&apos;Hello world!&apos;);
+  Print('Hello world!');
 }
 ```
 
@@ -161,8 +161,8 @@ ConstexprDeclaration :
 以下是 Torque 的 31 位及 32 位有符號整數型別，取自 `base.tq` 的範例：
 
 ```torque
-type int32 generates &apos;TNode<Int32T>&apos; constexpr &apos;int32_t&apos;;
-type int31 extends int32 generates &apos;TNode<Int32T>&apos; constexpr &apos;int31_t&apos;;
+type int32 generates 'TNode<Int32T>' constexpr 'int32_t';
+type int31 extends int32 generates 'TNode<Int32T>' constexpr 'int31_t';
 ```
 
 #### 聯合型別
@@ -424,7 +424,7 @@ type CompareBuiltinFn = builtin(implicit context: Context)(Object, Object, Objec
 // 一個具有 JSArray map 的 HeapObject，並且要麼快速打包的元素，要麼
 // 全局 NoElementsProtector 未失效時快速稀疏元素。
 transient type FastJSArray extends JSArray
-    generates &apos;TNode<JSArray>&apos;;
+    generates 'TNode<JSArray>';
 ```
 
 例如，在 `FastJSArray` 的情況下，如果數組更改為字典元素或全局 `NoElementsProtector` 被失效，瞬態類型將被失效。為了在 Torque 中表達這一點，所有可能執行此操作的可調用對象都需要標註為 `transitioning`。例如，調用 JavaScript 函數可以執行任意 JavaScript，因此它是 `transitioning`。
@@ -594,7 +594,7 @@ intrinsic %RawObjectCast<A: type>(o: Object): A;
 intrinsic %RawPointerCast<A: type>(p: RawPtr): A;
 
 // %RawConstexprCast 將一個編譯時常量值轉換為另一常量值。
-// 源類型和目標類型均應是 &apos;constexpr&apos;。
+// 源類型和目標類型均應是 'constexpr'。
 // %RawConstexprCast 在生成的 C++ 代碼中轉化為 static_cast。
 intrinsic %RawConstexprCast<To: type, From: type>(f: From): To;
 
@@ -604,11 +604,11 @@ intrinsic %RawConstexprCast<To: type, From: type>(f: From): To;
 intrinsic %FromConstexpr<To: type, From: type>(b: From): To;
 
 // %Allocate 從 V8 的 GC 堆分配一個未初始化
-// 的對象，大小為 &apos;size&apos; 並"reinterpret casts"
+// 的對象，大小為 'size' 並"reinterpret casts"
 // 指定的 Torque 類別，允許建構函式隨後使用
 // 標準欄位存取運算子來初始化物件。
-// 此內建函式不應該從 Torque 程式碼中呼叫。它&apos;s 用於
-// 在糖化 &apos;new&apos; 運算子時內部使用。
+// 此內建函式不應該從 Torque 程式碼中呼叫。它's 用於
+// 在糖化 'new' 運算子時內部使用。
 intrinsic %Allocate<Class: type>(size: intptr): Class;
 ```
 

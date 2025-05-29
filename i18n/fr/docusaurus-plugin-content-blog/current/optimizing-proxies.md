@@ -88,11 +88,11 @@ function run() {
   return new P();
 }
 const N = 1e5;
-console.time(&apos;run&apos;);
+console.time('run');
 for (let i = 0; i < N; ++i) {
   run();
 }
-console.timeEnd(&apos;run&apos;);
+console.timeEnd('run');
 ```
 
 Il s'est avéré que la majeure partie du temps est consacrée à `NewObject` et aux fonctions appelées par celui-ci, nous avons donc commencé à planifier comment accélérer cela dans les futures versions.

@@ -275,7 +275,7 @@ Isso começa com dois objetos apontando para a mesma forma, onde `x` é marcado 
 
 ![](/_img/react-cliff/13-shape.svg)
 
-Quando `b.x` muda para a representação `Double`, o V8 aloca uma nova forma onde `x` é atribuído como representação `Double` e aponta de volta para a forma vazia. O V8 também aloca um `MutableHeapNumber` para armazenar o novo valor `0.2` para a propriedade `x`. Em seguida, atualizamos o objeto `b` para apontar para essa nova forma e alteramos o slot no objeto para apontar para o `MutableHeapNumber` alocado anteriormente no offset 0. E, finalmente, marcamos a forma antiga como obsoleta e a desvinculamos da árvore de transição. Isso é feito tendo uma nova transição para `&apos;x&apos;` da forma vazia para a forma recém-criada.
+Quando `b.x` muda para a representação `Double`, o V8 aloca uma nova forma onde `x` é atribuído como representação `Double` e aponta de volta para a forma vazia. O V8 também aloca um `MutableHeapNumber` para armazenar o novo valor `0.2` para a propriedade `x`. Em seguida, atualizamos o objeto `b` para apontar para essa nova forma e alteramos o slot no objeto para apontar para o `MutableHeapNumber` alocado anteriormente no offset 0. E, finalmente, marcamos a forma antiga como obsoleta e a desvinculamos da árvore de transição. Isso é feito tendo uma nova transição para `'x'` da forma vazia para a forma recém-criada.
 
 ![](/_img/react-cliff/14-shape-transition.svg)
 
@@ -299,7 +299,7 @@ Nesse caso, o V8 precisa encontrar a chamada _forma de divisão_, que é a últi
 
 ![](/_img/react-cliff/16-split-shape.svg)
 
-A partir da forma dividida, criamos uma nova cadeia de transição para `y` que reproduz todas as transições anteriores, mas com `&apos;y&apos;` sendo marcado como representação `Double`. E usamos essa nova cadeia de transição para `y`, marcando a subárvore antiga como obsoleta. No último passo, migramos a instância `o` para a nova forma, usando um `MutableHeapNumber` para armazenar o valor de `y` agora. Dessa forma, novos objetos não seguem o caminho antigo, e assim que todas as referências à forma antiga desaparecem, a parte obsoleta da árvore desaparece também.
+A partir da forma dividida, criamos uma nova cadeia de transição para `y` que reproduz todas as transições anteriores, mas com `'y'` sendo marcado como representação `Double`. E usamos essa nova cadeia de transição para `y`, marcando a subárvore antiga como obsoleta. No último passo, migramos a instância `o` para a nova forma, usando um `MutableHeapNumber` para armazenar o valor de `y` agora. Dessa forma, novos objetos não seguem o caminho antigo, e assim que todas as referências à forma antiga desaparecem, a parte obsoleta da árvore desaparece também.
 
 ## Transições de extensibilidade e níveis de integridade
 
@@ -348,7 +348,7 @@ const b = { x: 2 };
 Object.preventExtensions(b);
 ```
 
-Começa como já sabemos, fazendo a transição da forma vazia para uma nova forma que contém a propriedade `&apos;x&apos;` (representada como `Smi`). Quando impedimos extensões ao `b`, realizamos uma transição especial para uma nova forma marcada como não extensível. Essa transição especial não introduz nenhuma nova propriedade — é realmente apenas um marcador.
+Começa como já sabemos, fazendo a transição da forma vazia para uma nova forma que contém a propriedade `'x'` (representada como `Smi`). Quando impedimos extensões ao `b`, realizamos uma transição especial para uma nova forma marcada como não extensível. Essa transição especial não introduz nenhuma nova propriedade — é realmente apenas um marcador.
 
 ![](/_img/react-cliff/17-shape-nonextensible.svg)
 
@@ -408,7 +408,7 @@ Felizmente, [corrigimos esse problema de desempenho](https://chromium-review.goo
 
 ![](/_img/react-cliff/22-fix.svg)
 
-As duas instâncias de `FiberNode` apontam para a forma não extensível onde `&apos;actualStartTime&apos;` é um campo `Smi`. Quando a primeira atribuição para `node1.actualStartTime` ocorre, uma nova cadeia de transição é criada e a cadeia anterior é marcada como obsoleta:
+As duas instâncias de `FiberNode` apontam para a forma não extensível onde `'actualStartTime'` é um campo `Smi`. Quando a primeira atribuição para `node1.actualStartTime` ocorre, uma nova cadeia de transição é criada e a cadeia anterior é marcada como obsoleta:
 
 ![](/_img/react-cliff/23-fix-fibernode-shape-1.svg)
 

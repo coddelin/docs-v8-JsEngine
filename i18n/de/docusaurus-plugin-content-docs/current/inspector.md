@@ -1,6 +1,6 @@
 ---
-title: &apos;Debuggen über das V8-Inspector-Protokoll&apos;
-description: &apos;Diese Seite soll Embeds die grundlegenden Werkzeuge bereitstellen, die sie benötigen, um Debugging-Unterstützung in V8 zu implementieren.&apos;
+title: 'Debuggen über das V8-Inspector-Protokoll'
+description: 'Diese Seite soll Embeds die grundlegenden Werkzeuge bereitstellen, die sie benötigen, um Debugging-Unterstützung in V8 zu implementieren.'
 ---
 V8 bietet sowohl für Benutzer als auch für Embeds umfassende Debugging-Funktionen. Benutzer interagieren normalerweise über die [Chrome DevTools](https://developer.chrome.com/devtools)-Schnittstelle mit dem V8-Debugger. Embeds (einschließlich DevTools) müssen direkt auf das [Inspector-Protokoll](https://chromedevtools.github.io/debugger-protocol-viewer/tot/) zurückgreifen.
 
@@ -23,7 +23,7 @@ In der Zwischenzeit richtet das Frontend einen Kanal für Nachrichten ein, die v
 ```cpp
 void Send(const v8_inspector::StringView& string) {
   // [...] String-Transformationen.
-  // Abrufen der globalen Eigenschaft namens &apos;receive&apos; aus dem aktuellen Kontext.
+  // Abrufen der globalen Eigenschaft namens 'receive' aus dem aktuellen Kontext.
   Local<String> callback_name =
       v8::String::NewFromUtf8(isolate_, "receive", v8::NewStringType::kNormal)
           .ToLocalChecked();
@@ -52,13 +52,13 @@ function receive(message) {
 
 const msg = JSON.stringify({
   id: 0,
-  method: &apos;Debugger.enable&apos;,
+  method: 'Debugger.enable',
 });
 
 // Funktion aufrufen, die von d8 bereitgestellt wird.
 send(msg);
 
-// Führen Sie diese Datei aus, indem Sie &apos;d8 --enable-inspector inspector-demo.js&apos; ausführen.
+// Führen Sie diese Datei aus, indem Sie 'd8 --enable-inspector inspector-demo.js' ausführen.
 ```
 
 ## Weitere Dokumentation

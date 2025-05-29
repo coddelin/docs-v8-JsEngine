@@ -1,14 +1,14 @@
 ---
-title: &apos;최상위 `await`&apos;
-author: &apos;Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))&apos;
+title: '최상위 `await`'
+author: 'Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))'
 avatars:
-  - &apos;myles-borins&apos;
+  - 'myles-borins'
 date: 2019-10-08
 tags:
   - ECMAScript
   - Node.js 14
-description: &apos;JavaScript 모듈에 최상위 `await`가 도입됩니다! 곧 비동기 함수에 있지 않아도 `await`를 사용할 수 있습니다.&apos;
-tweet: &apos;1181581262399643650&apos;
+description: 'JavaScript 모듈에 최상위 `await`가 도입됩니다! 곧 비동기 함수에 있지 않아도 `await`를 사용할 수 있습니다.'
+tweet: '1181581262399643650'
 ---
 [최상위 `await`](https://github.com/tc39/proposal-top-level-await)는 개발자가 비동기 함수 외부에서 `await` 키워드를 사용할 수 있도록 합니다. 이는 큰 비동기 함수처럼 동작하며, 이를 `import`하는 다른 모듈들이 본문의 평가를 시작하기 전에 대기하게 합니다.
 
@@ -18,11 +18,11 @@ tweet: &apos;1181581262399643650&apos;
 `async`/`await`가 처음 도입되었을 때, `async` 함수 외부에서 `await`를 사용하려고 하면 `SyntaxError`가 발생했습니다. 많은 개발자가 이 기능을 사용할 수 있도록 하기 위해 즉시 호출되는 비동기 함수 표현식을 사용하곤 했습니다.
 
 ```js
-await Promise.resolve(console.log(&apos;🎉&apos;));
+await Promise.resolve(console.log('🎉'));
 // → SyntaxError: await is only valid in async function
 
 (async function() {
-  await Promise.resolve(console.log(&apos;🎉&apos;));
+  await Promise.resolve(console.log('🎉'));
   // → 🎉
 }());
 ```
@@ -32,7 +32,7 @@ await Promise.resolve(console.log(&apos;🎉&apos;));
 최상위 `await`로, 위 코드는 [모듈](/features/modules) 내에서 예상한 대로 작동하게 됩니다:
 
 ```js
-await Promise.resolve(console.log(&apos;🎉&apos;));
+await Promise.resolve(console.log('🎉'));
 // → 🎉
 ```
 
@@ -67,9 +67,9 @@ const connection = await dbConnector();
 ```js
 let jQuery;
 try {
-  jQuery = await import(&apos;https://cdn-a.example.com/jQuery&apos;);
+  jQuery = await import('https://cdn-a.example.com/jQuery');
 } catch {
-  jQuery = await import(&apos;https://cdn-b.example.com/jQuery&apos;);
+  jQuery = await import('https://cdn-b.example.com/jQuery');
 }
 ```
 

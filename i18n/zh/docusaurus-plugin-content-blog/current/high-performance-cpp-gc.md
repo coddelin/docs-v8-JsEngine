@@ -81,8 +81,8 @@ class GCed : public GarbageCollected<GCed> {
     visitor->Trace(other_);
   }
   ~GCed() {
-    other_->DoSomething();  // 错误：终结器 &apos;~GCed&apos; 访问了
-                            // 可能被终结的字段 &apos;other_&apos;。
+    other_->DoSomething();  // 错误：终结器 '~GCed' 访问了
+                            // 可能被终结的字段 'other_'。
   }
  private:
   Member<GCed> other_;

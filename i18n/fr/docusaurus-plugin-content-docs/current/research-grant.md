@@ -2,7 +2,7 @@
 permalink: /grant/
 title: Subvention de Recherche
 layout: layouts/base.njk
-description: &apos;La Subvention de Recherche V8 finance des recherches sur les langages de programmation et les systèmes logiciels basées sur V8, JavaScript et WebAssembly.&apos;
+description: 'La Subvention de Recherche V8 finance des recherches sur les langages de programmation et les systèmes logiciels basées sur V8, JavaScript et WebAssembly.'
 ---
 # Subvention de Recherche V8
 

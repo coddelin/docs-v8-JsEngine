@@ -59,17 +59,17 @@ re.test('👨🏾‍⚕️'); // '\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F'
 
 No exemplo acima, a expressão regular não corresponde ao emoji 👨🏾‍⚕️ porque ele consiste em vários pontos de código, e `Emoji` é uma propriedade _de caractere_ Unicode.
 
-Felizmente, o Padrão Unicode também define várias [propriedades de strings](https://www.unicode.org/reports/tr18/#domain_of_properties). Essas propriedades expandem para um conjunto de strings, cada uma contendo um ou mais pontos de código. Em expressões regulares, propriedades de strings se traduzem em um conjunto de alternativas. Para ilustrar isso, imagine uma propriedade Unicode que se aplica às strings `&apos;a&apos;`, `&apos;b&apos;`, `&apos;c&apos;`, `&apos;W&apos;`, `&apos;xy&apos;` e `&apos;xyz&apos;`. Essa propriedade se traduz em qualquer um dos seguintes padrões de expressão regular (usando alternância): `xyz|xy|a|b|c|W` ou `xyz|xy|[a-cW]`. (Strings mais longas primeiro, para que um prefixo como `&apos;xy&apos;` não esconda uma string mais longa como `&apos;xyz&apos;`.) Diferentemente dos escapes de propriedades Unicode existentes, esse padrão pode corresponder a strings com vários caracteres. Aqui está um exemplo de uma propriedade de strings em uso:
+Felizmente, o Padrão Unicode também define várias [propriedades de strings](https://www.unicode.org/reports/tr18/#domain_of_properties). Essas propriedades expandem para um conjunto de strings, cada uma contendo um ou mais pontos de código. Em expressões regulares, propriedades de strings se traduzem em um conjunto de alternativas. Para ilustrar isso, imagine uma propriedade Unicode que se aplica às strings `'a'`, `'b'`, `'c'`, `'W'`, `'xy'` e `'xyz'`. Essa propriedade se traduz em qualquer um dos seguintes padrões de expressão regular (usando alternância): `xyz|xy|a|b|c|W` ou `xyz|xy|[a-cW]`. (Strings mais longas primeiro, para que um prefixo como `'xy'` não esconda uma string mais longa como `'xyz'`.) Diferentemente dos escapes de propriedades Unicode existentes, esse padrão pode corresponder a strings com vários caracteres. Aqui está um exemplo de uma propriedade de strings em uso:
 
 ```js
 const re = /^\p{RGI_Emoji}$/v;
 
 // Corresponde a um emoji que consiste em apenas 1 ponto de código:
-re.test(&apos;⚽&apos;); // &apos;\u26BD&apos;
+re.test('⚽'); // '\u26BD'
 // → true ✅
 
 // Corresponde a um emoji que consiste em múltiplos pontos de código:
-re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F&apos;
+re.test('👨🏾‍⚕️'); // '\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F'
 // → true ✅
 ```
 
@@ -102,7 +102,7 @@ A sintaxe `A--B` pode ser usada para corresponder a strings _em `A`, mas não em
 Por exemplo, e se você quiser corresponder a todos os símbolos gregos, exceto a letra `π`? Com a notação de conjuntos, resolver isso é trivial:
 
 ```js
-/[\p{Script_Extensions=Greek}--π]/v.test(&apos;π&apos;); // → false
+/[\p{Script_Extensions=Greek}--π]/v.test('π'); // → false
 ```
 
 Ao usar `--` para diferença/subtração, o mecanismo de expressão regular faz o trabalho duro para você, mantendo seu código legível e fácil de manter.
@@ -110,15 +110,15 @@ Ao usar `--` para diferença/subtração, o mecanismo de expressão regular faz 
 E se, em vez de um único caractere, quisermos subtrair o conjunto de caracteres `α`, `β` e `γ`? Sem problemas — podemos usar uma classe de caracteres aninhada e subtrair seu conteúdo:
 
 ```js
-/[\p{Script_Extensions=Greek}--[αβγ]]/v.test(&apos;α&apos;); // → false
-/[\p{Script_Extensions=Greek}--[α-γ]]/v.test(&apos;β&apos;); // → false
+/[\p{Script_Extensions=Greek}--[αβγ]]/v.test('α'); // → false
+/[\p{Script_Extensions=Greek}--[α-γ]]/v.test('β'); // → false
 ```
 
 Outro exemplo é corresponder a dígitos não ASCII, por exemplo, para convertê-los em dígitos ASCII mais tarde:
 
 ```js
-/[\p{Decimal_Number}--[0-9]]/v.test(&apos;𑜹&apos;); // → true
-/[\p{Decimal_Number}--[0-9]]/v.test(&apos;4&apos;); // → false
+/[\p{Decimal_Number}--[0-9]]/v.test('𑜹'); // → true
+/[\p{Decimal_Number}--[0-9]]/v.test('4'); // → false
 ```
 
 A notação de conjuntos também pode ser usada com as novas propriedades de strings:
@@ -126,8 +126,8 @@ A notação de conjuntos também pode ser usada com as novas propriedades de str
 ```js
 // Nota: 🏴 consiste em 7 pontos de código.
 
-/^\p{RGI_Emoji_Tag_Sequence}$/v.test(&apos;🏴&apos;); // → true
-/^[\p{RGI_Emoji_Tag_Sequence}--\q{🏴}]$/v.test(&apos;🏴&apos;); // → false
+/^\p{RGI_Emoji_Tag_Sequence}$/v.test('🏴'); // → true
+/^[\p{RGI_Emoji_Tag_Sequence}--\q{🏴}]$/v.test('🏴'); // → false
 ```
 
 Este exemplo corresponde a qualquer sequência de tags de emoji RGI _exceto_ a bandeira da Escócia. Observe o uso de `\q{…}`, que é outra nova peça de sintaxe para literais de string dentro de classes de caracteres. Por exemplo, `\q{a|bc|def}` corresponde às strings `a`, `bc` e `def`. Sem `\q{…}`, não seria possível subtrair strings codificadas com vários caracteres.
@@ -139,17 +139,17 @@ A sintaxe `A&&B` corresponde a strings que estão _tanto em `A` quanto em `B`_, 
 ```js
 const re = /[\p{Script_Extensions=Greek}&&\p{Letter}]/v;
 // U+03C0 LETRA MINÚSCULA GREGA PI
-re.test(&apos;π&apos;); // → true
+re.test('π'); // → true
 // U+1018A SINAL DE ZERO GREGO
-re.test(&apos;𐆊&apos;); // → false
+re.test('𐆊'); // → false
 ```
 
 Corresponder a todos os espaços em branco ASCII:
 
 ```js
 const re = /[\p{White_Space}&&\p{ASCII}]/v;
-re.test(&apos;\n&apos;); // → true
-re.test(&apos;\u2028&apos;); // → false
+re.test('\n'); // → true
+re.test('\u2028'); // → false
 ```
 
 Ou corresponder a todos os números mongóis:
@@ -157,9 +157,9 @@ Ou corresponder a todos os números mongóis:
 ```js
 const re = /[\p{Script_Extensions=Mongolian}&&\p{Number}]/v;
 // U+1817 DÍGITO MONGOL SETE
-re.test(&apos;᠗&apos;); // → true
+re.test('᠗'); // → true
 // U+1834 LETRA MONGOL CHA
-re.test(&apos;ᠴ&apos;); // → false
+re.test('ᠴ'); // → false
 ```
 
 ### União
@@ -169,12 +169,12 @@ Corresponder a strings que estão _em A ou em B_ já era possível anteriormente
 ```js
 const re = /^[\p{Emoji_Keycap_Sequence}\p{ASCII}\q{🇧🇪|abc}xyz0-9]$/v;
 
-re.test(&apos;4️⃣&apos;); // → true
-re.test(&apos;_&apos;); // → true
-re.test(&apos;🇧🇪&apos;); // → true
-re.test(&apos;abc&apos;); // → true
-re.test(&apos;x&apos;); // → true
-re.test(&apos;4&apos;); // → true
+re.test('4️⃣'); // → true
+re.test('_'); // → true
+re.test('🇧🇪'); // → true
+re.test('abc'); // → true
+re.test('x'); // → true
+re.test('4'); // → true
 ```
 
 A classe de caracteres neste padrão combina:
@@ -190,13 +190,13 @@ Outro exemplo é corresponder todos os emojis de bandeira comumente usados, inde
 ```js
 const reFlag = /[\p{RGI_Emoji_Flag_Sequence}\p{RGI_Emoji_Tag_Sequence}]/v;
 // Uma sequência de bandeira, composta de 2 pontos de código (bandeira da Bélgica):
-reFlag.test(&apos;🇧🇪&apos;); // → true
+reFlag.test('🇧🇪'); // → true
 // Uma sequência de tags, composta de 7 pontos de código (bandeira da Inglaterra):
-reFlag.test(&apos;🏴&apos;); // → true
+reFlag.test('🏴'); // → true
 // Uma sequência de bandeira, composta de 2 pontos de código (bandeira da Suíça):
-reFlag.test(&apos;🇨🇭&apos;); // → true
+reFlag.test('🇨🇭'); // → true
 // Uma sequência de tags, composta de 7 pontos de código (bandeira do País de Gales):
-reFlag.test(&apos;🏴&apos;); // → true
+reFlag.test('🏴'); // → true
 ```
 
 ## Melhoria na correspondência insensível a maiúsculas e minúsculas
@@ -216,13 +216,13 @@ Intuitivamente, você pode esperar que ambas as expressões regulares se comport
 const re1 = /\p{Lowercase_Letter}/giu;
 const re2 = /[^\P{Lowercase_Letter}]/giu;
 
-const string = &apos;aAbBcC4#&apos;;
+const string = 'aAbBcC4#';
 
-string.replaceAll(re1, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re1, 'X');
+// → 'XXXXXX4#'
 
-string.replaceAll(re2, &apos;X&apos;);
-// → &apos;aAbBcC4#&apos;&apos;
+string.replaceAll(re2, 'X');
+// → 'aAbBcC4#''
 ```
 
 O novo sinalizador `v` tem um comportamento menos surpreendente. Com o sinalizador `v` em vez do sinalizador `u`, ambos os padrões se comportam da mesma maneira:
@@ -231,13 +231,13 @@ O novo sinalizador `v` tem um comportamento menos surpreendente. Com o sinalizad
 const re1 = /\p{Lowercase_Letter}/giv;
 const re2 = /[^\P{Lowercase_Letter}]/giv;
 
-const string = &apos;aAbBcC4#&apos;;
+const string = 'aAbBcC4#';
 
-string.replaceAll(re1, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re1, 'X');
+// → 'XXXXXX4#'
 
-string.replaceAll(re2, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re2, 'X');
+// → 'XXXXXX4#'
 ```
 
 Mais geralmente, o sinalizador `v` torna `[^\p{X}]` ≍ `[\P{X}]` ≍ `\P{X}` e `[^\P{X}]` ≍ `[\p{X}]` ≍ `\p{X}`, independentemente de o sinalizador `i` estar configurado ou não.

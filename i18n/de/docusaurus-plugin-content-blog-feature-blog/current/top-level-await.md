@@ -1,14 +1,14 @@
 ---
-title: &apos;Top-level `await`&apos;
-author: &apos;Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))&apos;
+title: 'Top-level `await`'
+author: 'Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))'
 avatars:
-  - &apos;myles-borins&apos;
+  - 'myles-borins'
 date: 2019-10-08
 tags:
   - ECMAScript
   - Node.js 14
-description: &apos;Top-level `await` kommt in JavaScript-Module! Bald können Sie `await` verwenden, ohne sich in einer asynchronen Funktion befinden zu müssen.&apos;
-tweet: &apos;1181581262399643650&apos;
+description: 'Top-level `await` kommt in JavaScript-Module! Bald können Sie `await` verwenden, ohne sich in einer asynchronen Funktion befinden zu müssen.'
+tweet: '1181581262399643650'
 ---
 [Top-level `await`](https://github.com/tc39/proposal-top-level-await) ermöglicht Entwicklern, das `await`-Schlüsselwort außerhalb von asynchronen Funktionen zu verwenden. Es verhält sich wie eine große asynchrone Funktion, wodurch andere Module, die sie `importieren`, darauf warten, bevor sie beginnen, ihren Körper zu evaluieren.
 
@@ -18,11 +18,11 @@ tweet: &apos;1181581262399643650&apos;
 Als `async`/`await` erstmals eingeführt wurde, führte der Versuch, ein `await` außerhalb einer `async`-Funktion zu verwenden, zu einem `SyntaxError`. Viele Entwickler verwendeten direkt aufgerufene asynchrone Funktionsausdrücke, um Zugriff auf die Funktionalität zu erhalten.
 
 ```js
-await Promise.resolve(console.log(&apos;🎉&apos;));
+await Promise.resolve(console.log('🎉'));
 // → SyntaxError: await ist nur gültig in einer asynchronen Funktion
 
 (async function() {
-  await Promise.resolve(console.log(&apos;🎉&apos;));
+  await Promise.resolve(console.log('🎉'));
   // → 🎉
 }());
 ```
@@ -32,7 +32,7 @@ await Promise.resolve(console.log(&apos;🎉&apos;));
 Mit top-level `await` funktioniert der obige Code wie erwartet innerhalb von [Modulen](/features/modules):
 
 ```js
-await Promise.resolve(console.log(&apos;🎉&apos;));
+await Promise.resolve(console.log('🎉'));
 // → 🎉
 ```
 
@@ -67,9 +67,9 @@ Das folgende Beispiel versucht, eine JavaScript-Bibliothek von CDN A zu laden un
 ```js
 let jQuery;
 try {
-  jQuery = await import(&apos;https://cdn-a.example.com/jQuery&apos;);
+  jQuery = await import('https://cdn-a.example.com/jQuery');
 } catch {
-  jQuery = await import(&apos;https://cdn-b.example.com/jQuery&apos;);
+  jQuery = await import('https://cdn-b.example.com/jQuery');
 }
 ```
 

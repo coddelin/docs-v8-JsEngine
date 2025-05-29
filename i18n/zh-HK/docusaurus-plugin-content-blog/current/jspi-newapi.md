@@ -1,7 +1,7 @@
 ---
-title: &apos;WebAssembly JSPI 引入了全新的 API&apos;
-description: &apos;本文詳述了即將對 JavaScript Promise Integration (JSPI) API 做出的一些變更。&apos;
-author: &apos;Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl&apos;
+title: 'WebAssembly JSPI 引入了全新的 API'
+description: '本文詳述了即將對 JavaScript Promise Integration (JSPI) API 做出的一些變更。'
+author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
 date: 2024-06-04
 tags:
   - WebAssembly

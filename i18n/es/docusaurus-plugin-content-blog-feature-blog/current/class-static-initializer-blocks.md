@@ -1,13 +1,13 @@
 ---
-title: &apos;Bloques de inicialización estática de clases&apos;
-author: &apos;Shu-yu Guo ([@_shu](https://twitter.com/_shu))&apos;
+title: 'Bloques de inicialización estática de clases'
+author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
 avatars:
-  - &apos;shu-yu-guo&apos;
+  - 'shu-yu-guo'
 date: 2021-03-30
 tags:
   - ECMAScript
-description: &apos;Las clases de JavaScript obtienen una sintaxis dedicada para la inicialización estática.&apos;
-tweet: &apos;1376925666780798989&apos;
+description: 'Las clases de JavaScript obtienen una sintaxis dedicada para la inicialización estática.'
+tweet: '1376925666780798989'
 ---
 La nueva sintaxis del bloque de inicialización estática de clases permite a los desarrolladores reunir el código que debe ejecutarse una vez para una definición de clase dada y colocarlo en un solo lugar. Considere el siguiente ejemplo, donde un generador de números pseudoaleatorios utiliza un bloque estático para inicializar un grupo de entropía una vez, cuando se evalúa la definición de `class MyPRNG`.
 
@@ -17,7 +17,7 @@ class MyPRNG {
   constructor(seed) {
     if (seed === undefined) {
       if (MyPRNG.entropyPool.length === 0) {
-        throw new Error(&apos;Grupo de entropía agotado&apos;);
+        throw new Error('Grupo de entropía agotado');
       }
       seed = MyPRNG.entropyPool.pop();
     }
@@ -40,22 +40,22 @@ class MyPRNG {
 Cada bloque de inicialización estática es su propio alcance de `var` y `let`/`const`. Al igual que en los inicializadores de campos estáticos, el valor de `this` en los bloques estáticos es el propio constructor de la clase. De manera similar, `super.property` dentro de un bloque estático se refiere a la propiedad estática de la clase superior.
 
 ```js
-var y = &apos;y exterior&apos;;
+var y = 'y exterior';
 class A {
-  static fieldA = &apos;A.fieldA&apos;;
+  static fieldA = 'A.fieldA';
 }
 class B extends A {
-  static fieldB = &apos;B.fieldB&apos;;
+  static fieldB = 'B.fieldB';
   static {
     let x = super.fieldA;
-    // → &apos;A.fieldA&apos;
+    // → 'A.fieldA'
     var y = this.fieldB;
-    // → &apos;B.fieldB&apos;
+    // → 'B.fieldB'
   }
 }
 // Dado que los bloques estáticos son su propio alcance de `var`, ¡los `var` no realizan hoisting!
 y;
-// → &apos;y exterior&apos;
+// → 'y exterior'
 ```
 
 ## Múltiples bloques
@@ -64,13 +64,13 @@ Una clase puede tener más de un bloque de inicialización estática. Estos bloq
 
 ```js
 class C {
-  static field1 = console.log(&apos;campo 1&apos;);
+  static field1 = console.log('campo 1');
   static {
-    console.log(&apos;bloque estático 1&apos;);
+    console.log('bloque estático 1');
   }
-  static field2 = console.log(&apos;campo 2&apos;);
+  static field2 = console.log('campo 2');
   static {
-    console.log(&apos;bloque estático 2&apos;);
+    console.log('bloque estático 2');
   }
 }
 // → campo 1
@@ -94,7 +94,7 @@ class D {
     getDPrivateField = (d) => d.#privateField;
   }
 }
-getDPrivateField(new D(&apos;privado&apos;));
+getDPrivateField(new D('privado'));
 // → privado
 ```
 

@@ -1,6 +1,6 @@
 ---
-title: &apos;Release-Prozess&apos;
-description: &apos;Dieses Dokument erklärt den V8-Veröffentlichungsprozess.&apos;
+title: 'Release-Prozess'
+description: 'Dieses Dokument erklärt den V8-Veröffentlichungsprozess.'
 ---
 Der V8-Veröffentlichungsprozess ist eng mit [Chrome’s](https://www.chromium.org/getting-involved/dev-channel) verbunden. Das V8-Team nutzt alle vier Chrome-Veröffentlichungskanäle, um neue Versionen an die Nutzer zu übermitteln.
 

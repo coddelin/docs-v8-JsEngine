@@ -1,13 +1,13 @@
 ---
-title: &apos;Lanzamiento de V8 v8.4&apos;
-author: &apos;Camillo Bruni, disfrutando de algunos booleanos frescos&apos;
+title: 'Lanzamiento de V8 v8.4'
+author: 'Camillo Bruni, disfrutando de algunos booleanos frescos'
 avatars:
- - &apos;camillo-bruni&apos;
+ - 'camillo-bruni'
 date: 2020-06-30
 tags:
  - lanzamiento
-description: &apos;V8 v8.4 incluye referencias débiles y un rendimiento mejorado de WebAssembly.&apos;
-tweet: &apos;1277983235641761795&apos;
+description: 'V8 v8.4 incluye referencias débiles y un rendimiento mejorado de WebAssembly.'
+tweet: '1277983235641761795'
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](https://v8.dev/docs/release-process). Cada versión se bifurca del maestro de Git de V8 justo antes de un hito de Chrome Beta. Hoy estamos encantados de anunciar nuestra rama más reciente, [V8 versión 8.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.4), que está en beta hasta su lanzamiento en coordinación con Chrome 84 Stable en varias semanas. V8 v8.4 está lleno de todo tipo de novedades orientadas a desarrolladores. Esta publicación ofrece un adelanto de algunos de los aspectos destacados en anticipación al lanzamiento.
 
@@ -39,7 +39,7 @@ JavaScript es un lenguaje de recolección de basura, lo que significa que la mem
 
 ```js
 const globalRef = {
-  callback() { console.log(&apos;foo&apos;); }
+  callback() { console.log('foo'); }
 };
 // Mientras globalRef sea accesible a través del ámbito global,
 // ni este ni la función en su propiedad callback serán recolectados.
@@ -49,7 +49,7 @@ Los programadores de JavaScript ahora pueden manejar objetos débilmente mediant
 
 ```js
 const globalWeakRef = new WeakRef({
-  callback() { console.log(&apos;foo&apos;); }
+  callback() { console.log('foo'); }
 });
 
 (async function() {
@@ -58,7 +58,7 @@ const globalWeakRef = new WeakRef({
   // durante el primer ciclo del bucle de eventos después de que fue creado.
 
   await new Promise((resolve, reject) => {
-    setTimeout(() => { resolve(&apos;foo&apos;); }, 42);
+    setTimeout(() => { resolve('foo'); }, 42);
   });
   // Esperar un ciclo del bucle de eventos.
 

@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 リリース v8.9&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 呼び出し待ち&apos;
+title: 'V8 リリース v8.9'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 呼び出し待ち'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-02-04
 tags:
  - リリース
-description: &apos;V8 リリース v8.9 は、引数数のミスマッチがある呼び出しの性能を向上します。&apos;
-tweet: &apos;1357358418902802434&apos;
+description: 'V8 リリース v8.9 は、引数数のミスマッチがある呼び出しの性能を向上します。'
+tweet: '1357358418902802434'
 ---
 6週間ごとに、[リリースプロセス](https://v8.dev/docs/release-process)の一環として、新しい V8 のブランチを作成しています。各バージョンは、Chrome ベータマイルストーンの直前に V8 の Git マスターから分岐されます。本日、新しいブランチ [V8 バージョン 8.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.9) を発表できることを嬉しく思います。このバージョンは、数週間後に Chrome 89 の安定版と連携してリリースされるまでベータ版となります。V8 v8.9 は、開発者に向けたさまざまな新機能が満載です。この投稿では、リリースに先立っていくつかの重要なハイライトを紹介します。
 

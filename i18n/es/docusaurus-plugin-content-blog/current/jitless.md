@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 sin JIT&apos;
-author: &apos;Jakob Gruber ([@schuay](https://twitter.com/schuay))&apos;
+title: 'V8 sin JIT'
+author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
 avatars:
-  - &apos;jakob-gruber&apos;
+  - 'jakob-gruber'
 date: 2019-03-13 13:03:19
 tags:
   - internals
-description: &apos;V8 v7.4 admite la ejecución de JavaScript sin asignar memoria ejecutable en tiempo de ejecución.&apos;
-tweet: &apos;1105777150051999744&apos;
+description: 'V8 v7.4 admite la ejecución de JavaScript sin asignar memoria ejecutable en tiempo de ejecución.'
+tweet: '1105777150051999744'
 ---
 V8 v7.4 ahora admite la ejecución de JavaScript sin asignar memoria ejecutable en tiempo de ejecución.
 

@@ -1,6 +1,6 @@
 ---
-title: &apos;埠的處理&apos;
-description: &apos;本文檔描述如何處理特定架構的V8埠。&apos;
+title: '埠的處理'
+description: '本文檔描述如何處理特定架構的V8埠。'
 ---
 本文檔描述如何處理埠。
 

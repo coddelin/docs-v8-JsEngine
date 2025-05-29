@@ -1,6 +1,6 @@
 ---
-title: &apos;V8s Linux `perf`-Integration&apos;
-description: &apos;Dieses Dokument erklärt, wie die Leistung von V8s JIT-Code mit dem Linux-Tool `perf` analysiert werden kann.&apos;
+title: 'V8s Linux `perf`-Integration'
+description: 'Dieses Dokument erklärt, wie die Leistung von V8s JIT-Code mit dem Linux-Tool `perf` analysiert werden kann.'
 ---
 V8 verfügt über integrierte Unterstützung für das Linux-Tool `perf`. Es wird über die Befehlszeilenoptionen `--perf-prof` aktiviert.
 V8 schreibt während der Ausführung Leistungsdaten in eine Datei, die verwendet werden kann, um die Leistung des JIT-Codes von V8 (einschließlich der JS-Funktionsnamen) mit dem Linux-Tool `perf` zu analysieren.
@@ -15,7 +15,7 @@ V8 schreibt während der Ausführung Leistungsdaten in eine Datei, die verwendet
 Um die Integration von V8 mit Linux perf zu nutzen, musst du V8 mit dem gn-Flag `enable_profiling = true` bauen:
 
 ```bash
-echo &apos;enable_profiling = true&apos; >> out/x64.release/args.gn
+echo 'enable_profiling = true' >> out/x64.release/args.gn
 autoninja -C out/x64.release
 ```
 
@@ -30,9 +30,9 @@ tools/profiling/linux-perf-d8.py out/x64.release/d8 path/to/test.js;
 Ein vollständigeres Beispiel:
 
 ```bash
-echo &apos;(function f() {
+echo '(function f() {
     var s = 0; for (var i = 0; i < 1000000000; i++) { s += i; } return s;
-  })();&apos; > test.js;
+  })();' > test.js;
 
 # Verwende benutzerdefinierte V8-Flags und ein separates Ausgabeverzeichnis für weniger Unordnung:
 mkdir perf_results
@@ -122,7 +122,7 @@ perf report --input=perf.data.jitted;
     out/x64.release/chrome \
         --user-data-dir=`mktemp -d` \
         --no-sandbox --incognito --enable-benchmarking \
-        --js-flags=&apos;--perf-prof --no-write-protect-code-memory --interpreted-frames-native-stack&apos;
+        --js-flags='--perf-prof --no-write-protect-code-memory --interpreted-frames-native-stack'
     ```
 
 1. Nachdem Sie Chrome gestartet haben, finden Sie die Renderer-Prozess-ID mithilfe des Task-Managers und verwenden Sie diese, um mit der Profilerstellung zu beginnen:

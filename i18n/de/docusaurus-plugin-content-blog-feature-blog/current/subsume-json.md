@@ -1,13 +1,13 @@
 ---
-title: &apos;Subsume JSON a.k.a. JSON ⊂ ECMAScript&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Subsume JSON a.k.a. JSON ⊂ ECMAScript'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-08-14
 tags:
   - ES2019
-description: &apos;JSON ist jetzt ein syntaktisches Teilmengen von ECMAScript.&apos;
-tweet: &apos;1161649929904885762&apos;
+description: 'JSON ist jetzt ein syntaktisches Teilmengen von ECMAScript.'
+tweet: '1161649929904885762'
 ---
 Mit [dem _JSON ⊂ ECMAScript_ Vorschlag](https://github.com/tc39/proposal-json-superset) wird JSON zu einer syntaktischen Teilmenge von ECMAScript. Wenn Sie überrascht sind, dass dies nicht bereits der Fall war, sind Sie nicht allein!
 
@@ -17,11 +17,11 @@ In ES2018 konnten ECMAScript-Stringliterale keine unescaped U+2028 LINE SEPARATO
 
 ```js
 // Ein String, der ein rohes U+2028-Zeichen enthält.
-const LS = &apos; &apos;;
+const LS = ' ';
 // → ES2018: SyntaxError
 
 // Ein String, der ein rohes U+2029-Zeichen enthält, erzeugt durch `eval`:
-const PS = eval(&apos;"\u2029"&apos;);
+const PS = eval('"\u2029"');
 // → ES2018: SyntaxError
 ```
 
@@ -34,12 +34,12 @@ In ES2019 können Stringliterale nun rohe U+2028 und U+2029 Zeichen enthalten, w
 
 ```js
 // Ein String, der ein rohes U+2028-Zeichen enthält.
-const LS = &apos; &apos;;
+const LS = ' ';
 // → ES2018: SyntaxError
 // → ES2019: keine Ausnahme
 
 // Ein String, der ein rohes U+2029-Zeichen enthält, erzeugt durch `eval`:
-const PS = eval(&apos;"\u2029"&apos;);
+const PS = eval('"\u2029"');
 // → ES2018: SyntaxError
 // → ES2019: keine Ausnahme
 ```
@@ -55,8 +55,8 @@ Hier ist ein Beispiel für das Erstellen eines gültigen JavaScript-Programms, d
 ```js
 // Ein JavaScript-Objekt (oder Array oder String), das einige Daten darstellt.
 const data = {
-  LineTerminators: &apos;\n\r  &apos;,
-  // Hinweis: Der String enthält 4 Zeichen: &apos;\n\r\u2028\u2029&apos;.
+  LineTerminators: '\n\r  ',
+  // Hinweis: Der String enthält 4 Zeichen: '\n\r\u2028\u2029'.
 };
 
 // Die Daten in ihre JSON-String-form umwandeln. Dank JSON ⊂
@@ -67,7 +67,7 @@ const jsObjectLiteral = JSON.stringify(data);
 // Ein gültiges ECMAScript-Programm erstellen, das die Daten als Objekt
 // Literal einbettet.
 const program = `const data = ${ jsObjectLiteral };`;
-// → &apos;const data = {"LineTerminators":"…"};&apos;
+// → 'const data = {"LineTerminators":"…"};'
 // (Zusätzliche Escaping ist erforderlich, wenn das Ziel ein eingebettetes <script> ist.)
 
 // Eine Datei mit dem ECMAScript-Programm auf die Festplatte schreiben.
@@ -91,7 +91,7 @@ const data = { foo: 42, bar: 1337 }; // 🐌
 …die Daten in JSON-String-form dargestellt und dann zur Laufzeit JSON-geparst werden, um die Leistung bei großen Objekten (10 kB+) zu verbessern:
 
 ```js
-const data = JSON.parse(&apos;{"foo":42,"bar":1337}&apos;); // 🚀
+const data = JSON.parse('{"foo":42,"bar":1337}'); // 🚀
 ```
 
 Hier ist eine Beispielimplementierung:
@@ -99,8 +99,8 @@ Hier ist eine Beispielimplementierung:
 ```js
 // Ein JavaScript-Objekt (oder Array, oder String), das einige Daten darstellt.
 const data = {
-  LineTerminators: &apos;\n\r  &apos;,
-  // Hinweis: Der String enthält 4 Zeichen: &apos;\n\r\u2028\u2029&apos;.
+  LineTerminators: '\n\r  ',
+  // Hinweis: Der String enthält 4 Zeichen: '\n\r\u2028\u2029'.
 };
 
 // Die Daten in ihre JSON-String-form umwandeln.
@@ -115,7 +115,7 @@ const jsStringLiteral = JSON.stringify(json);
 // Ein gültiges ECMAScript-Programm erstellen, das das JavaScript-String
 // Literal darstellt, das die JSON-Daten innerhalb eines `JSON.parse`-Aufrufs einbettet.
 const program = `const data = JSON.parse(${ jsStringLiteral });`;
-// → &apos;const data = JSON.parse("…");&apos;
+// → 'const data = JSON.parse("…");'
 // (Zusätzliches Escaping ist erforderlich, wenn das Ziel ein Inline-<script> ist.)
 
 // Schreibe eine Datei mit dem ECMAScript-Programm auf die Festplatte.
@@ -150,13 +150,13 @@ Wenn es wie im obigen Beispiel verwendet wird, gibt `JSON.stringify()` garantier
 ```html
 <script>
   // Debug-Info:
-  // User-Agent: "Benutzerdefinierte Zeichenkette<U+2028>  alert(&apos;XSS&apos;);//"
+  // User-Agent: "Benutzerdefinierte Zeichenkette<U+2028>  alert('XSS');//"
 </script>
 <!-- …entspricht: -->
 <script>
   // Debug-Info:
   // User-Agent: "Benutzerdefinierte Zeichenkette
-  alert(&apos;XSS&apos;);//"
+  alert('XSS');//"
 </script>
 ```
 

@@ -1,34 +1,34 @@
 ---
-title: &apos;Initialisation plus rapide des instances avec les nouvelles fonctionnalités des classes&apos;
-author: &apos;[Joyee Cheung](https://twitter.com/JoyeeCheung), initialisateur d&apos;instances&apos;
+title: 'Initialisation plus rapide des instances avec les nouvelles fonctionnalités des classes'
+author: '[Joyee Cheung](https://twitter.com/JoyeeCheung), initialisateur d'instances'
 avatars:
-  - &apos;joyee-cheung&apos;
+  - 'joyee-cheung'
 date: 2022-04-20
 tags:
   - internes
-description: &apos;L&apos;initialisation des instances avec les nouvelles fonctionnalités des classes est devenue plus rapide depuis V8 v9.7.&apos;
-tweet: &apos;1517041137378373632&apos;
+description: 'L'initialisation des instances avec les nouvelles fonctionnalités des classes est devenue plus rapide depuis V8 v9.7.'
+tweet: '1517041137378373632'
 ---
 
 Les champs de classe ont été introduits dans V8 à partir de la version v7.2 et les méthodes privées de classe depuis la version v8.4. Après que les propositions ont atteint le stade 4 en 2021, des travaux ont commencé pour améliorer le support des nouvelles fonctionnalités des classes dans V8 - jusque-là, deux problèmes principaux affectaient leur adoption :
 
 <!--truncate-->
-1. L&apos;initialisation des champs de classe et des méthodes privées était beaucoup plus lente que l&apos;attribution des propriétés ordinaires.
+1. L'initialisation des champs de classe et des méthodes privées était beaucoup plus lente que l'attribution des propriétés ordinaires.
 2. Les initialisateurs de champs de classe étaient défaillants dans les [snapshots de démarrage](https://v8.dev/blog/custom-startup-snapshots) utilisés par des intégrateurs comme Node.js et Deno pour accélérer leur démarrage ou celui des applications utilisateur.
 
 Le premier problème a été résolu dans V8 v9.7 et la solution au deuxième problème a été publiée dans V8 v10.0. Cet article traite de la manière dont le premier problème a été résolu. Pour en savoir plus sur la résolution du problème de snapshot, consultez [cet article](https://joyeecheung.github.io/blog/2022/04/14/fixing-snapshot-support-of-class-fields-in-v8/).
 
 ## Optimisation des champs de classe
 
-Pour éliminer l&apos;écart de performance entre l&apos;attribution des propriétés ordinaires et l&apos;initialisation des champs de classe, nous avons mis à jour le système existant de [mise en cache en ligne (IC)](https://mathiasbynens.be/notes/shapes-ics) pour fonctionner également avec les champs de classe. Avant v9.7, V8 utilisait toujours un appel coûteux au runtime pour initialiser les champs de classe. Avec v9.7, lorsque V8 considère que le modèle d&apos;initialisation est suffisamment prévisible, il utilise un nouvel IC pour accélérer l&apos;opération, comme il le fait pour l&apos;attribution des propriétés ordinaires.
+Pour éliminer l'écart de performance entre l'attribution des propriétés ordinaires et l'initialisation des champs de classe, nous avons mis à jour le système existant de [mise en cache en ligne (IC)](https://mathiasbynens.be/notes/shapes-ics) pour fonctionner également avec les champs de classe. Avant v9.7, V8 utilisait toujours un appel coûteux au runtime pour initialiser les champs de classe. Avec v9.7, lorsque V8 considère que le modèle d'initialisation est suffisamment prévisible, il utilise un nouvel IC pour accélérer l'opération, comme il le fait pour l'attribution des propriétés ordinaires.
 
 ![Performance des initialisations, optimisée](/_img/faster-class-features/class-fields-performance-optimized.svg)
 
 ![Performance des initialisations, interprétée](/_img/faster-class-features/class-fields-performance-interpreted.svg)
 
-### L&apos;implémentation originale des champs de classe
+### L'implémentation originale des champs de classe
 
-Pour implémenter les champs privés, V8 utilise des symboles privés internes - il s&apos;agit d&apos;une structure de données interne à V8 similaire aux `Symbol` standards, sauf qu&apos;ils ne sont pas énumérables lorsqu&apos;ils sont utilisés comme clé de propriété. Prenons cet exemple de classe :
+Pour implémenter les champs privés, V8 utilise des symboles privés internes - il s'agit d'une structure de données interne à V8 similaire aux `Symbol` standards, sauf qu'ils ne sont pas énumérables lorsqu'ils sont utilisés comme clé de propriété. Prenons cet exemple de classe :
 
 
 ```js
@@ -38,7 +38,7 @@ class A {
 }
 ```
 
-V8 collecterait les initialisateurs des champs de classe (`#a = 0` et `b = this.#a`) et générerait une fonction membre d&apos;instance synthétique avec les initialisateurs comme corps de la fonction. Le bytecode généré pour cette fonction synthétique ressemblait à ceci :
+V8 collecterait les initialisateurs des champs de classe (`#a = 0` et `b = this.#a`) et générerait une fonction membre d'instance synthétique avec les initialisateurs comme corps de la fonction. Le bytecode généré pour cette fonction synthétique ressemblait à ceci :
 
 ```cpp
 // Charger le symbole de nom privé pour `#a` dans r1
@@ -53,8 +53,8 @@ Star r2
 Mov <this>, r0
 
 // Utiliser la fonction runtime %AddPrivateField() pour stocker 0 comme valeur de
-// la propriété indexée par le symbole de nom privé `#a` dans l&apos;instance,
-// c&apos;est-à-dire, `#a = 0`.
+// la propriété indexée par le symbole de nom privé `#a` dans l'instance,
+// c'est-à-dire, `#a = 0`.
 CallRuntime [AddPrivateField], r0-r2
 
 // Charger le nom de la propriété `b` dans r1
@@ -64,7 +64,7 @@ Star r1
 // Charger le symbole de nom privé pour `#a`
 LdaImmutableCurrentContextSlot [2]
 
-// Charger la valeur de la propriété indexée par `#a` depuis l&apos;instance dans r2
+// Charger la valeur de la propriété indexée par `#a` depuis l'instance dans r2
 LdaKeyedProperty <this>, [0]
 Star r2
 
@@ -72,11 +72,11 @@ Star r2
 Mov <this>, r0
 
 // Utiliser la fonction runtime %CreateDataProperty() pour stocker la propriété indexée
-// par `#a` comme valeur de la propriété indexée par `b`, c&apos;est-à-dire, `b = this.#a`
+// par `#a` comme valeur de la propriété indexée par `b`, c'est-à-dire, `b = this.#a`
 CallRuntime [CreateDataProperty], r0-r2
 ```
 
-Comparez la classe dans l&apos;extrait précédent à une classe comme celle-ci :
+Comparez la classe dans l'extrait précédent à une classe comme celle-ci :
 
 ```js
 class A {
@@ -87,15 +87,15 @@ class A {
 }
 ```
 
-Techniquement, ces deux classes ne sont pas équivalentes, même en ignorant la différence de visibilité entre `this.#a` et `this._a`. La spécification impose des sémantiques de "définition" au lieu des sémantiques de "mise en place". C&apos;est-à-dire que l&apos;initialisation des champs de classe ne déclenche pas les accesseurs setters ou les pièges `set` des Proxy. Par conséquent, une approximation de la première classe devrait utiliser `Object.defineProperty()` au lieu d&apos;assignations simples pour initialiser les propriétés. De plus, elle devrait lever une erreur si le champ privé existe déjà dans l&apos;instance (au cas où la cible en cours d&apos;initialisation est remplacée dans le constructeur de base par une autre instance) :
+Techniquement, ces deux classes ne sont pas équivalentes, même en ignorant la différence de visibilité entre `this.#a` et `this._a`. La spécification impose des sémantiques de "définition" au lieu des sémantiques de "mise en place". C'est-à-dire que l'initialisation des champs de classe ne déclenche pas les accesseurs setters ou les pièges `set` des Proxy. Par conséquent, une approximation de la première classe devrait utiliser `Object.defineProperty()` au lieu d'assignations simples pour initialiser les propriétés. De plus, elle devrait lever une erreur si le champ privé existe déjà dans l'instance (au cas où la cible en cours d'initialisation est remplacée dans le constructeur de base par une autre instance) :
 
 ```js
 class A {
   constructor() {
-    // Ce que l&apos;appel %AddPrivateField() traduit approximativement :
-    const _a = %PrivateSymbol(&apos;#a&apos;)
+    // Ce que l'appel %AddPrivateField() traduit approximativement :
+    const _a = %PrivateSymbol('#a')
     if (_a in this) {
-      throw TypeError(&apos;Impossible d&apos;initialiser #a deux fois sur le même objet&apos;);
+      throw TypeError('Impossible d'initialiser #a deux fois sur le même objet');
     }
     Object.defineProperty(this, _a, {
       writable: true,
@@ -103,8 +103,8 @@ class A {
       enumerable: false,
       value: 0
     });
-    // Ce que l&apos;appel %CreateDataProperty() traduit approximativement :
-    Object.defineProperty(this, &apos;b&apos;, {
+    // Ce que l'appel %CreateDataProperty() traduit approximativement :
+    Object.defineProperty(this, 'b', {
       writable: true,
       configurable: true,
       enumerable: true,
@@ -187,9 +187,9 @@ class A {
       { a: 1 },
       {
         defineProperty(object, key, desc) {
-          console.log(&apos;object:&apos;, object);
-          console.log(&apos;key:&apos;, key);
-          console.log(&apos;desc:&apos;, desc);
+          console.log('object:', object);
+          console.log('key:', key);
+          console.log('desc:', desc);
           return true;
         }
       });
@@ -202,7 +202,7 @@ class B extends A {
 }
 
 // object: { a: 1 },
-// key: &apos;a&apos;,
+// key: 'a',
 // desc: {value: 2, writable: true, enumerable: true, configurable: true}
 new B();
 ```

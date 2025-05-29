@@ -148,26 +148,26 @@ HTML内にインラインで記述されたソースを持つスクリプトタ�
 
 ```js
 // main.mjs
-navigator.serviceWorker.register(&apos;/sw.js&apos;);
+navigator.serviceWorker.register('/sw.js');
 ```
 
 そして、サービスワーカーはインストール（キャッシュを作成）やフェッチ（リソースを提供し、必要に応じてキャッシュから提供）のためのイベントハンドラを追加します。
 
 ```js
 // sw.js
-self.addEventListener(&apos;install&apos;, (event) => {
+self.addEventListener('install', (event) => {
   async function buildCache() {
     const cache = await caches.open(cacheName);
     return cache.addAll([
-      &apos;/main.css&apos;,
-      &apos;/main.mjs&apos;,
-      &apos;/offline.html&apos;,
+      '/main.css',
+      '/main.mjs',
+      '/offline.html',
     ]);
   }
   event.waitUntil(buildCache());
 });
 
-self.addEventListener(&apos;fetch&apos;, (event) => {
+self.addEventListener('fetch', (event) => {
   async function cachedFetch(event) {
     const cache = await caches.open(cacheName);
     let response = await cache.match(event.request);

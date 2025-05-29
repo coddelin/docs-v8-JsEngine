@@ -1,6 +1,6 @@
 ---
-title: &apos;Building V8 mit GN&apos;
-description: &apos;Dieses Dokument erklärt, wie man GN verwendet, um V8 zu bauen.&apos;
+title: 'Building V8 mit GN'
+description: 'Dieses Dokument erklärt, wie man GN verwendet, um V8 zu bauen.'
 ---
 V8 wird mit Hilfe von [GN](https://gn.googlesource.com/gn/+/master/docs/) gebaut. GN ist eine Art Meta-Build-System, da es Build-Dateien für eine Reihe anderer Build-Systeme generiert. Wie Sie bauen, hängt daher davon ab, welches „Back-End“-Build-System und welchen Compiler Sie verwenden.
 Die folgenden Anweisungen gehen davon aus, dass Sie bereits eine [Checkout von V8](/docs/source-code) haben und die [Build-Abhängigkeiten installiert](/docs/build) haben.
@@ -66,7 +66,7 @@ gn args out/foo
 Dies öffnet ein Editorfenster zur Angabe der [`gn`-Argumente](https://gn.googlesource.com/gn/+/master/docs/reference.md). Alternativ können Sie die Argumente auf der Kommandozeile übergeben:
 
 ```bash
-gn gen out/foo --args=&apos;is_debug=false target_cpu="x64" v8_target_cpu="arm64" use_goma=true&apos;
+gn gen out/foo --args='is_debug=false target_cpu="x64" v8_target_cpu="arm64" use_goma=true'
 ```
 
 Dies generiert Build-Dateien für das Kompilieren von V8 mit dem Arm64-Simulator im Release-Modus unter Nutzung von `goma` für die Kompilierung.
@@ -100,7 +100,7 @@ v8gen list -m client.v8
 Bauen Sie wie ein bestimmter Bot vom `client.v8`-Wasserfall im Ordner `foo`:
 
 ```bash
-v8gen -b &apos;V8 Linux64 - debug builder&apos; -m client.v8 foo
+v8gen -b 'V8 Linux64 - debug builder' -m client.v8 foo
 ```
 
 ### Schritt 2: V8 kompilieren

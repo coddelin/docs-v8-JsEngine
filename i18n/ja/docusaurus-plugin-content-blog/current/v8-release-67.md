@@ -1,11 +1,11 @@
 ---
-title: &apos;V8リリースv6.7&apos;
-author: &apos;V8チーム&apos;
+title: 'V8リリースv6.7'
+author: 'V8チーム'
 date: 2018-05-04 13:33:37
 tags:
   - リリース
-tweet: &apos;992506342391742465&apos;
-description: &apos;V8 v6.7は、より多くの不信任コード緩和策を追加し、BigIntサポートを提供します。&apos;
+tweet: '992506342391742465'
+description: 'V8 v6.7は、より多くの不信任コード緩和策を追加し、BigIntサポートを提供します。'
 ---
 6週ごとに、[リリースプロセス](/docs/release-process)の一環としてV8の新しいブランチを作成しています。各バージョンは、Chrome Betaマイルストーン直前にV8のGitマスターから分岐されます。本日、最新のブランチ[V8 version 6.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.7)を発表できることを嬉しく思います。これは数週間でChrome 67のStable版との連携でリリースされるまでベータ版です。V8 v6.7には開発者向けの便利な機能が満載です。本投稿ではリリースに先立ち、そのハイライトの一部をご紹介します。
 

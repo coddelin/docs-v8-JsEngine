@@ -1,13 +1,13 @@
 ---
-title: &apos;Importar atributos&apos;
-author: &apos;Shu-yu Guo ([@_shu](https://twitter.com/_shu))&apos;
+title: 'Importar atributos'
+author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
 avatars:
-  - &apos;shu-yu-guo&apos;
+  - 'shu-yu-guo'
 date: 2024-01-31
 tags:
   - ECMAScript
-description: &apos;Atributos de importação: a evolução das afirmações de importação&apos;
-tweet: &apos;&apos;
+description: 'Atributos de importação: a evolução das afirmações de importação'
+tweet: ''
 ---
 
 ## Anteriormente
@@ -19,7 +19,7 @@ O V8 lançou o recurso [import assertions](https://chromestatus.com/feature/5765
 
 Desde então, as afirmações de importação evoluíram para [import attributes](https://github.com/tc39/proposal-import-attributes). O objetivo do recurso permanece o mesmo: permitir que declarações de importação de módulos incluam informações adicionais.
 
-A diferença mais importante é que as afirmações de importação tinham semânticas apenas de afirmação, enquanto os atributos de importação têm semânticas mais relaxadas. Semânticas apenas de afirmação significam que as informações adicionais não afetam como um módulo é carregado, apenas se ele é carregado. Por exemplo, um módulo JSON é sempre carregado como módulo JSON por conta de seu tipo MIME, e a cláusula `assert { type: &apos;json&apos; }` só pode causar falha no carregamento se o tipo MIME do módulo solicitado não for `application/json`.
+A diferença mais importante é que as afirmações de importação tinham semânticas apenas de afirmação, enquanto os atributos de importação têm semânticas mais relaxadas. Semânticas apenas de afirmação significam que as informações adicionais não afetam como um módulo é carregado, apenas se ele é carregado. Por exemplo, um módulo JSON é sempre carregado como módulo JSON por conta de seu tipo MIME, e a cláusula `assert { type: 'json' }` só pode causar falha no carregamento se o tipo MIME do módulo solicitado não for `application/json`.
 
 No entanto, as semânticas apenas de afirmação tinham uma falha fatal. Na web, a forma das requisições HTTP difere dependendo do tipo de recurso solicitado. Por exemplo, o cabeçalho [`Accept`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept) afeta o tipo MIME da resposta, e o cabeçalho de metadados [`Sec-Fetch-Dest`](https://web.dev/articles/fetch-metadata) afeta se o servidor web aceita ou rejeita a requisição. Como uma afirmação de importação não podia afetar como carregar um módulo, ela não era capaz de alterar a forma da requisição HTTP. O tipo do recurso solicitado também afeta quais [Políticas de Segurança de Conteúdo](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) são usadas: as afirmações de importação não podiam trabalhar corretamente com o modelo de segurança da web.
 
@@ -28,8 +28,8 @@ Os atributos de importação relaxam as semânticas apenas de afirmação para p
 ```javascript
 // main.mjs
 //
-// Nova sintaxe &apos;with&apos;.
-import json from &apos;./foo.json&apos; with { type: &apos;json&apos; };
+// Nova sintaxe 'with'.
+import json from './foo.json' with { type: 'json' };
 console.log(json.answer); // 42
 ```
 
@@ -40,9 +40,9 @@ De forma semelhante, a [importação dinâmica `import()`](https://v8.dev/featur
 ```javascript
 // main.mjs
 //
-// Nova opção &apos;with&apos;.
-const jsonModule = await import(&apos;./foo.json&apos;, {
-  with: { type: &apos;json&apos; }
+// Nova opção 'with'.
+const jsonModule = await import('./foo.json', {
+  with: { type: 'json' }
 });
 console.log(jsonModule.default.answer); // 42
 ```

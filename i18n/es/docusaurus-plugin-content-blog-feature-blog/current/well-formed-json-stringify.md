@@ -1,27 +1,27 @@
 ---
-title: &apos;`JSON.stringify` bien formado&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`JSON.stringify` bien formado'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-09-11
 tags:
   - ECMAScript
   - ES2019
-description: &apos;JSON.stringify ahora produce secuencias de escape para sustitutos solitarios, haciendo que su salida sea Unicode válido (y representable en UTF-8).&apos;
+description: 'JSON.stringify ahora produce secuencias de escape para sustitutos solitarios, haciendo que su salida sea Unicode válido (y representable en UTF-8).'
 ---
 `JSON.stringify` anteriormente estaba especificado para devolver cadenas Unicode mal formadas si la entrada contenía algún sustituto solitario:
 
 ```js
-JSON.stringify(&apos;\uD800&apos;);
-// → &apos;"�"&apos;
+JSON.stringify('\uD800');
+// → '"�"'
 ```
 
 [La propuesta de “`JSON.stringify` bien formado”](https://github.com/tc39/proposal-well-formed-stringify) cambia `JSON.stringify` para que produzca secuencias de escape para sustitutos solitarios, haciendo que su salida sea Unicode válido (y representable en UTF-8):
 
 <!--truncate-->
 ```js
-JSON.stringify(&apos;\uD800&apos;);
-// → &apos;"\\ud800"&apos;
+JSON.stringify('\uD800');
+// → '"\\ud800"'
 ```
 
 Tenga en cuenta que `JSON.parse(stringified)` sigue produciendo los mismos resultados que antes.

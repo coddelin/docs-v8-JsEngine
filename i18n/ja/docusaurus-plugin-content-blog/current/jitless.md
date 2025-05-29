@@ -1,13 +1,13 @@
 ---
-title: &apos;JITなしのV8&apos;
-author: &apos;Jakob Gruber ([@schuay](https://twitter.com/schuay))&apos;
+title: 'JITなしのV8'
+author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
 avatars:
-  - &apos;jakob-gruber&apos;
+  - 'jakob-gruber'
 date: 2019-03-13 13:03:19
 tags:
   - internals
-description: &apos;V8 v7.4は、実行時に実行可能なメモリを割り当てずにJavaScriptを実行することをサポートします。&apos;
-tweet: &apos;1105777150051999744&apos;
+description: 'V8 v7.4は、実行時に実行可能なメモリを割り当てずにJavaScriptを実行することをサポートします。'
+tweet: '1105777150051999744'
 ---
 V8 v7.4は、実行時に実行可能なメモリを割り当てずにJavaScriptを実行することをサポートします。
 

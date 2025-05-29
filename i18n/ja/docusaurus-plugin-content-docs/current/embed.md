@@ -1,6 +1,6 @@
 ---
-title: &apos;V8の埋め込みを始める&apos;
-description: &apos;この文書は、いくつかの主要なV8の概念を紹介し、V8コードを始めるための「Hello World」例を提供します。&apos;
+title: 'V8の埋め込みを始める'
+description: 'この文書は、いくつかの主要なV8の概念を紹介し、V8コードを始めるための「Hello World」例を提供します。'
 ---
 この文書は、いくつかの主要なV8の概念を紹介し、V8コードを始めるための「Hello World」例を提供します。
 

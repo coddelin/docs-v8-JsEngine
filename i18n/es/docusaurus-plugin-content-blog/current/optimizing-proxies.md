@@ -1,15 +1,15 @@
 ---
-title: &apos;Optimizando proxies de ES2015 en V8&apos;
-author: &apos;Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), Optimizadora de proxies&apos;
+title: 'Optimizando proxies de ES2015 en V8'
+author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), Optimizadora de proxies'
 avatars:
-  - &apos;maya-armyanova&apos;
+  - 'maya-armyanova'
 date: 2017-10-05 13:33:37
 tags:
   - ECMAScript
   - benchmarks
   - internals
-description: &apos;Este artículo explica cómo V8 mejoró el rendimiento de los proxies de JavaScript.&apos;
-tweet: &apos;915846050447003648&apos;
+description: 'Este artículo explica cómo V8 mejoró el rendimiento de los proxies de JavaScript.'
+tweet: '915846050447003648'
 ---
 Los proxies han sido una parte integral de JavaScript desde ES2015. Permiten interceptar operaciones fundamentales en objetos y personalizar su comportamiento. Los proxies forman una parte esencial de proyectos como [jsdom](https://github.com/tmpvar/jsdom) y la biblioteca [Comlink RPC](https://github.com/GoogleChrome/comlink). Recientemente, hemos puesto mucho esfuerzo en mejorar el rendimiento de los proxies en V8. Este artículo aporta algo de luz sobre los patrones generales de mejora de rendimiento en V8 y en proxies en particular.
 
@@ -25,7 +25,7 @@ const callTracer = new Proxy(target, {
   }
 });
 
-callTracer.property = &apos;value&apos;;
+callTracer.property = 'value';
 console.log(callTracer.property);
 // get fue llamado para: property
 // value
@@ -88,11 +88,11 @@ function run() {
   return new P();
 }
 const N = 1e5;
-console.time(&apos;run&apos;);
+console.time('run');
 for (let i = 0; i < N; ++i) {
   run();
 }
-console.timeEnd(&apos;run&apos;);
+console.timeEnd('run');
 ```
 
 Resultó que la mayor parte del tiempo se gasta en `NewObject` y las funciones llamadas por este, así que comenzamos a planificar cómo acelerar esto en futuras versiones.

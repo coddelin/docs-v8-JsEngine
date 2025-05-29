@@ -1,11 +1,11 @@
 ---
-title: &apos;Añadiendo BigInts a V8&apos;
-author: &apos;Jakob Kummerow, árbitro de la precisión&apos;
+title: 'Añadiendo BigInts a V8'
+author: 'Jakob Kummerow, árbitro de la precisión'
 date: 2018-05-02 13:33:37
 tags:
   - ECMAScript
-description: &apos;V8 ahora soporta BigInts, una característica del lenguaje JavaScript que permite enteros de precisión arbitraria.&apos;
-tweet: &apos;991705626391732224&apos;
+description: 'V8 ahora soporta BigInts, una característica del lenguaje JavaScript que permite enteros de precisión arbitraria.'
+tweet: '991705626391732224'
 ---
 En los últimos meses, hemos implementado soporte para [BigInts](/features/bigint) en V8, tal como se especifica actualmente en [esta propuesta](https://github.com/tc39/proposal-bigint), para incluirse en una futura versión de ECMAScript. La siguiente publicación relata la historia de nuestras aventuras.
 
@@ -39,7 +39,7 @@ Entonces, ¿cómo se puede almacenar un BigInt con cien, mil o un millón de bit
 
 ```js
 {
-  type: &apos;BigInt&apos;,
+  type: 'BigInt',
   sign: 0,
   num_digits: 3,
   digits: [0x12…, 0x34…, 0x56…],
@@ -119,7 +119,7 @@ Por ejemplo, si vemos que los BigInts relativamente pequeños (hasta 64 bits) so
 
 ```js
 {
-  type: &apos;BigInt-Int64&apos;,
+  type: 'BigInt-Int64',
   value: 0x12…,
 }
 ```

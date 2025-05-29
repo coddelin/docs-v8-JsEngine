@@ -1,6 +1,6 @@
 ---
-title: &apos;設計審查指南&apos;
-description: &apos;此文件解釋了 V8 項目的設計審查指南。&apos;
+title: '設計審查指南'
+description: '此文件解釋了 V8 項目的設計審查指南。'
 ---
 請確保在適用的情況下遵循以下指南。
 

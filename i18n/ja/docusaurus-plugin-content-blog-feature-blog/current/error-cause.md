@@ -1,13 +1,13 @@
 ---
-title: &apos;エラー原因&apos;
-author: &apos;Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))&apos;
+title: 'エラー原因'
+author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
 avatars:
-  - &apos;victor-gomes&apos;
+  - 'victor-gomes'
 date: 2021-07-07
 tags:
   - ECMAScript
-description: &apos;JavaScriptはエラー原因をサポートするようになりました。&apos;
-tweet: &apos;1412774651558862850&apos;
+description: 'JavaScriptはエラー原因をサポートするようになりました。'
+tweet: '1412774651558862850'
 ---
 
 例えば、`doSomeWork` と `doMoreWork` という2つの異なる作業を呼び出す関数があるとします。この2つの関数は同じ種類のエラーを投げる可能性がありますが、それらを別々に処理する必要があります。
@@ -19,7 +19,7 @@ function doWork() {
   try {
     doSomeWork();
   } catch (err) {
-    throw new CustomError(&apos;作業の一部が失敗しました&apos;, err);
+    throw new CustomError('作業の一部が失敗しました', err);
   }
   doMoreWork();
 }
@@ -41,12 +41,12 @@ function doWork() {
   try {
     doSomeWork();
   } catch (err) {
-    throw new Error(&apos;作業の一部が失敗しました&apos;, { cause: err });
+    throw new Error('作業の一部が失敗しました', { cause: err });
   }
   try {
     doMoreWork();
   } catch (err) {
-    throw new Error(&apos;さらに多くの作業が失敗しました&apos;, { cause: err });
+    throw new Error('さらに多くの作業が失敗しました', { cause: err });
   }
 }
 
@@ -54,10 +54,10 @@ try {
   doWork();
 } catch (err) {
   switch(err.message) {
-    case &apos;作業の一部が失敗しました&apos;:
+    case '作業の一部が失敗しました':
       handleSomeWorkFailure(err.cause);
       break;
-    case &apos;さらに多くの作業が失敗しました&apos;:
+    case 'さらに多くの作業が失敗しました':
       handleMoreWorkFailure(err.cause);
       break;
   }

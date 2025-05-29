@@ -1,11 +1,11 @@
 ---
-title: &apos;V8 릴리즈 v6.9&apos;
-author: &apos;V8 팀&apos;
+title: 'V8 릴리즈 v6.9'
+author: 'V8 팀'
 date: 2018-08-07 13:33:37
 tags:
   - 릴리즈
-description: &apos;V8 v6.9는 내장 빌트인 기능을 통해 메모리 사용량 감소, Liftoff을 통한 WebAssembly의 빠른 시작, 향상된 DataView 및 WeakMap 성능 등 다양한 기능을 제공합니다!&apos;
-tweet: &apos;1026825606003150848&apos;
+description: 'V8 v6.9는 내장 빌트인 기능을 통해 메모리 사용량 감소, Liftoff을 통한 WebAssembly의 빠른 시작, 향상된 DataView 및 WeakMap 성능 등 다양한 기능을 제공합니다!'
+tweet: '1026825606003150848'
 ---
 6주마다, 우리는 [릴리즈 프로세스](/docs/release-process)의 일환으로 V8의 새로운 브랜치를 생성합니다. 각 버전은 Chrome Beta 마일스톤 직전에 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 최신 브랜치 [V8 버전 6.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.9)를 발표하게 되어 기쁩니다. 이 버전은 몇 주 후 Chrome 69 Stable과 함께 출시되기 전까지 베타 상태입니다. V8 v6.9는 개발자들에게 유익한 기능으로 가득합니다. 이 게시물은 출시를 앞두고 주요 기능들을 미리 보여줍니다.
 

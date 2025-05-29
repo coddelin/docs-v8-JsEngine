@@ -1,8 +1,8 @@
 ---
-title: &apos;Assembleurs de CodeStub&apos;
-description: &apos;Ce document est une introduction à l&apos;écriture des assembleurs de CodeStub, et est destiné aux développeurs de V8.&apos;
+title: 'Assembleurs de CodeStub'
+description: 'Ce document est une introduction à l'écriture des assembleurs de CodeStub, et est destiné aux développeurs de V8.'
 ---
-Ce document est une introduction à l&apos;écriture des assembleurs de CodeStub, et est destiné aux développeurs de V8.
+Ce document est une introduction à l'écriture des assembleurs de CodeStub, et est destiné aux développeurs de V8.
 
 :::note
 **Remarque :** [Torque](/docs/torque) remplace CodeStubAssembler comme méthode recommandée pour implémenter de nouveaux builtins. Consultez [Les builtins Torque](/docs/torque-builtins) pour la version Torque de ce guide.
@@ -153,7 +153,7 @@ Maintenant que `Is42` est attaché, il peut être appelé depuis JS :
 $ out/debug/d8
 d8> Math.is42(42);
 true
-d8> Math.is42(&apos;42.0&apos;);
+d8> Math.is42('42.0');
 true
 d8> Math.is42(true);
 false

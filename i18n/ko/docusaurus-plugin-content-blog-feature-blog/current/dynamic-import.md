@@ -1,14 +1,14 @@
 ---
-title: &apos;Dynamic `import()`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Dynamic `import()`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-11-21
 tags:
   - ECMAScript
   - ES2020
-description: &apos;Dynamic import() 는 정적 import 와 비교하여 새로운 기능을 제공합니다. 이 기사에서는 두 가지를 비교하고 새로운 내용을 개괄적으로 소개합니다.&apos;
-tweet: &apos;932914724060254208&apos;
+description: 'Dynamic import() 는 정적 import 와 비교하여 새로운 기능을 제공합니다. 이 기사에서는 두 가지를 비교하고 새로운 내용을 개괄적으로 소개합니다.'
+tweet: '932914724060254208'
 ---
 [Dynamic `import()`](https://github.com/tc39/proposal-dynamic-import)는 정적 `import`와 비교하여 새로운 기능을 해제하는 함수 같은 형태의 `import`를 도입합니다. 이 기사에서는 두 가지를 비교하고 새로운 내용을 개괄적으로 소개합니다.
 
@@ -22,12 +22,12 @@ Chrome 61은 [모듈](/features/modules) 내에서 ES2015 `import` 문 지원을
 ```js
 // 기본 내보내기
 export default () => {
-  console.log(&apos;기본 내보내기로부터의 인사!&apos;);
+  console.log('기본 내보내기로부터의 인사!');
 };
 
 // 이름이 지정된 내보내기 `doStuff`
 export const doStuff = () => {
-  console.log(&apos;일을 수행 중…&apos;);
+  console.log('일을 수행 중…');
 };
 ```
 
@@ -35,11 +35,11 @@ export const doStuff = () => {
 
 ```html
 <script type="module">
-  import * as module from &apos;./utils.mjs&apos;;
+  import * as module from './utils.mjs';
   module.default();
-  // → logs &apos;기본 내보내기로부터의 인사!&apos;
+  // → logs '기본 내보내기로부터의 인사!'
   module.doStuff();
-  // → logs &apos;일을 수행 중…&apos;
+  // → logs '일을 수행 중…'
 </script>
 ```
 
@@ -69,13 +69,13 @@ export const doStuff = () => {
 
 ```html
 <script type="module">
-  const moduleSpecifier = &apos;./utils.mjs&apos;;
+  const moduleSpecifier = './utils.mjs';
   import(moduleSpecifier)
     .then((module) => {
       module.default();
-      // → logs &apos;기본 내보내기로부터의 인사!&apos;
+      // → logs '기본 내보내기로부터의 인사!'
       module.doStuff();
-      // → logs &apos;일을 수행 중…&apos;
+      // → logs '일을 수행 중…'
     });
 </script>
 ```
@@ -85,12 +85,12 @@ export const doStuff = () => {
 ```html
 <script type="module">
   (async () => {
-    const moduleSpecifier = &apos;./utils.mjs&apos;;
+    const moduleSpecifier = './utils.mjs';
     const module = await import(moduleSpecifier)
     module.default();
-    // → logs &apos;기본 내보내기로부터의 인사!&apos;
+    // → logs '기본 내보내기로부터의 인사!'
     module.doStuff();
-    // → logs &apos;일을 수행 중…&apos;
+    // → logs '일을 수행 중…'
   })();
 </script>
 ```
@@ -112,10 +112,10 @@ export const doStuff = () => {
 </nav>
 <main>요구 시 로드될 콘텐츠의 자리 표시자입니다.</main>
 <script>
-  const main = document.querySelector(&apos;main&apos;);
-  const links = document.querySelectorAll(&apos;nav > a&apos;);
+  const main = document.querySelector('main');
+  const links = document.querySelectorAll('nav > a');
   for (const link of links) {
-    link.addEventListener(&apos;click&apos;, async (event) => {
+    link.addEventListener('click', async (event) => {
       event.preventDefault();
       try {
         const module = await import(`/${link.dataset.entryModule}.mjs`);

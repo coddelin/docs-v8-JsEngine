@@ -1,13 +1,13 @@
 ---
-title: &apos;V8リリース v7.1&apos;
-author: &apos;Stephan Herhut ([@herhut](https://twitter.com/herhut)), クローン作成者のクローン&apos;
+title: 'V8リリース v7.1'
+author: 'Stephan Herhut ([@herhut](https://twitter.com/herhut)), クローン作成者のクローン'
 avatars:
   - stephan-herhut
 date: 2018-10-31 15:44:37
 tags:
   - リリース
-description: &apos;V8 v7.1 では、埋め込みバイトコードハンドラー、改良されたTurboFanエスケープ分析、postMessage(wasmModule)、Intl.RelativeTimeFormat、そしてglobalThisが導入されています！&apos;
-tweet: &apos;1057645773465235458&apos;
+description: 'V8 v7.1 では、埋め込みバイトコードハンドラー、改良されたTurboFanエスケープ分析、postMessage(wasmModule)、Intl.RelativeTimeFormat、そしてglobalThisが導入されています！'
+tweet: '1057645773465235458'
 ---
 6週間ごとに、私たちはV8の新しいブランチを[リリースプロセス](/docs/release-process)の一環として作成します。各バージョンは、Chrome Betaのマイルストーン直前にV8のGitマスターからブランチされます。本日は、最新のブランチ[V8バージョン7.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.1)を発表できることを嬉しく思います。これは数週間でChrome 71 Stableと連携してリリースされるまでベータ版です。V8 v7.1は、開発者向けの便利な機能で満たされています。この投稿では、リリースに向けたハイライトの一部をプレビューとして紹介します。
 
@@ -58,25 +58,25 @@ function sum2(x, y) {
 ```js
 // 英語の言語で、出力で常に数値を使用する必要がない
 // 相対時間フォーマッターを作成します。
-const rtf = new Intl.RelativeTimeFormat(&apos;en&apos;, { numeric: &apos;auto&apos; });
+const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 
-rtf.format(-1, &apos;day&apos;);
-// → &apos;yesterday&apos;
+rtf.format(-1, 'day');
+// → 'yesterday'
 
-rtf.format(0, &apos;day&apos;);
-// → &apos;today&apos;
+rtf.format(0, 'day');
+// → 'today'
 
-rtf.format(1, &apos;day&apos;);
-// → &apos;tomorrow&apos;
+rtf.format(1, 'day');
+// → 'tomorrow'
 
-rtf.format(-1, &apos;week&apos;);
-// → &apos;last week&apos;
+rtf.format(-1, 'week');
+// → 'last week'
 
-rtf.format(0, &apos;week&apos;);
-// → &apos;this week&apos;
+rtf.format(0, 'week');
+// → 'this week'
 
-rtf.format(1, &apos;week&apos;);
-// → &apos;next week&apos;
+rtf.format(1, 'week');
+// → 'next week'
 ```
 
 [`Intl.RelativeTimeFormat`の解説はこちらをご覧ください](/features/intl-relativetimeformat)。

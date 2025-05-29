@@ -1,14 +1,14 @@
 ---
-title: &apos;`Promise.prototype.finally`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`Promise.prototype.finally`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-10-23
 tags:
   - ECMAScript
   - ES2018
-description: &apos;Promise.prototype.finally ermöglicht das Registrieren eines Rückrufs, der ausgeführt wird, wenn ein Versprechen abgeschlossen ist (d.h. entweder erfüllt oder abgelehnt).&apos;
-tweet: &apos;922459978857824261&apos;
+description: 'Promise.prototype.finally ermöglicht das Registrieren eines Rückrufs, der ausgeführt wird, wenn ein Versprechen abgeschlossen ist (d.h. entweder erfüllt oder abgelehnt).'
+tweet: '922459978857824261'
 ---
 `Promise.prototype.finally` ermöglicht das Registrieren eines Rückrufs, der ausgeführt wird, wenn ein Versprechen _abgeschlossen_ ist (d.h. entweder erfüllt oder abgelehnt).
 
@@ -32,7 +32,7 @@ const fetchAndDisplay = ({ url, element }) => {
 <!--truncate-->
 fetchAndDisplay({
   url: someUrl,
-  element: document.querySelector(&apos;#output&apos;)
+  element: document.querySelector('#output')
 });
 ```
 

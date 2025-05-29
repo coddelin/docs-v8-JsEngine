@@ -1,6 +1,6 @@
 ---
-title: &apos;Oilpanにおけるポインタ圧縮&apos;
-author: &apos;Anton Bikineev および Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz))、ウォーキング逆アセンブラ&apos;
+title: 'Oilpanにおけるポインタ圧縮'
+author: 'Anton Bikineev および Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz))、ウォーキング逆アセンブラ'
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -9,8 +9,8 @@ tags:
   - internals
   - memory
   - cppgc
-description: &apos;Oilpanにおけるポインタ圧縮は、C++ポインタを圧縮し、ヒープサイズを最大33%削減することを可能にします。&apos;
-tweet: &apos;1597274125780893697&apos;
+description: 'Oilpanにおけるポインタ圧縮は、C++ポインタを圧縮し、ヒープサイズを最大33%削減することを可能にします。'
+tweet: '1597274125780893697'
 ---
 
 > 4ギガバイト未満のRAMを使用するプログラムをコンパイルする場合に、64ビットのポインタを使用するのは全くもって愚かなことです。このようなポインタの値が構造体内に現れると、メモリの半分を無駄にするだけでなく、キャッシュの半分を効果的に捨てることになります。
@@ -226,8 +226,8 @@ Oilpanでのポインタ圧縮は**Chrome 106**でデフォルトで有効にな
 <!-- markdownlint-disable no-inline-html -->
 | Blinkメモリ | P50                                                 | P99                                               |
 | -----------: | :-------------------------------------------------: | :-----------------------------------------------: |
-| Windows      | **<span style={{color:&apos;green&apos;}}>-21% (-1.37MB)</span>** | **<span style={{color:&apos;green&apos;}}>-33% (-59MB)</span>** |
-| Android      | **<span style={{color:&apos;green&apos;}}>-6% (-0.1MB)</span>**   | **<span style={{color:&apos;green&apos;}}>-8% (-3.9MB)</span>** |
+| Windows      | **<span style={{color:'green'}}>-21% (-1.37MB)</span>** | **<span style={{color:'green'}}>-33% (-59MB)</span>** |
+| Android      | **<span style={{color:'green'}}>-6% (-0.1MB)</span>**   | **<span style={{color:'green'}}>-8% (-3.9MB)</span>** |
 <!-- markdownlint-enable no-inline-html -->
 
 

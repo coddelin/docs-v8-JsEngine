@@ -1,10 +1,10 @@
 ---
-title: &apos;Cómo mide V8 el rendimiento en el mundo real&apos;
-author: &apos;el equipo de V8&apos;
+title: 'Cómo mide V8 el rendimiento en el mundo real'
+author: 'el equipo de V8'
 date: 2016-12-21 13:33:37
 tags:
   - benchmarks
-description: &apos;El equipo de V8 ha desarrollado una nueva metodología para medir y entender el rendimiento del JavaScript en el mundo real.&apos;
+description: 'El equipo de V8 ha desarrollado una nueva metodología para medir y entender el rendimiento del JavaScript en el mundo real.'
 ---
 Durante el último año, el equipo de V8 ha desarrollado una nueva metodología para medir y entender el rendimiento del JavaScript en el mundo real. Hemos utilizado los conocimientos obtenidos de esto para cambiar la forma en que el equipo de V8 hace más rápido el JavaScript. Nuestro nuevo enfoque en el mundo real representa un cambio significativo con respecto a nuestro enfoque tradicional en el rendimiento. Estamos seguros de que, a medida que sigamos aplicando esta metodología en 2017, mejorará significativamente la capacidad de usuarios y desarrolladores para confiar en un rendimiento predecible de V8 para JavaScript en el mundo real, tanto en Chrome como en Node.js.
 

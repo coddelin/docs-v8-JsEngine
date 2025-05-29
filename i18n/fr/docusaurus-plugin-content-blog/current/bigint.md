@@ -1,13 +1,13 @@
 ---
-title: &apos;Ajout de BigInts à V8&apos;
-author: &apos;Jakob Kummerow, arbitre de précision&apos;
+title: 'Ajout de BigInts à V8'
+author: 'Jakob Kummerow, arbitre de précision'
 date: 2018-05-02 13:33:37
 tags:
   - ECMAScript
-description: &apos;V8 prend désormais en charge BigInts, une fonctionnalité du langage JavaScript permettant des entiers à précision arbitraire.&apos;
-tweet: &apos;991705626391732224&apos;
+description: 'V8 prend désormais en charge BigInts, une fonctionnalité du langage JavaScript permettant des entiers à précision arbitraire.'
+tweet: '991705626391732224'
 ---
-Au cours des derniers mois, nous avons implémenté la prise en charge des [BigInts](/features/bigint) dans V8, comme spécifié actuellement par [cette proposition](https://github.com/tc39/proposal-bigint), pour être inclus dans une future version d&apos;ECMAScript. Le post suivant raconte l&apos;histoire de nos aventures.
+Au cours des derniers mois, nous avons implémenté la prise en charge des [BigInts](/features/bigint) dans V8, comme spécifié actuellement par [cette proposition](https://github.com/tc39/proposal-bigint), pour être inclus dans une future version d'ECMAScript. Le post suivant raconte l'histoire de nos aventures.
 
 <!--truncate-->
 ## Résumé rapide
@@ -29,28 +29,28 @@ Pour des détails sur la nouvelle fonctionnalité et comment elle pourrait être
 
 [^1]: _Maintenant_ si vous exécutez Chrome Beta, Dev ou Canary, ou une [version preview de Node.js](https://github.com/v8/node/tree/vee-eight-lkgr), autrement _bientôt_ (Chrome 67, Node.js tip-of-tree probablement à peu près au même moment).
 
-[^2]: Arbitraire jusqu&apos;à une limite définie par l&apos;implémentation. Désolé, nous n&apos;avons pas encore compris comment insérer une quantité infinie de données dans la mémoire finie de votre ordinateur.
+[^2]: Arbitraire jusqu'à une limite définie par l'implémentation. Désolé, nous n'avons pas encore compris comment insérer une quantité infinie de données dans la mémoire finie de votre ordinateur.
 
 ## Répresentation des BigInts en mémoire
 
-En général, les ordinateurs stockent les entiers dans les registres du CPU (qui sont de nos jours généralement larges de 32 ou 64 bits), ou dans des blocs de mémoire de taille équivalente aux registres. Cela mène aux valeurs minimales et maximales que vous pourriez connaître. Par exemple, un entier signé de 32 bits peut contenir des valeurs allant de -2 147 483 648 à 2 147 483 647. L&apos;idée des BigInts, cependant, est de ne pas être restreint par de telles limites.
+En général, les ordinateurs stockent les entiers dans les registres du CPU (qui sont de nos jours généralement larges de 32 ou 64 bits), ou dans des blocs de mémoire de taille équivalente aux registres. Cela mène aux valeurs minimales et maximales que vous pourriez connaître. Par exemple, un entier signé de 32 bits peut contenir des valeurs allant de -2 147 483 648 à 2 147 483 647. L'idée des BigInts, cependant, est de ne pas être restreint par de telles limites.
 
-Alors, comment peut-on stocker un BigInt avec cent, ou mille, ou un million de bits ? Il ne peut pas tenir dans un registre, donc nous allouons un objet dans la mémoire. Nous le rendons assez grand pour contenir tous les bits du BigInt, dans une série de blocs, que nous appelons “chiffres” — parce que c&apos;est conceptuellement très similaire à la manière dont un peut écrire des nombres plus grands que “9” en utilisant plusieurs chiffres, comme dans “10”; sauf que le système décimal utilise des chiffres de 0 à 9, nos BigInts utilisent des chiffres de 0 à 4 294 967 295 (c&apos;est-à-dire `2**32-1`). C&apos;est la plage de valeurs d&apos;un registre CPU de 32 bits[^3], sans bit de signe; nous stockons le bit de signe séparément. En pseudo-code, un objet `BigInt` avec `3*32 = 96` bits ressemble à ceci :
+Alors, comment peut-on stocker un BigInt avec cent, ou mille, ou un million de bits ? Il ne peut pas tenir dans un registre, donc nous allouons un objet dans la mémoire. Nous le rendons assez grand pour contenir tous les bits du BigInt, dans une série de blocs, que nous appelons “chiffres” — parce que c'est conceptuellement très similaire à la manière dont un peut écrire des nombres plus grands que “9” en utilisant plusieurs chiffres, comme dans “10”; sauf que le système décimal utilise des chiffres de 0 à 9, nos BigInts utilisent des chiffres de 0 à 4 294 967 295 (c'est-à-dire `2**32-1`). C'est la plage de valeurs d'un registre CPU de 32 bits[^3], sans bit de signe; nous stockons le bit de signe séparément. En pseudo-code, un objet `BigInt` avec `3*32 = 96` bits ressemble à ceci :
 
 ```js
 {
-  type: &apos;BigInt&apos;,
+  type: 'BigInt',
   sign: 0,
   num_digits: 3,
   digits: [0x12…, 0x34…, 0x56…],
 }
 ```
 
-[^3]: Sur les machines 64 bits, nous utilisons des chiffres de 64 bits, c&apos;est-à-dire de 0 à 18 446 744 073 709 551 615 (c&apos;est-à-dire `2n**64n-1n`).
+[^3]: Sur les machines 64 bits, nous utilisons des chiffres de 64 bits, c'est-à-dire de 0 à 18 446 744 073 709 551 615 (c'est-à-dire `2n**64n-1n`).
 
-## Retour à l&apos;école et retour à Knuth
+## Retour à l'école et retour à Knuth
 
-Travailler avec des entiers conservés dans les registres du CPU est vraiment facile : par exemple, pour multiplier deux d&apos;entre eux, il y a une instruction machine qu&apos;un logiciel peut utiliser pour dire au CPU “multiplie le contenu de ces deux registres !”, et le CPU le fera. Pour l&apos;arithmétique BigInt, nous devons trouver notre propre solution. Heureusement, cette tâche particulière est quelque chose que littéralement chaque enfant apprend à résoudre à un moment donné : vous souvenez-vous de ce que vous faisiez à l&apos;école quand vous deviez multiplier 345 \* 678 et que vous n&apos;étiez pas autorisé à utiliser une calculatrice ?
+Travailler avec des entiers conservés dans les registres du CPU est vraiment facile : par exemple, pour multiplier deux d'entre eux, il y a une instruction machine qu'un logiciel peut utiliser pour dire au CPU “multiplie le contenu de ces deux registres !”, et le CPU le fera. Pour l'arithmétique BigInt, nous devons trouver notre propre solution. Heureusement, cette tâche particulière est quelque chose que littéralement chaque enfant apprend à résoudre à un moment donné : vous souvenez-vous de ce que vous faisiez à l'école quand vous deviez multiplier 345 \* 678 et que vous n'étiez pas autorisé à utiliser une calculatrice ?
 
 ```
 345 * 678
@@ -68,13 +68,13 @@ Travailler avec des entiers conservés dans les registres du CPU est vraiment fa
    233910
 ```
 
-C&apos;est exactement comme V8 multiplie les BigInts : un chiffre à la fois, en additionnant les résultats intermédiaires. L&apos;algorithme fonctionne aussi bien pour `0` à `9` que pour les chiffres beaucoup plus grands d&apos;un BigInt.
+C'est exactement comme V8 multiplie les BigInts : un chiffre à la fois, en additionnant les résultats intermédiaires. L'algorithme fonctionne aussi bien pour `0` à `9` que pour les chiffres beaucoup plus grands d'un BigInt.
 
-Donald Knuth a publié une implémentation spécifique de la multiplication et de la division de grands nombres constitués de petits blocs dans le Volume 2 de son classique _The Art of Computer Programming_, tout le chemin en 1969. L&apos;implémentation de V8 suit ce livre, ce qui montre que c&apos;est une pièce intemporelle de science informatique.
+Donald Knuth a publié une implémentation spécifique de la multiplication et de la division de grands nombres constitués de petits blocs dans le Volume 2 de son classique _The Art of Computer Programming_, tout le chemin en 1969. L'implémentation de V8 suit ce livre, ce qui montre que c'est une pièce intemporelle de science informatique.
 
 ## “Moins de désucrage” == plus de bonbons ?
 
-Peut-être de manière surprenante, nous avons dû consacrer pas mal d&apos;efforts à faire fonctionner des opérations unaires apparemment simples, comme `-x`. Jusqu&apos;à présent, `-x` faisait exactement la même chose que `x * (-1)`, donc pour simplifier les choses, V8 appliquait précisément ce remplacement dès que possible lors du traitement du JavaScript, notamment dans l&apos;analyseur. Cette approche est appelée “désucrage”, car elle traite une expression comme `-x` comme du “sucre syntaxique” pour `x * (-1)`. D&apos;autres composants (l&apos;interpréteur, le compilateur, tout le système d&apos;exécution) n&apos;avaient même pas besoin de savoir ce qu&apos;est une opération unaire, car ils ne voyaient que la multiplication, qu&apos;ils doivent bien sûr prendre en charge de toute façon.
+Peut-être de manière surprenante, nous avons dû consacrer pas mal d'efforts à faire fonctionner des opérations unaires apparemment simples, comme `-x`. Jusqu'à présent, `-x` faisait exactement la même chose que `x * (-1)`, donc pour simplifier les choses, V8 appliquait précisément ce remplacement dès que possible lors du traitement du JavaScript, notamment dans l'analyseur. Cette approche est appelée “désucrage”, car elle traite une expression comme `-x` comme du “sucre syntaxique” pour `x * (-1)`. D'autres composants (l'interpréteur, le compilateur, tout le système d'exécution) n'avaient même pas besoin de savoir ce qu'est une opération unaire, car ils ne voyaient que la multiplication, qu'ils doivent bien sûr prendre en charge de toute façon.
 
 Avec les BigInts, cependant, cette implémentation devient soudainement invalide, car multiplier un BigInt par un Number (comme `-1`) doit lever un `TypeError`[^4]. Le parseur devrait désucrer `-x` en `x * (-1n)` si `x` est un BigInt — mais le parseur n'a aucun moyen de savoir ce que `x` va évaluer. Nous avons donc dû arrêter de compter sur ce désucrage précoce et plutôt ajouter un support approprié pour les opérations unaires sur les Numbers et les BigInts partout.
 
@@ -119,7 +119,7 @@ Par exemple, si nous voyons que les BigInts relativement petits (jusqu'à 64 bit
 
 ```js
 {
-  type: &apos;BigInt-Int64&apos;,
+  type: 'BigInt-Int64',
   value: 0x12…,
 }
 ```

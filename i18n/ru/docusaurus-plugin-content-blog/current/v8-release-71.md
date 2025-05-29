@@ -1,13 +1,13 @@
 ---
-title: &apos;Релиз V8 версии 7.1&apos;
-author: &apos;Штефан Херхут ([@herhut](https://twitter.com/herhut)), клонированный создатель клонов&apos;
+title: 'Релиз V8 версии 7.1'
+author: 'Штефан Херхут ([@herhut](https://twitter.com/herhut)), клонированный создатель клонов'
 avatars:
   - stephan-herhut
 date: 2018-10-31 15:44:37
 tags:
   - релиз
-description: &apos;V8 версии 7.1 добавляет встроенные обработчики байткода, улучшенный анализ выхода TurboFan, postMessage(wasmModule), Intl.RelativeTimeFormat и globalThis!&apos;
-tweet: &apos;1057645773465235458&apos;
+description: 'V8 версии 7.1 добавляет встроенные обработчики байткода, улучшенный анализ выхода TurboFan, postMessage(wasmModule), Intl.RelativeTimeFormat и globalThis!'
+tweet: '1057645773465235458'
 ---
 Каждые шесть недель мы создаём новую ветку V8 в рамках нашего [процесса релизов](/docs/release-process). Каждая версия разветвляется из основного репозитория Git V8 сразу перед стадией Beta Chrome. Сегодня мы рады представить нашу новейшую ветку, [V8 версия 7.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.1), которая находится в стадии бета-тестирования до её выпуска вместе с Chrome 71 Stable через несколько недель. V8 v7.1 наполнен различными инструментами для разработчиков. В этом посте представлен обзор некоторых главных нововведений в ожидании релиза.
 
@@ -58,25 +58,25 @@ function sum2(x, y) {
 ```js
 // Создайте форматтер относительного времени для английского языка,
 // который не всегда должен использовать числовое значение в выводе.
-const rtf = new Intl.RelativeTimeFormat(&apos;en&apos;, { numeric: &apos;auto&apos; });
+const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 
-rtf.format(-1, &apos;day&apos;);
-// → &apos;вчера&apos;
+rtf.format(-1, 'day');
+// → 'вчера'
 
-rtf.format(0, &apos;day&apos;);
-// → &apos;сегодня&apos;
+rtf.format(0, 'day');
+// → 'сегодня'
 
-rtf.format(1, &apos;day&apos;);
-// → &apos;завтра&apos;
+rtf.format(1, 'day');
+// → 'завтра'
 
-rtf.format(-1, &apos;week&apos;);
-// → &apos;на прошлой неделе&apos;
+rtf.format(-1, 'week');
+// → 'на прошлой неделе'
 
-rtf.format(0, &apos;week&apos;);
-// → &apos;на этой неделе&apos;
+rtf.format(0, 'week');
+// → 'на этой неделе'
 
-rtf.format(1, &apos;week&apos;);
-// → &apos;на следующей неделе&apos;
+rtf.format(1, 'week');
+// → 'на следующей неделе'
 ```
 
 Прочтите [наше объяснение `Intl.RelativeTimeFormat`](/features/intl-relativetimeformat) для дополнительной информации.

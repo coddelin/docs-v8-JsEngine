@@ -1,15 +1,15 @@
 ---
-title: &apos;JavaScriptモジュール&apos;
-author: &apos;Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) と Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'JavaScriptモジュール'
+author: 'Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) と Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-- &apos;addy-osmani&apos;
-- &apos;mathias-bynens&apos;
+- 'addy-osmani'
+- 'mathias-bynens'
 date: 2018-06-18
 tags:
   - ECMAScript
   - ES2015
-description: &apos;この記事では、JavaScriptモジュールの使い方、責任を持ってデプロイする方法、そしてChromeチームが将来モジュールをさらに良くするために取り組んでいることについて説明します。&apos;
-tweet: &apos;1008725884575109120&apos;
+description: 'この記事では、JavaScriptモジュールの使い方、責任を持ってデプロイする方法、そしてChromeチームが将来モジュールをさらに良くするために取り組んでいることについて説明します。'
+tweet: '1008725884575109120'
 ---
 JavaScriptモジュールは現在、[すべての主要なブラウザでサポートされています](https://caniuse.com/#feat=es6-module)!
 
@@ -40,11 +40,11 @@ export function shout(string) {
 
 ```js
 // 📁 main.mjs
-import {repeat, shout} from &apos;./lib.mjs&apos;;
-repeat(&apos;hello&apos;);
-// → &apos;hello hello&apos;
-shout(&apos;Modules in action&apos;);
-// → &apos;MODULES IN ACTION!&apos;
+import {repeat, shout} from './lib.mjs';
+repeat('hello');
+// → 'hello hello'
+shout('Modules in action');
+// → 'MODULES IN ACTION!'
 ```
 
 また、モジュールからデフォルトの値をエクスポートすることもできます:
@@ -60,7 +60,7 @@ export default function(string) {
 
 ```js
 // 📁 main.mjs
-import shout from &apos;./lib.mjs&apos;;
+import shout from './lib.mjs';
 //     ^^^^^
 ```
 
@@ -118,7 +118,7 @@ import shout from &apos;./lib.mjs&apos;;
 
 <script type="module" src="module.mjs"></script>
 <script type="module" src="module.mjs"></script>
-<script type="module">import &apos;./module.mjs&apos;;</script>
+<script type="module">import './module.mjs';</script>
 <!-- module.mjs は 1 度だけ実行されます。 -->
 ```
 
@@ -141,10 +141,10 @@ import shout from &apos;./lib.mjs&apos;;
 
 ### モジュール指定子
 
-モジュールを `import` する際に、モジュールの場所を指定する文字列は「モジュール指定子」または「インポート指定子」と呼ばれます。先ほどの例では、モジュール指定子は `&apos;./lib.mjs&apos;` です:
+モジュールを `import` する際に、モジュールの場所を指定する文字列は「モジュール指定子」または「インポート指定子」と呼ばれます。先ほどの例では、モジュール指定子は `'./lib.mjs'` です:
 
 ```js
-import {shout} from &apos;./lib.mjs&apos;;
+import {shout} from './lib.mjs';
 //                  ^^^^^^^^^^^
 ```
 
@@ -152,19 +152,19 @@ import {shout} from &apos;./lib.mjs&apos;;
 
 ```js
 // 未サポート:
-import {shout} from &apos;jquery&apos;;
-import {shout} from &apos;lib.mjs&apos;;
-import {shout} from &apos;modules/lib.mjs&apos;;
+import {shout} from 'jquery';
+import {shout} from 'lib.mjs';
+import {shout} from 'modules/lib.mjs';
 ```
 
 一方、次の例はすべてサポートされています:
 
 ```js
 // サポート:
-import {shout} from &apos;./lib.mjs&apos;;
-import {shout} from &apos;../lib.mjs&apos;;
-import {shout} from &apos;/modules/lib.mjs&apos;;
-import {shout} from &apos;https://simple.example/modules/lib.mjs&apos;;
+import {shout} from './lib.mjs';
+import {shout} from '../lib.mjs';
+import {shout} from '/modules/lib.mjs';
+import {shout} from 'https://simple.example/modules/lib.mjs';
 ```
 
 現時点では、モジュール指定子は完全な URL、または `/`, `./`, `../` で始まる相対 URL である必要があります。
@@ -186,12 +186,12 @@ import {shout} from &apos;https://simple.example/modules/lib.mjs&apos;;
 ```html
 <script type="module">
   (async () => {
-    const moduleSpecifier = &apos;./lib.mjs&apos;;
+    const moduleSpecifier = './lib.mjs';
     const {repeat, shout} = await import(moduleSpecifier);
-    repeat(&apos;hello&apos;);
-    // → &apos;hello hello&apos;
-    shout(&apos;Dynamic import in action&apos;);
-    // → &apos;DYNAMIC IMPORT IN ACTION!&apos;
+    repeat('hello');
+    // → 'hello hello'
+    shout('Dynamic import in action');
+    // → 'DYNAMIC IMPORT IN ACTION!'
   })();
 </script>
 ```
@@ -216,7 +216,7 @@ function loadThumbnail(relativePath) {
   return image;
 }
 
-const thumbnail = loadThumbnail(&apos;../img/thumbnail.png&apos;);
+const thumbnail = loadThumbnail('../img/thumbnail.png');
 container.append(thumbnail);
 ```
 
@@ -266,7 +266,7 @@ export function zip() { /* … */ }
 コードベースが `pluck` の機能だけを必要としている場合、おそらく以下のようにインポートするでしょう:
 
 ```js
-import {pluck} from &apos;./util.mjs&apos;;
+import {pluck} from './util.mjs';
 ```
 
 この場合でも（ビルド時にバンドルするステップなしでは）、ブラウザは結局、`pluck` だけが必要であっても、`./util.mjs` モジュール全体をダウンロード、解析、コンパイルする必要があります。それは無駄です！
@@ -280,7 +280,7 @@ export function pluck() { /* … */ }
 そして、`drop` や `zip` を扱う負担を避けて `pluck` をインポートすることができます:
 
 ```js
-import {pluck} from &apos;./pluck.mjs&apos;;
+import {pluck} from './pluck.mjs';
 ```
 
 :::note
@@ -335,7 +335,7 @@ Chromeでは現在、[Worklets](https://drafts.css-houdini.org/worklets/)が実�
 Chrome 65では、DOM要素を描画方法を制御するための[`PaintWorklet`](https://developers.google.com/web/updates/2018/01/paintapi)（通称CSS Paint API）をサポートしています。
 
 ```js
-const result = await css.paintWorklet.addModule(&apos;paint-worklet.mjs&apos;);
+const result = await css.paintWorklet.addModule('paint-worklet.mjs');
 ```
 
 Chrome 66では、独自のコードでオーディオ処理を制御できる[`AudioWorklet`](https://developers.google.com/web/updates/2017/12/audio-worklet)をサポートしています。同じChromeバージョンでは、[`AnimationWorklet`](https://groups.google.com/a/chromium.org/d/msg/blink-dev/AZ-PYPMS7EA/DEqbe2u5BQAJ)の[OriginTrial](https://groups.google.com/a/chromium.org/d/msg/blink-dev/AZ-PYPMS7EA/DEqbe2u5BQAJ)を開始しました。これにより、スクロールリンクされた高性能な手続き型アニメーションを作成できます。
@@ -345,14 +345,14 @@ Chrome 66では、独自のコードでオーディオ処理を制御できる[`
 Chrome上で専用WebワーカーでJSモジュールを使用するためのサポートを追加作業中です。この機能は`chrome://flags/#enable-experimental-web-platform-features`を有効にしてすでに試すことができます。
 
 ```js
-const worker = new Worker(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
+const worker = new Worker('worker.mjs', { type: 'module' });
 ```
 
 共有ワーカーとService Worker向けのJSモジュールサポートも間もなく提供予定です：
 
 ```js
-const worker = new SharedWorker(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
-const registration = await navigator.serviceWorker.register(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
+const worker = new SharedWorker('worker.mjs', { type: 'module' });
+const registration = await navigator.serviceWorker.register('worker.mjs', { type: 'module' });
 ```
 
 ### Import maps
@@ -360,8 +360,8 @@ const registration = await navigator.serviceWorker.register(&apos;worker.mjs&apo
 Node.js/npmでは、「パッケージ名」でJSモジュールをインポートすることが一般的です。例えば：
 
 ```js
-import moment from &apos;moment&apos;;
-import {pluck} from &apos;lodash-es&apos;;
+import moment from 'moment';
+import {pluck} from 'lodash-es';
 ```
 
 現在のところ、[HTML仕様](https://html.spec.whatwg.org/multipage/webappapis.html#resolve-a-module-specifier)によれば、そのような「ベアインポート指定子」は例外をスローします。[Import maps提案](https://github.com/domenic/import-maps)により、このようなコードがWeb上で動作し、プロダクションアプリでも利用可能になります。Import Mapは、ブラウザがベアインポート指定子を完全なURLに変換するのを助けるJSONリソースです。

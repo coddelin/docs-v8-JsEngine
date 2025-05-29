@@ -1,16 +1,16 @@
 ---
-title: &apos;Campos de clase públicos y privados&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Campos de clase públicos y privados'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-12-13
 tags:
   - ECMAScript
   - ES2022
   - io19
   - Node.js 14
-description: &apos;Varias propuestas amplían la sintaxis existente de clases en JavaScript con nuevas funcionalidades. Este artículo explica la nueva sintaxis de campos de clase públicos en V8 v7.2 y Chrome 72, así como la próxima sintaxis de campos de clase privados.&apos;
-tweet: &apos;1121395767170740225&apos;
+description: 'Varias propuestas amplían la sintaxis existente de clases en JavaScript con nuevas funcionalidades. Este artículo explica la nueva sintaxis de campos de clase públicos en V8 v7.2 y Chrome 72, así como la próxima sintaxis de campos de clase privados.'
+tweet: '1121395767170740225'
 ---
 Varias propuestas amplían la sintaxis existente de clases en JavaScript con nuevas funcionalidades. Este artículo explica la nueva sintaxis de campos de clase públicos en V8 v7.2 y Chrome 72, así como la próxima sintaxis de campos de clase privados.
 
@@ -19,11 +19,11 @@ Aquí hay un ejemplo de código que crea una instancia de una clase llamada `Inc
 ```js
 const counter = new IncreasingCounter();
 counter.value;
-// registros &apos;¡Obteniendo el valor actual!&apos;
+// registros '¡Obteniendo el valor actual!'
 // → 0
 counter.increment();
 counter.value;
-// registros &apos;¡Obteniendo el valor actual!&apos;
+// registros '¡Obteniendo el valor actual!'
 // → 1
 ```
 
@@ -39,7 +39,7 @@ class IncreasingCounter {
     this._count = 0;
   }
   get value() {
-    console.log(&apos;¡Obteniendo el valor actual!&apos;);
+    console.log('¡Obteniendo el valor actual!');
     return this._count;
   }
   increment() {
@@ -54,7 +54,7 @@ La clase instala el getter `value` y un método `increment` en el prototipo. Má
 ```js
 const counter = new IncreasingCounter();
 counter.value;
-// registros &apos;¡Obteniendo el valor actual!&apos;
+// registros '¡Obteniendo el valor actual!'
 // → 0
 
 // Nada impide que las personas lean o interfieran con la
@@ -63,7 +63,7 @@ counter._count;
 // → 0
 counter._count = 42;
 counter.value;
-// registros &apos;¡Obteniendo el valor actual!&apos;
+// registros '¡Obteniendo el valor actual!'
 // → 42
 ```
 
@@ -75,7 +75,7 @@ La nueva sintaxis de campos de clase públicos nos permite simplificar la defini
 class IncreasingCounter {
   _count = 0;
   get value() {
-    console.log(&apos;¡Obteniendo el valor actual!&apos;);
+    console.log('¡Obteniendo el valor actual!');
     return this._count;
   }
   increment() {
@@ -96,7 +96,7 @@ Es aquí donde entran en juego los campos de clase privados. La nueva sintaxis d
 class IncreasingCounter {
   #count = 0;
   get value() {
-    console.log(&apos;¡Obteniendo el valor actual!&apos;);
+    console.log('¡Obteniendo el valor actual!');
     return this.#count;
   }
   increment() {
@@ -135,7 +135,7 @@ class FakeMath {
   // `random` es un método estático público (sintaxis ES2015)
   // que utiliza `#computeRandomNumber`.
   static random() {
-    console.log(&apos;He oído que te gustan los números aleatorios…&apos;);
+    console.log('He oído que te gustan los números aleatorios…');
     return FakeMath.#computeRandomNumber();
   }
 }
@@ -143,7 +143,7 @@ class FakeMath {
 FakeMath.PI;
 // → 3.142857142857143
 FakeMath.random();
-// registros &apos;He oído que te gustan los números aleatorios…&apos;
+// registros 'He oído que te gustan los números aleatorios…'
 // → 4
 FakeMath.#totallyRandomNumber;
 // → SyntaxError
@@ -172,7 +172,7 @@ class Cat extends Animal {
     this.likesBaths = false;
   }
   meow() {
-    console.log(&apos;¡Miau!&apos;);
+    console.log('¡Miau!');
   }
 }
 ```
@@ -183,7 +183,7 @@ Es mucha preparación solo para indicar que los gatos no disfrutan los baños. A
 class Cat extends Animal {
   likesBaths = false;
   meow() {
-    console.log(&apos;¡Miau!&apos;);
+    console.log('¡Miau!');
   }
 }
 ```

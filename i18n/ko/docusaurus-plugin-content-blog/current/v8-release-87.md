@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 릴리스 v8.7&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), V8 담당자&apos;
+title: 'V8 릴리스 v8.7'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), V8 담당자'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2020-10-23
 tags:
  - release
-description: &apos;V8 릴리스 v8.7은 네이티브 호출을 위한 새로운 API, Atomics.waitAsync, 버그 수정 및 성능 개선을 제공합니다.&apos;
-tweet: &apos;1319654229863182338&apos;
+description: 'V8 릴리스 v8.7은 네이티브 호출을 위한 새로운 API, Atomics.waitAsync, 버그 수정 및 성능 개선을 제공합니다.'
+tweet: '1319654229863182338'
 ---
 매 6주마다 [릴리스 프로세스](https://v8.dev/docs/release-process)의 일환으로 V8의 새로운 브랜치를 만듭니다. 각 버전은 V8의 Git 마스터에서 Chrome 베타 마일스톤 직전에 브랜칭됩니다. 오늘은 [V8 버전 8.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.7) 브랜치를 발표하게 되어 기쁩니다. 이 버전은 몇 주 후 Chrome 87 Stable과 함께 출시될 때까지 베타 상태에 있습니다. V8 v8.7에는 다양한 종류의 개발자에게 제공하는 유용한 기능들이 포함되어 있습니다. 이번 게시물에서는 이 릴리스를 앞두고 하이라이트를 간략히 살펴봅니다.
 

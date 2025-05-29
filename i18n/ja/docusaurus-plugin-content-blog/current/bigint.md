@@ -1,11 +1,11 @@
 ---
-title: &apos;V8にBigIntsを追加する&apos;
-author: &apos;Jakob Kummerow、精度の仲裁人&apos;
+title: 'V8にBigIntsを追加する'
+author: 'Jakob Kummerow、精度の仲裁人'
 date: 2018-05-02 13:33:37
 tags:
   - ECMAScript
-description: &apos;V8がBigIntsをサポートしました。これは、任意精度の整数を可能にするJavaScript言語機能です。&apos;
-tweet: &apos;991705626391732224&apos;
+description: 'V8がBigIntsをサポートしました。これは、任意精度の整数を可能にするJavaScript言語機能です。'
+tweet: '991705626391732224'
 ---
 過去数か月間、将来のECMAScriptバージョンに含まれる予定の[この提案](https://github.com/tc39/proposal-bigint)に基づき、V8に[BigInts](/features/bigint)のサポートを実装しました。以下の記事では、この冒険の物語をお届けします。
 
@@ -39,7 +39,7 @@ const such_many = 2n ** 222n;
 
 ```js
 {
-  type: &apos;BigInt&apos;,
+  type: 'BigInt',
   sign: 0,
   num_digits: 3,
   digits: [0x12…, 0x34…, 0x56…],
@@ -119,7 +119,7 @@ TypeError: Cannot convert 456 to a BigInt
 
 ```js
 {
-  type: &apos;BigInt-Int64&apos;,
+  type: 'BigInt-Int64',
   value: 0x12…,
 }
 ```

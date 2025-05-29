@@ -1,14 +1,14 @@
 ---
-title: &apos;Die Einführung des Web Tooling Benchmark&apos;
-author: &apos;Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), JavaScript Performance Juggler&apos;
+title: 'Die Einführung des Web Tooling Benchmark'
+author: 'Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), JavaScript Performance Juggler'
 avatars:
-  - &apos;benedikt-meurer&apos;
+  - 'benedikt-meurer'
 date: 2017-11-06 13:33:37
 tags:
   - Benchmarks
   - Node.js
-description: &apos;Die brandneuen Web Tooling Benchmark hilft dabei, V8-Leistungsengpässe in Babel, TypeScript und anderen realen Projekten zu identifizieren und zu beheben.&apos;
-tweet: &apos;927572065598824448&apos;
+description: 'Die brandneuen Web Tooling Benchmark hilft dabei, V8-Leistungsengpässe in Babel, TypeScript und anderen realen Projekten zu identifizieren und zu beheben.'
+tweet: '927572065598824448'
 ---
 Die JavaScript-Leistung war für das V8-Team schon immer wichtig, und in diesem Beitrag möchten wir einen neuen JavaScript [Web Tooling Benchmark](https://v8.github.io/web-tooling-benchmark) vorstellen, den wir kürzlich verwendet haben, um einige Leistungsengpässe in V8 zu identifizieren und zu beheben. Sie wissen möglicherweise bereits über V8s [starkes Engagement für Node.js](/blog/v8-nodejs) Bescheid, und dieses Benchmark erweitert dieses Engagement, indem es speziell Leistungstests mit gängigen Entwickler-Tools durchführt, die auf Node.js basieren. Die Tools im Web Tooling Benchmark sind dieselben, die von Entwicklern und Designern heute verwendet werden, um moderne Websites und Cloud-basierte Anwendungen zu erstellen. In Fortsetzung unserer laufenden Bemühungen, den Fokus auf [realistische Leistung](/blog/real-world-performance/) statt auf künstliche Benchmarks zu richten, haben wir das Benchmark mit tatsächlichem Code erstellt, den Entwickler jeden Tag ausführen.
 

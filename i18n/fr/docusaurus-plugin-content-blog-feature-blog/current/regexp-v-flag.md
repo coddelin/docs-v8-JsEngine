@@ -1,20 +1,20 @@
 ---
-title: &apos;Indicateur `v` de RegExp avec la notation des ensembles et les propriétés des chaînes&apos;
-author: &apos;Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer, et Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Indicateur `v` de RegExp avec la notation des ensembles et les propriétés des chaînes'
+author: 'Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer, et Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mark-davis&apos;
-  - &apos;markus-scherer&apos;
-  - &apos;mathias-bynens&apos;
+  - 'mark-davis'
+  - 'markus-scherer'
+  - 'mathias-bynens'
 date: 2022-06-27
 tags:
   - ECMAScript
-description: &apos;Le nouvel indicateur `v` de RegExp active le mode `unicodeSets`, offrant un support pour les classes de caractères étendues, y compris les propriétés Unicode des chaînes, la notation des ensembles et une correspondance insensible à la casse améliorée.&apos;
-tweet: &apos;1541419838513594368&apos;
+description: 'Le nouvel indicateur `v` de RegExp active le mode `unicodeSets`, offrant un support pour les classes de caractères étendues, y compris les propriétés Unicode des chaînes, la notation des ensembles et une correspondance insensible à la casse améliorée.'
+tweet: '1541419838513594368'
 ---
-JavaScript prend en charge les expressions régulières depuis ECMAScript 3 (1999). Seize ans plus tard, ES2015 a introduit le [mode Unicode (l&apos;indicateur `u`)](https://mathiasbynens.be/notes/es6-unicode-regex), [le mode sticky (l&apos;indicateur `y`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky#description), et [l&apos;accessoire `flags` de `RegExp.prototype`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/flags). Trois ans plus tard, ES2018 a introduit le [mode `dotAll` (l&apos;indicateur `s`)](https://mathiasbynens.be/notes/es-regexp-proposals#dotAll), [les assertions en arrière-plan](https://mathiasbynens.be/notes/es-regexp-proposals#lookbehinds), [les groupes capturants nommés](https://mathiasbynens.be/notes/es-regexp-proposals#named-capture-groups), et [les échappements des propriétés des caractères Unicode](https://mathiasbynens.be/notes/es-unicode-property-escapes). Et dans ES2020, [`String.prototype.matchAll`](https://v8.dev/features/string-matchall) a facilité l&apos;utilisation des expressions régulières. Les expressions régulières JavaScript ont parcouru un long chemin et continuent de s&apos;améliorer.
+JavaScript prend en charge les expressions régulières depuis ECMAScript 3 (1999). Seize ans plus tard, ES2015 a introduit le [mode Unicode (l'indicateur `u`)](https://mathiasbynens.be/notes/es6-unicode-regex), [le mode sticky (l'indicateur `y`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky#description), et [l'accessoire `flags` de `RegExp.prototype`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/flags). Trois ans plus tard, ES2018 a introduit le [mode `dotAll` (l'indicateur `s`)](https://mathiasbynens.be/notes/es-regexp-proposals#dotAll), [les assertions en arrière-plan](https://mathiasbynens.be/notes/es-regexp-proposals#lookbehinds), [les groupes capturants nommés](https://mathiasbynens.be/notes/es-regexp-proposals#named-capture-groups), et [les échappements des propriétés des caractères Unicode](https://mathiasbynens.be/notes/es-unicode-property-escapes). Et dans ES2020, [`String.prototype.matchAll`](https://v8.dev/features/string-matchall) a facilité l'utilisation des expressions régulières. Les expressions régulières JavaScript ont parcouru un long chemin et continuent de s'améliorer.
 
 <!--truncate-->
-Le dernier exemple de progrès est [le nouveau mode `unicodeSets`, activé avec l&apos;indicateur `v`](https://github.com/tc39/proposal-regexp-v-flag). Ce nouveau mode offre un support pour les _classes de caractères étendues_, y compris les fonctionnalités suivantes :
+Le dernier exemple de progrès est [le nouveau mode `unicodeSets`, activé avec l'indicateur `v`](https://github.com/tc39/proposal-regexp-v-flag). Ce nouveau mode offre un support pour les _classes de caractères étendues_, y compris les fonctionnalités suivantes :
 
 - [Propriétés Unicode des chaînes](/features/regexp-v-flag#unicode-properties-of-strings)
 - [Notation des ensembles + syntaxe littérale de chaîne](/features/regexp-v-flag#set-notation)
@@ -26,50 +26,50 @@ Cet article approfondit chacun de ces points. Mais commençons par le commenceme
 const re = /…/v;
 ```
 
-L&apos;indicateur `v` peut être combiné avec les indicateurs existants des expressions régulières, à une exception notable près. L&apos;indicateur `v` active toutes les bonnes parties de l&apos;indicateur `u`, mais avec des fonctionnalités et des améliorations supplémentaires — certaines d&apos;entre elles étant incompatibles avec l&apos;indicateur `u`. Il est essentiel de noter que `v` est un mode complètement distinct de `u` plutôt qu&apos;un mode complémentaire. Pour cette raison, les indicateurs `v` et `u` ne peuvent pas être combinés — tenter d&apos;utiliser les deux indicateurs dans une même expression régulière entraîne une erreur. Les seules options valables sont : soit utiliser `u`, soit utiliser `v`, soit n&apos;utiliser ni `u` ni `v`. Mais puisque `v` est l&apos;option la plus complète en termes de fonctionnalités, le choix est vite fait…
+L'indicateur `v` peut être combiné avec les indicateurs existants des expressions régulières, à une exception notable près. L'indicateur `v` active toutes les bonnes parties de l'indicateur `u`, mais avec des fonctionnalités et des améliorations supplémentaires — certaines d'entre elles étant incompatibles avec l'indicateur `u`. Il est essentiel de noter que `v` est un mode complètement distinct de `u` plutôt qu'un mode complémentaire. Pour cette raison, les indicateurs `v` et `u` ne peuvent pas être combinés — tenter d'utiliser les deux indicateurs dans une même expression régulière entraîne une erreur. Les seules options valables sont : soit utiliser `u`, soit utiliser `v`, soit n'utiliser ni `u` ni `v`. Mais puisque `v` est l'option la plus complète en termes de fonctionnalités, le choix est vite fait…
 
 Plongeons dans les nouvelles fonctionnalités !
 
 ## Propriétés Unicode des chaînes
 
-Le standard Unicode attribue diverses propriétés et valeurs de propriétés à chaque symbole. Par exemple, pour obtenir l&apos;ensemble des symboles utilisés dans l&apos;alphabet grec, recherchez dans la base de données Unicode les symboles dont la propriété `Script_Extensions` inclut `Greek`.
+Le standard Unicode attribue diverses propriétés et valeurs de propriétés à chaque symbole. Par exemple, pour obtenir l'ensemble des symboles utilisés dans l'alphabet grec, recherchez dans la base de données Unicode les symboles dont la propriété `Script_Extensions` inclut `Greek`.
 
-Les échappements des propriétés des caractères Unicode de ES2018 permettent d&apos;accéder à ces propriétés Unicode de manière native dans les expressions régulières ECMAScript. Par exemple, le modèle `\p{Script_Extensions=Greek}` correspond à chaque symbole utilisé dans l&apos;alphabet grec :
+Les échappements des propriétés des caractères Unicode de ES2018 permettent d'accéder à ces propriétés Unicode de manière native dans les expressions régulières ECMAScript. Par exemple, le modèle `\p{Script_Extensions=Greek}` correspond à chaque symbole utilisé dans l'alphabet grec :
 
 ```js
 const regexGreekSymbol = /\p{Script_Extensions=Greek}/u;
-regexGreekSymbol.test(&apos;π&apos;);
+regexGreekSymbol.test('π');
 // → true
 ```
 
-Par définition, les propriétés des caractères Unicode s&apos;étendent à un ensemble de points de code, et peuvent donc être transpilées sous la forme d&apos;une classe de caractères contenant les points de code correspondant individuellement. Par exemple, `\p{ASCII_Hex_Digit}` est équivalent à `[0-9A-Fa-f]`: il ne correspond jamais qu&apos;à un seul caractère/pont de code Unicode à la fois. Dans certaines situations, cela est insuffisant :
+Par définition, les propriétés des caractères Unicode s'étendent à un ensemble de points de code, et peuvent donc être transpilées sous la forme d'une classe de caractères contenant les points de code correspondant individuellement. Par exemple, `\p{ASCII_Hex_Digit}` est équivalent à `[0-9A-Fa-f]`: il ne correspond jamais qu'à un seul caractère/pont de code Unicode à la fois. Dans certaines situations, cela est insuffisant :
 
 ```js
 // Unicode définit une propriété de caractère nommée “Emoji”.
 const re = /^\p{Emoji}$/u;
 
-// Correspondre à un emoji composé uniquement d&apos;un point de code :
-re.test(&apos;⚽&apos;); // &apos;\u26BD&apos;
+// Correspondre à un emoji composé uniquement d'un point de code :
+re.test('⚽'); // '\u26BD'
 // → true ✅
 
 // Correspondre à un emoji composé de plusieurs points de code :
-re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F&apos;
+re.test('👨🏾‍⚕️'); // '\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F'
 // → false ❌
 ```
 
-Dans l&apos;exemple ci-dessus, l&apos;expression régulière ne correspond pas à l&apos;emoji 👨🏾‍⚕️ car il se compose de plusieurs points de code, et `Emoji` est une propriété _de caractère_ Unicode.
+Dans l'exemple ci-dessus, l'expression régulière ne correspond pas à l'emoji 👨🏾‍⚕️ car il se compose de plusieurs points de code, et `Emoji` est une propriété _de caractère_ Unicode.
 
-Heureusement, la norme Unicode définit également plusieurs [propriétés des chaînes](https://www.unicode.org/reports/tr18/#domain_of_properties). Ces propriétés s'étendent à un ensemble de chaînes, chacune contenant un ou plusieurs points de code. Dans les expressions régulières, les propriétés des chaînes se traduisent par un ensemble d'alternatives. Pour illustrer cela, imaginez une propriété Unicode qui s'applique aux chaînes `&apos;a&apos;`, `&apos;b&apos;`, `&apos;c&apos;`, `&apos;W&apos;`, `&apos;xy&apos;` et `&apos;xyz&apos;`. Cette propriété se traduit par l'un des motifs d'expressions régulières suivants (en utilisant l'alternance) : `xyz|xy|a|b|c|W` ou `xyz|xy|[a-cW]`. (Les chaînes les plus longues en premier, afin qu'un préfixe comme `&apos;xy&apos;` ne masque pas une chaîne plus longue comme `&apos;xyz&apos;`.) Contrairement aux séquences d'échappement de propriété Unicode existantes, ce modèle peut correspondre à des chaînes multicaractères. Voici un exemple d'utilisation d'une propriété de chaînes :
+Heureusement, la norme Unicode définit également plusieurs [propriétés des chaînes](https://www.unicode.org/reports/tr18/#domain_of_properties). Ces propriétés s'étendent à un ensemble de chaînes, chacune contenant un ou plusieurs points de code. Dans les expressions régulières, les propriétés des chaînes se traduisent par un ensemble d'alternatives. Pour illustrer cela, imaginez une propriété Unicode qui s'applique aux chaînes `'a'`, `'b'`, `'c'`, `'W'`, `'xy'` et `'xyz'`. Cette propriété se traduit par l'un des motifs d'expressions régulières suivants (en utilisant l'alternance) : `xyz|xy|a|b|c|W` ou `xyz|xy|[a-cW]`. (Les chaînes les plus longues en premier, afin qu'un préfixe comme `'xy'` ne masque pas une chaîne plus longue comme `'xyz'`.) Contrairement aux séquences d'échappement de propriété Unicode existantes, ce modèle peut correspondre à des chaînes multicaractères. Voici un exemple d'utilisation d'une propriété de chaînes :
 
 ```js
 const re = /^\p{RGI_Emoji}$/v;
 
 // Correspondre à un emoji composé d'un seul point de code :
-re.test(&apos;⚽&apos;); // &apos;\u26BD&apos;
+re.test('⚽'); // '\u26BD'
 // → true ✅
 
 // Correspondre à un emoji composé de plusieurs points de code :
-re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F&apos;
+re.test('👨🏾‍⚕️'); // '\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F'
 // → true ✅
 ```
 
@@ -102,7 +102,7 @@ La syntaxe `A--B` peut être utilisée pour correspondre aux chaînes _dans `A` 
 Par exemple, que faire si vous voulez correspondre à tous les symboles grecs sauf la lettre `π` ? Avec la notation d'ensemble, résoudre cela est trivial :
 
 ```js
-/[\p{Script_Extensions=Greek}--π]/v.test(&apos;π&apos;); // → false
+/[\p{Script_Extensions=Greek}--π]/v.test('π'); // → false
 ```
 
 En utilisant `--` pour la différence/soustraction, le moteur d'expression régulière fait le travail difficile pour vous tout en gardant votre code lisible et maintenable.
@@ -110,15 +110,15 @@ En utilisant `--` pour la différence/soustraction, le moteur d'expression régu
 Et si, au lieu d'un seul caractère, nous voulions soustraire l'ensemble des caractères `α`, `β` et `γ` ? Pas de problème : nous pouvons utiliser une classe de caractères imbriquée et en soustraire le contenu :
 
 ```js
-/[\p{Script_Extensions=Greek}--[αβγ]]/v.test(&apos;α&apos;); // → false
-/[\p{Script_Extensions=Greek}--[α-γ]]/v.test(&apos;β&apos;); // → false
+/[\p{Script_Extensions=Greek}--[αβγ]]/v.test('α'); // → false
+/[\p{Script_Extensions=Greek}--[α-γ]]/v.test('β'); // → false
 ```
 
 Un autre exemple est de correspondre aux chiffres non ASCII, par exemple pour les convertir en chiffres ASCII par la suite :
 
 ```js
-/[\p{Decimal_Number}--[0-9]]/v.test(&apos;𑜹&apos;); // → true
-/[\p{Decimal_Number}--[0-9]]/v.test(&apos;4&apos;); // → false
+/[\p{Decimal_Number}--[0-9]]/v.test('𑜹'); // → true
+/[\p{Decimal_Number}--[0-9]]/v.test('4'); // → false
 ```
 
 La notation d'ensemble peut également être utilisée avec les nouvelles propriétés des chaînes :
@@ -126,8 +126,8 @@ La notation d'ensemble peut également être utilisée avec les nouvelles propri
 ```js
 // Remarque : 🏴 comporte 7 points de code.
 
-/^\p{RGI_Emoji_Tag_Sequence}$/v.test(&apos;🏴&apos;); // → true
-/^[\p{RGI_Emoji_Tag_Sequence}--\q{🏴}]$/v.test(&apos;🏴&apos;); // → false
+/^\p{RGI_Emoji_Tag_Sequence}$/v.test('🏴'); // → true
+/^[\p{RGI_Emoji_Tag_Sequence}--\q{🏴}]$/v.test('🏴'); // → false
 ```
 
 Cet exemple correspond à toute séquence d'étiquette emoji RGI _sauf_ pour le drapeau de l'Écosse. Notez l'utilisation de `\q{…}` qui est une autre nouveauté syntaxique pour les littéraux de chaîne au sein des classes de caractères. Par exemple, `\q{a|bc|def}` correspond aux chaînes `a`, `bc` et `def`. Sans `\q{…}`, il ne serait pas possible de soustraire des chaînes codées en dur multicaractères.
@@ -139,17 +139,17 @@ La syntaxe `A&&B` correspond aux chaînes _présentes à la fois dans `A` et `B`
 ```js
 const re = /[\p{Script_Extensions=Greek}&&\p{Letter}]/v;
 // U+03C0 PETITE LETTRE GRECQUE PI
-re.test(&apos;π&apos;); // → true
+re.test('π'); // → true
 // U+1018A SIGNE ZÉRO GREC
-re.test(&apos;𐆊&apos;); // → false
+re.test('𐆊'); // → false
 ```
 
 Correspondre à tous les espaces blancs ASCII :
 
 ```js
 const re = /[\p{White_Space}&&\p{ASCII}]/v;
-re.test(&apos;\n&apos;); // → true
-re.test(&apos;\u2028&apos;); // → false
+re.test('\n'); // → true
+re.test('\u2028'); // → false
 ```
 
 Ou correspondre à tous les chiffres mongols :
@@ -157,9 +157,9 @@ Ou correspondre à tous les chiffres mongols :
 ```js
 const re = /[\p{Script_Extensions=Mongolian}&&\p{Number}]/v;
 // U+1817 CHIFFRE MONGOL SEPT
-re.test(&apos;᠗&apos;); // → true
+re.test('᠗'); // → true
 // U+1834 LETTRE MONGOL CHA
-re.test(&apos;ᠴ&apos;); // → false
+re.test('ᠴ'); // → false
 ```
 
 ### Union
@@ -169,12 +169,12 @@ Correspondre à des chaînes _dans A ou dans B_ était déjà possible auparavan
 ```js
 const re = /^[\p{Emoji_Keycap_Sequence}\p{ASCII}\q{🇧🇪|abc}xyz0-9]$/v;
 
-re.test(&apos;4️⃣&apos;); // → true
-re.test(&apos;_&apos;); // → true
-re.test(&apos;🇧🇪&apos;); // → true
-re.test(&apos;abc&apos;); // → true
-re.test(&apos;x&apos;); // → true
-re.test(&apos;4&apos;); // → true
+re.test('4️⃣'); // → true
+re.test('_'); // → true
+re.test('🇧🇪'); // → true
+re.test('abc'); // → true
+re.test('x'); // → true
+re.test('4'); // → true
 ```
 
 La classe de caractères dans ce modèle combine :
@@ -190,13 +190,13 @@ Un autre exemple consiste à faire correspondre tous les emojis de drapeau coura
 ```js
 const reFlag = /[\p{RGI_Emoji_Flag_Sequence}\p{RGI_Emoji_Tag_Sequence}]/v;
 // Une séquence de drapeau, composée de 2 points de code (drapeau de la Belgique):
-reFlag.test(&apos;🇧🇪&apos;); // → vrai
+reFlag.test('🇧🇪'); // → vrai
 // Une séquence d’étiquettes, composée de 7 points de code (drapeau de l'Angleterre):
-reFlag.test(&apos;🏴&apos;); // → vrai
+reFlag.test('🏴'); // → vrai
 // Une séquence de drapeau, composée de 2 points de code (drapeau de la Suisse):
-reFlag.test(&apos;🇨🇭&apos;); // → vrai
+reFlag.test('🇨🇭'); // → vrai
 // Une séquence d’étiquettes, composée de 7 points de code (drapeau du Pays de Galles):
-reFlag.test(&apos;🏴&apos;); // → vrai
+reFlag.test('🏴'); // → vrai
 ```
 
 ## Amélioration de la correspondance insensible à la casse
@@ -216,13 +216,13 @@ Intuitivement, vous pourriez vous attendre à ce que les deux expressions régul
 const re1 = /\p{Lowercase_Letter}/giu;
 const re2 = /[^\P{Lowercase_Letter}]/giu;
 
-const string = &apos;aAbBcC4#&apos;;
+const string = 'aAbBcC4#';
 
-string.replaceAll(re1, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re1, 'X');
+// → 'XXXXXX4#'
 
-string.replaceAll(re2, &apos;X&apos;);
-// → &apos;aAbBcC4#&apos;&apos;
+string.replaceAll(re2, 'X');
+// → 'aAbBcC4#''
 ```
 
 Le nouveau drapeau `v` a un comportement moins surprenant. Avec le drapeau `v` au lieu du drapeau `u`, les deux motifs se comportent de la même manière :
@@ -231,13 +231,13 @@ Le nouveau drapeau `v` a un comportement moins surprenant. Avec le drapeau `v` a
 const re1 = /\p{Lowercase_Letter}/giv;
 const re2 = /[^\P{Lowercase_Letter}]/giv;
 
-const string = &apos;aAbBcC4#&apos;;
+const string = 'aAbBcC4#';
 
-string.replaceAll(re1, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re1, 'X');
+// → 'XXXXXX4#'
 
-string.replaceAll(re2, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re2, 'X');
+// → 'XXXXXX4#'
 ```
 
 Plus généralement, le drapeau `v` fait que `[^\p{X}]` ≍ `[\P{X}]` ≍ `\P{X}` et `[^\P{X}]` ≍ `[\p{X}]` ≍ `\p{X}`, que le drapeau `i` soit défini ou non.

@@ -1,6 +1,6 @@
 ---
-title: &apos;合并及补丁&apos;
-description: &apos;本文档介绍如何将 V8 补丁合并到发布分支。&apos;
+title: '合并及补丁'
+description: '本文档介绍如何将 V8 补丁合并到发布分支。'
 ---
 如果你有一个针对 `main` 分支的补丁（例如一个重要的 bug 修复）需要合并到某个 V8 发布分支（refs/branch-heads/12.5），请继续阅读。
 
@@ -22,7 +22,7 @@ description: &apos;本文档介绍如何将 V8 补丁合并到发布分支。&ap
 
 ## 合并流程
 
-V8 追踪器中的合并流程是通过属性驱动的。因此，请将 &apos;Merge-Request&apos; 设置为相关的 Chrome Milestone。如果合并仅影响 V8 的某个[移植版本](https://v8.dev/docs/ports)，请相应地设置 HW 属性。例如：
+V8 追踪器中的合并流程是通过属性驱动的。因此，请将 'Merge-Request' 设置为相关的 Chrome Milestone。如果合并仅影响 V8 的某个[移植版本](https://v8.dev/docs/ports)，请相应地设置 HW 属性。例如：
 
 ```
 Merge-Request: 123

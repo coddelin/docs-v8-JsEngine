@@ -1,13 +1,13 @@
 ---
-title: &apos;Überarbeitetes `Function.prototype.toString`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Überarbeitetes `Function.prototype.toString`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-03-25
 tags:
   - ECMAScript
   - ES2019
-description: &apos;Function.prototype.toString gibt jetzt exakte Ausschnitte des Quelltextes zurück, einschließlich Leerzeichen und Kommentare.&apos;
+description: 'Function.prototype.toString gibt jetzt exakte Ausschnitte des Quelltextes zurück, einschließlich Leerzeichen und Kommentare.'
 ---
 [`Function.prototype.toString()`](https://tc39.es/Function-prototype-toString-revision/) gibt jetzt exakte Ausschnitte des Quelltextes zurück, einschließlich Leerzeichen und Kommentare. Hier ist ein Beispiel, das das alte und das neue Verhalten vergleicht:
 
@@ -20,13 +20,13 @@ function /* ein Kommentar */ foo () {}
 
 // Früher, in V8:
 foo.toString();
-// → &apos;function foo() {}&apos;
+// → 'function foo() {}'
 //             ^ kein Kommentar
 //                ^ kein Leerzeichen
 
 // Jetzt:
 foo.toString();
-// → &apos;function /* Kommentar */ foo () {}&apos;
+// → 'function /* Kommentar */ foo () {}'
 ```
 
 ## Feature-Unterstützung

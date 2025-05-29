@@ -1,6 +1,6 @@
 ---
- title: &apos;陸地在望：告別節點之海&apos;
- author: &apos;Darius Mercadier&apos;
+ title: '陸地在望：告別節點之海'
+ author: 'Darius Mercadier'
  avatars:
    - darius-mercadier
  date: 2025-03-25
@@ -8,7 +8,7 @@
    - JavaScript
    - internals
  description: "為什麼 V8 決定放棄節點之海，回歸控制流圖"
- tweet: &apos;&apos;
+ tweet: ''
 ---
 
 V8 的終極優化編譯器 Turbofan，是少數採用[節點之海](https://en.wikipedia.org/wiki/Sea_of_nodes) (Sea of Nodes, SoN)的大規模生產編譯器之一。然而，自從大約三年前，我們開始逐步淘汰節點之海，轉而使用更傳統的[控制流圖](https://en.wikipedia.org/wiki/Control-flow_graph) (CFG) [中間表示](https://en.wikipedia.org/wiki/Intermediate_representation) (IR)，我們將其命名為 Turboshaft。目前為止，Turbofan 的整個 JavaScript 後端已完全採用了 Turboshaft，而 WebAssembly 在其整個管線中也完全使用了 Turboshaft。Turbofan 的兩個部分仍然使用一些節點之海：內建管線（我們正在逐步用 Turboshaft 替代）以及 JavaScript 管線的前端（我們正用另一個基於 CFG 的 IR，名為 Maglev 替代）。這篇博文將解釋我們放棄節點之海的原因。

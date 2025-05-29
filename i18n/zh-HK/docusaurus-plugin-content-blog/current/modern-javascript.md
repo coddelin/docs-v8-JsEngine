@@ -1,10 +1,10 @@
 ---
-title: &apos;ES2015、ES2016，以及未來發展&apos;
-author: &apos;V8 團隊，ECMAScript 愛好者&apos;
+title: 'ES2015、ES2016，以及未來發展'
+author: 'V8 團隊，ECMAScript 愛好者'
 date: 2016-04-29 13:33:37
 tags:
   - ECMAScript
-description: &apos;V8 v5.2 支援 ES2015 和 ES2016！&apos;
+description: 'V8 v5.2 支援 ES2015 和 ES2016！'
 ---
 V8 團隊非常重視 JavaScript 語言的演進，致力於讓其成為更加具表達力和明確定義的語言，讓開發快速、安全且正確的網頁應用程式變得更加容易。2015 年 6 月，TC39 標準委員會正式通過了 [ES2015 規範](https://www.ecma-international.org/ecma-262/6.0/)，這是 JavaScript 語言迄今為止最大規模的一次更新。新增功能包括 [類別](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Classes)、[箭頭函式](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/Arrow_functions)、[Promise](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Promise)、[迭代器 / 產生器](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Iterators_and_Generators)、[代理](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Proxy)、[知名符號](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Symbol#Well-known_symbols)，以及其他語法糖。TC39 亦加快了新規範的發布節奏，並於 2016 年 2 月發布了 [ES2016 候選草案](https://tc39.es/ecma262/2016/)，將於當年夏天正式通過。雖然由於發布週期縮短，ES2016 的更新內容不如 ES2015 廣泛，但它引入了 [指數運算子](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Exponentiation) 和 [`Array.prototype.includes`](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) 等值得注意的特性。
 

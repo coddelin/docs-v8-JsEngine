@@ -1,10 +1,10 @@
 ---
-title: &apos;V8リリース v5.0&apos;
-author: &apos;V8チーム&apos;
+title: 'V8リリース v5.0'
+author: 'V8チーム'
 date: 2016-03-15 13:33:37
 tags:
   - リリース
-description: &apos;V8 v5.0は性能改善を伴い、いくつかの新しいES2015言語機能のサポートを追加します。&apos;
+description: 'V8 v5.0は性能改善を伴い、いくつかの新しいES2015言語機能のサポートを追加します。'
 ---
 V8の[リリースプロセス](/docs/release-process)での最初のステップは、Gitマスターから新しいブランチを作成することです。この作業はおおよそ6週間ごとにChrome BetaマイルストーンのためにChromiumがブランチする直前に行われます。我々の最新のリリースブランチは[V8 v5.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.0)で、Chrome 50 Stableと併せて安定版をリリースするまでベータ版として維持されます。このバージョンのV8での開発者向け新機能のハイライトを以下に示します。
 
@@ -22,23 +22,23 @@ V8 v5.0は、正規表現（regex）マッチングに関連する多くのES201
 [RegExp Unicodeフラグ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp#Parameters)、`u`は、正規表現マッチングの新しいUnicodeモードをオンにします。Unicodeフラグは、パターンおよび正規表現文字列をUnicodeコードポイントの一連として扱います。また、Unicodeコードポイントエスケープの新しい構文を公開します。
 
 ```js
-/😊{2}/.test(&apos;😊😊&apos;);
+/😊{2}/.test('😊😊');
 // false
 
-/😊{2}/u.test(&apos;😊😊&apos;);
+/😊{2}/u.test('😊😊');
 // true
 
-/\u{76}\u{38}/u.test(&apos;v8&apos;);
+/\u{76}\u{38}/u.test('v8');
 // true
 
-/\u{1F60A}/u.test(&apos;😊&apos;);
+/\u{1F60A}/u.test('😊');
 // true
 ```
 
 `u`フラグはまた、`.`アトム（単一文字マッチャーとも呼ばれる）が基本多言語面（BMP）内の文字だけでなく、任意のUnicode記号をマッチするようになります。
 
 ```js
-const string = &apos;the 🅛 train&apos;;
+const string = 'the 🅛 train';
 
 /the\s.\strain/.test(string);
 // false
@@ -61,4 +61,4 @@ ES2015には、正規表現サブクラスがマッチングの意味論を変�
 
 API変更の[概要](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit)をご確認ください。この文書は、各主要リリース後数週間で定期的に更新されます。
 
-[アクティブなV8チェックアウト](https://v8.dev/docs/source-code#using-git)を持つ開発者は`git checkout -b 5.0 -t branch-heads/5.0`を使用してV8 5.0の新機能を試すことができます。あるいは[Chrome&apos;s Betaチャンネル](https://www.google.com/chrome/browser/beta.html)に登録して、すぐに新機能を自分で試してみることもできます。
+[アクティブなV8チェックアウト](https://v8.dev/docs/source-code#using-git)を持つ開発者は`git checkout -b 5.0 -t branch-heads/5.0`を使用してV8 5.0の新機能を試すことができます。あるいは[Chrome's Betaチャンネル](https://www.google.com/chrome/browser/beta.html)に登録して、すぐに新機能を自分で試してみることもできます。

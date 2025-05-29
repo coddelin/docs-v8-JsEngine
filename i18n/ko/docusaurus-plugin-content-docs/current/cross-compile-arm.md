@@ -1,19 +1,19 @@
 ---
-title: &apos;ARM/Android를 위한 크로스 컴파일 및 디버깅&apos;
-description: &apos;이 문서는 ARM/Android를 위한 V8 크로스 컴파일 및 디버깅 방법을 설명합니다.&apos;
+title: 'ARM/Android를 위한 크로스 컴파일 및 디버깅'
+description: '이 문서는 ARM/Android를 위한 V8 크로스 컴파일 및 디버깅 방법을 설명합니다.'
 ---
 먼저, [GN으로 빌드하기](/docs/build-gn)를 확인하십시오.
 
 그런 다음, `.gclient` 구성 파일에 `android`를 추가하십시오.
 
 ```python
-target_os = [&apos;android&apos;]  # Android 관련 자료를 가져오려면 추가하십시오.
+target_os = ['android']  # Android 관련 자료를 가져오려면 추가하십시오.
 ```
 
 `target_os` 필드는 목록이므로, 유닉스에서도 빌드하려는 경우 다음과 같이 보일 것입니다:
 
 ```python
-target_os = [&apos;android&apos;, &apos;unix&apos;]  # 여러 대상 운영 체제 설정.
+target_os = ['android', 'unix']  # 여러 대상 운영 체제 설정.
 ```
 
 `gclient sync`를 실행하면, `./third_party/android_tools` 아래에 큰 체크아웃을 얻을 수 있습니다.
@@ -66,7 +66,7 @@ ninja -C out.gn/arm.release d8
 `adb`를 사용하여 바이너리 및 스냅샷 파일을 휴대폰으로 복사하십시오:
 
 ```bash
-adb shell &apos;mkdir -p /data/local/tmp/v8/bin&apos;
+adb shell 'mkdir -p /data/local/tmp/v8/bin'
 adb push out.gn/arm.release/d8 /data/local/tmp/v8/bin
 adb push out.gn/arm.release/icudtl.dat /data/local/tmp/v8/bin
 adb push out.gn/arm.release/snapshot_blob.bin /data/local/tmp/v8/bin
@@ -79,7 +79,7 @@ bullhead:/data/local/tmp/v8/bin $ ls
 v8 icudtl.dat snapshot_blob.bin
 bullhead:/data/local/tmp/v8/bin $ ./d8
 V8 version 5.8.0 (candidate)
-d8> &apos;w00t!&apos;
+d8> 'w00t!'
 "w00t!"
 d8>
 ```

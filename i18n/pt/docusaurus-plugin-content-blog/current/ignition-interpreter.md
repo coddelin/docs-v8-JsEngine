@@ -1,12 +1,12 @@
 ---
-title: &apos;Iniciando o interpretador Ignition&apos;
-author: &apos;Ross McIlroy, Iniciador do Ignition no V8&apos;
+title: 'Iniciando o interpretador Ignition'
+author: 'Ross McIlroy, Iniciador do Ignition no V8'
 avatars:
-  - &apos;ross-mcilroy&apos;
+  - 'ross-mcilroy'
 date: 2016-08-23 13:33:37
 tags:
   - internals
-description: &apos;Com o interpretador Ignition, o V8 compila funções JavaScript para um bytecode conciso, que tem entre 50% a 25% do tamanho do código de máquina equivalente de baixo nível.&apos;
+description: 'Com o interpretador Ignition, o V8 compila funções JavaScript para um bytecode conciso, que tem entre 50% a 25% do tamanho do código de máquina equivalente de baixo nível.'
 ---
 O V8 e outros motores modernos de JavaScript alcançam sua velocidade através da [compilação just-in-time (JIT)](https://en.wikipedia.org/wiki/Just-in-time_compilation) de script para código de máquina nativo imediatamente antes da execução. O código é inicialmente compilado por um compilador básico, que pode gerar código de máquina não otimizado rapidamente. O código compilado é analisado durante a execução e, opcionalmente, recompilado dinamicamente com um compilador otimizador mais avançado para obter desempenho máximo. No V8, esse pipeline de execução de script possui uma variedade de casos especiais e condições que exigem uma complexa maquinaria para alternar entre o compilador básico e dois compiladores otimizadores, Crankshaft e TurboFan.
 

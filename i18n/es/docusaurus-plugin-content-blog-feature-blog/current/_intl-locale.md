@@ -1,35 +1,35 @@
 ---
-title: &apos;`Intl.Locale`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`Intl.Locale`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-05-20
 tags:
   - Intl
   - Node.js 12
   - io19
-description: &apos;La nueva API Intl.Locale ofrece un mecanismo unificado para manejar locales y es más conveniente que usar cadenas.&apos;
-tweet: &apos;TODO&apos;
+description: 'La nueva API Intl.Locale ofrece un mecanismo unificado para manejar locales y es más conveniente que usar cadenas.'
+tweet: 'TODO'
 ---
-Al trabajar con [APIs de internacionalización](/features/tags/intl), es común pasar cadenas que representan identificadores de locales a los diversos constructores de `Intl`, como `&apos;en&apos;` para inglés. [La nueva API `Intl.Locale`](https://github.com/tc39/proposal-intl-locale) ofrece un mecanismo más poderoso para manejar dichos locales.
+Al trabajar con [APIs de internacionalización](/features/tags/intl), es común pasar cadenas que representan identificadores de locales a los diversos constructores de `Intl`, como `'en'` para inglés. [La nueva API `Intl.Locale`](https://github.com/tc39/proposal-intl-locale) ofrece un mecanismo más poderoso para manejar dichos locales.
 
 <!--truncate-->
 Permite extraer fácilmente preferencias específicas del locale, como no solo el idioma, sino también el calendario, el sistema de numeración, el ciclo horario, la región, y más.
 
 ```js
-const locale = new Intl.Locale(&apos;es-419-u-hc-h12&apos;, {
-  calendar: &apos;gregory&apos;
+const locale = new Intl.Locale('es-419-u-hc-h12', {
+  calendar: 'gregory'
 });
 locale.language;
-// → &apos;es&apos;
+// → 'es'
 locale.calendar;
-// → &apos;gregory&apos;
+// → 'gregory'
 locale.hourCycle;
-// → &apos;h12&apos;
+// → 'h12'
 locale.region;
-// → &apos;419&apos;
+// → '419'
 locale.toString();
-// → &apos;es-419-u-ca-gregory-hc-h12&apos;
+// → 'es-419-u-ca-gregory-hc-h12'
 ```
 
 ## Compatibilidad de `Intl.Locale`

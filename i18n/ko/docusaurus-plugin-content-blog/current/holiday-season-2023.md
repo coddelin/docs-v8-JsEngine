@@ -1,6 +1,6 @@
 ---
-title: &apos;V8는 더욱 빠르고 안전해졌습니다!&apos;
-author: &apos;[Victor Gomes](https://twitter.com/VictorBFG), 글뤼바인의 전문가&apos;
+title: 'V8는 더욱 빠르고 안전해졌습니다!'
+author: '[Victor Gomes](https://twitter.com/VictorBFG), 글뤼바인의 전문가'
 avatars:
   - victor-gomes
 date: 2023-12-14
@@ -10,7 +10,7 @@ tags:
   - 보안
   - 벤치마크
 description: "V8의 2023년 놀라운 성과"
-tweet: &apos;&apos;
+tweet: ''
 ---
 
 V8의 짜릿한 세계에 오신 것을 환영합니다. 여기서는 속도가 단순한 기능이 아닌 삶의 방식입니다. 2023년을 보내며 V8이 올해 이룩한 놀라운 성과를 축하할 때입니다.

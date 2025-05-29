@@ -1,14 +1,14 @@
 ---
-title: &apos;Mise en cache du code pour les développeurs WebAssembly&apos;
-author: &apos;[Bill Budge](https://twitter.com/billb), ajoutant le Ca-ching! à la mise en cache&apos;
+title: 'Mise en cache du code pour les développeurs WebAssembly'
+author: '[Bill Budge](https://twitter.com/billb), ajoutant le Ca-ching! à la mise en cache'
 avatars:
   - bill-budge
 date: 2019-06-17
 tags:
   - WebAssembly
   - internals
-description: &apos;Cet article explique la mise en cache du code WebAssembly dans Chrome et comment les développeurs peuvent en tirer parti pour accélérer le chargement des applications avec de grands modules WebAssembly.&apos;
-tweet: &apos;1140631433532334081&apos;
+description: 'Cet article explique la mise en cache du code WebAssembly dans Chrome et comment les développeurs peuvent en tirer parti pour accélérer le chargement des applications avec de grands modules WebAssembly.'
+tweet: '1140631433532334081'
 ---
 Il y a un dicton parmi les développeurs qui dit que le code le plus rapide est celui qui ne s’exécute pas. De même, le code qui se compile le plus rapidement est celui qui n’a pas besoin d’être compilé. La mise en cache du code WebAssembly est une nouvelle optimisation dans Chrome et V8 qui vise à éviter la compilation du code en mettant en cache le code natif produit par le compilateur. Nous avons [écrit](/blog/code-caching) [sur](/blog/improved-code-caching) [comment](/blog/code-caching-for-devs) Chrome et V8 mettent en cache le code JavaScript dans le passé, et les meilleures pratiques pour tirer parti de cette optimisation. Dans cet article, nous décrivons le fonctionnement de la mise en cache du code WebAssembly dans Chrome et comment les développeurs peuvent en tirer parti pour accélérer le chargement des applications avec de grands modules WebAssembly.
 
@@ -40,7 +40,7 @@ Sur la base de cette description, nous pouvons donner quelques recommandations p
 
 ```js
 (async () => {
-  const fetchPromise = fetch(&apos;fibonacci.wasm&apos;);
+  const fetchPromise = fetch('fibonacci.wasm');
   const { instance } = await WebAssembly.instantiateStreaming(fetchPromise);
   const result = instance.exports.fibonacci(42);
   console.log(result);

@@ -1,12 +1,12 @@
 ---
-title: &apos;Extras de V8&apos;
-author: &apos;Domenic Denicola ([@domenic](https://twitter.com/domenic)), Experto en Streams&apos;
+title: 'Extras de V8'
+author: 'Domenic Denicola ([@domenic](https://twitter.com/domenic)), Experto en Streams'
 avatars:
-  - &apos;domenic-denicola&apos;
+  - 'domenic-denicola'
 date: 2016-02-04 13:33:37
 tags:
   - internos
-description: &apos;V8 v4.8 incluye “extras de V8”, una interfaz simple diseñada con el objetivo de permitir que los integradores escriban APIs autoalojadas de alto rendimiento.&apos;
+description: 'V8 v4.8 incluye “extras de V8”, una interfaz simple diseñada con el objetivo de permitir que los integradores escriban APIs autoalojadas de alto rendimiento.'
 ---
 V8 implementa un gran subconjunto de los objetos y funciones integrados del lenguaje JavaScript en el propio JavaScript. Por ejemplo, puedes ver nuestra [implementación de promesas](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js) escrita en JavaScript. Estos integrados se denominan _autoalojados_. Estas implementaciones se incluyen en nuestra [instantánea de inicio](/blog/custom-startup-snapshots) para que se puedan crear nuevos contextos rápidamente sin necesidad de configurar e inicializar los integrados autoalojados en tiempo de ejecución.
 
@@ -21,10 +21,10 @@ Un archivo extra de V8 es simplemente un archivo JavaScript con una estructura d
 
 ```js
 (function(global, binding, v8) {
-  &apos;use strict&apos;;
+  'use strict';
   const Object = global.Object;
-  const x = v8.createPrivateSymbol(&apos;x&apos;);
-  const y = v8.createPrivateSymbol(&apos;y&apos;);
+  const x = v8.createPrivateSymbol('x');
+  const y = v8.createPrivateSymbol('y');
 
   class Vec2 {
     constructor(theX, theY) {
@@ -37,7 +37,7 @@ Un archivo extra de V8 es simplemente un archivo JavaScript con una estructura d
     }
   }
 
-  Object.defineProperty(global, &apos;Vec2&apos;, {
+  Object.defineProperty(global, 'Vec2', {
     value: Vec2,
     enumerable: false,
     configurable: true,
@@ -59,7 +59,7 @@ Podrías preguntarte de dónde provienen estos objetos. Los tres se inicializan 
 Finalmente, para decirle a V8 que compilaremos un extra, agregamos una línea al archivo gyp de nuestro proyecto:
 
 ```js
-&apos;v8_extra_library_files&apos;: [&apos;./Vec2.js&apos;]
+'v8_extra_library_files': ['./Vec2.js']
 ```
 
 (Puedes ver un ejemplo del mundo real [en el archivo gyp de V8](https://code.google.com/p/chromium/codesearch#chromium/src/v8/build/standalone.gypi&sq=package:chromium&type=cs&l=170).)

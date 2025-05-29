@@ -1,24 +1,24 @@
 ---
-title: &apos;プライベートブランドチェック、別名`#foo in obj`&apos;
-author: &apos;Marja Hölttä ([@marjakh](https://twitter.com/marjakh))&apos;
+title: 'プライベートブランドチェック、別名`#foo in obj`'
+author: 'Marja Hölttä ([@marjakh](https://twitter.com/marjakh))'
 avatars:
-  - &apos;marja-holtta&apos;
+  - 'marja-holtta'
 date: 2021-04-14
 tags:
   - ECMAScript
-description: &apos;プライベートブランドチェックにより、オブジェクト内のプライベートフィールドの存在を確認できます。&apos;
-tweet: &apos;1382327454975590401&apos;
+description: 'プライベートブランドチェックにより、オブジェクト内のプライベートフィールドの存在を確認できます。'
+tweet: '1382327454975590401'
 ---
 
 [`in`演算子](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in)は、与えられたオブジェクト（またはそのプロトタイプチェーン内の任意のオブジェクト）が与えられたプロパティを持っているかどうかを確認するために使用できます:
 
 ```javascript
-const o1 = {&apos;foo&apos;: 0};
-console.log(&apos;foo&apos; in o1); // true
+const o1 = {'foo': 0};
+console.log('foo' in o1); // true
 const o2 = {};
-console.log(&apos;foo&apos; in o2); // false
+console.log('foo' in o2); // false
 const o3 = Object.create(o1);
-console.log(&apos;foo&apos; in o3); // true
+console.log('foo' in o3); // true
 ```
 
 プライベートブランドチェック機能は、この`in`演算子を拡張して[プライベートクラスフィールド](https://v8.dev/features/class-fields#private-class-fields)もサポートします:
@@ -107,7 +107,7 @@ class F {
   #x = 0;
   #y = (() => {
     halfConstructed = this;
-    throw &apos;error&apos;;
+    throw 'error';
   })();
 }
 

@@ -1,6 +1,6 @@
 ---
-title: &apos;信頼されていないコードの緩和策&apos;
-description: &apos;V8を埋め込み、信頼されていないJavaScriptコードを実行する場合、投機的サイドチャネル攻撃への対策を有効化して保護を強化してください。&apos;
+title: '信頼されていないコードの緩和策'
+description: 'V8を埋め込み、信頼されていないJavaScriptコードを実行する場合、投機的サイドチャネル攻撃への対策を有効化して保護を強化してください。'
 ---
 2018年初頭、GoogleのProject Zeroの研究者が[新しい攻撃手法のクラス](https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html)を公開し、これは多くのCPUで使用されている投機的実行最適化を[悪用](https://security.googleblog.com/2018/01/more-details-about-mitigations-for-cpu_4.html)するものでした。V8がJavaScriptを効率的に実行するために最適化されたJITコンパイラTurboFanを使用しているため、特定の状況下では、この公開で説明されているサイドチャネル攻撃に対して脆弱な場合があります。
 

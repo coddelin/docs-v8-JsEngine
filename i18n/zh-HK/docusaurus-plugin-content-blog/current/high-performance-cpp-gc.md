@@ -1,17 +1,17 @@
 ---
-title: &apos;高性能的 C++ 垃圾回收&apos;
-author: &apos;Anton Bikineev、Omer Katz（[@omerktz](https://twitter.com/omerktz)）及 Michael Lippautz（[@mlippautz](https://twitter.com/mlippautz)），C++ 記憶體專家&apos;
+title: '高性能的 C++ 垃圾回收'
+author: 'Anton Bikineev、Omer Katz（[@omerktz](https://twitter.com/omerktz)）及 Michael Lippautz（[@mlippautz](https://twitter.com/mlippautz)），C++ 記憶體專家'
 avatars:
-  - &apos;anton-bikineev&apos;
-  - &apos;omer-katz&apos;
-  - &apos;michael-lippautz&apos;
+  - 'anton-bikineev'
+  - 'omer-katz'
+  - 'michael-lippautz'
 date: 2020-05-26
 tags:
   - internals
   - memory
   - cppgc
-description: &apos;本文介紹了 Oilpan C++ 垃圾回收器，它在 Blink 中的使用，以及如何優化垃圾回收（即回收不可達記憶體）。&apos;
-tweet: &apos;1265304883638480899&apos;
+description: '本文介紹了 Oilpan C++ 垃圾回收器，它在 Blink 中的使用，以及如何優化垃圾回收（即回收不可達記憶體）。'
+tweet: '1265304883638480899'
 ---
 
 我們之前已多次撰文討論過[JavaScript 的垃圾回收](https://v8.dev/blog/trash-talk)、[文件物件模型 (DOM)](https://v8.dev/blog/concurrent-marking) 及[其在 V8 中的實現及優化](https://v8.dev/blog/tracing-js-dom)。然而，Chromium 中並不全是 JavaScript，瀏覽器本身及 V8 所嵌套的 Blink 渲染引擎大多數使用 C++ 編寫。JavaScript 可用於操作 DOM，而後者由渲染管線進行處理。
@@ -81,8 +81,8 @@ class GCed : public GarbageCollected<GCed> {
     visitor->Trace(other_);
   }
   ~GCed() {
-    other_->DoSomething();  // 錯誤：最終化器 &apos;~GCed&apos; 訪問了
-                            // 可能已被最終化的欄位 &apos;other_&apos;。
+    other_->DoSomething();  // 錯誤：最終化器 '~GCed' 訪問了
+                            // 可能已被最終化的欄位 'other_'。
   }
  private:
   Member<GCed> other_;

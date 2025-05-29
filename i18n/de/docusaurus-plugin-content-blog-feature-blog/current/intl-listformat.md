@@ -1,16 +1,16 @@
 ---
-title: &apos;`Intl.ListFormat`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias)) und Frank Yung-Fong Tang&apos;
+title: '`Intl.ListFormat`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)) und Frank Yung-Fong Tang'
 avatars:
-  - &apos;mathias-bynens&apos;
-  - &apos;frank-tang&apos;
+  - 'mathias-bynens'
+  - 'frank-tang'
 date: 2018-12-18
 tags:
   - Intl
   - Node.js 12
   - io19
-description: &apos;Die Intl.ListFormat-API ermöglicht die lokalisierte Formatierung von Listen, ohne die Leistung zu beeinträchtigen.&apos;
-tweet: &apos;1074966915557351424&apos;
+description: 'Die Intl.ListFormat-API ermöglicht die lokalisierte Formatierung von Listen, ohne die Leistung zu beeinträchtigen.'
+tweet: '1074966915557351424'
 ---
 Moderne Webanwendungen verwenden oft Listen mit dynamischen Daten. Zum Beispiel könnte eine Fotoanzeige-App etwas wie das Folgende darstellen:
 
@@ -30,43 +30,43 @@ Die brandneue `Intl.ListFormat`-API verlagert diese Last auf die JavaScript-Engi
 Das folgende Beispiel zeigt, wie man einen Listenformatierer für Konjunktionen mit der englischen Sprache erstellt:
 
 ```js
-const lf = new Intl.ListFormat(&apos;en&apos;);
-lf.format([&apos;Frank&apos;]);
-// → &apos;Frank&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;]);
-// → &apos;Frank and Christine&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;]);
-// → &apos;Frank, Christine, and Flora&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;, &apos;Harrison&apos;]);
-// → &apos;Frank, Christine, Flora, and Harrison&apos;
+const lf = new Intl.ListFormat('en');
+lf.format(['Frank']);
+// → 'Frank'
+lf.format(['Frank', 'Christine']);
+// → 'Frank and Christine'
+lf.format(['Frank', 'Christine', 'Flora']);
+// → 'Frank, Christine, and Flora'
+lf.format(['Frank', 'Christine', 'Flora', 'Harrison']);
+// → 'Frank, Christine, Flora, and Harrison'
 ```
 
 Disjunktionen („oder“ im Englischen) werden ebenfalls durch den optionalen `options`-Parameter unterstützt:
 
 ```js
-const lf = new Intl.ListFormat(&apos;en&apos;, { type: &apos;disjunction&apos; });
-lf.format([&apos;Frank&apos;]);
-// → &apos;Frank&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;]);
-// → &apos;Frank or Christine&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;]);
-// → &apos;Frank, Christine, or Flora&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;, &apos;Harrison&apos;]);
-// → &apos;Frank, Christine, Flora, or Harrison&apos;
+const lf = new Intl.ListFormat('en', { type: 'disjunction' });
+lf.format(['Frank']);
+// → 'Frank'
+lf.format(['Frank', 'Christine']);
+// → 'Frank or Christine'
+lf.format(['Frank', 'Christine', 'Flora']);
+// → 'Frank, Christine, or Flora'
+lf.format(['Frank', 'Christine', 'Flora', 'Harrison']);
+// → 'Frank, Christine, Flora, or Harrison'
 ```
 
 Hier ist ein Beispiel für die Verwendung einer anderen Sprache (Chinesisch mit dem Sprachcode `zh`):
 
 ```js
-const lf = new Intl.ListFormat(&apos;zh&apos;);
-lf.format([&apos;永鋒&apos;]);
-// → &apos;永鋒&apos;
-lf.format([&apos;永鋒&apos;, &apos;新宇&apos;]);
-// → &apos;永鋒和新宇&apos;
-lf.format([&apos;永鋒&apos;, &apos;新宇&apos;, &apos;芳遠&apos;]);
-// → &apos;永鋒、新宇和芳遠&apos;
-lf.format([&apos;永鋒&apos;, &apos;新宇&apos;, &apos;芳遠&apos;, &apos;澤遠&apos;]);
-// → &apos;永鋒、新宇、芳遠和澤遠&apos;
+const lf = new Intl.ListFormat('zh');
+lf.format(['永鋒']);
+// → '永鋒'
+lf.format(['永鋒', '新宇']);
+// → '永鋒和新宇'
+lf.format(['永鋒', '新宇', '芳遠']);
+// → '永鋒、新宇和芳遠'
+lf.format(['永鋒', '新宇', '芳遠', '澤遠']);
+// → '永鋒、新宇、芳遠和澤遠'
 ```
 
 Der `options`-Parameter ermöglicht fortgeschrittenere Anwendungen. Hier ist ein Überblick über die verschiedenen Optionen und ihre Kombinationen sowie darüber, wie sie den Listenmustern entsprechen, die von [UTS#35](https://unicode.org/reports/tr35/tr35-general.html#ListPatterns) definiert sind:
@@ -74,11 +74,11 @@ Der `options`-Parameter ermöglicht fortgeschrittenere Anwendungen. Hier ist ein
 
 | Typ                   | Optionen                                    | Beschreibung                                                                                     | Beispiele                         |
 | --------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------- | -------------------------------- |
-| Standard (oder kein Typ) | `{}` (Standard)                            | Eine typische „und“-Liste für beliebige Platzhalter                                             | `&apos;Januar, Februar, und März&apos;` |
-| oder                 | `{ type: &apos;disjunction&apos; }`                 | Eine typische „oder“-Liste für beliebige Platzhalter                                            | `&apos;Januar, Februar, oder März&apos;` |
-| Einheit              | `{ type: &apos;unit&apos; }`                        | Eine Liste, die für breite Einheiten geeignet ist                                                | `&apos;3 Fuß, 7 Zoll&apos;`                |
-| unit-kurz            | `{ type: &apos;unit&apos;, style: &apos;short&apos; }`        | Eine Liste, die für kurze Einheiten geeignet ist                                                 | `&apos;3 ft, 7 in&apos;`                   |
-| unit-schmal          | `{ type: &apos;unit&apos;, style: &apos;narrow&apos; }`       | Eine Liste, die für schmale Einheiten geeignet ist, wenn der Platz auf dem Bildschirm sehr begrenzt ist  | `&apos;3′ 7″&apos;`                        |
+| Standard (oder kein Typ) | `{}` (Standard)                            | Eine typische „und“-Liste für beliebige Platzhalter                                             | `'Januar, Februar, und März'` |
+| oder                 | `{ type: 'disjunction' }`                 | Eine typische „oder“-Liste für beliebige Platzhalter                                            | `'Januar, Februar, oder März'` |
+| Einheit              | `{ type: 'unit' }`                        | Eine Liste, die für breite Einheiten geeignet ist                                                | `'3 Fuß, 7 Zoll'`                |
+| unit-kurz            | `{ type: 'unit', style: 'short' }`        | Eine Liste, die für kurze Einheiten geeignet ist                                                 | `'3 ft, 7 in'`                   |
+| unit-schmal          | `{ type: 'unit', style: 'narrow' }`       | Eine Liste, die für schmale Einheiten geeignet ist, wenn der Platz auf dem Bildschirm sehr begrenzt ist  | `'3′ 7″'`                        |
 
 
 Beachten Sie, dass es in vielen Sprachen (wie Englisch) möglicherweise keinen Unterschied zwischen vielen dieser Listen gibt. In anderen können sich der Abstand, die Länge oder das Vorhandensein einer Konjunktion und die Trennzeichen ändern.

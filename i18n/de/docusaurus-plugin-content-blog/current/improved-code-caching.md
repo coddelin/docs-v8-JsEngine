@@ -1,13 +1,13 @@
 ---
-title: &apos;Verbesserte Code-Caching&apos;
-author: &apos;Mythri Alle, Haupt-Code-Cacher&apos;
+title: 'Verbesserte Code-Caching'
+author: 'Mythri Alle, Haupt-Code-Cacher'
 date: 2018-04-24 13:33:37
 avatars:
-  - &apos;mythri-alle&apos;
+  - 'mythri-alle'
 tags:
   - internals
-tweet: &apos;988728000677142528&apos;
-description: &apos;Ab Chrome 66 speichert V8 mehr (Byte-)Code, indem der Cache nach der Top-Level-Ausführung generiert wird.&apos;
+tweet: '988728000677142528'
+description: 'Ab Chrome 66 speichert V8 mehr (Byte-)Code, indem der Cache nach der Top-Level-Ausführung generiert wird.'
 ---
 V8 verwendet [Code-Caching](/blog/code-caching), um den generierten Code für häufig verwendete Skripte zu speichern. Ab Chrome 66 speichern wir mehr Code, indem wir den Cache nach der Top-Level-Ausführung generieren. Dies führt zu einer Reduktion der Parsing- und Kompilierungszeit um 20–40 % während des ersten Ladevorgangs.
 

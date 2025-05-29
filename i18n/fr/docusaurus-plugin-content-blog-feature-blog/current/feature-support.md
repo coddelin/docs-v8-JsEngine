@@ -1,8 +1,8 @@
 ---
-title: &apos;Prise en charge des fonctionnalités&apos;
+title: 'Prise en charge des fonctionnalités'
 permalink: /features/support/
 layout: layouts/base.njk
-description: &apos;Ce document explique les listes de prise en charge des fonctionnalités des langages JavaScript et WebAssembly telles qu&apos;utilisées sur le site Web de V8.&apos;
+description: 'Ce document explique les listes de prise en charge des fonctionnalités des langages JavaScript et WebAssembly telles qu'utilisées sur le site Web de V8.'
 ---
 # Prise en charge des fonctionnalités JavaScript/Wasm
 

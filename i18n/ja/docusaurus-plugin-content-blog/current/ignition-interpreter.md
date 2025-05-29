@@ -1,12 +1,12 @@
 ---
-title: &apos;Ignitionインタープリタを起動&apos;
-author: &apos;Ross McIlroy, V8 Ignitionジャンプスターター&apos;
+title: 'Ignitionインタープリタを起動'
+author: 'Ross McIlroy, V8 Ignitionジャンプスターター'
 avatars:
-  - &apos;ross-mcilroy&apos;
+  - 'ross-mcilroy'
 date: 2016-08-23 13:33:37
 tags:
   - internals
-description: &apos;Ignitionインタープリタでは、V8がJavaScript関数を簡潔なバイトコードにコンパイルします。そのサイズは同等のベースラインマシンコードの約50%〜25%です。&apos;
+description: 'Ignitionインタープリタでは、V8がJavaScript関数を簡潔なバイトコードにコンパイルします。そのサイズは同等のベースラインマシンコードの約50%〜25%です。'
 ---
 V8およびその他の最新のJavaScriptエンジンは、[ジャストインタイム（JIT）コンパイル](https://en.wikipedia.org/wiki/Just-in-time_compilation)によって、スクリプトをネイティブマシンコードに即時コンパイルし、実行前に高速化を図っています。コードはまずベースラインコンパイラによって初期的にコンパイルされ、非最適化されたマシンコードを迅速に生成できます。その後、実行時にコードを分析し、必要に応じてより高度な最適化コンパイラで動的に再コンパイルされ、性能を最大化します。V8では、このスクリプト実行パイプラインにおいて、ベースラインコンパイラと2つの最適化コンパイラ（CrankshaftとTurboFan）の間を切り替える複雑な仕組みが存在します。
 

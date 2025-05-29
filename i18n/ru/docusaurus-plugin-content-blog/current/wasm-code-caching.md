@@ -1,14 +1,14 @@
 ---
-title: &apos;Кэширование кода для разработчиков WebAssembly&apos;
-author: &apos;[Билл Бадж](https://twitter.com/billb), делая кэширование более выгодным&apos;
+title: 'Кэширование кода для разработчиков WebAssembly'
+author: '[Билл Бадж](https://twitter.com/billb), делая кэширование более выгодным'
 avatars:
   - bill-budge
 date: 2019-06-17
 tags:
   - WebAssembly
   - внутренности
-description: &apos;Эта статья объясняет систему кэширования кода WebAssembly в Chrome и рассказывает, как разработчики могут использовать её для ускорения загрузки приложений с большими модулями WebAssembly.&apos;
-tweet: &apos;1140631433532334081&apos;
+description: 'Эта статья объясняет систему кэширования кода WebAssembly в Chrome и рассказывает, как разработчики могут использовать её для ускорения загрузки приложений с большими модулями WebAssembly.'
+tweet: '1140631433532334081'
 ---
 Среди разработчиков есть поговорка, что самый быстрый код — это код, который не выполняется. Аналогично, самый быстрый компиляционный код — это код, который не нужно компилировать. Кэширование кода WebAssembly — это новая оптимизация в Chrome и V8, которая старается избежать компиляции кода, кэшируя скомпилированный нативный код. Мы [писали](/blog/code-caching) [о](/blog/improved-code-caching) [том](/blog/code-caching-for-devs), как Chrome и V8 кэшируют JavaScript-код в прошлом, а также о лучших практиках использования этой оптимизации. В этом посте мы опишем, как работает система кэширования кода WebAssembly в Chrome и как разработчики могут использовать её для ускорения загрузки приложений с большими модулями WebAssembly.
 
@@ -40,7 +40,7 @@ V8 имеет два компилятора для WebAssembly: Liftoff и Turbo
 
 ```js
 (async () => {
-  const fetchPromise = fetch(&apos;fibonacci.wasm&apos;);
+  const fetchPromise = fetch('fibonacci.wasm');
   const { instance } = await WebAssembly.instantiateStreaming(fetchPromise);
   const result = instance.exports.fibonacci(42);
   console.log(result);

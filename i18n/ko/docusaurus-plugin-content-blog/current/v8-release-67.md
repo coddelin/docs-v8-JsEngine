@@ -1,11 +1,11 @@
 ---
-title: &apos;V8 릴리스 v6.7&apos;
-author: &apos;V8 팀&apos;
+title: 'V8 릴리스 v6.7'
+author: 'V8 팀'
 date: 2018-05-04 13:33:37
 tags:
   - 릴리스
-tweet: &apos;992506342391742465&apos;
-description: &apos;V8 v6.7은 더 많은 신뢰할 수 없는 코드 완화 조치를 추가하고 BigInt 지원을 제공합니다.&apos;
+tweet: '992506342391742465'
+description: 'V8 v6.7은 더 많은 신뢰할 수 없는 코드 완화 조치를 추가하고 BigInt 지원을 제공합니다.'
 ---
 6주마다 우리는 [릴리스 프로세스](/docs/release-process)의 일환으로 새로운 V8 브랜치를 만듭니다. 각 버전은 Chrome Beta 마일스톤 직전에 V8의 Git 마스터에서 브랜치됩니다. 오늘 우리는 [V8 버전 6.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.7)이라는 최신 브랜치를 발표하게 되어 기쁩니다. 이 버전은 몇 주 내에 Chrome 67 Stable과 함께 릴리스될 때까지 베타 상태에 있습니다. V8 v6.7은 개발자들이 흥미로워할 다양한 기능들을 포함하고 있습니다. 이번 글에서는 주요 기능들에 대한 미리보기를 제공합니다.
 

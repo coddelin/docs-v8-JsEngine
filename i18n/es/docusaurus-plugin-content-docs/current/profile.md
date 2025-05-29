@@ -1,6 +1,6 @@
 ---
-title: &apos;Usando el perfilador basado en muestras de V8&apos;
-description: &apos;Este documento explica cómo usar el perfilador basado en muestras de V8.&apos;
+title: 'Usando el perfilador basado en muestras de V8'
+description: 'Este documento explica cómo usar el perfilador basado en muestras de V8.'
 ---
 V8 tiene un perfilador integrado basado en muestras. El perfilador está desactivado por defecto, pero puede activarse con la opción de línea de comandos `--prof`. El muestreador registra las pilas de código JavaScript y C/C++.
 
@@ -116,7 +116,7 @@ Usemos ese perfilador para examinar el [demo explorador Mandelbrot](https://web.
 Pero, ¿qué sucede si deseas que el código se ejecute más rápido en todos los navegadores? Primero deberías **entender qué mantiene ocupado a tu CPU**. Ejecuta Chrome (Windows y Linux [Canary](https://tools.google.com/dlpage/chromesxs)) con los siguientes parámetros en la línea de comandos, lo que hará que emita información de ticks del perfilador (en el archivo `v8.log`) para la URL que especifiques, que en nuestro caso era una versión local de la demo de Mandelbrot sin trabajadores web:
 
 ```bash
-./chrome --js-flags=&apos;--prof&apos; --no-sandbox &apos;http://localhost:8080/&apos;
+./chrome --js-flags='--prof' --no-sandbox 'http://localhost:8080/'
 ```
 
 Al preparar el caso de prueba, asegúrate de que comience su trabajo inmediatamente al cargar, y cierra Chrome cuando termine la computación (usa Alt+F4), para que solo tengas los ticks relevantes en el archivo de registro. También ten en cuenta que los trabajadores web aún no se perfilan correctamente con esta técnica.

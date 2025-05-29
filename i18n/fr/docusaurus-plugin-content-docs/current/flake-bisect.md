@@ -1,6 +1,6 @@
 ---
-title: &apos;Analyse des flocons&apos;
-description: &apos;Ce document explique comment analyser les tests instables.&apos;
+title: 'Analyse des flocons'
+description: 'Ce document explique comment analyser les tests instables.'
 ---
 Les tests instables sont signalés dans une étape distincte sur les robots ([exemple de build](https://ci.chromium.org/ui/p/v8/builders/ci/V8%20Linux64%20TSAN/38630/overview)).
 
@@ -8,7 +8,7 @@ Chaque journal de test fournit une ligne de commande préremplie pour déclenche
 
 ```
 Déclencher l'analyse des flocons via la ligne de commande :
-bb add v8/try.triggered/v8_flako -p &apos;to_revision="deadbeef"&apos; -p &apos;test_name="MyTest"&apos; ...
+bb add v8/try.triggered/v8_flako -p 'to_revision="deadbeef"' -p 'test_name="MyTest"' ...
 ```
 
 Avant de déclencher une analyse des flocons pour la première fois, les utilisateurs doivent se connecter avec un compte google.com :

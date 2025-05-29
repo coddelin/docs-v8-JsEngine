@@ -1,6 +1,6 @@
 ---
-title: &apos;Verwendung von V8s Sample-basiertem Profiler&apos;
-description: &apos;Dieses Dokument erklärt, wie man den Sample-basierten Profiler von V8 verwendet.&apos;
+title: 'Verwendung von V8s Sample-basiertem Profiler'
+description: 'Dieses Dokument erklärt, wie man den Sample-basierten Profiler von V8 verwendet.'
 ---
 V8 verfügt über einen eingebauten Sample-basierten Profiler. Das Profiling ist standardmäßig deaktiviert, kann jedoch über die Befehlszeilenoption `--prof` aktiviert werden. Der Sampler zeichnet Stapel von JavaScript- und C/C++-Code auf.
 
@@ -115,7 +115,7 @@ Lassen Sie uns diesen Profiler verwenden, um die [Mandelbrot-Explorer-Demo](http
 Aber was wäre, wenn Sie den Code auf allen Browsern schneller laufen lassen möchten? Zuerst sollten Sie **verstehen, was Ihre CPU beschäftigt**. Starten Sie Chrome (Windows und Linux [Canary](https://tools.google.com/dlpage/chromesxs)) mit den folgenden Befehlszeilenschaltern, die dazu führen, dass Profiler-Tick-Informationen (in der Datei `v8.log`) für die angegebene URL ausgegeben werden, die in unserem Fall eine lokale Version der Mandelbrot-Demo ohne Webworker war:
 
 ```bash
-./chrome --js-flags=&apos;--prof&apos; --no-sandbox &apos;http://localhost:8080/&apos;
+./chrome --js-flags='--prof' --no-sandbox 'http://localhost:8080/'
 ```
 
 Stellen Sie beim Vorbereiten des Testfalls sicher, dass er seine Arbeit sofort nach dem Laden beginnt, und schließen Sie Chrome, wenn die Berechnung abgeschlossen ist (drücken Sie Alt+F4), damit Sie nur die relevanten Ergebnisse im Protokoll haben. Beachten Sie auch, dass Webworker mit dieser Technik noch nicht korrekt profiliert werden.

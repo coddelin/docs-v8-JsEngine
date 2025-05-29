@@ -1,6 +1,6 @@
 ---
-title: &apos;Was tun, wenn Ihr CL den Node.js-Integrations-Build gebrochen hat&apos;
-description: &apos;Dieses Dokument erklärt, was zu tun ist, wenn Ihr CL den Node.js-Integrations-Build gebrochen hat.&apos;
+title: 'Was tun, wenn Ihr CL den Node.js-Integrations-Build gebrochen hat'
+description: 'Dieses Dokument erklärt, was zu tun ist, wenn Ihr CL den Node.js-Integrations-Build gebrochen hat.'
 ---
 [Node.js](https://github.com/nodejs/node) verwendet V8 stable oder beta. Für zusätzliche Integration baut das V8-Team Node mit dem [Hauptzweig](https://chromium.googlesource.com/v8/v8/+/refs/heads/main) von V8, also mit einer V8-Version von heute. Wir stellen einen Integrations-Bot für [Linux](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Linux64) zur Verfügung, während [Windows](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Win64) und [Mac](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Mac64) in Arbeit sind.
 
@@ -66,6 +66,6 @@ Sobald der Pull Request in den Fork von Node.js von V8 gemergt wurde, müssen Si
 git checkout -b update-deps
 gclient setdep --var=node_revision=<merged-commit-hash>
 git add DEPS
-git commit -m &apos;Update Node&apos;
+git commit -m 'Update Node'
 git cl upload
 ```

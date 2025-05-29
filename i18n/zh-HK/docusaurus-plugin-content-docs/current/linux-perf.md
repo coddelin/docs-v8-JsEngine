@@ -1,6 +1,6 @@
 ---
-title: &apos;V8 的 Linux `perf` 整合&apos;
-description: &apos;本文檔說明如何使用 Linux `perf` 工具分析 V8 的 JIT 編譯代碼之性能。&apos;
+title: 'V8 的 Linux `perf` 整合'
+description: '本文檔說明如何使用 Linux `perf` 工具分析 V8 的 JIT 編譯代碼之性能。'
 ---
 V8 內建支持 Linux `perf` 工具。透過 `--perf-prof` 命令行選項啟用此功能。
 V8 在執行期間會將性能數據寫出到文件，可用於使用 Linux `perf` 工具分析 V8 的 JIT 編譯代碼（包括 JS 函數名稱）。
@@ -15,7 +15,7 @@ V8 在執行期間會將性能數據寫出到文件，可用於使用 Linux `per
 若要使用 V8 的 Linux perf 整合功能，需透過以下 gn 標誌進行編譯：`enable_profiling = true`。
 
 ```bash
-echo &apos;enable_profiling = true&apos; >> out/x64.release/args.gn
+echo 'enable_profiling = true' >> out/x64.release/args.gn
 autoninja -C out/x64.release
 ```
 
@@ -30,9 +30,9 @@ tools/profiling/linux-perf-d8.py out/x64.release/d8 path/to/test.js;
 更完整的範例：
 
 ```bash
-echo &apos;(function f() {
+echo '(function f() {
     var s = 0; for (var i = 0; i < 1000000000; i++) { s += i; } return s;
-  })();&apos; > test.js;
+  })();' > test.js;
 
 # 使用自訂的 V8 標誌以及獨立的輸出目錄以減少雜亂：
 mkdir perf_results
@@ -122,7 +122,7 @@ perf report --input=perf.data.jitted;
     out/x64.release/chrome \
         --user-data-dir=`mktemp -d` \
         --no-sandbox --incognito --enable-benchmarking \
-        --js-flags=&apos;--perf-prof --no-write-protect-code-memory --interpreted-frames-native-stack&apos;
+        --js-flags='--perf-prof --no-write-protect-code-memory --interpreted-frames-native-stack'
     ```
 
 1. 啟動 chrome 後，使用任務管理器找到渲染器進程 ID，並用它來開始分析：

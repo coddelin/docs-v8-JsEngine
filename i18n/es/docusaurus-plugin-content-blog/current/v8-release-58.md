@@ -1,10 +1,10 @@
 ---
-title: &apos;Lanzamiento de V8 versión v5.8&apos;
-author: &apos;el equipo de V8&apos;
+title: 'Lanzamiento de V8 versión v5.8'
+author: 'el equipo de V8'
 date: 2017-03-20 13:33:37
 tags:
   - lanzamiento
-description: &apos;V8 v5.8 permite el uso de tamaños de montón arbitrarios y mejora el rendimiento de inicio.&apos;
+description: 'V8 v5.8 permite el uso de tamaños de montón arbitrarios y mejora el rendimiento de inicio.'
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se ramifica desde el maestro de Git de V8 inmediatamente antes de un hito de Chrome Beta. Hoy nos complace anunciar nuestra rama más reciente, [V8 versión 5.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.8), que estará en beta hasta que se lance en coordinación con Chrome 58 Estable dentro de varias semanas. V8 5.8 está lleno de muchas mejoras orientadas a los desarrolladores. Nos gustaría darte un adelanto de algunos de los aspectos destacados en anticipación al lanzamiento.
 

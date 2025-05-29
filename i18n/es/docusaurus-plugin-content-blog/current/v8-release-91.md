@@ -1,13 +1,13 @@
 ---
-title: &apos;Lanzamiento de V8 v9.1&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), probando mi marca privada&apos;
+title: 'Lanzamiento de V8 v9.1'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), probando mi marca privada'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-05-04
 tags:
  - lanzamiento
-description: &apos;El lanzamiento de V8 v9.1 trae soporte para verificaciones de marcas privadas, la habilitación por defecto de await de nivel superior y mejoras en el rendimiento.&apos;
-tweet: &apos;1389613320953532417&apos;
+description: 'El lanzamiento de V8 v9.1 trae soporte para verificaciones de marcas privadas, la habilitación por defecto de await de nivel superior y mejoras en el rendimiento.'
+tweet: '1389613320953532417'
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](https://v8.dev/docs/release-process). Cada versión se ramifica desde el maestro de Git de V8 inmediatamente antes de un hito de Chrome Beta. Hoy nos complace anunciar nuestra rama más reciente, [V8 versión 9.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.1), que estará en beta hasta su lanzamiento en coordinación con Chrome 91 Stable dentro de varias semanas. V8 v9.1 está repleto de todo tipo de novedades para desarrolladores. Esta publicación proporciona un adelanto de algunos de los aspectos destacados en previsión al lanzamiento.
 

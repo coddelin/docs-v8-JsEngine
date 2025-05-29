@@ -1,7 +1,7 @@
 ---
-title: &apos;介绍 WebAssembly JavaScript Promise 集成 API&apos;
-description: &apos;本文介绍 JSPI 并提供一些简单的示例，帮助你开始使用它&apos;
-author: &apos;Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl&apos;
+title: '介绍 WebAssembly JavaScript Promise 集成 API'
+description: '本文介绍 JSPI 并提供一些简单的示例，帮助你开始使用它'
+author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
 date: 2024-07-01
 tags:
   - WebAssembly
@@ -158,16 +158,16 @@ emcc p42.c -o p42.wasm --no-entry -Wl,--import-memory
 为了动态加载代码，我们使用标准的`WebAssembly.instantiateStreaming` API：
 
 ```js
-WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;));
+WebAssembly.instantiateStreaming(fetch('p42.wasm'));
 ```
 
 这个表达式使用`fetch`定位编译好的Wasm模块，用`WebAssembly.instantiateStreaming`编译从fetch获得的结果并创建一个实例化的模块。`fetch`和`WebAssembly.instantiateStreaming`都会返回Promise；因此我们不能简单地访问结果并提取所需函数。相反，我们使用`EM_ASYNC_JS`宏将其包装成一种JSPI风格的导入：
 
 ```c
 EM_ASYNC_JS(fooFun, resolveFun, (), {
-  console.log(&apos;正在加载promise42&apos;);
-  LoadedModule = (await WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;))).instance;
-  return addFunction(LoadedModule.exports[&apos;provide42&apos;]);
+  console.log('正在加载promise42');
+  LoadedModule = (await WebAssembly.instantiateStreaming(fetch('p42.wasm'))).instance;
+  return addFunction(LoadedModule.exports['provide42']);
 });
 ```
 

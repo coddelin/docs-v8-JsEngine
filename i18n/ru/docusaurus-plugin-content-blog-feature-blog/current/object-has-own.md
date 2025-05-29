@@ -1,13 +1,13 @@
 ---
-title: &apos;`Object.hasOwn`&apos;
-author: &apos;Виктор Гомес ([@VictorBFG](https://twitter.com/VictorBFG))&apos;
+title: '`Object.hasOwn`'
+author: 'Виктор Гомес ([@VictorBFG](https://twitter.com/VictorBFG))'
 avatars:
-  - &apos;victor-gomes&apos;
+  - 'victor-gomes'
 date: 2021-07-01
 tags:
   - ECMAScript
-description: &apos;`Object.hasOwn` делает `Object.prototype.hasOwnProperty` более доступным.&apos;
-tweet: &apos;1410577516943847424&apos;
+description: '`Object.hasOwn` делает `Object.prototype.hasOwnProperty` более доступным.'
+tweet: '1410577516943847424'
 ---
 
 Сегодня очень часто пишут код примерно так:
@@ -15,7 +15,7 @@ tweet: &apos;1410577516943847424&apos;
 ```js
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 
-if (hasOwnProperty.call(object, &apos;foo&apos;)) {
+if (hasOwnProperty.call(object, 'foo')) {
   // У `object` есть свойство `foo`.
 }
 ```
@@ -25,7 +25,7 @@ if (hasOwnProperty.call(object, &apos;foo&apos;)) {
 С предложением [`Object.hasOwn`](https://github.com/tc39/proposal-accessible-object-hasownproperty) можно просто писать:
 
 ```js
-if (Object.hasOwn(object, &apos;foo&apos;)) {
+if (Object.hasOwn(object, 'foo')) {
   // У `object` есть свойство `foo`.
 }
 ```

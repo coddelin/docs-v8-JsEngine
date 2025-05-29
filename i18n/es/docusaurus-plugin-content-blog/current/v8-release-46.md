@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 versión v4.6&apos;
-author: &apos;el equipo de V8&apos;
+title: 'V8 versión v4.6'
+author: 'el equipo de V8'
 date: 2015-08-28 13:33:37
 tags:
   - lanzamiento
-description: &apos;V8 v4.6 viene con menos interrupciones y soporte para nuevas características del lenguaje ES2015.&apos;
+description: 'V8 v4.6 viene con menos interrupciones y soporte para nuevas características del lenguaje ES2015.'
 ---
 Aproximadamente cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](https://v8.dev/docs/release-process). Cada versión se deriva del maestro de Git de V8 inmediatamente antes de que Chrome se ramifique para un hito de Chrome Beta. Hoy nos complace anunciar nuestra rama más reciente, [V8 versión 4.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.6), que estará en beta hasta que se lance en coordinación con Chrome 46 Stable. V8 4.6 está lleno de todo tipo de beneficios para desarrolladores, así que nos gustaría ofrecerte un adelanto de algunos de los aspectos destacados en anticipación al lanzamiento en varias semanas.
 
@@ -38,7 +38,7 @@ function myFunction(a, b, c) {
   console.log(b);
   console.log(c);
 }
-const argsInArray = [&apos;Hola &apos;, &apos;Operador de &apos;, &apos;propagación!&apos;];
+const argsInArray = ['Hola ', 'Operador de ', 'propagación!'];
 myFunction.apply(null, argsInArray);
 
 // Código con operador de propagación
@@ -48,7 +48,7 @@ function myFunction (a,b,c) {
   console.log(c);
 }
 
-const argsInArray = [&apos;Hola &apos;, &apos;Operador de &apos;, &apos;propagación!&apos;];
+const argsInArray = ['Hola ', 'Operador de ', 'propagación!'];
 myFunction(...argsInArray);
 ```
 
@@ -61,9 +61,9 @@ En la práctica, esto significa que puedes usar new.target para averiguar si una
 ```js
 function myFunction() {
   if (new.target === undefined) {
-    throw &apos;Intenta llamarla con new.&apos;;
+    throw 'Intenta llamarla con new.';
   }
-  console.log(&apos;¡Funciona!&apos;);
+  console.log('¡Funciona!');
 }
 
 // Falla:

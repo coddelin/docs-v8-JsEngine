@@ -1,14 +1,14 @@
 ---
-title: &apos;옵셔널 체이닝&apos;
-author: &apos;Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 옵셔널 체인의 브레이커&apos;
+title: '옵셔널 체이닝'
+author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 옵셔널 체인의 브레이커'
 avatars:
-  - &apos;maya-armyanova&apos;
+  - 'maya-armyanova'
 date: 2019-08-27
 tags:
   - ECMAScript
   - ES2020
-description: &apos;옵셔널 체이닝은 읽기 쉽고 간결한 표현으로 빌트인 널리쉬(nullish) 체크를 포함한 속성 접근을 가능하게 합니다.&apos;
-tweet: &apos;1166360971914481669&apos;
+description: '옵셔널 체이닝은 읽기 쉽고 간결한 표현으로 빌트인 널리쉬(nullish) 체크를 포함한 속성 접근을 가능하게 합니다.'
+tweet: '1166360971914481669'
 ---
 JavaScript에서 긴 속성 접근 체인은 오류를 일으키기 쉽습니다. 이 중 하나라도 `null` 또는 `undefined`(“nullish” 값으로 알려짐)일 수 있기 때문입니다. 각 단계에서 속성 존재 여부를 확인하는 것은 쉽게 깊이 중첩된 `if`-문 구조 또는 속성 접근 체인을 복제하는 긴 `if`-조건으로 바뀔 수 있습니다:
 
@@ -67,7 +67,7 @@ const adminOption = db?.user?.validateAdminAndGetPrefs?.().option;
 ```js
 // 정적 속성 접근의 성능을
 // 동적으로 생성된 속성 이름으로 확장
-const optionName = &apos;optional setting&apos;;
+const optionName = 'optional setting';
 const optionLength = db?.user?.preferences?.[optionName].length;
 ```
 
@@ -83,22 +83,22 @@ const userName = usersArray?.[userIndex].name;
 옵셔널 체이닝 연산자는 [널리쉬 병합 `??` 연산자](/features/nullish-coalescing)와 결합하여 `undefined`가 아닌 기본값이 필요할 때 사용할 수 있습니다. 이는 깊은 속성 접근을 안전하게 지정된 기본값으로 수행할 수 있게 하며, 이전에는 [lodash의 `_.get`](https://lodash.dev/docs/4.17.15#get) 같은 사용자 라이브러리가 필요했던 일반적인 사용 사례를 해결합니다:
 
 ```js
-const object = { id: 123, names: { first: &apos;Alice&apos;, last: &apos;Smith&apos; }};
+const object = { id: 123, names: { first: 'Alice', last: 'Smith' }};
 
 { // lodash 사용:
-  const firstName = _.get(object, &apos;names.first&apos;);
-  // → &apos;Alice&apos;
+  const firstName = _.get(object, 'names.first');
+  // → 'Alice'
 
-  const middleName = _.get(object, &apos;names.middle&apos;, &apos;(no middle name)&apos;);
-  // → &apos;(no middle name)&apos;
+  const middleName = _.get(object, 'names.middle', '(no middle name)');
+  // → '(no middle name)'
 }
 
 { // 옵셔널 체이닝 및 널리쉬 병합 사용:
-  const firstName = object?.names?.first ?? &apos;(no first name)&apos;;
-  // → &apos;Alice&apos;
+  const firstName = object?.names?.first ?? '(no first name)';
+  // → 'Alice'
 
-  const middleName = object?.names?.middle ?? &apos;(no middle name)&apos;;
-  // → &apos;(no middle name)&apos;
+  const middleName = object?.names?.middle ?? '(no middle name)';
+  // → '(no middle name)'
 }
 ```
 

@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 Veröffentlichung v4.6&apos;
-author: &apos;das V8-Team&apos;
+title: 'V8 Veröffentlichung v4.6'
+author: 'das V8-Team'
 date: 2015-08-28 13:33:37
 tags:
   - Veröffentlichung
-description: &apos;V8 v4.6 kommt mit reduzierten Rucklern und Unterstützung für neue ES2015-Sprachfunktionen.&apos;
+description: 'V8 v4.6 kommt mit reduzierten Rucklern und Unterstützung für neue ES2015-Sprachfunktionen.'
 ---
 Etwa alle sechs Wochen erstellen wir im Rahmen unseres [Veröffentlichungsprozesses](https://v8.dev/docs/release-process) einen neuen Branch von V8. Jede Version wird unmittelbar vor dem Branch von Chrome für einen Chrome-Beta-Meilenstein vom Git-Master von V8 abgezweigt. Heute freuen wir uns, unseren neuesten Branch [V8 Version 4.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.6) vorzustellen, der sich in der Beta-Phase befinden wird, bis er in Abstimmung mit Chrome 46 Stable freigegeben wird. V8 4.6 ist vollgepackt mit allerlei Neuerungen für Entwickler, daher möchten wir Ihnen einen Vorgeschmack auf einige Highlights geben, die in den kommenden Wochen veröffentlicht werden.
 
@@ -38,7 +38,7 @@ function myFunction(a, b, c) {
   console.log(b);
   console.log(c);
 }
-const argsInArray = [&apos;Hi &apos;, &apos;Spread &apos;, &apos;operator!&apos;];
+const argsInArray = ['Hi ', 'Spread ', 'operator!'];
 myFunction.apply(null, argsInArray);
 
 // Code mit Spread-Operator
@@ -48,7 +48,7 @@ function myFunction (a,b,c) {
   console.log(c);
 }
 
-const argsInArray = [&apos;Hi &apos;, &apos;Spread &apos;, &apos;operator!&apos;];
+const argsInArray = ['Hi ', 'Spread ', 'operator!'];
 myFunction(...argsInArray);
 ```
 
@@ -61,9 +61,9 @@ In der Praxis bedeutet das, dass Sie mit new.target herausfinden können, ob ein
 ```js
 function myFunction() {
   if (new.target === undefined) {
-    throw &apos;Versuchen Sie, es mit new aufzurufen.&apos;;
+    throw 'Versuchen Sie, es mit new aufzurufen.';
   }
-  console.log(&apos;Funktioniert!&apos;);
+  console.log('Funktioniert!');
 }
 
 // Bricht ab:
@@ -98,4 +98,4 @@ Das Gute daran ist, dass alle Änderungen in Bezug auf oortonline.gl allgemeine 
 
 Bitte sehen Sie sich unsere [Zusammenfassung der API-Änderungen](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit) an. Dieses Dokument wird regelmäßig einige Wochen nach jeder Hauptversion aktualisiert.
 
-Entwickler mit einem [aktiven V8-Checkout](https://v8.dev/docs/source-code#using-git) können `git checkout -b 4.6 -t branch-heads/4.6` nutzen, um die neuen Funktionen in V8 v4.6 zu testen. Alternativ können Sie [Chrome&apos;s Beta-Kanal abonnieren](https://www.google.com/chrome/browser/beta.html) und die neuen Funktionen bald selbst ausprobieren.
+Entwickler mit einem [aktiven V8-Checkout](https://v8.dev/docs/source-code#using-git) können `git checkout -b 4.6 -t branch-heads/4.6` nutzen, um die neuen Funktionen in V8 v4.6 zu testen. Alternativ können Sie [Chrome's Beta-Kanal abonnieren](https://www.google.com/chrome/browser/beta.html) und die neuen Funktionen bald selbst ausprobieren.

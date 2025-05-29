@@ -1,6 +1,6 @@
 ---
-title: &apos;Compilation croisée pour iOS&apos;
-description: &apos;Ce document explique comment effectuer une compilation croisée de V8 pour iOS.&apos;
+title: 'Compilation croisée pour iOS'
+description: 'Ce document explique comment effectuer une compilation croisée de V8 pour iOS.'
 ---
 Cette page sert d'introduction brève à la construction de V8 pour les cibles iOS.
 
@@ -9,7 +9,7 @@ Cette page sert d'introduction brève à la construction de V8 pour les cibles i
 - Une machine hôte sous macOS (OS X) avec Xcode installé.
 - Un appareil iOS cible 64 bits (les appareils iOS 32 bits anciens ne sont pas pris en charge).
 - V8 v7.5 ou plus récent.
-- jitless est une exigence incontournable pour iOS (depuis décembre 2020). Veuillez donc utiliser les options &apos;--expose_gc --jitless&apos;
+- jitless est une exigence incontournable pour iOS (depuis décembre 2020). Veuillez donc utiliser les options '--expose_gc --jitless'
 
 ## Configuration initiale
 
@@ -18,8 +18,8 @@ Suivez [les instructions pour construire V8](/docs/build).
 Récupérez des outils supplémentaires nécessaires à la compilation croisée pour iOS en ajoutant `target_os` dans votre fichier de configuration `.gclient`, situé dans le répertoire parent du répertoire source `v8` :
 
 ```python
-# [... autres contenus de .gclient tels que la variable &apos;solutions&apos; ...]
-target_os = [&apos;ios&apos;]
+# [... autres contenus de .gclient tels que la variable 'solutions' ...]
+target_os = ['ios']
 ```
 
 Après avoir mis à jour `.gclient`, exécutez `gclient sync` pour télécharger les outils supplémentaires.

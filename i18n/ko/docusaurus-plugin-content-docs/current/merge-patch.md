@@ -1,6 +1,6 @@
 ---
-title: &apos;병합 및 패치&apos;
-description: &apos;이 문서는 V8 패치를 릴리스 분기로 병합하는 방법을 설명합니다.&apos;
+title: '병합 및 패치'
+description: '이 문서는 V8 패치를 릴리스 분기로 병합하는 방법을 설명합니다.'
 ---
 중요한 버그 수정과 같은 패치가 `main` 브랜치에 있으며 해당 패치를 V8 릴리스 브랜치(refs/branch-heads/12.5) 중 하나에 병합해야 하는 경우, 계속 읽어보세요.
 
@@ -22,7 +22,7 @@ description: &apos;이 문서는 V8 패치를 릴리스 분기로 병합하는 �
 
 ## 병합 프로세스
 
-V8 트래커에서 병합 프로세스는 속성으로 동작합니다. 따라서 관련 Chrome 마일스톤에 &apos;Merge-Request&apos;를 설정하세요. 병합이 V8 [포트](https://v8.dev/docs/ports)에만 영향을 미치는 경우 HW 속성을 적절히 설정하세요. 예시:
+V8 트래커에서 병합 프로세스는 속성으로 동작합니다. 따라서 관련 Chrome 마일스톤에 'Merge-Request'를 설정하세요. 병합이 V8 [포트](https://v8.dev/docs/ports)에만 영향을 미치는 경우 HW 속성을 적절히 설정하세요. 예시:
 
 ```
 Merge-Request: 123

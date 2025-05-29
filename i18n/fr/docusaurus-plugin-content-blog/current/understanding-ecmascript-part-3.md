@@ -1,26 +1,26 @@
 ---
-title: &apos;Comprendre la spécification ECMAScript, partie 3&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), observatrice spéculative de la spécification&apos;
+title: 'Comprendre la spécification ECMAScript, partie 3'
+author: '[Marja Hölttä](https://twitter.com/marjakh), observatrice spéculative de la spécification'
 avatars:
   - marja-holtta
 date: 2020-04-01
 tags:
   - ECMAScript
   - Comprendre ECMAScript
-description: &apos;Tutoriel sur la lecture de la spécification ECMAScript&apos;
-tweet: &apos;1245400717667577857&apos;
+description: 'Tutoriel sur la lecture de la spécification ECMAScript'
+tweet: '1245400717667577857'
 ---
 
 [Tous les épisodes](/blog/tags/understanding-ecmascript)
 
-Dans cet épisode, nous approfondirons la définition du langage ECMAScript et sa syntaxe. Si vous n&apos;êtes pas familier avec les grammaires libres de contexte, c&apos;est le bon moment pour vérifier les bases, car la spécification utilise des grammaires libres de contexte pour définir le langage. Consultez [le chapitre sur les grammaires libres de contexte dans "Crafting Interpreters"](https://craftinginterpreters.com/representing-code.html#context-free-grammars) pour une introduction accessible ou la [page Wikipédia](https://en.wikipedia.org/wiki/Context-free_grammar) pour une définition plus mathématique.
+Dans cet épisode, nous approfondirons la définition du langage ECMAScript et sa syntaxe. Si vous n'êtes pas familier avec les grammaires libres de contexte, c'est le bon moment pour vérifier les bases, car la spécification utilise des grammaires libres de contexte pour définir le langage. Consultez [le chapitre sur les grammaires libres de contexte dans "Crafting Interpreters"](https://craftinginterpreters.com/representing-code.html#context-free-grammars) pour une introduction accessible ou la [page Wikipédia](https://en.wikipedia.org/wiki/Context-free_grammar) pour une définition plus mathématique.
 
 <!--truncate-->
 ## Grammaires ECMAScript
 
 La spécification ECMAScript définit quatre grammaires :
 
-La [grammaire lexicale](https://tc39.es/ecma262/#sec-ecmascript-language-lexical-grammar) décrit comment les [points de code Unicode](https://en.wikipedia.org/wiki/Unicode#Architecture_and_terminology) sont traduits en une séquence d&apos;**éléments d&apos;entrée** (tokens, terminaux de ligne, commentaires, espaces blancs).
+La [grammaire lexicale](https://tc39.es/ecma262/#sec-ecmascript-language-lexical-grammar) décrit comment les [points de code Unicode](https://en.wikipedia.org/wiki/Unicode#Architecture_and_terminology) sont traduits en une séquence d'**éléments d'entrée** (tokens, terminaux de ligne, commentaires, espaces blancs).
 
 La [grammaire syntaxique](https://tc39.es/ecma262/#sec-syntactic-grammar) définit comment les programmes syntaxiquement corrects sont composés de tokens.
 
@@ -28,7 +28,7 @@ La [grammaire RegExp](https://tc39.es/ecma262/#sec-patterns) décrit comment les
 
 La [grammaire des chaînes numériques](https://tc39.es/ecma262/#sec-tonumber-applied-to-the-string-type) décrit comment les chaînes de caractères sont traduites en valeurs numériques.
 
-Chaque grammaire est définie comme une grammaire libre de contexte, composée d&apos;un ensemble de productions.
+Chaque grammaire est définie comme une grammaire libre de contexte, composée d'un ensemble de productions.
 
 Les grammaires utilisent une notation légèrement différente : la grammaire syntaxique utilise `LeftHandSideSymbol :` alors que la grammaire lexicale et la grammaire RegExp utilisent `LeftHandSideSymbol ::` et la grammaire des chaînes numériques utilise `LeftHandSideSymbol :::`.
 
@@ -36,11 +36,11 @@ Ensuite, nous examinerons plus en détail la grammaire lexicale et la grammaire 
 
 ## Grammaire Lexicale
 
-La spécification définit le texte source ECMAScript comme une séquence de points de code Unicode. Par exemple, les noms de variables ne sont pas limités aux caractères ASCII, mais peuvent également inclure d&apos;autres caractères Unicode. La spécification ne parle pas de l&apos;encodage réel (par exemple, UTF-8 ou UTF-16). Elle suppose que le code source a déjà été converti en une séquence de points de code Unicode selon l&apos;encodage initial.
+La spécification définit le texte source ECMAScript comme une séquence de points de code Unicode. Par exemple, les noms de variables ne sont pas limités aux caractères ASCII, mais peuvent également inclure d'autres caractères Unicode. La spécification ne parle pas de l'encodage réel (par exemple, UTF-8 ou UTF-16). Elle suppose que le code source a déjà été converti en une séquence de points de code Unicode selon l'encodage initial.
 
-Il n&apos;est pas possible de tokeniser le code source ECMAScript à l&apos;avance, ce qui rend la définition de la grammaire lexicale légèrement plus complexe.
+Il n'est pas possible de tokeniser le code source ECMAScript à l'avance, ce qui rend la définition de la grammaire lexicale légèrement plus complexe.
 
-Par exemple, nous ne pouvons pas déterminer si `/` est l&apos;opérateur de division ou le début d&apos;une RegExp sans examiner le contexte élargi dans lequel il se trouve :
+Par exemple, nous ne pouvons pas déterminer si `/` est l'opérateur de division ou le début d'une RegExp sans examiner le contexte élargi dans lequel il se trouve :
 
 ```js
 const x = 10 / 5;
@@ -52,13 +52,13 @@ Ici `/` est un `DivPunctuator`.
 const r = /foo/;
 ```
 
-Ici le premier `/` est le début d&apos;un `RegularExpressionLiteral`.
+Ici le premier `/` est le début d'un `RegularExpressionLiteral`.
 
-Les modèles introduisent une ambiguïté similaire — l&apos;interprétation de <code>}`</code> dépend du contexte dans lequel il se trouve :
+Les modèles introduisent une ambiguïté similaire — l'interprétation de <code>}`</code> dépend du contexte dans lequel il se trouve :
 
 ```js
-const what1 = &apos;temp&apos;;
-const what2 = &apos;late&apos;;
+const what1 = 'temp';
+const what2 = 'late';
 const t = `Je suis un ${ what1 + what2 }`;
 ```
 
@@ -69,11 +69,11 @@ if (0 == 1) {
 }`pas très utile`;
 ```
 
-Ici `}` est un `RightBracePunctuator` et <code>\`</code> est le début d&apos;un `NoSubstitutionTemplate`.
+Ici `}` est un `RightBracePunctuator` et <code>\`</code> est le début d'un `NoSubstitutionTemplate`.
 
-Même si l&apos;interprétation de `/` et <code>}`</code> dépend de leur « contexte » — leur position dans la structure syntaxique du code — les grammaires que nous allons décrire ensuite restent libres de contexte.
+Même si l'interprétation de `/` et <code>}`</code> dépend de leur « contexte » — leur position dans la structure syntaxique du code — les grammaires que nous allons décrire ensuite restent libres de contexte.
 
-La grammaire lexicale utilise plusieurs symboles objectifs pour distinguer les contextes où certains éléments d&apos;entrée sont autorisés et d&apos;autres ne le sont pas. Par exemple, le symbole objectif `InputElementDiv` est utilisé dans les contextes où `/` est une division et `/=` est une affectation-division. Les productions [`InputElementDiv`](https://tc39.es/ecma262/#prod-InputElementDiv) listent les tokens possibles pouvant être produits dans ce contexte :
+La grammaire lexicale utilise plusieurs symboles objectifs pour distinguer les contextes où certains éléments d'entrée sont autorisés et d'autres ne le sont pas. Par exemple, le symbole objectif `InputElementDiv` est utilisé dans les contextes où `/` est une division et `/=` est une affectation-division. Les productions [`InputElementDiv`](https://tc39.es/ecma262/#prod-InputElementDiv) listent les tokens possibles pouvant être produits dans ce contexte :
 
 ```grammar
 InputElementDiv ::
@@ -85,9 +85,9 @@ InputElementDiv ::
   RightBracePunctuator
 ```
 
-Dans ce contexte, rencontrer `/` produit l&apos;élément d&apos;entrée `DivPunctuator`. Produire un `RegularExpressionLiteral` n&apos;est pas une option ici.
+Dans ce contexte, rencontrer `/` produit l'élément d'entrée `DivPunctuator`. Produire un `RegularExpressionLiteral` n'est pas une option ici.
 
-D&apos;un autre côté, [`InputElementRegExp`](https://tc39.es/ecma262/#prod-InputElementRegExp) est le symbole objectif pour les contextes où `/` est le début d&apos;une RegExp :
+D'un autre côté, [`InputElementRegExp`](https://tc39.es/ecma262/#prod-InputElementRegExp) est le symbole objectif pour les contextes où `/` est le début d'une RegExp :
 
 ```grammar
 InputElementRegExp ::
@@ -99,7 +99,7 @@ InputElementRegExp ::
   RegularExpressionLiteral
 ```
 
-Comme nous le voyons dans les productions, il est possible que cela produise l&apos;élément d&apos;entrée `RegularExpressionLiteral`, mais produire `DivPunctuator` n&apos;est pas possible.
+Comme nous le voyons dans les productions, il est possible que cela produise l'élément d'entrée `RegularExpressionLiteral`, mais produire `DivPunctuator` n'est pas possible.
 
 De même, il existe un autre symbole de but, `InputElementRegExpOrTemplateTail`, pour les contextes où `TemplateMiddle` et `TemplateTail` sont autorisés, en plus de `RegularExpressionLiteral`. Enfin, `InputElementTemplateTail` est le symbole de but pour les contextes où seuls `TemplateMiddle` et `TemplateTail` sont autorisés, mais où `RegularExpressionLiteral` n'est pas autorisé.
 

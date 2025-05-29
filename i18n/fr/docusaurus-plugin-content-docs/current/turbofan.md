@@ -1,19 +1,19 @@
 ---
-title: &apos;TurboFan&apos;
-description: &apos;Ce document recueille des ressources sur TurboFan, le compilateur optimisant de V8.&apos;
+title: 'TurboFan'
+description: 'Ce document recueille des ressources sur TurboFan, le compilateur optimisant de V8.'
 ---
-TurboFan est l&apos;un des compilateurs optimisants de V8 exploitant un concept appelé [« Sea of Nodes »](https://darksi.de/d.sea-of-nodes/). L&apos;un des articles du blog de V8 propose une [vue d&apos;ensemble de TurboFan](/blog/turbofan-jit). Plus de détails peuvent être trouvés dans les ressources suivantes.
+TurboFan est l'un des compilateurs optimisants de V8 exploitant un concept appelé [« Sea of Nodes »](https://darksi.de/d.sea-of-nodes/). L'un des articles du blog de V8 propose une [vue d'ensemble de TurboFan](/blog/turbofan-jit). Plus de détails peuvent être trouvés dans les ressources suivantes.
 
 ## Articles et articles de blog
 
 - [Une histoire de TurboFan](https://benediktmeurer.de/2017/03/01/v8-behind-the-scenes-february-edition)
 - [Ignition + TurboFan et ES2015](https://benediktmeurer.de/2016/11/25/v8-behind-the-scenes-november-edition)
-- [Introduction à l&apos;optimisation spéculative dans V8](https://ponyfoo.com/articles/an-introduction-to-speculative-optimization-in-v8)
+- [Introduction à l'optimisation spéculative dans V8](https://ponyfoo.com/articles/an-introduction-to-speculative-optimization-in-v8)
 
 ## Présentations
 
 - [CodeStubAssembler : Redux](https://docs.google.com/presentation/d/1u6bsgRBqyVY3RddMfF1ZaJ1hWmqHZiVMuPRw_iKpHlY)
-- [Vue d&apos;ensemble du compilateur TurboFan](https://docs.google.com/presentation/d/1H1lLsbclvzyOF3IUR05ZUaZcqDxo7_-8f4yJoxdMooU/edit)
+- [Vue d'ensemble du compilateur TurboFan](https://docs.google.com/presentation/d/1H1lLsbclvzyOF3IUR05ZUaZcqDxo7_-8f4yJoxdMooU/edit)
 - [TurboFan IR](https://docs.google.com/presentation/d/1Z9iIHojKDrXvZ27gRX51UxHD-bKf1QcPzSijntpMJBM)
 - [Conception JIT de TurboFan](https://docs.google.com/presentation/d/1sOEF4MlF7LeO7uq-uThJSulJlTh--wgLeaVibsbb3tc)
 - [Calcul rapide pour les langages dynamiques](https://docs.google.com/a/google.com/presentation/d/1wZVIqJMODGFYggueQySdiA3tUYuHNMcyp_PndgXsO1Y)
@@ -26,10 +26,10 @@ TurboFan est l&apos;un des compilateurs optimisants de V8 exploitant un concept 
 Ce sont des documents de conception principalement liés aux détails internes de TurboFan.
 
 - [Spécialisation du contexte de la fonction](https://docs.google.com/document/d/1CJbBtqzKmQxM1Mo4xU0ENA7KXqb1YzI6HQU8qESZ9Ic)
-- [Plan d&apos;optimisation des paramètres restants et objets exotiques d&apos;arguments](https://docs.google.com/document/d/1DvDx3Xursn1ViV5k4rT4KB8HBfBb2GdUy3wzNfJWcKM)
+- [Plan d'optimisation des paramètres restants et objets exotiques d'arguments](https://docs.google.com/document/d/1DvDx3Xursn1ViV5k4rT4KB8HBfBb2GdUy3wzNfJWcKM)
 - [Intégration des outils de développement TurboFan](https://docs.google.com/document/d/1zl0IA7dbPffvPPkaCmLVPttq4BYIfAe2Qy8sapkYgRE)
 - [Intégration TurboFan](https://docs.google.com/document/d/1l-oZOW3uU4kSAHccaMuUMl_RCwuQC526s0hcNVeAM1E)
-- [Heuristiques d&apos;intégration TurboFan](https://docs.google.com/document/d/1VoYBhpDhJC4VlqMXCKvae-8IGuheBGxy32EOgC2LnT8)
+- [Heuristiques d'intégration TurboFan](https://docs.google.com/document/d/1VoYBhpDhJC4VlqMXCKvae-8IGuheBGxy32EOgC2LnT8)
 - [Élimination des contrôles redondants de limites et de dépassement TurboFan](https://docs.google.com/document/d/1R7-BIUnIKFzqki0jR4SfEZb3XmLafa04DLDrqhxgZ9U)
 - [Désoptimisation paresseuse sans modification du code](https://docs.google.com/document/d/1ELgd71B6iBaU6UmZ_lvwxf_OrYYnv0e4nuzZpK05-pg)
 - [Allocateur de registres](https://docs.google.com/document/d/1aeUugkWCF1biPB4tTZ2KT3mmRSDV785yWZhwzlJe5xY)

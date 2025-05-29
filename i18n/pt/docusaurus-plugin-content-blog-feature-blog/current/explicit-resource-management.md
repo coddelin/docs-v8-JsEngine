@@ -1,13 +1,13 @@
 ---
 title: "O Novo Superpoder do JavaScript: Gerenciamento Explícito de Recursos"
-author: &apos;Rezvan Mahdavi Hezaveh&apos;
+author: 'Rezvan Mahdavi Hezaveh'
 avatars:
-  - &apos;rezvan-mahdavi-hezaveh&apos;
+  - 'rezvan-mahdavi-hezaveh'
 date: 2025-05-09
 tags:
   - ECMAScript
-description: &apos;A proposta de Gerenciamento Explícito de Recursos capacita os desenvolvedores a gerenciar explicitamente o ciclo de vida dos recursos.&apos;
-tweet: &apos;&apos;
+description: 'A proposta de Gerenciamento Explícito de Recursos capacita os desenvolvedores a gerenciar explicitamente o ciclo de vida dos recursos.'
+tweet: ''
 ---
 
 A proposta de *Gerenciamento Explícito de Recursos* introduz uma abordagem determinística para gerenciar explicitamente o ciclo de vida de recursos como manipuladores de arquivos, conexões de rede e mais. Esta proposta traz as seguintes adições à linguagem: as declarações `using` e `await using`, que chamam automaticamente o método dispose quando um recurso sai do escopo; os símbolos `[Symbol.dispose]()` e `[Symbol.asyncDispose]()` para operações de limpeza; dois novos objetos globais `DisposableStack` e `AsyncDisposableStack` como contêineres para agregar recursos descartáveis; e `SuppressedError` como um novo tipo de erro (contém tanto o erro que foi lançado mais recentemente, quanto o erro que foi suprimido) para lidar com o cenário onde um erro ocorre durante o descarte de um recurso, potencialmente mascarando um erro existente lançado pelo corpo ou pelo descarte de outro recurso. Essas adições permitem que os desenvolvedores escrevam códigos mais robustos, performáticos e mantíveis, fornecendo controle granular sobre o descarte de recursos.
@@ -58,7 +58,7 @@ async function processData(response) {
     return processedData;
   }
  
- readFile(&apos;https://example.com/largefile.dat&apos;);
+ readFile('https://example.com/largefile.dat');
 ```
 
 Portanto, é crucial para os desenvolvedores utilizarem o bloco `try...finally` ao usar fluxos e colocarem `reader.releaseLock()` em `finally`. Esse padrão garante que `reader.releaseLock()` seja sempre chamado.
@@ -87,7 +87,7 @@ async function processData(response) {
     return processedData;
   }
  
- readFile(&apos;https://example.com/largefile.dat&apos;);
+ readFile('https://example.com/largefile.dat');
 ```
 
 Uma alternativa para escrever este código é criar um objeto descartável `readerResource`, que contém o leitor (`response.body.getReader()`) e o método `[Symbol.dispose]()` que chama `this.reader.releaseLock()`. A declaração `using` garante que `readerResource[Symbol.dispose]()` seja chamado quando o bloco de código for encerrado, e lembrar de chamar `releaseLock` não é mais necessário porque a declaração `using` cuida disso. A integração de `[Symbol.dispose]` e `[Symbol.asyncDispose]` em APIs web como streams pode acontecer no futuro, para que os desenvolvedores não precisem escrever o objeto wrapper manualmente.
@@ -122,7 +122,7 @@ Uma alternativa para escrever este código é criar um objeto descartável `read
   }
  // readerResource[Symbol.dispose]() é chamado automaticamente.
 
- readFile(&apos;https://example.com/largefile.dat&apos;);
+ readFile('https://example.com/largefile.dat');
 ```
 
 ## `DisposableStack` e `AsyncDisposableStack`
@@ -139,7 +139,7 @@ Vamos analisar cada método e ver um exemplo:
         reader: response.body.getReader(),
         [Symbol.dispose]() {
             this.reader.releaseLock();
-            console.log(&apos;Bloqueio do leitor liberado.&apos;);
+            console.log('Bloqueio do leitor liberado.');
         },
     };
     using stack = new DisposableStack();
@@ -156,7 +156,7 @@ Vamos analisar cada método e ver um exemplo:
     stack.adopt(
       response.body.getReader(), reader => {
         reader.releaseLock();
-        console.log(&apos;Bloqueio do leitor liberado.&apos;);
+        console.log('Bloqueio do leitor liberado.');
       });
 }
 // Bloqueio do leitor liberado.
@@ -180,7 +180,7 @@ Vamos analisar cada método e ver um exemplo:
     stack.adopt(
       response.body.getReader(), reader => {
         reader.releaseLock();
-        console.log(&apos;Bloqueio do leitor liberado.&apos;);
+        console.log('Bloqueio do leitor liberado.');
       });
     using newStack = stack.move();
 }
@@ -196,7 +196,7 @@ Vamos analisar cada método e ver um exemplo:
         reader: response.body.getReader(),
         [Symbol.dispose]() {
             this.reader.releaseLock();
-            console.log(&apos;Bloqueio do leitor liberado.&apos;);
+            console.log('Bloqueio do leitor liberado.');
         },
     };
     let stack = new DisposableStack();

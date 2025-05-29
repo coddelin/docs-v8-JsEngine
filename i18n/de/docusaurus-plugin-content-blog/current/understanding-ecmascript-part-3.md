@@ -1,14 +1,14 @@
 ---
-title: &apos;Das ECMAScript-Spezifikation verstehen, Teil 3&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), spekulative Spezifikationsbeobachterin&apos;
+title: 'Das ECMAScript-Spezifikation verstehen, Teil 3'
+author: '[Marja Hölttä](https://twitter.com/marjakh), spekulative Spezifikationsbeobachterin'
 avatars:
   - marja-holtta
 date: 2020-04-01
 tags:
   - ECMAScript
   - ECMAScript verstehen
-description: &apos;Tutorial zum Lesen der ECMAScript-Spezifikation&apos;
-tweet: &apos;1245400717667577857&apos;
+description: 'Tutorial zum Lesen der ECMAScript-Spezifikation'
+tweet: '1245400717667577857'
 ---
 
 [Alle Episoden](/blog/tags/understanding-ecmascript)
@@ -57,8 +57,8 @@ Hier ist das erste `/` der Anfang eines `RegularExpressionLiteral`.
 Templates führen eine ähnliche Mehrdeutigkeit ein — die Interpretation von <code>}`</code> hängt vom Kontext ab, in dem es auftritt:
 
 ```js
-const what1 = &apos;temp&apos;;
-const what2 = &apos;late&apos;;
+const what1 = 'temp';
+const what2 = 'late';
 const t = `I am a ${ what1 + what2 }`;
 ```
 

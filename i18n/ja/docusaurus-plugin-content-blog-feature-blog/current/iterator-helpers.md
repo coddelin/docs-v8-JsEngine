@@ -126,7 +126,7 @@ const posts = document.querySelectorAll('li:not(header li)');
 
 // 少なくとも1つのブログ投稿が公開された日付を取得してログに記録します。
 const dates = new Set();
-const forEach = posts.values().forEach((x) => dates.add(x.querySelector(&apos;time&apos;)));
+const forEach = posts.values().forEach((x) => dates.add(x.querySelector('time')));
 console.log(dates);
 ```
 
@@ -136,10 +136,10 @@ console.log(dates);
 
 ```javascript
 // ブログアーカイブページからブログ投稿のリストを選択します。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // ブログ投稿のテキスト内容（タイトル）に`Iterators`というキーワードが含まれているかどうか確認します。
-posts.values().some((x) => x.textContent.includes(&apos;Iterators&apos;));
+posts.values().some((x) => x.textContent.includes('Iterators'));
 ```
 
 ## .every(fn)
@@ -148,10 +148,10 @@ posts.values().some((x) => x.textContent.includes(&apos;Iterators&apos;));
 
 ```javascript
 // ブログアーカイブページからブログ投稿のリストを選択します。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // すべてのブログ投稿のテキスト内容（タイトル）に`V8`というキーワードが含まれているかどうか確認します。
-posts.values().every((x) => x.textContent.includes(&apos;V8&apos;));
+posts.values().every((x) => x.textContent.includes('V8'));
 ```
 
 ## .find(fn)
@@ -160,10 +160,10 @@ posts.values().every((x) => x.textContent.includes(&apos;V8&apos;));
 
 ```javascript
 // ブログアーカイブページからブログ投稿のリストを選択します。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // 最新のブログ投稿のテキスト内容（タイトル）に`V8`というキーワードが含まれているかどうかログに記録します。
-console.log(posts.values().find((x) => x.textContent.includes(&apos;V8&apos;)).textContent);
+console.log(posts.values().find((x) => x.textContent.includes('V8')).textContent);
 ```
 
 ## Iterator.from(object)
@@ -172,10 +172,10 @@ console.log(posts.values().find((x) => x.textContent.includes(&apos;V8&apos;)).t
 
 ```javascript
 // ブログアーカイブページからブログ投稿のリストを選択します。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // まず投稿からイテレーターを作成します。その後、`V8`というキーワードを含む最新のブログ投稿のテキスト内容（タイトル）をログに記録します。
-console.log(Iterator.from(posts).find((x) => x.textContent.includes(&apos;V8&apos;)).textContent);
+console.log(Iterator.from(posts).find((x) => x.textContent.includes('V8')).textContent);
 ```
 
 ## 利用可能性

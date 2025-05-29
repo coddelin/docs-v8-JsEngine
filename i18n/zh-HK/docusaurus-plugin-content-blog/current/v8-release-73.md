@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 版本發佈 v7.3&apos;
-author: &apos;Clemens Backes，編譯器專家&apos;
+title: 'V8 版本發佈 v7.3'
+author: 'Clemens Backes，編譯器專家'
 avatars:
   - clemens-backes
 date: 2019-02-07 11:30:42
 tags:
   - 發佈
-description: &apos;V8 v7.3 提供 WebAssembly 和非同步性能改進、非同步堆疊追蹤、Object.fromEntries、String#matchAll 等多項新功能！&apos;
-tweet: &apos;1093457099441561611&apos;
+description: 'V8 v7.3 提供 WebAssembly 和非同步性能改進、非同步堆疊追蹤、Object.fromEntries、String#matchAll 等多項新功能！'
+tweet: '1093457099441561611'
 ---
 每六周，我們會根據[發佈流程](/docs/release-process)創建一個 V8 的新分支。每個版本均從 V8 的 Git 主分支中分出，並在 Chrome Beta 里程碑之前完成。今天我們很高興地宣布我們的最新分支，[V8 版本 7.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.3)，該版本目前處於測試版，幾周後將與 Chrome 73 穩定版同步發布。V8 v7.3 提供了許多面向開發者的精彩功能，本文將預覽部分亮點以期待其正式發佈。
 
@@ -37,7 +37,7 @@ V8 v7.3 提供了多項新的 JavaScript 語言功能。
 ```js
 const object = { x: 42, y: 50 };
 const entries = Object.entries(object);
-// → [[&apos;x&apos;, 42], [&apos;y&apos;, 50]]
+// → [['x', 42], ['y', 50]]
 ```
 
 不幸的是，之前還沒有一種簡單的方法能夠從 `entries` 的結果中返回等價的物件……直至現在！V8 v7.3 支援 [`Object.fromEntries()`](/features/object-fromentries)，這是一種全新的內建 API，能執行 `Object.entries` 的反操作：
@@ -54,21 +54,21 @@ const result = Object.fromEntries(entries);
 全域 (`g`) 或黏性 (`y`) 正則表達式的一個常見使用場景是應用於字串並迭代所有匹配項。全新的 `String.prototype.matchAll` API 使這一操作比以往任何時候都更容易，尤其是對於帶有捕獲組的正則表達式：
 
 ```js
-const string = &apos;Favorite GitHub repos: tc39/ecma262 v8/v8.dev&apos;;
+const string = 'Favorite GitHub repos: tc39/ecma262 v8/v8.dev';
 const regex = /\b(?<owner>[a-z0-9]+)\/(?<repo>[a-z0-9\.]+)\b/g;
 
 for (const match of string.matchAll(regex)) {
-  console.log(`${match[0]} at ${match.index} with &apos;${match.input}&apos;`);
+  console.log(`${match[0]} at ${match.index} with '${match.input}'`);
   console.log(`→ owner: ${match.groups.owner}`);
   console.log(`→ repo: ${match.groups.repo}`);
 }
 
 // 輸出:
 //
-// tc39/ecma262 at 23 with &apos;Favorite GitHub repos: tc39/ecma262 v8/v8.dev&apos;
+// tc39/ecma262 at 23 with 'Favorite GitHub repos: tc39/ecma262 v8/v8.dev'
 // → owner: tc39
 // → repo: ecma262
-// v8/v8.dev at 36 with &apos;Favorite GitHub repos: tc39/ecma262 v8/v8.dev&apos;
+// v8/v8.dev at 36 with 'Favorite GitHub repos: tc39/ecma262 v8/v8.dev'
 // → owner: v8
 // → repo: v8.dev
 ```

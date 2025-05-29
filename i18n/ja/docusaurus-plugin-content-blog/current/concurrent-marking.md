@@ -1,16 +1,16 @@
 ---
-title: &apos;V8の並行マーク&apos;
-author: &apos;Ulan Degenbaev、Michael Lippautz、Hannes Payer — メインスレッドの解放者&apos;
+title: 'V8の並行マーク'
+author: 'Ulan Degenbaev、Michael Lippautz、Hannes Payer — メインスレッドの解放者'
 avatars:
-  - &apos;ulan-degenbaev&apos;
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'ulan-degenbaev'
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2018-06-11 13:33:37
 tags:
   - internals
   - memory
-description: &apos;この投稿では並行マークと呼ばれるガベージコレクション技術について説明します。&apos;
-tweet: &apos;1006187194808233985&apos;
+description: 'この投稿では並行マークと呼ばれるガベージコレクション技術について説明します。'
+tweet: '1006187194808233985'
 ---
 この投稿では、_並行マーク_ と呼ばれるガベージコレクション技術について説明します。この最適化により、ガベージコレクターがヒープをスキャンして生存オブジェクトを発見・マークしている間もJavaScriptアプリケーションの実行が続けられます。我々のベンチマークでは、並行マークによりメインスレッドのマーキング時間が60%～70%短縮されることが示されています。並行マークは、[Orinocoプロジェクト](/blog/orinoco) という、古いガベージコレクターを新しい主に並行かつ並列のガベージコレクターに徐々に置き換えるプロジェクトの最後の欠片です。Chrome 64およびNode.js v10では並行マークがデフォルトで有効になっています。
 

@@ -1,13 +1,13 @@
 ---
-title: &apos;Помощники итераторов&apos;
-author: &apos;Резван Махдави Хезавех&apos;
+title: 'Помощники итераторов'
+author: 'Резван Махдави Хезавех'
 avatars:
-  - &apos;резван-махдави-хезавех&apos;
+  - 'резван-махдави-хезавех'
 date: 2024-03-27
 tags:
   - ECMAScript
-description: &apos;Интерфейсы, которые помогают в общем использовании и обработке итераторов.&apos;
-tweet: &apos;&apos;
+description: 'Интерфейсы, которые помогают в общем использовании и обработке итераторов.'
+tweet: ''
 ---
 
 *Помощники итераторов* — это набор новых методов в прототипе итератора, которые облегчают общее использование итераторов. Так как эти вспомогательные методы находятся в прототипе итератора, любой объект, имеющий `Iterator.prototype` в своей цепочке прототипов (например, итераторы массивов), получит эти методы. В следующих подразделах мы объясним помощников итераторов. Все приведенные примеры работают на странице архива блога, содержащей список публикаций, иллюстрируя, насколько полезны помощники итераторов для поиска и манипуляции публикациями. Вы можете попробовать их на [странице блога V8](https://v8.dev/blog)!
@@ -20,7 +20,7 @@ tweet: &apos;&apos;
 
 ```javascript
 // Выберите список публикаций из страницы архива блога.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Получите список публикаций, верните их текст (заголовки) и выведите их.
 for (const post of posts.values().map((x) => x.textContent)) {
@@ -34,10 +34,10 @@ for (const post of posts.values().map((x) => x.textContent)) {
 
 ```javascript
 // Выберите список публикаций из страницы архива блога.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Отфильтруйте публикации блога, которые содержат `V8` в текстовом содержимом (заголовках), и выведите их.
-for (const post of posts.values().filter((x) => x.textContent.includes(&apos;V8&apos;))) {
+for (const post of posts.values().filter((x) => x.textContent.includes('V8'))) {
   console.log(post);
 } 
 ```
@@ -48,7 +48,7 @@ for (const post of posts.values().filter((x) => x.textContent.includes(&apos;V8&
 
 ```javascript
 // Выберите список публикаций из страницы архива блога.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Выберите 10 последних публикаций и выведите их.
 for (const post of posts.values().take(10)) {
@@ -62,7 +62,7 @@ for (const post of posts.values().take(10)) {
 
 ```javascript
 // Выберите список публикаций из страницы архива блога.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Пропустите 10 последних публикаций и выведите остальные.
 for (const post of posts.values().drop(10)) {
@@ -76,11 +76,11 @@ for (const post of posts.values().drop(10)) {
 
 ```javascript
 // Выберите список публикаций из страницы архива блога.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Получите список тегов публикаций и выведите их. Каждая публикация может иметь более
 // одного тега.
-for (const tag of posts.values().flatMap((x) => x.querySelectorAll(&apos;.tag&apos;).values())) {
+for (const tag of posts.values().flatMap((x) => x.querySelectorAll('.tag').values())) {
     console.log(tag.textContent);
 }
 ```
@@ -91,16 +91,16 @@ for (const tag of posts.values().flatMap((x) => x.querySelectorAll(&apos;.tag&ap
 
 ```javascript
 // Выберите список публикаций из страницы архива блога.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Получите список тегов для всех публикаций.
-const tagLists = posts.values().flatMap((x) => x.querySelectorAll(&apos;.tag&apos;).values());
+const tagLists = posts.values().flatMap((x) => x.querySelectorAll('.tag').values());
 
 // Получите текстовое содержимое для каждого тега из списка.
 const tags = tagLists.map((x) => x.textContent);
 
 // Подсчитайте публикации с тегом 'security'.
-const count = tags.reduce((sum , value) => sum + (value === &apos;security&apos; ? 1 : 0), 0);
+const count = tags.reduce((sum , value) => sum + (value === 'security' ? 1 : 0), 0);
 console.log(count);
 ```
 
@@ -110,7 +110,7 @@ console.log(count);
 
 ```javascript
 // Выберите список публикаций из страницы архива блога.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Создайте массив из списка 10 последних публикаций.
 const arr = posts.values().take(10).toArray();
@@ -122,11 +122,11 @@ const arr = posts.values().take(10).toArray();
 
 ```javascript
 // Выберите список публикаций из страницы архива блога.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Получите даты, когда хотя бы одна запись в блоге опубликована, и выведите их.
 const dates = new Set();
-const forEach = posts.values().forEach((x) => dates.add(x.querySelector(&apos;time&apos;)));
+const forEach = posts.values().forEach((x) => dates.add(x.querySelector('time')));
 console.log(dates);
 ```
 
@@ -136,11 +136,11 @@ console.log(dates);
 
 ```javascript
 // Выберите список записей блога на странице архива блога.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Узнайте, содержит ли текстовое содержимое (заголовок) любой записи блога ключевое слово `Iterators`.
 // ключевое слово.
-posts.values().some((x) => x.textContent.includes(&apos;Iterators&apos;));
+posts.values().some((x) => x.textContent.includes('Iterators'));
 ```
 
 ## .every(fn)
@@ -149,10 +149,10 @@ posts.values().some((x) => x.textContent.includes(&apos;Iterators&apos;));
 
 ```javascript
 // Выберите список записей блога на странице архива блога.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Узнайте, содержит ли текстовое содержимое (заголовок) всех записей блога ключевое слово `V8`.
-posts.values().every((x) => x.textContent.includes(&apos;V8&apos;));
+posts.values().every((x) => x.textContent.includes('V8'));
 ```
 
 ## .find(fn)
@@ -161,10 +161,10 @@ posts.values().every((x) => x.textContent.includes(&apos;V8&apos;));
 
 ```javascript
 // Выберите список записей блога на странице архива блога.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Выведите текстовое содержимое (заголовок) последней записи блога, содержащей ключевое слово `V8`.
-console.log(posts.values().find((x) => x.textContent.includes(&apos;V8&apos;)).textContent);
+console.log(posts.values().find((x) => x.textContent.includes('V8')).textContent);
 ```
 
 ## Iterator.from(object)
@@ -173,11 +173,11 @@ console.log(posts.values().find((x) => x.textContent.includes(&apos;V8&apos;)).t
 
 ```javascript
 // Выберите список записей блога на странице архива блога.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Сначала создайте итератор из списка записей. Затем выведите текстовое содержимое (заголовок)
 // последней записи блога, содержащей ключевое слово `V8`.
-console.log(Iterator.from(posts).find((x) => x.textContent.includes(&apos;V8&apos;)).textContent);
+console.log(Iterator.from(posts).find((x) => x.textContent.includes('V8')).textContent);
 ```
 
 ## Доступность

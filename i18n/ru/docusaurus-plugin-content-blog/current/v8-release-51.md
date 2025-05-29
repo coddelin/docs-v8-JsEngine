@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 выпуск v5.1&apos;
-author: &apos;команда V8&apos;
+title: 'V8 выпуск v5.1'
+author: 'команда V8'
 date: 2016-04-23 13:33:37
 tags:
   - выпуск
-description: &apos;V8 v5.1 предлагает улучшения производительности, снижение задержек и потребления памяти, а также расширенную поддержку функций языка ECMAScript.&apos;
+description: 'V8 v5.1 предлагает улучшения производительности, снижение задержек и потребления памяти, а также расширенную поддержку функций языка ECMAScript.'
 ---
 Первым шагом в [процессе выпуска V8](/docs/release-process) является создание новой ветки из главной ветки Git непосредственно перед ветвлением Chromium для этапа Chrome Beta (примерно каждые шесть недель). Наша новейшая ветка выпуска — [V8 v5.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.1), которая останется в бета-версии, пока мы не выпустим стабильную сборку вместе с Chrome 51 Stable. Вот основные особенности версии V8, предназначенные для разработчиков.
 
@@ -41,7 +41,7 @@ class Container {
 }
 const c = new Container;
 console.log(c[Symbol.iterator].name);
-// → &apos;[Symbol.iterator]&apos;
+// → '[Symbol.iterator]'
 ```
 
 ### `Array.prototype.values`
@@ -60,7 +60,7 @@ V8 v5.1 также предлагает несколько заметных ул
 - `Array.prototype.push`
 - `Object.keys`
 - `Array.prototype.join` и `Array.prototype.toString`
-- Разворачивание повторяющихся строк, например `&apos;.&apos;.repeat(1000)`
+- Разворачивание повторяющихся строк, например `'.'.repeat(1000)`
 
 ## WebAssembly (Wasm)
 

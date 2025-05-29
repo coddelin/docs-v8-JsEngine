@@ -1,16 +1,16 @@
 ---
-title: &apos;До 4 ГБ памяти в WebAssembly&apos;
-author: &apos;Андреас Хаас, Якоб Куммероу и Алон Закай&apos;
+title: 'До 4 ГБ памяти в WebAssembly'
+author: 'Андреас Хаас, Якоб Куммероу и Алон Закай'
 avatars:
-  - &apos;andreas-haas&apos;
-  - &apos;jakob-kummerow&apos;
-  - &apos;alon-zakai&apos;
+  - 'andreas-haas'
+  - 'jakob-kummerow'
+  - 'alon-zakai'
 date: 2020-05-14
 tags:
   - WebAssembly
   - JavaScript
   - инструменты
-tweet: &apos;1260944314441633793&apos;
+tweet: '1260944314441633793'
 ---
 
 ## Введение

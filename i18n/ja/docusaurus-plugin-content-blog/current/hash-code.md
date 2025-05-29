@@ -1,13 +1,13 @@
 ---
-title: &apos;ハッシュテーブルの最適化：ハッシュコードを隠す&apos;
-author: &apos;[Sathya Gunasekaran](https://twitter.com/_gsathya)、ハッシュコードの管理者&apos;
+title: 'ハッシュテーブルの最適化：ハッシュコードを隠す'
+author: '[Sathya Gunasekaran](https://twitter.com/_gsathya)、ハッシュコードの管理者'
 avatars:
-  - &apos;sathya-gunasekaran&apos;
+  - 'sathya-gunasekaran'
 date: 2018-01-29 13:33:37
 tags:
   - 内部構造
-tweet: &apos;958046113390411776&apos;
-description: &apos;JavaScript のデータ構造である Map、Set、WeakSet、WeakMap などの多くは、内部的にハッシュテーブルを使用します。この記事では、V8 v6.3 がハッシュテーブルのパフォーマンスをどのように向上させたかを説明します。&apos;
+tweet: '958046113390411776'
+description: 'JavaScript のデータ構造である Map、Set、WeakSet、WeakMap などの多くは、内部的にハッシュテーブルを使用します。この記事では、V8 v6.3 がハッシュテーブルのパフォーマンスをどのように向上させたかを説明します。'
 ---
 ECMAScript 2015 は、Map、Set、WeakSet、WeakMap といった複数の新しいデータ構造を導入しました。これらはいずれも、内部的にハッシュテーブルを使用しています。この投稿では、[最近の改善点](https://bugs.chromium.org/p/v8/issues/detail?id=6404)と [V8 v6.3+](/blog/v8-release-63) がどのようにしてハッシュテーブルにキーを格納するかを詳しく解説します。
 
@@ -46,8 +46,8 @@ V8 における JavaScript オブジェクト（`JSObject`）は、（ヘッダ�
 
 ```js
 const x = {};
-x[1] = &apos;bar&apos;;      // ← 要素に格納
-x[&apos;foo&apos;] = &apos;bar&apos;;  // ← プロパティに格納
+x[1] = 'bar';      // ← 要素に格納
+x['foo'] = 'bar';  // ← プロパティに格納
 ```
 
 ## ハッシュコードを隠す

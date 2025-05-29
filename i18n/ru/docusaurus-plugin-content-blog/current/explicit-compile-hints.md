@@ -1,13 +1,13 @@
 ---
- title: &apos;Даем V8 заблаговременное уведомление: Более быстрый запуск JavaScript с явными подсказками компиляции&apos;
- author: &apos;Марья Хельтта&apos;
+ title: 'Даем V8 заблаговременное уведомление: Более быстрый запуск JavaScript с явными подсказками компиляции'
+ author: 'Марья Хельтта'
  avatars:
    - marja-holtta
  date: 2025-04-29
  tags:
    - JavaScript
  description: "Явные подсказки компиляции контролируют, какие JavaScript-файлы и функции парсятся и компилируются заранее"
- tweet: &apos;&apos;
+ tweet: ''
 ---
 
 Быстрый запуск JavaScript является ключом к отзывчивости веб-приложений. Даже с продвинутыми оптимизациями V8, парсинг и компиляция критически важных JavaScript во время запуска могут оставаться узкими местами производительности. Знание функций JavaScript, которые нужно скомпилировать при первоначальной компиляции скрипта, может ускорить загрузку веб-страниц.
@@ -53,7 +53,7 @@ script1.js:
 
 ```js
 function testfunc1() {
-  console.log(&apos;testfunc1 вызвана!&apos;);
+  console.log('testfunc1 вызвана!');
 }
 
 testfunc1();
@@ -65,7 +65,7 @@ script2.js:
 //# allFunctionsCalledOnLoad
 
 function testfunc2() {
-  console.log(&apos;testfunc2 вызвана!&apos;);
+  console.log('testfunc2 вызвана!');
 }
 
 testfunc2();

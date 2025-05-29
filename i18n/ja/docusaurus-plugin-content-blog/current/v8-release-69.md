@@ -1,11 +1,11 @@
 ---
-title: &apos;V8リリースv6.9&apos;
-author: &apos;V8チーム&apos;
+title: 'V8リリースv6.9'
+author: 'V8チーム'
 date: 2018-08-07 13:33:37
 tags:
   - リリース
-description: &apos;V8 v6.9は、埋め込み組み込み関数によるメモリ使用量削減、LiftoffによるWebAssemblyの起動速度向上、DataViewとWeakMapのパフォーマンス改善など、多くの新機能を備えています！&apos;
-tweet: &apos;1026825606003150848&apos;
+description: 'V8 v6.9は、埋め込み組み込み関数によるメモリ使用量削減、LiftoffによるWebAssemblyの起動速度向上、DataViewとWeakMapのパフォーマンス改善など、多くの新機能を備えています！'
+tweet: '1026825606003150848'
 ---
 6週間ごとに、V8は[リリースプロセス](/docs/release-process)の一環として新しいブランチを作成します。各バージョンは、Chromeのベータ版マイルストーン直前にV8のGitマスターから分岐されます。本日、最新のブランチ[V8バージョン6.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.9)を発表できることを嬉しく思います。このバージョンは数週間後のChrome 69 Stableのリリースと連携してベータ版で配信されます。V8 v6.9は開発者にとって多くの魅力的な機能が詰まっています。本記事では、リリースに先立ち、注目のハイライトについてのプレビューを提供します。
 

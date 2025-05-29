@@ -2,7 +2,7 @@
 permalink: /grant/
 title: 연구 지원금
 layout: layouts/base.njk
-description: &apos;V8 연구 지원금은 V8, JavaScript 및 WebAssembly를 기반으로 하는 프로그래밍 언어 및 소프트웨어 시스템 연구를 지원합니다.&apos;
+description: 'V8 연구 지원금은 V8, JavaScript 및 WebAssembly를 기반으로 하는 프로그래밍 언어 및 소프트웨어 시스템 연구를 지원합니다.'
 ---
 # V8 연구 지원금
 

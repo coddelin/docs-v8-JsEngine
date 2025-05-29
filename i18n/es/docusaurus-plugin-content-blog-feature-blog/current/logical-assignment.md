@@ -1,15 +1,15 @@
 ---
-title: &apos;Asignación lógica&apos;
-author: &apos;Shu-yu Guo ([@_shu](https://twitter.com/_shu))&apos;
+title: 'Asignación lógica'
+author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
 avatars:
-  - &apos;shu-yu-guo&apos;
+  - 'shu-yu-guo'
 date: 2020-05-07
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: &apos;JavaScript ahora admite asignación compuesta con operaciones lógicas.&apos;
-tweet: &apos;1258387483823345665&apos;
+description: 'JavaScript ahora admite asignación compuesta con operaciones lógicas.'
+tweet: '1258387483823345665'
 ---
 JavaScript admite una gama de [operadores de asignación compuesta](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators) que permiten a los programadores expresar de manera sucinta una operación binaria junto con la asignación. Actualmente, solo se admiten operaciones matemáticas o de bits.
 
@@ -69,14 +69,14 @@ Hagamos esto concreto con un ejemplo de dos versiones de una función que establ
 // Solo asigna a innerHTML si está vacío. No causa que los elementos
 // internos de msgElement pierdan el foco.
 function setDefaultMessage() {
-  msgElement.innerHTML ||= &apos;<p>No hay mensajes<p>&apos;;
+  msgElement.innerHTML ||= '<p>No hay mensajes<p>';
 }
 
 // Mostrar un mensaje predeterminado si no hay nada establecido.
 // ¡Defectuoso! Puede causar que los elementos internos de msgElement
 // pierdan el foco cada vez que se llame.
 function setDefaultMessageBuggy() {
-  msgElement.innerHTML = msgElement.innerHTML || &apos;<p>No hay mensajes<p>&apos;;
+  msgElement.innerHTML = msgElement.innerHTML || '<p>No hay mensajes<p>';
 }
 ```
 

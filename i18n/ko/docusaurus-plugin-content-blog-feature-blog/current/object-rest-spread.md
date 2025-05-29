@@ -1,14 +1,14 @@
 ---
-title: &apos;객체 나머지 및 펼침 속성&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '객체 나머지 및 펼침 속성'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-06-06
 tags:
   - ECMAScript
   - ES2018
-description: &apos;이 글에서는 JavaScript에서 객체 나머지 및 펼침 속성이 작동하는 방법을 설명하며, 배열 나머지 및 펼침 요소를 다시 살펴봅니다.&apos;
-tweet: &apos;890269994688315394&apos;
+description: '이 글에서는 JavaScript에서 객체 나머지 및 펼침 속성이 작동하는 방법을 설명하며, 배열 나머지 및 펼침 요소를 다시 살펴봅니다.'
+tweet: '890269994688315394'
 ---
 _객체 나머지 및 펼침 속성_을 논의하기 전에, 기억을 되살리고 매우 유사한 기능을 상기해봅시다.
 
@@ -42,34 +42,34 @@ console.log(primesCopy); // [2, 3, 5, 7, 11]
 ```js
 // 객체 구조 분해 할당을 위한 나머지 속성:
 const person = {
-    firstName: &apos;Sebastian&apos;,
-    lastName: &apos;Markbåge&apos;,
-    country: &apos;USA&apos;,
-    state: &apos;CA&apos;,
+    firstName: 'Sebastian',
+    lastName: 'Markbåge',
+    country: 'USA',
+    state: 'CA',
 };
 const { firstName, lastName, ...rest } = person;
 console.log(firstName); // Sebastian
 console.log(lastName); // Markbåge
-console.log(rest); // { country: &apos;USA&apos;, state: &apos;CA&apos; }
+console.log(rest); // { country: 'USA', state: 'CA' }
 
 <!--truncate-->
 // 객체 리터럴을 위한 펼침 속성:
 const personCopy = { firstName, lastName, ...rest };
 console.log(personCopy);
-// { firstName: &apos;Sebastian&apos;, lastName: &apos;Markbåge&apos;, country: &apos;USA&apos;, state: &apos;CA&apos; }
+// { firstName: 'Sebastian', lastName: 'Markbåge', country: 'USA', state: 'CA' }
 ```
 
 펼침 속성은 많은 상황에서 [`Object.assign()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)에 대한 더 우아한 대안을 제공합니다:
 
 ```js
 // 객체 얕은 복사:
-const data = { x: 42, y: 27, label: &apos;Treasure&apos; };
+const data = { x: 42, y: 27, label: 'Treasure' };
 // 기존 방법:
 const clone1 = Object.assign({}, data);
 // 새로운 방법:
 const clone2 = { ...data };
 // 결과는 동일합니다:
-// { x: 42, y: 27, label: &apos;Treasure&apos; }
+// { x: 42, y: 27, label: 'Treasure' }
 
 // 두 객체 병합:
 const defaultSettings = { logWarnings: false, logErrors: false };

@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 リリース v6.2&apos;
-author: &apos;V8 チーム&apos;
+title: 'V8 リリース v6.2'
+author: 'V8 チーム'
 date: 2017-09-11 13:33:37
 tags:
   - リリース
-description: &apos;V8 v6.2 にはパフォーマンスの向上、JavaScript 言語機能の充実、最大文字列長の増加などが含まれています。&apos;
+description: 'V8 v6.2 にはパフォーマンスの向上、JavaScript 言語機能の充実、最大文字列長の増加などが含まれています。'
 ---
 6週間ごとに、新しいブランチを作成するのが私たちの[リリースプロセス](/docs/release-process)の一環です。各バージョンは、Chrome Beta マイルストーンの直前に V8 の Git マスターからブランチ化されます。本日、最新ブランチである [V8 バージョン 6.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.2) を発表できることを嬉しく思います。このバージョンは数週間後に Chrome 62 ステーブルと共にリリースされるまでベータ版です。V8 v6.2 は、開発者向けのさまざまな興味深い機能を備えています。この投稿では、リリースを見越していくつかのハイライトを紹介します。
 
@@ -48,14 +48,14 @@ ES2015 の登場により、[`Symbol.toStringTag`](https://developer.mozilla.org
 [ `dotAll` モード](https://github.com/tc39/proposal-regexp-dotall-flag) のサポートが正規表現でデフォルトで有効になり、 `s` フラグを使用してこの機能を利用できます。`dotAll` モードでは、正規表現内の `.` アトムが行の終端記号を含む任意の文字と一致します。
 
 ```js
-/foo.bar/su.test(&apos;foo\nbar&apos;); // true
+/foo.bar/su.test('foo\nbar'); // true
 ```
 
 [後方参照アサーション](https://github.com/tc39/proposal-regexp-lookbehind)という新しい正規表現の機能がデフォルトで利用可能になりました。この名称がその意味をよく表しています。後方参照アサーションは、後方参照グループ内にあるパターンが先行している場合にのみパターンがマッチするように制限する方法を提供します。マッチングの場合と非マッチングの場合の両方があります:
 
 ```js
-/(?<=\$)\d+/.exec(&apos;$1 is worth about ¥123&apos;); // [&apos;1&apos;]
-/(?<!\$)\d+/.exec(&apos;$1 is worth about ¥123&apos;); // [&apos;123&apos;]
+/(?<=\$)\d+/.exec('$1 is worth about ¥123'); // ['1']
+/(?<!\$)\d+/.exec('$1 is worth about ¥123'); // ['123']
 ```
 
 これらの機能の詳細については、[今後の正規表現機能](https://developers.google.com/web/updates/2017/07/upcoming-regexp-features)というタイトルのブログ記事をご覧ください。

@@ -1,14 +1,14 @@
 ---
-title: &apos;Importación dinámica `import()`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Importación dinámica `import()`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-11-21
 tags:
   - ECMAScript
   - ES2020
-description: &apos;La importación dinámica (`import()`) desbloquea nuevas capacidades en comparación con la importación estática. Este artículo compara ambas y ofrece una visión general de lo nuevo.&apos;
-tweet: &apos;932914724060254208&apos;
+description: 'La importación dinámica (`import()`) desbloquea nuevas capacidades en comparación con la importación estática. Este artículo compara ambas y ofrece una visión general de lo nuevo.'
+tweet: '932914724060254208'
 ---
 [Importación dinámica `import()`](https://github.com/tc39/proposal-dynamic-import) introduce una nueva forma de función similar a `import` que desbloquea nuevas capacidades en comparación con el `import` estático. Este artículo compara ambas y ofrece una visión general de lo nuevo.
 
@@ -22,12 +22,12 @@ Considere el siguiente módulo, ubicado en `./utils.mjs`:
 ```js
 // Exportación predeterminada
 export default () => {
-  console.log(&apos;¡Hola desde la exportación predeterminada!&apos;);
+  console.log('¡Hola desde la exportación predeterminada!');
 };
 
 // Exportación nombrada `doStuff`
 export const doStuff = () => {
-  console.log(&apos;Haciendo cosas…&apos;);
+  console.log('Haciendo cosas…');
 };
 ```
 
@@ -35,11 +35,11 @@ Así es como se importa estáticamente y se usa el módulo `./utils.mjs`:
 
 ```html
 <script type="module">
-  import * as module from &apos;./utils.mjs&apos;;
+  import * as module from './utils.mjs';
   module.default();
-  // → registra &apos;¡Hola desde la exportación predeterminada!&apos;
+  // → registra '¡Hola desde la exportación predeterminada!'
   module.doStuff();
-  // → registra &apos;Haciendo cosas…&apos;
+  // → registra 'Haciendo cosas…'
 </script>
 ```
 
@@ -69,13 +69,13 @@ Así es como se importa dinámicamente y se usa el módulo `./utils.mjs`:
 
 ```html
 <script type="module">
-  const moduleSpecifier = &apos;./utils.mjs&apos;;
+  const moduleSpecifier = './utils.mjs';
   import(moduleSpecifier)
     .then((module) => {
       module.default();
-      // → registra &apos;¡Hola desde la exportación predeterminada!&apos;
+      // → registra '¡Hola desde la exportación predeterminada!'
       module.doStuff();
-      // → registra &apos;Haciendo cosas…&apos;
+      // → registra 'Haciendo cosas…'
     });
 </script>
 ```
@@ -85,12 +85,12 @@ Dado que `import()` devuelve una promesa, es posible usar `async`/`await` en lug
 ```html
 <script type="module">
   (async () => {
-    const moduleSpecifier = &apos;./utils.mjs&apos;;
+    const moduleSpecifier = './utils.mjs';
     const module = await import(moduleSpecifier)
     module.default();
-    // → registra &apos;¡Hola desde la exportación predeterminada!&apos;
+    // → registra '¡Hola desde la exportación predeterminada!'
     module.doStuff();
-    // → registra &apos;Haciendo cosas…&apos;
+    // → registra 'Haciendo cosas…'
   })();
 </script>
 ```
@@ -112,10 +112,10 @@ Aquí hay un ejemplo de cómo la importación dinámica `import()` permite la ca
 </nav>
 <main>Este es un marcador de posición para el contenido que se cargará bajo demanda.</main>
 <script>
-  const main = document.querySelector(&apos;main&apos;);
-  const links = document.querySelectorAll(&apos;nav > a&apos;);
+  const main = document.querySelector('main');
+  const links = document.querySelectorAll('nav > a');
   para (const link de links) {
-    link.addEventListener(&apos;click&apos;, async (event) => {
+    link.addEventListener('click', async (event) => {
       event.preventDefault();
       try {
         const module = await import(`/${link.dataset.entryModule}.mjs`);

@@ -1,12 +1,12 @@
 ---
-title: &apos;一個關於懶惰的實習：去優化函數的惰性取消連結&apos;
-author: &apos;Juliana Franco ([@jupvfranco](https://twitter.com/jupvfranco))，懶惰專家&apos;
+title: '一個關於懶惰的實習：去優化函數的惰性取消連結'
+author: 'Juliana Franco ([@jupvfranco](https://twitter.com/jupvfranco))，懶惰專家'
 date: 2017-10-04 13:33:37
 tags:
   - 記憶體
   - 內部機制
-description: &apos;這篇技術深度解析文章解釋了 V8 從前如何取消連結去優化的函數，以及我們最近如何改進這個過程以提升性能。&apos;
-tweet: &apos;915473224187760640&apos;
+description: '這篇技術深度解析文章解釋了 V8 從前如何取消連結去優化的函數，以及我們最近如何改進這個過程以提升性能。'
+tweet: '915473224187760640'
 ---
 大約三個月前，我作為實習生加入了 V8 團隊（Google 慕尼黑），自那時起，我一直在研究 VM 的 _Deoptimizer_ —— 這對我來說是一個全新的領域，既有趣又充滿挑戰。我實習的第一部分專注於[提升 VM 的安全性](https://docs.google.com/document/d/1ELgd71B6iBaU6UmZ_lvwxf_OrYYnv0e4nuzZpK05-pg/edit)，第二部分則聚焦於性能改進，具體來說，是移除用於取消連結先前去優化函數的數據結構，這在垃圾回收期間曾是性能瓶頸。本文將描述我實習的第二部分。我將解釋 V8 從前如何取消連結去優化的函數，我們如何改變了這一過程，以及由此獲得的性能提升。
 

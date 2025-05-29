@@ -1,14 +1,14 @@
 ---
-title: &apos;極速解析，第1部分：優化掃描器&apos;
-author: &apos;Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes))，令人震驚的優化者&apos;
+title: '極速解析，第1部分：優化掃描器'
+author: 'Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes))，令人震驚的優化者'
 avatars:
-  - &apos;toon-verwaest&apos;
+  - 'toon-verwaest'
 date: 2019-03-25 13:33:37
 tags:
   - internals
   - parsing
-tweet: &apos;1110205101652787200&apos;
-description: &apos;解析器性能的基石在於快速的掃描器。這篇文章解釋了V8的JavaScript掃描器如何最近變得快了2.1倍。&apos;
+tweet: '1110205101652787200'
+description: '解析器性能的基石在於快速的掃描器。這篇文章解釋了V8的JavaScript掃描器如何最近變得快了2.1倍。'
 ---
 要運行一個JavaScript程序，需要對源代碼文本進行處理，以便V8能夠理解它。V8首先將源代碼解析為抽象語法樹（AST），這是一組表示程序結構的物件。該AST由Ignition編譯為位元碼。這些解析和編譯階段的性能非常重要：V8在編譯完成之前無法運行代碼。在這一系列的博客文章中，我們將重點關注解析以及V8為提供極速解析器所做的工作。
 

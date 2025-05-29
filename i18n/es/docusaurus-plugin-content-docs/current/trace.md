@@ -1,6 +1,6 @@
 ---
-title: &apos;Rastreando V8&apos;
-description: &apos;Este documento explica cómo utilizar el soporte de rastreo integrado de V8.&apos;
+title: 'Rastreando V8'
+description: 'Este documento explica cómo utilizar el soporte de rastreo integrado de V8.'
 ---
 V8 ofrece soporte para rastreo. [Funciona automáticamente cuando V8 está integrado en Chrome a través del sistema de rastreo de Chrome](/docs/rcs). Pero también puedes habilitarlo en cualquier V8 independiente o dentro de un incrustador que use la Plataforma Predeterminada. Se pueden encontrar más detalles sobre el visualizador de rastreo [aquí](https://github.com/catapult-project/catapult/blob/master/tracing/README.md).
 

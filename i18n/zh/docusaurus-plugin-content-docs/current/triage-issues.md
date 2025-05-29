@@ -1,6 +1,6 @@
 ---
-title: &apos;管理问题&apos;
-description: &apos;本文档解释了如何处理 V8 的问题跟踪器中的问题。&apos;
+title: '管理问题'
+description: '本文档解释了如何处理 V8 的问题跟踪器中的问题。'
 ---
 本文档解释了如何处理 [V8 的问题跟踪器](/bugs)中的问题。
 

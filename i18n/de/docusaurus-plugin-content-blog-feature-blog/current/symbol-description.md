@@ -1,44 +1,44 @@
 ---
-title: &apos;`Symbol.prototype.description`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`Symbol.prototype.description`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-06-25
 tags:
   - ECMAScript
   - ES2019
-description: &apos;Symbol.prototype.description bietet eine ergonomische Möglichkeit, auf die Beschreibung eines Symbols zuzugreifen.&apos;
-tweet: &apos;1143432835665211394&apos;
+description: 'Symbol.prototype.description bietet eine ergonomische Möglichkeit, auf die Beschreibung eines Symbols zuzugreifen.'
+tweet: '1143432835665211394'
 ---
 JavaScript-`Symbol`s können bei ihrer Erstellung eine Beschreibung erhalten:
 
 ```js
-const symbol = Symbol(&apos;foo&apos;);
+const symbol = Symbol('foo');
 //                    ^^^^^
 ```
 
 Bisher war die einzige Möglichkeit, programmgesteuert auf diese Beschreibung zuzugreifen, indirekt über `Symbol.prototype.toString()`:
 
 ```js
-const symbol = Symbol(&apos;foo&apos;);
+const symbol = Symbol('foo');
 //                    ^^^^^
 symbol.toString();
-// → &apos;Symbol(foo)&apos;
+// → 'Symbol(foo)'
 //           ^^^
 symbol.toString().slice(7, -1); // 🤔
-// → &apos;foo&apos;
+// → 'foo'
 ```
 
-Der Code wirkt jedoch etwas magisch, ist nicht sehr selbsterklärend und verletzt das Prinzip „Absicht ausdrücken, nicht Implementierung“. Die obige Technik erlaubt es außerdem nicht, zwischen einem Symbol ohne Beschreibung (d.h. `Symbol()`) und einem Symbol mit leerem String als Beschreibung (d.h. `Symbol(&apos;&apos;)`) zu unterscheiden.
+Der Code wirkt jedoch etwas magisch, ist nicht sehr selbsterklärend und verletzt das Prinzip „Absicht ausdrücken, nicht Implementierung“. Die obige Technik erlaubt es außerdem nicht, zwischen einem Symbol ohne Beschreibung (d.h. `Symbol()`) und einem Symbol mit leerem String als Beschreibung (d.h. `Symbol('')`) zu unterscheiden.
 
 <!--truncate-->
 [Der neue Getter `Symbol.prototype.description`](https://tc39.es/ecma262/#sec-symbol.prototype.description) bietet eine ergonomischere Möglichkeit, auf die Beschreibung eines `Symbol`s zuzugreifen:
 
 ```js
-const symbol = Symbol(&apos;foo&apos;);
+const symbol = Symbol('foo');
 //                    ^^^^^
 symbol.description;
-// → &apos;foo&apos;
+// → 'foo'
 ```
 
 Bei `Symbol`s ohne Beschreibung gibt der Getter `undefined` zurück:

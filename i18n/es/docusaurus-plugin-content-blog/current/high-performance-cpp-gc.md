@@ -81,8 +81,8 @@ class GCed : public GarbageCollected<GCed> {
     visitor->Trace(other_);
   }
   ~GCed() {
-    other_->DoSomething();  // error: Finalizador &apos;~GCed&apos; accede
-                            // al campo potencialmente finalizado &apos;other_&apos;.
+    other_->DoSomething();  // error: Finalizador '~GCed' accede
+                            // al campo potencialmente finalizado 'other_'.
   }
  private:
   Member<GCed> other_;

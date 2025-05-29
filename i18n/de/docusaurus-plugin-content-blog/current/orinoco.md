@@ -1,15 +1,15 @@
 ---
-title: &apos;Jank-Busters Teil Zwei: Orinoco&apos;
-author: &apos;die Jank-Busters: Ulan Degenbaev, Michael Lippautz und Hannes Payer&apos;
+title: 'Jank-Busters Teil Zwei: Orinoco'
+author: 'die Jank-Busters: Ulan Degenbaev, Michael Lippautz und Hannes Payer'
 avatars:
-  - &apos;ulan-degenbaev&apos;
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'ulan-degenbaev'
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2016-04-12 13:33:37
 tags:
   - internals
   - speicher
-description: &apos;Dieser Artikel stellt drei Optimierungen vor, die die Grundlage für einen neuen Garbage Collector in V8 mit dem Codenamen Orinoco bilden.&apos;
+description: 'Dieser Artikel stellt drei Optimierungen vor, die die Grundlage für einen neuen Garbage Collector in V8 mit dem Codenamen Orinoco bilden.'
 ---
 In einem [früheren Blogpost](/blog/jank-busters) haben wir das Problem von Rucklern vorgestellt, die durch Garbage Collection verursacht werden und ein flüssiges Surfen beeinträchtigen. In diesem Blogpost stellen wir drei Optimierungen vor, die die Grundlage für einen neuen Garbage Collector in V8 mit dem Codenamen _Orinoco_ bilden. Orinoco basiert auf der Idee, dass die Implementierung eines überwiegend parallelen und gleichzeitig arbeitenden Garbage Collectors ohne strikte Generationengrenzen die Ruckler bei der Garbage Collection und den Speicherverbrauch reduziert, während gleichzeitig eine hohe Durchsatzrate erhalten bleibt. Statt Orinoco als separaten Garbage Collector hinter einem Flag zu implementieren, haben wir uns entschieden, die Funktionen von Orinoco schrittweise auf die V8 Hauptentwicklung einzuführen, um den Benutzern sofort Vorteile zu bieten. Die drei in diesem Beitrag diskutierten Funktionen sind paralleles Kompaktieren, parallele Verarbeitung des Remembered Sets und schwarze Allokation.
 

@@ -1,16 +1,16 @@
 ---
-title: &apos;`globalThis`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`globalThis`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-07-16
 tags:
   - ECMAScript
   - ES2020
   - Node.js 12
   - io19
-description: &apos;globalThis는 JavaScript에서 스크립트의 목표와 상관없이 모든 환경에서 전역 this를 접근할 수 있는 통합 메커니즘을 제공합니다.&apos;
-tweet: &apos;1151140681374547969&apos;
+description: 'globalThis는 JavaScript에서 스크립트의 목표와 상관없이 모든 환경에서 전역 this를 접근할 수 있는 통합 메커니즘을 제공합니다.'
+tweet: '1151140681374547969'
 ---
 웹 브라우저에서 사용하기 위한 JavaScript를 작성한 적이 있다면, 전역 `this`에 접근하기 위해 `window`를 사용한 적이 있을 것입니다. Node.js에서는 `global`을 사용했을지도 모릅니다. 두 환경에서 모두 작동해야 하는 코드를 작성한 경우, 사용할 수 있는 것을 감지하여 이를 사용했을 것입니다. 그러나 지원하려는 환경과 사용 사례가 늘어남에 따라 체크해야 할 식별자의 목록이 증가하면서 금방 복잡해집니다:
 
@@ -18,13 +18,13 @@ tweet: &apos;1151140681374547969&apos;
 ```js
 // 전역 `this`를 얻으려는 단순한 시도. 이 코드를 사용하지 마세요!
 const getGlobalThis = () => {
-  if (typeof globalThis !== &apos;undefined&apos;) return globalThis;
-  if (typeof self !== &apos;undefined&apos;) return self;
-  if (typeof window !== &apos;undefined&apos;) return window;
-  if (typeof global !== &apos;undefined&apos;) return global;
+  if (typeof globalThis !== 'undefined') return globalThis;
+  if (typeof self !== 'undefined') return self;
+  if (typeof window !== 'undefined') return window;
+  if (typeof global !== 'undefined') return global;
   // 참고: 이것이 여전히 잘못된 결과를 반환할 수 있습니다!
-  if (typeof this !== &apos;undefined&apos;) return this;
-  throw new Error(&apos;전역 `this`를 찾을 수 없습니다&apos;);
+  if (typeof this !== 'undefined') return this;
+  throw new Error('전역 `this`를 찾을 수 없습니다');
 };
 const theGlobalThis = getGlobalThis();
 ```

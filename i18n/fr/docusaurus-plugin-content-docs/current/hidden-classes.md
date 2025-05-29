@@ -1,6 +1,6 @@
 ---
-title: &apos;Cartes (Classes Cachées) dans V8&apos;
-description: &apos;Comment V8 suit et optimise la structure perçue de vos objets ?&apos;
+title: 'Cartes (Classes Cachées) dans V8'
+description: 'Comment V8 suit et optimise la structure perçue de vos objets ?'
 ---
 
 Explorons comment V8 construit ses classes cachées. Les principales structures de données sont :

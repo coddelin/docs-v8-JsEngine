@@ -1,16 +1,16 @@
 ---
-title: &apos;`Intl.ListFormat`&apos;
-author: &apos;Матиас Биненс ([@mathias](https://twitter.com/mathias)) и Фрэнк Юнг-Фонг Танг&apos;
+title: '`Intl.ListFormat`'
+author: 'Матиас Биненс ([@mathias](https://twitter.com/mathias)) и Фрэнк Юнг-Фонг Танг'
 avatars:
-  - &apos;mathias-bynens&apos;
-  - &apos;frank-tang&apos;
+  - 'mathias-bynens'
+  - 'frank-tang'
 date: 2018-12-18
 tags:
   - Intl
   - Node.js 12
   - io19
-description: &apos;API Intl.ListFormat позволяет локализованно форматировать списки без ущерба для производительности.&apos;
-tweet: &apos;1074966915557351424&apos;
+description: 'API Intl.ListFormat позволяет локализованно форматировать списки без ущерба для производительности.'
+tweet: '1074966915557351424'
 ---
 Современные веб-приложения часто используют списки, состоящие из динамических данных. Например, приложение для просмотра фотографий может отображать что-то вроде:
 
@@ -30,43 +30,43 @@ tweet: &apos;1074966915557351424&apos;
 Следующий пример показывает, как создать форматтер списка для соединений, используя английский язык:
 
 ```js
-const lf = new Intl.ListFormat(&apos;en&apos;);
-lf.format([&apos;Frank&apos;]);
-// → &apos;Frank&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;]);
-// → &apos;Frank and Christine&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;]);
-// → &apos;Frank, Christine, and Flora&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;, &apos;Harrison&apos;]);
-// → &apos;Frank, Christine, Flora, and Harrison&apos;
+const lf = new Intl.ListFormat('en');
+lf.format(['Frank']);
+// → 'Frank'
+lf.format(['Frank', 'Christine']);
+// → 'Frank and Christine'
+lf.format(['Frank', 'Christine', 'Flora']);
+// → 'Frank, Christine, and Flora'
+lf.format(['Frank', 'Christine', 'Flora', 'Harrison']);
+// → 'Frank, Christine, Flora, and Harrison'
 ```
 
 Используя параметр `options`, также можно работать с дизъюнкциями («или» на английском):
 
 ```js
-const lf = new Intl.ListFormat(&apos;en&apos;, { type: &apos;disjunction&apos; });
-lf.format([&apos;Frank&apos;]);
-// → &apos;Frank&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;]);
-// → &apos;Frank or Christine&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;]);
-// → &apos;Frank, Christine, or Flora&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;, &apos;Harrison&apos;]);
-// → &apos;Frank, Christine, Flora, or Harrison&apos;
+const lf = new Intl.ListFormat('en', { type: 'disjunction' });
+lf.format(['Frank']);
+// → 'Frank'
+lf.format(['Frank', 'Christine']);
+// → 'Frank or Christine'
+lf.format(['Frank', 'Christine', 'Flora']);
+// → 'Frank, Christine, or Flora'
+lf.format(['Frank', 'Christine', 'Flora', 'Harrison']);
+// → 'Frank, Christine, Flora, or Harrison'
 ```
 
 Вот пример использования другого языка (китайского, с языковым кодом `zh`):
 
 ```js
-const lf = new Intl.ListFormat(&apos;zh&apos;);
-lf.format([&apos;永鋒&apos;]);
-// → &apos;永鋒&apos;
-lf.format([&apos;永鋒&apos;, &apos;新宇&apos;]);
-// → &apos;永鋒和新宇&apos;
-lf.format([&apos;永鋒&apos;, &apos;新宇&apos;, &apos;芳遠&apos;]);
-// → &apos;永鋒、新宇和芳遠&apos;
-lf.format([&apos;永鋒&apos;, &apos;新宇&apos;, &apos;芳遠&apos;, &apos;澤遠&apos;]);
-// → &apos;永鋒、新宇、芳遠和澤遠&apos;
+const lf = new Intl.ListFormat('zh');
+lf.format(['永鋒']);
+// → '永鋒'
+lf.format(['永鋒', '新宇']);
+// → '永鋒和新宇'
+lf.format(['永鋒', '新宇', '芳遠']);
+// → '永鋒、新宇和芳遠'
+lf.format(['永鋒', '新宇', '芳遠', '澤遠']);
+// → '永鋒、新宇、芳遠和澤遠'
 ```
 
 Параметр `options` позволяет более продвинутое использование. Вот обзор различных опций и их комбинаций, а также их соответствие шаблонам списков, определенным [UTS#35](https://unicode.org/reports/tr35/tr35-general.html#ListPatterns):
@@ -74,11 +74,11 @@ lf.format([&apos;永鋒&apos;, &apos;新宇&apos;, &apos;芳遠&apos;, &apos;澤
 
 | Тип                   | Опции                                    | Описание                                                                                         | Примеры                              |
 | --------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------ |
-| стандартный (или нет типа) | `{}` (по умолчанию)                        | Типичный список с «и» для произвольных заполнителей                                              | `&apos;January, February, and March&apos;` |
-| или                   | `{ type: &apos;disjunction&apos; }`                 | Типичный список с «или» для произвольных заполнителей                                            | `&apos;January, February, or March&apos;`  |
-| единица               | `{ type: &apos;unit&apos; }`                        | Список, подходящий для широких единиц измерения                                                  | `&apos;3 feet, 7 inches&apos;`             |
-| единица-короткий      | `{ type: &apos;unit&apos;, style: &apos;short&apos; }`        | Список, подходящий для коротких единиц измерения                                                 | `&apos;3 ft, 7 in&apos;`                   |
-| единица-узкий         | `{ type: &apos;unit&apos;, style: &apos;narrow&apos; }`       | Список, подходящий для узких единиц измерения, где пространство экрана строго ограничено         | `&apos;3′ 7″&apos;`                        |
+| стандартный (или нет типа) | `{}` (по умолчанию)                        | Типичный список с «и» для произвольных заполнителей                                              | `'January, February, and March'` |
+| или                   | `{ type: 'disjunction' }`                 | Типичный список с «или» для произвольных заполнителей                                            | `'January, February, or March'`  |
+| единица               | `{ type: 'unit' }`                        | Список, подходящий для широких единиц измерения                                                  | `'3 feet, 7 inches'`             |
+| единица-короткий      | `{ type: 'unit', style: 'short' }`        | Список, подходящий для коротких единиц измерения                                                 | `'3 ft, 7 in'`                   |
+| единица-узкий         | `{ type: 'unit', style: 'narrow' }`       | Список, подходящий для узких единиц измерения, где пространство экрана строго ограничено         | `'3′ 7″'`                        |
 
 
 Учтите, что во многих языках (например, английском) может не быть различий между многими из этих списков. В других же изменение пробелов, длины или наличия соединительного слова, а также разделителей может быть явным.

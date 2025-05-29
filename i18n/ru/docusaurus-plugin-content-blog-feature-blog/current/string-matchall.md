@@ -1,21 +1,21 @@
 ---
-title: &apos;`String.prototype.matchAll`&apos;
-author: &apos;Матиас Биненс ([@mathias](https://twitter.com/mathias))&apos;
+title: '`String.prototype.matchAll`'
+author: 'Матиас Биненс ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-02-02
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: &apos;String.prototype.matchAll делает проще итерацию по всем объектам совпадения от заданного регулярного выражения.&apos;
+description: 'String.prototype.matchAll делает проще итерацию по всем объектам совпадения от заданного регулярного выражения.'
 ---
 Часто нужно повторно применять одно и то же регулярное выражение к строке, чтобы получить все совпадения. В некоторой степени это уже возможно с помощью метода `String#match`.
 
 В этом примере мы найдем все слова, состоящие только из шестнадцатеричных символов, а затем выведем каждое совпадение:
 
 ```js
-const string = &apos;Magic hex numbers: DEADBEEF CAFE&apos;;
+const string = 'Magic hex numbers: DEADBEEF CAFE';
 const regex = /\b\p{ASCII_Hex_Digit}+\b/gu;
 for (const match of string.match(regex)) {
   console.log(match);
@@ -23,8 +23,8 @@ for (const match of string.match(regex)) {
 
 // Результат:
 //
-// &apos;DEADBEEF&apos;
-// &apos;CAFE&apos;
+// 'DEADBEEF'
+// 'CAFE'
 ```
 
 Однако это дает только _подстроки_, которые соответствуют. Обычно требуется не только подстроки, но и дополнительная информация, такая как индекс каждой подстроки или группы захвата внутри каждого совпадения.
@@ -32,7 +32,7 @@ for (const match of string.match(regex)) {
 Уже сейчас можно достичь этого, написав собственный цикл и ведя учет объектов совпадений вручную, но это немного неудобно и не очень удобно:
 
 ```js
-const string = &apos;Magic hex numbers: DEADBEEF CAFE&apos;;
+const string = 'Magic hex numbers: DEADBEEF CAFE';
 const regex = /\b\p{ASCII_Hex_Digit}+\b/gu;
 let match;
 while (match = regex.exec(string)) {
@@ -41,14 +41,14 @@ while (match = regex.exec(string)) {
 
 // Результат:
 //
-// [ &apos;DEADBEEF&apos;, index: 19, input: &apos;Magic hex numbers: DEADBEEF CAFE&apos; ]
-// [ &apos;CAFE&apos;,     index: 28, input: &apos;Magic hex numbers: DEADBEEF CAFE&apos; ]
+// [ 'DEADBEEF', index: 19, input: 'Magic hex numbers: DEADBEEF CAFE' ]
+// [ 'CAFE',     index: 28, input: 'Magic hex numbers: DEADBEEF CAFE' ]
 ```
 
 Новый API `String#matchAll` делает это проще, чем когда-либо: теперь вы можете написать простой цикл `for`-`of`, чтобы получить все объекты совпадений.
 
 ```js
-const string = &apos;Magic hex numbers: DEADBEEF CAFE&apos;;
+const string = 'Magic hex numbers: DEADBEEF CAFE';
 const regex = /\b\p{ASCII_Hex_Digit}+\b/gu;
 for (const match of string.matchAll(regex)) {
   console.log(match);
@@ -56,17 +56,17 @@ for (const match of string.matchAll(regex)) {
 
 // Результат:
 //
-// [ &apos;DEADBEEF&apos;, index: 19, input: &apos;Magic hex numbers: DEADBEEF CAFE&apos; ]
-// [ &apos;CAFE&apos;,     index: 28, input: &apos;Magic hex numbers: DEADBEEF CAFE&apos; ]
+// [ 'DEADBEEF', index: 19, input: 'Magic hex numbers: DEADBEEF CAFE' ]
+// [ 'CAFE',     index: 28, input: 'Magic hex numbers: DEADBEEF CAFE' ]
 ```
 
 `String#matchAll` особенно полезен для регулярных выражений с группами захвата. Он предоставляет полную информацию для каждого отдельного совпадения, включая группы захвата.
 
 ```js
-const string = &apos;Favorite GitHub repos: tc39/ecma262 v8/v8.dev&apos;;
+const string = 'Favorite GitHub repos: tc39/ecma262 v8/v8.dev';
 const regex = /\b(?<owner>[a-z0-9]+)\/(?<repo>[a-z0-9\.]+)\b/g;
 for (const match of string.matchAll(regex)) {
-  console.log(`${match[0]} на ${match.index} в &apos;${match.input}&apos;`);
+  console.log(`${match[0]} на ${match.index} в '${match.input}'`);
   console.log(`→ владелец: ${match.groups.owner}`);
   console.log(`→ репо: ${match.groups.repo}`);
 }
@@ -74,10 +74,10 @@ for (const match of string.matchAll(regex)) {
 <!--truncate-->
 // Результат:
 //
-// tc39/ecma262 на 23 в &apos;Favorite GitHub repos: tc39/ecma262 v8/v8.dev&apos;
+// tc39/ecma262 на 23 в 'Favorite GitHub repos: tc39/ecma262 v8/v8.dev'
 // → владелец: tc39
 // → репо: ecma262
-// v8/v8.dev на 36 в &apos;Favorite GitHub repos: tc39/ecma262 v8/v8.dev&apos;
+// v8/v8.dev на 36 в 'Favorite GitHub repos: tc39/ecma262 v8/v8.dev'
 // → владелец: v8
 // → репо: v8.dev
 ```

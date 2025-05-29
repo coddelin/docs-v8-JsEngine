@@ -158,16 +158,16 @@ Die in den Build von `p42.c` hinzugefügte Option `-Wl,--import-memory` stellt s
 Um Code dynamisch zu laden, verwenden wir die Standard-API `WebAssembly.instantiateStreaming`:
 
 ```js
-WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;));
+WebAssembly.instantiateStreaming(fetch('p42.wasm'));
 ```
 
 Dieser Ausdruck verwendet `fetch`, um das kompiliierte Wasm-Modul zu lokalisieren, `WebAssembly.instantiateStreaming`, um das Ergebnis des Fetch zu kompilieren und ein instanziiertes Modul daraus zu erstellen. Sowohl `fetch` als auch `WebAssembly.instantiateStreaming` geben Promises zurück; daher können wir nicht einfach auf das Ergebnis zugreifen und unsere benötigte Funktion extrahieren. Stattdessen packen wir dies in einen JSPI-Import im Stil vom `EM_ASYNC_JS`-Makro:
 
 ```c
 EM_ASYNC_JS(fooFun, resolveFun, (), {
-  console.log(&apos;lade promise42&apos;);
-  LoadedModule = (await WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;))).instance;
-  return addFunction(LoadedModule.exports[&apos;provide42&apos;]);
+  console.log('lade promise42');
+  LoadedModule = (await WebAssembly.instantiateStreaming(fetch('p42.wasm'))).instance;
+  return addFunction(LoadedModule.exports['provide42']);
 });
 ```
 
@@ -329,9 +329,9 @@ typedef long (*fooFun)();
 
 // Ein Versprechen für eine Funktion
 EM_ASYNC_JS(fooFun, resolveFun, (), {
-  console.log(&apos;Lade Versprechen42&apos;);
-  LoadedModule = (await WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;))).instance;
-  return addFunction(LoadedModule.exports[&apos;provide42&apos;]);
+  console.log('Lade Versprechen42');
+  LoadedModule = (await WebAssembly.instantiateStreaming(fetch('p42.wasm'))).instance;
+  return addFunction(LoadedModule.exports['provide42']);
 });
 
 EM_JS_DEPS(funDeps, "$addFunction")

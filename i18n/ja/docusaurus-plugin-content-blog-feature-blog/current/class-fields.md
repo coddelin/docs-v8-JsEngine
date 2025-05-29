@@ -1,16 +1,16 @@
 ---
-title: &apos;公開および非公開のクラスフィールド&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '公開および非公開のクラスフィールド'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-12-13
 tags:
   - ECMAScript
   - ES2022
   - io19
   - Node.js 14
-description: &apos;いくつかの提案が既存のJavaScriptクラス構文を新機能で拡張しています。この記事では、V8 v7.2およびChrome 72で導入された新しい公開クラスフィールド構文と、近日公開予定の非公開クラスフィールド構文について説明します。&apos;
-tweet: &apos;1121395767170740225&apos;
+description: 'いくつかの提案が既存のJavaScriptクラス構文を新機能で拡張しています。この記事では、V8 v7.2およびChrome 72で導入された新しい公開クラスフィールド構文と、近日公開予定の非公開クラスフィールド構文について説明します。'
+tweet: '1121395767170740225'
 ---
 いくつかの提案が既存のJavaScriptクラス構文を新機能で拡張しています。この記事では、V8 v7.2およびChrome 72で導入された新しい公開クラスフィールド構文と、近日公開予定の非公開クラスフィールド構文について説明します。
 
@@ -19,11 +19,11 @@ tweet: &apos;1121395767170740225&apos;
 ```js
 const counter = new IncreasingCounter();
 counter.value;
-// ログに&apos;現在の値を取得中！&apos;と出力
+// ログに'現在の値を取得中！'と出力
 // → 0
 counter.increment();
 counter.value;
-// ログに&apos;現在の値を取得中！&apos;と出力
+// ログに'現在の値を取得中！'と出力
 // → 1
 ```
 
@@ -39,7 +39,7 @@ class IncreasingCounter {
     this._count = 0;
   }
   get value() {
-    console.log(&apos;現在の値を取得中！&apos;);
+    console.log('現在の値を取得中！');
     return this._count;
   }
   increment() {
@@ -54,7 +54,7 @@ class IncreasingCounter {
 ```js
 const counter = new IncreasingCounter();
 counter.value;
-// ログに&apos;現在の値を取得中！&apos;と出力
+// ログに'現在の値を取得中！'と出力
 // → 0
 
 // 人々が`_count`インスタンスプロパティを読み取ったり
@@ -63,7 +63,7 @@ counter._count;
 // → 0
 counter._count = 42;
 counter.value;
-// ログに&apos;現在の値を取得中！&apos;と出力
+// ログに'現在の値を取得中！'と出力
 // → 42
 ```
 
@@ -75,7 +75,7 @@ counter.value;
 class IncreasingCounter {
   _count = 0;
   get value() {
-    console.log(&apos;現在の値を取得中！&apos;);
+    console.log('現在の値を取得中！');
     return this._count;
   }
   increment() {
@@ -96,7 +96,7 @@ class IncreasingCounter {
 class IncreasingCounter {
   #count = 0;
   get value() {
-    console.log(&apos;現在の値を取得中！&apos;);
+    console.log('現在の値を取得中！');
     return this.#count;
   }
   increment() {
@@ -135,7 +135,7 @@ class FakeMath {
   // `random` は静的公開メソッド (ES2015構文) で、
   // `#computeRandomNumber` を利用します。
   static random() {
-    console.log(&apos;ランダムな数がお好きと聞きました…&apos;);
+    console.log('ランダムな数がお好きと聞きました…');
     return FakeMath.#computeRandomNumber();
   }
 }
@@ -143,7 +143,7 @@ class FakeMath {
 FakeMath.PI;
 // → 3.142857142857143
 FakeMath.random();
-// ログに&apos;ランダムな数がお好きと聞きました…&apos;と出力
+// ログに'ランダムな数がお好きと聞きました…'と出力
 // → 4
 FakeMath.#totallyRandomNumber;
 // → SyntaxError
@@ -172,7 +172,7 @@ class Cat extends Animal {
     this.likesBaths = false;
   }
   meow() {
-    console.log(&apos;ニャー!&apos;);
+    console.log('ニャー!');
   }
 }
 ```
@@ -183,7 +183,7 @@ class Cat extends Animal {
 class Cat extends Animal {
   likesBaths = false;
   meow() {
-    console.log(&apos;ニャー!&apos;);
+    console.log('ニャー!');
   }
 }
 ```

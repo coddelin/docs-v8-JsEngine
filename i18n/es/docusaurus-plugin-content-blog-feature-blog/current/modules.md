@@ -118,7 +118,7 @@ Por ejemplo, los módulos se evalúan sólo una vez, mientras que los scripts cl
 
 <script type="module" src="module.mjs"></script>
 <script type="module" src="module.mjs"></script>
-<script type="module">import &apos;./module.mjs&apos;;</script>
+<script type="module">import './module.mjs';</script>
 <!-- module.mjs se ejecuta sólo una vez. -->
 ```
 
@@ -141,10 +141,10 @@ Aun así, recomendamos usar la extensión `.mjs` para módulos, por dos razones:
 
 ### Especificadores de módulo
 
-Cuando se `importan` módulos, la cadena que especifica la ubicación del módulo se llama el "especificador de módulo" o "especificador de importación". En nuestro ejemplo anterior, el especificador de módulo es `&apos;./lib.mjs&apos;`:
+Cuando se `importan` módulos, la cadena que especifica la ubicación del módulo se llama el "especificador de módulo" o "especificador de importación". En nuestro ejemplo anterior, el especificador de módulo es `'./lib.mjs'`:
 
 ```js
-import {shout} from &apos;./lib.mjs&apos;;
+import {shout} from './lib.mjs';
 //                  ^^^^^^^^^^^
 ```
 
@@ -152,19 +152,19 @@ Se aplican algunas restricciones a los especificadores de módulos en navegadore
 
 ```js
 // No compatible (aún):
-import {shout} from &apos;jquery&apos;;
-import {shout} from &apos;lib.mjs&apos;;
-import {shout} from &apos;modules/lib.mjs&apos;;
+import {shout} from 'jquery';
+import {shout} from 'lib.mjs';
+import {shout} from 'modules/lib.mjs';
 ```
 
 Por otro lado, los siguientes ejemplos son todos compatibles:
 
 ```js
 // Compatible:
-import {shout} from &apos;./lib.mjs&apos;;
-import {shout} from &apos;../lib.mjs&apos;;
-import {shout} from &apos;/modules/lib.mjs&apos;;
-import {shout} from &apos;https://simple.example/modules/lib.mjs&apos;;
+import {shout} from './lib.mjs';
+import {shout} from '../lib.mjs';
+import {shout} from '/modules/lib.mjs';
+import {shout} from 'https://simple.example/modules/lib.mjs';
 ```
 
 Por ahora, los especificadores de módulos deben ser URLs completas o URLs relativas que comiencen con `/`, `./` o `../`.
@@ -186,12 +186,12 @@ Hasta ahora solo hemos utilizado `import` estático. Con el `import` estático, 
 ```html
 <script type="module">
   (async () => {
-    const moduleSpecifier = &apos;./lib.mjs&apos;;
+    const moduleSpecifier = './lib.mjs';
     const {repeat, shout} = await import(moduleSpecifier);
-    repeat(&apos;hello&apos;);
-    // → &apos;hello hello&apos;
-    shout(&apos;Dynamic import in action&apos;);
-    // → &apos;DYNAMIC IMPORT IN ACTION!&apos;
+    repeat('hello');
+    // → 'hello hello'
+    shout('Dynamic import in action');
+    // → 'DYNAMIC IMPORT IN ACTION!'
   })();
 </script>
 ```
@@ -216,7 +216,7 @@ function loadThumbnail(relativePath) {
   return image;
 }
 
-const thumbnail = loadThumbnail(&apos;../img/thumbnail.png&apos;);
+const thumbnail = loadThumbnail('../img/thumbnail.png');
 container.append(thumbnail);
 ```
 
@@ -266,7 +266,7 @@ export function zip() { /* … */ }
 Si tu base de código realmente solo necesita la funcionalidad de `pluck`, probablemente la importarías de la siguiente manera:
 
 ```js
-import {pluck} from &apos;./util.mjs&apos;;
+import {pluck} from './util.mjs';
 ```
 
 En este caso, (sin un paso de empaquetado en tiempo de compilación) el navegador aún tendría que descargar, analizar y compilar todo el módulo `./util.mjs` aunque solo necesite esa única exportación. ¡Eso es derrochador!
@@ -280,7 +280,7 @@ export function pluck() { /* … */ }
 Luego podemos importar `pluck` sin la sobrecarga de tratar con `drop` y `zip`:
 
 ```js
-import {pluck} from &apos;./pluck.mjs&apos;;
+import {pluck} from './pluck.mjs';
 ```
 
 :::note
@@ -335,7 +335,7 @@ Chrome ahora implementa [worklets](https://drafts.css-houdini.org/worklets/), qu
 Chrome 65 admite [`PaintWorklet`](https://developers.google.com/web/updates/2018/01/paintapi) (también conocida como API de Pintura de CSS) para controlar cómo se pinta un elemento DOM.
 
 ```js
-const result = await css.paintWorklet.addModule(&apos;paint-worklet.mjs&apos;);
+const result = await css.paintWorklet.addModule('paint-worklet.mjs');
 ```
 
 Chrome 66 admite [`AudioWorklet`](https://developers.google.com/web/updates/2017/12/audio-worklet), que te permite controlar el procesamiento de audio con tu propio código. La misma versión de Chrome comenzó una [Prueba de Origen para `AnimationWorklet`](https://groups.google.com/a/chromium.org/d/msg/blink-dev/AZ-PYPMS7EA/DEqbe2u5BQAJ), que permite crear animaciones vinculadas al desplazamiento y otras animaciones procedimentales de alto rendimiento.
@@ -345,14 +345,14 @@ Finalmente, [`LayoutWorklet`](https://drafts.css-houdini.org/css-layout-api/) (t
 Estamos [trabajando](https://bugs.chromium.org/p/chromium/issues/detail?id=680046) en agregar soporte para usar módulos JS con trabajadores web dedicados en Chrome. Ya puedes probar esta función con `chrome://flags/#enable-experimental-web-platform-features` habilitada.
 
 ```js
-const worker = new Worker(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
+const worker = new Worker('worker.mjs', { type: 'module' });
 ```
 
 El soporte de módulos JS para trabajadores compartidos y trabajadores de servicio llegará pronto:
 
 ```js
-const worker = new SharedWorker(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
-const registration = await navigator.serviceWorker.register(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
+const worker = new SharedWorker('worker.mjs', { type: 'module' });
+const registration = await navigator.serviceWorker.register('worker.mjs', { type: 'module' });
 ```
 
 ### Mapas de importación
@@ -360,8 +360,8 @@ const registration = await navigator.serviceWorker.register(&apos;worker.mjs&apo
 En Node.js/npm, es común importar módulos JS por su “nombre de paquete”. Por ejemplo:
 
 ```js
-import moment from &apos;moment&apos;;
-import {pluck} from &apos;lodash-es&apos;;
+import moment from 'moment';
+import {pluck} from 'lodash-es';
 ```
 
 Actualmente, [según la especificación HTML](https://html.spec.whatwg.org/multipage/webappapis.html#resolve-a-module-specifier), dichos “especificadores de importación simples” arrojan una excepción. [Nuestra propuesta de mapas de importación](https://github.com/domenic/import-maps) permite que dicho código funcione en la web, incluso en aplicaciones de producción. Un mapa de importación es un recurso JSON que ayuda al navegador a convertir los especificadores de importación simples en URLs completas.

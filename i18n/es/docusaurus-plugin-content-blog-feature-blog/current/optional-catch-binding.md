@@ -1,14 +1,14 @@
 ---
-title: &apos;Binding opcional en `catch`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Binding opcional en `catch`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-03-27
 tags:
   - ECMAScript
   - ES2019
-description: &apos;En ES2019, ahora se puede usar `catch` sin un parámetro.&apos;
-tweet: &apos;956209997808939008&apos;
+description: 'En ES2019, ahora se puede usar `catch` sin un parámetro.'
+tweet: '956209997808939008'
 ---
 La cláusula `catch` de las sentencias `try` solía requerir un binding:
 

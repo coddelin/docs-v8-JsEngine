@@ -105,9 +105,9 @@ try {
 
 ```js
 const promises = [
-  fetch(&apos;/api-call-1&apos;),
-  fetch(&apos;/api-call-2&apos;),
-  fetch(&apos;/api-call-3&apos;),
+  fetch('/api-call-1'),
+  fetch('/api-call-2'),
+  fetch('/api-call-3'),
 ];
 // 假设其中一些请求失败，另一些成功。
 
@@ -128,15 +128,15 @@ removeLoadingIndicator();
 
 ```js
 const promises = [
-  fetch(&apos;/endpoint-a&apos;).then(() => &apos;a&apos;),
-  fetch(&apos;/endpoint-b&apos;).then(() => &apos;b&apos;),
-  fetch(&apos;/endpoint-c&apos;).then(() => &apos;c&apos;),
+  fetch('/endpoint-a').then(() => 'a'),
+  fetch('/endpoint-b').then(() => 'b'),
+  fetch('/endpoint-c').then(() => 'c'),
 ];
 try {
   const first = await Promise.any(promises);
   // 任意一个 promise 被 fulfilled。
   console.log(first);
-  // → 例如 &apos;b&apos;
+  // → 例如 'b'
 } catch (error) {
   // 所有的 promise 都被拒绝。
   console.assert(error instanceof AggregateError);
@@ -155,5 +155,5 @@ try {
 `Promise.any` 的拒绝可能同时代表多个错误。为了在语言层面支持这一点，引入了一种称为 `AggregateError` 的新错误类型。除了在上述示例中的基本使用，`AggregateError` 对象还可以像其他错误类型那样以编程方式构造：
 
 ```js
-const aggregateError = new AggregateError([errorA, errorB, errorC], &apos;发生了一些错误！&apos;);
+const aggregateError = new AggregateError([errorA, errorB, errorC], '发生了一些错误！');
 ```

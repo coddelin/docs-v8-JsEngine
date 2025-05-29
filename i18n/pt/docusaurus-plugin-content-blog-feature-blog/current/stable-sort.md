@@ -1,28 +1,28 @@
 ---
-title: &apos;Ordenação estável de `Array.prototype.sort`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Ordenação estável de `Array.prototype.sort`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-07-02
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: &apos;Agora `Array.prototype.sort` é garantido como estável.&apos;
-tweet: &apos;1146067251302244353&apos;
+description: 'Agora `Array.prototype.sort` é garantido como estável.'
+tweet: '1146067251302244353'
 ---
 Digamos que você tenha um array de cachorros, onde cada cachorro tem um nome e uma classificação. (Se isso parecer um exemplo estranho, você deve saber que existe uma conta no Twitter que se especializa exatamente nisso... Não pergunte!)
 
 ```js
 // Note como o array já está ordenado alfabeticamente por `nome`.
 const doggos = [
-  { name: &apos;Abby&apos;,   rating: 12 },
-  { name: &apos;Bandit&apos;, rating: 13 },
-  { name: &apos;Choco&apos;,  rating: 14 },
-  { name: &apos;Daisy&apos;,  rating: 12 },
-  { name: &apos;Elmo&apos;,   rating: 12 },
-  { name: &apos;Falco&apos;,  rating: 13 },
-  { name: &apos;Ghost&apos;,  rating: 14 },
+  { name: 'Abby',   rating: 12 },
+  { name: 'Bandit', rating: 13 },
+  { name: 'Choco',  rating: 14 },
+  { name: 'Daisy',  rating: 12 },
+  { name: 'Elmo',   rating: 12 },
+  { name: 'Falco',  rating: 13 },
+  { name: 'Ghost',  rating: 14 },
 ];
 // Ordene os cachorros por `rating` em ordem decrescente.
 // (Isso atualiza `doggos` diretamente.)
@@ -34,13 +34,13 @@ O array está pré-ordenado alfabeticamente por nome. Para ordenar por classific
 
 ```js
 [
-  { name: &apos;Choco&apos;,  rating: 14 },
-  { name: &apos;Ghost&apos;,  rating: 14 },
-  { name: &apos;Bandit&apos;, rating: 13 },
-  { name: &apos;Falco&apos;,  rating: 13 },
-  { name: &apos;Abby&apos;,   rating: 12 },
-  { name: &apos;Daisy&apos;,  rating: 12 },
-  { name: &apos;Elmo&apos;,   rating: 12 },
+  { name: 'Choco',  rating: 14 },
+  { name: 'Ghost',  rating: 14 },
+  { name: 'Bandit', rating: 13 },
+  { name: 'Falco',  rating: 13 },
+  { name: 'Abby',   rating: 12 },
+  { name: 'Daisy',  rating: 12 },
+  { name: 'Elmo',   rating: 12 },
 ]
 ```
 
@@ -50,13 +50,13 @@ No entanto, para obter esse resultado, o motor JavaScript não pode usar _qualqu
 
 ```js
 [
-  { name: &apos;Ghost&apos;,  rating: 14 }, // 😢
-  { name: &apos;Choco&apos;,  rating: 14 }, // 😢
-  { name: &apos;Bandit&apos;, rating: 13 },
-  { name: &apos;Falco&apos;,  rating: 13 },
-  { name: &apos;Abby&apos;,   rating: 12 },
-  { name: &apos;Daisy&apos;,  rating: 12 },
-  { name: &apos;Elmo&apos;,   rating: 12 },
+  { name: 'Ghost',  rating: 14 }, // 😢
+  { name: 'Choco',  rating: 14 }, // 😢
+  { name: 'Bandit', rating: 13 },
+  { name: 'Falco',  rating: 13 },
+  { name: 'Abby',   rating: 12 },
+  { name: 'Daisy',  rating: 12 },
+  { name: 'Elmo',   rating: 12 },
 ]
 ```
 

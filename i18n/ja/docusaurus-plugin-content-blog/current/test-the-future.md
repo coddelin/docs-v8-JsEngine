@@ -1,10 +1,10 @@
 ---
-title: &apos;V8の未来をテストするために助けてください！&apos;
-author: &apos;Daniel Clifford ([@expatdanno](https://twitter.com/expatdanno)), オリジナルミュンヘンV8醸造者&apos;
+title: 'V8の未来をテストするために助けてください！'
+author: 'Daniel Clifford ([@expatdanno](https://twitter.com/expatdanno)), オリジナルミュンヘンV8醸造者'
 date: 2017-02-14 13:33:37
 tags:
   - internals
-description: &apos;今日、Chrome CanaryでIgnitionとTurboFanを使用したV8の新しいコンパイラパイプラインをプレビューできます！&apos;
+description: '今日、Chrome CanaryでIgnitionとTurboFanを使用したV8の新しいコンパイラパイプラインをプレビューできます！'
 ---
 V8チームは現在、[リアルワールドのJavaScript](/blog/real-world-performance)に向けた将来のスピードアップを実現する新しいデフォルトのコンパイラパイプラインに取り組んでいます。この新しいパイプラインは、すべてのChromeチャンネルに新しい構成を展開する際に驚きがないことを確認するために、今日Chrome Canaryでプレビューできます。
 

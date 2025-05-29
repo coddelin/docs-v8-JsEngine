@@ -1,11 +1,11 @@
 ---
-title: &apos;V8リリースv6.3&apos;
-author: &apos;V8チーム&apos;
+title: 'V8リリースv6.3'
+author: 'V8チーム'
 date: 2017-10-25 13:33:37
 tags:
   - release
-description: &apos;V8 v6.3はパフォーマンスの向上、メモリ消費の削減、新しいJavaScript言語機能のサポートを含みます。&apos;
-tweet: &apos;923168001108643840&apos;
+description: 'V8 v6.3はパフォーマンスの向上、メモリ消費の削減、新しいJavaScript言語機能のサポートを含みます。'
+tweet: '923168001108643840'
 ---
 6週間ごとに、私たちの[リリースプロセス](/docs/release-process)の一環としてV8の新しいブランチを作成します。各バージョンはChrome Betaマイルストーンの直前にV8のGitマスターから分岐されます。本日、私たちは最新のブランチ[V8バージョン6.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.3)を発表できることを嬉しく思います。このブランチは、数週間後にChrome 63の安定版と連携してリリースされるまでベータ版です。V8 v6.3は、開発者向けの素晴らしい改善が詰まっています。この投稿では、リリースに向けたハイライトのいくつかを予告します。
 

@@ -1,15 +1,15 @@
 ---
-title: &apos;Séparateurs numériques&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Séparateurs numériques'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-05-28
 tags:
   - ECMAScript
   - ES2021
   - io19
-description: &apos;JavaScript prend désormais en charge les underscores comme séparateurs dans les littéraux numériques, augmentant ainsi la lisibilité et la maintenabilité du code source.&apos;
-tweet: &apos;1129073383931559936&apos;
+description: 'JavaScript prend désormais en charge les underscores comme séparateurs dans les littéraux numériques, augmentant ainsi la lisibilité et la maintenabilité du code source.'
+tweet: '1129073383931559936'
 ---
 Les grands littéraux numériques sont difficiles à analyser rapidement pour l'œil humain, surtout lorsqu'il y a beaucoup de chiffres répétitifs :
 

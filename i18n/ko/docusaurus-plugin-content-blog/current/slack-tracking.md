@@ -96,7 +96,7 @@ function Peak(name, height) {
   this.height = height;
 }
 
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
+const m1 = new Peak('Matterhorn', 4478);
 ```
 
 `JSFunction::CalculateExpectedNofProperties` 및 `Peak()` 함수의 계산 결과에 따라 우리는 2개의 객체 내부 속성을 가지게 되며, 슬랙 추적 덕분에 추가로 8개가 더 생깁니다. `%DebugPrint()`를 사용하여 `m1`을 출력할 수 있습니다. (_이 유용한 함수는 맵 구조를 노출합니다. `--allow-natives-syntax` 플래그를 사용하여 `d8`을 실행하면 사용할 수 있습니다_):
@@ -193,13 +193,13 @@ DebugPrint: 0x46f07295: [Map]
 속성 이름을 기반으로 한 이러한 전환은 자바스크립트의 [“맹목적인 두더지”](https://www.google.com/search?q=blind+mole&tbm=isch)"가 내부에서 맵을 생성하는 방식입니다. 이 초기 맵은 함수 `Peak`에 저장되므로, 이를 생성자로 사용했을 때 해당 맵이 `this` 객체를 설정하는 데 사용될 수 있습니다.
 
 ```js
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
-const m2 = new Peak(&apos;Mont Blanc&apos;, 4810);
-const m3 = new Peak(&apos;Zinalrothorn&apos;, 4221);
-const m4 = new Peak(&apos;Wendelstein&apos;, 1838);
-const m5 = new Peak(&apos;Zugspitze&apos;, 2962);
-const m6 = new Peak(&apos;Watzmann&apos;, 2713);
-const m7 = new Peak(&apos;Eiger&apos;, 3970);
+const m1 = new Peak('Matterhorn', 4478);
+const m2 = new Peak('Mont Blanc', 4810);
+const m3 = new Peak('Zinalrothorn', 4221);
+const m4 = new Peak('Wendelstein', 1838);
+const m5 = new Peak('Zugspitze', 2962);
+const m6 = new Peak('Watzmann', 2713);
+const m7 = new Peak('Eiger', 3970);
 ```
 
 여기서 멋진 점은 `m7`을 생성한 후 다시 `%DebugPrint(m1)`을 실행하면 새로운 멋진 결과가 생성된다는 것입니다:
@@ -293,7 +293,7 @@ void Factory::InitializeJSObjectBody(Handle<JSObject> obj, Handle<Map> map,
 이제 슬랙 트래킹이 완료된 경우, 이 `Peak` 객체 중 하나에 또 다른 속성을 추가하면 어떻게 될까요?
 
 ```js
-m1.country = &apos;스위스&apos;;
+m1.country = '스위스';
 ```
 
 V8은 속성을 지원하는 저장소로 들어가야 합니다. 결과적으로 다음과 같은 객체 레이아웃이 생성됩니다:
@@ -337,13 +337,13 @@ function Peak(name, height, prominence, isClimbed) {
 다음과 같은 다양한 변종들을 추가합니다:
 
 ```js
-const m1 = new Peak(&apos;Wendelstein&apos;, 1838);
-const m2 = new Peak(&apos;Matterhorn&apos;, 4478, 1040, true);
-const m3 = new Peak(&apos;Zugspitze&apos;, 2962);
-const m4 = new Peak(&apos;Mont Blanc&apos;, 4810, 4695, true);
-const m5 = new Peak(&apos;Watzmann&apos;, 2713);
-const m6 = new Peak(&apos;Zinalrothorn&apos;, 4221, 490, true);
-const m7 = new Peak(&apos;Eiger&apos;, 3970);
+const m1 = new Peak('Wendelstein', 1838);
+const m2 = new Peak('Matterhorn', 4478, 1040, true);
+const m3 = new Peak('Zugspitze', 2962);
+const m4 = new Peak('Mont Blanc', 4810, 4695, true);
+const m5 = new Peak('Watzmann', 2713);
+const m6 = new Peak('Zinalrothorn', 4221, 490, true);
+const m7 = new Peak('Eiger', 3970);
 ```
 
 이 경우 객체 `m1`, `m3`, `m5`, `m7`은 하나의 맵을 가지고 있고, 객체 `m2`, `m4`, `m6`은 초기 맵에서 맵 체인의 자손으로 내려가는 맵을 가지고 있습니다. 추가 속성 때문에 슬랙 트래킹이 이 맵 패밀리에 대해 완료되면, 이전처럼 **2**개의 객체 내 속성이 아니라 **4**개가 포함됩니다. 슬랙 트래킹은 초기 맵 아래 트리의 모든 자손에서 최대 사용된 객체 내 속성을 기준으로 충분한 공간을 유지합니다.
@@ -362,10 +362,10 @@ function foo(a1, a2, a3, a4) {
 }
 
 %PrepareFunctionForOptimization(foo);
-const m1 = foo(&apos;Wendelstein&apos;, 1838);
-const m2 = foo(&apos;Matterhorn&apos;, 4478, 1040, true);
+const m1 = foo('Wendelstein', 1838);
+const m2 = foo('Matterhorn', 4478, 1040, true);
 %OptimizeFunctionOnNextCall(foo);
-foo(&apos;Zugspitze&apos;, 2962);
+foo('Zugspitze', 2962);
 ```
 
 최적화된 코드를 컴파일하고 실행하기에 충분할 것입니다. TurboFan(최적화 컴파일러)에서는 [**Create Lowering**](https://source.chromium.org/chromium/chromium/src/+/master:v8/src/compiler/js-create-lowering.h;l=32;drc=ee9e7e404e5a3f75a3ca0489aaf80490f625ca27)을 사용하여 객체의 할당을 인라인하는 작업을 수행합니다. 즉, 우리가 생성하는 네이티브 코드는 GC에게 객체의 인스턴스 크기를 요청하고 그 필드를 신중히 초기화하도록 지시하는 명령을 내보냅니다. 그러나 만약 슬랙 트래킹이 나중에 중단되었다면 이 코드는 유효하지 않을 것입니다. 무엇을 해야 할까요?

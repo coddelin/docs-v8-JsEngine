@@ -2,7 +2,7 @@
 permalink: /logo/
 title: Logos de V8
 layout: layouts/base.njk
-description: &apos;Téléchargez ici les logos officiels de V8 au format vectoriel (SVG).&apos;
+description: 'Téléchargez ici les logos officiels de V8 au format vectoriel (SVG).'
 ---
 # Logos de V8
 

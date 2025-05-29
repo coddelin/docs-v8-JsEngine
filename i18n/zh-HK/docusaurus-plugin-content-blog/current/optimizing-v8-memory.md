@@ -1,15 +1,15 @@
 ---
-title: &apos;優化 V8 記憶體使用&apos;
-author: &apos;V8 記憶體衛生工程師 Ulan Degenbaev、Michael Lippautz、Hannes Payer 和 Toon Verwaest&apos;
+title: '優化 V8 記憶體使用'
+author: 'V8 記憶體衛生工程師 Ulan Degenbaev、Michael Lippautz、Hannes Payer 和 Toon Verwaest'
 avatars:
-  - &apos;ulan-degenbaev&apos;
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'ulan-degenbaev'
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2016-10-07 13:33:37
 tags:
   - memory
   - benchmarks
-description: &apos;V8 團隊分析並顯著減少了若干被認為是現代網頁開發模式代表性網站的記憶體佔用量。&apos;
+description: 'V8 團隊分析並顯著減少了若干被認為是現代網頁開發模式代表性網站的記憶體佔用量。'
 ---
 記憶體使用是 JavaScript 虛擬機性能權衡空間中的重要維度。在過去幾個月中，V8 團隊分析並顯著減少了若干被認為是現代網頁開發模式代表性網站的記憶體佔用量。在這篇博客中，我們呈現了分析所使用的工作負載和工具，概述了垃圾回收器中的記憶體優化，並展示了我們如何減少 V8 解析器及其編譯器所使用的記憶體。
 

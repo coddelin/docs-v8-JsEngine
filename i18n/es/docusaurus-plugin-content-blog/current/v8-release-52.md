@@ -1,10 +1,10 @@
 ---
-title: &apos;Lanzamiento de V8 v5.2&apos;
-author: &apos;el equipo de V8&apos;
+title: 'Lanzamiento de V8 v5.2'
+author: 'el equipo de V8'
 date: 2016-06-04 13:33:37
 tags:
   - lanzamiento
-description: &apos;V8 v5.2 incluye soporte para características del lenguaje ES2016.&apos;
+description: 'V8 v5.2 incluye soporte para características del lenguaje ES2016.'
 ---
 Aproximadamente cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se ramifica desde el Git master de V8 inmediatamente antes de que Chrome se ramifique para un hito de Chrome Beta. Hoy estamos encantados de anunciar nuestra nueva rama, [V8 versión 5.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.2), que estará en beta hasta que se lance en coordinación con Chrome 52 Estable. V8 5.2 está lleno de todo tipo de novedades orientadas a desarrolladores, por lo que nos gustaría ofrecerles un adelanto de algunos de los aspectos más destacados en anticipación a su lanzamiento en varias semanas.
 

@@ -1,6 +1,6 @@
 ---
-title: &apos;V8 Torque ビルトイン&apos;
-description: &apos;このドキュメントはTorqueビルトインの作成に関する入門として、V8開発者を対象としています。&apos;
+title: 'V8 Torque ビルトイン'
+description: 'このドキュメントはTorqueビルトインの作成に関する入門として、V8開発者を対象としています。'
 ---
 このドキュメントはTorqueビルトインの作成に関する入門として、V8開発者を対象としています。TorqueはCodeStubAssemblerの代わりとして、新しいビルトインを実装するための推奨方法です。[CodeStubAssembler builtins](/docs/csa-builtins) を参照して、このガイドのCSAバージョンをご覧ください。
 
@@ -80,7 +80,7 @@ SimpleInstallFunction(isolate_, math, "is42", Builtins::kMathIs42, 1, true);
 $ out/debug/d8
 d8> Math.is42(42);
 true
-d8> Math.is42(&apos;42.0&apos;);
+d8> Math.is42('42.0');
 true
 d8> Math.is42(true);
 false

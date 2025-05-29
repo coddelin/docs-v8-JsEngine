@@ -1,12 +1,12 @@
 ---
-title: &apos;快速的 `for`-`in` 在 V8&apos;
-author: &apos;Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))&apos;
+title: '快速的 `for`-`in` 在 V8'
+author: 'Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))'
 avatars:
-  - &apos;camillo-bruni&apos;
+  - 'camillo-bruni'
 date: 2017-03-01 13:33:37
 tags:
   - internals
-description: &apos;本文是一篇技術深入解析，說明了 V8 如何讓 JavaScript 的 for-in 儘可能快。&apos;
+description: '本文是一篇技術深入解析，說明了 V8 如何讓 JavaScript 的 for-in 儘可能快。'
 ---
 `for`-`in` 是許多框架中廣泛使用的語言特性。儘管它的廣泛應用，從實現角度來看，它卻是較為晦澀的語言構造之一。V8 為了讓這個特性儘可能快付出了極大的努力。在過去的一年中，`for`-`in` 在符合規範的同時變得最多快了三倍，這取決於使用的上下文。
 
@@ -31,15 +31,15 @@ _**總結；** 為了性能原因，for-in 的迭代語義有些模糊。_
 const proxy = new Proxy({ a: 1, b: 1},
   {
     getPrototypeOf(target) {
-    console.log(&apos;getPrototypeOf&apos;);
+    console.log('getPrototypeOf');
     return null;
   },
   ownKeys(target) {
-    console.log(&apos;ownKeys&apos;);
+    console.log('ownKeys');
     return Reflect.ownKeys(target);
   },
   getOwnPropertyDescriptor(target, prop) {
-    console.log(&apos;getOwnPropertyDescriptor name=&apos; + prop);
+    console.log('getOwnPropertyDescriptor name=' + prop);
     return Reflect.getOwnPropertyDescriptor(target, prop);
   }
 });
@@ -94,7 +94,7 @@ b
 function* EnumerateObjectProperties(obj) {
   const visited = new Set();
   for (const key of Reflect.ownKeys(obj)) {
-    if (typeof key === &apos;symbol&apos;) continue;
+    if (typeof key === 'symbol') continue;
     const desc = Reflect.getOwnPropertyDescriptor(obj, key);
     if (desc && !visited.has(key)) {
       visited.add(key);
@@ -115,7 +115,7 @@ function* EnumerateObjectProperties(obj) {
 
 `for`-`in` 生成器的範例實現遵循了按步驟收集並生成鍵值的模式。在 V8 中，屬性鍵值先被收集，然後在迭代階段使用。對於 V8 來說，這使得某些事情更加簡單。我們需要看一下物件模型來理解原因。
 
-一個像 `{a:&apos;value a&apos;, b:&apos;value b&apos;, c:&apos;value c&apos;}` 這樣的簡單物件在 V8 中可以有多種內部表示形式。在我們即將發表的詳盡文章中，我們將探討屬性資料。這意味著，根據屬性類型（如：內部、快速或慢），實際的屬性名稱存儲在不同位置。這使得收集可列舉鍵值成為一項非簡單的任務。
+一個像 `{a:'value a', b:'value b', c:'value c'}` 這樣的簡單物件在 V8 中可以有多種內部表示形式。在我們即將發表的詳盡文章中，我們將探討屬性資料。這意味著，根據屬性類型（如：內部、快速或慢），實際的屬性名稱存儲在不同位置。這使得收集可列舉鍵值成為一項非簡單的任務。
 
 V8 使用隱藏的類或所謂的 Map 來追踪物件的結構。具有相同 Map 的物件擁有相同的結構。此外每個 Map 都有一個共享的數據結構，即名為 descriptor array 的描述符陣列，其中包含了每個屬性的細節，比如屬性存儲位置、屬性名稱以及屬性的可列舉性。
 
@@ -252,7 +252,7 @@ var o = {
   __proto__ : {b: 3},
   a: 1
 };
-Object.defineProperty(o, &apos;b&apos;, {});
+Object.defineProperty(o, 'b', {});
 
 for (var k in o) console.log(k);
 ```
@@ -299,31 +299,31 @@ b
 ```js
 var fastProperties = {
   __proto__ : null,
-  &apos;property 1&apos;: 1,
+  'property 1': 1,
   …
-  &apos;property 10&apos;: n
+  'property 10': n
 };
 
 var fastPropertiesWithPrototype = {
-  &apos;property 1&apos;: 1,
+  'property 1': 1,
   …
-  &apos;property 10&apos;: n
+  'property 10': n
 };
 
 var slowProperties = {
   __proto__ : null,
-  &apos;dummy&apos;: null,
-  &apos;property 1&apos;: 1,
+  'dummy': null,
+  'property 1': 1,
   …
-  &apos;property 10&apos;: n
+  'property 10': n
 };
-delete slowProperties[&apos;dummy&apos;]
+delete slowProperties['dummy']
 
 var elements = {
   __proto__: null,
-  &apos;1&apos;: 1,
+  '1': 1,
   …
-  &apos;10&apos;: n
+  '10': n
 }
 ```
 

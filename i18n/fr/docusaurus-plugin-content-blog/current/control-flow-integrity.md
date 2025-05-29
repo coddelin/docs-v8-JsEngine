@@ -1,61 +1,61 @@
 ---
-title: &apos;Intégrité du flux de contrôle dans V8&apos;
-description: &apos;Cet article de blog aborde les plans pour implémenter l&apos;intégrité du flux de contrôle dans V8.&apos;
-author: &apos;Stephen Röttger&apos;
+title: 'Intégrité du flux de contrôle dans V8'
+description: 'Cet article de blog aborde les plans pour implémenter l'intégrité du flux de contrôle dans V8.'
+author: 'Stephen Röttger'
 date: 2023-10-09
 tags:
  - sécurité
 ---
-L&apos;intégrité du flux de contrôle (CFI) est une fonctionnalité de sécurité visant à empêcher les attaques exploitant les détournements de flux de contrôle. L&apos;idée est que même si un attaquant parvient à corrompre la mémoire d&apos;un processus, des vérifications d&apos;intégrité supplémentaires peuvent les empêcher d&apos;exécuter du code arbitraire. Dans cet article de blog, nous souhaitons discuter de notre travail pour activer le CFI dans V8.
+L'intégrité du flux de contrôle (CFI) est une fonctionnalité de sécurité visant à empêcher les attaques exploitant les détournements de flux de contrôle. L'idée est que même si un attaquant parvient à corrompre la mémoire d'un processus, des vérifications d'intégrité supplémentaires peuvent les empêcher d'exécuter du code arbitraire. Dans cet article de blog, nous souhaitons discuter de notre travail pour activer le CFI dans V8.
 
 <!--truncate-->
 # Contexte
 
-La popularité de Chrome en fait une cible précieuse pour les attaques 0-day, et la plupart des exploits vus à l&apos;état sauvage ciblent V8 pour obtenir une exécution initiale de code. Les exploits V8 suivent généralement un modèle similaire : un bug initial conduit à une corruption de mémoire, mais souvent celle-ci est limitée et l&apos;attaquant doit trouver un moyen de lire/écrire de manière arbitraire dans tout l&apos;espace d&apos;adresses. Cela leur permet de détourner le flux de contrôle et d&apos;exécuter du shellcode qui constitue l&apos;étape suivante de la chaîne d&apos;exploit visant à sortir du bac à sable Chrome.
+La popularité de Chrome en fait une cible précieuse pour les attaques 0-day, et la plupart des exploits vus à l'état sauvage ciblent V8 pour obtenir une exécution initiale de code. Les exploits V8 suivent généralement un modèle similaire : un bug initial conduit à une corruption de mémoire, mais souvent celle-ci est limitée et l'attaquant doit trouver un moyen de lire/écrire de manière arbitraire dans tout l'espace d'adresses. Cela leur permet de détourner le flux de contrôle et d'exécuter du shellcode qui constitue l'étape suivante de la chaîne d'exploit visant à sortir du bac à sable Chrome.
 
 
-Pour empêcher l&apos;attaquant de transformer une corruption de mémoire en exécution de shellcode, nous mettons en œuvre l&apos;intégrité du flux de contrôle dans V8. Cela est particulièrement difficile en présence d&apos;un compilateur JIT. Si vous transformez des données en code machine à l&apos;exécution, il faut désormais s&apos;assurer que les données corrompues ne se transforment pas en code malveillant. Heureusement, les fonctionnalités matérielles modernes nous fournissent les éléments de base pour concevoir un compilateur JIT robuste, même lorsque la mémoire est corrompue.
+Pour empêcher l'attaquant de transformer une corruption de mémoire en exécution de shellcode, nous mettons en œuvre l'intégrité du flux de contrôle dans V8. Cela est particulièrement difficile en présence d'un compilateur JIT. Si vous transformez des données en code machine à l'exécution, il faut désormais s'assurer que les données corrompues ne se transforment pas en code malveillant. Heureusement, les fonctionnalités matérielles modernes nous fournissent les éléments de base pour concevoir un compilateur JIT robuste, même lorsque la mémoire est corrompue.
 
 
 Ci-dessous, nous examinerons le problème divisé en trois parties distinctes :
 
-- **CFI des bords avant** vérifie l&apos;intégrité des transferts de contrôle indirects tels que les appels de pointeurs de fonction ou de tables virtuelles.
-- **CFI des bords arrière** doit s&apos;assurer que les adresses de retour lues depuis la pile sont valides.
-- **Intégrité mémoire du JIT** valide toutes les données écrites en mémoire exécutable à l&apos;exécution.
+- **CFI des bords avant** vérifie l'intégrité des transferts de contrôle indirects tels que les appels de pointeurs de fonction ou de tables virtuelles.
+- **CFI des bords arrière** doit s'assurer que les adresses de retour lues depuis la pile sont valides.
+- **Intégrité mémoire du JIT** valide toutes les données écrites en mémoire exécutable à l'exécution.
 
 # CFI des bords avant
 
-Nous souhaitons utiliser deux fonctionnalités matérielles pour protéger les appels et sauts indirects : les pads d&apos;atterrissage et l&apos;authentification des pointeurs.
+Nous souhaitons utiliser deux fonctionnalités matérielles pour protéger les appels et sauts indirects : les pads d'atterrissage et l'authentification des pointeurs.
 
 
-## Pads d&apos;atterrissage
+## Pads d'atterrissage
 
-Les pads d&apos;atterrissage sont des instructions spéciales qui peuvent être utilisées pour marquer des cibles de branche valides. Si activés, les branches indirectes peuvent uniquement sauter vers une instruction de pad d&apos;atterrissage, tout autre cas déclenchera une exception.
-Par exemple, sur ARM64, les pads d&apos;atterrissage sont disponibles avec la fonctionnalité Identification de Cible de Branche (BTI) introduite dans Armv8.5-A. Le support BTI est [déjà activé](https://bugs.chromium.org/p/chromium/issues/detail?id=1145581) dans V8.
-Sur x64, les pads d&apos;atterrissage ont été introduits avec le suivi des branches indirectes (IBT) dans le cadre de la Technologie de Renforcement du Flux de Contrôle (CET).
+Les pads d'atterrissage sont des instructions spéciales qui peuvent être utilisées pour marquer des cibles de branche valides. Si activés, les branches indirectes peuvent uniquement sauter vers une instruction de pad d'atterrissage, tout autre cas déclenchera une exception.
+Par exemple, sur ARM64, les pads d'atterrissage sont disponibles avec la fonctionnalité Identification de Cible de Branche (BTI) introduite dans Armv8.5-A. Le support BTI est [déjà activé](https://bugs.chromium.org/p/chromium/issues/detail?id=1145581) dans V8.
+Sur x64, les pads d'atterrissage ont été introduits avec le suivi des branches indirectes (IBT) dans le cadre de la Technologie de Renforcement du Flux de Contrôle (CET).
 
 
-Cependant, l&apos;ajout de pads d&apos;atterrissage sur toutes les cibles potentielles pour des branches indirectes ne fournit qu&apos;une intégrité de flux de contrôle grossière et donne toujours beaucoup de liberté aux attaquants. Nous pouvons resserrer davantage les restrictions en ajoutant des vérifications des signatures de fonction (les types d&apos;arguments et de retour sur le site d&apos;appel doivent correspondre à ceux de la fonction appelée) ainsi qu&apos;en supprimant dynamiquement les instructions de pad d&apos;atterrissage inutiles à l&apos;exécution.
-Ces fonctionnalités font partie de la récente [proposition FineIBT](https://arxiv.org/abs/2303.16353) et nous espérons qu&apos;elle puisse être adoptée par les OS.
+Cependant, l'ajout de pads d'atterrissage sur toutes les cibles potentielles pour des branches indirectes ne fournit qu'une intégrité de flux de contrôle grossière et donne toujours beaucoup de liberté aux attaquants. Nous pouvons resserrer davantage les restrictions en ajoutant des vérifications des signatures de fonction (les types d'arguments et de retour sur le site d'appel doivent correspondre à ceux de la fonction appelée) ainsi qu'en supprimant dynamiquement les instructions de pad d'atterrissage inutiles à l'exécution.
+Ces fonctionnalités font partie de la récente [proposition FineIBT](https://arxiv.org/abs/2303.16353) et nous espérons qu'elle puisse être adoptée par les OS.
 
 ## Authentification des pointeurs
 
-Armv8.3-A a introduit l&apos;authentification des pointeurs (PAC) qui peut être utilisée pour intégrer une signature dans les bits supérieurs inutilisés d&apos;un pointeur. Étant donné que la signature est vérifiée avant que le pointeur ne soit utilisé, les attaquants ne pourront pas fournir des pointeurs falsifiés arbitraires à des branches indirectes.
+Armv8.3-A a introduit l'authentification des pointeurs (PAC) qui peut être utilisée pour intégrer une signature dans les bits supérieurs inutilisés d'un pointeur. Étant donné que la signature est vérifiée avant que le pointeur ne soit utilisé, les attaquants ne pourront pas fournir des pointeurs falsifiés arbitraires à des branches indirectes.
 
 # CFI des bords arrière
 
-Pour protéger les adresses de retour, nous souhaitons également utiliser deux fonctionnalités matérielles distinctes : les piles d&apos;ombres et le PAC.
+Pour protéger les adresses de retour, nous souhaitons également utiliser deux fonctionnalités matérielles distinctes : les piles d'ombres et le PAC.
 
-## Piles d&apos;ombres
+## Piles d'ombres
 
-Avec les piles d&apos;ombres d&apos;Intel CET et la pile de contrôle gardée (GCS) dans [Armv9.4-A](https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/arm-a-profile-architecture-2022), nous pouvons avoir une pile séparée juste pour les adresses de retour qui bénéficie de protections matérielles contre les écritures malveillantes. Ces fonctionnalités offrent de solides protections contre les écrasements d&apos;adresses de retour, mais nous devrons gérer les cas où nous modifions légitimement la pile de retour, comme lors de l&apos;optimisation/désoptimisation et de la gestion des exceptions.
+Avec les piles d'ombres d'Intel CET et la pile de contrôle gardée (GCS) dans [Armv9.4-A](https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/arm-a-profile-architecture-2022), nous pouvons avoir une pile séparée juste pour les adresses de retour qui bénéficie de protections matérielles contre les écritures malveillantes. Ces fonctionnalités offrent de solides protections contre les écrasements d'adresses de retour, mais nous devrons gérer les cas où nous modifions légitimement la pile de retour, comme lors de l'optimisation/désoptimisation et de la gestion des exceptions.
 
 ## Authentification des pointeurs (PAC-RET)
 
-Comme pour les branches indirectes, l&apos;authentification des pointeurs peut être utilisée pour signer les adresses de retour avant qu&apos;elles ne soient poussées dans la pile. Cela est [déjà activé](https://bugs.chromium.org/p/chromium/issues/detail?id=919548) dans V8 sur les CPU ARM64.
+Comme pour les branches indirectes, l'authentification des pointeurs peut être utilisée pour signer les adresses de retour avant qu'elles ne soient poussées dans la pile. Cela est [déjà activé](https://bugs.chromium.org/p/chromium/issues/detail?id=919548) dans V8 sur les CPU ARM64.
 
 
-Un effet secondaire de l&apos;utilisation du support matériel pour le CFI des bords avant et arrière est qu&apos;il nous permettra de maintenir l&apos;impact sur les performances au minimum.
+Un effet secondaire de l'utilisation du support matériel pour le CFI des bords avant et arrière est qu'il nous permettra de maintenir l'impact sur les performances au minimum.
 
 # Intégrité mémoire du JIT
 

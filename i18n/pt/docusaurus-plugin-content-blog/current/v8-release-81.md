@@ -1,12 +1,12 @@
 ---
-title: &apos;Lançamento do V8 v8.1&apos;
-author: &apos;Dominik Inführ, homem internacional(mistério da internacionalização)&apos;
+title: 'Lançamento do V8 v8.1'
+author: 'Dominik Inführ, homem internacional(mistério da internacionalização)'
 avatars:
-  - &apos;dominik-infuehr&apos;
+  - 'dominik-infuehr'
 date: 2020-02-25
 tags:
   - lançamento
-description: &apos;O V8 v8.1 oferece suporte aprimorado à internacionalização por meio da nova API Intl.DisplayNames.&apos;
+description: 'O V8 v8.1 oferece suporte aprimorado à internacionalização por meio da nova API Intl.DisplayNames.'
 ---
 
 A cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](https://v8.dev/docs/release-process). Cada versão é originada do Git master do V8 imediatamente antes de um marco Beta do Chrome. Hoje temos o prazer de anunciar nosso mais novo ramo, [V8 versão 8.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.1), que está em beta até seu lançamento em coordenação com o Chrome 81 Stable em algumas semanas. O V8 v8.1 está repleto de vários recursos voltados para desenvolvedores. Este post fornece uma prévia de alguns dos destaques em antecipação ao lançamento.
@@ -19,19 +19,19 @@ A cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo 
 A nova API `Intl.DisplayNames` permite que os programadores exibam nomes traduzidos de idiomas, regiões, scripts e moedas com facilidade.
 
 ```js
-const zhLanguageNames = new Intl.DisplayNames([&apos;zh-Hant&apos;], { type: &apos;language&apos; });
-const enRegionNames = new Intl.DisplayNames([&apos;en&apos;], { type: &apos;region&apos; });
-const itScriptNames = new Intl.DisplayNames([&apos;it&apos;], { type: &apos;script&apos; });
-const deCurrencyNames = new Intl.DisplayNames([&apos;de&apos;], {type: &apos;currency&apos;});
+const zhLanguageNames = new Intl.DisplayNames(['zh-Hant'], { type: 'language' });
+const enRegionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+const itScriptNames = new Intl.DisplayNames(['it'], { type: 'script' });
+const deCurrencyNames = new Intl.DisplayNames(['de'], {type: 'currency'});
 
-zhLanguageNames.of(&apos;fr&apos;);
-// → &apos;法文&apos;
-enRegionNames.of(&apos;US&apos;);
-// → &apos;Estados Unidos&apos;
-itScriptNames.of(&apos;Latn&apos;);
-// → &apos;latino&apos;
-deCurrencyNames.of(&apos;JPY&apos;);
-// → &apos;Iene Japonês&apos;
+zhLanguageNames.of('fr');
+// → '法文'
+enRegionNames.of('US');
+// → 'Estados Unidos'
+itScriptNames.of('Latn');
+// → 'latino'
+deCurrencyNames.of('JPY');
+// → 'Iene Japonês'
 ```
 
 Transfira hoje mesmo o ônus da manutenção dos dados de tradução para o runtime! Veja [nossa explicação sobre o recurso](https://v8.dev/features/intl-displaynames) para detalhes sobre a API completa e mais exemplos.

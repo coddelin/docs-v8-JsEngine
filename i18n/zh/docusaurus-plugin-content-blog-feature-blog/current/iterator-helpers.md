@@ -125,7 +125,7 @@ const posts = document.querySelectorAll('li:not(header li)');
 
 // 获取至少发布了一篇博客的日期并记录它们。
 const dates = new Set();
-const forEach = posts.values().forEach((x) => dates.add(x.querySelector(&apos;time&apos;)));
+const forEach = posts.values().forEach((x) => dates.add(x.querySelector('time')));
 console.log(dates);
 ```
 
@@ -135,11 +135,11 @@ console.log(dates);
 
 ```javascript
 // 从博客存档页面中选择博客帖子列表。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // 检查是否有任何博客帖子的文本内容（标题）包含“Iterators”关键词。
 // 关键字。
-posts.values().some((x) => x.textContent.includes(&apos;Iterators&apos;));
+posts.values().some((x) => x.textContent.includes('Iterators'));
 ```
 
 ## .every(fn)
@@ -148,10 +148,10 @@ posts.values().some((x) => x.textContent.includes(&apos;Iterators&apos;));
 
 ```javascript
 // 从博客存档页面中选择博客帖子列表。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // 检查所有博客帖子的文本内容（标题）是否都包含“V8”关键词。
-posts.values().every((x) => x.textContent.includes(&apos;V8&apos;));
+posts.values().every((x) => x.textContent.includes('V8'));
 ```
 
 ## .find(fn)
@@ -160,10 +160,10 @@ posts.values().every((x) => x.textContent.includes(&apos;V8&apos;));
 
 ```javascript
 // 从博客存档页面中选择博客帖子列表。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // 记录最近包含“V8”关键词的博客帖子的文本内容（标题）。
-console.log(posts.values().find((x) => x.textContent.includes(&apos;V8&apos;)).textContent);
+console.log(posts.values().find((x) => x.textContent.includes('V8')).textContent);
 ```
 
 ## Iterator.from(object)
@@ -172,11 +172,11 @@ console.log(posts.values().find((x) => x.textContent.includes(&apos;V8&apos;)).t
 
 ```javascript
 // 从博客存档页面中选择博客帖子列表。
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // 首先从帖子中创建一个迭代器。然后，记录最近包含“V8”关键词的
 // 博客帖子的文本内容（标题）。
-console.log(Iterator.from(posts).find((x) => x.textContent.includes(&apos;V8&apos;)).textContent);
+console.log(Iterator.from(posts).find((x) => x.textContent.includes('V8')).textContent);
 ```
 
 ## 可用性

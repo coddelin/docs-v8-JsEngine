@@ -1,14 +1,14 @@
 ---
-title: &apos;`await` de nível superior&apos;
-author: &apos;Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))&apos;
+title: '`await` de nível superior'
+author: 'Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))'
 avatars:
-  - &apos;myles-borins&apos;
+  - 'myles-borins'
 date: 2019-10-08
 tags:
   - ECMAScript
   - Node.js 14
-description: &apos;`await` de nível superior está chegando aos módulos JavaScript! Em breve, você poderá usar `await` sem precisar estar em uma função assíncrona.&apos;
-tweet: &apos;1181581262399643650&apos;
+description: '`await` de nível superior está chegando aos módulos JavaScript! Em breve, você poderá usar `await` sem precisar estar em uma função assíncrona.'
+tweet: '1181581262399643650'
 ---
 [`await` de nível superior](https://github.com/tc39/proposal-top-level-await) permite que os desenvolvedores usem a palavra-chave `await` fora de funções assíncronas. Ele age como uma grande função assíncrona, fazendo com que outros módulos que o `importam` esperem antes de começar a avaliar seu corpo.
 
@@ -18,11 +18,11 @@ tweet: &apos;1181581262399643650&apos;
 Quando `async`/`await` foi introduzido pela primeira vez, tentar usar um `await` fora de uma função `async` resultava em um `SyntaxError`. Muitos desenvolvedores utilizaram expressões de função assíncrona invocadas imediatamente como uma forma de acessar o recurso.
 
 ```js
-await Promise.resolve(console.log(&apos;🎉&apos;));
+await Promise.resolve(console.log('🎉'));
 // → SyntaxError: await só é válido em funções assíncronas
 
 (async function() {
-  await Promise.resolve(console.log(&apos;🎉&apos;));
+  await Promise.resolve(console.log('🎉'));
   // → 🎉
 }());
 ```
@@ -32,7 +32,7 @@ await Promise.resolve(console.log(&apos;🎉&apos;));
 Com o `await` de nível superior, o código acima funciona como você esperaria dentro de [módulos](/features/modules):
 
 ```js
-await Promise.resolve(console.log(&apos;🎉&apos;));
+await Promise.resolve(console.log('🎉'));
 // → 🎉
 ```
 
@@ -67,9 +67,9 @@ O exemplo a seguir tenta carregar uma biblioteca JavaScript do CDN A, recorrendo
 ```js
 let jQuery;
 try {
-  jQuery = await import(&apos;https://cdn-a.example.com/jQuery&apos;);
+  jQuery = await import('https://cdn-a.example.com/jQuery');
 } catch {
-  jQuery = await import(&apos;https://cdn-b.example.com/jQuery&apos;);
+  jQuery = await import('https://cdn-b.example.com/jQuery');
 }
 ```
 

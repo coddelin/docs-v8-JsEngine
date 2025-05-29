@@ -1,6 +1,6 @@
 ---
-title: &apos;Commencer avec l&apos;intégration de V8&apos;
-description: &apos;Ce document introduit certains concepts clés de V8 et propose un exemple “hello world” pour vous aider à démarrer avec le code V8.&apos;
+title: 'Commencer avec l'intégration de V8'
+description: 'Ce document introduit certains concepts clés de V8 et propose un exemple “hello world” pour vous aider à démarrer avec le code V8.'
 ---
 Ce document introduit certains concepts clés de V8 et propose un exemple “hello world” pour vous aider à démarrer avec le code V8.
 

@@ -1,7 +1,7 @@
 ---
-title: &apos;服務條款&apos;
+title: '服務條款'
 layout: layouts/base.njk
-description: &apos;本文檔概述了V8網站及專案的服務條款。&apos;
+description: '本文檔概述了V8網站及專案的服務條款。'
 ---
 # 服務條款
 

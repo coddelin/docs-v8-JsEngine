@@ -1,7 +1,7 @@
 ---
-title: &apos;WebAssembly JSPI 即將進入來源試驗&apos;
-description: &apos;我們將解釋 JSPI 起始來源試驗的意義&apos;
-author: &apos;Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl&apos;
+title: 'WebAssembly JSPI 即將進入來源試驗'
+description: '我們將解釋 JSPI 起始來源試驗的意義'
+author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
 date: 2024-03-06
 tags:
   - WebAssembly

@@ -1,15 +1,15 @@
 ---
-title: &apos;V8에서의 포인터 압축&apos;
-author: &apos;Igor Sheludko와 Santiago Aboy Solanes, *포인터 압축 전문가들*&apos;
+title: 'V8에서의 포인터 압축'
+author: 'Igor Sheludko와 Santiago Aboy Solanes, *포인터 압축 전문가들*'
 avatars:
-  - &apos;igor-sheludko&apos;
-  - &apos;santiago-aboy-solanes&apos;
+  - 'igor-sheludko'
+  - 'santiago-aboy-solanes'
 date: 2020-03-30
 tags:
   - 내부 구조
   - 메모리
-description: &apos;V8은 힙 크기를 최대 43%까지 줄였습니다! “V8에서의 포인터 압축”에서 그 방법을 알아보세요!&apos;
-tweet: &apos;1244653541379182596&apos;
+description: 'V8은 힙 크기를 최대 43%까지 줄였습니다! “V8에서의 포인터 압축”에서 그 방법을 알아보세요!'
+tweet: '1244653541379182596'
 ---
 메모리와 성능 사이에는 항상 끊임없는 싸움이 있습니다. 사용자로서 우리는 빠르면서도 가능한 적은 메모리를 소비하기를 원합니다. 불행히도 일반적으로 성능을 향상시키면 메모리 소비가 증가하고 (그 반대도 마찬가지입니다).
 
@@ -392,7 +392,7 @@ const p = new Point(3.1, 5.3);
 이러한 가정이 어떤 필드에서 깨지면(예를 들어 아래 줄을 실행한 경우),
 
 ```js
-const q = new Point(2, &apos;ab&apos;);
+const q = new Point(2, 'ab');
 ```
 
 그때부터 y 속성의 숫자 값은 박싱된 상태로 저장되어야 합니다. 또한 이 가정을 기반으로 하는 투기적으로 최적화된 코드가 있다면 더 이상 사용할 수 없도록 하고 폐기(비최적화)해야 합니다. 이러한 '필드 유형' 일반화의 이유는 동일한 생성자 함수에서 생성된 객체의 형태 수를 최소화하는 데 있습니다. 이는 성능의 안정성을 위해 필요합니다.

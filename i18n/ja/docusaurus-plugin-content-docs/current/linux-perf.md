@@ -1,6 +1,6 @@
 ---
-title: &apos;V8のLinux `perf`統合&apos;
-description: &apos;このドキュメントは、Linuxの`perf`ツールを使用してV8のJITコードのパフォーマンスを分析する方法を説明します。&apos;
+title: 'V8のLinux `perf`統合'
+description: 'このドキュメントは、Linuxの`perf`ツールを使用してV8のJITコードのパフォーマンスを分析する方法を説明します。'
 ---
 V8にはLinuxの`perf`ツールをサポートする機能が組み込まれています。これは、`--perf-prof`コマンドラインオプションで有効化されます。
 V8は実行中にパフォーマンスデータをファイルに書き出し、Linuxの`perf`ツールを使ってV8のJITコード（JS関数名を含む）のパフォーマンスを分析することができます。
@@ -15,7 +15,7 @@ V8は実行中にパフォーマンスデータをファイルに書き出し、
 Linux perfとのV8の統合を使用するには、`enable_profiling = true`のgnフラグでビルドする必要があります。
 
 ```bash
-echo &apos;enable_profiling = true&apos; >> out/x64.release/args.gn
+echo 'enable_profiling = true' >> out/x64.release/args.gn
 autoninja -C out/x64.release
 ```
 
@@ -30,9 +30,9 @@ tools/profiling/linux-perf-d8.py out/x64.release/d8 path/to/test.js;
 より完全な例:
 
 ```bash
-echo &apos;(function f() {
+echo '(function f() {
     var s = 0; for (var i = 0; i < 1000000000; i++) { s += i; } return s;
-  })();&apos; > test.js;
+  })();' > test.js;
 
 # カスタムV8フラグと、混乱を避けるための別の出力ディレクトリを使用:
 mkdir perf_results
@@ -122,7 +122,7 @@ perf report --input=perf.data.jitted;
     out/x64.release/chrome \
         --user-data-dir=`mktemp -d` \
         --no-sandbox --incognito --enable-benchmarking \
-        --js-flags=&apos;--perf-prof --no-write-protect-code-memory --interpreted-frames-native-stack&apos;
+        --js-flags='--perf-prof --no-write-protect-code-memory --interpreted-frames-native-stack'
     ```
 
 1. Chrome を起動した後、タスク マネージャを使用してレンダラープロセス ID を見つけ、それを使用してプロファイルを開始します:

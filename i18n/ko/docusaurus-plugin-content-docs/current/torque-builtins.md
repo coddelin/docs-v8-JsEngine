@@ -1,6 +1,6 @@
 ---
-title: &apos;V8 Torque 빌트인&apos;
-description: &apos;이 문서는 Torque 빌트인 작성을 소개하며, V8 개발자를 대상으로 합니다.&apos;
+title: 'V8 Torque 빌트인'
+description: '이 문서는 Torque 빌트인 작성을 소개하며, V8 개발자를 대상으로 합니다.'
 ---
 이 문서는 Torque 빌트인 작성을 소개하며, V8 개발자를 대상으로 합니다. Torque는 CodeStubAssembler를 대체하여 새로운 빌트인을 구현하는 데 추천되는 방법입니다. 이 가이드의 CSA 버전에 대해서는 [CodeStubAssembler 빌트인](/docs/csa-builtins)을 참조하세요.
 
@@ -76,7 +76,7 @@ SimpleInstallFunction(isolate_, math, "is42", Builtins::kMathIs42, 1, true);
 $ out/debug/d8
 d8> Math.is42(42);
 true
-d8> Math.is42(&apos;42.0&apos;);
+d8> Math.is42('42.0');
 true
 d8> Math.is42(true);
 false

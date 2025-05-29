@@ -1,15 +1,15 @@
 ---
-title: &apos;Modules JavaScript&apos;
-author: &apos;Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) et Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Modules JavaScript'
+author: 'Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) et Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-- &apos;addy-osmani&apos;
-- &apos;mathias-bynens&apos;
+- 'addy-osmani'
+- 'mathias-bynens'
 date: 2018-06-18
 tags:
   - ECMAScript
   - ES2015
-description: &apos;Cet article explique comment utiliser les modules JavaScript, comment les déployer de manière responsable et comment l&apos;équipe Chrome travaille pour les améliorer encore à l&apos;avenir.&apos;
-tweet: &apos;1008725884575109120&apos;
+description: 'Cet article explique comment utiliser les modules JavaScript, comment les déployer de manière responsable et comment l'équipe Chrome travaille pour les améliorer encore à l'avenir.'
+tweet: '1008725884575109120'
 ---
 Les modules JavaScript sont désormais [pris en charge dans tous les principaux navigateurs](https://caniuse.com/#feat=es6-module) !
 
@@ -19,14 +19,14 @@ Les modules JavaScript sont désormais [pris en charge dans tous les principaux 
                  nodejs="13.2.0 https://nodejs.org/en/blog/release/v13.2.0/#notable-changes"
                  babel="yes"></feature-support>
 
-Cet article explique comment utiliser les modules JS, comment les déployer de manière responsable et comment l&apos;équipe Chrome travaille pour les améliorer encore à l&apos;avenir.
+Cet article explique comment utiliser les modules JS, comment les déployer de manière responsable et comment l'équipe Chrome travaille pour les améliorer encore à l'avenir.
 
 ## Que sont les modules JS ?
 
-Les modules JS (également connus sous le nom de “modules ES” ou “modules ECMAScript”) sont une nouvelle fonctionnalité majeure, ou plutôt un ensemble de nouvelles fonctionnalités. Vous avez peut-être utilisé un système de modules JavaScript utilisateur dans le passé. Peut-être avez-vous utilisé [CommonJS comme dans Node.js](https://nodejs.org/docs/latest-v10.x/api/modules.html), ou peut-être [AMD](https://github.com/amdjs/amdjs-api/blob/master/AMD.md), ou peut-être autre chose. Tous ces systèmes de modules ont une chose en commun : ils vous permettent d&apos;importer et d&apos;exporter des éléments.
+Les modules JS (également connus sous le nom de “modules ES” ou “modules ECMAScript”) sont une nouvelle fonctionnalité majeure, ou plutôt un ensemble de nouvelles fonctionnalités. Vous avez peut-être utilisé un système de modules JavaScript utilisateur dans le passé. Peut-être avez-vous utilisé [CommonJS comme dans Node.js](https://nodejs.org/docs/latest-v10.x/api/modules.html), ou peut-être [AMD](https://github.com/amdjs/amdjs-api/blob/master/AMD.md), ou peut-être autre chose. Tous ces systèmes de modules ont une chose en commun : ils vous permettent d'importer et d'exporter des éléments.
 
 <!--truncate-->
-JavaScript a désormais une syntaxe standardisée précisément pour cela. À l&apos;intérieur d&apos;un module, vous pouvez utiliser le mot-clé `export` pour exporter à peu près n&apos;importe quoi. Vous pouvez exporter une `const`, une `function` ou toute autre liaison ou déclaration de variable. Il suffit de préfixer l&apos;instruction ou la déclaration de la variable avec `export` et le tour est joué :
+JavaScript a désormais une syntaxe standardisée précisément pour cela. À l'intérieur d'un module, vous pouvez utiliser le mot-clé `export` pour exporter à peu près n'importe quoi. Vous pouvez exporter une `const`, une `function` ou toute autre liaison ou déclaration de variable. Il suffit de préfixer l'instruction ou la déclaration de la variable avec `export` et le tour est joué :
 
 ```js
 // 📁 lib.mjs
@@ -36,18 +36,18 @@ export function shout(string) {
 }
 ```
 
-Vous pouvez ensuite utiliser le mot-clé `import` pour importer le module à partir d&apos;un autre module. Ici, nous importons les fonctionnalités `repeat` et `shout` du module `lib`, et nous les utilisons dans notre module `main` :
+Vous pouvez ensuite utiliser le mot-clé `import` pour importer le module à partir d'un autre module. Ici, nous importons les fonctionnalités `repeat` et `shout` du module `lib`, et nous les utilisons dans notre module `main` :
 
 ```js
 // 📁 main.mjs
-import {repeat, shout} from &apos;./lib.mjs&apos;;
-repeat(&apos;hello&apos;);
-// → &apos;hello hello&apos;
-shout(&apos;Modules in action&apos;);
-// → &apos;MODULES IN ACTION!&apos;
+import {repeat, shout} from './lib.mjs';
+repeat('hello');
+// → 'hello hello'
+shout('Modules in action');
+// → 'MODULES IN ACTION!'
 ```
 
-Vous pourriez également exporter une valeur _par défaut_ d&apos;un module :
+Vous pourriez également exporter une valeur _par défaut_ d'un module :
 
 ```js
 // 📁 lib.mjs
@@ -56,11 +56,11 @@ export default function(string) {
 }
 ```
 
-Ces exports `default` peuvent être importés en utilisant n&apos;importe quel nom :
+Ces exports `default` peuvent être importés en utilisant n'importe quel nom :
 
 ```js
 // 📁 main.mjs
-import shout from &apos;./lib.mjs&apos;;
+import shout from './lib.mjs';
 //     ^^^^^
 ```
 
@@ -68,10 +68,10 @@ Les modules sont un peu différents des scripts classiques :
 
 - Les modules ont le [mode strict](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode) activé par défaut.
 
-- La syntaxe de commentaire de style HTML n&apos;est pas prise en charge dans les modules, bien qu&apos;elle fonctionne dans les scripts classiques.
+- La syntaxe de commentaire de style HTML n'est pas prise en charge dans les modules, bien qu'elle fonctionne dans les scripts classiques.
 
     ```js
-    // N&apos;utilisez pas la syntaxe de commentaire de type HTML dans JavaScript !
+    // N'utilisez pas la syntaxe de commentaire de type HTML dans JavaScript !
     const x = 42; <!-- TODO: Renommez x en y.
     // Utilisez un commentaire régulier sur une seule ligne à la place :
     const x = 42; // TODO: Renommez x en y.
@@ -79,17 +79,17 @@ Les modules sont un peu différents des scripts classiques :
 
 - Les modules ont une portée lexicale au niveau supérieur. Cela signifie que, par exemple, exécuter `var foo = 42;` dans un module ne crée *pas* une variable globale nommée `foo`, accessible via `window.foo` dans un navigateur, bien que ce soit le cas dans un script classique.
 
-- De même, le `this` au sein des modules ne fait pas référence au `this` global, et est plutôt `undefined`. (Utilisez [`globalThis`](/features/globalthis) si vous avez besoin d&apos;accéder à `this` global.)
+- De même, le `this` au sein des modules ne fait pas référence au `this` global, et est plutôt `undefined`. (Utilisez [`globalThis`](/features/globalthis) si vous avez besoin d'accéder à `this` global.)
 
 - La nouvelle syntaxe statique `import` et `export` est uniquement disponible dans les modules — elle ne fonctionne pas dans les scripts classiques.
 
 - [Le `await` au niveau supérieur](/features/top-level-await) est disponible dans les modules, mais pas dans les scripts classiques. En rapport avec cela, `await` ne peut pas être utilisé comme nom de variable nulle part dans un module, bien que les variables dans les scripts classiques _puissent_ être nommées `await` en dehors des fonctions asynchrones.
 
-En raison de ces différences, *le même code JavaScript peut se comporter différemment lorsqu&apos;il est traité comme un module vs. un script classique*. En tant que tel, le runtime JavaScript doit savoir quels scripts sont des modules.
+En raison de ces différences, *le même code JavaScript peut se comporter différemment lorsqu'il est traité comme un module vs. un script classique*. En tant que tel, le runtime JavaScript doit savoir quels scripts sont des modules.
 
 ## Utiliser des modules JS dans le navigateur
 
-Sur le Web, vous pouvez indiquer aux navigateurs de traiter un élément `<script>` comme un module en définissant l&apos;attribut `type` sur `module`.
+Sur le Web, vous pouvez indiquer aux navigateurs de traiter un élément `<script>` comme un module en définissant l'attribut `type` sur `module`.
 
 ```html
 <script type="module" src="main.mjs"></script>
@@ -118,7 +118,7 @@ Par exemple, les modules sont évalués une seule fois, tandis que les scripts c
 
 <script type="module" src="module.mjs"></script>
 <script type="module" src="module.mjs"></script>
-<script type="module">import &apos;./module.mjs&apos;;</script>
+<script type="module">import './module.mjs';</script>
 <!-- module.mjs s'exécute une seule fois. -->
 ```
 
@@ -141,10 +141,10 @@ Cependant, nous recommandons l'utilisation de l'extension `.mjs` pour les module
 
 ### Spécificateurs de modules
 
-Lors de l'`import` de modules, la chaîne qui spécifie l'emplacement du module est appelée le "spécificateur de module" ou le "spécificateur d'importation". Dans notre exemple précédent, le spécificateur de module est `&apos;./lib.mjs&apos;` :
+Lors de l'`import` de modules, la chaîne qui spécifie l'emplacement du module est appelée le "spécificateur de module" ou le "spécificateur d'importation". Dans notre exemple précédent, le spécificateur de module est `'./lib.mjs'` :
 
 ```js
-import {shout} from &apos;./lib.mjs&apos;;
+import {shout} from './lib.mjs';
 //                  ^^^^^^^^^^^
 ```
 
@@ -152,19 +152,19 @@ Certaines restrictions s'appliquent aux spécificateurs de modules dans les navi
 
 ```js
 // Non pris en charge (pour l'instant) :
-import {shout} from &apos;jquery&apos;;
-import {shout} from &apos;lib.mjs&apos;;
-import {shout} from &apos;modules/lib.mjs&apos;;
+import {shout} from 'jquery';
+import {shout} from 'lib.mjs';
+import {shout} from 'modules/lib.mjs';
 ```
 
 D'un autre côté, les exemples suivants sont tous pris en charge :
 
 ```js
 // Pris en charge :
-import {shout} from &apos;./lib.mjs&apos;;
-import {shout} from &apos;../lib.mjs&apos;;
-import {shout} from &apos;/modules/lib.mjs&apos;;
-import {shout} from &apos;https://simple.example/modules/lib.mjs&apos;;
+import {shout} from './lib.mjs';
+import {shout} from '../lib.mjs';
+import {shout} from '/modules/lib.mjs';
+import {shout} from 'https://simple.example/modules/lib.mjs';
 ```
 
 Pour l'instant, les spécificateurs de modules doivent être des URLs complètes, ou des URLs relatives commençant par `/`, `./`, ou `../`.
@@ -186,12 +186,12 @@ Jusqu'à présent, nous avons utilisé uniquement l'importation statique avec `i
 ```html
 <script type="module">
   (async () => {
-    const moduleSpecifier = &apos;./lib.mjs&apos;;
+    const moduleSpecifier = './lib.mjs';
     const {repeat, shout} = await import(moduleSpecifier);
-    repeat(&apos;hello&apos;);
-    // → &apos;hello hello&apos;
-    shout(&apos;Dynamic import in action&apos;);
-    // → &apos;DYNAMIC IMPORT IN ACTION!&apos;
+    repeat('hello');
+    // → 'hello hello'
+    shout('Dynamic import in action');
+    // → 'DYNAMIC IMPORT IN ACTION!'
   })();
 </script>
 ```
@@ -216,7 +216,7 @@ function loadThumbnail(relativePath) {
   return image;
 }
 
-const thumbnail = loadThumbnail(&apos;../img/thumbnail.png&apos;);
+const thumbnail = loadThumbnail('../img/thumbnail.png');
 container.append(thumbnail);
 ```
 
@@ -266,7 +266,7 @@ export function zip() { /* … */ }
 Si votre base de code a seulement besoin de la fonctionnalité `pluck`, vous l'importeriez probablement comme suit :
 
 ```js
-import {pluck} from &apos;./util.mjs&apos;;
+import {pluck} from './util.mjs';
 ```
 
 Dans ce cas, (sans étape de regroupement au moment de la construction) le navigateur finit toujours par devoir télécharger, analyser et compiler le module entier `./util.mjs` alors qu'il n'a réellement besoin que de cet export. Cela est inefficace!
@@ -280,7 +280,7 @@ export function pluck() { /* … */ }
 Nous pouvons alors importer `pluck` sans le surcoût lié à `drop` et `zip` :
 
 ```js
-import {pluck} from &apos;./pluck.mjs&apos;;
+import {pluck} from './pluck.mjs';
 ```
 
 :::note
@@ -335,7 +335,7 @@ Chrome implémente désormais les [worklets](https://drafts.css-houdini.org/work
 Chrome 65 prend en charge [`PaintWorklet`](https://developers.google.com/web/updates/2018/01/paintapi) (aussi connu sous le nom d'API CSS Paint) pour contrôler la manière dont un élément DOM est peint.
 
 ```js
-const result = await css.paintWorklet.addModule(&apos;paint-worklet.mjs&apos;);
+const result = await css.paintWorklet.addModule('paint-worklet.mjs');
 ```
 
 Chrome 66 prend en charge [`AudioWorklet`](https://developers.google.com/web/updates/2017/12/audio-worklet), ce qui vous permet de contrôler le traitement audio avec votre propre code. La même version de Chrome a lancé une [OriginTrial pour `AnimationWorklet`](https://groups.google.com/a/chromium.org/d/msg/blink-dev/AZ-PYPMS7EA/DEqbe2u5BQAJ), ce qui permet de créer des animations procédurales haute-performance liées au défilement et d'autres animations similaires.
@@ -345,14 +345,14 @@ Enfin, le [`LayoutWorklet`](https://drafts.css-houdini.org/css-layout-api/) (aus
 Nous travaillons sur [l'ajout du support](https://bugs.chromium.org/p/chromium/issues/detail?id=680046) des modules JS avec des web workers dédiés dans Chrome. Vous pouvez déjà essayer cette fonctionnalité en activant `chrome://flags/#enable-experimental-web-platform-features`.
 
 ```js
-const worker = new Worker(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
+const worker = new Worker('worker.mjs', { type: 'module' });
 ```
 
 Le support des modules JS pour les shared workers et les service workers arrive bientôt :
 
 ```js
-const worker = new SharedWorker(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
-const registration = await navigator.serviceWorker.register(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
+const worker = new SharedWorker('worker.mjs', { type: 'module' });
+const registration = await navigator.serviceWorker.register('worker.mjs', { type: 'module' });
 ```
 
 ### Import maps
@@ -360,8 +360,8 @@ const registration = await navigator.serviceWorker.register(&apos;worker.mjs&apo
 Dans Node.js/npm, il est courant d'importer des modules JS par leur « nom de package ». Par exemple :
 
 ```js
-import moment from &apos;moment&apos;;
-import {pluck} from &apos;lodash-es&apos;;
+import moment from 'moment';
+import {pluck} from 'lodash-es';
 ```
 
 Actuellement, [selon la spécification HTML](https://html.spec.whatwg.org/multipage/webappapis.html#resolve-a-module-specifier), de tels « spécificateurs d'importation nus » génèrent une exception. [Notre proposition d'import maps](https://github.com/domenic/import-maps) permet à ce type de code de fonctionner sur le web, y compris dans des applications en production. Une import map est une ressource JSON qui aide le navigateur à convertir les spécificateurs d'importation nus en URL complètes.

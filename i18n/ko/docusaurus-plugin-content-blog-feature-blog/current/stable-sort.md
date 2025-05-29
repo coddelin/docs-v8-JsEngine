@@ -1,28 +1,28 @@
 ---
-title: &apos;안정적인 `Array.prototype.sort`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '안정적인 `Array.prototype.sort`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-07-02
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: &apos;Array.prototype.sort가 이제 안정적인 동작을 보장합니다.&apos;
-tweet: &apos;1146067251302244353&apos;
+description: 'Array.prototype.sort가 이제 안정적인 동작을 보장합니다.'
+tweet: '1146067251302244353'
 ---
 강아지 배열이 있다고 가정합시다. 각 강아지는 이름과 등급을 가지고 있습니다. (이것이 이상한 예제처럼 느껴진다면, 정확히 이런 내용을 전문으로 하는 Twitter 계정이 있다는 것을 알아두세요... 묻지 마세요!)
 
 ```js
 // 배열이 `name` 기준으로 알파벳 순서로 미리 정렬되어 있는 것을 확인하세요.
 const doggos = [
-  { name: &apos;Abby&apos;,   rating: 12 },
-  { name: &apos;Bandit&apos;, rating: 13 },
-  { name: &apos;Choco&apos;,  rating: 14 },
-  { name: &apos;Daisy&apos;,  rating: 12 },
-  { name: &apos;Elmo&apos;,   rating: 12 },
-  { name: &apos;Falco&apos;,  rating: 13 },
-  { name: &apos;Ghost&apos;,  rating: 14 },
+  { name: 'Abby',   rating: 12 },
+  { name: 'Bandit', rating: 13 },
+  { name: 'Choco',  rating: 14 },
+  { name: 'Daisy',  rating: 12 },
+  { name: 'Elmo',   rating: 12 },
+  { name: 'Falco',  rating: 13 },
+  { name: 'Ghost',  rating: 14 },
 ];
 // 강아지를 내림차순으로 `rating` 기준으로 정렬합니다.
 // (이 작업은 `doggos`를 제자리에서 업데이트합니다.)
@@ -34,13 +34,13 @@ doggos.sort((a, b) => b.rating - a.rating);
 
 ```js
 [
-  { name: &apos;Choco&apos;,  rating: 14 },
-  { name: &apos;Ghost&apos;,  rating: 14 },
-  { name: &apos;Bandit&apos;, rating: 13 },
-  { name: &apos;Falco&apos;,  rating: 13 },
-  { name: &apos;Abby&apos;,   rating: 12 },
-  { name: &apos;Daisy&apos;,  rating: 12 },
-  { name: &apos;Elmo&apos;,   rating: 12 },
+  { name: 'Choco',  rating: 14 },
+  { name: 'Ghost',  rating: 14 },
+  { name: 'Bandit', rating: 13 },
+  { name: 'Falco',  rating: 13 },
+  { name: 'Abby',   rating: 12 },
+  { name: 'Daisy',  rating: 12 },
+  { name: 'Elmo',   rating: 12 },
 ]
 ```
 
@@ -50,13 +50,13 @@ doggos.sort((a, b) => b.rating - a.rating);
 
 ```js
 [
-  { name: &apos;Ghost&apos;,  rating: 14 }, // 😢
-  { name: &apos;Choco&apos;,  rating: 14 }, // 😢
-  { name: &apos;Bandit&apos;, rating: 13 },
-  { name: &apos;Falco&apos;,  rating: 13 },
-  { name: &apos;Abby&apos;,   rating: 12 },
-  { name: &apos;Daisy&apos;,  rating: 12 },
-  { name: &apos;Elmo&apos;,   rating: 12 },
+  { name: 'Ghost',  rating: 14 }, // 😢
+  { name: 'Choco',  rating: 14 }, // 😢
+  { name: 'Bandit', rating: 13 },
+  { name: 'Falco',  rating: 13 },
+  { name: 'Abby',   rating: 12 },
+  { name: 'Daisy',  rating: 12 },
+  { name: 'Elmo',   rating: 12 },
 ]
 ```
 

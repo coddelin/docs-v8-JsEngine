@@ -1,7 +1,7 @@
 ---
-title: &apos;Nutzungsbedingungen&apos;
+title: 'Nutzungsbedingungen'
 layout: layouts/base.njk
-description: &apos;Dieses Dokument legt die Nutzungsbedingungen für die V8-Website und das Projekt fest.&apos;
+description: 'Dieses Dokument legt die Nutzungsbedingungen für die V8-Website und das Projekt fest.'
 ---
 # Nutzungsbedingungen
 

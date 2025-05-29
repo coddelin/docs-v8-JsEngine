@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 Veröffentlichung v7.9&apos;
-author: &apos;Santiago Aboy Solanes, Spezialist für Zeigerkompression&apos;
+title: 'V8 Veröffentlichung v7.9'
+author: 'Santiago Aboy Solanes, Spezialist für Zeigerkompression'
 avatars:
-  - &apos;santiago-aboy-solanes&apos;
+  - 'santiago-aboy-solanes'
 date: 2019-11-20
 tags:
   - veröffentlichung
-description: &apos;V8 v7.9 entfernt die Deprecation für Double ⇒ Tagged-Übergänge, ermöglicht das Handling von API-Gettern in Builtins, OSR-Caching und bietet Wasm-Unterstützung für mehrere Codebereiche.&apos;
-tweet: &apos;1197187184304050176&apos;
+description: 'V8 v7.9 entfernt die Deprecation für Double ⇒ Tagged-Übergänge, ermöglicht das Handling von API-Gettern in Builtins, OSR-Caching und bietet Wasm-Unterstützung für mehrere Codebereiche.'
+tweet: '1197187184304050176'
 ---
 Alle sechs Wochen erstellen wir einen neuen Branch von V8 im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process). Jede Version wird direkt vor einem Chrome-Beta-Meilenstein aus dem Git-Master von V8 heraus getrackt. Heute freuen wir uns, unseren neuesten Branch [V8 Version 7.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.9) anzukündigen, der bis zur Veröffentlichung in Koordination mit Chrome 79 Stable in einigen Wochen in der Beta-Phase ist. V8 v7.9 ist vollgepackt mit allerlei Entwickler-freundlichen Extras. Dieser Beitrag gibt einen Vorgeschmack auf einige Highlights als Vorfreude auf die Veröffentlichung.
 

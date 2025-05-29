@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 릴리스 v9.1&apos;
-author: &apos;인그바르 스테파냔 ([@RReverser](https://twitter.com/RReverser)), 나만의 브랜드를 테스트 중&apos;
+title: 'V8 릴리스 v9.1'
+author: '인그바르 스테파냔 ([@RReverser](https://twitter.com/RReverser)), 나만의 브랜드를 테스트 중'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-05-04
 tags:
  - 릴리스
-description: &apos;V8 릴리스 v9.1은 비공개 브랜드 검사 지원, 기본 활성화된 최상위 await 및 성능 개선을 제공합니다.&apos;
-tweet: &apos;1389613320953532417&apos;
+description: 'V8 릴리스 v9.1은 비공개 브랜드 검사 지원, 기본 활성화된 최상위 await 및 성능 개선을 제공합니다.'
+tweet: '1389613320953532417'
 ---
 매 6주마다 우리는 [릴리스 프로세스](https://v8.dev/docs/release-process)의 일환으로 V8의 새로운 브랜치를 만듭니다. 각 버전은 Chrome Beta 마일스톤 바로 이전에 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 새로운 브랜치 [V8 버전 9.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.1)을 발표하게 되어 기쁩니다. 이는 몇 주 후 Chrome 91 Stable과 조율하여 릴리스될 때까지 베타 상태입니다. V8 v9.1에는 개발자들이 즐길 수 있는 다양한 기능들이 포함되어 있습니다. 이 게시물은 릴리스를 기대하며 몇 가지 주요 사항들을 미리 살펴봅니다.
 

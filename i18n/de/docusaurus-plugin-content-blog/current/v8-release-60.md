@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 Version v6.0&apos;
-author: &apos;das V8-Team&apos;
+title: 'V8 Version v6.0'
+author: 'das V8-Team'
 date: 2017-06-09 13:33:37
 tags:
   - Veröffentlichung
-description: &apos;V8 v6.0 bringt mehrere Leistungsverbesserungen mit sich und führt Unterstützung für `SharedArrayBuffer` sowie Rest-/Spread-Eigenschaften für Objekte ein.&apos;
+description: 'V8 v6.0 bringt mehrere Leistungsverbesserungen mit sich und führt Unterstützung für `SharedArrayBuffer` sowie Rest-/Spread-Eigenschaften für Objekte ein.'
 ---
 Alle sechs Wochen erstellen wir einen neuen Zweig von V8 im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process). Jede Version wird unmittelbar vor einem Chrome-Beta-Meilenstein vom Git-Master von V8 abgezweigt. Heute freuen wir uns, unseren neuesten Zweig anzukündigen: [V8 Version 6.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.0), der bis zur Veröffentlichung in Zusammenhang mit Chrome 60 Stable in einigen Wochen in der Beta bleibt. V8 6.0 ist voller spannender Funktionen für Entwickler. Wir möchten Ihnen einen Ausblick auf einige Highlights geben, um die Veröffentlichung vorzubereiten.
 
@@ -24,20 +24,20 @@ Spread-Eigenschaften bieten auch eine knappe Alternative zu `Object.assign()` in
 ```js
 // Rest-Eigenschaften für die Destrukturierungszuweisung von Objekten:
 const person = {
-  firstName: &apos;Sebastian&apos;,
-  lastName: &apos;Markbåge&apos;,
-  country: &apos;USA&apos;,
-  state: &apos;CA&apos;,
+  firstName: 'Sebastian',
+  lastName: 'Markbåge',
+  country: 'USA',
+  state: 'CA',
 };
 const { firstName, lastName, ...rest } = person;
 console.log(firstName); // Sebastian
 console.log(lastName); // Markbåge
-console.log(rest); // { country: &apos;USA&apos;, state: &apos;CA&apos; }
+console.log(rest); // { country: 'USA', state: 'CA' }
 
 // Spread-Eigenschaften für Objektliterale:
 const personCopy = { firstName, lastName, ...rest };
 console.log(personCopy);
-// { firstName: &apos;Sebastian&apos;, lastName: &apos;Markbåge&apos;, country: &apos;USA&apos;, state: &apos;CA&apos; }
+// { firstName: 'Sebastian', lastName: 'Markbåge', country: 'USA', state: 'CA' }
 ```
 
 Weitere Informationen finden Sie in [unserem Erklärartikel zu Objekt-Rest- und Spread-Eigenschaften](/features/object-rest-spread).

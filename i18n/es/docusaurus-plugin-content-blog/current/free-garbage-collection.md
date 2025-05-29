@@ -1,14 +1,14 @@
 ---
-title: &apos;Obteniendo recolección de basura gratis&apos;
-author: &apos;Hannes Payer y Ross McIlroy, Recolectores de Basura Inactivos&apos;
+title: 'Obteniendo recolección de basura gratis'
+author: 'Hannes Payer y Ross McIlroy, Recolectores de Basura Inactivos'
 avatars:
-  - &apos;hannes-payer&apos;
-  - &apos;ross-mcilroy&apos;
+  - 'hannes-payer'
+  - 'ross-mcilroy'
 date: 2015-08-07 13:33:37
 tags:
   - internals
   - memory
-description: &apos;Chrome 41 oculta operaciones costosas de gestión de memoria dentro de pequeños fragmentos de tiempo inactivo y no utilizados, reduciendo los bloqueos.&apos;
+description: 'Chrome 41 oculta operaciones costosas de gestión de memoria dentro de pequeños fragmentos de tiempo inactivo y no utilizados, reduciendo los bloqueos.'
 ---
 El rendimiento de JavaScript sigue siendo uno de los aspectos clave de los valores de Chrome, especialmente cuando se trata de ofrecer una experiencia fluida. A partir de Chrome 41, V8 aprovecha una nueva técnica para aumentar la capacidad de respuesta de las aplicaciones web ocultando operaciones costosas de gestión de memoria dentro de pequeños fragmentos de tiempo inactivo y no utilizados. Como resultado, los desarrolladores web deberían esperar un desplazamiento más suave y animaciones fluidas con una reducción significativa de los bloqueos debido a la recolección de basura.
 

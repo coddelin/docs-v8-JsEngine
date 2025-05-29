@@ -1,16 +1,16 @@
 ---
-title: &apos;WebAssembly - ajout d&apos;un nouvel opcode&apos;
-description: &apos;Ce tutoriel explique comment implémenter une nouvelle instruction WebAssembly dans V8.&apos;
+title: 'WebAssembly - ajout d'un nouvel opcode'
+description: 'Ce tutoriel explique comment implémenter une nouvelle instruction WebAssembly dans V8.'
 ---
-[WebAssembly](https://webassembly.org/) (Wasm) est un format d&apos;instruction binaire pour une machine virtuelle basée sur une pile. Ce tutoriel guide le lecteur à travers l&apos;implémentation d&apos;une nouvelle instruction WebAssembly dans V8.
+[WebAssembly](https://webassembly.org/) (Wasm) est un format d'instruction binaire pour une machine virtuelle basée sur une pile. Ce tutoriel guide le lecteur à travers l'implémentation d'une nouvelle instruction WebAssembly dans V8.
 
 WebAssembly est implémenté dans V8 en trois parties:
 
-- l&apos;interpréteur
+- l'interpréteur
 - le compilateur de base (Liftoff)
-- le compilateur d&apos;optimisation (TurboFan)
+- le compilateur d'optimisation (TurboFan)
 
-Le reste de ce document se concentre sur le pipeline TurboFan, expliquant comment ajouter une nouvelle instruction Wasm et l&apos;implémenter dans TurboFan.
+Le reste de ce document se concentre sur le pipeline TurboFan, expliquant comment ajouter une nouvelle instruction Wasm et l'implémenter dans TurboFan.
 
 À un haut niveau, les instructions Wasm sont compilées en un graphe TurboFan, et nous comptons sur le pipeline TurboFan pour compiler ce graphe en code machine. Pour en savoir plus sur TurboFan, consultez la [documentation de V8](/docs/turbofan).
 
@@ -41,7 +41,7 @@ index 6970c667e7..867cbf451a 100644
    V(I32Ne, 0x47, i_ii)            \
 ```
 
-WebAssembly est un format binaire, donc `0xee` spécifie l&apos;encodage de cette instruction. Dans ce tutoriel, nous avons choisi `0xee` car elle est actuellement inutilisée.
+WebAssembly est un format binaire, donc `0xee` spécifie l'encodage de cette instruction. Dans ce tutoriel, nous avons choisi `0xee` car elle est actuellement inutilisée.
 
 :::note
 **Remarque :** Ajouter réellement une instruction à la spécification nécessite des étapes supplémentaires non décrites ici.
@@ -64,7 +64,7 @@ WasmOpcodes::OpcodeName(kExprI32Add1) == "unknown"; plazz halp in src/wasm/wasm-
 [  FAILED  ] WasmOpcodesTest.EveryOpcodeHasAName
 ```
 
-Cette erreur indique que nous n&apos;avons pas de nom pour notre nouvelle instruction. Ajouter un nom pour le nouvel opcode peut être fait dans [`src/wasm/wasm-opcodes.cc`](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-opcodes.cc) :
+Cette erreur indique que nous n'avons pas de nom pour notre nouvelle instruction. Ajouter un nom pour le nouvel opcode peut être fait dans [`src/wasm/wasm-opcodes.cc`](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-opcodes.cc) :
 
 ```diff
 diff --git a/src/wasm/wasm-opcodes.cc b/src/wasm/wasm-opcodes.cc
@@ -83,7 +83,7 @@ index 5ed664441d..2d4e9554fe 100644
 
 En ajoutant notre nouvelle instruction dans `FOREACH_SIMPLE_OPCODE`, nous ignorons un [travail conséquent](https://cs.chromium.org/chromium/src/v8/src/wasm/function-body-decoder-impl.h?l=1751-1756&rcl=686b68edf9f42c201c2b25bca9f4bef72ff41c0b) qui est effectué dans `src/wasm/function-body-decoder-impl.h`, lequel décode les opcodes Wasm et fait appel au générateur de graphes TurboFan. Ainsi, en fonction de ce que fait votre opcode, vous pourriez avoir plus de travail à faire. Nous passons cette partie pour des raisons de concision.
 
-## Écriture d&apos;un test pour le nouvel opcode
+## Écriture d'un test pour le nouvel opcode
 
 Les tests Wasm se trouvent dans [`test/cctest/wasm/`](https://cs.chromium.org/chromium/src/v8/test/cctest/wasm/). Jetons un œil à [`test/cctest/wasm/test-run-wasm.cc`](https://cs.chromium.org/chromium/src/v8/test/cctest/wasm/test-run-wasm.cc), où de nombreux opcodes « simples » sont testés.
 
@@ -91,9 +91,9 @@ Ce fichier contient de nombreux exemples que nous pouvons suivre. La structure g
 
 - créer un `WasmRunner`
 - configurer des globals pour contenir le résultat (optionnel)
-- configurer des locals comme paramètres de l&apos;instruction (optionnel)
+- configurer des locals comme paramètres de l'instruction (optionnel)
 - construire le module wasm
-- l&apos;exécuter et comparer avec une sortie attendue
+- l'exécuter et comparer avec une sortie attendue
 
 Voici un test simple pour notre nouvel opcode :
 
@@ -123,7 +123,7 @@ index 26df61ceb8..b1ee6edd71 100644
 Exécutez le test :
 
 ```
-$ tools/dev/gm.py x64.debug &apos;cctest/test-run-wasm-simd/RunWasmTurbofan_I32Add1&apos;
+$ tools/dev/gm.py x64.debug 'cctest/test-run-wasm-simd/RunWasmTurbofan_I32Add1'
 ...
 === cctest/test-run-wasm/RunWasmTurbofan_Int32Add1 ===
 #
@@ -195,7 +195,7 @@ index f666bbb7c1..1d93601584 100644
 Essayer d'exécuter le même test conduit à un échec de compilation qui donne un indice sur où faire des modifications :
 
 ```
-../../src/compiler/wasm-compiler.cc:717:34: erreur : aucun membre nommé &apos;Int32Add1&apos; dans &apos;v8::internal::compiler::MachineOperatorBuilder&apos;; vouliez-vous dire &apos;Int32Add&apos;?
+../../src/compiler/wasm-compiler.cc:717:34: erreur : aucun membre nommé 'Int32Add1' dans 'v8::internal::compiler::MachineOperatorBuilder'; vouliez-vous dire 'Int32Add'?
       return graph()->NewNode(m->Int32Add1(), input);
                                  ^~~~~~~~~
                                  Int32Add
@@ -343,12 +343,12 @@ index 9b8be0e0b5..7f5faeb87b 100644
 En exécutant notre test, nous voyons de nouvelles erreurs de compilation :
 
 ```
-../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: error: valeur d'énumération &apos;kX64Int32Add1&apos; non gérée dans le switch [-Werror,-Wswitch]
+../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: error: valeur d'énumération 'kX64Int32Add1' non gérée dans le switch [-Werror,-Wswitch]
   switch (instr->arch_opcode()) {
           ^
 1 erreur générée.
 ...
-../../src/compiler/backend/x64/code-generator-x64.cc:733:11: error: valeur d'énumération &apos;kX64Int32Add1&apos; non gérée dans le switch [-Werror,-Wswitch]
+../../src/compiler/backend/x64/code-generator-x64.cc:733:11: error: valeur d'énumération 'kX64Int32Add1' non gérée dans le switch [-Werror,-Wswitch]
   switch (arch_opcode) {
           ^
 1 erreur générée.

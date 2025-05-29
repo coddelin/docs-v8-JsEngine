@@ -1,6 +1,6 @@
 ---
-title: &apos;C++에 시간적 메모리 안전성 레트로피팅&apos;
-author: &apos;안톤 비키네브, 마이클 립파우츠 ([@mlippautz](https://twitter.com/mlippautz)), 한네스 페이어 ([@PayerHannes](https://twitter.com/PayerHannes))&apos;
+title: 'C++에 시간적 메모리 안전성 레트로피팅'
+author: '안톤 비키네브, 마이클 립파우츠 ([@mlippautz](https://twitter.com/mlippautz)), 한네스 페이어 ([@PayerHannes](https://twitter.com/PayerHannes))'
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -10,7 +10,7 @@ tags:
   - 내부
   - 메모리
   - 보안
-description: &apos;Chrome에서 힙 스캐닝을 통해 use-after-frees 취약점을 제거하기.&apos;
+description: 'Chrome에서 힙 스캐닝을 통해 use-after-frees 취약점을 제거하기.'
 ---
 :::note
 **참고:** 이 게시물은 원래 [Google Security Blog](https://security.googleblog.com/2022/05/retrofitting-temporal-memory-safety-on-c.html)에 게시되었습니다.

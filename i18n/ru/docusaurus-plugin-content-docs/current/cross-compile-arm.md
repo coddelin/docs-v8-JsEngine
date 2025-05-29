@@ -1,19 +1,19 @@
 ---
-title: &apos;Кросс-компиляция и отладка для ARM/Android&apos;
-description: &apos;Этот документ объясняет, как выполнять кросс-компиляцию V8 для ARM/Android и как его отлаживать.&apos;
+title: 'Кросс-компиляция и отладка для ARM/Android'
+description: 'Этот документ объясняет, как выполнять кросс-компиляцию V8 для ARM/Android и как его отлаживать.'
 ---
 Сначала убедитесь, что вы можете [собирать с GN](/docs/build-gn).
 
 Затем добавьте `android` в ваш файл конфигурации `.gclient`.
 
 ```python
-target_os = [&apos;android&apos;]  # Добавьте это, чтобы проверить Android.
+target_os = ['android']  # Добавьте это, чтобы проверить Android.
 ```
 
 Поле `target_os` является списком, поэтому, если вы также собираете на unix, оно будет выглядеть так:
 
 ```python
-target_os = [&apos;android&apos;, &apos;unix&apos;]  # Несколько целевых ОС.
+target_os = ['android', 'unix']  # Несколько целевых ОС.
 ```
 
 Запустите `gclient sync`, и вы получите большую проверку в каталоге `./third_party/android_tools`.
@@ -66,7 +66,7 @@ ninja -C out.gn/arm.release d8
 Используйте `adb`, чтобы скопировать бинарный файл и файлы снапшотов на телефон:
 
 ```bash
-adb shell &apos;mkdir -p /data/local/tmp/v8/bin&apos;
+adb shell 'mkdir -p /data/local/tmp/v8/bin'
 adb push out.gn/arm.release/d8 /data/local/tmp/v8/bin
 adb push out.gn/arm.release/icudtl.dat /data/local/tmp/v8/bin
 adb push out.gn/arm.release/snapshot_blob.bin /data/local/tmp/v8/bin
@@ -79,7 +79,7 @@ bullhead:/data/local/tmp/v8/bin $ ls
 v8 icudtl.dat snapshot_blob.bin
 bullhead:/data/local/tmp/v8/bin $ ./d8
 Версия V8 5.8.0 (кандидат)
-d8> &apos;w00t!&apos;
+d8> 'w00t!'
 "w00t!"
 d8>
 ```

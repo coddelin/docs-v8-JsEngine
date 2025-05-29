@@ -122,7 +122,7 @@ async function processData(response) {
   }
  // readerResource[Symbol.dispose]()가 자동으로 호출됩니다.
 
- readFile(&apos;https://example.com/largefile.dat&apos;);
+ readFile('https://example.com/largefile.dat');
 ```
 
 ## `DisposableStack` 및 `AsyncDisposableStack`
@@ -139,7 +139,7 @@ async function processData(response) {
         reader: response.body.getReader(),
         [Symbol.dispose]() {
             this.reader.releaseLock();
-            console.log(&apos;리더 락 해제.&apos;);
+            console.log('리더 락 해제.');
         },
     };
     using stack = new DisposableStack();
@@ -156,7 +156,7 @@ async function processData(response) {
     stack.adopt(
       response.body.getReader(), reader = > {
         reader.releaseLock();
-        console.log(&apos;리더 락 해제.&apos;);
+        console.log('리더 락 해제.');
       });
 }
 // 리더 락 해제.
@@ -180,7 +180,7 @@ async function processData(response) {
     stack.adopt(
       response.body.getReader(), reader = > {
         reader.releaseLock();
-        console.log(&apos;리더 락 해제.&apos;);
+        console.log('리더 락 해제.');
       });
     using newStack = stack.move();
 }
@@ -196,7 +196,7 @@ async function processData(response) {
         reader: response.body.getReader(),
         [Symbol.dispose]() {
             this.reader.releaseLock();
-            console.log(&apos;리더 락 해제.&apos;);
+            console.log('리더 락 해제.');
         },
     };
     let stack = new DisposableStack();

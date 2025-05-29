@@ -1,13 +1,13 @@
 ---
-title: &apos;Hintergrundkompilierung&apos;
-author: &apos;[Ross McIlroy](https://twitter.com/rossmcilroy), Verteidiger des Hauptthreads&apos;
+title: 'Hintergrundkompilierung'
+author: '[Ross McIlroy](https://twitter.com/rossmcilroy), Verteidiger des Hauptthreads'
 avatars:
-  - &apos;ross-mcilroy&apos;
+  - 'ross-mcilroy'
 date: 2018-03-26 13:33:37
 tags:
   - internals
-description: &apos;Ab Chrome 66 kompiliert V8 JavaScript-Quellcode in einem Hintergrundthread, wodurch die Zeit, die auf dem Hauptthread für die Kompilierung verbracht wird, auf typischen Websites zwischen 5% und 20% reduziert wird.&apos;
-tweet: &apos;978319362837958657&apos;
+description: 'Ab Chrome 66 kompiliert V8 JavaScript-Quellcode in einem Hintergrundthread, wodurch die Zeit, die auf dem Hauptthread für die Kompilierung verbracht wird, auf typischen Websites zwischen 5% und 20% reduziert wird.'
+tweet: '978319362837958657'
 ---
 TL;DR: Ab Chrome 66 kompiliert V8 JavaScript-Quellcode in einem Hintergrundthread, wodurch die Zeit, die auf dem Hauptthread für die Kompilierung verbracht wird, auf typischen Websites zwischen 5% und 20% reduziert wird.
 

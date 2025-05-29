@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 リリース v9.7&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))&apos;
+title: 'V8 リリース v9.7'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-11-05
 tags:
  - リリース
-description: &apos;V8 リリース v9.7 では、配列内を逆方向に検索するための新しい JavaScript メソッドが追加されました。&apos;
-tweet: &apos;&apos;
+description: 'V8 リリース v9.7 では、配列内を逆方向に検索するための新しい JavaScript メソッドが追加されました。'
+tweet: ''
 ---
 4週間ごとに、[リリースプロセス](https://v8.dev/docs/release-process) の一環として新しい V8 のブランチを作成します。各バージョンは、Chrome Beta マイルストーンの直前に V8 の Git メインから分岐されます。本日、私たちは最新のブランチ [V8 バージョン 9.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.7) を発表できることを嬉しく思います。このバージョンは数週間以内に Chrome 97 Stable に合わせてリリースされるまでベータ版の状態です。V8 v9.7 は開発者に向けたさまざまな新機能を詰め込んでいます。この投稿では、リリースの期待を高めるいくつかのハイライトをプレビューします。
 

@@ -1,14 +1,14 @@
 ---
-title: &apos;Un petit pas pour Chrome, un grand bond pour V8&apos;
-author: &apos;les gardiens du tas Ulan Degenbaev, Hannes Payer, Michael Lippautz, et le guerrier DevTools Alexey Kozyatinskiy&apos;
+title: 'Un petit pas pour Chrome, un grand bond pour V8'
+author: 'les gardiens du tas Ulan Degenbaev, Hannes Payer, Michael Lippautz, et le guerrier DevTools Alexey Kozyatinskiy'
 avatars:
-  - &apos;ulan-degenbaev&apos;
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'ulan-degenbaev'
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2017-02-09 13:33:37
 tags:
   - mémoire
-description: &apos;V8 a récemment augmenté sa limite stricte de taille de tas.&apos;
+description: 'V8 a récemment augmenté sa limite stricte de taille de tas.'
 ---
 V8 a une limite stricte sur la taille de son tas. Cela sert de protection contre les applications qui présentent des fuites de mémoire. Lorsqu'une application atteint cette limite stricte, V8 effectue une série de collectes de déchets en dernier recours. Si ces collectes de déchets ne permettent pas de libérer de la mémoire, V8 arrête l'exécution et signale une panne due à un manque de mémoire. Sans cette limite stricte, une application présentant une fuite de mémoire pourrait utiliser toute la mémoire du système, nuisant aux performances des autres applications.
 

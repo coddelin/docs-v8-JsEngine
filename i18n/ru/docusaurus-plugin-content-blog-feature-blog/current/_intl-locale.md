@@ -1,35 +1,35 @@
 ---
-title: &apos;`Intl.Locale`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`Intl.Locale`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-05-20
 tags:
   - Intl
   - Node.js 12
   - io19
-description: &apos;Новый API Intl.Locale предлагает унифицированный механизм работы с локалями, который является более удобным, чем использование строк.&apos;
-tweet: &apos;TODO&apos;
+description: 'Новый API Intl.Locale предлагает унифицированный механизм работы с локалями, который является более удобным, чем использование строк.'
+tweet: 'TODO'
 ---
-При работе с [API интернационализации](/features/tags/intl) обычно передаются строки, представляющие идентификаторы локалей, в различные конструкторы `Intl`, такие как `&apos;en&apos;` для английского языка. [Новый API `Intl.Locale`](https://github.com/tc39/proposal-intl-locale) предлагает более мощный механизм работы с такими локалями.
+При работе с [API интернационализации](/features/tags/intl) обычно передаются строки, представляющие идентификаторы локалей, в различные конструкторы `Intl`, такие как `'en'` для английского языка. [Новый API `Intl.Locale`](https://github.com/tc39/proposal-intl-locale) предлагает более мощный механизм работы с такими локалями.
 
 <!--truncate-->
 Он позволяет легко извлекать настройки, специфичные для конкретной локали, такие как не только язык, но и календарь, система исчисления, часовой цикл, регион и т.д.
 
 ```js
-const locale = new Intl.Locale(&apos;es-419-u-hc-h12&apos;, {
-  calendar: &apos;gregory&apos;
+const locale = new Intl.Locale('es-419-u-hc-h12', {
+  calendar: 'gregory'
 });
 locale.language;
-// → &apos;es&apos;
+// → 'es'
 locale.calendar;
-// → &apos;gregory&apos;
+// → 'gregory'
 locale.hourCycle;
-// → &apos;h12&apos;
+// → 'h12'
 locale.region;
-// → &apos;419&apos;
+// → '419'
 locale.toString();
-// → &apos;es-419-u-ca-gregory-hc-h12&apos;
+// → 'es-419-u-ca-gregory-hc-h12'
 ```
 
 ## Поддержка `Intl.Locale`

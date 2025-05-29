@@ -1,6 +1,6 @@
 ---
-title: &apos;Gestion des ports&apos;
-description: &apos;Ce document décrit comment les ports V8 spécifiques à une architecture doivent être gérés.&apos;
+title: 'Gestion des ports'
+description: 'Ce document décrit comment les ports V8 spécifiques à une architecture doivent être gérés.'
 ---
 Ce document décrit comment les ports doivent être gérés.
 

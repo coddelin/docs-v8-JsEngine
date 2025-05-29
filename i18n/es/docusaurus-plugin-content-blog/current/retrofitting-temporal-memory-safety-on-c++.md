@@ -1,6 +1,6 @@
 ---
-title: &apos;Añadiendo seguridad temporal de memoria a C++&apos;
-author: &apos;Anton Bikineev, Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), Hannes Payer ([@PayerHannes](https://twitter.com/PayerHannes))&apos;
+title: 'Añadiendo seguridad temporal de memoria a C++'
+author: 'Anton Bikineev, Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), Hannes Payer ([@PayerHannes](https://twitter.com/PayerHannes))'
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -10,7 +10,7 @@ tags:
   - internals
   - memoria
   - seguridad
-description: &apos;Eliminando vulnerabilidades de uso después de liberación en Chrome con análisis de heap.&apos;
+description: 'Eliminando vulnerabilidades de uso después de liberación en Chrome con análisis de heap.'
 ---
 :::note
 **Nota:** Esta publicación fue publicada originalmente en el [Blog de Seguridad de Google](https://security.googleblog.com/2022/05/retrofitting-temporal-memory-safety-on-c.html).

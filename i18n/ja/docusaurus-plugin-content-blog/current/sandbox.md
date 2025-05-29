@@ -1,7 +1,7 @@
 ---
-title: &apos;V8サンドボックス&apos;
-description: &apos;V8は、メモリ破損バグの影響を制限する軽量なインプロセスサンドボックス機能を備えています&apos;
-author: &apos;サミュエル・グロース&apos;
+title: 'V8サンドボックス'
+description: 'V8は、メモリ破損バグの影響を制限する軽量なインプロセスサンドボックス機能を備えています'
+author: 'サミュエル・グロース'
 avatars:
   - samuel-gross
 date: 2024-04-04

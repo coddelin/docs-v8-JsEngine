@@ -106,7 +106,7 @@ Le code optimisé est devenu encore plus performant lorsque nous avons déplacé
 
 ```javascript
 const myproto = {
-  __proto__: { &apos;x&apos;: 100 },
+  __proto__: { 'x': 100 },
   m() { return super.x; }
 };
 const o = { __proto__: myproto };

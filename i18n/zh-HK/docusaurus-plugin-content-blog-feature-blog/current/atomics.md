@@ -1,6 +1,6 @@
 ---
-title: &apos;`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), 非阻塞博客作者&apos;
+title: '`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`'
+author: '[Marja Hölttä](https://twitter.com/marjakh), 非阻塞博客作者'
 avatars:
   - marja-holtta
 date: 2020-09-24
@@ -8,8 +8,8 @@ tags:
   - ECMAScript
   - ES2020
   - Node.js 16
-description: &apos;Atomics.wait 和 Atomics.notify 是低層同步原型，適合用於實現例如互斥鎖。Atomics.wait 只能在 worker 執行緒中使用。V8 版本 8.7 現在支援非阻塞版，Atomics.waitAsync，也可以在主執行緒上使用。&apos;
-tweet: &apos;1309118447377358848&apos;
+description: 'Atomics.wait 和 Atomics.notify 是低層同步原型，適合用於實現例如互斥鎖。Atomics.wait 只能在 worker 執行緒中使用。V8 版本 8.7 現在支援非阻塞版，Atomics.waitAsync，也可以在主執行緒上使用。'
+tweet: '1309118447377358848'
 ---
 [`Atomics.wait`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/wait) 和 [`Atomics.notify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/notify) 是低層同步原型，適合用於實現互斥鎖及其他同步方式。然而，由於 `Atomics.wait` 是阻塞操作，因此無法在主執行緒上呼叫（嘗試這樣做會拋出 `TypeError`）。
 
@@ -25,7 +25,7 @@ tweet: &apos;1309118447377358848&apos;
 - `expectedValue`: 我們預期在記憶體位置 `(buffer, index)` 中存在的值
 - `timeout`: 毫秒級的超時（可選，默認為 `Infinity`）
 
-`Atomics.wait` 的返回值是一個字串。如果記憶體位置不包含預期的值，`Atomics.wait` 立即返回值 `&apos;not-equal&apos;`。否則，執行緒會被阻塞，直到其他執行緒使用相同的記憶體位置呼叫 `Atomics.notify` 或超時期限到。前者情況下，`Atomics.wait` 返回值 `&apos;ok&apos;`，後者情況下，`Atomics.wait` 返回值 `&apos;timed-out&apos;`。
+`Atomics.wait` 的返回值是一個字串。如果記憶體位置不包含預期的值，`Atomics.wait` 立即返回值 `'not-equal'`。否則，執行緒會被阻塞，直到其他執行緒使用相同的記憶體位置呼叫 `Atomics.notify` 或超時期限到。前者情況下，`Atomics.wait` 返回值 `'ok'`，後者情況下，`Atomics.wait` 返回值 `'timed-out'`。
 
 `Atomics.notify` 接收以下參數：
 
@@ -37,11 +37,11 @@ tweet: &apos;1309118447377358848&apos;
 
 與 `Atomics.wait` 相反，`Atomics.waitAsync` 總是立即返回。返回值如下之一：
 
-- `{ async: false, value: &apos;not-equal&apos; }`（如果記憶體位置不包含預期值）
-- `{ async: false, value: &apos;timed-out&apos; }`（僅適用於立即超時 0）
+- `{ async: false, value: 'not-equal' }`（如果記憶體位置不包含預期值）
+- `{ async: false, value: 'timed-out' }`（僅適用於立即超時 0）
 - `{ async: true, value: promise }`
 
-該 Promise 可能後來被解析為字串值 `&apos;ok&apos;`（如果在相同記憶體位置呼叫了 `Atomics.notify`）或 `&apos;timed-out&apos;`（如果超時期限到）。Promise 不會被拒絕。
+該 Promise 可能後來被解析為字串值 `'ok'`（如果在相同記憶體位置呼叫了 `Atomics.notify`）或 `'timed-out'`（如果超時期限到）。Promise 不會被拒絕。
 
 以下示例演示 `Atomics.waitAsync` 的基本用法：
 
@@ -53,14 +53,14 @@ const result = Atomics.waitAsync(i32a, 0, 0, 1000);
 //                                     |  ^ expected value
 //                                     ^ index
 
-if (result.value === &apos;not-equal&apos;) {
+if (result.value === 'not-equal') {
   // SharedArrayBuffer 中的值不是預期的。
 } else {
   result.value instanceof Promise; // true
   result.value.then(
     (value) => {
-      if (value == &apos;ok&apos;) { /* 已通知 */ }
-      else { /* 值為 &apos;timed-out&apos; */ }
+      if (value == 'ok') { /* 已通知 */ }
+      else { /* 值為 'timed-out' */ }
     });
 }
 
@@ -141,17 +141,17 @@ unlock() {
                       /* 舊值 >>> */  AsyncLock.LOCKED,
                       /* 新值 >>> */  AsyncLock.UNLOCKED);
   if (oldValue != AsyncLock.LOCKED) {
-    throw new Error(&apos;嘗試解鎖但未持有互斥鎖&apos;);
+    throw new Error('嘗試解鎖但未持有互斥鎖');
   }
   Atomics.notify(this.i32a, AsyncLock.INDEX, 1);
 }
 ```
 
-簡單的情況如下：鎖是空閒的，線程 T1 通過使用 `Atomics.compareExchange` 更改鎖狀態來獲取它。線程 T2 嘗試通過調用 `Atomics.compareExchange` 獲取鎖，但未成功改變鎖狀態。於是 T2 調用 `Atomics.wait`，線程被阻塞。最終，T1 釋放鎖並調用 `Atomics.notify`。這使得 T2 中的 `Atomics.wait` 調用返回 `&apos;ok&apos;`，喚醒了 T2。然後 T2 再次嘗試獲取鎖，這次成功了。
+簡單的情況如下：鎖是空閒的，線程 T1 通過使用 `Atomics.compareExchange` 更改鎖狀態來獲取它。線程 T2 嘗試通過調用 `Atomics.compareExchange` 獲取鎖，但未成功改變鎖狀態。於是 T2 調用 `Atomics.wait`，線程被阻塞。最終，T1 釋放鎖並調用 `Atomics.notify`。這使得 T2 中的 `Atomics.wait` 調用返回 `'ok'`，喚醒了 T2。然後 T2 再次嘗試獲取鎖，這次成功了。
 
 還有 2 種可能的邊界情況 —— 它們展示了 `Atomics.wait` 和 `Atomics.waitAsync` 在指定索引處檢查特定值的原因：
 
-- T1 持有鎖，T2 嘗試獲取它。首先，T2 嘗試通過 `Atomics.compareExchange` 改變鎖狀態，但未成功。但是在 T2 調用 `Atomics.wait` 之前，T1 釋放了鎖。當 T2 調用 `Atomics.wait` 時，它立即返回值 `&apos;not-equal&apos;`。在這種情況下，T2 繼續下一次循環迭代，嘗試再次獲取鎖。
+- T1 持有鎖，T2 嘗試獲取它。首先，T2 嘗試通過 `Atomics.compareExchange` 改變鎖狀態，但未成功。但是在 T2 調用 `Atomics.wait` 之前，T1 釋放了鎖。當 T2 調用 `Atomics.wait` 時，它立即返回值 `'not-equal'`。在這種情況下，T2 繼續下一次循環迭代，嘗試再次獲取鎖。
 - T1 持有鎖，T2 使用 `Atomics.wait` 等待它。T1 釋放鎖 —— T2 被喚醒（`Atomics.wait` 調用返回），並嘗試通過 `Atomics.compareExchange` 獲取鎖，但另一個線程 T3 比它更快，已經獲得了鎖。因此，`Atomics.compareExchange` 無法成功獲取鎖，T2 再次調用 `Atomics.wait`，阻塞直到 T3 釋放鎖。
 
 由於後一種邊界情況，互斥鎖並不“公平”。有可能 T2 一直在等待鎖被釋放，但 T3 直接獲得了鎖。一個更現實的鎖實現可能會使用多種狀態來區分“加鎖”和“因競爭而加鎖”。

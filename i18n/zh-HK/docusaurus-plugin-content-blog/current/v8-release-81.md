@@ -1,12 +1,12 @@
 ---
-title: &apos;V8 發佈 v8.1&apos;
-author: &apos;Dominik Inführ，國際化的神秘人物&apos;
+title: 'V8 發佈 v8.1'
+author: 'Dominik Inführ，國際化的神秘人物'
 avatars:
-  - &apos;dominik-infuehr&apos;
+  - 'dominik-infuehr'
 date: 2020-02-25
 tags:
   - release
-description: &apos;V8 v8.1 提供改良的國際化支援，通過新的 Intl.DisplayNames API。&apos;
+description: 'V8 v8.1 提供改良的國際化支援，通過新的 Intl.DisplayNames API。'
 ---
 
 每六周，我們按照 [發佈流程](https://v8.dev/docs/release-process) 創建一個新的 V8 分支。每個版本都在 Chrome Beta 里程碑之前，從 V8 的 Git 主分支中分支出來。今天，我們很高興地宣布我們最新的分支， [V8 版本 8.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.1)，這個版本目前處於測試版，直到幾周後與穩定版 Chrome 81 一起正式發佈。V8 v8.1 呈現大量開發者面向的新功能。這篇文章提前預覽其中一些亮點，以期待正式發佈。
@@ -19,19 +19,19 @@ description: &apos;V8 v8.1 提供改良的國際化支援，通過新的 Intl.Di
 新的 `Intl.DisplayNames` API 能讓程式員輕鬆地顯示語言、地區、文字腳本和貨幣的翻譯名稱。
 
 ```js
-const zhLanguageNames = new Intl.DisplayNames([&apos;zh-Hant&apos;], { type: &apos;language&apos; });
-const enRegionNames = new Intl.DisplayNames([&apos;en&apos;], { type: &apos;region&apos; });
-const itScriptNames = new Intl.DisplayNames([&apos;it&apos;], { type: &apos;script&apos; });
-const deCurrencyNames = new Intl.DisplayNames([&apos;de&apos;], {type: &apos;currency&apos;});
+const zhLanguageNames = new Intl.DisplayNames(['zh-Hant'], { type: 'language' });
+const enRegionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+const itScriptNames = new Intl.DisplayNames(['it'], { type: 'script' });
+const deCurrencyNames = new Intl.DisplayNames(['de'], {type: 'currency'});
 
-zhLanguageNames.of(&apos;fr&apos;);
-// → &apos;法文&apos;
-enRegionNames.of(&apos;US&apos;);
-// → &apos;美國&apos;
-itScriptNames.of(&apos;Latn&apos;);
-// → &apos;拉丁文&apos;
-deCurrencyNames.of(&apos;JPY&apos;);
-// → &apos;日圓&apos;
+zhLanguageNames.of('fr');
+// → '法文'
+enRegionNames.of('US');
+// → '美國'
+itScriptNames.of('Latn');
+// → '拉丁文'
+deCurrencyNames.of('JPY');
+// → '日圓'
 ```
 
 今天就將翻譯資料維護的負擔轉交給運行環境吧！詳情請參閱 [功能解釋](https://v8.dev/features/intl-displaynames)，了解完整的 API 和更多範例。

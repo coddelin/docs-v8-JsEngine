@@ -1,12 +1,12 @@
 ---
-title: &apos;Быстрый `for`-`in` в V8&apos;
-author: &apos;Камилло Бруни ([@camillobruni](http://twitter.com/camillobruni))&apos;
+title: 'Быстрый `for`-`in` в V8'
+author: 'Камилло Бруни ([@camillobruni](http://twitter.com/camillobruni))'
 avatars:
-  - &apos;camillo-bruni&apos;
+  - 'camillo-bruni'
 date: 2017-03-01 13:33:37
 tags:
   - internals
-description: &apos;Этот технический разбор объясняет, как V8 сделал JavaScript&apos;овский for-in максимально быстрым.&apos;
+description: 'Этот технический разбор объясняет, как V8 сделал JavaScript'овский for-in максимально быстрым.'
 ---
 `for`-`in` — это широко используемая языковая конструкция, присутствующая во многих фреймворках. Несмотря на свою распространенность, с точки зрения реализации, это одна из наиболее сложных конструкций. V8 приложил большие усилия, чтобы сделать эту функциональность максимально быстрой. За последний год `for`-`in` стал полностью совместим со спецификацией и до 3 раз быстрее в зависимости от контекста.
 
@@ -31,15 +31,15 @@ _**TL;DR;** Семантика итерации в for-in неоднозначн
 const proxy = new Proxy({ a: 1, b: 1},
   {
     getPrototypeOf(target) {
-    console.log(&apos;getPrototypeOf&apos;);
+    console.log('getPrototypeOf');
     return null;
   },
   ownKeys(target) {
-    console.log(&apos;ownKeys&apos;);
+    console.log('ownKeys');
     return Reflect.ownKeys(target);
   },
   getOwnPropertyDescriptor(target, prop) {
-    console.log(&apos;getOwnPropertyDescriptor name=&apos; + prop);
+    console.log('getOwnPropertyDescriptor name=' + prop);
     return Reflect.getOwnPropertyDescriptor(target, prop);
   }
 });
@@ -94,7 +94,7 @@ b
 function* EnumerateObjectProperties(obj) {
   const visited = new Set();
   for (const key of Reflect.ownKeys(obj)) {
-    if (typeof key === &apos;symbol&apos;) continue;
+    if (typeof key === 'symbol') continue;
     const desc = Reflect.getOwnPropertyDescriptor(obj, key);
     if (desc && !visited.has(key)) {
       visited.add(key);
@@ -115,7 +115,7 @@ function* EnumerateObjectProperties(obj) {
 
 Пример реализации генератора `for`-`in` следует постепенному образцу сбора и вывода ключей. В V8 ключи свойств собираются на первом этапе и используются только затем в фазе итерации. Для V8 это упрощает несколько вещей. Чтобы понять, почему, нам нужно взглянуть на модель объекта.
 
-Простой объект, такой как `{a:&apos;value a&apos;, b:&apos;value b&apos;, c:&apos;value c&apos;}`, может иметь различные внутренние представления в V8, как мы покажем в детальном последующем посте о свойствах. Это означает, что в зависимости от того, какой тип свойств у нас есть — расположенные внутри объекта, быстрые или медленные — фактические имена свойств хранятся в разных местах. Это делает сбор перечисляемых ключей непростым делом.
+Простой объект, такой как `{a:'value a', b:'value b', c:'value c'}`, может иметь различные внутренние представления в V8, как мы покажем в детальном последующем посте о свойствах. Это означает, что в зависимости от того, какой тип свойств у нас есть — расположенные внутри объекта, быстрые или медленные — фактические имена свойств хранятся в разных местах. Это делает сбор перечисляемых ключей непростым делом.
 
 V8 отслеживает структуру объекта с помощью скрытого класса или так называемой карты (Map). Объекты с одной и той же картой имеют одну и ту же структуру. Кроме того, каждая карта имеет совместно используемую структуру данных — массив дескрипторов, который содержит подробности о каждом свойстве, такие как местоположение хранения свойств на объекте, имя свойства и такие подробности, как его перечисляемость.
 
@@ -252,7 +252,7 @@ var o = {
   __proto__ : {b: 3},
   a: 1
 };
-Object.defineProperty(o, &apos;b&apos;, {});
+Object.defineProperty(o, 'b', {});
 
 for (var k in o) console.log(k);
 ```

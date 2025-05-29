@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 發佈 v4.9&apos;
-author: &apos;V8 團隊&apos;
+title: 'V8 發佈 v4.9'
+author: 'V8 團隊'
 date: 2016-01-26 13:33:37
 tags:
   - 發佈
-description: &apos;V8 v4.9 帶來改進的 `Math.random` 實現，並新增對多個 ES2015 語言功能的支持。&apos;
+description: 'V8 v4.9 帶來改進的 `Math.random` 實現，並新增對多個 ES2015 語言功能的支持。'
 ---
 大約每六週，我們會根據 [發佈流程](/docs/release-process) 創建 V8 的新分支。每個版本均從 V8 的 Git 主分支分支出來，正好在 Chrome 分支到 Chrome Beta 里程碑之前。今天我們很高興宣布我們最新的分支 [V8 版本 4.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.9)，該版本將進入 Beta，直到與 Chrome 49 Stable 協調釋出為止。V8 4.9 包含各種面向開發者的更新，因此我們希望在幾周後發佈之前為您提供一些亮點預覽。
 
@@ -50,14 +50,14 @@ const [x, y = 0, z = 0] = [1, 2];               // x=1, y=2, z=0
 ```js
 const target = {};
 const handler = {
-  get(target, name=&apos;world&apos;) {
+  get(target, name='world') {
     return `Hello, ${name}!`;
   }
 };
 
 const foo = new Proxy(target, handler);
 foo.bar;
-// → &apos;Hello, bar!&apos;
+// → 'Hello, bar!'
 ```
 
 Proxy 對象伴隨著 Reflect 模塊，該模塊為所有代理陷阱定義了合適的默認值：
@@ -74,9 +74,9 @@ const debugMe = new Proxy({}, {
   }
 });
 
-debugMe.name = &apos;John Doe&apos;;
+debugMe.name = 'John Doe';
 // Debug: set called for field: name, and value: John Doe
-const title = `Mr. ${debugMe.name}`; // → &apos;Mr. John Doe&apos;
+const title = `Mr. ${debugMe.name}`; // → 'Mr. John Doe'
 // Debug: get called for field: name
 ```
 
@@ -88,8 +88,8 @@ const title = `Mr. ${debugMe.name}`; // → &apos;Mr. John Doe&apos;
 
 ```js
 function sublist(list, start, end) {
-  if (typeof start === &apos;undefined&apos;) start = 0;
-  if (typeof end === &apos;undefined&apos;) end = list.length;
+  if (typeof start === 'undefined') start = 0;
+  if (typeof end === 'undefined') end = list.length;
   ...
 }
 ```
@@ -123,13 +123,13 @@ V8 現在支援正規表示式中的新[黏著標誌](https://developer.mozilla.
 ```js
 class Custom {
   get [Symbol.toStringTag]() {
-    return &apos;Custom&apos;;
+    return 'Custom';
   }
 }
 Object.prototype.toString.call(new Custom);
-// → &apos;[object Custom]&apos;
+// → '[object Custom]'
 String(new Custom);
-// → &apos;[object Custom]&apos;
+// → '[object Custom]'
 ```
 
 ## 改進的 `Math.random()`

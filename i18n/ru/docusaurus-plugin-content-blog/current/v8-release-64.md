@@ -1,11 +1,11 @@
 ---
-title: &apos;Релиз V8 v6.4&apos;
-author: &apos;команда V8&apos;
+title: 'Релиз V8 v6.4'
+author: 'команда V8'
 date: 2017-12-19 13:33:37
 tags:
   - выпуск
-description: &apos;V8 v6.4 включает улучшения производительности, новые возможности языка JavaScript и многое другое.&apos;
-tweet: &apos;943057597481082880&apos;
+description: 'V8 v6.4 включает улучшения производительности, новые возможности языка JavaScript и многое другое.'
+tweet: '943057597481082880'
 ---
 Каждые шесть недель мы создаем новую ветку V8 в рамках нашего [процесса выпуска](/docs/release-process). Каждая версия ветвится от основной Git-ветки V8 прямо перед этапом Beta Chrome. Сегодня мы рады объявить о нашей новейшей ветке, [версии V8 6.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.4), которая находится в бета-версии до своего выпуска вместе со стабильной версией Chrome 64 через несколько недель. V8 v6.4 наполнен разнообразными полезными улучшениями для разработчиков. В этом сообщении представлен предварительный обзор некоторых ключевых моментов в преддверии релиза.
 
@@ -52,7 +52,7 @@ doSomething(callback.bind(someObj));
 
 ```js
 const regexGreekSymbol = /\p{Script_Extensions=Greek}/u;
-regexGreekSymbol.test(&apos;π&apos;);
+regexGreekSymbol.test('π');
 // → true
 ```
 
@@ -60,10 +60,10 @@ regexGreekSymbol.test(&apos;π&apos;);
 
 ```js
 const pattern = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/u;
-const result = pattern.exec(&apos;2017-12-15&apos;);
-// result.groups.year === &apos;2017&apos;
-// result.groups.month === &apos;12&apos;
-// result.groups.day === &apos;15&apos;
+const result = pattern.exec('2017-12-15');
+// result.groups.year === '2017'
+// result.groups.month === '12'
+// result.groups.day === '15'
 ```
 
 Подробнее об этих функциях можно узнать в нашем посте в блоге под названием [Предстоящие возможности регулярных выражений](https://developers.google.com/web/updates/2017/07/upcoming-regexp-features).

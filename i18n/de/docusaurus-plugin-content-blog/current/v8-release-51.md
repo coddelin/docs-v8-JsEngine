@@ -1,10 +1,10 @@
 ---
-title: &apos;V8-Version v5.1&apos;
-author: &apos;das V8-Team&apos;
+title: 'V8-Version v5.1'
+author: 'das V8-Team'
 date: 2016-04-23 13:33:37
 tags:
   - Veröffentlichung
-description: &apos;V8 v5.1 bringt Verbesserungen in der Performance, reduzierte Unterbrechungen und Speicherverbrauch sowie erhöhte Unterstützung für ECMAScript-Sprachfunktionen.&apos;
+description: 'V8 v5.1 bringt Verbesserungen in der Performance, reduzierte Unterbrechungen und Speicherverbrauch sowie erhöhte Unterstützung für ECMAScript-Sprachfunktionen.'
 ---
 Der erste Schritt im [Veröffentlichungsprozess](/docs/release-process) von V8 ist, einen neuen Branch von der Git-Master-Version zu erstellen, unmittelbar bevor Chromium für einen Chrome-Beta-Meilenstein verzweigt (etwa alle sechs Wochen). Unser neuester Release-Branch ist [V8 v5.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.1), der bis zu einer stabilen Version als Beta bleibt, die zusammen mit Chrome 51 Stable veröffentlicht wird. Hier sind die Highlights der neuen Entwicklerfunktionen dieser Version von V8.
 
@@ -41,7 +41,7 @@ class Container {
 }
 const c = new Container;
 console.log(c[Symbol.iterator].name);
-// → &apos;[Symbol.iterator]&apos;
+// → '[Symbol.iterator]'
 ```
 
 ### `Array.prototype.values`
@@ -60,7 +60,7 @@ V8 v5.1 bringt auch einige bemerkenswerte Verbesserungen in der Leistung für di
 - `Array.prototype.push`
 - `Object.keys`
 - `Array.prototype.join` & `Array.prototype.toString`
-- Wiederholte Zeichenketten glätten, z.B. `&apos;.&apos;.repeat(1000)`
+- Wiederholte Zeichenketten glätten, z.B. `'.'.repeat(1000)`
 
 ## WebAssembly (Wasm)
 

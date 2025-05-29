@@ -275,7 +275,7 @@ sim> continue
 # NZCV: N:0 Z:1 C:0 V:0
 0x00007f1e00082ca4  54000a81            b.ne #+0x150 (addr 0x7f1e00082df4)
 
-# Ensuite, nous détaguons et additionnons &apos;a&apos; et &apos;b&apos; ensemble.
+# Ensuite, nous détaguons et additionnons 'a' et 'b' ensemble.
 0x00007f1e00082ca8  13017c44            asr w4, w2, #1
 #    x4: 0x0000000000000005
 0x00007f1e00082cac  2b830484            adds w4, w4, w3, asr #1
@@ -321,12 +321,12 @@ Le simulateur s'arrête, point de rupture sur la prochaine instruction :
   0x488c2e20  e24fc00c       sub ip, pc, #12
 
 # Arrêtons à une adresse connue intéressante, où nous commençons
-# le chargement de &apos;a&apos; et &apos;b&apos;.
+# le chargement de 'a' et 'b'.
 sim> break 0x488c2e9c
 sim> continue
   0x488c2e9c  e59b200c       ldr r2, [fp, #+12]
 
-# Nous pouvons examiner avec &apos;disasm&apos;.
+# Nous pouvons examiner avec 'disasm'.
 sim> disasm 10
   0x488c2e9c  e59b200c       ldr r2, [fp, #+12]
   0x488c2ea0  e3120001       tst r2, #1

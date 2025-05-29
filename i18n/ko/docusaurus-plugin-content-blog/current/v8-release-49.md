@@ -123,13 +123,13 @@ V8은 이제 정규식에서 새로운 [sticky 플래그](https://developer.mozi
 ```js
 class Custom {
   get [Symbol.toStringTag]() {
-    return &apos;Custom&apos;;
+    return 'Custom';
   }
 }
 Object.prototype.toString.call(new Custom);
-// → &apos;[object Custom]&apos;
+// → '[object Custom]'
 String(new Custom);
-// → &apos;[object Custom]&apos;
+// → '[object Custom]'
 ```
 
 ## 향상된 `Math.random()`
@@ -140,4 +140,4 @@ V8 v4.9는 `Math.random()` 구현의 향상을 포함하고 있습니다. [지�
 
 API 변경 사항에 대한 [요약](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit)을 확인하세요. 이 문서는 각 주요 릴리스 후 몇 주 후에 정기적으로 업데이트 됩니다.
 
-[활성 V8 체크아웃](https://v8.dev/docs/source-code#using-git)을 가지고 있는 개발자는 `git checkout -b 4.9 -t branch-heads/4.9` 명령을 사용하여 V8 v4.9의 새로운 기능을 실험할 수 있습니다. 또는 [Chrome&apos;s Beta 채널](https://www.google.com/chrome/browser/beta.html)에 가입하여 곧 새로운 기능을 직접 사용해 볼 수 있습니다.
+[활성 V8 체크아웃](https://v8.dev/docs/source-code#using-git)을 가지고 있는 개발자는 `git checkout -b 4.9 -t branch-heads/4.9` 명령을 사용하여 V8 v4.9의 새로운 기능을 실험할 수 있습니다. 또는 [Chrome's Beta 채널](https://www.google.com/chrome/browser/beta.html)에 가입하여 곧 새로운 기능을 직접 사용해 볼 수 있습니다.

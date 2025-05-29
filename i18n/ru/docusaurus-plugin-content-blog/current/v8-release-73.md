@@ -1,13 +1,13 @@
 ---
-title: &apos;Релиз V8 версии 7.3&apos;
-author: &apos;Клеменс Бакес, мастер компиляции&apos;
+title: 'Релиз V8 версии 7.3'
+author: 'Клеменс Бакес, мастер компиляции'
 avatars:
   - clemens-backes
 date: 2019-02-07 11:30:42
 tags:
   - release
-description: &apos;V8 v7.3 включает улучшения производительности WebAssembly и асинхронного кода, асинхронные трассировки стека, Object.fromEntries, String#matchAll и многое другое!&apos;
-tweet: &apos;1093457099441561611&apos;
+description: 'V8 v7.3 включает улучшения производительности WebAssembly и асинхронного кода, асинхронные трассировки стека, Object.fromEntries, String#matchAll и многое другое!'
+tweet: '1093457099441561611'
 ---
 Каждые шесть недель мы создаем новую ветку V8 в рамках нашего [процесса релиза](/docs/release-process). Каждая версия создается из главной ветки Git V8 незадолго до достижения этапа бета-версии Chrome. Сегодня мы рады сообщить о нашей новой ветке, [версии V8 7.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.3), которая находится в стадии бета-тестирования до выпуска в стабильной версии Chrome 73 через несколько недель. V8 версии 7.3 наполнен разнообразными улучшениями для разработчиков. Этот пост представляет некоторую информацию о главных новинках в преддверии выпуска.
 
@@ -37,7 +37,7 @@ API `Object.entries` не является чем-то новым:
 ```js
 const object = { x: 42, y: 50 };
 const entries = Object.entries(object);
-// → [[&apos;x&apos;, 42], [&apos;y&apos;, 50]]
+// → [['x', 42], ['y', 50]]
 ```
 
 К сожалению, до сих пор не было простого способа преобразовать результат `entries` обратно в эквивалентный объект… до сих пор! В версии V8 v7.3 добавлена поддержка [`Object.fromEntries()`](/features/object-fromentries), нового встроенного API, который выполняет обратную операцию для `Object.entries`:
@@ -54,21 +54,21 @@ const result = Object.fromEntries(entries);
 Один из распространенных вариантов использования глобальных (`g`) или липких (`y`) регулярных выражений — применять их к строке и перебирать все совпадения. Новый API `String.prototype.matchAll` упрощает это как никогда прежде, особенно для регулярных выражений с группами захвата:
 
 ```js
-const string = &apos;Любимые репозитории на GitHub: tc39/ecma262 v8/v8.dev&apos;;
+const string = 'Любимые репозитории на GitHub: tc39/ecma262 v8/v8.dev';
 const regex = /\b(?<owner>[a-z0-9]+)\/(?<repo>[a-z0-9\.]+)\b/g;
 
 for (const match of string.matchAll(regex)) {
-  console.log(`${match[0]} на ${match.index} из &apos;${match.input}&apos;`);
+  console.log(`${match[0]} на ${match.index} из '${match.input}'`);
   console.log(`→ владелец: ${match.groups.owner}`);
   console.log(`→ репозиторий: ${match.groups.repo}`);
 }
 
 // Вывод:
 //
-// tc39/ecma262 на 23 из &apos;Любимые репозитории на GitHub: tc39/ecma262 v8/v8.dev&apos;
+// tc39/ecma262 на 23 из 'Любимые репозитории на GitHub: tc39/ecma262 v8/v8.dev'
 // → владелец: tc39
 // → репозиторий: ecma262
-// v8/v8.dev на 36 из &apos;Любимые репозитории на GitHub: tc39/ecma262 v8/v8.dev&apos;
+// v8/v8.dev на 36 из 'Любимые репозитории на GitHub: tc39/ecma262 v8/v8.dev'
 // → владелец: v8
 // → репозиторий: v8.dev
 ```

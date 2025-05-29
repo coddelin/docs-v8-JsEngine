@@ -1,12 +1,12 @@
 ---
-title: &apos;TurboFan JITの掘り下げ&apos;
-author: &apos;Ben L. Titzer、ソフトウェアエンジニアおよびTurboFanメカニック&apos;
+title: 'TurboFan JITの掘り下げ'
+author: 'Ben L. Titzer、ソフトウェアエンジニアおよびTurboFanメカニック'
 avatars:
-  - &apos;ben-titzer&apos;
+  - 'ben-titzer'
 date: 2015-07-13 13:33:37
 tags:
   - internals
-description: &apos;V8の新しいTurboFan最適化コンパイラの設計の徹底解説。&apos;
+description: 'V8の新しいTurboFan最適化コンパイラの設計の徹底解説。'
 ---
 [先週私たちは](https://blog.chromium.org/2015/07/revving-up-javascript-performance-with.html)、特定の種類のJavaScriptに対してTurboFanをオンにしたことを発表しました。この投稿ではTurboFanの設計に深く掘り下げたいと思います。
 

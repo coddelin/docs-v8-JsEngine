@@ -1,27 +1,27 @@
 ---
-title: &apos;Хорошо сформированный `JSON.stringify`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Хорошо сформированный `JSON.stringify`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-09-11
 tags:
   - ECMAScript
   - ES2019
-description: &apos;JSON.stringify теперь выводит экранированные последовательности для одиночных суррогатов, что делает его вывод валидным Unicode (и представимым в UTF-8).&apos;
+description: 'JSON.stringify теперь выводит экранированные последовательности для одиночных суррогатов, что делает его вывод валидным Unicode (и представимым в UTF-8).'
 ---
 `JSON.stringify` ранее был определен так, что возвращал некорректные строки Unicode, если входные данные содержали одиночные суррогаты:
 
 ```js
-JSON.stringify(&apos;\uD800&apos;);
-// → &apos;"�"&apos;
+JSON.stringify('\uD800');
+// → '"�"'
 ```
 
 [Предложение «хорошо сформированного `JSON.stringify`»](https://github.com/tc39/proposal-well-formed-stringify) изменяет `JSON.stringify`, чтобы он выводил экранированные последовательности для одиночных суррогатов, делая его вывод валидным Unicode (и представимым в UTF-8):
 
 <!--truncate-->
 ```js
-JSON.stringify(&apos;\uD800&apos;);
-// → &apos;"\\ud800"&apos;
+JSON.stringify('\uD800');
+// → '"\\ud800"'
 ```
 
 Обратите внимание, что `JSON.parse(stringified)` все еще производит те же результаты, что и раньше.

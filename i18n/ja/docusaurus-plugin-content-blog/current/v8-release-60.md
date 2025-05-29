@@ -1,10 +1,10 @@
 ---
-title: &apos;V8リリース v6.0&apos;
-author: &apos;V8チーム&apos;
+title: 'V8リリース v6.0'
+author: 'V8チーム'
 date: 2017-06-09 13:33:37
 tags:
   - リリース
-description: &apos;V8 v6.0は複数のパフォーマンス改善を含み、`SharedArrayBuffer`やオブジェクトのrest/spreadプロパティのサポートを導入しました。&apos;
+description: 'V8 v6.0は複数のパフォーマンス改善を含み、`SharedArrayBuffer`やオブジェクトのrest/spreadプロパティのサポートを導入しました。'
 ---
 6週間ごとに、[リリースプロセス](/docs/release-process)の一環としてV8の新しいブランチを作成します。各バージョンはChrome Betaマイルストーンの直前にV8のGitのマスターからブランチされます。本日、[V8バージョン6.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.0)を発表いたします。このバージョンは数週間後にChrome 60 Stableとの連携でリリースされるまでベータ版となります。V8 6.0は開発者向けのさまざまな機能で満たされています。このリリースを見越して、いくつかのハイライトをご紹介したいと思います。
 
@@ -24,20 +24,20 @@ V8 v6.0では、[`SharedArrayBuffer`](https://developer.mozilla.org/en-US/docs/W
 ```js
 // オブジェクトの分割代入のrestプロパティ:
 const person = {
-  firstName: &apos;Sebastian&apos;,
-  lastName: &apos;Markbåge&apos;,
-  country: &apos;USA&apos;,
-  state: &apos;CA&apos;,
+  firstName: 'Sebastian',
+  lastName: 'Markbåge',
+  country: 'USA',
+  state: 'CA',
 };
 const { firstName, lastName, ...rest } = person;
 console.log(firstName); // Sebastian
 console.log(lastName); // Markbåge
-console.log(rest); // { country: &apos;USA&apos;, state: &apos;CA&apos; }
+console.log(rest); // { country: 'USA', state: 'CA' }
 
 // オブジェクトリテラルのspreadプロパティ:
 const personCopy = { firstName, lastName, ...rest };
 console.log(personCopy);
-// { firstName: &apos;Sebastian&apos;, lastName: &apos;Markbåge&apos;, country: &apos;USA&apos;, state: &apos;CA&apos; }
+// { firstName: 'Sebastian', lastName: 'Markbåge', country: 'USA', state: 'CA' }
 ```
 
 詳細については、[オブジェクトのrestとspreadプロパティに関する説明](/features/object-rest-spread)をご覧ください。

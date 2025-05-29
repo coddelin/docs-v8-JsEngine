@@ -1,30 +1,30 @@
 ---
-title: &apos;`Intl.PluralRules`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`Intl.PluralRules`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-10-04
 tags:
   - Intl
-description: &apos;Manejar plurales es uno de los muchos problemas que podrían parecer simples, hasta que te das cuenta de que cada idioma tiene sus propias reglas de pluralización. ¡La API Intl.PluralRules puede ayudar!&apos;
-tweet: &apos;915542989493202944&apos;
+description: 'Manejar plurales es uno de los muchos problemas que podrían parecer simples, hasta que te das cuenta de que cada idioma tiene sus propias reglas de pluralización. ¡La API Intl.PluralRules puede ayudar!'
+tweet: '915542989493202944'
 ---
 La Iñtërnâtiônàlizætiøn es difícil. Manejar plurales es uno de los muchos problemas que podrían parecer simples, hasta que te das cuenta de que cada idioma tiene sus propias reglas de pluralización.
 
 Para la pluralización en inglés, solo hay dos posibles resultados. Usemos la palabra “gato” como ejemplo:
 
-- 1 gato, es decir, la forma `&apos;one&apos;`, conocida como el singular en inglés
-- 2 gatos, pero también 42 gatos, 0.5 gatos, etc., es decir, la forma `&apos;other&apos;` (la única otra), conocida como el plural en inglés.
+- 1 gato, es decir, la forma `'one'`, conocida como el singular en inglés
+- 2 gatos, pero también 42 gatos, 0.5 gatos, etc., es decir, la forma `'other'` (la única otra), conocida como el plural en inglés.
 
 La nueva [API `Intl.PluralRules`](https://github.com/tc39/proposal-intl-plural-rules) te indica qué forma se aplica en un idioma que elijas, basado en un número dado.
 
 ```js
-const pr = new Intl.PluralRules(&apos;en-US&apos;);
-pr.select(0);   // &apos;other&apos; (e.g. &apos;0 cats&apos;)
-pr.select(0.5); // &apos;other&apos; (e.g. &apos;0.5 cats&apos;)
-pr.select(1);   // &apos;one&apos;   (e.g. &apos;1 cat&apos;)
-pr.select(1.5); // &apos;other&apos; (e.g. &apos;0.5 cats&apos;)
-pr.select(2);   // &apos;other&apos; (e.g. &apos;0.5 cats&apos;)
+const pr = new Intl.PluralRules('en-US');
+pr.select(0);   // 'other' (e.g. '0 cats')
+pr.select(0.5); // 'other' (e.g. '0.5 cats')
+pr.select(1);   // 'one'   (e.g. '1 cat')
+pr.select(1.5); // 'other' (e.g. '0.5 cats')
+pr.select(2);   // 'other' (e.g. '0.5 cats')
 ```
 
 <!--truncate-->
@@ -34,51 +34,51 @@ A diferencia de otras APIs de internacionalización, `Intl.PluralRules` es una A
 const suffixes = new Map([
   // Nota: en escenarios del mundo real, no codificarías de forma rígida los plurales
   // como este; formarían parte de tus archivos de traducción.
-  [&apos;one&apos;,   &apos;cat&apos;],
-  [&apos;other&apos;, &apos;cats&apos;],
+  ['one',   'cat'],
+  ['other', 'cats'],
 ]);
-const pr = new Intl.PluralRules(&apos;en-US&apos;);
+const pr = new Intl.PluralRules('en-US');
 const formatCats = (n) => {
   const rule = pr.select(n);
   const suffix = suffixes.get(rule);
   return `${n} ${suffix}`;
 };
 
-formatCats(1);   // &apos;1 cat&apos;
-formatCats(0);   // &apos;0 cats&apos;
-formatCats(0.5); // &apos;0.5 cats&apos;
-formatCats(1.5); // &apos;1.5 cats&apos;
-formatCats(2);   // &apos;2 cats&apos;
+formatCats(1);   // '1 cat'
+formatCats(0);   // '0 cats'
+formatCats(0.5); // '0.5 cats'
+formatCats(1.5); // '1.5 cats'
+formatCats(2);   // '2 cats'
 ```
 
 Para las relativamente simples reglas de pluralización en inglés, esto podría parecer excesivo; sin embargo, no todos los idiomas siguen las mismas reglas. Algunos idiomas tienen solo una forma de pluralización, y otros idiomas tienen múltiples formas. [El galés](http://unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#rules), por ejemplo, ¡tiene seis formas de pluralización diferentes!
 
 ```js
 const suffixes = new Map([
-  [&apos;zero&apos;,  &apos;cathod&apos;],
-  [&apos;one&apos;,   &apos;gath&apos;],
-  // Nota: la forma `two` resulta ser la misma que la forma `&apos;one&apos;`
+  ['zero',  'cathod'],
+  ['one',   'gath'],
+  // Nota: la forma `two` resulta ser la misma que la forma `'one'`
   // para esta palabra específicamente, pero eso no es cierto para
   // todas las palabras en galés.
-  [&apos;two&apos;,   &apos;gath&apos;],
-  [&apos;few&apos;,   &apos;cath&apos;],
-  [&apos;many&apos;,  &apos;chath&apos;],
-  [&apos;other&apos;, &apos;cath&apos;],
+  ['two',   'gath'],
+  ['few',   'cath'],
+  ['many',  'chath'],
+  ['other', 'cath'],
 ]);
-const pr = new Intl.PluralRules(&apos;cy&apos;);
+const pr = new Intl.PluralRules('cy');
 const formatWelshCats = (n) => {
   const rule = pr.select(n);
   const suffix = suffixes.get(rule);
   return `${n} ${suffix}`;
 };
 
-formatWelshCats(0);   // &apos;0 cathod&apos;
-formatWelshCats(1);   // &apos;1 gath&apos;
-formatWelshCats(1.5); // &apos;1.5 cath&apos;
-formatWelshCats(2);   // &apos;2 gath&apos;
-formatWelshCats(3);   // &apos;3 cath&apos;
-formatWelshCats(6);   // &apos;6 chath&apos;
-formatWelshCats(42);  // &apos;42 cath&apos;
+formatWelshCats(0);   // '0 cathod'
+formatWelshCats(1);   // '1 gath'
+formatWelshCats(1.5); // '1.5 cath'
+formatWelshCats(2);   // '2 gath'
+formatWelshCats(3);   // '3 cath'
+formatWelshCats(6);   // '6 chath'
+formatWelshCats(42);  // '42 cath'
 ```
 
 Para implementar una pluralización correcta y al mismo tiempo admitir varios idiomas, se necesita una base de datos de idiomas y sus reglas de pluralización. [El Unicode CLDR](http://cldr.unicode.org/) incluye estos datos, pero para usarlos en JavaScript, deben ser integrados y enviados junto con tu otro código JavaScript, aumentando los tiempos de carga, análisis y uso de memoria. La API `Intl.PluralRules` transfiere esa carga al motor de JavaScript, permitiendo pluralizaciones internacionalizadas más eficientes.
@@ -89,17 +89,17 @@ Para implementar una pluralización correcta y al mismo tiempo admitir varios id
 
 ## Números ordinales
 
-La API `Intl.PluralRules` es compatible con varias reglas de selección a través de la propiedad `type` en el argumento opcional `options`. Su valor por defecto implícito (como se usa en los ejemplos anteriores) es `&apos;cardinal&apos;`. Para determinar el indicador ordinal para un número dado en su lugar (por ejemplo, `1` → `1st`, `2` → `2nd`, etc.), usa `{ type: &apos;ordinal&apos; }`:
+La API `Intl.PluralRules` es compatible con varias reglas de selección a través de la propiedad `type` en el argumento opcional `options`. Su valor por defecto implícito (como se usa en los ejemplos anteriores) es `'cardinal'`. Para determinar el indicador ordinal para un número dado en su lugar (por ejemplo, `1` → `1st`, `2` → `2nd`, etc.), usa `{ type: 'ordinal' }`:
 
 ```js
-const pr = new Intl.PluralRules(&apos;en-US&apos;, {
-  type: &apos;ordinal&apos;
+const pr = new Intl.PluralRules('en-US', {
+  type: 'ordinal'
 });
 const suffixes = new Map([
-  [&apos;one&apos;,   &apos;st&apos;],
-  [&apos;two&apos;,   &apos;nd&apos;],
-  [&apos;few&apos;,   &apos;rd&apos;],
-  [&apos;other&apos;, &apos;th&apos;],
+  ['one',   'st'],
+  ['two',   'nd'],
+  ['few',   'rd'],
+  ['other', 'th'],
 ]);
 const formatOrdinals = (n) => {
   const rule = pr.select(n);
@@ -107,15 +107,15 @@ const formatOrdinals = (n) => {
   return `${n}${suffix}`;
 };
 
-formatOrdinals(0);   // &apos;0th&apos;
-formatOrdinals(1);   // &apos;1st&apos;
-formatOrdinals(2);   // &apos;2nd&apos;
-formatOrdinals(3);   // &apos;3rd&apos;
-formatOrdinals(4);   // &apos;4th&apos;
-formatOrdinals(11);  // &apos;11th&apos;
-formatOrdinals(21);  // &apos;21st&apos;
-formatOrdinals(42);  // &apos;42nd&apos;
-formatOrdinals(103); // &apos;103rd&apos;
+formatOrdinals(0);   // '0th'
+formatOrdinals(1);   // '1st'
+formatOrdinals(2);   // '2nd'
+formatOrdinals(3);   // '3rd'
+formatOrdinals(4);   // '4th'
+formatOrdinals(11);  // '11th'
+formatOrdinals(21);  // '21st'
+formatOrdinals(42);  // '42nd'
+formatOrdinals(103); // '103rd'
 ```
 
 `Intl.PluralRules` es una API de bajo nivel, especialmente en comparación con otras características de internacionalización. Por lo tanto, aunque no la estés utilizando directamente, podrías estar utilizando una biblioteca o marco que dependa de ella.

@@ -1,12 +1,12 @@
 ---
-title: &apos;高性能のES2015以降&apos;
-author: &apos;Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer), ECMAScriptパフォーマンスエンジニア&apos;
+title: '高性能のES2015以降'
+author: 'Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer), ECMAScriptパフォーマンスエンジニア'
 avatars:
-  - &apos;benedikt-meurer&apos;
+  - 'benedikt-meurer'
 date: 2017-02-17 13:33:37
 tags:
   - ECMAScript
-description: &apos;V8におけるES2015+言語機能のパフォーマンスは、今やトランスパイルされたES5の対応機能に匹敵します。&apos;
+description: 'V8におけるES2015+言語機能のパフォーマンスは、今やトランスパイルされたES5の対応機能に匹敵します。'
 ---
 過去数ヶ月間にわたり、V8チームは新たに追加された[ES2015](https://www.ecma-international.org/ecma-262/6.0/)およびさらに最近のJavaScript機能のパフォーマンスを、トランスパイルされた[ES5](https://www.ecma-international.org/ecma-262/5.1/)の対応機能と同等にすることに注力しました。
 
@@ -35,7 +35,7 @@ function todoApp(state = initialState, action) {
 このコードには、トランスパイルを必要とする2つの事項があります：stateのデフォルトパラメータと、状態のオブジェクトリテラルへのスプレッドです。Babelは以下のES5コードを生成します:
 
 ```js
-&apos;use strict&apos;;
+'use strict';
 
 var _extends = Object.assign || function(target) {
   for (var i = 1; i < arguments.length; i++) {
@@ -82,7 +82,7 @@ async function* readLines(path) {
 Babelはこれらの187文字（gzippedで150バイト）を、ES5コードに変換する際になんと2987文字（gzippedで971バイト）に増加させます。なお、[regenerator runtime](https://babeljs.io/docs/plugins/transform-regenerator/)という追加依存が必要である点はカウントしていません。
 
 ```js
-&apos;use strict&apos;;
+'use strict';
 
 var _asyncGenerator = function() {
   function AwaitValue(value) {
@@ -116,27 +116,27 @@ var _asyncGenerator = function() {
         var value = result.value;
         if (value instanceof AwaitValue) {
           Promise.resolve(value.value).then(function(arg) {
-            resume(&apos;next&apos;, arg);
+            resume('next', arg);
           }, function(arg) {
-            resume(&apos;throw&apos;, arg);
+            resume('throw', arg);
           });
         } else {
-          settle(result.done ? &apos;return&apos; : &apos;normal&apos;, result.value);
+          settle(result.done ? 'return' : 'normal', result.value);
         }
       } catch (err) {
-        settle(&apos;throw&apos;, err);
+        settle('throw', err);
       }
     }
 
     function settle(type, value) {
       switch (type) {
-        case &apos;return&apos;:
+        case 'return':
           front.resolve({
             value: value,
             done: true
           });
           break;
-        case &apos;throw&apos;:
+        case 'throw':
           front.reject(value);
           break;
         default:
@@ -154,23 +154,23 @@ var _asyncGenerator = function() {
       }
     }
     this._invoke = send;
-    if (typeof gen.return !== &apos;function&apos;) {
+    if (typeof gen.return !== 'function') {
       this.return = undefined;
     }
   }
-  if (typeof Symbol === &apos;function&apos; && Symbol.asyncIterator) {
+  if (typeof Symbol === 'function' && Symbol.asyncIterator) {
     AsyncGenerator.prototype[Symbol.asyncIterator] = function() {
       return this;
     };
   }
   AsyncGenerator.prototype.next = function(arg) {
-    return this._invoke(&apos;next&apos;, arg);
+    return this._invoke('next', arg);
   };
   AsyncGenerator.prototype.throw = function(arg) {
-    return this._invoke(&apos;throw&apos;, arg);
+    return this._invoke('throw', arg);
   };
   AsyncGenerator.prototype.return = function(arg) {
-    return this._invoke(&apos;return&apos;, arg);
+    return this._invoke('return', arg);
   };
   return {
     wrap: function wrap(fn) {
@@ -224,7 +224,7 @@ var readLines = function () {
             return _context.finish(11);
 
           case 15:
-          case &apos;end&apos;:
+          case 'end':
             return _context.stop();
         }
       }
@@ -288,7 +288,7 @@ function fn() {
 …そしてBabelによって生成されたコードよりもはるかに高速（かつ短い）です:
 
 ```js
-&apos;use strict&apos;;
+'use strict';
 
 var _slicedToArray = function() {
   function sliceIterator(arr, i) {
@@ -306,7 +306,7 @@ var _slicedToArray = function() {
       _e = err;
     } finally {
       try {
-        if (!_n && _i[&apos;return&apos;]) _i[&apos;return&apos;]();
+        if (!_n && _i['return']) _i['return']();
       } finally {
         if (_d) throw _e;
       }
@@ -319,7 +319,7 @@ var _slicedToArray = function() {
     } else if (Symbol.iterator in Object(arr)) {
       return sliceIterator(arr, i);
     } else {
-      throw new TypeError(&apos;Invalid attempt to destructure non-iterable instance&apos;);
+      throw new TypeError('Invalid attempt to destructure non-iterable instance');
     }
   };
 }();

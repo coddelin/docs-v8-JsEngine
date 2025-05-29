@@ -1,19 +1,19 @@
 ---
-title: &apos;Extras V8&apos;
-author: &apos;Domenic Denicola ([@domenic](https://twitter.com/domenic)), Sorcier des flux&apos;
+title: 'Extras V8'
+author: 'Domenic Denicola ([@domenic](https://twitter.com/domenic)), Sorcier des flux'
 avatars:
-  - &apos;domenic-denicola&apos;
+  - 'domenic-denicola'
 date: 2016-02-04 13:33:37
 tags:
   - internals
-description: &apos;La version 4.8 de V8 inclut les “extras V8”, une interface simple conçue dans le but de permettre aux utilisateurs d&apos;intégrer des APIs performantes et auto hébergées.&apos;
+description: 'La version 4.8 de V8 inclut les “extras V8”, une interface simple conçue dans le but de permettre aux utilisateurs d'intégrer des APIs performantes et auto hébergées.'
 ---
-V8 implémente une grande partie des objets et fonctions intégrés du langage JavaScript directement en JavaScript. Par exemple, vous pouvez voir notre [implémentation des promesses](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js) qui est écrite en JavaScript. Ces objets intégrés sont appelés _auto hébergés_. Ces implémentations sont incluses dans notre [instantané de démarrage](/blog/custom-startup-snapshots) afin que de nouveaux contextes puissent être rapidement créés sans avoir besoin de configurer et d&apos;initialiser les objets auto hébergés durant l'exécution.
+V8 implémente une grande partie des objets et fonctions intégrés du langage JavaScript directement en JavaScript. Par exemple, vous pouvez voir notre [implémentation des promesses](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js) qui est écrite en JavaScript. Ces objets intégrés sont appelés _auto hébergés_. Ces implémentations sont incluses dans notre [instantané de démarrage](/blog/custom-startup-snapshots) afin que de nouveaux contextes puissent être rapidement créés sans avoir besoin de configurer et d'initialiser les objets auto hébergés durant l'exécution.
 
 <!--truncate-->
-Les utilisateurs de V8, tels que Chromium, ont parfois besoin de rédiger des APIs en JavaScript également. Cela fonctionne particulièrement bien pour les fonctionnalités de plateforme qui sont autonomes, comme [streams](https://streams.spec.whatwg.org/), ou pour les fonctionnalités qui font partie d&apos;une plateforme “en couches” de capacités de niveau supérieur construites sur des bases déjà existantes. Bien qu&apos;il soit toujours possible d&apos;exécuter un code supplémentaire au démarrage pour initialiser les APIs utilisateurs (comme cela se fait dans Node.js, par exemple), idéalement les utilisateurs devraient pouvoir bénéficier des mêmes avantages de vitesse pour leurs APIs auto hébergées que ceux de V8.
+Les utilisateurs de V8, tels que Chromium, ont parfois besoin de rédiger des APIs en JavaScript également. Cela fonctionne particulièrement bien pour les fonctionnalités de plateforme qui sont autonomes, comme [streams](https://streams.spec.whatwg.org/), ou pour les fonctionnalités qui font partie d'une plateforme “en couches” de capacités de niveau supérieur construites sur des bases déjà existantes. Bien qu'il soit toujours possible d'exécuter un code supplémentaire au démarrage pour initialiser les APIs utilisateurs (comme cela se fait dans Node.js, par exemple), idéalement les utilisateurs devraient pouvoir bénéficier des mêmes avantages de vitesse pour leurs APIs auto hébergées que ceux de V8.
 
-Les extras V8 sont une nouvelle fonctionnalité de V8, depuis notre [version 4.8](/blog/v8-release-48), conçue dans le but de permettre aux utilisateurs d&apos;écrire des APIs auto hébergées performantes via une interface simple. Les extras sont des fichiers JavaScript fournis par l&apos;intégrateur qui sont directement compilés dans l&apos;instantané V8. Ils ont également accès à quelques outils auxiliaires qui facilitent l&apos;écriture d&apos;APIs sécurisées en JavaScript.
+Les extras V8 sont une nouvelle fonctionnalité de V8, depuis notre [version 4.8](/blog/v8-release-48), conçue dans le but de permettre aux utilisateurs d'écrire des APIs auto hébergées performantes via une interface simple. Les extras sont des fichiers JavaScript fournis par l'intégrateur qui sont directement compilés dans l'instantané V8. Ils ont également accès à quelques outils auxiliaires qui facilitent l'écriture d'APIs sécurisées en JavaScript.
 
 ## Un exemple
 
@@ -21,10 +21,10 @@ Un fichier extra V8 est simplement un fichier JavaScript avec une certaine struc
 
 ```js
 (function(global, binding, v8) {
-  &apos;use strict&apos;;
+  'use strict';
   const Object = global.Object;
-  const x = v8.createPrivateSymbol(&apos;x&apos;);
-  const y = v8.createPrivateSymbol(&apos;y&apos;);
+  const x = v8.createPrivateSymbol('x');
+  const y = v8.createPrivateSymbol('y');
 
   class Vec2 {
     constructor(theX, theY) {
@@ -37,7 +37,7 @@ Un fichier extra V8 est simplement un fichier JavaScript avec une certaine struc
     }
   }
 
-  Object.defineProperty(global, &apos;Vec2&apos;, {
+  Object.defineProperty(global, 'Vec2', {
     value: Vec2,
     enumerable: false,
     configurable: true,
@@ -50,16 +50,16 @@ Un fichier extra V8 est simplement un fichier JavaScript avec une certaine struc
 
 Quelques points à remarquer ici :
 
-- L&apos;objet `global` n&apos;est pas présent dans la chaîne de portée, donc tout accès à celui-ci (comme celui pour `Object`) doit être fait explicitement via l&apos;argument fourni `global`.
-- L&apos;objet `binding` est un endroit où stocker des valeurs ou récupérer des valeurs de la part de l&apos;intégrateur. Une API C++ `v8::Context::GetExtrasBindingObject()` donne accès à l&apos;objet `binding` depuis l&apos;intégrateur. Dans notre exemple simple, nous laissons l&apos;intégrateur effectuer le calcul de la norme ; dans un exemple réel, vous pourriez déléguer à l&apos;intégrateur quelque chose de plus complexe, comme la résolution d&apos;URL. Nous ajoutons également le constructeur `Vec2` à l&apos;objet `binding`, afin que le code de l&apos;intégrateur puisse créer des instances de `Vec2` sans passer par l&apos;objet `global` potentiellement modifiable.
-- L&apos;objet `v8` fournit un petit nombre d&apos;APIs pour vous permettre d&apos;écrire un code sécurisé. Ici, nous créons des symboles privés pour stocker notre état interne d&apos;une manière qui ne peut pas être manipulée de l&apos;extérieur. (Les symboles privés sont un concept interne à V8 et n&apos;ont pas de sens dans le code JavaScript standard.) Les objets intégrés de V8 utilisent souvent des “appels de fonctions %” pour ce genre de choses, mais les extras V8 ne peuvent pas utiliser les fonctions % car elles sont un détail d&apos;implémentation interne de V8 et ne conviennent pas aux intégrateurs.
+- L'objet `global` n'est pas présent dans la chaîne de portée, donc tout accès à celui-ci (comme celui pour `Object`) doit être fait explicitement via l'argument fourni `global`.
+- L'objet `binding` est un endroit où stocker des valeurs ou récupérer des valeurs de la part de l'intégrateur. Une API C++ `v8::Context::GetExtrasBindingObject()` donne accès à l'objet `binding` depuis l'intégrateur. Dans notre exemple simple, nous laissons l'intégrateur effectuer le calcul de la norme ; dans un exemple réel, vous pourriez déléguer à l'intégrateur quelque chose de plus complexe, comme la résolution d'URL. Nous ajoutons également le constructeur `Vec2` à l'objet `binding`, afin que le code de l'intégrateur puisse créer des instances de `Vec2` sans passer par l'objet `global` potentiellement modifiable.
+- L'objet `v8` fournit un petit nombre d'APIs pour vous permettre d'écrire un code sécurisé. Ici, nous créons des symboles privés pour stocker notre état interne d'une manière qui ne peut pas être manipulée de l'extérieur. (Les symboles privés sont un concept interne à V8 et n'ont pas de sens dans le code JavaScript standard.) Les objets intégrés de V8 utilisent souvent des “appels de fonctions %” pour ce genre de choses, mais les extras V8 ne peuvent pas utiliser les fonctions % car elles sont un détail d'implémentation interne de V8 et ne conviennent pas aux intégrateurs.
 
-Vous vous demandez peut-être d&apos;où viennent ces objets. Les trois sont initialisés dans [le bootstrapper de V8](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/bootstrapper.cc), qui installe quelques propriétés de base mais laisse principalement l&apos;initialisation au JavaScript auto hébergé de V8. Par exemple, presque tous les fichiers .js de V8 installent quelque chose sur `global`; voir par exemple [promise.js](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js&sq=package:chromium&l=439) ou [uri.js](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/uri.js&sq=package:chromium&l=371). Et nous installons des APIs sur l&apos;objet `v8` à [plusieurs endroits](https://code.google.com/p/chromium/codesearch#search/&q=extrasUtils&sq=package:chromium&type=cs). (L&apos;objet `binding` est vide jusqu&apos;à ce qu&apos;il soit manipulé par un extra ou un intégrateur, donc le seul code pertinent dans V8 lui-même est lorsque le bootstrapper le crée.)
+Vous vous demandez peut-être d'où viennent ces objets. Les trois sont initialisés dans [le bootstrapper de V8](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/bootstrapper.cc), qui installe quelques propriétés de base mais laisse principalement l'initialisation au JavaScript auto hébergé de V8. Par exemple, presque tous les fichiers .js de V8 installent quelque chose sur `global`; voir par exemple [promise.js](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js&sq=package:chromium&l=439) ou [uri.js](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/uri.js&sq=package:chromium&l=371). Et nous installons des APIs sur l'objet `v8` à [plusieurs endroits](https://code.google.com/p/chromium/codesearch#search/&q=extrasUtils&sq=package:chromium&type=cs). (L'objet `binding` est vide jusqu'à ce qu'il soit manipulé par un extra ou un intégrateur, donc le seul code pertinent dans V8 lui-même est lorsque le bootstrapper le crée.)
 
 Enfin, pour indiquer à V8 que nous allons compiler un extra, nous ajoutons une ligne au fichier gyp de notre projet :
 
 ```js
-&apos;v8_extra_library_files&apos;: [&apos;./Vec2.js&apos;]
+'v8_extra_library_files': ['./Vec2.js']
 ```
 
 (Vous pouvez voir un exemple réel de cela [dans le gypfile de V8](https://code.google.com/p/chromium/codesearch#chromium/src/v8/build/standalone.gypi&sq=package:chromium&type=cs&l=170).)

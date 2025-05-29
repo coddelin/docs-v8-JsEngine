@@ -1,14 +1,14 @@
 ---
-title: &apos;頂層`await`&apos;
-author: &apos;Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))&apos;
+title: '頂層`await`'
+author: 'Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))'
 avatars:
-  - &apos;myles-borins&apos;
+  - 'myles-borins'
 date: 2019-10-08
 tags:
   - ECMAScript
   - Node.js 14
-description: &apos;頂層`await`即將登陸 JavaScript 模組！您很快就能在非 async 函數中使用 `await`。&apos;
-tweet: &apos;1181581262399643650&apos;
+description: '頂層`await`即將登陸 JavaScript 模組！您很快就能在非 async 函數中使用 `await`。'
+tweet: '1181581262399643650'
 ---
 [頂層`await`](https://github.com/tc39/proposal-top-level-await)使開發者能夠在 async 函數之外使用 `await` 關鍵字。它像是一個大的 async 函數，會讓其他`import`它的模組在開始評估它們的主體之前等待。
 
@@ -18,11 +18,11 @@ tweet: &apos;1181581262399643650&apos;
 當`async`/`await`首次引入時，試圖在`async`函數之外使用`await`會導致`SyntaxError`錯誤。許多開發者使用立即調用的 async 函數表達式來訪問該功能。
 
 ```js
-await Promise.resolve(console.log(&apos;🎉&apos;));
+await Promise.resolve(console.log('🎉'));
 // → SyntaxError: await 僅在 async 函數中有效
 
 (async function() {
-  await Promise.resolve(console.log(&apos;🎉&apos;));
+  await Promise.resolve(console.log('🎉'));
   // → 🎉
 }());
 ```
@@ -32,7 +32,7 @@ await Promise.resolve(console.log(&apos;🎉&apos;));
 使用頂層`await`，上述代碼在[模組](/features/modules)中按預期運行：
 
 ```js
-await Promise.resolve(console.log(&apos;🎉&apos;));
+await Promise.resolve(console.log('🎉'));
 // → 🎉
 ```
 
@@ -67,9 +67,9 @@ const connection = await dbConnector();
 ```js
 let jQuery;
 try {
-  jQuery = await import(&apos;https://cdn-a.example.com/jQuery&apos;);
+  jQuery = await import('https://cdn-a.example.com/jQuery');
 } catch {
-  jQuery = await import(&apos;https://cdn-b.example.com/jQuery&apos;);
+  jQuery = await import('https://cdn-b.example.com/jQuery');
 }
 ```
 

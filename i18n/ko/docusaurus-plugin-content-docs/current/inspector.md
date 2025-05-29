@@ -1,6 +1,6 @@
 ---
-title: &apos;V8 인스펙터 프로토콜을 통한 디버깅&apos;
-description: &apos;이 페이지는 V8에서 디버깅 기능을 구현하기 위해 필요로 하는 기본적인 도구를 제공하기 위해 만들어졌습니다.&apos;
+title: 'V8 인스펙터 프로토콜을 통한 디버깅'
+description: '이 페이지는 V8에서 디버깅 기능을 구현하기 위해 필요로 하는 기본적인 도구를 제공하기 위해 만들어졌습니다.'
 ---
 V8은 사용자 및 임베더들에게 광범위한 디버깅 기능을 제공합니다. 사용자들은 일반적으로 [Chrome DevTools](https://developer.chrome.com/devtools) 인터페이스를 통해 V8 디버거와 상호작용합니다. 임베더들(DevTools 포함)은 [Inspector Protocol](https://chromedevtools.github.io/debugger-protocol-viewer/tot/)에 직접 의존해야 합니다.
 
@@ -23,7 +23,7 @@ static void SendInspectorMessage(
 ```cpp
 void Send(const v8_inspector::StringView& string) {
   // [...] 문자열 변환.
-  // 현재 컨텍스트에서 &apos;receive&apos;라는 글로벌 속성을 가져옵니다.
+  // 현재 컨텍스트에서 'receive'라는 글로벌 속성을 가져옵니다.
   Local<String> callback_name =
       v8::String::NewFromUtf8(isolate_, "receive", v8::NewStringType::kNormal)
           .ToLocalChecked();
@@ -52,13 +52,13 @@ function receive(message) {
 
 const msg = JSON.stringify({
   id: 0,
-  method: &apos;Debugger.enable&apos;,
+  method: 'Debugger.enable',
 });
 
 // d8에서 제공하는 함수 호출.
 send(msg);
 
-// 이 파일을 실행하려면 &apos;d8 --enable-inspector inspector-demo.js&apos;를 실행하십시오.
+// 이 파일을 실행하려면 'd8 --enable-inspector inspector-demo.js'를 실행하십시오.
 ```
 
 ## 추가 문서

@@ -1,6 +1,6 @@
 ---
-title: &apos;Débogage via le protocole d'Inspecteur V8&apos;
-description: &apos;Cette page est destinée à fournir aux intégrateurs les outils de base dont ils ont besoin pour implémenter la prise en charge du débogage dans V8.&apos;
+title: 'Débogage via le protocole d'Inspecteur V8'
+description: 'Cette page est destinée à fournir aux intégrateurs les outils de base dont ils ont besoin pour implémenter la prise en charge du débogage dans V8.'
 ---
 V8 offre de nombreuses fonctionnalités de débogage aux utilisateurs et aux intégrateurs. Les utilisateurs interagissent généralement avec le débogueur V8 via l'interface [Chrome DevTools](https://developer.chrome.com/devtools). Les intégrateurs (y compris DevTools) doivent s'appuyer directement sur le [protocole Inspecteur](https://chromedevtools.github.io/debugger-protocol-viewer/tot/).
 
@@ -23,7 +23,7 @@ Pendant ce temps, le frontend établit un canal pour les messages envoyés de V8
 ```cpp
 void Send(const v8_inspector::StringView& string) {
   // [...] Transformations de chaîne.
-  // Récupérer la propriété globale appelée &apos;receive&apos; du contexte actuel.
+  // Récupérer la propriété globale appelée 'receive' du contexte actuel.
   Local<String> callback_name =
       v8::String::NewFromUtf8(isolate_, "receive", v8::NewStringType::kNormal)
           .ToLocalChecked();
@@ -52,13 +52,13 @@ function receive(message) {
 
 const msg = JSON.stringify({
   id: 0,
-  method: &apos;Debugger.enable&apos;,
+  method: 'Debugger.enable',
 });
 
 // Appeler la fonction fournie par d8.
 send(msg);
 
-// Exécutez ce fichier en exécutant &apos;d8 --enable-inspector inspector-demo.js&apos;.
+// Exécutez ce fichier en exécutant 'd8 --enable-inspector inspector-demo.js'.
 ```
 
 ## Documentation supplémentaire

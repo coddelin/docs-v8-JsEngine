@@ -1,15 +1,15 @@
 ---
-title: &apos;Mejorando las expresiones regulares de V8&apos;
-author: &apos;Patrick Thier y Ana Peško, expresadores regulares de opiniones sobre expresiones regulares&apos;
+title: 'Mejorando las expresiones regulares de V8'
+author: 'Patrick Thier y Ana Peško, expresadores regulares de opiniones sobre expresiones regulares'
 avatars:
-  - &apos;patrick-thier&apos;
-  - &apos;ana-pesko&apos;
+  - 'patrick-thier'
+  - 'ana-pesko'
 date: 2019-10-04 15:24:16
 tags:
   - internals
   - RegExp
-description: &apos;En esta publicación de blog describimos cómo aprovechamos las ventajas de interpretar expresiones regulares y mitigamos las desventajas.&apos;
-tweet: &apos;1180131710568030208&apos;
+description: 'En esta publicación de blog describimos cómo aprovechamos las ventajas de interpretar expresiones regulares y mitigamos las desventajas.'
+tweet: '1180131710568030208'
 ---
 En su configuración predeterminada, V8 compila las expresiones regulares a código nativo en la primera ejecución. Como parte de nuestro trabajo en [V8 sin JIT](/blog/jitless), introdujimos un intérprete para expresiones regulares. Interpretar expresiones regulares tiene la ventaja de usar menos memoria, pero conlleva una penalización de rendimiento. En esta publicación de blog describimos cómo aprovechamos las ventajas de interpretar expresiones regulares mientras mitigamos las desventajas.
 
@@ -42,15 +42,15 @@ Antes de hablar sobre la optimización de peephole del bytecode, veamos un ejemp
 
 ```js
 const re = /[^_]*/;
-const str = &apos;a0b*c_ef&apos;;
+const str = 'a0b*c_ef';
 re.exec(str);
-// → coincide con &apos;a0b*c&apos;
+// → coincide con 'a0b*c'
 ```
 
 Para este patrón sencillo, el compilador de RegExp crea 3 bytecodes que se ejecutan por cada carácter. A alto nivel, estos son:
 
 1. Cargar el carácter actual.
-1. Comprobar si el carácter es igual a `&apos;_&apos;`.
+1. Comprobar si el carácter es igual a `'_'`.
 1. Si no lo es, avanzar la posición actual en la cadena de sujeto y `goto 1`.
 
 Para nuestra cadena de sujeto, interpretamos 17 bytecodes hasta encontrar un carácter que no coincide. La idea de la optimización de peephole es reemplazar secuencias de bytecodes por un nuevo bytecode optimizado que combine la funcionalidad de múltiples bytecodes. En nuestro ejemplo, incluso podemos manejar el bucle implícito creado por el `goto` explícitamente en el nuevo bytecode, de modo que un único bytecode maneja todos los caracteres coincidentes, ahorrando 16 despachos.

@@ -161,8 +161,8 @@ ConstexprDeclaration :
 Voici un exemple tiré de `base.tq` pour les types d'entiers signés 31 et 32 bits de Torque :
 
 ```torque
-type int32 generates &apos;TNode<Int32T>&apos; constexpr &apos;int32_t&apos;;
-type int31 extends int32 generates &apos;TNode<Int32T>&apos; constexpr &apos;int31_t&apos;;
+type int32 generates 'TNode<Int32T>' constexpr 'int32_t';
+type int31 extends int32 generates 'TNode<Int32T>' constexpr 'int31_t';
 ```
 
 #### Types union
@@ -424,7 +424,7 @@ Dans V8, les objets du tas peuvent changer de disposition à l'exécution. Pour 
 // Un HeapObject avec une map JSArray, et soit des éléments rapides compactés,
 // soit des éléments rapides troués lorsque le NoElementsProtector global n'est pas invalidé.
 transient type FastJSArray extends JSArray
-    generates &apos;TNode<JSArray>&apos;;
+    generates 'TNode<JSArray>';
 ```
 
 Par exemple, dans le cas de `FastJSArray`, le type transitoire est invalidé si le tableau passe à des éléments de dictionnaire ou si le `NoElementsProtector` global est invalidé. Pour exprimer cela en Torque, annotez tous les appelables qui pourraient potentiellement le faire comme `transitioning`. Par exemple, appeler une fonction JavaScript peut exécuter un JavaScript arbitraire, donc c'est `transitioning`.
@@ -592,7 +592,7 @@ intrinsic %RawObjectCast<A: type>(o: Object): A;
 intrinsic %RawPointerCast<A: type>(p: RawPtr): A;
 
 // %RawConstexprCast convertit une valeur constante à la compilation en une autre.
-// Les types source et destination doivent être &apos;constexpr&apos;.
+// Les types source et destination doivent être 'constexpr'.
 // %RawConstexprCast se traduit par des static_casts dans le code C++ généré.
 intrinsic %RawConstexprCast<To: type, From: type>(f: From): To;
 
@@ -601,7 +601,7 @@ intrinsic %RawConstexprCast<To: type, From: type>(f: From): To;
 // sont prises en charge : Smi, Number, String, uintptr, intptr, et int32.
 intrinsic %FromConstexpr<To: type, From: type>(b: From): To;
 
-// %Allocate alloue un objet non initialisé de taille &apos;size&apos; à partir du tas GC de V8
+// %Allocate alloue un objet non initialisé de taille 'size' à partir du tas GC de V8
 // et effectuer un "reinterpret cast" du pointeur d'objet résultant vers le
 // classe Torque spécifiée, permettant aux constructeurs d'utiliser ensuite
 // les opérateurs standard d'accès aux champs pour initialiser l'objet.

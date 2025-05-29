@@ -1,10 +1,10 @@
 ---
-title: &apos;V8가 BlinkOn 6 컨퍼런스에서&apos;
-author: &apos;V8 팀&apos;
+title: 'V8가 BlinkOn 6 컨퍼런스에서'
+author: 'V8 팀'
 date: 2016-07-21 13:33:37
 tags:
   - 발표
-description: &apos;BlinkOn 6에서 V8 팀의 발표 개요입니다.&apos;
+description: 'BlinkOn 6에서 V8 팀의 발표 개요입니다.'
 ---
 BlinkOn은 Blink, V8 그리고 Chromium 기여자들이 반년마다 열리는 모임입니다. BlinkOn 6는 6월 16일과 6월 17일 뮌헨에서 열렸습니다. V8 팀은 아키텍처, 설계, 성능 개선 및 언어 구현과 관련된 여러 발표를 진행했습니다.
 

@@ -1,6 +1,6 @@
 ---
-title: &apos;Runtime-Anrufstatistiken&apos;
-description: &apos;Dieses Dokument erklärt, wie Sie Runtime-Anrufstatistiken verwenden, um detaillierte V8-interne Metriken zu erhalten.&apos;
+title: 'Runtime-Anrufstatistiken'
+description: 'Dieses Dokument erklärt, wie Sie Runtime-Anrufstatistiken verwenden, um detaillierte V8-interne Metriken zu erhalten.'
 ---
 [Das Performance-Panel der DevTools](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/) bietet Einblicke in die Laufzeitleistung Ihrer Webanwendung, indem es verschiedene Chrome-interne Metriken visualisiert. Allerdings werden bestimmte Low-Level-V8-Metriken derzeit nicht in DevTools angezeigt. Dieser Artikel führt Sie durch die robusteste Methode, detaillierte V8-interne Metriken, bekannt als Runtime-Anrufstatistiken (Runtime Call Stats, RCS), über `chrome://tracing` zu sammeln.
 

@@ -1,14 +1,14 @@
 ---
-title: &apos;Интеграция WebAssembly с JavaScript BigInt&apos;
-author: &apos;Алон Закай&apos;
+title: 'Интеграция WebAssembly с JavaScript BigInt'
+author: 'Алон Закай'
 avatars:
-  - &apos;alon-zakai&apos;
+  - 'alon-zakai'
 date: 2020-11-12
 tags:
   - WebAssembly
   - ECMAScript
-description: &apos;BigInt упрощает передачу 64-битных целых чисел между JavaScript и WebAssembly. В этом посте объясняется, что это значит и почему это полезно, включая упрощение работы для разработчиков, ускорение выполнения кода и уменьшение времени сборки.&apos;
-tweet: &apos;1331966281571037186&apos;
+description: 'BigInt упрощает передачу 64-битных целых чисел между JavaScript и WebAssembly. В этом посте объясняется, что это значит и почему это полезно, включая упрощение работы для разработчиков, ускорение выполнения кода и уменьшение времени сборки.'
+tweet: '1331966281571037186'
 ---
 Функция [JS-BigInt-Integration](https://github.com/WebAssembly/JS-BigInt-integration) упрощает передачу 64-битных целых чисел между JavaScript и WebAssembly. В этом посте объясняется, что это значит и почему это полезно, включая упрощение работы для разработчиков, ускорение выполнения кода и уменьшение времени сборки.
 

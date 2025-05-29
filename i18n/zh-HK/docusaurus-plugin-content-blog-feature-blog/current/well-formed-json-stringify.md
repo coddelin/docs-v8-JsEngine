@@ -1,27 +1,27 @@
 ---
-title: &apos;格式良好的 `JSON.stringify`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '格式良好的 `JSON.stringify`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-09-11
 tags:
   - ECMAScript
   - ES2019
-description: &apos;JSON.stringify 現在對孤立代理項輸出轉義序列，令輸出有效 Unicode（並且可在 UTF-8 中表示）。&apos;
+description: 'JSON.stringify 現在對孤立代理項輸出轉義序列，令輸出有效 Unicode（並且可在 UTF-8 中表示）。'
 ---
 `JSON.stringify` 之前的規範是當輸入包含任何孤立代理項時，返回格式不良的 Unicode 字串：
 
 ```js
-JSON.stringify(&apos;\uD800&apos;);
-// → &apos;"�"&apos;
+JSON.stringify('\uD800');
+// → '"�"'
 ```
 
 [“格式良好的 `JSON.stringify`”提案](https://github.com/tc39/proposal-well-formed-stringify) 修改了 `JSON.stringify`，使其對孤立代理項輸出轉義序列，令其輸出有效 Unicode（並且可在 UTF-8 中表示）：
 
 <!--truncate-->
 ```js
-JSON.stringify(&apos;\uD800&apos;);
-// → &apos;"\\ud800"&apos;
+JSON.stringify('\uD800');
+// → '"\\ud800"'
 ```
 
 請注意，`JSON.parse(stringified)` 仍然會產生與之前相同的結果。

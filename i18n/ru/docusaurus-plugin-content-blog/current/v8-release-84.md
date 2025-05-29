@@ -1,13 +1,13 @@
 ---
-title: &apos;Релиз V8 версии 8.4&apos;
-author: &apos;Камилло Бруни, наслаждающийся свежими булевыми значениями&apos;
+title: 'Релиз V8 версии 8.4'
+author: 'Камилло Бруни, наслаждающийся свежими булевыми значениями'
 avatars:
- - &apos;camillo-bruni&apos;
+ - 'camillo-bruni'
 date: 2020-06-30
 tags:
  - выпуск
-description: &apos;V8 версия 8.4 включает слабые ссылки и улучшенную производительность WebAssembly.&apos;
-tweet: &apos;1277983235641761795&apos;
+description: 'V8 версия 8.4 включает слабые ссылки и улучшенную производительность WebAssembly.'
+tweet: '1277983235641761795'
 ---
 Каждые шесть недель мы создаем новую ветку V8 в рамках нашего [процесса релиза](https://v8.dev/docs/release-process). Каждая версия создается из основной ветки Git V8 незадолго до достижения Chrome Beta. Сегодня мы рады объявить о нашей новой ветке [V8 версия 8.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.4), которая будет находиться в бета-тестировании до ее выпуска вместе со стабильной версией Chrome 84 через несколько недель. В версии V8 v8.4 полно полезных функций для разработчиков. В этом посте представлен предварительный обзор некоторых ключевых моментов перед выпуском.
 
@@ -39,7 +39,7 @@ JavaScript — это язык со сборкой мусора, что озна
 
 ```js
 const globalRef = {
-  callback() { console.log(&apos;foo&apos;); }
+  callback() { console.log('foo'); }
 };
 // Пока globalRef доступен через глобальную область видимости,
 // ни он, ни функция в его свойстве callback не будут собраны сборщиком мусора.
@@ -49,7 +49,7 @@ const globalRef = {
 
 ```js
 const globalWeakRef = new WeakRef({
-  callback() { console.log(&apos;foo&apos;); }
+  callback() { console.log('foo'); }
 });
 
 (async function() {
@@ -58,7 +58,7 @@ const globalWeakRef = new WeakRef({
   // в первый цикл обработки событий после его создания.
 
   await new Promise((resolve, reject) => {
-    setTimeout(() => { resolve(&apos;foo&apos;); }, 42);
+    setTimeout(() => { resolve('foo'); }, 42);
   });
   // Ожидание одного цикла обработки событий.
 

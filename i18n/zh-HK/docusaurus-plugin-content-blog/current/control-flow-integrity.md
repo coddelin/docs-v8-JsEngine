@@ -1,7 +1,7 @@
 ---
-title: &apos;在 V8 中實現控制流完整性&apos;
-description: &apos;這篇部落格文章討論了在 V8 中實現控制流完整性的計劃。&apos;
-author: &apos;Stephen Röttger&apos;
+title: '在 V8 中實現控制流完整性'
+description: '這篇部落格文章討論了在 V8 中實現控制流完整性的計劃。'
+author: 'Stephen Röttger'
 date: 2023-10-09
 tags:
  - 安全性

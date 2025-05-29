@@ -1,14 +1,14 @@
 ---
-title: &apos;Encadenamiento opcional&apos;
-author: &apos;Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), rompedora de cadenas opcionales&apos;
+title: 'Encadenamiento opcional'
+author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), rompedora de cadenas opcionales'
 avatars:
-  - &apos;maya-armyanova&apos;
+  - 'maya-armyanova'
 date: 2019-08-27
 tags:
   - ECMAScript
   - ES2020
-description: &apos;El encadenamiento opcional permite expresiones legibles y concisas de accesos a propiedades con verificación integrada de valores nulos.&apos;
-tweet: &apos;1166360971914481669&apos;
+description: 'El encadenamiento opcional permite expresiones legibles y concisas de accesos a propiedades con verificación integrada de valores nulos.'
+tweet: '1166360971914481669'
 ---
 Las cadenas largas de accesos a propiedades en JavaScript pueden ser propensas a errores, ya que cualquiera de ellas podría evaluarse como `null` o `undefined` (también conocidos como valores “nulos”). Verificar la existencia de propiedades en cada paso fácilmente se convierte en una estructura profundamente anidada de sentencias `if` o en una larga condición `if` que replica la cadena de acceso a propiedades:
 
@@ -68,7 +68,7 @@ Hay un tercer uso del operador, a saber, el acceso opcional a propiedades dinám
 ```js
 // Extiende las capacidades del acceso a propiedades estáticas
 // con un nombre de propiedad generado dinámicamente.
-const optionName = &apos;optional setting&apos;;
+const optionName = 'optional setting';
 const optionLength = db?.user?.preferences?.[optionName].length;
 ```
 
@@ -84,22 +84,22 @@ const userName = usersArray?.[userIndex].name;
 El operador de encadenamiento opcional puede combinarse con el [operador nullish coalescing `??`](/features/nullish-coalescing) cuando se necesita un valor predeterminado que no sea `undefined`. Esto permite un acceso seguro a propiedades profundas con un valor predeterminado especificado, abordando un caso de uso común que previamente requería bibliotecas como [el `_.get` de lodash](https://lodash.dev/docs/4.17.15#get):
 
 ```js
-const object = { id: 123, names: { first: &apos;Alice&apos;, last: &apos;Smith&apos; }};
+const object = { id: 123, names: { first: 'Alice', last: 'Smith' }};
 
 { // Con lodash:
-  const firstName = _.get(object, &apos;names.first&apos;);
-  // → &apos;Alice&apos;
+  const firstName = _.get(object, 'names.first');
+  // → 'Alice'
 
-  const middleName = _.get(object, &apos;names.middle&apos;, &apos;(sin segundo nombre)&apos;);
-  // → &apos;(sin segundo nombre)&apos;
+  const middleName = _.get(object, 'names.middle', '(sin segundo nombre)');
+  // → '(sin segundo nombre)'
 }
 
 { // Con encadenamiento opcional y nullish coalescing:
-  const firstName = object?.names?.first ?? &apos;(sin primer nombre)&apos;;
-  // → &apos;Alice&apos;
+  const firstName = object?.names?.first ?? '(sin primer nombre)';
+  // → 'Alice'
 
-  const middleName = object?.names?.middle ?? &apos;(sin segundo nombre)&apos;;
-  // → &apos;(sin segundo nombre)&apos;;
+  const middleName = object?.names?.middle ?? '(sin segundo nombre)';
+  // → '(sin segundo nombre)';
 }
 ```
 

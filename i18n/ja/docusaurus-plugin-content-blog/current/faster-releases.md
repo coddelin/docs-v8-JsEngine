@@ -1,11 +1,11 @@
 ---
-title: &apos;より速いリリース&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))&apos;
+title: 'より速いリリース'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
 avatars:
-  - &apos;ingvar-stepanyan&apos;
+  - 'ingvar-stepanyan'
 date: 2021-03-04
-description: &apos;V8のリリースサイクルのスピードアップ&apos;
-tweet: &apos;1367546733643919370&apos;
+description: 'V8のリリースサイクルのスピードアップ'
+tweet: '1367546733643919370'
 ---
 Chromeは、ユーザーに新機能やバグ修正をより迅速に提供するため、[リリースサイクルを短縮](https://developer.chrome.com/blog/faster-release-cycle/)しています。
 

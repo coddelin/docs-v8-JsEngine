@@ -1,13 +1,13 @@
 ---
-title: &apos;Статические блоки инициализации классов&apos;
-author: &apos;Shu-yu Guo ([@_shu](https://twitter.com/_shu))&apos;
+title: 'Статические блоки инициализации классов'
+author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
 avatars:
-  - &apos;shu-yu-guo&apos;
+  - 'shu-yu-guo'
 date: 2021-03-30
 tags:
   - ECMAScript
-description: &apos;Классы JavaScript получили синтаксис для статической инициализации.&apos;
-tweet: &apos;1376925666780798989&apos;
+description: 'Классы JavaScript получили синтаксис для статической инициализации.'
+tweet: '1376925666780798989'
 ---
 Новый синтаксис статического блока инициализации классов позволяет разработчикам собирать код, который должен выполняться один раз для определения класса, и размещать его в одном месте. Рассмотрим следующий пример, где генератор псевдослучайных чисел использует статический блок для инициализации пула энтропии один раз, когда выполняется определение `class MyPRNG`.
 
@@ -17,7 +17,7 @@ class MyPRNG {
   constructor(seed) {
     if (seed === undefined) {
       if (MyPRNG.entropyPool.length === 0) {
-        throw new Error(&apos;Пул энтропии исчерпан&apos;);
+        throw new Error('Пул энтропии исчерпан');
       }
       seed = MyPRNG.entropyPool.pop();
     }
@@ -40,22 +40,22 @@ class MyPRNG {
 Каждый статический блок инициализации имеет свою собственную область видимости для `var` и `let`/`const`. Как и в инициализаторах статических полей, значение `this` в статических блоках относится к самому классу-конструктору. Аналогично, `super.property` внутри статического блока ссылается на статическое свойство родительского класса.
 
 ```js
-var y = &apos;внешний y&apos;;
+var y = 'внешний y';
 class A {
-  static fieldA = &apos;A.fieldA&apos;;
+  static fieldA = 'A.fieldA';
 }
 class B extends A {
-  static fieldB = &apos;B.fieldB&apos;;
+  static fieldB = 'B.fieldB';
   static {
     let x = super.fieldA;
-    // → &apos;A.fieldA&apos;
+    // → 'A.fieldA'
     var y = this.fieldB;
-    // → &apos;B.fieldB&apos;
+    // → 'B.fieldB'
   }
 }
 // Поскольку статические блоки имеют свою область видимости `var`, `var` не всплывает!
 y;
-// → &apos;внешний y&apos;
+// → 'внешний y'
 ```
 
 ## Несколько блоков
@@ -64,13 +64,13 @@ y;
 
 ```js
 class C {
-  static field1 = console.log(&apos;поле 1&apos;);
+  static field1 = console.log('поле 1');
   static {
-    console.log(&apos;статический блок 1&apos;);
+    console.log('статический блок 1');
   }
-  static field2 = console.log(&apos;поле 2&apos;);
+  static field2 = console.log('поле 2');
   static {
-    console.log(&apos;статический блок 2&apos;);
+    console.log('статический блок 2');
   }
 }
 // → поле 1
@@ -94,7 +94,7 @@ class D {
     getDPrivateField = (d) => d.#privateField;
   }
 }
-getDPrivateField(new D(&apos;приватное&apos;));
+getDPrivateField(new D('приватное'));
 // → приватное
 ```
 

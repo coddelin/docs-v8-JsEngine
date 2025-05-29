@@ -1,13 +1,13 @@
 ---
-title: &apos;V8の正規表現を高速化する&apos;
-author: &apos;Jakob Gruber、レギュラーソフトウェアエンジニア&apos;
+title: 'V8の正規表現を高速化する'
+author: 'Jakob Gruber、レギュラーソフトウェアエンジニア'
 avatars:
-  - &apos;jakob-gruber&apos;
+  - 'jakob-gruber'
 date: 2017-01-10 13:33:37
 tags:
   - internals
   - RegExp
-description: &apos;V8は最近、自己ホスト型JavaScript実装から、新しいコード生成アーキテクチャ（TurboFanベース）に直接接続する形の実装にRegExpの組み込み関数を移行しました。&apos;
+description: 'V8は最近、自己ホスト型JavaScript実装から、新しいコード生成アーキテクチャ（TurboFanベース）に直接接続する形の実装にRegExpの組み込み関数を移行しました。'
 ---
 このブログ投稿では、V8が最近実施したRegExpの組み込み関数を自己ホスト型JavaScript実装から[TurboFan](/blog/v8-release-56)を基盤とする新しいコード生成アーキテクチャに直接接続する形になった移行について説明します。
 
@@ -34,17 +34,17 @@ RegExp移行の新しい設計は、V8開発者がプラットフォームに依
 
 ```js
 const re = /./g;
-re.exec(&apos;&apos;);  // 高速パス。
-re.new_property = &apos;遅い&apos;;
-RegExp.prototype.new_property = &apos;これも遅い&apos;;
-re.exec(&apos;&apos;);  // 低速パス。
+re.exec('');  // 高速パス。
+re.new_property = '遅い';
+RegExp.prototype.new_property = 'これも遅い';
+re.exec('');  // 低速パス。
 ```
 
 また、正規表現のサブクラス化は非常に有用である場合もありますが、サブクラス化された正規表現インスタンスはより汎用的な処理が必要となるため、低速パスを取ることに注意してください:
 
 ```js
 class SlowRegExp extends RegExp {}
-new SlowRegExp(".", "g").exec(&apos;&apos;);  // 低速パス。
+new SlowRegExp(".", "g").exec('');  // 低速パス。
 ```
 
 完全な正規表現の移行はV8 v5.7で利用可能になります。

@@ -1,30 +1,30 @@
 ---
-title: &apos;`Intl.PluralRules`&apos;
-author: &apos;Mathias Bynens（[@mathias](https://twitter.com/mathias)）&apos;
+title: '`Intl.PluralRules`'
+author: 'Mathias Bynens（[@mathias](https://twitter.com/mathias)）'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-10-04
 tags:
   - Intl
-description: &apos;处理复数是一个可能看起来很简单的问题，直到你发现每种语言都有自己的复数规则。Intl.PluralRules API 可以提供帮助！&apos;
-tweet: &apos;915542989493202944&apos;
+description: '处理复数是一个可能看起来很简单的问题，直到你发现每种语言都有自己的复数规则。Intl.PluralRules API 可以提供帮助！'
+tweet: '915542989493202944'
 ---
 国际化是一件难事。处理复数是一个可能看起来很简单的问题，直到你发现每种语言都有自己的复数规则。
 
 对于英语的复数化规则，只有两种可能的结果。让我们以“cat（猫）”这个词为例：
 
-- 1 cat，即 `&apos;one&apos;` 形式，在英语中称为单数。
-- 2 cats，但也包括 42 cats、0.5 cats 等，即 `&apos;other&apos;` 形式（唯一的其它形式），在英语中称为复数。
+- 1 cat，即 `'one'` 形式，在英语中称为单数。
+- 2 cats，但也包括 42 cats、0.5 cats 等，即 `'other'` 形式（唯一的其它形式），在英语中称为复数。
 
 全新的 [`Intl.PluralRules` API](https://github.com/tc39/proposal-intl-plural-rules) 可以告诉你，在给定语言中哪种形式适用于特定数字。
 
 ```js
-const pr = new Intl.PluralRules(&apos;en-US&apos;);
-pr.select(0);   // &apos;other&apos; (例如 &apos;0 cats&apos;)
-pr.select(0.5); // &apos;other&apos; (例如 &apos;0.5 cats&apos;)
-pr.select(1);   // &apos;one&apos;   (例如 &apos;1 cat&apos;)
-pr.select(1.5); // &apos;other&apos; (例如 &apos;1.5 cats&apos;)
-pr.select(2);   // &apos;other&apos; (例如 &apos;2 cats&apos;)
+const pr = new Intl.PluralRules('en-US');
+pr.select(0);   // 'other' (例如 '0 cats')
+pr.select(0.5); // 'other' (例如 '0.5 cats')
+pr.select(1);   // 'one'   (例如 '1 cat')
+pr.select(1.5); // 'other' (例如 '1.5 cats')
+pr.select(2);   // 'other' (例如 '2 cats')
 ```
 
 <!--truncate-->
@@ -34,50 +34,50 @@ pr.select(2);   // &apos;other&apos; (例如 &apos;2 cats&apos;)
 const suffixes = new Map([
   // 注意：在实际使用中，你不会像这样硬编码复数化形式；
   // 它们应该是你翻译文件的一部分。
-  [&apos;one&apos;,   &apos;cat&apos;],
-  [&apos;other&apos;, &apos;cats&apos;],
+  ['one',   'cat'],
+  ['other', 'cats'],
 ]);
-const pr = new Intl.PluralRules(&apos;en-US&apos;);
+const pr = new Intl.PluralRules('en-US');
 const formatCats = (n) => {
   const rule = pr.select(n);
   const suffix = suffixes.get(rule);
   return `${n} ${suffix}`;
 };
 
-formatCats(1);   // &apos;1 cat&apos;
-formatCats(0);   // &apos;0 cats&apos;
-formatCats(0.5); // &apos;0.5 cats&apos;
-formatCats(1.5); // &apos;1.5 cats&apos;
-formatCats(2);   // &apos;2 cats&apos;
+formatCats(1);   // '1 cat'
+formatCats(0);   // '0 cats'
+formatCats(0.5); // '0.5 cats'
+formatCats(1.5); // '1.5 cats'
+formatCats(2);   // '2 cats'
 ```
 
 对于相对简单的英语复数规则，这样做可能显得有些多余；然而，并非所有语言都遵循相同的规则。有些语言只有一种复数形式，而有些语言有多种形式。例如，[威尔士语](http://unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#rules) 就有六种不同的复数形式！
 
 ```js
 const suffixes = new Map([
-  [&apos;zero&apos;,  &apos;cathod&apos;],
-  [&apos;one&apos;,   &apos;gath&apos;],
-  // 注意：对于这个特定的单词，`two` 形式恰好与 `&apos;one&apos;`
+  ['zero',  'cathod'],
+  ['one',   'gath'],
+  // 注意：对于这个特定的单词，`two` 形式恰好与 `'one'`
   // 形式相同，但这并不适用于威尔士语中的所有单词。
-  [&apos;two&apos;,   &apos;gath&apos;],
-  [&apos;few&apos;,   &apos;cath&apos;],
-  [&apos;many&apos;,  &apos;chath&apos;],
-  [&apos;other&apos;, &apos;cath&apos;],
+  ['two',   'gath'],
+  ['few',   'cath'],
+  ['many',  'chath'],
+  ['other', 'cath'],
 ]);
-const pr = new Intl.PluralRules(&apos;cy&apos;);
+const pr = new Intl.PluralRules('cy');
 const formatWelshCats = (n) => {
   const rule = pr.select(n);
   const suffix = suffixes.get(rule);
   return `${n} ${suffix}`;
 };
 
-formatWelshCats(0);   // &apos;0 cathod&apos;
-formatWelshCats(1);   // &apos;1 gath&apos;
-formatWelshCats(1.5); // &apos;1.5 cath&apos;
-formatWelshCats(2);   // &apos;2 gath&apos;
-formatWelshCats(3);   // &apos;3 cath&apos;
-formatWelshCats(6);   // &apos;6 chath&apos;
-formatWelshCats(42);  // &apos;42 cath&apos;
+formatWelshCats(0);   // '0 cathod'
+formatWelshCats(1);   // '1 gath'
+formatWelshCats(1.5); // '1.5 cath'
+formatWelshCats(2);   // '2 gath'
+formatWelshCats(3);   // '3 cath'
+formatWelshCats(6);   // '6 chath'
+formatWelshCats(42);  // '42 cath'
 ```
 
 为了实现正确的复数化并支持多种语言，需有一个包含语言及其复数规则的数据库。[Unicode CLDR](http://cldr.unicode.org/) 包含了这些数据，但要在 JavaScript 中使用，必须将其嵌入并随其他 JavaScript 代码一起加载，这会增加加载时间、解析时间和内存使用量。`Intl.PluralRules` API 将这一负担转移到 JavaScript 引擎上，从而实现更高性能的国际化复数化处理。
@@ -88,17 +88,17 @@ formatWelshCats(42);  // &apos;42 cath&apos;
 
 ## 序数
 
-`Intl.PluralRules` API 通过可选的 `options` 参数的 `type` 属性支持不同的选择规则。其隐式默认值（如以上示例中使用的）是 `&apos;cardinal&apos;`。若要针对特定数字找出序数指示符（例如 `1` → `1st`，`2` → `2nd` 等），请使用 `{ type: &apos;ordinal&apos; }`：
+`Intl.PluralRules` API 通过可选的 `options` 参数的 `type` 属性支持不同的选择规则。其隐式默认值（如以上示例中使用的）是 `'cardinal'`。若要针对特定数字找出序数指示符（例如 `1` → `1st`，`2` → `2nd` 等），请使用 `{ type: 'ordinal' }`：
 
 ```js
-const pr = new Intl.PluralRules(&apos;en-US&apos;, {
-  type: &apos;ordinal&apos;
+const pr = new Intl.PluralRules('en-US', {
+  type: 'ordinal'
 });
 const suffixes = new Map([
-  [&apos;one&apos;,   &apos;st&apos;],
-  [&apos;two&apos;,   &apos;nd&apos;],
-  [&apos;few&apos;,   &apos;rd&apos;],
-  [&apos;other&apos;, &apos;th&apos;],
+  ['one',   'st'],
+  ['two',   'nd'],
+  ['few',   'rd'],
+  ['other', 'th'],
 ]);
 const formatOrdinals = (n) => {
   const rule = pr.select(n);
@@ -106,15 +106,15 @@ const formatOrdinals = (n) => {
   return `${n}${suffix}`;
 };
 
-formatOrdinals(0);   // &apos;0th&apos;
-formatOrdinals(1);   // &apos;1st&apos;
-formatOrdinals(2);   // &apos;2nd&apos;
-formatOrdinals(3);   // &apos;3rd&apos;
-formatOrdinals(4);   // &apos;4th&apos;
-formatOrdinals(11);  // &apos;11th&apos;
-formatOrdinals(21);  // &apos;21st&apos;
-formatOrdinals(42);  // &apos;42nd&apos;
-formatOrdinals(103); // &apos;103rd&apos;
+formatOrdinals(0);   // '0th'
+formatOrdinals(1);   // '1st'
+formatOrdinals(2);   // '2nd'
+formatOrdinals(3);   // '3rd'
+formatOrdinals(4);   // '4th'
+formatOrdinals(11);  // '11th'
+formatOrdinals(21);  // '21st'
+formatOrdinals(42);  // '42nd'
+formatOrdinals(103); // '103rd'
 ```
 
 `Intl.PluralRules` 是一个较低级的 API，尤其是与其他国际化功能相比。因此，即使您不直接使用它，您也可能在使用依赖它的库或框架。

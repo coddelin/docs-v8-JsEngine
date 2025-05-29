@@ -1,14 +1,14 @@
 ---
-title: &apos;Tipos de elementos en V8&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Tipos de elementos en V8'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-09-12 13:33:37
 tags:
   - internals
   - presentations
-description: &apos;Esta profunda explicación técnica detalla cómo V8 optimiza las operaciones con arrays en segundo plano, y qué significa eso para los desarrolladores de JavaScript.&apos;
-tweet: &apos;907608362191376384&apos;
+description: 'Esta profunda explicación técnica detalla cómo V8 optimiza las operaciones con arrays en segundo plano, y qué significa eso para los desarrolladores de JavaScript.'
+tweet: '907608362191376384'
 ---
 :::note
 **Nota:** Si prefieres ver una presentación en lugar de leer artículos, ¡disfruta del video a continuación!
@@ -55,7 +55,7 @@ const array = [1, 2, 3];
 // tipo de elementos: PACKED_SMI_ELEMENTS
 array.push(4.56);
 // tipo de elementos: PACKED_DOUBLE_ELEMENTS
-array.push(&apos;x&apos;);
+array.push('x');
 // tipo de elementos: PACKED_ELEMENTS
 ```
 
@@ -80,7 +80,7 @@ Hasta ahora, hemos aprendido lo siguiente:
 Hasta ahora, solo hemos tratado con arrays densos o compactos. Crear agujeros en el array (es decir, hacer que el array sea disperso) degrada el tipo de elementos a su variante “holey”:
 
 ```js
-const array = [1, 2, 3, 4.56, &apos;x&apos;];
+const array = [1, 2, 3, 4.56, 'x'];
 // tipo de elementos: PACKED_ELEMENTS
 array.length; // 5
 array[9] = 1; // array[5] hasta array[8] ahora son agujeros
@@ -209,9 +209,9 @@ Algunos objetos en JavaScript — especialmente en el DOM — parecen arrays aun
 
 ```js
 const arrayLike = {};
-arrayLike[0] = &apos;a&apos;;
-arrayLike[1] = &apos;b&apos;;
-arrayLike[2] = &apos;c&apos;;
+arrayLike[0] = 'a';
+arrayLike[1] = 'b';
+arrayLike[2] = 'c';
 arrayLike.length = 3;
 ```
 
@@ -221,7 +221,7 @@ Este objeto tiene una propiedad `length` y admite el acceso a elementos a travé
 Array.prototype.forEach.call(arrayLike, (value, index) => {
   console.log(`${ index }: ${ value }`);
 });
-// Esto imprime &apos;0: a&apos;, luego &apos;1: b&apos;, y finalmente &apos;2: c&apos;.
+// Esto imprime '0: a', luego '1: b', y finalmente '2: c'.
 ```
 
 Este código llama el método integrado `Array.prototype.forEach` sobre el objeto similar a array, y funciona como se espera. Sin embargo, esto es más lento que llamar a `forEach` en un array propiamente dicho, que está altamente optimizado en V8. Si tienes planeado usar métodos integrados de arrays sobre este objeto más de una vez, considera convertirlo en un array real antes:
@@ -231,7 +231,7 @@ const actualArray = Array.prototype.slice.call(arrayLike, 0);
 actualArray.forEach((value, index) => {
   console.log(`${ index }: ${ value }`);
 });
-// Esto imprime &apos;0: a&apos;, luego &apos;1: b&apos;, y finalmente &apos;2: c&apos;.
+// Esto imprime '0: a', luego '1: b', y finalmente '2: c'.
 ```
 
 El costo único de conversión puede valer la pena por las optimizaciones posteriores, especialmente si planeas realizar muchas operaciones sobre el array.
@@ -244,8 +244,8 @@ const logArgs = function() {
     console.log(`${ index }: ${ value }`);
   });
 };
-logArgs(&apos;a&apos;, &apos;b&apos;, &apos;c&apos;);
-// Esto imprime &apos;0: a&apos;, luego &apos;1: b&apos;, y finalmente &apos;2: c&apos;.
+logArgs('a', 'b', 'c');
+// Esto imprime '0: a', luego '1: b', y finalmente '2: c'.
 ```
 
 Los parámetros rest de ES2015 pueden ayudar aquí. Estos producen arrays propiamente dichos que pueden usarse en lugar de los objetos similares a array `arguments` de manera elegante.
@@ -256,8 +256,8 @@ const logArgs = (...args) => {
     console.log(`${ index }: ${ value }`);
   });
 };
-logArgs(&apos;a&apos;, &apos;b&apos;, &apos;c&apos;);
-// Esto imprime &apos;0: a&apos;, luego &apos;1: b&apos;, y finalmente &apos;2: c&apos;.
+logArgs('a', 'b', 'c');
+// Esto imprime '0: a', luego '1: b', y finalmente '2: c'.
 ```
 
 Hoy en día, no hay una buena razón para usar directamente el objeto `arguments`.
@@ -281,7 +281,7 @@ const doSomething = (item) => console.log(item);
 
 each([], () => {});
 
-each([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], doSomething);
+each(['a', 'b', 'c'], doSomething);
 // `each` se llama con `PACKED_ELEMENTS`. V8 utiliza un caché en línea
 // (o “IC”) para recordar que `each` se llama con este tipo particular
 // de elementos. V8 es optimista y asume que los accesos a
@@ -318,11 +318,11 @@ const array = new Array(3);
 // La matriz es dispersa en este punto, por lo que se marca como
 // `HOLEY_SMI_ELEMENTS`, es decir, la posibilidad más específica dada
 // la información actual.
-array[0] = &apos;a&apos;;
+array[0] = 'a';
 // Espera, eso es una cadena en lugar de un entero pequeño... Así que el tipo
 // pasa a `HOLEY_ELEMENTS`.
-array[1] = &apos;b&apos;;
-array[2] = &apos;c&apos;;
+array[1] = 'b';
+array[2] = 'c';
 // En este punto, las tres posiciones de la matriz están llenas, por lo que
 // la matriz está compactada (es decir, ya no es dispersa). Sin embargo, no podemos
 // cambiar a un tipo más específico como `PACKED_ELEMENTS`. El
@@ -334,7 +334,7 @@ Una vez que la matriz se marca como dispersa, permanece dispersa para siempre, �
 Una mejor forma de crear una matriz es usar un literal en su lugar:
 
 ```js
-const array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
+const array = ['a', 'b', 'c'];
 // Tipo de elementos: PACKED_ELEMENTS
 ```
 

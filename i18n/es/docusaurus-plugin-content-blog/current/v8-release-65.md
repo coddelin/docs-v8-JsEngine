@@ -1,11 +1,11 @@
 ---
-title: &apos;Lanzamiento de V8 v6.5&apos;
-author: &apos;el equipo de V8&apos;
+title: 'Lanzamiento de V8 v6.5'
+author: 'el equipo de V8'
 date: 2018-02-01 13:33:37
 tags:
   - lanzamiento
-description: &apos;V8 v6.5 agrega soporte para la compilación en streaming de WebAssembly e incluye un nuevo “modo de código no confiable”.&apos;
-tweet: &apos;959174292406640640&apos;
+description: 'V8 v6.5 agrega soporte para la compilación en streaming de WebAssembly e incluye un nuevo “modo de código no confiable”.'
+tweet: '959174292406640640'
 ---
 Cada seis semanas creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se ramifica desde el maestro de Git de V8 inmediatamente antes de un hito de Chrome Beta. Hoy nos complace anunciar nuestra nueva rama, [V8 versión 6.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.5), que está en beta hasta su lanzamiento en coordinación con Chrome 65 Stable en varias semanas. V8 v6.5 está lleno de todo tipo de beneficios para los desarrolladores. Esta publicación ofrece un avance de algunos de los aspectos destacados en anticipación del lanzamiento.
 
@@ -19,7 +19,7 @@ En respuesta al último ataque especulativo de canal lateral llamado Spectre, V8
 La API de WebAssembly proporciona una función especial para soportar la [compilación en streaming](https://developers.google.com/web/updates/2018/04/loading-wasm) en combinación con la API `fetch()`:
 
 ```js
-const module = await WebAssembly.compileStreaming(fetch(&apos;foo.wasm&apos;));
+const module = await WebAssembly.compileStreaming(fetch('foo.wasm'));
 ```
 
 Esta API ha estado disponible desde V8 v6.1 y Chrome 61, aunque la implementación inicial realmente no utilizaba la compilación en streaming. Sin embargo, con V8 v6.5 y Chrome 65 aprovechamos esta API y compilamos los módulos de WebAssembly mientras todavía estamos descargando los bytes del módulo. Tan pronto como descargamos todos los bytes de una sola función, pasamos la función a un hilo de fondo para compilarla.

@@ -1,7 +1,7 @@
 ---
-title: &apos;WebAssembly JSPI에 새로운 API가 추가되었습니다&apos;
-description: &apos;이 기사는 JavaScript Promise Integration (JSPI) API의 다가올 변경 사항에 대해 자세히 설명합니다.&apos;
-author: &apos;프랜시스 맥케이브, 티보 미쇼, 일리야 레즈보프, 브렌든 달&apos;
+title: 'WebAssembly JSPI에 새로운 API가 추가되었습니다'
+description: '이 기사는 JavaScript Promise Integration (JSPI) API의 다가올 변경 사항에 대해 자세히 설명합니다.'
+author: '프랜시스 맥케이브, 티보 미쇼, 일리야 레즈보프, 브렌든 달'
 date: 2024-06-04
 tags:
   - WebAssembly
@@ -21,7 +21,7 @@ JSPI와 이를 사용하는 방법에 대해 더 알아보려면 [이 블로그 
 
 2024년 1월, Wasm CG의 Stacks 하위 그룹이 JSPI API를 수정하기로 [투표](https://github.com/WebAssembly/meetings/blob/297ac8b5ac00e6be1fe33b1f4a146cc7481b631d/stack/2024/stack-2024-01-29.md)했습니다. 구체적으로, 명시적인 `Suspender` 객체 대신, JavaScript/WebAssembly 경계를 사용하여 어떤 계산이 중단되는지 결정하는 데 활용됩니다.
 
-이 차이점은 상당히 작지만 잠재적으로 중요합니다: 계산이 중단될 때, 래핑된 WebAssembly 내보내기로 가장 최근에 호출된 지점이 중단&apos;컷 포인트&apos;를 결정합니다.
+이 차이점은 상당히 작지만 잠재적으로 중요합니다: 계산이 중단될 때, 래핑된 WebAssembly 내보내기로 가장 최근에 호출된 지점이 중단'컷 포인트'를 결정합니다.
 
 이로 인해 JSPI를 사용하는 개발자는 해당 컷 포인트에 대한 제어가 다소 줄어듭니다. 반면에, 명시적으로 `Suspender` 객체를 관리하지 않아도 되므로 API가 사용하기 훨씬 더 쉬워집니다.
 

@@ -1,8 +1,8 @@
 ---
-title: &apos;こんにちは、世界！&apos;
-author: &apos;V8チーム&apos;
+title: 'こんにちは、世界！'
+author: 'V8チーム'
 date: 2015-07-10 13:33:37
-description: &apos;V8プロジェクトにブログが誕生しました！&apos;
+description: 'V8プロジェクトにブログが誕生しました！'
 ---
 V8開発者ブログへようこそ！
 

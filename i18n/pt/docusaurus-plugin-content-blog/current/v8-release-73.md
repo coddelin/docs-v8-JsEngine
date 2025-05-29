@@ -1,13 +1,13 @@
 ---
-title: &apos;Lançamento do V8 v7.3&apos;
-author: &apos;Clemens Backes, especialista em compiladores&apos;
+title: 'Lançamento do V8 v7.3'
+author: 'Clemens Backes, especialista em compiladores'
 avatars:
   - clemens-backes
 date: 2019-02-07 11:30:42
 tags:
   - lançamento
-description: &apos;V8 v7.3 apresenta melhorias de desempenho para WebAssembly e async, rastreamentos de pilha assincrônicos, Object.fromEntries, String#matchAll e muito mais!&apos;
-tweet: &apos;1093457099441561611&apos;
+description: 'V8 v7.3 apresenta melhorias de desempenho para WebAssembly e async, rastreamentos de pilha assincrônicos, Object.fromEntries, String#matchAll e muito mais!'
+tweet: '1093457099441561611'
 ---
 A cada seis semanas, criamos um novo branch do V8 como parte de nosso [processo de lançamento](/docs/release-process). Cada versão é derivada do Git master do V8 imediatamente antes de um marco do Chrome Beta. Hoje estamos felizes em anunciar nosso mais novo branch, [V8 versão 7.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.3), que está em beta até seu lançamento em coordenação com o Chrome 73 Stable em algumas semanas. O V8 v7.3 está repleto de melhorias voltadas aos desenvolvedores. Este post fornece uma prévia de alguns destaques em antecipação ao lançamento.
 
@@ -37,7 +37,7 @@ A API `Object.entries` não é novidade:
 ```js
 const object = { x: 42, y: 50 };
 const entries = Object.entries(object);
-// → [[&apos;x&apos;, 42], [&apos;y&apos;, 50]]
+// → [['x', 42], ['y', 50]]
 ```
 
 Infelizmente, não há uma maneira fácil de voltar do resultado de `entries` para um objeto equivalente… até agora! O V8 v7.3 suporta [`Object.fromEntries()`](/features/object-fromentries), uma nova API interna que realiza o inverso de `Object.entries`:
@@ -54,21 +54,21 @@ Para mais informações e exemplos de casos de uso, veja [nosso explicador de re
 Um caso comum de uso de expressões regulares globais (`g`) ou adesivas (`y`) é aplicá-las a uma string e iterar por todas as correspondências. A nova API `String.prototype.matchAll` torna isso mais fácil do que nunca, especialmente para expressões regulares com grupos de captura:
 
 ```js
-const string = &apos;Repositórios favoritos do GitHub: tc39/ecma262 v8/v8.dev&apos;;
+const string = 'Repositórios favoritos do GitHub: tc39/ecma262 v8/v8.dev';
 const regex = /\b(?<owner>[a-z0-9]+)\/(?<repo>[a-z0-9\.]+)\b/g;
 
 for (const match of string.matchAll(regex)) {
-  console.log(`${match[0]} em ${match.index} com &apos;${match.input}&apos;`);
+  console.log(`${match[0]} em ${match.index} com '${match.input}'`);
   console.log(`→ proprietário: ${match.groups.owner}`);
   console.log(`→ repositório: ${match.groups.repo}`);
 }
 
 // Saída:
 //
-// tc39/ecma262 em 23 com &apos;Repositórios favoritos do GitHub: tc39/ecma262 v8/v8.dev&apos;
+// tc39/ecma262 em 23 com 'Repositórios favoritos do GitHub: tc39/ecma262 v8/v8.dev'
 // → proprietário: tc39
 // → repositório: ecma262
-// v8/v8.dev em 36 com &apos;Repositórios favoritos do GitHub: tc39/ecma262 v8/v8.dev&apos;
+// v8/v8.dev em 36 com 'Repositórios favoritos do GitHub: tc39/ecma262 v8/v8.dev'
 // → proprietário: v8
 // → repositório: v8.dev
 ```

@@ -1,10 +1,10 @@
 ---
-title: &apos;웹어셈블리 브라우저 미리보기&apos;
-author: &apos;V8 팀&apos;
+title: '웹어셈블리 브라우저 미리보기'
+author: 'V8 팀'
 date: 2016-10-31 13:33:37
 tags:
   - 웹어셈블리
-description: &apos;웹어셈블리 또는 Wasm은 웹을 위한 새로운 런타임 및 컴파일 대상이며, 이제 Chrome Canary에서 플래그 뒤에서 사용할 수 있습니다!&apos;
+description: '웹어셈블리 또는 Wasm은 웹을 위한 새로운 런타임 및 컴파일 대상이며, 이제 Chrome Canary에서 플래그 뒤에서 사용할 수 있습니다!'
 ---
 오늘 우리는 [Firefox](https://hacks.mozilla.org/2016/10/webassembly-browser-preview)와 [Edge](https://blogs.windows.com/msedgedev/2016/10/31/webassembly-browser-preview/)와 함께 웹어셈블리 브라우저 미리보기를 발표하게 되어 기쁩니다. [웹어셈블리](http://webassembly.org/) 또는 Wasm은 Google, Mozilla, Microsoft, Apple 및 [W3C 웹어셈블리 커뮤니티 그룹](https://www.w3.org/community/webassembly/)의 협력자들에 의해 설계된 웹을 위한 새로운 런타임 및 컴파일 대상입니다.
 

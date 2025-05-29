@@ -1,13 +1,13 @@
 ---
-title: &apos;Lançamento do V8 v9.5&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))&apos;
+title: 'Lançamento do V8 v9.5'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-09-21
 tags:
  - lançamento
-description: &apos;O lançamento do V8 v9.5 traz APIs de internacionalização atualizadas e suporte para manipulação de exceções em WebAssembly.&apos;
-tweet: &apos;1440296019623759872&apos;
+description: 'O lançamento do V8 v9.5 traz APIs de internacionalização atualizadas e suporte para manipulação de exceções em WebAssembly.'
+tweet: '1440296019623759872'
 ---
 A cada quatro semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](https://v8.dev/docs/release-process). Cada versão é ramificada do Git master do V8 imediatamente antes de um marco Beta do Chrome. Hoje, temos o prazer de anunciar nosso mais novo branch, [V8 versão 9.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.5), que está em beta até seu lançamento em coordenação com o Chrome 95 Stable em algumas semanas. O V8 v9.5 está repleto de várias novidades voltadas para desenvolvedores. Este post fornece uma prévia de alguns dos destaques em antecipação ao lançamento.
 
@@ -19,24 +19,24 @@ A cada quatro semanas, criamos um novo branch do V8 como parte do nosso [process
 No v8.1 lançamos a API [`Intl.DisplayNames`](https://v8.dev/features/intl-displaynames) no Chrome 81, com tipos suportados “language” (idioma), “region” (região), “script” (escrita) e “currency” (moeda). Com o v9.5, agora adicionamos dois novos tipos suportados: “calendar” (calendário) e “dateTimeField” (campo de data e hora). Eles retornam os nomes visíveis dos diferentes tipos de calendários e campos de data e hora correspondentes:
 
 ```js
-const esCalendarNames = new Intl.DisplayNames([&apos;es&apos;], { type: &apos;calendar&apos; });
-const frDateTimeFieldNames = new Intl.DisplayNames([&apos;fr&apos;], { type: &apos;dateTimeField&apos; });
-esCalendarNames.of(&apos;roc&apos;);  // "calendario de la República de China"
-frDateTimeFieldNames.of(&apos;month&apos;); // "mois"
+const esCalendarNames = new Intl.DisplayNames(['es'], { type: 'calendar' });
+const frDateTimeFieldNames = new Intl.DisplayNames(['fr'], { type: 'dateTimeField' });
+esCalendarNames.of('roc');  // "calendario de la República de China"
+frDateTimeFieldNames.of('month'); // "mois"
 ```
 
 Também aprimoramos o suporte para o tipo “language” com uma nova opção languageDisplay, que pode ser “standard” (padrão) ou “dialect” (dialeto) (como valor padrão se não especificado):
 
 ```js
-const jaDialectLanguageNames = new Intl.DisplayNames([&apos;ja&apos;], { type: &apos;language&apos; });
-const jaStandardLanguageNames = new Intl.DisplayNames([&apos;ja&apos;], { type: &apos;language&apos; , languageDisplay: &apos;standard&apos;});
-jaDialectLanguageNames.of(&apos;en-US&apos;)  // "アメリカ英語"
-jaDialectLanguageNames.of(&apos;en-AU&apos;)  // "オーストラリア英語"
-jaDialectLanguageNames.of(&apos;en-GB&apos;)  // "イギリス英語"
+const jaDialectLanguageNames = new Intl.DisplayNames(['ja'], { type: 'language' });
+const jaStandardLanguageNames = new Intl.DisplayNames(['ja'], { type: 'language' , languageDisplay: 'standard'});
+jaDialectLanguageNames.of('en-US')  // "アメリカ英語"
+jaDialectLanguageNames.of('en-AU')  // "オーストラリア英語"
+jaDialectLanguageNames.of('en-GB')  // "イギリス英語"
 
-jaStandardLanguageNames.of(&apos;en-US&apos;) // "英語 (アメリカ合衆国)"
-jaStandardLanguageNames.of(&apos;en-AU&apos;) // "英語 (オーストラリア)"
-jaStandardLanguageNames.of(&apos;en-GB&apos;) // "英語 (イギリス)"
+jaStandardLanguageNames.of('en-US') // "英語 (アメリカ合衆国)"
+jaStandardLanguageNames.of('en-AU') // "英語 (オーストラリア)"
+jaStandardLanguageNames.of('en-GB') // "英語 (イギリス)"
 ```
 
 ### Opção estendida `timeZoneName`

@@ -1,12 +1,12 @@
 ---
-title: &apos;Una nueva forma de llevar lenguajes de programación con recolección de basura de manera eficiente a WebAssembly&apos;
-author: &apos;Alon Zakai&apos;
+title: 'Una nueva forma de llevar lenguajes de programación con recolección de basura de manera eficiente a WebAssembly'
+author: 'Alon Zakai'
 avatars:
-  - &apos;alon-zakai&apos;
+  - 'alon-zakai'
 date: 2023-11-01
 tags:
   - WebAssembly
-tweet: &apos;1720161507324076395&apos;
+tweet: '1720161507324076395'
 ---
 
 Un artículo reciente sobre [Recolección de Basura en WebAssembly (WasmGC)](https://developer.chrome.com/blog/wasmgc) explica, a un nivel alto, cómo la [propuesta de Recolección de Basura (GC)](https://github.com/WebAssembly/gc) tiene como objetivo brindar mejor soporte a los lenguajes con GC en Wasm, lo cual es muy importante dada su popularidad. En este artículo, profundizaremos en los detalles técnicos de cómo lenguajes con GC como Java, Kotlin, Dart, Python y C# pueden ser trasladados a Wasm. De hecho, existen dos enfoques principales:

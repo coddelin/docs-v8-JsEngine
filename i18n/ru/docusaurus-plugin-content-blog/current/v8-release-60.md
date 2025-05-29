@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 релиз v6.0&apos;
-author: &apos;команда V8&apos;
+title: 'V8 релиз v6.0'
+author: 'команда V8'
 date: 2017-06-09 13:33:37
 tags:
   - релиз
-description: &apos;V8 v6.0 включает в себя несколько улучшений производительности и вводит поддержку `SharedArrayBuffer` и свойств rest/spread объектов.&apos;
+description: 'V8 v6.0 включает в себя несколько улучшений производительности и вводит поддержку `SharedArrayBuffer` и свойств rest/spread объектов.'
 ---
 Каждые шесть недель мы создаем новую ветку V8 в рамках нашего [процесса релиза](/docs/release-process). Каждая версия выделяется из Git-мастера V8 непосредственно перед этапом Beta Chrome. Сегодня мы рады объявить о нашей новой ветке, [V8 версии 6.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.0), которая будет в бета-версии до выпуска в координации со стабильным Chrome 60 через несколько недель. V8 6.0 содержит множество полезных функций для разработчиков. Мы хотим дать вам предварительный просмотр некоторых из основных моментов в ожидании релиза.
 
@@ -24,20 +24,20 @@ V8 v6.0 вводит поддержку [`SharedArrayBuffer`](https://developer.
 ```js
 // Свойства rest для деструктуризации объекта:
 const person = {
-  firstName: &apos;Себастьян&apos;,
-  lastName: &apos;Markbåge&apos;,
-  country: &apos;США&apos;,
-  state: &apos;CA&apos;,
+  firstName: 'Себастьян',
+  lastName: 'Markbåge',
+  country: 'США',
+  state: 'CA',
 };
 const { firstName, lastName, ...rest } = person;
 console.log(firstName); // Себастьян
 console.log(lastName); // Markbåge
-console.log(rest); // { country: &apos;США&apos;, state: &apos;CA&apos; }
+console.log(rest); // { country: 'США', state: 'CA' }
 
 // Свойства spread для объектных литералов:
 const personCopy = { firstName, lastName, ...rest };
 console.log(personCopy);
-// { firstName: &apos;Себастьян&apos;, lastName: &apos;Markbåge&apos;, country: &apos;США&apos;, state: &apos;CA&apos; }
+// { firstName: 'Себастьян', lastName: 'Markbåge', country: 'США', state: 'CA' }
 ```
 
 Для получения дополнительной информации см. [наш объяснение свойств rest и spread объектов](/features/object-rest-spread).

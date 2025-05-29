@@ -1,16 +1,16 @@
 ---
-title: &apos;V8의 동시 마킹&apos;
-author: &apos;Ulan Degenbaev, Michael Lippautz, 그리고 Hannes Payer — 메인 스레드 해방자&apos;
+title: 'V8의 동시 마킹'
+author: 'Ulan Degenbaev, Michael Lippautz, 그리고 Hannes Payer — 메인 스레드 해방자'
 avatars:
-  - &apos;ulan-degenbaev&apos;
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'ulan-degenbaev'
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2018-06-11 13:33:37
 tags:
   - internals
   - memory
-description: &apos;이 게시글은 동시 마킹이라는 가비지 컬렉션 기술을 설명합니다.&apos;
-tweet: &apos;1006187194808233985&apos;
+description: '이 게시글은 동시 마킹이라는 가비지 컬렉션 기술을 설명합니다.'
+tweet: '1006187194808233985'
 ---
 이 게시글은 _동시 마킹_이라는 가비지 컬렉션 기술에 대해 설명합니다. 해당 최적화는 자바스크립트 애플리케이션이 실행을 계속하는 동안 가비지 컬렉터가 힙을 스캔하여 살아있는 객체를 찾고 마킹하도록 허용합니다. 우리의 벤치마크는 동시 마킹이 메인 스레드에서 마킹에 소요되는 시간을 60%–70% 감소시킨다는 것을 보여줍니다. 동시 마킹은 [Orinoco 프로젝트](/blog/orinoco)의 마지막 퍼즐 조각으로, 기존 가비지 컬렉터를 대부분 동시적이고 병렬적인 새로운 가비지 컬렉터로 점진적으로 대체하는 프로젝트입니다. 동시 마킹은 크롬 64 및 Node.js v10에서 기본적으로 활성화되어 있습니다.
 

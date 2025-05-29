@@ -1,11 +1,11 @@
 ---
-title: &apos;V8 릴리즈 v6.6&apos;
-author: &apos;V8 팀&apos;
+title: 'V8 릴리즈 v6.6'
+author: 'V8 팀'
 date: 2018-03-27 13:33:37
 tags:
   - 릴리즈
-description: &apos;V8 v6.6에는 선택적 catch 바인딩, 확장된 문자열 트리밍, 여러 파싱/컴파일/런타임 성능 개선 등이 포함됩니다!&apos;
-tweet: &apos;978534399938584576&apos;
+description: 'V8 v6.6에는 선택적 catch 바인딩, 확장된 문자열 트리밍, 여러 파싱/컴파일/런타임 성능 개선 등이 포함됩니다!'
+tweet: '978534399938584576'
 ---
 6주마다 우리는 [릴리즈 프로세스](/docs/release-process)의 일환으로 V8의 새로운 브랜치를 만듭니다. 각 버전은 Chrome 베타 마일스톤 직전에 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 최신 브랜치인 [V8 버전 6.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.6)을 발표하게 되어 기쁩니다. 이 버전은 출시 전 몇 주간 Chrome 66 정식 버전과 조정되어 베타로 제공됩니다. V8 v6.6에는 개발자 중심의 다양한 편리함이 포함되어 있습니다. 이 게시글에서는 출시를 기대하며 몇 가지 하이라이트를 살펴봅니다.
 
@@ -23,13 +23,13 @@ function /* a comment */ foo () {}
 
 // 이전에:
 foo.toString();
-// → &apos;function foo() {}&apos;
+// → 'function foo() {}'
 //             ^ 주석 없음
 //                ^ 공백 없음
 
 // 이제:
 foo.toString();
-// → &apos;function /* comment */ foo () {}&apos;
+// → 'function /* comment */ foo () {}'
 ```
 
 ### JSON ⊂ ECMAScript
@@ -53,13 +53,13 @@ try {
 `String.prototype.trim()`에 추가하여, V8은 이제 [`String.prototype.trimStart()` 및 `String.prototype.trimEnd()`](/features/string-trimming)을 구현합니다. 이 기능은 이전에 비표준 `trimLeft()` 및 `trimRight()` 메서드를 통해 사용할 수 있었으며, 새로운 메서드의 별칭으로 남아 이전 버전과의 호환성을 제공합니다.
 
 ```js
-const string = &apos;  hello world  &apos;;
+const string = '  hello world  ';
 string.trimStart();
-// → &apos;hello world  &apos;
+// → 'hello world  '
 string.trimEnd();
-// → &apos;  hello world&apos;
+// → '  hello world'
 string.trim();
-// → &apos;hello world&apos;
+// → 'hello world'
 ```
 
 ### `Array.prototype.values`

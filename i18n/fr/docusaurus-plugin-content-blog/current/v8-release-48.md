@@ -1,10 +1,10 @@
 ---
-title: &apos;Version V8 v4.8&apos;
-author: &apos;l'équipe V8&apos;
+title: 'Version V8 v4.8'
+author: 'l'équipe V8'
 date: 2015-11-25 13:33:37
 tags:
   - version
-description: &apos;V8 v4.8 ajoute la prise en charge de plusieurs nouvelles fonctionnalités du langage ES2015.&apos;
+description: 'V8 v4.8 ajoute la prise en charge de plusieurs nouvelles fonctionnalités du langage ES2015.'
 ---
 Environ toutes les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](/docs/release-process). Chaque version est issue de la branche principale Git de V8 juste avant que Chrome ne crée une branche pour une étape Beta de Chrome. Aujourd'hui, nous sommes ravis d'annoncer notre nouvelle branche, [V8 version 4.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.8), qui sera en beta jusqu'à sa publication en coordination avec Chrome 48 Stable. V8 4.8 contient un petit ensemble de fonctionnalités destinées aux développeurs, et nous aimerions vous donner un aperçu de certains points forts en prévision de la publication dans plusieurs semaines.
 
@@ -19,7 +19,7 @@ Le nom d'une propriété de type booléen qui, si elle est `true`, indique qu'un
 
 ```js
 (function() {
-  &apos;use strict&apos;;
+  'use strict';
   class AutomaticallySpreadingArray extends Array {
     get [Symbol.isConcatSpreadable]() {
       return true;
@@ -41,17 +41,17 @@ Le nom d'une méthode à invoquer sur un objet pour des conversions implicites e
 
 ```js
 (function(){
-  &apos;use strict&apos;;
+  'use strict';
   class V8 {
     [Symbol.toPrimitive](hint) {
-      if (hint === &apos;string&apos;) {
-        console.log(&apos;string&apos;);
-        return &apos;V8&apos;;
-      } else if (hint === &apos;number&apos;) {
-        console.log(&apos;number&apos;);
+      if (hint === 'string') {
+        console.log('string');
+        return 'V8';
+      } else if (hint === 'number') {
+        console.log('number');
         return 8;
       } else {
-        console.log(&apos;default:&apos; + hint);
+        console.log('default:' + hint);
         return 8;
       }
     }

@@ -1,16 +1,16 @@
 ---
-title: &apos;從 JavaScript 到 DOM 並回溯的追蹤&apos;
-author: &apos;Ulan Degenbaev、Alexei Filippov、Michael Lippautz 和 Hannes Payer —— DOM 的合作夥伴&apos;
+title: '從 JavaScript 到 DOM 並回溯的追蹤'
+author: 'Ulan Degenbaev、Alexei Filippov、Michael Lippautz 和 Hannes Payer —— DOM 的合作夥伴'
 avatars:
-  - &apos;ulan-degenbaev&apos;
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'ulan-degenbaev'
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2018-03-01 13:33:37
 tags:
   - internals
   - memory
-description: &apos;Chrome 的 DevTools 現在可以追蹤並快照 C++ DOM 物件，並顯示所有從 JavaScript 可達的 DOM 物件及其引用。&apos;
-tweet: &apos;969184997545562112&apos;
+description: 'Chrome 的 DevTools 現在可以追蹤並快照 C++ DOM 物件，並顯示所有從 JavaScript 可達的 DOM 物件及其引用。'
+tweet: '969184997545562112'
 ---
 在 Chrome 66 中調試記憶體洩漏變得更容易。Chrome 的 DevTools 現在可以追蹤並快照 C++ DOM 物件，並顯示所有從 JavaScript 可達的 DOM 物件及其引用。這項功能是新 V8 垃圾回收器的 C++ 追蹤機制的一項優勢。
 
@@ -23,16 +23,16 @@ tweet: &apos;969184997545562112&apos;
 
 ```js
 // 主窗口:
-const iframe = document.createElement(&apos;iframe&apos;);
-iframe.src = &apos;iframe.html&apos;;
+const iframe = document.createElement('iframe');
+iframe.src = 'iframe.html';
 document.body.appendChild(iframe);
-iframe.addEventListener(&apos;load&apos;, function() {
+iframe.addEventListener('load', function() {
   const localVariable = iframe.contentWindow;
   function leakingListener() {
     // 對 `localVariable` 做些事情。
     if (localVariable) {}
   }
-  document.body.addEventListener(&apos;my-debug-event&apos;, leakingListener);
+  document.body.addEventListener('my-debug-event', leakingListener);
   document.body.removeChild(iframe);
   // BUG: 忘了註銷 `leakingListener`。
 });

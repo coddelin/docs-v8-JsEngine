@@ -1,6 +1,6 @@
 ---
-title: &apos;iOS向けクロスコンパイル&apos;
-description: &apos;このドキュメントでは、iOS向けのV8をクロスコンパイルする方法を説明します。&apos;
+title: 'iOS向けクロスコンパイル'
+description: 'このドキュメントでは、iOS向けのV8をクロスコンパイルする方法を説明します。'
 ---
 このページはiOSターゲット用にV8をビルドするための簡単な紹介ガイドです。
 
@@ -9,7 +9,7 @@ description: &apos;このドキュメントでは、iOS向けのV8をクロス�
 - XcodeがインストールされたmacOS（OS X）ホストマシン。
 - 64ビットのターゲットiOSデバイス（レガシー32ビットiOSデバイスは非対応）。
 - V8バージョン7.5またはそれ以降。
-- iOSでは（2020年12月時点）jitlessが必須です。そのため、フラグ &apos;--expose_gc --jitless&apos; を使用してください。
+- iOSでは（2020年12月時点）jitlessが必須です。そのため、フラグ '--expose_gc --jitless' を使用してください。
 
 ## 初期設定
 
@@ -18,8 +18,8 @@ description: &apos;このドキュメントでは、iOS向けのV8をクロス�
 `v8` ソースディレクトリの親ディレクトリにある `.gclient` 設定ファイルに `target_os` を追加して、iOSクロスコンパイルに必要なツールを取得します。
 
 ```python
-# [... .gclient の他の内容 (例えば&apos;solutions&apos; 変数など) ...]
-target_os = [&apos;ios&apos;]
+# [... .gclient の他の内容 (例えば'solutions' 変数など) ...]
+target_os = ['ios']
 ```
 
 `.gclient` を更新した後、`gclient sync` を実行して追加のツールをダウンロードします。

@@ -1,14 +1,14 @@
 ---
-title: &apos;EmscriptenとLLVM WebAssemblyバックエンド&apos;
-author: &apos;Alon Zakai&apos;
+title: 'EmscriptenとLLVM WebAssemblyバックエンド'
+author: 'Alon Zakai'
 avatars:
-  - &apos;alon-zakai&apos;
+  - 'alon-zakai'
 date: 2019-07-01 16:45:00
 tags:
   - WebAssembly
   - ツール
-description: &apos;EmscriptenはLLVM WebAssemblyバックエンドに切り替え中で、大幅に高速なリンク時間や多くの利点が得られます。&apos;
-tweet: &apos;1145704863377981445&apos;
+description: 'EmscriptenはLLVM WebAssemblyバックエンドに切り替え中で、大幅に高速なリンク時間や多くの利点が得られます。'
+tweet: '1145704863377981445'
 ---
 WebAssemblyは通常、ソース言語からコンパイルされるため、開発者は*ツール*が必要です。そのため、V8チームは[LLVM](http://llvm.org/)、[Emscripten](https://emscripten.org/)、[Binaryen](https://github.com/WebAssembly/binaryen/)、[WABT](https://github.com/WebAssembly/wabt)のような関連するオープンソースプロジェクトに取り組んでいます。この投稿では、EmscriptenとLLVMに関する作業の一部を説明し、Emscriptenが[LLVM WebAssemblyバックエンド](https://github.com/llvm/llvm-project/tree/main/llvm/lib/Target/WebAssembly)にデフォルトで切り替えることが間もなく可能になることを示しますので、ぜひテストして問題を報告してください!
 

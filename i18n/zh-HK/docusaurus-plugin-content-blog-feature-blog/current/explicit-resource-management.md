@@ -1,13 +1,13 @@
 ---
-title: "JavaScript&apos;s 新超能力：顯式資源管理"
-author: &apos;Rezvan Mahdavi Hezaveh&apos;
+title: "JavaScript's 新超能力：顯式資源管理"
+author: 'Rezvan Mahdavi Hezaveh'
 avatars:
-  - &apos;rezvan-mahdavi-hezaveh&apos;
+  - 'rezvan-mahdavi-hezaveh'
 date: 2025-05-09
 tags:
   - ECMAScript
-description: &apos;「顯式資源管理提案」使開發者能夠顯式管理資源的生命週期。&apos;
-tweet: &apos;&apos;
+description: '「顯式資源管理提案」使開發者能夠顯式管理資源的生命週期。'
+tweet: ''
 ---
 
 「顯式資源管理提案」引入了一種確定性的方法，用於顯式管理資源的生命週期，比如檔案控制代碼、網絡連線等。該提案帶來了以下新增功能：`using` 和 `await using` 聲明，可在資源超出作用域時自動呼叫 dispose 方法；`[Symbol.dispose]()` 和 `[Symbol.asyncDispose]()` 符號，用於清理操作；兩個全新的全域物件 `DisposableStack` 和 `AsyncDisposableStack` 作為容器以匯總可清除的資源；以及 `SuppressedError`，作為一種新的錯誤類型（包含最近拋出的錯誤及被抑制的錯誤），用於解決在處置資源期間出現錯誤可能掩蓋既存錯誤的情況，或者另一資源的處置過程中拋出的錯誤。這些新增功能使開發者能夠通過細粒度的資源處置控制撰寫更可靠、高效且可維護的代碼。
@@ -58,7 +58,7 @@ async function processData(response) {
     return processedData;
   }
  
- readFile(&apos;https://example.com/largefile.dat&apos;);
+ readFile('https://example.com/largefile.dat');
 ```
 
 因此，在使用流時，開發者需要確保有 `try...finally` 塊並將 `reader.releaseLock()` 放在 `finally` 中。此模式保證始終呼叫 `reader.releaseLock()`。
@@ -87,7 +87,7 @@ async function processData(response) {
     return processedData;
   }
  
- readFile(&apos;https://example.com/largefile.dat&apos;);
+ readFile('https://example.com/largefile.dat');
 ```
 
 寫這段程式碼的另一種替代方法是建立一個名為 `readerResource` 的可釋放物件，它擁有 reader (`response.body.getReader()`) 和一個 `[Symbol.dispose]()` 方法，該方法會呼叫 `this.reader.releaseLock()`。`using` 宣告確保當程式碼塊退出時會自動呼叫 `readerResource[Symbol.dispose]()`，因此不再需要記得手動呼叫 `releaseLock`，因為 `using` 宣告已經處理了這部分工作。在未來，像是流這樣的 Web API 可能會整合 `[Symbol.dispose]` 和 `[Symbol.asyncDispose]`，開發者就不需要手動編寫包裝物件了。
@@ -122,7 +122,7 @@ async function processData(response) {
   }
  // readerResource[Symbol.dispose]() 會自動被呼叫。
 
- readFile(&apos;https://example.com/largefile.dat&apos;);
+ readFile('https://example.com/largefile.dat');
 ```
 
 ## `DisposableStack` 與 `AsyncDisposableStack`
@@ -139,7 +139,7 @@ async function processData(response) {
         reader: response.body.getReader(),
         [Symbol.dispose]() {
             this.reader.releaseLock();
-            console.log(&apos;Reader lock released.&apos;);
+            console.log('Reader lock released.');
         },
     };
     using stack = new DisposableStack();
@@ -156,7 +156,7 @@ async function processData(response) {
     stack.adopt(
       response.body.getReader(), reader => {
         reader.releaseLock();
-        console.log(&apos;Reader lock released.&apos;);
+        console.log('Reader lock released.');
       });
 }
 // Reader lock released.
@@ -180,7 +180,7 @@ async function processData(response) {
     stack.adopt(
       response.body.getReader(), reader => {
         reader.releaseLock();
-        console.log(&apos;Reader lock released.&apos;);
+        console.log('Reader lock released.');
       });
     using newStack = stack.move();
 }
@@ -196,7 +196,7 @@ async function processData(response) {
         reader: response.body.getReader(),
         [Symbol.dispose]() {
             this.reader.releaseLock();
-            console.log(&apos;Reader lock released.&apos;);
+            console.log('Reader lock released.');
         },
     };
     let stack = new DisposableStack();

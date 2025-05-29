@@ -1,17 +1,17 @@
 ---
-title: &apos;Suivi de slack dans V8&apos;
-author: &apos;Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), maître renommé du *slack*&apos;
-description: &apos;Un regard détaillé sur le mécanisme de suivi de slack de V8.&apos;
+title: 'Suivi de slack dans V8'
+author: 'Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), maître renommé du *slack*'
+description: 'Un regard détaillé sur le mécanisme de suivi de slack de V8.'
 avatars:
- - &apos;michael-stanton&apos;
+ - 'michael-stanton'
 date: 2020-09-24 14:00:00
 tags:
  - internals
 ---
-Le suivi de slack est un moyen de donner aux nouveaux objets une taille initiale qui est **plus grande que ce qu&apos;ils peuvent réellement utiliser**, afin qu&apos;ils puissent avoir de nouvelles propriétés ajoutées rapidement. Et ensuite, après un certain temps, de **rendre magiquement cet espace inutilisé au système**. Sympa, non ?
+Le suivi de slack est un moyen de donner aux nouveaux objets une taille initiale qui est **plus grande que ce qu'ils peuvent réellement utiliser**, afin qu'ils puissent avoir de nouvelles propriétés ajoutées rapidement. Et ensuite, après un certain temps, de **rendre magiquement cet espace inutilisé au système**. Sympa, non ?
 
 <!--truncate-->
-C&apos;est particulièrement utile car JavaScript n&apos;a pas de classes statiques. Le système ne peut jamais voir "d&apos;un coup d&apos;œil" combien de propriétés vous avez. Le moteur les expérimente une par une. Ainsi, lorsque vous lisez :
+C'est particulièrement utile car JavaScript n'a pas de classes statiques. Le système ne peut jamais voir "d'un coup d'œil" combien de propriétés vous avez. Le moteur les expérimente une par une. Ainsi, lorsque vous lisez :
 
 ```js
 function Peak(name, height) {
@@ -19,30 +19,30 @@ function Peak(name, height) {
   this.height = height;
 }
 
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
+const m1 = new Peak('Matterhorn', 4478);
 ```
 
-Vous pourriez penser que le moteur dispose de tout ce dont il a besoin pour bien fonctionner — après tout, vous lui avez dit que l&apos;objet avait deux propriétés. Cependant, V8 n&apos;a vraiment aucune idée de ce qui va suivre. Cet objet `m1` pourrait être passé à une autre fonction qui lui ajoute 10 autres propriétés. Le suivi de slack répond à ce besoin d&apos;être réactif à ce qui vient ensuite dans un environnement sans compilation statique pour déduire la structure globale. C&apos;est comme de nombreux autres mécanismes dans V8, dont la base est uniquement les choses que l&apos;on peut généralement dire sur l&apos;exécution, comme :
+Vous pourriez penser que le moteur dispose de tout ce dont il a besoin pour bien fonctionner — après tout, vous lui avez dit que l'objet avait deux propriétés. Cependant, V8 n'a vraiment aucune idée de ce qui va suivre. Cet objet `m1` pourrait être passé à une autre fonction qui lui ajoute 10 autres propriétés. Le suivi de slack répond à ce besoin d'être réactif à ce qui vient ensuite dans un environnement sans compilation statique pour déduire la structure globale. C'est comme de nombreux autres mécanismes dans V8, dont la base est uniquement les choses que l'on peut généralement dire sur l'exécution, comme :
 
-- La plupart des objets meurent bientôt, peu vivent longtemps — l&apos;hypothèse de &quot;génération de la collecte des ordures&quot;.
-- Le programme a effectivement une structure organisationnelle — nous construisons [des formes ou "classes cachées"](https://mathiasbynens.be/notes/shapes-ics) (nous appelons ces **maps** dans V8) dans les objets que nous voyons le programmeur utiliser parce que nous croyons qu&apos;ils seront utiles. *Au fait, [Propriétés rapides dans V8](/blog/fast-properties) est un excellent article avec des détails intéressants sur les maps et l&apos;accès aux propriétés.*
-- Les programmes ont un état d&apos;initialisation, où tout est nouveau et il est difficile de dire ce qui est important. Plus tard, les classes et les fonctions importantes peuvent être identifiées à travers leur utilisation régulière — notre régime de feedback et le pipeline de compilation découlent de cette idée.
+- La plupart des objets meurent bientôt, peu vivent longtemps — l'hypothèse de &quot;génération de la collecte des ordures&quot;.
+- Le programme a effectivement une structure organisationnelle — nous construisons [des formes ou "classes cachées"](https://mathiasbynens.be/notes/shapes-ics) (nous appelons ces **maps** dans V8) dans les objets que nous voyons le programmeur utiliser parce que nous croyons qu'ils seront utiles. *Au fait, [Propriétés rapides dans V8](/blog/fast-properties) est un excellent article avec des détails intéressants sur les maps et l'accès aux propriétés.*
+- Les programmes ont un état d'initialisation, où tout est nouveau et il est difficile de dire ce qui est important. Plus tard, les classes et les fonctions importantes peuvent être identifiées à travers leur utilisation régulière — notre régime de feedback et le pipeline de compilation découlent de cette idée.
 
-Enfin, et surtout, l&apos;environnement à l&apos;exécution doit être très rapide, sinon nous ne faisons que philosopher.
+Enfin, et surtout, l'environnement à l'exécution doit être très rapide, sinon nous ne faisons que philosopher.
 
-Maintenant, V8 pourrait simplement stocker les propriétés dans un stockage auxiliaire attaché à l&apos;objet principal. Contrairement aux propriétés qui résident directement dans l&apos;objet, ce stockage auxiliaire peut croître indéfiniment grâce à la copie et au remplacement du pointeur. Cependant, l&apos;accès le plus rapide à une propriété provient du fait d&apos;éviter cette indirection et de regarder un offset fixe depuis le début de l&apos;objet. Ci-dessous, je montre la disposition d&apos;un objet JavaScript classique dans le tas V8 avec deux propriétés dans l&apos;objet. Les trois premiers mots sont standard dans chaque objet (un pointeur vers le map, le stockage auxiliaire des propriétés et le stockage auxiliaire des éléments). Vous pouvez voir que l&apos;objet ne peut pas "croître" car il est juste à côté du prochain objet dans le tas :
+Maintenant, V8 pourrait simplement stocker les propriétés dans un stockage auxiliaire attaché à l'objet principal. Contrairement aux propriétés qui résident directement dans l'objet, ce stockage auxiliaire peut croître indéfiniment grâce à la copie et au remplacement du pointeur. Cependant, l'accès le plus rapide à une propriété provient du fait d'éviter cette indirection et de regarder un offset fixe depuis le début de l'objet. Ci-dessous, je montre la disposition d'un objet JavaScript classique dans le tas V8 avec deux propriétés dans l'objet. Les trois premiers mots sont standard dans chaque objet (un pointeur vers le map, le stockage auxiliaire des propriétés et le stockage auxiliaire des éléments). Vous pouvez voir que l'objet ne peut pas "croître" car il est juste à côté du prochain objet dans le tas :
 
 ![](/_img/slack-tracking/property-layout.svg)
 
 :::note
-**Note :** J&apos;ai omis les détails du stockage auxiliaire des propriétés parce que la seule chose importante à ce sujet pour le moment est qu&apos;il peut être remplacé à tout moment par un plus grand. Cependant, lui aussi est un objet sur le tas V8 et possède un pointeur map comme tous les objets qui y résident.
+**Note :** J'ai omis les détails du stockage auxiliaire des propriétés parce que la seule chose importante à ce sujet pour le moment est qu'il peut être remplacé à tout moment par un plus grand. Cependant, lui aussi est un objet sur le tas V8 et possède un pointeur map comme tous les objets qui y résident.
 :::
 
-Donc, en raison des performances offertes par les propriétés dans l&apos;objet, V8 est prêt à vous donner un espace supplémentaire dans chaque objet, et **le suivi de slack** est la façon dont cela est fait. Finalement, vous vous calmerez, cesserez d&apos;ajouter de nouvelles propriétés et commencerez à miner du bitcoin ou autre chose.
+Donc, en raison des performances offertes par les propriétés dans l'objet, V8 est prêt à vous donner un espace supplémentaire dans chaque objet, et **le suivi de slack** est la façon dont cela est fait. Finalement, vous vous calmerez, cesserez d'ajouter de nouvelles propriétés et commencerez à miner du bitcoin ou autre chose.
 
-Combien de « temps » V8 vous donne-t-il ? Habilement, il prend en compte le nombre de fois où vous avez construit un objet particulier. En fait, il y a un compteur dans le map, et il est initialisé avec l&apos;un des nombres magiques les plus mystiques du système : **sept**.
+Combien de « temps » V8 vous donne-t-il ? Habilement, il prend en compte le nombre de fois où vous avez construit un objet particulier. En fait, il y a un compteur dans le map, et il est initialisé avec l'un des nombres magiques les plus mystiques du système : **sept**.
 
-Une autre question : comment V8 sait-il combien d&apos;espace supplémentaire dans le corps de l&apos;objet fournir ? En fait, il obtient un indice du processus de compilation, qui propose un nombre estimé de propriétés pour commencer. Ce calcul inclut le nombre de propriétés de l&apos;objet prototype, en remontant la chaîne de prototypes de manière récursive. Enfin, pour faire bonne mesure, il ajoute **huit** supplémentaires (un autre nombre magique !). Vous pouvez le voir dans `JSFunction::CalculateExpectedNofProperties()`:
+Une autre question : comment V8 sait-il combien d'espace supplémentaire dans le corps de l'objet fournir ? En fait, il obtient un indice du processus de compilation, qui propose un nombre estimé de propriétés pour commencer. Ce calcul inclut le nombre de propriétés de l'objet prototype, en remontant la chaîne de prototypes de manière récursive. Enfin, pour faire bonne mesure, il ajoute **huit** supplémentaires (un autre nombre magique !). Vous pouvez le voir dans `JSFunction::CalculateExpectedNofProperties()`:
 
 ```cpp
 int JSFunction::CalculateExpectedNofProperties(Isolate* isolate,
@@ -99,7 +99,7 @@ function Peak(nom, hauteur) {
   this.hauteur = hauteur;
 }
 
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
+const m1 = new Peak('Matterhorn', 4478);
 ```
 
 D'après le calcul dans `JSFunction::CalculateExpectedNofProperties` et notre fonction `Peak()`, nous devrions avoir 2 propriétés intégrées, et grâce au suivi d'espace libre, 8 supplémentaires. Nous pouvons imprimer `m1` avec `%DebugPrint()` (_cette fonction bien utile expose la structure de mappage. Vous pouvez l'utiliser en exécutant `d8` avec l'option `--allow-natives-syntax`_) :
@@ -295,7 +295,7 @@ Le schéma ci-dessous reflète que le suivi de relâchement est **terminé** pou
 Maintenant que le suivi de relâchement est terminé, que se passe-t-il si nous ajoutons une autre propriété à l'un de ces objets `Peak` ?
 
 ```js
-m1.country = &apos;Suisse&apos;;
+m1.country = 'Suisse';
 ```
 
 V8 doit aller dans le magasin de sauvegarde des propriétés. Nous obtenons la configuration suivante de l'objet :
@@ -339,13 +339,13 @@ function Peak(name, height, prominence, isClimbed) {
 Vous ajoutez quelques variantes différentes :
 
 ```js
-const m1 = new Peak(&apos;Wendelstein&apos;, 1838);
-const m2 = new Peak(&apos;Matterhorn&apos;, 4478, 1040, true);
-const m3 = new Peak(&apos;Zugspitze&apos;, 2962);
-const m4 = new Peak(&apos;Mont Blanc&apos;, 4810, 4695, true);
-const m5 = new Peak(&apos;Watzmann&apos;, 2713);
-const m6 = new Peak(&apos;Zinalrothorn&apos;, 4221, 490, true);
-const m7 = new Peak(&apos;Eiger&apos;, 3970);
+const m1 = new Peak('Wendelstein', 1838);
+const m2 = new Peak('Matterhorn', 4478, 1040, true);
+const m3 = new Peak('Zugspitze', 2962);
+const m4 = new Peak('Mont Blanc', 4810, 4695, true);
+const m5 = new Peak('Watzmann', 2713);
+const m6 = new Peak('Zinalrothorn', 4221, 490, true);
+const m7 = new Peak('Eiger', 3970);
 ```
 
 Dans ce cas, les objets `m1`, `m3`, `m5` et `m7` ont une carte, et les objets `m2`, `m4` et `m6` possèdent une carte plus loin dans la chaîne des descendants à partir de la carte initiale en raison des propriétés supplémentaires. Une fois que le suivi de relâchement est terminé pour cette famille de cartes, il y a **4** propriétés dans l'objet au lieu de **2** comme auparavant, parce que le suivi de relâchement s'assure de maintenir suffisamment d'espace pour le nombre maximal de propriétés dans l'objet utilisé par les descendants dans l'arbre de cartes sous la carte initiale.
@@ -364,10 +364,10 @@ function foo(a1, a2, a3, a4) {
 }
 
 %PrepareFunctionForOptimization(foo);
-const m1 = foo(&apos;Wendelstein&apos;, 1838);
-const m2 = foo(&apos;Matterhorn&apos;, 4478, 1040, true);
+const m1 = foo('Wendelstein', 1838);
+const m2 = foo('Matterhorn', 4478, 1040, true);
 %OptimizeFunctionOnNextCall(foo);
-foo(&apos;Zugspitze&apos;, 2962);
+foo('Zugspitze', 2962);
 ```
 
 Cela devrait suffire à compiler et exécuter du code optimisé. Nous faisons quelque chose dans TurboFan (le compilateur optimisé) appelé [**Create Lowering**](https://source.chromium.org/chromium/chromium/src/+/master:v8/src/compiler/js-create-lowering.h;l=32;drc=ee9e7e404e5a3f75a3ca0489aaf80490f625ca27), où nous intégrons l'allocation des objets. Cela signifie que le code natif que nous produisons émet des instructions pour demander au GC la taille d'instance de l'objet à allouer et ensuite initialiser soigneusement ces champs. Cependant, ce code serait invalide si le suivi de relâchement s'arrêtait à un moment ultérieur. Que pouvons-nous faire à ce sujet ?

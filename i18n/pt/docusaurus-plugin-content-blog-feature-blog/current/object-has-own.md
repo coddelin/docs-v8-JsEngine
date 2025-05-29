@@ -1,13 +1,13 @@
 ---
-title: &apos;`Object.hasOwn`&apos;
-author: &apos;Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))&apos;
+title: '`Object.hasOwn`'
+author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
 avatars:
-  - &apos;victor-gomes&apos;
+  - 'victor-gomes'
 date: 2021-07-01
 tags:
   - ECMAScript
-description: &apos;`Object.hasOwn` torna `Object.prototype.hasOwnProperty` mais acessível.&apos;
-tweet: &apos;1410577516943847424&apos;
+description: '`Object.hasOwn` torna `Object.prototype.hasOwnProperty` mais acessível.'
+tweet: '1410577516943847424'
 ---
 
 Hoje, é muito comum escrever código assim:
@@ -15,7 +15,7 @@ Hoje, é muito comum escrever código assim:
 ```js
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 
-if (hasOwnProperty.call(object, &apos;foo&apos;)) {
+if (hasOwnProperty.call(object, 'foo')) {
   // `object` possui a propriedade `foo`.
 }
 ```
@@ -25,7 +25,7 @@ Ou usar bibliotecas que expõem uma versão simplificada de `Object.prototype.ha
 Com a proposta [`Object.hasOwn`](https://github.com/tc39/proposal-accessible-object-hasownproperty), podemos simplesmente escrever:
 
 ```js
-if (Object.hasOwn(object, &apos;foo&apos;)) {
+if (Object.hasOwn(object, 'foo')) {
   // `object` possui a propriedade `foo`.
 }
 ```

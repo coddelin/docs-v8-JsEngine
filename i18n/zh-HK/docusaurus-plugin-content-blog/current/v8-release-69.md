@@ -1,11 +1,11 @@
 ---
-title: &apos;V8 發佈 v6.9&apos;
-author: &apos;V8 團隊&apos;
+title: 'V8 發佈 v6.9'
+author: 'V8 團隊'
 date: 2018-08-07 13:33:37
 tags:
   - release
-description: &apos;V8 v6.9 特性包括透過嵌入內建功能降低記憶體使用量、更快的 WebAssembly 啟動速度（使用 Liftoff 引擎）、更好的 DataView 與 WeakMap 性能，以及更多內容！&apos;
-tweet: &apos;1026825606003150848&apos;
+description: 'V8 v6.9 特性包括透過嵌入內建功能降低記憶體使用量、更快的 WebAssembly 啟動速度（使用 Liftoff 引擎）、更好的 DataView 與 WeakMap 性能，以及更多內容！'
+tweet: '1026825606003150848'
 ---
 每隔六週，我們會根據我們的[發佈流程](/docs/release-process)建立 V8 的一個新分支。每個版本都從 V8 的 Git 主分支中分支出來，時間恰逢 Chrome Beta 里程碑之前。今天我們很高興宣布最新的分支，[V8 版本 6.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.9)，它正在 Beta 階段，並將在幾週後與 Chrome 69 的 Stable 版本同步發佈。V8 v6.9 包含各種面向開發者的功能。本文在正式發佈之前提供一些亮點預覽。
 

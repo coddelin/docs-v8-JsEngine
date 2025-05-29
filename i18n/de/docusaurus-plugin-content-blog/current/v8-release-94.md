@@ -21,7 +21,7 @@ Klassen erhalten die Fähigkeit, Code zu gruppieren, der einmal pro Klassenbewer
 ```javascript
 class C {
   // Dieser Block wird ausgeführt, wenn die Klasse selbst bewertet wird
-  static { console.log("C&apos;s statischer Block"); }
+  static { console.log("C's statischer Block"); }
 }
 ```
 

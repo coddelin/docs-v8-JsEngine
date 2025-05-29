@@ -1,13 +1,13 @@
 ---
-title: &apos;Супербыстрый доступ к свойствам `super`&apos;
-author: &apos;[Марья Хётта](https://twitter.com/marjakh), супероптимизатор&apos;
+title: 'Супербыстрый доступ к свойствам `super`'
+author: '[Марья Хётта](https://twitter.com/marjakh), супероптимизатор'
 avatars:
   - marja-holtta
 date: 2021-02-18
 tags:
   - JavaScript
-description: &apos;Быстрее доступ к свойствам `super` в V8 v9.0&apos;
-tweet: &apos;1362465295848333316&apos;
+description: 'Быстрее доступ к свойствам `super` в V8 v9.0'
+tweet: '1362465295848333316'
 ---
 
 [`super`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super) может быть использован для доступа к свойствам и методам родителя объекта.
@@ -106,7 +106,7 @@ B.prototype.m.call(some_other_object); // все равно возвращает
 
 ```javascript
 const myproto = {
-  __proto__: { &apos;x&apos;: 100 },
+  __proto__: { 'x': 100 },
   m() { return super.x; }
 };
 const o = { __proto__: myproto };

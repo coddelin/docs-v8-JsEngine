@@ -1,13 +1,13 @@
 ---
-title: &apos;Beschleunigung von V8-Regulären Ausdrücken&apos;
-author: &apos;Jakob Gruber, Softwareingenieur für reguläre Ausdrücke&apos;
+title: 'Beschleunigung von V8-Regulären Ausdrücken'
+author: 'Jakob Gruber, Softwareingenieur für reguläre Ausdrücke'
 avatars:
-  - &apos;jakob-gruber&apos;
+  - 'jakob-gruber'
 date: 2017-01-10 13:33:37
 tags:
   - internals
   - RegExp
-description: &apos;V8 hat kürzlich die eingebauten Funktionen von regulären Ausdrücken von einer in sich gehosteten JavaScript-Implementierung auf eine umgestellt, die direkt in unsere neue Code-Generierungsarchitektur auf Basis von TurboFan integriert ist.&apos;
+description: 'V8 hat kürzlich die eingebauten Funktionen von regulären Ausdrücken von einer in sich gehosteten JavaScript-Implementierung auf eine umgestellt, die direkt in unsere neue Code-Generierungsarchitektur auf Basis von TurboFan integriert ist.'
 ---
 Dieser Blogbeitrag behandelt die jüngste Migration der eingebauten Funktionen von regulären Ausdrücken in V8 von einer in sich gehosteten JavaScript-Implementierung auf eine, die direkt in unsere neue Code-Generierungsarchitektur auf Basis von [TurboFan](/blog/v8-release-56) integriert ist.
 
@@ -34,17 +34,17 @@ Wie können Sie als JavaScript-Entwickler sicherstellen, dass Ihre RegExps schne
 
 ```js
 const re = /./g;
-re.exec(&apos;&apos;);  // Schneller Weg.
-re.new_property = &apos;langsam&apos;;
-RegExp.prototype.new_property = &apos;ebenfalls langsam&apos;;
-re.exec(&apos;&apos;);  // Langsamer Weg.
+re.exec('');  // Schneller Weg.
+re.new_property = 'langsam';
+RegExp.prototype.new_property = 'ebenfalls langsam';
+re.exec('');  // Langsamer Weg.
 ```
 
 Und obwohl das Subklassieren von RegExps manchmal recht nützlich sein kann, sollten Sie sich bewusst sein, dass subklassierte RegExp-Instanzen eine allgemeinere Handhabung erfordern und daher den langsamen Weg nehmen:
 
 ```js
 class SlowRegExp extends RegExp {}
-new SlowRegExp(".", "g").exec(&apos;&apos;);  // Langsamer Weg.
+new SlowRegExp(".", "g").exec('');  // Langsamer Weg.
 ```
 
 Die vollständige RegExp-Migration wird in V8 v5.7 verfügbar sein.

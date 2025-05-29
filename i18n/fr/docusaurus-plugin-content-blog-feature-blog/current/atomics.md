@@ -1,6 +1,6 @@
 ---
-title: &apos;`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), une blogueuse non bloquante&apos;
+title: '`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`'
+author: '[Marja Hölttä](https://twitter.com/marjakh), une blogueuse non bloquante'
 avatars:
   - marja-holtta
 date: 2020-09-24
@@ -8,8 +8,8 @@ tags:
   - ECMAScript
   - ES2020
   - Node.js 16
-description: &apos;Atomics.wait et Atomics.notify sont des primitives de synchronisation bas-niveau utiles pour implémenter par exemple des mutex. Atomics.wait est uniquement utilisable sur des threads de travail. À partir de la version 8.7, V8 prend en charge une version non bloquante, Atomics.waitAsync, qui est également utilisable sur le thread principal.&apos;
-tweet: &apos;1309118447377358848&apos;
+description: 'Atomics.wait et Atomics.notify sont des primitives de synchronisation bas-niveau utiles pour implémenter par exemple des mutex. Atomics.wait est uniquement utilisable sur des threads de travail. À partir de la version 8.7, V8 prend en charge une version non bloquante, Atomics.waitAsync, qui est également utilisable sur le thread principal.'
+tweet: '1309118447377358848'
 ---
 [`Atomics.wait`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/wait) et [`Atomics.notify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/notify) sont des primitives de synchronisation bas-niveau utiles pour implémenter des mutex et d’autres moyens de synchronisation. Cependant, étant donné que `Atomics.wait` est bloquant, il est impossible de l’appeler sur le thread principal (une tentative entraîne une `TypeError`).
 
@@ -25,7 +25,7 @@ Dans cet article, nous expliquons comment utiliser ces API bas-niveau pour impl�
 - `expectedValue`: une valeur que nous attendons de trouver à l'emplacement mémoire décrit par `(buffer, index)`
 - `timeout`: un délai en millisecondes (optionnel, par défaut à `Infinity`)
 
-La valeur de retour de `Atomics.wait` est une chaîne de caractères. Si l'emplacement mémoire ne contient pas la valeur attendue, `Atomics.wait` retourne immédiatement avec la valeur `&apos;not-equal&apos;`. Sinon, le thread est bloqué jusqu'à ce qu'un autre thread appelle `Atomics.notify` avec le même emplacement mémoire ou que le délai soit expiré. Dans le premier cas, `Atomics.wait` retourne la valeur `&apos;ok&apos;`, dans le dernier cas, `Atomics.wait` retourne la valeur `&apos;timed-out&apos;`.
+La valeur de retour de `Atomics.wait` est une chaîne de caractères. Si l'emplacement mémoire ne contient pas la valeur attendue, `Atomics.wait` retourne immédiatement avec la valeur `'not-equal'`. Sinon, le thread est bloqué jusqu'à ce qu'un autre thread appelle `Atomics.notify` avec le même emplacement mémoire ou que le délai soit expiré. Dans le premier cas, `Atomics.wait` retourne la valeur `'ok'`, dans le dernier cas, `Atomics.wait` retourne la valeur `'timed-out'`.
 
 `Atomics.notify` prend les paramètres suivants :
 
@@ -37,11 +37,11 @@ Il notifie le nombre spécifié d'attenteurs, dans l'ordre FIFO, qui attendent �
 
 Contrairement à `Atomics.wait`, `Atomics.waitAsync` retourne toujours immédiatement. La valeur de retour est l'une des suivantes :
 
-- `{ async: false, value: &apos;not-equal&apos; }` (si l'emplacement mémoire ne contenait pas la valeur attendue)
-- `{ async: false, value: &apos;timed-out&apos; }` (uniquement pour un délai immédiat de 0)
+- `{ async: false, value: 'not-equal' }` (si l'emplacement mémoire ne contenait pas la valeur attendue)
+- `{ async: false, value: 'timed-out' }` (uniquement pour un délai immédiat de 0)
 - `{ async: true, value: promise }`
 
-La promesse peut être résolue ultérieurement avec une chaîne de caractères `&apos;ok&apos;` (si `Atomics.notify` a été appelé avec le même emplacement mémoire) ou `&apos;timed-out&apos;` (si le délai a été atteint). La promesse n'est jamais rejetée.
+La promesse peut être résolue ultérieurement avec une chaîne de caractères `'ok'` (si `Atomics.notify` a été appelé avec le même emplacement mémoire) ou `'timed-out'` (si le délai a été atteint). La promesse n'est jamais rejetée.
 
 L'exemple suivant démontre l'utilisation basique de `Atomics.waitAsync` :
 
@@ -53,14 +53,14 @@ const result = Atomics.waitAsync(i32a, 0, 0, 1000);
 //                                     |  ^ valeur attendue
 //                                     ^ index
 
-if (result.value === &apos;not-equal&apos;) {
+if (result.value === 'not-equal') {
   // La valeur dans le SharedArrayBuffer n'était pas celle attendue.
 } else {
   result.value instanceof Promise; // true
   result.value.then(
     (value) => {
-      if (value == &apos;ok&apos;) { /* notifié */ }
-      else { /* la valeur est &apos;timed-out&apos; */ }
+      if (value == 'ok') { /* notifié */ }
+      else { /* la valeur est 'timed-out' */ }
     });
 }
 
@@ -141,17 +141,17 @@ unlock() {
                       /* ancienne valeur >>> */  AsyncLock.LOCKED,
                       /* nouvelle valeur >>> */  AsyncLock.UNLOCKED);
   if (oldValue != AsyncLock.LOCKED) {
-    throw new Error(&apos;Tentative de déverrouillage sans posséder le mutex&apos;);
+    throw new Error('Tentative de déverrouillage sans posséder le mutex');
   }
   Atomics.notify(this.i32a, AsyncLock.INDEX, 1);
 }
 ```
 
-Le cas simple se déroule comme suit : le verrou est libre et le thread T1 l'acquiert en changeant l'état du verrou avec `Atomics.compareExchange`. Le thread T2 essaie d'acquérir le verrou en appelant `Atomics.compareExchange`, mais il n'arrive pas à changer l'état du verrou. T2 appelle alors `Atomics.wait`, ce qui bloque le thread. À un moment donné, T1 libère le verrou et appelle `Atomics.notify`. Cela fait que l'appel `Atomics.wait` dans T2 retourne `&apos;ok&apos;`, réveillant T2. T2 essaie à nouveau d'acquérir le verrou, et cette fois-ci réussit.
+Le cas simple se déroule comme suit : le verrou est libre et le thread T1 l'acquiert en changeant l'état du verrou avec `Atomics.compareExchange`. Le thread T2 essaie d'acquérir le verrou en appelant `Atomics.compareExchange`, mais il n'arrive pas à changer l'état du verrou. T2 appelle alors `Atomics.wait`, ce qui bloque le thread. À un moment donné, T1 libère le verrou et appelle `Atomics.notify`. Cela fait que l'appel `Atomics.wait` dans T2 retourne `'ok'`, réveillant T2. T2 essaie à nouveau d'acquérir le verrou, et cette fois-ci réussit.
 
 Il existe également 2 cas particuliers possibles — qui démontrent la raison pour laquelle `Atomics.wait` et `Atomics.waitAsync` vérifient une valeur spécifique à l'index :
 
-- T1 détient le verrou et T2 essaie de l'obtenir. Tout d'abord, T2 essaie de changer l'état du verrou avec `Atomics.compareExchange`, mais échoue. Mais ensuite, T1 libère le verrou avant que T2 ne parvienne à appeler `Atomics.wait`. Lorsque T2 appelle `Atomics.wait`, il retourne immédiatement avec la valeur `&apos;not-equal&apos;`. Dans ce cas, T2 continue avec l'itération suivante de la boucle, essayant à nouveau d'acquérir le verrou.
+- T1 détient le verrou et T2 essaie de l'obtenir. Tout d'abord, T2 essaie de changer l'état du verrou avec `Atomics.compareExchange`, mais échoue. Mais ensuite, T1 libère le verrou avant que T2 ne parvienne à appeler `Atomics.wait`. Lorsque T2 appelle `Atomics.wait`, il retourne immédiatement avec la valeur `'not-equal'`. Dans ce cas, T2 continue avec l'itération suivante de la boucle, essayant à nouveau d'acquérir le verrou.
 - T1 détient le verrou et T2 attend avec `Atomics.wait`. T1 libère le verrou — T2 se réveille (l'appel `Atomics.wait` retourne) et essaie d'appeler `Atomics.compareExchange` pour acquérir le verrou, mais un autre thread T3 a été plus rapide et l'a déjà obtenu. Donc, l'appel à `Atomics.compareExchange` échoue, et T2 appelle à nouveau `Atomics.wait`, attendant que T3 libère le verrou.
 
 En raison de ce dernier cas particulier, le mutex n'est pas « équitable ». Il est possible que T2 ait attendu que le verrou soit libéré, mais que T3 arrive et l'obtienne immédiatement. Une implémentation plus réaliste de verrou pourrait utiliser plusieurs états pour différencier entre « verrouillé » et « verrouillé avec contention ».

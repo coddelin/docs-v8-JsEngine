@@ -123,7 +123,7 @@ index 26df61ceb8..b1ee6edd71 100644
 运行测试：
 
 ```
-$ tools/dev/gm.py x64.debug &apos;cctest/test-run-wasm-simd/RunWasmTurbofan_I32Add1&apos;
+$ tools/dev/gm.py x64.debug 'cctest/test-run-wasm-simd/RunWasmTurbofan_I32Add1'
 ...
 === cctest/test-run-wasm/RunWasmTurbofan_Int32Add1 ===
 #
@@ -342,12 +342,12 @@ index 16e838c2aa..fdd6d951f0 100644
 运行我们的测试，我们看到新的编译错误：
 
 ```
-../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: 错误：枚举值&apos;kX64Int32Add1&apos;未在switch中处理 [-Werror,-Wswitch]
+../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: 错误：枚举值'kX64Int32Add1'未在switch中处理 [-Werror,-Wswitch]
   switch (instr->arch_opcode()) {
           ^
 1 个错误已生成。
 ...
-../../src/compiler/backend/x64/code-generator-x64.cc:733:11: 错误：枚举值&apos;kX64Int32Add1&apos;未在switch中处理 [-Werror,-Wswitch]
+../../src/compiler/backend/x64/code-generator-x64.cc:733:11: 错误：枚举值'kX64Int32Add1'未在switch中处理 [-Werror,-Wswitch]
   switch (arch_opcode) {
           ^
 1 个错误已生成。

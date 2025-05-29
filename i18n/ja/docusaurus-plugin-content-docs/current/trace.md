@@ -1,6 +1,6 @@
 ---
-title: &apos;V8のトレース&apos;
-description: &apos;この文書はV8の組み込みトレース機能を活用する方法を説明します。&apos;
+title: 'V8のトレース'
+description: 'この文書はV8の組み込みトレース機能を活用する方法を説明します。'
 ---
 V8はトレース機能をサポートしています。これは[Chromeのトレースシステムを介してChromeに埋め込まれた場合に自動的に機能します](/docs/rcs)。ただし、スタンドアロンのV8やDefault Platformを使用する埋め込み環境でも有効にすることができます。トレースビューアーの詳細については[こちら](https://github.com/catapult-project/catapult/blob/master/tracing/README.md)をご覧ください。
 

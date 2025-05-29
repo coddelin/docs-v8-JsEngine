@@ -1,15 +1,15 @@
 ---
-title: &apos;Jank Busters Parte Dois: Orinoco&apos;
-author: &apos;os jank busters: Ulan Degenbaev, Michael Lippautz e Hannes Payer&apos;
+title: 'Jank Busters Parte Dois: Orinoco'
+author: 'os jank busters: Ulan Degenbaev, Michael Lippautz e Hannes Payer'
 avatars:
-  - &apos;ulan-degenbaev&apos;
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'ulan-degenbaev'
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2016-04-12 13:33:37
 tags:
   - internos
   - memória
-description: &apos;Este artigo introduz três otimizações que estabelecem as bases para um novo coletor de lixo no V8, codinome Orinoco.&apos;
+description: 'Este artigo introduz três otimizações que estabelecem as bases para um novo coletor de lixo no V8, codinome Orinoco.'
 ---
 Em um [post anterior do blog](/blog/jank-busters), apresentamos o problema da queda de desempenho causada pela coleta de lixo que interrompe uma experiência de navegação fluida. Neste post do blog, introduzimos três otimizações que estabelecem as bases para um novo coletor de lixo no V8, codinome _Orinoco_. Orinoco é baseado na ideia de que implementar um coletor de lixo principalmente paralelo e simultâneo, sem limites geracionais rígidos, reduzirá a queda de desempenho na coleta de lixo e o consumo de memória enquanto fornece alta produtividade. Em vez de implementar Orinoco por trás de uma opção como um coletor de lixo separado, decidimos lançar os recursos do Orinoco incrementalmente no V8 diretamente a partir da árvore principal para beneficiar os usuários imediatamente. Os três recursos discutidos neste post são compactação paralela, processamento paralelo de conjunto registrado e alocação preta.
 

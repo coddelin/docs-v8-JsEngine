@@ -1,6 +1,6 @@
 ---
-title: &apos;Ejecutar benchmarks localmente&apos;
-description: &apos;Este documento explica cómo ejecutar conjuntos de benchmarks clásicos en d8.&apos;
+title: 'Ejecutar benchmarks localmente'
+description: 'Este documento explica cómo ejecutar conjuntos de benchmarks clásicos en d8.'
 ---
 Tenemos un flujo de trabajo sencillo para ejecutar los benchmarks “clásicos” de SunSpider, Kraken y Octane. Puedes ejecutar con diferentes binarios y combinaciones de banderas, y los resultados se promedian sobre múltiples ejecuciones.
 

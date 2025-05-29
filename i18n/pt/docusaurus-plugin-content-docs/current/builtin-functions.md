@@ -1,6 +1,6 @@
 ---
-title: &apos;Funções integradas&apos;
-description: &apos;Este documento explica o que são as “built-ins” no V8.&apos;
+title: 'Funções integradas'
+description: 'Este documento explica o que são as “built-ins” no V8.'
 ---
 As funções integradas no V8 vêm em diferentes variantes em relação à implementação, dependendo de sua funcionalidade, requisitos de desempenho e, às vezes, desenvolvimento histórico simples.
 

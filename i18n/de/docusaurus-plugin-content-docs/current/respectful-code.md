@@ -1,6 +1,6 @@
 ---
-title: &apos;Respektvoller Code&apos;
-description: &apos;Inklusivität steht im Mittelpunkt der Kultur von V8, und unsere Werte beinhalten, einander mit Würde zu behandeln. Daher ist es wichtig, dass jeder beitragen kann, ohne den schädlichen Auswirkungen von Vorurteilen und Diskriminierung ausgesetzt zu sein.&apos;
+title: 'Respektvoller Code'
+description: 'Inklusivität steht im Mittelpunkt der Kultur von V8, und unsere Werte beinhalten, einander mit Würde zu behandeln. Daher ist es wichtig, dass jeder beitragen kann, ohne den schädlichen Auswirkungen von Vorurteilen und Diskriminierung ausgesetzt zu sein.'
 ---
 
 Inklusivität steht im Mittelpunkt der Kultur von V8, und unsere Werte beinhalten, einander mit Würde zu behandeln. Daher ist es wichtig, dass jeder beitragen kann, ohne den schädlichen Auswirkungen von Vorurteilen und Diskriminierung ausgesetzt zu sein. Allerdings können Begriffe in unserer Codebasis, Benutzeroberflächen und Dokumentation diese Diskriminierung aufrechterhalten. Dieses Dokument gibt Leitlinien vor, die darauf abzielen, respektlose Terminologie im Code und in der Dokumentation zu adressieren.

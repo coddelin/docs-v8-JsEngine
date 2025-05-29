@@ -1,13 +1,13 @@
 ---
-title: &apos;V8-Veröffentlichung v7.3&apos;
-author: &apos;Clemens Backes, Compiler-Bändiger&apos;
+title: 'V8-Veröffentlichung v7.3'
+author: 'Clemens Backes, Compiler-Bändiger'
 avatars:
   - clemens-backes
 date: 2019-02-07 11:30:42
 tags:
   - veröffentlichung
-description: &apos;V8 v7.3 bietet Verbesserungen in WebAssembly und asynchroner Leistung, asynchrone Stack-Traces, Object.fromEntries, String#matchAll und vieles mehr!&apos;
-tweet: &apos;1093457099441561611&apos;
+description: 'V8 v7.3 bietet Verbesserungen in WebAssembly und asynchroner Leistung, asynchrone Stack-Traces, Object.fromEntries, String#matchAll und vieles mehr!'
+tweet: '1093457099441561611'
 ---
 Alle sechs Wochen erstellen wir einen neuen Branch von V8 im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process). Jede Version wird direkt vor einem Chrome-Beta-Meilenstein aus dem Git-Master von V8 verzweigt. Heute freuen wir uns, unseren neuesten Branch, [V8 Version 7.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.3), anzukündigen, der bis zu seiner Veröffentlichung in mehreren Wochen in Zusammenarbeit mit Chrome 73 Stable in der Beta-Phase ist. V8 v7.3 ist vollgepackt mit allerlei von Entwicklern geschätzten Features. Dieser Beitrag bietet einen Überblick über einige der Highlights als Vorgeschmack auf die Veröffentlichung.
 
@@ -37,7 +37,7 @@ Die `Object.entries`-API ist nichts Neues:
 ```js
 const object = { x: 42, y: 50 };
 const entries = Object.entries(object);
-// → [[&apos;x&apos;, 42], [&apos;y&apos;, 50]]
+// → [['x', 42], ['y', 50]]
 ```
 
 Leider gab es bisher keine einfache Möglichkeit, aus dem `entries`-Ergebnis wieder ein gleichwertiges Objekt zu erstellen… bis jetzt! V8 v7.3 unterstützt [`Object.fromEntries()`](/features/object-fromentries), eine neue eingebaute API, die die Umkehrung von `Object.entries` ausführt:
@@ -54,21 +54,21 @@ Für weitere Informationen und Anwendungsbeispiele, siehe [unsere Erklärung zu 
 Ein häufiger Anwendungsfall von globalen (`g`) oder stickigen (`y`) regulären Ausdrücken ist die Anwendung auf eine Zeichenkette und das Iterieren durch alle Übereinstimmungen. Die neue `String.prototype.matchAll`-API erleichtert dies mehr denn je, insbesondere für reguläre Ausdrücke mit Erfassungsgruppen:
 
 ```js
-const string = &apos;Lieblings-GitHub-Repos: tc39/ecma262 v8/v8.dev&apos;;
+const string = 'Lieblings-GitHub-Repos: tc39/ecma262 v8/v8.dev';
 const regex = /\b(?<owner>[a-z0-9]+)\/(?<repo>[a-z0-9\.]+)\b/g;
 
 for (const match of string.matchAll(regex)) {
-  console.log(`${match[0]} bei ${match.index} mit &apos;${match.input}&apos;`);
+  console.log(`${match[0]} bei ${match.index} mit '${match.input}'`);
   console.log(`→ Besitzer: ${match.groups.owner}`);
   console.log(`→ Repo: ${match.groups.repo}`);
 }
 
 // Ausgabe:
 //
-// tc39/ecma262 bei 23 mit &apos;Lieblings-GitHub-Repos: tc39/ecma262 v8/v8.dev&apos;
+// tc39/ecma262 bei 23 mit 'Lieblings-GitHub-Repos: tc39/ecma262 v8/v8.dev'
 // → Besitzer: tc39
 // → Repo: ecma262
-// v8/v8.dev bei 36 mit &apos;Lieblings-GitHub-Repos: tc39/ecma262 v8/v8.dev&apos;
+// v8/v8.dev bei 36 mit 'Lieblings-GitHub-Repos: tc39/ecma262 v8/v8.dev'
 // → Besitzer: v8
 // → Repo: v8.dev
 ```

@@ -1,10 +1,10 @@
 ---
-title: &apos;Релиз V8 v5.5&apos;
-author: &apos;команда V8&apos;
+title: 'Релиз V8 v5.5'
+author: 'команда V8'
 date: 2016-10-24 13:33:37
 tags:
   - релиз
-description: &apos;V8 v5.5 сопровождается снижением потребления памяти и повышением поддержки функций языка ECMAScript.&apos;
+description: 'V8 v5.5 сопровождается снижением потребления памяти и повышением поддержки функций языка ECMAScript.'
 ---
 Каждые шесть недель мы создаем новую ветку V8 в рамках нашего [процесса релиза](/docs/release-process). Каждая версия ветвится от мастера Git репозитория V8 непосредственно перед этапом бета-версии Chrome. Сегодня мы рады анонсировать нашу новую ветку, [V8 версии 5.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.5), которая будет находиться в бете до ее выпуска в составе стабильной версии Chrome 55 через несколько недель. V8 v5.5 содержит множество улучшений для разработчиков, и мы хотели бы представить вам некоторые из основных моментов в преддверии релиза.
 
@@ -24,7 +24,7 @@ function logFetch(url) {
     .then(text => {
       console.log(text);
     }).catch(err => {
-      console.error(&apos;запрос не удался&apos;, err);
+      console.error('запрос не удался', err);
     });
 }
 ```
@@ -37,7 +37,7 @@ async function logFetch(url) {
     const response = await fetch(url);
     console.log(await response.text());
   } catch (err) {
-    console.log(&apos;запрос не удался&apos;, err);
+    console.log('запрос не удался', err);
   }
 }
 ```

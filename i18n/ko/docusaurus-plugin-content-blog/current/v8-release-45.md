@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 릴리스 v4.5&apos;
-author: &apos;V8 팀&apos;
+title: 'V8 릴리스 v4.5'
+author: 'V8 팀'
 date: 2015-07-17 13:33:37
 tags:
   - 릴리스
-description: &apos;V8 v4.5는 성능 향상과 함께 여러 ES2015 기능 지원을 추가합니다.&apos;
+description: 'V8 v4.5는 성능 향상과 함께 여러 ES2015 기능 지원을 추가합니다.'
 ---
 약 6주마다 [릴리스 프로세스](https://v8.dev/docs/release-process)의 일환으로 V8의 새로운 브랜치를 만듭니다. 각 버전은 V8의 Git 마스터에서 Chrome이 Chrome Beta 마일스톤을 위해 브랜치하기 직전에 분기됩니다. 오늘은 최신 브랜치인 [V8 버전 4.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.5)를 발표하게 되어 기쁩니다. 이 브랜치는 Chrome 45 Stable과 함께 릴리스될 때까지 베타 상태에 있을 것입니다. V8 v4.5는 개발자가 사용하기 좋은 다양한 기능들로 가득 차 있어 몇 주 후에 릴리스될 예정인 주요 내용을 미리 보여드리고자 합니다.
 
@@ -31,8 +31,8 @@ console.log(convertedData);
 
 ```js
 class MyClass {
-  constructor() { this.a = &apos;안녕하세요, &apos;; }
-  hello() { setInterval(() => console.log(this.a + &apos;세계!&apos;), 1000); }
+  constructor() { this.a = '안녕하세요, '; }
+  hello() { setInterval(() => console.log(this.a + '세계!'), 1000); }
 }
 const myInstance = new MyClass();
 myInstance.hello();
@@ -47,8 +47,8 @@ ES2015에 명시된 [배열 및 TypedArray](https://developer.mozilla.org/en-US/
 [`Object.assign`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)는 개발자가 객체를 빠르게 병합하고 복제할 수 있도록 해줍니다.
 
 ```js
-const target = { a: &apos;안녕하세요, &apos; };
-const source = { b: &apos;세계!&apos; };
+const target = { a: '안녕하세요, ' };
+const source = { b: '세계!' };
 // 객체 병합
 Object.assign(target, source);
 console.log(target.a + target.b);
@@ -65,10 +65,10 @@ V8의 새로운 최적화 컴파일러인 [TurboFan](/blog/turbofan-jit)의 설�
 여기 'for-of'를 사용하는 코드의 예가 있습니다. 이는 이제 TurboFan으로 컴파일할 수 있습니다.
 
 ```js
-const sequence = [&apos;첫째&apos;, &apos;둘째&apos;, &apos;셋째&apos;];
+const sequence = ['첫째', '둘째', '셋째'];
 for (const value of sequence) {
   // 이 범위는 이제 최적화 가능합니다.
-  const object = {a: &apos;안녕하세요, &apos;, b: &apos;세계!&apos;, c: value};
+  const object = {a: '안녕하세요, ', b: '세계!', c: value};
   console.log(object.a + object.b + object.c);
 }
 ```

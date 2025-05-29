@@ -1,27 +1,27 @@
 ---
-title: &apos;Gut geformtes `JSON.stringify`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Gut geformtes `JSON.stringify`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-09-11
 tags:
   - ECMAScript
   - ES2019
-description: &apos;JSON.stringify gibt jetzt Escape-Sequenzen für einsame Surrogate aus, wodurch seine Ausgabe gültiges Unicode wird (und in UTF-8 darstellbar ist).&apos;
+description: 'JSON.stringify gibt jetzt Escape-Sequenzen für einsame Surrogate aus, wodurch seine Ausgabe gültiges Unicode wird (und in UTF-8 darstellbar ist).'
 ---
 `JSON.stringify` wurde zuvor so spezifiziert, dass es schlecht geformte Unicode-Zeichenketten zurückgibt, wenn die Eingabe einsame Surrogate enthält:
 
 ```js
-JSON.stringify(&apos;\uD800&apos;);
-// → &apos;"�"&apos;
+JSON.stringify('\uD800');
+// → '"�"'
 ```
 
 [Der Vorschlag „Gut geformtes `JSON.stringify`“](https://github.com/tc39/proposal-well-formed-stringify) ändert `JSON.stringify` so, dass es Escape-Sequenzen für einsame Surrogate ausgibt, wodurch seine Ausgabe gültiges Unicode wird (und in UTF-8 darstellbar ist):
 
 <!--truncate-->
 ```js
-JSON.stringify(&apos;\uD800&apos;);
-// → &apos;"\\ud800"&apos;
+JSON.stringify('\uD800');
+// → '"\\ud800"'
 ```
 
 Beachten Sie, dass `JSON.parse(stringified)` immer noch die gleichen Ergebnisse wie zuvor liefert.

@@ -1,16 +1,16 @@
 ---
-title: &apos;V8中的並行標記&apos;
-author: &apos;Ulan Degenbaev、Michael Lippautz 和 Hannes Payer — 主執行緒解放者&apos;
+title: 'V8中的並行標記'
+author: 'Ulan Degenbaev、Michael Lippautz 和 Hannes Payer — 主執行緒解放者'
 avatars:
-  - &apos;ulan-degenbaev&apos;
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'ulan-degenbaev'
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2018-06-11 13:33:37
 tags:
   - internals
   - memory
-description: &apos;本文介紹了一種稱為並行標記的垃圾回收技術。&apos;
-tweet: &apos;1006187194808233985&apos;
+description: '本文介紹了一種稱為並行標記的垃圾回收技術。'
+tweet: '1006187194808233985'
 ---
 本文介紹了一種稱為_並行標記_的垃圾回收技術。此優化使 JavaScript 應用程式能在垃圾回收器掃描堆進行標記存活物件時繼續執行。基準測試顯示，並行標記可將主執行緒上的標記時間減少60%–70%。並行標記是[Orinoco專案](/blog/orinoco)的最後一塊拼圖——該專案旨在逐步將舊的垃圾回收器替換為新的大部分並行和平行垃圾回收器。並行標記在 Chrome 64 和 Node.js v10中為預設啟用。
 

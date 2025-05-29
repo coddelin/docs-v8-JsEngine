@@ -1,13 +1,13 @@
 ---
-title: &apos;Optimizando tablas hash: ocultando el código hash&apos;
-author: &apos;[Sathya Gunasekaran](https://twitter.com/_gsathya), guardián de los códigos hash&apos;
+title: 'Optimizando tablas hash: ocultando el código hash'
+author: '[Sathya Gunasekaran](https://twitter.com/_gsathya), guardián de los códigos hash'
 avatars:
-  - &apos;sathya-gunasekaran&apos;
+  - 'sathya-gunasekaran'
 date: 2018-01-29 13:33:37
 tags:
   - internos
-tweet: &apos;958046113390411776&apos;
-description: &apos;Varias estructuras de datos de JavaScript como Map, Set, WeakSet y WeakMap usan tablas hash internamente. Este artículo explica cómo V8 v6.3 mejora el rendimiento de las tablas hash.&apos;
+tweet: '958046113390411776'
+description: 'Varias estructuras de datos de JavaScript como Map, Set, WeakSet y WeakMap usan tablas hash internamente. Este artículo explica cómo V8 v6.3 mejora el rendimiento de las tablas hash.'
 ---
 ECMAScript 2015 introdujo varias nuevas estructuras de datos como Map, Set, WeakSet y WeakMap, todas las cuales usan tablas hash internamente. Esta publicación detalla las [mejoras recientes](https://bugs.chromium.org/p/v8/issues/detail?id=6404) en cómo [V8 v6.3+](/blog/v8-release-63) almacena las claves en tablas hash.
 
@@ -46,8 +46,8 @@ El almacén de respaldo de los elementos se utiliza para almacenar propiedades q
 
 ```js
 const x = {};
-x[1] = &apos;bar&apos;;      // ← almacenado en elementos
-x[&apos;foo&apos;] = &apos;bar&apos;;  // ← almacenado en propiedades
+x[1] = 'bar';      // ← almacenado en elementos
+x['foo'] = 'bar';  // ← almacenado en propiedades
 ```
 
 ## Ocultando el código hash

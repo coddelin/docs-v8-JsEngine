@@ -1,14 +1,14 @@
 ---
-title: &apos;Tipos de elementos em V8&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Tipos de elementos em V8'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-09-12 13:33:37
 tags:
   - internals
   - presentations
-description: &apos;Este mergulho técnico explica como o V8 otimiza operações em arrays por trás das cenas, e o que isso significa para desenvolvedores JavaScript.&apos;
-tweet: &apos;907608362191376384&apos;
+description: 'Este mergulho técnico explica como o V8 otimiza operações em arrays por trás das cenas, e o que isso significa para desenvolvedores JavaScript.'
+tweet: '907608362191376384'
 ---
 :::note
 **Nota:** Se você prefere assistir a uma apresentação em vez de ler artigos, aproveite o vídeo abaixo!
@@ -55,7 +55,7 @@ const array = [1, 2, 3];
 // tipo de elemento: PACKED_SMI_ELEMENTS
 array.push(4.56);
 // tipo de elemento: PACKED_DOUBLE_ELEMENTS
-array.push(&apos;x&apos;);
+array.push('x');
 // tipo de elemento: PACKED_ELEMENTS
 ```
 
@@ -80,7 +80,7 @@ Até agora, aprendemos o seguinte:
 Até agora, lidamos apenas com arrays densos ou compactados. Criar buracos no array (ou seja, torná-lo esparso) degrada o tipo de elemento para sua variante “holey”:
 
 ```js
-const array = [1, 2, 3, 4.56, &apos;x&apos;];
+const array = [1, 2, 3, 4.56, 'x'];
 // tipo de elemento: PACKED_ELEMENTS
 array.length; // 5
 array[9] = 1; // array[5] até array[8] são agora buracos
@@ -209,9 +209,9 @@ Alguns objetos no JavaScript — especialmente no DOM — parecem arrays, embora
 
 ```js
 const arrayLike = {};
-arrayLike[0] = &apos;a&apos;;
-arrayLike[1] = &apos;b&apos;;
-arrayLike[2] = &apos;c&apos;;
+arrayLike[0] = 'a';
+arrayLike[1] = 'b';
+arrayLike[2] = 'c';
 arrayLike.length = 3;
 ```
 
@@ -221,7 +221,7 @@ Este objeto tem um `length` e suporta acesso a elementos indexados (assim como u
 Array.prototype.forEach.call(arrayLike, (value, index) => {
   console.log(`${ index }: ${ value }`);
 });
-// Isso registra &apos;0: a&apos;, depois &apos;1: b&apos;, e finalmente &apos;2: c&apos;.
+// Isso registra '0: a', depois '1: b', e finalmente '2: c'.
 ```
 
 Este código chama o `Array.prototype.forEach` nativo no objeto semelhante a array, e funciona como esperado. No entanto, isso é mais lento do que chamar `forEach` em um array adequado, que é altamente otimizado no V8. Se você planeja usar métodos de array neste objeto mais de uma vez, considere transformá-lo em um array real antes:
@@ -231,7 +231,7 @@ const actualArray = Array.prototype.slice.call(arrayLike, 0);
 actualArray.forEach((value, index) => {
   console.log(`${ index }: ${ value }`);
 });
-// Isso registra &apos;0: a&apos;, depois &apos;1: b&apos;, e finalmente &apos;2: c&apos;.
+// Isso registra '0: a', depois '1: b', e finalmente '2: c'.
 ```
 
 O custo único de conversão pode valer as otimizações posteriores, especialmente se você planeja realizar muitas operações no array.
@@ -244,8 +244,8 @@ const logArgs = function() {
     console.log(`${ index }: ${ value }`);
   });
 };
-logArgs(&apos;a&apos;, &apos;b&apos;, &apos;c&apos;);
-// Isso registra &apos;0: a&apos;, depois &apos;1: b&apos;, e finalmente &apos;2: c&apos;.
+logArgs('a', 'b', 'c');
+// Isso registra '0: a', depois '1: b', e finalmente '2: c'.
 ```
 
 Os parâmetros rest do ES2015 podem ajudar aqui. Eles produzem arrays adequados que podem ser usados em vez dos objetos semelhantes a arrays `arguments` de forma elegante.
@@ -256,8 +256,8 @@ const logArgs = (...args) => {
     console.log(`${ index }: ${ value }`);
   });
 };
-logArgs(&apos;a&apos;, &apos;b&apos;, &apos;c&apos;);
-// Isso registra &apos;0: a&apos;, depois &apos;1: b&apos;, e finalmente &apos;2: c&apos;.
+logArgs('a', 'b', 'c');
+// Isso registra '0: a', depois '1: b', e finalmente '2: c'.
 ```
 
 Hoje em dia, não há uma boa razão para usar o objeto `arguments` diretamente.
@@ -281,7 +281,7 @@ const doSomething = (item) => console.log(item);
 
 each([], () => {});
 
-each([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], doSomething);
+each(['a', 'b', 'c'], doSomething);
 // `each` é chamado com `PACKED_ELEMENTS`. O V8 usa um cache inline
 // (ou "IC") para lembrar que `each` foi chamado com este tipo específico
 // de elementos. O V8 é otimista e assume que os

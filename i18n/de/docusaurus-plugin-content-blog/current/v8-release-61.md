@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 Veröffentlichung v6.1&apos;
-author: &apos;das V8-Team&apos;
+title: 'V8 Veröffentlichung v6.1'
+author: 'das V8-Team'
 date: 2017-08-03 13:33:37
 tags:
   - Veröffentlichung
-description: &apos;V8 v6.1 kommt mit einer reduzierten Binärgröße und enthält Leistungsverbesserungen. Zusätzlich wird asm.js jetzt validiert und in WebAssembly kompiliert.&apos;
+description: 'V8 v6.1 kommt mit einer reduzierten Binärgröße und enthält Leistungsverbesserungen. Zusätzlich wird asm.js jetzt validiert und in WebAssembly kompiliert.'
 ---
 Alle sechs Wochen erstellen wir einen neuen Branch von V8 im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process). Jede Version wird direkt vor einem Chrome-Beta-Meilenstein vom Git-Master von V8 abgeleitet. Heute freuen wir uns, unseren neuesten Branch, [V8 Version 6.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.1), anzukündigen, der sich bis zu seiner Veröffentlichung in Zusammenarbeit mit Chrome 61 Stable in einigen Wochen in der Beta befindet. V8 v6.1 ist vollgepackt mit allerlei Entwicklertools. Wir möchten Ihnen einen Vorgeschmack auf einige der Highlights im Hinblick auf die Veröffentlichung geben.
 

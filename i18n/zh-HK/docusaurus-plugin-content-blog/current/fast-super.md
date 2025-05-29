@@ -1,13 +1,13 @@
 ---
-title: &apos;超高速的 `super` 屬性訪問&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh)，super 優化器&apos;
+title: '超高速的 `super` 屬性訪問'
+author: '[Marja Hölttä](https://twitter.com/marjakh)，super 優化器'
 avatars:
   - marja-holtta
 date: 2021-02-18
 tags:
   - JavaScript
-description: &apos;在 V8 v9.0 中更快的 super 屬性訪問&apos;
-tweet: &apos;1362465295848333316&apos;
+description: '在 V8 v9.0 中更快的 super 屬性訪問'
+tweet: '1362465295848333316'
 ---
 
 [`super` 關鍵字](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/super) 可用於訪問物件父級的屬性和函數。
@@ -106,7 +106,7 @@ TurboFan編譯器的[JSNativeContextSpecialization](https://v8.dev/docs/turbofan
 
 ```javascript
 const myproto = {
-  __proto__: { &apos;x&apos;: 100 },
+  __proto__: { 'x': 100 },
   m() { return super.x; }
 };
 const o = { __proto__: myproto };

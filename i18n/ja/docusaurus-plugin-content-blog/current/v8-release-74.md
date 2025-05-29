@@ -1,11 +1,11 @@
 ---
-title: &apos;V8リリース v7.4&apos;
-author: &apos;Georg Neis&apos;
+title: 'V8リリース v7.4'
+author: 'Georg Neis'
 date: 2019-03-22 16:30:42
 tags:
   - リリース
-description: &apos;V8 v7.4はWebAssemblyスレッド/Atomics、プライベートクラスフィールド、パフォーマンスおよびメモリ改善、その他多数の機能を提供します！&apos;
-tweet: &apos;1109094755936489472&apos;
+description: 'V8 v7.4はWebAssemblyスレッド/Atomics、プライベートクラスフィールド、パフォーマンスおよびメモリ改善、その他多数の機能を提供します！'
+tweet: '1109094755936489472'
 ---
 6週間ごとに、私たちは新しいV8のブランチをリリースプロセスの一環として作成します。[リリースプロセス](/docs/release-process)の詳細を参照してください。各バージョンは、Chromeのベータ段階に入る直前にV8のGitマスターから分岐されます。本日は最新のブランチ[V8バージョン7.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.4)のお知らせです。このバージョンは数週間後にChrome 74 Stableと連携してリリースされるまでベータ版となります。V8 v7.4は開発者向けのさまざまな機能が満載です。この投稿では、リリース前にいくつかのハイライトを事前に紹介します。
 
@@ -102,7 +102,7 @@ V8 v7.2では、公開クラスフィールド構文のサポートが追加さ�
 class IncreasingCounter {
   #count = 0;
   get value() {
-    console.log(&apos;現在の値を取得します!&apos;);
+    console.log('現在の値を取得します!');
     return this.#count;
   }
   increment() {
@@ -125,22 +125,22 @@ counter.#count = 42;
 
 ### `Intl.Locale`
 
-JavaScriptアプリケーションは通常`&apos;en-US&apos;`や`&apos;de-CH&apos;`のような文字列を使用してロケールを識別します。`Intl.Locale`はロケールを扱うためのより強力なメカニズムを提供し、言語、カレンダー、番号体系、時間のサイクルなど、ロケール固有の好みを簡単に抽出できるようにします。
+JavaScriptアプリケーションは通常`'en-US'`や`'de-CH'`のような文字列を使用してロケールを識別します。`Intl.Locale`はロケールを扱うためのより強力なメカニズムを提供し、言語、カレンダー、番号体系、時間のサイクルなど、ロケール固有の好みを簡単に抽出できるようにします。
 
 ```js
-const locale = new Intl.Locale(&apos;es-419-u-hc-h12&apos;, {
-  calendar: &apos;gregory&apos;
+const locale = new Intl.Locale('es-419-u-hc-h12', {
+  calendar: 'gregory'
 });
 locale.language;
-// → &apos;es&apos;
+// → 'es'
 locale.calendar;
-// → &apos;gregory&apos;
+// → 'gregory'
 locale.hourCycle;
-// → &apos;h12&apos;
+// → 'h12'
 locale.region;
-// → &apos;419&apos;
+// → '419'
 locale.toString();
-// → &apos;es-419-u-ca-gregory-hc-h12&apos;
+// → 'es-419-u-ca-gregory-hc-h12'
 ```
 
 ### ハッシュバング文法

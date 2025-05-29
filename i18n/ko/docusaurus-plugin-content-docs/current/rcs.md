@@ -1,6 +1,6 @@
 ---
-title: &apos;런타임 호출 통계&apos;
-description: &apos;이 문서는 런타임 호출 통계를 사용하여 V8 내부 세부 성능 지표를 얻는 방법을 설명합니다.&apos;
+title: '런타임 호출 통계'
+description: '이 문서는 런타임 호출 통계를 사용하여 V8 내부 세부 성능 지표를 얻는 방법을 설명합니다.'
 ---
 [개발자 도구 성능 패널](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/)은 다양한 Chrome 내부 메트릭을 시각화하여 웹 앱의 런타임 성능에 대한 통찰력을 제공합니다. 그러나 특정 저수준 V8 메트릭은 현재 개발자 도구에 공개되지 않습니다. 이 기사는 `chrome://tracing`을 통해 런타임 호출 통계(RCS)로 알려진 상세한 V8 내부 메트릭을 수집하는 가장 강력한 방법에 대해 안내합니다.
 

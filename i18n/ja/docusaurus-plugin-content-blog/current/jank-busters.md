@@ -1,13 +1,13 @@
 ---
-title: &apos;ジャンクバスターズ パート1&apos;
-author: &apos;ジャンクバスターズ: ジョッヘン・アイジンガー、ミハエル・リッパウツ、ハンネス・パイヤー&apos;
+title: 'ジャンクバスターズ パート1'
+author: 'ジャンクバスターズ: ジョッヘン・アイジンガー、ミハエル・リッパウツ、ハンネス・パイヤー'
 avatars:
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2015-10-30 13:33:37
 tags:
   - メモリ
-description: &apos;この記事では、Chrome 41からChrome 46の間に実装された最適化について説明します。これにより、ガベージコレクションの一時停止が大幅に短縮され、ユーザー体験が向上します。&apos;
+description: 'この記事では、Chrome 41からChrome 46の間に実装された最適化について説明します。これにより、ガベージコレクションの一時停止が大幅に短縮され、ユーザー体験が向上します。'
 ---
 ジャンク、言い換えれば目に見えるスタッター（処理の遅延）は、Chromeが16.66ms以内にフレームをレンダリングできない場合（60フレーム毎秒の動きが邪魔される）に発生します。現時点では、V8のガベージコレクションのほとんどがメインレンダリングスレッドで実行されています（図1参照）。これにより、多くのオブジェクトを管理する必要がある場合にジャンクが発生することが多々あります。ジャンクの排除はV8チームにとって常に最優先事項でした（[1](https://blog.chromium.org/2011/11/game-changer-for-interactive.html), [2](https://www.youtube.com/watch?v=3vPOlGRH6zk), [3](/blog/free-garbage-collection)）。この記事では、Chrome 41からChrome 46までに実装された最適化について説明し、ガベージコレクションの一時停止を大幅に削減し、ユーザー体験を向上させる結果となったものを紹介します。
 

@@ -1,6 +1,6 @@
 ---
-title: &apos;Blink 網頁測試（又名版面配置測試）&apos;
-description: &apos;V8 的基礎設施持續運行 Blink 的網頁測試，以防止與 Chromium 的整合問題。本文檔描述了遇到此類測試失敗時該怎麼做。&apos;
+title: 'Blink 網頁測試（又名版面配置測試）'
+description: 'V8 的基礎設施持續運行 Blink 的網頁測試，以防止與 Chromium 的整合問題。本文檔描述了遇到此類測試失敗時該怎麼做。'
 ---
 我們在 [整合控制台](https://ci.chromium.org/p/v8/g/integration/console) 上持續運行 [Blink 的網頁測試（之前稱為“版面配置測試”）](https://chromium.googlesource.com/chromium/src/+/master/docs/testing/web_tests.md)，以防止與 Chromium 的整合問題。
 

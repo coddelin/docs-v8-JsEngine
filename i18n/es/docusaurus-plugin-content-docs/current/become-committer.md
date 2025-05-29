@@ -1,6 +1,6 @@
 ---
-title: &apos;Convertirse en committer&apos;
-description: &apos;¿Cómo se convierte uno en un committer de V8? Este documento lo explica.&apos;
+title: 'Convertirse en committer'
+description: '¿Cómo se convierte uno en un committer de V8? Este documento lo explica.'
 ---
 Técnicamente, los committers son personas que tienen acceso de escritura al repositorio de V8. Todos los parches deben ser revisados por al menos dos committers (incluido el autor). Independientemente de este requisito, los parches también deben ser creados o revisados por un OWNER.
 

@@ -1,12 +1,12 @@
 ---
-title: &apos;V8 エクストラ&apos;
-author: &apos;ドメニック・ドニコラ（[@domenic](https://twitter.com/domenic)）、ストリーム魔術師&apos;
+title: 'V8 エクストラ'
+author: 'ドメニック・ドニコラ（[@domenic](https://twitter.com/domenic)）、ストリーム魔術師'
 avatars:
-  - &apos;domenic-denicola&apos;
+  - 'domenic-denicola'
 date: 2016-02-04 13:33:37
 tags:
   - 内部構造
-description: &apos;V8 v4.8には「V8 エクストラ」が含まれています。これは高性能で自己ホスト型APIを書くことを可能にするシンプルなインターフェイスです。&apos;
+description: 'V8 v4.8には「V8 エクストラ」が含まれています。これは高性能で自己ホスト型APIを書くことを可能にするシンプルなインターフェイスです。'
 ---
 V8はJavaScript言語の組み込みオブジェクトと関数の大部分をJavaScript自体で実装しています。たとえば、[Promisesの実装](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js)がJavaScriptで書かれているのを見ることができます。このような組み込み機能は、_自己ホスト型_ と呼ばれます。これらの実装は、[スタートアップスナップショット](/blog/custom-startup-snapshots)に含まれており、新しいコンテキストをランタイムで自己ホスト型の組み込み機能をセットアップして初期化する必要なく迅速に作成できます。
 
@@ -21,10 +21,10 @@ V8 エクストラファイルは特定の構造を持つ単純なJavaScriptフ�
 
 ```js
 (function(global, binding, v8) {
-  &apos;use strict&apos;;
+  'use strict';
   const Object = global.Object;
-  const x = v8.createPrivateSymbol(&apos;x&apos;);
-  const y = v8.createPrivateSymbol(&apos;y&apos;);
+  const x = v8.createPrivateSymbol('x');
+  const y = v8.createPrivateSymbol('y');
 
   class Vec2 {
     constructor(theX, theY) {
@@ -37,7 +37,7 @@ V8 エクストラファイルは特定の構造を持つ単純なJavaScriptフ�
     }
   }
 
-  Object.defineProperty(global, &apos;Vec2&apos;, {
+  Object.defineProperty(global, 'Vec2', {
     value: Vec2,
     enumerable: false,
     configurable: true,
@@ -59,7 +59,7 @@ V8 エクストラファイルは特定の構造を持つ単純なJavaScriptフ�
 最後に、エクストラをコンパイルすることをV8に伝えるために、プロジェクトのgypファイルに以下の行を追加します:
 
 ```js
-&apos;v8_extra_library_files&apos;: [&apos;./Vec2.js&apos;]
+'v8_extra_library_files': ['./Vec2.js']
 ```
 
 （実際の例は[V8のgypファイル](https://code.google.com/p/chromium/codesearch#chromium/src/v8/build/standalone.gypi&sq=package:chromium&type=cs&l=170)で確認できます。）

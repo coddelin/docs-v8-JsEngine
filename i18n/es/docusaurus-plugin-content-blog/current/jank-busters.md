@@ -1,13 +1,13 @@
 ---
-title: &apos;Caza Jank Parte Uno&apos;
-author: &apos;los cazadores de jank: Jochen Eisinger, Michael Lippautz, y Hannes Payer&apos;
+title: 'Caza Jank Parte Uno'
+author: 'los cazadores de jank: Jochen Eisinger, Michael Lippautz, y Hannes Payer'
 avatars:
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2015-10-30 13:33:37
 tags:
   - memoria
-description: &apos;Este artículo trata sobre optimizaciones implementadas entre Chrome 41 y Chrome 46 que reducen significativamente las pausas de la recolección de basura, resultando en una mejor experiencia para el usuario.&apos;
+description: 'Este artículo trata sobre optimizaciones implementadas entre Chrome 41 y Chrome 46 que reducen significativamente las pausas de la recolección de basura, resultando en una mejor experiencia para el usuario.'
 ---
 El jank, o en otras palabras los tartamudeos visibles, puede notarse cuando Chrome no logra renderizar un cuadro dentro de 16.66 ms (interrumpiendo el movimiento de 60 cuadros por segundo). Hasta hoy, la mayoría del trabajo de recolección de basura de V8 se realiza en el hilo principal de renderización, véase la Figura 1, a menudo resultando en jank cuando hay demasiados objetos que necesitan ser mantenidos. Eliminar el jank siempre ha sido una alta prioridad para el equipo de V8 ([1](https://blog.chromium.org/2011/11/game-changer-for-interactive.html), [2](https://www.youtube.com/watch?v=3vPOlGRH6zk), [3](/blog/free-garbage-collection)). Este artículo discute algunas optimizaciones que se implementaron entre Chrome 41 y Chrome 46 que reducen significativamente las pausas de recolección de basura, resultando en una mejor experiencia de usuario.
 

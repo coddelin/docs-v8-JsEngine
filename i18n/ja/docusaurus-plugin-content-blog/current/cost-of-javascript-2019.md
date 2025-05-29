@@ -1,15 +1,15 @@
 ---
-title: &apos;2019年のJavaScriptコスト&apos;
-author: &apos;Addy Osmani（[@addyosmani](https://twitter.com/addyosmani)）、JavaScriptジャニター、Mathias Bynens（[@mathias](https://twitter.com/mathias)）、メインスレッド解放者&apos;
+title: '2019年のJavaScriptコスト'
+author: 'Addy Osmani（[@addyosmani](https://twitter.com/addyosmani)）、JavaScriptジャニター、Mathias Bynens（[@mathias](https://twitter.com/mathias)）、メインスレッド解放者'
 avatars:
-  - &apos;addy-osmani&apos;
-  - &apos;mathias-bynens&apos;
+  - 'addy-osmani'
+  - 'mathias-bynens'
 date: 2019-06-25
 tags:
   - internals
   - parsing
-description: &apos;JavaScript処理の主なコストはダウンロードとCPU実行時間です。&apos;
-tweet: &apos;1143531042361487360&apos;
+description: 'JavaScript処理の主なコストはダウンロードとCPU実行時間です。'
+tweet: '1143531042361487360'
 ---
 :::note
 **注意:** 記事を読むのではなく、プレゼンテーションを見る方が好きなら、以下の動画をご覧ください！そうでない場合は、動画をスキップして読み進めてください。
@@ -153,12 +153,12 @@ const data = { foo: 42, bar: 1337 }; // 🐌
 …そのデータをJSON文字列化された形で表現し、ランタイムでJSON解析することができます：
 
 ```js
-const data = JSON.parse(&apos;{"foo":42,"bar":1337}&apos;); // 🚀
+const data = JSON.parse('{"foo":42,"bar":1337}'); // 🚀
 ```
 
 JSON文字列が1回だけ評価される限り、JavaScriptオブジェクトリテラルと比較して、`JSON.parse`のアプローチは[はるかに高速](https://github.com/GoogleChromeLabs/json-parse-benchmark)です。特にコールドロードの場合に効果的です。経験則として、サイズが10 kB以上のオブジェクトにはこのテクニックを適用することをお勧めしますが、性能アドバイスと同様に、変更を加える前に実際の影響を測定してください。
 
-![`JSON.parse(&apos;…&apos;)`は等価のJavaScriptリテラルと比較して、解析、コンパイル、エクゼキューションの各段階で[はるかに高速](https://github.com/GoogleChromeLabs/json-parse-benchmark)です。これはV8（1.7倍速い）だけでなく、すべての主要なJavaScriptエンジンで同様です。](/_img/cost-of-javascript-2019/json.svg)
+![`JSON.parse('…')`は等価のJavaScriptリテラルと比較して、解析、コンパイル、エクゼキューションの各段階で[はるかに高速](https://github.com/GoogleChromeLabs/json-parse-benchmark)です。これはV8（1.7倍速い）だけでなく、すべての主要なJavaScriptエンジンで同様です。](/_img/cost-of-javascript-2019/json.svg)
 
 以下のビデオでは、性能差の原因について詳細を説明しています（2:10マークから始まります）。
 

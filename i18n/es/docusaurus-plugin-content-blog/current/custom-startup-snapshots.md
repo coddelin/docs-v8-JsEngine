@@ -1,12 +1,12 @@
 ---
-title: &apos;Instantáneas personalizadas de inicio&apos;
-author: &apos;Yang Guo ([@hashseed](https://twitter.com/hashseed)), Ingeniero de software y proveedor de precalentadores de motores&apos;
+title: 'Instantáneas personalizadas de inicio'
+author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed)), Ingeniero de software y proveedor de precalentadores de motores'
 avatars:
-  - &apos;yang-guo&apos;
+  - 'yang-guo'
 date: 2015-09-25 13:33:37
 tags:
   - internos
-description: &apos;Los integradores de V8 pueden utilizar instantáneas para evitar el tiempo de inicio generado por las inicializaciones de los programas de JavaScript.&apos;
+description: 'Los integradores de V8 pueden utilizar instantáneas para evitar el tiempo de inicio generado por las inicializaciones de los programas de JavaScript.'
 ---
 La especificación de JavaScript incluye una gran cantidad de funcionalidades integradas, desde [funciones matemáticas](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) hasta un [motor de expresiones regulares completo](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions). Cada contexto de V8 recién creado tiene estas funciones disponibles desde el inicio. Para que esto funcione, el objeto global (por ejemplo, el objeto window en un navegador) y toda la funcionalidad integrada deben configurarse e inicializarse en el heap de V8 en el momento en que se crea el contexto. Hacer esto desde cero lleva bastante tiempo.
 

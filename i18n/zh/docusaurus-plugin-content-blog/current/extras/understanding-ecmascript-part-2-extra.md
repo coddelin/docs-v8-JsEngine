@@ -1,13 +1,13 @@
 ---
-title: &apos;“理解ECMAScript规范，第二部分”的额外内容&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh)，推测的规范观察者&apos;
+title: '“理解ECMAScript规范，第二部分”的额外内容'
+author: '[Marja Hölttä](https://twitter.com/marjakh)，推测的规范观察者'
 avatars:
   - marja-holtta
 date: 2020-03-02
 tags:
   - ECMAScript
-description: &apos;关于阅读ECMAScript规范的教程&apos;
-tweet: &apos;&apos;
+description: '关于阅读ECMAScript规范的教程'
+tweet: ''
 ---
 
 ### 为什么`o2.foo`是一个`AssignmentExpression`?
@@ -18,7 +18,7 @@ tweet: &apos;&apos;
 
 ```js
 function simple(a) {
-  console.log(&apos;参数是 &apos; + a);
+  console.log('参数是 ' + a);
 }
 simple(x = 1);
 // → 输出“参数是 1”。

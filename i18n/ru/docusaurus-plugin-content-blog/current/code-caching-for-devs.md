@@ -1,14 +1,14 @@
 ---
-title: &apos;Кэширование кода для разработчиков JavaScript&apos;
-author: &apos;[Лешек Свирски](https://twitter.com/leszekswirski), разрушитель кэша&apos;
+title: 'Кэширование кода для разработчиков JavaScript'
+author: '[Лешек Свирски](https://twitter.com/leszekswirski), разрушитель кэша'
 avatars:
   - leszek-swirski
 date: 2019-04-08 13:33:37
 updated: 2020-06-16
 tags:
   - internals
-description: &apos;(Байт)кэширование кода сокращает время запуска часто посещаемых веб-сайтов путем кэширования результата анализа и компиляции JavaScript.&apos;
-tweet: &apos;1115264282675953664&apos;
+description: '(Байт)кэширование кода сокращает время запуска часто посещаемых веб-сайтов путем кэширования результата анализа и компиляции JavaScript.'
+tweet: '1115264282675953664'
 ---
 Кэширование кода (также известное как _кэширование байткода_) представляет собой важную оптимизацию в браузерах. Оно сокращает время запуска часто посещаемых веб-сайтов путем кэширования результата анализа и компиляции. Большинство [популярных](https://blog.mozilla.org/javascript/2017/12/12/javascript-startup-bytecode-cache/) [браузеров](https://bugs.webkit.org/show_bug.cgi?id=192782) реализуют различные формы кэширования кода, и Chrome не является исключением. На самом деле, мы [писали](/blog/code-caching) [и](/blog/improved-code-caching) [рассказывали](https://www.youtube.com/watch?v=YqHOUy2rYZ8) о том, как Chrome и V8 сохраняют скомпилированный код в кэше.
 
@@ -148,26 +148,26 @@ const bar = (function() {
 
 ```js
 // main.mjs
-navigator.serviceWorker.register(&apos;/sw.js&apos;);
+navigator.serviceWorker.register('/sw.js');
 ```
 
 А сервис-воркер добавляет обработчики событий для установки (создание кэша) и загрузки (обслуживание ресурсов, возможно, из кэша):
 
 ```js
 // sw.js
-self.addEventListener(&apos;install&apos;, (event) => {
+self.addEventListener('install', (event) => {
   async function buildCache() {
     const cache = await caches.open(cacheName);
     return cache.addAll([
-      &apos;/main.css&apos;,
-      &apos;/main.mjs&apos;,
-      &apos;/offline.html&apos;,
+      '/main.css',
+      '/main.mjs',
+      '/offline.html',
     ]);
   }
   event.waitUntil(buildCache());
 });
 
-self.addEventListener(&apos;fetch&apos;, (event) => {
+self.addEventListener('fetch', (event) => {
   async function cachedFetch(event) {
     const cache = await caches.open(cacheName);
     let response = await cache.match(event.request);

@@ -1,16 +1,16 @@
 ---
-title: &apos;非同期関数とプロミスの高速化&apos;
-author: &apos;Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 常に待機する予測者, と Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), プロのパフォーマンス保証者&apos;
+title: '非同期関数とプロミスの高速化'
+author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 常に待機する予測者, と Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), プロのパフォーマンス保証者'
 avatars:
-  - &apos;maya-armyanova&apos;
-  - &apos;benedikt-meurer&apos;
+  - 'maya-armyanova'
+  - 'benedikt-meurer'
 date: 2018-11-12 16:45:07
 tags:
   - ECMAScript
   - ベンチマーク
   - プレゼンテーション
-description: &apos;V8 v7.2 / Chrome 72に高速でデバッグしやすい非同期関数とプロミスが登場します。&apos;
-tweet: &apos;1062000102909169670&apos;
+description: 'V8 v7.2 / Chrome 72に高速でデバッグしやすい非同期関数とプロミスが登場します。'
+tweet: '1062000102909169670'
 ---
 JavaScriptにおける非同期処理は従来、特に速いとは言えないレピュテーションを持っていました。さらに悪いことに、ライブJavaScriptアプリケーション、特にNode.jsサーバーのデバッグは簡単ではありません。_特に_ 非同期プログラミングに関してはそうです。しかし、時代は変わりつつあります。本記事では、V8で非同期関数とプロミスをどのように最適化したか（そしてある程度は他のJavaScriptエンジンでも）、および非同期コードのデバッグ体験をどのように改善したかを探ります。
 
@@ -81,15 +81,15 @@ async function handler() {
 Node.jsで特に一般的なもう一つの非同期のパラダイムは、[`ReadableStream`](https://nodejs.org/api/stream.html#stream_readable_streams) のものです。以下はその例です:
 
 ```js
-const http = require(&apos;http&apos;);
+const http = require('http');
 
 http.createServer((req, res) => {
-  let body = &apos;&apos;;
-  req.setEncoding(&apos;utf8&apos;);
-  req.on(&apos;data&apos;, (chunk) => {
+  let body = '';
+  req.setEncoding('utf8');
+  req.on('data', (chunk) => {
     body += chunk;
   });
-  req.on(&apos;end&apos;, () => {
+  req.on('end', () => {
     res.write(body);
     res.end();
   });
@@ -101,12 +101,12 @@ http.createServer((req, res) => {
 幸運にも、[非同期イテレーション](http://2ality.com/2016/10/asynchronous-iteration.html) と呼ばれるES2018の新機能がこのコードを簡潔にすることができます:
 
 ```js
-const http = require(&apos;http&apos;);
+const http = require('http');
 
 http.createServer(async (req, res) => {
   try {
-    let body = &apos;&apos;;
-    req.setEncoding(&apos;utf8&apos;);
+    let body = '';
+    req.setEncoding('utf8');
     for await (const chunk of req) {
       body += chunk;
     }
@@ -119,7 +119,7 @@ http.createServer(async (req, res) => {
 }).listen(1337);
 ```
 
-`&apos;data&apos;` と `&apos;end&apos;` コールバックに処理ロジックを分ける代わりに、新しい `for await…of` ループを使用してチャンクを非同期的にイテレーションし、単一の非同期関数にすべてをまとめることができます。また、`try-catch` ブロックを追加し、`unhandledRejection` 問題[^1] を回避しました。
+`'data'` と `'end'` コールバックに処理ロジックを分ける代わりに、新しい `for await…of` ループを使用してチャンクを非同期的にイテレーションし、単一の非同期関数にすべてをまとめることができます。また、`try-catch` ブロックを追加し、`unhandledRejection` 問題[^1] を回避しました。
 
 [^1]: [Matteo Collina](https://twitter.com/matteocollina)さん、[この問題](https://github.com/mcollina/make-promises-safe/blob/master/README.md#the-unhandledrejection-problem)を指摘していただきありがとうございます。
 
@@ -165,16 +165,16 @@ V8 v5.5 (Chrome 55 & Node.js 7)からV8 v6.8 (Chrome 68 & Node.js 10)までの�
 const p = Promise.resolve();
 
 (async () => {
-  await p; console.log(&apos;after:await&apos;);
+  await p; console.log('after:await');
 })();
 
-p.then(() => console.log(&apos;tick:a&apos;))
- .then(() => console.log(&apos;tick:b&apos;));
+p.then(() => console.log('tick:a'))
+ .then(() => console.log('tick:b'));
 ```
 
 上記のプログラムは満たされたpromise `p`を作成し、その結果を`await`しますが、それに対して2つのハンドラーをチェーンします。`console.log`呼び出しがどの順序で実行されることを期待しますか？
 
-`p`が満たされた状態なので、最初に`&apos;after:await&apos;`を出力し、その後`&apos;tick&apos;`を出力すると予想するかもしれません。実際、Node.js 8ではそのような挙動になります:
+`p`が満たされた状態なので、最初に`'after:await'`を出力し、その後`'tick'`を出力すると予想するかもしれません。実際、Node.js 8ではそのような挙動になります:
 
 ![Node.js 8における`await`バグ](/_img/fast-async/await-bug-node-8.svg)
 
@@ -383,7 +383,7 @@ async function foo() {
 
 async function bar() {
   await Promise.resolve();
-  throw new Error(&apos;BEEP BEEP&apos;);
+  throw new Error('BEEP BEEP');
 }
 
 foo().catch(error => console.log(error.stack));

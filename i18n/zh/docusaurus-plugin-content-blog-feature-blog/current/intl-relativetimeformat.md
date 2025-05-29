@@ -1,15 +1,15 @@
 ---
-title: &apos;`Intl.RelativeTimeFormat`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`Intl.RelativeTimeFormat`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-10-22
 tags:
   - Intl
   - Node.js 12
   - io19
-description: &apos;Intl.RelativeTimeFormat 使相对时间的本地化格式化成为可能，同时不牺牲性能。&apos;
-tweet: &apos;1054387117571354624&apos;
+description: 'Intl.RelativeTimeFormat 使相对时间的本地化格式化成为可能，同时不牺牲性能。'
+tweet: '1054387117571354624'
 ---
 现代 Web 应用程序通常使用诸如“昨天”、“42 秒前”或“3 个月后”的短语代替完整的日期和时间戳。这种 _相对时间格式化值_ 已经变得如此普遍，以至于许多流行的库都实现了以本地化方式格式化它们的工具函数。（例如 [Moment.js](https://momentjs.com/)、[Globalize](https://github.com/globalizejs/globalize)、和 [date-fns](https://date-fns.org/docs/)。）
 
@@ -23,31 +23,31 @@ tweet: &apos;1054387117571354624&apos;
 以下示例展示了如何使用英语创建一个相对时间格式化器。
 
 ```js
-const rtf = new Intl.RelativeTimeFormat(&apos;en&apos;);
+const rtf = new Intl.RelativeTimeFormat('en');
 
-rtf.format(3.14, &apos;second&apos;);
-// → &apos;in 3.14 seconds&apos;
+rtf.format(3.14, 'second');
+// → 'in 3.14 seconds'
 
-rtf.format(-15, &apos;minute&apos;);
-// → &apos;15 minutes ago&apos;
+rtf.format(-15, 'minute');
+// → '15 minutes ago'
 
-rtf.format(8, &apos;hour&apos;);
-// → &apos;in 8 hours&apos;
+rtf.format(8, 'hour');
+// → 'in 8 hours'
 
-rtf.format(-2, &apos;day&apos;);
-// → &apos;2 days ago&apos;
+rtf.format(-2, 'day');
+// → '2 days ago'
 
-rtf.format(3, &apos;week&apos;);
-// → &apos;in 3 weeks&apos;
+rtf.format(3, 'week');
+// → 'in 3 weeks'
 
-rtf.format(-5, &apos;month&apos;);
-// → &apos;5 months ago&apos;
+rtf.format(-5, 'month');
+// → '5 months ago'
 
-rtf.format(2, &apos;quarter&apos;);
-// → &apos;in 2 quarters&apos;
+rtf.format(2, 'quarter');
+// → 'in 2 quarters'
 
-rtf.format(-42, &apos;year&apos;);
-// → &apos;42 years ago&apos;
+rtf.format(-42, 'year');
+// → '42 years ago'
 ```
 
 请注意，传递给 `Intl.RelativeTimeFormat` 构造函数的参数可以是一个包含 [BCP 47 语言标签](https://tools.ietf.org/html/rfc5646) 的字符串，或者 [一组这样的语言标签](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl#语言标识和协商)。
@@ -55,31 +55,31 @@ rtf.format(-42, &apos;year&apos;);
 以下是使用不同语言（西班牙语）的示例：
 
 ```js
-const rtf = new Intl.RelativeTimeFormat(&apos;es&apos;);
+const rtf = new Intl.RelativeTimeFormat('es');
 
-rtf.format(3.14, &apos;second&apos;);
-// → &apos;dentro de 3,14 segundos&apos;
+rtf.format(3.14, 'second');
+// → 'dentro de 3,14 segundos'
 
-rtf.format(-15, &apos;minute&apos;);
-// → &apos;hace 15 minutos&apos;
+rtf.format(-15, 'minute');
+// → 'hace 15 minutos'
 
-rtf.format(8, &apos;hour&apos;);
-// → &apos;dentro de 8 horas&apos;
+rtf.format(8, 'hour');
+// → 'dentro de 8 horas'
 
-rtf.format(-2, &apos;day&apos;);
-// → &apos;hace 2 días&apos;
+rtf.format(-2, 'day');
+// → 'hace 2 días'
 
-rtf.format(3, &apos;week&apos;);
-// → &apos;dentro de 3 semanas&apos;
+rtf.format(3, 'week');
+// → 'dentro de 3 semanas'
 
-rtf.format(-5, &apos;month&apos;);
-// → &apos;hace 5 meses&apos;
+rtf.format(-5, 'month');
+// → 'hace 5 meses'
 
-rtf.format(2, &apos;quarter&apos;);
-// → &apos;dentro de 2 trimestres&apos;
+rtf.format(2, 'quarter');
+// → 'dentro de 2 trimestres'
 
-rtf.format(-42, &apos;year&apos;);
-// → &apos;hace 42 años&apos;
+rtf.format(-42, 'year');
+// → 'hace 42 años'
 ```
 
 此外，`Intl.RelativeTimeFormat` 构造函数接受一个可选的 `options` 参数，它可以对输出进行细粒度控制。为了说明其灵活性，让我们查看一些基于默认设置的英语输出示例：
@@ -87,59 +87,59 @@ rtf.format(-42, &apos;year&apos;);
 ```js
 // 使用默认设置（与之前一样）为英语创建一个相对时间格式化器。
 // 在这个示例中，默认值被显式传递进去。
-const rtf = new Intl.RelativeTimeFormat(&apos;en&apos;, {
-  localeMatcher: &apos;best fit&apos;, // 其他值：&apos;lookup&apos;
-  style: &apos;long&apos;, // 其他值：&apos;short&apos; 或 &apos;narrow&apos;
-  numeric: &apos;always&apos;, // 其他值：&apos;auto&apos;
+const rtf = new Intl.RelativeTimeFormat('en', {
+  localeMatcher: 'best fit', // 其他值：'lookup'
+  style: 'long', // 其他值：'short' 或 'narrow'
+  numeric: 'always', // 其他值：'auto'
 });
 
 // 现在，让我们尝试一些特殊情况！
 
-rtf.format(-1, &apos;day&apos;);
-// → &apos;1 day ago&apos;
+rtf.format(-1, 'day');
+// → '1 day ago'
 
-rtf.format(0, &apos;day&apos;);
-// → &apos;in 0 days&apos;
+rtf.format(0, 'day');
+// → 'in 0 days'
 
-rtf.format(1, &apos;day&apos;);
-// → &apos;in 1 day&apos;
+rtf.format(1, 'day');
+// → 'in 1 day'
 
-rtf.format(-1, &apos;week&apos;);
-// → &apos;1 week ago&apos;
+rtf.format(-1, 'week');
+// → '1 week ago'
 
-rtf.format(0, &apos;week&apos;);
-// → &apos;in 0 weeks&apos;
+rtf.format(0, 'week');
+// → 'in 0 weeks'
 
-rtf.format(1, &apos;week&apos;);
-// → &apos;in 1 week&apos;
+rtf.format(1, 'week');
+// → 'in 1 week'
 ```
 
-你可能注意到，上面的格式化器产生了 `&apos;1 day ago&apos;` 而不是 `&apos;yesterday&apos;`，以及略显尴尬的 `&apos;in 0 weeks&apos;` 而不是 `&apos;this week&apos;`。这是因为默认情况下，格式化器在输出中使用数值值。
+你可能注意到，上面的格式化器产生了 `'1 day ago'` 而不是 `'yesterday'`，以及略显尴尬的 `'in 0 weeks'` 而不是 `'this week'`。这是因为默认情况下，格式化器在输出中使用数值值。
 
-要改变此行为，请将 `numeric` 选项设置为 `&apos;auto&apos;`（而不是隐含的默认值 `&apos;always&apos;`）：
+要改变此行为，请将 `numeric` 选项设置为 `'auto'`（而不是隐含的默认值 `'always'`）：
 
 ```js
 // 创建一个为英语语言的相对时间格式化器，
 // 不一定需要始终在输出中使用数值值。
-const rtf = new Intl.RelativeTimeFormat(&apos;en&apos;, { numeric: &apos;auto&apos; });
+const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 
-rtf.format(-1, &apos;day&apos;);
-// → &apos;yesterday&apos;
+rtf.format(-1, 'day');
+// → 'yesterday'
 
-rtf.format(0, &apos;day&apos;);
-// → &apos;today&apos;
+rtf.format(0, 'day');
+// → 'today'
 
-rtf.format(1, &apos;day&apos;);
-// → &apos;tomorrow&apos;
+rtf.format(1, 'day');
+// → 'tomorrow'
 
-rtf.format(-1, &apos;week&apos;);
-// → &apos;last week&apos;
+rtf.format(-1, 'week');
+// → 'last week'
 
-rtf.format(0, &apos;week&apos;);
-// → &apos;this week&apos;
+rtf.format(0, 'week');
+// → 'this week'
 
-rtf.format(1, &apos;week&apos;);
-// → &apos;next week&apos;
+rtf.format(1, 'week');
+// → 'next week'
 ```
 
 与其他 `Intl` 类类似，`Intl.RelativeTimeFormat` 除了 `format` 方法外，还有一个 `formatToParts` 方法。虽然 `format` 涵盖了最常见的使用场景，但如果需要访问生成输出的各个部分，`formatToParts` 会非常有用：
@@ -147,21 +147,21 @@ rtf.format(1, &apos;week&apos;);
 ```js
 // 创建一个用于英文语言的相对时间格式化器，
 // 输出中并不总是需要使用数值。
-const rtf = new Intl.RelativeTimeFormat(&apos;en&apos;, { numeric: &apos;auto&apos; });
+const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 
-rtf.format(-1, &apos;day&apos;);
-// → &apos;昨天&apos;
+rtf.format(-1, 'day');
+// → '昨天'
 
-rtf.formatToParts(-1, &apos;day&apos;);
-// → [{ type: &apos;literal&apos;, value: &apos;昨天&apos; }]
+rtf.formatToParts(-1, 'day');
+// → [{ type: 'literal', value: '昨天' }]
 
-rtf.format(3, &apos;week&apos;);
-// → &apos;3周后&apos;
+rtf.format(3, 'week');
+// → '3周后'
 
-rtf.formatToParts(3, &apos;week&apos;);
-// → [{ type: &apos;literal&apos;, value: &apos;3周后&apos; },
-//    { type: &apos;integer&apos;, value: &apos;3&apos;, unit: &apos;week&apos; },
-//    { type: &apos;literal&apos;, value: &apos;周&apos; }]
+rtf.formatToParts(3, 'week');
+// → [{ type: 'literal', value: '3周后' },
+//    { type: 'integer', value: '3', unit: 'week' },
+//    { type: 'literal', value: '周' }]
 ```
 
 有关剩余选项及其行为的更多信息，请参阅 [提案库中的 API 文档](https://github.com/tc39/proposal-intl-relative-time#api)。

@@ -1,45 +1,45 @@
 ---
-title: &apos;Optimisation de la consommation de mémoire de V8&apos;
-author: &apos;Les Ingénieurs Sanitation de Mémoire de V8 Ulan Degenbaev, Michael Lippautz, Hannes Payer, et Toon Verwaest&apos;
+title: 'Optimisation de la consommation de mémoire de V8'
+author: 'Les Ingénieurs Sanitation de Mémoire de V8 Ulan Degenbaev, Michael Lippautz, Hannes Payer, et Toon Verwaest'
 avatars:
-  - &apos;ulan-degenbaev&apos;
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'ulan-degenbaev'
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2016-10-07 13:33:37
 tags:
   - mémoire
   - benchmarks
-description: &apos;L&apos;équipe V8 a analysé et réduit significativement l&apos;empreinte mémoire de plusieurs sites web identifiés comme représentatifs des modèles de développement web modernes.&apos;
+description: 'L'équipe V8 a analysé et réduit significativement l'empreinte mémoire de plusieurs sites web identifiés comme représentatifs des modèles de développement web modernes.'
 ---
-La consommation de mémoire est une dimension importante dans l&apos;espace d&apos;arbitrage de performance des machines virtuelles JavaScript. Au cours des derniers mois, l&apos;équipe V8 a analysé et réduit significativement l&apos;empreinte mémoire de plusieurs sites web identifiés comme représentatifs des modèles de développement web modernes. Dans ce billet de blog, nous présentons les charges de travail et les outils que nous avons utilisés dans notre analyse, décrivons les optimisations de mémoire dans le collecteur de déchets, et montrons comment nous avons réduit la mémoire consommée par le parseur et les compilateurs de V8.
+La consommation de mémoire est une dimension importante dans l'espace d'arbitrage de performance des machines virtuelles JavaScript. Au cours des derniers mois, l'équipe V8 a analysé et réduit significativement l'empreinte mémoire de plusieurs sites web identifiés comme représentatifs des modèles de développement web modernes. Dans ce billet de blog, nous présentons les charges de travail et les outils que nous avons utilisés dans notre analyse, décrivons les optimisations de mémoire dans le collecteur de déchets, et montrons comment nous avons réduit la mémoire consommée par le parseur et les compilateurs de V8.
 
 <!--truncate-->
 ## Benchmarks
 
-Afin de profiler V8 et de découvrir des optimisations ayant un impact pour le plus grand nombre d&apos;utilisateurs, il est crucial de définir des charges de travail reproductibles, significatives, et simulant des scénarios d&apos;utilisation courants de JavaScript dans le monde réel. Un excellent outil pour cette tâche est [Telemetry](https://catapult.gsrc.io/telemetry), un framework de test de performance qui exécute des interactions scriptées de sites web dans Chrome et enregistre toutes les réponses des serveurs afin de permettre une reproduction prévisible de ces interactions dans notre environnement de test. Nous avons sélectionné un ensemble de sites d&apos;actualités, sociaux, et médiatiques populaires et défini les interactions utilisateur courantes suivantes pour eux :
+Afin de profiler V8 et de découvrir des optimisations ayant un impact pour le plus grand nombre d'utilisateurs, il est crucial de définir des charges de travail reproductibles, significatives, et simulant des scénarios d'utilisation courants de JavaScript dans le monde réel. Un excellent outil pour cette tâche est [Telemetry](https://catapult.gsrc.io/telemetry), un framework de test de performance qui exécute des interactions scriptées de sites web dans Chrome et enregistre toutes les réponses des serveurs afin de permettre une reproduction prévisible de ces interactions dans notre environnement de test. Nous avons sélectionné un ensemble de sites d'actualités, sociaux, et médiatiques populaires et défini les interactions utilisateur courantes suivantes pour eux :
 
-Une charge de travail pour naviguer sur des sites d&apos;actualités et sociaux :
+Une charge de travail pour naviguer sur des sites d'actualités et sociaux :
 
-1. Ouvrir un site d&apos;actualités ou social populaire, par exemple Hacker News.
+1. Ouvrir un site d'actualités ou social populaire, par exemple Hacker News.
 1. Cliquer sur le premier lien.
 1. Attendre que le nouveau site soit chargé.
 1. Faire défiler vers le bas sur quelques pages.
 1. Cliquer sur le bouton retour.
-1. Cliquer sur le lien suivant sur le site d&apos;origine et répéter les étapes 3-6 plusieurs fois.
+1. Cliquer sur le lien suivant sur le site d'origine et répéter les étapes 3-6 plusieurs fois.
 
 Une charge de travail pour naviguer sur un site médiatique :
 
 1. Ouvrir un élément sur un site médiatique populaire, par exemple une vidéo sur YouTube.
 1. Consommer cet élément en attendant quelques secondes.
-1. Cliquer sur l&apos;élément suivant et répéter les étapes 2–3 plusieurs fois.
+1. Cliquer sur l'élément suivant et répéter les étapes 2–3 plusieurs fois.
 
-Une fois un workflow capturé, il peut être rejoué aussi souvent que nécessaire contre une version de développement de Chrome, par exemple chaque fois qu&apos;il y a une nouvelle version de V8. Pendant la lecture, l&apos;utilisation de la mémoire de V8 est échantillonnée à intervalles fixes afin d&apos;obtenir une moyenne significative. Les benchmarks peuvent être trouvés [ici](https://cs.chromium.org/chromium/src/tools/perf/page_sets/system_health/browsing_stories.py?q=browsing+news&sq=package:chromium&dr=CS&l=11).
+Une fois un workflow capturé, il peut être rejoué aussi souvent que nécessaire contre une version de développement de Chrome, par exemple chaque fois qu'il y a une nouvelle version de V8. Pendant la lecture, l'utilisation de la mémoire de V8 est échantillonnée à intervalles fixes afin d'obtenir une moyenne significative. Les benchmarks peuvent être trouvés [ici](https://cs.chromium.org/chromium/src/tools/perf/page_sets/system_health/browsing_stories.py?q=browsing+news&sq=package:chromium&dr=CS&l=11).
 
 ## Visualisation de la mémoire
 
-Un des principaux défis lors de l&apos;optimisation des performances en général est d&apos;obtenir une image claire de l&apos;état interne de la machine virtuelle afin de suivre les progrès ou d&apos;évaluer les compromis potentiels. Pour optimiser la consommation de mémoire, cela signifie garder une trace précise de l&apos;utilisation de la mémoire de V8 pendant l&apos;exécution. Il y a deux catégories de mémoire qui doivent être suivies : la mémoire allouée au tas géré de V8 et la mémoire allouée sur le tas C++. La fonctionnalité **V8 Heap Statistics** est un mécanisme utilisé par les développeurs travaillant sur les internes de V8 pour obtenir une vision approfondie des deux. Lorsque le drapeau `--trace-gc-object-stats` est spécifié lors de l&apos;exécution de Chrome (54 ou plus récent) ou de l&apos;interface en ligne de commande `d8`, V8 affiche dans la console des statistiques liées à la mémoire. Nous avons construit un outil personnalisé, [le visualiseur de tas V8](https://mlippautz.github.io/v8-heap-stats/), pour visualiser cette sortie. L&apos;outil montre une vue chronologique à la fois pour les tas gérés et C++. L&apos;outil fournit également une décomposition détaillée de l&apos;utilisation de la mémoire de certains types de données internes et des histogrammes par taille pour chacun de ces types.
+Un des principaux défis lors de l'optimisation des performances en général est d'obtenir une image claire de l'état interne de la machine virtuelle afin de suivre les progrès ou d'évaluer les compromis potentiels. Pour optimiser la consommation de mémoire, cela signifie garder une trace précise de l'utilisation de la mémoire de V8 pendant l'exécution. Il y a deux catégories de mémoire qui doivent être suivies : la mémoire allouée au tas géré de V8 et la mémoire allouée sur le tas C++. La fonctionnalité **V8 Heap Statistics** est un mécanisme utilisé par les développeurs travaillant sur les internes de V8 pour obtenir une vision approfondie des deux. Lorsque le drapeau `--trace-gc-object-stats` est spécifié lors de l'exécution de Chrome (54 ou plus récent) ou de l'interface en ligne de commande `d8`, V8 affiche dans la console des statistiques liées à la mémoire. Nous avons construit un outil personnalisé, [le visualiseur de tas V8](https://mlippautz.github.io/v8-heap-stats/), pour visualiser cette sortie. L'outil montre une vue chronologique à la fois pour les tas gérés et C++. L'outil fournit également une décomposition détaillée de l'utilisation de la mémoire de certains types de données internes et des histogrammes par taille pour chacun de ces types.
 
-Un workflow courant dans nos efforts d&apos;optimisation consiste à sélectionner un type d&apos;instance occupant une grande partie du tas dans la vue chronologique, comme illustré dans la Figure 1. Une fois un type d&apos;instance sélectionné, l&apos;outil montre alors une distribution des utilisations de ce type. Dans cet exemple, nous avons sélectionné la structure de données interne FixedArray de V8, qui est un conteneur de type vecteur non typé utilisé de manière ubiquitaire dans toutes sortes d&apos;endroits de la machine virtuelle. La Figure 2 montre une distribution typique de FixedArray, où nous pouvons voir que la majorité de la mémoire peut être attribuée à un scénario d&apos;utilisation spécifique de FixedArray. Dans ce cas, les FixedArray sont utilisés comme stockage arrière pour des tableaux JavaScript clairsemés (ce que nous appelons DICTIONARY\_ELEMENTS). Avec ces informations, il est possible de revenir au code réel et soit de vérifier si cette distribution est vraiment le comportement attendu, soit de déterminer s&apos;il existe une opportunité d&apos;optimisation. Nous avons utilisé l&apos;outil pour identifier des inefficacités avec un certain nombre de types internes.
+Un workflow courant dans nos efforts d'optimisation consiste à sélectionner un type d'instance occupant une grande partie du tas dans la vue chronologique, comme illustré dans la Figure 1. Une fois un type d'instance sélectionné, l'outil montre alors une distribution des utilisations de ce type. Dans cet exemple, nous avons sélectionné la structure de données interne FixedArray de V8, qui est un conteneur de type vecteur non typé utilisé de manière ubiquitaire dans toutes sortes d'endroits de la machine virtuelle. La Figure 2 montre une distribution typique de FixedArray, où nous pouvons voir que la majorité de la mémoire peut être attribuée à un scénario d'utilisation spécifique de FixedArray. Dans ce cas, les FixedArray sont utilisés comme stockage arrière pour des tableaux JavaScript clairsemés (ce que nous appelons DICTIONARY\_ELEMENTS). Avec ces informations, il est possible de revenir au code réel et soit de vérifier si cette distribution est vraiment le comportement attendu, soit de déterminer s'il existe une opportunité d'optimisation. Nous avons utilisé l'outil pour identifier des inefficacités avec un certain nombre de types internes.
 
 ![Figure 1 : Vue chronologique du tas géré et de la mémoire hors tas](/_img/optimizing-v8-memory/timeline-view.png)
 

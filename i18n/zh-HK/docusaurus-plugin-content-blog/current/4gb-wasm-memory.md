@@ -1,16 +1,16 @@
 ---
-title: &apos;最多可在 WebAssembly 中使用 4GB 記憶體&apos;
-author: &apos;Andreas Haas、Jakob Kummerow 和 Alon Zakai&apos;
+title: '最多可在 WebAssembly 中使用 4GB 記憶體'
+author: 'Andreas Haas、Jakob Kummerow 和 Alon Zakai'
 avatars:
-  - &apos;andreas-haas&apos;
-  - &apos;jakob-kummerow&apos;
-  - &apos;alon-zakai&apos;
+  - 'andreas-haas'
+  - 'jakob-kummerow'
+  - 'alon-zakai'
 date: 2020-05-14
 tags:
   - WebAssembly
   - JavaScript
   - 工具鏈
-tweet: &apos;1260944314441633793&apos;
+tweet: '1260944314441633793'
 ---
 
 ## 簡介

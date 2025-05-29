@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 릴리스 v5.6&apos;
-author: &apos;V8 팀&apos;
+title: 'V8 릴리스 v5.6'
+author: 'V8 팀'
 date: 2016-12-02 13:33:37
 tags:
   - 릴리스
-description: &apos;V8 v5.6은 새로운 컴파일러 파이프라인, 성능 개선 및 ECMAScript 언어 기능 지원 증가를 제공합니다.&apos;
+description: 'V8 v5.6은 새로운 컴파일러 파이프라인, 성능 개선 및 ECMAScript 언어 기능 지원 증가를 제공합니다.'
 ---
 6주마다 우리는 [릴리스 프로세스](/docs/release-process)의 일환으로 V8의 새 브랜치를 만듭니다. 각 버전은 Chrome 베타 마일스톤 바로 직전에 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 [V8 버전 5.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.6)의 새 브랜치를 발표하게 되어 기쁩니다. 이 버전은 몇 주 후 Chrome 56 안정 버전과 함께 릴리스될 때까지 베타 버전으로 유지됩니다. V8 5.6은 개발자를 위한 다양한 선물이 가득하며, 이번 릴리스를 기대하며 일부 하이라이트를 미리 소개하고자 합니다.
 

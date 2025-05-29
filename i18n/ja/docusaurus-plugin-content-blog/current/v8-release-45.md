@@ -1,10 +1,10 @@
 ---
-title: &apos;V8リリース v4.5&apos;
-author: &apos;V8チーム&apos;
+title: 'V8リリース v4.5'
+author: 'V8チーム'
 date: 2015-07-17 13:33:37
 tags:
   - リリース
-description: &apos;V8 v4.5はパフォーマンスの向上と、いくつかのES2015機能のサポートを追加しました。&apos;
+description: 'V8 v4.5はパフォーマンスの向上と、いくつかのES2015機能のサポートを追加しました。'
 ---
 約6週間ごとに、[リリースプロセス](https://v8.dev/docs/release-process)の一環として新しいV8のブランチを作成します。各バージョンは、ChromeがChrome Betaマイルストーンのためにブランチを切る直前にV8のGitマスターからブランチされます。本日、私たちは最新のブランチ、[V8バージョン4.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.5)を発表できることを嬉しく思います。このバージョンは、Chrome 45 Stableと連携してリリースされるまでベータ版として提供されます。V8 v4.5には開発者向けの興味深い新機能がたくさん含まれているため、数週間後のリリースに先立ち、そのハイライトの一部をプレビューします。
 
@@ -31,8 +31,8 @@ console.log(convertedData);
 
 ```js
 class MyClass {
-  constructor() { this.a = &apos;こんにちは、&apos;; }
-  hello() { setInterval(() => console.log(this.a + &apos;世界!&apos;), 1000); }
+  constructor() { this.a = 'こんにちは、'; }
+  hello() { setInterval(() => console.log(this.a + '世界!'), 1000); }
 }
 const myInstance = new MyClass();
 myInstance.hello();
@@ -47,8 +47,8 @@ ES2015で規定されている[配列およびTypedArray](https://developer.mozi
 [`Object.assign`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)により、オブジェクトを迅速にマージおよびクローンできるようになります。
 
 ```js
-const target = { a: &apos;こんにちは、&apos; };
-const source = { b: &apos;世界!&apos; };
+const target = { a: 'こんにちは、' };
+const source = { b: '世界!' };
 // オブジェクトをマージする。
 Object.assign(target, source);
 console.log(target.a + target.b);
@@ -65,10 +65,10 @@ V8の新しい最適化コンパイラー[TurboFan](/blog/turbofan-jit)の設計
 以下は`for-of`を使用したコードの例で、TurboFanによってコンパイルできるようになったものです：
 
 ```js
-const sequence = [&apos;最初&apos;, &apos;二番目&apos;, &apos;三番目&apos;];
+const sequence = ['最初', '二番目', '三番目'];
 for (const value of sequence) {
   // このスコープは最適化可能です。
-  const object = {a: &apos;こんにちは、&apos;, b: &apos;世界!&apos;, c: value};
+  const object = {a: 'こんにちは、', b: '世界!', c: value};
   console.log(object.a + object.b + object.c);
 }
 ```

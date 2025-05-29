@@ -1,21 +1,21 @@
 ---
-title: &apos;Nullish coalescing&apos;
-author: &apos;Justin Ridgewell&apos;
+title: 'Nullish coalescing'
+author: 'Justin Ridgewell'
 avatars:
-  - &apos;justin-ridgewell&apos;
+  - 'justin-ridgewell'
 date: 2019-09-17
 tags:
   - ECMAScript
   - ES2020
-description: &apos;JavaScript 的 Nullish 合併運算符使得默認表達式更安全。&apos;
-tweet: &apos;1173971116865523714&apos;
+description: 'JavaScript 的 Nullish 合併運算符使得默認表達式更安全。'
+tweet: '1173971116865523714'
 ---
 新的 [Nullish 合併提案](https://github.com/tc39/proposal-nullish-coalescing/) (`??`) 添加了一個短路運算符，用於處理默認值。
 
 你可能已經熟悉其他短路運算符 `&&` 和 `||`。這兩個運算符處理“真值”和“假值”。假設代碼示例 `lhs && rhs`，如果 `lhs`（讀作 _左側_）是假值，該表達式求值為 `lhs`。否則，則求值為 `rhs`（讀作 _右側_）。而在代碼示例 `lhs || rhs` 中則相反。如果 `lhs` 是真值，該表達式求值為 `lhs`。否則，則求值為 `rhs`。
 
 <!--truncate-->
-但是“真值”和“假值”到底意味著什麼呢？在規範中，它等同於 [`ToBoolean`](https://tc39.es/ecma262/#sec-toboolean) 抽象操作。對於我們普通的 JavaScript 開發者來說，**除了** 假值 `undefined`、`null`、`false`、`0`、`NaN` 和空字符串 `&apos;&apos;` 外，所有值都是真值。（技術上說，`document.all` 相關的值也是假值，但我們稍後會探討這一點。）
+但是“真值”和“假值”到底意味著什麼呢？在規範中，它等同於 [`ToBoolean`](https://tc39.es/ecma262/#sec-toboolean) 抽象操作。對於我們普通的 JavaScript 開發者來說，**除了** 假值 `undefined`、`null`、`false`、`0`、`NaN` 和空字符串 `''` 外，所有值都是真值。（技術上說，`document.all` 相關的值也是假值，但我們稍後會探討這一點。）
 
 那麼 `&&` 和 `||` 有什麼問題呢？為什麼我們需要新的 Nullish 合併運算符？這是因為“真值”和“假值”的定義不適合所有場景，這會導致錯誤。想像以下示例：
 
@@ -37,7 +37,7 @@ function Component(props) {
 }
 ```
 
-我們在任何假值場景中都會看到這類錯誤。這可能很容易是可選的字串（其中空字串 `&apos;&apos;` 被視為有效輸入），亦或是可選的數值（其中 `0` 被視為有效輸入）。這是如此常見的一個問題，我們現在推出了 Nullish 合併運算符來處理這類默認值賦值場景：
+我們在任何假值場景中都會看到這類錯誤。這可能很容易是可選的字串（其中空字串 `''` 被視為有效輸入），亦或是可選的數值（其中 `0` 被視為有效輸入）。這是如此常見的一個問題，我們現在推出了 Nullish 合併運算符來處理這類默認值賦值場景：
 
 ```js
 function Component(props) {
@@ -48,12 +48,12 @@ function Component(props) {
 
 Nullish 合併運算符 (`??`) 的行為非常類似於 `||` 運算符，不過在評估運算符時不使用“真值”的定義。相反，它使用“Nullish”的定義，即“該值是否嚴格等於 `null` 或 `undefined`”。因此，設想表達式 `lhs ?? rhs`：如果 `lhs` 不是 Nullish，則求值為 `lhs`。否則，則求值為 `rhs`。
 
-明確來說，值 `false`、`0`、`NaN` 和空字符串 `&apos;&apos;` 都是“假值”，但它們不是 Nullish。在 `lhs ?? rhs` 中，這些假值但非 Nullish 的值作為左側時，表達式回傳該值，而不是右側。錯誤不再存在！
+明確來說，值 `false`、`0`、`NaN` 和空字符串 `''` 都是“假值”，但它們不是 Nullish。在 `lhs ?? rhs` 中，這些假值但非 Nullish 的值作為左側時，表達式回傳該值，而不是右側。錯誤不再存在！
 
 ```js
 false ?? true;   // => false
 0 ?? 1;          // => 0
-&apos;&apos; ?? &apos;default&apos;; // => &apos;&apos;
+'' ?? 'default'; // => ''
 
 null ?? [];      // => []
 undefined ?? []; // => []
@@ -78,13 +78,13 @@ function Component(props) {
 
 ```js
 // 簡潔明了的 Nullish 合併
-const link = document.querySelector(&apos;link&apos;) ?? document.createElement(&apos;link&apos;);
+const link = document.querySelector('link') ?? document.createElement('link');
 
 // 預設指派解構，搭配樣板程式碼
 const {
-  link = document.createElement(&apos;link&apos;),
+  link = document.createElement('link'),
 } = {
-  link: document.querySelector(&apos;link&apos;) || undefined
+  link: document.querySelector('link') || undefined
 };
 ```
 
@@ -92,11 +92,11 @@ const {
 
 ```js
 // 選擇性鏈結與空值合併運算符合併使用
-const link = obj.deep?.container.link ?? document.createElement(&apos;link&apos;);
+const link = obj.deep?.container.link ?? document.createElement('link');
 
 // 預設指派解構，搭配選擇性鏈結
 const {
-  link = document.createElement(&apos;link&apos;),
+  link = document.createElement('link'),
 } = (obj.deep?.container || {});
 ```
 

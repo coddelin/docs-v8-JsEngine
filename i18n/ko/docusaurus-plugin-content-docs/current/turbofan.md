@@ -1,6 +1,6 @@
 ---
-title: &apos;TurboFan&apos;
-description: &apos;이 문서는 TurboFan, V8의 최적화 컴파일러에 대한 자료를 모아놓은 문서입니다.&apos;
+title: 'TurboFan'
+description: '이 문서는 TurboFan, V8의 최적화 컴파일러에 대한 자료를 모아놓은 문서입니다.'
 ---
 TurboFan은 V8의 최적화 컴파일러 중 하나로 [“Sea of Nodes”](https://darksi.de/d.sea-of-nodes/)라는 개념을 활용합니다. V8 블로그의 한 게시물에서 [TurboFan에 대한 고급 개요](/blog/turbofan-jit)를 제공합니다. 자세한 내용은 아래 리소스에서 확인할 수 있습니다.
 

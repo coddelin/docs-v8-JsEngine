@@ -1,14 +1,14 @@
 ---
-title: &apos;ECMAScript仕様の理解、第1部&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh)、推測的仕様の観察者&apos;
+title: 'ECMAScript仕様の理解、第1部'
+author: '[Marja Hölttä](https://twitter.com/marjakh)、推測的仕様の観察者'
 avatars:
   - marja-holtta
 date: 2020-02-03 13:33:37
 tags:
   - ECMAScript
   - ECMAScriptの理解
-description: &apos;ECMAScript仕様を読む手引き&apos;
-tweet: &apos;1224363301146189824&apos;
+description: 'ECMAScript仕様を読む手引き'
+tweet: '1224363301146189824'
 ---
 
 [全てのエピソードはこちら](/blog/tags/understanding-ecmascript)
@@ -24,8 +24,8 @@ JavaScriptを知っていても、その言語仕様である[ECMAScript Languag
 
 ```js
 const o = { foo: 1 };
-o.hasOwnProperty(&apos;foo&apos;); // true
-o.hasOwnProperty(&apos;bar&apos;); // false
+o.hasOwnProperty('foo'); // true
+o.hasOwnProperty('bar'); // false
 ```
 
 この例では、`o`には`hasOwnProperty`というプロパティがないので、プロトタイプチェーンを辿って探します。そして、それを`o`のプロトタイプである`Object.prototype`の中に見つけます。

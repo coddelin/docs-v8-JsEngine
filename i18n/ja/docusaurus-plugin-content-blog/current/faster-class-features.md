@@ -1,13 +1,13 @@
 ---
-title: &apos;新しいクラス機能を使用するインスタンスの初期化がより高速に&apos;
-author: &apos;[Joyee Cheung](https://twitter.com/JoyeeCheung), インスタンス初期化担当&apos;
+title: '新しいクラス機能を使用するインスタンスの初期化がより高速に'
+author: '[Joyee Cheung](https://twitter.com/JoyeeCheung), インスタンス初期化担当'
 avatars:
-  - &apos;joyee-cheung&apos;
+  - 'joyee-cheung'
 date: 2022-04-20
 tags:
   - 内部構造
-description: &apos;V8 v9.7以降、新しいクラス機能を使用したインスタンスの初期化がより高速になりました。&apos;
-tweet: &apos;1517041137378373632&apos;
+description: 'V8 v9.7以降、新しいクラス機能を使用したインスタンスの初期化がより高速になりました。'
+tweet: '1517041137378373632'
 ---
 
 クラスフィールドはV8 v7.2以降でサポートされ、プライベートクラスメソッドはv8.4以降でサポートされています。提案が2021年にステージ4に到達してから、新しいクラス機能のサポートを改善する作業が開始されました。それまでに、この採用に影響を与える2つの主な問題がありました:
@@ -93,9 +93,9 @@ class A {
 class A {
   constructor() {
     // %AddPrivateField()呼び出しの大まかな翻訳:
-    const _a = %PrivateSymbol(&apos;#a&apos;)
+    const _a = %PrivateSymbol('#a')
     if (_a in this) {
-      throw TypeError(&apos;同じオブジェクトに#aを2回初期化することはできません&apos;);
+      throw TypeError('同じオブジェクトに#aを2回初期化することはできません');
     }
     Object.defineProperty(this, _a, {
       writable: true,
@@ -104,7 +104,7 @@ class A {
       value: 0
     });
     // %CreateDataProperty()呼び出しの大まかな翻訳:
-    Object.defineProperty(this, &apos;b&apos;, {
+    Object.defineProperty(this, 'b', {
       writable: true,
       configurable: true,
       enumerable: true,
@@ -186,9 +186,9 @@ class A {
       { a: 1 },
       {
         defineProperty(object, key, desc) {
-          console.log(&apos;object:&apos;, object);
-          console.log(&apos;key:&apos;, key);
-          console.log(&apos;desc:&apos;, desc);
+          console.log('object:', object);
+          console.log('key:', key);
+          console.log('desc:', desc);
           return true;
         }
       });
@@ -201,7 +201,7 @@ class B extends A {
 }
 
 // object: { a: 1 },
-// key: &apos;a&apos;,
+// key: 'a',
 // desc: {value: 2, writable: true, enumerable: true, configurable: true}
 new B();
 ```

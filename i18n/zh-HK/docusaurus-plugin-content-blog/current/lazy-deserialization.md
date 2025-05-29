@@ -1,13 +1,13 @@
 ---
-title: &apos;延遲反序列化&apos;
-author: &apos;Jakob Gruber ([@schuay](https://twitter.com/schuay))&apos;
+title: '延遲反序列化'
+author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
 avatars:
-  - &apos;jakob-gruber&apos;
+  - 'jakob-gruber'
 date: 2018-02-12 13:33:37
 tags:
   - internals
-description: &apos;延遲反序列化，已在 V8 v6.4 中提供，可平均減少每個瀏覽器標籤超過 500 KB 的 V8 記憶體使用量。&apos;
-tweet: &apos;962989179914383360&apos;
+description: '延遲反序列化，已在 V8 v6.4 中提供，可平均減少每個瀏覽器標籤超過 500 KB 的 V8 記憶體使用量。'
+tweet: '962989179914383360'
 ---
 TL;DR: 延遲反序列化最近在 [V8 v6.4](/blog/v8-release-64) 中默認啟用，平均減少每個瀏覽器標籤超過 500 KB 的 V8 記憶體使用量。繼續閱讀以了解更多！
 

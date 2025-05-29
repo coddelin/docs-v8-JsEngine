@@ -1,13 +1,13 @@
 ---
-title: &apos;Einstellungen der Veröffentlichungs-Blogbeiträge&apos;
-author: &apos;Shu-yu Guo ([@shu_](https://twitter.com/_shu))&apos;
+title: 'Einstellungen der Veröffentlichungs-Blogbeiträge'
+author: 'Shu-yu Guo ([@shu_](https://twitter.com/_shu))'
 avatars:
- - &apos;shu-yu-guo&apos;
+ - 'shu-yu-guo'
 date: 2022-06-17
 tags:
  - Veröffentlichung
-description: &apos;V8 stellt die Veröffentlichungs-Blogbeiträge ein zugunsten des Chrome-Veröffentlichungsplans und funktionsbezogener Blogbeiträge.&apos;
-tweet: &apos;1537857497825824768&apos;
+description: 'V8 stellt die Veröffentlichungs-Blogbeiträge ein zugunsten des Chrome-Veröffentlichungsplans und funktionsbezogener Blogbeiträge.'
+tweet: '1537857497825824768'
 ---
 
 Historisch gesehen gab es für jeden neuen Veröffentlichungszweig von V8 einen Blogbeitrag. Sie haben vielleicht bemerkt, dass es seit v9.9 keinen Veröffentlichungs-Blogbeitrag mehr gab. Ab v10.0 stellen wir die Veröffentlichungs-Blogbeiträge für jeden neuen Zweig ein. Aber keine Sorge, alle Informationen, die Sie bisher über Veröffentlichungs-Blogbeiträge erhalten haben, sind weiterhin verfügbar! Lesen Sie weiter, um zu erfahren, wo Sie diese Informationen zukünftig finden können.

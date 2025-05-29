@@ -122,7 +122,7 @@ Una alternativa para escribir este código es crear un objeto desechable `reader
   }
  // readerResource[Symbol.dispose]() se llama automáticamente.
 
- readFile(&apos;https://example.com/largefile.dat&apos;);
+ readFile('https://example.com/largefile.dat');
 ```
 
 ## `DisposableStack` y `AsyncDisposableStack`
@@ -139,7 +139,7 @@ Veamos cada método y un ejemplo de este:
         reader: response.body.getReader(),
         [Symbol.dispose]() {
             this.reader.releaseLock();
-            console.log(&apos;Bloqueo del lector liberado.&apos;);
+            console.log('Bloqueo del lector liberado.');
         },
     };
     using stack = new DisposableStack();
@@ -156,7 +156,7 @@ Veamos cada método y un ejemplo de este:
     stack.adopt(
       response.body.getReader(), reader = > {
         reader.releaseLock();
-        console.log(&apos;Bloqueo del lector liberado.&apos;);
+        console.log('Bloqueo del lector liberado.');
       });
 }
 // Bloqueo del lector liberado.
@@ -180,7 +180,7 @@ Veamos cada método y un ejemplo de este:
     stack.adopt(
       response.body.getReader(), reader = > {
         reader.releaseLock();
-        console.log(&apos;Bloqueo del lector liberado.&apos;);
+        console.log('Bloqueo del lector liberado.');
       });
     using newStack = stack.move();
 }
@@ -196,7 +196,7 @@ Veamos cada método y un ejemplo de este:
         reader: response.body.getReader(),
         [Symbol.dispose]() {
             this.reader.releaseLock();
-            console.log(&apos;Bloqueo del lector liberado.&apos;);
+            console.log('Bloqueo del lector liberado.');
         },
     };
     let stack = new DisposableStack();

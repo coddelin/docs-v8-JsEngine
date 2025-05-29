@@ -1,13 +1,13 @@
 ---
-title: &apos;Jank-Busters Teil Eins&apos;
-author: &apos;die Jank-Busters: Jochen Eisinger, Michael Lippautz und Hannes Payer&apos;
+title: 'Jank-Busters Teil Eins'
+author: 'die Jank-Busters: Jochen Eisinger, Michael Lippautz und Hannes Payer'
 avatars:
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2015-10-30 13:33:37
 tags:
   - Speicher
-description: &apos;Dieser Artikel behandelt Optimierungen, die zwischen Chrome 41 und Chrome 46 implementiert wurden und die Garbage-Collection-Pausen deutlich reduzieren, was zu einer besseren Benutzererfahrung führt.&apos;
+description: 'Dieser Artikel behandelt Optimierungen, die zwischen Chrome 41 und Chrome 46 implementiert wurden und die Garbage-Collection-Pausen deutlich reduzieren, was zu einer besseren Benutzererfahrung führt.'
 ---
 Jank, oder anders gesagt sichtbares Stocken, kann bemerkt werden, wenn Chrome nicht in der Lage ist, einen Frame innerhalb von 16,66 ms zu rendern (was die Bewegung mit 60 Frames pro Sekunde unterbricht). Zum jetzigen Zeitpunkt wird der Großteil der V8-Garbage-Collection-Arbeiten auf dem Haupt-Rendering-Thread ausgeführt, siehe Abbildung 1, was häufig zu Jank führt, wenn zu viele Objekte verwaltet werden müssen. Jank zu eliminieren war für das V8-Team schon immer eine hohe Priorität ([1](https://blog.chromium.org/2011/11/game-changer-for-interactive.html), [2](https://www.youtube.com/watch?v=3vPOlGRH6zk), [3](/blog/free-garbage-collection)). Dieser Artikel diskutiert einige Optimierungen, die zwischen Chrome 41 und Chrome 46 implementiert wurden und die Garbage-Collection-Pausen signifikant reduzieren, was zu einer besseren Benutzererfahrung führt.
 

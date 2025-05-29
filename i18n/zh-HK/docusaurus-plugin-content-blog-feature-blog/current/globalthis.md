@@ -1,16 +1,16 @@
 ---
-title: &apos;`globalThis`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`globalThis`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-07-16
 tags:
   - ECMAScript
   - ES2020
   - Node.js 12
   - io19
-description: &apos;globalThis 提供了一個統一的機制來在任何 JavaScript 環境中訪問全域 `this`，無論腳本目標是什麼。&apos;
-tweet: &apos;1151140681374547969&apos;
+description: 'globalThis 提供了一個統一的機制來在任何 JavaScript 環境中訪問全域 `this`，無論腳本目標是什麼。'
+tweet: '1151140681374547969'
 ---
 如果你曾經為瀏覽器編寫 JavaScript，可能使用過 `window` 來訪問全域 `this`。在 Node.js 中，你可能使用過 `global`。如果你編寫了需要同時在這兩個環境中運作的代碼，可能會檢測哪個可用，然後使用它 —— 但隨著你要支持的環境和使用情境增加，需要檢查的標識符列表也會越來越長，事情很快就會變得難以控制：
 
@@ -18,13 +18,13 @@ tweet: &apos;1151140681374547969&apos;
 ```js
 // 嘗試獲取全域 `this` 的笨方法。不要這樣使用！
 const getGlobalThis = () => {
-  if (typeof globalThis !== &apos;undefined&apos;) return globalThis;
-  if (typeof self !== &apos;undefined&apos;) return self;
-  if (typeof window !== &apos;undefined&apos;) return window;
-  if (typeof global !== &apos;undefined&apos;) return global;
+  if (typeof globalThis !== 'undefined') return globalThis;
+  if (typeof self !== 'undefined') return self;
+  if (typeof window !== 'undefined') return window;
+  if (typeof global !== 'undefined') return global;
   // 注意：這仍然可能返回錯誤的結果！
-  if (typeof this !== &apos;undefined&apos;) return this;
-  throw new Error(&apos;無法找到全域 `this`&apos;);
+  if (typeof this !== 'undefined') return this;
+  throw new Error('無法找到全域 `this`');
 };
 const theGlobalThis = getGlobalThis();
 ```

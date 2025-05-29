@@ -1,13 +1,13 @@
 ---
-title: &apos;Importar atributos&apos;
-author: &apos;Shu-yu Guo ([@_shu](https://twitter.com/_shu))&apos;
+title: 'Importar atributos'
+author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
 avatars:
-  - &apos;shu-yu-guo&apos;
+  - 'shu-yu-guo'
 date: 2024-01-31
 tags:
   - ECMAScript
-description: &apos;Atributos de importación: la evolución de las declaraciones de importación&apos;
-tweet: &apos;&apos;
+description: 'Atributos de importación: la evolución de las declaraciones de importación'
+tweet: ''
 ---
 
 ## Previamente
@@ -19,7 +19,7 @@ V8 lanzó la función de [declaraciones de importación](https://chromestatus.co
 
 Desde entonces, las declaraciones de importación han evolucionado hacia [atributos de importación](https://github.com/tc39/proposal-import-attributes). El propósito de la característica sigue siendo el mismo: permitir que las declaraciones de importación de módulos incluyan información adicional.
 
-La diferencia más importante es que las declaraciones de importación tenían una semántica de solo verificación, mientras que los atributos de importación tienen una semántica más relajada. La semántica de solo verificación significa que la información adicional no afecta _cómo_ se carga un módulo, solo _si_ se carga. Por ejemplo, un módulo JSON siempre se carga como módulo JSON en virtud de su tipo MIME, y la cláusula `assert { type: &apos;json&apos; }` solo puede causar un error de carga si el tipo MIME del módulo solicitado no es `application/json`.
+La diferencia más importante es que las declaraciones de importación tenían una semántica de solo verificación, mientras que los atributos de importación tienen una semántica más relajada. La semántica de solo verificación significa que la información adicional no afecta _cómo_ se carga un módulo, solo _si_ se carga. Por ejemplo, un módulo JSON siempre se carga como módulo JSON en virtud de su tipo MIME, y la cláusula `assert { type: 'json' }` solo puede causar un error de carga si el tipo MIME del módulo solicitado no es `application/json`.
 
 Sin embargo, la semántica de solo verificación tenía un defecto fatal. En la web, la forma de las solicitudes HTTP difiere dependiendo del tipo de recurso solicitado. Por ejemplo, el encabezado [`Accept`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept) afecta el tipo MIME de la respuesta, y el encabezado de metadatos [`Sec-Fetch-Dest`](https://web.dev/articles/fetch-metadata) afecta si el servidor web acepta o rechaza la solicitud. Debido a que una declaración de importación no podía afectar _cómo_ cargar un módulo, no era capaz de cambiar la forma de la solicitud HTTP. El tipo del recurso solicitado también afecta qué [Políticas de Seguridad de Contenido](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) se utilizan: las declaraciones de importación no podían funcionar correctamente con el modelo de seguridad de la web.
 
@@ -28,8 +28,8 @@ Los atributos de importación relajan la semántica de solo verificación para p
 ```javascript
 // main.mjs
 //
-// Nueva sintaxis &apos;with&apos;.
-import json from &apos;./foo.json&apos; with { type: &apos;json&apos; };
+// Nueva sintaxis 'with'.
+import json from './foo.json' with { type: 'json' };
 console.log(json.answer); // 42
 ```
 
@@ -40,9 +40,9 @@ De manera similar, [`import()` dinámico](https://v8.dev/features/dynamic-import
 ```javascript
 // main.mjs
 //
-// Nueva opción &apos;with&apos;.
-const jsonModule = await import(&apos;./foo.json&apos;, {
-  with: { type: &apos;json&apos; }
+// Nueva opción 'with'.
+const jsonModule = await import('./foo.json', {
+  with: { type: 'json' }
 });
 console.log(jsonModule.default.answer); // 42
 ```

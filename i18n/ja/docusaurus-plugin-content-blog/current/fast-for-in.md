@@ -1,12 +1,12 @@
 ---
-title: &apos;V8における高速な`for`-`in`&apos;
-author: &apos;Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))&apos;
+title: 'V8における高速な`for`-`in`'
+author: 'Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))'
 avatars:
-  - &apos;camillo-bruni&apos;
+  - 'camillo-bruni'
 date: 2017-03-01 13:33:37
 tags:
   - internals
-description: &apos;V8がJavaScriptのfor-inを可能な限り高速化した技術的な詳細を説明します。&apos;
+description: 'V8がJavaScriptのfor-inを可能な限り高速化した技術的な詳細を説明します。'
 ---
 `for`-`in`は多くのフレームワークで使用される広く普及した言語機能です。その普及にもかかわらず、実装の観点から見るとやや分かりづらい言語構造の一つです。V8はこの機能を可能な限り高速化するために大変な努力を重ねました。昨年にかけて、`for`-`in`は完全に仕様に準拠し、コンテキストによっては最大で3倍速くなりました。
 
@@ -31,15 +31,15 @@ _**TL;DR;** パフォーマンスの理由でfor-in反復の意味論は曖昧�
 const proxy = new Proxy({ a: 1, b: 1},
   {
     getPrototypeOf(target) {
-    console.log(&apos;getPrototypeOf&apos;);
+    console.log('getPrototypeOf');
     return null;
   },
   ownKeys(target) {
-    console.log(&apos;ownKeys&apos;);
+    console.log('ownKeys');
     return Reflect.ownKeys(target);
   },
   getOwnPropertyDescriptor(target, prop) {
-    console.log(&apos;getOwnPropertyDescriptor name=&apos; + prop);
+    console.log('getOwnPropertyDescriptor name=' + prop);
     return Reflect.getOwnPropertyDescriptor(target, prop);
   }
 });
@@ -94,7 +94,7 @@ b
 function* EnumerateObjectProperties(obj) {
   const visited = new Set();
   for (const key of Reflect.ownKeys(obj)) {
-    if (typeof key === &apos;symbol&apos;) continue;
+    if (typeof key === 'symbol') continue;
     const desc = Reflect.getOwnPropertyDescriptor(obj, key);
     if (desc && !visited.has(key)) {
       visited.add(key);
@@ -115,7 +115,7 @@ function* EnumerateObjectProperties(obj) {
 
 `for`-`in`ジェネレーターの例実装はキーを収集して供給する逐次的なパターンを踏襲しています。V8ではプロパティキーが最初のステップで収集されてから反復段階で使用されます。これにより、V8ではいくつかの点が容易になります。これを理解するためにオブジェクトモデルを見てみましょう。
 
-例えば、`{a:&apos;value a&apos;, b:&apos;value b&apos;, c:&apos;value c&apos;}`のような単純なオブジェクトは、プロパティについて詳しいフォロー投稿で示すように、V8内でさまざまな内部表現を持つことがあります。これは、インオブジェクト、ファスト、スローなどのプロパティの種類に応じて、実際のプロパティ名が異なる場所に保存されることを意味します。したがって、列挙可能なキーを収集することは簡単な作業ではありません。
+例えば、`{a:'value a', b:'value b', c:'value c'}`のような単純なオブジェクトは、プロパティについて詳しいフォロー投稿で示すように、V8内でさまざまな内部表現を持つことがあります。これは、インオブジェクト、ファスト、スローなどのプロパティの種類に応じて、実際のプロパティ名が異なる場所に保存されることを意味します。したがって、列挙可能なキーを収集することは簡単な作業ではありません。
 
 V8は隠れクラスまたはMapと呼ばれる仕組みによってオブジェクトの構造を追跡します。同じMapを持つオブジェクトは同じ構造を持っています。さらに各Mapにはプロパティの保存場所、プロパティ名、列挙可能性などの詳細を含む共有データ構造であるディスクリプタ配列があります。
 
@@ -252,7 +252,7 @@ var o = {
   __proto__ : {b: 3},
   a: 1
 };
-Object.defineProperty(o, &apos;b&apos;, {});
+Object.defineProperty(o, 'b', {});
 
 for (var k in o) console.log(k);
 ```
@@ -299,31 +299,31 @@ b
 ```js
 var fastProperties = {
   __proto__ : null,
-  &apos;property 1&apos;: 1,
+  'property 1': 1,
   …
-  &apos;property 10&apos;: n
+  'property 10': n
 };
 
 var fastPropertiesWithPrototype = {
-  &apos;property 1&apos;: 1,
+  'property 1': 1,
   …
-  &apos;property 10&apos;: n
+  'property 10': n
 };
 
 var slowProperties = {
   __proto__ : null,
-  &apos;dummy&apos;: null,
-  &apos;property 1&apos;: 1,
+  'dummy': null,
+  'property 1': 1,
   …
-  &apos;property 10&apos;: n
+  'property 10': n
 };
-delete slowProperties[&apos;dummy&apos;]
+delete slowProperties['dummy']
 
 var elements = {
   __proto__: null,
-  &apos;1&apos;: 1,
+  '1': 1,
   …
-  &apos;10&apos;: n
+  '10': n
 }
 ```
 

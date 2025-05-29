@@ -1,10 +1,10 @@
 ---
-title: &apos;在 V8 中对 WebAssembly 的实验性支持&apos;
-author: &apos;Seth Thompson，WebAssembly 专员&apos;
+title: '在 V8 中对 WebAssembly 的实验性支持'
+author: 'Seth Thompson，WebAssembly 专员'
 date: 2016-03-15 13:33:37
 tags:
   - WebAssembly
-description: &apos;从今天开始，在 V8 和 Chromium 中可以通过启用标志使用 WebAssembly 的实验性支持。&apos;
+description: '从今天开始，在 V8 和 Chromium 中可以通过启用标志使用 WebAssembly 的实验性支持。'
 ---
 _关于 WebAssembly 的全面概述以及未来社区协作的路线图，请参阅 Mozilla Hacks 博客上的 [A WebAssembly Milestone](https://hacks.mozilla.org/2016/03/a-webassembly-milestone/)。_
 

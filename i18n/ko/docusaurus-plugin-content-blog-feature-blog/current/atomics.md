@@ -141,17 +141,17 @@ unlock() {
                       /* old value >>> */  AsyncLock.LOCKED,
                       /* new value >>> */  AsyncLock.UNLOCKED);
   if (oldValue != AsyncLock.LOCKED) {
-    throw new Error(&apos;잠금을 소유하지 않은 상태에서 잠금을 해제하려 했습니다&apos;);
+    throw new Error('잠금을 소유하지 않은 상태에서 잠금을 해제하려 했습니다');
   }
   Atomics.notify(this.i32a, AsyncLock.INDEX, 1);
 }
 ```
 
-간단한 경우는 다음과 같습니다: 잠금이 비어 있고 스레드 T1이 `Atomics.compareExchange`를 통해 잠금 상태를 변경하여 잠금을 획득합니다. 스레드 T2가 잠금을 획득하려고 `Atomics.compareExchange`를 호출하지만 잠금 상태 변경에 실패합니다. T2는 `Atomics.wait`를 호출하여 스레드를 차단합니다. 어느 시점에서 T1이 잠금을 해제하고 `Atomics.notify`를 호출합니다. 그러면 T2에서의 `Atomics.wait` 호출이 `&apos;ok&apos;`를 반환하며 T2가 깨어납니다. 그 후 T2는 다시 잠금을 시도하고 이번에는 성공합니다.
+간단한 경우는 다음과 같습니다: 잠금이 비어 있고 스레드 T1이 `Atomics.compareExchange`를 통해 잠금 상태를 변경하여 잠금을 획득합니다. 스레드 T2가 잠금을 획득하려고 `Atomics.compareExchange`를 호출하지만 잠금 상태 변경에 실패합니다. T2는 `Atomics.wait`를 호출하여 스레드를 차단합니다. 어느 시점에서 T1이 잠금을 해제하고 `Atomics.notify`를 호출합니다. 그러면 T2에서의 `Atomics.wait` 호출이 `'ok'`를 반환하며 T2가 깨어납니다. 그 후 T2는 다시 잠금을 시도하고 이번에는 성공합니다.
 
 또한 두 가지 가능한 코너 케이스가 있습니다 — 이들은 `Atomics.wait` 및 `Atomics.waitAsync`가 특정 값으로 인덱스를 확인하는 이유를 설명합니다:
 
-- T1이 잠금을 소유하고 있고 T2가 이를 얻으려고 합니다. 먼저, T2는 `Atomics.compareExchange`로 잠금 상태를 변경하려고 했지만 실패합니다. 그러나 T1이 T2가 `Atomics.wait`를 호출하기 전에 잠금을 해제한 경우, T2가 `Atomics.wait`를 호출하면 즉시 `&apos;not-equal&apos;` 값을 반환합니다. 이 경우, T2는 다음 루프 반복을 계속하며 다시 잠금을 시도합니다.
+- T1이 잠금을 소유하고 있고 T2가 이를 얻으려고 합니다. 먼저, T2는 `Atomics.compareExchange`로 잠금 상태를 변경하려고 했지만 실패합니다. 그러나 T1이 T2가 `Atomics.wait`를 호출하기 전에 잠금을 해제한 경우, T2가 `Atomics.wait`를 호출하면 즉시 `'not-equal'` 값을 반환합니다. 이 경우, T2는 다음 루프 반복을 계속하며 다시 잠금을 시도합니다.
 - T1이 잠금을 소유하고 있고 T2는 `Atomics.wait`를 통해 대기 중입니다. T1이 잠금을 해제하면 T2가 깨어납니다 (`Atomics.wait` 호출이 반환됨) 그리고 다시 `Atomics.compareExchange`를 통해 잠금을 얻으려고 하지만 다른 스레드 T3이 이미 잠금을 획득한 경우입니다. 이 경우 `Atomics.compareExchange` 호출이 잠금을 얻는 데 실패하며, T2는 `Atomics.wait`를 다시 호출해 T3이 잠금을 해제할 때까지 차단됩니다.
 
 후자의 코너 케이스 때문에 뮤텍스는 “공정”하지 않습니다. T2가 잠금이 해제되기를 기다리고 있었지만 T3가 와서 즉시 잠금을 획득할 수 있습니다. 보다 현실적인 잠금 구현에서는 여러 상태를 사용하여 “잠금”과 “경쟁이 있는 잠금”을 구별할 수 있습니다.

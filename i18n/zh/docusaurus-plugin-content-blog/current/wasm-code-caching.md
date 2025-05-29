@@ -40,7 +40,7 @@ WebAssembly代码缓存使用的是与JavaScript代码缓存相同的机制。�
 
 ```js
 (async () => {
-  const fetchPromise = fetch(&apos;fibonacci.wasm&apos;);
+  const fetchPromise = fetch('fibonacci.wasm');
   const { instance } = await WebAssembly.instantiateStreaming(fetchPromise);
   const result = instance.exports.fibonacci(42);
   console.log(result);

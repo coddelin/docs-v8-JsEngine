@@ -1,13 +1,13 @@
 ---
-title: &apos;包括 JSON，即 JSON ⊂ ECMAScript&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '包括 JSON，即 JSON ⊂ ECMAScript'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-08-14
 tags:
   - ES2019
-description: &apos;JSON 現在是 ECMAScript 的語法子集。&apos;
-tweet: &apos;1161649929904885762&apos;
+description: 'JSON 現在是 ECMAScript 的語法子集。'
+tweet: '1161649929904885762'
 ---
 隨著[提案 _JSON ⊂ ECMAScript_](https://github.com/tc39/proposal-json-superset)，JSON 成為 ECMAScript 的語法子集。如果你對此感到驚訝，並非只有你一個！
 
@@ -17,11 +17,11 @@ tweet: &apos;1161649929904885762&apos;
 
 ```js
 // 包含原始 U+2028 字元的字串。
-const LS = &apos; &apos;;
+const LS = ' ';
 // → ES2018: 語法錯誤
 
 // 一個由 `eval` 生成的，包含原始 U+2029 字元的字串：
-const PS = eval(&apos;"\u2029"&apos;);
+const PS = eval('"\u2029"');
 // → ES2018: 語法錯誤
 ```
 
@@ -34,12 +34,12 @@ const PS = eval(&apos;"\u2029"&apos;);
 
 ```js
 // 包含原始 U+2028 字元的字串。
-const LS = &apos; &apos;;
+const LS = ' ';
 // → ES2018: 語法錯誤
 // → ES2019: 不會拋出例外
 
 // 一個由 `eval` 生成的，包含原始 U+2029 字元的字串：
-const PS = eval(&apos;"\u2029"&apos;);
+const PS = eval('"\u2029"');
 // → ES2018: 語法錯誤
 // → ES2019: 不會拋出例外
 ```
@@ -55,8 +55,8 @@ const PS = eval(&apos;"\u2029"&apos;);
 ```js
 // 一個表示某些資料的 JavaScript 物件（或陣列、或字串）。
 const data = {
-  LineTerminators: &apos;\n\r  &apos;,
-  // 注意：字串包含 4 個字元：&apos;\n\r\u2028\u2029&apos;。
+  LineTerminators: '\n\r  ',
+  // 注意：字串包含 4 個字元：'\n\r\u2028\u2029'。
 };
 
 // 將資料轉換為 JSON 字串格式。由於 JSON ⊂
@@ -65,7 +65,7 @@ const jsObjectLiteral = JSON.stringify(data);
 
 // 創建一個有效的 ECMAScript 程式，將資料作為物件文本嵌入。
 const program = `const data = ${ jsObjectLiteral };`;
-// → &apos;const data = {"LineTerminators":"…"};&apos;
+// → 'const data = {"LineTerminators":"…"};'
 // （如果目標是內嵌的 <script>，則需要額外的轉義。）
 
 // 將包含 ECMAScript 程式的檔案寫入磁碟。
@@ -89,7 +89,7 @@ const data = { foo: 42, bar: 1337 }; // 🐌
 …資料可以以 JSON 字串格式表示，然後在運行時透過 JSON 解析，以提高處理大物件（10 kB+）時的性能：
 
 ```js
-const data = JSON.parse(&apos;{"foo":42,"bar":1337}&apos;); // 🚀
+const data = JSON.parse('{"foo":42,"bar":1337}'); // 🚀
 ```
 
 以下是一個實現範例：
@@ -97,8 +97,8 @@ const data = JSON.parse(&apos;{"foo":42,"bar":1337}&apos;); // 🚀
 ```js
 // 一個表示某些資料的 JavaScript 物件（或陣列、或字串）。
 const data = {
-  LineTerminators: &apos;\n\r  &apos;,
-  // 注意：字串包含 4 個字元：&apos;\n\r\u2028\u2029&apos;。
+  LineTerminators: '\n\r  ',
+  // 注意：字串包含 4 個字元：'\n\r\u2028\u2029'。
 };
 
 // 將資料轉換為 JSON 字串格式。
@@ -112,7 +112,7 @@ const jsStringLiteral = JSON.stringify(json);
 // 創建一個有效的 ECMAScript 程式，將表示 JSON 資料的 JavaScript
 // 字串文本嵌入到 `JSON.parse` 呼叫中。
 const program = `const data = JSON.parse(${ jsStringLiteral });`;
-// → &apos;const data = JSON.parse("…");&apos;
+// → 'const data = JSON.parse("…");'
 // （如果目標是內聯 <script>，需要額外的轉義。）
 
 // 將包含 ECMAScript 程式的檔案寫到磁碟。
@@ -147,13 +147,13 @@ JSON ⊂ ECMAScript 專門針對字串字面量減少了 JSON 與 ECMAScript 之
 ```html
 <script>
   // 調試資訊：
-  // 使用者代理："用戶提供的字串<U+2028>  alert(&apos;XSS&apos;);//"
+  // 使用者代理："用戶提供的字串<U+2028>  alert('XSS');//"
 </script>
 <!-- …等效於： -->
 <script>
   // 調試資訊：
   // 使用者代理："用戶提供的字串
-  alert(&apos;XSS&apos;);//"
+  alert('XSS');//"
 </script>
 ```
 

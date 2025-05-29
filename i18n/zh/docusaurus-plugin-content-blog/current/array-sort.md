@@ -142,16 +142,16 @@ Array.prototype.sort.call(object);
 
 ```js
 // Chakra
-[&apos;a2&apos;, &apos;a3&apos;, &apos;b1&apos;, &apos;b2&apos;, &apos;c1&apos;, &apos;c2&apos;, &apos;d1&apos;, &apos;d2&apos;, &apos;e3&apos;, undefined, undefined, undefined]
+['a2', 'a3', 'b1', 'b2', 'c1', 'c2', 'd1', 'd2', 'e3', undefined, undefined, undefined]
 
 // JavaScriptCore
-[&apos;a2&apos;, &apos;a2&apos;, &apos;a3&apos;, &apos;b1&apos;, &apos;b2&apos;, &apos;b2&apos;, &apos;c1&apos;, &apos;c2&apos;, &apos;d1&apos;, &apos;d2&apos;, &apos;e3&apos;, undefined]
+['a2', 'a2', 'a3', 'b1', 'b2', 'b2', 'c1', 'c2', 'd1', 'd2', 'e3', undefined]
 
 // V8
-[&apos;a2&apos;, &apos;a3&apos;, &apos;b1&apos;, &apos;b2&apos;, &apos;c1&apos;, &apos;c2&apos;, &apos;d1&apos;, &apos;d2&apos;, &apos;e3&apos;, undefined, undefined, undefined]
+['a2', 'a3', 'b1', 'b2', 'c1', 'c2', 'd1', 'd2', 'e3', undefined, undefined, undefined]
 
 // SpiderMonkey
-[&apos;a2&apos;, &apos;a3&apos;, &apos;b1&apos;, &apos;b2&apos;, &apos;c1&apos;, &apos;c2&apos;, &apos;d1&apos;, &apos;d2&apos;, &apos;e3&apos;, undefined, undefined, undefined]
+['a2', 'a3', 'b1', 'b2', 'c1', 'c2', 'd1', 'd2', 'e3', undefined, undefined, undefined]
 ```
 
 ### V8 在排序之前和之后做了什么

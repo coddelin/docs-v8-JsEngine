@@ -1,13 +1,13 @@
 ---
-title: &apos;`Array`와 TypedArray에서 요소 찾기&apos;
-author: &apos;Shu-yu Guo ([@_shu](https://twitter.com/_shu))&apos;
+title: '`Array`와 TypedArray에서 요소 찾기'
+author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
 avatars:
-  - &apos;shu-yu-guo&apos;
+  - 'shu-yu-guo'
 date: 2021-10-27
 tags:
   - ECMAScript
-description: &apos;JavaScript에서 Arrays와 TypedArrays에서 요소를 찾는 방법&apos;
-tweet: &apos;1453354998063149066&apos;
+description: 'JavaScript에서 Arrays와 TypedArrays에서 요소를 찾는 방법'
+tweet: '1453354998063149066'
 ---
 ## 시작점에서 요소 찾기
 

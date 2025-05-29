@@ -1,6 +1,6 @@
 ---
-title: &apos;GDBを使用したビルトインのデバッグ&apos;
-description: &apos;V8 v6.9以降では、GDBでCSA / ASM / Torqueビルトインをデバッグするためのブレークポイントを作成することが可能です。&apos;
+title: 'GDBを使用したビルトインのデバッグ'
+description: 'V8 v6.9以降では、GDBでCSA / ASM / Torqueビルトインをデバッグするためのブレークポイントを作成することが可能です。'
 ---
 V8 v6.9以降では、GDB（おそらく他のデバッガーでも）でCSA / ASM / Torqueビルトインをデバッグするためのブレークポイントを作成することが可能です。
 

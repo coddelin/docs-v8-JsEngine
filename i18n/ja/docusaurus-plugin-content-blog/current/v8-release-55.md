@@ -1,10 +1,10 @@
 ---
-title: &apos;V8リリース v5.5&apos;
-author: &apos;V8チーム&apos;
+title: 'V8リリース v5.5'
+author: 'V8チーム'
 date: 2016-10-24 13:33:37
 tags:
   - リリース
-description: &apos;V8 v5.5は、メモリ消費の削減とECMAScript言語機能のサポート向上を実現します。&apos;
+description: 'V8 v5.5は、メモリ消費の削減とECMAScript言語機能のサポート向上を実現します。'
 ---
 私たちは、[リリースプロセス](/docs/release-process)の一環として、6週間ごとにV8の新しいブランチを作成しています。各バージョンは、Chromeのベータマイルストーンの直前にV8のGitマスターからブランチが作成されます。本日、最新のブランチである[V8バージョン5.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.5)を発表できることを嬉しく思います。このバージョンは、数週間後にChrome 55の安定版とともにリリースされるまでベータ版となります。V8 v5.5は、開発者に向けたいろいろな新機能が満載なので、リリースに先立ちいくつかのハイライトをご紹介します。
 
@@ -24,7 +24,7 @@ function logFetch(url) {
     .then(text => {
       console.log(text);
     }).catch(err => {
-      console.error(&apos;fetch failed&apos;, err);
+      console.error('fetch failed', err);
     });
 }
 ```
@@ -37,7 +37,7 @@ async function logFetch(url) {
     const response = await fetch(url);
     console.log(await response.text());
   } catch (err) {
-    console.log(&apos;fetch failed&apos;, err);
+    console.log('fetch failed', err);
   }
 }
 ```

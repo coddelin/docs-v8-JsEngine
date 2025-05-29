@@ -1,6 +1,6 @@
 ---
-title: &apos;Zusammenführen & Patchen&apos;
-description: &apos;Dieses Dokument erklärt, wie V8-Patches in einen Release-Zweig zusammengeführt werden.&apos;
+title: 'Zusammenführen & Patchen'
+description: 'Dieses Dokument erklärt, wie V8-Patches in einen Release-Zweig zusammengeführt werden.'
 ---
 Wenn Sie einen Patch für den `main`-Zweig haben (z. B. einen wichtigen Fehlerbehebungs-Patch), der in einen der V8-Release-Zweige (refs/branch-heads/12.5) zusammengeführt werden muss, lesen Sie weiter.
 
@@ -22,7 +22,7 @@ Weitere Informationen finden Sie auf der [relevanten Chromium-Seite](https://chr
 
 ## Der Zusammenführungsprozess
 
-Der Zusammenführungsprozess im V8-Tracker wird durch Attribute gesteuert. Setzen Sie daher bitte das Attribut &apos;Merge-Request&apos; auf den relevanten Chrome-Milestone. Falls die Zusammenführung nur einen V8-[Port](https://v8.dev/docs/ports) betrifft, setzen Sie bitte das HW-Attribut entsprechend, z. B.:
+Der Zusammenführungsprozess im V8-Tracker wird durch Attribute gesteuert. Setzen Sie daher bitte das Attribut 'Merge-Request' auf den relevanten Chrome-Milestone. Falls die Zusammenführung nur einen V8-[Port](https://v8.dev/docs/ports) betrifft, setzen Sie bitte das HW-Attribut entsprechend, z. B.:
 
 ```
 Merge-Request: 123

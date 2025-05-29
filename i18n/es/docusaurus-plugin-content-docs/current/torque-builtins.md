@@ -1,6 +1,6 @@
 ---
-title: &apos;V8 Torque integrados&apos;
-description: &apos;Este documento está destinado como una introducción a la escritura de integrados Torque, y está dirigido a los desarrolladores de V8.&apos;
+title: 'V8 Torque integrados'
+description: 'Este documento está destinado como una introducción a la escritura de integrados Torque, y está dirigido a los desarrolladores de V8.'
 ---
 Este documento está destinado como una introducción a la escritura de integrados Torque, y está dirigido a los desarrolladores de V8. Torque reemplaza a CodeStubAssembler como la forma recomendada de implementar nuevos integrados. Consulte [Integrados de CodeStubAssembler](/docs/csa-builtins) para la versión de CSA de esta guía.
 
@@ -80,7 +80,7 @@ Ahora que `is42` está adjunto, puede ser llamado desde JS:
 $ out/debug/d8
 d8> Math.is42(42);
 true
-d8> Math.is42(&apos;42.0&apos;);
+d8> Math.is42('42.0');
 true
 d8> Math.is42(true);
 false

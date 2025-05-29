@@ -1,12 +1,12 @@
 ---
-title: &apos;Schnelles `for`-`in` in V8&apos;
-author: &apos;Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))&apos;
+title: 'Schnelles `for`-`in` in V8'
+author: 'Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))'
 avatars:
-  - &apos;camillo-bruni&apos;
+  - 'camillo-bruni'
 date: 2017-03-01 13:33:37
 tags:
   - internals
-description: &apos;Dieser technische Deep-Dive erklärt, wie V8 JavaScripts for-in so schnell wie möglich gemacht hat.&apos;
+description: 'Dieser technische Deep-Dive erklärt, wie V8 JavaScripts for-in so schnell wie möglich gemacht hat.'
 ---
 `for`-`in` ist ein weit verbreitetes Sprachmerkmal, das in vielen Frameworks vorkommt. Trotz seiner Allgegenwärtigkeit ist es aus Implementierungsperspektive eines der obskureren Sprachkonstrukte. V8 hat große Anstrengungen unternommen, um dieses Merkmal so schnell wie möglich zu machen. Im Laufe des letzten Jahres wurde `for`-`in` vollständig spec-konform und je nach Kontext bis zu 3-mal schneller.
 
@@ -31,15 +31,15 @@ Wenn wir uns den [Spezifikationstext von `for`-`in` ansehen, ist er auf unerwart
 const proxy = new Proxy({ a: 1, b: 1},
   {
     getPrototypeOf(target) {
-    console.log(&apos;getPrototypeOf&apos;);
+    console.log('getPrototypeOf');
     return null;
   },
   ownKeys(target) {
-    console.log(&apos;ownKeys&apos;);
+    console.log('ownKeys');
     return Reflect.ownKeys(target);
   },
   getOwnPropertyDescriptor(target, prop) {
-    console.log(&apos;getOwnPropertyDescriptor name=&apos; + prop);
+    console.log('getOwnPropertyDescriptor name=' + prop);
     return Reflect.getOwnPropertyDescriptor(target, prop);
   }
 });
@@ -94,7 +94,7 @@ Diese Schritte erscheinen mühsam, allerdings enthält die Spezifikation auch ei
 function* EnumerateObjectProperties(obj) {
   const visited = new Set();
   for (const key of Reflect.ownKeys(obj)) {
-    if (typeof key === &apos;symbol&apos;) continue;
+    if (typeof key === 'symbol') continue;
     const desc = Reflect.getOwnPropertyDescriptor(obj, key);
     if (desc && !visited.has(key)) {
       visited.add(key);
@@ -115,7 +115,7 @@ Nun, da Sie so weit gekommen sind, haben Sie möglicherweise bemerkt, dass V8 in
 
 Die Beispielimplementierung des for-in Generators folgt einem inkrementellen Muster zum Sammeln und Ausgeben von Schlüsseln. In V8 werden die Eigenschaftsschlüssel in einem ersten Schritt gesammelt und erst dann in der Iterationsphase verwendet. Für V8 macht dies einige Dinge einfacher. Um zu verstehen, warum, müssen wir uns das Objektmodell ansehen.
 
-Ein einfaches Objekt wie `{a:&apos;value a&apos;, b:&apos;value b&apos;, c:&apos;value c&apos;}` kann in V8 verschiedene interne Darstellungen haben, wie wir in einem detaillierten Folgebeitrag über Eigenschaften zeigen werden. Dies bedeutet, dass je nachdem, welchen Typ von Eigenschaften wir haben – In-Object, Fast oder Slow – die tatsächlichen Eigenschaftsnamen an verschiedenen Orten gespeichert sind. Dies macht das Sammeln von enumerierbaren Schlüsseln zu einer durchaus komplexen Aufgabe.
+Ein einfaches Objekt wie `{a:'value a', b:'value b', c:'value c'}` kann in V8 verschiedene interne Darstellungen haben, wie wir in einem detaillierten Folgebeitrag über Eigenschaften zeigen werden. Dies bedeutet, dass je nachdem, welchen Typ von Eigenschaften wir haben – In-Object, Fast oder Slow – die tatsächlichen Eigenschaftsnamen an verschiedenen Orten gespeichert sind. Dies macht das Sammeln von enumerierbaren Schlüsseln zu einer durchaus komplexen Aufgabe.
 
 V8 verfolgt die Struktur des Objekts mithilfe einer versteckten Klasse oder sogenannter Map. Objekte mit derselben Map haben dieselbe Struktur. Zusätzlich hat jede Map eine gemeinsame Datenstruktur, das Descriptor-Array, welches Details über jede Eigenschaft enthält, wie etwa wo die Eigenschaften am Objekt gespeichert sind, der Eigenschaftsname und Details wie Enumerierbarkeit.
 
@@ -252,7 +252,7 @@ var o = {
   __proto__ : {b: 3},
   a: 1
 };
-Object.defineProperty(o, &apos;b&apos;, {});
+Object.defineProperty(o, 'b', {});
 
 for (var k in o) console.log(k);
 ```
@@ -299,31 +299,31 @@ Um zu veranschaulichen, dass die spezifikationskonforme Implementierung schnelle
 ```js
 var fastProperties = {
   __proto__ : null,
-  &apos;property 1&apos;: 1,
+  'property 1': 1,
   …
-  &apos;property 10&apos;: n
+  'property 10': n
 };
 
 var fastPropertiesWithPrototype = {
-  &apos;property 1&apos;: 1,
+  'property 1': 1,
   …
-  &apos;property 10&apos;: n
+  'property 10': n
 };
 
 var slowProperties = {
   __proto__ : null,
-  &apos;dummy&apos;: null,
-  &apos;property 1&apos;: 1,
+  'dummy': null,
+  'property 1': 1,
   …
-  &apos;property 10&apos;: n
+  'property 10': n
 };
-delete slowProperties[&apos;dummy&apos;]
+delete slowProperties['dummy']
 
 var elements = {
   __proto__: null,
-  &apos;1&apos;: 1,
+  '1': 1,
   …
-  &apos;10&apos;: n
+  '10': n
 }
 ```
 

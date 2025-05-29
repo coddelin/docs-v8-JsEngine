@@ -1,11 +1,11 @@
 ---
-title: &apos;Добавление BigInts в V8&apos;
-author: &apos;Якоб Куммеров, арбитр точности&apos;
+title: 'Добавление BigInts в V8'
+author: 'Якоб Куммеров, арбитр точности'
 date: 2018-05-02 13:33:37
 tags:
   - ECMAScript
-description: &apos;Теперь V8 поддерживает BigInts — функцию языка JavaScript, позволяющую использовать целые числа с произвольной точностью.&apos;
-tweet: &apos;991705626391732224&apos;
+description: 'Теперь V8 поддерживает BigInts — функцию языка JavaScript, позволяющую использовать целые числа с произвольной точностью.'
+tweet: '991705626391732224'
 ---
 За последние несколько месяцев мы внедрили поддержку [BigInts](/features/bigint) в V8, как это указано в [данном предложении](https://github.com/tc39/proposal-bigint), чтобы включить их в будущую версию ECMAScript. В следующей публикации рассказывается история наших приключений.
 
@@ -39,7 +39,7 @@ const such_many = 2n ** 222n;
 
 ```js
 {
-  type: &apos;BigInt&apos;,
+  type: 'BigInt',
   sign: 0,
   num_digits: 3,
   digits: [0x12…, 0x34…, 0x56…],
@@ -119,7 +119,7 @@ TypeError: Невозможно преобразовать 456 в BigInt
 
 ```js
 {
-  type: &apos;BigInt-Int64&apos;,
+  type: 'BigInt-Int64',
   value: 0x12…,
 }
 ```

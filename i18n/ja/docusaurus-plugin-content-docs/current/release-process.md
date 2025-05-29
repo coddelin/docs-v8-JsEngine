@@ -1,6 +1,6 @@
 ---
-title: &apos;リリースプロセス&apos;
-description: &apos;このドキュメントはV8のリリースプロセスを説明します。&apos;
+title: 'リリースプロセス'
+description: 'このドキュメントはV8のリリースプロセスを説明します。'
 ---
 V8のリリースプロセスは[Chrome](https://www.chromium.org/getting-involved/dev-channel)のリリースプロセスと密接に連携しています。V8チームは、Chromeのすべてのリリースチャンネルを利用して新しいバージョンをユーザーに提供しています。
 

@@ -1,10 +1,10 @@
 ---
-title: &apos;Lançamento do V8 v5.5&apos;
-author: &apos;a equipe do V8&apos;
+title: 'Lançamento do V8 v5.5'
+author: 'a equipe do V8'
 date: 2016-10-24 13:33:37
 tags:
   - lançamento
-description: &apos;O V8 v5.5 vem com menor consumo de memória e maior suporte a recursos da linguagem ECMAScript.&apos;
+description: 'O V8 v5.5 vem com menor consumo de memória e maior suporte a recursos da linguagem ECMAScript.'
 ---
 A cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](/docs/release-process). Cada versão é derivada do mestre do Git do V8 imediatamente antes de um marco Beta do Chrome. Hoje, temos o prazer de anunciar nosso mais novo branch, [V8 versão 5.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.5), que estará em beta até ser lançado em coordenação com a versão estável do Chrome 55 em algumas semanas. O V8 v5.5 está cheio de novidades voltadas para desenvolvedores, então gostaríamos de dar um prévia de alguns dos destaques em antecipação ao lançamento.
 
@@ -24,7 +24,7 @@ function logFetch(url) {
     .then(text => {
       console.log(text);
     }).catch(err => {
-      console.error(&apos;falha no fetch&apos;, err);
+      console.error('falha no fetch', err);
     });
 }
 ```
@@ -37,7 +37,7 @@ async function logFetch(url) {
     const response = await fetch(url);
     console.log(await response.text());
   } catch (err) {
-    console.log(&apos;falha no fetch&apos;, err);
+    console.log('falha no fetch', err);
   }
 }
 ```

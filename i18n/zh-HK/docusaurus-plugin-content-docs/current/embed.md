@@ -1,6 +1,6 @@
 ---
-title: &apos;開始嵌入 V8&apos;
-description: &apos;本文介紹了一些關鍵的 V8 概念，並提供了一個 “Hello World” 示例，幫助您開始使用 V8 代碼。&apos;
+title: '開始嵌入 V8'
+description: '本文介紹了一些關鍵的 V8 概念，並提供了一個 “Hello World” 示例，幫助您開始使用 V8 代碼。'
 ---
 本文介紹了一些關鍵的 V8 概念，並提供了一個 “Hello World” 示例，幫助您開始使用 V8 代碼。
 

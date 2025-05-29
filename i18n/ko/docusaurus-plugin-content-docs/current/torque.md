@@ -161,8 +161,8 @@ ConstexprDeclaration :
 다음은 Torque의 31 및 32비트 부호 있는 정수 타입에 대한 `base.tq`에서의 예입니다:
 
 ```torque
-type int32 generates &apos;TNode<Int32T>&apos; constexpr &apos;int32_t&apos;;
-type int31 extends int32 generates &apos;TNode<Int32T>&apos; constexpr &apos;int31_t&apos;;
+type int32 generates 'TNode<Int32T>' constexpr 'int32_t';
+type int31 extends int32 generates 'TNode<Int32T>' constexpr 'int31_t';
 ```
 
 #### 유니온 타입

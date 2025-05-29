@@ -1,12 +1,12 @@
 ---
-title: &apos;V8 추가 기능&apos;
-author: &apos;도메닉 데니콜라 ([@domenic](https://twitter.com/domenic)), Streams 마법사&apos;
+title: 'V8 추가 기능'
+author: '도메닉 데니콜라 ([@domenic](https://twitter.com/domenic)), Streams 마법사'
 avatars:
-  - &apos;domenic-denicola&apos;
+  - 'domenic-denicola'
 date: 2016-02-04 13:33:37
 tags:
   - internals
-description: &apos;V8 v4.8에는 고성능의 자체 호스팅 API를 작성할 수 있도록 설계된 간단한 인터페이스인 “V8 추가 기능”이 포함되어 있습니다.&apos;
+description: 'V8 v4.8에는 고성능의 자체 호스팅 API를 작성할 수 있도록 설계된 간단한 인터페이스인 “V8 추가 기능”이 포함되어 있습니다.'
 ---
 V8은 JavaScript 언어의 기본 객체와 함수의 큰 부분을 JavaScript 자체로 구현합니다. 예를 들어, 우리의 [프라미스 구현](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js)은 JavaScript로 작성된 것을 볼 수 있습니다. 이러한 내장 요소들은 _자체 호스팅_ 이라고 불립니다. 이러한 구현들은 [시작 스냅샷](/blog/custom-startup-snapshots)에 포함되어 있어 새로운 컨텍스트를 실행 중에 자체 호스팅 내장 요소를 준비하고 초기화할 필요 없이 빠르게 생성할 수 있습니다.
 
@@ -21,10 +21,10 @@ V8 추가 파일은 특정 구조를 가진 간단한 JavaScript 파일입니다
 
 ```js
 (function(global, binding, v8) {
-  &apos;use strict&apos;;
+  'use strict';
   const Object = global.Object;
-  const x = v8.createPrivateSymbol(&apos;x&apos;);
-  const y = v8.createPrivateSymbol(&apos;y&apos;);
+  const x = v8.createPrivateSymbol('x');
+  const y = v8.createPrivateSymbol('y');
 
   class Vec2 {
     constructor(theX, theY) {
@@ -37,7 +37,7 @@ V8 추가 파일은 특정 구조를 가진 간단한 JavaScript 파일입니다
     }
   }
 
-  Object.defineProperty(global, &apos;Vec2&apos;, {
+  Object.defineProperty(global, 'Vec2', {
     value: Vec2,
     enumerable: false,
     configurable: true,
@@ -59,7 +59,7 @@ V8 추가 파일은 특정 구조를 가진 간단한 JavaScript 파일입니다
 마지막으로, 추가 기능을 컴파일할 것임을 V8에 알리기 위해, 프로젝트의 gypfile에 한 줄을 추가합니다:
 
 ```js
-&apos;v8_extra_library_files&apos;: [&apos;./Vec2.js&apos;]
+'v8_extra_library_files': ['./Vec2.js']
 ```
 
 (이것의 실제 사례는 [V8의 gypfile](https://code.google.com/p/chromium/codesearch#chromium/src/v8/build/standalone.gypi&sq=package:chromium&type=cs&l=170)에서 볼 수 있습니다.)

@@ -1,6 +1,6 @@
 ---
-title: &apos;Testes web do Blink (também conhecidos como testes de layout)&apos;
-description: &apos;A infraestrutura do V8 executa continuamente os testes web do Blink para prevenir problemas de integração com o Chromium. Este documento descreve o que fazer caso um desses testes falhe.&apos;
+title: 'Testes web do Blink (também conhecidos como testes de layout)'
+description: 'A infraestrutura do V8 executa continuamente os testes web do Blink para prevenir problemas de integração com o Chromium. Este documento descreve o que fazer caso um desses testes falhe.'
 ---
 Executamos continuamente [os testes web do Blink (anteriormente conhecidos como “testes de layout”)](https://chromium.googlesource.com/chromium/src/+/master/docs/testing/web_tests.md) em nosso [console de integração](https://ci.chromium.org/p/v8/g/integration/console) para prevenir problemas de integração com o Chromium.
 

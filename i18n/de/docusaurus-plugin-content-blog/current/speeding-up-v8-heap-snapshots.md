@@ -1,7 +1,7 @@
 ---
-title: &apos;Beschleunigung von V8-Heap-Snapshots&apos;
-description: &apos;Dieser Beitrag über V8-Heap-Snapshots präsentiert einige von Bloomberg-Ingenieuren entdeckte Leistungsprobleme und wie wir diese gelöst haben, um die JavaScript-Speicheranalyse schneller als je zuvor zu machen.&apos;
-author: &apos;Jose Dapena Paz&apos;
+title: 'Beschleunigung von V8-Heap-Snapshots'
+description: 'Dieser Beitrag über V8-Heap-Snapshots präsentiert einige von Bloomberg-Ingenieuren entdeckte Leistungsprobleme und wie wir diese gelöst haben, um die JavaScript-Speicheranalyse schneller als je zuvor zu machen.'
+author: 'Jose Dapena Paz'
 date: 2023-07-27
 tags:
  - Speicher
@@ -19,7 +19,7 @@ Bloomberg-Ingenieure arbeiteten daran, ein Speicherleck in einer JavaScript-Anwe
 Eine gängige Technik zur Debugging eines routinemäßigen Szenarios mit Speicherlecks wie diesem ist es, zuerst einen Heap-Snapshot zu erfassen, diesen dann im "Memory"-Reiter der DevTools zu laden und herauszufinden, was am meisten Speicher verbraucht, indem man die verschiedenen Zusammenfassungen und Objektattribute untersucht. Im UI der DevTools kann der Heap-Snapshot im "Memory"-Reiter aufgenommen werden. Für Node.js-Anwendungen kann der Heap-Snapshot [programmgesteuert ausgelöst werden](https://nodejs.org/en/docs/guides/diagnostics/memory/using-heap-snapshot) mit dieser API:
 
 ```js
-require(&apos;v8&apos;).writeHeapSnapshot();
+require('v8').writeHeapSnapshot();
 ```
 
 Sie wollten mehrere Snapshots zu verschiedenen Zeitpunkten im Lebenszyklus der Anwendung erfassen, sodass der Memory-Viewer der DevTools verwendet werden konnte, um die Unterschiede zwischen den Heaps zu verschiedenen Zeiten anzuzeigen. Das Problem war jedoch, dass das Erfassen eines einzelnen vollständigen Snapshots (500 MB) **über 30 Minuten** dauerte!

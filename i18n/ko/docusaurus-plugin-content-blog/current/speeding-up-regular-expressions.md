@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 정규 표현식을 더 빠르게 만드는 방법&apos;
-author: &apos;Jakob Gruber, 정규 소프트웨어 엔지니어&apos;
+title: 'V8 정규 표현식을 더 빠르게 만드는 방법'
+author: 'Jakob Gruber, 정규 소프트웨어 엔지니어'
 avatars:
-  - &apos;jakob-gruber&apos;
+  - 'jakob-gruber'
 date: 2017-01-10 13:33:37
 tags:
   - 내부 메커니즘
   - RegExp
-description: &apos;V8는 최근 정규 표현식의 내장 기능을 셀프 호스팅 JavaScript 구현에서 TurboFan 기반의 새로운 코드 생성 아키텍처에 직접 연결되는 방식으로 이전했습니다.&apos;
+description: 'V8는 최근 정규 표현식의 내장 기능을 셀프 호스팅 JavaScript 구현에서 TurboFan 기반의 새로운 코드 생성 아키텍처에 직접 연결되는 방식으로 이전했습니다.'
 ---
 이 블로그 게시물은 TurboFan 기반의 새로운 코드 생성 아키텍처를 통해 정규 표현식의 내장 기능을 셀프 호스팅 JavaScript 구현에서 이전한 V8의 최근 변화를 다룹니다.
 
@@ -34,17 +34,17 @@ RegExp 이전에 대한 우리의 새로운 디자인은 [CodeStubAssembler](/bl
 
 ```js
 const re = /./g;
-re.exec(&apos;&apos;);  // 빠른 경로.
-re.new_property = &apos;느림&apos;;
-RegExp.prototype.new_property = &apos;또한 느림&apos;;
-re.exec(&apos;&apos;);  // 느린 경로.
+re.exec('');  // 빠른 경로.
+re.new_property = '느림';
+RegExp.prototype.new_property = '또한 느림';
+re.exec('');  // 느린 경로.
 ```
 
 그리고 정규 표현식 서브클래싱이 때로는 매우 유용할 수 있지만, 서브클래싱된 정규 표현식 인스턴스는 더 일반적인 처리가 필요하므로 느린 경로를 사용한다는 점에 유의하세요:
 
 ```js
 class SlowRegExp extends RegExp {}
-new SlowRegExp(".", "g").exec(&apos;&apos;);  // 느린 경로.
+new SlowRegExp(".", "g").exec('');  // 느린 경로.
 ```
 
 정규 표현식 전체 마이그레이션은 V8 v5.7에서 사용할 수 있습니다.

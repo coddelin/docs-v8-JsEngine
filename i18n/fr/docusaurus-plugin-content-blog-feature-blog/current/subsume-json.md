@@ -1,80 +1,80 @@
 ---
-title: &apos;Incorporer JSON, autrement dit JSON ⊂ ECMAScript&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Incorporer JSON, autrement dit JSON ⊂ ECMAScript'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-08-14
 tags:
   - ES2019
-description: &apos;JSON est désormais un sous-ensemble syntaxique d&apos;ECMAScript.&apos;
-tweet: &apos;1161649929904885762&apos;
+description: 'JSON est désormais un sous-ensemble syntaxique d'ECMAScript.'
+tweet: '1161649929904885762'
 ---
-Avec [la proposition _JSON ⊂ ECMAScript_](https://github.com/tc39/proposal-json-superset), JSON devient un sous-ensemble syntaxique d&apos;ECMAScript. Si vous êtes surpris que cela n&apos;était pas déjà le cas, vous n&apos;êtes pas le seul !
+Avec [la proposition _JSON ⊂ ECMAScript_](https://github.com/tc39/proposal-json-superset), JSON devient un sous-ensemble syntaxique d'ECMAScript. Si vous êtes surpris que cela n'était pas déjà le cas, vous n'êtes pas le seul !
 
-## Le comportement ancien d&apos;ES2018
+## Le comportement ancien d'ES2018
 
-En ES2018, les littéraux de chaîne de caractères d&apos;ECMAScript ne pouvaient pas contenir les caractères séparateurs de ligne U+2028 LINE SEPARATOR et U+2029 PARAGRAPH SEPARATOR non échappés, car ils sont considérés comme des terminaux de ligne même dans ce contexte :
+En ES2018, les littéraux de chaîne de caractères d'ECMAScript ne pouvaient pas contenir les caractères séparateurs de ligne U+2028 LINE SEPARATOR et U+2029 PARAGRAPH SEPARATOR non échappés, car ils sont considérés comme des terminaux de ligne même dans ce contexte :
 
 ```js
 // Une chaîne contenant un caractère U+2028 brut.
-const LS = &apos; &apos;;
+const LS = ' ';
 // → ES2018 : SyntaxError
 
 // Une chaîne contenant un caractère U+2029 brut, produit par `eval` :
-const PS = eval(&apos;"\u2029"&apos;);
+const PS = eval('"\u2029"');
 // → ES2018 : SyntaxError
 ```
 
-Cela posait problème car les chaînes JSON _peuvent_ contenir ces caractères. En conséquence, les développeurs devaient implémenter une logique de post-traitement spécialisée lors de l&apos;intégration de JSON valide dans des programmes ECMAScript pour gérer ces caractères. Sans cette logique, le code pouvait comporter des bugs subtils, voire des [problèmes de sécurité](#security) !
+Cela posait problème car les chaînes JSON _peuvent_ contenir ces caractères. En conséquence, les développeurs devaient implémenter une logique de post-traitement spécialisée lors de l'intégration de JSON valide dans des programmes ECMAScript pour gérer ces caractères. Sans cette logique, le code pouvait comporter des bugs subtils, voire des [problèmes de sécurité](#security) !
 
 <!--truncate-->
 ## Le nouveau comportement
 
-En ES2019, les littéraux de chaîne peuvent désormais contenir les caractères U+2028 et U+2029 bruts, éliminant ainsi la confusion d&apos;incohérence entre ECMAScript et JSON.
+En ES2019, les littéraux de chaîne peuvent désormais contenir les caractères U+2028 et U+2029 bruts, éliminant ainsi la confusion d'incohérence entre ECMAScript et JSON.
 
 ```js
 // Une chaîne contenant un caractère U+2028 brut.
-const LS = &apos; &apos;;
+const LS = ' ';
 // → ES2018 : SyntaxError
-// → ES2019 : pas d&apos;exception
+// → ES2019 : pas d'exception
 
 // Une chaîne contenant un caractère U+2029 brut, produit par `eval` :
-const PS = eval(&apos;"\u2029"&apos;);
+const PS = eval('"\u2029"');
 // → ES2018 : SyntaxError
-// → ES2019 : pas d&apos;exception
+// → ES2019 : pas d'exception
 ```
 
-Cette petite amélioration simplifie grandement le modèle mental pour les développeurs (une complication de moins à retenir !), et réduit le besoin de logique de post-traitement spécialisée lors de l&apos;intégration de JSON valide dans des programmes ECMAScript.
+Cette petite amélioration simplifie grandement le modèle mental pour les développeurs (une complication de moins à retenir !), et réduit le besoin de logique de post-traitement spécialisée lors de l'intégration de JSON valide dans des programmes ECMAScript.
 
 ## Intégrer JSON dans des programmes JavaScript
 
-Grâce à cette proposition, `JSON.stringify` peut désormais être utilisé pour générer des littéraux de chaînes ECMAScript valides, des littéraux d&apos;objet et des littéraux de tableau. Et grâce à la proposition distincte [_`JSON.stringify` bien formé_](/features/well-formed-json-stringify), ces littéraux peuvent être représentés en toute sécurité en UTF-8 et d&apos;autres encodages (pratique si vous souhaitez les écrire dans un fichier sur disque). Cela est extrêmement utile pour les cas d&apos;utilisation liés à la métaprogrammation, comme la création dynamique de code source JavaScript et son écriture sur disque.
+Grâce à cette proposition, `JSON.stringify` peut désormais être utilisé pour générer des littéraux de chaînes ECMAScript valides, des littéraux d'objet et des littéraux de tableau. Et grâce à la proposition distincte [_`JSON.stringify` bien formé_](/features/well-formed-json-stringify), ces littéraux peuvent être représentés en toute sécurité en UTF-8 et d'autres encodages (pratique si vous souhaitez les écrire dans un fichier sur disque). Cela est extrêmement utile pour les cas d'utilisation liés à la métaprogrammation, comme la création dynamique de code source JavaScript et son écriture sur disque.
 
-Voici un exemple de création d&apos;un programme JavaScript valide intégrant un objet de données donné, en tirant parti de la grammaire JSON qui est désormais un sous-ensemble d&apos;ECMAScript :
+Voici un exemple de création d'un programme JavaScript valide intégrant un objet de données donné, en tirant parti de la grammaire JSON qui est désormais un sous-ensemble d'ECMAScript :
 
 ```js
 // Un objet JavaScript (ou tableau, ou chaîne) représentant des données.
 const data = {
-  LineTerminators: &apos;\n\r  &apos;,
-  // Remarque : la chaîne contient 4 caractères : &apos;\n\r\u2028\u2029&apos;.
+  LineTerminators: '\n\r  ',
+  // Remarque : la chaîne contient 4 caractères : '\n\r\u2028\u2029'.
 };
 
 // Transformez les données en leur forme JSON-stringifiée. Grâce à JSON ⊂
-// ECMAScript, la sortie de `JSON.stringify` est garantie d&apos;être
+// ECMAScript, la sortie de `JSON.stringify` est garantie d'être
 // un littéral ECMAScript syntaxiquement valide :
 const jsObjectLiteral = JSON.stringify(data);
 
 // Créez un programme ECMAScript valide qui intègre les données comme un objet
 // littéral.
 const program = `const data = ${ jsObjectLiteral };`;
-// → &apos;const data = {"LineTerminators":"…"};&apos;
+// → 'const data = {"LineTerminators":"…"};'
 // (Un échappement supplémentaire est nécessaire si la cible est un <script> inline.)
 
 // Écrivez un fichier contenant le programme ECMAScript sur disque.
 saveToDisk(filePath, program);
 ```
 
-Le script ci-dessus produit le code suivant, qui s&apos;évalue à un objet équivalent :
+Le script ci-dessus produit le code suivant, qui s'évalue à un objet équivalent :
 
 ```js
 const data = {"LineTerminators":"\n\r  "};
@@ -82,25 +82,25 @@ const data = {"LineTerminators":"\n\r  "};
 
 ## Intégrer JSON dans des programmes JavaScript avec `JSON.parse`
 
-Comme expliqué dans [_le coût du JSON_](/blog/cost-of-javascript-2019#json), au lieu d&apos;intégrer les données comme un littéral d&apos;objet JavaScript, comme ceci :
+Comme expliqué dans [_le coût du JSON_](/blog/cost-of-javascript-2019#json), au lieu d'intégrer les données comme un littéral d'objet JavaScript, comme ceci :
 
 ```js
 const data = { foo: 42, bar: 1337 }; // 🐌
 ```
 
-…les données peuvent être représentées sous forme JSON-stringifiée, puis analysées avec `JSON.parse` au moment de l&apos;exécution, pour de meilleures performances dans le cas d&apos;objets volumineux (10 kB+):
+…les données peuvent être représentées sous forme JSON-stringifiée, puis analysées avec `JSON.parse` au moment de l'exécution, pour de meilleures performances dans le cas d'objets volumineux (10 kB+):
 
 ```js
-const data = JSON.parse(&apos;{"foo":42,"bar":1337}&apos;); // 🚀
+const data = JSON.parse('{"foo":42,"bar":1337}'); // 🚀
 ```
 
-Voici un exemple d&apos;implémentation :
+Voici un exemple d'implémentation :
 
 ```js
 // Un objet JavaScript (ou tableau, ou chaîne) représentant des données.
 const data = {
-  LineTerminators: &apos;\n\r  &apos;,
-  // Remarque : la chaîne contient 4 caractères : &apos;\n\r\u2028\u2029&apos;.
+  LineTerminators: '\n\r  ',
+  // Remarque : la chaîne contient 4 caractères : '\n\r\u2028\u2029'.
 };
 
 // Transformez les données en leur forme JSON-stringifiée.
@@ -110,12 +110,12 @@ const json = JSON.stringify(data);
 // littéral de chaîne JavaScript selon https://v8.dev/blog/cost-of-javascript-2019#json,
 // en échappant les caractères spéciaux comme `\"` dans les données.
 // Grâce à JSON ⊂ ECMAScript, la sortie de `JSON.stringify` est
-// garantie d&apos;être un littéral ECMAScript syntaxiquement valide :
+// garantie d'être un littéral ECMAScript syntaxiquement valide :
 const jsStringLiteral = JSON.stringify(json);
 // Créez un programme ECMAScript valide qui intègre le littéral de chaîne
 // JavaScript représentant les données JSON dans un appel `JSON.parse`.
 const program = `const data = JSON.parse(${ jsStringLiteral });`;
-// → &apos;const data = JSON.parse("…");&apos;
+// → 'const data = JSON.parse("…");'
 // (Un échappement supplémentaire est nécessaire si la cible est un <script> en ligne.)
 
 // Écrire un fichier contenant le programme ECMAScript sur le disque.
@@ -150,13 +150,13 @@ Lorsqu'il est utilisé comme dans l'exemple ci-dessus, `JSON.stringify()` est ga
 ```html
 <script>
   // Infos de débogage :
-  // User-Agent: "Chaîne fournie par l'utilisateur<U+2028>  alert(&apos;XSS&apos;);//"
+  // User-Agent: "Chaîne fournie par l'utilisateur<U+2028>  alert('XSS');//"
 </script>
 <!-- …est équivalent à : -->
 <script>
   // Infos de débogage :
   // User-Agent: "Chaîne fournie par l'utilisateur
-  alert(&apos;XSS&apos;);//"
+  alert('XSS');//"
 </script>
 ```
 

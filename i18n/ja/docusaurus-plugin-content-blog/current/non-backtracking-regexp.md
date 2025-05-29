@@ -1,17 +1,17 @@
 ---
-title: &apos;追加のバックトラッキングしないRegExpエンジン&apos;
-author: &apos;Martin Bidlingmaier&apos;
+title: '追加のバックトラッキングしないRegExpエンジン'
+author: 'Martin Bidlingmaier'
 date: 2021-01-11
 tags:
  - 内部機構
  - RegExp
-description: &apos;V8には、フォールバックとして機能し、多くの破滅的なバックトラッキングを防ぐ追加のRegExpエンジンが導入されました。&apos;
-tweet: &apos;1348635270762139650&apos;
+description: 'V8には、フォールバックとして機能し、多くの破滅的なバックトラッキングを防ぐ追加のRegExpエンジンが導入されました。'
+tweet: '1348635270762139650'
 ---
 v8.8以降、V8は既存の[Irregexpエンジン](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html)に加えて、新しい実験的なバックトラッキングしないRegExpエンジンを搭載しました。このエンジンは、対象文字列のサイズに対して線形時間で実行されることを保証します。実験的なエンジンは以下の機能フラグの背後で利用可能です。
 
 <!--truncate-->
-![`/(a*)*b/.exec(&apos;a&apos;.repeat(n))` の実行時間のプロット（n ≤ 100）](/_img/non-backtracking-regexp/runtime-plot.svg)
+![`/(a*)*b/.exec('a'.repeat(n))` の実行時間のプロット（n ≤ 100）](/_img/non-backtracking-regexp/runtime-plot.svg)
 
 新しいRegExpエンジンを設定する方法は以下の通りです：
 
@@ -28,15 +28,15 @@ v8.8以降、V8は既存の[Irregexpエンジン](https://blog.chromium.org/2009
 
 ## 背景：破滅的なバックトラッキング
 
-V8でのRegExpマッチングはIrregexpエンジンによって処理されます。Irregexpは、専用のネイティブコード（または[バイトコード](/blog/regexp-tier-up)）にRegExpをJITコンパイルし、多くの場合、非常に高速に動作します。ただし、一部のパターンでは、Irregexpの実行時間が入力文字列のサイズに対して指数関数的に増加することがあります。上記の例 `/(a*)*b/.exec(&apos;a&apos;.repeat(100))` は、Irregexpで実行すると生涯内に終了しません。
+V8でのRegExpマッチングはIrregexpエンジンによって処理されます。Irregexpは、専用のネイティブコード（または[バイトコード](/blog/regexp-tier-up)）にRegExpをJITコンパイルし、多くの場合、非常に高速に動作します。ただし、一部のパターンでは、Irregexpの実行時間が入力文字列のサイズに対して指数関数的に増加することがあります。上記の例 `/(a*)*b/.exec('a'.repeat(100))` は、Irregexpで実行すると生涯内に終了しません。
 
-それでは、ここで何が起こっているのでしょうか？ Irregexpは*バックトラッキング* エンジンです。マッチングが続行する選択肢がある場合、Irregexpは最初の選択肢をすべて探索し、必要に応じてバックトラッキングして2番目の選択肢を探索します。たとえば、パターン `/abc|[az][by][0-9]/` を文字列 `&apos;ab3&apos;` と照合するシナリオを考えます。この場合、Irregexpは最初に `/abc/` を試し、2文字目で失敗します。その後、2文字バックトラックして2番目の選択肢 `/[az][by][0-9]/` を成功裏にマッチングします。`/(abc)*xyz/` のようなクォンタファイア付きパターンの場合、ボディマッチ後に再びボディをマッチングするか、残りのパターンを続けるかを選択する必要があります。
+それでは、ここで何が起こっているのでしょうか？ Irregexpは*バックトラッキング* エンジンです。マッチングが続行する選択肢がある場合、Irregexpは最初の選択肢をすべて探索し、必要に応じてバックトラッキングして2番目の選択肢を探索します。たとえば、パターン `/abc|[az][by][0-9]/` を文字列 `'ab3'` と照合するシナリオを考えます。この場合、Irregexpは最初に `/abc/` を試し、2文字目で失敗します。その後、2文字バックトラックして2番目の選択肢 `/[az][by][0-9]/` を成功裏にマッチングします。`/(abc)*xyz/` のようなクォンタファイア付きパターンの場合、ボディマッチ後に再びボディをマッチングするか、残りのパターンを続けるかを選択する必要があります。
 
-`/(a*)*b/` を小さい文字列 `&apos;aaa&apos;` に照合するときに何が起こるのか理解してみましょう。このパターンは入れ子になったクォンタファイアを含むため、`&apos;a&apos;` の*シーケンスのシーケンス* をマッチし、その後に `&apos;b&apos;` をマッチングするよう要求しています。文字列には `&apos;b&apos;` が含まれていないため明らかにマッチングは失敗します。しかし、`/(a*)*/` はマッチし、それを指数関数的に多くの方法で行います：
+`/(a*)*b/` を小さい文字列 `'aaa'` に照合するときに何が起こるのか理解してみましょう。このパターンは入れ子になったクォンタファイアを含むため、`'a'` の*シーケンスのシーケンス* をマッチし、その後に `'b'` をマッチングするよう要求しています。文字列には `'b'` が含まれていないため明らかにマッチングは失敗します。しかし、`/(a*)*/` はマッチし、それを指数関数的に多くの方法で行います：
 
 ```js
-&apos;aaa&apos;           &apos;aa&apos;, &apos;a&apos;           &apos;aa&apos;, &apos;&apos;
-&apos;a&apos;, &apos;aa&apos;       &apos;a&apos;, &apos;a&apos;, &apos;a&apos;       &apos;a&apos;, &apos;a&apos;, &apos;&apos;
+'aaa'           'aa', 'a'           'aa', ''
+'a', 'aa'       'a', 'a', 'a'       'a', 'a', ''
 …
 ```
 
@@ -162,14 +162,14 @@ function followEpsilons(pcs) {
       case 'CONSUME':
         result.push(pc);
         break;
-      case &apos;FORK&apos;:
+      case 'FORK':
         pcs.push(pc + 1, inst.forkPc);
         break;
-      case &apos;JMP&apos;:
+      case 'JMP':
         pcs.push(inst.jmpPc);
         break;
-      case &apos;ACCEPT&apos;:
-        return &apos;ACCEPT&apos;;
+      case 'ACCEPT':
+        return 'ACCEPT';
     }
   }
 

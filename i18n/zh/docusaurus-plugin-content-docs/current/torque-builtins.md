@@ -79,7 +79,7 @@ SimpleInstallFunction(isolate_, math, "is42", Builtins::kMathIs42, 1, true);
 $ out/debug/d8
 d8> Math.is42(42);
 true
-d8> Math.is42(&apos;42.0&apos;);
+d8> Math.is42('42.0');
 true
 d8> Math.is42(true);
 false

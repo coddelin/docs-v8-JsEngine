@@ -1,10 +1,10 @@
 ---
-title: &apos;Publication V8 v5.4&apos;
-author: &apos;l&apos;équipe V8&apos;
+title: 'Publication V8 v5.4'
+author: 'l'équipe V8'
 date: 2016-09-09 13:33:37
 tags:
   - publication
-description: &apos;V8 v5.4 offre des améliorations de performance et une consommation de mémoire réduite.&apos;
+description: 'V8 v5.4 offre des améliorations de performance et une consommation de mémoire réduite.'
 ---
 Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](/docs/release-process). Chaque version est dérivée du maître Git de V8 juste avant une étape Beta de Chrome. Aujourd'hui, nous sommes ravis d'annoncer notre toute dernière branche, [V8 version 5.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.4), qui restera en beta jusqu'à sa sortie en coordination avec Chrome 54 Stable dans quelques semaines. V8 v5.4 regorge de fonctionnalités destinées aux développeurs, nous aimerions donc vous donner un aperçu de certains points forts en anticipation de la sortie.
 

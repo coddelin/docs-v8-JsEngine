@@ -1,6 +1,6 @@
 ---
-title: &apos;Fusión y parcheo&apos;
-description: &apos;Este documento explica cómo fusionar parches de V8 a una rama de lanzamiento.&apos;
+title: 'Fusión y parcheo'
+description: 'Este documento explica cómo fusionar parches de V8 a una rama de lanzamiento.'
 ---
 Si tienes un parche para la rama `main` (por ejemplo, una corrección importante de un error) que necesita ser fusionado en una de las ramas de lanzamiento de V8 (refs/branch-heads/12.5), sigue leyendo.
 
@@ -22,7 +22,7 @@ Se puede encontrar más información en la [página relevante de Chromium](https
 
 ## El proceso de fusión
 
-El proceso de fusión en el rastreador de V8 se gestiona mediante Atributos. Por lo tanto, configura el atributo &apos;Merge-Request&apos; para el hito de Chrome relevante. En caso de que la fusión solo afecte un [port](https://v8.dev/docs/ports) de V8, configura el atributo HW en consecuencia. Ejemplo:
+El proceso de fusión en el rastreador de V8 se gestiona mediante Atributos. Por lo tanto, configura el atributo 'Merge-Request' para el hito de Chrome relevante. En caso de que la fusión solo afecte un [port](https://v8.dev/docs/ports) de V8, configura el atributo HW en consecuencia. Ejemplo:
 
 ```
 Merge-Request: 123

@@ -1,6 +1,6 @@
 ---
-title: &apos;V8 的版本編號方案&apos;
-description: &apos;此文檔說明 V8 的版本編號方案。&apos;
+title: 'V8 的版本編號方案'
+description: '此文檔說明 V8 的版本編號方案。'
 ---
 V8 版本號的格式為 `x.y.z.w`，其中：
 

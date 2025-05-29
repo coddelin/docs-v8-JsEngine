@@ -1,6 +1,6 @@
 ---
-title: &apos;Chromium mit V8 profilen&apos;
-description: &apos;Dieses Dokument erklärt, wie man die CPU- und Heap-Profiler von V8 mit Chromium verwendet.&apos;
+title: 'Chromium mit V8 profilen'
+description: 'Dieses Dokument erklärt, wie man die CPU- und Heap-Profiler von V8 mit Chromium verwendet.'
 ---
 [V8’s CPU- und Heap-Profiler](/docs/profile) sind einfach aus den V8-Shells heraus zu verwenden, aber es könnte verwirrend erscheinen, wie man sie mit Chromium nutzt. Diese Seite sollte Ihnen dabei helfen.
 
@@ -18,7 +18,7 @@ Chromium ist eine komplexe Anwendung, im Gegensatz zu den V8-Shells. Unten finde
 So können Sie Chromium starten, um ein CPU-Profil ab dem Start des Prozesses zu erhalten:
 
 ```bash
-./Chromium --no-sandbox --user-data-dir=`mktemp -d` --incognito --js-flags=&apos;--prof&apos;
+./Chromium --no-sandbox --user-data-dir=`mktemp -d` --incognito --js-flags='--prof'
 ```
 
 Bitte beachten Sie, dass Sie keine Profile in den Developer Tools sehen werden, da alle Daten in einer Datei und nicht in den Developer Tools protokolliert werden.
@@ -48,7 +48,7 @@ Chrome auf Android hat einige einzigartige Aspekte, die das Profiling etwas komp
 Die folgenden Befehle aktivieren das Profiling auf Android:
 
 ```bash
-./build/android/adb_chrome_public_command_line --no-sandbox --single-process --js-flags=&apos;--logfile=/storage/emulated/0/Download/%t.log,--prof&apos;
+./build/android/adb_chrome_public_command_line --no-sandbox --single-process --js-flags='--logfile=/storage/emulated/0/Download/%t.log,--prof'
 <Schließen und Neustarten von Chrome auf dem Android-Gerät>
 adb pull /storage/emulated/0/Download/<logfile>
 ./src/v8/tools/linux-tick-processor --apk-embedded-library=out/Release/lib.unstripped/libchrome.so --preprocess <logfile>

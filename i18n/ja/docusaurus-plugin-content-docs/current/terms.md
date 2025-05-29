@@ -1,7 +1,7 @@
 ---
-title: &apos;利用規約&apos;
+title: '利用規約'
 layout: layouts/base.njk
-description: &apos;この文書はV8ウェブサイトとプロジェクトの利用規約を説明しています。&apos;
+description: 'この文書はV8ウェブサイトとプロジェクトの利用規約を説明しています。'
 ---
 # 利用規約
 

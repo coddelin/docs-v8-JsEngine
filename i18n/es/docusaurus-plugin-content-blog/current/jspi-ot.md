@@ -1,7 +1,7 @@
 ---
-title: &apos;La integración JSPI de WebAssembly entra en prueba de origen&apos;
-description: &apos;Explicamos el inicio de la prueba de origen para JSPI&apos;
-author: &apos;Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl&apos;
+title: 'La integración JSPI de WebAssembly entra en prueba de origen'
+description: 'Explicamos el inicio de la prueba de origen para JSPI'
+author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
 date: 2024-03-06
 tags:
   - WebAssembly

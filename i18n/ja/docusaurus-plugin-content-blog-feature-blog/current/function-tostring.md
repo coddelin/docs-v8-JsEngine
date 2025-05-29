@@ -1,13 +1,13 @@
 ---
-title: &apos;修正された `Function.prototype.toString`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '修正された `Function.prototype.toString`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-03-25
 tags:
   - ECMAScript
   - ES2019
-description: &apos;Function.prototype.toString はホワイトスペースやコメントを含むソースコードの正確なスライスを返すようになりました。&apos;
+description: 'Function.prototype.toString はホワイトスペースやコメントを含むソースコードの正確なスライスを返すようになりました。'
 ---
 [`Function.prototype.toString()`](https://tc39.es/Function-prototype-toString-revision/) は、ホワイトスペースやコメントを含むソースコードの正確なスライスを返すようになりました。以下は、旧動作と新動作を比較した例です:
 
@@ -19,13 +19,13 @@ function /* コメント */ foo () {}
 
 // 以前のV8では:
 foo.toString();
-// → &apos;function foo() {}&apos;
+// → 'function foo() {}'
 //             ^ コメントなし
 //                ^ スペースなし
 
 // 現在では:
 foo.toString();
-// → &apos;function /* コメント */ foo () {}&apos;
+// → 'function /* コメント */ foo () {}'
 ```
 
 ## 機能サポート

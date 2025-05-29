@@ -1,6 +1,6 @@
 ---
-title: &apos;Zeiger-Komprimierung in Oilpan&apos;
-author: &apos;Anton Bikineev und Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), gehende Disassembler&apos;
+title: 'Zeiger-Komprimierung in Oilpan'
+author: 'Anton Bikineev und Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), gehende Disassembler'
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -9,8 +9,8 @@ tags:
   - internals
   - speicher
   - cppgc
-description: &apos;Die Zeiger-Komprimierung in Oilpan ermöglicht die Komprimierung von C++-Zeigern und eine Reduzierung der Heap-Größe um bis zu 33%.&apos;
-tweet: &apos;1597274125780893697&apos;
+description: 'Die Zeiger-Komprimierung in Oilpan ermöglicht die Komprimierung von C++-Zeigern und eine Reduzierung der Heap-Größe um bis zu 33%.'
+tweet: '1597274125780893697'
 ---
 
 > Es ist absolut unsinnig, 64-Bit-Zeiger zu verwenden, wenn ich ein Programm kompiliere, das weniger als 4 Gigabyte RAM benötigt. Wenn solche Zeigerwerte in einer Struktur erscheinen, verschwenden sie nicht nur die Hälfte des Speichers, sondern verbrauchen effektiv die Hälfte des Caches.
@@ -226,8 +226,8 @@ Zeigerkompression in Oilpan wurde standardmäßig in **Chrome 106** aktiviert. W
 <!-- markdownlint-disable no-inline-html -->
 | Blink-Speicher | P50                                                 | P99                                               |
 | -----------:   | :-------------------------------------------------: | :-----------------------------------------------: |
-| Windows        | **<span style={{color:&apos;green&apos;}}>-21% (-1.37MB)</span>** | **<span style={{color:&apos;green&apos;}}>-33% (-59MB)</span>** |
-| Android        | **<span style={{color:&apos;green&apos;}}>-6% (-0.1MB)</span>**   | **<span style={{color:&apos;green&apos;}}>-8% (-3.9MB)</span>** |
+| Windows        | **<span style={{color:'green'}}>-21% (-1.37MB)</span>** | **<span style={{color:'green'}}>-33% (-59MB)</span>** |
+| Android        | **<span style={{color:'green'}}>-6% (-0.1MB)</span>**   | **<span style={{color:'green'}}>-8% (-3.9MB)</span>** |
 <!-- markdownlint-enable no-inline-html -->
 
 

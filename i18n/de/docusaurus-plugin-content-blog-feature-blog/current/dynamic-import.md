@@ -1,14 +1,14 @@
 ---
-title: &apos;Dynamisches `import()`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Dynamisches `import()`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-11-21
 tags:
   - ECMAScript
   - ES2020
-description: &apos;Dynamisches import() eröffnet neue Möglichkeiten im Vergleich zum statischen Import. Dieser Artikel vergleicht beide und gibt einen Überblick über die neuen Funktionen.&apos;
-tweet: &apos;932914724060254208&apos;
+description: 'Dynamisches import() eröffnet neue Möglichkeiten im Vergleich zum statischen Import. Dieser Artikel vergleicht beide und gibt einen Überblick über die neuen Funktionen.'
+tweet: '932914724060254208'
 ---
 [Dynamisches `import()`](https://github.com/tc39/proposal-dynamic-import) führt eine neue, funktionsähnliche Form von `import` ein, die im Vergleich zum statischen `import` neue Möglichkeiten bietet. Dieser Artikel vergleicht beide und gibt einen Überblick über die neuen Funktionen.
 
@@ -22,12 +22,12 @@ Betrachten Sie das folgende Modul, das unter `./utils.mjs` gespeichert ist:
 ```js
 // Standard-Export
 export default () => {
-  console.log(&apos;Hallo vom Standard-Export!&apos;);
+  console.log('Hallo vom Standard-Export!');
 };
 
 // Benannter Export `doStuff`
 export const doStuff = () => {
-  console.log(&apos;Sachen erledigen…&apos;);
+  console.log('Sachen erledigen…');
 };
 ```
 
@@ -35,11 +35,11 @@ So können Sie das Modul `./utils.mjs` statisch importieren und verwenden:
 
 ```html
 <script type="module">
-  import * as module from &apos;./utils.mjs&apos;;
+  import * as module from './utils.mjs';
   module.default();
-  // → logs &apos;Hallo vom Standard-Export!&apos;
+  // → logs 'Hallo vom Standard-Export!'
   module.doStuff();
-  // → logs &apos;Sachen erledigen…&apos;
+  // → logs 'Sachen erledigen…'
 </script>
 ```
 
@@ -69,13 +69,13 @@ So können Sie das Modul `./utils.mjs` dynamisch importieren und verwenden:
 
 ```html
 <script type="module">
-  const moduleSpecifier = &apos;./utils.mjs&apos;;
+  const moduleSpecifier = './utils.mjs';
   import(moduleSpecifier)
     .then((module) => {
       module.default();
-      // → logs &apos;Hallo vom Standard-Export!&apos;
+      // → logs 'Hallo vom Standard-Export!'
       module.doStuff();
-      // → logs &apos;Sachen erledigen…&apos;
+      // → logs 'Sachen erledigen…'
     });
 </script>
 ```
@@ -85,12 +85,12 @@ Da `import()` ein Versprechen zurückgibt, ist es möglich, `async`/`await` anst
 ```html
 <script type="module">
   (async () => {
-    const moduleSpecifier = &apos;./utils.mjs&apos;;
+    const moduleSpecifier = './utils.mjs';
     const module = await import(moduleSpecifier)
     module.default();
-    // → logs &apos;Hallo vom Standard-Export!&apos;
+    // → logs 'Hallo vom Standard-Export!'
     module.doStuff();
-    // → logs &apos;Sachen erledigen…&apos;
+    // → logs 'Sachen erledigen…'
   })();
 </script>
 ```
@@ -112,10 +112,10 @@ Hier ist ein Beispiel dafür, wie dynamisches `import()` das Lazy-Loading von Mo
 </nav>
 <main>Dies ist ein Platzhalter für den Inhalt, der bei Bedarf geladen wird.</main>
 <script>
-  const main = document.querySelector(&apos;main&apos;);
-  const links = document.querySelectorAll(&apos;nav > a&apos;);
+  const main = document.querySelector('main');
+  const links = document.querySelectorAll('nav > a');
   for (const link of links) {
-    link.addEventListener(&apos;click&apos;, async (event) => {
+    link.addEventListener('click', async (event) => {
       event.preventDefault();
       try {
         const module = await import(`/${link.dataset.entryModule}.mjs`);

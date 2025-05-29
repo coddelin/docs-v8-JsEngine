@@ -1,14 +1,14 @@
 ---
-title: &apos;Um pequeno passo para o Chrome, um grande salto para o V8&apos;
-author: &apos;guardians of the heap Ulan Degenbaev, Hannes Payer, Michael Lippautz, e o guerreiro do DevTools Alexey Kozyatinskiy&apos;
+title: 'Um pequeno passo para o Chrome, um grande salto para o V8'
+author: 'guardians of the heap Ulan Degenbaev, Hannes Payer, Michael Lippautz, e o guerreiro do DevTools Alexey Kozyatinskiy'
 avatars:
-  - &apos;ulan-degenbaev&apos;
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'ulan-degenbaev'
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2017-02-09 13:33:37
 tags:
   - memória
-description: &apos;O V8 recentemente aumentou seu limite rígido de tamanho de heap.&apos;
+description: 'O V8 recentemente aumentou seu limite rígido de tamanho de heap.'
 ---
 O V8 tem um limite rígido no tamanho de seu heap. Isso funciona como uma proteção contra aplicações com vazamento de memória. Quando uma aplicação atinge esse limite rígido, o V8 realiza uma série de coletas de lixo como último recurso. Se essas coletas de lixo não forem suficientes para liberar memória, o V8 interrompe a execução e informa uma falha de falta de memória. Sem o limite rígido, uma aplicação com vazamento de memória poderia consumir toda a memória do sistema, prejudicando o desempenho de outras aplicações.
 

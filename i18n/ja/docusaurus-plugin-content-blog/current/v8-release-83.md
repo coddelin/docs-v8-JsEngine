@@ -1,13 +1,13 @@
 ---
-title: &apos;V8リリース v8.3&apos;
-author: &apos;[Victor Gomes](https://twitter.com/VictorBFG), 在宅勤務を安全に実施中&apos;
+title: 'V8リリース v8.3'
+author: '[Victor Gomes](https://twitter.com/VictorBFG), 在宅勤務を安全に実施中'
 avatars:
- - &apos;victor-gomes&apos;
+ - 'victor-gomes'
 date: 2020-05-04
 tags:
  - リリース
-description: &apos;V8 v8.3は、より高速なArrayBuffer、より大きなWasmメモリ、そして廃止されたAPIを特徴としています。&apos;
-tweet: &apos;1257333120115847171&apos;
+description: 'V8 v8.3は、より高速なArrayBuffer、より大きなWasmメモリ、そして廃止されたAPIを特徴としています。'
+tweet: '1257333120115847171'
 ---
 
 6週間ごとに、新しいV8のブランチを[V8のリリースプロセス](https://v8.dev/docs/release-process)の一環として作成します。各バージョンはChrome Betaのマイルストーン直前にV8のGitのマスターから分岐されます。本日、新しいブランチである[V8バージョン8.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.3)を発表できることを嬉しく思います。このバージョンは、数週間後にChrome 83 Stableと連携してリリースされるまでベータ版です。V8 v8.3は開発者向けの便利な機能でいっぱいです。この投稿では、公開に先立ち、いくつかの注目ポイントを紹介します。

@@ -1,15 +1,15 @@
 ---
-title: &apos;Jank Busters Parte Dos: Orinoco&apos;
-author: &apos;los jank busters: Ulan Degenbaev, Michael Lippautz y Hannes Payer&apos;
+title: 'Jank Busters Parte Dos: Orinoco'
+author: 'los jank busters: Ulan Degenbaev, Michael Lippautz y Hannes Payer'
 avatars:
-  - &apos;ulan-degenbaev&apos;
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'ulan-degenbaev'
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2016-04-12 13:33:37
 tags:
   - internos
   - memoria
-description: &apos;Este artículo presenta tres optimizaciones que establecen las bases para un nuevo recolector de basura en V8, llamado Orinoco.&apos;
+description: 'Este artículo presenta tres optimizaciones que establecen las bases para un nuevo recolector de basura en V8, llamado Orinoco.'
 ---
 En una [entrada de blog anterior](/blog/jank-busters), presentamos el problema del jank causado por la recolección de basura, que interrumpe una experiencia de navegación fluida. En esta entrada de blog introducimos tres optimizaciones que establecen las bases para un nuevo recolector de basura en V8, llamado _Orinoco_. Orinoco se basa en la idea de implementar un recolector de basura mayormente paralelo y concurrente sin límites generacionales estrictos, lo que reducirá el jank de la recolección de basura y el consumo de memoria, mientras proporciona un alto rendimiento. En lugar de implementar Orinoco detrás de una bandera como un recolector de basura separado, decidimos enviar las características de Orinoco de manera incremental en la rama principal de V8 para beneficiar a los usuarios de inmediato. Las tres características discutidas en esta publicación son compactación paralela, procesamiento paralelo del conjunto recordado y asignación negra.
 

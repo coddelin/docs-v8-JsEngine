@@ -1,8 +1,8 @@
 ---
-title: &apos;안녕하세요, 세계!&apos;
-author: &apos;V8 팀&apos;
+title: '안녕하세요, 세계!'
+author: 'V8 팀'
 date: 2015-07-10 13:33:37
-description: &apos;V8 프로젝트가 이제 블로그를 가졌습니다!&apos;
+description: 'V8 프로젝트가 이제 블로그를 가졌습니다!'
 ---
 V8 개발자 블로그에 오신 것을 환영합니다!
 

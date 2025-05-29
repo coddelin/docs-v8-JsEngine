@@ -1,12 +1,12 @@
 ---
-title: &apos;Schnelle, parallele Anwendungen mit WebAssembly SIMD&apos;
-author: &apos;Deepti Gandluri ([@dptig](https://twitter.com/dptig)), Thomas Lively ([@tlively52](https://twitter.com/tlively52)), Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))&apos;
+title: 'Schnelle, parallele Anwendungen mit WebAssembly SIMD'
+author: 'Deepti Gandluri ([@dptig](https://twitter.com/dptig)), Thomas Lively ([@tlively52](https://twitter.com/tlively52)), Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
 date: 2020-01-30
 updated: 2022-11-06
 tags:
   - WebAssembly
-description: &apos;Vektoroperationen in WebAssembly bringen&apos;
-tweet: &apos;1222944308183085058&apos;
+description: 'Vektoroperationen in WebAssembly bringen'
+tweet: '1222944308183085058'
 ---
 SIMD steht für _Single Instruction, Multiple Data_. SIMD-Anweisungen sind eine spezielle Klasse von Anweisungen, die Datenparallelität in Anwendungen ausnutzen, indem sie gleichzeitig dieselbe Operation auf mehreren Datenelementen ausführen. Rechenintensive Anwendungen wie Audio-/Video-Codecs, Bildverarbeitungsprogramme sind Beispiele für Anwendungen, die SIMD-Anweisungen nutzen, um die Leistung zu verbessern. Die meisten modernen Architekturen unterstützen einige Varianten von SIMD-Anweisungen.
 
@@ -36,14 +36,14 @@ Zunächst einmal, beachten Sie dass SIMD eine neue Funktion ist und nicht in all
 Um sicherzustellen, dass alle Benutzer Ihre Anwendung laden können, müssen Sie zwei verschiedene Versionen - eine mit SIMD aktiviert und eine ohne - erstellen und die entsprechende Version abhängig von den Ergebnissen der Feature-Erkennung laden. Um SIMD zur Laufzeit zu erkennen, können Sie die [`wasm-feature-detect`](https://github.com/GoogleChromeLabs/wasm-feature-detect) Bibliothek verwenden und das entsprechende Modul wie folgt laden:
 
 ```js
-import { simd } from &apos;wasm-feature-detect&apos;;
+import { simd } from 'wasm-feature-detect';
 
 (async () => {
   const hasSIMD = await simd();
   const module = await (
     hasSIMD
-      ? import(&apos;./module-with-simd.js&apos;)
-      : import(&apos;./module-without-simd.js&apos;)
+      ? import('./module-with-simd.js')
+      : import('./module-without-simd.js')
   );
   // …jetzt verwende `module` wie gewohnt
 })();

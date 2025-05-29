@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 發佈 v9.5&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))&apos;
+title: 'V8 發佈 v9.5'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-09-21
 tags:
  - release
-description: &apos;V8 發佈 v9.5 帶來更新的國際化 API 和 WebAssembly 異常處理支援。&apos;
-tweet: &apos;1440296019623759872&apos;
+description: 'V8 發佈 v9.5 帶來更新的國際化 API 和 WebAssembly 異常處理支援。'
+tweet: '1440296019623759872'
 ---
 每四週，我們會根據 [發佈流程](https://v8.dev/docs/release-process) 建立一個新的 V8 分支。每個版本都是在 Chrome Beta 里程碑之前直接從 V8 的 Git 主分支建立的。今天我們很高興地宣布我們最新的分支，[V8 版本 9.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.5)，目前處於 Beta 階段，預計幾週後將與 Chrome 95 正式版同步發佈。V8 v9.5 充滿了各種面向開發者的精彩功能。這篇文章將搶先介紹一些亮點。
 
@@ -19,24 +19,24 @@ tweet: &apos;1440296019623759872&apos;
 在 v8.1 中，我們在 Chrome 81 中推出了 [`Intl.DisplayNames` API](https://v8.dev/features/intl-displaynames) API，支援的類型有 “language”、“region”、“script” 和 “currency”。隨著 v9.5 的發佈，我們新增兩個新的支援類型：“calendar” 和 “dateTimeField”。它們分別返回各種日曆類型和日期時間字段的顯示名稱：
 
 ```js
-const esCalendarNames = new Intl.DisplayNames([&apos;es&apos;], { type: &apos;calendar&apos; });
-const frDateTimeFieldNames = new Intl.DisplayNames([&apos;fr&apos;], { type: &apos;dateTimeField&apos; });
-esCalendarNames.of(&apos;roc&apos;);  // "calendario de la República de China"
-frDateTimeFieldNames.of(&apos;month&apos;); // "mois"
+const esCalendarNames = new Intl.DisplayNames(['es'], { type: 'calendar' });
+const frDateTimeFieldNames = new Intl.DisplayNames(['fr'], { type: 'dateTimeField' });
+esCalendarNames.of('roc');  // "calendario de la República de China"
+frDateTimeFieldNames.of('month'); // "mois"
 ```
 
 我們還增強了對 “language” 類型的支援，新增了一個 languageDisplay 選項，該選項可以是 “standard” 或 “dialect”（如果未指定，默認值為 “dialect”）：
 
 ```js
-const jaDialectLanguageNames = new Intl.DisplayNames([&apos;ja&apos;], { type: &apos;language&apos; });
-const jaStandardLanguageNames = new Intl.DisplayNames([&apos;ja&apos;], { type: &apos;language&apos; , languageDisplay: &apos;standard&apos;});
-jaDialectLanguageNames.of(&apos;en-US&apos;)  // "アメリカ英語"
-jaDialectLanguageNames.of(&apos;en-AU&apos;)  // "オーストラリア英語"
-jaDialectLanguageNames.of(&apos;en-GB&apos;)  // "イギリス英語"
+const jaDialectLanguageNames = new Intl.DisplayNames(['ja'], { type: 'language' });
+const jaStandardLanguageNames = new Intl.DisplayNames(['ja'], { type: 'language' , languageDisplay: 'standard'});
+jaDialectLanguageNames.of('en-US')  // "アメリカ英語"
+jaDialectLanguageNames.of('en-AU')  // "オーストラリア英語"
+jaDialectLanguageNames.of('en-GB')  // "イギリス英語"
 
-jaStandardLanguageNames.of(&apos;en-US&apos;) // "英語 (アメリカ合衆国)"
-jaStandardLanguageNames.of(&apos;en-AU&apos;) // "英語 (オーストラリア)"
-jaStandardLanguageNames.of(&apos;en-GB&apos;) // "英語 (イギリス)"
+jaStandardLanguageNames.of('en-US') // "英語 (アメリカ合衆国)"
+jaStandardLanguageNames.of('en-AU') // "英語 (オーストラリア)"
+jaStandardLanguageNames.of('en-GB') // "英語 (イギリス)"
 ```
 
 ### 擴展的 `timeZoneName` 選項

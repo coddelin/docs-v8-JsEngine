@@ -1,6 +1,6 @@
 ---
-title: &apos;크로미움과 V8 프로파일링&apos;
-description: &apos;본 문서는 크로미움에서 V8의 CPU 및 힙 프로파일러를 사용하는 방법에 대해 설명합니다.&apos;
+title: '크로미움과 V8 프로파일링'
+description: '본 문서는 크로미움에서 V8의 CPU 및 힙 프로파일러를 사용하는 방법에 대해 설명합니다.'
 ---
 [V8의 CPU & 힙 프로파일러](/docs/profile)는 V8 셸에서 사용하기 간단하지만, 크로미움에서는 이를 사용하는 방법이 다소 혼란스러울 수 있습니다. 이 페이지는 이에 대한 도움을 제공합니다.
 
@@ -18,7 +18,7 @@ description: &apos;본 문서는 크로미움에서 V8의 CPU 및 힙 프로파�
 프로세스 시작 시점부터 CPU 프로파일을 얻기 위해 크로미움을 실행하는 방법은 다음과 같습니다:
 
 ```bash
-./Chromium --no-sandbox --user-data-dir=`mktemp -d` --incognito --js-flags=&apos;--prof&apos;
+./Chromium --no-sandbox --user-data-dir=`mktemp -d` --incognito --js-flags='--prof'
 ```
 
 이로 인해 개발자 도구에서 프로파일을 확인할 수 없음을 유의하세요. 모든 데이터는 개발자 도구가 아니라 파일에 기록됩니다.
@@ -48,7 +48,7 @@ description: &apos;본 문서는 크로미움에서 V8의 CPU 및 힙 프로파�
 다음 명령은 안드로이드에서 프로파일링을 활성화합니다:
 
 ```bash
-./build/android/adb_chrome_public_command_line --no-sandbox --single-process --js-flags=&apos;--logfile=/storage/emulated/0/Download/%t.log,--prof&apos;
+./build/android/adb_chrome_public_command_line --no-sandbox --single-process --js-flags='--logfile=/storage/emulated/0/Download/%t.log,--prof'
 <안드로이드 디바이스에서 크롬 종료 후 다시 실행>
 adb pull /storage/emulated/0/Download/<logfile>
 ./src/v8/tools/linux-tick-processor --apk-embedded-library=out/Release/lib.unstripped/libchrome.so --preprocess <logfile>

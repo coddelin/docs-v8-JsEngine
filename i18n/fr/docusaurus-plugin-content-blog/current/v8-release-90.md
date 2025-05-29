@@ -1,13 +1,13 @@
 ---
-title: &apos;Version V8 v9.0&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), en ligne immédiatement&apos;
+title: 'Version V8 v9.0'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), en ligne immédiatement'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-03-17
 tags:
  - release
-description: &apos;Version V8 v9.0 apporte la prise en charge des indices de correspondance RegExp et diverses améliorations de performance.&apos;
-tweet: &apos;1372227274712494084&apos;
+description: 'Version V8 v9.0 apporte la prise en charge des indices de correspondance RegExp et diverses améliorations de performance.'
+tweet: '1372227274712494084'
 ---
 Toutes les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](https://v8.dev/docs/release-process). Chaque version est dérivée du maître Git de V8 juste avant une étape bêta de Chrome. Aujourd'hui, nous sommes heureux d'annoncer notre nouvelle branche, [Version V8 9.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.0), qui est en version bêta jusqu'à sa publication en coordination avec Chrome 90 Stable dans plusieurs semaines. V8 v9.0 regorge de toutes sortes de fonctionnalités intéressantes pour les développeurs. Ce post fournit un aperçu de certains des points forts en prévision de la sortie.
 
@@ -20,7 +20,7 @@ Toutes les six semaines, nous créons une nouvelle branche de V8 dans le cadre d
 
 ```javascript
 const re = /(a)(b)/d;      // Notez le drapeau /d.
-const m = re.exec(&apos;ab&apos;);
+const m = re.exec('ab');
 console.log(m.indices[0]); // Index 0 est la correspondance entière.
 // → [0, 2]
 console.log(m.indices[1]); // Index 1 est le 1er groupe captif.

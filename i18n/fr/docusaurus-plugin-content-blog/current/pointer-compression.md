@@ -1,40 +1,40 @@
 ---
-title: &apos;Compression des pointeurs dans V8&apos;
-author: &apos;Igor Sheludko et Santiago Aboy Solanes, *les* compresseurs de pointeurs&apos;
+title: 'Compression des pointeurs dans V8'
+author: 'Igor Sheludko et Santiago Aboy Solanes, *les* compresseurs de pointeurs'
 avatars:
-  - &apos;igor-sheludko&apos;
-  - &apos;santiago-aboy-solanes&apos;
+  - 'igor-sheludko'
+  - 'santiago-aboy-solanes'
 date: 2020-03-30
 tags:
   - internes
   - mémoire
-description: &apos;V8 a réduit la taille de son tas jusqu&apos;à 43 % ! Découvrez comment dans “Compression des pointeurs dans V8”!&apos;
-tweet: &apos;1244653541379182596&apos;
+description: 'V8 a réduit la taille de son tas jusqu'à 43 % ! Découvrez comment dans “Compression des pointeurs dans V8”!'
+tweet: '1244653541379182596'
 ---
-Il existe une bataille constante entre mémoire et performance. En tant qu&apos;utilisateurs, nous souhaitons que les choses soient rapides tout en consommant le moins de mémoire possible. Malheureusement, améliorer la performance se fait généralement au détriment de la consommation de mémoire (et vice versa).
+Il existe une bataille constante entre mémoire et performance. En tant qu'utilisateurs, nous souhaitons que les choses soient rapides tout en consommant le moins de mémoire possible. Malheureusement, améliorer la performance se fait généralement au détriment de la consommation de mémoire (et vice versa).
 
 <!--truncate-->
-En 2014, Chrome est passé d&apos;un processus 32 bits à un processus 64 bits. Cela a apporté à Chrome une meilleure [sécurité, stabilité et performance](https://blog.chromium.org/2014/08/64-bits-of-awesome-64-bit-windows_26.html), mais cela a eu un coût en mémoire car chaque pointeur occupe désormais huit octets au lieu de quatre. Nous avons relevé le défi de réduire cet surcoût dans V8 afin de récupérer autant que possible ces quatre octets perdus.
+En 2014, Chrome est passé d'un processus 32 bits à un processus 64 bits. Cela a apporté à Chrome une meilleure [sécurité, stabilité et performance](https://blog.chromium.org/2014/08/64-bits-of-awesome-64-bit-windows_26.html), mais cela a eu un coût en mémoire car chaque pointeur occupe désormais huit octets au lieu de quatre. Nous avons relevé le défi de réduire cet surcoût dans V8 afin de récupérer autant que possible ces quatre octets perdus.
 
-Avant de plonger dans l&apos;implémentation, nous devons savoir où nous en sommes pour évaluer correctement la situation. Pour mesurer notre mémoire et notre performance, nous utilisons un ensemble de [pages web](https://v8.dev/blog/optimizing-v8-memory) qui reflètent des sites web populaires dans le monde réel. Les données montrent que V8 contribue jusqu&apos;à 60 % de la consommation de mémoire du processus [rendereur de Chrome](https://www.chromium.org/developers/design-documents/multi-process-architecture) sur le bureau, avec une moyenne de 40 %.
+Avant de plonger dans l'implémentation, nous devons savoir où nous en sommes pour évaluer correctement la situation. Pour mesurer notre mémoire et notre performance, nous utilisons un ensemble de [pages web](https://v8.dev/blog/optimizing-v8-memory) qui reflètent des sites web populaires dans le monde réel. Les données montrent que V8 contribue jusqu'à 60 % de la consommation de mémoire du processus [rendereur de Chrome](https://www.chromium.org/developers/design-documents/multi-process-architecture) sur le bureau, avec une moyenne de 40 %.
 
 ![Pourcentage de consommation de mémoire de V8 dans la mémoire renderer de Chrome](/_img/pointer-compression/memory-chrome.svg)
 
-La compression des pointeurs est l&apos;un des nombreux efforts en cours dans V8 pour réduire la consommation de mémoire. L&apos;idée est très simple : au lieu de stocker des pointeurs 64 bits, nous pouvons stocker des offsets 32 bits par rapport à une adresse de “base”. Avec une idée aussi simple, combien pouvons-nous gagner avec une telle compression dans V8 ?
+La compression des pointeurs est l'un des nombreux efforts en cours dans V8 pour réduire la consommation de mémoire. L'idée est très simple : au lieu de stocker des pointeurs 64 bits, nous pouvons stocker des offsets 32 bits par rapport à une adresse de “base”. Avec une idée aussi simple, combien pouvons-nous gagner avec une telle compression dans V8 ?
 
-Le tas V8 contient une foule d&apos;éléments comme des valeurs en virgule flottante, des caractères de chaîne, du bytecode de l&apos;interpréteur et des valeurs étiquetées (voir la section suivante pour plus de détails). En inspectant le tas, nous avons découvert que sur des sites web réels, ces valeurs étiquetées occupent environ 70 % du tas V8 !
+Le tas V8 contient une foule d'éléments comme des valeurs en virgule flottante, des caractères de chaîne, du bytecode de l'interpréteur et des valeurs étiquetées (voir la section suivante pour plus de détails). En inspectant le tas, nous avons découvert que sur des sites web réels, ces valeurs étiquetées occupent environ 70 % du tas V8 !
 
 Examinons de plus près ce que sont ces valeurs étiquetées.
 
 ## Étiquetage des valeurs dans V8
 
-Les valeurs JavaScript dans V8 sont représentées sous forme d&apos;objets et sont allouées dans le tas de V8, qu&apos;elles soient des objets, des tableaux, des nombres ou des chaînes. Cela nous permet de représenter toute valeur comme un pointeur vers un objet.
+Les valeurs JavaScript dans V8 sont représentées sous forme d'objets et sont allouées dans le tas de V8, qu'elles soient des objets, des tableaux, des nombres ou des chaînes. Cela nous permet de représenter toute valeur comme un pointeur vers un objet.
 
-De nombreux programmes JavaScript effectuent des calculs sur des valeurs entières, comme l&apos;incrémentation d&apos;un index dans une boucle. Pour éviter d&apos;avoir à allouer un nouvel objet nombre chaque fois qu&apos;un entier est incrémenté, V8 utilise la technique bien connue de [l&apos;étiquetage des pointeurs](https://en.wikipedia.org/wiki/Tagged_pointer) pour stocker des données supplémentaires ou alternatives dans les pointeurs du tas V8.
+De nombreux programmes JavaScript effectuent des calculs sur des valeurs entières, comme l'incrémentation d'un index dans une boucle. Pour éviter d'avoir à allouer un nouvel objet nombre chaque fois qu'un entier est incrémenté, V8 utilise la technique bien connue de [l'étiquetage des pointeurs](https://en.wikipedia.org/wiki/Tagged_pointer) pour stocker des données supplémentaires ou alternatives dans les pointeurs du tas V8.
 
-Les bits d&apos;étiquette ont un double objectif : ils signalent soit des pointeurs forts/faibles vers des objets situés dans le tas V8, soit un petit entier. Ainsi, la valeur d&apos;un entier peut être stockée directement dans la valeur étiquetée, sans avoir à allouer de stockage supplémentaire pour celle-ci.
+Les bits d'étiquette ont un double objectif : ils signalent soit des pointeurs forts/faibles vers des objets situés dans le tas V8, soit un petit entier. Ainsi, la valeur d'un entier peut être stockée directement dans la valeur étiquetée, sans avoir à allouer de stockage supplémentaire pour celle-ci.
 
-V8 alloue toujours des objets dans le tas à des adresses alignées sur les mots, ce qui lui permet d&apos;utiliser les 2 (ou 3, selon la taille du mot de la machine) bits les moins significatifs pour l&apos;étiquetage. Sur les architectures 32 bits, V8 utilise le bit le moins significatif pour distinguer les Smis des pointeurs d&apos;objets du tas. Pour les pointeurs du tas, il utilise le deuxième bit le moins significatif pour distinguer les références fortes des faibles :
+V8 alloue toujours des objets dans le tas à des adresses alignées sur les mots, ce qui lui permet d'utiliser les 2 (ou 3, selon la taille du mot de la machine) bits les moins significatifs pour l'étiquetage. Sur les architectures 32 bits, V8 utilise le bit le moins significatif pour distinguer les Smis des pointeurs d'objets du tas. Pour les pointeurs du tas, il utilise le deuxième bit le moins significatif pour distinguer les références fortes des faibles :
 
 <pre>
                         |----- 32 bits -----|
@@ -44,7 +44,7 @@ Smi:                    |___valeur_int31____<b>0</b>|
 
 où *w* est un bit utilisé pour distinguer les pointeurs forts des faibles.
 
-À noter qu&apos;une valeur Smi ne peut transporter qu&apos;une charge utile de 31 bits, y compris le bit de signe. Dans le cas des pointeurs, nous avons 30 bits qui peuvent être utilisés comme charge utile d&apos;adresse d&apos;objet du tas. En raison de l&apos;alignement sur les mots, la granularité d&apos;allocation est de 4 octets, ce qui nous donne 4 Go d&apos;espace adressable.
+À noter qu'une valeur Smi ne peut transporter qu'une charge utile de 31 bits, y compris le bit de signe. Dans le cas des pointeurs, nous avons 30 bits qui peuvent être utilisés comme charge utile d'adresse d'objet du tas. En raison de l'alignement sur les mots, la granularité d'allocation est de 4 octets, ce qui nous donne 4 Go d'espace adressable.
 
 Sur les architectures 64 bits, les valeurs V8 ressemblent à ceci :
 
@@ -54,7 +54,7 @@ Pointer:    |________________adresse______________<b>w1</b>|
 Smi:        |____valeur_int32____|000000000000000000<b>0</b>|
 </pre>
 
-Vous remarquerez qu&apos;à la différence des architectures 32 bits, sur les architectures 64 bits, V8 peut utiliser 32 bits pour la charge utile des valeurs Smi. Les implications des Smis 32 bits sur la compression des pointeurs sont abordées dans les sections suivantes.
+Vous remarquerez qu'à la différence des architectures 32 bits, sur les architectures 64 bits, V8 peut utiliser 32 bits pour la charge utile des valeurs Smi. Les implications des Smis 32 bits sur la compression des pointeurs sont abordées dans les sections suivantes.
 
 ## Valeurs étiquetées compressées et nouveau modèle de tas
 
@@ -392,7 +392,7 @@ Sur les architectures 64 bits, les valeurs en double sont de la même taille que
 Si l'hypothèse devient fausse pour un champ donné, disons après l'exécution de cette ligne :
 
 ```js
-const q = new Point(2, &apos;ab&apos;);
+const q = new Point(2, 'ab');
 ```
 
 alors les valeurs numériques pour la propriété y doivent être stockées de manière encapsulée. De plus, si du code optimisé de manière spéculative repose sur cette hypothèse, il ne doit plus être utilisé et doit être abandonné (désoptimisé). La raison de cette généralisation du « type de champ » est de minimiser le nombre de formes d'objets créées à partir de la même fonction constructeur, ce qui est nécessaire pour une performance plus stable.

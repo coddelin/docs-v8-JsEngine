@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 發行 v4.5&apos;
-author: &apos;V8 團隊&apos;
+title: 'V8 發行 v4.5'
+author: 'V8 團隊'
 date: 2015-07-17 13:33:37
 tags:
   - 發行
-description: &apos;V8 v4.5 帶來了性能提升並新增了對多項 ES2015 特性的支持。&apos;
+description: 'V8 v4.5 帶來了性能提升並新增了對多項 ES2015 特性的支持。'
 ---
 每隔約六周，我們會根據 [發行流程](https://v8.dev/docs/release-process)，從 V8 的 Git 主分支創建一個新分支。每個版本都是在 Chrome 為 Beta 里程碑分支之前創建的。今天我們很高興地宣布最新的分支 [V8 版本 4.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.5)，該版本將進入 Beta 階段，直至與 Chrome 45 Stable 的發行協調完成。V8 v4.5 包含了各種面向開發者的改進，我們希望在幾周內發布前先向大家介紹其中的一些亮點。
 
@@ -27,12 +27,12 @@ const convertedData = data.map(value => value * 2);
 console.log(convertedData);
 ```
 
-箭頭函數的 &apos;this&apos; 字典綁定也是一大優勢。這使得在方法中使用回調變得更加簡單。
+箭頭函數的 'this' 字典綁定也是一大優勢。這使得在方法中使用回調變得更加簡單。
 
 ```js
 class MyClass {
-  constructor() { this.a = &apos;Hello, &apos;; }
-  hello() { setInterval(() => console.log(this.a + &apos;World!&apos;), 1000); }
+  constructor() { this.a = 'Hello, '; }
+  hello() { setInterval(() => console.log(this.a + 'World!'), 1000); }
 }
 const myInstance = new MyClass();
 myInstance.hello();
@@ -47,8 +47,8 @@ myInstance.hello();
 [`Object.assign`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) 使開發者能快速合併和克隆物件。
 
 ```js
-const target = { a: &apos;Hello, &apos; };
-const source = { b: &apos;world!&apos; };
+const target = { a: 'Hello, ' };
+const source = { b: 'world!' };
 // 合併物件
 Object.assign(target, source);
 console.log(target.a + target.b);
@@ -62,13 +62,13 @@ console.log(target.a + target.b);
 
 V8 的新優化編譯器 [TurboFan](/blog/turbofan-jit) 的設計目標之一是最終能優化所有 JavaScript，包括 ECMAScript 2015 特性。在 V8 v4.5 中，我們開始使用 TurboFan 優化一些 Crankshaft 不支持的語言特性：`for`-`of`、`class`、`with` 和計算屬性名稱。
 
-以下是一個使用 &apos;for-of&apos; 的程式碼範例，現在可以由 TurboFan 編譯：
+以下是一個使用 'for-of' 的程式碼範例，現在可以由 TurboFan 編譯：
 
 ```js
-const sequence = [&apos;First&apos;, &apos;Second&apos;, &apos;Third&apos;];
+const sequence = ['First', 'Second', 'Third'];
 for (const value of sequence) {
   // 這個作用域現在可以優化。
-  const object = {a: &apos;Hello, &apos;, b: &apos;world!&apos;, c: value};
+  const object = {a: 'Hello, ', b: 'world!', c: value};
   console.log(object.a + object.b + object.c);
 }
 ```

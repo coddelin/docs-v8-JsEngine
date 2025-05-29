@@ -1,6 +1,6 @@
 ---
-title: &apos;透過 V8 Inspector Protocol 進行調試&apos;
-description: &apos;本頁旨在向嵌入者提供實現 V8 調試支持所需的基本工具。&apos;
+title: '透過 V8 Inspector Protocol 進行調試'
+description: '本頁旨在向嵌入者提供實現 V8 調試支持所需的基本工具。'
 ---
 V8 為使用者和嵌入者提供了廣泛的調試功能。使用者通常會通過 [Chrome DevTools](https://developer.chrome.com/devtools) 介面與 V8 調試器互動。嵌入者（包括 DevTools）需要直接依賴 [Inspector Protocol](https://chromedevtools.github.io/debugger-protocol-viewer/tot/)。
 
@@ -23,7 +23,7 @@ static void SendInspectorMessage(
 ```cpp
 void Send(const v8_inspector::StringView& string) {
   // [...] 字符串轉換。
-  // 從當前上下文中抓取名為 &apos;receive&apos; 的全局屬性。
+  // 從當前上下文中抓取名為 'receive' 的全局屬性。
   Local<String> callback_name =
       v8::String::NewFromUtf8(isolate_, "receive", v8::NewStringType::kNormal)
           .ToLocalChecked();
@@ -52,13 +52,13 @@ function receive(message) {
 
 const msg = JSON.stringify({
   id: 0,
-  method: &apos;Debugger.enable&apos;,
+  method: 'Debugger.enable',
 });
 
 // 調用由 d8 提供的函數。
 send(msg);
 
-// 通過執行 &apos;d8 --enable-inspector inspector-demo.js&apos; 運行此文件。
+// 通過執行 'd8 --enable-inspector inspector-demo.js' 運行此文件。
 ```
 
 ## 進一步文檔

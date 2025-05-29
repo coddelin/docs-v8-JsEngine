@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 リリース v5.2&apos;
-author: &apos;V8 チーム&apos;
+title: 'V8 リリース v5.2'
+author: 'V8 チーム'
 date: 2016-06-04 13:33:37
 tags:
   - リリース
-description: &apos;V8 v5.2 は ES2016 の言語機能をサポートします。&apos;
+description: 'V8 v5.2 は ES2016 の言語機能をサポートします。'
 ---
 約6週間ごとに、私たちは[リリースプロセス](/docs/release-process)の一環として V8 の新しいブランチを作成します。各バージョンは、Chrome が Chrome Beta マイルストーン用にブランチを分岐する直前に、V8 の Git マスターから分岐されます。本日、最新のブランチである [V8 バージョン 5.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.2) を発表します。このバージョンは Chrome 52 Stable と連携してリリースされるまでベータ版です。V8 5.2 は開発者向けのさまざまな便利な機能が満載で、数週間後のリリースを見越して、注目すべき機能をいくつかご紹介します。
 

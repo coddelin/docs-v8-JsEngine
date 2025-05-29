@@ -1,6 +1,6 @@
 ---
- title: &apos;육지 발견: 노드의 바다를 떠나며&apos;
- author: &apos;다리우스 메르카디에&apos;
+ title: '육지 발견: 노드의 바다를 떠나며'
+ author: '다리우스 메르카디에'
  avatars:
    - darius-mercadier
  date: 2025-03-25
@@ -8,7 +8,7 @@
    - JavaScript
    - internals
  description: "V8이 왜 Sea of Nodes를 벗어나 CFG로 돌아가기로 결정했는지"
- tweet: &apos;&apos;
+ tweet: ''
 ---
 
 V8의 최종 단계 최적화 컴파일러인 Turbofan은 대규모 생산 컴파일러 중에서 드물게 [Sea of Nodes](https://en.wikipedia.org/wiki/Sea_of_nodes) (SoN)을 사용하는 것으로 유명합니다. 그러나 약 3년 전부터 우리는 Sea of Nodes를 제거하고 더 전통적인 [Control-Flow Graph](https://en.wikipedia.org/wiki/Control-flow_graph) (CFG) [Intermediate Representation](https://en.wikipedia.org/wiki/Intermediate_representation) (IR)로 되돌아가기 시작했습니다. 이 새로운 IR을 우리는 Turboshaft라고 명명했습니다. 현재 Turbofan의 JavaScript 백엔드는 전부 Turboshaft를 사용하고 있으며, WebAssembly 파이프라인 전체에서도 Turboshaft를 사용하고 있습니다. Turbofan의 두 부분은 여전히 Sea of Nodes를 일부 사용하는데, 하나는 내장 파이프라인이며, 이를 천천히 Turboshaft로 교체하고 있으며, 다른 하나는 JavaScript 파이프라인의 프론트엔드로 이는 또 다른 CFG 기반 IR인 Maglev로 교체 중입니다. 이 블로그 글에서는 우리가 Sea of Nodes를 벗어나기로 한 이유를 설명합니다.

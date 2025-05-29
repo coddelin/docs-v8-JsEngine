@@ -1,13 +1,13 @@
 ---
-title: &apos;改进的代码缓存&apos;
-author: &apos;Mythri Alle，首席代码缓存官&apos;
+title: '改进的代码缓存'
+author: 'Mythri Alle，首席代码缓存官'
 date: 2018-04-24 13:33:37
 avatars:
-  - &apos;mythri-alle&apos;
+  - 'mythri-alle'
 tags:
   - internals
-tweet: &apos;988728000677142528&apos;
-description: &apos;从 Chrome 66 开始，V8通过在顶层执行后生成缓存，缓存了更多的（字节）代码。&apos;
+tweet: '988728000677142528'
+description: '从 Chrome 66 开始，V8通过在顶层执行后生成缓存，缓存了更多的（字节）代码。'
 ---
 V8 使用 [代码缓存](/blog/code-caching) 为频繁使用的脚本缓存生成的代码。从 Chrome 66 开始，我们通过在顶层执行后生成缓存，缓存了更多代码。这使初次加载时的解析和编译时间减少了 20–40%。
 

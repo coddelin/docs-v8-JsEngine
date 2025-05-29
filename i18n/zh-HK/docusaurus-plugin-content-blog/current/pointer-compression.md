@@ -1,15 +1,15 @@
 ---
-title: &apos;V8 中的指針壓縮&apos;
-author: &apos;Igor Sheludko 和 Santiago Aboy Solanes, *指針壓縮者&apos;
+title: 'V8 中的指針壓縮'
+author: 'Igor Sheludko 和 Santiago Aboy Solanes, *指針壓縮者'
 avatars:
-  - &apos;igor-sheludko&apos;
-  - &apos;santiago-aboy-solanes&apos;
+  - 'igor-sheludko'
+  - 'santiago-aboy-solanes'
 date: 2020-03-30
 tags:
   - internals
   - memory
-description: &apos;V8 將其堆大小減少至最多 43%！了解詳細資訊，見“V8 中的指針壓縮”！&apos;
-tweet: &apos;1244653541379182596&apos;
+description: 'V8 將其堆大小減少至最多 43%！了解詳細資訊，見“V8 中的指針壓縮”！'
+tweet: '1244653541379182596'
 ---
 記憶體和效能之間總是一場持續的鬥爭。作為使用者，我們希望事情既快速又盡可能少地消耗記憶體。不幸的是，通常提升效能會以增加記憶體消耗為代價（反之亦然）。
 
@@ -392,7 +392,7 @@ const p = new Point(3.1, 5.3);
 如果某些字段的假設被破壞，例如執行此行程式碼後：
 
 ```js
-const q = new Point(2, &apos;ab&apos;);
+const q = new Point(2, 'ab');
 ```
 
 則屬性 y 的數值必須以裝箱形式存儲。此外，任何依賴此假設的推測性優化程式碼都必須丟棄（解除優化）。這種“字段類型”概括的原因是為了最小化由同一構造函數創建的物件形狀數量，這反過來需要更穩定的性能。

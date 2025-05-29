@@ -1,6 +1,6 @@
 ---
-title: &apos;`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), una bloguera no bloqueante&apos;
+title: '`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`'
+author: '[Marja Hölttä](https://twitter.com/marjakh), una bloguera no bloqueante'
 avatars:
   - marja-holtta
 date: 2020-09-24
@@ -8,8 +8,8 @@ tags:
   - ECMAScript
   - ES2020
   - Node.js 16
-description: &apos;Atomics.wait y Atomics.notify son primitivas de sincronización de bajo nivel útiles para implementar, por ejemplo, mutexes. Atomics.wait solo se puede usar en hilos de trabajo. La versión 8.7 de V8 ahora admite una versión no bloqueante, Atomics.waitAsync, que también es utilizable en el hilo principal.&apos;
-tweet: &apos;1309118447377358848&apos;
+description: 'Atomics.wait y Atomics.notify son primitivas de sincronización de bajo nivel útiles para implementar, por ejemplo, mutexes. Atomics.wait solo se puede usar en hilos de trabajo. La versión 8.7 de V8 ahora admite una versión no bloqueante, Atomics.waitAsync, que también es utilizable en el hilo principal.'
+tweet: '1309118447377358848'
 ---
 [`Atomics.wait`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/wait) y [`Atomics.notify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/notify) son primitivas de sincronización de bajo nivel útiles para implementar mutexes y otros mecanismos de sincronización. Sin embargo, dado que `Atomics.wait` es bloqueante, no es posible llamarlo en el hilo principal (intentarlo genera un `TypeError`).
 
@@ -25,7 +25,7 @@ En este artículo, explicamos cómo usar estas APIs de bajo nivel para implement
 - `expectedValue`: un valor que esperamos encontrar en la ubicación de memoria descrita por `(buffer, index)`
 - `timeout`: un tiempo de espera en milisegundos (opcional, por defecto es `Infinity`)
 
-El valor de retorno de `Atomics.wait` es una cadena. Si la ubicación de memoria no contiene el valor esperado, `Atomics.wait` retorna inmediatamente con el valor `&apos;not-equal&apos;`. De lo contrario, el hilo queda bloqueado hasta que otro hilo llama a `Atomics.notify` con la misma ubicación de memoria o se alcanza el tiempo de espera. En el primer caso, `Atomics.wait` retorna el valor `&apos;ok&apos;`, en el segundo caso, retorna el valor `&apos;timed-out&apos;`.
+El valor de retorno de `Atomics.wait` es una cadena. Si la ubicación de memoria no contiene el valor esperado, `Atomics.wait` retorna inmediatamente con el valor `'not-equal'`. De lo contrario, el hilo queda bloqueado hasta que otro hilo llama a `Atomics.notify` con la misma ubicación de memoria o se alcanza el tiempo de espera. En el primer caso, `Atomics.wait` retorna el valor `'ok'`, en el segundo caso, retorna el valor `'timed-out'`.
 
 `Atomics.notify` recibe los siguientes parámetros:
 
@@ -37,11 +37,11 @@ Notifica la cantidad especificada de hilos en espera, en orden FIFO, que están 
 
 A diferencia de `Atomics.wait`, `Atomics.waitAsync` siempre retorna inmediatamente. El valor de retorno es uno de los siguientes:
 
-- `{ async: false, value: &apos;not-equal&apos; }` (si la ubicación de memoria no contenía el valor esperado)
-- `{ async: false, value: &apos;timed-out&apos; }` (solo para el tiempo de espera inmediato 0)
+- `{ async: false, value: 'not-equal' }` (si la ubicación de memoria no contenía el valor esperado)
+- `{ async: false, value: 'timed-out' }` (solo para el tiempo de espera inmediato 0)
 - `{ async: true, value: promise }`
 
-La promesa puede luego resolverse con un valor de cadena `&apos;ok&apos;` (si `Atomics.notify` fue llamada con la misma ubicación de memoria) o `&apos;timed-out&apos;` (si se alcanzó el tiempo de espera). La promesa nunca será rechazada.
+La promesa puede luego resolverse con un valor de cadena `'ok'` (si `Atomics.notify` fue llamada con la misma ubicación de memoria) o `'timed-out'` (si se alcanzó el tiempo de espera). La promesa nunca será rechazada.
 
 El siguiente ejemplo demuestra el uso básico de `Atomics.waitAsync`:
 
@@ -53,14 +53,14 @@ const result = Atomics.waitAsync(i32a, 0, 0, 1000);
 //                                     |  ^ valor esperado
 //                                     ^ índice
 
-if (result.value === &apos;not-equal&apos;) {
+if (result.value === 'not-equal') {
   // El valor en el SharedArrayBuffer no era el esperado.
 } else {
   result.value instanceof Promise; // true
   result.value.then(
     (value) => {
-      if (value == &apos;ok&apos;) { /* notificado */ }
-      else { /* valor es &apos;timed-out&apos; */ }
+      if (value == 'ok') { /* notificado */ }
+      else { /* valor es 'timed-out' */ }
     });
 }
 
@@ -141,17 +141,17 @@ unlock() {
                       /* valor antiguo >>> */  AsyncLock.LOCKED,
                       /* nuevo valor >>> */  AsyncLock.UNLOCKED);
   if (oldValue != AsyncLock.LOCKED) {
-    throw new Error(&apos;Intentó liberar sin tener el mutex&apos;);
+    throw new Error('Intentó liberar sin tener el mutex');
   }
   Atomics.notify(this.i32a, AsyncLock.INDEX, 1);
 }
 ```
 
-El caso sencillo es el siguiente: el bloqueo está libre y el hilo T1 lo adquiere cambiando el estado del bloqueo con `Atomics.compareExchange`. El hilo T2 intenta adquirir el bloqueo llamando a `Atomics.compareExchange`, pero no logra cambiar el estado del bloqueo. T2 luego llama a `Atomics.wait`, lo que bloquea el hilo. En algún momento T1 libera el bloqueo y llama a `Atomics.notify`. Eso hace que la llamada `Atomics.wait` en T2 retorne `&apos;ok&apos;`, despertando a T2. T2 luego intenta adquirir el bloqueo nuevamente, y esta vez tiene éxito.
+El caso sencillo es el siguiente: el bloqueo está libre y el hilo T1 lo adquiere cambiando el estado del bloqueo con `Atomics.compareExchange`. El hilo T2 intenta adquirir el bloqueo llamando a `Atomics.compareExchange`, pero no logra cambiar el estado del bloqueo. T2 luego llama a `Atomics.wait`, lo que bloquea el hilo. En algún momento T1 libera el bloqueo y llama a `Atomics.notify`. Eso hace que la llamada `Atomics.wait` en T2 retorne `'ok'`, despertando a T2. T2 luego intenta adquirir el bloqueo nuevamente, y esta vez tiene éxito.
 
 También hay 2 posibles casos límite — estos demuestran la razón por la cual `Atomics.wait` y `Atomics.waitAsync` verifican un valor específico en el índice:
 
-- T1 está manteniendo el bloqueo y T2 intenta obtenerlo. Primero, T2 intenta cambiar el estado del bloqueo con `Atomics.compareExchange`, pero no lo logra. Pero luego, T1 libera el bloqueo antes de que T2 logre llamar a `Atomics.wait`. Cuando T2 llama a `Atomics.wait`, retorna inmediatamente con el valor `&apos;not-equal&apos;`. En ese caso, T2 continúa con la siguiente iteración del bucle, intentando adquirir el bloqueo nuevamente.
+- T1 está manteniendo el bloqueo y T2 intenta obtenerlo. Primero, T2 intenta cambiar el estado del bloqueo con `Atomics.compareExchange`, pero no lo logra. Pero luego, T1 libera el bloqueo antes de que T2 logre llamar a `Atomics.wait`. Cuando T2 llama a `Atomics.wait`, retorna inmediatamente con el valor `'not-equal'`. En ese caso, T2 continúa con la siguiente iteración del bucle, intentando adquirir el bloqueo nuevamente.
 - T1 está manteniendo el bloqueo y T2 está esperando por él con `Atomics.wait`. T1 libera el bloqueo — T2 se despierta (la llamada a `Atomics.wait` retorna) e intenta hacer `Atomics.compareExchange` para adquirir el bloqueo, pero otro hilo T3 fue más rápido y ya obtuvo el bloqueo. Entonces, la llamada a `Atomics.compareExchange` falla al obtener el bloqueo, y T2 llama a `Atomics.wait` nuevamente, bloqueándose hasta que T3 libera el bloqueo.
 
 Debido al último caso límite, el mutex no es “justo”. Es posible que T2 haya estado esperando que se libere el bloqueo, pero T3 llega y lo obtiene inmediatamente. Una implementación de bloqueo más realista puede usar varios estados para diferenciar entre “bloqueado” y “bloqueado con contención”.

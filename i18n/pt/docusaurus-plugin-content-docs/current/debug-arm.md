@@ -275,7 +275,7 @@ sim> continuar
 # NZCV: N:0 Z:1 C:0 V:0
 0x00007f1e00082ca4  54000a81            b.ne #+0x150 (addr 0x7f1e00082df4)
 
-# Então nós removemos a tag e somamos &apos;a&apos; e &apos;b&apos; juntos.
+# Então nós removemos a tag e somamos 'a' e 'b' juntos.
 0x00007f1e00082ca8  13017c44            asr w4, w2, #1
 #    x4: 0x0000000000000005
 0x00007f1e00082cac  2b830484            adds w4, w4, w3, asr #1
@@ -321,12 +321,12 @@ O simulador atingiu o ponto de interrupção, interrompendo na próxima instruç
   0x488c2e20  e24fc00c       sub ip, pc, #12
 
 # Interrompa em um endereço conhecido interessante, onde começamos
-# carregando &apos;a&apos; e &apos;b&apos;.
+# carregando 'a' e 'b'.
 sim> break 0x488c2e9c
 sim> continue
   0x488c2e9c  e59b200c       ldr r2, [fp, #+12]
 
-# Podemos olhar adiante com &apos;disasm&apos;.
+# Podemos olhar adiante com 'disasm'.
 sim> disasm 10
   0x488c2e9c  e59b200c       ldr r2, [fp, #+12]
   0x488c2ea0  e3120001       tst r2, #1

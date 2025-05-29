@@ -1,6 +1,6 @@
 ---
-title: &apos;スタックトレースAPI&apos;
-description: &apos;この文書ではV8のJavaScriptスタックトレースAPIについて説明します。&apos;
+title: 'スタックトレースAPI'
+description: 'この文書ではV8のJavaScriptスタックトレースAPIについて説明します。'
 ---
 V8内部でスローされるすべてのエラーは、作成時にスタックトレースをキャプチャします。このスタックトレースは、標準外の`error.stack`プロパティを通じてJavaScriptからアクセスできます。V8には、スタックトレースの収集およびフォーマットを制御するためのさまざまなフックがあり、カスタムエラーでもスタックトレースを収集する機能を提供します。この文書では、V8のJavaScriptスタックトレースAPIについて説明します。
 
@@ -37,7 +37,7 @@ Error.stackTraceLimit
 このフラグをGoogle Chrome実行時にV8へ渡すには、次を使用します:
 
 ```bash
---js-flags=&apos;--stack-trace-limit <value>&apos;
+--js-flags='--stack-trace-limit <value>'
 ```
 
 ## 非同期スタックトレース

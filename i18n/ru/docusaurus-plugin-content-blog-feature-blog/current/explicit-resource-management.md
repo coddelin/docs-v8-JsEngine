@@ -122,7 +122,7 @@ async function processData(response) {
 }
 // readerResource[Symbol.dispose]() вызывается автоматически.
 
-readFile(&apos;https://example.com/largefile.dat&apos;);
+readFile('https://example.com/largefile.dat');
 ```
 
 ## `DisposableStack` и `AsyncDisposableStack`
@@ -139,7 +139,7 @@ readFile(&apos;https://example.com/largefile.dat&apos;);
         reader: response.body.getReader(),
         [Symbol.dispose]() {
             this.reader.releaseLock();
-            console.log(&apos;Блокировка ридера снята.&apos;);
+            console.log('Блокировка ридера снята.');
         },
     };
     using stack = new DisposableStack();
@@ -156,7 +156,7 @@ readFile(&apos;https://example.com/largefile.dat&apos;);
     stack.adopt(
       response.body.getReader(), reader => {
         reader.releaseLock();
-        console.log(&apos;Блокировка ридера снята.&apos;);
+        console.log('Блокировка ридера снята.');
       });
 }
 // Блокировка ридера снята.
@@ -180,7 +180,7 @@ readFile(&apos;https://example.com/largefile.dat&apos;);
     stack.adopt(
       response.body.getReader(), reader => {
         reader.releaseLock();
-        console.log(&apos;Блокировка ридера снята.&apos;);
+        console.log('Блокировка ридера снята.');
       });
     using newStack = stack.move();
 }
@@ -196,7 +196,7 @@ readFile(&apos;https://example.com/largefile.dat&apos;);
         reader: response.body.getReader(),
         [Symbol.dispose]() {
             this.reader.releaseLock();
-            console.log(&apos;Блокировка ридера снята.&apos;);
+            console.log('Блокировка ридера снята.');
         },
     };
     let stack = new DisposableStack();

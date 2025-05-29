@@ -1,13 +1,13 @@
 ---
- title: &apos;讓 V8 提前準備：利用顯式編譯提示加速 JavaScript 啟動&apos;
- author: &apos;Marja Hölttä&apos;
+ title: '讓 V8 提前準備：利用顯式編譯提示加速 JavaScript 啟動'
+ author: 'Marja Hölttä'
  avatars:
    - marja-holtta
  date: 2025-04-29
  tags:
    - JavaScript
  description: "顯式編譯提示控制哪些 JavaScript 文件和函數被提前解析和編譯"
- tweet: &apos;&apos;
+ tweet: ''
 ---
 
 讓 JavaScript 更快速運行是提供響應性網頁應用的關鍵。即使 V8 有先進的優化技術，在啟動期間解析和編譯關鍵 JavaScript 仍然可能成為性能瓶頸。能夠在初始腳本編譯過程中確定需編譯的 JavaScript 函數，有助於加速網頁載入。
@@ -51,7 +51,7 @@ script1.js:
 
 ```js
 function testfunc1() {
-  console.log(&apos;testfunc1 called!&apos;);
+  console.log('testfunc1 called!');
 }
 
 testfunc1();
@@ -63,7 +63,7 @@ script2.js:
 //# allFunctionsCalledOnLoad
 
 function testfunc2() {
-  console.log(&apos;testfunc2 called!&apos;);
+  console.log('testfunc2 called!');
 }
 
 testfunc2();

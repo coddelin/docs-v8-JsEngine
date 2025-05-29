@@ -1,14 +1,14 @@
 ---
-title: &apos;Объектные свойства rest и spread&apos;
-author: &apos;Матиас Биненс ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Объектные свойства rest и spread'
+author: 'Матиас Биненс ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-06-06
 tags:
   - ECMAScript
   - ES2018
-description: &apos;В этой статье объясняется, как работают объектные свойства rest и spread в JavaScript, а также рассматриваются элементы rest и spread для массивов.&apos;
-tweet: &apos;890269994688315394&apos;
+description: 'В этой статье объясняется, как работают объектные свойства rest и spread в JavaScript, а также рассматриваются элементы rest и spread для массивов.'
+tweet: '890269994688315394'
 ---
 Прежде чем обсуждать _объектные свойства rest и spread_, давайте вспомним очень похожую функцию из прошлого.
 
@@ -42,34 +42,34 @@ console.log(primesCopy); // [2, 3, 5, 7, 11]
 ```js
 // Свойства rest для деструктурирующего присваивания объектов:
 const person = {
-    firstName: &apos;Себастьян&apos;,
-    lastName: &apos;Маркбåге&apos;,
-    country: &apos;США&apos;,
-    state: &apos;Калифорния&apos;,
+    firstName: 'Себастьян',
+    lastName: 'Маркбåге',
+    country: 'США',
+    state: 'Калифорния',
 };
 const { firstName, lastName, ...rest } = person;
 console.log(firstName); // Себастьян
 console.log(lastName); // Маркбåге
-console.log(rest); // { country: &apos;США&apos;, state: &apos;Калифорния&apos; }
+console.log(rest); // { country: 'США', state: 'Калифорния' }
 
 <!--truncate-->
 // Свойства spread для литералов объектов:
 const personCopy = { firstName, lastName, ...rest };
 console.log(personCopy);
-// { firstName: &apos;Себастьян&apos;, lastName: &apos;Маркбåге&apos;, country: &apos;США&apos;, state: &apos;Калифорния&apos; }
+// { firstName: 'Себастьян', lastName: 'Маркбåге', country: 'США', state: 'Калифорния' }
 ```
 
 Свойства spread предлагают более элегантную альтернативу [`Object.assign()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) во многих ситуациях:
 
 ```js
 // Мелкое клонирование объекта:
-const data = { x: 42, y: 27, label: &apos;Сокровище&apos; };
+const data = { x: 42, y: 27, label: 'Сокровище' };
 // Старый способ:
 const clone1 = Object.assign({}, data);
 // Новый способ:
 const clone2 = { ...data };
 // Оба результата дадут:
-// { x: 42, y: 27, label: &apos;Сокровище&apos; }
+// { x: 42, y: 27, label: 'Сокровище' }
 
 // Слияние двух объектов:
 const defaultSettings = { logWarnings: false, logErrors: false };

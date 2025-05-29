@@ -1,13 +1,13 @@
 ---
-title: &apos;ECMAScript仕様理解パート2の「追加内容」&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), 推測的仕様の観察者&apos;
+title: 'ECMAScript仕様理解パート2の「追加内容」'
+author: '[Marja Hölttä](https://twitter.com/marjakh), 推測的仕様の観察者'
 avatars:
   - marja-holtta
 date: 2020-03-02
 tags:
   - ECMAScript
-description: &apos;ECMAScript仕様を読むためのチュートリアル&apos;
-tweet: &apos;&apos;
+description: 'ECMAScript仕様を読むためのチュートリアル'
+tweet: ''
 ---
 
 ### なぜ`o2.foo`は`AssignmentExpression`なのか？
@@ -18,7 +18,7 @@ tweet: &apos;&apos;
 
 ```js
 function simple(a) {
-  console.log(&apos;引数は &apos; + a);
+  console.log('引数は ' + a);
 }
 simple(x = 1);
 // → 「引数は 1」とログに記録される。

@@ -1,6 +1,6 @@
 ---
-title: &apos;WebAssembly - добавление нового опкода&apos;
-description: &apos;Этот учебник объясняет, как реализовать новую инструкцию WebAssembly в V8.&apos;
+title: 'WebAssembly - добавление нового опкода'
+description: 'Этот учебник объясняет, как реализовать новую инструкцию WebAssembly в V8.'
 ---
 [WebAssembly](https://webassembly.org/) (Wasm) — это двоичный формат инструкций для виртуальной машины на основе стека. Этот учебник шаг за шагом объясняет реализацию новой инструкции WebAssembly в V8.
 
@@ -123,7 +123,7 @@ index 26df61ceb8..b1ee6edd71 100644
 Запустите тест:
 
 ```
-$ tools/dev/gm.py x64.debug &apos;cctest/test-run-wasm-simd/RunWasmTurbofan_I32Add1&apos;
+$ tools/dev/gm.py x64.debug 'cctest/test-run-wasm-simd/RunWasmTurbofan_I32Add1'
 ...
 === cctest/test-run-wasm/RunWasmTurbofan_Int32Add1 ===
 #
@@ -343,12 +343,12 @@ index 9b8be0e0b5..7f5faeb87b 100644
 Выполнив наш тест, мы видим новые ошибки компиляции:
 
 ```
-../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: ошибка: значение перечисления &apos;kX64Int32Add1&apos; не обработано в switch [-Werror,-Wswitch]
+../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: ошибка: значение перечисления 'kX64Int32Add1' не обработано в switch [-Werror,-Wswitch]
   switch (instr->arch_opcode()) {
           ^
 1 ошибка сгенерирована.
 ...
-../../src/compiler/backend/x64/code-generator-x64.cc:733:11: ошибка: значение перечисления &apos;kX64Int32Add1&apos; не обработано в switch [-Werror,-Wswitch]
+../../src/compiler/backend/x64/code-generator-x64.cc:733:11: ошибка: значение перечисления 'kX64Int32Add1' не обработано в switch [-Werror,-Wswitch]
   switch (arch_opcode) {
           ^
 1 ошибка сгенерирована.

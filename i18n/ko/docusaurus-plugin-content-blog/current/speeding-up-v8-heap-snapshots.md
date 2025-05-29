@@ -1,7 +1,7 @@
 ---
-title: &apos;V8 힙 스냅샷 가속화&apos;
-description: &apos;이 게시물에서는 V8 힙 스냅샷과 관련된 Bloomberg 엔지니어들이 발견한 몇 가지 성능 문제와 이를 해결하여 JavaScript 메모리 분석을 그 어느 때보다 빠르게 만든 방법에 대해 설명합니다.&apos;
-author: &apos;Jose Dapena Paz&apos;
+title: 'V8 힙 스냅샷 가속화'
+description: '이 게시물에서는 V8 힙 스냅샷과 관련된 Bloomberg 엔지니어들이 발견한 몇 가지 성능 문제와 이를 해결하여 JavaScript 메모리 분석을 그 어느 때보다 빠르게 만든 방법에 대해 설명합니다.'
+author: 'Jose Dapena Paz'
 date: 2023-07-27
 tags:
  - 메모리
@@ -19,7 +19,7 @@ Bloomberg 엔지니어들은 JavaScript 애플리케이션에서 메모리 누�
 이런 일반적인 메모리 누수 시나리오를 디버그하는 일반적인 기술은 먼저 힙 스냅샷을 캡처한 다음, DevTools의 "Memory" 탭에서 이를 로드하고 다양한 요약 및 객체 속성을 검사하여 가장 많은 메모리를 소비하는 것이 무엇인지 알아내는 것입니다. DevTools UI에서 힙 스냅샷은 "Memory" 탭에서 캡처할 수 있습니다. Node.js 애플리케이션의 경우, 힙 스냅샷은 [프로그래밍 방식으로 트리거될 수 있습니다](https://nodejs.org/en/docs/guides/diagnostics/memory/using-heap-snapshot) API를 사용하여 다음과 같이 실행합니다:
 
 ```js
-require(&apos;v8&apos;).writeHeapSnapshot();
+require('v8').writeHeapSnapshot();
 ```
 
 그들은 애플리케이션 수명의 여러 시점에서 여러 스냅샷을 캡처하여 DevTools 메모리 뷰어에서 서로 다른 시점의 힙 사이의 차이를 표시하려고 했습니다. 문제는 단일 전체 크기(500 MB) 스냅샷을 캡처하는 데 **30분 이상**이 걸렸다는 것입니다!

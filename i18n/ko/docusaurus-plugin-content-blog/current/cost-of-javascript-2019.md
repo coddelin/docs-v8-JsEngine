@@ -153,12 +153,12 @@ const data = { foo: 42, bar: 1337 }; // 🐌
 …JSON-문자열화된 형식으로 표현하고 실행 시 JSON-파싱할 수 있습니다:
 
 ```js
-const data = JSON.parse(&apos;{"foo":42,"bar":1337}&apos;); // 🚀
+const data = JSON.parse('{"foo":42,"bar":1337}'); // 🚀
 ```
 
 `JSON.parse` 접근법은 특히 냉로드에서 자바스크립트 객체 리터럴에 비해 [훨씬 빠릅니다](https://github.com/GoogleChromeLabs/json-parse-benchmark). 일반적인 규칙은 객체가 10kB 이상인 경우 이 기술을 적용하는 것이지만, 항상 성능 조언에 따라 변경하기 전에 실제 영향을 측정하십시오.
 
-![`JSON.parse(&apos;…&apos;)`는 자바스크립트 리터럴과 비교하여 분석, 컴파일 및 실행하는 데 [훨씬 빠릅니다](https://github.com/GoogleChromeLabs/json-parse-benchmark) — V8에서 1.7배 더 빠를 뿐만 아니라 모든 주요 자바스크립트 엔진에서도.](/_img/cost-of-javascript-2019/json.svg)
+![`JSON.parse('…')`는 자바스크립트 리터럴과 비교하여 분석, 컴파일 및 실행하는 데 [훨씬 빠릅니다](https://github.com/GoogleChromeLabs/json-parse-benchmark) — V8에서 1.7배 더 빠를 뿐만 아니라 모든 주요 자바스크립트 엔진에서도.](/_img/cost-of-javascript-2019/json.svg)
 
 다음 비디오는 02:10 지점부터 성능 차이가 발생하는 이유를 더 자세히 설명합니다.
 

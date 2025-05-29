@@ -1,17 +1,17 @@
 ---
-title: &apos;더 가벼운 V8&apos;
-author: &apos;Mythri Alle, Dan Elphick, 그리고 [Ross McIlroy](https://twitter.com/rossmcilroy), V8 웨이트워처&apos;
+title: '더 가벼운 V8'
+author: 'Mythri Alle, Dan Elphick, 그리고 [Ross McIlroy](https://twitter.com/rossmcilroy), V8 웨이트워처'
 avatars:
-  - &apos;mythri-alle&apos;
-  - &apos;dan-elphick&apos;
-  - &apos;ross-mcilroy&apos;
+  - 'mythri-alle'
+  - 'dan-elphick'
+  - 'ross-mcilroy'
 date: 2019-09-12 12:44:37
 tags:
   - internals
   - memory
   - presentations
-description: &apos;V8 Lite 프로젝트는 일반적인 웹사이트에서 V8의 메모리 오버헤드를 대폭 줄였습니다. 이렇게 실현했습니다.&apos;
-tweet: &apos;1172155403343298561&apos;
+description: 'V8 Lite 프로젝트는 일반적인 웹사이트에서 V8의 메모리 오버헤드를 대폭 줄였습니다. 이렇게 실현했습니다.'
+tweet: '1172155403343298561'
 ---
 2018년 말, 우리는 V8의 메모리 사용량을 대폭 줄이기 위한 V8 Lite라는 프로젝트를 시작했습니다. 처음에 이 프로젝트는 메모리 사용량 감소가 실행 속도보다 중요한 저메모리 모바일 기기나 임베디드 사용 사례에 특화된 *Lite 모드*라는 독립적인 형태로 구상되었습니다. 하지만 작업을 진행하면서, 이 *Lite 모드*를 위해 적용된 많은 메모리 최적화 방법이 일반 V8에서도 사용할 수 있어 V8의 모든 사용자에게 이점을 줄 수 있다는 것을 깨달았습니다.
 

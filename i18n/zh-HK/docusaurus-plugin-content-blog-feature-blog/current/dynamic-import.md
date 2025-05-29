@@ -1,14 +1,14 @@
 ---
-title: &apos;動態 `import()`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '動態 `import()`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-11-21
 tags:
   - ECMAScript
   - ES2020
-description: &apos;動態 import() 相較於靜態 import 解鎖了新功能。本文比較了兩者並概述了新功能。&apos;
-tweet: &apos;932914724060254208&apos;
+description: '動態 import() 相較於靜態 import 解鎖了新功能。本文比較了兩者並概述了新功能。'
+tweet: '932914724060254208'
 ---
 [動態 `import()`](https://github.com/tc39/proposal-dynamic-import) 引入了一種新的類函數形式的 `import`，相較於靜態 `import` 解鎖了新的功能。本文比較了兩者並概述了新功能。
 
@@ -22,12 +22,12 @@ Chrome 61 支援 ES2015 `import` 語句，用於 [模塊](/features/modules)。
 ```js
 // 預設導出
 export default () => {
-  console.log(&apos;來自預設導出的問候！&apos;);
+  console.log('來自預設導出的問候！');
 };
 
 // 命名導出 `doStuff`
 export const doStuff = () => {
-  console.log(&apos;正在處理…&apos;);
+  console.log('正在處理…');
 };
 ```
 
@@ -35,11 +35,11 @@ export const doStuff = () => {
 
 ```html
 <script type="module">
-  import * as module from &apos;./utils.mjs&apos;;
+  import * as module from './utils.mjs';
   module.default();
-  // → 日誌 &apos;來自預設導出的問候！&apos;
+  // → 日誌 '來自預設導出的問候！'
   module.doStuff();
-  // → 日誌 &apos;正在處理…&apos;
+  // → 日誌 '正在處理…'
 </script>
 ```
 
@@ -69,13 +69,13 @@ export const doStuff = () => {
 
 ```html
 <script type="module">
-  const moduleSpecifier = &apos;./utils.mjs&apos;;
+  const moduleSpecifier = './utils.mjs';
   import(moduleSpecifier)
     .then((module) => {
       module.default();
-      // → 日誌 &apos;來自預設導出的問候！&apos;
+      // → 日誌 '來自預設導出的問候！'
       module.doStuff();
-      // → 日誌 &apos;正在處理…&apos;
+      // → 日誌 '正在處理…'
     });
 </script>
 ```
@@ -85,12 +85,12 @@ export const doStuff = () => {
 ```html
 <script type="module">
   (async () => {
-    const moduleSpecifier = &apos;./utils.mjs&apos;;
+    const moduleSpecifier = './utils.mjs';
     const module = await import(moduleSpecifier)
     module.default();
-    // → 日誌 &apos;來自預設導出的問候！&apos;
+    // → 日誌 '來自預設導出的問候！'
     module.doStuff();
-    // → 日誌 &apos;正在處理…&apos;
+    // → 日誌 '正在處理…'
   })();
 </script>
 ```
@@ -112,10 +112,10 @@ export const doStuff = () => {
 </nav>
 <main>這是一個按需加載內容的占位符。</main>
 <script>
-  const main = document.querySelector(&apos;main&apos;);
-  const links = document.querySelectorAll(&apos;nav > a&apos;);
+  const main = document.querySelector('main');
+  const links = document.querySelectorAll('nav > a');
   for (const link of links) {
-    link.addEventListener(&apos;click&apos;, async (event) => {
+    link.addEventListener('click', async (event) => {
       event.preventDefault();
       try {
         const module = await import(`/${link.dataset.entryModule}.mjs`);

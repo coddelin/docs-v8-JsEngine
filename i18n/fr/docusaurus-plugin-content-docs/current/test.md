@@ -1,6 +1,6 @@
 ---
-title: &apos;Test&apos;
-description: &apos;Ce document explique le cadre de test qui fait partie du dépôt V8.&apos;
+title: 'Test'
+description: 'Ce document explique le cadre de test qui fait partie du dépôt V8.'
 ---
 V8 inclut un cadre de test qui vous permet de tester le moteur. Ce cadre vous permet d’exécuter nos propres suites de tests incluses avec le code source et d’autres, comme [la suite de tests Test262](https://github.com/tc39/test262).
 

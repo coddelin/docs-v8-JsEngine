@@ -1,13 +1,13 @@
 ---
-title: &apos;インポートアサーション&apos;
-author: &apos;Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), インポートアサーションの主張者&apos;
+title: 'インポートアサーション'
+author: 'Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), インポートアサーションの主張者'
 avatars:
-  - &apos;dan-clark&apos;
+  - 'dan-clark'
 date: 2021-06-15
 tags:
   - ECMAScript
-description: &apos;インポートアサーションにより、モジュール指定子とともに追加の情報をインポート文に含めることができます&apos;
-tweet: &apos;&apos;
+description: 'インポートアサーションにより、モジュール指定子とともに追加の情報をインポート文に含めることができます'
+tweet: ''
 ---
 
 新しい[インポートアサーション](https://github.com/tc39/proposal-import-assertions)機能により、モジュール指定子とともに追加の情報をインポート文に含めることができます。この機能の初期の用途として、JSON文書を[JSONモジュール](https://github.com/tc39/proposal-json-modules)としてインポート可能にすることがあります:
@@ -20,7 +20,7 @@ tweet: &apos;&apos;
 
 ```javascript
 // main.mjs
-import json from &apos;./foo.json&apos; assert { type: &apos;json&apos; };
+import json from './foo.json' assert { type: 'json' };
 console.log(json.answer); // 42
 ```
 
@@ -29,7 +29,7 @@ console.log(json.answer); // 42
 自然に浮かぶ疑問は、JSONモジュールを次のように単純にインポートできない理由です:
 
 ```javascript
-import json from &apos;./foo.json&apos;;
+import json from './foo.json';
 ```
 
 WebプラットフォームはモジュールリソースのMIMEタイプを実行前に有効性を確認し、このMIMEタイプを使ってリソースをJSONとして扱うかJavaScriptモジュールとして扱うかを判断することも理論的には可能です。
@@ -43,7 +43,7 @@ WebプラットフォームはモジュールリソースのMIMEタイプを実�
 ```javascript
 // JavaScript MIMEタイプ (例: `text/javascript`) を
 // evil.comが返答した場合、JSを実行します!
-import data from &apos;https://evil.com/data.json&apos;;
+import data from 'https://evil.com/data.json';
 ```
 
 ファイル拡張子を使用してモジュールタイプを判別することはできません。なぜなら、[ウェブ上ではコンテンツタイプの信頼できる指標ではない](https://github.com/tc39/proposal-import-assertions/blob/master/content-type-vs-file-extension.md)からです。そのため、インポートアサーションを用いて期待されるモジュールタイプを示し、この権限昇格の落とし穴を防ぎます。
@@ -52,7 +52,7 @@ import data from &apos;https://evil.com/data.json&apos;;
 
 ```javascript
 // evil.comが非JSON MIMEタイプで返答した場合は失敗します。
-import data from &apos;https://evil.com/data.json&apos; assert { type: &apos;json&apos; };
+import data from 'https://evil.com/data.json' assert { type: 'json' };
 ```
 
 ## 動的`import()`
@@ -66,8 +66,8 @@ import data from &apos;https://evil.com/data.json&apos; assert { type: &apos;jso
 
 ```javascript
 // main.mjs
-const jsonModule = await import(&apos;./foo.json&apos;, {
-  assert: { type: &apos;json&apos; }
+const jsonModule = await import('./foo.json', {
+  assert: { type: 'json' }
 });
 console.log(jsonModule.default.answer); // 42
 ```

@@ -1,16 +1,16 @@
 ---
-title: &apos;V8中的并发标记&apos;
-author: &apos;Ulan Degenbaev, Michael Lippautz 和 Hannes Payer — 主线程解放者&apos;
+title: 'V8中的并发标记'
+author: 'Ulan Degenbaev, Michael Lippautz 和 Hannes Payer — 主线程解放者'
 avatars:
-  - &apos;ulan-degenbaev&apos;
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'ulan-degenbaev'
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2018-06-11 13:33:37
 tags:
   - 内部结构
   - 内存
-description: &apos;这篇文章描述了一种叫做并发标记的垃圾回收技术。&apos;
-tweet: &apos;1006187194808233985&apos;
+description: '这篇文章描述了一种叫做并发标记的垃圾回收技术。'
+tweet: '1006187194808233985'
 ---
 这篇文章描述了一种叫做_并发标记_的垃圾回收技术。这项优化使 JavaScript 应用程序在垃圾回收器扫描堆以发现并标记活动对象时可以继续执行。我们的基准测试表明，并发标记将主线程上标记所需的时间减少了60%-70%。并发标记是 [Orinoco 项目](/blog/orinoco) 的最后一块拼图 — 这是一个逐步用新的大多数并发和并行垃圾回收器替换旧垃圾回收器的项目。并发标记在 Chrome 64 和 Node.js v10 中默认启用。
 

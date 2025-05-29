@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 發佈 v7.7&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias)), 發佈說明的懶惰撰寫者&apos;
+title: 'V8 發佈 v7.7'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), 發佈說明的懶惰撰寫者'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-08-13 16:45:00
 tags:
   - release
-description: &apos;V8 v7.7 提供懶惰式回饋分配、更快速的 WebAssembly 背景編譯、堆疊追蹤改進以及新的 Intl.NumberFormat 功能。&apos;
-tweet: &apos;1161287541611323397&apos;
+description: 'V8 v7.7 提供懶惰式回饋分配、更快速的 WebAssembly 背景編譯、堆疊追蹤改進以及新的 Intl.NumberFormat 功能。'
+tweet: '1161287541611323397'
 ---
 每六週，我們按照[發布流程](/docs/release-process)建立 V8 的新分支。每個版本都在 Chrome Beta 里程碑之前，直接從 V8 的 Git 主分支分支而來。今天我們很高興宣布最新的分支 [V8 版本 7.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.7)，該分支處於測試版階段，幾週後會配合穩定版 Chrome 77 的釋出而正式發布。V8 v7.7 充滿了各種面向開發者的亮點。本文章為即將推出的版本提供一些預覽。
 
@@ -43,12 +43,12 @@ tweet: &apos;1161287541611323397&apos;
 [`Intl.NumberFormat` API](/features/intl-numberformat) 用於本地化的數字格式化，在此版本中獲得了新功能！現在支持簡略表示、科學表示、工程表示、符號展示以及測量單位。
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;meter-per-second&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'meter-per-second',
 });
 formatter.format(299792458);
-// → &apos;299,792,458 m/s&apos;
+// → '299,792,458 m/s'
 ```
 
 詳情請參閱[我們的功能解釋](/features/intl-numberformat)。

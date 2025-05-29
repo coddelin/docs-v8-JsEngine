@@ -1,24 +1,24 @@
 ---
-title: &apos;Private-Markenüberprüfungen, alias `#foo in obj`&apos;
-author: &apos;Marja Hölttä ([@marjakh](https://twitter.com/marjakh))&apos;
+title: 'Private-Markenüberprüfungen, alias `#foo in obj`'
+author: 'Marja Hölttä ([@marjakh](https://twitter.com/marjakh))'
 avatars:
-  - &apos;marja-holtta&apos;
+  - 'marja-holtta'
 date: 2021-04-14
 tags:
   - ECMAScript
-description: &apos;Private-Markenüberprüfungen ermöglichen es, das Vorhandensein eines privaten Feldes in einem Objekt zu testen.&apos;
-tweet: &apos;1382327454975590401&apos;
+description: 'Private-Markenüberprüfungen ermöglichen es, das Vorhandensein eines privaten Feldes in einem Objekt zu testen.'
+tweet: '1382327454975590401'
 ---
 
 Der [`in`-Operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in) kann verwendet werden, um zu testen, ob das angegebene Objekt (oder ein beliebiges Objekt in seiner Prototypenkette) die angegebene Eigenschaft besitzt:
 
 ```javascript
-const o1 = {&apos;foo&apos;: 0};
-console.log(&apos;foo&apos; in o1); // true
+const o1 = {'foo': 0};
+console.log('foo' in o1); // true
 const o2 = {};
-console.log(&apos;foo&apos; in o2); // false
+console.log('foo' in o2); // false
 const o3 = Object.create(o1);
-console.log(&apos;foo&apos; in o3); // true
+console.log('foo' in o3); // true
 ```
 
 Das Feature für Private-Markenüberprüfungen erweitert den `in`-Operator, um [private Klassenfelder](https://v8.dev/features/class-fields#private-class-fields) zu unterstützen:
@@ -107,7 +107,7 @@ class F {
   #x = 0;
   #y = (() => {
     halfConstructed = this;
-    throw &apos;error&apos;;
+    throw 'error';
   })();
 }
 

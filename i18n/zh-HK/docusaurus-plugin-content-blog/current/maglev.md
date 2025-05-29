@@ -1,6 +1,6 @@
 ---
-title: &apos;Maglev - V8 最快的優化 JIT&apos;
-author: &apos;[Toon Verwaest](https://twitter.com/tverwaes), [Leszek Swirski](https://twitter.com/leszekswirski), [Victor Gomes](https://twitter.com/VictorBFG), Olivier Flückiger, Darius Mercadier 和 Camillo Bruni — 彷彿不怕廚師多&apos;
+title: 'Maglev - V8 最快的優化 JIT'
+author: '[Toon Verwaest](https://twitter.com/tverwaes), [Leszek Swirski](https://twitter.com/leszekswirski), [Victor Gomes](https://twitter.com/VictorBFG), Olivier Flückiger, Darius Mercadier 和 Camillo Bruni — 彷彿不怕廚師多'
 avatars:
   - toon-verwaest
   - leszek-swirski
@@ -12,7 +12,7 @@ date: 2023-12-05
 tags:
   - JavaScript
 description: "V8 的最新編譯器 Maglev 改善了效能並降低了能源消耗"
-tweet: &apos;&apos;
+tweet: ''
 ---
 
 在 Chrome M117 中，我們引入了一個新的優化編譯器：Maglev。Maglev 位於現有的 Sparkplug 和 TurboFan 編譯器之間，扮演快速生成足夠好的代碼的快速優化編譯器角色。

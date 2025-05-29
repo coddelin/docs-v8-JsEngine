@@ -1,15 +1,15 @@
 ---
-title: &apos;邏輯賦值&apos;
-author: &apos;Shu-yu Guo ([@_shu](https://twitter.com/_shu))&apos;
+title: '邏輯賦值'
+author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
 avatars:
-  - &apos;shu-yu-guo&apos;
+  - 'shu-yu-guo'
 date: 2020-05-07
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: &apos;JavaScript 現在支持邏輯運算的複合賦值。&apos;
-tweet: &apos;1258387483823345665&apos;
+description: 'JavaScript 現在支持邏輯運算的複合賦值。'
+tweet: '1258387483823345665'
 ---
 JavaScript 支持一系列[複合賦值運算符](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators)，允許程式員簡潔地表達二元運算與賦值操作。目前僅支持數學運算或位元運算。
 
@@ -68,14 +68,14 @@ x ?? (x = y);
 // 只有當 innerHTML 是空的時候才賦值。不會
 // 引起 msgElement 的內部元素失去焦點。
 function setDefaultMessage() {
-  msgElement.innerHTML ||= &apos;<p>沒有消息<p>&apos;;
+  msgElement.innerHTML ||= '<p>沒有消息<p>';
 }
 
 // 如果不覆蓋任何內容，顯示默認消息。
 // 有問題！可能每次調用時導致 msgElement 的
 // 內部元素失去焦點。
 function setDefaultMessageBuggy() {
-  msgElement.innerHTML = msgElement.innerHTML || &apos;<p>沒有消息<p>&apos;;
+  msgElement.innerHTML = msgElement.innerHTML || '<p>沒有消息<p>';
 }
 ```
 

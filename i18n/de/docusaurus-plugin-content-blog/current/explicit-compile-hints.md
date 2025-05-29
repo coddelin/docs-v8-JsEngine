@@ -1,13 +1,13 @@
 ---
- title: &apos;V8 Vorab informieren: Schnellere JavaScript-Startup durch explizite Kompilierungs-Hinweise&apos;
- author: &apos;Marja Hölttä&apos;
+ title: 'V8 Vorab informieren: Schnellere JavaScript-Startup durch explizite Kompilierungs-Hinweise'
+ author: 'Marja Hölttä'
  avatars:
    - marja-holtta
  date: 2025-04-29
  tags:
    - JavaScript
  description: "Explizite Kompilierungs-Hinweise steuern, welche JavaScript-Dateien und Funktionen frühzeitig analysiert und kompiliert werden"
- tweet: &apos;&apos;
+ tweet: ''
 ---
 
 Ein schnelles Starten von JavaScript ist entscheidend für eine reaktionsschnelle Web-App. Selbst mit den fortgeschrittenen Optimierungen von V8 können Parsing und Kompilierung von kritischem JavaScript während des Startvorgangs weiterhin Leistungseinbußen verursachen. Wenn bekannt ist, welche JavaScript-Funktionen während der initialen Skriptkompilierung kompiliert werden sollen, kann dies das Laden von Webseiten beschleunigen.
@@ -53,7 +53,7 @@ script1.js:
 
 ```js
 function testfunc1() {
-  console.log(&apos;testfunc1 aufgerufen!&apos;);
+  console.log('testfunc1 aufgerufen!');
 }
 
 testfunc1();
@@ -65,7 +65,7 @@ script2.js:
 //# allFunctionsCalledOnLoad
 
 function testfunc2() {
-  console.log(&apos;testfunc2 aufgerufen!&apos;);
+  console.log('testfunc2 aufgerufen!');
 }
 
 testfunc2();

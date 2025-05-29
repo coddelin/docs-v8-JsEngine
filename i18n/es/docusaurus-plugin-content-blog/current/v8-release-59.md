@@ -1,10 +1,10 @@
 ---
-title: &apos;Lanzamiento de V8 v5.9&apos;
-author: &apos;el equipo de V8&apos;
+title: 'Lanzamiento de V8 v5.9'
+author: 'el equipo de V8'
 date: 2017-04-27 13:33:37
 tags:
   - lanzamiento
-description: &apos;V8 v5.9 incluye el nuevo pipeline Ignition + TurboFan, y agrega soporte para WebAssembly TrapIf en todas las plataformas.&apos;
+description: 'V8 v5.9 incluye el nuevo pipeline Ignition + TurboFan, y agrega soporte para WebAssembly TrapIf en todas las plataformas.'
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se deriva del maestro de Git de V8 justo antes de alcanzar un hito Beta de Chrome. Hoy nos complace anunciar nuestra rama más reciente, [V8 versión 5.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.9), que estará en beta hasta que se lance en coordinación con Chrome 59 Stable en unas semanas. V8 5.9 está lleno de todo tipo de novedades para los desarrolladores. Nos gustaría ofrecerles un adelanto de algunos de los aspectos destacados en anticipación al lanzamiento.
 

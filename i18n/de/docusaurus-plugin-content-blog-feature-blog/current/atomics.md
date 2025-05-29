@@ -1,6 +1,6 @@
 ---
-title: &apos;`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), eine nicht blockierende Bloggerin&apos;
+title: '`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`'
+author: '[Marja Hölttä](https://twitter.com/marjakh), eine nicht blockierende Bloggerin'
 avatars:
   - marja-holtta
 date: 2020-09-24
@@ -8,8 +8,8 @@ tags:
   - ECMAScript
   - ES2020
   - Node.js 16
-description: &apos;Atomics.wait und Atomics.notify sind Low-Level-Synchronisationsprimitiven, die nützlich für die Implementierung von beispielsweise Mutexen sind. Atomics.wait kann nur in Worker-Threads benutzt werden. V8 Version 8.7 unterstützt jetzt eine nicht-blockierende Version, Atomics.waitAsync, die auch im Haupt-Thread verwendet werden kann.&apos;
-tweet: &apos;1309118447377358848&apos;
+description: 'Atomics.wait und Atomics.notify sind Low-Level-Synchronisationsprimitiven, die nützlich für die Implementierung von beispielsweise Mutexen sind. Atomics.wait kann nur in Worker-Threads benutzt werden. V8 Version 8.7 unterstützt jetzt eine nicht-blockierende Version, Atomics.waitAsync, die auch im Haupt-Thread verwendet werden kann.'
+tweet: '1309118447377358848'
 ---
 [`Atomics.wait`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Atomics/wait) und [`Atomics.notify`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Atomics/notify) sind Low-Level-Synchronisationsprimitiven, die nützlich für die Implementierung von Mutexen und anderen Synchronisationsmethoden sind. Da `Atomics.wait` blockierend ist, ist es jedoch nicht möglich, es im Haupt-Thread aufzurufen (ein solcher Versuch löst einen `TypeError` aus).
 
@@ -25,7 +25,7 @@ In diesem Beitrag erklären wir, wie man diese Low-Level-APIs verwendet, um eine
 - `expectedValue`: ein Wert, den wir in der Speicheradresse `(buffer, index)` erwarten
 - `timeout`: ein Timeout in Millisekunden (optional, Standardwert ist `Infinity`)
 
-Der Rückgabewert von `Atomics.wait` ist ein String. Wenn die Speicheradresse nicht den erwarteten Wert enthält, gibt `Atomics.wait` sofort den Wert `&apos;not-equal&apos;` zurück. Andernfalls wird der Thread blockiert, bis ein anderer Thread `Atomics.notify` mit derselben Speicheradresse aufruft oder das Timeout erreicht wird. Im ersten Fall gibt `Atomics.wait` den Wert `&apos;ok&apos;` zurück, im zweiten Fall den Wert `&apos;timed-out&apos;`.
+Der Rückgabewert von `Atomics.wait` ist ein String. Wenn die Speicheradresse nicht den erwarteten Wert enthält, gibt `Atomics.wait` sofort den Wert `'not-equal'` zurück. Andernfalls wird der Thread blockiert, bis ein anderer Thread `Atomics.notify` mit derselben Speicheradresse aufruft oder das Timeout erreicht wird. Im ersten Fall gibt `Atomics.wait` den Wert `'ok'` zurück, im zweiten Fall den Wert `'timed-out'`.
 
 `Atomics.notify` nimmt die folgenden Parameter:
 
@@ -37,11 +37,11 @@ Es benachrichtigt die angegebene Anzahl wartender Threads in FIFO-Reihenfolge, d
 
 Im Gegensatz zu `Atomics.wait` gibt `Atomics.waitAsync` immer sofort zurück. Der Rückgabewert ist einer der folgenden:
 
-- `{ async: false, value: &apos;not-equal&apos; }` (wenn die Speicheradresse nicht den erwarteten Wert enthielt)
-- `{ async: false, value: &apos;timed-out&apos; }` (nur bei sofortigem Timeout `0`)
+- `{ async: false, value: 'not-equal' }` (wenn die Speicheradresse nicht den erwarteten Wert enthielt)
+- `{ async: false, value: 'timed-out' }` (nur bei sofortigem Timeout `0`)
 - `{ async: true, value: promise }`
 
-Das Versprechen kann später mit dem String-Wert `&apos;ok&apos;` (wenn `Atomics.notify` mit derselben Speicheradresse aufgerufen wurde) oder `&apos;timed-out&apos;` (wenn das Timeout erreicht wurde) aufgelöst werden. Das Versprechen wird niemals abgelehnt.
+Das Versprechen kann später mit dem String-Wert `'ok'` (wenn `Atomics.notify` mit derselben Speicheradresse aufgerufen wurde) oder `'timed-out'` (wenn das Timeout erreicht wurde) aufgelöst werden. Das Versprechen wird niemals abgelehnt.
 
 Das folgende Beispiel zeigt die Grundnutzung von `Atomics.waitAsync`:
 
@@ -53,14 +53,14 @@ const result = Atomics.waitAsync(i32a, 0, 0, 1000);
 //                                     |  ^ erwarteter Wert
 //                                     ^ Index
 
-if (result.value === &apos;not-equal&apos;) {
+if (result.value === 'not-equal') {
   // Der Wert im SharedArrayBuffer war nicht der erwartete.
 } else {
   result.value instanceof Promise; // true
   result.value.then(
     (value) => {
-      if (value == &apos;ok&apos;) { /* benachrichtigt */ }
-      else { /* Wert ist &apos;timed-out&apos; */ }
+      if (value == 'ok') { /* benachrichtigt */ }
+      else { /* Wert ist 'timed-out' */ }
     });
 }
 
@@ -141,17 +141,17 @@ unlock() {
                       /* alter Wert >>> */  AsyncLock.LOCKED,
                       /* neuer Wert >>> */  AsyncLock.UNLOCKED);
   if (oldValue != AsyncLock.LOCKED) {
-    throw new Error(&apos;Versucht, die Sperre freizugeben, während das Mutex nicht gehalten wird&apos;);
+    throw new Error('Versucht, die Sperre freizugeben, während das Mutex nicht gehalten wird');
   }
   Atomics.notify(this.i32a, AsyncLock.INDEX, 1);
 }
 ```
 
-Der einfache Fall ist wie folgt: Die Sperre ist frei, und Thread T1 erhält sie, indem er den Sperrzustand mit `Atomics.compareExchange` ändert. Thread T2 versucht, die Sperre durch `Atomics.compareExchange` zu erhalten, schafft es jedoch nicht, den Sperrzustand zu ändern. T2 ruft dann `Atomics.wait` auf, wodurch der Thread blockiert wird. Zu einem bestimmten Zeitpunkt gibt T1 die Sperre frei und ruft `Atomics.notify` auf. Dadurch gibt der `Atomics.wait`-Aufruf in T2 `&apos;ok&apos;` zurück und weckt T2 auf. T2 versucht dann erneut, die Sperre zu erhalten, und schafft es diesmal.
+Der einfache Fall ist wie folgt: Die Sperre ist frei, und Thread T1 erhält sie, indem er den Sperrzustand mit `Atomics.compareExchange` ändert. Thread T2 versucht, die Sperre durch `Atomics.compareExchange` zu erhalten, schafft es jedoch nicht, den Sperrzustand zu ändern. T2 ruft dann `Atomics.wait` auf, wodurch der Thread blockiert wird. Zu einem bestimmten Zeitpunkt gibt T1 die Sperre frei und ruft `Atomics.notify` auf. Dadurch gibt der `Atomics.wait`-Aufruf in T2 `'ok'` zurück und weckt T2 auf. T2 versucht dann erneut, die Sperre zu erhalten, und schafft es diesmal.
 
 Es gibt auch zwei mögliche Eckfälle – sie demonstrieren den Grund, warum `Atomics.wait` und `Atomics.waitAsync` einen bestimmten Wert am Index überprüfen:
 
-- T1 hält die Sperre, und T2 versucht, sie zu erhalten. Zunächst versucht T2, den Sperrzustand mit `Atomics.compareExchange` zu ändern, schafft es jedoch nicht. Aber dann gibt T1 die Sperre frei, bevor T2 `Atomics.wait` aufrufen kann. Wenn T2 `Atomics.wait` aufruft, gibt es sofort mit dem Wert `&apos;nicht-gleich&apos;` zurück. In diesem Fall macht T2 mit der nächsten Schleifeniteration weiter und versucht erneut, die Sperre zu erhalten.
+- T1 hält die Sperre, und T2 versucht, sie zu erhalten. Zunächst versucht T2, den Sperrzustand mit `Atomics.compareExchange` zu ändern, schafft es jedoch nicht. Aber dann gibt T1 die Sperre frei, bevor T2 `Atomics.wait` aufrufen kann. Wenn T2 `Atomics.wait` aufruft, gibt es sofort mit dem Wert `'nicht-gleich'` zurück. In diesem Fall macht T2 mit der nächsten Schleifeniteration weiter und versucht erneut, die Sperre zu erhalten.
 - T1 hält die Sperre, und T2 wartet darauf mit `Atomics.wait`. T1 gibt die Sperre frei – T2 wird aufgeweckt (der `Atomics.wait`-Aufruf gibt zurück) und versucht, `Atomics.compareExchange` auszuführen, um die Sperre zu erhalten. Aber ein anderer Thread T3 war schneller und hat die Sperre bereits erhalten. Der Aufruf von `Atomics.compareExchange` schlägt fehl, die Sperre zu erhalten, und T2 ruft erneut `Atomics.wait` auf, wodurch der Thread blockiert wird, bis T3 die Sperre freigibt.
 
 Aufgrund des letzteren Eckfalls ist das Mutex nicht „fair“. Es ist möglich, dass T2 darauf gewartet hat, dass die Sperre freigegeben wird, aber T3 kommt und erhält sie sofort. Eine realistischere Sperrimplementierung könnte mehrere Zustände verwenden, um zwischen „gesperrt“ und „gesperrt mit Konflikt“ zu unterscheiden.

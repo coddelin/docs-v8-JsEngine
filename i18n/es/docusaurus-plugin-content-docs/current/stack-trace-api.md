@@ -1,6 +1,6 @@
 ---
-title: &apos;API de rastreo de pila&apos;
-description: &apos;Este documento detalla el API de rastreo de pila de JavaScript de V8.&apos;
+title: 'API de rastreo de pila'
+description: 'Este documento detalla el API de rastreo de pila de JavaScript de V8.'
 ---
 Todos los errores internos lanzados en V8 capturan un rastreo de pila al ser creados. Este rastreo de pila se puede acceder desde JavaScript a través de la propiedad `error.stack`, que no es estándar. V8 también tiene varios hooks para controlar cómo se recolectan y se formatean los rastreos de pila, y para permitir que errores personalizados también recolecten rastreos de pila. Este documento detalla el API de rastreo de pila de JavaScript de V8.
 
@@ -37,7 +37,7 @@ Establecerlo en `0` desactiva la recopilación de rastreo de pila. Cualquier val
 Para pasar esta bandera a V8 al ejecutar Google Chrome, utiliza:
 
 ```bash
---js-flags=&apos;--stack-trace-limit <valor>&apos;
+--js-flags='--stack-trace-limit <valor>'
 ```
 
 ## Rastreos de pila asíncronos

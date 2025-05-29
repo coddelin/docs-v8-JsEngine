@@ -1,15 +1,15 @@
 ---
-title: &apos;Модули JavaScript&apos;
-author: &apos;Эдди Османи ([@addyosmani](https://twitter.com/addyosmani)) и Матиас Биннс ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Модули JavaScript'
+author: 'Эдди Османи ([@addyosmani](https://twitter.com/addyosmani)) и Матиас Биннс ([@mathias](https://twitter.com/mathias))'
 avatars:
-- &apos;addy-osmani&apos;
-- &apos;mathias-bynens&apos;
+- 'addy-osmani'
+- 'mathias-bynens'
 date: 2018-06-18
 tags:
   - ECMAScript
   - ES2015
-description: &apos;Эта статья объясняет, как использовать модули JavaScript, как их правильно развернуть и как команда Chrome работает над их улучшением в будущем.&apos;
-tweet: &apos;1008725884575109120&apos;
+description: 'Эта статья объясняет, как использовать модули JavaScript, как их правильно развернуть и как команда Chrome работает над их улучшением в будущем.'
+tweet: '1008725884575109120'
 ---
 Модули JavaScript теперь [поддерживаются во всех основных браузерах](https://caniuse.com/#feat=es6-module)!
 
@@ -40,11 +40,11 @@ export function shout(string) {
 
 ```js
 // 📁 main.mjs
-import {repeat, shout} from &apos;./lib.mjs&apos;;
-repeat(&apos;hello&apos;);
-// → &apos;hello hello&apos;
-shout(&apos;Modules in action&apos;);
-// → &apos;MODULES IN ACTION!&apos;
+import {repeat, shout} from './lib.mjs';
+repeat('hello');
+// → 'hello hello'
+shout('Modules in action');
+// → 'MODULES IN ACTION!'
 ```
 
 Вы также можете экспортировать значение по умолчанию из модуля:
@@ -60,7 +60,7 @@ export default function(string) {
 
 ```js
 // 📁 main.mjs
-import shout from &apos;./lib.mjs&apos;;
+import shout from './lib.mjs';
 //     ^^^^^
 ```
 
@@ -118,7 +118,7 @@ import shout from &apos;./lib.mjs&apos;;
 
 <script type="module" src="module.mjs"></script>
 <script type="module" src="module.mjs"></script>
-<script type="module">import &apos;./module.mjs&apos;;</script>
+<script type="module">import './module.mjs';</script>
 <!-- module.mjs выполняется только один раз. -->
 ```
 
@@ -141,10 +141,10 @@ import shout from &apos;./lib.mjs&apos;;
 
 ### Спецификаторы модулей
 
-При использовании `import` для модулей строка, указывающая местоположение модуля, называется «спецификатором модуля» или «спецификатором импорта». В нашем предыдущем примере спецификатор модуля - это `&apos;./lib.mjs&apos;`:
+При использовании `import` для модулей строка, указывающая местоположение модуля, называется «спецификатором модуля» или «спецификатором импорта». В нашем предыдущем примере спецификатор модуля - это `'./lib.mjs'`:
 
 ```js
-import {shout} from &apos;./lib.mjs&apos;;
+import {shout} from './lib.mjs';
 //                  ^^^^^^^^^^^
 ```
 
@@ -152,19 +152,19 @@ import {shout} from &apos;./lib.mjs&apos;;
 
 ```js
 // Пока не поддерживается:
-import {shout} from &apos;jquery&apos;;
-import {shout} from &apos;lib.mjs&apos;;
-import {shout} from &apos;modules/lib.mjs&apos;;
+import {shout} from 'jquery';
+import {shout} from 'lib.mjs';
+import {shout} from 'modules/lib.mjs';
 ```
 
 С другой стороны, следующие примеры поддерживаются:
 
 ```js
 // Поддерживается:
-import {shout} from &apos;./lib.mjs&apos;;
-import {shout} from &apos;../lib.mjs&apos;;
-import {shout} from &apos;/modules/lib.mjs&apos;;
-import {shout} from &apos;https://simple.example/modules/lib.mjs&apos;;
+import {shout} from './lib.mjs';
+import {shout} from '../lib.mjs';
+import {shout} from '/modules/lib.mjs';
+import {shout} from 'https://simple.example/modules/lib.mjs';
 ```
 
 На данный момент спецификаторы модулей должны быть полными URL-адресами или относительными URL-адресами, начинающимися с `/`, `./` или `../`.
@@ -186,12 +186,12 @@ import {shout} from &apos;https://simple.example/modules/lib.mjs&apos;;
 ```html
 <script type="module">
   (async () => {
-    const moduleSpecifier = &apos;./lib.mjs&apos;;
+    const moduleSpecifier = './lib.mjs';
     const {repeat, shout} = await import(moduleSpecifier);
-    repeat(&apos;hello&apos;);
-    // → &apos;hello hello&apos;
-    shout(&apos;Dynamic import in action&apos;);
-    // → &apos;DYNAMIC IMPORT IN ACTION!&apos;
+    repeat('hello');
+    // → 'hello hello'
+    shout('Dynamic import in action');
+    // → 'DYNAMIC IMPORT IN ACTION!'
   })();
 </script>
 ```
@@ -216,7 +216,7 @@ function loadThumbnail(relativePath) {
   return image;
 }
 
-const thumbnail = loadThumbnail(&apos;../img/thumbnail.png&apos;);
+const thumbnail = loadThumbnail('../img/thumbnail.png');
 container.append(thumbnail);
 ```
 
@@ -266,7 +266,7 @@ export function zip() { /* … */ }
 Если вашему проекту действительно нужна только функция `pluck`, вы, вероятно, импортируете её следующим образом:
 
 ```js
-import {pluck} from &apos;./util.mjs&apos;;
+import {pluck} from './util.mjs';
 ```
 
 В этом случае (без этапа упаковки при сборке) браузеру все равно придется скачать, проанализировать и скомпилировать весь модуль `./util.mjs`, даже если реально нужна только одна экспортируемая функция. Это расточительно!
@@ -280,7 +280,7 @@ export function pluck() { /* … */ }
 Тогда мы можем импортировать `pluck` без необходимости обрабатывать `drop` и `zip`:
 
 ```js
-import {pluck} from &apos;./pluck.mjs&apos;;
+import {pluck} from './pluck.mjs';
 ```
 
 :::note
@@ -335,7 +335,7 @@ JS модули постепенно внедряются в веб. [Наши �
 Chrome 65 поддерживает [`PaintWorklet`](https://developers.google.com/web/updates/2018/01/paintapi) (также известный как CSS Paint API) для управления способом отображения элемента DOM.
 
 ```js
-const result = await css.paintWorklet.addModule(&apos;paint-worklet.mjs&apos;);
+const result = await css.paintWorklet.addModule('paint-worklet.mjs');
 ```
 
 Chrome 66 поддерживает [`AudioWorklet`](https://developers.google.com/web/updates/2017/12/audio-worklet), который позволяет управлять обработкой аудио с помощью вашего собственного кода. В той же версии Chrome началось [OriginTrial для `AnimationWorklet`](https://groups.google.com/a/chromium.org/d/msg/blink-dev/AZ-PYPMS7EA/DEqbe2u5BQAJ), что позволяет создавать анимации, связанные с прокруткой, и другие высокопроизводительные процедурные анимации.
@@ -345,14 +345,14 @@ Chrome 66 поддерживает [`AudioWorklet`](https://developers.google.co
 Мы [работаем](https://bugs.chromium.org/p/chromium/issues/detail?id=680046) над добавлением поддержки использования JS-модулей с выделенными веб-воркерами в Chrome. Вы уже можете попробовать эту функцию, включив `chrome://flags/#enable-experimental-web-platform-features`.
 
 ```js
-const worker = new Worker(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
+const worker = new Worker('worker.mjs', { type: 'module' });
 ```
 
 Поддержка JS-модулей для общих воркеров и сервисных воркеров появится скоро:
 
 ```js
-const worker = new SharedWorker(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
-const registration = await navigator.serviceWorker.register(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
+const worker = new SharedWorker('worker.mjs', { type: 'module' });
+const registration = await navigator.serviceWorker.register('worker.mjs', { type: 'module' });
 ```
 
 ### Карты импорта
@@ -360,8 +360,8 @@ const registration = await navigator.serviceWorker.register(&apos;worker.mjs&apo
 В Node.js/npm часто импортируют JS-модули по их «названию пакета». Например:
 
 ```js
-import moment from &apos;moment&apos;;
-import {pluck} from &apos;lodash-es&apos;;
+import moment from 'moment';
+import {pluck} from 'lodash-es';
 ```
 
 На данный момент, [согласно спецификации HTML](https://html.spec.whatwg.org/multipage/webappapis.html#resolve-a-module-specifier), такие «голые спецификаторы импорта» вызывают исключение. [Наше предложение по картам импорта](https://github.com/domenic/import-maps) позволяет такому коду работать в вебе, включая продакшн-приложения. Карта импорта — это JSON-ресурс, который помогает браузеру конвертировать голые спецификаторы импорта в полные URL.

@@ -1,10 +1,10 @@
 ---
-title: &apos;ES2015, ES2016, 그리고 그 이후&apos;
-author: &apos;V8 팀, ECMAScript 열성 팬&apos;
+title: 'ES2015, ES2016, 그리고 그 이후'
+author: 'V8 팀, ECMAScript 열성 팬'
 date: 2016-04-29 13:33:37
 tags:
   - ECMAScript
-description: &apos;V8 v5.2가 ES2015 및 ES2016을 지원합니다!&apos;
+description: 'V8 v5.2가 ES2015 및 ES2016을 지원합니다!'
 ---
 V8 팀은 JavaScript가 점점 더 많은 표현력을 갖춘 잘 정의된 언어로 발전하는 것을 중요시하며, 이를 통해 빠르고 안전하며 올바른 웹 애플리케이션 작성이 쉬워지도록 합니다. 2015년 6월, TC39 표준 위원회에 의해 [ES2015 사양](https://www.ecma-international.org/ecma-262/6.0/)이 승인되며 JavaScript 언어에 대한 단일 업데이트로는 가장 큰 규모의 변경이 이루어졌습니다. 새 기능에는 [클래스](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes), [화살표 함수](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [프라미스](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise), [이터레이터/제너레이터](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Iterators_and_Generators), [프록시](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Proxy), [특수 심볼](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Symbol#Well-known_symbols), 및 추가적인 문법 설탕이 포함됩니다. TC39는 새로운 사양의 출현 속도를 높이기 위해 노력하며, 2016년 2월에 [ES2016 후보 초안](https://tc39.es/ecma262/2016/)을 공개하였으며 올 여름 최종 승인됩니다. ES2015 업데이트만큼 광범위하지는 않지만 ES2016은 [지수 연산자](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Exponentiation)와 [`Array.prototype.includes`](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/includes)를 도입한 점이 주목됩니다.
 

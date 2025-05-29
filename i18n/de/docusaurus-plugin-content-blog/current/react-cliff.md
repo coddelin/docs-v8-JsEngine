@@ -1,15 +1,15 @@
 ---
-title: &apos;Die Geschichte einer V8-Leistungsgrenze in React&apos;
-author: &apos;Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) und Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Die Geschichte einer V8-Leistungsgrenze in React'
+author: 'Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) und Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;benedikt-meurer&apos;
-  - &apos;mathias-bynens&apos;
+  - 'benedikt-meurer'
+  - 'mathias-bynens'
 date: 2019-08-28 16:45:00
 tags:
   - internals
   - presentations
-description: &apos;Dieser Artikel beschreibt, wie V8 optimale Speicherrepräsentationen für verschiedene JavaScript-Werte auswählt und wie sich dies auf die Shape-Maschine auswirkt – all dies hilft, eine jüngste V8-Leistungsgrenze im React-Kern zu erklären.&apos;
-tweet: &apos;1166723359696130049&apos;
+description: 'Dieser Artikel beschreibt, wie V8 optimale Speicherrepräsentationen für verschiedene JavaScript-Werte auswählt und wie sich dies auf die Shape-Maschine auswirkt – all dies hilft, eine jüngste V8-Leistungsgrenze im React-Kern zu erklären.'
+tweet: '1166723359696130049'
 ---
 [Zuvor](https://mathiasbynens.be/notes/shapes-ics) haben wir diskutiert, wie JavaScript-Engines Objekt- und Array-Zugriffe durch die Verwendung von Shapes und Inline-Caches optimieren, und wir haben untersucht, [wie Engines den Prototyp-Property-Zugang beschleunigen](https://mathiasbynens.be/notes/prototypes). Dieser Artikel beschreibt, wie V8 optimale Speicherrepräsentationen für verschiedene JavaScript-Werte auswählt und wie sich dies auf die Shape-Maschine auswirkt – all dies hilft, [eine jüngste V8-Leistungsgrenze im React-Kern](https://github.com/facebook/react/issues/14365) zu erklären.
 
@@ -35,24 +35,24 @@ Mit einer bemerkenswerten Ausnahme sind diese Typen in JavaScript über den `typ
 
 ```js
 typeof 42;
-// → &apos;number&apos;
-typeof &apos;foo&apos;;
-// → &apos;string&apos;
-typeof Symbol(&apos;bar&apos;);
-// → &apos;symbol&apos;
+// → 'number'
+typeof 'foo';
+// → 'string'
+typeof Symbol('bar');
+// → 'symbol'
 typeof 42n;
-// → &apos;bigint&apos;
+// → 'bigint'
 typeof true;
-// → &apos;boolean&apos;
+// → 'boolean'
 typeof undefined;
-// → &apos;undefined&apos;
+// → 'undefined'
 typeof null;
-// → &apos;object&apos; 🤔
+// → 'object' 🤔
 typeof { x: 42 };
-// → &apos;object&apos;
+// → 'object'
 ```
 
-`typeof null` gibt `&apos;object&apos;` zurück und nicht `&apos;null&apos;`, obwohl `Null` ein eigener Typ ist. Um zu verstehen, warum, bedenken Sie, dass die Menge aller JavaScript-Typen in zwei Gruppen unterteilt ist:
+`typeof null` gibt `'object'` zurück und nicht `'null'`, obwohl `Null` ein eigener Typ ist. Um zu verstehen, warum, bedenken Sie, dass die Menge aller JavaScript-Typen in zwei Gruppen unterteilt ist:
 
 - _Objekte_ (d. h. der `Object`-Typ)
 - _Primitive_ (d. h. jeder Wert, der kein Objekt ist)
@@ -61,7 +61,7 @@ Als solches bedeutet `null` „kein Objektwert“, während `undefined` „kein 
 
 ![](/_img/react-cliff/02-primitives-objects.svg)
 
-Entsprechend diesem Gedankengang hat Brendan Eich JavaScript entworfen, sodass `typeof` für alle Werte auf der rechten Seite, also alle Objekte und `null`-Werte, `&apos;object&apos;` zurückgibt, im Geiste von Java. Daher ist `typeof null === &apos;object&apos;`, obwohl die Spezifikation einen separaten `Null`-Typ hat.
+Entsprechend diesem Gedankengang hat Brendan Eich JavaScript entworfen, sodass `typeof` für alle Werte auf der rechten Seite, also alle Objekte und `null`-Werte, `'object'` zurückgibt, im Geiste von Java. Daher ist `typeof null === 'object'`, obwohl die Spezifikation einen separaten `Null`-Typ hat.
 
 ![](/_img/react-cliff/03-primitives-objects-typeof.svg)
 
@@ -73,7 +73,7 @@ Der Wert `42` hat beispielsweise den Typ `number` in JavaScript.
 
 ```js
 typeof 42;
-// → &apos;number&apos;
+// → 'number'
 ```
 
 Es gibt mehrere Möglichkeiten, eine ganze Zahl wie `42` im Speicher darzustellen:
@@ -275,7 +275,7 @@ Dies beginnt mit zwei Objekten, die auf die gleiche Struktur zeigen, bei der `x`
 
 ![](/_img/react-cliff/13-shape.svg)
 
-Wenn sich `b.x` zu einer `Double`-Darstellung ändert, erstellt V8 eine neue Struktur, bei der `x` als `Double`-Darstellung zugewiesen wird, und die auf die leere Struktur zurückweist. V8 erstellt auch einen `MutableHeapNumber`, um den neuen Wert `0.2` für die `x`-Eigenschaft zu halten. Anschließend aktualisieren wir das Objekt `b`, um auf diese neue Struktur zu zeigen, und ändern den Slot im Objekt, um auf den zuvor erstellten `MutableHeapNumber` bei Offset 0 zu zeigen. Schließlich markieren wir die alte Struktur als veraltet und entkoppeln sie vom Übergangsknoten. Dies wird durch einen neuen Übergang für `&apos;x&apos;` von der leeren Struktur zur neu erstellten Struktur erreicht.
+Wenn sich `b.x` zu einer `Double`-Darstellung ändert, erstellt V8 eine neue Struktur, bei der `x` als `Double`-Darstellung zugewiesen wird, und die auf die leere Struktur zurückweist. V8 erstellt auch einen `MutableHeapNumber`, um den neuen Wert `0.2` für die `x`-Eigenschaft zu halten. Anschließend aktualisieren wir das Objekt `b`, um auf diese neue Struktur zu zeigen, und ändern den Slot im Objekt, um auf den zuvor erstellten `MutableHeapNumber` bei Offset 0 zu zeigen. Schließlich markieren wir die alte Struktur als veraltet und entkoppeln sie vom Übergangsknoten. Dies wird durch einen neuen Übergang für `'x'` von der leeren Struktur zur neu erstellten Struktur erreicht.
 
 ![](/_img/react-cliff/14-shape-transition.svg)
 
@@ -299,7 +299,7 @@ In diesem Fall muss V8 die sogenannte _Split-Struktur_ finden, die die letzte St
 
 ![](/_img/react-cliff/16-split-shape.svg)
 
-Ausgehend von der geteilten Form erstellen wir eine neue Übergangskette für `y`, die alle vorherigen Übergänge wiedergibt, jedoch mit `&apos;y&apos;`, das nun als `Double`-Darstellung gekennzeichnet ist. Und wir verwenden diese neue Übergangskette für `y`, wobei der alte Teilbaum als veraltet gekennzeichnet wird. Im letzten Schritt migrieren wir die Instanz `o` zur neuen Form und verwenden eine `MutableHeapNumber`, um den Wert von `y` jetzt zu halten. Auf diese Weise nehmen neue Objekte nicht den alten Weg, und sobald alle Verweise auf die alte Form entfernt sind, verschwindet der veraltete Formteil des Baums.
+Ausgehend von der geteilten Form erstellen wir eine neue Übergangskette für `y`, die alle vorherigen Übergänge wiedergibt, jedoch mit `'y'`, das nun als `Double`-Darstellung gekennzeichnet ist. Und wir verwenden diese neue Übergangskette für `y`, wobei der alte Teilbaum als veraltet gekennzeichnet wird. Im letzten Schritt migrieren wir die Instanz `o` zur neuen Form und verwenden eine `MutableHeapNumber`, um den Wert von `y` jetzt zu halten. Auf diese Weise nehmen neue Objekte nicht den alten Weg, und sobald alle Verweise auf die alte Form entfernt sind, verschwindet der veraltete Formteil des Baums.
 
 ## Erweiterbarkeits- und Integritäts-Stufenübergänge
 
@@ -348,7 +348,7 @@ const b = { x: 2 };
 Object.preventExtensions(b);
 ```
 
-Es beginnt wie wir bereits wissen, mit einem Übergang von der leeren Form zu einer neuen Form, die die Eigenschaft `&apos;x&apos;` (dargestellt als `Smi`) enthält. Wenn wir Erweiterungen von `b` verhindern, führen wir einen speziellen Übergang zu einer neuen Form durch, die als nicht erweiterbar gekennzeichnet ist. Dieser spezielle Übergang führt keine neue Eigenschaft ein — es ist wirklich nur eine Markierung.
+Es beginnt wie wir bereits wissen, mit einem Übergang von der leeren Form zu einer neuen Form, die die Eigenschaft `'x'` (dargestellt als `Smi`) enthält. Wenn wir Erweiterungen von `b` verhindern, führen wir einen speziellen Übergang zu einer neuen Form durch, die als nicht erweiterbar gekennzeichnet ist. Dieser spezielle Übergang führt keine neue Eigenschaft ein — es ist wirklich nur eine Markierung.
 
 ![](/_img/react-cliff/17-shape-nonextensible.svg)
 
@@ -408,7 +408,7 @@ Glücklicherweise [haben wir diesen Leistungseinbruch behoben](https://chromium-
 
 ![](/_img/react-cliff/22-fix.svg)
 
-Die beiden `FiberNode`-Instanzen verweisen auf die nicht erweiterbare Shape, in der `&apos;actualStartTime&apos;` ein `Smi`-Feld ist. Wenn die erste Zuweisung zu `node1.actualStartTime` stattfindet, wird eine neue Übergangskette erstellt und die vorherige Kette wird als veraltet markiert:
+Die beiden `FiberNode`-Instanzen verweisen auf die nicht erweiterbare Shape, in der `'actualStartTime'` ein `Smi`-Feld ist. Wenn die erste Zuweisung zu `node1.actualStartTime` stattfindet, wird eine neue Übergangskette erstellt und die vorherige Kette wird als veraltet markiert:
 
 ![](/_img/react-cliff/23-fix-fibernode-shape-1.svg)
 

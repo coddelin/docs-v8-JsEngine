@@ -1,8 +1,8 @@
 ---
-title: &apos;Promiseの組み合わせ&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Promiseの組み合わせ'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-06-12
 tags:
   - ECMAScript
@@ -10,8 +10,8 @@ tags:
   - ES2021
   - io19
   - Node.js 16
-description: &apos;JavaScriptには4つのPromiseコンビネーターがあります: Promise.all, Promise.race, Promise.allSettled, そしてPromise.anyです。&apos;
-tweet: &apos;1138819493956710400&apos;
+description: 'JavaScriptには4つのPromiseコンビネーターがあります: Promise.all, Promise.race, Promise.allSettled, そしてPromise.anyです。'
+tweet: '1138819493956710400'
 ---
 ES2015でPromiseが導入されて以来、JavaScriptでは静的メソッド`Promise.all`と`Promise.race`の2つのPromiseコンビネーターがサポートされています。
 
@@ -45,9 +45,9 @@ ES2015でPromiseが導入されて以来、JavaScriptでは静的メソッド`Pr
 
 ```js
 const promises = [
-  fetch(&apos;/component-a.css&apos;),
-  fetch(&apos;/component-b.css&apos;),
-  fetch(&apos;/component-c.css&apos;),
+  fetch('/component-a.css'),
+  fetch('/component-b.css'),
+  fetch('/component-c.css'),
 ];
 try {
   const styleResponses = await Promise.all(promises);
@@ -105,9 +105,9 @@ try {
 
 ```js
 const promises = [
-  fetch(&apos;/api-call-1&apos;),
-  fetch(&apos;/api-call-2&apos;),
-  fetch(&apos;/api-call-3&apos;),
+  fetch('/api-call-1'),
+  fetch('/api-call-2'),
+  fetch('/api-call-3'),
 ];
 // これらのリクエストのうちいくつかは失敗し、いくつかは成功すると想定されます。
 
@@ -128,15 +128,15 @@ removeLoadingIndicator();
 
 ```js
 const promises = [
-  fetch(&apos;/endpoint-a&apos;).then(() => &apos;a&apos;),
-  fetch(&apos;/endpoint-b&apos;).then(() => &apos;b&apos;),
-  fetch(&apos;/endpoint-c&apos;).then(() => &apos;c&apos;),
+  fetch('/endpoint-a').then(() => 'a'),
+  fetch('/endpoint-b').then(() => 'b'),
+  fetch('/endpoint-c').then(() => 'c'),
 ];
 try {
   const first = await Promise.any(promises);
   // いずれかのプロミスが完了しました。
   console.log(first);
-  // → 例えば &apos;b&apos;
+  // → 例えば 'b'
 } catch (error) {
   // すべてのプロミスが拒否されました。
   console.assert(error instanceof AggregateError);
@@ -155,5 +155,5 @@ try {
 `Promise.any`の拒否は、一度に複数のエラーを表すことができます。この機能を言語レベルでサポートするために、`AggregateError`という新しいエラータイプが導入されました。このタイプは上記の例での基本的な使用法に加えて、他のエラータイプと同様にプログラムで構築することもできます:
 
 ```js
-const aggregateError = new AggregateError([errorA, errorB, errorC], &apos;何かがうまくいかなかった！&apos;);
+const aggregateError = new AggregateError([errorA, errorB, errorC], '何かがうまくいかなかった！');
 ```

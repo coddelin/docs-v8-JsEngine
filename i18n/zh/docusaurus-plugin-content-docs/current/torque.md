@@ -161,8 +161,8 @@ ConstexprDeclaration :
 以下是`base.tq`中Torque的31位和32位有符号整数类型的一个示例：
 
 ```torque
-type int32 generates &apos;TNode<Int32T>&apos; constexpr &apos;int32_t&apos;;
-type int31 extends int32 generates &apos;TNode<Int32T>&apos; constexpr &apos;int31_t&apos;;
+type int32 generates 'TNode<Int32T>' constexpr 'int32_t';
+type int31 extends int32 generates 'TNode<Int32T>' constexpr 'int31_t';
 ```
 
 #### 联合类型
@@ -422,7 +422,7 @@ type CompareBuiltinFn = builtin(implicit context: Context)(Object, Object, Objec
 ```torque
 // 一个具有 JSArray 映射的 HeapObject，当全局 NoElementsProtector 未失效时，包含快速打包元素或快速空洞元素。
 transient type FastJSArray extends JSArray
-    generates &apos;TNode<JSArray>&apos;;
+    generates 'TNode<JSArray>';
 ```
 
 例如，对于 `FastJSArray`，如果数组更改为字典元素或全局 `NoElementsProtector` 失效，瞬态类型将被失效。为了在 Torque 中表达这一点，请将所有可能导致此问题的可调用项注释为 `transitioning`。例如，调用 JavaScript 函数可以执行任意的 JavaScript，因此它是 `transitioning`。
@@ -608,7 +608,7 @@ intrinsic %RawConstexprCast<To: type, From: type>(f: From): To;
 // 当前，仅支持以下非 constexpr 类型的转换：Smi、Number、String、uintptr、intptr 和 int32。
 intrinsic %FromConstexpr<To: type, From: type>(b: From): To;
 
-// %Allocate 从 V8 的 GC 堆中分配一个未初始化的大小为&apos;size&apos;的对象，并“重新解释强制转换”为
+// %Allocate 从 V8 的 GC 堆中分配一个未初始化的大小为'size'的对象，并“重新解释强制转换”为
 // 指定的 Torque 类，允许构造函数随后使用
 // 标准字段访问操作符来初始化对象。
 // 此内置函数不应从 Torque 代码中调用。它被用作

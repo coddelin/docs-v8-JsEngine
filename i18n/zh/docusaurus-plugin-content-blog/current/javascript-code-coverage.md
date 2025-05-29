@@ -110,7 +110,7 @@ tweet: ‘940879905079873536’
 
 ```js
 function f() {
-  console.log(&apos;Hello World&apos;);
+  console.log('Hello World');
 }
 
 f();

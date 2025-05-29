@@ -1,13 +1,13 @@
 ---
-title: &apos;Subsume JSON también conocido como JSON ⊂ ECMAScript&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Subsume JSON también conocido como JSON ⊂ ECMAScript'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-08-14
 tags:
   - ES2019
-description: &apos;JSON ahora es un subconjunto sintáctico de ECMAScript.&apos;
-tweet: &apos;1161649929904885762&apos;
+description: 'JSON ahora es un subconjunto sintáctico de ECMAScript.'
+tweet: '1161649929904885762'
 ---
 Con [la propuesta _JSON ⊂ ECMAScript_](https://github.com/tc39/proposal-json-superset), JSON se convierte en un subconjunto sintáctico de ECMAScript. Si te sorprende que esto no fuera ya el caso, no estás solo.
 
@@ -17,11 +17,11 @@ En ES2018, los literales de cadenas de ECMAScript no podían contener caracteres
 
 ```js
 // Una cadena que contiene un carácter U+2028 sin procesar.
-const LS = &apos; &apos;;
+const LS = ' ';
 // → ES2018: SyntaxError
 
 // Una cadena que contiene un carácter U+2029 sin procesar, producido por `eval`:
-const PS = eval(&apos;"\u2029"&apos;);
+const PS = eval('"\u2029"');
 // → ES2018: SyntaxError
 ```
 
@@ -34,12 +34,12 @@ En ES2019, los literales de cadenas ahora pueden contener caracteres U+2028 y U+
 
 ```js
 // Una cadena que contiene un carácter U+2028 sin procesar.
-const LS = &apos; &apos;;
+const LS = ' ';
 // → ES2018: SyntaxError
 // → ES2019: sin excepción
 
 // Una cadena que contiene un carácter U+2029 sin procesar, producido por `eval`:
-const PS = eval(&apos;"\u2029"&apos;);
+const PS = eval('"\u2029"');
 // → ES2018: SyntaxError
 // → ES2019: sin excepción
 ```
@@ -55,8 +55,8 @@ Aquí tienes un ejemplo de cómo crear un programa JavaScript válido incrustand
 ```js
 // Un objeto JavaScript (o matriz, o cadena) que representa algunos datos.
 const data = {
-  LineTerminators: &apos;\n\r  &apos;,
-  // Nota: la cadena contiene 4 caracteres: &apos;\n\r\u2028\u2029&apos;.
+  LineTerminators: '\n\r  ',
+  // Nota: la cadena contiene 4 caracteres: '\n\r\u2028\u2029'.
 };
 
 // Convierte los datos en su forma JSON-stringificada. Gracias a JSON ⊂
@@ -67,7 +67,7 @@ const jsObjectLiteral = JSON.stringify(data);
 // Crea un programa ECMAScript válido que incrusta los datos como un literal
 // de objeto.
 const program = `const data = ${ jsObjectLiteral };`;
-// → &apos;const data = {"LineTerminators":"…"};&apos;
+// → 'const data = {"LineTerminators":"…"};'
 // (Se necesita un escape adicional si el destino es un elemento <script> inline.)
 
 // Escribe un archivo que contenga el programa ECMAScript en el disco.
@@ -91,7 +91,7 @@ const data = { foo: 42, bar: 1337 }; // 🐌
 …los datos se pueden representar en forma JSON-stringificada y luego analizar con JSON en tiempo de ejecución, para mejorar el rendimiento en el caso de objetos grandes (de más de 10 kB):
 
 ```js
-const data = JSON.parse(&apos;{"foo":42,"bar":1337}&apos;); // 🚀
+const data = JSON.parse('{"foo":42,"bar":1337}'); // 🚀
 ```
 
 Aquí tienes un ejemplo de implementación:
@@ -99,8 +99,8 @@ Aquí tienes un ejemplo de implementación:
 ```js
 // Un objeto JavaScript (o matriz, o cadena) que representa algunos datos.
 const data = {
-  LineTerminators: &apos;\n\r  &apos;,
-  // Nota: la cadena contiene 4 caracteres: &apos;\n\r\u2028\u2029&apos;.
+  LineTerminators: '\n\r  ',
+  // Nota: la cadena contiene 4 caracteres: '\n\r\u2028\u2029'.
 };
 
 // Convierte los datos en su forma JSON-stringificada.
@@ -115,7 +115,7 @@ const jsStringLiteral = JSON.stringify(json);
 // Crea un programa ECMAScript válido que incrusta el literal de cadena JavaScript
 // que representa los datos JSON dentro de una llamada a `JSON.parse`.
 const program = `const data = JSON.parse(${ jsStringLiteral });`;
-// → &apos;const data = JSON.parse("…");&apos;
+// → 'const data = JSON.parse("…");'
 // (Se necesita un escape adicional si el objetivo es un <script> inline.)
 
 // Escribe un archivo que contiene el programa ECMAScript en el disco.
@@ -150,13 +150,13 @@ Cuando se usa como en el ejemplo anterior, `JSON.stringify()` garantiza devolver
 ```html
 <script>
   // Información de depuración:
-  // User-Agent: "Cadena proporcionada por el usuario<U+2028>  alert(&apos;XSS&apos;);//"
+  // User-Agent: "Cadena proporcionada por el usuario<U+2028>  alert('XSS');//"
 </script>
 <!-- …es equivalente a: -->
 <script>
   // Información de depuración:
   // User-Agent: "Cadena proporcionada por el usuario
-  alert(&apos;XSS&apos;);//"
+  alert('XSS');//"
 </script>
 ```
 

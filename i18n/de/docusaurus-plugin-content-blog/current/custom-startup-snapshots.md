@@ -1,12 +1,12 @@
 ---
-title: &apos;Benutzerdefinierte Start-Snapshots&apos;
-author: &apos;Yang Guo ([@hashseed](https://twitter.com/hashseed)), Software Engineer und Lieferant von Motorvorwärmern&apos;
+title: 'Benutzerdefinierte Start-Snapshots'
+author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed)), Software Engineer und Lieferant von Motorvorwärmern'
 avatars:
-  - &apos;yang-guo&apos;
+  - 'yang-guo'
 date: 2015-09-25 13:33:37
 tags:
   - internals
-description: &apos;V8-Embeds können Snapshots nutzen, um die Startzeit zu überspringen, die durch die Initialisierungen von JavaScript-Programmen verursacht wird.&apos;
+description: 'V8-Embeds können Snapshots nutzen, um die Startzeit zu überspringen, die durch die Initialisierungen von JavaScript-Programmen verursacht wird.'
 ---
 Die JavaScript-Spezifikation enthält viele eingebaute Funktionen, von [Mathematikfunktionen](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) bis hin zu einer [voll ausgestatteten regulären Ausdrucksengine](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions). Jede neu erstellte V8-Umgebung hat diese Funktionen von Anfang an verfügbar. Damit dies funktioniert, müssen das globale Objekt (z. B. das Fensterobjekt in einem Browser) und alle eingebauten Funktionen eingerichtet und initialisiert werden, um in den V8-Heap aufgenommen zu werden, sobald die Umgebung erstellt wird. Es dauert eine ganze Weile, dies von Grund auf neu zu tun.
 

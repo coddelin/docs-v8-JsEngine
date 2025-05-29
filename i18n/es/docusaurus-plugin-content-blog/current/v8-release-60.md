@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 lanzamiento v6.0&apos;
-author: &apos;el equipo de V8&apos;
+title: 'V8 lanzamiento v6.0'
+author: 'el equipo de V8'
 date: 2017-06-09 13:33:37
 tags:
   - lanzamiento
-description: &apos;V8 v6.0 viene con varias mejoras de rendimiento e introduce soporte para `SharedArrayBuffer`s y propiedades de reposo/dispersión de objetos.&apos;
+description: 'V8 v6.0 viene con varias mejoras de rendimiento e introduce soporte para `SharedArrayBuffer`s y propiedades de reposo/dispersión de objetos.'
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se ramifica desde el maestro de Git de V8 inmediatamente antes de un hito de Chrome Beta. Hoy nos complace anunciar nuestra rama más reciente, [V8 versión 6.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.0), que estará en beta hasta que sea lanzada en coordinación con Chrome 60 Stable en varias semanas. V8 6.0 está lleno de todo tipo de beneficios para desarrolladores. Nos gustaría darles un adelanto de algunos de los aspectos más destacados en anticipación al lanzamiento.
 
@@ -24,20 +24,20 @@ Las propiedades de dispersión también ofrecen una alternativa concisa a `Objec
 ```js
 // Propiedades de reposo para la asignación de desestructuración de objetos:
 const person = {
-  firstName: &apos;Sebastian&apos;,
-  lastName: &apos;Markbåge&apos;,
-  country: &apos;EE.UU.&apos;,
-  state: &apos;CA&apos;,
+  firstName: 'Sebastian',
+  lastName: 'Markbåge',
+  country: 'EE.UU.',
+  state: 'CA',
 };
 const { firstName, lastName, ...rest } = person;
 console.log(firstName); // Sebastian
 console.log(lastName); // Markbåge
-console.log(rest); // { country: &apos;EE.UU.&apos;, state: &apos;CA&apos; }
+console.log(rest); // { country: 'EE.UU.', state: 'CA' }
 
 // Propiedades de dispersión para literales de objetos:
 const personCopy = { firstName, lastName, ...rest };
 console.log(personCopy);
-// { firstName: &apos;Sebastian&apos;, lastName: &apos;Markbåge&apos;, country: &apos;EE.UU.&apos;, state: &apos;CA&apos; }
+// { firstName: 'Sebastian', lastName: 'Markbåge', country: 'EE.UU.', state: 'CA' }
 ```
 
 Para más información, consulte [nuestra explicación sobre las propiedades de reposo y dispersión de objetos](/features/object-rest-spread).

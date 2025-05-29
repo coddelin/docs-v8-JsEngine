@@ -1,6 +1,6 @@
 ---
-title: &apos;Código respetuoso&apos;
-description: &apos;La inclusividad es central en la cultura de V8, y nuestros valores incluyen tratar a los demás con dignidad. Por lo tanto, es importante que todos puedan contribuir sin enfrentar los efectos nocivos del sesgo y la discriminación.&apos;
+title: 'Código respetuoso'
+description: 'La inclusividad es central en la cultura de V8, y nuestros valores incluyen tratar a los demás con dignidad. Por lo tanto, es importante que todos puedan contribuir sin enfrentar los efectos nocivos del sesgo y la discriminación.'
 ---
 
 La inclusividad es central en la cultura de V8, y nuestros valores incluyen tratar a los demás con dignidad. Por lo tanto, es importante que todos puedan contribuir sin enfrentar los efectos nocivos del sesgo y la discriminación. Sin embargo, los términos en nuestra base de código, interfaces de usuario y documentación pueden perpetuar esa discriminación. Este documento establece una guía que tiene como objetivo abordar la terminología irrespetuosa en el código y la documentación.

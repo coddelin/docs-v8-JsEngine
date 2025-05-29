@@ -1,12 +1,12 @@
 ---
-title: &apos;高效能 ES2015 與後續進階&apos;
-author: &apos;Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer), ECMAScript 效能工程師&apos;
+title: '高效能 ES2015 與後續進階'
+author: 'Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer), ECMAScript 效能工程師'
 avatars:
-  - &apos;benedikt-meurer&apos;
+  - 'benedikt-meurer'
 date: 2017-02-17 13:33:37
 tags:
   - ECMAScript
-description: &apos;V8 對 ES2015+ 語言功能的效能表現如今已與其編譯後的 ES5 對應功能相當。&apos;
+description: 'V8 對 ES2015+ 語言功能的效能表現如今已與其編譯後的 ES5 對應功能相當。'
 ---
 過去幾個月中，V8 團隊致力於提升新加入的 [ES2015](https://www.ecma-international.org/ecma-262/6.0/) 及其他更最新的 JavaScript 功能效能，使其能與編譯後的 [ES5](https://www.ecma-international.org/ecma-262/5.1/) 對應功能相媲美。
 
@@ -35,7 +35,7 @@ function todoApp(state = initialState, action) {
 以上程式碼有兩個需要編譯的地方：用於 state 的預設參數以及將 state 展開至物件字面值中。Babel 生成以下 ES5 程式碼：
 
 ```js
-&apos;use strict&apos;;
+'use strict';
 
 var _extends = Object.assign || function(target) {
   for (var i = 1; i < arguments.length; i++) {
@@ -82,7 +82,7 @@ async function* readLines(path) {
 Babel 將這 187 個字元（150 字節壓縮）翻譯成 ES5 代碼，加上 [regenerator 執行環境](https://babeljs.io/docs/plugins/transform-regenerator/) 的額外依賴，竟然高達 2987 個字元（971 字節壓縮）：
 
 ```js
-&apos;use strict&apos;;
+'use strict';
 
 var _asyncGenerator = function() {
   function AwaitValue(value) {
@@ -116,27 +116,27 @@ var _asyncGenerator = function() {
         var value = result.value;
         if (value instanceof AwaitValue) {
           Promise.resolve(value.value).then(function(arg) {
-            resume(&apos;next&apos;, arg);
+            resume('next', arg);
           }, function(arg) {
-            resume(&apos;throw&apos;, arg);
+            resume('throw', arg);
           });
         } else {
-          settle(result.done ? &apos;return&apos; : &apos;normal&apos;, result.value);
+          settle(result.done ? 'return' : 'normal', result.value);
         }
       } catch (err) {
-        settle(&apos;throw&apos;, err);
+        settle('throw', err);
       }
     }
 
     function settle(type, value) {
       switch (type) {
-        case &apos;return&apos;:
+        case 'return':
           front.resolve({
             value: value,
             done: true
           });
           break;
-        case &apos;throw&apos;:
+        case 'throw':
           front.reject(value);
           break;
         default:
@@ -154,23 +154,23 @@ var _asyncGenerator = function() {
       }
     }
     this._invoke = send;
-    if (typeof gen.return !== &apos;function&apos;) {
+    if (typeof gen.return !== 'function') {
       this.return = undefined;
     }
   }
-  if (typeof Symbol === &apos;function&apos; && Symbol.asyncIterator) {
+  if (typeof Symbol === 'function' && Symbol.asyncIterator) {
     AsyncGenerator.prototype[Symbol.asyncIterator] = function() {
       return this;
     };
   }
   AsyncGenerator.prototype.next = function(arg) {
-    return this._invoke(&apos;next&apos;, arg);
+    return this._invoke('next', arg);
   };
   AsyncGenerator.prototype.throw = function(arg) {
-    return this._invoke(&apos;throw&apos;, arg);
+    return this._invoke('throw', arg);
   };
   AsyncGenerator.prototype.return = function(arg) {
-    return this._invoke(&apos;return&apos;, arg);
+    return this._invoke('return', arg);
   };
   return {
     wrap: function wrap(fn) {
@@ -224,7 +224,7 @@ var readLines = function () {
             return _context.finish(11);
 
           case 15:
-          case &apos;end&apos;:
+          case 'end':
             return _context.stop();
         }
       }
@@ -288,7 +288,7 @@ function fn() {
 …並且比Babel生成的代碼快很多（而且更短）：
 
 ```js
-&apos;use strict&apos;;
+'use strict';
 
 var _slicedToArray = function() {
   function sliceIterator(arr, i) {
@@ -306,7 +306,7 @@ var _slicedToArray = function() {
       _e = err;
     } finally {
       try {
-        if (!_n && _i[&apos;return&apos;]) _i[&apos;return&apos;]();
+        if (!_n && _i['return']) _i['return']();
       } finally {
         if (_d) throw _e;
       }
@@ -319,7 +319,7 @@ var _slicedToArray = function() {
     } else if (Symbol.iterator in Object(arr)) {
       return sliceIterator(arr, i);
     } else {
-      throw new TypeError(&apos;Invalid attempt to destructure non-iterable instance&apos;);
+      throw new TypeError('Invalid attempt to destructure non-iterable instance');
     }
   };
 }();

@@ -1,17 +1,17 @@
 ---
-title: &apos;Un moteur supplémentaire de RegExp sans retour arrière&apos;
-author: &apos;Martin Bidlingmaier&apos;
+title: 'Un moteur supplémentaire de RegExp sans retour arrière'
+author: 'Martin Bidlingmaier'
 date: 2021-01-11
 tags:
  - internes
  - RegExp
-description: &apos;V8 dispose désormais d'un moteur RegExp supplémentaire qui sert de secours et empêche de nombreux cas de retour arrière catastrophique.&apos;
-tweet: &apos;1348635270762139650&apos;
+description: 'V8 dispose désormais d'un moteur RegExp supplémentaire qui sert de secours et empêche de nombreux cas de retour arrière catastrophique.'
+tweet: '1348635270762139650'
 ---
 À partir de la version 8.8, V8 est livré avec un nouveau moteur RegExp expérimental sans retour arrière (en plus du moteur [Irregexp existant](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html)) qui garantit une exécution en temps linéaire par rapport à la taille de la chaîne soumise. Le moteur expérimental est disponible derrière les drapeaux de fonctionnalités mentionnés ci-dessous.
 
 <!--truncate-->
-![Durée d'exécution de `/(a*)*b/.exec(&apos;a&apos;.repeat(n))` pour n ≤ 100](/_img/non-backtracking-regexp/runtime-plot.svg)
+![Durée d'exécution de `/(a*)*b/.exec('a'.repeat(n))` pour n ≤ 100](/_img/non-backtracking-regexp/runtime-plot.svg)
 
 Voici comment vous pouvez configurer le nouveau moteur RegExp :
 
@@ -28,15 +28,15 @@ Le mécanisme de secours ne s'applique pas à tous les modèles. Pour que le mé
 
 ## Contexte : retour arrière catastrophique
 
-La correspondance RegExp dans V8 est gérée par le moteur Irregexp. Irregexp compilie les RegExps en code natif spécialisé (ou [bytecode](/blog/regexp-tier-up)) et est donc extrêmement rapide pour la plupart des modèles. Pour certains modèles, cependant, le temps d'exécution d'Irregexp peut exploser exponentiellement en fonction de la taille de la chaîne d'entrée. L'exemple ci-dessus, `/(a*)*b/.exec(&apos;a&apos;.repeat(100))`, ne se termine pas de notre vivant si exécuté par Irregexp.
+La correspondance RegExp dans V8 est gérée par le moteur Irregexp. Irregexp compilie les RegExps en code natif spécialisé (ou [bytecode](/blog/regexp-tier-up)) et est donc extrêmement rapide pour la plupart des modèles. Pour certains modèles, cependant, le temps d'exécution d'Irregexp peut exploser exponentiellement en fonction de la taille de la chaîne d'entrée. L'exemple ci-dessus, `/(a*)*b/.exec('a'.repeat(100))`, ne se termine pas de notre vivant si exécuté par Irregexp.
 
-Alors, que se passe-t-il ici ? Irregexp est un moteur de *retour arrière*. Lorsqu'il est confronté à un choix sur la façon dont une correspondance peut se poursuivre, Irregexp explore en totalité la première alternative, puis revient en arrière si nécessaire pour explorer la deuxième alternative. Considérons par exemple la correspondance du modèle `/abc|[az][by][0-9]/` avec la chaîne soumise `&apos;ab3&apos;`. Ici, Irregexp tente de correspondre d'abord à `/abc/` et échoue après le deuxième caractère. Il revient alors en arrière de deux caractères et correspond avec succès à la deuxième alternative `/[az][by][0-9]/`. Dans des modèles avec quantificateurs tels que `/(abc)*xyz/`, Irregexp doit choisir après une correspondance du corps s'il faut correspondre au corps à nouveau ou continuer avec le modèle restant.
+Alors, que se passe-t-il ici ? Irregexp est un moteur de *retour arrière*. Lorsqu'il est confronté à un choix sur la façon dont une correspondance peut se poursuivre, Irregexp explore en totalité la première alternative, puis revient en arrière si nécessaire pour explorer la deuxième alternative. Considérons par exemple la correspondance du modèle `/abc|[az][by][0-9]/` avec la chaîne soumise `'ab3'`. Ici, Irregexp tente de correspondre d'abord à `/abc/` et échoue après le deuxième caractère. Il revient alors en arrière de deux caractères et correspond avec succès à la deuxième alternative `/[az][by][0-9]/`. Dans des modèles avec quantificateurs tels que `/(abc)*xyz/`, Irregexp doit choisir après une correspondance du corps s'il faut correspondre au corps à nouveau ou continuer avec le modèle restant.
 
-Essayons de comprendre ce qui se passe lors de la correspondance de `/(a*)*b/` avec une chaîne soumise plus petite, disons `&apos;aaa&apos;`. Ce modèle contient des quantificateurs imbriqués, donc nous demandons à Irregexp de correspondre à une *séquence de séquences* de `&apos;a&apos;`, puis de correspondre à `&apos;b&apos;`. De toute évidence, il n'y a pas de correspondance parce que la chaîne soumise ne contient pas `&apos;b&apos;`. Cependant, `/(a*)*/` correspond, et le fait de manière exponentiellement variée :
+Essayons de comprendre ce qui se passe lors de la correspondance de `/(a*)*b/` avec une chaîne soumise plus petite, disons `'aaa'`. Ce modèle contient des quantificateurs imbriqués, donc nous demandons à Irregexp de correspondre à une *séquence de séquences* de `'a'`, puis de correspondre à `'b'`. De toute évidence, il n'y a pas de correspondance parce que la chaîne soumise ne contient pas `'b'`. Cependant, `/(a*)*/` correspond, et le fait de manière exponentiellement variée :
 
 ```js
-&apos;aaa&apos;           &apos;aa&apos;, &apos;a&apos;           &apos;aa&apos;, &apos;&apos;
-&apos;a&apos;, &apos;aa&apos;       &apos;a&apos;, &apos;a&apos;, &apos;a&apos;       &apos;a&apos;, &apos;a&apos;, &apos;&apos;
+'aaa'           'aa', 'a'           'aa', ''
+'a', 'aa'       'a', 'a', 'a'       'a', 'a', ''
 …
 ```
 
@@ -62,13 +62,13 @@ Revisitons l'algorithme de backtracking sur lequel Irregexp est basé et décriv
 
 ```js
 const code = [
-  {opcode: &apos;FORK&apos;, forkPc: 4},
-  {opcode: &apos;CONSUME&apos;, char: &apos;1&apos;},
-  {opcode: &apos;CONSUME&apos;, char: &apos;2&apos;},
-  {opcode: &apos;JMP&apos;, jmpPc: 6},
-  {opcode: &apos;CONSUME&apos;, char: &apos;a&apos;},
-  {opcode: &apos;CONSUME&apos;, char: &apos;b&apos;},
-  {opcode: &apos;ACCEPT&apos;}
+  {opcode: 'FORK', forkPc: 4},
+  {opcode: 'CONSUME', char: '1'},
+  {opcode: 'CONSUME', char: '2'},
+  {opcode: 'JMP', jmpPc: 6},
+  {opcode: 'CONSUME', char: 'a'},
+  {opcode: 'CONSUME', char: 'b'},
+  {opcode: 'ACCEPT'}
 ];
 ```
 
@@ -81,7 +81,7 @@ const stack = []; // Pile de backtracking.
 while (true) {
   const inst = code[pc];
   switch (inst.opcode) {
-    case &apos;CONSUME&apos;:
+    case 'CONSUME':
       if (ip < input.length && input[ip] === inst.char) {
         // L'entrée correspond à ce que nous attendons : continuer.
         ++ip;
@@ -96,15 +96,15 @@ while (true) {
         return false;
       }
       break;
-    case &apos;FORK&apos;:
+    case 'FORK':
       // Sauvegarder une alternative pour revenir en arrière plus tard.
       stack.push({ip: ip, pc: inst.forkPc});
       ++pc;
       break;
-    case &apos;JMP&apos;:
+    case 'JMP':
       pc = inst.jmpPc;
       break;
-    case &apos;ACCEPT&apos;:
+    case 'ACCEPT':
       return true;
   }
 }
@@ -121,13 +121,13 @@ Une implémentation simple en JavaScript ressemble à ceci :
 ```js
 // Position d'entrée.
 let ip = 0;
-// Liste des valeurs actuelles de pc, ou `&apos;ACCEPT&apos;` si nous avons trouvé une correspondance. Nous commençons à
+// Liste des valeurs actuelles de pc, ou `'ACCEPT'` si nous avons trouvé une correspondance. Nous commençons à
 // pc 0 et suivons les transitions epsilon.
 let pcs = followEpsilons([0]);
 
 while (true) {
   // Nous avons terminé si nous avons trouvé une correspondance…
-  if (pcs === &apos;ACCEPT&apos;) return true;
+  if (pcs === 'ACCEPT') return true;
   // …ou si nous avons épuisé la chaîne d'entrée.
   if (ip >= input.length) return false;
 
@@ -142,7 +142,7 @@ while (true) {
 }
 ```
 
-Ici `followEpsilons` est une fonction qui prend une liste de compteurs de programme et calcule la liste des compteurs de programme aux instructions `CONSUME` qui peuvent être atteintes via des transitions epsilon (c'est-à-dire en exécutant uniquement FORK et JMP). La liste retournée ne doit pas contenir de doublons. Si une instruction `ACCEPT` peut être atteinte, la fonction retourne `&apos;ACCEPT&apos;`. Elle peut être implémentée de cette manière :
+Ici `followEpsilons` est une fonction qui prend une liste de compteurs de programme et calcule la liste des compteurs de programme aux instructions `CONSUME` qui peuvent être atteintes via des transitions epsilon (c'est-à-dire en exécutant uniquement FORK et JMP). La liste retournée ne doit pas contenir de doublons. Si une instruction `ACCEPT` peut être atteinte, la fonction retourne `'ACCEPT'`. Elle peut être implémentée de cette manière :
 
 ```js
 function followEpsilons(pcs) {
@@ -159,17 +159,17 @@ function followEpsilons(pcs) {
 
     const inst = code[pc];
     switch (inst.opcode) {
-      case &apos;CONSUME&apos;:
+      case 'CONSUME':
         result.push(pc);
         break;
-      case &apos;FORK&apos;:
+      case 'FORK':
         pcs.push(pc + 1, inst.forkPc);
         break;
-      case &apos;JMP&apos;:
+      case 'JMP':
         pcs.push(inst.jmpPc);
         break;
-      case &apos;ACCEPT&apos;:
-        return &apos;ACCEPT&apos;;
+      case 'ACCEPT':
+        return 'ACCEPT';
     }
   }
 

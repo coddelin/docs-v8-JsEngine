@@ -1,11 +1,11 @@
 ---
-title: &apos;V8-Version v6.4&apos;
-author: &apos;das V8-Team&apos;
+title: 'V8-Version v6.4'
+author: 'das V8-Team'
 date: 2017-12-19 13:33:37
 tags:
   - Veröffentlichung
-description: &apos;V8 v6.4 bringt Leistungsverbesserungen, neue JavaScript-Sprachfunktionen und mehr.&apos;
-tweet: &apos;943057597481082880&apos;
+description: 'V8 v6.4 bringt Leistungsverbesserungen, neue JavaScript-Sprachfunktionen und mehr.'
+tweet: '943057597481082880'
 ---
 Alle sechs Wochen erstellen wir einen neuen Zweig von V8 im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process). Jede Version wird direkt vor einem Chrome-Beta-Meilenstein von V8s Git Master abgezweigt. Heute freuen wir uns, unseren neuesten Zweig, [V8-Version 6.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.4), bekannt zu geben, der sich bis zur Veröffentlichung in Zusammenarbeit mit Chrome 64 Stable in mehreren Wochen in der Beta-Phase befindet. V8 v6.4 ist voller Entwicklerfreundlicher Verbesserungen. In diesem Beitrag geben wir einen Überblick über einige Highlights, die auf die Veröffentlichung vorbereiten.
 
@@ -52,7 +52,7 @@ In regulären Ausdrücken mit dem `/u`-Flag sind [Unicode-Eigenschaftsfluchten](
 
 ```js
 const regexGreekSymbol = /\p{Script_Extensions=Greek}/u;
-regexGreekSymbol.test(&apos;π&apos;);
+regexGreekSymbol.test('π');
 // → true
 ```
 
@@ -60,10 +60,10 @@ Die Unterstützung für [benannte Erfassungsgruppen](https://developers.google.c
 
 ```js
 const pattern = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/u;
-const result = pattern.exec(&apos;2017-12-15&apos;);
-// result.groups.year === &apos;2017&apos;
-// result.groups.month === &apos;12&apos;
-// result.groups.day === &apos;15&apos;
+const result = pattern.exec('2017-12-15');
+// result.groups.year === '2017'
+// result.groups.month === '12'
+// result.groups.day === '15'
 ```
 
 Weitere Details zu diesen Funktionen finden Sie in unserem Blogbeitrag mit dem Titel [Kommende Funktionen für reguläre Ausdrücke](https://developers.google.com/web/updates/2017/07/upcoming-regexp-features).

@@ -1,6 +1,6 @@
 ---
-title: &apos;Zündung&apos;
-description: &apos;Dieses Dokument sammelt Ressourcen über Zündung, den Interpreter von V8.&apos;
+title: 'Zündung'
+description: 'Dieses Dokument sammelt Ressourcen über Zündung, den Interpreter von V8.'
 ---
 V8 verfügt über einen Interpreter namens Zündung. Zündung ist ein schneller, registerbasierter Low-Level-Interpreter, der mit dem Backend von [TurboFan](/docs/turbofan) geschrieben wurde. Der V8-Blogpost bietet einen [Überblick](/blog/ignition-interpreter) über den Zündungs-Interpreter. Weitere Details finden Sie in den folgenden Ressourcen:
 

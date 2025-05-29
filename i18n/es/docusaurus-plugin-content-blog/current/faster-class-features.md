@@ -1,13 +1,13 @@
 ---
-title: &apos;Inicialización más rápida de instancias con nuevas características de clase&apos;
-author: &apos;[Joyee Cheung](https://twitter.com/JoyeeCheung), inicializador de instancias&apos;
+title: 'Inicialización más rápida de instancias con nuevas características de clase'
+author: '[Joyee Cheung](https://twitter.com/JoyeeCheung), inicializador de instancias'
 avatars:
-  - &apos;joyee-cheung&apos;
+  - 'joyee-cheung'
 date: 2022-04-20
 tags:
   - internals
-description: &apos;La inicialización de instancias con nuevas características de clase se ha vuelto más rápida desde V8 v9.7.&apos;
-tweet: &apos;1517041137378373632&apos;
+description: 'La inicialización de instancias con nuevas características de clase se ha vuelto más rápida desde V8 v9.7.'
+tweet: '1517041137378373632'
 ---
 
 Los campos de clase se implementaron en V8 desde la versión v7.2 y los métodos privados de clase se implementaron desde la versión v8.4. Después de que las propuestas alcanzaran el estadio 4 en 2021, comenzó el trabajo para mejorar el soporte de las nuevas características de clase en V8; hasta entonces, había dos problemas principales que afectaban su adopción:
@@ -93,9 +93,9 @@ Técnicamente estas dos clases no son equivalentes, incluso ignorando la diferen
 class A {
   constructor() {
     // A lo que aproximadamente se traduce la llamada %AddPrivateField():
-    const _a = %PrivateSymbol(&apos;#a&apos;)
+    const _a = %PrivateSymbol('#a')
     if (_a in this) {
-      throw TypeError(&apos;No se puede inicializar #a dos veces en el mismo objeto&apos;);
+      throw TypeError('No se puede inicializar #a dos veces en el mismo objeto');
     }
     Object.defineProperty(this, _a, {
       writable: true,
@@ -104,7 +104,7 @@ class A {
       value: 0
     });
     // A lo que aproximadamente se traduce la llamada %CreateDataProperty():
-    Object.defineProperty(this, &apos;b&apos;, {
+    Object.defineProperty(this, 'b', {
       writable: true,
       configurable: true,
       enumerable: true,
@@ -187,9 +187,9 @@ class A {
       { a: 1 },
       {
         defineProperty(object, key, desc) {
-          console.log(&apos;object:&apos;, object);
-          console.log(&apos;key:&apos;, key);
-          console.log(&apos;desc:&apos;, desc);
+          console.log('object:', object);
+          console.log('key:', key);
+          console.log('desc:', desc);
           return true;
         }
       });
@@ -202,7 +202,7 @@ class B extends A {
 }
 
 // object: { a: 1 },
-// key: &apos;a&apos;,
+// key: 'a',
 // desc: {value: 2, writable: true, enumerable: true, configurable: true}
 new B();
 ```

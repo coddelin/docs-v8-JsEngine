@@ -122,7 +122,7 @@ async function processData(response) {
   }
  // readerResource[Symbol.dispose]()は自動的に呼び出されます。
 
- readFile(&apos;https://example.com/largefile.dat&apos;);
+ readFile('https://example.com/largefile.dat');
 ```
 
 ## `DisposableStack` と `AsyncDisposableStack`
@@ -139,7 +139,7 @@ async function processData(response) {
         reader: response.body.getReader(),
         [Symbol.dispose]() {
             this.reader.releaseLock();
-            console.log(&apos;リーダーロックが解除されました。&apos;);
+            console.log('リーダーロックが解除されました。');
         },
     };
     using stack = new DisposableStack();
@@ -156,7 +156,7 @@ async function processData(response) {
     stack.adopt(
       response.body.getReader(), reader = > {
         reader.releaseLock();
-        console.log(&apos;リーダーロックが解除されました。&apos;);
+        console.log('リーダーロックが解除されました。');
       });
 }
 // リーダーロックが解除されました。
@@ -180,7 +180,7 @@ async function processData(response) {
     stack.adopt(
       response.body.getReader(), reader = > {
         reader.releaseLock();
-        console.log(&apos;リーダーロックが解除されました。&apos;);
+        console.log('リーダーロックが解除されました。');
       });
     using newStack = stack.move();
 }
@@ -196,7 +196,7 @@ async function processData(response) {
         reader: response.body.getReader(),
         [Symbol.dispose]() {
             this.reader.releaseLock();
-            console.log(&apos;リーダーロックが解除されました。&apos;);
+            console.log('リーダーロックが解除されました。');
         },
     };
     let stack = new DisposableStack();

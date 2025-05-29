@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 リリース v9.0&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))、スタンディングインライン&apos;
+title: 'V8 リリース v9.0'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))、スタンディングインライン'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-03-17
 tags:
  - リリース
-description: &apos;V8 リリース v9.0 は正規表現のマッチインデックスサポートとさまざまなパフォーマンス改善をもたらします。&apos;
-tweet: &apos;1372227274712494084&apos;
+description: 'V8 リリース v9.0 は正規表現のマッチインデックスサポートとさまざまなパフォーマンス改善をもたらします。'
+tweet: '1372227274712494084'
 ---
 6週間ごとに、V8の[リリースプロセス](https://v8.dev/docs/release-process)の一環として新しいブランチを作成します。それぞれのバージョンはChrome Betaマイルストーン直前にV8のGitマスターから分岐します。本日、最新のブランチである[V8バージョン9.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.0)を発表します。このバージョンは、数週間後にChrome 90 Stableと共にリリースされるまでベータ版です。V8 v9.0は、開発者に向けたさまざまな便利な機能に満ちています。この投稿では、リリースに先立ち、そのハイライトをいくつか紹介します。
 
@@ -20,7 +20,7 @@ v9.0から、開発者は正規表現のキャプチャグループのマッチ�
 
 ```javascript
 const re = /(a)(b)/d;      // /d フラグに注目。
-const m = re.exec(&apos;ab&apos;);
+const m = re.exec('ab');
 console.log(m.indices[0]); // インデックス0は完全なマッチ。
 // → [0, 2]
 console.log(m.indices[1]); // インデックス1は1つ目のキャプチャグループ。

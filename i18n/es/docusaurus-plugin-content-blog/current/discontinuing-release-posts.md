@@ -1,13 +1,13 @@
 ---
-title: &apos;Interrumpir publicaciones de blog de lanzamientos&apos;
-author: &apos;Shu-yu Guo ([@shu_](https://twitter.com/_shu))&apos;
+title: 'Interrumpir publicaciones de blog de lanzamientos'
+author: 'Shu-yu Guo ([@shu_](https://twitter.com/_shu))'
 avatars:
- - &apos;shu-yu-guo&apos;
+ - 'shu-yu-guo'
 date: 2022-06-17
 tags:
  - lanzamiento
-description: &apos;V8 dejará de publicar blogs de lanzamientos a favor del calendario de lanzamientos de Chrome y publicaciones de blogs sobre características.&apos;
-tweet: &apos;1537857497825824768&apos;
+description: 'V8 dejará de publicar blogs de lanzamientos a favor del calendario de lanzamientos de Chrome y publicaciones de blogs sobre características.'
+tweet: '1537857497825824768'
 ---
 
 Históricamente, hubo una publicación de blog para cada nueva rama de lanzamiento de V8. Quizás hayas notado que no ha habido una publicación de blog de lanzamiento desde la versión 9.9. A partir de la versión 10.0, dejaremos de publicar blogs de lanzamientos para cada nueva rama. Pero no te preocupes, ¡toda la información que solías obtener a través de las publicaciones de blogs de lanzamientos sigue estando disponible! Sigue leyendo para saber dónde encontrar esa información en el futuro.

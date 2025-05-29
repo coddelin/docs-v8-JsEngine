@@ -314,11 +314,11 @@ each([1, 2, 3], doSomething);
 const array = new Array(3);
 // 此时，数组是稀疏的，因此它被标记为
 // `HOLEY_SMI_ELEMENTS`，即在当前信息下最具体的可能性。
-array[0] = &apos;a&apos;;
+array[0] = 'a';
 // 等等，那是一个字符串而不是小整数… 所以种类
 // 转换为 `HOLEY_ELEMENTS`。
-array[1] = &apos;b&apos;;
-array[2] = &apos;c&apos;;
+array[1] = 'b';
+array[2] = 'c';
 // 在此时，数组中的三个位置都已填充，因此
 // 数组是填充的（即不再是稀疏的）。然而，我们不能
 // 转换为更具体的种类，例如 `PACKED_ELEMENTS`。
@@ -330,7 +330,7 @@ array[2] = &apos;c&apos;;
 创建数组的更好方法是改用文字方式：
 
 ```js
-const array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
+const array = ['a', 'b', 'c'];
 // 元素种类：PACKED_ELEMENTS
 ```
 

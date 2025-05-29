@@ -1,15 +1,15 @@
 ---
-title: &apos;Compresión de punteros en V8&apos;
-author: &apos;Igor Sheludko y Santiago Aboy Solanes, *los* compresores de punteros&apos;
+title: 'Compresión de punteros en V8'
+author: 'Igor Sheludko y Santiago Aboy Solanes, *los* compresores de punteros'
 avatars:
-  - &apos;igor-sheludko&apos;
-  - &apos;santiago-aboy-solanes&apos;
+  - 'igor-sheludko'
+  - 'santiago-aboy-solanes'
 date: 2020-03-30
 tags:
   - internals
   - memory
-description: &apos;¡V8 redujo el tamaño de su montón hasta en un 43%! Aprende cómo en “Compresión de punteros en V8”!&apos;
-tweet: &apos;1244653541379182596&apos;
+description: '¡V8 redujo el tamaño de su montón hasta en un 43%! Aprende cómo en “Compresión de punteros en V8”!'
+tweet: '1244653541379182596'
 ---
 Hay una batalla constante entre la memoria y el rendimiento. Como usuarios, nos gustaría que las cosas fueran rápidas y que consumieran la menor cantidad de memoria posible. Desafortunadamente, generalmente mejorar el rendimiento tiene un costo en el consumo de memoria (y viceversa).
 
@@ -392,7 +392,7 @@ En arquitecturas de 64 bits, los valores de doble precisión tienen el mismo tam
 Si la suposición se rompe para algún campo, por ejemplo después de ejecutar esta línea:
 
 ```js
-const q = new Point(2, &apos;ab&apos;);
+const q = new Point(2, 'ab');
 ```
 
 entonces los valores numéricos para la propiedad y deben almacenarse en formato empaquetado. Adicionalmente, si hay código optimizado de manera especulativa en algún lugar que depende de esta suposición, ya no debe ser utilizado y debe ser descartado (desoptimizado). La razón de esta generalización de “tipo de campo” es minimizar el número de formas de objetos creados a partir de la misma función constructora, lo cual, a su vez, es necesario para un rendimiento más estable.

@@ -1,7 +1,7 @@
 ---
-title: &apos;Control-flow-Integrität in V8&apos;
-description: &apos;Dieser Blogbeitrag bespricht die Pläne zur Implementierung der Kontrollfluss-Integrität in V8.&apos;
-author: &apos;Stephen Röttger&apos;
+title: 'Control-flow-Integrität in V8'
+description: 'Dieser Blogbeitrag bespricht die Pläne zur Implementierung der Kontrollfluss-Integrität in V8.'
+author: 'Stephen Röttger'
 date: 2023-10-09
 tags:
  - Sicherheit

@@ -1,9 +1,9 @@
 ---
-title: &apos;V8におけるスラック追跡&apos;
-author: &apos;Michael Stanton ([@alpencoder](https://twitter.com/alpencoder))、スラックの達人として知られる人物&apos;
-description: &apos;V8スラック追跡メカニズムの詳細な解説。&apos;
+title: 'V8におけるスラック追跡'
+author: 'Michael Stanton ([@alpencoder](https://twitter.com/alpencoder))、スラックの達人として知られる人物'
+description: 'V8スラック追跡メカニズムの詳細な解説。'
 avatars:
- - &apos;michael-stanton&apos;
+ - 'michael-stanton'
 date: 2020-09-24 14:00:00
 tags:
  - internals
@@ -19,7 +19,7 @@ function Peak(name, height) {
   this.height = height;
 }
 
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
+const m1 = new Peak('Matterhorn', 4478);
 ```
 
 エンジンがパフォーマンスを発揮するための全てを知っているように思えるかもしれません。結局、オブジェクトには2つのプロパティがあると教えていますよね。しかし、V8はその後何が起こるかわかりません。このオブジェクト`m1`は、さらに10個のプロパティを追加する別の関数に渡される可能性があります。スラック追跡は、静的コンパイルによる全体的な構造推論がない環境で、何が次に来るかに対応する必要性から生まれました。それは、実行に一般的に言えることだけを基盤としている他のV8メカニズムと似ています。たとえば：
@@ -96,7 +96,7 @@ function Peak(name, height) {
   this.height = height;
 }
 
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
+const m1 = new Peak('Matterhorn', 4478);
 ```
 
 `JSFunction::CalculateExpectedNofProperties`の計算と`Peak()`関数を考えると、我々はin-objectプロパティを2つ持つ必要があり、スラックトラッキングのおかげでさらに8つ追加されます。`m1`を`%DebugPrint()`で出力できます（この便利な関数はマップ構造を表示します。 `d8`を `--allow-natives-syntax` フラグを付けて実行すると使用可能です）：
@@ -193,13 +193,13 @@ DebugPrint: 0x46f07295: [Map]
 プロパティ名に基づいたこれらの遷移は、JavaScriptの[“blind mole”](https://www.google.com/search?q=blind+mole&tbm=isch)が背後でマップを構築する方法です。この初期マップは`Peak`関数にも格納されているため、コンストラクタとして使用された場合、そのマップを使用して`this`オブジェクトを設定できます。
 
 ```js
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
-const m2 = new Peak(&apos;Mont Blanc&apos;, 4810);
-const m3 = new Peak(&apos;Zinalrothorn&apos;, 4221);
-const m4 = new Peak(&apos;Wendelstein&apos;, 1838);
-const m5 = new Peak(&apos;Zugspitze&apos;, 2962);
-const m6 = new Peak(&apos;Watzmann&apos;, 2713);
-const m7 = new Peak(&apos;Eiger&apos;, 3970);
+const m1 = new Peak('Matterhorn', 4478);
+const m2 = new Peak('Mont Blanc', 4810);
+const m3 = new Peak('Zinalrothorn', 4221);
+const m4 = new Peak('Wendelstein', 1838);
+const m5 = new Peak('Zugspitze', 2962);
+const m6 = new Peak('Watzmann', 2713);
+const m7 = new Peak('Eiger', 3970);
 ```
 
 `m7`を作成した後、再度`%DebugPrint(m1)`を実行すると、驚くべき新しい結果が得られます。
@@ -293,7 +293,7 @@ void Factory::InitializeJSObjectBody(Handle<JSObject> obj, Handle<Map> map,
 スラック追跡が終了した後、これらの`Peak`オブジェクトの1つに新しいプロパティを追加したらどうなるでしょうか？
 
 ```js
-m1.country = &apos;Switzerland&apos;;
+m1.country = 'Switzerland';
 ```
 
 V8はプロパティバックストアに移動する必要があります。結果として次のオブジェクトレイアウトが得られます：
@@ -337,13 +337,13 @@ function Peak(name, height, prominence, isClimbed) {
 いくつかのバリエーションを追加します：
 
 ```js
-const m1 = new Peak(&apos;Wendelstein&apos;, 1838);
-const m2 = new Peak(&apos;Matterhorn&apos;, 4478, 1040, true);
-const m3 = new Peak(&apos;Zugspitze&apos;, 2962);
-const m4 = new Peak(&apos;Mont Blanc&apos;, 4810, 4695, true);
-const m5 = new Peak(&apos;Watzmann&apos;, 2713);
-const m6 = new Peak(&apos;Zinalrothorn&apos;, 4221, 490, true);
-const m7 = new Peak(&apos;Eiger&apos;, 3970);
+const m1 = new Peak('Wendelstein', 1838);
+const m2 = new Peak('Matterhorn', 4478, 1040, true);
+const m3 = new Peak('Zugspitze', 2962);
+const m4 = new Peak('Mont Blanc', 4810, 4695, true);
+const m5 = new Peak('Watzmann', 2713);
+const m6 = new Peak('Zinalrothorn', 4221, 490, true);
+const m7 = new Peak('Eiger', 3970);
 ```
 
 この場合、オブジェクト`m1`、`m3`、`m5`、および`m7`は1つのマップを持ち、オブジェクト`m2`、`m4`、および`m6`は追加プロパティのため、初期マップの子孫のチェーンのさらに下にあるマップを持ちます。このマップファミリに対してスラック追跡が終了した場合、以前のように**2**つではなく、**4**つのインオブジェクトプロパティが存在します。これはスラック追跡が、初期マップ以下のツリーマップ内の子孫によって使用される最大数のインオブジェクトプロパティに十分な余地を保持するようにしているためです。
@@ -362,10 +362,10 @@ function foo(a1, a2, a3, a4) {
 }
 
 %PrepareFunctionForOptimization(foo);
-const m1 = foo(&apos;Wendelstein&apos;, 1838);
-const m2 = foo(&apos;Matterhorn&apos;, 4478, 1040, true);
+const m1 = foo('Wendelstein', 1838);
+const m2 = foo('Matterhorn', 4478, 1040, true);
 %OptimizeFunctionOnNextCall(foo);
-foo(&apos;Zugspitze&apos;, 2962);
+foo('Zugspitze', 2962);
 ```
 
 これで、最適化されたコードをコンパイルして実行するために十分です。TurboFan（最適化コンパイラ）で「[Create Lowering](https://source.chromium.org/chromium/chromium/src/+/master:v8/src/compiler/js-create-lowering.h;l=32;drc=ee9e7e404e5a3f75a3ca0489aaf80490f625ca27)」と呼ばれる処理を行い、オブジェクトの割り当てをインライン化します。つまり、生成するネイティブコードがオブジェクトのインスタンスサイズを取得するためにGCに指示を発し、その後慎重にこれらのフィールドを初期化します。しかし、もしスラックトラッキングが後で停止した場合、このコードは無効になります。それをどのように解決すればよいでしょうか？

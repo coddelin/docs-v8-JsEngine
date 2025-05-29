@@ -1,11 +1,11 @@
 ---
-title: &apos;WebAssembly Tail Calls&apos;
-author: &apos;Thibaud Michaud, Thomas Lively&apos;
+title: 'WebAssembly Tail Calls'
+author: 'Thibaud Michaud, Thomas Lively'
 date: 2023-04-06
 tags:
   - WebAssembly
-description: &apos;Dieses Dokument erklärt den WebAssembly-Vorschlag für Tail Calls und demonstriert ihn mit einigen Beispielen.&apos;
-tweet: &apos;1644077795059044353&apos;
+description: 'Dieses Dokument erklärt den WebAssembly-Vorschlag für Tail Calls und demonstriert ihn mit einigen Beispielen.'
+tweet: '1644077795059044353'
 ---
 Wir veröffentlichen WebAssembly-Tail-Calls in V8 v11.2! In diesem Beitrag geben wir einen kurzen Überblick über diesen Vorschlag, demonstrieren einen interessanten Anwendungsfall für C++-Koroutinen mit Emscripten und zeigen, wie V8 Tail Calls intern behandelt.
 

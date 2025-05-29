@@ -1,11 +1,11 @@
 ---
-title: &apos;V8-Version v6.7&apos;
-author: &apos;das V8-Team&apos;
+title: 'V8-Version v6.7'
+author: 'das V8-Team'
 date: 2018-05-04 13:33:37
 tags:
   - Veröffentlichung
-tweet: &apos;992506342391742465&apos;
-description: &apos;V8 v6.7 fügt weitere Maßnahmen gegen nicht vertrauenswürdigen Code hinzu und bietet BigInt-Unterstützung.&apos;
+tweet: '992506342391742465'
+description: 'V8 v6.7 fügt weitere Maßnahmen gegen nicht vertrauenswürdigen Code hinzu und bietet BigInt-Unterstützung.'
 ---
 Alle sechs Wochen erstellen wir im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process) einen neuen Branch von V8. Jede Version wird direkt vor einem Chrome-Beta-Meilenstein von V8's Git-Master abgezweigt. Heute freuen wir uns, unseren neuesten Branch, [V8-Version 6.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.7), anzukündigen, der sich bis zur Veröffentlichung in Koordination mit Chrome 67 Stable in einigen Wochen in der Beta-Phase befindet. V8 v6.7 ist vollgepackt mit allerlei Entwicklertools und neuen Funktionen. Dieser Beitrag gibt eine Vorschau auf einige der Highlights in Erwartung der Veröffentlichung.
 

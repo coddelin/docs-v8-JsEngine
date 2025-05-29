@@ -1,13 +1,13 @@
 ---
-title: &apos;Празднование 10-летия V8&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias)), историк V8&apos;
+title: 'Празднование 10-летия V8'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), историк V8'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-09-11 19:00:00
 tags:
   - benchmarks
-description: &apos;Обзор основных этапов проекта V8 за последние 10 лет, а также за годы до этого, когда проект был ещё секретным.&apos;
-tweet: &apos;1039559389324238850&apos;
+description: 'Обзор основных этапов проекта V8 за последние 10 лет, а также за годы до этого, когда проект был ещё секретным.'
+tweet: '1039559389324238850'
 ---
 В этом месяце отмечается десятилетие не только выпуска Google Chrome, но и проекта V8. В этом посте представлен обзор основных этапов проекта V8 за последние 10 лет, а также за годы до этого, когда проект был ещё секретным.
 

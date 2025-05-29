@@ -1,13 +1,13 @@
 ---
-title: &apos;Chamadas JavaScript mais rápidas&apos;
-author: &apos;[Victor Gomes](https://twitter.com/VictorBFG), o destruidor de quadros&apos;
+title: 'Chamadas JavaScript mais rápidas'
+author: '[Victor Gomes](https://twitter.com/VictorBFG), o destruidor de quadros'
 avatars:
-  - &apos;victor-gomes&apos;
+  - 'victor-gomes'
 date: 2021-02-15
 tags:
   - internals
-description: &apos;Chamadas JavaScript mais rápidas removendo o adaptador de argumentos&apos;
-tweet: &apos;1361337569057865735&apos;
+description: 'Chamadas JavaScript mais rápidas removendo o adaptador de argumentos'
+tweet: '1361337569057865735'
 ---
 
 JavaScript permite chamar uma função com um número diferente de argumentos do que o número esperado de parâmetros, ou seja, pode-se passar menos ou mais argumentos do que os parâmetros formais declarados. O primeiro caso é chamado de subaplicação e o segundo de sobreaplicação.

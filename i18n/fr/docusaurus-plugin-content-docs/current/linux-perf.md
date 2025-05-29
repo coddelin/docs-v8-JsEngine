@@ -1,9 +1,9 @@
 ---
-title: &apos;Intégration de `perf` de V8 sous Linux&apos;
-description: &apos;Ce document explique comment analyser les performances du code JIT de V8 avec l&apos;outil `perf` de Linux.&apos;
+title: 'Intégration de `perf` de V8 sous Linux'
+description: 'Ce document explique comment analyser les performances du code JIT de V8 avec l'outil `perf` de Linux.'
 ---
-V8 prend en charge l&apos;outil `perf` de Linux en natif. Cela est activé via les options de ligne de commande `--perf-prof`.
-V8 génère des données de performance pendant l&apos;exécution dans un fichier qui peut être utilisé pour analyser les performances du code JIT de V8 (y compris les noms des fonctions JS) avec l&apos;outil `perf` de Linux.
+V8 prend en charge l'outil `perf` de Linux en natif. Cela est activé via les options de ligne de commande `--perf-prof`.
+V8 génère des données de performance pendant l'exécution dans un fichier qui peut être utilisé pour analyser les performances du code JIT de V8 (y compris les noms des fonctions JS) avec l'outil `perf` de Linux.
 
 ## Exigences
 
@@ -12,10 +12,10 @@ V8 génère des données de performance pendant l&apos;exécution dans un fichie
 
 ## Compilation de V8
 
-Pour utiliser l&apos;intégration de V8 avec `perf` sous Linux, vous devez le compiler avec le drapeau GN `enable_profiling = true` :
+Pour utiliser l'intégration de V8 avec `perf` sous Linux, vous devez le compiler avec le drapeau GN `enable_profiling = true` :
 
 ```bash
-echo &apos;enable_profiling = true&apos; >> out/x64.release/args.gn
+echo 'enable_profiling = true' >> out/x64.release/args.gn
 autoninja -C out/x64.release
 ```
 
@@ -30,9 +30,9 @@ tools/profiling/linux-perf-d8.py out/x64.release/d8 path/to/test.js;
 Un exemple plus complet :
 
 ```bash
-echo &apos;(function f() {
+echo '(function f() {
     var s = 0; for (var i = 0; i < 1000000000; i++) { s += i; } return s;
-  })();&apos; > test.js;
+  })();' > test.js;
 
 # Utilisez des drapeaux V8 personnalisés et un répertoire de sortie séparé pour moins d'encombrement :
 mkdir perf_results
@@ -45,12 +45,12 @@ pprof -flame perf_results/XXX_perf.data.jitted;
 perf report -i perf_results/XXX_perf.data.jitted;
 ```
 
-Consultez `linux-perf-d8.py --help` pour plus de détails. Notez que vous pouvez utiliser tous les drapeaux `d8` après l&apos;argument du binaire d8.
+Consultez `linux-perf-d8.py --help` pour plus de détails. Notez que vous pouvez utiliser tous les drapeaux `d8` après l'argument du binaire d8.
 
 
 ## Profilage de Chrome ou content_shell avec [linux-perf-chrome.py](https://source.chromium.org/search?q=linux-perf-chrome.py)
 
-1. Vous pouvez utiliser le script [linux-perf-chrome.py](https://source.chromium.org/search?q=linux-perf-chrome.py) pour profiler Chrome. Assurez-vous d&apos;ajouter les [drapeaux GN requis pour Chrome](https://chromium.googlesource.com/chromium/src/+/master/docs/profiling.md#General-checkout-setup) pour obtenir des symboles C++ corrects.
+1. Vous pouvez utiliser le script [linux-perf-chrome.py](https://source.chromium.org/search?q=linux-perf-chrome.py) pour profiler Chrome. Assurez-vous d'ajouter les [drapeaux GN requis pour Chrome](https://chromium.googlesource.com/chromium/src/+/master/docs/profiling.md#General-checkout-setup) pour obtenir des symboles C++ corrects.
 
 1. Une fois votre compilation prête, vous pouvez profiler un site web avec des symboles complets pour le code C++ et JS.
 
@@ -72,7 +72,7 @@ Consultez `linux-perf-d8.py --help` pour plus de détails. Notez que vous pouvez
 
 ## Exploration des résultats de linux-perf
 
-Enfin, vous pouvez utiliser l&apos;outil `perf` de Linux pour explorer le profil d&apos;un processus de rendu d8 ou Chrome :
+Enfin, vous pouvez utiliser l'outil `perf` de Linux pour explorer le profil d'un processus de rendu d8 ou Chrome :
 
 ```bash
 perf report -i perf_results/XXX_perf.data.jitted
@@ -89,8 +89,8 @@ pprof -flame perf_results/XXX_perf.data.jitted;
 
 ### Utilisation directe de linux-perf avec `d8`
 
-Selon votre cas d&apos;utilisation, vous pourriez vouloir utiliser linux-perf directement avec `d8`.
-Cela nécessite un processus en deux étapes : d&apos;abord, `perf record` crée un fichier `perf.data` qui doit être post-traité avec `perf inject` pour y injecter les symboles JS.
+Selon votre cas d'utilisation, vous pourriez vouloir utiliser linux-perf directement avec `d8`.
+Cela nécessite un processus en deux étapes : d'abord, `perf record` crée un fichier `perf.data` qui doit être post-traité avec `perf inject` pour y injecter les symboles JS.
 
 ``` bash
 perf record --call-graph=fp --clockid=mono --freq=max \
@@ -107,7 +107,7 @@ perf report --input=perf.data.jitted;
 
 [`--perf-prof`](https://source.chromium.org/search?q=FLAG_perf_prof) est utilisé dans la ligne de commande de V8 pour enregistrer des échantillons de performance dans le code JIT.
 
-[`--nowrite-protect-code-memory`](https://source.chromium.org/search?q=FLAG_nowrite_protect_code_memory) est requis pour désactiver la protection en écriture pour la mémoire de code. Cela est nécessaire car `perf` ignore les informations sur les pages de code lorsqu&apos;il détecte l&apos;événement correspondant à la suppression du bit d&apos;écriture sur la page de code. Voici un exemple qui enregistre des échantillons à partir d&apos;un fichier JavaScript de test :
+[`--nowrite-protect-code-memory`](https://source.chromium.org/search?q=FLAG_nowrite_protect_code_memory) est requis pour désactiver la protection en écriture pour la mémoire de code. Cela est nécessaire car `perf` ignore les informations sur les pages de code lorsqu'il détecte l'événement correspondant à la suppression du bit d'écriture sur la page de code. Voici un exemple qui enregistre des échantillons à partir d'un fichier JavaScript de test :
 
 [`--interpreted-frames-native-stack`](https://source.chromium.org/search?q=FLAG_interpreted_frames_native_stack) est utilisé pour créer différents points d'entrée (versions copiées de InterpreterEntryTrampoline) pour les fonctions interprétées afin qu'elles puissent être distinguées par `perf` uniquement sur la base de l'adresse. Étant donné que l'InterpreterEntryTrampoline doit être copié, cela implique une légère régression en termes de performance et de mémoire.
 
@@ -122,7 +122,7 @@ perf report --input=perf.data.jitted;
     out/x64.release/chrome \
         --user-data-dir=`mktemp -d` \
         --no-sandbox --incognito --enable-benchmarking \
-        --js-flags=&apos;--perf-prof --no-write-protect-code-memory --interpreted-frames-native-stack&apos;
+        --js-flags='--perf-prof --no-write-protect-code-memory --interpreted-frames-native-stack'
     ```
 
 1. Après avoir démarré Chrome, trouvez l'identifiant du processus de rendu à l'aide du gestionnaire des tâches et utilisez-le pour commencer le profilage :

@@ -1,6 +1,6 @@
 ---
-title: &apos;GDB JIT 컴파일 인터페이스 통합&apos;
-description: &apos;GDB JIT 컴파일 인터페이스 통합을 통해 V8은 GDB에 V8 런타임에서 생성된 네이티브 코드의 심볼 및 디버깅 정보를 제공합니다.&apos;
+title: 'GDB JIT 컴파일 인터페이스 통합'
+description: 'GDB JIT 컴파일 인터페이스 통합을 통해 V8은 GDB에 V8 런타임에서 생성된 네이티브 코드의 심볼 및 디버깅 정보를 제공합니다.'
 ---
 GDB JIT 컴파일 인터페이스 통합을 통해 V8은 GDB에 V8 런타임에서 생성된 네이티브 코드의 심볼 및 디버깅 정보를 제공합니다.
 

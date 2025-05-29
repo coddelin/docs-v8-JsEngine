@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 릴리스 v5.4&apos;
-author: &apos;V8 팀&apos;
+title: 'V8 릴리스 v5.4'
+author: 'V8 팀'
 date: 2016-09-09 13:33:37
 tags:
   - 릴리스
-description: &apos;V8 v5.4는 성능 향상 및 메모리 소비 감소를 제공합니다.&apos;
+description: 'V8 v5.4는 성능 향상 및 메모리 소비 감소를 제공합니다.'
 ---
 매 6주마다, 우리는 [릴리스 프로세스](/docs/release-process)의 일환으로 V8의 새로운 브랜치를 생성합니다. 각 버전은 Chrome Beta 이정표 직전에 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 [V8 버전 5.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.4)를 발표하게 되어 매우 기쁩니다. 이 버전은 Chrome 54 Stable과 함께 출시되기 전까지 몇 주 동안 베타로 제공됩니다. V8 v5.4는 개발자가 사용할 수 있는 다양한 기능이 포함되어 있으므로, 릴리스를 앞두고 몇 가지 주요 내용을 미리 보여드리고자 합니다.
 

@@ -1,14 +1,14 @@
 ---
-title: &apos;Chrome的一小步，V8的一大堆&apos;
-author: &apos;堆的守护者Ulan Degenbaev, Hannes Payer, Michael Lippautz，以及DevTools战士Alexey Kozyatinskiy&apos;
+title: 'Chrome的一小步，V8的一大堆'
+author: '堆的守护者Ulan Degenbaev, Hannes Payer, Michael Lippautz，以及DevTools战士Alexey Kozyatinskiy'
 avatars:
-  - &apos;ulan-degenbaev&apos;
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'ulan-degenbaev'
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2017-02-09 13:33:37
 tags:
   - 内存
-description: &apos;V8最近增加了其堆大小的硬限制。&apos;
+description: 'V8最近增加了其堆大小的硬限制。'
 ---
 V8对其堆大小有一个硬限制。这充当了防止应用程序内存泄漏的保护措施。当应用程序达到这一硬限制时，V8会执行一系列最后的垃圾回收措施。如果垃圾回收未能释放内存，V8会停止执行并报告内存不足故障。如果没有这一硬限制，内存泄漏的应用程序可能会占用所有系统内存，从而影响其他应用程序的性能。
 

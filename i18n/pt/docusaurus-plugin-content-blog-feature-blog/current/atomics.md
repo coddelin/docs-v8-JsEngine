@@ -141,17 +141,17 @@ unlock() {
                       /* valor antigo >>> */  AsyncLock.LOCKED,
                       /* novo valor >>> */  AsyncLock.UNLOCKED);
   if (oldValue != AsyncLock.LOCKED) {
-    throw new Error(&apos;Tentativa de desbloquear sem estar segurando o mutex&apos;);
+    throw new Error('Tentativa de desbloquear sem estar segurando o mutex');
   }
   Atomics.notify(this.i32a, AsyncLock.INDEX, 1);
 }
 ```
 
-O caso direto funciona assim: o bloqueio está livre e a thread T1 o adquire alterando o estado de bloqueio com `Atomics.compareExchange`. A thread T2 tenta adquirir o bloqueio chamando `Atomics.compareExchange`, mas não consegue alterar o estado do bloqueio. T2 então chama `Atomics.wait`, que bloqueia a thread. Em algum momento T1 libera o bloqueio e chama `Atomics.notify`. Isso faz com que a chamada `Atomics.wait` em T2 retorne `&apos;ok&apos;`, acordando T2. T2 então tenta adquirir o bloqueio novamente e, desta vez, tem sucesso.
+O caso direto funciona assim: o bloqueio está livre e a thread T1 o adquire alterando o estado de bloqueio com `Atomics.compareExchange`. A thread T2 tenta adquirir o bloqueio chamando `Atomics.compareExchange`, mas não consegue alterar o estado do bloqueio. T2 então chama `Atomics.wait`, que bloqueia a thread. Em algum momento T1 libera o bloqueio e chama `Atomics.notify`. Isso faz com que a chamada `Atomics.wait` em T2 retorne `'ok'`, acordando T2. T2 então tenta adquirir o bloqueio novamente e, desta vez, tem sucesso.
 
 Também há dois possíveis casos de exceção — eles demonstram o motivo pelo qual `Atomics.wait` e `Atomics.waitAsync` verificam um valor específico no índice:
 
-- T1 está segurando o bloqueio e T2 tenta obtê-lo. Primeiro, T2 tenta alterar o estado do bloqueio com `Atomics.compareExchange`, mas não tem sucesso. Mas então T1 libera o bloqueio antes que T2 consiga chamar `Atomics.wait`. Quando T2 chama `Atomics.wait`, ele retorna imediatamente com o valor `&apos;not-equal&apos;. Neste caso, T2 continua com a próxima iteração do loop, tentando adquirir o bloqueio novamente.
+- T1 está segurando o bloqueio e T2 tenta obtê-lo. Primeiro, T2 tenta alterar o estado do bloqueio com `Atomics.compareExchange`, mas não tem sucesso. Mas então T1 libera o bloqueio antes que T2 consiga chamar `Atomics.wait`. Quando T2 chama `Atomics.wait`, ele retorna imediatamente com o valor `'not-equal'. Neste caso, T2 continua com a próxima iteração do loop, tentando adquirir o bloqueio novamente.
 - T1 está segurando o bloqueio e T2 está aguardando por ele com `Atomics.wait`. T1 libera o bloqueio — T2 acorda (a chamada `Atomics.wait` retorna) e tenta fazer `Atomics.compareExchange` para adquirir o bloqueio, mas outra thread T3 foi mais rápida e já obteve o bloqueio. Assim, a chamada para `Atomics.compareExchange` falha em obter o bloqueio, e T2 chama `Atomics.wait` novamente, bloqueando até que T3 libere o bloqueio.
 
 Por causa do último caso de exceção, o mutex não é “justo”. É possível que T2 esteja esperando que o bloqueio seja liberado, mas T3 o obtenha imediatamente. Uma implementação de bloqueio mais realista pode usar vários estados para diferenciar entre “bloqueado” e “bloqueado com contenção”.

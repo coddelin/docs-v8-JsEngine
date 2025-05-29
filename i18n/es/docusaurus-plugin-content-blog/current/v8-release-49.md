@@ -1,10 +1,10 @@
 ---
-title: &apos;Lanzamiento de V8 v4.9&apos;
-author: &apos;el equipo de V8&apos;
+title: 'Lanzamiento de V8 v4.9'
+author: 'el equipo de V8'
 date: 2016-01-26 13:33:37
 tags:
   - lanzamiento
-description: &apos;V8 v4.9 incluye una implementación mejorada de `Math.random` y añade soporte para varias características nuevas del lenguaje ES2015.&apos;
+description: 'V8 v4.9 incluye una implementación mejorada de `Math.random` y añade soporte para varias características nuevas del lenguaje ES2015.'
 ---
 Aproximadamente cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se deriva del maestro Git de V8 inmediatamente antes de que Chrome genere una rama para un hito en Chrome Beta. Hoy estamos encantados de anunciar nuestra rama más reciente, [V8 versión 4.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.9), que estará en beta hasta que sea lanzada en coordinación con la versión estable de Chrome 49. V8 4.9 está llena de todo tipo de mejoras dirigidas a desarrolladores, por lo que nos gustaría ofrecerte un adelanto de algunos de los aspectos destacados en anticipación a su lanzamiento dentro de varias semanas.
 
@@ -50,14 +50,14 @@ Para hacer proxy a un objeto, debes crear un objeto de manejador que defina vari
 ```js
 const target = {};
 const handler = {
-  get(target, name=&apos;mundo&apos;) {
+  get(target, name='mundo') {
     return `Hola, ${name}!`;
   }
 };
 
 const foo = new Proxy(target, handler);
 foo.bar;
-// → &apos;Hola, bar!&apos;
+// → 'Hola, bar!'
 ```
 
 El objeto Proxy va acompañado del módulo Reflect, que define valores predeterminados adecuados para todas las trampas de proxy:
@@ -74,9 +74,9 @@ const debugMe = new Proxy({}, {
   }
 });
 
-debugMe.name = &apos;John Doe&apos;;
+debugMe.name = 'John Doe';
 // Depuración: llamada a set para el campo: name, y valor: John Doe
-const title = `Sr. ${debugMe.name}`; // → &apos;Sr. John Doe&apos;
+const title = `Sr. ${debugMe.name}`; // → 'Sr. John Doe'
 // Depuración: llamada a get para el campo: name
 ```
 
@@ -88,8 +88,8 @@ En ES5 y versiones anteriores, los parámetros opcionales en las definiciones de
 
 ```js
 function sublist(list, start, end) {
-  if (typeof start === &apos;undefined&apos;) start = 0;
-  if (typeof end === &apos;undefined&apos;) end = list.length;
+  if (typeof start === 'undefined') start = 0;
+  if (typeof end === 'undefined') end = list.length;
   ...
 }
 ```
@@ -123,13 +123,13 @@ Usando `Symbol.toStringTag`, los tipos definidos por el usuario ahora pueden dev
 ```js
 class Custom {
   get [Symbol.toStringTag]() {
-    return &apos;Custom&apos;;
+    return 'Custom';
   }
 }
 Object.prototype.toString.call(new Custom);
-// → &apos;[object Custom]&apos;
+// → '[object Custom]'
 String(new Custom);
-// → &apos;[object Custom]&apos;
+// → '[object Custom]'
 ```
 
 ## Mejora de `Math.random()`

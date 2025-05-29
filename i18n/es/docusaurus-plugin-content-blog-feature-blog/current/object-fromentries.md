@@ -1,15 +1,15 @@
 ---
-title: &apos;`Object.fromEntries`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias)), susurrador de JavaScript&apos;
+title: '`Object.fromEntries`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), susurrador de JavaScript'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-06-18
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: &apos;Object.fromEntries es una adición útil a la biblioteca incorporada de JavaScript que complementa Object.entries.&apos;
-tweet: &apos;1140993821897121796&apos;
+description: 'Object.fromEntries es una adición útil a la biblioteca incorporada de JavaScript que complementa Object.entries.'
+tweet: '1140993821897121796'
 ---
 `Object.fromEntries` es una adición útil a la biblioteca incorporada de JavaScript. Antes de explicar lo que hace, es útil entender la API `Object.entries` ya existente.
 
@@ -30,7 +30,7 @@ Para cada par clave-valor en un objeto, `Object.entries` te da un array donde el
 ```js
 const object = { x: 42, y: 50 };
 const entries = Object.entries(object);
-// → [[&apos;x&apos;, 42], [&apos;y&apos;, 50]]
+// → [['x', 42], ['y', 50]]
 
 for (const [key, value] of entries) {
   console.log(`El valor de ${key} es ${value}.`);
@@ -49,7 +49,7 @@ La nueva API `Object.fromEntries` realiza la inversa de `Object.entries`. Esto h
 ```js
 const object = { x: 42, y: 50 };
 const entries = Object.entries(object);
-// → [[&apos;x&apos;, 42], [&apos;y&apos;, 50]]
+// → [['x', 42], ['y', 50]]
 
 const result = Object.fromEntries(entries);
 // → { x: 42, y: 50 }
@@ -77,7 +77,7 @@ JavaScript también admite `Map`s, que a menudo son una estructura de datos más
 `Object.entries` hizo fácil convertir objetos en mapas:
 
 ```js
-const object = { language: &apos;JavaScript&apos;, coolness: 9001 };
+const object = { language: 'JavaScript', coolness: 9001 };
 
 // Convierte el objeto en un mapa:
 const map = new Map(Object.entries(object));
@@ -88,7 +88,7 @@ La inversa es igualmente útil: incluso si tu código está usando mapas, puede 
 ```js
 // Convierte el mapa nuevamente en un objeto:
 const objectCopy = Object.fromEntries(map);
-// → { language: &apos;JavaScript&apos;, coolness: 9001 }
+// → { language: 'JavaScript', coolness: 9001 }
 ```
 
 Con `Object.entries` y `Object.fromEntries` en el lenguaje, ahora puedes convertir fácilmente entre mapas y objetos.
@@ -99,13 +99,13 @@ Al convertir mapas en objetos simples como en el ejemplo anterior, hay una supos
 
 ```js
 const map = new Map([
-  [{}, &apos;a&apos;],
-  [{}, &apos;b&apos;],
+  [{}, 'a'],
+  [{}, 'b'],
 ]);
 Object.fromEntries(map);
-// → { &apos;[object Object]&apos;: &apos;b&apos; }
-// Nota: el valor &apos;a&apos; no se encuentra en ninguna parte, ya que ambas claves
-// se convierten a la misma cadena: &apos;[object Object]&apos;.
+// → { '[object Object]': 'b' }
+// Nota: el valor 'a' no se encuentra en ninguna parte, ya que ambas claves
+// se convierten a la misma cadena: '[object Object]'.
 ```
 
 Antes de usar `Object.fromEntries` o cualquier otra técnica para convertir un mapa en un objeto, asegúrate de que las claves del mapa produzcan resultados únicos con `toString`.

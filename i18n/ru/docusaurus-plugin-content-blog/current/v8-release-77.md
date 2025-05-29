@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 версия v7.7&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias)), ленивый составитель заметок о выпуске&apos;
+title: 'V8 версия v7.7'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), ленивый составитель заметок о выпуске'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-08-13 16:45:00
 tags:
   - выпуск
-description: &apos;V8 v7.7 включает ленивое выделение обратной связи, более быструю фоновую компиляцию WebAssembly, улучшение трассировки стека и новую функциональность Intl.NumberFormat.&apos;
-tweet: &apos;1161287541611323397&apos;
+description: 'V8 v7.7 включает ленивое выделение обратной связи, более быструю фоновую компиляцию WebAssembly, улучшение трассировки стека и новую функциональность Intl.NumberFormat.'
+tweet: '1161287541611323397'
 ---
 Каждые шесть недель мы создаем новую ветку V8 в рамках нашего [процесса выпуска](/docs/release-process). Каждая версия создается из основной ветки Git V8 непосредственно перед этапом бета-версии Chrome. Сегодня мы рады объявить о нашей новой ветке, [версия V8 7.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.7), которая находится в стадии бета-тестирования до выпуска вместе с Chrome 77 Stable через несколько недель. V8 v7.7 насыщен всякими полезностями для разработчиков. Этот пост предоставляет предварительный обзор некоторых из наиболее ярких моментов в ожидании выпуска.
 
@@ -43,12 +43,12 @@ tweet: &apos;1161287541611323397&apos;
 [API `Intl.NumberFormat`](/features/intl-numberformat) для локализованного форматирования чисел обретает новую функциональность в этом выпуске! Теперь поддерживаются компактное обозначение, научная нотация, инженерная нотация, отображение знаков и единицы измерения.
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;meter-per-second&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'meter-per-second',
 });
 formatter.format(299792458);
-// → &apos;299,792,458 м/с&apos;
+// → '299,792,458 м/с'
 ```
 
 Обратитесь к [нашему объяснению функций](/features/intl-numberformat) для получения более подробной информации.

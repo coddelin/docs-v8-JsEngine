@@ -1,6 +1,6 @@
 ---
-title: &apos;GN으로 V8 빌드하기&apos;
-description: &apos;이 문서는 GN을 사용하여 V8을 빌드하는 방법을 설명합니다.&apos;
+title: 'GN으로 V8 빌드하기'
+description: '이 문서는 GN을 사용하여 V8을 빌드하는 방법을 설명합니다.'
 ---
 V8은 [GN](https://gn.googlesource.com/gn/+/master/docs/)의 도움으로 빌드됩니다. GN은 여러 빌드 시스템의 빌드 파일을 생성하는 일종의 메타 빌드 시스템입니다. 따라서 사용하는 “백엔드” 빌드 시스템 및 컴파일러에 따라 빌드 방식이 달라집니다.
 아래의 지침은 이미 V8의 [체크아웃](/docs/source-code)을 완료하고 [빌드 종속성](/docs/build)을 설치한 것으로 가정합니다.
@@ -66,7 +66,7 @@ gn args out/foo
 이를 통해 [`gn` arguments](https://gn.googlesource.com/gn/+/master/docs/reference.md)를 지정할 수 있는 편집기 창이 열립니다. 또는 명령줄에서 직접 인수를 전달할 수 있습니다:
 
 ```bash
-gn gen out/foo --args=&apos;is_debug=false target_cpu="x64" v8_target_cpu="arm64" use_goma=true&apos;
+gn gen out/foo --args='is_debug=false target_cpu="x64" v8_target_cpu="arm64" use_goma=true'
 ```
 
 이는 arm64 시뮬레이터를 사용해 릴리스 모드로 컴파일하기 위한 빌드 파일을 `goma`를 사용하여 생성합니다.
@@ -100,7 +100,7 @@ v8gen list -m client.v8
 `client.v8` 워터폴에서 특정 bot처럼 폴더 `foo`에 빌드합니다:
 
 ```bash
-v8gen -b &apos;V8 Linux64 - debug builder&apos; -m client.v8 foo
+v8gen -b 'V8 Linux64 - debug builder' -m client.v8 foo
 ```
 
 ### 2단계: V8 컴파일

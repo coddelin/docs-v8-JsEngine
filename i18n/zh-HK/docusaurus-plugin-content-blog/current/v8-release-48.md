@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 版本 v4.8&apos;
-author: &apos;V8 團隊&apos;
+title: 'V8 版本 v4.8'
+author: 'V8 團隊'
 date: 2015-11-25 13:33:37
 tags:
   - 發佈
-description: &apos;V8 v4.8 新增了多項 ES2015 語言功能的支持。&apos;
+description: 'V8 v4.8 新增了多項 ES2015 語言功能的支持。'
 ---
 大約每六週，我們按照 [發佈流程](/docs/release-process) 創建一個新的 V8 分支。每個版本都從 V8 的 Git 主分支在 Chrome 的 Beta 里程碑分支之前分支出來。今天，我們很高興宣佈我們的最新分支，[V8 版本 4.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.8)，該版本將處於 Beta 階段，直到與 Chrome 48 穩定版協同發佈為止。V8 4.8 包含了一些面向開發者的功能，因此我們希望在幾週後的正式發佈之前，向您預覽一些亮點。
 
@@ -19,7 +19,7 @@ description: &apos;V8 v4.8 新增了多項 ES2015 語言功能的支持。&apos;
 
 ```js
 (function() {
-  &apos;use strict&apos;;
+  'use strict';
   class AutomaticallySpreadingArray extends Array {
     get [Symbol.isConcatSpreadable]() {
       return true;
@@ -41,17 +41,17 @@ description: &apos;V8 v4.8 新增了多項 ES2015 語言功能的支持。&apos;
 
 ```js
 (function(){
-  &apos;use strict&apos;;
+  'use strict';
   class V8 {
     [Symbol.toPrimitive](hint) {
-      if (hint === &apos;string&apos;) {
-        console.log(&apos;string&apos;);
-        return &apos;V8&apos;;
-      } else if (hint === &apos;number&apos;) {
-        console.log(&apos;number&apos;);
+      if (hint === 'string') {
+        console.log('string');
+        return 'V8';
+      } else if (hint === 'number') {
+        console.log('number');
         return 8;
       } else {
-        console.log(&apos;default:&apos; + hint);
+        console.log('default:' + hint);
         return 8;
       }
     }
@@ -71,4 +71,4 @@ ES2015 規範調整了對類型轉換的抽象操作，以將參數轉換為適�
 
 請參閱我們的 [API 變更摘要](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit)。這份文檔通常會在每次主要版本發佈後的幾週內定期更新。
 
-擁有 [有效 V8 檢出](https://v8.dev/docs/source-code#using-git) 的開發者可以使用 `git checkout -b 4.8 -t branch-heads/4.8` 來嘗試 V8 v4.8 的新功能。或者，您也可以[訂閱 Chrome&apos;s Beta 頻道](https://www.google.com/chrome/browser/beta.html)，很快就可以自己嘗試這些新功能。
+擁有 [有效 V8 檢出](https://v8.dev/docs/source-code#using-git) 的開發者可以使用 `git checkout -b 4.8 -t branch-heads/4.8` 來嘗試 V8 v4.8 的新功能。或者，您也可以[訂閱 Chrome's Beta 頻道](https://www.google.com/chrome/browser/beta.html)，很快就可以自己嘗試這些新功能。

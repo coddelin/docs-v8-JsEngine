@@ -139,7 +139,7 @@ WebAssemblyに関する最新の公式標準変更に基づき、[WebAssembly I6
 JavaScriptからは、BigIntのみがI64のパラメータとして渡すことができます:
 
 ```js
-WebAssembly.instantiateStreaming(fetch(&apos;i64.wasm&apos;))
+WebAssembly.instantiateStreaming(fetch('i64.wasm'))
   .then(({ module, instance }) => {
     instance.exports.add(12n, 30n);
     // → 42n

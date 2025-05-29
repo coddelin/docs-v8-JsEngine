@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 lançamento v4.8&apos;
-author: &apos;a equipe do V8&apos;
+title: 'V8 lançamento v4.8'
+author: 'a equipe do V8'
 date: 2015-11-25 13:33:37
 tags:
   - lançamento
-description: &apos;V8 v4.8 adiciona suporte para vários novos recursos de linguagem ES2015.&apos;
+description: 'V8 v4.8 adiciona suporte para vários novos recursos de linguagem ES2015.'
 ---
 Aproximadamente a cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](/docs/release-process). Cada versão é derivada do Git master do V8 imediatamente antes do Chrome criar um branch para um marco Beta. Hoje temos o prazer de anunciar nosso mais recente branch, [V8 versão 4.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.8), que estará em beta até ser lançado em coordenação com a versão estável do Chrome 48. V8 4.8 contém alguns recursos voltados para desenvolvedores, então gostaríamos de dar uma prévia de alguns dos destaques em antecipação ao lançamento nas próximas semanas.
 
@@ -19,7 +19,7 @@ O nome de uma propriedade booleana que, se `true`, indica que um objeto deve ser
 
 ```js
 (function() {
-  &apos;use strict&apos;;
+  'use strict';
   class AutomaticamenteEspalhandoArray extends Array {
     get [Symbol.isConcatSpreadable]() {
       return true;
@@ -41,17 +41,17 @@ O nome de um método para invocar em um objeto para conversões implícitas a va
 
 ```js
 (function(){
-  &apos;use strict&apos;;
+  'use strict';
   class V8 {
     [Symbol.toPrimitive](hint) {
-      if (hint === &apos;string&apos;) {
-        console.log(&apos;string&apos;);
-        return &apos;V8&apos;;
-      } else if (hint === &apos;number&apos;) {
-        console.log(&apos;number&apos;);
+      if (hint === 'string') {
+        console.log('string');
+        return 'V8';
+      } else if (hint === 'number') {
+        console.log('number');
         return 8;
       } else {
-        console.log(&apos;default:&apos; + hint);
+        console.log('default:' + hint);
         return 8;
       }
     }

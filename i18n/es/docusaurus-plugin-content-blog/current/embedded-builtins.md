@@ -1,13 +1,13 @@
 ---
-title: &apos;Integrados incorporados&apos;
-author: &apos;Jakob Gruber ([@schuay](https://twitter.com/schuay))&apos;
+title: 'Integrados incorporados'
+author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
 avatars:
-  - &apos;jakob-gruber&apos;
+  - 'jakob-gruber'
 date: 2018-08-14 13:33:37
 tags:
   - internos
-description: &apos;V8 v6.9 integra código incorporado en la sección .text del binario, reduciendo el tamaño mediano del montón de V8 por sitio web en un 19%.&apos;
-tweet: &apos;1029382366693937162&apos;
+description: 'V8 v6.9 integra código incorporado en la sección .text del binario, reduciendo el tamaño mediano del montón de V8 por sitio web en un 19%.'
+tweet: '1029382366693937162'
 ---
 Las funciones integradas de V8 (builtins) consumen memoria en cada instancia de V8. La cantidad de integrados, el tamaño promedio y el número de instancias de V8 por pestaña del navegador Chrome han crecido significativamente. Esta publicación de blog describe cómo reducimos el tamaño mediano del montón de V8 por sitio web en un 19% durante el último año.
 

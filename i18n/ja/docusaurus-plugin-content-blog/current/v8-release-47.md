@@ -1,10 +1,10 @@
 ---
-title: &apos;V8リリース v4.7&apos;
-author: &apos;V8チーム&apos;
+title: 'V8リリース v4.7'
+author: 'V8チーム'
 date: 2015-10-14 13:33:37
 tags:
   - リリース
-description: &apos;V8 v4.7はメモリ使用量の削減と新しいES2015言語機能のサポートを提供します。&apos;
+description: 'V8 v4.7はメモリ使用量の削減と新しいES2015言語機能のサポートを提供します。'
 ---
 およそ6週間ごとに、[リリースプロセス](https://v8.dev/docs/release-process)の一環としてV8の新しいブランチが作成されます。それぞれのバージョンは、Chromeのベータ版マイルストーンのためにChromeがブランチ化される直前に、V8のGitマスターからブランチ化されます。本日は、私たちの最新のブランチ、[V8バージョン4.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.7)を発表できることを嬉しく思います。このバージョンはChrome 47の安定版と連動してリリースされるまでベータ版となります。V8 v4.7には開発者向けのさまざまな新機能が詰まっており、数週間後のリリースに向けて一部のハイライトをお届けします。
 
@@ -19,12 +19,12 @@ description: &apos;V8 v4.7はメモリ使用量の削減と新しいES2015言語
 // Restオペレーターを使用しない場合
 function concat() {
   var args = Array.prototype.slice.call(arguments, 1);
-  return args.join(&apos;&apos;);
+  return args.join('');
 }
 
 // Restオペレーターを使用する場合
 function concatWithRest(...strings) {
-  return strings.join(&apos;&apos;);
+  return strings.join('');
 }
 ```
 
@@ -36,8 +36,8 @@ function concatWithRest(...strings) {
 
 ```js
 [1, 2, 3].includes(3); // true
-[&apos;apple&apos;, &apos;banana&apos;, &apos;cherry&apos;].includes(&apos;apple&apos;); // true
-[&apos;apple&apos;, &apos;banana&apos;, &apos;cherry&apos;].includes(&apos;peach&apos;); // false
+['apple', 'banana', 'cherry'].includes('apple'); // true
+['apple', 'banana', 'cherry'].includes('peach'); // false
 ```
 
 ## パース時のメモリ負荷の軽減

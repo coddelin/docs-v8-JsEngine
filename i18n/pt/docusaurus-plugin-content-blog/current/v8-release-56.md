@@ -1,10 +1,10 @@
 ---
-title: &apos;Lançamento do V8 v5.6&apos;
-author: &apos;a equipe do V8&apos;
+title: 'Lançamento do V8 v5.6'
+author: 'a equipe do V8'
 date: 2016-12-02 13:33:37
 tags:
   - lançamento
-description: &apos;O V8 v5.6 vem com um novo pipeline de compiladores, melhorias de desempenho e maior suporte para os recursos da linguagem ECMAScript.&apos;
+description: 'O V8 v5.6 vem com um novo pipeline de compiladores, melhorias de desempenho e maior suporte para os recursos da linguagem ECMAScript.'
 ---
 A cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](/docs/release-process). Cada versão é derivada do master do Git do V8 imediatamente antes de um marco Beta do Chrome. Hoje estamos felizes em anunciar nosso mais novo branch, [V8 versão 5.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.6), que estará em beta até ser lançado em coordenação com o Chrome 56 Stable nas próximas semanas. O V8 5.6 está repleto de novidades voltadas para desenvolvedores, então gostaríamos de dar a você um preview de alguns dos destaques em antecipação ao lançamento.
 

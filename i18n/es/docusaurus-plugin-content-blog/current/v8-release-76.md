@@ -66,12 +66,12 @@ Si planeas formatear múltiples números o `BigInt`s usando la misma configuraci
 ```js
 const nf = new Intl.NumberFormat('fr');
 nf.format(12345678901234567890n); // 🚀
-// → &apos;12 345 678 901 234 567 890&apos;
+// → '12 345 678 901 234 567 890'
 nf.formatToParts(123456n); // 🚀
 // → [
-// →   { type: &apos;integer&apos;, value: &apos;123&apos; },
-// →   { type: &apos;group&apos;, value: &apos; &apos; },
-// →   { type: &apos;integer&apos;, value: &apos;456&apos; }
+// →   { type: 'integer', value: '123' },
+// →   { type: 'group', value: ' ' },
+// →   { type: 'integer', value: '456' }
 // → ]
 ```
 
@@ -80,38 +80,38 @@ nf.formatToParts(123456n); // 🚀
 Las aplicaciones suelen mostrar intervalos de fechas o rangos de fechas para indicar la duración de un evento, como una reserva de hotel, el período de facturación de un servicio o un festival de música. La API `Intl.DateTimeFormat` ahora admite los métodos `formatRange` y `formatRangeToParts` para formatear rangos de fechas de manera específica para cada localidad.
 
 ```js
-const start = new Date(&apos;2019-05-07T09:20:00&apos;);
-// → &apos;7 de mayo de 2019&apos;
-const end = new Date(&apos;2019-05-09T16:00:00&apos;);
-// → &apos;9 de mayo de 2019&apos;
-const fmt = new Intl.DateTimeFormat(&apos;en&apos;, {
-  year: &apos;numeric&apos;,
-  month: &apos;long&apos;,
-  day: &apos;numeric&apos;,
+const start = new Date('2019-05-07T09:20:00');
+// → '7 de mayo de 2019'
+const end = new Date('2019-05-09T16:00:00');
+// → '9 de mayo de 2019'
+const fmt = new Intl.DateTimeFormat('en', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
 });
 const output = fmt.formatRange(start, end);
-// → &apos;7 – 9 de mayo de 2019&apos;
+// → '7 – 9 de mayo de 2019'
 const parts = fmt.formatRangeToParts(start, end);
 // → [
-// →   { &apos;type&apos;: &apos;month&apos;,   &apos;value&apos;: &apos;mayo&apos;,  &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;literal&apos;, &apos;value&apos;: &apos; &apos;,    &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;day&apos;,     &apos;value&apos;: &apos;7&apos;,    &apos;source&apos;: &apos;startRange&apos; },
-// →   { &apos;type&apos;: &apos;literal&apos;, &apos;value&apos;: &apos; – &apos;,  &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;day&apos;,     &apos;value&apos;: &apos;9&apos;,    &apos;source&apos;: &apos;endRange&apos; },
-// →   { &apos;type&apos;: &apos;literal&apos;, &apos;value&apos;: &apos;, &apos;,   &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;year&apos;,    &apos;value&apos;: &apos;2019&apos;, &apos;source&apos;: &apos;shared&apos; },
+// →   { 'type': 'month',   'value': 'mayo',  'source': 'shared' },
+// →   { 'type': 'literal', 'value': ' ',    'source': 'shared' },
+// →   { 'type': 'day',     'value': '7',    'source': 'startRange' },
+// →   { 'type': 'literal', 'value': ' – ',  'source': 'shared' },
+// →   { 'type': 'day',     'value': '9',    'source': 'endRange' },
+// →   { 'type': 'literal', 'value': ', ',   'source': 'shared' },
+// →   { 'type': 'year',    'value': '2019', 'source': 'shared' },
 // → ]
 ```
 
 Además, los métodos `format`, `formatToParts` y `formatRangeToParts` ahora admiten las nuevas opciones `timeStyle` y `dateStyle`:
 
 ```js
-const dtf = new Intl.DateTimeFormat(&apos;de&apos;, {
-  timeStyle: &apos;medium&apos;,
-  dateStyle: &apos;short&apos;
+const dtf = new Intl.DateTimeFormat('de', {
+  timeStyle: 'medium',
+  dateStyle: 'short'
 });
 dtf.format(Date.now());
-// → &apos;19.06.19, 13:33:37&apos;
+// → '19.06.19, 13:33:37'
 ```
 
 ## Recorrido nativo de pila

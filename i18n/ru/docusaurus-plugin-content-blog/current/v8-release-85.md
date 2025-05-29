@@ -1,12 +1,12 @@
 ---
-title: &apos;Релиз V8 версии 8.5&apos;
-author: &apos;Зейнеп Чанкера, отслеживающий некоторые Карты&apos;
+title: 'Релиз V8 версии 8.5'
+author: 'Зейнеп Чанкера, отслеживающий некоторые Карты'
 avatars:
- - &apos;zeynep-cankara&apos;
+ - 'zeynep-cankara'
 date: 2020-07-21
 tags:
  - релиз
-description: &apos;Релиз V8 версии 8.5 включает Promise.any, String#replaceAll, операторы логического присваивания, поддержку многозначного возвращаемого значения WebAssembly и BigInt, а также улучшения производительности.&apos;
+description: 'Релиз V8 версии 8.5 включает Promise.any, String#replaceAll, операторы логического присваивания, поддержку многозначного возвращаемого значения WebAssembly и BigInt, а также улучшения производительности.'
 tweet:
 ---
 Каждые шесть недель мы создаем новую ветку V8 в рамках нашего [процесса релиза](https://v8.dev/docs/release-process). Каждая версия отделяется от основной ветки Git V8 непосредственно перед этапом бета-релиза Chrome. Сегодня мы рады объявить о нашей новейшей ветке, [V8 версии 8.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.5), которая находится в стадии бета до своего релиза вместе с Chrome 85 Stable через несколько недель. V8 v8.5 наполнен множеством полезных функций для разработчиков. Этот пост предоставляет предварительный обзор некоторых ключевых моментов в ожидании релиза.
@@ -20,15 +20,15 @@ tweet:
 
 ```js
 const promises = [
-  fetch(&apos;/endpoint-a&apos;).then(() => &apos;a&apos;),
-  fetch(&apos;/endpoint-b&apos;).then(() => &apos;b&apos;),
-  fetch(&apos;/endpoint-c&apos;).then(() => &apos;c&apos;),
+  fetch('/endpoint-a').then(() => 'a'),
+  fetch('/endpoint-b').then(() => 'b'),
+  fetch('/endpoint-c').then(() => 'c'),
 ];
 try {
   const first = await Promise.any(promises);
   // Любое из обещаний было выполнено.
   console.log(first);
-  // → например, &apos;b&apos;
+  // → например, 'b'
 } catch (error) {
   // Все обещания были отклонены.
   console.assert(error instanceof AggregateError);
@@ -46,15 +46,15 @@ try {
 `String.prototype.replaceAll` предоставляет простой способ заменить все вхождения подстроки без создания глобального `RegExp`.
 
 ```js
-const queryString = &apos;q=query+string+parameters&apos;;
+const queryString = 'q=query+string+parameters';
 
 // Работает, но требует экранирования внутри регулярных выражений.
-queryString.replace(/\+/g, &apos; &apos;);
-// → &apos;q=query string parameters&apos;
+queryString.replace(/\+/g, ' ');
+// → 'q=query string parameters'
 
 // Проще!
-queryString.replaceAll(&apos;+&apos;, &apos; &apos;);
-// → &apos;q=query string parameters&apos;
+queryString.replaceAll('+', ' ');
+// → 'q=query string parameters'
 ```
 
 Подробнее смотрите в [нашем объяснении](https://v8.dev/features/string-replaceall).
@@ -139,7 +139,7 @@ new WebAssembly.Instance(module, {
 Из JavaScript можно передавать только BigInts в качестве параметров I64:
 
 ```js
-WebAssembly.instantiateStreaming(fetch(&apos;i64.wasm&apos;))
+WebAssembly.instantiateStreaming(fetch('i64.wasm'))
   .then(({ module, instance }) => {
     instance.exports.add(12n, 30n);
     // → 42n

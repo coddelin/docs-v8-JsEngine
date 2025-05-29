@@ -123,13 +123,13 @@ V8 prend désormais en charge le nouveau [drapeau sticky](https://developer.mozi
 ```js
 class Custom {
   get [Symbol.toStringTag]() {
-    return &apos;Personnalisé&apos;;
+    return 'Personnalisé';
   }
 }
 Object.prototype.toString.call(new Custom);
-// → &apos;[object Personnalisé]&apos;
+// → '[object Personnalisé]'
 String(new Custom);
-// → &apos;[object Personnalisé]&apos;
+// → '[object Personnalisé]'
 ```
 
 ## Amélioration de `Math.random()`

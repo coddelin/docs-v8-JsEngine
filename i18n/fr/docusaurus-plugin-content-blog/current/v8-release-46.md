@@ -1,10 +1,10 @@
 ---
-title: &apos;Version V8 v4.6&apos;
-author: &apos;l’équipe V8&apos;
+title: 'Version V8 v4.6'
+author: 'l’équipe V8'
 date: 2015-08-28 13:33:37
 tags:
   - version
-description: &apos;V8 v4.6 offre moins de saccades et prend en charge les nouvelles fonctionnalités linguistiques d’ES2015.&apos;
+description: 'V8 v4.6 offre moins de saccades et prend en charge les nouvelles fonctionnalités linguistiques d’ES2015.'
 ---
 Environ toutes les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de version](https://v8.dev/docs/release-process). Chaque version est dérivée de la branche master de Git V8 immédiatement avant que Chrome ne crée une branche pour une étape bêta de Chrome. Aujourd'hui, nous sommes heureux d’annoncer notre toute nouvelle branche, [V8 version 4.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.6), qui sera en bêta jusqu’à sa sortie coordonnée avec Chrome 46 Stable. V8 4.6 est rempli de nombreuses fonctionnalités utiles aux développeurs, nous aimerions donc vous donner un aperçu de certains points forts en prévision de la sortie dans quelques semaines.
 
@@ -38,7 +38,7 @@ function myFunction(a, b, c) {
   console.log(b);
   console.log(c);
 }
-const argsInArray = [&apos;Salut &apos;, &apos;Opérateur de &apos;, &apos;décomposition !&apos;];
+const argsInArray = ['Salut ', 'Opérateur de ', 'décomposition !'];
 myFunction.apply(null, argsInArray);
 
 // Code avec opérateur de décomposition
@@ -48,7 +48,7 @@ function myFunction (a,b,c) {
   console.log(c);
 }
 
-const argsInArray = [&apos;Salut &apos;, &apos;Opérateur de &apos;, &apos;décomposition !&apos;];
+const argsInArray = ['Salut ', 'Opérateur de ', 'décomposition !'];
 myFunction(...argsInArray);
 ```
 
@@ -61,9 +61,9 @@ En pratique, cela signifie que vous pouvez utiliser new.target pour savoir si un
 ```js
 function myFunction() {
   if (new.target === undefined) {
-    throw &apos;Essayez de l’appeler avec new.&apos;;
+    throw 'Essayez de l’appeler avec new.';
   }
-  console.log(&apos;Ça marche !&apos;);
+  console.log('Ça marche !');
 }
 
 // Ne fonctionne pas :

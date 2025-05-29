@@ -1,6 +1,6 @@
 ---
-title: &apos;Сжатие указателей в Oilpan&apos;
-author: &apos;Антон Бикинеев и Михаэль Липпаутц ([@mlippautz](https://twitter.com/mlippautz)), исследователи дизассемблирования&apos;
+title: 'Сжатие указателей в Oilpan'
+author: 'Антон Бикинеев и Михаэль Липпаутц ([@mlippautz](https://twitter.com/mlippautz)), исследователи дизассемблирования'
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -9,8 +9,8 @@ tags:
   - внутренняя структура
   - память
   - cppgc
-description: &apos;Сжатие указателей в Oilpan позволяет уменьшать указатели C++ и сокращать размер кучи до 33%.&apos;
-tweet: &apos;1597274125780893697&apos;
+description: 'Сжатие указателей в Oilpan позволяет уменьшать указатели C++ и сокращать размер кучи до 33%.'
+tweet: '1597274125780893697'
 ---
 
 > Это абсолютно глупо иметь 64-битные указатели, когда я компилирую программу, использующую менее 4 гигабайт оперативной памяти. Когда такие значения указателей оказываются внутри структуры, они не только занимают половину памяти, но и фактически используют лишь половину кеша.
@@ -226,8 +226,8 @@ if (ptr == nullptr) { /* ... * }
 <!-- markdownlint-disable no-inline-html -->
 | Память Blink | P50                                                 | P99                                               |
 | -----------: | :-------------------------------------------------: | :-----------------------------------------------: |
-| Windows      | **<span style={{color:&apos;green&apos;}}>-21% (-1.37MB)</span>** | **<span style={{color:&apos;green&apos;}}>-33% (-59MB)</span>** |
-| Android      | **<span style={{color:&apos;green&apos;}}>-6% (-0.1MB)</span>**   | **<span style={{color:&apos;green&apos;}}>-8% (-3.9MB)</span>** |
+| Windows      | **<span style={{color:'green'}}>-21% (-1.37MB)</span>** | **<span style={{color:'green'}}>-33% (-59MB)</span>** |
+| Android      | **<span style={{color:'green'}}>-6% (-0.1MB)</span>**   | **<span style={{color:'green'}}>-8% (-3.9MB)</span>** |
 <!-- markdownlint-enable no-inline-html -->
 
 

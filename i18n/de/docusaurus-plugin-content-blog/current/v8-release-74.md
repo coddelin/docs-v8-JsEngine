@@ -102,7 +102,7 @@ V8 v7.2 fügte Unterstützung für die Syntax öffentlicher Klassenfelder hinzu.
 class IncreasingCounter {
   #count = 0;
   get value() {
-    console.log(&apos;Den aktuellen Wert abrufen!&apos;);
+    console.log('Den aktuellen Wert abrufen!');
     return this.#count;
   }
   increment() {
@@ -125,22 +125,22 @@ Weitere Informationen finden Sie in unserem [Erklärartikel zu öffentlichen und
 
 ### `Intl.Locale`
 
-JavaScript-Anwendungen verwenden in der Regel Zeichenfolgen wie `&apos;en-US&apos;` oder `&apos;de-CH&apos;`, um Sprachen zu identifizieren. `Intl.Locale` bietet einen leistungsfähigeren Mechanismus, um mit Sprachen umzugehen, und ermöglicht die einfache Extraktion von sprachspezifischen Einstellungen wie Sprache, Kalender, Nummerierungssystem, Stundenzyklus und mehr.
+JavaScript-Anwendungen verwenden in der Regel Zeichenfolgen wie `'en-US'` oder `'de-CH'`, um Sprachen zu identifizieren. `Intl.Locale` bietet einen leistungsfähigeren Mechanismus, um mit Sprachen umzugehen, und ermöglicht die einfache Extraktion von sprachspezifischen Einstellungen wie Sprache, Kalender, Nummerierungssystem, Stundenzyklus und mehr.
 
 ```js
-const locale = new Intl.Locale(&apos;es-419-u-hc-h12&apos;, {
-  calendar: &apos;gregory&apos;
+const locale = new Intl.Locale('es-419-u-hc-h12', {
+  calendar: 'gregory'
 });
 locale.language;
-// → &apos;es&apos;
+// → 'es'
 locale.calendar;
-// → &apos;gregory&apos;
+// → 'gregory'
 locale.hourCycle;
-// → &apos;h12&apos;
+// → 'h12'
 locale.region;
-// → &apos;419&apos;
+// → '419'
 locale.toString();
-// → &apos;es-419-u-ca-gregory-hc-h12&apos;
+// → 'es-419-u-ca-gregory-hc-h12'
 ```
 
 ### Hashbang-Syntax

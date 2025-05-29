@@ -1,13 +1,13 @@
 ---
-title: &apos;Релиз V8 версии v9.3&apos;
-author: &apos;Ингвар Степанян ([@RReverser](https://twitter.com/RReverser))&apos;
+title: 'Релиз V8 версии v9.3'
+author: 'Ингвар Степанян ([@RReverser](https://twitter.com/RReverser))'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-08-09
 tags:
  - релиз
-description: &apos;Релиз V8 версии v9.3 добавляет поддержку Object.hasOwn и причин ошибок (Error causes), улучшает производительность компиляции и отключает защиту от недоверенного генерации кода на Android.&apos;
-tweet: &apos;&apos;
+description: 'Релиз V8 версии v9.3 добавляет поддержку Object.hasOwn и причин ошибок (Error causes), улучшает производительность компиляции и отключает защиту от недоверенного генерации кода на Android.'
+tweet: ''
 ---
 Каждые шесть недель мы создаем новую ветку V8 в рамках нашего [процесса релиза](https://v8.dev/docs/release-process). Каждая версия отделяется от основной ветки Git V8 непосредственно перед выходом Chrome Beta. Сегодня мы рады объявить о нашей новой ветке, [версии V8 9.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.3), которая находится в стадии бета-тестирования до ее выхода одновременно с Chrome 93 Stable через несколько недель. V8 v9.3 полна различных нововведений для разработчиков. В этом посте представлен предварительный обзор некоторых ключевых моментов в преддверии релиза.
 
@@ -29,7 +29,7 @@ tweet: &apos;&apos;
 Например:
 
 ```javascript
-Object.hasOwn({ prop: 42 }, &apos;prop&apos;)
+Object.hasOwn({ prop: 42 }, 'prop')
 // → true
 ```
 
@@ -42,8 +42,8 @@ Object.hasOwn({ prop: 42 }, &apos;prop&apos;)
 Например:
 
 ```javascript
-const parentError = new Error(&apos;parent&apos;);
-const error = new Error(&apos;parent&apos;, { cause: parentError });
+const parentError = new Error('parent');
+const error = new Error('parent', { cause: parentError });
 console.log(error.cause === parentError);
 // → true
 ```

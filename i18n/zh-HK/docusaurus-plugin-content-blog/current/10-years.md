@@ -1,13 +1,13 @@
 ---
-title: &apos;慶祝 V8 十週年&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias)), V8 歷史學家&apos;
+title: '慶祝 V8 十週年'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), V8 歷史學家'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-09-11 19:00:00
 tags:
   - benchmarks
-description: &apos;V8 專案過去十年以及更早尚未公開時期的重要里程碑回顧概述。&apos;
-tweet: &apos;1039559389324238850&apos;
+description: 'V8 專案過去十年以及更早尚未公開時期的重要里程碑回顧概述。'
+tweet: '1039559389324238850'
 ---
 本月是 Google Chrome 和 V8 專案發布的十週年。本文章提供 V8 專案在過去十年以及更早尚未公開時期的重要里程碑概述。
 

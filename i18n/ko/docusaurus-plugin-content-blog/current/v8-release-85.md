@@ -1,12 +1,12 @@
 ---
-title: &apos;V8 릴리스 v8.5&apos;
-author: &apos;Zeynep Cankara, 일부 Maps 트랙킹&apos;
+title: 'V8 릴리스 v8.5'
+author: 'Zeynep Cankara, 일부 Maps 트랙킹'
 avatars:
- - &apos;zeynep-cankara&apos;
+ - 'zeynep-cankara'
 date: 2020-07-21
 tags:
  - 릴리스
-description: &apos;V8 릴리스 v8.5는 Promise.any, String#replaceAll, 논리 할당 연산자, WebAssembly 다중 값 및 BigInt 지원, 그리고 성능 개선을 포함합니다.&apos;
+description: 'V8 릴리스 v8.5는 Promise.any, String#replaceAll, 논리 할당 연산자, WebAssembly 다중 값 및 BigInt 지원, 그리고 성능 개선을 포함합니다.'
 tweet:
 ---
 6주마다 우리는 [릴리스 프로세스](https://v8.dev/docs/release-process)의 일부로 V8의 새 브랜치를 만듭니다. 각 버전은 Chrome Beta 마일스톤 직전에 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 [V8 버전 8.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.5)라는 새로운 브랜치를 발표하게 되어 기쁩니다. 이 버전은 몇 주 후 Chrome 85 Stable과 함께 출시될 때까지 베타 상태에 있습니다. V8 v8.5는 다양한 개발자 중심의 재미있는 기능으로 가득 찹니다. 출시를 앞두고 이 게시물에서는 일부 주요 기능에 대한 미리보기를 제공합니다.
@@ -20,15 +20,15 @@ tweet:
 
 ```js
 const promises = [
-  fetch(&apos;/endpoint-a&apos;).then(() => &apos;a&apos;),
-  fetch(&apos;/endpoint-b&apos;).then(() => &apos;b&apos;),
-  fetch(&apos;/endpoint-c&apos;).then(() => &apos;c&apos;),
+  fetch('/endpoint-a').then(() => 'a'),
+  fetch('/endpoint-b').then(() => 'b'),
+  fetch('/endpoint-c').then(() => 'c'),
 ];
 try {
   const first = await Promise.any(promises);
   // 입력된 프라미스 중 하나가 이행되었습니다.
   console.log(first);
-  // → 예: &apos;b&apos;
+  // → 예: 'b'
 } catch (error) {
   // 입력된 모든 프라미스가 거부되었습니다.
   console.assert(error instanceof AggregateError);
@@ -46,15 +46,15 @@ try {
 `String.prototype.replaceAll`은 글로벌 `RegExp`를 만들지 않고도 하위 문자열의 모든 발생을 쉽게 교체할 수 있는 방법을 제공합니다.
 
 ```js
-const queryString = &apos;q=query+string+parameters&apos;;
+const queryString = 'q=query+string+parameters';
 
 // 작동하지만 정규 표현식 내에서 이스케이프를 필요로 합니다.
-queryString.replace(/\+/g, &apos; &apos;);
-// → &apos;q=query string parameters&apos;
+queryString.replace(/\+/g, ' ');
+// → 'q=query string parameters'
 
 // 더 간단합니다!
-queryString.replaceAll(&apos;+&apos;, &apos; &apos;);
-// → &apos;q=query string parameters&apos;
+queryString.replaceAll('+', ' ');
+// → 'q=query string parameters'
 ```
 
 [우리의 설명서](https://v8.dev/features/string-replaceall)를 참고하세요.
@@ -139,7 +139,7 @@ new WebAssembly.Instance(module, {
 JavaScript에서 I64 매개변수로는 BigInts만 전달할 수 있습니다:
 
 ```js
-WebAssembly.instantiateStreaming(fetch(&apos;i64.wasm&apos;))
+WebAssembly.instantiateStreaming(fetch('i64.wasm'))
   .then(({ module, instance }) => {
     instance.exports.add(12n, 30n);
     // → 42n

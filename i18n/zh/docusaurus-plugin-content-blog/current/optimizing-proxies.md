@@ -88,11 +88,11 @@ function run() {
   return new P();
 }
 const N = 1e5;
-console.time(&apos;run&apos;);
+console.time('run');
 for (let i = 0; i < N; ++i) {
   run();
 }
-console.timeEnd(&apos;run&apos;);
+console.timeEnd('run');
 ```
 
 结果表明，大部分时间花费在调用 `新建对象` 以及其调用的函数中，因此我们开始计划在未来的版本中优化这一部分。

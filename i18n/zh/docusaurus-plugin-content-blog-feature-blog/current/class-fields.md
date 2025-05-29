@@ -172,7 +172,7 @@ class Cat extends Animal {
     this.likesBaths = false;
   }
   meow() {
-    console.log(&apos;喵！&apos;);
+    console.log('喵！');
   }
 }
 ```
@@ -183,7 +183,7 @@ class Cat extends Animal {
 class Cat extends Animal {
   likesBaths = false;
   meow() {
-    console.log(&apos;喵！&apos;);
+    console.log('喵！');
   }
 }
 ```

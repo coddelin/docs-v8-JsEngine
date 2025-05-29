@@ -1,10 +1,10 @@
 ---
-title: &apos;WebAssembly 瀏覽器預覽&apos;
-author: &apos;V8 團隊&apos;
+title: 'WebAssembly 瀏覽器預覽'
+author: 'V8 團隊'
 date: 2016-10-31 13:33:37
 tags:
   - WebAssembly
-description: &apos;WebAssembly 或 Wasm 是一種全新的 web 運行時和編譯目標，現已在 Chrome Canary 中啟用旗標！&apos;
+description: 'WebAssembly 或 Wasm 是一種全新的 web 運行時和編譯目標，現已在 Chrome Canary 中啟用旗標！'
 ---
 今天我們很高興能與 [Firefox](https://hacks.mozilla.org/2016/10/webassembly-browser-preview) 和 [Edge](https://blogs.windows.com/msedgedev/2016/10/31/webassembly-browser-preview/) 同時宣布 WebAssembly 瀏覽器預覽。[WebAssembly](http://webassembly.org/) 或 Wasm 是一種由 Google、Mozilla、Microsoft、Apple 和 [W3C WebAssembly 社群組](https://www.w3.org/community/webassembly/) 的協作者設計的新型網頁運行時和編譯目標。
 

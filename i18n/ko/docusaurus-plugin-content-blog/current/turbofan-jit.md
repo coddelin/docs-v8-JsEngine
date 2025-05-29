@@ -1,12 +1,12 @@
 ---
-title: &apos;TurboFan JIT 분석하기&apos;
-author: &apos;Ben L. Titzer, 소프트웨어 엔지니어 및 TurboFan 메카닉&apos;
+title: 'TurboFan JIT 분석하기'
+author: 'Ben L. Titzer, 소프트웨어 엔지니어 및 TurboFan 메카닉'
 avatars:
-  - &apos;ben-titzer&apos;
+  - 'ben-titzer'
 date: 2015-07-13 13:33:37
 tags:
   - internals
-description: &apos;V8의 새로운 TurboFan 최적화 컴파일러 설계에 대한 심층 분석.&apos;
+description: 'V8의 새로운 TurboFan 최적화 컴파일러 설계에 대한 심층 분석.'
 ---
 [지난주에는](https://blog.chromium.org/2015/07/revving-up-javascript-performance-with.html) 특정 유형의 자바스크립트에 TurboFan을 활성화했다고 발표했습니다. 이번 포스트에서는 TurboFan의 설계에 대해 더 깊이 파고들어 보고자 합니다.
 

@@ -1,11 +1,11 @@
 ---
-title: &apos;V8 發佈 v6.5&apos;
-author: &apos;V8 團隊&apos;
+title: 'V8 發佈 v6.5'
+author: 'V8 團隊'
 date: 2018-02-01 13:33:37
 tags:
   - 發佈
-description: &apos;V8 v6.5 增加了對 WebAssembly 流式編譯的支持，並引入了新的“非信任代碼模式”。&apos;
-tweet: &apos;959174292406640640&apos;
+description: 'V8 v6.5 增加了對 WebAssembly 流式編譯的支持，並引入了新的“非信任代碼模式”。'
+tweet: '959174292406640640'
 ---
 每六週，我們會根據 [發佈流程](/docs/release-process) 創建一個新的 V8 分支。每個版本都從 V8 的 Git 主分支分出，時間選定在 Chrome Beta 里程碑之前。今天，我們很高興地宣佈最新的分支 [V8 版本 6.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.5)，它目前處於 Beta 階段，並將在幾週內與 Chrome 65 的穩定版本一起正式發佈。V8 v6.5 提供了各種面向開發者的功能。本篇文章為即將到來的正式發佈提供了一些亮點的預覽。
 
@@ -19,7 +19,7 @@ tweet: &apos;959174292406640640&apos;
 WebAssembly API 提供了一個專門函數來支持配合 `fetch()` API 的 [流式編譯](https://developers.google.com/web/updates/2018/04/loading-wasm)：
 
 ```js
-const module = await WebAssembly.compileStreaming(fetch(&apos;foo.wasm&apos;));
+const module = await WebAssembly.compileStreaming(fetch('foo.wasm'));
 ```
 
 此 API 自 V8 v6.1 和 Chrome 61 起已可使用，然而初始實現並未真正利用流式編譯。但從 V8 v6.5 和 Chrome 65 起，我們充分利用了此 API，在下載模組字節的同時編譯 WebAssembly 模組。一旦完成某個函數所有字節的下載，我們就將它傳遞到背景線程進行編譯。

@@ -1,7 +1,7 @@
 ---
-title: &apos;WebAssembly JavaScript Promise Integration APIの紹介&apos;
-description: &apos;この文書はJSPIを紹介し、それを使用して始めるための簡単な例を提供します&apos;
-author: &apos;Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl&apos;
+title: 'WebAssembly JavaScript Promise Integration APIの紹介'
+description: 'この文書はJSPIを紹介し、それを使用して始めるための簡単な例を提供します'
+author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
 date: 2024-07-01
 tags:
   - WebAssembly
@@ -158,16 +158,16 @@ emcc p42.c -o p42.wasm --no-entry -Wl,--import-memory
 コードを動的にロードするために、標準の`WebAssembly.instantiateStreaming`APIを使用します:
 
 ```js
-WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;));
+WebAssembly.instantiateStreaming(fetch('p42.wasm'));
 ```
 
 この式は`fetch`を使用してコンパイル済みのWasmモジュールを見つけ、`WebAssembly.instantiateStreaming`を使用して結果をコンパイルし、インスタンス化されたモジュールを作成します。`fetch`と`WebAssembly.instantiateStreaming`はプロミスを返すため、その結果を単純に取得して必要な機能を抽出することはできません。代わりに、これを`EM_ASYNC_JS`マクロを使用してJSPIスタイルのインポートにラップします:
 
 ```c
 EM_ASYNC_JS(fooFun, resolveFun, (), {
-  console.log(&apos;loading promise42&apos;);
-  LoadedModule = (await WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;))).instance;
-  return addFunction(LoadedModule.exports[&apos;provide42&apos;]);
+  console.log('loading promise42');
+  LoadedModule = (await WebAssembly.instantiateStreaming(fetch('p42.wasm'))).instance;
+  return addFunction(LoadedModule.exports['provide42']);
 });
 ```
 
@@ -329,9 +329,9 @@ typedef long (*fooFun)();
 
 // 関数を約束する
 EM_ASYNC_JS(fooFun, resolveFun, (), {
-  console.log(&apos;ロード中 promise42&apos;);
-  LoadedModule = (await WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;))).instance;
-  return addFunction(LoadedModule.exports[&apos;provide42&apos;]);
+  console.log('ロード中 promise42');
+  LoadedModule = (await WebAssembly.instantiateStreaming(fetch('p42.wasm'))).instance;
+  return addFunction(LoadedModule.exports['provide42']);
 });
 
 EM_JS_DEPS(funDeps, "$addFunction")

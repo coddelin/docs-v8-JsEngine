@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 发布 v5.5&apos;
-author: &apos;V8 团队&apos;
+title: 'V8 发布 v5.5'
+author: 'V8 团队'
 date: 2016-10-24 13:33:37
 tags:
   - 发布
-description: &apos;V8 v5.5 带来了内存使用减少和对 ECMAScript 语言功能支持的增强。&apos;
+description: 'V8 v5.5 带来了内存使用减少和对 ECMAScript 语言功能支持的增强。'
 ---
 每六周，我们会按照[发布流程](/docs/release-process)创建一个新的 V8 分支。每个版本都是在 Chrome Beta 的里程碑之前从 V8 的 Git 主分支生成的。今天，我们很高兴宣布我们的最新分支，[V8 版本 5.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.5)，它将进入测试版，直到几周后与 Chrome 55 稳定版协同发布。V8 v5.5 包含了各种面向开发者的功能，因此我们希望提前为您揭示一些亮点，以期望发布。
 
@@ -24,7 +24,7 @@ function logFetch(url) {
     .then(text => {
       console.log(text);
     }).catch(err => {
-      console.error(&apos;fetch 失败&apos;, err);
+      console.error('fetch 失败', err);
     });
 }
 ```
@@ -37,7 +37,7 @@ async function logFetch(url) {
     const response = await fetch(url);
     console.log(await response.text());
   } catch (err) {
-    console.log(&apos;fetch 失败&apos;, err);
+    console.log('fetch 失败', err);
   }
 }
 ```

@@ -1,17 +1,17 @@
 ---
-title: &apos;Appels en queue dans WebAssembly&apos;
-author: &apos;Thibaud Michaud, Thomas Lively&apos;
+title: 'Appels en queue dans WebAssembly'
+author: 'Thibaud Michaud, Thomas Lively'
 date: 2023-04-06
 tags:
   - WebAssembly
-description: &apos;Ce document explique la proposition concernant les appels en queue dans WebAssembly et la démontre avec quelques exemples.&apos;
-tweet: &apos;1644077795059044353&apos;
+description: 'Ce document explique la proposition concernant les appels en queue dans WebAssembly et la démontre avec quelques exemples.'
+tweet: '1644077795059044353'
 ---
 Nous intégrons les appels en queue de WebAssembly dans V8 v11.2 ! Dans cet article, nous donnons un aperçu de cette proposition, présentons un cas d’utilisation intéressant pour les coroutines C++ avec Emscripten, et montrons comment V8 gère les appels en queue en interne.
 
-## Qu&apos;est-ce que l&apos;optimisation des appels en queue ?
+## Qu'est-ce que l'optimisation des appels en queue ?
 
-Un appel est dit être en position de queue si c&apos;est la dernière instruction exécutée avant de retourner de la fonction actuelle. Les compilateurs peuvent optimiser ces appels en supprimant la pile de l&apos;appelant et en remplaçant l’appel par un saut.
+Un appel est dit être en position de queue si c'est la dernière instruction exécutée avant de retourner de la fonction actuelle. Les compilateurs peuvent optimiser ces appels en supprimant la pile de l'appelant et en remplaçant l’appel par un saut.
 
 Cela est particulièrement utile pour les fonctions récursives. Par exemple, prenez cette fonction C qui additionne les éléments d'une liste chaînée :
 
@@ -39,7 +39,7 @@ Cette optimisation est particulièrement importante pour les langages fonctionne
 
 ### La proposition des appels en queue dans WebAssembly
 
-Il existe deux façons d'appeler une fonction dans la version MVP de Wasm : `call` et `call_indirect`. La proposition ajoutant les appels en queue dans WebAssembly introduit leurs équivalents pour les appels en queue : `return_call` et `return_call_indirect`. Cela signifie que la chaîne d'outils est responsable de la réalisation effective de l&apos;optimisation des appels en queue et d&apos;émettre le type d&apos;appel approprié, ce qui lui donne un meilleur contrôle sur les performances et l&apos;utilisation de l&apos;espace de pile.
+Il existe deux façons d'appeler une fonction dans la version MVP de Wasm : `call` et `call_indirect`. La proposition ajoutant les appels en queue dans WebAssembly introduit leurs équivalents pour les appels en queue : `return_call` et `return_call_indirect`. Cela signifie que la chaîne d'outils est responsable de la réalisation effective de l'optimisation des appels en queue et d'émettre le type d'appel approprié, ce qui lui donne un meilleur contrôle sur les performances et l'utilisation de l'espace de pile.
 
 Examinons une fonction Fibonacci récursive. Le code bytecode de Wasm est inclus ici dans le format textuel pour être complet, mais vous pouvez le trouver en C++ dans la section suivante :
 
@@ -62,13 +62,13 @@ Examinons une fonction Fibonacci récursive. Le code bytecode de Wasm est inclus
 )
 ```
 
-À tout moment, il n&apos;y a qu&apos;un seul cadre `fib_rec`, qui se déroule avant d&apos;effectuer le prochain appel récursif. Lorsque nous atteignons le cas de base, `fib_rec` retourne directement le résultat `a` à `fib`.
+À tout moment, il n'y a qu'un seul cadre `fib_rec`, qui se déroule avant d'effectuer le prochain appel récursif. Lorsque nous atteignons le cas de base, `fib_rec` retourne directement le résultat `a` à `fib`.
 
-Une conséquence observable des appels en queue est (en plus d&apos;un risque réduit de débordement de pile) que les appelants en queue n&apos;apparaissent pas dans les traces de pile. Ils n&apos;apparaissent pas non plus dans la propriété de la pile d&apos;une exception capturée ni dans la trace de pile des DevTools. Au moment où une exception est levée ou que l&apos;exécution est mise en pause, les cadres des appelants en queue ont disparu et V8 ne peut pas les récupérer.
+Une conséquence observable des appels en queue est (en plus d'un risque réduit de débordement de pile) que les appelants en queue n'apparaissent pas dans les traces de pile. Ils n'apparaissent pas non plus dans la propriété de la pile d'une exception capturée ni dans la trace de pile des DevTools. Au moment où une exception est levée ou que l'exécution est mise en pause, les cadres des appelants en queue ont disparu et V8 ne peut pas les récupérer.
 
 ## Utilisation des appels en queue avec Emscripten
 
-Les langages fonctionnels dépendent souvent des appels en queue, mais il est également possible de les utiliser en tant que programmeur C ou C++. Emscripten (et Clang, qu&apos;Emscripten utilise) prend en charge l&apos;attribut musttail qui indique au compilateur qu&apos;un appel doit être compilé en un appel en queue. À titre d&apos;exemple, considérez cette implémentation récursive d&apos;une fonction Fibonacci qui calcule le `n`ième numéro de Fibonacci modulo 2^32 (car les entiers débordent pour de grands `n`) :
+Les langages fonctionnels dépendent souvent des appels en queue, mais il est également possible de les utiliser en tant que programmeur C ou C++. Emscripten (et Clang, qu'Emscripten utilise) prend en charge l'attribut musttail qui indique au compilateur qu'un appel doit être compilé en un appel en queue. À titre d'exemple, considérez cette implémentation récursive d'une fonction Fibonacci qui calcule le `n`ième numéro de Fibonacci modulo 2^32 (car les entiers débordent pour de grands `n`) :
 
 ```c
 #include <stdio.h>
@@ -93,7 +93,7 @@ int main() {
 }
 ```
 
-Après compilation avec `emcc test.c -o test.js`, l&apos;exécution de ce programme dans Node.js déclenche une erreur de débordement de pile. Nous pouvons résoudre cela en ajoutant `__attribute__((__musttail__))` au retour dans `fib_rec` et en ajoutant `-mtail-call` aux arguments de compilation. Maintenant, le module Wasm produit contient les nouvelles instructions d&apos;appel en queue, donc nous devons passer `--experimental-wasm-return_call` à Node.js, mais la pile ne déborde plus.
+Après compilation avec `emcc test.c -o test.js`, l'exécution de ce programme dans Node.js déclenche une erreur de débordement de pile. Nous pouvons résoudre cela en ajoutant `__attribute__((__musttail__))` au retour dans `fib_rec` et en ajoutant `-mtail-call` aux arguments de compilation. Maintenant, le module Wasm produit contient les nouvelles instructions d'appel en queue, donc nous devons passer `--experimental-wasm-return_call` à Node.js, mais la pile ne déborde plus.
 
 Voici un exemple utilisant également la récursivité mutuelle :
 

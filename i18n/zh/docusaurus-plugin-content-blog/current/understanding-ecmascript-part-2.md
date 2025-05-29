@@ -179,7 +179,7 @@ MemberExpression :
   new MemberExpression Arguments
 ```
 
-这里我们有7种`MemberExpression`的生成式。`MemberExpression`可以只是一个`PrimaryExpression`。或者，`MemberExpression`可以由另一个`MemberExpression`和`Expression`拼接而成，例如：`MemberExpression [ Expression ]`，例如 `o2[&apos;foo&apos;]`。或者它可以是 `MemberExpression . IdentifierName`，例如 `o2.foo`——这就是与我们示例相关的生成式。
+这里我们有7种`MemberExpression`的生成式。`MemberExpression`可以只是一个`PrimaryExpression`。或者，`MemberExpression`可以由另一个`MemberExpression`和`Expression`拼接而成，例如：`MemberExpression [ Expression ]`，例如 `o2['foo']`。或者它可以是 `MemberExpression . IdentifierName`，例如 `o2.foo`——这就是与我们示例相关的生成式。
 
 生产式`MemberExpression : MemberExpression . IdentifierName`的运行时语义定义了评估它时需要采取的一系列步骤：
 

@@ -1,12 +1,12 @@
 ---
-title: &apos;一種將支援垃圾回收的程式語言高效引入到 WebAssembly 的新方式&apos;
-author: &apos;Alon Zakai&apos;
+title: '一種將支援垃圾回收的程式語言高效引入到 WebAssembly 的新方式'
+author: 'Alon Zakai'
 avatars:
-  - &apos;alon-zakai&apos;
+  - 'alon-zakai'
 date: 2023-11-01
 tags:
   - WebAssembly
-tweet: &apos;1720161507324076395&apos;
+tweet: '1720161507324076395'
 ---
 
 最近的一篇關於 [WebAssembly 垃圾回收 (WasmGC)](https://developer.chrome.com/blog/wasmgc) 的文章從高層次解釋了 [垃圾回收 (GC) 提案](https://github.com/WebAssembly/gc) 如何更好地支持 Wasm 中的垃圾回收語言，這在考慮到它們的普及性時，非常重要。在本文中，我們將探討技術細節，了解像 Java、Kotlin、Dart、Python 和 C# 這樣的垃圾回收語言如何被移植到 Wasm。事實上有兩種主要的方法：

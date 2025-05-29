@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 릴리스 v4.6&apos;
-author: &apos;V8 팀&apos;
+title: 'V8 릴리스 v4.6'
+author: 'V8 팀'
 date: 2015-08-28 13:33:37
 tags:
   - release
-description: &apos;V8 v4.6은 지연 감소와 새로운 ES2015 언어 기능 지원을 제공합니다.&apos;
+description: 'V8 v4.6은 지연 감소와 새로운 ES2015 언어 기능 지원을 제공합니다.'
 ---
 대략 여섯 주마다, 우리는 [릴리스 프로세스](https://v8.dev/docs/release-process)의 일환으로 V8의 새 브랜치를 만듭니다. 각 버전은 Chrome이 Chrome Beta 마일스톤을 위해 분기하기 직전에 V8의 Git master에서 분기됩니다. 오늘 우리는 최신 브랜치인 [V8 버전 4.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.6)을 발표하게 되어 기쁘며, 이 버전은 Chrome 46 Stable과 조정되어 릴리스될 때까지 베타 상태로 유지됩니다. V8 4.6은 개발자 중심의 다양한 혜택으로 가득 차 있으며, 몇 주 후 릴리스를 기대하며 주요 내용을 미리 소개하고자 합니다.
 
@@ -38,7 +38,7 @@ function myFunction(a, b, c) {
   console.log(b);
   console.log(c);
 }
-const argsInArray = [&apos;안녕하세요&apos;, &apos;전개&apos;, &apos;연산자!&apos;];
+const argsInArray = ['안녕하세요', '전개', '연산자!'];
 myFunction.apply(null, argsInArray);
 
 // 전개 연산자를 사용한 코드
@@ -48,7 +48,7 @@ function myFunction (a,b,c) {
   console.log(c);
 }
 
-const argsInArray = [&apos;안녕하세요&apos;, &apos;전개&apos;, &apos;연산자!&apos;];
+const argsInArray = ['안녕하세요', '전개', '연산자!'];
 myFunction(...argsInArray);
 ```
 
@@ -61,9 +61,9 @@ myFunction(...argsInArray);
 ```js
 function myFunction() {
   if (new.target === undefined) {
-    throw &apos;new 키워드로 호출해 보세요.&apos;;
+    throw 'new 키워드로 호출해 보세요.';
   }
-  console.log(&apos;작동합니다!&apos;);
+  console.log('작동합니다!');
 }
 
 // 깨짐:

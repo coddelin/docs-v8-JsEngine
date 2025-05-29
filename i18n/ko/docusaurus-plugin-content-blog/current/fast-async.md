@@ -1,16 +1,16 @@
 ---
-title: &apos;더 빠른 비동기 함수와 프로미스&apos;
-author: &apos;Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 항상 대기하는 기대자, 그리고 Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), 전문 성능 약속자&apos;
+title: '더 빠른 비동기 함수와 프로미스'
+author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 항상 대기하는 기대자, 그리고 Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), 전문 성능 약속자'
 avatars:
-  - &apos;maya-armyanova&apos;
-  - &apos;benedikt-meurer&apos;
+  - 'maya-armyanova'
+  - 'benedikt-meurer'
 date: 2018-11-12 16:45:07
 tags:
   - ECMAScript
   - benchmarks
   - presentations
-description: &apos;더 빠르고 디버그하기 쉬운 비동기 함수와 프로미스가 V8 v7.2 / Chrome 72에 도입됩니다.&apos;
-tweet: &apos;1062000102909169670&apos;
+description: '더 빠르고 디버그하기 쉬운 비동기 함수와 프로미스가 V8 v7.2 / Chrome 72에 도입됩니다.'
+tweet: '1062000102909169670'
 ---
 자바스크립트에서 비동기 처리는 전통적으로 빠르지 않다고 여겨졌습니다. 게다가 라이브 자바스크립트 애플리케이션, 특히 Node.js 서버를 디버그하는 일은 쉬운 일이 아닙니다. _특히나_ 비동기 프로그래밍에서는 그러합니다. 다행히도 시간이 지나면서 변화가 일어나고 있습니다. 이 글에서는 V8(및 어느 정도는 다른 자바스크립트 엔진들에서도)에서 비동기 함수와 프로미스를 최적화한 방법과 비동기 코드를 디버깅하는 경험을 향상시킨 방법을 설명합니다.
 
@@ -81,15 +81,15 @@ async function handler() {
 Node.js에서 특히 흔한 또 다른 비동기 패러다임은 [`ReadableStream`](https://nodejs.org/api/stream.html#stream_readable_streams)의 개념입니다. 여기 한 예가 있습니다:
 
 ```js
-const http = require(&apos;http&apos;);
+const http = require('http');
 
 http.createServer((req, res) => {
-  let body = &apos;&apos;;
-  req.setEncoding(&apos;utf8&apos;);
-  req.on(&apos;data&apos;, (chunk) => {
+  let body = '';
+  req.setEncoding('utf8');
+  req.on('data', (chunk) => {
     body += chunk;
   });
-  req.on(&apos;end&apos;, () => {
+  req.on('end', () => {
     res.write(body);
     res.end();
   });
@@ -101,12 +101,12 @@ http.createServer((req, res) => {
 다행히도 [비동기 반복](http://2ality.com/2016/10/asynchronous-iteration.html)이라는 새로운 ES2018 기능이 이 코드를 단순화할 수 있습니다:
 
 ```js
-const http = require(&apos;http&apos;);
+const http = require('http');
 
 http.createServer(async (req, res) => {
   try {
-    let body = &apos;&apos;;
-    req.setEncoding(&apos;utf8&apos;);
+    let body = '';
+    req.setEncoding('utf8');
     for await (const chunk of req) {
       body += chunk;
     }
@@ -119,7 +119,7 @@ http.createServer(async (req, res) => {
 }).listen(1337);
 ```
 
-이전에는 요청 처리를 실제로 처리하는 로직을 `&apos;data&apos;`와 `&apos;end&apos;`라는 두 가지 다른 콜백에 넣어야 했지만, 이제는 모든 것을 단일 비동기 함수에 넣을 수 있습니다. 또한 새 `for await…of` 반복문을 사용하여 청크를 비동기적으로 반복 처리할 수 있습니다. 또한 `try-catch` 블록을 추가하여 `unhandledRejection` 문제[^1]를 방지했습니다.
+이전에는 요청 처리를 실제로 처리하는 로직을 `'data'`와 `'end'`라는 두 가지 다른 콜백에 넣어야 했지만, 이제는 모든 것을 단일 비동기 함수에 넣을 수 있습니다. 또한 새 `for await…of` 반복문을 사용하여 청크를 비동기적으로 반복 처리할 수 있습니다. 또한 `try-catch` 블록을 추가하여 `unhandledRejection` 문제[^1]를 방지했습니다.
 
 [^1]: [Matteo Collina](https://twitter.com/matteocollina)가 [이 문제](https://github.com/mcollina/make-promises-safe/blob/master/README.md#the-unhandledrejection-problem)를 지적해주신 것에 감사드립니다.
 
@@ -165,16 +165,16 @@ V8 v5.5 (Chrome 55 & Node.js 7)와 V8 v6.8 (Chrome 68 & Node.js 10) 사이에서
 const p = Promise.resolve();
 
 (async () => {
-  await p; console.log(&apos;after:await&apos;);
+  await p; console.log('after:await');
 })();
 
-p.then(() => console.log(&apos;tick:a&apos;))
- .then(() => console.log(&apos;tick:b&apos;));
+p.then(() => console.log('tick:a'))
+ .then(() => console.log('tick:b'));
 ```
 
 위 프로그램은 충족된 약속 `p`를 생성하고 결과를 `await`하며, 또한 이를 두 개의 핸들러에 연결합니다. `console.log` 호출이 실행되는 순서를 어떻게 예상합니까?
 
-`p`가 충족되었으므로, 먼저 `&apos;after:await&apos;`을 출력한 다음 `&apos;tick&apos;`을 출력할 것이라고 예상할 수 있습니다. 실제로 Node.js 8에서는 이러한 동작을 볼 수 있습니다:
+`p`가 충족되었으므로, 먼저 `'after:await'`을 출력한 다음 `'tick'`을 출력할 것이라고 예상할 수 있습니다. 실제로 Node.js 8에서는 이러한 동작을 볼 수 있습니다:
 
 ![Node.js 8에서의 `await` 버그](/_img/fast-async/await-bug-node-8.svg)
 
@@ -383,7 +383,7 @@ async function foo() {
 
 async function bar() {
   await Promise.resolve();
-  throw new Error(&apos;BEEP BEEP&apos;);
+  throw new Error('BEEP BEEP');
 }
 
 foo().catch(error => console.log(error.stack));

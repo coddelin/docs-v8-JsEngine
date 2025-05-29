@@ -1,7 +1,7 @@
 ---
-title: &apos;Apresentando a API de Integração de Promises do JavaScript para WebAssembly&apos;
-description: &apos;Este documento introduz o JSPI e fornece alguns exemplos simples para que você comece a usá-lo&apos;
-author: &apos;Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl&apos;
+title: 'Apresentando a API de Integração de Promises do JavaScript para WebAssembly'
+description: 'Este documento introduz o JSPI e fornece alguns exemplos simples para que você comece a usá-lo'
+author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
 date: 2024-07-01
 tags:
   - WebAssembly
@@ -158,16 +158,16 @@ A flag `-Wl,--import-memory` que adicionamos à compilação de `p42.c` garante 
 Para carregar código dinamicamente, usamos a API padrão `WebAssembly.instantiateStreaming`:
 
 ```js
-WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;));
+WebAssembly.instantiateStreaming(fetch('p42.wasm'));
 ```
 
 Essa expressão usa `fetch` para localizar o módulo Wasm compilado, `WebAssembly.instantiateStreaming` para compilar o resultado do fetch e criar um módulo instanciado a partir dele. Tanto `fetch` quanto `WebAssembly.instantiateStreaming` retornam Promessas; então não podemos simplesmente acessar o resultado e extrair nossa função necessária. Em vez disso, encapsulamos isso em um estilo JSPI de importação usando o macro `EM_ASYNC_JS`:
 
 ```c
 EM_ASYNC_JS(fooFun, resolveFun, (), {
-  console.log(&apos;carregando promise42&apos;);
-  LoadedModule = (await WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;))).instance;
-  return addFunction(LoadedModule.exports[&apos;provide42&apos;]);
+  console.log('carregando promise42');
+  LoadedModule = (await WebAssembly.instantiateStreaming(fetch('p42.wasm'))).instance;
+  return addFunction(LoadedModule.exports['provide42']);
 });
 ```
 
@@ -329,9 +329,9 @@ typedef long (*fooFun)();
 
 // Prometer uma função
 EM_ASYNC_JS(fooFun, resolveFun, (), {
-  console.log(&apos;carregando promessa42&apos;);
-  LoadedModule = (await WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;))).instance;
-  return addFunction(LoadedModule.exports[&apos;provide42&apos;]);
+  console.log('carregando promessa42');
+  LoadedModule = (await WebAssembly.instantiateStreaming(fetch('p42.wasm'))).instance;
+  return addFunction(LoadedModule.exports['provide42']);
 });
 
 EM_JS_DEPS(funDeps, "$addFunction")

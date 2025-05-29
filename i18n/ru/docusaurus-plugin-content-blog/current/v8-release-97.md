@@ -1,13 +1,13 @@
 ---
-title: &apos;Релиз V8 v9.7&apos;
-author: &apos;Ингвар Степанян ([@RReverser](https://twitter.com/RReverser))&apos;
+title: 'Релиз V8 v9.7'
+author: 'Ингвар Степанян ([@RReverser](https://twitter.com/RReverser))'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-11-05
 tags:
  - релиз
-description: &apos;Релиз V8 v9.7 добавляет новые методы JavaScript для поиска назад в массивах.&apos;
-tweet: &apos;&apos;
+description: 'Релиз V8 v9.7 добавляет новые методы JavaScript для поиска назад в массивах.'
+tweet: ''
 ---
 Каждые четыре недели мы создаем новую ветку V8 в рамках нашего [процесса релиза](https://v8.dev/docs/release-process). Каждая версия ветвится от основного Git-репозитория V8 непосредственно перед этапом Chrome Beta. Сегодня мы рады объявить о нашей новой ветке, [V8 версия 9.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.7), которая находится в бета-версии до выпуска, запланированного на несколько недель совместно с Chrome 97 Stable. V8 v9.7 наполнен множеством обновлений, направленных на разработчиков. Этот пост предлагает предварительный обзор некоторых основных моментов в ожидании релиза.
 

@@ -114,7 +114,7 @@ const jsStringLiteral = JSON.stringify(json);
 // Crie um programa ECMAScript válido que incorpora o literal de string
 // JavaScript representando os dados JSON dentro de uma chamada `JSON.parse`.
 const program = `const data = JSON.parse(${ jsStringLiteral });`;
-// → &apos;const data = JSON.parse("…");&apos;
+// → 'const data = JSON.parse("…");'
 // (Escapamento adicional é necessário se o destino for um <script> embutido.)
 
 // Escreva um arquivo contendo o programa ECMAScript no disco.
@@ -149,13 +149,13 @@ Quando usado como no exemplo acima, `JSON.stringify()` é garantido a retornar u
 ```html
 <script>
   // Informações de depuração:
-  // User-Agent: "String fornecida pelo usuário<U+2028>  alert(&apos;XSS&apos;);//"
+  // User-Agent: "String fornecida pelo usuário<U+2028>  alert('XSS');//"
 </script>
 <!-- …é equivalente a: -->
 <script>
   // Informações de depuração:
   // User-Agent: "String fornecida pelo usuário
-  alert(&apos;XSS&apos;);//"
+  alert('XSS');//"
 </script>
 ```
 

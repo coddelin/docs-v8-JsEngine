@@ -1,15 +1,15 @@
 ---
-title: &apos;`Intl.DisplayNames`&apos;
-author: &apos;Shu-yu Guo ([@_shu](https://twitter.com/_shu)) 和 Frank Yung-Fong Tang&apos;
+title: '`Intl.DisplayNames`'
+author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu)) 和 Frank Yung-Fong Tang'
 avatars:
-  - &apos;shu-yu-guo&apos;
-  - &apos;frank-tang&apos;
+  - 'shu-yu-guo'
+  - 'frank-tang'
 date: 2020-02-13
 tags:
   - Intl
   - Node.js 14
-description: &apos;Intl.DisplayNames API 使得语言、地区、书写系统和货币的本地化名称变得更加方便。&apos;
-tweet: &apos;1232333889005334529&apos;
+description: 'Intl.DisplayNames API 使得语言、地区、书写系统和货币的本地化名称变得更加方便。'
+tweet: '1232333889005334529'
 ---
 面向全球用户的 Web 应用需要以许多不同语言显示语言、地区、书写系统和货币的名称。这些名称的翻译需要数据，该数据可在 [Unicode CLDR](http://cldr.unicode.org/translation/) 中找到。将数据打包为应用的一部分会耗费开发时间。用户往往更喜欢语言和地区名称的统一翻译，而随着全球地缘政治情况的变化保持数据更新需要持续维护。
 
@@ -21,65 +21,65 @@ tweet: &apos;1232333889005334529&apos;
 以下示例展示如何创建一个 `Intl.DisplayNames` 对象以使用 [ISO-3166 2字母国家代码](https://www.iso.org/iso-3166-country-codes.html) 获取英文的地区名称。
 
 ```js
-const regionNames = new Intl.DisplayNames([&apos;en&apos;], { type: &apos;region&apos; });
-regionNames.of(&apos;US&apos;);
-// → &apos;United States&apos;
-regionNames.of(&apos;BA&apos;);
-// → &apos;Bosnia & Herzegovina&apos;
-regionNames.of(&apos;MM&apos;);
-// → &apos;Myanmar (Burma)&apos;
+const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+regionNames.of('US');
+// → 'United States'
+regionNames.of('BA');
+// → 'Bosnia & Herzegovina'
+regionNames.of('MM');
+// → 'Myanmar (Burma)'
 ```
 
-以下示例使用 [Unicode&apos;的语言标识符语法](http://unicode.org/reports/tr35/#Unicode_language_identifier) 获取繁体中文的语言名称。
+以下示例使用 [Unicode'的语言标识符语法](http://unicode.org/reports/tr35/#Unicode_language_identifier) 获取繁体中文的语言名称。
 
 ```js
-const languageNames = new Intl.DisplayNames([&apos;zh-Hant&apos;], { type: &apos;language&apos; });
-languageNames.of(&apos;fr&apos;);
-// → &apos;法文&apos;
-languageNames.of(&apos;zh&apos;);
-// → &apos;中文&apos;
-languageNames.of(&apos;de&apos;);
-// → &apos;德文&apos;
+const languageNames = new Intl.DisplayNames(['zh-Hant'], { type: 'language' });
+languageNames.of('fr');
+// → '法文'
+languageNames.of('zh');
+// → '中文'
+languageNames.of('de');
+// → '德文'
 ```
 
 以下示例使用 [ISO-4217 3字母货币代码](https://www.iso.org/iso-4217-currency-codes.html) 获取简体中文的货币名称。在存在单数和复数形式区别的语言中，货币名称为单数形式。对于复数形式，可以使用 [`Intl.NumberFormat`](https://v8.dev/features/intl-numberformat)。
 
 ```js
-const currencyNames = new Intl.DisplayNames([&apos;zh-Hans&apos;], {type: &apos;currency&apos;});
-currencyNames.of(&apos;USD&apos;);
-// → &apos;美元&apos;
-currencyNames.of(&apos;EUR&apos;);
-// → &apos;欧元&apos;
-currencyNames.of(&apos;JPY&apos;);
-// → &apos;日元&apos;
-currencyNames.of(&apos;CNY&apos;);
-// → &apos;人民币&apos;
+const currencyNames = new Intl.DisplayNames(['zh-Hans'], {type: 'currency'});
+currencyNames.of('USD');
+// → '美元'
+currencyNames.of('EUR');
+// → '欧元'
+currencyNames.of('JPY');
+// → '日元'
+currencyNames.of('CNY');
+// → '人民币'
 ```
 
 以下示例展示最终支持的数据类型“书写系统”，在英文中使用 [ISO-15924 4字母书写系统代码](http://unicode.org/iso15924/iso15924-codes.html)。
 
 ```js
-const scriptNames = new Intl.DisplayNames([&apos;en&apos;], { type: &apos;script&apos; });
-scriptNames.of(&apos;Latn&apos;);
-// → &apos;Latin&apos;
-scriptNames.of(&apos;Arab&apos;);
-// → &apos;Arabic&apos;
-scriptNames.of(&apos;Kana&apos;);
-// → &apos;Katakana&apos;
+const scriptNames = new Intl.DisplayNames(['en'], { type: 'script' });
+scriptNames.of('Latn');
+// → 'Latin'
+scriptNames.of('Arab');
+// → 'Arabic'
+scriptNames.of('Kana');
+// → 'Katakana'
 ```
 
 对于更高级的用法，第二个 `options` 参数还支持 `style` 属性。`style` 属性对应于显示名称的宽度，可以是 `"long"`、`"short"` 或 `"narrow"`。不同样式的值不一定有差异。默认值是 `"long"`。
 
 ```js
-const longLanguageNames = new Intl.DisplayNames([&apos;en&apos;], { type: &apos;language&apos; });
-longLanguageNames.of(&apos;en-US&apos;);
-// → &apos;American English&apos;
-const shortLanguageNames = new Intl.DisplayNames([&apos;en&apos;], { type: &apos;language&apos;, style: &apos;short&apos; });
-shortLanguageNames.of(&apos;en-US&apos;);
-// → &apos;US English&apos;
-const narrowLanguageNames = new Intl.DisplayNames([&apos;en&apos;], { type: &apos;language&apos;, style: &apos;narrow&apos; });
-narrowLanguageNames.of(&apos;en-US&apos;);
-// → &apos;US English&apos;
+const longLanguageNames = new Intl.DisplayNames(['en'], { type: 'language' });
+longLanguageNames.of('en-US');
+// → 'American English'
+const shortLanguageNames = new Intl.DisplayNames(['en'], { type: 'language', style: 'short' });
+shortLanguageNames.of('en-US');
+// → 'US English'
+const narrowLanguageNames = new Intl.DisplayNames(['en'], { type: 'language', style: 'narrow' });
+narrowLanguageNames.of('en-US');
+// → 'US English'
 ```
 
 ## 完整 API

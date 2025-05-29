@@ -1,6 +1,6 @@
 ---
-title: &apos;Pautas de revisión de diseño&apos;
-description: &apos;Este documento explica las pautas de revisión de diseño del proyecto V8.&apos;
+title: 'Pautas de revisión de diseño'
+description: 'Este documento explica las pautas de revisión de diseño del proyecto V8.'
 ---
 Por favor, asegúrate de seguir las siguientes pautas cuando sea aplicable.
 
@@ -26,7 +26,7 @@ La solución propuesta se basa en los siguientes supuestos/pilares:
 1. El flujo de trabajo propuesto pone al colaborador individual (CI) a cargo. Ellos son quienes facilitan el proceso.
 1. Sus LT guía tienen la tarea de ayudarles a navegar por el territorio y encontrar los proveedores de LGTM adecuados.
 1. Si una característica no es controvertida, casi no se debería generar sobrecarga.
-1. Si hay mucha controversia, la característica puede ser &apos;escalada&apos; a la reunión de Responsables de Revisión Técnica de V8, donde se deciden los pasos adicionales.
+1. Si hay mucha controversia, la característica puede ser 'escalada' a la reunión de Responsables de Revisión Técnica de V8, donde se deciden los pasos adicionales.
 
 ## Roles
 

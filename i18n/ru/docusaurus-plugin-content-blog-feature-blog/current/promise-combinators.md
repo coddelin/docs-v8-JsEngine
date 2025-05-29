@@ -1,8 +1,8 @@
 ---
-title: &apos;Комбинаторы Promise&apos;
-author: &apos;Маттиас Биненс ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Комбинаторы Promise'
+author: 'Маттиас Биненс ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-06-12
 tags:
   - ECMAScript
@@ -10,8 +10,8 @@ tags:
   - ES2021
   - io19
   - Node.js 16
-description: &apos;В JavaScript есть четыре комбинатора promise: Promise.all, Promise.race, Promise.allSettled и Promise.any.&apos;
-tweet: &apos;1138819493956710400&apos;
+description: 'В JavaScript есть четыре комбинатора promise: Promise.all, Promise.race, Promise.allSettled и Promise.any.'
+tweet: '1138819493956710400'
 ---
 С момента появления промисов в ES2015 JavaScript поддерживал ровно два комбинатора promise: статические методы `Promise.all` и `Promise.race`.
 
@@ -45,9 +45,9 @@ tweet: &apos;1138819493956710400&apos;
 
 ```js
 const promises = [
-  fetch(&apos;/component-a.css&apos;),
-  fetch(&apos;/component-b.css&apos;),
-  fetch(&apos;/component-c.css&apos;),
+  fetch('/component-a.css'),
+  fetch('/component-b.css'),
+  fetch('/component-c.css'),
 ];
 try {
   const styleResponses = await Promise.all(promises);
@@ -105,9 +105,9 @@ try {
 
 ```js
 const promises = [
-  fetch(&apos;/api-call-1&apos;),
-  fetch(&apos;/api-call-2&apos;),
-  fetch(&apos;/api-call-3&apos;),
+  fetch('/api-call-1'),
+  fetch('/api-call-2'),
+  fetch('/api-call-3'),
 ];
 // Представьте, что некоторые из этих запросов не удались, а некоторые прошли успешно.
 
@@ -128,15 +128,15 @@ removeLoadingIndicator();
 
 ```js
 const promises = [
-  fetch(&apos;/endpoint-a&apos;).then(() => &apos;a&apos;),
-  fetch(&apos;/endpoint-b&apos;).then(() => &apos;b&apos;),
-  fetch(&apos;/endpoint-c&apos;).then(() => &apos;c&apos;),
+  fetch('/endpoint-a').then(() => 'a'),
+  fetch('/endpoint-b').then(() => 'b'),
+  fetch('/endpoint-c').then(() => 'c'),
 ];
 try {
   const first = await Promise.any(promises);
   // Любой из промисов был выполнен.
   console.log(first);
-  // → например, &apos;b&apos;
+  // → например, 'b'
 } catch (error) {
   // Все промисы были отклонены.
   console.assert(error instanceof AggregateError);
@@ -155,5 +155,5 @@ try {
 `Promise.any` может представлять множество ошибок одновременно. Чтобы поддерживать это на уровне языка, был введен новый тип ошибок под названием `AggregateError`. Помимо базового использования в приведенном выше примере, объекты `AggregateError` также могут быть программно сконструированы, так же как и другие типы ошибок:
 
 ```js
-const aggregateError = new AggregateError([errorA, errorB, errorC], &apos;Что-то пошло не так!&apos;);
+const aggregateError = new AggregateError([errorA, errorB, errorC], 'Что-то пошло не так!');
 ```

@@ -1,10 +1,10 @@
 ---
-title: &apos;Lançamento do V8 v5.0&apos;
-author: &apos;a equipe V8&apos;
+title: 'Lançamento do V8 v5.0'
+author: 'a equipe V8'
 date: 2016-03-15 13:33:37
 tags:
   - lançamento
-description: &apos;V8 v5.0 vem com melhorias de desempenho e adiciona suporte a vários novos recursos de linguagem ES2015.&apos;
+description: 'V8 v5.0 vem com melhorias de desempenho e adiciona suporte a vários novos recursos de linguagem ES2015.'
 ---
 O primeiro passo no [processo de lançamento](/docs/release-process) do V8 é o início de um novo branch a partir do Git master imediatamente antes que o Chromium faça o branch para um marco Beta do Chrome (aproximadamente a cada seis semanas). Nosso mais novo branch de lançamento é [V8 v5.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.0), que permanecerá em beta até lançarmos uma versão estável em conjunto com o Chrome 50 Stable. Aqui estão os destaques dos novos recursos voltados para desenvolvedores nesta versão do V8.
 
@@ -22,23 +22,23 @@ O V8 v5.0 contém vários recursos ES2015 relacionados à correspondência de ex
 A [Flag Unicode do RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp#Parameters), `u`, ativa um novo modo Unicode para correspondência de expressões regulares. A Flag Unicode trata padrões e cadeias de caracteres regex como uma série de codepoints Unicode. Ela também expõe uma nova sintaxe para escapes de codepoints Unicode.
 
 ```js
-/😊{2}/.test(&apos;😊😊&apos;);
+/😊{2}/.test('😊😊');
 // false
 
-/😊{2}/u.test(&apos;😊😊&apos;);
+/😊{2}/u.test('😊😊');
 // true
 
-/\u{76}\u{38}/u.test(&apos;v8&apos;);
+/\u{76}\u{38}/u.test('v8');
 // true
 
-/\u{1F60A}/u.test(&apos;😊&apos;);
+/\u{1F60A}/u.test('😊');
 // true
 ```
 
 A flag `u` também faz com que o átomo `.` (também conhecido como o correspondente de um único caractere) corresponda a qualquer símbolo Unicode, em vez de apenas os caracteres no Plano Multilíngue Básico (BMP).
 
 ```js
-const string = &apos;o 🅛 trem&apos;;
+const string = 'o 🅛 trem';
 
 /o\s.\strem/.test(string);
 // false

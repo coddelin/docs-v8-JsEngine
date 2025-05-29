@@ -1,10 +1,10 @@
 ---
-title: &apos;Lançamento do V8 v4.9&apos;
-author: &apos;a equipe do V8&apos;
+title: 'Lançamento do V8 v4.9'
+author: 'a equipe do V8'
 date: 2016-01-26 13:33:37
 tags:
   - lançamento
-description: &apos;V8 v4.9 vem com uma implementação aprimorada de `Math.random` e adiciona suporte a diversos novos recursos da linguagem ES2015.&apos;
+description: 'V8 v4.9 vem com uma implementação aprimorada de `Math.random` e adiciona suporte a diversos novos recursos da linguagem ES2015.'
 ---
 Aproximadamente a cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](/docs/release-process). Cada versão é criada a partir do master do Git do V8 imediatamente antes do Chrome ramificar para um marco Beta do Chrome. Hoje estamos felizes em anunciar nossa mais nova ramificação, [V8 versão 4.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.9), que ficará em beta até ser lançada em coordenação com a versão Estável do Chrome 49. V8 4.9 está repleto de novidades voltadas para os desenvolvedores, então gostaríamos de dar uma prévia de alguns destaques em antecipação ao lançamento nas próximas semanas.
 
@@ -50,14 +50,14 @@ Para proxy um objeto, você deve criar um objeto de manipulador que define vári
 ```js
 const target = {};
 const handler = {
-  get(target, name=&apos;mundo&apos;) {
+  get(target, name='mundo') {
     return `Olá, ${name}!`;
   }
 };
 
 const foo = new Proxy(target, handler);
 foo.bar;
-// → &apos;Olá, bar!&apos;
+// → 'Olá, bar!'
 ```
 
 O objeto Proxy é acompanhado pelo módulo Reflect, que define padrões adequados para todas as armadilhas de proxy:
@@ -74,9 +74,9 @@ const debugMe = new Proxy({}, {
   }
 });
 
-debugMe.name = &apos;John Doe&apos;;
+debugMe.name = 'John Doe';
 // Depuração: set chamado para o campo: name, com valor: John Doe
-const title = `Sr. ${debugMe.name}`; // → &apos;Sr. John Doe&apos;
+const title = `Sr. ${debugMe.name}`; // → 'Sr. John Doe'
 // Depuração: get chamado para o campo: name
 ```
 
@@ -88,8 +88,8 @@ No ES5 e anteriores, parâmetros opcionais em definições de funções exigiam 
 
 ```js
 function sublist(list, start, end) {
-  if (typeof start === &apos;undefined&apos;) start = 0;
-  if (typeof end === &apos;undefined&apos;) end = list.length;
+  if (typeof start === 'undefined') start = 0;
+  if (typeof end === 'undefined') end = list.length;
   ...
 }
 ```
@@ -123,13 +123,13 @@ Usando `Symbol.toStringTag`, tipos definidos pelo usuário agora podem retornar 
 ```js
 class Custom {
   get [Symbol.toStringTag]() {
-    return &apos;Custom&apos;;
+    return 'Custom';
   }
 }
 Object.prototype.toString.call(new Custom);
-// → &apos;[object Custom]&apos;
+// → '[object Custom]'
 String(new Custom);
-// → &apos;[object Custom]&apos;
+// → '[object Custom]'
 ```
 
 ## `Math.random()` Melhorado

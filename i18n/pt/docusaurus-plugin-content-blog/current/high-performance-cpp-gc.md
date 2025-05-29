@@ -1,17 +1,17 @@
 ---
-title: &apos;Coleta de lixo de alto desempenho para C++&apos;
-author: &apos;Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), e Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), especialistas em memória C++&apos;
+title: 'Coleta de lixo de alto desempenho para C++'
+author: 'Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), e Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), especialistas em memória C++'
 avatars:
-  - &apos;anton-bikineev&apos;
-  - &apos;omer-katz&apos;
-  - &apos;michael-lippautz&apos;
+  - 'anton-bikineev'
+  - 'omer-katz'
+  - 'michael-lippautz'
 date: 2020-05-26
 tags:
   - internals
   - memória
   - cppgc
-description: &apos;Este post descreve o coletor de lixo Oilpan para C++, seu uso no Blink e como ele otimiza a varredura, ou seja, a recuperação de memória inacessível.&apos;
-tweet: &apos;1265304883638480899&apos;
+description: 'Este post descreve o coletor de lixo Oilpan para C++, seu uso no Blink e como ele otimiza a varredura, ou seja, a recuperação de memória inacessível.'
+tweet: '1265304883638480899'
 ---
 
 No passado, já [falamos](https://v8.dev/blog/trash-talk) [muito](https://v8.dev/blog/concurrent-marking) [sobre](https://v8.dev/blog/tracing-js-dom) coleta de lixo para JavaScript, o modelo de objetos de documentos (DOM) e como tudo isso é implementado e otimizado no V8. No entanto, nem tudo no Chromium é JavaScript, já que a maior parte do navegador e de seu mecanismo de renderização Blink, onde o V8 está embutido, são escritos em C++. O JavaScript pode ser usado para interagir com o DOM, que é então processado pelo pipeline de renderização.
@@ -81,8 +81,8 @@ class GCed : public GarbageCollected<GCed> {
     visitor->Trace(other_);
   }
   ~GCed() {
-    other_->DoSomething();  // erro: Finalizador &apos;~GCed&apos; acessa
-                            // campo potencialmente finalizado &apos;other_&apos;.
+    other_->DoSomething();  // erro: Finalizador '~GCed' acessa
+                            // campo potencialmente finalizado 'other_'.
   }
  private:
   Member<GCed> other_;

@@ -1,13 +1,13 @@
 ---
-título: &apos;Chamadas internas curtas&apos;
-autor: &apos;[Toon Verwaest](https://twitter.com/tverwaes), The Big Short&apos;
+título: 'Chamadas internas curtas'
+autor: '[Toon Verwaest](https://twitter.com/tverwaes), The Big Short'
 avatares:
   - toon-verwaest
 data: 2021-05-06
 tags:
   - JavaScript
-descrição: &apos;No V8 v9.1 desativamos temporariamente as funções internas incorporadas no desktop para evitar problemas de desempenho resultantes de chamadas indiretas distantes.&apos;
-tweet: &apos;1394267917013897216&apos;
+descrição: 'No V8 v9.1 desativamos temporariamente as funções internas incorporadas no desktop para evitar problemas de desempenho resultantes de chamadas indiretas distantes.'
+tweet: '1394267917013897216'
 ---
 
 No V8 v9.1 desativamos temporariamente as [funções internas incorporadas](https://v8.dev/blog/embedded-builtins) no desktop. Embora incorporar funções internas melhore significativamente o uso de memória, percebemos que chamadas de funções entre as funções internas incorporadas e o código compilado pelo JIT podem resultar em uma penalidade de desempenho considerável. Esse custo depende da microarquitetura do CPU. Neste post, vamos explicar por que isso está acontecendo, como o desempenho é afetado e o que planejamos fazer para resolver isso a longo prazo.

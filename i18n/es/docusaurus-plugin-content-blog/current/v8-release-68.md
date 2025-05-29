@@ -1,11 +1,11 @@
 ---
-title: &apos;Lanzamiento de V8 v6.8&apos;
-author: &apos;el equipo de V8&apos;
+title: 'Lanzamiento de V8 v6.8'
+author: 'el equipo de V8'
 date: 2018-06-21 13:33:37
 tags:
   - lanzamiento
-description: &apos;V8 v6.8 presenta un menor consumo de memoria y varias mejoras de rendimiento.&apos;
-tweet: &apos;1009753739060826112&apos;
+description: 'V8 v6.8 presenta un menor consumo de memoria y varias mejoras de rendimiento.'
+tweet: '1009753739060826112'
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se ramifica desde el Git master de V8 inmediatamente antes de un hito beta de Chrome. Hoy nos complace anunciar nuestra rama más reciente, [V8 versión 6.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.8), que está en beta hasta su lanzamiento en coordinación con Chrome 68 Stable dentro de varias semanas. V8 v6.8 está llena de todo tipo de novedades orientadas a desarrolladores. Esta publicación ofrece un adelanto de algunos de los aspectos destacados en anticipación al lanzamiento.
 

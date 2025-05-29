@@ -1,6 +1,6 @@
 ---
-title: &apos;Fusionner et appliquer des correctifs&apos;
-description: &apos;Ce document explique comment fusionner des correctifs V8 dans une branche de publication.&apos;
+title: 'Fusionner et appliquer des correctifs'
+description: 'Ce document explique comment fusionner des correctifs V8 dans une branche de publication.'
 ---
 Si vous avez un correctif dans la branche `main` (par exemple, une correction de bogue important) qui doit être fusionné dans l'une des branches de publication de V8 (refs/branch-heads/12.5), lisez ce qui suit.
 
@@ -22,7 +22,7 @@ Plus d'informations sont disponibles sur [la page pertinente de Chromium](https:
 
 ## Le processus de fusion
 
-Le processus de fusion dans le suivi de V8 est piloté par des Attributs. Veuillez donc définir l'attribut &apos;Merge-Request&apos; sur la version correspondante de Chrome Milestone. Si la fusion n'affecte qu'un [port](https://v8.dev/docs/ports) de V8, veuillez définir l'attribut HW en conséquence. Par exemple :
+Le processus de fusion dans le suivi de V8 est piloté par des Attributs. Veuillez donc définir l'attribut 'Merge-Request' sur la version correspondante de Chrome Milestone. Si la fusion n'affecte qu'un [port](https://v8.dev/docs/ports) de V8, veuillez définir l'attribut HW en conséquence. Par exemple :
 
 ```
 Merge-Request: 123

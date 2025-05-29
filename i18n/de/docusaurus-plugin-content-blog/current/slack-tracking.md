@@ -98,7 +98,7 @@ function Peak(name, height) {
   this.height = height;
 }
 
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
+const m1 = new Peak('Matterhorn', 4478);
 ```
 
 Gemäß der Berechnung in `JSFunction::CalculateExpectedNofProperties` und unserer Funktion `Peak()` sollten wir 2 in-Objekt-Eigenschaften haben und dank des Slack-Trackings weitere 8 zusätzliche. Wir können `m1` mit `%DebugPrint()` ausdrucken (_Diese praktische Funktion zeigt die Kartenstruktur. Sie können sie verwenden, indem Sie `d8` mit dem Flag `--allow-natives-syntax` ausführen_):
@@ -195,13 +195,13 @@ Nun wächst ein Kartenbaum von der initialen Karte aus, mit einem Ast für jede 
 Diese Übergänge basierend auf Eigenschaftsnamen sind, wie der [„blinde Maulwurf“](https://www.google.com/search?q=blind+mole&tbm=isch) von JavaScript seine Karten unbemerkt im Hintergrund erstellt. Diese initiale Karte wird auch in der Funktion `Peak` gespeichert, sodass sie, wenn sie als Konstruktor verwendet wird, benutzt werden kann, um das `this` Objekt einzurichten.
 
 ```js
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
-const m2 = new Peak(&apos;Mont Blanc&apos;, 4810);
-const m3 = new Peak(&apos;Zinalrothorn&apos;, 4221);
-const m4 = new Peak(&apos;Wendelstein&apos;, 1838);
-const m5 = new Peak(&apos;Zugspitze&apos;, 2962);
-const m6 = new Peak(&apos;Watzmann&apos;, 2713);
-const m7 = new Peak(&apos;Eiger&apos;, 3970);
+const m1 = new Peak('Matterhorn', 4478);
+const m2 = new Peak('Mont Blanc', 4810);
+const m3 = new Peak('Zinalrothorn', 4221);
+const m4 = new Peak('Wendelstein', 1838);
+const m5 = new Peak('Zugspitze', 2962);
+const m6 = new Peak('Watzmann', 2713);
+const m7 = new Peak('Eiger', 3970);
 ```
 
 Das Tolle hierbei ist, dass nach der Erstellung von `m7`, das erneute Ausführen von `%DebugPrint(m1)` ein erstaunliches neues Ergebnis liefert:
@@ -295,7 +295,7 @@ Das folgende Diagramm zeigt, dass das Slack-Tracking für diese initiale Map **a
 Was passiert jetzt, nachdem das Slack-Tracking abgeschlossen ist, wenn wir einem dieser `Peak`-Objekte eine weitere Eigenschaft hinzufügen?
 
 ```js
-m1.country = &apos;Switzerland&apos;;
+m1.country = 'Switzerland';
 ```
 
 V8 muss in den Eigenschaften-Backing-Store gehen. Wir erhalten das folgende Objektlayout:
@@ -339,13 +339,13 @@ function Peak(name, height, prominence, isClimbed) {
 Sie fügen ein paar solcher unterschiedlicher Varianten hinzu:
 
 ```js
-const m1 = new Peak(&apos;Wendelstein&apos;, 1838);
-const m2 = new Peak(&apos;Matterhorn&apos;, 4478, 1040, true);
-const m3 = new Peak(&apos;Zugspitze&apos;, 2962);
-const m4 = new Peak(&apos;Mont Blanc&apos;, 4810, 4695, true);
-const m5 = new Peak(&apos;Watzmann&apos;, 2713);
-const m6 = new Peak(&apos;Zinalrothorn&apos;, 4221, 490, true);
-const m7 = new Peak(&apos;Eiger&apos;, 3970);
+const m1 = new Peak('Wendelstein', 1838);
+const m2 = new Peak('Matterhorn', 4478, 1040, true);
+const m3 = new Peak('Zugspitze', 2962);
+const m4 = new Peak('Mont Blanc', 4810, 4695, true);
+const m5 = new Peak('Watzmann', 2713);
+const m6 = new Peak('Zinalrothorn', 4221, 490, true);
+const m7 = new Peak('Eiger', 3970);
 ```
 
 In diesem Fall haben Objekte `m1`, `m3`, `m5` und `m7` eine Map, und Objekte `m2`, `m4` und `m6` haben eine Map weiter unten in der Kette der Nachfolger von der initialen Map, aufgrund der zusätzlichen Eigenschaften. Sobald das Slack-Tracking für diese Map-Familie abgeschlossen ist, gibt es **4** in-Objekt-Eigenschaften statt wie zuvor **2**, weil das Slack-Tracking sicherstellt, dass ausreichend Platz für die maximale Anzahl von in-Objekt-Eigenschaften bleibt, die von einem Nachfolger in der Baumstruktur der Maps unterhalb der initialen Map genutzt werden.
@@ -364,10 +364,10 @@ function foo(a1, a2, a3, a4) {
 }
 
 %PrepareFunctionForOptimization(foo);
-const m1 = foo(&apos;Wendelstein&apos;, 1838);
-const m2 = foo(&apos;Matterhorn&apos;, 4478, 1040, true);
+const m1 = foo('Wendelstein', 1838);
+const m2 = foo('Matterhorn', 4478, 1040, true);
 %OptimizeFunctionOnNextCall(foo);
-foo(&apos;Zugspitze&apos;, 2962);
+foo('Zugspitze', 2962);
 ```
 
 Das sollte ausreichen, um optimierten Code zu kompilieren und auszuführen. Wir führen etwas im TurboFan (dem optimierenden Compiler) durch, das [**Create Lowering**](https://source.chromium.org/chromium/chromium/src/+/master:v8/src/compiler/js-create-lowering.h;l=32;drc=ee9e7e404e5a3f75a3ca0489aaf80490f625ca27) genannt wird, bei dem wir die Erstellung von Objekten inline durchführen. Das bedeutet, dass der von uns erzeugte native Code Anweisungen enthält, um den GC nach der Instanzgröße des zu erstellenden Objekts zu fragen und dann diese Felder sorgfältig zu initialisieren. Dieser Code wäre jedoch ungültig, wenn das Slack-Tracking zu einem späteren Zeitpunkt beendet würde. Was können wir dagegen tun?

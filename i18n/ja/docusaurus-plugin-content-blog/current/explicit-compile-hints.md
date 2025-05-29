@@ -1,13 +1,13 @@
 ---
- title: &apos;V8にヘッズアップを与える: 明示的なコンパイルヒントでJavaScriptの起動を高速化&apos;
- author: &apos;Marja Hölttä&apos;
+ title: 'V8にヘッズアップを与える: 明示的なコンパイルヒントでJavaScriptの起動を高速化'
+ author: 'Marja Hölttä'
  avatars:
    - marja-holtta
  date: 2025-04-29
  tags:
    - JavaScript
  description: "明示的なコンパイルヒントは、どのJavaScriptファイルや関数が積極的に解析およびコンパイルされるべきかを制御します"
- tweet: &apos;&apos;
+ tweet: ''
 ---
 
 JavaScriptを高速で動作させることは、応答性の高いWebアプリケーションには欠かせません。V8の高度な最適化をもってしても、起動時に重要なJavaScriptを解析およびコンパイルすることがパフォーマンスにボトルネックをもたらす場合があります。初期スクリプトのコンパイル中にどのJavaScript関数をコンパイルするかを把握することで、Webページの読み込みを高速化できます。
@@ -51,7 +51,7 @@ script1.js:
 
 ```js
 function testfunc1() {
-  console.log(&apos;testfunc1 called!&apos;);
+  console.log('testfunc1 called!');
 }
 
 testfunc1();
@@ -63,7 +63,7 @@ script2.js:
 //# allFunctionsCalledOnLoad
 
 function testfunc2() {
-  console.log(&apos;testfunc2 called!&apos;);
+  console.log('testfunc2 called!');
 }
 
 testfunc2();

@@ -1,13 +1,13 @@
 ---
-title: &apos;"ECMAScript 사양 이해하기, 2부"의 추가 콘텐츠&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), 추측적 사양 관찰자&apos;
+title: '"ECMAScript 사양 이해하기, 2부"의 추가 콘텐츠'
+author: '[Marja Hölttä](https://twitter.com/marjakh), 추측적 사양 관찰자'
 avatars:
   - marja-holtta
 date: 2020-03-02
 tags:
   - ECMAScript
-description: &apos;ECMAScript 사양을 읽는 튜토리얼&apos;
-tweet: &apos;&apos;
+description: 'ECMAScript 사양을 읽는 튜토리얼'
+tweet: ''
 ---
 
 ### 왜 `o2.foo`가 `AssignmentExpression`인가요?
@@ -18,7 +18,7 @@ tweet: &apos;&apos;
 
 ```js
 function simple(a) {
-  console.log(&apos;매개변수는 &apos; + a);
+  console.log('매개변수는 ' + a);
 }
 simple(x = 1);
 // → “매개변수는 1”이 로깅됩니다.

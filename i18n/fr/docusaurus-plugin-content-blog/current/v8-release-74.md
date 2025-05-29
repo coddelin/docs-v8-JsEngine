@@ -1,11 +1,11 @@
 ---
-title: &apos;Sortie de V8 v7.4&apos;
-author: &apos;Georg Neis&apos;
+title: 'Sortie de V8 v7.4'
+author: 'Georg Neis'
 date: 2019-03-22 16:30:42
 tags:
   - sortie
-description: &apos;V8 v7.4 introduit les threads/Atomics WebAssembly, les champs privés de classes, des améliorations de performance et de mémoire, et bien plus encore !&apos;
-tweet: &apos;1109094755936489472&apos;
+description: 'V8 v7.4 introduit les threads/Atomics WebAssembly, les champs privés de classes, des améliorations de performance et de mémoire, et bien plus encore !'
+tweet: '1109094755936489472'
 ---
 Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](/docs/release-process). Chaque version est dérivée du Git master de V8 juste avant une étape Beta de Chrome. Aujourd’hui, nous sommes heureux d’annoncer notre nouvelle branche, [V8 version 7.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.4), qui est en version bêta jusqu’à sa sortie coordonnée avec Chrome 74 Stable dans quelques semaines. V8 v7.4 est rempli de toutes sortes de nouveautés pour les développeurs. Cet article fournit un aperçu de certains des points forts en prévision de la sortie.
 
@@ -102,7 +102,7 @@ V8 v7.2 a ajouté la prise en charge de la syntaxe des champs publics dans les c
 class IncreasingCounter {
   #count = 0;
   get value() {
-    console.log(&apos;Récupération de la valeur actuelle !&apos;);
+    console.log('Récupération de la valeur actuelle !');
     return this.#count;
   }
   increment() {
@@ -125,22 +125,22 @@ Pour plus d'informations, lisez notre [article explicatif sur les champs de clas
 
 ### `Intl.Locale`
 
-Les applications JavaScript utilisent généralement des chaînes comme `&apos;en-US&apos;` ou `&apos;de-CH&apos;` pour identifier les paramètres régionaux. `Intl.Locale` offre un mécanisme plus puissant pour gérer les paramètres régionaux, et permet d'extraire facilement les préférences spécifiques aux paramètres régionaux telles que la langue, le calendrier, le système de numérotation, le cycle horaire, etc.
+Les applications JavaScript utilisent généralement des chaînes comme `'en-US'` ou `'de-CH'` pour identifier les paramètres régionaux. `Intl.Locale` offre un mécanisme plus puissant pour gérer les paramètres régionaux, et permet d'extraire facilement les préférences spécifiques aux paramètres régionaux telles que la langue, le calendrier, le système de numérotation, le cycle horaire, etc.
 
 ```js
-const locale = new Intl.Locale(&apos;es-419-u-hc-h12&apos;, {
-  calendar: &apos;gregory&apos;
+const locale = new Intl.Locale('es-419-u-hc-h12', {
+  calendar: 'gregory'
 });
 locale.language;
-// → &apos;es&apos;
+// → 'es'
 locale.calendar;
-// → &apos;gregory&apos;
+// → 'gregory'
 locale.hourCycle;
-// → &apos;h12&apos;
+// → 'h12'
 locale.region;
-// → &apos;419&apos;
+// → '419'
 locale.toString();
-// → &apos;es-419-u-ca-gregory-hc-h12&apos;
+// → 'es-419-u-ca-gregory-hc-h12'
 ```
 
 ### Grammaire du Hashbang

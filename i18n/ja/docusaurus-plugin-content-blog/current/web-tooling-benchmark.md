@@ -1,14 +1,14 @@
 ---
-title: &apos;Web Tooling Benchmarkを発表&apos;
-author: &apos;Benedikt Meurer（[@bmeurer](https://twitter.com/bmeurer)、JavaScriptパフォーマンスのジャグラー）&apos;
+title: 'Web Tooling Benchmarkを発表'
+author: 'Benedikt Meurer（[@bmeurer](https://twitter.com/bmeurer)、JavaScriptパフォーマンスのジャグラー）'
 avatars:
-  - &apos;benedikt-meurer&apos;
+  - 'benedikt-meurer'
 date: 2017-11-06 13:33:37
 tags:
   - ベンチマーク
   - Node.js
-description: &apos;新しいWeb Tooling Benchmarkは、Babel、TypeScript、その他の実際のプロジェクトにおけるV8のパフォーマンスボトルネックを特定し修正するのに役立ちます。&apos;
-tweet: &apos;927572065598824448&apos;
+description: '新しいWeb Tooling Benchmarkは、Babel、TypeScript、その他の実際のプロジェクトにおけるV8のパフォーマンスボトルネックを特定し修正するのに役立ちます。'
+tweet: '927572065598824448'
 ---
 JavaScriptのパフォーマンスは常にV8チームにとって重要な課題であり、この投稿では最近使用している新しいJavaScript[Web Tooling Benchmark](https://v8.github.io/web-tooling-benchmark)について説明し、V8のパフォーマンスボトルネックを特定および修正する方法を共有します。既にご存じの方もいるかもしれませんが、V8は[Node.jsに対する強いコミットメント](/blog/v8-nodejs)を持っており、このベンチマークは特にNode.jsに基づいて構築された一般的な開発者ツールを使ったパフォーマンステストを実施することでそのコミットメントを拡張しています。Web Tooling Benchmarkに含まれるツールは、現代的なウェブサイトやクラウドベースのアプリケーションを構築するために、開発者やデザイナーが現在使用しているものと同じです。[実際のパフォーマンス](/blog/real-world-performance/)に焦点を合わせる現在進行中の取り組みを継続するために、開発者が毎日実際に使用するコードを基にベンチマークを作成しました。
 

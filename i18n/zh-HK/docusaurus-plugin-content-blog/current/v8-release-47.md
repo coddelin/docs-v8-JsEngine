@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 版本 v4.7&apos;
-author: &apos;V8 團隊&apos;
+title: 'V8 版本 v4.7'
+author: 'V8 團隊'
 date: 2015-10-14 13:33:37
 tags:
   - 發佈
-description: &apos;V8 v4.7 帶來了內存使用量的減少以及對新的 ES2015 語言功能的支援。&apos;
+description: 'V8 v4.7 帶來了內存使用量的減少以及對新的 ES2015 語言功能的支援。'
 ---
 大約每六週，我們會按照 [發佈流程](https://v8.dev/docs/release-process) 創建一個新的 V8 分支。每個版本的分支都會在 Chrome 為 Chrome Beta 里程碑分支前，立即從 V8 的 Git 主分支創建。今天，我們很高興地宣布我們最新的分支 [V8 版本 4.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.7)，該版本將進入 Beta 測試，直到與 Chrome 47 穩定版同步釋出。V8 v4.7 為開發者提供了豐富的功能，我們希望提前分享一些亮點，為即將幾週後的發佈做準備。
 
@@ -19,12 +19,12 @@ description: &apos;V8 v4.7 帶來了內存使用量的減少以及對新的 ES20
 // 無剩餘運算符
 function concat() {
   var args = Array.prototype.slice.call(arguments, 1);
-  return args.join(&apos;&apos;);
+  return args.join('');
 }
 
 // 使用剩餘運算符
 function concatWithRest(...strings) {
-  return strings.join(&apos;&apos;);
+  return strings.join('');
 }
 ```
 
@@ -36,8 +36,8 @@ function concatWithRest(...strings) {
 
 ```js
 [1, 2, 3].includes(3); // true
-[&apos;apple&apos;, &apos;banana&apos;, &apos;cherry&apos;].includes(&apos;apple&apos;); // true
-[&apos;apple&apos;, &apos;banana&apos;, &apos;cherry&apos;].includes(&apos;peach&apos;); // false
+['apple', 'banana', 'cherry'].includes('apple'); // true
+['apple', 'banana', 'cherry'].includes('peach'); // false
 ```
 
 ## 減輕解析時的內存壓力

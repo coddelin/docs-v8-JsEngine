@@ -54,8 +54,8 @@ O suporte para [modo `dotAll`](https://github.com/tc39/proposal-regexp-dotall-fl
 [Assertivas Lookbehind](https://github.com/tc39/proposal-regexp-lookbehind), outro novo recurso de expressões regulares, agora estão disponíveis por padrão. O nome já descreve muito bem o seu significado. As assertivas Lookbehind oferecem uma maneira de restringir um padrão para combinar apenas se precedido pelo padrão no grupo Lookbehind. Ele vem em versões de correspondência e não-correspondência:
 
 ```js
-/(?<=\$)\d+/.exec(&apos;$1 vale cerca de ¥123&apos;); // [&apos;1&apos;]
-/(?<!\$)\d+/.exec(&apos;$1 vale cerca de ¥123&apos;); // [&apos;123&apos;]
+/(?<=\$)\d+/.exec('$1 vale cerca de ¥123'); // ['1']
+/(?<!\$)\d+/.exec('$1 vale cerca de ¥123'); // ['123']
 ```
 
 Mais detalhes sobre esses recursos estão disponíveis em nossa postagem no blog intitulada [Recursos futuros das expressões regulares](https://developers.google.com/web/updates/2017/07/upcoming-regexp-features).

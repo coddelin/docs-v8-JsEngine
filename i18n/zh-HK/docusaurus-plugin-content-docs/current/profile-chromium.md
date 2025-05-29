@@ -1,6 +1,6 @@
 ---
-title: &apos;使用 V8 對 Chromium 進行分析&apos;
-description: &apos;本文件解釋如何使用 V8 的 CPU 和堆分析器搭配 Chromium。&apos;
+title: '使用 V8 對 Chromium 進行分析'
+description: '本文件解釋如何使用 V8 的 CPU 和堆分析器搭配 Chromium。'
 ---
 [V8 的 CPU 和堆分析器](/docs/profile) 在 V8 的 shell 中使用十分簡單，但在 Chromium 中使用可能會令人感到疑惑。本頁面旨在為您提供幫助。
 
@@ -18,7 +18,7 @@ Chromium 是一個複雜的應用程序，而非 V8 shell。以下是影響分�
 以下是運行 Chromium 並從進程啟動開始獲取 CPU 分析文件的方法：
 
 ```bash
-./Chromium --no-sandbox --user-data-dir=`mktemp -d` --incognito --js-flags=&apos;--prof&apos;
+./Chromium --no-sandbox --user-data-dir=`mktemp -d` --incognito --js-flags='--prof'
 ```
 
 請注意，您不會在開發者工具中看到分析結果，因為所有數據都被記錄到文件中，而不是記錄到開發者工具。
@@ -48,7 +48,7 @@ Android 上的 Chrome 有一系列獨特之處，使得分析稍微複雜一些�
 以下命令啟用 Android 上的分析：
 
 ```bash
-./build/android/adb_chrome_public_command_line --no-sandbox --single-process --js-flags=&apos;--logfile=/storage/emulated/0/Download/%t.log,--prof&apos;
+./build/android/adb_chrome_public_command_line --no-sandbox --single-process --js-flags='--logfile=/storage/emulated/0/Download/%t.log,--prof'
 <關閉並重新啟動 Android 設備上的 Chrome>
 adb pull /storage/emulated/0/Download/<日志文件>
 ./src/v8/tools/linux-tick-processor --apk-embedded-library=out/Release/lib.unstripped/libchrome.so --preprocess <日志文件>

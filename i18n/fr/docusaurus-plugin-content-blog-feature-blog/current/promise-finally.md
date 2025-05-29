@@ -1,18 +1,18 @@
 ---
-title: &apos;`Promise.prototype.finally`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`Promise.prototype.finally`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-10-23
 tags:
   - ECMAScript
   - ES2018
-description: &apos;Promise.prototype.finally permet d&apos;enregistrer un callback qui sera invoqué une fois qu&apos;une promesse est réglée (c&apos;est-à-dire résolue ou rejetée).&apos;
-tweet: &apos;922459978857824261&apos;
+description: 'Promise.prototype.finally permet d'enregistrer un callback qui sera invoqué une fois qu'une promesse est réglée (c'est-à-dire résolue ou rejetée).'
+tweet: '922459978857824261'
 ---
-`Promise.prototype.finally` permet d&apos;enregistrer un callback qui sera invoqué une fois qu&apos;une promesse est _réglée_ (c&apos;est-à-dire résolue ou rejetée).
+`Promise.prototype.finally` permet d'enregistrer un callback qui sera invoqué une fois qu'une promesse est _réglée_ (c'est-à-dire résolue ou rejetée).
 
-Imaginez que vous voulez récupérer des données pour les afficher sur la page. Oh, et vous voulez montrer un indicateur de chargement lorsque la requête commence et le cacher lorsque la requête se termine. En cas de problème, vous affichez un message d&apos;erreur à la place.
+Imaginez que vous voulez récupérer des données pour les afficher sur la page. Oh, et vous voulez montrer un indicateur de chargement lorsque la requête commence et le cacher lorsque la requête se termine. En cas de problème, vous affichez un message d'erreur à la place.
 
 ```js
 const fetchAndDisplay = ({ url, element }) => {
@@ -32,13 +32,13 @@ const fetchAndDisplay = ({ url, element }) => {
 <!--truncate-->
 fetchAndDisplay({
   url: someUrl,
-  element: document.querySelector(&apos;#output&apos;)
+  element: document.querySelector('#output')
 });
 ```
 
-Si la requête réussit, nous affichons les données. En cas de problème, nous affichons un message d&apos;erreur à la place.
+Si la requête réussit, nous affichons les données. En cas de problème, nous affichons un message d'erreur à la place.
 
-Dans les deux cas, nous devons appeler `hideLoadingSpinner()`. Jusqu&apos;à présent, nous n&apos;avions pas d&apos;autre choix que de dupliquer cet appel dans les blocs `then()` et `catch()`. Avec `Promise.prototype.finally`, nous pouvons faire mieux :
+Dans les deux cas, nous devons appeler `hideLoadingSpinner()`. Jusqu'à présent, nous n'avions pas d'autre choix que de dupliquer cet appel dans les blocs `then()` et `catch()`. Avec `Promise.prototype.finally`, nous pouvons faire mieux :
 
 ```js
 const fetchAndDisplay = ({ url, element }) => {

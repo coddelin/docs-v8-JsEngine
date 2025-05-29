@@ -1,13 +1,13 @@
 ---
-title: &apos;Релиз V8 v8.3&apos;
-author: &apos;[Виктор Гомес](https://twitter.com/VictorBFG), безопасно работает из дома&apos;
+title: 'Релиз V8 v8.3'
+author: '[Виктор Гомес](https://twitter.com/VictorBFG), безопасно работает из дома'
 avatars:
- - &apos;victor-gomes&apos;
+ - 'victor-gomes'
 date: 2020-05-04
 tags:
  - release
-description: &apos;V8 v8.3 включает более быстрые ArrayBuffer&apos;ы, большие объемы памяти Wasm и устаревшие API.&apos;
-tweet: &apos;1257333120115847171&apos;
+description: 'V8 v8.3 включает более быстрые ArrayBuffer'ы, большие объемы памяти Wasm и устаревшие API.'
+tweet: '1257333120115847171'
 ---
 
 Каждые шесть недель мы создаем новую ветвь V8 в рамках нашего [процесса выпуска](https://v8.dev/docs/release-process). Каждая версия ветвится от мастер-ветки Git сразу перед выходом Chrome Beta. Сегодня мы рады объявить о нашей новой ветви, [V8 версии 8.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.3), которая находится в бета-версии до релиза совместно со стабильной версией Chrome 83 через несколько недель. V8 v8.3 наполнена множеством новшеств для разработчиков. В этом посте представлен обзор некоторых ключевых изменений.

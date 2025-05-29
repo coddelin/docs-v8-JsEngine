@@ -1,10 +1,10 @@
 ---
-title: &apos;Aidez-nous à tester l&apos;avenir de V8 !&apos;
-author: &apos;Daniel Clifford ([@expatdanno](https://twitter.com/expatdanno)), Original Munich V8 Brewer&apos;
+title: 'Aidez-nous à tester l'avenir de V8 !'
+author: 'Daniel Clifford ([@expatdanno](https://twitter.com/expatdanno)), Original Munich V8 Brewer'
 date: 2017-02-14 13:33:37
 tags:
   - internals
-description: &apos;Découvrez dès aujourd&apos;hui la nouvelle pipeline du compilateur V8 avec Ignition et TurboFan dans Chrome Canary !&apos;
+description: 'Découvrez dès aujourd'hui la nouvelle pipeline du compilateur V8 avec Ignition et TurboFan dans Chrome Canary !'
 ---
 L'équipe V8 travaille actuellement sur une nouvelle pipeline de compilateur par défaut qui nous aidera à améliorer la vitesse de [JavaScript en conditions réelles](/blog/real-world-performance). Vous pouvez découvrir cette nouvelle pipeline dès aujourd'hui dans Chrome Canary, afin de nous aider à vérifier qu'il n'y a pas de surprises lorsque nous déploierons cette nouvelle configuration sur tous les canaux Chrome.
 

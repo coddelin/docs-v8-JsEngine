@@ -1,6 +1,6 @@
 ---
-title: &apos;Sparkplug — 一種非最佳化 JavaScript 編譯器&apos;
-author: &apos;[Leszek Swirski](https://twitter.com/leszekswirski) — 也許不是最閃耀的火花，但至少是最快的那些&apos;
+title: 'Sparkplug — 一種非最佳化 JavaScript 編譯器'
+author: '[Leszek Swirski](https://twitter.com/leszekswirski) — 也許不是最閃耀的火花，但至少是最快的那些'
 avatars:
   - leszek-swirski
 date: 2021-05-27
@@ -9,8 +9,8 @@ tags:
 extra_links:
   - href: https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap
     rel: stylesheet
-description: &apos;在 V8 v9.1 中，我們透過 Sparkplug：新型非最佳化的 JavaScript 編譯器，將 V8 性能提升 5–15%。&apos;
-tweet: &apos;1397945205198835719&apos;
+description: '在 V8 v9.1 中，我們透過 Sparkplug：新型非最佳化的 JavaScript 編譯器，將 V8 性能提升 5–15%。'
+tweet: '1397945205198835719'
 ---
 
 <!-- markdownlint-capture -->

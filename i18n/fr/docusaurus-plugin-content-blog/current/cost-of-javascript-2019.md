@@ -1,15 +1,15 @@
 ---
-title: &apos;Le coût de JavaScript en 2019&apos;
-author: &apos;Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)), Concierge JavaScript, et Mathias Bynens ([@mathias](https://twitter.com/mathias)), Libérateur du fil principal&apos;
+title: 'Le coût de JavaScript en 2019'
+author: 'Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)), Concierge JavaScript, et Mathias Bynens ([@mathias](https://twitter.com/mathias)), Libérateur du fil principal'
 avatars:
-  - &apos;addy-osmani&apos;
-  - &apos;mathias-bynens&apos;
+  - 'addy-osmani'
+  - 'mathias-bynens'
 date: 2019-06-25
 tags:
   - internals
   - parsing
-description: &apos;Les coûts principaux du traitement de JavaScript sont le téléchargement et le temps d'exécution sur le CPU.&apos;
-tweet: &apos;1143531042361487360&apos;
+description: 'Les coûts principaux du traitement de JavaScript sont le téléchargement et le temps d'exécution sur le CPU.'
+tweet: '1143531042361487360'
 ---
 :::note
 **Remarque:** Si vous préférez regarder une présentation plutôt que lire des articles, profitez de la vidéo ci-dessous ! Sinon, passez la vidéo et continuez à lire.
@@ -153,12 +153,12 @@ const data = { foo: 42, bar: 1337 }; // 🐌
 …cela peut être représenté sous forme de chaîne JSON sérialisée, puis analysé en JSON à l’exécution :
 
 ```js
-const data = JSON.parse(&apos;{"foo":42,"bar":1337}&apos;); // 🚀
+const data = JSON.parse('{"foo":42,"bar":1337}'); // 🚀
 ```
 
 Tant que la chaîne JSON est évaluée une seule fois, l’approche `JSON.parse` est [beaucoup plus rapide](https://github.com/GoogleChromeLabs/json-parse-benchmark) comparée au littéral d’objet JavaScript, surtout pour les chargements à froid. Une bonne règle empirique est d’appliquer cette technique pour des objets de 10 kB ou plus — mais comme toujours avec les conseils de performance, mesurez l’impact réel avant d’effectuer des modifications.
 
-![`JSON.parse(&apos;…&apos;)` est [beaucoup plus rapide](https://github.com/GoogleChromeLabs/json-parse-benchmark) à analyser, compiler et exécuter comparé à un littéral JavaScript équivalent — non seulement dans V8 (1,7× plus rapide), mais dans tous les principaux moteurs JavaScript.](/_img/cost-of-javascript-2019/json.svg)
+![`JSON.parse('…')` est [beaucoup plus rapide](https://github.com/GoogleChromeLabs/json-parse-benchmark) à analyser, compiler et exécuter comparé à un littéral JavaScript équivalent — non seulement dans V8 (1,7× plus rapide), mais dans tous les principaux moteurs JavaScript.](/_img/cost-of-javascript-2019/json.svg)
 
 La vidéo suivante entre plus en détail sur l’origine de la différence de performance, à partir de 02:10.
 

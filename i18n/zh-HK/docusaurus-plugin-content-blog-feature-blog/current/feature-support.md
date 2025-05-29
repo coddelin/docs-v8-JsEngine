@@ -1,8 +1,8 @@
 ---
-title: &apos;功能支援&apos;
+title: '功能支援'
 permalink: /features/support/
 layout: layouts/base.njk
-description: &apos;此文件說明在 V8 網站上使用的 JavaScript 和 WebAssembly 語言功能支援列表。&apos;
+description: '此文件說明在 V8 網站上使用的 JavaScript 和 WebAssembly 語言功能支援列表。'
 ---
 # JavaScript/Wasm 功能支援
 

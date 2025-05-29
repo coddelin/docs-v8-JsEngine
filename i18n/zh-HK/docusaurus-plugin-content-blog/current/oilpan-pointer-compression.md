@@ -1,6 +1,6 @@
 ---
-title: &apos;Oilpan 中的指標壓縮&apos;
-author: &apos;Anton Bikineev，以及 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz))，行走的反編譯器&apos;
+title: 'Oilpan 中的指標壓縮'
+author: 'Anton Bikineev，以及 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz))，行走的反編譯器'
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -9,8 +9,8 @@ tags:
   - internals
   - memory
   - cppgc
-description: &apos;Oilpan 中的指標壓縮可以壓縮 C++ 指標，並最多減少 33% 的堆大小。&apos;
-tweet: &apos;1597274125780893697&apos;
+description: 'Oilpan 中的指標壓縮可以壓縮 C++ 指標，並最多減少 33% 的堆大小。'
+tweet: '1597274125780893697'
 ---
 
 > 當我編譯一個使用不到 4GB RAM 的程式時，使用 64 位元指標是完全荒謬的。在結構體中出現這些指標值時，它們不僅浪費了一半的記憶體，還有效地丟掉了一半的快取。
@@ -226,8 +226,8 @@ Pointer compression 在 Oilpan 中默認啟用於 **Chrome 106**。我們在各�
 <!-- markdownlint-disable no-inline-html -->
 | Blink 記憶體 | P50                                                 | P99                                               |
 | -----------: | :-------------------------------------------------: | :-----------------------------------------------: |
-| Windows      | **<span style={{color:&apos;green&apos;}}>-21% (-1.37MB)</span>** | **<span style={{color:&apos;green&apos;}}>-33% (-59MB)</span>** |
-| Android      | **<span style={{color:&apos;green&apos;}}>-6% (-0.1MB)</span>**   | **<span style={{color:&apos;green&apos;}}>-8% (-3.9MB)</span>** |
+| Windows      | **<span style={{color:'green'}}>-21% (-1.37MB)</span>** | **<span style={{color:'green'}}>-33% (-59MB)</span>** |
+| Android      | **<span style={{color:'green'}}>-6% (-0.1MB)</span>**   | **<span style={{color:'green'}}>-8% (-3.9MB)</span>** |
 <!-- markdownlint-enable no-inline-html -->
 
 

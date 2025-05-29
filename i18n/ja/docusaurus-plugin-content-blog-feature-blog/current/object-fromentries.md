@@ -1,15 +1,15 @@
 ---
-title: &apos;`Object.fromEntries`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias)), JavaScript ウィスパラー&apos;
+title: '`Object.fromEntries`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), JavaScript ウィスパラー'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-06-18
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: &apos;Object.fromEntries は、Object.entries を補完する JavaScript ライブラリへの有益な追加機能です。&apos;
-tweet: &apos;1140993821897121796&apos;
+description: 'Object.fromEntries は、Object.entries を補完する JavaScript ライブラリへの有益な追加機能です。'
+tweet: '1140993821897121796'
 ---
 `Object.fromEntries` は、組み込みの JavaScript ライブラリへの有益な追加機能です。その機能を説明する前に、既存の `Object.entries` API を理解することが助けになります。
 
@@ -30,7 +30,7 @@ tweet: &apos;1140993821897121796&apos;
 ```js
 const object = { x: 42, y: 50 };
 const entries = Object.entries(object);
-// → [[&apos;x&apos;, 42], [&apos;y&apos;, 50]]
+// → [['x', 42], ['y', 50]]
 
 for (const [key, value] of entries) {
   console.log(`The value of ${key} is ${value}.`);
@@ -49,7 +49,7 @@ for (const [key, value] of entries) {
 ```js
 const object = { x: 42, y: 50 };
 const entries = Object.entries(object);
-// → [[&apos;x&apos;, 42], [&apos;y&apos;, 50]]
+// → [['x', 42], ['y', 50]]
 
 const result = Object.fromEntries(entries);
 // → { x: 42, y: 50 }
@@ -77,7 +77,7 @@ JavaScript は `Map` をサポートしており、通常のオブジェクト�
 `Object.entries` を使用すると、オブジェクトをマップに変換することが簡単になりました。
 
 ```js
-const object = { language: &apos;JavaScript&apos;, coolness: 9001 };
+const object = { language: 'JavaScript', coolness: 9001 };
 
 // オブジェクトをマップに変換:
 const map = new Map(Object.entries(object));
@@ -88,7 +88,7 @@ const map = new Map(Object.entries(object));
 ```js
 // マップをオブジェクトに戻す:
 const objectCopy = Object.fromEntries(map);
-// → { language: &apos;JavaScript&apos;, coolness: 9001 }
+// → { language: 'JavaScript', coolness: 9001 }
 ```
 
 `Object.entries` と `Object.fromEntries` の両方が言語に組み込まれていることで、マップとオブジェクトの間を簡単に変換することが可能になります。
@@ -99,13 +99,13 @@ const objectCopy = Object.fromEntries(map);
 
 ```js
 const map = new Map([
-  [{}, &apos;a&apos;],
-  [{}, &apos;b&apos;],
+  [{}, 'a'],
+  [{}, 'b'],
 ]);
 Object.fromEntries(map);
-// → { &apos;[object Object]&apos;: &apos;b&apos; }
-// 注意: 値 &apos;a&apos; はどこにも見つかりません。両方のキーが
-// 同じ文字列 &apos;[object Object]&apos; に変換されるためです。
+// → { '[object Object]': 'b' }
+// 注意: 値 'a' はどこにも見つかりません。両方のキーが
+// 同じ文字列 '[object Object]' に変換されるためです。
 ```
 
 `Object.fromEntries` または他の方法でマップをオブジェクトに変換する前に、マップのキーが一意の `toString` 結果を生成することを確認してください。

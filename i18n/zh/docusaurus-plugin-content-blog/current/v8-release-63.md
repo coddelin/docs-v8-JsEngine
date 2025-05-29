@@ -1,11 +1,11 @@
 ---
-title: &apos;V8发布v6.3&apos;
-author: &apos;V8团队&apos;
+title: 'V8发布v6.3'
+author: 'V8团队'
 date: 2017-10-25 13:33:37
 tags:
   - 发布
-description: &apos;V8 v6.3包含性能改进、减少内存消耗以及对新的JavaScript语言特性的支持。&apos;
-tweet: &apos;923168001108643840&apos;
+description: 'V8 v6.3包含性能改进、减少内存消耗以及对新的JavaScript语言特性的支持。'
+tweet: '923168001108643840'
 ---
 每隔六周，我们都会创建一个新的V8分支，作为我们[发布流程](/docs/release-process)的一部分。每个版本都在Chrome Beta里程碑之前从V8的Git主分支分离出来。今天，我们很高兴地宣布我们最新的分支，[V8版本6.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.3)，它将在未来几周与Chrome 63稳定版协调发布前处于测试阶段。V8 v6.3充满了各种面向开发者的亮点。此帖子提供了一些亮点的预览，以期待发布。
 

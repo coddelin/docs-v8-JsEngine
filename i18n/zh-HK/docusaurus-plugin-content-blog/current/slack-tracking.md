@@ -1,9 +1,9 @@
 ---
-title: &apos;V8 中的 Slack 追蹤&apos;
-author: &apos;Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), 著名的 *slack* 大師&apos;
-description: &apos;深入探討 V8 的 Slack 追蹤機制。&apos;
+title: 'V8 中的 Slack 追蹤'
+author: 'Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), 著名的 *slack* 大師'
+description: '深入探討 V8 的 Slack 追蹤機制。'
 avatars:
- - &apos;michael-stanton&apos;
+ - 'michael-stanton'
 date: 2020-09-24 14:00:00
 tags:
  - internals
@@ -19,7 +19,7 @@ function Peak(name, height) {
   this.height = height;
 }
 
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
+const m1 = new Peak('Matterhorn', 4478);
 ```
 
 你可能認為引擎已經擁有足夠的資訊來優化性能——畢竟你已經告訴它這個對象有兩個屬性。然而，實際上 V8 根本不知道接下來會發生什麼。這個對象 `m1` 可以被傳遞給另一個函數並新增 10 個屬性。Slack 追蹤的目的便是為了應對這種情況，當靜態編譯無法推斷整體結構時提高響應性。它和 V8 中許多其他機制類似，其基礎僅僅是執行過程的一些一般性特徵，例如：
@@ -98,7 +98,7 @@ function Peak(name, height) {
   this.height = height;
 }
 
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
+const m1 = new Peak('Matterhorn', 4478);
 ```
 
 根據 `JSFunction::CalculateExpectedNofProperties` 的計算以及 `Peak()` 函數，我們應該有2個物件內屬性，並且由於空閒追蹤，再增加8個額外的屬性。我們可以用 `%DebugPrint()` 印出 `m1` （此方便的函數揭露了映射結構。您可以通過使用 `--allow-natives-syntax` 標誌運行 `d8` 來使用它）：
@@ -295,7 +295,7 @@ void Factory::InitializeJSObjectBody(Handle<JSObject> obj, Handle<Map> map,
 現在 Slack Tracking 已完成，如果向這些 `Peak` 對象之一添加另一個屬性，會發生什麼？
 
 ```js
-m1.country = &apos;Switzerland&apos;;
+m1.country = 'Switzerland';
 ```
 
 V8 必須進入屬性後備存儲區。我們最終得到如下的對象佈局：
@@ -339,13 +339,13 @@ function Peak(name, height, prominence, isClimbed) {
 您可以添加一些不同的變體：
 
 ```js
-const m1 = new Peak(&apos;Wendelstein&apos;, 1838);
-const m2 = new Peak(&apos;Matterhorn&apos;, 4478, 1040, true);
-const m3 = new Peak(&apos;Zugspitze&apos;, 2962);
-const m4 = new Peak(&apos;Mont Blanc&apos;, 4810, 4695, true);
-const m5 = new Peak(&apos;Watzmann&apos;, 2713);
-const m6 = new Peak(&apos;Zinalrothorn&apos;, 4221, 490, true);
-const m7 = new Peak(&apos;Eiger&apos;, 3970);
+const m1 = new Peak('Wendelstein', 1838);
+const m2 = new Peak('Matterhorn', 4478, 1040, true);
+const m3 = new Peak('Zugspitze', 2962);
+const m4 = new Peak('Mont Blanc', 4810, 4695, true);
+const m5 = new Peak('Watzmann', 2713);
+const m6 = new Peak('Zinalrothorn', 4221, 490, true);
+const m7 = new Peak('Eiger', 3970);
 ```
 
 在這種情況下，`m1`、`m3`、`m5` 和 `m7` 對象擁有一個地圖，而 `m2`、`m4` 和 `m6` 對象則因為額外的屬性擁有來自初始地圖鏈的更下游的地圖。當該地圖族完成 Slack Tracking 時，會有 **4** 個對象內屬性，而不是之前的 **2**，因為 Slack Tracking 確保保留足夠的空間，用於地圖族樹中的任何後代所使用的最大數量的對象內屬性。
@@ -364,10 +364,10 @@ function foo(a1, a2, a3, a4) {
 }
 
 %PrepareFunctionForOptimization(foo);
-const m1 = foo(&apos;Wendelstein&apos;, 1838);
-const m2 = foo(&apos;Matterhorn&apos;, 4478, 1040, true);
+const m1 = foo('Wendelstein', 1838);
+const m2 = foo('Matterhorn', 4478, 1040, true);
 %OptimizeFunctionOnNextCall(foo);
-foo(&apos;Zugspitze&apos;, 2962);
+foo('Zugspitze', 2962);
 ```
 
 這應該足以編譯並執行優化過的程式碼。我們在 TurboFan（優化編譯器）中做了一些稱為[**Create Lowering**](https://source.chromium.org/chromium/chromium/src/+/master:v8/src/compiler/js-create-lowering.h;l=32;drc=ee9e7e404e5a3f75a3ca0489aaf80490f625ca27)的工作，將物件的分配內聯化。這意味著，我們生成的原生程式碼會發出指令，要求 GC 提供要分配的物件的實例大小，然後仔細初始化那些欄位。但如果 slack 追蹤在稍後停止，這段程式碼將無效。那該怎麼辦呢？

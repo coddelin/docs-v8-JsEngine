@@ -1,12 +1,12 @@
 ---
-title: &apos;Sobre aquela vulnerabilidade de inundação de hash no Node.js…&apos;
-author: &apos;Yang Guo ([@hashseed](https://twitter.com/hashseed))&apos;
+title: 'Sobre aquela vulnerabilidade de inundação de hash no Node.js…'
+author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed))'
 avatars:
-  - &apos;yang-guo&apos;
+  - 'yang-guo'
 date: 2017-08-11 13:33:37
 tags:
   - segurança
-description: &apos;Node.js sofreu de uma vulnerabilidade de inundação de hash. Este post fornece um pouco de contexto e explica a solução no V8.&apos;
+description: 'Node.js sofreu de uma vulnerabilidade de inundação de hash. Este post fornece um pouco de contexto e explica a solução no V8.'
 ---
 No início de julho deste ano, o Node.js lançou uma [atualização de segurança](https://nodejs.org/en/blog/vulnerability/july-2017-security-releases/) para todos os ramos atualmente mantidos para resolver uma vulnerabilidade de inundação de hash. Este reparo intermediário tem o custo de uma regressão significativa no desempenho de inicialização. Enquanto isso, o V8 implementou uma solução que evita a penalidade de desempenho.
 

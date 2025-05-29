@@ -1,13 +1,13 @@
 ---
-title: &apos;V8-Veröffentlichung v8.6&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), ein Keyboard-Fuzzer&apos;
+title: 'V8-Veröffentlichung v8.6'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), ein Keyboard-Fuzzer'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2020-09-21
 tags:
  - Veröffentlichung
-description: &apos;Die V8-Veröffentlichung v8.6 bringt respektvollen Code, Leistungsverbesserungen und normative Änderungen mit sich.&apos;
-tweet: &apos;1308062287731789825&apos;
+description: 'Die V8-Veröffentlichung v8.6 bringt respektvollen Code, Leistungsverbesserungen und normative Änderungen mit sich.'
+tweet: '1308062287731789825'
 ---
 Alle sechs Wochen erstellen wir einen neuen V8-Zweig im Rahmen unseres [Veröffentlichungsprozesses](https://v8.dev/docs/release-process). Jede Version wird direkt vor einem Chrome-Beta-Meilenstein von V8’s Git-Master abgezweigt. Heute freuen wir uns, unseren neuesten Zweig bekanntzugeben, [V8 Version 8.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.6), der sich bis zur Veröffentlichung in Zusammenarbeit mit Chrome 86 Stable in einigen Wochen in der Beta-Phase befindet. V8 v8.6 ist voller Entwickler-freundlicher Technologien. In diesem Beitrag bieten wir eine Vorschau auf einige Highlights zur Vorbereitung auf die Veröffentlichung.
 
@@ -36,9 +36,9 @@ Aber oft möchte man einfach nur eine einfache, kleine Ganzzahl (ein „Smi“) 
 
 ### Kleine normative Änderungen
 
-- Anonyme Klassen haben jetzt eine `.name`-Eigenschaft, deren Wert die leere Zeichenkette `&apos;&apos;` ist. [Spezifikationsänderung](https://github.com/tc39/ecma262/pull/1490).
+- Anonyme Klassen haben jetzt eine `.name`-Eigenschaft, deren Wert die leere Zeichenkette `''` ist. [Spezifikationsänderung](https://github.com/tc39/ecma262/pull/1490).
 - Die Escape-Sequenzen `\8` und `\9` sind in Template-String-Literalen im [lockeren Modus](https://developer.mozilla.org/de/docs/Glossary/Sloppy_mode) und in allen Zeichenkettenliteralen im [strikten Modus](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Strict_mode) jetzt ungültig. [Spezifikationsänderung](https://github.com/tc39/ecma262/pull/2054).
-- Das eingebaute `Reflect`-Objekt besitzt jetzt eine `Symbol.toStringTag`-Eigenschaft, deren Wert `&apos;Reflect&apos;` ist. [Spezifikationsänderung](https://github.com/tc39/ecma262/pull/2057).
+- Das eingebaute `Reflect`-Objekt besitzt jetzt eine `Symbol.toStringTag`-Eigenschaft, deren Wert `'Reflect'` ist. [Spezifikationsänderung](https://github.com/tc39/ecma262/pull/2057).
 
 ## WebAssembly
 
@@ -46,7 +46,7 @@ Aber oft möchte man einfach nur eine einfache, kleine Ganzzahl (ein „Smi“) 
 
 Liftoff ist der Basis-Compiler für WebAssembly und wird seit V8 v8.5 auf allen Plattformen ausgeliefert. Der [SIMD-Vorschlag](https://v8.dev/features/simd) ermöglicht es WebAssembly, die häufiger verfügbaren Hardware-Vektor-Instruktionen zu nutzen, um rechenintensive Arbeitslasten zu beschleunigen. Er befindet sich derzeit in einer [Origin Trial](https://v8.dev/blog/v8-release-84#simd-origin-trial), die Entwicklern erlaubt, eine Funktion auszuprobieren, bevor sie standardisiert wird.
 
-Bis jetzt wurde SIMD nur in TurboFan implementiert, V8&apos;s High-End-Compiler. Dies ist notwendig, um die maximale Leistung aus den SIMD-Instruktionen zu erhalten. WebAssembly-Module, die SIMD-Instruktionen verwenden, haben einen schnelleren Start und oft bessere Laufzeitleistung als ihre skalaren Gegenstücke, die mit TurboFan kompiliert wurden. Zum Beispiel: Angenommen, eine Funktion nimmt ein Array von Floats und beschränkt dessen Werte auf Null (hier aus Klarheitsgründen in JavaScript geschrieben):
+Bis jetzt wurde SIMD nur in TurboFan implementiert, V8's High-End-Compiler. Dies ist notwendig, um die maximale Leistung aus den SIMD-Instruktionen zu erhalten. WebAssembly-Module, die SIMD-Instruktionen verwenden, haben einen schnelleren Start und oft bessere Laufzeitleistung als ihre skalaren Gegenstücke, die mit TurboFan kompiliert wurden. Zum Beispiel: Angenommen, eine Funktion nimmt ein Array von Floats und beschränkt dessen Werte auf Null (hier aus Klarheitsgründen in JavaScript geschrieben):
 
 ```js
 function clampZero(f32array) {

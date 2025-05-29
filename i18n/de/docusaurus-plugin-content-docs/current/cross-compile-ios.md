@@ -1,6 +1,6 @@
 ---
-title: &apos;Cross-Compiling für iOS&apos;
-description: &apos;Dieses Dokument erklärt, wie man V8 für iOS cross-kompiliert.&apos;
+title: 'Cross-Compiling für iOS'
+description: 'Dieses Dokument erklärt, wie man V8 für iOS cross-kompiliert.'
 ---
 Diese Seite dient als kurze Einführung in den Aufbau von V8 für iOS-Ziele.
 
@@ -9,7 +9,7 @@ Diese Seite dient als kurze Einführung in den Aufbau von V8 für iOS-Ziele.
 - Ein macOS (OS X) Host-Rechner mit installiertem Xcode.
 - Ein 64-Bit-Ziel-iOS-Gerät (ältere 32-Bit-iOS-Geräte werden nicht unterstützt).
 - V8 v7.5 oder neuer.
-- jitless ist eine strenge Anforderung für iOS (Stand Dezember 2020). Bitte verwenden Sie daher die Flags &apos;--expose_gc --jitless&apos;
+- jitless ist eine strenge Anforderung für iOS (Stand Dezember 2020). Bitte verwenden Sie daher die Flags '--expose_gc --jitless'
 
 ## Ersteinrichtung
 
@@ -18,8 +18,8 @@ Befolgen Sie [die Anweisungen zum Erstellen von V8](/docs/build).
 Holen Sie zusätzliche Tools für die iOS-Cross-Kompilierung, indem Sie `target_os` in Ihrer `.gclient`-Konfigurationsdatei hinzufügen, die sich im übergeordneten Verzeichnis des `v8`-Quellverzeichnisses befindet:
 
 ```python
-# [... andere Inhalte von .gclient, wie die Variable &apos;solutions&apos; ...]
-target_os = [&apos;ios&apos;]
+# [... andere Inhalte von .gclient, wie die Variable 'solutions' ...]
+target_os = ['ios']
 ```
 
 Nach der Aktualisierung von `.gclient` führen Sie `gclient sync` aus, um die zusätzlichen Tools herunterzuladen.
@@ -36,7 +36,7 @@ is_component_build = false
 is_debug = false
 target_cpu = "arm64"                  # "x64" für einen Simulator-Build.
 target_os = "ios"
-use_custom_libcxx = false             # Verwenden Sie Xcode&apos;s libcxx.
+use_custom_libcxx = false             # Verwenden Sie Xcode's libcxx.
 v8_enable_i18n_support = false        # Produziert eine kleinere Binärdatei.
 v8_monolithic = true                  # Aktivieren Sie das v8_monolith-Ziel.
 v8_use_external_startup_data = false  # Der Snapshot ist in der Binärdatei enthalten.

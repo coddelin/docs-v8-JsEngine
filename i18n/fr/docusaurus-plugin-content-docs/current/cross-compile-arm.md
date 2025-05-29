@@ -1,19 +1,19 @@
 ---
-title: &apos;Cross-compilation et débogage pour ARM/Android&apos;
-description: &apos;Ce document explique comment cross-compiler V8 pour ARM/Android, et comment le déboguer.&apos;
+title: 'Cross-compilation et débogage pour ARM/Android'
+description: 'Ce document explique comment cross-compiler V8 pour ARM/Android, et comment le déboguer.'
 ---
 Tout d'abord, assurez-vous de pouvoir [compiler avec GN](/docs/build-gn).
 
 Ajoutez ensuite `android` à votre fichier de configuration `.gclient`.
 
 ```python
-target_os = [&apos;android&apos;]  # Ajoutez ceci pour inclure les outils Android.
+target_os = ['android']  # Ajoutez ceci pour inclure les outils Android.
 ```
 
 Le champ `target_os` est une liste, donc si vous compilez également sous Unix, cela ressemblera à ceci :
 
 ```python
-target_os = [&apos;android&apos;, &apos;unix&apos;]  # Multiples systèmes d'exploitation cibles.
+target_os = ['android', 'unix']  # Multiples systèmes d'exploitation cibles.
 ```
 
 Exécutez `gclient sync`, et vous obtiendrez une grande synchronisation sous `./third_party/android_tools`.
@@ -66,7 +66,7 @@ ninja -C out.gn/arm.release d8
 Utilisez `adb` pour copier les fichiers binaires et les fichiers snapshot sur le téléphone :
 
 ```bash
-adb shell &apos;mkdir -p /data/local/tmp/v8/bin&apos;
+adb shell 'mkdir -p /data/local/tmp/v8/bin'
 adb push out.gn/arm.release/d8 /data/local/tmp/v8/bin
 adb push out.gn/arm.release/icudtl.dat /data/local/tmp/v8/bin
 adb push out.gn/arm.release/snapshot_blob.bin /data/local/tmp/v8/bin
@@ -79,7 +79,7 @@ bullhead:/data/local/tmp/v8/bin $ ls
 v8 icudtl.dat snapshot_blob.bin
 bullhead:/data/local/tmp/v8/bin $ ./d8
 V8 version 5.8.0 (candidate)
-d8> &apos;w00t!&apos;
+d8> 'w00t!'
 "w00t!"
 d8>
 ```

@@ -40,7 +40,7 @@ Dado que el almacenamiento en caché de código solo funciona con la API de tran
 
 ```js
 (async () => {
-  const fetchPromise = fetch(&apos;fibonacci.wasm&apos;);
+  const fetchPromise = fetch('fibonacci.wasm');
   const { instance } = await WebAssembly.instantiateStreaming(fetchPromise);
   const result = instance.exports.fibonacci(42);
   console.log(result);

@@ -1,6 +1,6 @@
 ---
-title: &apos;Verantwortlichkeiten von V8-Kommittierenden und Gutachter:innen&apos;
-description: &apos;Dieses Dokument listet Richtlinien für V8-Beitragende auf.&apos;
+title: 'Verantwortlichkeiten von V8-Kommittierenden und Gutachter:innen'
+description: 'Dieses Dokument listet Richtlinien für V8-Beitragende auf.'
 ---
 Wenn Sie in die V8-Repositories einchecken, stellen Sie sicher, dass Sie diese Richtlinien befolgen (angepasst von https://dev.chromium.org/developers/committers-responsibility):
 

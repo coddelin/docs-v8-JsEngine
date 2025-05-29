@@ -1,15 +1,15 @@
 ---
-title: &apos;JavaScript-Module&apos;
-author: &apos;Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) und Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'JavaScript-Module'
+author: 'Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) und Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-- &apos;addy-osmani&apos;
-- &apos;mathias-bynens&apos;
+- 'addy-osmani'
+- 'mathias-bynens'
 date: 2018-06-18
 tags:
   - ECMAScript
   - ES2015
-description: &apos;Dieser Artikel erklärt, wie man JavaScript-Module verwendet, wie man sie verantwortungsbewusst einsetzt und wie das Chrome-Team daran arbeitet, Module in Zukunft noch besser zu machen.&apos;
-tweet: &apos;1008725884575109120&apos;
+description: 'Dieser Artikel erklärt, wie man JavaScript-Module verwendet, wie man sie verantwortungsbewusst einsetzt und wie das Chrome-Team daran arbeitet, Module in Zukunft noch besser zu machen.'
+tweet: '1008725884575109120'
 ---
 JavaScript-Module werden jetzt [in allen großen Browsern unterstützt](https://caniuse.com/#feat=es6-module)!
 
@@ -40,11 +40,11 @@ Sie können dann das Keyword `import` verwenden, um das Modul aus einem anderen 
 
 ```js
 // 📁 main.mjs
-import {repeat, shout} from &apos;./lib.mjs&apos;;
-repeat(&apos;hello&apos;);
-// → &apos;hello hello&apos;
-shout(&apos;Module im Einsatz&apos;);
-// → &apos;MODULE IM EINSATZ!&apos;
+import {repeat, shout} from './lib.mjs';
+repeat('hello');
+// → 'hello hello'
+shout('Module im Einsatz');
+// → 'MODULE IM EINSATZ!'
 ```
 
 Sie können auch einen _Standardwert_ aus einem Modul exportieren:
@@ -60,7 +60,7 @@ Solche `default`-Exporte können mit beliebigem Namen importiert werden:
 
 ```js
 // 📁 main.mjs
-import shout from &apos;./lib.mjs&apos;;
+import shout from './lib.mjs';
 //     ^^^^^
 ```
 
@@ -118,7 +118,7 @@ Zum Beispiel werden Module nur einmal ausgeführt, während klassische Skripte s
 
 <script type="module" src="module.mjs"></script>
 <script type="module" src="module.mjs"></script>
-<script type="module">import &apos;./module.mjs&apos;;</script>
+<script type="module">import './module.mjs';</script>
 <!-- module.mjs wird nur einmal ausgeführt. -->
 ```
 
@@ -141,10 +141,10 @@ Trotzdem empfehlen wir die Verwendung der `.mjs`-Endung für Module aus zwei Gr�
 
 ### Modulspezifikatoren
 
-Beim `import`ieren von Modulen wird die Zeichenfolge, die den Ort des Moduls angibt, als „Modulspezifikator“ oder „Import-Spezifikator“ bezeichnet. In unserem vorherigen Beispiel ist der Modulspezifikator `&apos;./lib.mjs&apos;`:
+Beim `import`ieren von Modulen wird die Zeichenfolge, die den Ort des Moduls angibt, als „Modulspezifikator“ oder „Import-Spezifikator“ bezeichnet. In unserem vorherigen Beispiel ist der Modulspezifikator `'./lib.mjs'`:
 
 ```js
-import {shout} from &apos;./lib.mjs&apos;;
+import {shout} from './lib.mjs';
 //                  ^^^^^^^^^^^
 ```
 
@@ -152,19 +152,19 @@ Einige Einschränkungen gelten für Modulspezifikatoren in Browsern. So genannte
 
 ```js
 // Noch nicht unterstützt:
-import {shout} from &apos;jquery&apos;;
-import {shout} from &apos;lib.mjs&apos;;
-import {shout} from &apos;modules/lib.mjs&apos;;
+import {shout} from 'jquery';
+import {shout} from 'lib.mjs';
+import {shout} from 'modules/lib.mjs';
 ```
 
 Andererseits werden die folgenden Beispiele alle unterstützt:
 
 ```js
 // Unterstützt:
-import {shout} from &apos;./lib.mjs&apos;;
-import {shout} from &apos;../lib.mjs&apos;;
-import {shout} from &apos;/modules/lib.mjs&apos;;
-import {shout} from &apos;https://simple.example/modules/lib.mjs&apos;;
+import {shout} from './lib.mjs';
+import {shout} from '../lib.mjs';
+import {shout} from '/modules/lib.mjs';
+import {shout} from 'https://simple.example/modules/lib.mjs';
 ```
 
 Bis auf Weiteres müssen Modulspezifikatoren vollständige URLs oder relative URLs sein, die mit `/`, `./` oder `../` beginnen.
@@ -186,12 +186,12 @@ Bisher haben wir nur statisches `import` verwendet. Mit statischem `import` muss
 ```html
 <script type="module">
   (async () => {
-    const moduleSpecifier = &apos;./lib.mjs&apos;;
+    const moduleSpecifier = './lib.mjs';
     const {repeat, shout} = await import(moduleSpecifier);
-    repeat(&apos;hello&apos;);
-    // → &apos;hello hello&apos;
-    shout(&apos;Dynamic import in action&apos;);
-    // → &apos;DYNAMIC IMPORT IN ACTION!&apos;
+    repeat('hello');
+    // → 'hello hello'
+    shout('Dynamic import in action');
+    // → 'DYNAMIC IMPORT IN ACTION!'
   })();
 </script>
 ```
@@ -216,7 +216,7 @@ function loadThumbnail(relativePath) {
   return image;
 }
 
-const thumbnail = loadThumbnail(&apos;../img/thumbnail.png&apos;);
+const thumbnail = loadThumbnail('../img/thumbnail.png');
 container.append(thumbnail);
 ```
 
@@ -266,7 +266,7 @@ export function zip() { /* … */ }
 Wenn Ihr Code nur wirklich die `pluck`-Funktionalität benötigt, würden Sie sie wahrscheinlich wie folgt importieren:
 
 ```js
-import {pluck} from &apos;./util.mjs&apos;;
+import {pluck} from './util.mjs';
 ```
 
 In diesem Fall muss der Browser (ohne einen Bundling-Schritt zur Build-Zeit) dennoch das gesamte Modul `./util.mjs` herunterladen, analysieren und kompilieren, obwohl tatsächlich nur dieser eine Export benötigt wird. Das ist verschwenderisch!
@@ -280,7 +280,7 @@ export function pluck() { /* … */ }
 Wir können dann `pluck` ohne den Overhead der Bearbeitung von `drop` und `zip` importieren:
 
 ```js
-import {pluck} from &apos;./pluck.mjs&apos;;
+import {pluck} from './pluck.mjs';
 ```
 
 :::note
@@ -335,7 +335,7 @@ Chrome implementiert jetzt [Worklets](https://drafts.css-houdini.org/worklets/),
 Chrome 65 unterstützt [`PaintWorklet`](https://developers.google.com/web/updates/2018/01/paintapi) (auch bekannt als CSS Paint API), um zu steuern, wie ein DOM-Element gemalt wird.
 
 ```js
-const result = await css.paintWorklet.addModule(&apos;paint-worklet.mjs&apos;);
+const result = await css.paintWorklet.addModule('paint-worklet.mjs');
 ```
 
 Chrome 66 unterstützt [`AudioWorklet`](https://developers.google.com/web/updates/2017/12/audio-worklet), mit der Sie die Audiobearbeitung mit eigenem Code steuern können. Dieselbe Chrome-Version hat ein [OriginTrial für `AnimationWorklet`](https://groups.google.com/a/chromium.org/d/msg/blink-dev/AZ-PYPMS7EA/DEqbe2u5BQAJ) gestartet, das die Erstellung von scrollgebundenen und anderen hochleistungsfähigen prozeduralen Animationen ermöglicht.
@@ -345,14 +345,14 @@ Schließlich wird [`LayoutWorklet`](https://drafts.css-houdini.org/css-layout-ap
 Wir arbeiten daran ([siehe](https://bugs.chromium.org/p/chromium/issues/detail?id=680046)), die Unterstützung für die Verwendung von JS-Modulen mit dedizierten Web-Arbeitern in Chrome hinzuzufügen. Sie können diese Funktion bereits ausprobieren, wenn Sie `chrome://flags/#enable-experimental-web-platform-features` aktiviert haben.
 
 ```js
-const worker = new Worker(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
+const worker = new Worker('worker.mjs', { type: 'module' });
 ```
 
 Die Unterstützung von JS-Modulen für gemeinsame Arbeiter und Service-Arbeiter kommt bald:
 
 ```js
-const worker = new SharedWorker(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
-const registration = await navigator.serviceWorker.register(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
+const worker = new SharedWorker('worker.mjs', { type: 'module' });
+const registration = await navigator.serviceWorker.register('worker.mjs', { type: 'module' });
 ```
 
 ### Import-Maps
@@ -360,8 +360,8 @@ const registration = await navigator.serviceWorker.register(&apos;worker.mjs&apo
 In Node.js/npm ist es üblich, JS-Module anhand ihres „Paketnamens“ zu importieren. Zum Beispiel:
 
 ```js
-import moment from &apos;moment&apos;;
-import {pluck} from &apos;lodash-es&apos;;
+import moment from 'moment';
+import {pluck} from 'lodash-es';
 ```
 
 Derzeit werfen [laut HTML-Spezifikation](https://html.spec.whatwg.org/multipage/webappapis.html#resolve-a-module-specifier) solche „bare import specifiers“ eine Ausnahme. [Unser Import-Maps-Vorschlag](https://github.com/domenic/import-maps) ermöglicht es, solchen Code auf dem Web und auch in Produktionsanwendungen zu verwenden. Eine Import-Karte ist eine JSON-Ressource, die dem Browser hilft, bare Import-Spezifizierer in vollständige URLs umzuwandeln.

@@ -1,12 +1,12 @@
 ---
-title: &apos;`at` Methode für relative Indizierung&apos;
-author: &apos;Shu-yu Guo ([@_shu](https://twitter.com/_shu))&apos;
+title: '`at` Methode für relative Indizierung'
+author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
 avatars:
-  - &apos;shu-yu-guo&apos;
+  - 'shu-yu-guo'
 date: 2021-07-13
 tags:
   - ECMAScript
-description: &apos;JavaScript hat jetzt eine Methode zur relativen Indizierung für Arrays, TypedArrays und Strings.&apos;
+description: 'JavaScript hat jetzt eine Methode zur relativen Indizierung für Arrays, TypedArrays und Strings.'
 ---
 
 Die neue `at`-Methode auf `Array.prototype`, den verschiedenen TypedArray-Prototypen und `String.prototype` macht das Zugreifen auf ein Element näher am Ende der Sammlung einfacher und prägnanter.

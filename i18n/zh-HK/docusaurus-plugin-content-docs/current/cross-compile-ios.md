@@ -1,6 +1,6 @@
 ---
-title: &apos;為 iOS 進行交叉編譯&apos;
-description: &apos;本文件解釋了如何為 iOS 進行交叉編譯 V8。&apos;
+title: '為 iOS 進行交叉編譯'
+description: '本文件解釋了如何為 iOS 進行交叉編譯 V8。'
 ---
 此頁面簡要介紹如何構建用於 iOS 的 V8 目標。
 
@@ -9,7 +9,7 @@ description: &apos;本文件解釋了如何為 iOS 進行交叉編譯 V8。&apos
 - 一台安裝了 Xcode 的 macOS（OS X）主機。
 - 一台 64 位目標 iOS 設備（不支持傳統的 32 位 iOS 設備）。
 - V8 v7.5 或更新版本。
-- 對於 iOS，禁用 JIT 是一個硬性要求（截至 2020 年 12 月）。因此，請使用標誌 &apos;--expose_gc --jitless&apos;
+- 對於 iOS，禁用 JIT 是一個硬性要求（截至 2020 年 12 月）。因此，請使用標誌 '--expose_gc --jitless'
 
 ## 初始設置
 
@@ -18,8 +18,8 @@ description: &apos;本文件解釋了如何為 iOS 進行交叉編譯 V8。&apos
 通過在 `.gclient` 配置文件中添加 `target_os`，來獲取 iOS 交叉編譯所需的附加工具。該文件位於 `v8` 源文件目錄的父目錄中：
 
 ```python
-# [... .gclient 的其他內容，例如 &apos;solutions&apos; 變量 ...]
-target_os = [&apos;ios&apos;]
+# [... .gclient 的其他內容，例如 'solutions' 變量 ...]
+target_os = ['ios']
 ```
 
 更新 `.gclient` 後，運行 `gclient sync` 下載附加工具。

@@ -1,6 +1,6 @@
 ---
-title: &apos;CodeStubAssembler-Builtins&apos;
-description: &apos;Dieses Dokument dient als Einführung in das Schreiben von CodeStubAssembler-Builtins und richtet sich an V8-Entwickler.&apos;
+title: 'CodeStubAssembler-Builtins'
+description: 'Dieses Dokument dient als Einführung in das Schreiben von CodeStubAssembler-Builtins und richtet sich an V8-Entwickler.'
 ---
 Dieses Dokument dient als Einführung in das Schreiben von CodeStubAssembler-Builtins und richtet sich an V8-Entwickler.
 
@@ -154,7 +154,7 @@ Jetzt, da `Is42` angehängt ist, kann es aus JS heraus aufgerufen werden:
 $ out/debug/d8
 d8> Math.is42(42);
 true
-d8> Math.is42(&apos;42.0&apos;);
+d8> Math.is42('42.0');
 true
 d8> Math.is42(true);
 false

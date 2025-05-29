@@ -1,6 +1,6 @@
 ---
-title: &apos;Pruebas&apos;
-description: &apos;Este documento explica el marco de pruebas que forma parte del repositorio V8.&apos;
+title: 'Pruebas'
+description: 'Este documento explica el marco de pruebas que forma parte del repositorio V8.'
 ---
 V8 incluye un marco de prueba que te permite probar el motor. El marco te permite ejecutar tanto nuestros propios conjuntos de pruebas incluidos con el código fuente como otros, como [el conjunto de pruebas Test262](https://github.com/tc39/test262).
 

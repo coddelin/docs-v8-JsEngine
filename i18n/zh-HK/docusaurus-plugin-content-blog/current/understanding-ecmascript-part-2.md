@@ -1,14 +1,14 @@
 ---
-title: &apos;理解 ECMAScript 規範，第2部分&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh)，推測規範觀察員&apos;
+title: '理解 ECMAScript 規範，第2部分'
+author: '[Marja Hölttä](https://twitter.com/marjakh)，推測規範觀察員'
 avatars:
   - marja-holtta
 date: 2020-03-02
 tags:
   - ECMAScript
   - 理解 ECMAScript
-description: &apos;閱讀 ECMAScript 規範的教程，第2部分&apos;
-tweet: &apos;1234550773629014016&apos;
+description: '閱讀 ECMAScript 規範的教程，第2部分'
+tweet: '1234550773629014016'
 ---
 
 讓我們來多練習一些我們驚人的規範閱讀技巧。如果你還沒看過上一集，現在是個好機會！
@@ -179,7 +179,7 @@ MemberExpression :
   new MemberExpression Arguments
 ```
 
-這裡我們有7個`MemberExpression`的生成式。一個`MemberExpression`可以僅僅是一個`PrimaryExpression`。或者可以從另一個`MemberExpression`和`Expression`通過拼接它們來構造，例如`MemberExpression [ Expression ]`，如`o2[&apos;foo&apos;]`。或者可以是`MemberExpression . IdentifierName`，如`o2.foo`——這是與我們示例相關的生成式。
+這裡我們有7個`MemberExpression`的生成式。一個`MemberExpression`可以僅僅是一個`PrimaryExpression`。或者可以從另一個`MemberExpression`和`Expression`通過拼接它們來構造，例如`MemberExpression [ Expression ]`，如`o2['foo']`。或者可以是`MemberExpression . IdentifierName`，如`o2.foo`——這是與我們示例相關的生成式。
 
 生成式`MemberExpression : MemberExpression . IdentifierName`的執行時語意定義了在評估它時需要執行的步驟：
 

@@ -1,15 +1,15 @@
 ---
-title: &apos;`Intl.RelativeTimeFormat`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`Intl.RelativeTimeFormat`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-10-22
 tags:
   - Intl
   - Node.js 12
   - io19
-description: &apos;Intl.RelativeTimeFormat permite el formato localizado de tiempos relativos sin sacrificar rendimiento.&apos;
-tweet: &apos;1054387117571354624&apos;
+description: 'Intl.RelativeTimeFormat permite el formato localizado de tiempos relativos sin sacrificar rendimiento.'
+tweet: '1054387117571354624'
 ---
 Las aplicaciones web modernas suelen usar frases como “ayer”, “hace 42 segundos” o “en 3 meses” en lugar de fechas completas y marcas de tiempo. Estos _valores formateados en tiempo relativo_ se han vuelto tan comunes que varias bibliotecas populares implementan funciones utilitarias que los formatean de manera localizada. (Ejemplos incluyen [Moment.js](https://momentjs.com/), [Globalize](https://github.com/globalizejs/globalize), y [date-fns](https://date-fns.org/docs/).)
 
@@ -23,31 +23,31 @@ La nueva API `Intl.RelativeTimeFormat` transfiere esa responsabilidad al motor d
 El siguiente ejemplo muestra cómo crear un formateador de tiempo relativo usando el idioma inglés.
 
 ```js
-const rtf = new Intl.RelativeTimeFormat(&apos;en&apos;);
+const rtf = new Intl.RelativeTimeFormat('en');
 
-rtf.format(3.14, &apos;second&apos;);
-// → &apos;in 3.14 seconds&apos;
+rtf.format(3.14, 'second');
+// → 'in 3.14 seconds'
 
-rtf.format(-15, &apos;minute&apos;);
-// → &apos;15 minutes ago&apos;
+rtf.format(-15, 'minute');
+// → '15 minutes ago'
 
-rtf.format(8, &apos;hour&apos;);
-// → &apos;in 8 hours&apos;
+rtf.format(8, 'hour');
+// → 'in 8 hours'
 
-rtf.format(-2, &apos;day&apos;);
-// → &apos;2 days ago&apos;
+rtf.format(-2, 'day');
+// → '2 days ago'
 
-rtf.format(3, &apos;week&apos;);
-// → &apos;in 3 weeks&apos;
+rtf.format(3, 'week');
+// → 'in 3 weeks'
 
-rtf.format(-5, &apos;month&apos;);
-// → &apos;5 months ago&apos;
+rtf.format(-5, 'month');
+// → '5 months ago'
 
-rtf.format(2, &apos;quarter&apos;);
-// → &apos;in 2 quarters&apos;
+rtf.format(2, 'quarter');
+// → 'in 2 quarters'
 
-rtf.format(-42, &apos;year&apos;);
-// → &apos;42 years ago&apos;
+rtf.format(-42, 'year');
+// → '42 years ago'
 ```
 
 Nota que el argumento pasado al constructor de `Intl.RelativeTimeFormat` puede ser una cadena que contenga [una etiqueta de idioma BCP 47](https://tools.ietf.org/html/rfc5646) o [un arreglo de dichas etiquetas de idioma](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation).
@@ -55,31 +55,31 @@ Nota que el argumento pasado al constructor de `Intl.RelativeTimeFormat` puede s
 Aquí hay un ejemplo usando un idioma diferente (español):
 
 ```js
-const rtf = new Intl.RelativeTimeFormat(&apos;es&apos;);
+const rtf = new Intl.RelativeTimeFormat('es');
 
-rtf.format(3.14, &apos;second&apos;);
-// → &apos;dentro de 3,14 segundos&apos;
+rtf.format(3.14, 'second');
+// → 'dentro de 3,14 segundos'
 
-rtf.format(-15, &apos;minute&apos;);
-// → &apos;hace 15 minutos&apos;
+rtf.format(-15, 'minute');
+// → 'hace 15 minutos'
 
-rtf.format(8, &apos;hour&apos;);
-// → &apos;dentro de 8 horas&apos;
+rtf.format(8, 'hour');
+// → 'dentro de 8 horas'
 
-rtf.format(-2, &apos;day&apos;);
-// → &apos;hace 2 días&apos;
+rtf.format(-2, 'day');
+// → 'hace 2 días'
 
-rtf.format(3, &apos;week&apos;);
-// → &apos;dentro de 3 semanas&apos;
+rtf.format(3, 'week');
+// → 'dentro de 3 semanas'
 
-rtf.format(-5, &apos;month&apos;);
-// → &apos;hace 5 meses&apos;
+rtf.format(-5, 'month');
+// → 'hace 5 meses'
 
-rtf.format(2, &apos;quarter&apos;);
-// → &apos;dentro de 2 trimestres&apos;
+rtf.format(2, 'quarter');
+// → 'dentro de 2 trimestres'
 
-rtf.format(-42, &apos;year&apos;);
-// → &apos;hace 42 años&apos;
+rtf.format(-42, 'year');
+// → 'hace 42 años'
 ```
 
 Además, el constructor `Intl.RelativeTimeFormat` acepta un argumento opcional `options`, que otorga control de nivel fino sobre el resultado. Para ilustrar la flexibilidad, veamos más ejemplos en inglés basados en la configuración predeterminada:
@@ -88,59 +88,59 @@ Además, el constructor `Intl.RelativeTimeFormat` acepta un argumento opcional `
 // Crear un formateador de tiempo relativo para el idioma inglés, usando
 // la configuración predeterminada (igual que antes). En este ejemplo, los
 // valores predeterminados son explícitamente pasados.
-const rtf = new Intl.RelativeTimeFormat(&apos;en&apos;, {
-  localeMatcher: &apos;best fit&apos;, // otros valores: &apos;lookup&apos;
-  style: &apos;long&apos;, // otros valores: &apos;short&apos; o &apos;narrow&apos;
-  numeric: &apos;always&apos;, // otros valores: &apos;auto&apos;
+const rtf = new Intl.RelativeTimeFormat('en', {
+  localeMatcher: 'best fit', // otros valores: 'lookup'
+  style: 'long', // otros valores: 'short' o 'narrow'
+  numeric: 'always', // otros valores: 'auto'
 });
 
 // Ahora, probemos algunos casos especiales.
 
-rtf.format(-1, &apos;day&apos;);
-// → &apos;1 day ago&apos;
+rtf.format(-1, 'day');
+// → '1 day ago'
 
-rtf.format(0, &apos;day&apos;);
-// → &apos;in 0 days&apos;
+rtf.format(0, 'day');
+// → 'in 0 days'
 
-rtf.format(1, &apos;day&apos;);
-// → &apos;in 1 day&apos;
+rtf.format(1, 'day');
+// → 'in 1 day'
 
-rtf.format(-1, &apos;week&apos;);
-// → &apos;1 week ago&apos;
+rtf.format(-1, 'week');
+// → '1 week ago'
 
-rtf.format(0, &apos;week&apos;);
-// → &apos;in 0 weeks&apos;
+rtf.format(0, 'week');
+// → 'in 0 weeks'
 
-rtf.format(1, &apos;week&apos;);
-// → &apos;in 1 week&apos;
+rtf.format(1, 'week');
+// → 'in 1 week'
 ```
 
-Es posible que hayas notado que el formateador anterior produjo la cadena `&apos;1 day ago&apos;` en lugar de `&apos;yesterday&apos;`, y el ligeramente incómodo `&apos;in 0 weeks&apos;` en lugar de `&apos;this week&apos;`. Esto ocurre porque por defecto, el formateador usa el valor numérico en el resultado.
+Es posible que hayas notado que el formateador anterior produjo la cadena `'1 day ago'` en lugar de `'yesterday'`, y el ligeramente incómodo `'in 0 weeks'` en lugar de `'this week'`. Esto ocurre porque por defecto, el formateador usa el valor numérico en el resultado.
 
-Para cambiar este comportamiento, establece la opción `numeric` en `&apos;auto&apos;` (en lugar del valor implícito predeterminado de `&apos;always&apos;`):
+Para cambiar este comportamiento, establece la opción `numeric` en `'auto'` (en lugar del valor implícito predeterminado de `'always'`):
 
 ```js
 // Crear un formateador de tiempo relativo para el idioma inglés que
 // no siempre tenga que usar un valor numérico en el resultado.
-const rtf = new Intl.RelativeTimeFormat(&apos;en&apos;, { numeric: &apos;auto&apos; });
+const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 
-rtf.format(-1, &apos;day&apos;);
-// → &apos;yesterday&apos;
+rtf.format(-1, 'day');
+// → 'yesterday'
 
-rtf.format(0, &apos;day&apos;);
-// → &apos;today&apos;
+rtf.format(0, 'day');
+// → 'today'
 
-rtf.format(1, &apos;day&apos;);
-// → &apos;tomorrow&apos;
+rtf.format(1, 'day');
+// → 'tomorrow'
 
-rtf.format(-1, &apos;week&apos;);
-// → &apos;last week&apos;
+rtf.format(-1, 'week');
+// → 'last week'
 
-rtf.format(0, &apos;week&apos;);
-// → &apos;this week&apos;
+rtf.format(0, 'week');
+// → 'this week'
 
-rtf.format(1, &apos;week&apos;);
-// → &apos;next week&apos;
+rtf.format(1, 'week');
+// → 'next week'
 ```
 
 Análogo a otras clases `Intl`, `Intl.RelativeTimeFormat` tiene un método `formatToParts` además del método `format`. Aunque `format` cubre el caso de uso más común, `formatToParts` puede ser útil si necesitas acceso a las partes individuales de la salida generada:
@@ -148,21 +148,21 @@ Análogo a otras clases `Intl`, `Intl.RelativeTimeFormat` tiene un método `form
 ```js
 // Crea un formateador de tiempo relativo para el idioma inglés que
 // no siempre tenga que usar valores numéricos en la salida.
-const rtf = new Intl.RelativeTimeFormat(&apos;en&apos;, { numeric: &apos;auto&apos; });
+const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 
-rtf.format(-1, &apos;day&apos;);
-// → &apos;yesterday&apos;
+rtf.format(-1, 'day');
+// → 'yesterday'
 
-rtf.formatToParts(-1, &apos;day&apos;);
-// → [{ type: &apos;literal&apos;, value: &apos;yesterday&apos; }]
+rtf.formatToParts(-1, 'day');
+// → [{ type: 'literal', value: 'yesterday' }]
 
-rtf.format(3, &apos;week&apos;);
-// → &apos;in 3 weeks&apos;
+rtf.format(3, 'week');
+// → 'in 3 weeks'
 
-rtf.formatToParts(3, &apos;week&apos;);
-// → [{ type: &apos;literal&apos;, value: &apos;in &apos; },
-//    { type: &apos;integer&apos;, value: &apos;3&apos;, unit: &apos;week&apos; },
-//    { type: &apos;literal&apos;, value: &apos; weeks&apos; }]
+rtf.formatToParts(3, 'week');
+// → [{ type: 'literal', value: 'in ' },
+//    { type: 'integer', value: '3', unit: 'week' },
+//    { type: 'literal', value: ' weeks' }]
 ```
 
 Para más información sobre las demás opciones y su comportamiento, consulta [la documentación de la API en el repositorio de la propuesta](https://github.com/tc39/proposal-intl-relative-time#api).

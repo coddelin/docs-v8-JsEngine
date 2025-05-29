@@ -1,8 +1,8 @@
 ---
-title: &apos;Compatibilidad de características&apos;
+title: 'Compatibilidad de características'
 permalink: /features/support/
 layout: layouts/base.njk
-description: &apos;Este documento explica los listados de compatibilidad de características del lenguaje JavaScript y WebAssembly como se utilizan en el sitio web de V8.&apos;
+description: 'Este documento explica los listados de compatibilidad de características del lenguaje JavaScript y WebAssembly como se utilizan en el sitio web de V8.'
 ---
 # Compatibilidad de características de JavaScript/Wasm
 

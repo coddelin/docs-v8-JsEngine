@@ -1,13 +1,13 @@
 ---
-title: &apos;Schnellere Initialisierung von Instanzen mit neuen Klassenfeatures&apos;
-author: &apos;[Joyee Cheung](https://twitter.com/JoyeeCheung), Instanzinitialisierer&apos;
+title: 'Schnellere Initialisierung von Instanzen mit neuen Klassenfeatures'
+author: '[Joyee Cheung](https://twitter.com/JoyeeCheung), Instanzinitialisierer'
 avatars:
-  - &apos;joyee-cheung&apos;
+  - 'joyee-cheung'
 date: 2022-04-20
 tags:
   - internals
-description: &apos;Die Initialisierung von Instanzen mit neuen Klassenfeatures ist seit V8 v9.7 schneller geworden.&apos;
-tweet: &apos;1517041137378373632&apos;
+description: 'Die Initialisierung von Instanzen mit neuen Klassenfeatures ist seit V8 v9.7 schneller geworden.'
+tweet: '1517041137378373632'
 ---
 
 Klassenfelder wurden in V8 seit v7.2 eingeführt, und private Klassenmethoden wurden seit v8.4 verfügbar. Nachdem die Vorschläge 2021 die Stufe 4 erreicht hatten, begann die Arbeit an der Verbesserung der Unterstützung für die neuen Klassenfeatures in V8 - bis dahin gab es zwei Hauptprobleme, die ihre Akzeptanz beeinträchtigten:
@@ -94,9 +94,9 @@ Technisch gesehen sind diese beiden Klassen nicht gleichwertig, selbst wenn der 
 class A {
   constructor() {
     // Was der %AddPrivateField()-Aufruf ungefähr bedeutet:
-    const _a = %PrivateSymbol(&apos;#a&apos;)
+    const _a = %PrivateSymbol('#a')
     if (_a in this) {
-      throw TypeError(&apos;Doppelte Initialisierung von #a nicht erlaubt auf demselben Objekt&apos;);
+      throw TypeError('Doppelte Initialisierung von #a nicht erlaubt auf demselben Objekt');
     }
     Object.defineProperty(this, _a, {
       writable: true,
@@ -105,7 +105,7 @@ class A {
       value: 0
     });
     // Was der %CreateDataProperty()-Aufruf ungefähr bedeutet:
-    Object.defineProperty(this, &apos;b&apos;, {
+    Object.defineProperty(this, 'b', {
       writable: true,
       configurable: true,
       enumerable: true,
@@ -213,7 +213,7 @@ Um mit diesen Zielen umzugehen, haben wir die IC so gepatcht, dass sie auf die L
 
 ### Die Implementierung privater Methoden
 
-In [der Spezifikation](https://tc39.es/ecma262/#sec-privatemethodoraccessoradd) werden private Methoden so beschrieben, als ob sie auf den Instanzen installiert sind, nicht jedoch in der Klasse. Um jedoch Speicherplatz zu sparen, speichert V8&apos;s Implementierung die privaten Methoden zusammen mit einem privaten Marken-Symbol in einem Kontext, der mit der Klasse verknüpft ist. Wenn der Konstruktor aufgerufen wird, speichert V8 nur eine Referenz zu diesem Kontext in der Instanz, wobei das private Marken-Symbol als Schlüssel dient.
+In [der Spezifikation](https://tc39.es/ecma262/#sec-privatemethodoraccessoradd) werden private Methoden so beschrieben, als ob sie auf den Instanzen installiert sind, nicht jedoch in der Klasse. Um jedoch Speicherplatz zu sparen, speichert V8's Implementierung die privaten Methoden zusammen mit einem privaten Marken-Symbol in einem Kontext, der mit der Klasse verknüpft ist. Wenn der Konstruktor aufgerufen wird, speichert V8 nur eine Referenz zu diesem Kontext in der Instanz, wobei das private Marken-Symbol als Schlüssel dient.
 
 ![Evaluierung und Instanziierung von Klassen mit privaten Methoden](/_img/faster-class-features/class-evaluation-and-instantiation.svg)
 
@@ -329,6 +329,6 @@ In diesem Fall sind die Kosten des Laufzeitaufrufs wieder vorhanden, sodass die 
 
 ## Abschließende Hinweise
 
-Die in diesem Blogbeitrag erwähnte Arbeit ist auch in der [Node.js 18.0.0 Veröffentlichung](https://nodejs.org/en/blog/announcements/v18-release-announce/) enthalten. Zuvor hatte Node.js in einigen eingebauten Klassen, die private Felder verwendeten, auf Symbol-Properties umgestellt, um sie in den eingebetteten Bootstrap-Snapshot aufzunehmen und die Leistung der Konstruktoren zu verbessern (siehe [diesen Blogbeitrag](https://www.nearform.com/blog/node-js-and-the-struggles-of-being-an-eventtarget/) für mehr Kontext). Mit der verbesserten Unterstützung von Klassen-Features in V8 hat Node.js in diesen Klassen [wieder auf private Klassenfelder umgestellt](https://github.com/nodejs/node/pull/42361) und Node.js&apos;s Benchmarks zeigten, dass [diese Änderungen keine Leistungsregressionen verursachten](https://github.com/nodejs/node/pull/42361#issuecomment-1068961385).
+Die in diesem Blogbeitrag erwähnte Arbeit ist auch in der [Node.js 18.0.0 Veröffentlichung](https://nodejs.org/en/blog/announcements/v18-release-announce/) enthalten. Zuvor hatte Node.js in einigen eingebauten Klassen, die private Felder verwendeten, auf Symbol-Properties umgestellt, um sie in den eingebetteten Bootstrap-Snapshot aufzunehmen und die Leistung der Konstruktoren zu verbessern (siehe [diesen Blogbeitrag](https://www.nearform.com/blog/node-js-and-the-struggles-of-being-an-eventtarget/) für mehr Kontext). Mit der verbesserten Unterstützung von Klassen-Features in V8 hat Node.js in diesen Klassen [wieder auf private Klassenfelder umgestellt](https://github.com/nodejs/node/pull/42361) und Node.js's Benchmarks zeigten, dass [diese Änderungen keine Leistungsregressionen verursachten](https://github.com/nodejs/node/pull/42361#issuecomment-1068961385).
 
 Vielen Dank an Igalia und Bloomberg für die Umsetzung dieser Implementierung!

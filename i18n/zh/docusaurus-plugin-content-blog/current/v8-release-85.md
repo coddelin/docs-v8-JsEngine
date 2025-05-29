@@ -139,7 +139,7 @@ WebAssembly支持[将WebAssembly I64值与JavaScript BigInts互相转换](https:
 从JavaScript中，仅BigInts可以作为I64参数传递：
 
 ```js
-WebAssembly.instantiateStreaming(fetch(&apos;i64.wasm&apos;))
+WebAssembly.instantiateStreaming(fetch('i64.wasm'))
   .then(({ module, instance }) => {
     instance.exports.add(12n, 30n);
     // → 42n

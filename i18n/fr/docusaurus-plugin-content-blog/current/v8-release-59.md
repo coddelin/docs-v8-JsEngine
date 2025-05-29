@@ -1,19 +1,19 @@
 ---
-title: &apos;V8 version v5.9&apos;
-author: &apos;L&apos;équipe V8&apos;
+title: 'V8 version v5.9'
+author: 'L'équipe V8'
 date: 2017-04-27 13:33:37
 tags:
   - version
-description: &apos;V8 v5.9 inclut le nouveau pipeline Ignition + TurboFan et ajoute la prise en charge de WebAssembly TrapIf sur toutes les plateformes.&apos;
+description: 'V8 v5.9 inclut le nouveau pipeline Ignition + TurboFan et ajoute la prise en charge de WebAssembly TrapIf sur toutes les plateformes.'
 ---
-Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](/docs/release-process). Chaque version est dérivée du maître Git de V8 immédiatement avant une étape de bêta de Chrome. Aujourd&apos;hui, nous sommes ravis d&apos;annoncer notre nouvelle branche, [V8 version 5.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.9), qui sera en bêta jusqu&apos;à sa publication en coordination avec Chrome 59 Stable dans quelques semaines. V8 5.9 est rempli de toutes sortes de nouveautés pour les développeurs. Nous souhaitons vous donner un aperçu de certains moments forts en prévision de la sortie.
+Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](/docs/release-process). Chaque version est dérivée du maître Git de V8 immédiatement avant une étape de bêta de Chrome. Aujourd'hui, nous sommes ravis d'annoncer notre nouvelle branche, [V8 version 5.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.9), qui sera en bêta jusqu'à sa publication en coordination avec Chrome 59 Stable dans quelques semaines. V8 5.9 est rempli de toutes sortes de nouveautés pour les développeurs. Nous souhaitons vous donner un aperçu de certains moments forts en prévision de la sortie.
 
 <!--truncate-->
 ## Ignition+TurboFan lancé
 
 V8 v5.9 sera la première version avec Ignition+TurboFan activé par défaut. En général, ce changement devrait entraîner une consommation de mémoire réduite et un démarrage plus rapide des applications web sur toute la ligne, et nous ne nous attendons pas à des problèmes de stabilité ou de performance puisque le nouveau pipeline a déjà été soumis à de nombreux tests. Cependant, [contactez-nous](https://bugs.chromium.org/p/v8/issues/entry?template=Bug%20report%20for%20the%20new%20pipeline) si votre code commence soudainement à présenter des régressions importantes de performance.
 
-Pour plus d&apos;informations, consultez [notre article dédié](/blog/launching-ignition-and-turbofan).
+Pour plus d'informations, consultez [notre article dédié](/blog/launching-ignition-and-turbofan).
 
 ## Prise en charge WebAssembly `TrapIf` sur toutes les plateformes
 

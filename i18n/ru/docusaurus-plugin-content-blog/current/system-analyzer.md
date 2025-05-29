@@ -1,14 +1,14 @@
 ---
-title: &apos;Indicium: инструмент трассировки времени выполнения V8&apos;
-author: &apos;Зейнеп Джанкара ([@ZeynepCankara](https://twitter.com/ZeynepCankara))&apos;
+title: 'Indicium: инструмент трассировки времени выполнения V8'
+author: 'Зейнеп Джанкара ([@ZeynepCankara](https://twitter.com/ZeynepCankara))'
 avatars:
-  - &apos;zeynep-cankara&apos;
+  - 'zeynep-cankara'
 date: 2020-10-01 11:56:00
 tags:
   - инструменты
   - системный анализатор
-description: &apos;Indicium: инструмент анализа системы V8 для анализа событий Map/IC.&apos;
-tweet: &apos;1311689392608731140&apos;
+description: 'Indicium: инструмент анализа системы V8 для анализа событий Map/IC.'
+tweet: '1311689392608731140'
 ---
 # Indicium: системный анализатор V8
 
@@ -49,19 +49,19 @@ for (let i = 0; i < 10e5; i++) {
   dotProduct = a.dotProduct(b);
 }
 
-console.time(&apos;snippet1&apos;);
+console.time('snippet1');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet1&apos;);
+console.timeEnd('snippet1');
 
 a = new Point(-1, -1);
 b = new Point(-2, -2);
-console.time(&apos;snippet2&apos;);
+console.time('snippet2');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet2&apos;);
+console.timeEnd('snippet2');
 ```
 
 Здесь у нас есть класс `Point`, который хранит две координаты и дополнительное булево значение на основе значений координат. У класса `Point` есть метод `dotProduct`, который возвращает скалярное произведение между переданным объектом и получателем.
@@ -75,11 +75,11 @@ let a = new Point(1, 1);
 let b = new Point(2, 2);
 let dotProduct;
 
-console.time(&apos;snippet1&apos;);
+console.time('snippet1');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet1&apos;);
+console.timeEnd('snippet1');
 ```
 
 ### *фрагмент 2*
@@ -87,11 +87,11 @@ console.timeEnd(&apos;snippet1&apos;);
 ```javascript
 a = new Point(-1, -1);
 b = new Point(-2, -2);
-console.time(&apos;snippet2&apos;);
+console.time('snippet2');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet2&apos;);
+console.timeEnd('snippet2');
 ```
 
 После выполнения программы мы замечаем снижение производительности. Хотя мы измеряем производительность двух схожих фрагментов: доступ к свойствам `x` и `y` экземпляров объекта `Point` путем вызова функции `dotProduct` в цикле.

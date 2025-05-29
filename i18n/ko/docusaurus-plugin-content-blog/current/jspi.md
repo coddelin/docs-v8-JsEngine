@@ -1,7 +1,7 @@
 ---
-title: &apos;웹어셈블리 자바스크립트 프로미스 통합 API 소개&apos;
-description: &apos;이 문서는 JSPI를 소개하고 이를 사용하기 위한 간단한 예제를 제공합니다&apos;
-author: &apos;프랜시스 매케이브, 티보 미쇼, 일리야 레즈보프, 브렌던 달&apos;
+title: '웹어셈블리 자바스크립트 프로미스 통합 API 소개'
+description: '이 문서는 JSPI를 소개하고 이를 사용하기 위한 간단한 예제를 제공합니다'
+author: '프랜시스 매케이브, 티보 미쇼, 일리야 레즈보프, 브렌던 달'
 date: 2024-07-01
 tags:
   - 웹어셈블리
@@ -158,16 +158,16 @@ emcc p42.c -o p42.wasm --no-entry -Wl,--import-memory
 코드를 동적으로 로드하려면 표준 `WebAssembly.instantiateStreaming` API를 사용합니다:
 
 ```js
-WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;));
+WebAssembly.instantiateStreaming(fetch('p42.wasm'));
 ```
 
 이 표현식은 `fetch`를 사용하여 컴파일된 Wasm 모듈을 찾고 `WebAssembly.instantiateStreaming`을 사용하여 fetch 결과를 컴파일하고 인스턴스화된 모듈을 생성합니다. `fetch`와 `WebAssembly.instantiateStreaming` 모두 Promise를 반환하므로 단순히 결과에 접근하여 필요한 함수를 추출할 수 없습니다. 대신 이를 JSPI 스타일로 `EM_ASYNC_JS` 매크로를 사용하여 가져옵니다:
 
 ```c
 EM_ASYNC_JS(fooFun, resolveFun, (), {
-  console.log(&apos;loading promise42&apos;);
-  LoadedModule = (await WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;))).instance;
-  return addFunction(LoadedModule.exports[&apos;provide42&apos;]);
+  console.log('loading promise42');
+  LoadedModule = (await WebAssembly.instantiateStreaming(fetch('p42.wasm'))).instance;
+  return addFunction(LoadedModule.exports['provide42']);
 });
 ```
 
@@ -329,9 +329,9 @@ typedef long (*fooFun)();
 
 // 함수 약속
 EM_ASYNC_JS(fooFun, resolveFun, (), {
-  console.log(&apos;약속 로딩 중 promise42&apos;);
-  LoadedModule = (await WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;))).instance;
-  return addFunction(LoadedModule.exports[&apos;provide42&apos;]);
+  console.log('약속 로딩 중 promise42');
+  LoadedModule = (await WebAssembly.instantiateStreaming(fetch('p42.wasm'))).instance;
+  return addFunction(LoadedModule.exports['provide42']);
 });
 
 EM_JS_DEPS(funDeps, "$addFunction")

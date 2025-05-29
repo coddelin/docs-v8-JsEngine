@@ -1,6 +1,6 @@
 ---
-title: &apos;Richtlinien für Design-Reviews&apos;
-description: &apos;Dieses Dokument erklärt die Richtlinien für Design-Reviews des V8-Projekts.&apos;
+title: 'Richtlinien für Design-Reviews'
+description: 'Dieses Dokument erklärt die Richtlinien für Design-Reviews des V8-Projekts.'
 ---
 Bitte stellen Sie sicher, dass Sie die folgenden Richtlinien befolgen, sofern anwendbar.
 
@@ -26,7 +26,7 @@ Die vorgeschlagene Lösung basiert auf den folgenden Annahmen/Säulen:
 1. Der vorgeschlagene Workflow überträgt die Verantwortung an den individuellen Beitragenden (IC). Sie sind diejenigen, die den Prozess vorantreiben.
 1. Ihre leitenden TLs haben die Aufgabe, ihnen zu helfen, sich in diesem Bereich zurechtzufinden und die richtigen LGTM-Geber zu finden.
 1. Wenn ein Feature unstrittig ist, sollte fast kein zusätzlicher Aufwand entstehen.
-1. Wenn es viele Kontroversen gibt, kann das Feature an das V8 Eng Review Owners Meeting &apos;eskaliert&apos; werden, wo weitere Schritte entschieden werden.
+1. Wenn es viele Kontroversen gibt, kann das Feature an das V8 Eng Review Owners Meeting 'eskaliert' werden, wo weitere Schritte entschieden werden.
 
 ## Rollen
 

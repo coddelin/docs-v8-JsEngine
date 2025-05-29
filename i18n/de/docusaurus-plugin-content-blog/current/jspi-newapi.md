@@ -1,7 +1,7 @@
 ---
-title: &apos;WebAssembly JSPI hat eine neue API&apos;
-description: &apos;Dieser Artikel beschreibt einige bevorstehende Änderungen an der JavaScript Promise Integration (JSPI) API.&apos;
-author: &apos;Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl&apos;
+title: 'WebAssembly JSPI hat eine neue API'
+description: 'Dieser Artikel beschreibt einige bevorstehende Änderungen an der JavaScript Promise Integration (JSPI) API.'
+author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
 date: 2024-06-04
 tags:
   - WebAssembly
@@ -21,7 +21,7 @@ Sie können mehr über JSPI und dessen Nutzung [in diesem Blogeintrag](https://v
 
 Im Januar 2024 stimmte die Stacks-Untergruppe der Wasm CG [ab](https://github.com/WebAssembly/meetings/blob/297ac8b5ac00e6be1fe33b1f4a146cc7481b631d/stack/2024/stack-2024-01-29.md), die API für JSPI zu ändern. Konkret wird anstelle eines expliziten `Suspender`-Objekts die JavaScript/WebAssembly-Grenze als Trennlinie verwendet, um festzulegen, welche Berechnungen suspendiert werden.
 
-Der Unterschied ist relativ gering, aber potenziell signifikant: Wenn eine Berechnung suspendiert werden soll, bestimmt der jüngste Aufruf einer umhüllten WebAssembly-Exportfunktion den &apos;Cut-Point&apos;, was suspendiert wird.
+Der Unterschied ist relativ gering, aber potenziell signifikant: Wenn eine Berechnung suspendiert werden soll, bestimmt der jüngste Aufruf einer umhüllten WebAssembly-Exportfunktion den 'Cut-Point', was suspendiert wird.
 
 Die Implikation ist, dass ein Entwickler, der JSPI verwendet, etwas weniger Kontrolle über diesen Cut-Point hat. Andererseits macht das Wegfallen der Notwendigkeit, `Suspender`-Objekte explizit zu verwalten, die API erheblich benutzerfreundlicher.
 

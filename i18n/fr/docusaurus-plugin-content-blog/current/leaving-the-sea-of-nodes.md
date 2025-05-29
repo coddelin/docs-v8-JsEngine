@@ -1,6 +1,6 @@
 ---
- title: &apos;Terre en vue : quitter la mer des nœuds&apos;
- author: &apos;Darius Mercadier&apos;
+ title: 'Terre en vue : quitter la mer des nœuds'
+ author: 'Darius Mercadier'
  avatars:
    - darius-mercadier
  date: 2025-03-25
@@ -8,7 +8,7 @@
    - JavaScript
    - internes
  description: "Pourquoi V8 a décidé de s'éloigner de la mer des nœuds pour revenir au CFG"
- tweet: &apos;&apos;
+ tweet: ''
 ---
 
 Le compilateur optimisant de V8, Turbofan, est renommé pour être l’un des rares compilateurs de production à grande échelle à utiliser [Sea of Nodes](https://en.wikipedia.org/wiki/Sea_of_nodes) (SoN). Cependant, depuis près de 3 ans, nous avons commencé à nous débarrasser de Sea of Nodes et à revenir à une [représentation intermédiaire](https://en.wikipedia.org/wiki/Intermediate_representation) (IR) plus traditionnelle avec le [Control-Flow Graph](https://en.wikipedia.org/wiki/Control-flow_graph) (CFG), que nous avons nommé Turboshaft. Aujourd’hui, tout le backend JavaScript de Turbofan utilise Turboshaft, et WebAssembly utilise Turboshaft tout au long de son pipeline. Deux parties de Turbofan utilisent encore la mer des nœuds : le pipeline intégré, que nous remplaçons progressivement par Turboshaft, et le frontend du pipeline JavaScript, que nous remplaçons par Maglev, une autre IR basée sur CFG. Ce post explique les raisons qui nous ont poussés à abandonner la mer des nœuds.

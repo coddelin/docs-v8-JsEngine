@@ -1,14 +1,14 @@
 ---
-title: &apos;Propriedades de descanso e espalhamento de objeto&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Propriedades de descanso e espalhamento de objeto'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-06-06
 tags:
   - ECMAScript
   - ES2018
-description: &apos;Este artigo explica como as propriedades de descanso e espalhamento de objeto funcionam em JavaScript, e revisita os elementos de descanso e espalhamento de arrays.&apos;
-tweet: &apos;890269994688315394&apos;
+description: 'Este artigo explica como as propriedades de descanso e espalhamento de objeto funcionam em JavaScript, e revisita os elementos de descanso e espalhamento de arrays.'
+tweet: '890269994688315394'
 ---
 Antes de discutir _propriedades de descanso e espalhamento de objeto_, vamos dar uma volta pela memória e relembrar um recurso muito semelhante.
 
@@ -42,34 +42,34 @@ Então, o que há de novo? Bem, [uma proposta](https://github.com/tc39/proposal-
 ```js
 // Propriedades de descanso para atribuição de destruturação de objeto:
 const person = {
-    firstName: &apos;Sebastian&apos;,
-    lastName: &apos;Markbåge&apos;,
-    country: &apos;USA&apos;,
-    state: &apos;CA&apos;,
+    firstName: 'Sebastian',
+    lastName: 'Markbåge',
+    country: 'USA',
+    state: 'CA',
 };
 const { firstName, lastName, ...rest } = person;
 console.log(firstName); // Sebastian
 console.log(lastName); // Markbåge
-console.log(rest); // { country: &apos;USA&apos;, state: &apos;CA&apos; }
+console.log(rest); // { country: 'USA', state: 'CA' }
 
 <!--truncate-->
 // Propriedades de espalhamento para literais de objeto:
 const personCopy = { firstName, lastName, ...rest };
 console.log(personCopy);
-// { firstName: &apos;Sebastian&apos;, lastName: &apos;Markbåge&apos;, country: &apos;USA&apos;, state: &apos;CA&apos; }
+// { firstName: 'Sebastian', lastName: 'Markbåge', country: 'USA', state: 'CA' }
 ```
 
 As propriedades de espalhamento oferecem uma alternativa mais elegante ao [`Object.assign()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) em muitas situações:
 
 ```js
 // Clonar superficialmente um objeto:
-const data = { x: 42, y: 27, label: &apos;Treasure&apos; };
+const data = { x: 42, y: 27, label: 'Treasure' };
 // A maneira antiga:
 const clone1 = Object.assign({}, data);
 // A maneira nova:
 const clone2 = { ...data };
 // Ambos resultam em:
-// { x: 42, y: 27, label: &apos;Treasure&apos; }
+// { x: 42, y: 27, label: 'Treasure' }
 
 // Mesclar dois objetos:
 const defaultSettings = { logWarnings: false, logErrors: false };

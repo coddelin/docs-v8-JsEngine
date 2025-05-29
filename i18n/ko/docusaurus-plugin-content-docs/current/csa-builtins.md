@@ -1,6 +1,6 @@
 ---
-title: &apos;CodeStubAssembler 내장 기능&apos;
-description: &apos;이 문서는 CodeStubAssembler 내장 기능 작성에 대한 소개를 목적으로 하며, V8 개발자를 대상으로 합니다.&apos;
+title: 'CodeStubAssembler 내장 기능'
+description: '이 문서는 CodeStubAssembler 내장 기능 작성에 대한 소개를 목적으로 하며, V8 개발자를 대상으로 합니다.'
 ---
 이 문서는 CodeStubAssembler 내장 기능 작성에 대한 소개를 목적으로 하며, V8 개발자를 대상으로 합니다.
 

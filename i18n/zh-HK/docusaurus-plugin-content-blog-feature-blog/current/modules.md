@@ -1,15 +1,15 @@
 ---
-title: &apos;JavaScript 模組&apos;
-author: &apos;Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'JavaScript 模組'
+author: 'Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-- &apos;addy-osmani&apos;
-- &apos;mathias-bynens&apos;
+- 'addy-osmani'
+- 'mathias-bynens'
 date: 2018-06-18
 tags:
   - ECMAScript
   - ES2015
-description: &apos;本文說明如何使用 JavaScript 模組、如何負責任地部署它們，以及 Chrome 團隊如何努力在未來改進模組。&apos;
-tweet: &apos;1008725884575109120&apos;
+description: '本文說明如何使用 JavaScript 模組、如何負責任地部署它們，以及 Chrome 團隊如何努力在未來改進模組。'
+tweet: '1008725884575109120'
 ---
 JavaScript 模組現在已經被[所有主流瀏覽器支援](https://caniuse.com/#feat=es6-module)!
 
@@ -40,11 +40,11 @@ export function shout(string) {
 
 ```js
 // 📁 main.mjs
-import {repeat, shout} from &apos;./lib.mjs&apos;;
-repeat(&apos;hello&apos;);
-// → &apos;hello hello&apos;
-shout(&apos;Modules in action&apos;);
-// → &apos;MODULES IN ACTION!&apos;
+import {repeat, shout} from './lib.mjs';
+repeat('hello');
+// → 'hello hello'
+shout('Modules in action');
+// → 'MODULES IN ACTION!'
 ```
 
 您還可以從模組導出一個 _預設_ 值：
@@ -60,7 +60,7 @@ export default function(string) {
 
 ```js
 // 📁 main.mjs
-import shout from &apos;./lib.mjs&apos;;
+import shout from './lib.mjs';
 //     ^^^^^
 ```
 
@@ -118,7 +118,7 @@ import shout from &apos;./lib.mjs&apos;;
 
 <script type="module" src="module.mjs"></script>
 <script type="module" src="module.mjs"></script>
-<script type="module">import &apos;./module.mjs&apos;;</script>
+<script type="module">import './module.mjs';</script>
 <!-- module.mjs 只會執行一次。 -->
 ```
 
@@ -141,10 +141,10 @@ import shout from &apos;./lib.mjs&apos;;
 
 ### 模組規範符
 
-當 `import` 模組時，指定模組位置的字符串被稱為“模組規範符”或“導入規範符”。在我們之前的示例中，模組規範符是 `&apos;./lib.mjs&apos;`：
+當 `import` 模組時，指定模組位置的字符串被稱為“模組規範符”或“導入規範符”。在我們之前的示例中，模組規範符是 `'./lib.mjs'`：
 
 ```js
-import {shout} from &apos;./lib.mjs&apos;;
+import {shout} from './lib.mjs';
 //                  ^^^^^^^^^^^
 ```
 
@@ -152,19 +152,19 @@ import {shout} from &apos;./lib.mjs&apos;;
 
 ```js
 // 尚不支持：
-import {shout} from &apos;jquery&apos;;
-import {shout} from &apos;lib.mjs&apos;;
-import {shout} from &apos;modules/lib.mjs&apos;;
+import {shout} from 'jquery';
+import {shout} from 'lib.mjs';
+import {shout} from 'modules/lib.mjs';
 ```
 
 另一方面，以下示例均受支持：
 
 ```js
 // 支持：
-import {shout} from &apos;./lib.mjs&apos;;
-import {shout} from &apos;../lib.mjs&apos;;
-import {shout} from &apos;/modules/lib.mjs&apos;;
-import {shout} from &apos;https://simple.example/modules/lib.mjs&apos;;
+import {shout} from './lib.mjs';
+import {shout} from '../lib.mjs';
+import {shout} from '/modules/lib.mjs';
+import {shout} from 'https://simple.example/modules/lib.mjs';
 ```
 
 目前，模組規範符必須是完整的 URL，或以 `/`、`./` 或 `../` 開頭的相對 URL。
@@ -186,12 +186,12 @@ Module腳本預設是延遲載入的。因此，無需在`<script type="module">
 ```html
 <script type="module">
   (async () => {
-    const moduleSpecifier = &apos;./lib.mjs&apos;;
+    const moduleSpecifier = './lib.mjs';
     const {repeat, shout} = await import(moduleSpecifier);
-    repeat(&apos;hello&apos;);
-    // → &apos;hello hello&apos;
-    shout(&apos;Dynamic import in action&apos;);
-    // → &apos;DYNAMIC IMPORT IN ACTION!&apos;
+    repeat('hello');
+    // → 'hello hello'
+    shout('Dynamic import in action');
+    // → 'DYNAMIC IMPORT IN ACTION!'
   })();
 </script>
 ```
@@ -216,7 +216,7 @@ function loadThumbnail(relativePath) {
   return image;
 }
 
-const thumbnail = loadThumbnail(&apos;../img/thumbnail.png&apos;);
+const thumbnail = loadThumbnail('../img/thumbnail.png');
 container.append(thumbnail);
 ```
 
@@ -266,7 +266,7 @@ export function zip() { /* … */ }
 如果你的程式碼基礎只需要 `pluck` 功能，你可能會如下匯入它：
 
 ```js
-import {pluck} from &apos;./util.mjs&apos;;
+import {pluck} from './util.mjs';
 ```
 
 在這種情況下，（如果沒有編譯時的打包步驟）即使瀏覽器只需要這一個匯出，它仍需要下載、解析和編譯整個 `./util.mjs` 模組。這很浪費！
@@ -280,7 +280,7 @@ export function pluck() { /* … */ }
 然後我們可以匯入 `pluck`，而無需處理 `drop` 和 `zip` 的額外負擔：
 
 ```js
-import {pluck} from &apos;./pluck.mjs&apos;;
+import {pluck} from './pluck.mjs';
 ```
 
 :::note
@@ -335,7 +335,7 @@ Chrome 現已實現 [worklets](https://drafts.css-houdini.org/worklets/)，允�
 Chrome 65 支援 [`PaintWorklet`](https://developers.google.com/web/updates/2018/01/paintapi)（又稱 CSS Paint API）以控制如何繪製 DOM 元素。
 
 ```js
-const result = await css.paintWorklet.addModule(&apos;paint-worklet.mjs&apos;);
+const result = await css.paintWorklet.addModule('paint-worklet.mjs');
 ```
 
 Chrome 66 支援 [`AudioWorklet`](https://developers.google.com/web/updates/2017/12/audio-worklet)，允許您使用自己的代碼控制音頻處理。同一版本的 Chrome 開始了[`AnimationWorklet`](https://groups.google.com/a/chromium.org/d/msg/blink-dev/AZ-PYPMS7EA/DEqbe2u5BQAJ) 的[OriginTrial](https://groups.google.com/a/chromium.org/d/msg/blink-dev/AZ-PYPMS7EA/DEqbe2u5BQAJ)，這使得創建滾動相關和其他高效能的程序化動畫成為可能。
@@ -345,14 +345,14 @@ Chrome 66 支援 [`AudioWorklet`](https://developers.google.com/web/updates/2017
 我們正在[努力](https://bugs.chromium.org/p/chromium/issues/detail?id=680046)為 Chrome 中的專用網頁工作者添加使用 JS 模組的支持。啟用 `chrome://flags/#enable-experimental-web-platform-features` 後，您已經可以嘗試此功能。
 
 ```js
-const worker = new Worker(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
+const worker = new Worker('worker.mjs', { type: 'module' });
 ```
 
 JS 模組對共享工作者和服務工作者的支援即將到來：
 
 ```js
-const worker = new SharedWorker(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
-const registration = await navigator.serviceWorker.register(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
+const worker = new SharedWorker('worker.mjs', { type: 'module' });
+const registration = await navigator.serviceWorker.register('worker.mjs', { type: 'module' });
 ```
 
 ### Import maps
@@ -360,8 +360,8 @@ const registration = await navigator.serviceWorker.register(&apos;worker.mjs&apo
 在 Node.js/npm 中，通常會透過“套件名稱”導入 JS 模組。例如：
 
 ```js
-import moment from &apos;moment&apos;;
-import {pluck} from &apos;lodash-es&apos;;
+import moment from 'moment';
+import {pluck} from 'lodash-es';
 ```
 
 目前，[依據 HTML 規範](https://html.spec.whatwg.org/multipage/webappapis.html#resolve-a-module-specifier)，此類“裸導入規範”會拋出異常。[我們的 Import maps 提議](https://github.com/domenic/import-maps)允許此類代碼可以在網頁上工作，包括在生產應用中。Import map 是一種 JSON 資源，幫助瀏覽器將裸導入規範轉換為完整的 URL。

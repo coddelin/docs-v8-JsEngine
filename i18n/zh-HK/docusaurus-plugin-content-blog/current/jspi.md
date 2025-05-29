@@ -1,7 +1,7 @@
 ---
-title: &apos;介紹 WebAssembly JavaScript Promise Integration API&apos;
-description: &apos;本文介紹 JSPI，並提供一些簡單的範例以幫助您開始使用它&apos;
-author: &apos;Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl&apos;
+title: '介紹 WebAssembly JavaScript Promise Integration API'
+description: '本文介紹 JSPI，並提供一些簡單的範例以幫助您開始使用它'
+author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
 date: 2024-07-01
 tags:
   - WebAssembly
@@ -158,16 +158,16 @@ emcc p42.c -o p42.wasm --no-entry -Wl,--import-memory
 為了動態加載程式碼，我們使用標準的 `WebAssembly.instantiateStreaming` API：
 
 ```js
-WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;));
+WebAssembly.instantiateStreaming(fetch('p42.wasm'));
 ```
 
 此表達式使用`fetch`定位已編譯的Wasm模組，使用`WebAssembly.instantiateStreaming`來編譯fetch結果並從中創建一個已實例化的模組。`fetch`和`WebAssembly.instantiateStreaming`均返回Promises；因此我們不能簡單地訪問結果並提取我們需要的函數。而是通過使用`EM_ASYNC_JS`宏將其包裝成JSPI風格的導入。
 
 ```c
 EM_ASYNC_JS(fooFun, resolveFun, (), {
-  console.log(&apos;loading promise42&apos;);
-  LoadedModule = (await WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;))).instance;
-  return addFunction(LoadedModule.exports[&apos;provide42&apos;]);
+  console.log('loading promise42');
+  LoadedModule = (await WebAssembly.instantiateStreaming(fetch('p42.wasm'))).instance;
+  return addFunction(LoadedModule.exports['provide42']);
 });
 ```
 
@@ -329,9 +329,9 @@ typedef long (*fooFun)();
 
 // promise 一個函數
 EM_ASYNC_JS(fooFun, resolveFun, (), {
-  console.log(&apos;載入 promise42&apos;);
-  LoadedModule = (await WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;))).instance;
-  return addFunction(LoadedModule.exports[&apos;provide42&apos;]);
+  console.log('載入 promise42');
+  LoadedModule = (await WebAssembly.instantiateStreaming(fetch('p42.wasm'))).instance;
+  return addFunction(LoadedModule.exports['provide42']);
 });
 
 EM_JS_DEPS(funDeps, "$addFunction")

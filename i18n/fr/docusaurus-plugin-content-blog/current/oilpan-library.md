@@ -1,6 +1,6 @@
 ---
-title: &apos;Bibliothèque Oilpan&apos;
-author: &apos;Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), et Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), déménageurs de fichiers efficaces et performants&apos;
+title: 'Bibliothèque Oilpan'
+author: 'Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), et Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), déménageurs de fichiers efficaces et performants'
 avatars:
   - anton-bikineev
   - omer-katz
@@ -10,8 +10,8 @@ tags:
   - internes
   - mémoire
   - cppgc
-description: &apos;V8 est livré avec Oilpan, une bibliothèque de collecte des ordures pour héberger la mémoire gérée en C++.&apos;
-tweet: &apos;1458406645181165574&apos;
+description: 'V8 est livré avec Oilpan, une bibliothèque de collecte des ordures pour héberger la mémoire gérée en C++.'
+tweet: '1458406645181165574'
 ---
 
 Bien que le titre de cet article puisse laisser entendre une plongée approfondie dans une collection de livres sur les bacs à huile – ce qui, étant donné les normes de construction des bacs, est un sujet étonnamment riche en littérature – nous examinons plutôt de plus près Oilpan, un ramasse-miettes C++ qui est hébergé via V8 en tant que bibliothèque depuis V8 v9.4.

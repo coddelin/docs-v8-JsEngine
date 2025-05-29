@@ -1,13 +1,13 @@
 ---
-title: &apos;Дополнительный контент для "Понимание спецификации ECMAScript, часть 2"&apos;
-author: &apos;[Марья Хёлтта](https://twitter.com/marjakh), наблюдатель за спекулятивной спецификацией&apos;
+title: 'Дополнительный контент для "Понимание спецификации ECMAScript, часть 2"'
+author: '[Марья Хёлтта](https://twitter.com/marjakh), наблюдатель за спекулятивной спецификацией'
 avatars:
   - marja-holtta
 date: 2020-03-02
 tags:
   - ECMAScript
-description: &apos;Учебник по чтению спецификации ECMAScript&apos;
-tweet: &apos;&apos;
+description: 'Учебник по чтению спецификации ECMAScript'
+tweet: ''
 ---
 
 ### Почему `o2.foo` является `AssignmentExpression`?
@@ -18,7 +18,7 @@ tweet: &apos;&apos;
 
 ```js
 function simple(a) {
-  console.log(&apos;Аргумент был &apos; + a);
+  console.log('Аргумент был ' + a);
 }
 simple(x = 1);
 // → Выводит “Аргумент был 1”.

@@ -1,13 +1,13 @@
 ---
-title: &apos;Cobertura de código JavaScript&apos;
-author: &apos;Jakob Gruber ([@schuay](https://twitter.com/schuay))&apos;
+title: 'Cobertura de código JavaScript'
+author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
 avatars:
-  - &apos;jakob-gruber&apos;
+  - 'jakob-gruber'
 date: 2017-12-13 13:33:37
 tags:
   - internals
-description: &apos;Agora, o V8 tem suporte nativo para cobertura de código JavaScript. As ferramentas agora podem acessar as informações de cobertura do V8 sem instrumentar o código!&apos;
-tweet: &apos;940879905079873536&apos;
+description: 'Agora, o V8 tem suporte nativo para cobertura de código JavaScript. As ferramentas agora podem acessar as informações de cobertura do V8 sem instrumentar o código!'
+tweet: '940879905079873536'
 ---
 A cobertura de código fornece informações sobre se, e opcionalmente com que frequência, certas partes de uma aplicação foram executadas. É comumente usada para determinar quão bem um conjunto de testes avalia uma base de código específica.
 
@@ -110,7 +110,7 @@ O segundo mecanismo reutilizado determina o intervalo de origem das funções. A
 
 ```js
 function f() {
-  console.log(&apos;Hello World&apos;);
+  console.log('Hello World');
 }
 
 f();

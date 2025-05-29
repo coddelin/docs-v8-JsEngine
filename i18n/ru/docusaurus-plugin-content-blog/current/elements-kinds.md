@@ -209,9 +209,9 @@ array.push(NaN, Infinity);
 
 ```js
 const arrayLike = {};
-arrayLike[0] = &apos;a&apos;;
-arrayLike[1] = &apos;b&apos;;
-arrayLike[2] = &apos;c&apos;;
+arrayLike[0] = 'a';
+arrayLike[1] = 'b';
+arrayLike[2] = 'c';
 arrayLike.length = 3;
 ```
 
@@ -244,7 +244,7 @@ const logArgs = function() {
     console.log(`${ index }: ${ value }`);
   });
 };
-logArgs(&apos;a&apos;, &apos;b&apos;, &apos;c&apos;);
+logArgs('a', 'b', 'c');
 // Это выведет: '0: a', затем '1: b', и, наконец, '2: c'.
 ```
 
@@ -256,7 +256,7 @@ const logArgs = (...args) => {
     console.log(`${ index }: ${ value }`);
   });
 };
-logArgs(&apos;a&apos;, &apos;b&apos;, &apos;c&apos;);
+logArgs('a', 'b', 'c');
 // Это выведет: '0: a', затем '1: b', и, наконец, '2: c'.
 ```
 
@@ -281,7 +281,7 @@ const doSomething = (item) => console.log(item);
 
 each([], () => {});
 
-each([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], doSomething);
+each(['a', 'b', 'c'], doSomething);
 // `each` вызывается с `PACKED_ELEMENTS`. V8 использует встроенный кэш
 // (или “IC”), чтобы помнить, что `each` вызывается с этим конкретным
 // типом элементов. V8 оптимистичен и предполагает, что
@@ -323,11 +323,11 @@ const array = new Array(3);
 // На данный момент массив является разреженным, поэтому он становится
 // `HOLEY_SMI_ELEMENTS`, то есть наиболее специфичной возможностью,
 // учитывая текущую информацию.
-array[0] = &apos;a&apos;;
+array[0] = 'a';
 // Постойте, это строка вместо небольшого целого числа… Таким образом, тип
 // переходит к `HOLEY_ELEMENTS`.
-array[1] = &apos;b&apos;;
-array[2] = &apos;c&apos;;
+array[1] = 'b';
+array[2] = 'c';
 // На данный момент все три позиции в массиве заполнены, поэтому
 // массив становится упакованным (т.е. больше не является разреженным). Тем не менее, мы
 // не можем перейти к более специфичному типу, такому как `PACKED_ELEMENTS`. Тип
@@ -339,7 +339,7 @@ array[2] = &apos;c&apos;;
 Лучший способ создания массива — использовать литеральную запись:
 
 ```js
-const array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
+const array = ['a', 'b', 'c'];
 // тип элементов: PACKED_ELEMENTS
 ```
 

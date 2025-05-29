@@ -1,16 +1,16 @@
 ---
-title: &apos;Быстрее асинхронные функции и промисы&apos;
-author: &apos;Майя Армянова ([@Zmayski](https://twitter.com/Zmayski)), всегда-ожидающий предвосхититель, и Бенедикт Мойрер ([@bmeurer](https://twitter.com/bmeurer)), профессиональный гарантирующий производительность&apos;
+title: 'Быстрее асинхронные функции и промисы'
+author: 'Майя Армянова ([@Zmayski](https://twitter.com/Zmayski)), всегда-ожидающий предвосхититель, и Бенедикт Мойрер ([@bmeurer](https://twitter.com/bmeurer)), профессиональный гарантирующий производительность'
 avatars:
-  - &apos;maya-armyanova&apos;
-  - &apos;benedikt-meurer&apos;
+  - 'maya-armyanova'
+  - 'benedikt-meurer'
 date: 2018-11-12 16:45:07
 tags:
   - ECMAScript
   - тесты производительности
   - презентации
-description: &apos;Более быстрые и удобные для отладки асинхронные функции и промисы доступны в V8 v7.2 / Chrome 72.&apos;
-tweet: &apos;1062000102909169670&apos;
+description: 'Более быстрые и удобные для отладки асинхронные функции и промисы доступны в V8 v7.2 / Chrome 72.'
+tweet: '1062000102909169670'
 ---
 Асинхронная обработка в JavaScript традиционно имела репутацию недостаточно быстрой. К тому же отладка живых JavaScript приложений — особенно серверов Node.js — является непростой задачей, _особенно_ в случае асинхронного программирования. К счастью, времена меняются. В этой статье рассматриваются оптимизации асинхронных функций и промисов в V8 (и в некоторой степени в других движках JavaScript), а также описывается, как улучшился опыт отладки асинхронного кода.
 
@@ -81,15 +81,15 @@ async function handler() {
 Еще одна асинхронная парадигма, которая особенно распространена в Node.js, — это использование [`ReadableStream`](https://nodejs.org/api/stream.html#stream_readable_streams). Вот пример:
 
 ```js
-const http = require(&apos;http&apos;);
+const http = require('http');
 
 http.createServer((req, res) => {
-  let body = &apos;&apos;;
-  req.setEncoding(&apos;utf8&apos;);
-  req.on(&apos;data&apos;, (chunk) => {
+  let body = '';
+  req.setEncoding('utf8');
+  req.on('data', (chunk) => {
     body += chunk;
   });
-  req.on(&apos;end&apos;, () => {
+  req.on('end', () => {
     res.write(body);
     res.end();
   });
@@ -101,12 +101,12 @@ http.createServer((req, res) => {
 К счастью, крутая новая функция ES2018 под названием [асинхронные итерации](http://2ality.com/2016/10/asynchronous-iteration.html) может упростить этот код:
 
 ```js
-const http = require(&apos;http&apos;);
+const http = require('http');
 
 http.createServer(async (req, res) => {
   try {
-    let body = &apos;&apos;;
-    req.setEncoding(&apos;utf8&apos;);
+    let body = '';
+    req.setEncoding('utf8');
     for await (const chunk of req) {
       body += chunk;
     }
@@ -119,7 +119,7 @@ http.createServer(async (req, res) => {
 }).listen(1337);
 ```
 
-Вместо того чтобы вставлять логику обработки запроса в два разных обратных вызова — `&apos;data&apos;` и `&apos;end&apos;` — мы теперь можем поместить все в одну асинхронную функцию и использовать новый цикл `for await…of` для асинхронного перебора фрагментов. Мы также добавили блок `try-catch`, чтобы избежать проблемы `unhandledRejection`[^1].
+Вместо того чтобы вставлять логику обработки запроса в два разных обратных вызова — `'data'` и `'end'` — мы теперь можем поместить все в одну асинхронную функцию и использовать новый цикл `for await…of` для асинхронного перебора фрагментов. Мы также добавили блок `try-catch`, чтобы избежать проблемы `unhandledRejection`[^1].
 
 [^1]: Спасибо [Matteo Collina](https://twitter.com/matteocollina) за указание на [эту проблему](https://github.com/mcollina/make-promises-safe/blob/master/README.md#the-unhandledrejection-problem).
 
@@ -165,16 +165,16 @@ http.createServer(async (req, res) => {
 const p = Promise.resolve();
 
 (async () => {
-  await p; console.log(&apos;after:await&apos;);
+  await p; console.log('after:await');
 })();
 
-p.then(() => console.log(&apos;tick:a&apos;))
- .then(() => console.log(&apos;tick:b&apos;));
+p.then(() => console.log('tick:a'))
+ .then(() => console.log('tick:b'));
 ```
 
 Программа выше создает выполненное обещание `p` и `await` его результат, но также связывает с ним два обработчика. В каком порядке вы ожидаете выполнение вызовов `console.log`?
 
-Поскольку `p` выполнено, вы можете ожидать, что сначала будет напечатано `&apos;after:await&apos;`, а затем `&apos;tick&apos;`. На самом деле, такое поведение вы получите в Node.js 8:
+Поскольку `p` выполнено, вы можете ожидать, что сначала будет напечатано `'after:await'`, а затем `'tick'`. На самом деле, такое поведение вы получите в Node.js 8:
 
 ![Ошибка `await` в Node.js 8](/_img/fast-async/await-bug-node-8.svg)
 
@@ -383,7 +383,7 @@ async function foo() {
 
 async function bar() {
   await Promise.resolve();
-  throw new Error(&apos;BEEP BEEP&apos;);
+  throw new Error('BEEP BEEP');
 }
 
 foo().catch(error => console.log(error.stack));

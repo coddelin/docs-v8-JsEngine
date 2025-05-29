@@ -1,15 +1,15 @@
 ---
-title: &apos;改善 V8 正则表达式&apos;
-author: &apos;Patrick Thier 和 Ana Peško，对正则表达式发表意见的常规专家&apos;
+title: '改善 V8 正则表达式'
+author: 'Patrick Thier 和 Ana Peško，对正则表达式发表意见的常规专家'
 avatars:
-  - &apos;patrick-thier&apos;
-  - &apos;ana-pesko&apos;
+  - 'patrick-thier'
+  - 'ana-pesko'
 date: 2019-10-04 15:24:16
 tags:
   - internals
   - RegExp
-description: &apos;在本文中，我们介绍了如何利用解释正则表达式的优势并缓解其缺点。&apos;
-tweet: &apos;1180131710568030208&apos;
+description: '在本文中，我们介绍了如何利用解释正则表达式的优势并缓解其缺点。'
+tweet: '1180131710568030208'
 ---
 在默认配置下，V8 在正则表达式第一次执行时会将其编译为本地代码。作为我们对 [无 JIT 的 V8](/blog/jitless) 的工作的一部分，我们引入了一个正则表达式解释器。解释正则表达式的优势在于使用更少的内存，但会带来性能上的损失。本文中我们介绍了如何利用解释正则表达式的优势，同时减轻其缺点。
 
@@ -42,15 +42,15 @@ tweet: &apos;1180131710568030208&apos;
 
 ```js
 const re = /[^_]*/;
-const str = &apos;a0b*c_ef&apos;;
+const str = 'a0b*c_ef';
 re.exec(str);
-// → 匹配 &apos;a0b*c&apos;
+// → 匹配 'a0b*c'
 ```
 
 对于这个简单的模式，正则表达式编译器为每个字符创建了 3 条字节码。这些字节码在高层次上如下：
 
 1. 加载当前字符。
-1. 检查字符是否等于 `&apos;_&apos;`。
+1. 检查字符是否等于 `'_'`。
 1. 如果不是，前移主题字符串中的当前位置并执行 `goto 1`。
 
 对于我们的主题字符串，我们运行了 17 条字节码直到找到一个不匹配的字符。窥孔优化的思想是用一个新的优化字节码替换字节码序列，以结合多个字节码的功能。在我们的例子中，我们甚至可以在新字节码中显式处理由 `goto` 创建的隐式循环，因此一个字节码就可以处理所有匹配的字符，节省了 16 次调度。

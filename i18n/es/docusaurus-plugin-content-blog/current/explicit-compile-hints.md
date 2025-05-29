@@ -1,13 +1,13 @@
 ---
- title: &apos;Dando un Aviso a V8: Inicio Más Rápido de JavaScript con Indicaciones de Compilación Explícitas&apos;
- author: &apos;Marja Hölttä&apos;
+ title: 'Dando un Aviso a V8: Inicio Más Rápido de JavaScript con Indicaciones de Compilación Explícitas'
+ author: 'Marja Hölttä'
  avatars:
    - marja-holtta
  date: 2025-04-29
  tags:
    - JavaScript
  description: "Las indicaciones de compilación explícitas controlan qué archivos y funciones de JavaScript se analizan y compilan inmediatamente"
- tweet: &apos;&apos;
+ tweet: ''
 ---
 
 Hacer que JavaScript funcione rápidamente es clave para una aplicación web receptiva. Incluso con las optimizaciones avanzadas de V8, analizar y compilar JavaScript crítico durante el inicio aún puede generar cuellos de botella en el rendimiento. Saber qué funciones de JavaScript compilar durante la compilación inicial del script puede acelerar la carga de las páginas web.
@@ -53,7 +53,7 @@ script1.js:
 
 ```js
 function testfunc1() {
-  console.log(&apos;testfunc1 llamado!&apos;);
+  console.log('testfunc1 llamado!');
 }
 
 testfunc1();
@@ -65,7 +65,7 @@ script2.js:
 //# allFunctionsCalledOnLoad
 
 function testfunc2() {
-  console.log(&apos;testfunc2 llamado!&apos;);
+  console.log('testfunc2 llamado!');
 }
 
 testfunc2();

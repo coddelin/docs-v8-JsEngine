@@ -1,6 +1,6 @@
 ---
-title: &apos;Mapas (Clases Ocultas) en V8&apos;
-description: &apos;¿Cómo rastrea y optimiza V8 la estructura percibida de tus objetos?&apos;
+title: 'Mapas (Clases Ocultas) en V8'
+description: '¿Cómo rastrea y optimiza V8 la estructura percibida de tus objetos?'
 ---
 
 Mostremos cómo V8 construye sus clases ocultas. Las estructuras de datos principales son:

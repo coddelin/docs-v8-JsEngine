@@ -1,6 +1,6 @@
 ---
-title: &apos;WebAssembly 功能的階段和發佈檢查清單&apos;
-description: &apos;此文件提供了關於在 V8 中何時分階段和發佈 WebAssembly 功能的工程要求檢查清單。&apos;
+title: 'WebAssembly 功能的階段和發佈檢查清單'
+description: '此文件提供了關於在 V8 中何時分階段和發佈 WebAssembly 功能的工程要求檢查清單。'
 ---
 此文件提供了在 V8 中分階段和發佈 WebAssembly 功能的工程要求檢查清單。這些檢查清單是作為指導原則，可能並不適用於所有功能。實際的發佈過程可參見 [V8 發佈過程](https://v8.dev/docs/feature-launch-process)。
 

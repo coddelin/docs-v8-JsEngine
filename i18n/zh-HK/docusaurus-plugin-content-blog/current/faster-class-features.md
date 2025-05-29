@@ -1,13 +1,13 @@
 ---
-title: &apos;更快初始化具有新類特性的實例&apos;
-author: &apos;[Joyee Cheung](https://twitter.com/JoyeeCheung)，實例初始化器&apos;
+title: '更快初始化具有新類特性的實例'
+author: '[Joyee Cheung](https://twitter.com/JoyeeCheung)，實例初始化器'
 avatars:
-  - &apos;joyee-cheung&apos;
+  - 'joyee-cheung'
 date: 2022-04-20
 tags:
   - internals
-description: &apos;自從 V8 v9.7 以來，具有新類特性的實例初始化速度變得更快。&apos;
-tweet: &apos;1517041137378373632&apos;
+description: '自從 V8 v9.7 以來，具有新類特性的實例初始化速度變得更快。'
+tweet: '1517041137378373632'
 ---
 
 自 v8 v7.2 開始，類字段已在 V8 中推出，而私有類方法自 v8.4 啟用。隨著相關提案於 2021 年達到第 4 階段，針對 V8 中新類特性的支持改進工作開始啟動 —— 在此之前，這些特性的採用主要受到兩個問題的影響：
@@ -93,9 +93,9 @@ class A {
 class A {
   constructor() {
     // %AddPrivateField() 調用的大致翻譯：
-    const _a = %PrivateSymbol(&apos;#a&apos;)
+    const _a = %PrivateSymbol('#a')
     if (_a in this) {
-      throw TypeError(&apos;無法重複初始化 #a 在同一對象上&apos;);
+      throw TypeError('無法重複初始化 #a 在同一對象上');
     }
     Object.defineProperty(this, _a, {
       writable: true,
@@ -104,7 +104,7 @@ class A {
       value: 0
     });
     // %CreateDataProperty() 調用的大致翻譯：
-    Object.defineProperty(this, &apos;b&apos;, {
+    Object.defineProperty(this, 'b', {
       writable: true,
       configurable: true,
       enumerable: true,
@@ -187,9 +187,9 @@ class A {
       { a: 1 },
       {
         defineProperty(object, key, desc) {
-          console.log(&apos;object:&apos;, object);
-          console.log(&apos;key:&apos;, key);
-          console.log(&apos;desc:&apos;, desc);
+          console.log('object:', object);
+          console.log('key:', key);
+          console.log('desc:', desc);
           return true;
         }
       });
@@ -202,7 +202,7 @@ class B extends A {
 }
 
 // object: { a: 1 },
-// key: &apos;a&apos;,
+// key: 'a',
 // desc: {value: 2, writable: true, enumerable: true, configurable: true}
 new B();
 ```

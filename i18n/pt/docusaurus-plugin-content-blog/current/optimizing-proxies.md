@@ -88,11 +88,11 @@ function run() {
   return new P();
 }
 const N = 1e5;
-console.time(&apos;correr&apos;);
+console.time('correr');
 for (let i = 0; i < N; ++i) {
   run();
 }
-console.timeEnd(&apos;correr&apos;);
+console.timeEnd('correr');
 ```
 
 Concluiu-se que a maior parte do tempo é gasto em `NovoObjeto` e nas funções chamadas por ele, então começamos a planejar como acelerar isso em futuras versões.

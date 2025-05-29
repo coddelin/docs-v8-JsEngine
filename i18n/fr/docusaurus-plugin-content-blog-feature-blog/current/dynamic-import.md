@@ -1,16 +1,16 @@
 ---
-title: &apos;Importation dynamique `import()`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Importation dynamique `import()`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-11-21
 tags:
   - ECMAScript
   - ES2020
-description: &apos;L&apos;importation dynamique via `import()` débloque de nouvelles capacités par rapport à l&apos;importation statique. Cet article compare les deux et donne un aperçu des nouveautés.&apos;
-tweet: &apos;932914724060254208&apos;
+description: 'L'importation dynamique via `import()` débloque de nouvelles capacités par rapport à l'importation statique. Cet article compare les deux et donne un aperçu des nouveautés.'
+tweet: '932914724060254208'
 ---
-[`import()` dynamique](https://github.com/tc39/proposal-dynamic-import) introduit une nouvelle forme fonctionnelle d&apos;`import` qui débloque de nouvelles capacités par rapport à l&apos;`import` statique. Cet article compare les deux et donne un aperçu des nouveautés.
+[`import()` dynamique](https://github.com/tc39/proposal-dynamic-import) introduit une nouvelle forme fonctionnelle d'`import` qui débloque de nouvelles capacités par rapport à l'`import` statique. Cet article compare les deux et donne un aperçu des nouveautés.
 
 <!--truncate-->
 ## `import` statique (récapitulatif)
@@ -22,12 +22,12 @@ Considérez le module suivant, situé à `./utils.mjs` :
 ```js
 // Export par défaut
 export default () => {
-  console.log(&apos;Bonjour depuis l&apos;export par défaut !&apos;);
+  console.log('Bonjour depuis l'export par défaut !');
 };
 
 // Export nommé `doStuff`
 export const doStuff = () => {
-  console.log(&apos;Effectuer des tâches…&apos;);
+  console.log('Effectuer des tâches…');
 };
 ```
 
@@ -35,68 +35,68 @@ Voici comment importer statiquement et utiliser le module `./utils.mjs` :
 
 ```html
 <script type="module">
-  import * as module from &apos;./utils.mjs&apos;;
+  import * as module from './utils.mjs';
   module.default();
-  // → affiche &apos;Bonjour depuis l&apos;export par défaut !&apos;
+  // → affiche 'Bonjour depuis l'export par défaut !'
   module.doStuff();
-  // → affiche &apos;Effectuer des tâches…&apos;
+  // → affiche 'Effectuer des tâches…'
 </script>
 ```
 
 :::note
-**Remarque :** L&apos;exemple précédent utilise l&apos;extension `.mjs` pour indiquer qu&apos;il s&apos;agit d&apos;un module et non d&apos;un script classique. Sur le web, l&apos;extension de fichier n&apos;a pas vraiment d&apos;importance tant que les fichiers sont servis avec le type MIME correct (par exemple, `text/javascript` pour les fichiers JavaScript) dans l&apos;en-tête HTTP `Content-Type`.
+**Remarque :** L'exemple précédent utilise l'extension `.mjs` pour indiquer qu'il s'agit d'un module et non d'un script classique. Sur le web, l'extension de fichier n'a pas vraiment d'importance tant que les fichiers sont servis avec le type MIME correct (par exemple, `text/javascript` pour les fichiers JavaScript) dans l'en-tête HTTP `Content-Type`.
 
-L&apos;extension `.mjs` est particulièrement utile sur d&apos;autres plateformes telles que [Node.js](https://nodejs.org/api/esm.html#esm_enabling) et [`d8`](/docs/d8), où il n&apos;y a pas de concept de types MIME ou d&apos;autres mécanismes obligatoires comme `type="module"` pour déterminer si quelque chose est un module ou un script classique. Nous utilisons la même extension ici pour assurer une cohérence entre les plateformes et pour distinguer clairement les modules des scripts classiques.
+L'extension `.mjs` est particulièrement utile sur d'autres plateformes telles que [Node.js](https://nodejs.org/api/esm.html#esm_enabling) et [`d8`](/docs/d8), où il n'y a pas de concept de types MIME ou d'autres mécanismes obligatoires comme `type="module"` pour déterminer si quelque chose est un module ou un script classique. Nous utilisons la même extension ici pour assurer une cohérence entre les plateformes et pour distinguer clairement les modules des scripts classiques.
 :::
 
-Cette forme syntaxique pour importer des modules est une déclaration *statique* : elle n&apos;accepte qu&apos;un littéral chaîne comme spécificateur de module et introduit des liaisons dans la portée locale grâce à un processus de « liaison » pré-runtime. La syntaxe `import` statique ne peut être utilisée qu&apos;au niveau supérieur du fichier.
+Cette forme syntaxique pour importer des modules est une déclaration *statique* : elle n'accepte qu'un littéral chaîne comme spécificateur de module et introduit des liaisons dans la portée locale grâce à un processus de « liaison » pré-runtime. La syntaxe `import` statique ne peut être utilisée qu'au niveau supérieur du fichier.
 
-L&apos;`import` statique permet des cas d&apos;utilisation importants tels que l&apos;analyse statique, les outils de bundling et l&apos;élimination de code non utilisé (tree-shaking).
+L'`import` statique permet des cas d'utilisation importants tels que l'analyse statique, les outils de bundling et l'élimination de code non utilisé (tree-shaking).
 
 Dans certains cas, il est utile de :
 
 - importer un module à la demande (ou conditionnellement)
-- calculer le spécificateur du module à l&apos;exécution
-- importer un module depuis un script classique (plutôt qu&apos;un module)
+- calculer le spécificateur du module à l'exécution
+- importer un module depuis un script classique (plutôt qu'un module)
 
-Aucun de ceux-ci n&apos;est possible avec l&apos;`import` statique.
+Aucun de ceux-ci n'est possible avec l'`import` statique.
 
 ## `import()` dynamique 🔥
 
-[`import()` dynamique](https://github.com/tc39/proposal-dynamic-import) introduit une nouvelle forme fonctionnelle d&apos;`import` adaptée à ces cas d&apos;utilisation. `import(moduleSpecifier)` renvoie une promesse contenant l&apos;objet espace de noms du module demandé, qui est créé après la récupération, l&apos;instanciation et l&apos;évaluation de toutes les dépendances du module ainsi que du module lui-même.
+[`import()` dynamique](https://github.com/tc39/proposal-dynamic-import) introduit une nouvelle forme fonctionnelle d'`import` adaptée à ces cas d'utilisation. `import(moduleSpecifier)` renvoie une promesse contenant l'objet espace de noms du module demandé, qui est créé après la récupération, l'instanciation et l'évaluation de toutes les dépendances du module ainsi que du module lui-même.
 
 Voici comment importer dynamiquement et utiliser le module `./utils.mjs` :
 
 ```html
 <script type="module">
-  const moduleSpecifier = &apos;./utils.mjs&apos;;
+  const moduleSpecifier = './utils.mjs';
   import(moduleSpecifier)
     .then((module) => {
       module.default();
-      // → affiche &apos;Bonjour depuis l&apos;export par défaut !&apos;
+      // → affiche 'Bonjour depuis l'export par défaut !'
       module.doStuff();
-      // → affiche &apos;Effectuer des tâches…&apos;
+      // → affiche 'Effectuer des tâches…'
     });
 </script>
 ```
 
-Puisque `import()` renvoie une promesse, il est possible d&apos;utiliser `async`/`await` au lieu du style basé sur les callbacks avec `then` :
+Puisque `import()` renvoie une promesse, il est possible d'utiliser `async`/`await` au lieu du style basé sur les callbacks avec `then` :
 
 ```html
 <script type="module">
   (async () => {
-    const moduleSpecifier = &apos;./utils.mjs&apos;;
+    const moduleSpecifier = './utils.mjs';
     const module = await import(moduleSpecifier)
     module.default();
-    // → affiche &apos;Bonjour depuis l&apos;export par défaut !&apos;
+    // → affiche 'Bonjour depuis l'export par défaut !'
     module.doStuff();
-    // → affiche &apos;Effectuer des tâches…&apos;
+    // → affiche 'Effectuer des tâches…'
   })();
 </script>
 ```
 
 :::note
-**Remarque :** Bien que `import()` *ressemble* à un appel de fonction, il est spécifié comme une *syntaxe* qui utilise des parenthèses (similaire à [`super()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super)). Cela signifie que `import` n&apos;hérite pas de `Function.prototype`, vous ne pouvez donc pas `call` ou `apply`, et des choses comme `const importAlias = import` ne fonctionnent pas — en fait, `import` n&apos;est même pas un objet ! Cela n&apos;a pas vraiment d&apos;importance en pratique cependant.
+**Remarque :** Bien que `import()` *ressemble* à un appel de fonction, il est spécifié comme une *syntaxe* qui utilise des parenthèses (similaire à [`super()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super)). Cela signifie que `import` n'hérite pas de `Function.prototype`, vous ne pouvez donc pas `call` ou `apply`, et des choses comme `const importAlias = import` ne fonctionnent pas — en fait, `import` n'est même pas un objet ! Cela n'a pas vraiment d'importance en pratique cependant.
 :::
 
 Voici un exemple illustrant comment `import()` dynamique permet le chargement paresseux (lazy-loading) des modules lors de la navigation dans une petite application à page unique :
@@ -112,10 +112,10 @@ Voici un exemple illustrant comment `import()` dynamique permet le chargement pa
 </nav>
 <main>Voici un espace réservé pour le contenu qui sera chargé à la demande.</main>
 <script>
-  const main = document.querySelector(&apos;main&apos;);
-  const links = document.querySelectorAll(&apos;nav > a&apos;);
+  const main = document.querySelector('main');
+  const links = document.querySelectorAll('nav > a');
   for (const link of links) {
-    link.addEventListener(&apos;click&apos;, async (event) => {
+    link.addEventListener('click', async (event) => {
       event.preventDefault();
       try {
         const module = await import(`/${link.dataset.entryModule}.mjs`);

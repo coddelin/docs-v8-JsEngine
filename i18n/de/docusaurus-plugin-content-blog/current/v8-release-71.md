@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 Veröffentlichung v7.1&apos;
-author: &apos;Stephan Herhut ([@herhut](https://twitter.com/herhut)), geklonter Kloner von Klonen&apos;
+title: 'V8 Veröffentlichung v7.1'
+author: 'Stephan Herhut ([@herhut](https://twitter.com/herhut)), geklonter Kloner von Klonen'
 avatars:
   - stephan-herhut
 date: 2018-10-31 15:44:37
 tags:
   - veröffentlichung
-description: &apos;V8 v7.1 bietet eingebettete Bytecode-Handler, verbesserte TurboFan-Fluchtanalyse, postMessage(wasmModule), Intl.RelativeTimeFormat und globalThis!&apos;
-tweet: &apos;1057645773465235458&apos;
+description: 'V8 v7.1 bietet eingebettete Bytecode-Handler, verbesserte TurboFan-Fluchtanalyse, postMessage(wasmModule), Intl.RelativeTimeFormat und globalThis!'
+tweet: '1057645773465235458'
 ---
 Alle sechs Wochen erstellen wir einen neuen Zweig von V8 im Rahmen unseres [Release-Prozesses](/docs/release-process). Jede Version wird unmittelbar vor einem Chrome-Beta-Meilenstein aus V8’s Git-Master abgezweigt. Heute freuen wir uns, unseren neuesten Zweig, [V8 Version 7.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.1), bekannt zu geben, der bis zur Veröffentlichung in Abstimmung mit Chrome 71 Stable in einigen Wochen in der Betaphase ist. V8 v7.1 ist randvoll mit allerlei Entwickler-Features. Dieser Beitrag bietet eine Vorschau auf einige der Highlights in Erwartung der Veröffentlichung.
 
@@ -58,25 +58,25 @@ Schließlich wird [`postMessage` für Wasm-Module unterstützt](https://github.c
 ```js
 // Erstellen Sie einen Formatter für relative Zeitangaben in englischer Sprache,
 // der nicht immer numerische Werte in der Ausgabe verwenden muss.
-const rtf = new Intl.RelativeTimeFormat(&apos;en&apos;, { numeric: &apos;auto&apos; });
+const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 
-rtf.format(-1, &apos;day&apos;);
-// → &apos;gestern&apos;
+rtf.format(-1, 'day');
+// → 'gestern'
 
-rtf.format(0, &apos;day&apos;);
-// → &apos;heute&apos;
+rtf.format(0, 'day');
+// → 'heute'
 
-rtf.format(1, &apos;day&apos;);
-// → &apos;morgen&apos;
+rtf.format(1, 'day');
+// → 'morgen'
 
-rtf.format(-1, &apos;week&apos;);
-// → &apos;letzte Woche&apos;
+rtf.format(-1, 'week');
+// → 'letzte Woche'
 
-rtf.format(0, &apos;week&apos;);
-// → &apos;diese Woche&apos;
+rtf.format(0, 'week');
+// → 'diese Woche'
 
-rtf.format(1, &apos;week&apos;);
-// → &apos;nächste Woche&apos;
+rtf.format(1, 'week');
+// → 'nächste Woche'
 ```
 
 Lesen Sie [unsere Einführung zu `Intl.RelativeTimeFormat`](/features/intl-relativetimeformat), um mehr Informationen zu erhalten.

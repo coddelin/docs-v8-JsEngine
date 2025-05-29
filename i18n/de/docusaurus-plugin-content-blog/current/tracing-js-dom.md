@@ -1,16 +1,16 @@
 ---
-title: &apos;Von JS zum DOM und zurück verfolgen&apos;
-author: &apos;Ulan Degenbaev, Alexei Filippov, Michael Lippautz und Hannes Payer — die Gemeinschaft des DOM&apos;
+title: 'Von JS zum DOM und zurück verfolgen'
+author: 'Ulan Degenbaev, Alexei Filippov, Michael Lippautz und Hannes Payer — die Gemeinschaft des DOM'
 avatars:
-  - &apos;ulan-degenbaev&apos;
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'ulan-degenbaev'
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2018-03-01 13:33:37
 tags:
   - internals
   - speicher
-description: &apos;Chrome DevTools können jetzt C++ DOM-Objekte verfolgen und schnappschussartig erfassen sowie alle erreichbaren DOM-Objekte von JavaScript mit ihren Referenzen anzeigen.&apos;
-tweet: &apos;969184997545562112&apos;
+description: 'Chrome DevTools können jetzt C++ DOM-Objekte verfolgen und schnappschussartig erfassen sowie alle erreichbaren DOM-Objekte von JavaScript mit ihren Referenzen anzeigen.'
+tweet: '969184997545562112'
 ---
 Das Debuggen von Speicherlecks in Chrome 66 ist jetzt deutlich einfacher geworden. Die Chrome DevTools können jetzt C++ DOM-Objekte verfolgen und schnappschussartig erfassen sowie alle erreichbaren DOM-Objekte von JavaScript mit ihren Referenzen anzeigen. Diese Funktion ist einer der Vorteile des neuen C++-Tracing-Mechanismus des V8-Garbage-Collectors.
 
@@ -23,16 +23,16 @@ Das folgende [Spielzeugbeispiel](https://ulan.github.io/misc/leak.html) zeigt ei
 
 ```js
 // Hauptfenster:
-const iframe = document.createElement(&apos;iframe&apos;);
-iframe.src = &apos;iframe.html&apos;;
+const iframe = document.createElement('iframe');
+iframe.src = 'iframe.html';
 document.body.appendChild(iframe);
-iframe.addEventListener(&apos;load&apos;, function() {
+iframe.addEventListener('load', function() {
   const localVariable = iframe.contentWindow;
   function leakingListener() {
     // Mach etwas mit `localVariable`.
     if (localVariable) {}
   }
-  document.body.addEventListener(&apos;my-debug-event&apos;, leakingListener);
+  document.body.addEventListener('my-debug-event', leakingListener);
   document.body.removeChild(iframe);
   // BUG: vergessen, `leakingListener` abzumelden.
 });

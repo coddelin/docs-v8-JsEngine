@@ -1,14 +1,14 @@
 ---
-title: &apos;ECMAScript 사양 이해하기, Part 3&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), 추측적 사양 관찰자&apos;
+title: 'ECMAScript 사양 이해하기, Part 3'
+author: '[Marja Hölttä](https://twitter.com/marjakh), 추측적 사양 관찰자'
 avatars:
   - marja-holtta
 date: 2020-04-01
 tags:
   - ECMAScript
   - ECMAScript 이해하기
-description: &apos;ECMAScript 사양 읽기에 대한 튜토리얼&apos;
-tweet: &apos;1245400717667577857&apos;
+description: 'ECMAScript 사양 읽기에 대한 튜토리얼'
+tweet: '1245400717667577857'
 ---
 
 [모든 에피소드 보기](/blog/tags/understanding-ecmascript)
@@ -57,8 +57,8 @@ const r = /foo/;
 템플릿은 비슷한 모호성을 도입합니다. <code>}`</code>의 해석은 발생하는 컨텍스트에 따라 달라집니다:
 
 ```js
-const what1 = &apos;temp&apos;;
-const what2 = &apos;late&apos;;
+const what1 = 'temp';
+const what2 = 'late';
 const t = `I am a ${ what1 + what2 }`;
 ```
 

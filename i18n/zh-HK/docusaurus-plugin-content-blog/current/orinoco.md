@@ -1,15 +1,15 @@
 ---
-title: &apos;垃圾怪客破壞者第二部：Orinoco&apos;
-author: &apos;垃圾怪客破壞者：烏蘭·德根巴耶夫，邁克爾·利帕烏茨，以及哈內斯·佩耶爾&apos;
+title: '垃圾怪客破壞者第二部：Orinoco'
+author: '垃圾怪客破壞者：烏蘭·德根巴耶夫，邁克爾·利帕烏茨，以及哈內斯·佩耶爾'
 avatars:
-  - &apos;ulan-degenbaev&apos;
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'ulan-degenbaev'
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2016-04-12 13:33:37
 tags:
   - internals
   - memory
-description: &apos;本文介紹了三項優化，它們為 V8 中一個新的垃圾回收器奠定了基礎，代號為 Orinoco。&apos;
+description: '本文介紹了三項優化，它們為 V8 中一個新的垃圾回收器奠定了基礎，代號為 Orinoco。'
 ---
 在[之前的博客文章](/blog/jank-busters)中，我們介紹了垃圾回收中斷流暢瀏覽體驗所導致的卡頓問題。在這篇文章中，我們介紹了三項優化，它們為 V8 中一個新的垃圾回收器代號為 _Orinoco_ 奠定了基礎。Orinoco 基於這樣一個理念：實現一個大多數並行且併發的垃圾回收器，且不依賴嚴格的代界限，將減少垃圾回收卡頓和內存消耗，同時提供高吞吐量。我們選擇不僅僅作為一個獨立的垃圾回收器來實施 Orinoco，而是分階段在 V8 的樹頂逐步提供 Orinoco 的功能，以便立即為用戶提供益處。本篇文章探討的三個功能是並行壓縮、並行記憶集合處理，以及黑色分配。
 

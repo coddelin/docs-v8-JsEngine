@@ -1,6 +1,6 @@
 ---
-title: &apos;Отладка через протокол V8 Inspector&apos;
-description: &apos;Эта страница предназначена для предоставления внедряющим пользователям базовых инструментов, необходимых для реализации поддержки отладки в V8.&apos;
+title: 'Отладка через протокол V8 Inspector'
+description: 'Эта страница предназначена для предоставления внедряющим пользователям базовых инструментов, необходимых для реализации поддержки отладки в V8.'
 ---
 V8 предоставляет обширные возможности отладки как для пользователей, так и для внедряющих. Пользователи обычно взаимодействуют с отладчиком V8 через интерфейс [Chrome DevTools](https://developer.chrome.com/devtools). Внедряющие (включая DevTools) должны напрямую полагаться на [Inspector Protocol](https://chromedevtools.github.io/debugger-protocol-viewer/tot/).
 
@@ -23,7 +23,7 @@ static void SendInspectorMessage(
 ```cpp
 void Send(const v8_inspector::StringView& string) {
   // [...] Трансформация строки.
-  // Получаем глобальное свойство с названием &apos;receive&apos; из текущего контекста.
+  // Получаем глобальное свойство с названием 'receive' из текущего контекста.
   Local<String> callback_name =
       v8::String::NewFromUtf8(isolate_, "receive", v8::NewStringType::kNormal)
           .ToLocalChecked();
@@ -52,13 +52,13 @@ function receive(message) {
 
 const msg = JSON.stringify({
   id: 0,
-  method: &apos;Debugger.enable&apos;,
+  method: 'Debugger.enable',
 });
 
 // Вызываем функцию, предоставленную d8.
 send(msg);
 
-// Запустите этот файл, введя команду &apos;d8 --enable-inspector inspector-demo.js&apos;.
+// Запустите этот файл, введя команду 'd8 --enable-inspector inspector-demo.js'.
 ```
 
 ## Дополнительная документация

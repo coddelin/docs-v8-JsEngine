@@ -110,7 +110,7 @@ function getVariablePosition(source) {
   if (!match) return undefined;
   return match.indices[2];
 }
-getVariablePosition(&apos;let foo&apos;);
+getVariablePosition('let foo');
 // → [4, 7]
 ```
 
@@ -127,7 +127,7 @@ function getVariablePosition(source) {
   if (!match) return -1;
   return match.indices.groups.id;
 }
-getVariablePosition(&apos;let foo&apos;);
+getVariablePosition('let foo');
 ```
 
 ## RegExp 매치 인덱스 지원

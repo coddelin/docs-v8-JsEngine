@@ -119,11 +119,11 @@ class MovingAvg {
     this.events = [];
     this.socket = socket;
     this.listener = (ev) => { this.events.push(ev); };
-    socket.addEventListener(&apos;message&apos;, this.listener);
+    socket.addEventListener('message', this.listener);
   }
 
   dispose() {
-    this.socket.removeEventListener(&apos;message&apos;, this.listener);
+    this.socket.removeEventListener('message', this.listener);
   }
 
   // …
@@ -138,7 +138,7 @@ class MovingAvg {
 function addWeakListener(socket, listener) {
   const weakRef = new WeakRef(listener);
   const wrapper = (ev) => { weakRef.deref()?.(ev); };
-  socket.addEventListener(&apos;message&apos;, wrapper);
+  socket.addEventListener('message', wrapper);
 }
 
 class MovingAvg {

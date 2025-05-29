@@ -1,15 +1,15 @@
 ---
-title: &apos;Логические присваивания&apos;
-author: &apos;Шу-Ю Го ([@_shu](https://twitter.com/_shu))&apos;
+title: 'Логические присваивания'
+author: 'Шу-Ю Го ([@_shu](https://twitter.com/_shu))'
 avatars:
-  - &apos;shu-yu-guo&apos;
+  - 'shu-yu-guo'
 date: 2020-05-07
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: &apos;JavaScript теперь поддерживает составные присваивания с логическими операциями.&apos;
-tweet: &apos;1258387483823345665&apos;
+description: 'JavaScript теперь поддерживает составные присваивания с логическими операциями.'
+tweet: '1258387483823345665'
 ---
 JavaScript поддерживает ряд [операторов составного присваивания](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators), которые позволяют программистам лаконично выражать бинарную операцию вместе с присваиванием. На данный момент поддерживаются только математические или побитовые операции.
 
@@ -69,14 +69,14 @@ x ?? (x = y);
 // Присваивание innerHTML происходит только если оно пустое.
 // Не приводит к потере фокуса внутренними элементами msgElement.
 function setDefaultMessage() {
-  msgElement.innerHTML ||= &apos;<p>Нет сообщений<p>&apos;;
+  msgElement.innerHTML ||= '<p>Нет сообщений<p>';
 }
 
 // Отобразить сообщение по умолчанию, если оно не перекрывает ничего.
 // Баг! Может приводить к потере фокуса внутренними элементами msgElement
 // каждый раз, когда оно вызывается.
 function setDefaultMessageBuggy() {
-  msgElement.innerHTML = msgElement.innerHTML || &apos;<p>Нет сообщений<p>&apos;;
+  msgElement.innerHTML = msgElement.innerHTML || '<p>Нет сообщений<p>';
 }
 ```
 

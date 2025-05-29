@@ -1,6 +1,6 @@
 ---
-title: &apos;V8의 공용 API&apos;
-description: &apos;이 문서는 V8의 공용 API 안정성과 개발자가 이를 변경하는 방법에 대해 논의합니다.&apos;
+title: 'V8의 공용 API'
+description: '이 문서는 V8의 공용 API 안정성과 개발자가 이를 변경하는 방법에 대해 논의합니다.'
 ---
 이 문서는 V8의 공용 API 안정성과 개발자가 이를 변경하는 방법에 대해 논의합니다.
 

@@ -1,19 +1,19 @@
 ---
-title: &apos;ARM/Androidのクロスコンパイルとデバッグ&apos;
-description: &apos;このドキュメントは、ARM/Android用にV8をクロスコンパイルする方法と、それをデバッグする方法を説明します。&apos;
+title: 'ARM/Androidのクロスコンパイルとデバッグ'
+description: 'このドキュメントは、ARM/Android用にV8をクロスコンパイルする方法と、それをデバッグする方法を説明します。'
 ---
 まず、[GNでビルドする](/docs/build-gn)ことができることを確認します。
 
 次に、`android`を`.gclient`構成ファイルに追加します。
 
 ```python
-target_os = [&apos;android&apos;]  # Android関連のものがチェックアウトされるように追加。
+target_os = ['android']  # Android関連のものがチェックアウトされるように追加。
 ```
 
 `target_os`フィールドはリストですので、もし同時にunix上でビルドする場合は以下のようになります:
 
 ```python
-target_os = [&apos;android&apos;, &apos;unix&apos;]  # 複数のターゲットOS。
+target_os = ['android', 'unix']  # 複数のターゲットOS。
 ```
 
 `gclient sync`を実行すると、`./third_party/android_tools`配下に大規模なチェックアウトが行われます。
@@ -66,7 +66,7 @@ ninja -C out.gn/arm.release d8
 `adb`を使用してバイナリとスナップショットファイルを電話にコピーします:
 
 ```bash
-adb shell &apos;mkdir -p /data/local/tmp/v8/bin&apos;
+adb shell 'mkdir -p /data/local/tmp/v8/bin'
 adb push out.gn/arm.release/d8 /data/local/tmp/v8/bin
 adb push out.gn/arm.release/icudtl.dat /data/local/tmp/v8/bin
 adb push out.gn/arm.release/snapshot_blob.bin /data/local/tmp/v8/bin
@@ -79,7 +79,7 @@ bullhead:/data/local/tmp/v8/bin $ ls
 v8 icudtl.dat snapshot_blob.bin
 bullhead:/data/local/tmp/v8/bin $ ./d8
 V8 version 5.8.0 (candidate)
-d8> &apos;w00t!&apos;
+d8> 'w00t!'
 "w00t!"
 d8>
 ```

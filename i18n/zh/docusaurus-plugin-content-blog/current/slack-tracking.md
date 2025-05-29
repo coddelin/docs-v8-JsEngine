@@ -1,9 +1,9 @@
 ---
-title: &apos;V8中的Slack追踪&apos;
-author: &apos;Michael Stanton ([@alpencoder](https://twitter.com/alpencoder))，备受尊敬的*Slack*大师&apos;
-description: &apos;深入了解V8的Slack追踪机制。&apos;
+title: 'V8中的Slack追踪'
+author: 'Michael Stanton ([@alpencoder](https://twitter.com/alpencoder))，备受尊敬的*Slack*大师'
+description: '深入了解V8的Slack追踪机制。'
 avatars:
- - &apos;michael-stanton&apos;
+ - 'michael-stanton'
 date: 2020-09-24 14:00:00
 tags:
  - internals
@@ -19,7 +19,7 @@ function Peak(name, height) {
   this.height = height;
 }
 
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
+const m1 = new Peak('Matterhorn', 4478);
 ```
 
 你可能会认为引擎已经拥有了良好性能所需的一切——毕竟你告诉了它该对象有两个属性。然而，V8实际上并不知道接下来会发生什么。这个对象`m1`可能会被传递给其他函数，并向其添加10个新的属性。Slack追踪正是为了解决这种需求，即在没有静态编译来推断整体结构的环境中响应接下来发生的事情。这与V8中的许多机制类似，其基础只是你通常可以对执行提出的一些一般性观点，比如：
@@ -96,7 +96,7 @@ function Peak(name, height) {
   this.height = height;
 }
 
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
+const m1 = new Peak('Matterhorn', 4478);
 ```
 
 根据 `JSFunction::CalculateExpectedNofProperties` 的计算以及我们的 `Peak()` 函数，我们应该拥有2个对象内的属性，再加上由于 slack tracking 特性，多增加8个。我们可以使用 `%DebugPrint()` 打印 `m1`（这个实用函数暴露了映射结构。可以通过带标志 `--allow-natives-syntax` 执行 `d8` 使用它）：
@@ -293,7 +293,7 @@ void Factory::InitializeJSObjectBody(Handle<JSObject> obj, Handle<Map> map,
 现在捷余追踪已经完成，如果我们向这些 `Peak` 对象中的一个添加另一个属性会发生什么？
 
 ```js
-m1.country = &apos;瑞士&apos;;
+m1.country = '瑞士';
 ```
 
 V8需要进入属性存储区域。我们最终得到以下对象布局：
@@ -337,13 +337,13 @@ function Peak(name, height, prominence, isClimbed) {
 您创建了几个不同的变种：
 
 ```js
-const m1 = new Peak(&apos;温德尔斯泰因&apos;, 1838);
-const m2 = new Peak(&apos;马特宏峰&apos;, 4478, 1040, true);
-const m3 = new Peak(&apos;楚格峰&apos;, 2962);
-const m4 = new Peak(&apos;勃朗峰&apos;, 4810, 4695, true);
-const m5 = new Peak(&apos;瓦茨曼山&apos;, 2713);
-const m6 = new Peak(&apos;齐纳尔罗峰&apos;, 4221, 490, true);
-const m7 = new Peak(&apos;艾格山&apos;, 3970);
+const m1 = new Peak('温德尔斯泰因', 1838);
+const m2 = new Peak('马特宏峰', 4478, 1040, true);
+const m3 = new Peak('楚格峰', 2962);
+const m4 = new Peak('勃朗峰', 4810, 4695, true);
+const m5 = new Peak('瓦茨曼山', 2713);
+const m6 = new Peak('齐纳尔罗峰', 4221, 490, true);
+const m7 = new Peak('艾格山', 3970);
 ```
 
 在这种情况下，`m1`、`m3`、`m5` 和 `m7` 对象拥有一个地图，而因为额外的属性，`m2`、`m4` 和 `m6` 对象拥有初始地图的子代链中的一个地图。当这个地图家族完成捷余追踪后，**4** 个内对象属性取代了之前的 **2** 个，因为捷余追踪确保为初始地图以下的地图树中任何子代使用的最大内对象属性数量预留了足够的空间。
@@ -362,10 +362,10 @@ function foo(a1, a2, a3, a4) {
 }
 
 %PrepareFunctionForOptimization(foo);
-const m1 = foo(&apos;Wendelstein&apos;, 1838);
-const m2 = foo(&apos;Matterhorn&apos;, 4478, 1040, true);
+const m1 = foo('Wendelstein', 1838);
+const m2 = foo('Matterhorn', 4478, 1040, true);
 %OptimizeFunctionOnNextCall(foo);
-foo(&apos;Zugspitze&apos;, 2962);
+foo('Zugspitze', 2962);
 ```
 
 这应该足够编译并运行优化后的代码了。我们在TurboFan（优化编译器）中执行一些操作，称为[**创建降级**](https://source.chromium.org/chromium/chromium/src/+/master:v8/src/compiler/js-create-lowering.h;l=32;drc=ee9e7e404e5a3f75a3ca0489aaf80490f625ca27)，其中我们将对象的分配进行内联。这意味着我们生成的本地代码会发出指令，要求GC分配对象的实例大小，然后小心初始化这些字段。然而，如果松弛跟踪在稍后某个时间点停止，这些代码将是无效的。对此我们能做什么？

@@ -1,17 +1,17 @@
 ---
-title: &apos;Um mecanismo adicional de RegExp sem retrocesso&apos;
-author: &apos;Martin Bidlingmaier&apos;
+title: 'Um mecanismo adicional de RegExp sem retrocesso'
+author: 'Martin Bidlingmaier'
 date: 2021-01-11
 tags:
  - internos
  - RegExp
-description: &apos;O V8 agora possui um mecanismo de RegExp adicional que atua como um mecanismo de fallback e previne muitos casos de retrocessos catastróficos.&apos;
-tweet: &apos;1348635270762139650&apos;
+description: 'O V8 agora possui um mecanismo de RegExp adicional que atua como um mecanismo de fallback e previne muitos casos de retrocessos catastróficos.'
+tweet: '1348635270762139650'
 ---
 A partir da versão 8.8, o V8 inclui um novo mecanismo experimental de RegExp sem retrocesso (além do já existente [mecanismo Irregexp](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html)) que garante execução em tempo linear em relação ao tamanho da string de entrada. O mecanismo experimental está disponível por trás dos sinalizadores de funcionalidade mencionados abaixo.
 
 <!--truncate-->
-![Tempo de execução de `/(a*)*b/.exec(&apos;a&apos;.repeat(n))` para n ≤ 100](/_img/non-backtracking-regexp/runtime-plot.svg)
+![Tempo de execução de `/(a*)*b/.exec('a'.repeat(n))` para n ≤ 100](/_img/non-backtracking-regexp/runtime-plot.svg)
 
 Veja como você pode configurar o novo mecanismo de RegExp:
 
@@ -28,15 +28,15 @@ O mecanismo de fallback não se aplica a todos os padrões. Para que o mecanismo
 
 ## Contexto: retrocesso catastrófico
 
-A correspondência de RegExp no V8 é manejada pelo mecanismo Irregexp. O Irregexp compila JIT RegExps em código nativo especializado (ou [bytecode](/blog/regexp-tier-up)) e, portanto, é extremamente rápido para a maioria dos padrões. Para alguns padrões, no entanto, o tempo de execução do Irregexp pode explodir exponencialmente em relação ao tamanho da string de entrada. O exemplo acima, `/(a*)*b/.exec(&apos;a&apos;.repeat(100))`, não termina durante nossa vida se executado pelo Irregexp.
+A correspondência de RegExp no V8 é manejada pelo mecanismo Irregexp. O Irregexp compila JIT RegExps em código nativo especializado (ou [bytecode](/blog/regexp-tier-up)) e, portanto, é extremamente rápido para a maioria dos padrões. Para alguns padrões, no entanto, o tempo de execução do Irregexp pode explodir exponencialmente em relação ao tamanho da string de entrada. O exemplo acima, `/(a*)*b/.exec('a'.repeat(100))`, não termina durante nossa vida se executado pelo Irregexp.
 
-Então, o que está acontecendo aqui? O Irregexp é um mecanismo de *retrocessos*. Quando confrontado com uma escolha de como uma correspondência pode continuar, o Irregexp explora a primeira alternativa em sua totalidade e, em seguida, faz retrocesso se necessário para explorar a segunda alternativa. Considere, por exemplo, corresponder o padrão `/abc|[az][by][0-9]/` contra a string de entrada `&apos;ab3&apos;`. Aqui, o Irregexp tenta corresponder `/abc/` primeiro e falha após o segundo caractere. Em seguida, ele retrocede por dois caracteres e corresponde com sucesso à segunda alternativa `/[az][by][0-9]/`. Em padrões com quantificadores como `/(abc)*xyz/`, o Irregexp precisa escolher, após uma correspondência do corpo, se corresponde novamente ao corpo ou se continua com o padrão restante.
+Então, o que está acontecendo aqui? O Irregexp é um mecanismo de *retrocessos*. Quando confrontado com uma escolha de como uma correspondência pode continuar, o Irregexp explora a primeira alternativa em sua totalidade e, em seguida, faz retrocesso se necessário para explorar a segunda alternativa. Considere, por exemplo, corresponder o padrão `/abc|[az][by][0-9]/` contra a string de entrada `'ab3'`. Aqui, o Irregexp tenta corresponder `/abc/` primeiro e falha após o segundo caractere. Em seguida, ele retrocede por dois caracteres e corresponde com sucesso à segunda alternativa `/[az][by][0-9]/`. Em padrões com quantificadores como `/(abc)*xyz/`, o Irregexp precisa escolher, após uma correspondência do corpo, se corresponde novamente ao corpo ou se continua com o padrão restante.
 
-Vamos tentar entender o que está acontecendo ao corresponder `/(a*)*b/` contra uma string de entrada menor, digamos `&apos;aaa&apos;`. Este padrão contém quantificadores aninhados, portanto estamos pedindo ao Irregexp para corresponder a uma *sequência de sequências* de `&apos;a&apos;` e depois corresponder `&apos;b&apos;`. Claramente, não há correspondência porque a string de entrada não contém `&apos;b&apos;`. No entanto, `/(a*)*/` corresponde, e o faz de formas exponencialmente numerosas:
+Vamos tentar entender o que está acontecendo ao corresponder `/(a*)*b/` contra uma string de entrada menor, digamos `'aaa'`. Este padrão contém quantificadores aninhados, portanto estamos pedindo ao Irregexp para corresponder a uma *sequência de sequências* de `'a'` e depois corresponder `'b'`. Claramente, não há correspondência porque a string de entrada não contém `'b'`. No entanto, `/(a*)*/` corresponde, e o faz de formas exponencialmente numerosas:
 
 ```js
-&apos;aaa&apos;           &apos;aa&apos;, &apos;a&apos;           &apos;aa&apos;, &apos;&apos;
-&apos;a&apos;, &apos;aa&apos;       &apos;a&apos;, &apos;a&apos;, &apos;a&apos;       &apos;a&apos;, &apos;a&apos;, &apos;&apos;
+'aaa'           'aa', 'a'           'aa', ''
+'a', 'aa'       'a', 'a', 'a'       'a', 'a', ''
 …
 ```
 
@@ -62,13 +62,13 @@ Vamos rever o algoritmo de retrocesso no qual a Irregexp é baseada e descrevê-
 
 ```js
 const code = [
-  {opcode: &apos;FORK&apos;, forkPc: 4},
-  {opcode: &apos;CONSUME&apos;, char: &apos;1&apos;},
-  {opcode: &apos;CONSUME&apos;, char: &apos;2&apos;},
-  {opcode: &apos;JMP&apos;, jmpPc: 6},
-  {opcode: &apos;CONSUME&apos;, char: &apos;a&apos;},
-  {opcode: &apos;CONSUME&apos;, char: &apos;b&apos;},
-  {opcode: &apos;ACCEPT&apos;}
+  {opcode: 'FORK', forkPc: 4},
+  {opcode: 'CONSUME', char: '1'},
+  {opcode: 'CONSUME', char: '2'},
+  {opcode: 'JMP', jmpPc: 6},
+  {opcode: 'CONSUME', char: 'a'},
+  {opcode: 'CONSUME', char: 'b'},
+  {opcode: 'ACCEPT'}
 ];
 ```
 
@@ -81,7 +81,7 @@ const stack = []; // Pilha de retrocesso.
 while (true) {
   const inst = code[pc];
   switch (inst.opcode) {
-    case &apos;CONSUME&apos;:
+    case 'CONSUME':
       if (ip < input.length && input[ip] === inst.char) {
         // Entrada corresponde ao que esperamos: Continuar.
         ++ip;
@@ -96,15 +96,15 @@ while (true) {
         return false;
       }
       break;
-    case &apos;FORK&apos;:
+    case 'FORK':
       // Salvar alternativa para retroceder mais tarde.
       stack.push({ip: ip, pc: inst.forkPc});
       ++pc;
       break;
-    case &apos;JMP&apos;:
+    case 'JMP':
       pc = inst.jmpPc;
       break;
-    case &apos;ACCEPT&apos;:
+    case 'ACCEPT':
       return true;
   }
 }
@@ -121,13 +121,13 @@ Uma implementação simples em JavaScript se parece com isto:
 ```js
 // Posição de entrada.
 let ip = 0;
-// Lista de valores atuais de pc, ou `&apos;ACCEPT&apos;` se encontrarmos uma correspondência. Começamos em
+// Lista de valores atuais de pc, ou `'ACCEPT'` se encontrarmos uma correspondência. Começamos em
 // pc 0 e seguimos transições épsilon.
 let pcs = followEpsilons([0]);
 
 while (true) {
   // Terminado se encontrarmos uma correspondência…
-  if (pcs === &apos;ACCEPT&apos;) return true;
+  if (pcs === 'ACCEPT') return true;
   // Ou se esgotarmos a string de entrada.
   if (ip >= input.length) return false;
 
@@ -142,7 +142,7 @@ while (true) {
 }
 ```
 
-Aqui `followEpsilons` é uma função que recebe uma lista de contadores de programa e calcula a lista de contadores de programa nas instruções de `CONSUME` que podem ser alcançadas através de transições épsilon (ou seja, executando apenas `FORK` e `JMP`). A lista retornada não deve conter duplicatas. Se uma instrução `ACCEPT` puder ser alcançada, a função retorna `&apos;ACCEPT&apos;`. Pode ser implementado assim:
+Aqui `followEpsilons` é uma função que recebe uma lista de contadores de programa e calcula a lista de contadores de programa nas instruções de `CONSUME` que podem ser alcançadas através de transições épsilon (ou seja, executando apenas `FORK` e `JMP`). A lista retornada não deve conter duplicatas. Se uma instrução `ACCEPT` puder ser alcançada, a função retorna `'ACCEPT'`. Pode ser implementado assim:
 
 ```js
 function followEpsilons(pcs) {
@@ -159,17 +159,17 @@ function followEpsilons(pcs) {
 
     const inst = code[pc];
     switch (inst.opcode) {
-      case &apos;CONSUME&apos;:
+      case 'CONSUME':
         result.push(pc);
         break;
-      case &apos;FORK&apos;:
+      case 'FORK':
         pcs.push(pc + 1, inst.forkPc);
         break;
-      case &apos;JMP&apos;:
+      case 'JMP':
         pcs.push(inst.jmpPc);
         break;
-      case &apos;ACCEPT&apos;:
-        return &apos;ACCEPT&apos;;
+      case 'ACCEPT':
+        return 'ACCEPT';
     }
   }
 

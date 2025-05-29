@@ -1,24 +1,24 @@
 ---
-title: &apos;Проверка наличия приватных свойств, например, `#foo in obj`&apos;
-author: &apos;Марья Хёльтта ([@marjakh](https://twitter.com/marjakh))&apos;
+title: 'Проверка наличия приватных свойств, например, `#foo in obj`'
+author: 'Марья Хёльтта ([@marjakh](https://twitter.com/marjakh))'
 avatars:
-  - &apos;marja-holtta&apos;
+  - 'marja-holtta'
 date: 2021-04-14
 tags:
   - ECMAScript
-description: &apos;Проверка приватных свойств позволяет тестировать наличие приватного поля в объекте.&apos;
-tweet: &apos;1382327454975590401&apos;
+description: 'Проверка приватных свойств позволяет тестировать наличие приватного поля в объекте.'
+tweet: '1382327454975590401'
 ---
 
 Оператор [`in`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in) можно использовать для проверки, существует ли указанное свойство в объекте (или в любом объекте его цепочки прототипов):
 
 ```javascript
-const o1 = {&apos;foo&apos;: 0};
-console.log(&apos;foo&apos; in o1); // true
+const o1 = {'foo': 0};
+console.log('foo' in o1); // true
 const o2 = {};
-console.log(&apos;foo&apos; in o2); // false
+console.log('foo' in o2); // false
 const o3 = Object.create(o1);
-console.log(&apos;foo&apos; in o3); // true
+console.log('foo' in o3); // true
 ```
 
 Функциональность проверки наличия приватных свойств расширяет оператор `in`, чтобы поддерживать [приватные поля классов](https://v8.dev/features/class-fields#private-class-fields):
@@ -107,7 +107,7 @@ class F {
   #x = 0;
   #y = (() => {
     halfConstructed = this;
-    throw &apos;error&apos;;
+    throw 'error';
   })();
 }
 

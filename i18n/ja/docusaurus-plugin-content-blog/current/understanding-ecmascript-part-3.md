@@ -1,14 +1,14 @@
 ---
-title: &apos;ECMAScript仕様を理解する, 第3部&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), 推測的仕様観察者&apos;
+title: 'ECMAScript仕様を理解する, 第3部'
+author: '[Marja Hölttä](https://twitter.com/marjakh), 推測的仕様観察者'
 avatars:
   - marja-holtta
 date: 2020-04-01
 tags:
   - ECMAScript
   - ECMAScriptを理解する
-description: &apos;ECMAScript仕様の読み方に関するチュートリアル&apos;
-tweet: &apos;1245400717667577857&apos;
+description: 'ECMAScript仕様の読み方に関するチュートリアル'
+tweet: '1245400717667577857'
 ---
 
 [すべてのエピソード](/blog/tags/understanding-ecmascript)
@@ -57,8 +57,8 @@ const r = /foo/;
 テンプレートでも同様の曖昧さが生じます — <code>}`</code>の解釈はその発生する文脈に依存します:
 
 ```js
-const what1 = &apos;temp&apos;;
-const what2 = &apos;late&apos;;
+const what1 = 'temp';
+const what2 = 'late';
 const t = `I am a ${ what1 + what2 }`;
 ```
 

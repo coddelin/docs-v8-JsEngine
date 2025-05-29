@@ -1,11 +1,11 @@
 ---
-title: &apos;Schwache Verweise und Finalizer&apos;
-author: &apos;Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), und Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))&apos;
+title: 'Schwache Verweise und Finalizer'
+author: 'Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), und Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))'
 avatars:
-- &apos;sathya-gunasekaran&apos;
-- &apos;mathias-bynens&apos;
-- &apos;shu-yu-guo&apos;
-- &apos;leszek-swirski&apos;
+- 'sathya-gunasekaran'
+- 'mathias-bynens'
+- 'shu-yu-guo'
+- 'leszek-swirski'
 date: 2019-07-09
 updated: 2020-06-19
 tags:
@@ -13,8 +13,8 @@ tags:
   - ES2021
   - io19
   - Node.js 14
-description: &apos;Schwache Verweise und Finalizer kommen zu JavaScript! In diesem Artikel wird die neue Funktionalität erklärt.&apos;
-tweet: &apos;1148603966848151553&apos;
+description: 'Schwache Verweise und Finalizer kommen zu JavaScript! In diesem Artikel wird die neue Funktionalität erklärt.'
+tweet: '1148603966848151553'
 ---
 Im Allgemeinen werden Referenzen auf Objekte in JavaScript _stark gehalten_, was bedeutet, dass das Objekt nicht vom Garbage Collector gesammelt wird, solange eine Referenz darauf existiert.
 
@@ -30,7 +30,7 @@ Momentan sind `WeakMap`s und `WeakSet`s die einzigen Möglichkeiten, ein Objekt 
 const wm = new WeakMap();
 {
   const ref = {};
-  const metaData = &apos;foo&apos;;
+  const metaData = 'foo';
   wm.set(ref, metaData);
   wm.get(ref);
   // → metaData
@@ -66,7 +66,7 @@ class MovingAvg {
     this.events = [];
     this.socket = socket;
     this.listener = (ev) => { this.events.push(ev); };
-    socket.addEventListener(&apos;message&apos;, this.listener);
+    socket.addEventListener('message', this.listener);
   }
 
   compute(n) {
@@ -122,11 +122,11 @@ class MovingAvg {
     this.events = [];
     this.socket = socket;
     this.listener = (ev) => { this.events.push(ev); };
-    socket.addEventListener(&apos;message&apos;, this.listener);
+    socket.addEventListener('message', this.listener);
   }
 
   dispose() {
-    this.socket.removeEventListener(&apos;message&apos;, this.listener);
+    this.socket.removeEventListener('message', this.listener);
   }
 
   // …
@@ -141,7 +141,7 @@ Der Nachteil dieses Ansatzes ist, dass es sich um manuelle Speicherverwaltung ha
 function addWeakListener(socket, listener) {
   const weakRef = new WeakRef(listener);
   const wrapper = (ev) => { weakRef.deref()?.(ev); };
-  socket.addEventListener(&apos;message&apos;, wrapper);
+  socket.addEventListener('message', wrapper);
 }
 
 class MovingAvg {
@@ -185,14 +185,14 @@ Wir können einen Rückruf mit einem `FinalizationRegistry` registrieren, um `wr
 
 ```js
 const gListenersRegistry = new FinalizationRegistry(({ socket, wrapper }) => {
-  socket.removeEventListener(&apos;message&apos;, wrapper); // 6
+  socket.removeEventListener('message', wrapper); // 6
 });
 
 function addWeakListener(socket, listener) {
   const weakRef = new WeakRef(listener); // 2
   const wrapper = (ev) => { weakRef.deref()?.(ev); }; // 3
   gListenersRegistry.register(listener, { socket, wrapper }); // 4
-  socket.addEventListener(&apos;message&apos;, wrapper); // 5
+  socket.addEventListener('message', wrapper); // 5
 }
 
 class MovingAvg {

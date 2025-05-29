@@ -1,6 +1,6 @@
 ---
-title: &apos;Builtins Torque do V8&apos;
-description: &apos;Este documento é uma introdução à escrita de builtins Torque e é direcionado para desenvolvedores do V8.&apos;
+title: 'Builtins Torque do V8'
+description: 'Este documento é uma introdução à escrita de builtins Torque e é direcionado para desenvolvedores do V8.'
 ---
 Este documento é uma introdução à escrita de builtins Torque e é direcionado para desenvolvedores do V8. Torque substitui o CodeStubAssembler como a maneira recomendada de implementar novos builtins. Veja [Builtins CodeStubAssembler](/docs/csa-builtins) para a versão deste guia no CSA.
 
@@ -80,7 +80,7 @@ Agora que `is42` está anexado, ele pode ser chamado a partir de JS:
 $ out/debug/d8
 d8> Math.is42(42);
 true
-d8> Math.is42(&apos;42.0&apos;);
+d8> Math.is42('42.0');
 true
 d8> Math.is42(true);
 false

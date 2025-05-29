@@ -1,13 +1,13 @@
 ---
-title: &apos;属性をインポート&apos;
-author: &apos;Shu-yu Guo ([@_shu](https://twitter.com/_shu))&apos;
+title: '属性をインポート'
+author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
 avatars:
-  - &apos;shu-yu-guo&apos;
+  - 'shu-yu-guo'
 date: 2024-01-31
 tags:
   - ECMAScript
-description: &apos;インポート属性: インポートアサーションの進化&apos;
-tweet: &apos;&apos;
+description: 'インポート属性: インポートアサーションの進化'
+tweet: ''
 ---
 
 ## 以前は
@@ -19,7 +19,7 @@ V8はv9.1で[インポートアサーション](https://chromestatus.com/feature
 
 その後、インポートアサーションは[インポート属性](https://github.com/tc39/proposal-import-attributes)へと進化しました。この機能の目的は変わらず、モジュールインポート文に追加情報を含めることです。
 
-最も重要な違いは、インポートアサーションがアサート専用の意味を持っていたのに対し、インポート属性はより緩やかな意味を持つようになったことです。アサート専用の意味は、追加情報がモジュールがどのようにロードされるかには影響を与えず、ロードされるかどうかにのみ影響を与えるという意味です。例えば、JSONモジュールは常にそのMIMEタイプによってJSONモジュールとしてロードされ、`assert { type: &apos;json&apos; }`という条件は、リクエストされたモジュールのMIMEタイプが`application/json`ではない場合にのみロードを失敗させることができます。
+最も重要な違いは、インポートアサーションがアサート専用の意味を持っていたのに対し、インポート属性はより緩やかな意味を持つようになったことです。アサート専用の意味は、追加情報がモジュールがどのようにロードされるかには影響を与えず、ロードされるかどうかにのみ影響を与えるという意味です。例えば、JSONモジュールは常にそのMIMEタイプによってJSONモジュールとしてロードされ、`assert { type: 'json' }`という条件は、リクエストされたモジュールのMIMEタイプが`application/json`ではない場合にのみロードを失敗させることができます。
 
 しかしながら、アサート専用の意味には致命的な欠点がありました。ウェブでは、リソースの種類に応じてHTTPリクエストの構造が異なります。例えば、[`Accept`ヘッダー](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept)はレスポンスのMIMEタイプに影響を与え、[`Sec-Fetch-Dest`メタデータヘッダー](https://web.dev/articles/fetch-metadata)はウェブサーバがリクエストを受理するか拒否するかに影響を与えます。インポートアサーションではモジュールをどのようにロードするかに影響を与えることができなかったため、HTTPリクエストの構造を変更できませんでした。また、要求されるリソースの種類は利用される[コンテンツセキュリティポリシー](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)にも影響しますが、インポートアサーションは正しくウェブのセキュリティモデルと連携することができませんでした。
 
@@ -28,8 +28,8 @@ V8はv9.1で[インポートアサーション](https://chromestatus.com/feature
 ```javascript
 // main.mjs
 //
-// 新しい &apos;with&apos;構文。
-import json from &apos;./foo.json&apos; with { type: &apos;json&apos; };
+// 新しい 'with'構文。
+import json from './foo.json' with { type: 'json' };
 console.log(json.answer); // 42
 ```
 
@@ -40,9 +40,9 @@ console.log(json.answer); // 42
 ```javascript
 // main.mjs
 //
-// 新しい &apos;with&apos;オプション。
-const jsonModule = await import(&apos;./foo.json&apos;, {
-  with: { type: &apos;json&apos; }
+// 新しい 'with'オプション。
+const jsonModule = await import('./foo.json', {
+  with: { type: 'json' }
 });
 console.log(jsonModule.default.answer); // 42
 ```

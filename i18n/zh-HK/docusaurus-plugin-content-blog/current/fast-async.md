@@ -1,16 +1,16 @@
 ---
-title: &apos;更快的非同步函式與 Promise&apos;
-author: &apos;Maya Armyanova（[@Zmayski](https://twitter.com/Zmayski)），永遠處於等待狀態的預測者，以及 Benedikt Meurer（[@bmeurer](https://twitter.com/bmeurer)），專業性能承諾者&apos;
+title: '更快的非同步函式與 Promise'
+author: 'Maya Armyanova（[@Zmayski](https://twitter.com/Zmayski)），永遠處於等待狀態的預測者，以及 Benedikt Meurer（[@bmeurer](https://twitter.com/bmeurer)），專業性能承諾者'
 avatars:
-  - &apos;maya-armyanova&apos;
-  - &apos;benedikt-meurer&apos;
+  - 'maya-armyanova'
+  - 'benedikt-meurer'
 date: 2018-11-12 16:45:07
 tags:
   - ECMAScript
   - 基準測試
   - 簡報
-description: &apos;更快且更易於除錯的非同步函式與 Promise 即將於 V8 v7.2 / Chrome 72 推出。&apos;
-tweet: &apos;1062000102909169670&apos;
+description: '更快且更易於除錯的非同步函式與 Promise 即將於 V8 v7.2 / Chrome 72 推出。'
+tweet: '1062000102909169670'
 ---
 JavaScript 中的非同步處理傳統上被認為速度並不特別快。更糟的是，對即時運行的 JavaScript 應用進行除錯——尤其是 Node.js 伺服器——並不容易，_特別是_涉及非同步程式時。不過幸運的是，時代正在改變。本文將探討我們如何在 V8（以及某種程度上其他 JavaScript 引擎）中優化非同步函式與 Promise，並描述我們如何改進非同步程式碼的除錯體驗。
 
@@ -81,15 +81,15 @@ async function handler() {
 另一種在 Node.js 中特別常見的非同步範例是 [`ReadableStream`](https://nodejs.org/api/stream.html#stream_readable_streams)。以下是一個例子：
 
 ```js
-const http = require(&apos;http&apos;);
+const http = require('http');
 
 http.createServer((req, res) => {
-  let body = &apos;&apos;;
-  req.setEncoding(&apos;utf8&apos;);
-  req.on(&apos;data&apos;, (chunk) => {
+  let body = '';
+  req.setEncoding('utf8');
+  req.on('data', (chunk) => {
     body += chunk;
   });
-  req.on(&apos;end&apos;, () => {
+  req.on('end', () => {
     res.write(body);
     res.end();
   });
@@ -101,12 +101,12 @@ http.createServer((req, res) => {
 幸好，一個 ES2018 的新功能[非同步迭代](http://2ality.com/2016/10/asynchronous-iteration.html)可以簡化這段程式碼：
 
 ```js
-const http = require(&apos;http&apos;);
+const http = require('http');
 
 http.createServer(async (req, res) => {
   try {
-    let body = &apos;&apos;;
-    req.setEncoding(&apos;utf8&apos;);
+    let body = '';
+    req.setEncoding('utf8');
     for await (const chunk of req) {
       body += chunk;
     }
@@ -119,7 +119,7 @@ http.createServer(async (req, res) => {
 }).listen(1337);
 ```
 
-與其將實際的請求處理邏輯放置在 `&apos;data&apos;` 和 `&apos;end&apos;` 回呼中，我們現在可以將所有邏輯放置在單一的非同步函式中，並使用新的 `for await…of` 迴圈來非同步地迭代這些分塊。我們還加入了一個 `try-catch` 區塊以避免 `unhandledRejection` 問題[^1]。
+與其將實際的請求處理邏輯放置在 `'data'` 和 `'end'` 回呼中，我們現在可以將所有邏輯放置在單一的非同步函式中，並使用新的 `for await…of` 迴圈來非同步地迭代這些分塊。我們還加入了一個 `try-catch` 區塊以避免 `unhandledRejection` 問題[^1]。
 
 [^1]: 感謝 [Matteo Collina](https://twitter.com/matteocollina) 指引我們至 [此問題](https://github.com/mcollina/make-promises-safe/blob/master/README.md#the-unhandledrejection-problem)。
 
@@ -165,16 +165,16 @@ http.createServer(async (req, res) => {
 const p = Promise.resolve();
 
 (async () => {
-  await p; console.log(&apos;after:await&apos;);
+  await p; console.log('after:await');
 })();
 
-p.then(() => console.log(&apos;tick:a&apos;))
- .then(() => console.log(&apos;tick:b&apos;));
+p.then(() => console.log('tick:a'))
+ .then(() => console.log('tick:b'));
 ```
 
 上述程式碼創建了一個已完成的 Promise `p`，並 `await` 它的結果，同時還鏈接了兩個處理器到它上面。你期望以什麼順序執行 `console.log` 調用？
 
-由於 `p` 已完成，你可能期望它先打印 `&apos;after:await&apos;`，然後是 `&apos;tick&apos;`。事實上，在 Node.js 8 中你會得到這樣的行為：
+由於 `p` 已完成，你可能期望它先打印 `'after:await'`，然後是 `'tick'`。事實上，在 Node.js 8 中你會得到這樣的行為：
 
 ![Node.js 8 中的 `await` 錯誤](/_img/fast-async/await-bug-node-8.svg)
 
@@ -383,7 +383,7 @@ async function foo() {
 
 async function bar() {
   await Promise.resolve();
-  throw new Error(&apos;BEEP BEEP&apos;);
+  throw new Error('BEEP BEEP');
 }
 
 foo().catch(error => console.log(error.stack));

@@ -1,10 +1,10 @@
 ---
-title: &apos;ES2015, ES2016 и далее&apos;
-author: &apos;команда V8, энтузиасты ECMAScript&apos;
+title: 'ES2015, ES2016 и далее'
+author: 'команда V8, энтузиасты ECMAScript'
 date: 2016-04-29 13:33:37
 tags:
   - ECMAScript
-description: &apos;V8 v5.2 поддерживает ES2015 и ES2016!&apos;
+description: 'V8 v5.2 поддерживает ES2015 и ES2016!'
 ---
 Команда V8 придает большое значение эволюции JavaScript в все более выразительный и четко определенный язык, который упрощает написание быстрых, безопасных и правильных веб-приложений. В июне 2015 года комитетом стандартизации TC39 была ратифицирована [спецификация ES2015](https://www.ecma-international.org/ecma-262/6.0/), что стало крупнейшим обновлением языка JavaScript. Новые функции включают [классы](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [стрелочные функции](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [обещания (promises)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise), [итераторы/генераторы](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators), [прокси](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), [общеизвестные символы](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol#Well-known_symbols), а также дополнительный синтаксический сахар. TC39 также ускорил процесс выпуска новых спецификаций и в феврале 2016 года выпустил [кандидат на ES2016](https://tc39.es/ecma262/2016/), который будет ратифицирован этим летом. Хотя это обновление не такое обширное, как ES2015 из-за более короткого цикла выпуска, ES2016 примечательно вводит [оператор возведения в степень](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Exponentiation) и [`Array.prototype.includes`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes).
 

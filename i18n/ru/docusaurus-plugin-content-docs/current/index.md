@@ -1,6 +1,6 @@
 ---
-title: &apos;Документация&apos;
-description: &apos;Документация для проекта V8.&apos;
+title: 'Документация'
+description: 'Документация для проекта V8.'
 slug: /
 ---
 V8 — это высокопроизводительный движок JavaScript и WebAssembly с открытым исходным кодом от Google, написанный на C++. Он используется в Chrome, Node.js и других проектах.

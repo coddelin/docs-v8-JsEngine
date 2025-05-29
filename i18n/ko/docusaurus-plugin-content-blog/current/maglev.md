@@ -1,6 +1,6 @@
 ---
-title: &apos;Maglev - V8의 가장 빠른 최적화 JIT&apos;
-author: &apos;[Toon Verwaest](https://twitter.com/tverwaes), [Leszek Swirski](https://twitter.com/leszekswirski), [Victor Gomes](https://twitter.com/VictorBFG), Olivier Flückiger, Darius Mercadier, 그리고 Camillo Bruni — 국 끓이는 요리사가 너무 많지는 않아&apos;
+title: 'Maglev - V8의 가장 빠른 최적화 JIT'
+author: '[Toon Verwaest](https://twitter.com/tverwaes), [Leszek Swirski](https://twitter.com/leszekswirski), [Victor Gomes](https://twitter.com/VictorBFG), Olivier Flückiger, Darius Mercadier, 그리고 Camillo Bruni — 국 끓이는 요리사가 너무 많지는 않아'
 avatars:
   - toon-verwaest
   - leszek-swirski
@@ -12,7 +12,7 @@ date: 2023-12-05
 tags:
   - JavaScript
 description: "V8의 최신 컴파일러 Maglev이 성능을 개선하면서 전력 소비를 줄입니다"
-tweet: &apos;&apos;
+tweet: ''
 ---
 
 Chrome M117에서 우리는 새로운 최적화 컴파일러인 Maglev을 소개했습니다. Maglev은 기존의 Sparkplug와 TurboFan 컴파일러 사이에 자리 잡으며, 적당히 좋은 코드와 적당히 빠른 속도로 생성하는 빠른 최적화 컴파일러 역할을 합니다.

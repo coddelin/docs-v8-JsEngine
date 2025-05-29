@@ -104,18 +104,18 @@ queryString.replaceAll('+', ' ');
 
 ## 특수 교체 패턴에 대한 주의 사항
 
-주의사항: `replace`와 `replaceAll` 둘 다 [특별한 대체 패턴](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#specifying_a_string_as_the_replacement)을 지원합니다. 이것들은 주로 정규 표현식과 결합하여 가장 유용하게 사용되지만, 일부 패턴(`$$`, `$&`, ``$` ``, 그리고 `$&apos;`)은 간단한 문자열 대체 수행 시에도 효과를 발휘할 수 있어 예기치 않게 작동할 수 있습니다:
+주의사항: `replace`와 `replaceAll` 둘 다 [특별한 대체 패턴](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#specifying_a_string_as_the_replacement)을 지원합니다. 이것들은 주로 정규 표현식과 결합하여 가장 유용하게 사용되지만, 일부 패턴(`$$`, `$&`, ``$` ``, 그리고 `$'`)은 간단한 문자열 대체 수행 시에도 효과를 발휘할 수 있어 예기치 않게 작동할 수 있습니다:
 
 ```js
-&apos;xyz&apos;.replaceAll(&apos;y&apos;, &apos;$$&apos;);
-// → &apos;x$z&apos; (not &apos;x$$z&apos;)
+'xyz'.replaceAll('y', '$$');
+// → 'x$z' (not 'x$$z')
 ```
 
 대체 문자열에 이러한 패턴 중 하나가 포함되어 있고, 이를 그대로 사용하려면 magical substitution 동작을 피하기 위해 문자열을 반환하는 replacer 함수 사용을 선택할 수 있습니다:
 
 ```js
-&apos;xyz&apos;.replaceAll(&apos;y&apos;, () => &apos;$$&apos;);
-// → &apos;x$$z&apos;
+'xyz'.replaceAll('y', () => '$$');
+// → 'x$$z'
 ```
 
 ## `String.prototype.replaceAll` 지원

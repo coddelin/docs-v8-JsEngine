@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 版本 v8.9&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 等待通話中&apos;
+title: 'V8 版本 v8.9'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 等待通話中'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-02-04
 tags:
  - 發佈
-description: &apos;V8 版本 v8.9 為參數數量不匹配的函數調用帶來了性能提升。&apos;
-tweet: &apos;1357358418902802434&apos;
+description: 'V8 版本 v8.9 為參數數量不匹配的函數調用帶來了性能提升。'
+tweet: '1357358418902802434'
 ---
 每六週，我們會根據 [發佈流程](https://v8.dev/docs/release-process) 創建一個新的 V8 分支。每一個版本都是在 Chrome Beta 里程碑前從 V8 的 Git 主分支創建的。今天我們很高興地宣布我們最新的分支 [V8 版本 8.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.9)，它將在幾週內隨 Chrome 89 穩定版本一起發佈，目前處於 Beta 階段。V8 v8.9 包含了各種開發者關注的有趣內容。這篇文章將預覽一些亮點，以期待正式發佈。
 

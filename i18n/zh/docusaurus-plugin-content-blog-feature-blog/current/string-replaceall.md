@@ -104,18 +104,18 @@ queryString.replaceAll('+', ' ');
 
 ## 关于特殊替换模式的注意事项
 
-值得注意的是：`replace` 和 `replaceAll` 都支持[特殊替换模式](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace#specifying_a_string_as_the_replacement)。虽然这些模式在结合正则表达式使用时最为有用，但其中的一些模式（`$$`, `$&`, ``$` ``, 和 `$&apos;`）在执行简单字符串替换时也会生效，这可能会令人感到意外：
+值得注意的是：`replace` 和 `replaceAll` 都支持[特殊替换模式](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace#specifying_a_string_as_the_replacement)。虽然这些模式在结合正则表达式使用时最为有用，但其中的一些模式（`$$`, `$&`, ``$` ``, 和 `$'`）在执行简单字符串替换时也会生效，这可能会令人感到意外：
 
 ```js
-&apos;xyz&apos;.replaceAll(&apos;y&apos;, &apos;$$&apos;);
-// → &apos;x$z&apos;（不是 &apos;x$$z&apos;）
+'xyz'.replaceAll('y', '$$');
+// → 'x$z'（不是 'x$$z'）
 ```
 
 如果您的替换字符串包含这些模式之一，并且您希望按原样使用它们，可以通过使用一个返回该字符串的替换函数来避免神奇的替换行为：
 
 ```js
-&apos;xyz&apos;.replaceAll(&apos;y&apos;, () => &apos;$$&apos;);
-// → &apos;x$$z&apos;
+'xyz'.replaceAll('y', () => '$$');
+// → 'x$$z'
 ```
 
 ## `String.prototype.replaceAll` 支持情况

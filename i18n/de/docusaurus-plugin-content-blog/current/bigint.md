@@ -1,11 +1,11 @@
 ---
-title: &apos;Hinzufügen von BigInts zu V8&apos;
-author: &apos;Jakob Kummerow, Schiedsrichter der Präzision&apos;
+title: 'Hinzufügen von BigInts zu V8'
+author: 'Jakob Kummerow, Schiedsrichter der Präzision'
 date: 2018-05-02 13:33:37
 tags:
   - ECMAScript
-description: &apos;V8 unterstützt jetzt BigInts, eine JavaScript-Sprachfunktion, die Ganzzahlen mit beliebiger Genauigkeit ermöglicht.&apos;
-tweet: &apos;991705626391732224&apos;
+description: 'V8 unterstützt jetzt BigInts, eine JavaScript-Sprachfunktion, die Ganzzahlen mit beliebiger Genauigkeit ermöglicht.'
+tweet: '991705626391732224'
 ---
 In den letzten Monaten haben wir Unterstützung für [BigInts](/features/bigint) in V8 implementiert, wie in [diesem Vorschlag](https://github.com/tc39/proposal-bigint) derzeit festgelegt, um sie in eine zukünftige Version von ECMAScript aufzunehmen. Der folgende Beitrag erzählt die Geschichte unserer Abenteuer.
 
@@ -39,7 +39,7 @@ Wie kann man also eine BigInt mit hundert, tausend oder einer Million Bits speic
 
 ```js
 {
-  type: &apos;BigInt&apos;,
+  type: 'BigInt',
   sign: 0,
   num_digits: 3,
   digits: [0x12…, 0x34…, 0x56…],
@@ -119,7 +119,7 @@ Wenn wir beispielsweise feststellen, dass relativ kleine BigInts (bis zu 64 Bits
 
 ```js
 {
-  type: &apos;BigInt-Int64&apos;,
+  type: 'BigInt-Int64',
   value: 0x12…,
 }
 ```

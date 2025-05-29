@@ -1,6 +1,6 @@
 ---
-title: &apos;使用 V8 的基於樣本的分析器&apos;
-description: &apos;本文檔解釋了如何使用 V8 的基於樣本的分析器。&apos;
+title: '使用 V8 的基於樣本的分析器'
+description: '本文檔解釋了如何使用 V8 的基於樣本的分析器。'
 ---
 V8 內建了基於樣本的性能分析功能。分析默認為關閉狀態，但可以通過 `--prof` 命令行選項啟用。採樣器會記錄 JavaScript 和 C/C++ 代碼的堆棧。
 
@@ -115,7 +115,7 @@ $V8_PATH/tools/linux-tick-processor --preprocess > v8.json
 但是如果你希望程式碼在所有瀏覽器上都能跑得更快呢？你應該首先**了解你的 CPU 忙於什麼**。在 Chrome（Windows 和 Linux [Canary](https://tools.google.com/dlpage/chromesxs)）中使用以下命令列參數，這將使它為你指定的 URL（在我們的例子中，是沒有 Web workers 的 Mandelbrot 示範本地版本）輸出 profiler 擷取資料（到 `v8.log` 檔案）：
 
 ```bash
-./chrome --js-flags=&apos;--prof&apos; --no-sandbox &apos;http://localhost:8080/&apos;
+./chrome --js-flags='--prof' --no-sandbox 'http://localhost:8080/'
 ```
 
 在準備測試案例時，確保它在加載完成後立即開始工作，並當計算完成時關閉 Chrome（按 Alt+F4），這樣就只有你關心的擷取資料會出現在日誌檔案中。另外，請注意，使用此技術對 web workers 的分析還不正確。

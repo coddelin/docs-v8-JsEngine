@@ -1,10 +1,10 @@
 ---
-title: &apos;V8版本 v5.7&apos;
-author: &apos;V8团队&apos;
+title: 'V8版本 v5.7'
+author: 'V8团队'
 date: 2017-02-06 13:33:37
 tags:
   - 发布
-description: &apos;V8 v5.7默认启用WebAssembly，并包含性能改进及对ECMAScript语言功能的支持增加。&apos;
+description: 'V8 v5.7默认启用WebAssembly，并包含性能改进及对ECMAScript语言功能的支持增加。'
 ---
 每隔六周，我们会根据我们的[发布流程](/docs/release-process)创建一个新的V8分支。每个版本都会在Chrome测试版里程碑前从V8的Git主线中分支出来。今天我们很高兴宣布最新的分支，[V8版本 5.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.7)，该版本将在测试版中运行，直到几周后与Chrome 57稳定版同步发布。V8 5.7充满了各种面向开发者的新功能。我们希望在发布之前让大家先一睹其中的一些亮点。
 

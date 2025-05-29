@@ -1,6 +1,6 @@
 ---
-title: &apos;実行時コール統計&apos;
-description: &apos;このドキュメントは、Runtime Call Statsを使用して詳細なV8内部メトリクスを取得する方法を説明します。&apos;
+title: '実行時コール統計'
+description: 'このドキュメントは、Runtime Call Statsを使用して詳細なV8内部メトリクスを取得する方法を説明します。'
 ---
 [DevToolsのパフォーマンスパネル](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/) は、さまざまなChrome内部メトリクスを可視化することで、ウェブアプリの実行時のパフォーマンスについての洞察を提供します。ただし、特定の低レベルのV8メトリクスは現在DevToolsでは公開されていません。この文書では、`chrome://tracing` を使用して、Runtime Call Stats (RCS) として知られる詳細なV8内部メトリクスを収集する最も確実な方法について説明します。
 

@@ -1,13 +1,13 @@
 ---
-title: &apos;V8リリース v7.2&apos;
-author: &apos;Andreas Haas、トラップの管理者&apos;
+title: 'V8リリース v7.2'
+author: 'Andreas Haas、トラップの管理者'
 avatars:
   - andreas-haas
 date: 2018-12-18 11:48:21
 tags:
   - release
-description: &apos;V8 v7.2は、ハイスピードのJavaScript解析、高速なasync-await、ia32でのメモリ消費削減、パブリッククラスフィールド、その他多数の機能を特徴としています！&apos;
-tweet: &apos;1074978755934863361&apos;
+description: 'V8 v7.2は、ハイスピードのJavaScript解析、高速なasync-await、ia32でのメモリ消費削減、パブリッククラスフィールド、その他多数の機能を特徴としています！'
+tweet: '1074978755934863361'
 ---
 私たちは6週間ごとに、[リリースプロセス](/docs/release-process)の一環としてV8の新しいブランチを作成しています。各バージョンはChrome Betaのマイルストーン直前にV8のGitマスターからブランチされます。本日、新しいブランチ[V8 version 7.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.2)を発表できることを嬉しく思います。このバージョンは数週間後にChrome 72 Stableと連携してリリースされるまでベータ段階にあります。V8 v7.2は開発者向けのさまざまな便利機能が満載です。この投稿ではリリースに先立っていくつかの主要な特徴を紹介します。
 
@@ -69,7 +69,7 @@ class Cat extends Animal {
     this.likesBaths = false;
   }
   meow() {
-    console.log(&apos;Meow!&apos;);
+    console.log('Meow!');
   }
 }
 ```
@@ -86,7 +86,7 @@ class Animal {
 class Cat extends Animal {
   likesBaths = false;
   meow() {
-    console.log(&apos;Meow!&apos;);
+    console.log('Meow!');
   }
 }
 ```
@@ -98,15 +98,15 @@ class Cat extends Animal {
 V8 v7.2は[ `Intl.ListFormat` の提案](/features/intl-listformat)をサポートし、リストのローカライズされたフォーマットを可能にします。
 
 ```js
-const lf = new Intl.ListFormat(&apos;en&apos;);
-lf.format([&apos;フランク&apos;]);
-// → &apos;フランク&apos;
-lf.format([&apos;フランク&apos;, &apos;クリスティン&apos;]);
-// → &apos;フランクとクリスティン&apos;
-lf.format([&apos;フランク&apos;, &apos;クリスティン&apos;, &apos;フローラ&apos;]);
-// → &apos;フランク、クリスティン、そしてフローラ&apos;
-lf.format([&apos;フランク&apos;, &apos;クリスティン&apos;, &apos;フローラ&apos;, &apos;ハリソン&apos;]);
-// → &apos;フランク、クリスティン、フローラ、そしてハリソン&apos;
+const lf = new Intl.ListFormat('en');
+lf.format(['フランク']);
+// → 'フランク'
+lf.format(['フランク', 'クリスティン']);
+// → 'フランクとクリスティン'
+lf.format(['フランク', 'クリスティン', 'フローラ']);
+// → 'フランク、クリスティン、そしてフローラ'
+lf.format(['フランク', 'クリスティン', 'フローラ', 'ハリソン']);
+// → 'フランク、クリスティン、フローラ、そしてハリソン'
 ```
 
 詳細および使用例については、[こちらの `Intl.ListFormat` の説明ページ](/features/intl-listformat)をご覧ください。
@@ -117,12 +117,12 @@ lf.format([&apos;フランク&apos;, &apos;クリスティン&apos;, &apos;フ�
 
 ```js
 // 従来の動作:
-JSON.stringify(&apos;\uD800&apos;);
-// → &apos;"�"&apos;
+JSON.stringify('\uD800');
+// → '"�"'
 
 // 新しい動作:
-JSON.stringify(&apos;\uD800&apos;);
-// → &apos;"\\ud800"&apos;
+JSON.stringify('\uD800');
+// → '"\\ud800"'
 ```
 
 詳細については、[こちらの正準的な `JSON.stringify` の説明ページ](/features/well-formed-json-stringify)をご覧ください。
@@ -132,19 +132,19 @@ JSON.stringify(&apos;\uD800&apos;);
 [JavaScriptモジュール](/features/modules)では、次のような構文をすでに使用可能でした：
 
 ```js
-import * as utils from &apos;./utils.mjs&apos;;
+import * as utils from './utils.mjs';
 ```
 
 しかし、対称的な `export` 構文は存在していませんでした… [今回追加されるまでは](/features/module-namespace-exports)：
 
 ```js
-export * as utils from &apos;./utils.mjs&apos;;
+export * as utils from './utils.mjs';
 ```
 
 これは次と同等です：
 
 ```js
-import * as utils from &apos;./utils.mjs&apos;;
+import * as utils from './utils.mjs';
 export { utils };
 ```
 

@@ -1,11 +1,11 @@
 ---
-title: &apos;Références faibles et finalisateurs&apos;
-author: &apos;Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), et Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))&apos;
+title: 'Références faibles et finalisateurs'
+author: 'Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), et Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))'
 avatars:
-- &apos;sathya-gunasekaran&apos;
-- &apos;mathias-bynens&apos;
-- &apos;shu-yu-guo&apos;
-- &apos;leszek-swirski&apos;
+- 'sathya-gunasekaran'
+- 'mathias-bynens'
+- 'shu-yu-guo'
+- 'leszek-swirski'
 date: 2019-07-09
 updated: 2020-06-19
 tags:
@@ -13,8 +13,8 @@ tags:
   - ES2021
   - io19
   - Node.js 14
-description: &apos;Les références faibles et les finalisateurs arrivent en JavaScript ! Cet article explique cette nouvelle fonctionnalité.&apos;
-tweet: &apos;1148603966848151553&apos;
+description: 'Les références faibles et les finalisateurs arrivent en JavaScript ! Cet article explique cette nouvelle fonctionnalité.'
+tweet: '1148603966848151553'
 ---
 Généralement, les références aux objets sont _fortement conservées_ en JavaScript, ce qui signifie que tant que vous avez une référence à l'objet, il ne sera pas collecté par le garbage collector.
 
@@ -30,7 +30,7 @@ Actuellement, les `WeakMap` et `WeakSet` sont les seuls moyens de référencer u
 const wm = new WeakMap();
 {
   const ref = {};
-  const metaData = &apos;foo&apos;;
+  const metaData = 'foo';
   wm.set(ref, metaData);
   wm.get(ref);
   // → metaData
@@ -68,7 +68,7 @@ class MovingAvg {
     this.events = [];
     this.socket = socket;
     this.listener = (ev) => { this.events.push(ev); };
-    socket.addEventListener(&apos;message&apos;, this.listener);
+    socket.addEventListener('message', this.listener);
   }
 
   compute(n) {
@@ -124,11 +124,11 @@ class MovingAvg {
     this.events = [];
     this.socket = socket;
     this.listener = (ev) => { this.events.push(ev); };
-    socket.addEventListener(&apos;message&apos;, this.listener);
+    socket.addEventListener('message', this.listener);
   }
 
   dispose() {
-    this.socket.removeEventListener(&apos;message&apos;, this.listener);
+    this.socket.removeEventListener('message', this.listener);
   }
 
   // …
@@ -143,7 +143,7 @@ L'inconvénient de cette approche est qu'il s'agit d'une gestion manuelle de la 
 function addWeakListener(socket, listener) {
   const weakRef = new WeakRef(listener);
   const wrapper = (ev) => { weakRef.deref()?.(ev); };
-  socket.addEventListener(&apos;message&apos;, wrapper);
+  socket.addEventListener('message', wrapper);
 }
 
 class MovingAvg {
@@ -187,14 +187,14 @@ Nous pouvons enregistrer un rappel avec un `FinalizationRegistry` pour supprimer
 
 ```js
 const gListenersRegistry = new FinalizationRegistry(({ socket, wrapper }) => {
-  socket.removeEventListener(&apos;message&apos;, wrapper); // 6
+  socket.removeEventListener('message', wrapper); // 6
 });
 
 function addWeakListener(socket, listener) {
   const weakRef = new WeakRef(listener); // 2
   const wrapper = (ev) => { weakRef.deref()?.(ev); }; // 3
   gListenersRegistry.register(listener, { socket, wrapper }); // 4
-  socket.addEventListener(&apos;message&apos;, wrapper); // 5
+  socket.addEventListener('message', wrapper); // 5
 }
 
 class MovingAvg {

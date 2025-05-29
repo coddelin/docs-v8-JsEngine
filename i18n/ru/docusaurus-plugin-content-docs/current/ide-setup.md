@@ -1,6 +1,6 @@
 ---
-title: &apos;Настройка GUI и IDE&apos;
-description: &apos;Этот документ содержит советы, специфичные для GUI и IDE, по работе с базой кода V8.&apos;
+title: 'Настройка GUI и IDE'
+description: 'Этот документ содержит советы, специфичные для GUI и IDE, по работе с базой кода V8.'
 ---
 Исходный код V8 можно просмотреть онлайн с помощью [Chromium Code Search](https://cs.chromium.org/chromium/src/v8/).
 

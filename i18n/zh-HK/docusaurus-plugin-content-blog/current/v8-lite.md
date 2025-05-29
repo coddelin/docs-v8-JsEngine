@@ -1,17 +1,17 @@
 ---
-title: &apos;更輕量的 V8&apos;
-author: &apos;Mythri Alle、Dan Elphick 以及 [Ross McIlroy](https://twitter.com/rossmcilroy)，V8 減重專家&apos;
+title: '更輕量的 V8'
+author: 'Mythri Alle、Dan Elphick 以及 [Ross McIlroy](https://twitter.com/rossmcilroy)，V8 減重專家'
 avatars:
-  - &apos;mythri-alle&apos;
-  - &apos;dan-elphick&apos;
-  - &apos;ross-mcilroy&apos;
+  - 'mythri-alle'
+  - 'dan-elphick'
+  - 'ross-mcilroy'
 date: 2019-09-12 12:44:37
 tags:
   - internals
   - memory
   - presentations
-description: &apos;V8 Lite 專案顯著降低了 V8 在典型網站上的記憶體開銷，以下是我們如何做到的。&apos;
-tweet: &apos;1172155403343298561&apos;
+description: 'V8 Lite 專案顯著降低了 V8 在典型網站上的記憶體開銷，以下是我們如何做到的。'
+tweet: '1172155403343298561'
 ---
 2018 年底，我們啟動了一個名為 V8 Lite 的專案，目的是顯著減少 V8 的記憶體使用量。起初，這項專案被構想為 V8 的一個獨立 *輕量模式*，專門針對低記憶體的行動裝置或注重記憶體使用而非執行速度的嵌入式案例。然而，在此期間，我們意識到許多為這個 *輕量模式* 開發的記憶體優化技術可以應用到常規的 V8，從而讓所有 V8 的使用者受益。
 

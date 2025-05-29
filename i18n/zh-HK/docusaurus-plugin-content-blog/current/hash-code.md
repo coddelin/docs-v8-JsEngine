@@ -1,13 +1,13 @@
 ---
-title: &apos;優化哈希表：隱藏哈希碼&apos;
-author: &apos;[Sathya Gunasekaran](https://twitter.com/_gsathya)，哈希碼的守護者&apos;
+title: '優化哈希表：隱藏哈希碼'
+author: '[Sathya Gunasekaran](https://twitter.com/_gsathya)，哈希碼的守護者'
 avatars:
-  - &apos;sathya-gunasekaran&apos;
+  - 'sathya-gunasekaran'
 date: 2018-01-29 13:33:37
 tags:
   - internals
-tweet: &apos;958046113390411776&apos;
-description: &apos;多種 JavaScript 資料結構如 Map、Set、WeakSet 和 WeakMap 在底層使用了哈希表。本文闡述了 V8 v6.3 如何改進哈希表性能。&apos;
+tweet: '958046113390411776'
+description: '多種 JavaScript 資料結構如 Map、Set、WeakSet 和 WeakMap 在底層使用了哈希表。本文闡述了 V8 v6.3 如何改進哈希表性能。'
 ---
 ECMAScript 2015 引入了多種新的資料結構如 Map、Set、WeakSet 和 WeakMap，所有這些在底層都使用了哈希表。本文章詳細介紹了 [最近的改進](https://bugs.chromium.org/p/v8/issues/detail?id=6404)，即 [V8 v6.3+](/blog/v8-release-63) 如何在哈希表中存儲鍵。
 
@@ -46,8 +46,8 @@ V8 中的 JavaScript 物件 (`JSObject`) 使用兩個字（除了它的表頭）
 
 ```js
 const x = {};
-x[1] = &apos;bar&apos;;      // ← 存在於元素後備存儲
-x[&apos;foo&apos;] = &apos;bar&apos;;  // ← 存在於屬性後備存儲
+x[1] = 'bar';      // ← 存在於元素後備存儲
+x['foo'] = 'bar';  // ← 存在於屬性後備存儲
 ```
 
 ## 隱藏哈希碼

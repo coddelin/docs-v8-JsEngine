@@ -1,6 +1,6 @@
 ---
-title: &apos;Oilpan에서의 포인터 압축&apos;
-author: &apos;Anton Bikineev와 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), walking disassemblers&apos;
+title: 'Oilpan에서의 포인터 압축'
+author: 'Anton Bikineev와 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), walking disassemblers'
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -9,8 +9,8 @@ tags:
   - internals
   - memory
   - cppgc
-description: &apos;Oilpan에서의 포인터 압축은 C++ 포인터를 압축하여 힙 크기를 최대 33%까지 줄일 수 있습니다.&apos;
-tweet: &apos;1597274125780893697&apos;
+description: 'Oilpan에서의 포인터 압축은 C++ 포인터를 압축하여 힙 크기를 최대 33%까지 줄일 수 있습니다.'
+tweet: '1597274125780893697'
 ---
 
 > 프로그램이 4GB 미만의 RAM을 사용하는 경우 64비트 포인터를 사용하는 것은 절대적으로 터무니없습니다. 그러한 포인터 값이 구조체 안에 나타난다면, 이는 메모리를 절반 이상 낭비할 뿐만 아니라 캐시의 절반을 효과적으로 버리는 셈입니다.
@@ -226,8 +226,8 @@ Oilpan에서의 포인터 압축은 **Chrome 106**에서 기본적으로 활성�
 <!-- markdownlint-disable no-inline-html -->
 | Blink 메모리 | P50                                                 | P99                                               |
 | -----------: | :-------------------------------------------------: | :-----------------------------------------------: |
-| Windows      | **<span style={{color:&apos;green&apos;}}>-21% (-1.37MB)</span>** | **<span style={{color:&apos;green&apos;}}>-33% (-59MB)</span>** |
-| Android      | **<span style={{color:&apos;green&apos;}}>-6% (-0.1MB)</span>**   | **<span style={{color:&apos;green&apos;}}>-8% (-3.9MB)</span>** |
+| Windows      | **<span style={{color:'green'}}>-21% (-1.37MB)</span>** | **<span style={{color:'green'}}>-33% (-59MB)</span>** |
+| Android      | **<span style={{color:'green'}}>-6% (-0.1MB)</span>**   | **<span style={{color:'green'}}>-8% (-3.9MB)</span>** |
 <!-- markdownlint-enable no-inline-html -->
 
 

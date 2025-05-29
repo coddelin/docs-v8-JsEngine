@@ -1,15 +1,15 @@
 ---
-title: &apos;`Array.prototype.flat` et `Array.prototype.flatMap`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`Array.prototype.flat` et `Array.prototype.flatMap`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-06-11
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: &apos;Array.prototype.flat aplatit un tableau jusqu&apos;à une profondeur spécifiée. Array.prototype.flatMap équivaut à effectuer un map suivi d&apos;un flat séparément.&apos;
-tweet: &apos;1138457106380709891&apos;
+description: 'Array.prototype.flat aplatit un tableau jusqu'à une profondeur spécifiée. Array.prototype.flatMap équivaut à effectuer un map suivi d'un flat séparément.'
+tweet: '1138457106380709891'
 ---
 ## `Array.prototype.flat`
 
@@ -22,7 +22,7 @@ const array = [1, [2, [3]]];
 //                    ^^^   tableau le plus intérieur
 ```
 
-`Array#flat` retourne une version aplatie d&apos;un tableau donné.
+`Array#flat` retourne une version aplatie d'un tableau donné.
 
 ```js
 array.flat();
@@ -33,19 +33,19 @@ array.flat(1);
 // → [1, 2, [3]]
 ```
 
-La profondeur par défaut est `1`, mais vous pouvez passer n&apos;importe quel nombre pour aplatir récursivement jusqu&apos;à cette profondeur. Pour continuer d&apos;aplatir récursivement jusqu&apos;à ce que le résultat ne contienne plus de tableaux imbriqués, on passe `Infinity`.
+La profondeur par défaut est `1`, mais vous pouvez passer n'importe quel nombre pour aplatir récursivement jusqu'à cette profondeur. Pour continuer d'aplatir récursivement jusqu'à ce que le résultat ne contienne plus de tableaux imbriqués, on passe `Infinity`.
 
 ```js
-// Aplatir récursivement jusqu&apos;à ce que le tableau ne contienne plus de tableaux imbriqués :
+// Aplatir récursivement jusqu'à ce que le tableau ne contienne plus de tableaux imbriqués :
 array.flat(Infinity);
 // → [1, 2, 3]
 ```
 
-Pourquoi cette méthode s&apos;appelle-t-elle `Array.prototype.flat` et non `Array.prototype.flatten` ? [Lisez notre article sur le #SmooshGate pour le découvrir !](https://developers.google.com/web/updates/2018/03/smooshgate)
+Pourquoi cette méthode s'appelle-t-elle `Array.prototype.flat` et non `Array.prototype.flatten` ? [Lisez notre article sur le #SmooshGate pour le découvrir !](https://developers.google.com/web/updates/2018/03/smooshgate)
 
 ## `Array.prototype.flatMap`
 
-Voici un autre exemple. Nous avons une fonction `duplicate` qui prend une valeur et retourne un tableau contenant cette valeur deux fois. Si nous appliquons `duplicate` à chaque valeur d&apos;un tableau, nous obtenons un tableau imbriqué.
+Voici un autre exemple. Nous avons une fonction `duplicate` qui prend une valeur et retourne un tableau contenant cette valeur deux fois. Si nous appliquons `duplicate` à chaque valeur d'un tableau, nous obtenons un tableau imbriqué.
 
 ```js
 const duplicate = (x) => [x, x];
@@ -68,9 +68,9 @@ Vous pouvez ensuite appeler `flat` sur le résultat pour aplatir le tableau :
 // → [2, 2, 3, 3, 4, 4]
 ```
 
-`flatMap` est un peu plus efficace que d&apos;effectuer un `map` suivi d&apos;un `flat` séparément.
+`flatMap` est un peu plus efficace que d'effectuer un `map` suivi d'un `flat` séparément.
 
-Vous êtes intéressé par les cas d&apos;utilisation de `flatMap` ? Découvrez [l&apos;explication d&apos;Axel Rauschmayer](https://exploringjs.com/impatient-js/ch_arrays.html#flatmap-mapping-to-zero-or-more-values).
+Vous êtes intéressé par les cas d'utilisation de `flatMap` ? Découvrez [l'explication d'Axel Rauschmayer](https://exploringjs.com/impatient-js/ch_arrays.html#flatmap-mapping-to-zero-or-more-values).
 
 ## Prise en charge de `Array#{flat,flatMap}`
 

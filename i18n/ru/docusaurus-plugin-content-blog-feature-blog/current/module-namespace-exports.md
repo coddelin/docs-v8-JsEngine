@@ -1,29 +1,29 @@
 ---
-title: &apos;Экспорт пространства имен модулей&apos;
-author: &apos;Маттиас Байненс ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Экспорт пространства имен модулей'
+author: 'Маттиас Байненс ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-12-18
 tags:
   - ECMAScript
   - ES2020
-description: &apos;Модули JavaScript теперь поддерживают новый синтаксис для повторного экспорта всех свойств внутри пространства имен.&apos;
+description: 'Модули JavaScript теперь поддерживают новый синтаксис для повторного экспорта всех свойств внутри пространства имен.'
 ---
 В [модулях JavaScript](/features/modules) уже можно было использовать следующий синтаксис:
 
 ```js
-import * as utils from &apos;./utils.mjs&apos;;
+import * as utils from './utils.mjs';
 ```
 
 Однако симметричный синтаксис `export` отсутствовал… [до сегодняшнего дня](https://github.com/tc39/proposal-export-ns-from):
 
 ```js
-export * as utils from &apos;./utils.mjs&apos;;
+export * as utils from './utils.mjs';
 ```
 
 Это эквивалентно следующему:
 
 ```js
-import * as utils from &apos;./utils.mjs&apos;;
+import * as utils from './utils.mjs';
 export { utils };
 ```

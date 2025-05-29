@@ -1,15 +1,15 @@
 ---
-title: &apos;`Intl.RelativeTimeFormat`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`Intl.RelativeTimeFormat`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-10-22
 tags:
   - Intl
   - Node.js 12
   - io19
-description: &apos;Intl.RelativeTimeFormat 提供了在不犧牲效能的情況下進行相對時間的本地化格式化功能。&apos;
-tweet: &apos;1054387117571354624&apos;
+description: 'Intl.RelativeTimeFormat 提供了在不犧牲效能的情況下進行相對時間的本地化格式化功能。'
+tweet: '1054387117571354624'
 ---
 現代的網頁應用程式通常會使用「昨天」、「42秒前」或「3個月後」此類短語，而不是完整的日期和時間戳。這些 _相對時間格式化值_ 已變得如此常見，以至於許多流行的函式庫都實作了能夠以本地化方式格式化它們的工具函數。（例子包括 [Moment.js](https://momentjs.com/)、[Globalize](https://github.com/globalizejs/globalize) 和 [date-fns](https://date-fns.org/docs/)。）
 
@@ -23,31 +23,31 @@ tweet: &apos;1054387117571354624&apos;
 以下範例展示了如何使用英文創建一個相對時間格式化器。
 
 ```js
-const rtf = new Intl.RelativeTimeFormat(&apos;en&apos;);
+const rtf = new Intl.RelativeTimeFormat('en');
 
-rtf.format(3.14, &apos;second&apos;);
-// → &apos;in 3.14 seconds&apos;
+rtf.format(3.14, 'second');
+// → 'in 3.14 seconds'
 
-rtf.format(-15, &apos;minute&apos;);
-// → &apos;15 minutes ago&apos;
+rtf.format(-15, 'minute');
+// → '15 minutes ago'
 
-rtf.format(8, &apos;hour&apos;);
-// → &apos;in 8 hours&apos;
+rtf.format(8, 'hour');
+// → 'in 8 hours'
 
-rtf.format(-2, &apos;day&apos;);
-// → &apos;2 days ago&apos;
+rtf.format(-2, 'day');
+// → '2 days ago'
 
-rtf.format(3, &apos;week&apos;);
-// → &apos;in 3 weeks&apos;
+rtf.format(3, 'week');
+// → 'in 3 weeks'
 
-rtf.format(-5, &apos;month&apos;);
-// → &apos;5 months ago&apos;
+rtf.format(-5, 'month');
+// → '5 months ago'
 
-rtf.format(2, &apos;quarter&apos;);
-// → &apos;in 2 quarters&apos;
+rtf.format(2, 'quarter');
+// → 'in 2 quarters'
 
-rtf.format(-42, &apos;year&apos;);
-// → &apos;42 years ago&apos;
+rtf.format(-42, 'year');
+// → '42 years ago'
 ```
 
 注意，傳遞給 `Intl.RelativeTimeFormat` 建構函數的參數可以是儲存 [BCP 47 語言標籤](https://tools.ietf.org/html/rfc5646) 的字符串，也可以是 [這類語言標籤的陣列](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation)。
@@ -55,31 +55,31 @@ rtf.format(-42, &apos;year&apos;);
 以下是一個使用不同語言（西班牙語）的範例：
 
 ```js
-const rtf = new Intl.RelativeTimeFormat(&apos;es&apos;);
+const rtf = new Intl.RelativeTimeFormat('es');
 
-rtf.format(3.14, &apos;second&apos;);
-// → &apos;dentro de 3,14 segundos&apos;
+rtf.format(3.14, 'second');
+// → 'dentro de 3,14 segundos'
 
-rtf.format(-15, &apos;minute&apos;);
-// → &apos;hace 15 minutos&apos;
+rtf.format(-15, 'minute');
+// → 'hace 15 minutos'
 
-rtf.format(8, &apos;hour&apos;);
-// → &apos;dentro de 8 horas&apos;
+rtf.format(8, 'hour');
+// → 'dentro de 8 horas'
 
-rtf.format(-2, &apos;day&apos;);
-// → &apos;hace 2 días&apos;
+rtf.format(-2, 'day');
+// → 'hace 2 días'
 
-rtf.format(3, &apos;week&apos;);
-// → &apos;dentro de 3 semanas&apos;
+rtf.format(3, 'week');
+// → 'dentro de 3 semanas'
 
-rtf.format(-5, &apos;month&apos;);
-// → &apos;hace 5 meses&apos;
+rtf.format(-5, 'month');
+// → 'hace 5 meses'
 
-rtf.format(2, &apos;quarter&apos;);
-// → &apos;dentro de 2 trimestres&apos;
+rtf.format(2, 'quarter');
+// → 'dentro de 2 trimestres'
 
-rtf.format(-42, &apos;year&apos;);
-// → &apos;hace 42 años&apos;
+rtf.format(-42, 'year');
+// → 'hace 42 años'
 ```
 
 此外，`Intl.RelativeTimeFormat` 建構函數接受一個可選的 `options` 引數，可對輸出進行細粒度控制。以下是幾段以預設設置為基礎的英文輸出的範例來說明其靈活性：
@@ -87,58 +87,58 @@ rtf.format(-42, &apos;year&apos;);
 ```js
 // 為英文語言創建相對時間格式化器，使用默認設定（就像前面一樣）。
 // 在此示例中，默認值被明確傳遞進去。
-const rtf = new Intl.RelativeTimeFormat(&apos;en&apos;, {
-  localeMatcher: &apos;best fit&apos;, // 其他值：&apos;lookup&apos;
-  style: &apos;long&apos;, // 其他值：&apos;short&apos; 或 &apos;narrow&apos;
-  numeric: &apos;always&apos;, // 其他值：&apos;auto&apos;
+const rtf = new Intl.RelativeTimeFormat('en', {
+  localeMatcher: 'best fit', // 其他值：'lookup'
+  style: 'long', // 其他值：'short' 或 'narrow'
+  numeric: 'always', // 其他值：'auto'
 });
 
 // 現在，讓我們試試一些特殊案例！
 
-rtf.format(-1, &apos;day&apos;);
-// → &apos;1 day ago&apos;
+rtf.format(-1, 'day');
+// → '1 day ago'
 
-rtf.format(0, &apos;day&apos;);
-// → &apos;in 0 days&apos;
+rtf.format(0, 'day');
+// → 'in 0 days'
 
-rtf.format(1, &apos;day&apos;);
-// → &apos;in 1 day&apos;
+rtf.format(1, 'day');
+// → 'in 1 day'
 
-rtf.format(-1, &apos;week&apos;);
-// → &apos;1 week ago&apos;
+rtf.format(-1, 'week');
+// → '1 week ago'
 
-rtf.format(0, &apos;week&apos;);
-// → &apos;in 0 weeks&apos;
+rtf.format(0, 'week');
+// → 'in 0 weeks'
 
-rtf.format(1, &apos;week&apos;);
-// → &apos;in 1 week&apos;
+rtf.format(1, 'week');
+// → 'in 1 week'
 ```
 
-您可能注意到上述格式化器生成了字串 `&apos;1 day ago&apos;` 而不是 `&apos;yesterday&apos;`，以及稍顯尷尬的 `&apos;in 0 weeks&apos;` 而不是 `&apos;this week&apos;`。發生這種情況的原因是，格式化器默認使用數值形式輸出。
+您可能注意到上述格式化器生成了字串 `'1 day ago'` 而不是 `'yesterday'`，以及稍顯尷尬的 `'in 0 weeks'` 而不是 `'this week'`。發生這種情況的原因是，格式化器默認使用數值形式輸出。
 
-要改變此行為，將 `numeric` 選項設置為 `&apos;auto&apos;`（而不是默認的 `&apos;always&apos;`）：
+要改變此行為，將 `numeric` 選項設置為 `'auto'`（而不是默認的 `'always'`）：
 
 ```js
 // 為英文語言創建一個相對時間格式化器，其輸出不必總是使用數值形式。
-const rtf = new Intl.RelativeTimeFormat(&apos;en&apos;, { numeric: &apos;auto&apos; });
+const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 
-rtf.format(-1, &apos;day&apos;);
-// → &apos;yesterday&apos;
+rtf.format(-1, 'day');
+// → 'yesterday'
 
-rtf.format(0, &apos;day&apos;);
-// → &apos;today&apos;
+rtf.format(0, 'day');
+// → 'today'
 
-rtf.format(1, &apos;day&apos;);
-// → &apos;tomorrow&apos;
+rtf.format(1, 'day');
+// → 'tomorrow'
 
-rtf.format(-1, &apos;week&apos;);
-// → &apos;last week&apos;
+rtf.format(-1, 'week');
+// → 'last week'
 
-rtf.format(0, &apos;week&apos;);
-// → &apos;this week&apos;
+rtf.format(0, 'week');
+// → 'this week'
 
-rtf.format(1, &apos;week&apos;);
-// → &apos;next week&apos;
+rtf.format(1, 'week');
+// → 'next week'
 ```
 
 類似於其他 `Intl` 類別，`Intl.RelativeTimeFormat` 除了 `format` 方法外，還有一個 `formatToParts` 方法。儘管 `format` 涵蓋了最常見的使用情況，但如果需要獲取生成輸出的個別部分，`formatToParts` 會很有幫助：
@@ -146,21 +146,21 @@ rtf.format(1, &apos;week&apos;);
 ```js
 // 創建一個針對英語的相對時間格式化器，
 // 輸出中不一定需要使用數字值。
-const rtf = new Intl.RelativeTimeFormat(&apos;en&apos;, { numeric: &apos;auto&apos; });
+const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 
-rtf.format(-1, &apos;day&apos;);
-// → &apos;昨天&apos;
+rtf.format(-1, 'day');
+// → '昨天'
 
-rtf.formatToParts(-1, &apos;day&apos;);
-// → [{ type: &apos;literal&apos;, value: &apos;昨天&apos; }]
+rtf.formatToParts(-1, 'day');
+// → [{ type: 'literal', value: '昨天' }]
 
-rtf.format(3, &apos;week&apos;);
-// → &apos;3 週後&apos;
+rtf.format(3, 'week');
+// → '3 週後'
 
-rtf.formatToParts(3, &apos;week&apos;);
-// → [{ type: &apos;literal&apos;, value: &apos;3 週後&apos; },
-//    { type: &apos;integer&apos;, value: &apos;3&apos;, unit: &apos;週&apos; },
-//    { type: &apos;literal&apos;, value: &apos; weeks&apos; }]
+rtf.formatToParts(3, 'week');
+// → [{ type: 'literal', value: '3 週後' },
+//    { type: 'integer', value: '3', unit: '週' },
+//    { type: 'literal', value: ' weeks' }]
 ```
 
 如需了解更多選項及其行為，請參考 [提案倉庫中的 API 文件](https://github.com/tc39/proposal-intl-relative-time#api)。

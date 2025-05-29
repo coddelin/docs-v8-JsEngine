@@ -1,10 +1,10 @@
 ---
-title: &apos;Versión V8 v6.2&apos;
-author: &apos;el equipo de V8&apos;
+title: 'Versión V8 v6.2'
+author: 'el equipo de V8'
 date: 2017-09-11 13:33:37
 tags:
   - lanzamiento
-description: &apos;V8 v6.2 incluye mejoras de rendimiento, más características del lenguaje JavaScript, un aumento en la longitud máxima de cadenas y más.&apos;
+description: 'V8 v6.2 incluye mejoras de rendimiento, más características del lenguaje JavaScript, un aumento en la longitud máxima de cadenas y más.'
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se deriva del maestro de Git de V8 justo antes de un hito de Chrome Beta. Hoy nos complace anunciar nuestra rama más reciente, [versión 6.2 de V8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.2), que está en beta hasta su lanzamiento en coordinación con Chrome 62 Stable en varias semanas. V8 v6.2 está llena de todo tipo de cosas buenas para los desarrolladores. Esta publicación proporciona un avance de algunos de los puntos destacados en anticipación al lanzamiento.
 
@@ -48,14 +48,14 @@ En las últimas versiones, el modo de bajo consumo de memoria de V8 se ha mejora
 El soporte para [el modo `dotAll`](https://github.com/tc39/proposal-regexp-dotall-flag) para expresiones regulares, habilitado mediante la bandera `s`, ahora está habilitado por defecto. En modo `dotAll`, el átomo `.` en expresiones regulares coincide con cualquier carácter, incluidos los terminadores de línea.
 
 ```js
-/foo.bar/su.test(&apos;foo\nbar&apos;); // true
+/foo.bar/su.test('foo\nbar'); // true
 ```
 
 [Aserciones lookbehind](https://github.com/tc39/proposal-regexp-lookbehind), otra nueva característica de expresiones regulares, ya están disponibles por defecto. El nombre ya describe bastante bien su significado. Las aserciones lookbehind ofrecen una forma de restringir un patrón para que solo coincida si está precedido por el patrón en el grupo lookbehind. Vienen en dos versiones: coincidente y no coincidente:
 
 ```js
-/(?<=\$)\d+/.exec(&apos;$1 is worth about ¥123&apos;); // [&apos;1&apos;]
-/(?<!\$)\d+/.exec(&apos;$1 is worth about ¥123&apos;); // [&apos;123&apos;]
+/(?<=\$)\d+/.exec('$1 is worth about ¥123'); // ['1']
+/(?<!\$)\d+/.exec('$1 is worth about ¥123'); // ['123']
 ```
 
 Más detalles sobre estas características están disponibles en nuestra publicación de blog titulada [Próximas características de expresiones regulares](https://developers.google.com/web/updates/2017/07/upcoming-regexp-features).

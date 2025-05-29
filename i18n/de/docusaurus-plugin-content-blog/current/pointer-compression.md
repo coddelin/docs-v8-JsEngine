@@ -1,15 +1,15 @@
 ---
-title: &apos;Pointer-Komprimierung in V8&apos;
-author: &apos;Igor Sheludko und Santiago Aboy Solanes, *die* Pointer-Komprimierer&apos;
+title: 'Pointer-Komprimierung in V8'
+author: 'Igor Sheludko und Santiago Aboy Solanes, *die* Pointer-Komprimierer'
 avatars:
-  - &apos;igor-sheludko&apos;
-  - &apos;santiago-aboy-solanes&apos;
+  - 'igor-sheludko'
+  - 'santiago-aboy-solanes'
 date: 2020-03-30
 tags:
   - internals
   - memory
-description: &apos;V8 hat seine Heap-Größe um bis zu 43 % reduziert! Erfahren Sie, wie dies in „Pointer-Komprimierung in V8“ gelingt!&apos;
-tweet: &apos;1244653541379182596&apos;
+description: 'V8 hat seine Heap-Größe um bis zu 43 % reduziert! Erfahren Sie, wie dies in „Pointer-Komprimierung in V8“ gelingt!'
+tweet: '1244653541379182596'
 ---
 Es gibt einen ständigen Kampf zwischen Speicher und Leistung. Als Nutzer wünschen wir uns, dass Dinge sowohl schnell sind als auch möglichst wenig Speicher verbrauchen. Leider geht eine Leistungssteigerung gewöhnlich mit einem höheren Speicherverbrauch einher (und umgekehrt).
 
@@ -392,7 +392,7 @@ Auf 64-Bit-Architekturen sind Double-Werte genauso groß wie Zeiger. Wenn wir al
 Wenn die Annahme für ein Feld bricht, sagen wir nach Ausführung dieser Zeile:
 
 ```js
-const q = new Point(2, &apos;ab&apos;);
+const q = new Point(2, 'ab');
 ```
 
 müssen Zahlenwerte für die y-Eigenschaft stattdessen verpackt gespeichert werden. Zusätzlich, wenn es spekulativ optimierten Code gibt, der irgendwo darauf basiert, darf er nicht mehr verwendet werden und muss entfernt werden (deoptimiert werden). Der Grund für eine solche „Feldtyp“-Verallgemeinerung ist es, die Anzahl der Formen von Objekten zu minimieren, die aus derselben Konstruktorfunktion erstellt werden, was wiederum für eine stabilere Leistung erforderlich ist.

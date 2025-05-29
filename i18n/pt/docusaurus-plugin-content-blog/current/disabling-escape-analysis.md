@@ -1,13 +1,13 @@
 ---
-title: &apos;Desativando temporariamente a análise de escape&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias)), analista de escape de sandbox&apos;
+title: 'Desativando temporariamente a análise de escape'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), analista de escape de sandbox'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-09-22 13:33:37
 tags:
   - segurança
-description: &apos;Desativamos a análise de escape do V8 no Chrome 61 para proteger os usuários contra uma vulnerabilidade de segurança.&apos;
-tweet: &apos;911339802884284416&apos;
+description: 'Desativamos a análise de escape do V8 no Chrome 61 para proteger os usuários contra uma vulnerabilidade de segurança.'
+tweet: '911339802884284416'
 ---
 Em JavaScript, um objeto alocado _escapa_ se ele for acessível fora da função atual. Normalmente, o V8 aloca novos objetos no heap do JavaScript, mas utilizando _análise de escape_, um compilador de otimização pode determinar quando um objeto pode ser tratado de forma especial porque seu tempo de vida está comprovadamente vinculado à ativação da função. Quando a referência a um objeto recém-alocado não escapa da função que o cria, os engines de JavaScript não precisam alocar explicitamente esse objeto no heap. Eles podem, em vez disso, tratar efetivamente os valores do objeto como variáveis locais da função. Isso, por sua vez, permite todos os tipos de otimizações, como armazenar esses valores na pilha ou em registradores, ou, em alguns casos, otimizar os valores completamente. Objetos que escapam (mais precisamente, objetos que não podem ser comprovadamente não escapantes) precisam ser alocados no heap.
 

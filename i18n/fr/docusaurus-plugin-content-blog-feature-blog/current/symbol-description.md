@@ -1,44 +1,44 @@
 ---
-title: &apos;`Symbol.prototype.description`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`Symbol.prototype.description`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-06-25
 tags:
   - ECMAScript
   - ES2019
-description: &apos;Symbol.prototype.description fournit un moyen ergonomique d&apos;accéder à la description d&apos;un symbole.&apos;
-tweet: &apos;1143432835665211394&apos;
+description: 'Symbol.prototype.description fournit un moyen ergonomique d'accéder à la description d'un symbole.'
+tweet: '1143432835665211394'
 ---
 Les `Symbol` en JavaScript peuvent recevoir une description lors de leur création :
 
 ```js
-const symbol = Symbol(&apos;foo&apos;);
+const symbol = Symbol('foo');
 //                    ^^^^^
 ```
 
-Auparavant, la seule façon d&apos;accéder à cette description par programme était de manière indirecte via `Symbol.prototype.toString()` :
+Auparavant, la seule façon d'accéder à cette description par programme était de manière indirecte via `Symbol.prototype.toString()` :
 
 ```js
-const symbol = Symbol(&apos;foo&apos;);
+const symbol = Symbol('foo');
 //                    ^^^^^
 symbol.toString();
-// → &apos;Symbol(foo)&apos;
+// → 'Symbol(foo)'
 //           ^^^
 symbol.toString().slice(7, -1); // 🤔
-// → &apos;foo&apos;
+// → 'foo'
 ```
 
-Cependant, ce code semble légèrement magique, pas très explicite, et viole le principe « exprimer l&apos;intention, non l&apos;implémentation ». Cette technique ne permet pas non plus de faire la distinction entre un symbole sans description (c&apos;est-à-dire `Symbol()`) et un symbole dont la description est une chaîne vide (c&apos;est-à-dire `Symbol(&apos;&apos;)`).
+Cependant, ce code semble légèrement magique, pas très explicite, et viole le principe « exprimer l'intention, non l'implémentation ». Cette technique ne permet pas non plus de faire la distinction entre un symbole sans description (c'est-à-dire `Symbol()`) et un symbole dont la description est une chaîne vide (c'est-à-dire `Symbol('')`).
 
 <!--truncate-->
-[Le nouveau getter `Symbol.prototype.description`](https://tc39.es/ecma262/#sec-symbol.prototype.description) offre un moyen plus ergonomique d&apos;accéder à la description d&apos;un `Symbol` :
+[Le nouveau getter `Symbol.prototype.description`](https://tc39.es/ecma262/#sec-symbol.prototype.description) offre un moyen plus ergonomique d'accéder à la description d'un `Symbol` :
 
 ```js
-const symbol = Symbol(&apos;foo&apos;);
+const symbol = Symbol('foo');
 //                    ^^^^^
 symbol.description;
-// → &apos;foo&apos;
+// → 'foo'
 ```
 
 Pour les `Symbol` sans description, le getter retourne `undefined` :

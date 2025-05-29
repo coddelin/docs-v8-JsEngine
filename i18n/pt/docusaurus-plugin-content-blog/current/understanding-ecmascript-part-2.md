@@ -1,14 +1,14 @@
 ---
-title: &apos;Entendendo a especificação ECMAScript, parte 2&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), espectadora especulativa da especificação&apos;
+title: 'Entendendo a especificação ECMAScript, parte 2'
+author: '[Marja Hölttä](https://twitter.com/marjakh), espectadora especulativa da especificação'
 avatars:
   - marja-holtta
 date: 2020-03-02
 tags:
   - ECMAScript
   - Entendendo o ECMAScript
-description: &apos;Tutorial sobre como ler a especificação do ECMAScript, parte 2&apos;
-tweet: &apos;1234550773629014016&apos;
+description: 'Tutorial sobre como ler a especificação do ECMAScript, parte 2'
+tweet: '1234550773629014016'
 ---
 
 Vamos praticar nossas incríveis habilidades de leitura da especificação um pouco mais. Se você não olhou o episódio anterior, agora é um bom momento para fazê-lo!
@@ -179,7 +179,7 @@ MemberExpression :
   new MemberExpression Arguments
 ```
 
-Aqui temos 7 produções para `MemberExpression`. Um `MemberExpression` pode ser apenas um `PrimaryExpression`. Alternativamente, um `MemberExpression` pode ser construído a partir de outro `MemberExpression` e `Expression`, unindo-os: `MemberExpression [ Expression ]`, por exemplo, `o2[&apos;foo&apos;]`. Ou pode ser `MemberExpression . IdentifierName`, por exemplo, `o2.foo` — esta é a produção relevante para nosso exemplo.
+Aqui temos 7 produções para `MemberExpression`. Um `MemberExpression` pode ser apenas um `PrimaryExpression`. Alternativamente, um `MemberExpression` pode ser construído a partir de outro `MemberExpression` e `Expression`, unindo-os: `MemberExpression [ Expression ]`, por exemplo, `o2['foo']`. Ou pode ser `MemberExpression . IdentifierName`, por exemplo, `o2.foo` — esta é a produção relevante para nosso exemplo.
 
 Semânticas de tempo de execução para a produção `MemberExpression : MemberExpression . IdentifierName` definem o conjunto de passos a serem seguidos ao avaliá-lo:
 

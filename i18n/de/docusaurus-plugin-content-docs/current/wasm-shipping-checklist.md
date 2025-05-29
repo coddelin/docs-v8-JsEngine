@@ -1,6 +1,6 @@
 ---
-title: &apos;Checkliste für Staging und Versand von WebAssembly-Funktionen&apos;
-description: &apos;Dieses Dokument bietet Checklisten mit technischen Anforderungen für den Zeitpunkt, wann eine WebAssembly-Funktion in V8 gestaged und verschickt werden sollte.&apos;
+title: 'Checkliste für Staging und Versand von WebAssembly-Funktionen'
+description: 'Dieses Dokument bietet Checklisten mit technischen Anforderungen für den Zeitpunkt, wann eine WebAssembly-Funktion in V8 gestaged und verschickt werden sollte.'
 ---
 Dieses Dokument bietet Checklisten mit technischen Anforderungen für das Staging und den Versand von WebAssembly-Funktionen in V8. Diese Checklisten dienen als Leitfaden und sind möglicherweise nicht auf alle Funktionen anwendbar. Der eigentliche Launch-Prozess wird im [V8 Launch-Prozess](https://v8.dev/docs/feature-launch-process) beschrieben.
 

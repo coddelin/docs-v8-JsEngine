@@ -1,13 +1,13 @@
 ---
-title: &apos;Publication de la version V8 v7.7&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias)), rédacteur paresseux des notes de version&apos;
+title: 'Publication de la version V8 v7.7'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), rédacteur paresseux des notes de version'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-08-13 16:45:00
 tags:
   - version
-description: &apos;V8 v7.7 introduit une affectation différée des retours, une compilation WebAssembly en arrière-plan plus rapide, des améliorations des traces de pile et de nouvelles fonctionnalités pour Intl.NumberFormat.&apos;
-tweet: &apos;1161287541611323397&apos;
+description: 'V8 v7.7 introduit une affectation différée des retours, une compilation WebAssembly en arrière-plan plus rapide, des améliorations des traces de pile et de nouvelles fonctionnalités pour Intl.NumberFormat.'
+tweet: '1161287541611323397'
 ---
 Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](/docs/release-process). Chaque version est issue directement de la branche principale Git de V8, juste avant une étape importante Beta de Chrome. Aujourd’hui, nous sommes ravis d’annoncer notre toute dernière branche, [V8 version 7.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.7), actuellement en version bêta avant sa publication coordonnée avec Chrome 77 Stable dans quelques semaines. V8 v7.7 regorge de nouvelles fonctionnalités destinées aux développeurs. Ce billet présente un aperçu de certains points forts en prévision de sa mise en production.
 
@@ -43,12 +43,12 @@ Au cours des dernières versions, nous avons travaillé sur quelques [refactoris
 [L’API `Intl.NumberFormat`](/features/intl-numberformat) pour le formatage de nombres tenant compte de la langue locale gagne de nouvelles fonctionnalités dans cette version ! Elle prend désormais en charge la notation compacte, la notation scientifique, la notation d'ingénierie, l’affichage des signes et les unités de mesure.
 
 ```js
-const formatter = new Intl.NumberFormat(&apos;en&apos;, {
-  style: &apos;unit&apos;,
-  unit: &apos;meter-per-second&apos;,
+const formatter = new Intl.NumberFormat('en', {
+  style: 'unit',
+  unit: 'meter-per-second',
 });
 formatter.format(299792458);
-// → &apos;299,792,458 m/s&apos;
+// → '299,792,458 m/s'
 ```
 
 Consultez [notre expliquant de fonctionnalités](/features/intl-numberformat) pour plus de détails.

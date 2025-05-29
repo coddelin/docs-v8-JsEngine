@@ -1,11 +1,11 @@
 ---
-title: &apos;Lançamento do V8 v7.4&apos;
-author: &apos;Georg Neis&apos;
+title: 'Lançamento do V8 v7.4'
+author: 'Georg Neis'
 date: 2019-03-22 16:30:42
 tags:
   - lançamento
-description: &apos;O V8 v7.4 apresenta threads/átomos WebAssembly, campos privados de classe, melhorias de desempenho e memória, e muito mais!&apos;
-tweet: &apos;1109094755936489472&apos;
+description: 'O V8 v7.4 apresenta threads/átomos WebAssembly, campos privados de classe, melhorias de desempenho e memória, e muito mais!'
+tweet: '1109094755936489472'
 ---
 A cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](/docs/release-process). Cada versão é ramificada a partir da ramificação principal do Git do V8 imediatamente antes de um marco Beta do Chrome. Hoje, temos o prazer de anunciar nosso mais novo branch, [V8 versão 7.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.4), que está em beta até seu lançamento em coordenação com o Chrome 74 Stable em algumas semanas. O V8 v7.4 está repleto de recursos voltados para desenvolvedores. Este post oferece uma prévia de alguns dos destaques em antecipação ao lançamento.
 
@@ -102,7 +102,7 @@ O V8 v7.2 adicionou suporte para a sintaxe de campos públicos de classes. Os ca
 class IncreasingCounter {
   #count = 0;
   get value() {
-    console.log(&apos;Obtendo o valor atual!&apos;);
+    console.log('Obtendo o valor atual!');
     return this.#count;
   }
   increment() {
@@ -125,22 +125,22 @@ Para mais informações, leia nosso [artigo explicativo sobre campos públicos e
 
 ### `Intl.Locale`
 
-Os aplicativos JavaScript geralmente usam strings como `&apos;en-US&apos;` ou `&apos;de-CH&apos;` para identificar locais. `Intl.Locale` oferece um mecanismo mais poderoso para lidar com locais, permitindo extrair facilmente preferências específicas do local, como o idioma, o calendário, o sistema numérico, o ciclo de horas e assim por diante.
+Os aplicativos JavaScript geralmente usam strings como `'en-US'` ou `'de-CH'` para identificar locais. `Intl.Locale` oferece um mecanismo mais poderoso para lidar com locais, permitindo extrair facilmente preferências específicas do local, como o idioma, o calendário, o sistema numérico, o ciclo de horas e assim por diante.
 
 ```js
-const locale = new Intl.Locale(&apos;es-419-u-hc-h12&apos;, {
-  calendar: &apos;gregory&apos;
+const locale = new Intl.Locale('es-419-u-hc-h12', {
+  calendar: 'gregory'
 });
 locale.language;
-// → &apos;es&apos;
+// → 'es'
 locale.calendar;
-// → &apos;gregory&apos;
+// → 'gregory'
 locale.hourCycle;
-// → &apos;h12&apos;
+// → 'h12'
 locale.region;
-// → &apos;419&apos;
+// → '419'
 locale.toString();
-// → &apos;es-419-u-ca-gregory-hc-h12&apos;
+// → 'es-419-u-ca-gregory-hc-h12'
 ```
 
 ### Gramática do Hashbang

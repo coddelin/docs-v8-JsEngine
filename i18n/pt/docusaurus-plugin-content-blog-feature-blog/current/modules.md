@@ -1,15 +1,15 @@
 ---
-title: &apos;Módulos JavaScript&apos;
-author: &apos;Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) e Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Módulos JavaScript'
+author: 'Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) e Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-- &apos;addy-osmani&apos;
-- &apos;mathias-bynens&apos;
+- 'addy-osmani'
+- 'mathias-bynens'
 date: 2018-06-18
 tags:
   - ECMAScript
   - ES2015
-description: &apos;Este artigo explica como usar módulos JavaScript, como implantá-los de forma responsável e como a equipe do Chrome está trabalhando para melhorar ainda mais os módulos no futuro.&apos;
-tweet: &apos;1008725884575109120&apos;
+description: 'Este artigo explica como usar módulos JavaScript, como implantá-los de forma responsável e como a equipe do Chrome está trabalhando para melhorar ainda mais os módulos no futuro.'
+tweet: '1008725884575109120'
 ---
 Os módulos JavaScript agora estão [suportados em todos os principais navegadores](https://caniuse.com/#feat=es6-module)!
 
@@ -40,11 +40,11 @@ Depois você pode usar a palavra-chave `import` para importar o módulo de outro
 
 ```js
 // 📁 main.mjs
-import {repeat, shout} from &apos;./lib.mjs&apos;;
-repeat(&apos;hello&apos;);
-// → &apos;hello hello&apos;
-shout(&apos;Módulos em ação&apos;);
-// → &apos;MÓDULOS EM AÇÃO!&apos;
+import {repeat, shout} from './lib.mjs';
+repeat('hello');
+// → 'hello hello'
+shout('Módulos em ação');
+// → 'MÓDULOS EM AÇÃO!'
 ```
 
 Você também poderia exportar um valor _default_ de um módulo:
@@ -60,7 +60,7 @@ Esses `default` exports podem ser importados usando qualquer nome:
 
 ```js
 // 📁 main.mjs
-import shout from &apos;./lib.mjs&apos;;
+import shout from './lib.mjs';
 //     ^^^^^
 ```
 
@@ -118,7 +118,7 @@ Por exemplo, módulos são avaliados apenas uma vez, enquanto scripts clássicos
 
 <script type="module" src="module.mjs"></script>
 <script type="module" src="module.mjs"></script>
-<script type="module">import &apos;./module.mjs&apos;;</script>
+<script type="module">import './module.mjs';</script>
 <!-- module.mjs é executado apenas uma vez. -->
 ```
 
@@ -141,10 +141,10 @@ Ainda assim, recomendamos usar a extensão `.mjs` para módulos por duas razões
 
 ### Especificadores de módulo
 
-Ao `importar` módulos, a string que especifica a localização do módulo é chamada de "especificador de módulo" ou "especificador de importação". Em nosso exemplo anterior, o especificador de módulo é `&apos;./lib.mjs&apos;`:
+Ao `importar` módulos, a string que especifica a localização do módulo é chamada de "especificador de módulo" ou "especificador de importação". Em nosso exemplo anterior, o especificador de módulo é `'./lib.mjs'`:
 
 ```js
-import {shout} from &apos;./lib.mjs&apos;;
+import {shout} from './lib.mjs';
 //                  ^^^^^^^^^^^
 ```
 
@@ -152,19 +152,19 @@ Algumas restrições se aplicam aos especificadores de módulo em navegadores. E
 
 ```js
 // Ainda não é suportado:
-import {shout} from &apos;jquery&apos;;
-import {shout} from &apos;lib.mjs&apos;;
-import {shout} from &apos;modules/lib.mjs&apos;;
+import {shout} from 'jquery';
+import {shout} from 'lib.mjs';
+import {shout} from 'modules/lib.mjs';
 ```
 
 Por outro lado, os exemplos a seguir são todos suportados:
 
 ```js
 // Suportado:
-import {shout} from &apos;./lib.mjs&apos;;
-import {shout} from &apos;../lib.mjs&apos;;
-import {shout} from &apos;/modules/lib.mjs&apos;;
-import {shout} from &apos;https://simple.example/modules/lib.mjs&apos;;
+import {shout} from './lib.mjs';
+import {shout} from '../lib.mjs';
+import {shout} from '/modules/lib.mjs';
+import {shout} from 'https://simple.example/modules/lib.mjs';
 ```
 
 Por enquanto, os especificadores de módulo devem ser URLs completos ou URLs relativos começando com `/`, `./` ou `../`.
@@ -186,12 +186,12 @@ Até agora, utilizamos apenas `import` estático. Com `import` estático, todo o
 ```html
 <script type="module">
   (async () => {
-    const moduleSpecifier = &apos;./lib.mjs&apos;;
+    const moduleSpecifier = './lib.mjs';
     const {repeat, shout} = await import(moduleSpecifier);
-    repeat(&apos;hello&apos;);
-    // → &apos;hello hello&apos;
-    shout(&apos;Dynamic import in action&apos;);
-    // → &apos;DYNAMIC IMPORT IN ACTION!&apos;
+    repeat('hello');
+    // → 'hello hello'
+    shout('Dynamic import in action');
+    // → 'DYNAMIC IMPORT IN ACTION!'
   })();
 </script>
 ```
@@ -216,7 +216,7 @@ function loadThumbnail(relativePath) {
   return image;
 }
 
-const thumbnail = loadThumbnail(&apos;../img/thumbnail.png&apos;);
+const thumbnail = loadThumbnail('../img/thumbnail.png');
 container.append(thumbnail);
 ```
 
@@ -266,7 +266,7 @@ export function zip() { /* … */ }
 Se sua base de código realmente precisa apenas da funcionalidade `pluck`, você provavelmente a importaria da seguinte forma:
 
 ```js
-import {pluck} from &apos;./util.mjs&apos;;
+import {pluck} from './util.mjs';
 ```
 
 Neste caso, (sem uma etapa de agrupamento em tempo de compilação) o navegador ainda precisa baixar, analisar e compilar todo o módulo `./util.mjs` mesmo que precise apenas dessa única exportação. Isso é desperdício!
@@ -280,7 +280,7 @@ export function pluck() { /* … */ }
 Podemos então importar `pluck` sem a sobrecarga de lidar com `drop` e `zip`:
 
 ```js
-import {pluck} from &apos;./pluck.mjs&apos;;
+import {pluck} from './pluck.mjs';
 ```
 
 :::note
@@ -335,7 +335,7 @@ O Chrome agora implementa [worklets](https://drafts.css-houdini.org/worklets/), 
 O Chrome 65 suporta [`PaintWorklet`](https://developers.google.com/web/updates/2018/01/paintapi) (também conhecida como API CSS Paint) para controlar como um elemento DOM é pintado.
 
 ```js
-const result = await css.paintWorklet.addModule(&apos;paint-worklet.mjs&apos;);
+const result = await css.paintWorklet.addModule('paint-worklet.mjs');
 ```
 
 O Chrome 66 suporta [`AudioWorklet`](https://developers.google.com/web/updates/2017/12/audio-worklet), que permite controlar o processamento de áudio com seu próprio código. A mesma versão do Chrome iniciou um [OriginTrial para `AnimationWorklet`](https://groups.google.com/a/chromium.org/d/msg/blink-dev/AZ-PYPMS7EA/DEqbe2u5BQAJ), que permite criar animações processuais de alto desempenho vinculadas a rolagem e outras.
@@ -345,14 +345,14 @@ Finalmente, [`LayoutWorklet`](https://drafts.css-houdini.org/css-layout-api/) (t
 Estamos [trabalhando](https://bugs.chromium.org/p/chromium/issues/detail?id=680046) para adicionar suporte ao uso de módulos JS com web workers dedicados no Chrome. Você já pode experimentar esse recurso com `chrome://flags/#enable-experimental-web-platform-features` habilitado.
 
 ```js
-const worker = new Worker(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
+const worker = new Worker('worker.mjs', { type: 'module' });
 ```
 
 O suporte a módulos JS para shared workers e service workers está chegando em breve:
 
 ```js
-const worker = new SharedWorker(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
-const registration = await navigator.serviceWorker.register(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
+const worker = new SharedWorker('worker.mjs', { type: 'module' });
+const registration = await navigator.serviceWorker.register('worker.mjs', { type: 'module' });
 ```
 
 ### Mapas de importação
@@ -360,8 +360,8 @@ const registration = await navigator.serviceWorker.register(&apos;worker.mjs&apo
 No Node.js/npm, é comum importar módulos JS pelo seu “nome do pacote”. Por exemplo:
 
 ```js
-import moment from &apos;moment&apos;;
-import {pluck} from &apos;lodash-es&apos;;
+import moment from 'moment';
+import {pluck} from 'lodash-es';
 ```
 
 Atualmente, [de acordo com a especificação HTML](https://html.spec.whatwg.org/multipage/webappapis.html#resolve-a-module-specifier), tais “especificadores de importação simplificados” geram uma exceção. [Nossa proposta de mapas de importação](https://github.com/domenic/import-maps) permite que esse tipo de código funcione na web, incluindo em aplicativos de produção. Um mapa de importação é um recurso JSON que ajuda o navegador a converter especificadores de importação simplificados em URLs completos.

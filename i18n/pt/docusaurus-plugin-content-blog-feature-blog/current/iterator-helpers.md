@@ -1,13 +1,13 @@
 ---
-title: &apos;Ajuda para Iteradores&apos;
-author: &apos;Rezvan Mahdavi Hezaveh&apos;
+title: 'Ajuda para Iteradores'
+author: 'Rezvan Mahdavi Hezaveh'
 avatars:
-  - &apos;rezvan-mahdavi-hezaveh&apos;
+  - 'rezvan-mahdavi-hezaveh'
 date: 2024-03-27
 tags:
   - ECMAScript
-description: &apos;Interfaces que ajudam no uso geral e consumo de iteradores.&apos;
-tweet: &apos;&apos;
+description: 'Interfaces que ajudam no uso geral e consumo de iteradores.'
+tweet: ''
 ---
 
 *Ajuda para iteradores* são uma coleção de novos métodos no protótipo Iterator que ajudam no uso geral de iteradores. Como esses métodos auxiliares estão no protótipo do iterador, qualquer objeto que tenha `Iterator.prototype` em sua cadeia de protótipos (por exemplo, iteradores de arrays) terá os métodos. Nas seções a seguir, explicamos as ajudas para iteradores. Todos os exemplos fornecidos funcionam em uma página de arquivo de blog que inclui uma lista de artigos de blog, ilustrando como as ajudas de iterador são úteis para encontrar e manipular postagens. Você pode testá-los na [página do blog do V8](https://v8.dev/blog)!
@@ -20,7 +20,7 @@ tweet: &apos;&apos;
 
 ```javascript
 // Seleciona a lista de artigos de blog de uma página de arquivo de blog.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Obtém a lista de postagens, retorna uma lista de seu conteúdo de texto (títulos) e as registra.
 for (const post de posts.values().map((x) => x.textContent)) {
@@ -34,10 +34,10 @@ for (const post de posts.values().map((x) => x.textContent)) {
 
 ```javascript
 // Seleciona a lista de artigos de blog de uma página de arquivo de blog.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Filtra os artigos de blog que incluem `V8` em seu conteúdo de texto (títulos) e os registra.
-for (const post de posts.values().filter((x) => x.textContent.includes(&apos;V8&apos;))) {
+for (const post de posts.values().filter((x) => x.textContent.includes('V8'))) {
   console.log(post);
 } 
 ```
@@ -48,7 +48,7 @@ for (const post de posts.values().filter((x) => x.textContent.includes(&apos;V8&
 
 ```javascript
 // Seleciona a lista de artigos de blog de uma página de arquivo de blog.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Seleciona 10 artigos recentes de blog e os registra.
 for (const post de posts.values().take(10)) {
@@ -62,7 +62,7 @@ for (const post de posts.values().take(10)) {
 
 ```javascript
 // Seleciona a lista de artigos de blog de uma página de arquivo de blog.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Descarta 10 artigos recentes de blog e registra o restante.
 for (const post de posts.values().drop(10)) {
@@ -76,11 +76,11 @@ for (const post de posts.values().drop(10)) {
 
 ```javascript
 // Seleciona a lista de artigos de blog de uma página de arquivo de blog.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Obtém a lista de tags dos artigos de blog e as registra. Cada artigo pode ter mais de
 // uma tag.
-for (const tag de posts.values().flatMap((x) => x.querySelectorAll(&apos;.tag&apos;).values())) {
+for (const tag de posts.values().flatMap((x) => x.querySelectorAll('.tag').values())) {
     console.log(tag.textContent);
 }
 ```
@@ -91,16 +91,16 @@ for (const tag de posts.values().flatMap((x) => x.querySelectorAll(&apos;.tag&ap
 
 ```javascript
 // Seleciona a lista de artigos de blog de uma página de arquivo de blog.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Obtém a lista de tags de todos os posts.
-const tagLists = posts.values().flatMap((x) => x.querySelectorAll(&apos;.tag&apos;).values());
+const tagLists = posts.values().flatMap((x) => x.querySelectorAll('.tag').values());
 
 // Obtém o contexto de texto para cada tag na lista.
 const tags = tagLists.map((x) => x.textContent);
 
 // Conta os posts com a tag segurança.
-const count = tags.reduce((soma , valor) => soma + (valor === &apos;security&apos; ? 1 : 0), 0);
+const count = tags.reduce((soma , valor) => soma + (valor === 'security' ? 1 : 0), 0);
 console.log(count);
 ```
 
@@ -110,7 +110,7 @@ console.log(count);
 
 ```javascript
 // Seleciona a lista de artigos de blog de uma página de arquivo de blog.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Cria um array de uma lista de 10 artigos recentes de blog.
 const arr = posts.values().take(10).toArray();
@@ -122,11 +122,11 @@ const arr = posts.values().take(10).toArray();
 
 ```javascript
 // Seleciona a lista de artigos de blog de uma página de arquivo de blog.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Obtenha as datas que pelo menos um post do blog foi publicado e registre-as.
 const dates = new Set();
-const forEach = posts.values().forEach((x) => dates.add(x.querySelector(&apos;time&apos;)));
+const forEach = posts.values().forEach((x) => dates.add(x.querySelector('time')));
 console.log(dates);
 ```
 
@@ -136,10 +136,10 @@ console.log(dates);
 
 ```javascript
 // Selecione a lista de posts do blog de uma página de arquivo do blog.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Descubra se o conteúdo do texto (título) de algum post do blog inclui a palavra-chave `Iterators`.
-posts.values().some((x) => x.textContent.includes(&apos;Iterators&apos;));
+posts.values().some((x) => x.textContent.includes('Iterators'));
 ```
 
 ## .every(fn)
@@ -148,10 +148,10 @@ posts.values().some((x) => x.textContent.includes(&apos;Iterators&apos;));
 
 ```javascript
 // Selecione a lista de posts do blog de uma página de arquivo do blog.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Descubra se o conteúdo do texto (título) de todos os posts do blog inclui a palavra-chave `V8`.
-posts.values().every((x) => x.textContent.includes(&apos;V8&apos;));
+posts.values().every((x) => x.textContent.includes('V8'));
 ```
 
 ## .find(fn)
@@ -160,10 +160,10 @@ posts.values().every((x) => x.textContent.includes(&apos;V8&apos;));
 
 ```javascript
 // Selecione a lista de posts do blog de uma página de arquivo do blog.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Registre o conteúdo do texto (título) do post recente do blog que inclui a palavra-chave `V8`.
-console.log(posts.values().find((x) => x.textContent.includes(&apos;V8&apos;)).textContent);
+console.log(posts.values().find((x) => x.textContent.includes('V8')).textContent);
 ```
 
 ## Iterator.from(object)
@@ -172,11 +172,11 @@ console.log(posts.values().find((x) => x.textContent.includes(&apos;V8&apos;)).t
 
 ```javascript
 // Selecione a lista de posts do blog de uma página de arquivo do blog.
-const posts = document.querySelectorAll(&apos;li:not(header li)&apos;);
+const posts = document.querySelectorAll('li:not(header li)');
 
 // Primeiro crie um iterador a partir dos posts. Em seguida, registre o conteúdo do texto (título)
 // do post recente do blog que inclui a palavra-chave `V8`.
-console.log(Iterator.from(posts).find((x) => x.textContent.includes(&apos;V8&apos;)).textContent);
+console.log(Iterator.from(posts).find((x) => x.textContent.includes('V8')).textContent);
 ```
 
 ## Disponibilidade

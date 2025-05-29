@@ -1,12 +1,12 @@
 ---
-title: &apos;빠르고 병렬적인 애플리케이션과 WebAssembly SIMD&apos;
-author: &apos;Deepti Gandluri ([@dptig](https://twitter.com/dptig)), Thomas Lively ([@tlively52](https://twitter.com/tlively52)), Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))&apos;
+title: '빠르고 병렬적인 애플리케이션과 WebAssembly SIMD'
+author: 'Deepti Gandluri ([@dptig](https://twitter.com/dptig)), Thomas Lively ([@tlively52](https://twitter.com/tlively52)), Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
 date: 2020-01-30
 updated: 2022-11-06
 tags:
   - WebAssembly
-description: &apos;벡터 연산을 WebAssembly로 가져오기&apos;
-tweet: &apos;1222944308183085058&apos;
+description: '벡터 연산을 WebAssembly로 가져오기'
+tweet: '1222944308183085058'
 ---
 SIMD는 _단일 명령, 다중 데이터(Single Instruction, Multiple Data)_의 약자입니다. SIMD 명령은 응용 프로그램에서 데이터 병렬성을 활용하여 여러 데이터 요소에 동시에 동일한 작업을 수행하는 특수한 클래스의 명령입니다. 오디오/비디오 코덱, 이미지 프로세서와 같은 계산 집약적인 애플리케이션은 모두 SIMD 명령을 활용하여 성능을 가속화합니다. 대부분의 최신 아키텍처는 SIMD 명령의 일부 변형을 지원합니다.
 
@@ -36,14 +36,14 @@ SIMD 명령 세트는 크고 아키텍처마다 다양합니다. WebAssembly SIM
 모든 사용자가 애플리케이션을 로드할 수 있도록 보장하려면 SIMD를 활성화한 버전과 활성화하지 않은 버전을 각각 빌드하고, 기능 감지 결과에 따라 해당 버전을 로드해야 합니다. 런타임에 SIMD를 감지하려면 [`wasm-feature-detect`](https://github.com/GoogleChromeLabs/wasm-feature-detect) 라이브러리를 사용하여 다음과 같이 해당 모듈을 로드할 수 있습니다:
 
 ```js
-import { simd } from &apos;wasm-feature-detect&apos;;
+import { simd } from 'wasm-feature-detect';
 
 (async () => {
   const hasSIMD = await simd();
   const module = await (
     hasSIMD
-      ? import(&apos;./module-with-simd.js&apos;)
-      : import(&apos;./module-without-simd.js&apos;)
+      ? import('./module-with-simd.js')
+      : import('./module-without-simd.js')
   );
   // …이제 평소처럼 `module`을 사용하세요.
 })();

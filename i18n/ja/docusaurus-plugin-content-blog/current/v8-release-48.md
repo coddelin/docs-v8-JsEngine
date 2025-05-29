@@ -1,10 +1,10 @@
 ---
-title: &apos;V8リリース v4.8&apos;
-author: &apos;V8チーム&apos;
+title: 'V8リリース v4.8'
+author: 'V8チーム'
 date: 2015-11-25 13:33:37
 tags:
   - リリース
-description: &apos;V8 v4.8はいくつかの新しいES2015言語機能のサポートを追加しました。&apos;
+description: 'V8 v4.8はいくつかの新しいES2015言語機能のサポートを追加しました。'
 ---
 約6週間ごとに、[リリースプロセス](/docs/release-process)の一環としてV8の新しいブランチを作成します。各バージョンは、ChromeがChrome Betaマイルストーン用のブランチを作成する直前にV8のGitマスターから分岐されます。本日、最新のブランチである[V8バージョン4.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.8)を発表できることを嬉しく思います。このバージョンはChrome 48 Stableと連携してリリースされるまでベータ版として滞在します。V8 4.8にはいくつかの開発者向け機能が含まれているため、リリースの数週間前にそのハイライトをプレビューしたいと思います。
 
@@ -19,7 +19,7 @@ description: &apos;V8 v4.8はいくつかの新しいES2015言語機能のサポ
 
 ```js
 (function() {
-  &apos;use strict&apos;;
+  'use strict';
   class AutomaticallySpreadingArray extends Array {
     get [Symbol.isConcatSpreadable]() {
       return true;
@@ -41,17 +41,17 @@ description: &apos;V8 v4.8はいくつかの新しいES2015言語機能のサポ
 
 ```js
 (function(){
-  &apos;use strict&apos;;
+  'use strict';
   class V8 {
     [Symbol.toPrimitive](hint) {
-      if (hint === &apos;string&apos;) {
-        console.log(&apos;string&apos;);
-        return &apos;V8&apos;;
-      } else if (hint === &apos;number&apos;) {
-        console.log(&apos;number&apos;);
+      if (hint === 'string') {
+        console.log('string');
+        return 'V8';
+      } else if (hint === 'number') {
+        console.log('number');
         return 8;
       } else {
-        console.log(&apos;default:&apos; + hint);
+        console.log('default:' + hint);
         return 8;
       }
     }

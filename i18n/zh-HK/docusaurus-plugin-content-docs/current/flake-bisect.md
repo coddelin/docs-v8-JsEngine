@@ -1,6 +1,6 @@
 ---
-title: &apos;Flake bisect&apos;
-description: &apos;本文檔解釋如何進行不穩定測試的二分查找。&apos;
+title: 'Flake bisect'
+description: '本文檔解釋如何進行不穩定測試的二分查找。'
 ---
 不穩定測試報告會在機器人上的單獨步驟中顯示（[範例構建](https://ci.chromium.org/ui/p/v8/builders/ci/V8%20Linux64%20TSAN/38630/overview)）。
 
@@ -8,7 +8,7 @@ description: &apos;本文檔解釋如何進行不穩定測試的二分查找。&
 
 ```
 在命令行觸發不穩定測試二分查找：
-bb add v8/try.triggered/v8_flako -p &apos;to_revision="deadbeef"&apos; -p &apos;test_name="MyTest"&apos; ...
+bb add v8/try.triggered/v8_flako -p 'to_revision="deadbeef"' -p 'test_name="MyTest"' ...
 ```
 
 在第一次觸發不穩定測試二分查找前，使用者必須使用 google.com 賬號登錄：

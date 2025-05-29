@@ -1,14 +1,14 @@
 ---
-title: &apos;Code-Caching für JavaScript-Entwickler&apos;
-author: &apos;[Leszek Swirski](https://twitter.com/leszekswirski), Cache-Zerkleinerer&apos;
+title: 'Code-Caching für JavaScript-Entwickler'
+author: '[Leszek Swirski](https://twitter.com/leszekswirski), Cache-Zerkleinerer'
 avatars:
   - leszek-swirski
 date: 2019-04-08 13:33:37
 updated: 2020-06-16
 tags:
   - internals
-description: &apos;(Byte)code-Caching reduziert die Startzeit häufig besuchter Websites, indem es das Ergebnis des JavaScript-Parsings + der Kompilierung zwischenspeichert.&apos;
-tweet: &apos;1115264282675953664&apos;
+description: '(Byte)code-Caching reduziert die Startzeit häufig besuchter Websites, indem es das Ergebnis des JavaScript-Parsings + der Kompilierung zwischenspeichert.'
+tweet: '1115264282675953664'
 ---
 Code-Caching (auch bekannt als _Bytecode-Caching_) ist eine wichtige Optimierung in Browsern. Es reduziert die Startzeit häufig besuchter Websites, indem es das Ergebnis von Parsing + Kompilierung zwischenspeichert. Die meisten [beliebten](https://blog.mozilla.org/javascript/2017/12/12/javascript-startup-bytecode-cache/) [Browser](https://bugs.webkit.org/show_bug.cgi?id=192782) implementieren eine Form des Code-Cachings, und Chrome bildet da keine Ausnahme. Tatsächlich haben wir bereits [darüber geschrieben](/blog/code-caching), [und](/blog/improved-code-caching) [gesprochen](https://www.youtube.com/watch?v=YqHOUy2rYZ8), wie Chrome und V8 kompilierten Code in der Vergangenheit zwischenspeichern.
 
@@ -148,26 +148,26 @@ Ein typisches Beispiel einer Website, die einen Service Worker verwendet, regist
 
 ```js
 // main.mjs
-navigator.serviceWorker.register(&apos;/sw.js&apos;);
+navigator.serviceWorker.register('/sw.js');
 ```
 
 Und der Service Worker fügt Ereignishandler für die Installation (Erstellen eines Caches) und das Abrufen (Liefern von Ressourcen, möglicherweise aus dem Cache) hinzu.
 
 ```js
 // sw.js
-self.addEventListener(&apos;install&apos;, (event) => {
+self.addEventListener('install', (event) => {
   async function buildCache() {
     const cache = await caches.open(cacheName);
     return cache.addAll([
-      &apos;/main.css&apos;,
-      &apos;/main.mjs&apos;,
-      &apos;/offline.html&apos;,
+      '/main.css',
+      '/main.mjs',
+      '/offline.html',
     ]);
   }
   event.waitUntil(buildCache());
 });
 
-self.addEventListener(&apos;fetch&apos;, (event) => {
+self.addEventListener('fetch', (event) => {
   async function cachedFetch(event) {
     const cache = await caches.open(cacheName);
     let response = await cache.match(event.request);

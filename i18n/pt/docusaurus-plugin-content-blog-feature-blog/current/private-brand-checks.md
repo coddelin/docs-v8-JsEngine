@@ -1,24 +1,24 @@
 ---
-title: &apos;Verificação de marca privada, também conhecido como `#foo in obj`&apos;
-author: &apos;Marja Hölttä ([@marjakh](https://twitter.com/marjakh))&apos;
+title: 'Verificação de marca privada, também conhecido como `#foo in obj`'
+author: 'Marja Hölttä ([@marjakh](https://twitter.com/marjakh))'
 avatars:
-  - &apos;marja-holtta&apos;
+  - 'marja-holtta'
 date: 2021-04-14
 tags:
   - ECMAScript
-description: &apos;As verificações de marca privada permitem testar a existência de um campo privado em um objeto.&apos;
-tweet: &apos;1382327454975590401&apos;
+description: 'As verificações de marca privada permitem testar a existência de um campo privado em um objeto.'
+tweet: '1382327454975590401'
 ---
 
 O [`operador in`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in) pode ser usado para testar se o objeto dado (ou qualquer objeto em sua cadeia de protótipos) possui a propriedade dada:
 
 ```javascript
-const o1 = {&apos;foo&apos;: 0};
-console.log(&apos;foo&apos; in o1); // true
+const o1 = {'foo': 0};
+console.log('foo' in o1); // true
 const o2 = {};
-console.log(&apos;foo&apos; in o2); // false
+console.log('foo' in o2); // false
 const o3 = Object.create(o1);
-console.log(&apos;foo&apos; in o3); // true
+console.log('foo' in o3); // true
 ```
 
 O recurso de verificações de marca privada estende o operador `in` para suportar [campos de classe privados](https://v8.dev/features/class-fields#private-class-fields):
@@ -107,7 +107,7 @@ class F {
   #x = 0;
   #y = (() => {
     halfConstructed = this;
-    throw &apos;error&apos;;
+    throw 'error';
   })();
 }
 

@@ -1,6 +1,6 @@
 ---
-title: &apos;Beitragen zu V8&apos;
-description: &apos;Dieses Dokument erklärt, wie man zu V8 beiträgt.&apos;
+title: 'Beitragen zu V8'
+description: 'Dieses Dokument erklärt, wie man zu V8 beiträgt.'
 ---
 Die Informationen auf dieser Seite erklären, wie man zu V8 beitragen kann. Stellen Sie sicher, dass Sie alles lesen, bevor Sie uns Ihren Beitrag senden.
 

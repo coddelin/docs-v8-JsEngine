@@ -1,12 +1,12 @@
 ---
-title: &apos;Propiedades rápidas en V8&apos;
-author: &apos;Camillo Bruni ([@camillobruni](https://twitter.com/camillobruni)), también autor de [“Fast `for`-`in`”](/blog/fast-for-in)&apos;
+title: 'Propiedades rápidas en V8'
+author: 'Camillo Bruni ([@camillobruni](https://twitter.com/camillobruni)), también autor de [“Fast `for`-`in`”](/blog/fast-for-in)'
 avatars:
-  - &apos;camillo-bruni&apos;
+  - 'camillo-bruni'
 date: 2017-08-30 13:33:37
 tags:
   - internals
-description: &apos;Este análisis técnico profundo explica cómo V8 maneja las propiedades de JavaScript detrás de escena.&apos;
+description: 'Este análisis técnico profundo explica cómo V8 maneja las propiedades de JavaScript detrás de escena.'
 ---
 En esta publicación de blog queremos explicar cómo V8 maneja las propiedades de JavaScript internamente. Desde el punto de vista de JavaScript, solo se necesitan unas pocas distinciones para las propiedades. Los objetos JavaScript se comportan principalmente como diccionarios, con claves de cadena y objetos arbitrarios como valores. Sin embargo, la especificación trata las propiedades con índices enteros y otras propiedades de manera diferente [durante la iteración](https://tc39.es/ecma262/#sec-ordinaryownpropertykeys). Fuera de eso, las diferentes propiedades se comportan mayormente de la misma manera, independientemente de si tienen índices enteros o no.
 

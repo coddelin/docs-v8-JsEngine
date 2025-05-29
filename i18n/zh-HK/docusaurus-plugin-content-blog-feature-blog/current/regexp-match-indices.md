@@ -1,14 +1,14 @@
 ---
-title: &apos;正則表達式匹配索引&apos;
-author: &apos;Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski))，經常表達新功能&apos;
+title: '正則表達式匹配索引'
+author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski))，經常表達新功能'
 avatars:
-  - &apos;maya-armyanova&apos;
+  - 'maya-armyanova'
 date: 2019-12-17
 tags:
   - ECMAScript
   - Node.js 16
-description: &apos;正則表達式匹配索引提供每個匹配捕獲組的 `start` 和 `end` 索引。&apos;
-tweet: &apos;1206970814400270338&apos;
+description: '正則表達式匹配索引提供每個匹配捕獲組的 `start` 和 `end` 索引。'
+tweet: '1206970814400270338'
 ---
 JavaScript 現在配備了一項新的正則表達式增強功能，稱為「匹配索引」。假設您想在 JavaScript 代碼中找到與保留字重合的無效變量名，並在變量名稱下方顯示插入符號和「下劃線」，例如：
 
@@ -26,16 +26,16 @@ function displayError(text, message) {
   const match = text.match(re);
   // 索引 `1` 對應於第一個捕獲組。
   const [start, end] = match.indices[1];
-  const error = &apos; &apos;.repeat(start) + // 調整插入符號的位置。
-    &apos;^&apos; +
-    &apos;-&apos;.repeat(end - start - 1) +   // 添加下劃線。
-    &apos; &apos; + message;                  // 添加消息。
+  const error = ' '.repeat(start) + // 調整插入符號的位置。
+    '^' +
+    '-'.repeat(end - start - 1) +   // 添加下劃線。
+    ' ' + message;                  // 添加消息。
   console.log(text);
   console.log(error);
 }
 
-const code = &apos;const function = foo;&apos;; // 有缺陷的代碼
-displayError(code, &apos;無效的變量名&apos;);
+const code = 'const function = foo;'; // 有缺陷的代碼
+displayError(code, '無效的變量名');
 ```
 
 :::note
@@ -61,7 +61,7 @@ let foo = 1337;
 ```js
 let foo = 1337;
     ^
-SyntaxError: 識別符 &apos;foo&apos; 已經被聲明
+SyntaxError: 識別符 'foo' 已經被聲明
 ```
 
 為了實現這一點，我們需要一些基本組件，其中第一個是識別 TypeScript 的識別符。然後我們將專注於確定錯誤發生的具體位置。我們來看以下示例，使用正則表達式來判斷字符串是否是有效的識別符：
@@ -110,7 +110,7 @@ function getVariablePosition(source) {
   if (!match) return undefined;
   return match.indices[2];
 }
-getVariablePosition(&apos;let foo&apos;);
+getVariablePosition('let foo');
 // → [4, 7]
 ```
 
@@ -127,7 +127,7 @@ function getVariablePosition(source) {
   if (!match) return -1;
   return match.indices.groups.id;
 }
-getVariablePosition(&apos;let foo&apos;);
+getVariablePosition('let foo');
 ```
 
 ## RegExp 匹配索引的支持

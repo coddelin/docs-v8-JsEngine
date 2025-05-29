@@ -1,19 +1,19 @@
 ---
-title: &apos;Compilación cruzada y depuración para ARM/Android&apos;
-description: &apos;Este documento explica cómo compilar V8 cruzadamente para ARM/Android y cómo depurarlo.&apos;
+title: 'Compilación cruzada y depuración para ARM/Android'
+description: 'Este documento explica cómo compilar V8 cruzadamente para ARM/Android y cómo depurarlo.'
 ---
 Primero, asegúrate de poder [compilar con GN](/docs/build-gn).
 
 Luego, agrega `android` a tu archivo de configuración `.gclient`.
 
 ```python
-target_os = [&apos;android&apos;]  # Agrega esto para que se descarguen los elementos de Android.
+target_os = ['android']  # Agrega esto para que se descarguen los elementos de Android.
 ```
 
 El campo `target_os` es una lista, así que si también estás construyendo en unix se verá así:
 
 ```python
-target_os = [&apos;android&apos;, &apos;unix&apos;]  # Múltiples sistemas operativos objetivo.
+target_os = ['android', 'unix']  # Múltiples sistemas operativos objetivo.
 ```
 
 Ejecuta `gclient sync`, y obtendrás un gran checkout en `./third_party/android_tools`.
@@ -66,7 +66,7 @@ ninja -C out.gn/arm.release d8
 Usa `adb` para copiar los archivos binarios y de snapshot al teléfono:
 
 ```bash
-adb shell &apos;mkdir -p /data/local/tmp/v8/bin&apos;
+adb shell 'mkdir -p /data/local/tmp/v8/bin'
 adb push out.gn/arm.release/d8 /data/local/tmp/v8/bin
 adb push out.gn/arm.release/icudtl.dat /data/local/tmp/v8/bin
 adb push out.gn/arm.release/snapshot_blob.bin /data/local/tmp/v8/bin
@@ -79,7 +79,7 @@ bullhead:/data/local/tmp/v8/bin $ ls
 v8 icudtl.dat snapshot_blob.bin
 bullhead:/data/local/tmp/v8/bin $ ./d8
 Versión V8 5.8.0 (candidato)
-d8> &apos;¡w00t!&apos;
+d8> '¡w00t!'
 "¡w00t!"
 d8>
 ```

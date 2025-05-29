@@ -34,17 +34,17 @@ Alors, comment pouvez-vous, en tant que développeur JavaScript, garantir que vo
 
 ```js
 const re = /./g;
-re.exec(&apos;&apos;);  // Chemin rapide.
-re.new_property = &apos;lent&apos;;
-RegExp.prototype.new_property = &apos;aussi lent&apos;;
-re.exec(&apos;&apos;);  // Chemin lent.
+re.exec('');  // Chemin rapide.
+re.new_property = 'lent';
+RegExp.prototype.new_property = 'aussi lent';
+re.exec('');  // Chemin lent.
 ```
 
 Et bien que le sous-classement de RegExp puisse être utile dans certains cas, soyez conscient que les instances de RegExp sous-classées nécessitent une gestion plus générique et empruntent donc le chemin lent :
 
 ```js
 class SlowRegExp extends RegExp {}
-new SlowRegExp(".", "g").exec(&apos;&apos;);  // Chemin lent.
+new SlowRegExp(".", "g").exec('');  // Chemin lent.
 ```
 
 La migration complète des RegExp sera disponible dans V8 v5.7.

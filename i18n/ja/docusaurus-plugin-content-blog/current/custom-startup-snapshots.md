@@ -1,12 +1,12 @@
 ---
-title: &apos;カスタムスタートアップスナップショット&apos;
-author: &apos;Yang Guo ([@hashseed](https://twitter.com/hashseed)), ソフトウェアエンジニアおよびエンジンプリヒーターの提供者&apos;
+title: 'カスタムスタートアップスナップショット'
+author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed)), ソフトウェアエンジニアおよびエンジンプリヒーターの提供者'
 avatars:
-  - &apos;yang-guo&apos;
+  - 'yang-guo'
 date: 2015-09-25 13:33:37
 tags:
   - internals
-description: &apos;V8組み込み可能者はスナップショットを利用して、JavaScriptプログラムの初期化によるスタートアップ時間を短縮できます。&apos;
+description: 'V8組み込み可能者はスナップショットを利用して、JavaScriptプログラムの初期化によるスタートアップ時間を短縮できます。'
 ---
 JavaScript仕様には多くの組み込み機能が含まれています。例えば、[数学関数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math)から[完全装備の正規表現エンジン](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions)までです。V8の新しいコンテキストにはこれらの関数が最初から利用可能です。これが機能するためには、グローバルオブジェクト（例えばブラウザのwindowオブジェクト）とすべての組み込み機能が設定され、コンテキストが作成される際にV8のヒープに初期化されなければなりません。この初期化を一から行うにはかなりの時間がかかります。
 

@@ -1,14 +1,14 @@
 ---
-title: &apos;Indicium: V8 런타임 추적 도구&apos;
-author: &apos;Zeynep Cankara ([@ZeynepCankara](https://twitter.com/ZeynepCankara))&apos;
+title: 'Indicium: V8 런타임 추적 도구'
+author: 'Zeynep Cankara ([@ZeynepCankara](https://twitter.com/ZeynepCankara))'
 avatars:
-  - &apos;zeynep-cankara&apos;
+  - 'zeynep-cankara'
 date: 2020-10-01 11:56:00
 tags:
   - 도구
   - 시스템-분석기
-description: &apos;Indicium: Map/IC 이벤트를 분석하는 V8 시스템 분석 도구&apos;
-tweet: &apos;1311689392608731140&apos;
+description: 'Indicium: Map/IC 이벤트를 분석하는 V8 시스템 분석 도구'
+tweet: '1311689392608731140'
 ---
 # Indicium: V8 시스템 분석기
 
@@ -49,19 +49,19 @@ for (let i = 0; i < 10e5; i++) {
   dotProduct = a.dotProduct(b);
 }
 
-console.time(&apos;스니펫1&apos;);
+console.time('스니펫1');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;스니펫1&apos;);
+console.timeEnd('스니펫1');
 
 a = new Point(-1, -1);
 b = new Point(-2, -2);
-console.time(&apos;스니펫2&apos;);
+console.time('스니펫2');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;스니펫2&apos;);
+console.timeEnd('스니펫2');
 ```
 
 여기서는 두 좌표와 좌표 값에 따라 추가적인 불리언 값을 저장하는 `Point` 클래스를 정의했습니다. `Point` 클래스에는 전달된 객체와 수신자인 객체 사이의 내적을 반환하는 `dotProduct` 메서드가 들어 있습니다.
@@ -75,11 +75,11 @@ let a = new Point(1, 1);
 let b = new Point(2, 2);
 let dotProduct;
 
-console.time(&apos;스니펫1&apos;);
+console.time('스니펫1');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;스니펫1&apos;);
+console.timeEnd('스니펫1');
 ```
 
 ### *스니펫 2*
@@ -87,11 +87,11 @@ console.timeEnd(&apos;스니펫1&apos;);
 ```javascript
 a = new Point(-1, -1);
 b = new Point(-2, -2);
-console.time(&apos;스니펫2&apos;);
+console.time('스니펫2');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;스니펫2&apos;);
+console.timeEnd('스니펫2');
 ```
 
 프로그램을 실행시키면 성능 저하가 발생하는 것을 확인할 수 있습니다. 비슷한 두 스니펫의 성능을 측정하고 있는데도 불구하고, for 루프에서 `dotProduct` 함수를 호출하여 `Point` 객체의 `x`와 `y` 속성에 접근하는 방식의 차이로 인해 성능 차이를 볼 수 있습니다.

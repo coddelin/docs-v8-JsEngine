@@ -1,13 +1,13 @@
 ---
-title: &apos;더 빠른 JavaScript 호출&apos;
-author: &apos;[Victor Gomes](https://twitter.com/VictorBFG), 프레임 제거기&apos;
+title: '더 빠른 JavaScript 호출'
+author: '[Victor Gomes](https://twitter.com/VictorBFG), 프레임 제거기'
 avatars:
-  - &apos;victor-gomes&apos;
+  - 'victor-gomes'
 date: 2021-02-15
 tags:
   - internals
-description: &apos;인수 어댑터 프레임 제거를 통해 더 빠른 JavaScript 호출&apos;
-tweet: &apos;1361337569057865735&apos;
+description: '인수 어댑터 프레임 제거를 통해 더 빠른 JavaScript 호출'
+tweet: '1361337569057865735'
 ---
 
 JavaScript는 함수 호출 시 기대되는 매개변수의 수와 다른 수의 인수를 전달할 수 있도록 허용합니다. 즉, 선언된 형식 매개변수보다 적거나 많은 인수를 전달할 수 있습니다. 앞의 경우를 언더 어플리케이션(under-application), 뒤의 경우를 오버 어플리케이션(over-application)이라고 합니다.

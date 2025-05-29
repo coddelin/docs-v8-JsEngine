@@ -1,10 +1,10 @@
 ---
-title: &apos;V8 릴리스 v6.1&apos;
-author: &apos;V8 팀&apos;
+title: 'V8 릴리스 v6.1'
+author: 'V8 팀'
 date: 2017-08-03 13:33:37
 tags:
   - 릴리스
-description: &apos;V8 v6.1은 이진 파일 크기 감소와 성능 향상을 제공합니다. 또한, asm.js는 이제 WebAssembly로 검증되고 컴파일됩니다.&apos;
+description: 'V8 v6.1은 이진 파일 크기 감소와 성능 향상을 제공합니다. 또한, asm.js는 이제 WebAssembly로 검증되고 컴파일됩니다.'
 ---
 6주마다 우리의 [릴리스 프로세스](/docs/release-process)의 일환으로 새로운 V8 브랜치를 만듭니다. 각 버전은 Chrome 베타 마일스톤 직전에 V8의 Git master에서 브랜치가 생성됩니다. 오늘은 몇 주 후 Chrome 61 Stable과 함께 릴리스되는 V8의 최신 브랜치인 [V8 버전 6.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.1)의 베타 릴리스를 발표하게 되어 기쁩니다. V8 v6.1은 개발자들에게 유용한 다양한 기능들로 가득 차 있습니다. 릴리스를 기대하며 몇 가지 주요 사항들을 미리 소개하겠습니다.
 

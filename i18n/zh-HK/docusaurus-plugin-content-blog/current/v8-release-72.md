@@ -1,13 +1,13 @@
 ---
-title: &apos;V8 發布 v7.2&apos;
-author: &apos;Andreas Haas, 陷阱處理者&apos;
+title: 'V8 發布 v7.2'
+author: 'Andreas Haas, 陷阱處理者'
 avatars:
   - andreas-haas
 date: 2018-12-18 11:48:21
 tags:
   - 發布
-description: &apos;V8 v7.2 提供高速的 JavaScript 解析、更快的 async-await、降低 ia32 的內存消耗、公開類字段等多項功能！&apos;
-tweet: &apos;1074978755934863361&apos;
+description: 'V8 v7.2 提供高速的 JavaScript 解析、更快的 async-await、降低 ia32 的內存消耗、公開類字段等多項功能！'
+tweet: '1074978755934863361'
 ---
 每六週，我們會根據 [發布流程](/docs/release-process) 創建一個新的 V8 分支。每個版本都在 Chrome Beta 的里程碑之前，直接從 V8 的 Git 主分支中分出。今天我們很高興地宣布我們最新的分支，[V8 版本 7.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.2)，目前處於 Beta 階段，直到幾周後與 Chrome 72 穩定版本協同發布。V8 v7.2 擁有許多面向開發者的功能。本文提供一些發布前的亮點預覽。
 
@@ -69,7 +69,7 @@ class Cat extends Animal {
     this.likesBaths = false;
   }
   meow() {
-    console.log(&apos;喵！&apos;);
+    console.log('喵！');
   }
 }
 ```
@@ -86,7 +86,7 @@ class Animal {
 class Cat extends Animal {
   likesBaths = false;
   meow() {
-    console.log(&apos;喵！&apos;);
+    console.log('喵！');
   }
 }
 ```
@@ -98,15 +98,15 @@ class Cat extends Animal {
 V8 v7.2 增加了對 [`Intl.ListFormat` 提案](/features/intl-listformat) 的支持，實現列表的本地化格式化。
 
 ```js
-const lf = new Intl.ListFormat(&apos;en&apos;);
-lf.format([&apos;Frank&apos;]);
-// → &apos;Frank&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;]);
-// → &apos;Frank and Christine&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;]);
-// → &apos;Frank, Christine, and Flora&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;, &apos;Harrison&apos;]);
-// → &apos;Frank, Christine, Flora, and Harrison&apos;
+const lf = new Intl.ListFormat('en');
+lf.format(['Frank']);
+// → 'Frank'
+lf.format(['Frank', 'Christine']);
+// → 'Frank and Christine'
+lf.format(['Frank', 'Christine', 'Flora']);
+// → 'Frank, Christine, and Flora'
+lf.format(['Frank', 'Christine', 'Flora', 'Harrison']);
+// → 'Frank, Christine, Flora, and Harrison'
 ```
 
 更多資訊和使用範例，請查閱 [我們的 `Intl.ListFormat` 說明文件](/features/intl-listformat)。
@@ -117,12 +117,12 @@ lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;, &apos;Ha
 
 ```js
 // 舊行為:
-JSON.stringify(&apos;\uD800&apos;);
-// → &apos;"�"&apos;
+JSON.stringify('\uD800');
+// → '"�"'
 
 // 新行為:
-JSON.stringify(&apos;\uD800&apos;);
-// → &apos;"\\ud800"&apos;
+JSON.stringify('\uD800');
+// → '"\\ud800"'
 ```
 
 更多資訊，請參考 [我們的合法格式 `JSON.stringify` 說明文件](/features/well-formed-json-stringify)。
@@ -132,19 +132,19 @@ JSON.stringify(&apos;\uD800&apos;);
 在 [JavaScript 模組](/features/modules) 中，已經可以使用以下語法：
 
 ```js
-import * as utils from &apos;./utils.mjs&apos;;
+import * as utils from './utils.mjs';
 ```
 
 然而，對應的 `export` 語法還不存在… [直到現在](/features/module-namespace-exports)：
 
 ```js
-export * as utils from &apos;./utils.mjs&apos;;
+export * as utils from './utils.mjs';
 ```
 
 這相當於以下語法：
 
 ```js
-import * as utils from &apos;./utils.mjs&apos;;
+import * as utils from './utils.mjs';
 export { utils };
 ```
 

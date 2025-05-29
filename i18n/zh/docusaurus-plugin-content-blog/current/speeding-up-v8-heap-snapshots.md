@@ -1,7 +1,7 @@
 ---
-title: &apos;加速 V8 堆快照&apos;
-description: &apos;这篇关于 V8 堆快照的文章介绍了由 Bloomberg 工程师发现的一些性能问题，以及我们如何解决这些问题，使 JavaScript 内存分析比以往更快。&apos;
-author: &apos;Jose Dapena Paz&apos;
+title: '加速 V8 堆快照'
+description: '这篇关于 V8 堆快照的文章介绍了由 Bloomberg 工程师发现的一些性能问题，以及我们如何解决这些问题，使 JavaScript 内存分析比以往更快。'
+author: 'Jose Dapena Paz'
 date: 2023-07-27
 tags:
  - 内存
@@ -19,7 +19,7 @@ Bloomberg 的工程师正在诊断一个 JavaScript 应用中的内存泄漏问�
 在调试这种常见的内存泄漏场景时，通常的技术是先捕获堆快照，然后在 DevTools 的“内存”标签中加载它，并通过检查各种摘要和对象属性，找出占用内存最多的部分。在 DevTools 的界面中，可以在“内存”标签中拍摄堆快照。对于 Node.js 应用程序，可以使用 [此 API](https://nodejs.org/en/docs/guides/diagnostics/memory/using-heap-snapshot) 编程触发堆快照：
 
 ```js
-require(&apos;v8&apos;).writeHeapSnapshot();
+require('v8').writeHeapSnapshot();
 ```
 
 他们希望在应用程序生命周期的不同点捕获多个快照，以便使用 DevTools 内存查看器显示不同时间点的堆之间的差异。问题是，捕获一个单独的完整大小（500 MB）快照需要 **超过 30 分钟**！

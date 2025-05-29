@@ -1,14 +1,14 @@
 ---
-title: &apos;オブジェクトの残余プロパティとスプレッドプロパティ&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'オブジェクトの残余プロパティとスプレッドプロパティ'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-06-06
 tags:
   - ECMAScript
   - ES2018
-description: &apos;この記事では、JavaScriptでのオブジェクトの残余プロパティとスプレッドプロパティの動作方法について説明し、配列の残余要素とスプレッド要素についても再確認します。&apos;
-tweet: &apos;890269994688315394&apos;
+description: 'この記事では、JavaScriptでのオブジェクトの残余プロパティとスプレッドプロパティの動作方法について説明し、配列の残余要素とスプレッド要素についても再確認します。'
+tweet: '890269994688315394'
 ---
 オブジェクトの残余プロパティとスプレッドプロパティについて説明する前に、非常に似た機能を思い出してみましょう。
 
@@ -42,34 +42,34 @@ console.log(primesCopy); // [2, 3, 5, 7, 11]
 ```js
 // オブジェクトの分割代入における残余プロパティ:
 const person = {
-    firstName: &apos;Sebastian&apos;,
-    lastName: &apos;Markbåge&apos;,
-    country: &apos;USA&apos;,
-    state: &apos;CA&apos;,
+    firstName: 'Sebastian',
+    lastName: 'Markbåge',
+    country: 'USA',
+    state: 'CA',
 };
 const { firstName, lastName, ...rest } = person;
 console.log(firstName); // Sebastian
 console.log(lastName); // Markbåge
-console.log(rest); // { country: &apos;USA&apos;, state: &apos;CA&apos; }
+console.log(rest); // { country: 'USA', state: 'CA' }
 
 <!--truncate-->
 // オブジェクトリテラルにおけるスプレッドプロパティ:
 const personCopy = { firstName, lastName, ...rest };
 console.log(personCopy);
-// { firstName: &apos;Sebastian&apos;, lastName: &apos;Markbåge&apos;, country: &apos;USA&apos;, state: &apos;CA&apos; }
+// { firstName: 'Sebastian', lastName: 'Markbåge', country: 'USA', state: 'CA' }
 ```
 
 スプレッドプロパティは多くの状況で[`Object.assign()`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)よりもエレガントな代替手段を提供します。
 
 ```js
 // オブジェクトを浅くクローニングする:
-const data = { x: 42, y: 27, label: &apos;Treasure&apos; };
+const data = { x: 42, y: 27, label: 'Treasure' };
 // 従来の方法:
 const clone1 = Object.assign({}, data);
 // 新しい方法:
 const clone2 = { ...data };
 // どちらも以下の結果になります:
-// { x: 42, y: 27, label: &apos;Treasure&apos; }
+// { x: 42, y: 27, label: 'Treasure' }
 
 // 二つのオブジェクトを統合する:
 const defaultSettings = { logWarnings: false, logErrors: false };

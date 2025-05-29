@@ -1,15 +1,15 @@
 ---
-title: &apos;RegExp `v` 플래그와 집합 표기법 및 문자열 속성&apos;
-author: &apos;Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer, 그리고 Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'RegExp `v` 플래그와 집합 표기법 및 문자열 속성'
+author: 'Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer, 그리고 Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mark-davis&apos;
-  - &apos;markus-scherer&apos;
-  - &apos;mathias-bynens&apos;
+  - 'mark-davis'
+  - 'markus-scherer'
+  - 'mathias-bynens'
 date: 2022-06-27
 tags:
   - ECMAScript
-description: &apos;새로운 RegExp `v` 플래그는 `unicodeSets` 모드를 활성화하여 확장된 문자 클래스, 유니코드 문자열 속성, 집합 표기법 및 향상된 대소문자 무시 매칭을 지원합니다.&apos;
-tweet: &apos;1541419838513594368&apos;
+description: '새로운 RegExp `v` 플래그는 `unicodeSets` 모드를 활성화하여 확장된 문자 클래스, 유니코드 문자열 속성, 집합 표기법 및 향상된 대소문자 무시 매칭을 지원합니다.'
+tweet: '1541419838513594368'
 ---
 JavaScript는 ECMAScript 3 (1999)부터 정규 표현식을 지원했습니다. 16년 후, ES2015는 [유니코드 모드 (`u` 플래그)](https://mathiasbynens.be/notes/es6-unicode-regex), [스티키 모드 (`y` 플래그)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky#description), 그리고 [`RegExp.prototype.flags` 게터](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/flags)를 도입했습니다. 또 3년 뒤, ES2018은 [`dotAll` 모드 (`s` 플래그)](https://mathiasbynens.be/notes/es-regexp-proposals#dotAll), [후행 어설션](https://mathiasbynens.be/notes/es-regexp-proposals#lookbehinds), [명명된 캡처 그룹](https://mathiasbynens.be/notes/es-regexp-proposals#named-capture-groups) 및 [유니코드 문자 속성 이스케이프](https://mathiasbynens.be/notes/es-unicode-property-escapes)를 도입했습니다. ES2020에서는 [`String.prototype.matchAll`](https://v8.dev/features/string-matchall)이 정규 표현식을 다루는 데 더 쉽도록 만들어졌습니다. JavaScript 정규 표현식은 많은 발전을 이루었고, 여전히 진화하고 있습니다.
 
@@ -38,7 +38,7 @@ ES2018 유니코드 문자 속성 이스케이프는 ECMAScript 정규 표현식
 
 ```js
 const regexGreekSymbol = /\p{Script_Extensions=Greek}/u;
-regexGreekSymbol.test(&apos;π&apos;);
+regexGreekSymbol.test('π');
 // → true
 ```
 
@@ -49,27 +49,27 @@ regexGreekSymbol.test(&apos;π&apos;);
 const re = /^\p{Emoji}$/u;
 
 // 한 코드 포인트로 구성된 이모지와 일치:
-re.test(&apos;⚽&apos;); // &apos;\u26BD&apos;
+re.test('⚽'); // '\u26BD'
 // → true ✅
 
 // 여러 코드 포인트로 구성된 이모지와 일치:
-re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F&apos;
+re.test('👨🏾‍⚕️'); // '\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F'
 // → false ❌
 ```
 
 위의 예에서, 정규 표현식은 👨🏾‍⚕️ 이모지와 일치하지 않습니다. 왜냐하면 이 이모지가 여러 코드 포인트로 구성되어 있으며, `Emoji`는 유니코드 _문자_ 속성이기 때문입니다.
 
-다행히도 유니코드 표준은 여러 [문자열 속성](https://www.unicode.org/reports/tr18/#domain_of_properties)을 정의합니다. 이러한 속성은 하나 이상의 코드 포인트를 포함하는 문자열 세트로 확장됩니다. 정규 표현식에서는 문자열 속성이 대안 세트로 변환됩니다. 이를 설명하기 위해, 문자열 `&apos;a&apos;`, `&apos;b&apos;`, `&apos;c&apos;`, `&apos;W&apos;`, `&apos;xy&apos;`, 및 `&apos;xyz&apos;`에 적용되는 유니코드 속성을 상상해보세요. 이 속성은 교대 구문을 사용하여 다음 정규 표현식 패턴으로 변환됩니다: `xyz|xy|a|b|c|W` 또는 `xyz|xy|[a-cW]`. (긴 문자열이 먼저 오므로, `&apos;xy&apos;`와 같은 접두사가 `&apos;xyz&apos;`와 같이 더 긴 문자열을 숨기지 않도록 합니다.) 기존의 유니코드 속성 이스케이프와 달리, 이 패턴은 여러 문자로 이루어진 문자열을 일치시킬 수 있습니다. 문자열 속성 사용의 예제는 다음과 같습니다:
+다행히도 유니코드 표준은 여러 [문자열 속성](https://www.unicode.org/reports/tr18/#domain_of_properties)을 정의합니다. 이러한 속성은 하나 이상의 코드 포인트를 포함하는 문자열 세트로 확장됩니다. 정규 표현식에서는 문자열 속성이 대안 세트로 변환됩니다. 이를 설명하기 위해, 문자열 `'a'`, `'b'`, `'c'`, `'W'`, `'xy'`, 및 `'xyz'`에 적용되는 유니코드 속성을 상상해보세요. 이 속성은 교대 구문을 사용하여 다음 정규 표현식 패턴으로 변환됩니다: `xyz|xy|a|b|c|W` 또는 `xyz|xy|[a-cW]`. (긴 문자열이 먼저 오므로, `'xy'`와 같은 접두사가 `'xyz'`와 같이 더 긴 문자열을 숨기지 않도록 합니다.) 기존의 유니코드 속성 이스케이프와 달리, 이 패턴은 여러 문자로 이루어진 문자열을 일치시킬 수 있습니다. 문자열 속성 사용의 예제는 다음과 같습니다:
 
 ```js
 const re = /^\p{RGI_Emoji}$/v;
 
 // 하나의 코드 포인트만으로 구성된 이모지를 일치시키기:
-re.test(&apos;⚽&apos;); // &apos;\u26BD&apos;
+re.test('⚽'); // '\u26BD'
 // → true ✅
 
 // 여러 코드 포인트로 구성된 이모지를 일치시키기:
-re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F&apos;
+re.test('👨🏾‍⚕️'); // '\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F'
 // → true ✅
 ```
 
@@ -102,7 +102,7 @@ re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\
 예를 들어 모든 그리스어 기호를 일치시키되 글자 `π`는 제외하고 싶다면, 집합 표기를 사용하면 쉽게 해결할 수 있습니다:
 
 ```js
-/[\p{Script_Extensions=Greek}--π]/v.test(&apos;π&apos;); // → false
+/[\p{Script_Extensions=Greek}--π]/v.test('π'); // → false
 ```
 
 `--`을 사용하여 차이/뺄셈을 수행하면, 정규 표현식 엔진이 작업을 대신 해 주며 코드의 가독성과 유지보수성을 높일 수 있습니다.
@@ -110,15 +110,15 @@ re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\
 하나의 문자 대신 문자들 `α`, `β`, `γ`의 집합을 빼고 싶다면 어떨까요? 문제없습니다 — 중첩된 문자 클래스를 사용하고 그 안의 내용을 뺄 수 있습니다:
 
 ```js
-/[\p{Script_Extensions=Greek}--[αβγ]]/v.test(&apos;α&apos;); // → false
-/[\p{Script_Extensions=Greek}--[α-γ]]/v.test(&apos;β&apos;); // → false
+/[\p{Script_Extensions=Greek}--[αβγ]]/v.test('α'); // → false
+/[\p{Script_Extensions=Greek}--[α-γ]]/v.test('β'); // → false
 ```
 
 다른 예로는 비-ASCII 숫자를 일치시키는 경우입니다. 나중에 이를 ASCII 숫자로 변환하기 위해:
 
 ```js
-/[\p{Decimal_Number}--[0-9]]/v.test(&apos;𑜹&apos;); // → true
-/[\p{Decimal_Number}--[0-9]]/v.test(&apos;4&apos;); // → false
+/[\p{Decimal_Number}--[0-9]]/v.test('𑜹'); // → true
+/[\p{Decimal_Number}--[0-9]]/v.test('4'); // → false
 ```
 
 새 문자열 속성에서도 집합 표기를 사용할 수 있습니다:
@@ -126,8 +126,8 @@ re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\
 ```js
 // 참고: 🏴는 7개의 코드 포인트로 구성됩니다.
 
-/^\p{RGI_Emoji_Tag_Sequence}$/v.test(&apos;🏴&apos;); // → true
-/^[\p{RGI_Emoji_Tag_Sequence}--\q{🏴}]$/v.test(&apos;🏴&apos;); // → false
+/^\p{RGI_Emoji_Tag_Sequence}$/v.test('🏴'); // → true
+/^[\p{RGI_Emoji_Tag_Sequence}--\q{🏴}]$/v.test('🏴'); // → false
 ```
 
 이 예제는 스코틀랜드 깃발을 제외한 모든 RGI 이모지 태그 시퀀스를 일치시킵니다. `\q{…}`를 사용하는 점에 주목하세요. 이는 문자 클래스 내 문자열 리터럴을 위한 새로운 문법입니다. 예를 들어, `\q{a|bc|def}`는 문자열 `a`, `bc`, 및 `def`를 일치시킵니다. `\q{…}` 없이 다중 문자로 이루어진 문자열을 하드코딩하고 빼는 것은 불가능합니다.
@@ -139,17 +139,17 @@ re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\
 ```js
 const re = /[\p{Script_Extensions=Greek}&&\p{Letter}]/v;
 // U+03C0 그리스어 소문자 파이
-re.test(&apos;π&apos;); // → true
+re.test('π'); // → true
 // U+1018A 그리스어 영 숫자
-re.test(&apos;𐆊&apos;); // → false
+re.test('𐆊'); // → false
 ```
 
 모든 ASCII 공백 일치시키기:
 
 ```js
 const re = /[\p{White_Space}&&\p{ASCII}]/v;
-re.test(&apos;\n&apos;); // → true
-re.test(&apos;\u2028&apos;); // → false
+re.test('\n'); // → true
+re.test('\u2028'); // → false
 ```
 
 또는 모든 몽골어 숫자를 일치시키기:
@@ -157,9 +157,9 @@ re.test(&apos;\u2028&apos;); // → false
 ```js
 const re = /[\p{Script_Extensions=Mongolian}&&\p{Number}]/v;
 // U+1817 몽골어 숫자 7
-re.test(&apos;᠗&apos;); // → true
+re.test('᠗'); // → true
 // U+1834 몽골어 문자 차
-re.test(&apos;ᠴ&apos;); // → false
+re.test('ᠴ'); // → false
 ```
 
 ### 합집합
@@ -169,12 +169,12 @@ re.test(&apos;ᠴ&apos;); // → false
 ```js
 const re = /^[\p{Emoji_Keycap_Sequence}\p{ASCII}\q{🇧🇪|abc}xyz0-9]$/v;
 
-re.test(&apos;4️⃣&apos;); // → true
-re.test(&apos;_&apos;); // → true
-re.test(&apos;🇧🇪&apos;); // → true
-re.test(&apos;abc&apos;); // → true
-re.test(&apos;x&apos;); // → true
-re.test(&apos;4&apos;); // → true
+re.test('4️⃣'); // → true
+re.test('_'); // → true
+re.test('🇧🇪'); // → true
+re.test('abc'); // → true
+re.test('x'); // → true
+re.test('4'); // → true
 ```
 
 이 패턴의 문자 클래스는 다음을 결합합니다:
@@ -190,13 +190,13 @@ re.test(&apos;4&apos;); // → true
 ```js
 const reFlag = /[\p{RGI_Emoji_Flag_Sequence}\p{RGI_Emoji_Tag_Sequence}]/v;
 // 2개의 코드 포인트로 구성된 국기 시퀀스 (벨기에 국기):
-reFlag.test(&apos;🇧🇪&apos;); // → true
+reFlag.test('🇧🇪'); // → true
 // 7개의 코드 포인트로 구성된 태그 시퀀스 (잉글랜드 국기):
-reFlag.test(&apos;🏴&apos;); // → true
+reFlag.test('🏴'); // → true
 // 2개의 코드 포인트로 구성된 국기 시퀀스 (스위스 국기):
-reFlag.test(&apos;🇨🇭&apos;); // → true
+reFlag.test('🇨🇭'); // → true
 // 7개의 코드 포인트로 구성된 태그 시퀀스 (웨일스 국기):
-reFlag.test(&apos;🏴&apos;); // → true
+reFlag.test('🏴'); // → true
 ```
 
 ## 개선된 대소문자 무시 매칭
@@ -216,13 +216,13 @@ const re2 = /[^\P{Lowercase_Letter}]/giu;
 const re1 = /\p{Lowercase_Letter}/giu;
 const re2 = /[^\P{Lowercase_Letter}]/giu;
 
-const string = &apos;aAbBcC4#&apos;;
+const string = 'aAbBcC4#';
 
-string.replaceAll(re1, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re1, 'X');
+// → 'XXXXXX4#'
 
-string.replaceAll(re2, &apos;X&apos;);
-// → &apos;aAbBcC4#&apos;
+string.replaceAll(re2, 'X');
+// → 'aAbBcC4#'
 ```
 
 새로운 `v` 플래그는 더 예측 가능한 동작을 제공합니다. `u` 플래그 대신 `v` 플래그를 사용하면 두 패턴이 동일하게 동작합니다:
@@ -231,13 +231,13 @@ string.replaceAll(re2, &apos;X&apos;);
 const re1 = /\p{Lowercase_Letter}/giv;
 const re2 = /[^\P{Lowercase_Letter}]/giv;
 
-const string = &apos;aAbBcC4#&apos;;
+const string = 'aAbBcC4#';
 
-string.replaceAll(re1, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re1, 'X');
+// → 'XXXXXX4#'
 
-string.replaceAll(re2, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re2, 'X');
+// → 'XXXXXX4#'
 ```
 
 더 일반적으로, `v` 플래그는 `[^\p{X}]` ≍ `[\P{X}]` ≍ `\P{X}` 및 `[^\P{X}]` ≍ `[\p{X}]` ≍ `\p{X}`을 대소문자 무시 플래그 `i` 설정 여부와 관계없이 동일하게 만듭니다.

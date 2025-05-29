@@ -1,13 +1,13 @@
 ---
-title: &apos;게으른 역직렬화&apos;
-author: &apos;Jakob Gruber ([@schuay](https://twitter.com/schuay))&apos;
+title: '게으른 역직렬화'
+author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
 avatars:
-  - &apos;jakob-gruber&apos;
+  - 'jakob-gruber'
 date: 2018-02-12 13:33:37
 tags:
   - internals
-description: &apos;V8 v6.4에서 사용 가능한 게으른 역직렬화는 브라우저 탭당 평균적으로 V8의 메모리 소비량을 500 KB 이상 감소시킵니다.&apos;
-tweet: &apos;962989179914383360&apos;
+description: 'V8 v6.4에서 사용 가능한 게으른 역직렬화는 브라우저 탭당 평균적으로 V8의 메모리 소비량을 500 KB 이상 감소시킵니다.'
+tweet: '962989179914383360'
 ---
 요약: 최근 [V8 v6.4](/blog/v8-release-64)에서 기본적으로 게으른 역직렬화를 활성화하여 V8의 브라우저 탭당 메모리 소비량을 평균적으로 500 KB 이상 감소시켰습니다. 자세히 알아보세요!
 

@@ -1,6 +1,6 @@
 ---
-title: &apos;WebAssembly - 新しいオペコードの追加&apos;
-description: &apos;このチュートリアルは、V8で新しいWebAssembly命令を実装する方法を説明します。&apos;
+title: 'WebAssembly - 新しいオペコードの追加'
+description: 'このチュートリアルは、V8で新しいWebAssembly命令を実装する方法を説明します。'
 ---
 [WebAssembly](https://webassembly.org/) (Wasm) はスタックベースの仮想マシンのためのバイナリ命令形式です。このチュートリアルでは、新しいWebAssembly命令をV8に実装する手順を紹介します。
 
@@ -123,7 +123,7 @@ index 26df61ceb8..b1ee6edd71 100644
 テストを実行する:
 
 ```
-$ tools/dev/gm.py x64.debug &apos;cctest/test-run-wasm-simd/RunWasmTurbofan_I32Add1&apos;
+$ tools/dev/gm.py x64.debug 'cctest/test-run-wasm-simd/RunWasmTurbofan_I32Add1'
 ...
 === cctest/test-run-wasm/RunWasmTurbofan_Int32Add1 ===
 #
@@ -195,7 +195,7 @@ index f666bbb7c1..1d93601584 100644
 同じテストを実行しようとすると、どこに変更を加えるべきかを示唆するコンパイルエラーが発生します。
 
 ```
-../../src/compiler/wasm-compiler.cc:717:34: error: no member named &apos;Int32Add1&apos; in &apos;v8::internal::compiler::MachineOperatorBuilder&apos;; did you mean &apos;Int32Add&apos;?
+../../src/compiler/wasm-compiler.cc:717:34: error: no member named 'Int32Add1' in 'v8::internal::compiler::MachineOperatorBuilder'; did you mean 'Int32Add'?
       return graph()->NewNode(m->Int32Add1(), input);
                                  ^~~~~~~~~
                                  Int32Add
@@ -342,12 +342,12 @@ diff --git a/src/compiler/backend/x64/instruction-codes-x64.h b/src/compiler/bac
 テストを実行すると、新しいコンパイルエラーが表示されます：
 
 ```
-../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: エラー: 列挙値&apos;kX64Int32Add1&apos;がswitch内で処理されていません [-Werror,-Wswitch]
+../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: エラー: 列挙値'kX64Int32Add1'がswitch内で処理されていません [-Werror,-Wswitch]
   switch (instr->arch_opcode()) {
           ^
 1 エラー生成。
 ...
-../../src/compiler/backend/x64/code-generator-x64.cc:733:11: エラー: 列挙値&apos;kX64Int32Add1&apos;がswitch内で処理されていません [-Werror,-Wswitch]
+../../src/compiler/backend/x64/code-generator-x64.cc:733:11: エラー: 列挙値'kX64Int32Add1'がswitch内で処理されていません [-Werror,-Wswitch]
   switch (arch_opcode) {
           ^
 1 エラー生成。

@@ -1,12 +1,12 @@
 ---
-title: &apos;加速擴展元素&apos;
-author: &apos;Hai Dang & Georg Neis&apos;
+title: '加速擴展元素'
+author: 'Hai Dang & Georg Neis'
 date: 2018-12-04 16:57:21
 tags:
   - ECMAScript
   - 基準測試
-description: &apos;V8 v7.2 / 顯著加速了 Array.from(array) 以及 [...spread] 對於數組、字串、集合和映射的性能。&apos;
-tweet: &apos;1070344545685118976&apos;
+description: 'V8 v7.2 / 顯著加速了 Array.from(array) 以及 [...spread] 對於數組、字串、集合和映射的性能。'
+tweet: '1070344545685118976'
 ---
 在他於 V8 團隊的三個月實習期間，Hai Dang 專注於提升 `[...array]`、`[...string]`、`[...set]`、`[...map.keys()]` 和 `[...map.values()]` 的性能（當擴展元素位於數組字面量的開頭時）。他甚至還大幅提升了 `Array.from(iterable)` 的性能。本文解釋了他改進的部分詳細內容，這些更改從 V8 v7.2 開始被引入。
 
@@ -25,19 +25,19 @@ const result = [1, ...a, 4, ...b];
 另一個例子是，任何字串都可以被展開成其字符（Unicode 代碼點）組成的數組：
 
 ```js
-const str = &apos;こんにちは&apos;;
+const str = 'こんにちは';
 const result = [...str];
-// → [&apos;こ&apos;, &apos;ん&apos;, &apos;に&apos;, &apos;ち&apos;, &apos;は&apos;]
+// → ['こ', 'ん', 'に', 'ち', 'は']
 ```
 
 同樣，任何集合也可以被展開成其元素組成的數組，按插入順序排序：
 
 ```js
 const s = new Set();
-s.add(&apos;V8&apos;);
-s.add(&apos;TurboFan&apos;);
+s.add('V8');
+s.add('TurboFan');
 const result = [...s];
-// → [&apos;V8&apos;, &apos;TurboFan&apos;]
+// → ['V8', 'TurboFan']
 ```
 
 一般來說，數組字面量中的擴展語法 `...x` 假設 `x` 提供了一個迭代器（通過 `x[Symbol.iterator]()` 獲取）。然後將使用該迭代器來獲取需要插入到結果數組中的元素。
@@ -128,7 +128,7 @@ const result = [...arr];
 
 ## 處理 _holey_ 數組
 
-在拷貝具有空洞的數組時（例如 `[&apos;a&apos;, , &apos;c&apos;]`，缺失了一些元素），也需要特別注意。通過遵循迭代協議展開此類數組，不會保留空洞，而是用數組原型中相應索引處的值填充它們。默認情況下，數組原型中沒有任何元素，這意味著任何空洞都會被 `undefined` 填充。例如，`[...[&apos;a&apos;, , &apos;c&apos;]]` 評估為新數組 `[&apos;a&apos;, undefined, &apos;c&apos;]`。
+在拷貝具有空洞的數組時（例如 `['a', , 'c']`，缺失了一些元素），也需要特別注意。通過遵循迭代協議展開此類數組，不會保留空洞，而是用數組原型中相應索引處的值填充它們。默認情況下，數組原型中沒有任何元素，這意味著任何空洞都會被 `undefined` 填充。例如，`[...['a', , 'c']]` 評估為新數組 `['a', undefined, 'c']`。
 
 我們的快速路徑足夠智能，可以在這種默認情況下處理空洞。它並不是盲目地拷貝輸入數組的底層存儲，而是檢測空洞並負責將它們轉換為 `undefined` 值。下圖顯示的是輸入數組長度為 100,000，包含（標記的）600 個整數——其餘的是空洞的測量結果。該圖表明，展開此類有空洞的數組現在比使用 `clone` 函數快 4 倍以上。（它們以前的性能大致相當，但圖中未展示）。
 

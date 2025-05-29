@@ -1,13 +1,13 @@
 ---
-title: &apos;Lanzamiento de V8 v9.0&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), en línea&apos;
+title: 'Lanzamiento de V8 v9.0'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), en línea'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-03-17
 tags:
  - lanzamiento
-description: &apos;El lanzamiento de V8 v9.0 trae soporte para índices de coincidencia en expresiones regulares y varias mejoras de rendimiento.&apos;
-tweet: &apos;1372227274712494084&apos;
+description: 'El lanzamiento de V8 v9.0 trae soporte para índices de coincidencia en expresiones regulares y varias mejoras de rendimiento.'
+tweet: '1372227274712494084'
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](https://v8.dev/docs/release-process). Cada versión se ramifica desde el maestro de Git de V8 justo antes de un hito Beta de Chrome. Hoy nos complace anunciar nuestra rama más reciente, [V8 versión 9.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.0), que está en beta hasta su lanzamiento en coordinación con Chrome 90 Stable en varias semanas. V8 v9.0 está lleno de todo tipo de novedades para los desarrolladores. Este artículo proporciona un avance de algunos de los aspectos destacados en anticipación al lanzamiento.
 
@@ -20,7 +20,7 @@ A partir de v9.0, los desarrolladores pueden optar por obtener un arreglo con la
 
 ```javascript
 const re = /(a)(b)/d;      // Nota la bandera /d.
-const m = re.exec(&apos;ab&apos;);
+const m = re.exec('ab');
 console.log(m.indices[0]); // Índice 0 es toda la coincidencia.
 // → [0, 2]
 console.log(m.indices[1]); // Índice 1 es el 1er grupo capturado.

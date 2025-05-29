@@ -1,14 +1,14 @@
 ---
-title: &apos;V8 中的元素類型&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'V8 中的元素類型'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2017-09-12 13:33:37
 tags:
   - internals
   - presentations
-description: &apos;這篇技術性深入解析文章，詳細說明了 V8 背後如何優化對陣列的操作，並向 JavaScript 開發者解釋其意義。&apos;
-tweet: &apos;907608362191376384&apos;
+description: '這篇技術性深入解析文章，詳細說明了 V8 背後如何優化對陣列的操作，並向 JavaScript 開發者解釋其意義。'
+tweet: '907608362191376384'
 ---
 :::note
 **注意:** 如果您更喜歡觀看演示，而不是閱讀文章，請欣賞以下視頻！
@@ -55,7 +55,7 @@ const array = [1, 2, 3];
 // 元素類型：PACKED_SMI_ELEMENTS
 array.push(4.56);
 // 元素類型：PACKED_DOUBLE_ELEMENTS
-array.push(&apos;x&apos;);
+array.push('x');
 // 元素類型：PACKED_ELEMENTS
 ```
 
@@ -80,7 +80,7 @@ array.push(&apos;x&apos;);
 到目前為止，我們只處理了密集或緊湊的陣列。對陣列騰空（即使陣列變得稀疏）會降級其元素類型到“帶空洞（holed）”的變體：
 
 ```js
-const array = [1, 2, 3, 4.56, &apos;x&apos;];
+const array = [1, 2, 3, 4.56, 'x'];
 // 元素類型：PACKED_ELEMENTS
 array.length; // 5
 array[9] = 1; // array[5] 到 array[8] 現在是空洞
@@ -209,9 +209,9 @@ JavaScript 中的一些物件（特別是在 DOM 中）看起來像陣列，儘�
 
 ```js
 const arrayLike = {};
-arrayLike[0] = &apos;a&apos;;
-arrayLike[1] = &apos;b&apos;;
-arrayLike[2] = &apos;c&apos;;
+arrayLike[0] = 'a';
+arrayLike[1] = 'b';
+arrayLike[2] = 'c';
 arrayLike.length = 3;
 ```
 
@@ -221,7 +221,7 @@ arrayLike.length = 3;
 Array.prototype.forEach.call(arrayLike, (value, index) => {
   console.log(`${ index }: ${ value }`);
 });
-// 這會輸出 &apos;0: a&apos;，然後 &apos;1: b&apos;，最後 &apos;2: c&apos;。
+// 這會輸出 '0: a'，然後 '1: b'，最後 '2: c'。
 ```
 
 此程式碼對類陣列物件調用了內建的 `Array.prototype.forEach`，並且運作如預期。然而，這比對正規陣列調用 `forEach` 要慢，而正規陣列的內建方法在 V8 中得到了高度優化。如果你計劃多次對該物件使用陣列內建方法，考慮在此之前將其轉換為實際陣列：
@@ -231,7 +231,7 @@ const actualArray = Array.prototype.slice.call(arrayLike, 0);
 actualArray.forEach((value, index) => {
   console.log(`${ index }: ${ value }`);
 });
-// 這會輸出 &apos;0: a&apos;，然後 &apos;1: b&apos;，最後 &apos;2: c&apos;。
+// 這會輸出 '0: a'，然後 '1: b'，最後 '2: c'。
 ```
 
 這次性轉換成本可能值得後續的優化，特別是在你計劃對該陣列進行大量操作時。
@@ -244,8 +244,8 @@ const logArgs = function() {
     console.log(`${ index }: ${ value }`);
   });
 };
-logArgs(&apos;a&apos;, &apos;b&apos;, &apos;c&apos;);
-// 這會輸出 &apos;0: a&apos;，然後 &apos;1: b&apos;，最後 &apos;2: c&apos;。
+logArgs('a', 'b', 'c');
+// 這會輸出 '0: a'，然後 '1: b'，最後 '2: c'。
 ```
 
 ES2015 的剩餘參數可以幫助解決這個問題。它們會生成正規的陣列，可以以更優雅的方式替代類陣列 `arguments` 物件。
@@ -256,8 +256,8 @@ const logArgs = (...args) => {
     console.log(`${ index }: ${ value }`);
   });
 };
-logArgs(&apos;a&apos;, &apos;b&apos;, &apos;c&apos;);
-// 這會輸出 &apos;0: a&apos;，然後 &apos;1: b&apos;，最後 &apos;2: c&apos;。
+logArgs('a', 'b', 'c');
+// 這會輸出 '0: a'，然後 '1: b'，最後 '2: c'。
 ```
 
 如今，已沒有充分的理由直接使用 `arguments` 物件。
@@ -281,7 +281,7 @@ const doSomething = (item) => console.log(item);
 
 each([], () => {});
 
-each([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], doSomething);
+each(['a', 'b', 'c'], doSomething);
 // `each` 被以 `PACKED_ELEMENTS` 調用。V8 使用內聯快取
 // （或稱“IC”）記住了 `each` 被以該特定元素種類調用。
 // V8 樂觀地假設 `array.length` 和 `array[index]` 在 `each` 中的訪問是單態的（即只接收單一種類的元素）
@@ -310,10 +310,10 @@ each([1, 2, 3], doSomething);
 const array = new Array(3);
 // 此時該陣列是稀疏的，因此它被標記為 `HOLEY_SMI_ELEMENTS`，
 // 即給定當前資訊的最具體可能。
-array[0] = &apos;a&apos;;
+array[0] = 'a';
 // 等等，那是一個字符串而不是小整數... 所以種類轉換為 `HOLEY_ELEMENTS`。
-array[1] = &apos;b&apos;;
-array[2] = &apos;c&apos;;
+array[1] = 'b';
+array[2] = 'c';
 // 此時，陣列中的三個位置都被填充了，因此陣列是緊密的(即不再稀疏)。
 // 然而，我們無法轉換到更具體的種類，例如 `PACKED_ELEMENTS`。
 // 元素種類仍保持為 `HOLEY_ELEMENTS`。
@@ -321,7 +321,7 @@ array[2] = &apos;c&apos;;
 陣列一旦被標記為稀疏，就會永遠保持稀疏——即使以後所有元素都存在！
 創建陣列的更好方式是使用字面值形式：
 ```js
-const array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
+const array = ['a', 'b', 'c'];
 // 元素種類：PACKED_ELEMENTS
 ```
 如果您事先不知道所有值，可以先創建一個空陣列，然後稍後用 `push` 添加值。

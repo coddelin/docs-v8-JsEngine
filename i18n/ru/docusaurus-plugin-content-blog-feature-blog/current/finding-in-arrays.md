@@ -1,13 +1,13 @@
 ---
-title: &apos;Поиск элементов в `Array` и TypedArrays&apos;
-author: &apos;Shu-yu Guo ([@_shu](https://twitter.com/_shu))&apos;
+title: 'Поиск элементов в `Array` и TypedArrays'
+author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
 avatars:
-  - &apos;shu-yu-guo&apos;
+  - 'shu-yu-guo'
 date: 2021-10-27
 tags:
   - ECMAScript
-description: &apos;Методы JavaScript для поиска элементов в массивах и TypedArrays&apos;
-tweet: &apos;1453354998063149066&apos;
+description: 'Методы JavaScript для поиска элементов в массивах и TypedArrays'
+tweet: '1453354998063149066'
 ---
 ## Поиск элементов с начала
 

@@ -1,13 +1,13 @@
 ---
-title: &apos;Contenido adicional para "Entendiendo la especificación ECMAScript, parte 2"&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), espectador especulativo de especificaciones&apos;
+title: 'Contenido adicional para "Entendiendo la especificación ECMAScript, parte 2"'
+author: '[Marja Hölttä](https://twitter.com/marjakh), espectador especulativo de especificaciones'
 avatars:
   - marja-holtta
 date: 2020-03-02
 tags:
   - ECMAScript
-description: &apos;Tutorial sobre cómo leer la especificación ECMAScript&apos;
-tweet: &apos;&apos;
+description: 'Tutorial sobre cómo leer la especificación ECMAScript'
+tweet: ''
 ---
 
 ### ¿Por qué es `o2.foo` una `AssignmentExpression`?
@@ -18,7 +18,7 @@ La especificación permite en realidad una `AssignmentExpression` tanto como arg
 
 ```js
 function simple(a) {
-  console.log(&apos;El argumento fue &apos; + a);
+  console.log('El argumento fue ' + a);
 }
 simple(x = 1);
 // → Registra “El argumento fue 1”.

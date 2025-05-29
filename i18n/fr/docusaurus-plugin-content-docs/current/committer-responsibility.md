@@ -1,6 +1,6 @@
 ---
-title: &apos;Responsabilités des commiteurs et reviewers de V8&apos;
-description: &apos;Ce document énumère les directives pour les contributeurs de V8.&apos;
+title: 'Responsabilités des commiteurs et reviewers de V8'
+description: 'Ce document énumère les directives pour les contributeurs de V8.'
 ---
 Lorsque vous vous engagez dans les dépôts V8, assurez-vous de suivre ces directives (adaptées de https://dev.chromium.org/developers/committers-responsibility) :
 

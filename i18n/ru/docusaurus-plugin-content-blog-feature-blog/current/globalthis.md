@@ -1,16 +1,16 @@
 ---
-title: &apos;`globalThis`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`globalThis`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-07-16
 tags:
   - ECMAScript
   - ES2020
   - Node.js 12
   - io19
-description: &apos;globalThis вводит единый механизм для доступа к глобальному объекту this в любой среде JavaScript, независимо от цели сценария.&apos;
-tweet: &apos;1151140681374547969&apos;
+description: 'globalThis вводит единый механизм для доступа к глобальному объекту this в любой среде JavaScript, независимо от цели сценария.'
+tweet: '1151140681374547969'
 ---
 Если вы писали JavaScript для использования в веб-браузере, возможно, вы использовали `window` для доступа к глобальному объекту `this`. В Node.js вы могли использовать `global`. Если вы писали код, который должен работать в обеих средах, вы могли определить, какой из них доступен, и затем использовать его — но список идентификаторов, которые нужно проверять, растет с увеличением числа окружений и случаев использования. Это быстро выходит из-под контроля:
 
@@ -18,13 +18,13 @@ tweet: &apos;1151140681374547969&apos;
 ```js
 // Наивная попытка получения глобального объекта `this`. Не используйте это!
 const getGlobalThis = () => {
-  if (typeof globalThis !== &apos;undefined&apos;) return globalThis;
-  if (typeof self !== &apos;undefined&apos;) return self;
-  if (typeof window !== &apos;undefined&apos;) return window;
-  if (typeof global !== &apos;undefined&apos;) return global;
+  if (typeof globalThis !== 'undefined') return globalThis;
+  if (typeof self !== 'undefined') return self;
+  if (typeof window !== 'undefined') return window;
+  if (typeof global !== 'undefined') return global;
   // Замечание: это может все еще вернуть неправильный результат!
-  if (typeof this !== &apos;undefined&apos;) return this;
-  throw new Error(&apos;Невозможно найти глобальный объект `this`&apos;);
+  if (typeof this !== 'undefined') return this;
+  throw new Error('Невозможно найти глобальный объект `this`');
 };
 const theGlobalThis = getGlobalThis();
 ```

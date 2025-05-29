@@ -1,10 +1,10 @@
 ---
-title: &apos;V8リリース v4.6&apos;
-author: &apos;V8チーム&apos;
+title: 'V8リリース v4.6'
+author: 'V8チーム'
 date: 2015-08-28 13:33:37
 tags:
   - リリース
-description: &apos;V8 v4.6はジャンクの削減と新しいES2015言語機能のサポートを提供します。&apos;
+description: 'V8 v4.6はジャンクの削減と新しいES2015言語機能のサポートを提供します。'
 ---
 約6週間ごとに、私たちは[リリースプロセス](https://v8.dev/docs/release-process)の一環としてV8の新しいブランチを作成します。各バージョンはV8のGitマスターからChromeがChrome Betaマイルストーン用にブランチを分岐する直前に分岐されます。本日、私たちは最新のブランチ[V8バージョン4.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.6)を発表できることを喜ばしく思います。このバージョンは、Chrome 46 Stableと連携してリリースされるまでベータ版です。V8 4.6は、開発者向けの便利な機能でいっぱいなので、数週間後のリリースに先立って、いくつかのハイライトを事前にお届けしたいと思います。
 
@@ -38,7 +38,7 @@ function myFunction(a, b, c) {
   console.log(b);
   console.log(c);
 }
-const argsInArray = [&apos;Hi &apos;, &apos;Spread &apos;, &apos;operator!&apos;];
+const argsInArray = ['Hi ', 'Spread ', 'operator!'];
 myFunction.apply(null, argsInArray);
 
 // スプレッド演算子を使用したコード
@@ -48,7 +48,7 @@ function myFunction (a,b,c) {
   console.log(c);
 }
 
-const argsInArray = [&apos;Hi &apos;, &apos;Spread &apos;, &apos;operator!&apos;];
+const argsInArray = ['Hi ', 'Spread ', 'operator!'];
 myFunction(...argsInArray);
 ```
 
@@ -61,9 +61,9 @@ myFunction(...argsInArray);
 ```js
 function myFunction() {
   if (new.target === undefined) {
-    throw &apos;newで呼び出してお試しください。&apos;;
+    throw 'newで呼び出してお試しください。';
   }
-  console.log(&apos;動作しました！&apos;);
+  console.log('動作しました！');
 }
 
 // エラー:

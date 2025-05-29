@@ -1,6 +1,6 @@
 ---
-title: &apos;점화&apos;
-description: &apos;이 문서는 Ignition, V8의 인터프리터에 대한 리소스를 모은 것입니다.&apos;
+title: '점화'
+description: '이 문서는 Ignition, V8의 인터프리터에 대한 리소스를 모은 것입니다.'
 ---
 V8은 Ignition이라는 인터프리터를 특징으로 합니다. Ignition은 [TurboFan](/docs/turbofan)의 백엔드를 사용하여 작성된 빠르고 저수준의 레지스터 기반 인터프리터입니다. Ignition 인터프리터에 대한 [상세 개요](/blog/ignition-interpreter)는 V8 블로그 게시물에서 확인할 수 있습니다. 추가 세부 정보는 다음 리소스에서 확인할 수 있습니다:
 

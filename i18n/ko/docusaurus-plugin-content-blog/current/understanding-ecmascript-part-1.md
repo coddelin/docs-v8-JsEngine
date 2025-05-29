@@ -1,14 +1,14 @@
 ---
-title: &apos;ECMAScript 명세 이해하기, 1부&apos;
-author: &apos;[Marja Hölttä](https://twitter.com/marjakh), 사양 관찰자&apos;
+title: 'ECMAScript 명세 이해하기, 1부'
+author: '[Marja Hölttä](https://twitter.com/marjakh), 사양 관찰자'
 avatars:
   - marja-holtta
 date: 2020-02-03 13:33:37
 tags:
   - ECMAScript
   - ECMAScript 이해하기
-description: &apos;ECMAScript 명세 읽기에 대한 튜토리얼&apos;
-tweet: &apos;1224363301146189824&apos;
+description: 'ECMAScript 명세 읽기에 대한 튜토리얼'
+tweet: '1224363301146189824'
 ---
 
 [모든 에피소드 보기](/blog/tags/understanding-ecmascript)
@@ -24,8 +24,8 @@ JavaScript를 알고 있어도 그 언어 명세인 [ECMAScript Language specifi
 
 ```js
 const o = { foo: 1 };
-o.hasOwnProperty(&apos;foo&apos;); // true
-o.hasOwnProperty(&apos;bar&apos;); // false
+o.hasOwnProperty('foo'); // true
+o.hasOwnProperty('bar'); // false
 ```
 
 이 예제에서, `o`는 `hasOwnProperty`라는 속성을 가지고 있지 않으므로 프로토타입 체인을 따라가서 이를 찾습니다. 우리는 `o`의 프로토타입인 `Object.prototype`에서 이를 찾습니다.

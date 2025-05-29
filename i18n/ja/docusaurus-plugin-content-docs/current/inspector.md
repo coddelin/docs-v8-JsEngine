@@ -1,6 +1,6 @@
 ---
-title: &apos;V8インスペクタープロトコルを使用したデバッグ&apos;
-description: &apos;このページは、V8におけるデバッグサポートを実装するための基本的なツールを埋め込み者に提供することを目的としています。&apos;
+title: 'V8インスペクタープロトコルを使用したデバッグ'
+description: 'このページは、V8におけるデバッグサポートを実装するための基本的なツールを埋め込み者に提供することを目的としています。'
 ---
 V8は、ユーザーおよび埋め込み者の両方に対して広範なデバッグ機能を提供します。ユーザーは通常、[Chrome DevTools](https://developer.chrome.com/devtools)インターフェースを通じてV8デバッガを操作します。埋め込み者（DevToolsを含む）は、[Inspector Protocol](https://chromedevtools.github.io/debugger-protocol-viewer/tot/)を直接利用する必要があります。
 
@@ -23,7 +23,7 @@ static void SendInspectorMessage(
 ```cpp
 void Send(const v8_inspector::StringView& string) {
   // [...] 文字列変換。
-  // 現在のコンテキストから&apos;receive&apos;という名前のグローバルプロパティを取得します。
+  // 現在のコンテキストから'receive'という名前のグローバルプロパティを取得します。
   Local<String> callback_name =
       v8::String::NewFromUtf8(isolate_, "receive", v8::NewStringType::kNormal)
           .ToLocalChecked();
@@ -52,13 +52,13 @@ function receive(message) {
 
 const msg = JSON.stringify({
   id: 0,
-  method: &apos;Debugger.enable&apos;,
+  method: 'Debugger.enable',
 });
 
 // d8が提供する関数を呼び出します。
 send(msg);
 
-// このファイルを&apos;d8 --enable-inspector inspector-demo.js&apos;で実行します。
+// このファイルを'd8 --enable-inspector inspector-demo.js'で実行します。
 ```
 
 ## さらなるドキュメント

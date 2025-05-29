@@ -1,10 +1,10 @@
 ---
-title: &apos;Релиз V8 версии 4.9&apos;
-author: &apos;команда V8&apos;
+title: 'Релиз V8 версии 4.9'
+author: 'команда V8'
 date: 2016-01-26 13:33:37
 tags:
   - релиз
-description: &apos;V8 версии 4.9 предлагает улучшенную реализацию `Math.random` и добавляет поддержку нескольких новых функций языка из ES2015.&apos;
+description: 'V8 версии 4.9 предлагает улучшенную реализацию `Math.random` и добавляет поддержку нескольких новых функций языка из ES2015.'
 ---
 Примерно каждые шесть недель мы создаём новую ветку V8 в рамках нашего [процесса релизов](/docs/release-process). Каждая версия разветвляется от основной ветки Git V8 незадолго до разветвления Chrome для создания Chrome Beta. Сегодня мы рады объявить о нашей новой ветке, [V8 версия 4.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.9), которая будет находиться в бета-версии до её выпуска совместно с Chrome 49 Stable. V8 4.9 наполнен различными нововведениями для разработчиков, поэтому мы хотим дать вам предварительный обзор некоторых из них, ожидая релиза через несколько недель.
 
@@ -50,14 +50,14 @@ const [x, y = 0, z = 0] = [1, 2];               // x=1, y=2, z=0
 ```js
 const target = {};
 const handler = {
-  get(target, name=&apos;мир&apos;) {
+  get(target, name='мир') {
     return `Привет, ${name}!`;
   }
 };
 
 const foo = new Proxy(target, handler);
 foo.bar;
-// → &apos;Привет, bar!&apos;
+// → 'Привет, bar!'
 ```
 
 Объект Proxy сопровождается модулем Reflect, который предоставляет подходящие значения по умолчанию для всех ловушек Proxy:
@@ -74,9 +74,9 @@ const debugMe = new Proxy({}, {
   }
 });
 
-debugMe.name = &apos;Джон Доу&apos;;
+debugMe.name = 'Джон Доу';
 // Отладка: метод set вызван для поля: name, и значения: Джон Доу
-const title = `Г-н ${debugMe.name}`; // → &apos;Г-н Джон Доу&apos;
+const title = `Г-н ${debugMe.name}`; // → 'Г-н Джон Доу'
 // Отладка: метод get вызван для поля: name
 ```
 
@@ -88,8 +88,8 @@ const title = `Г-н ${debugMe.name}`; // → &apos;Г-н Джон Доу&apos;
 
 ```js
 function sublist(list, start, end) {
-  if (typeof start === &apos;undefined&apos;) start = 0;
-  if (typeof end === &apos;undefined&apos;) end = list.length;
+  if (typeof start === 'undefined') start = 0;
+  if (typeof end === 'undefined') end = list.length;
   ...
 }
 ```
@@ -123,13 +123,13 @@ V8 поддерживает лексические объявления (`let`, 
 ```js
 class Custom {
   get [Symbol.toStringTag]() {
-    return &apos;Custom&apos;;
+    return 'Custom';
   }
 }
 Object.prototype.toString.call(new Custom);
-// → &apos;[object Custom]&apos;
+// → '[object Custom]'
 String(new Custom);
-// → &apos;[object Custom]&apos;
+// → '[object Custom]'
 ```
 
 ## Улучшенный `Math.random()`

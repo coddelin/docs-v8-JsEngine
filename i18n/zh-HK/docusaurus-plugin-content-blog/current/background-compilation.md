@@ -1,13 +1,13 @@
 ---
-title: &apos;背景編譯&apos;
-author: &apos;[Ross McIlroy](https://twitter.com/rossmcilroy)，主執行緒捍衛者&apos;
+title: '背景編譯'
+author: '[Ross McIlroy](https://twitter.com/rossmcilroy)，主執行緒捍衛者'
 avatars:
-  - &apos;ross-mcilroy&apos;
+  - 'ross-mcilroy'
 date: 2018-03-26 13:33:37
 tags:
   - internals
-description: &apos;自 Chrome 66 起，V8 在背景執行緒上編譯 JavaScript 原始碼，減少主執行緒上的編譯時間，對於典型網站來說降低了 5% 到 20%。&apos;
-tweet: &apos;978319362837958657&apos;
+description: '自 Chrome 66 起，V8 在背景執行緒上編譯 JavaScript 原始碼，減少主執行緒上的編譯時間，對於典型網站來說降低了 5% 到 20%。'
+tweet: '978319362837958657'
 ---
 TL;DR: 自 Chrome 66 起，V8 在背景執行緒上編譯 JavaScript 原始碼，減少主執行緒上的編譯時間，對於典型網站來說降低了 5% 到 20%。
 

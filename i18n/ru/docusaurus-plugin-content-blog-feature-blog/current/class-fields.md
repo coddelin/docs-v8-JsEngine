@@ -1,16 +1,16 @@
 ---
-title: &apos;Публичные и приватные поля классов&apos;
-author: &apos;Матиас Биненс ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Публичные и приватные поля классов'
+author: 'Матиас Биненс ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-12-13
 tags:
   - ECMAScript
   - ES2022
   - io19
   - Node.js 14
-description: &apos;Несколько предложений расширяют существующий синтаксис классов JavaScript новыми функциями. В этой статье объясняется новый синтаксис публичных полей классов в V8 v7.2 и Chrome 72, а также предстоящий синтаксис приватных полей классов.&apos;
-tweet: &apos;1121395767170740225&apos;
+description: 'Несколько предложений расширяют существующий синтаксис классов JavaScript новыми функциями. В этой статье объясняется новый синтаксис публичных полей классов в V8 v7.2 и Chrome 72, а также предстоящий синтаксис приватных полей классов.'
+tweet: '1121395767170740225'
 ---
 Несколько предложений расширяют существующий синтаксис классов JavaScript новыми функциями. В этой статье объясняется новый синтаксис публичных полей классов в V8 v7.2 и Chrome 72, а также предстоящий синтаксис приватных полей классов.
 
@@ -19,11 +19,11 @@ tweet: &apos;1121395767170740225&apos;
 ```js
 const counter = new IncreasingCounter();
 counter.value;
-// выводит &apos;Получение текущего значения!&apos;
+// выводит 'Получение текущего значения!'
 // → 0
 counter.increment();
 counter.value;
-// выводит &apos;Получение текущего значения!&apos;
+// выводит 'Получение текущего значения!'
 // → 1
 ```
 
@@ -39,7 +39,7 @@ class IncreasingCounter {
     this._count = 0;
   }
   get value() {
-    console.log(&apos;Получение текущего значения!&apos;);
+    console.log('Получение текущего значения!');
     return this._count;
   }
   increment() {
@@ -54,7 +54,7 @@ class IncreasingCounter {
 ```js
 const counter = new IncreasingCounter();
 counter.value;
-// выводит &apos;Получение текущего значения!&apos;
+// выводит 'Получение текущего значения!'
 // → 0
 
 // Ничто не мешает людям читать или изменять
@@ -63,7 +63,7 @@ counter._count;
 // → 0
 counter._count = 42;
 counter.value;
-// выводит &apos;Получение текущего значения!&apos;
+// выводит 'Получение текущего значения!'
 // → 42
 ```
 
@@ -75,7 +75,7 @@ counter.value;
 class IncreasingCounter {
   _count = 0;
   get value() {
-    console.log(&apos;Получение текущего значения!&apos;);
+    console.log('Получение текущего значения!');
     return this._count;
   }
   increment() {
@@ -96,7 +96,7 @@ class IncreasingCounter {
 class IncreasingCounter {
   #count = 0;
   get value() {
-    console.log(&apos;Получение текущего значения!&apos;);
+    console.log('Получение текущего значения!');
     return this.#count;
   }
   increment() {
@@ -135,7 +135,7 @@ class FakeMath {
   // `random` — статический публичный метод (синтаксис ES2015)
   // который использует `#computeRandomNumber`.
   static random() {
-    console.log(&apos;Я слышал, вы любите случайные числа…&apos;);
+    console.log('Я слышал, вы любите случайные числа…');
     return FakeMath.#computeRandomNumber();
   }
 }
@@ -143,7 +143,7 @@ class FakeMath {
 FakeMath.PI;
 // → 3.142857142857143
 FakeMath.random();
-// выводит &apos;Я слышал, вы любите случайные числа…&apos;
+// выводит 'Я слышал, вы любите случайные числа…'
 // → 4
 FakeMath.#totallyRandomNumber;
 // → SyntaxError
@@ -172,7 +172,7 @@ class Cat extends Animal {
     this.likesBaths = false;
   }
   мяукать() {
-    console.log(&apos;Мяу!&apos;);
+    console.log('Мяу!');
   }
 }
 ```
@@ -183,7 +183,7 @@ class Cat extends Animal {
 class Cat extends Animal {
   likesBaths = false;
   мяукать() {
-    console.log(&apos;Мяу!&apos;);
+    console.log('Мяу!');
   }
 }
 ```

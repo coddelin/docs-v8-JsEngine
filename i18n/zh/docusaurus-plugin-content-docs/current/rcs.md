@@ -1,6 +1,6 @@
 ---
-title: &apos;运行时调用统计&apos;
-description: &apos;本文档解释了如何使用运行时调用统计获取详细的V8内部指标。&apos;
+title: '运行时调用统计'
+description: '本文档解释了如何使用运行时调用统计获取详细的V8内部指标。'
 ---
 [开发者工具性能面板](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/)通过可视化各种Chrome内部指标，提供对您的Web应用运行时性能的深入洞察。然而，某些低级别的V8指标目前并未在开发者工具中展示。本文将指导您通过`chrome://tracing`以最强大的方式收集详细的V8内部指标，称为运行时调用统计或RCS。
 

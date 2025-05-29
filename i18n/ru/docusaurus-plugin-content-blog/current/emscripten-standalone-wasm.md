@@ -1,14 +1,14 @@
 ---
-title: &apos;Вне Интернета: автономные бинарные файлы WebAssembly с использованием Emscripten&apos;
-author: &apos;Алон Закай&apos;
+title: 'Вне Интернета: автономные бинарные файлы WebAssembly с использованием Emscripten'
+author: 'Алон Закай'
 avatars:
-  - &apos;alon-zakai&apos;
+  - 'alon-zakai'
 date: 2019-11-21
 tags:
   - WebAssembly
   - инструменты
-description: &apos;Emscripten теперь поддерживает автономные файлы Wasm, которые не нуждаются в JavaScript.&apos;
-tweet: &apos;1197547645729988608&apos;
+description: 'Emscripten теперь поддерживает автономные файлы Wasm, которые не нуждаются в JavaScript.'
+tweet: '1197547645729988608'
 ---
 Emscripten всегда был ориентирован в первую очередь на компиляцию для использования в Интернете и других средах JavaScript, таких как Node.js. Однако по мере того, как WebAssembly начинает использоваться *без* JavaScript, появляются новые варианты применения, и поэтому мы работаем над поддержкой генерации [**автономных файлов Wasm**](https://github.com/emscripten-core/emscripten/wiki/WebAssembly-Standalone) с помощью Emscripten, которые не зависят от JavaScript-рантайма Emscripten! Этот пост объясняет, почему это интересно.
 
@@ -62,7 +62,7 @@ emcc -O3 add.c -o add.wasm
 
 ```js
 // load-add.js
-const binary = require(&apos;fs&apos;).readFileSync(&apos;add.wasm&apos;);
+const binary = require('fs').readFileSync('add.wasm');
 
 WebAssembly.instantiate(binary).then(({ instance }) => {
   console.log(instance.exports.add(40, 2));

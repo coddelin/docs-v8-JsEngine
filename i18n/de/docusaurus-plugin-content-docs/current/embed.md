@@ -1,6 +1,6 @@
 ---
-title: &apos;Erste Schritte mit der Einbettung von V8&apos;
-description: &apos;Dieses Dokument führt einige wichtige V8-Konzepte ein und bietet ein “Hello World”-Beispiel, um Ihnen den Einstieg in den V8-Code zu erleichtern.&apos;
+title: 'Erste Schritte mit der Einbettung von V8'
+description: 'Dieses Dokument führt einige wichtige V8-Konzepte ein und bietet ein “Hello World”-Beispiel, um Ihnen den Einstieg in den V8-Code zu erleichtern.'
 ---
 Dieses Dokument führt einige wichtige V8-Konzepte ein und bietet ein “Hello World”-Beispiel, um Ihnen den Einstieg in den V8-Code zu erleichtern.
 

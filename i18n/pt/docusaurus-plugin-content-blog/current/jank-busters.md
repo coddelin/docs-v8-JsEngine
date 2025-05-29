@@ -1,13 +1,13 @@
 ---
-title: &apos;Jank Busters Parte Um&apos;
-author: &apos;os caçadores de jank: Jochen Eisinger, Michael Lippautz e Hannes Payer&apos;
+title: 'Jank Busters Parte Um'
+author: 'os caçadores de jank: Jochen Eisinger, Michael Lippautz e Hannes Payer'
 avatars:
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2015-10-30 13:33:37
 tags:
   - memory
-description: &apos;Este artigo discute otimizações implementadas entre o Chrome 41 e o Chrome 46, que reduzem significativamente as pausas de coleta de lixo, resultando em uma melhor experiência do usuário.&apos;
+description: 'Este artigo discute otimizações implementadas entre o Chrome 41 e o Chrome 46, que reduzem significativamente as pausas de coleta de lixo, resultando em uma melhor experiência do usuário.'
 ---
 Jank, ou em outras palavras, engasgos visíveis, pode ser percebido quando o Chrome falha em renderizar um quadro dentro de 16,66 ms (interrompendo o movimento de 60 quadros por segundo). Atualmente, a maior parte do trabalho de coleta de lixo do V8 é realizada na thread principal de renderização, cf. Figura 1, frequentemente resultando em jank quando muitos objetos precisam ser mantidos. Eliminar jank sempre foi uma alta prioridade para a equipe do V8 ([1](https://blog.chromium.org/2011/11/game-changer-for-interactive.html), [2](https://www.youtube.com/watch?v=3vPOlGRH6zk), [3](/blog/free-garbage-collection)). Este artigo discute algumas otimizações implementadas entre o Chrome 41 e o Chrome 46, que reduzem significativamente as pausas de coleta de lixo, resultando em uma melhor experiência do usuário.
 

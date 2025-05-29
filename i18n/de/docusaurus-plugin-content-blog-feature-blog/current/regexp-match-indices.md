@@ -1,14 +1,14 @@
 ---
-title: &apos;RegExp-Match-Indizes&apos;
-author: &apos;Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), regelmäßig neue Features ausdrückend&apos;
+title: 'RegExp-Match-Indizes'
+author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), regelmäßig neue Features ausdrückend'
 avatars:
-  - &apos;maya-armyanova&apos;
+  - 'maya-armyanova'
 date: 2019-12-17
 tags:
   - ECMAScript
   - Node.js 16
-description: &apos;RegExp-Match-Indizes bieten `start`- und `end`-Indizes für jede gefangene Gruppe.&apos;
-tweet: &apos;1206970814400270338&apos;
+description: 'RegExp-Match-Indizes bieten `start`- und `end`-Indizes für jede gefangene Gruppe.'
+tweet: '1206970814400270338'
 ---
 JavaScript ist nun mit einer neuen Verbesserung für reguläre Ausdrücke ausgestattet, genannt „Match-Indizes“. Stellen Sie sich vor, Sie möchten ungültige Variablennamen in JavaScript-Code finden, die mit reservierten Wörtern übereinstimmen, und ein Caret sowie eine „Unterstreichung“ unter dem Variablennamen anzeigen, wie:
 
@@ -26,16 +26,16 @@ function displayError(text, message) {
   const match = text.match(re);
   // Index `1` entspricht der ersten gefangenen Gruppe.
   const [start, end] = match.indices[1];
-  const error = &apos; &apos;.repeat(start) + // Position des Carets anpassen.
-    &apos;^&apos; +
-    &apos;-&apos;.repeat(end - start - 1) +   // Unterstrich hinzufügen.
-    &apos; &apos; + message;                  // Nachricht hinzufügen.
+  const error = ' '.repeat(start) + // Position des Carets anpassen.
+    '^' +
+    '-'.repeat(end - start - 1) +   // Unterstrich hinzufügen.
+    ' ' + message;                  // Nachricht hinzufügen.
   console.log(text);
   console.log(error);
 }
 
-const code = &apos;const function = foo;&apos;; // fehlerhafter Code
-displayError(code, &apos;Ungültiger Variablenname&apos;);
+const code = 'const function = foo;'; // fehlerhafter Code
+displayError(code, 'Ungültiger Variablenname');
 ```
 
 :::note
@@ -61,7 +61,7 @@ Wir möchten dem Programmierer einen Fehler wie folgt anzeigen:
 ```js
 let foo = 1337;
     ^
-SyntaxError: Identifier &apos;foo&apos; wurde bereits deklariert
+SyntaxError: Identifier 'foo' wurde bereits deklariert
 ```
 
 Um dies zu erreichen, benötigen wir einige Bausteine, der erste davon ist die Erkennung von TypeScript-Identifikatoren. Anschließend konzentrieren wir uns darauf, die genaue Position zu ermitteln, an der der Fehler aufgetreten ist. Betrachten wir das folgende Beispiel, in dem ein Regex verwendet wird, um zu überprüfen, ob ein String ein gültiger Identifikator ist:
@@ -110,7 +110,7 @@ function getVariablePosition(source) {
   if (!match) return undefined;
   return match.indices[2];
 }
-getVariablePosition(&apos;let foo&apos;);
+getVariablePosition('let foo');
 // → [4, 7]
 ```
 
@@ -127,7 +127,7 @@ function getVariablePosition(source) {
   if (!match) return -1;
   return match.indices.groups.id;
 }
-getVariablePosition(&apos;let foo&apos;);
+getVariablePosition('let foo');
 ```
 
 ## Unterstützung für RegExp-Abgleich-Indizes

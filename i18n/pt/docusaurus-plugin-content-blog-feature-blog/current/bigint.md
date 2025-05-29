@@ -1,15 +1,15 @@
 ---
-title: &apos;BigInt: inteiros de precisão arbitrária em JavaScript&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'BigInt: inteiros de precisão arbitrária em JavaScript'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-05-01
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: &apos;BigInts são um novo tipo numérico em JavaScript que pode representar inteiros com precisão arbitrária. Este artigo explora alguns casos de uso e explica a nova funcionalidade no Chrome 67, comparando BigInts a Numbers em JavaScript.&apos;
-tweet: &apos;990991035630206977&apos;
+description: 'BigInts são um novo tipo numérico em JavaScript que pode representar inteiros com precisão arbitrária. Este artigo explora alguns casos de uso e explica a nova funcionalidade no Chrome 67, comparando BigInts a Numbers em JavaScript.'
+tweet: '990991035630206977'
 ---
 `BigInt`s são um novo tipo numérico em JavaScript que pode representar inteiros com precisão arbitrária. Com `BigInt`s, você pode armazenar e operar com segurança em grandes inteiros, mesmo além do limite seguro de inteiros para `Number`s. Este artigo explora alguns casos de uso e explica a nova funcionalidade no Chrome 67 comparando `BigInt`s com `Number`s em JavaScript.
 
@@ -240,13 +240,13 @@ A proposta de `BigInt` [altera o comportamento de operadores](#operators) (como 
 Uma solução mais viável e preparada para o futuro é escrever seu código usando [a biblioteca JSBI](https://github.com/GoogleChromeLabs/jsbi#why) por enquanto. JSBI é uma porta JavaScript da implementação de `BigInt` no V8 e Chrome — por design, ela se comporta exatamente como a funcionalidade nativa de `BigInt`. A diferença é que, em vez de depender da sintaxe, ela expõe [uma API](https://github.com/GoogleChromeLabs/jsbi#how):
 
 ```js
-import JSBI from &apos;./jsbi.mjs&apos;;
+import JSBI from './jsbi.mjs';
 
 const max = JSBI.BigInt(Number.MAX_SAFE_INTEGER);
-const two = JSBI.BigInt(&apos;2&apos;);
+const two = JSBI.BigInt('2');
 const result = JSBI.add(max, two);
 console.log(result.toString());
-// → &apos;9007199254740993&apos;
+// → '9007199254740993'
 ```
 
 Quando `BigInt`s forem suportados nativamente em todos os navegadores importantes, você poderá [usar `babel-plugin-transform-jsbi-to-bigint` para transpilar seu código para código nativo de `BigInt`](https://github.com/GoogleChromeLabs/babel-plugin-transform-jsbi-to-bigint) e remover a dependência do JSBI. Por exemplo, o código acima seria transpilado como:
@@ -256,7 +256,7 @@ const max = BigInt(Number.MAX_SAFE_INTEGER);
 const two = 2n;
 const result = max + two;
 console.log(result);
-// → &apos;9007199254740993&apos;
+// → '9007199254740993'
 ```
 
 ## Leituras adicionais

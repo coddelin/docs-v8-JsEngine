@@ -1,15 +1,15 @@
 ---
-title: &apos;V8のメモリ消費を最適化&apos;
-author: &apos;V8のメモリ管理エンジニア、Ulan Degenbaev、Michael Lippautz、Hannes Payer、そしてToon Verwaest&apos;
+title: 'V8のメモリ消費を最適化'
+author: 'V8のメモリ管理エンジニア、Ulan Degenbaev、Michael Lippautz、Hannes Payer、そしてToon Verwaest'
 avatars:
-  - &apos;ulan-degenbaev&apos;
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'ulan-degenbaev'
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2016-10-07 13:33:37
 tags:
   - メモリ
   - ベンチマーク
-description: &apos;V8チームは、近代的なウェブ開発パターンの代表とされる複数のウェブサイトのメモリフットプリントを分析し、大幅に削減しました。&apos;
+description: 'V8チームは、近代的なウェブ開発パターンの代表とされる複数のウェブサイトのメモリフットプリントを分析し、大幅に削減しました。'
 ---
 メモリ消費は、JavaScript仮想マシンのパフォーマンストレードオフ空間において重要な次元となります。過去数か月間、V8チームは近代的なウェブ開発パターンの代表とされる複数のウェブサイトのメモリフットプリントを分析し、大幅に削減しました。このブログ記事では、分析に使用したワークロードとツールを紹介し、ガーベッジコレクタにおけるメモリ最適化の概要を述べ、さらにV8のパーサーとコンパイラーで使用されるメモリの削減方法を示します。
 

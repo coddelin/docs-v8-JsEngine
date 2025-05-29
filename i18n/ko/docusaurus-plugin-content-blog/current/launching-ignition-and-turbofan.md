@@ -1,10 +1,10 @@
 ---
-title: &apos;Ignition과 TurboFan 출시&apos;
-author: &apos;V8 팀&apos;
+title: 'Ignition과 TurboFan 출시'
+author: 'V8 팀'
 date: 2017-05-15 13:33:37
 tags:
   - internals
-description: &apos;V8 v5.9는 Ignition 인터프리터와 TurboFan 최적화 컴파일러를 기반으로 한 완전히 새로운 JavaScript 실행 파이프라인을 제공합니다.&apos;
+description: 'V8 v5.9는 Ignition 인터프리터와 TurboFan 최적화 컴파일러를 기반으로 한 완전히 새로운 JavaScript 실행 파이프라인을 제공합니다.'
 ---
 오늘 우리는 Chrome v59의 안정 버전에 도달할 V8 v5.9에 대한 새로운 JavaScript 실행 파이프라인 출시를 발표하게 되어 기쁩니다. 새 파이프라인을 통해 실제 JavaScript 애플리케이션에서 대규모 성능 향상과 상당한 메모리 절약을 이룰 수 있습니다. 이 게시물 끝부분에서 숫자에 대해 자세히 논의하겠지만 먼저 파이프라인 자체를 살펴보겠습니다.
 

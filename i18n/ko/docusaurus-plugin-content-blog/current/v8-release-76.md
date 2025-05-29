@@ -66,12 +66,12 @@ V8 v7.5까지 JSON 파서는 들어오는 JSON 데이터의 중첩 깊이에 비
 ```js
 const nf = new Intl.NumberFormat('fr');
 nf.format(12345678901234567890n); // 🚀
-// → &apos;12345 678 901 234 567 890&apos;
+// → '12345 678 901 234 567 890'
 nf.formatToParts(123456n); // 🚀
 // → [
-// →   { type: &apos;integer&apos;, value: &apos;123&apos; },
-// →   { type: &apos;group&apos;, value: &apos; &apos; },
-// →   { type: &apos;integer&apos;, value: &apos;456&apos; }
+// →   { type: 'integer', value: '123' },
+// →   { type: 'group', value: ' ' },
+// →   { type: 'integer', value: '456' }
 // → ]
 ```
 
@@ -80,38 +80,38 @@ nf.formatToParts(123456n); // 🚀
 앱은 호텔 예약, 서비스 청구 주기, 음악 축제와 같은 이벤트 기간을 나타내기 위해 날짜 간격 또는 날짜 범위를 자주 표시합니다. `Intl.DateTimeFormat` API는 이제 로캘별 방식으로 날짜 범위를 편리하게 형식화할 수 있는 `formatRange` 및 `formatRangeToParts` 메서드를 지원합니다.
 
 ```js
-const start = new Date(&apos;2019-05-07T09:20:00&apos;);
-// → &apos;2019년 5월 7일&apos;
-const end = new Date(&apos;2019-05-09T16:00:00&apos;);
-// → &apos;2019년 5월 9일&apos;
-const fmt = new Intl.DateTimeFormat(&apos;en&apos;, {
-  year: &apos;numeric&apos;,
-  month: &apos;long&apos;,
-  day: &apos;numeric&apos;,
+const start = new Date('2019-05-07T09:20:00');
+// → '2019년 5월 7일'
+const end = new Date('2019-05-09T16:00:00');
+// → '2019년 5월 9일'
+const fmt = new Intl.DateTimeFormat('en', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
 });
 const output = fmt.formatRange(start, end);
-// → &apos;2019년 5월 7일 – 9일&apos;
+// → '2019년 5월 7일 – 9일'
 const parts = fmt.formatRangeToParts(start, end);
 // → [
-// →   { &apos;type&apos;: &apos;month&apos;,   &apos;value&apos;: &apos;May&apos;,  &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;literal&apos;, &apos;value&apos;: &apos; &apos;,    &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;day&apos;,     &apos;value&apos;: &apos;7&apos;,    &apos;source&apos;: &apos;startRange&apos; },
-// →   { &apos;type&apos;: &apos;literal&apos;, &apos;value&apos;: &apos; – &apos;,  &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;day&apos;,     &apos;value&apos;: &apos;9&apos;,    &apos;source&apos;: &apos;endRange&apos; },
-// →   { &apos;type&apos;: &apos;literal&apos;, &apos;value&apos;: &apos;, &apos;,   &apos;source&apos;: &apos;shared&apos; },
-// →   { &apos;type&apos;: &apos;year&apos;,    &apos;value&apos;: &apos;2019&apos;, &apos;source&apos;: &apos;shared&apos; },
+// →   { 'type': 'month',   'value': 'May',  'source': 'shared' },
+// →   { 'type': 'literal', 'value': ' ',    'source': 'shared' },
+// →   { 'type': 'day',     'value': '7',    'source': 'startRange' },
+// →   { 'type': 'literal', 'value': ' – ',  'source': 'shared' },
+// →   { 'type': 'day',     'value': '9',    'source': 'endRange' },
+// →   { 'type': 'literal', 'value': ', ',   'source': 'shared' },
+// →   { 'type': 'year',    'value': '2019', 'source': 'shared' },
 // → ]
 ```
 
 추가적으로, `format`, `formatToParts`, `formatRangeToParts` 메서드는 이제 새로운 `timeStyle` 및 `dateStyle` 옵션을 지원합니다:
 
 ```js
-const dtf = new Intl.DateTimeFormat(&apos;de&apos;, {
-  timeStyle: &apos;medium&apos;,
-  dateStyle: &apos;short&apos;
+const dtf = new Intl.DateTimeFormat('de', {
+  timeStyle: 'medium',
+  dateStyle: 'short'
 });
 dtf.format(Date.now());
-// → &apos;19.06.19, 13:33:37&apos;
+// → '19.06.19, 13:33:37'
 ```
 
 ## 네이티브 스택 탐색

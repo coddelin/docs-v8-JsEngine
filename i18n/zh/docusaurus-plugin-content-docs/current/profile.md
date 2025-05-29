@@ -115,7 +115,7 @@ $V8_PATH/tools/linux-tick-processor --preprocess > v8.json
 但是，如果你希望代码在所有浏览器上运行得更快呢？你应该首先**了解是什么使你的CPU保持繁忙**。使用以下命令行参数运行Chrome（Windows和Linux [Canary](https://tools.google.com/dlpage/chromesxs)），它会为你指定的URL输出分析器的tick信息（在`v8.log`文件中），在我们的示例中是一个没有使用Web Worker的本地版本Mandelbrot演示：
 
 ```bash
-./chrome --js-flags=&apos;--prof&apos; --no-sandbox &apos;http://localhost:8080/&apos;
+./chrome --js-flags='--prof' --no-sandbox 'http://localhost:8080/'
 ```
 
 准备测试案例时，请确保加载后立即开始工作，并在计算完成后关闭Chrome（按Alt+F4），这样日志文件中只有你关心的ticks。此外，请注意使用这种技术尚不能正确分析Web Worker。

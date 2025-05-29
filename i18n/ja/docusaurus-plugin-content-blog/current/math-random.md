@@ -1,13 +1,13 @@
 ---
-title: &apos;`Math.random()`には`Math.random()`だけではない&apos;
-author: &apos;ヤン・グオ ([@hashseed](https://twitter.com/hashseed))、ソフトウェアエンジニア兼サイコロデザイナー&apos;
+title: '`Math.random()`には`Math.random()`だけではない'
+author: 'ヤン・グオ ([@hashseed](https://twitter.com/hashseed))、ソフトウェアエンジニア兼サイコロデザイナー'
 avatars:
-  - &apos;yang-guo&apos;
+  - 'yang-guo'
 date: 2015-12-17 13:33:37
 tags:
   - ECMAScript
   - 内部構造
-description: &apos;V8のMath.random実装は、以前のMWC1616実装に比べてランダム性を向上させるxorshift128+というアルゴリズムを採用しました。&apos;
+description: 'V8のMath.random実装は、以前のMWC1616実装に比べてランダム性を向上させるxorshift128+というアルゴリズムを採用しました。'
 ---
 > `Math.random()`は引数を取らず、0以上1未満の正の符号を持つ`Number`値をランダムまたは擬似ランダムにほぼ均等分布で返します。この関数は実装依存のアルゴリズムまたは戦略を使用します。
 

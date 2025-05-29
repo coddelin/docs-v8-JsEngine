@@ -1,11 +1,11 @@
 ---
-title: &apos;WebAssembly 尾部呼び出し&apos;
-author: &apos;Thibaud Michaud, Thomas Lively&apos;
+title: 'WebAssembly 尾部呼び出し'
+author: 'Thibaud Michaud, Thomas Lively'
 date: 2023-04-06
 tags:
   - WebAssembly
-description: &apos;このドキュメントは、WebAssembly の尾部呼び出し提案について説明し、いくつかの例を使用してそれを示しています。&apos;
-tweet: &apos;1644077795059044353&apos;
+description: 'このドキュメントは、WebAssembly の尾部呼び出し提案について説明し、いくつかの例を使用してそれを示しています。'
+tweet: '1644077795059044353'
 ---
 V8 v11.2でWebAssemblyの尾部呼び出しをリリースします！この記事では、この提案の概要を簡単に説明し、EmscriptenでのC++コルーチンの興味深い使用例を示し、V8が尾部呼び出しを内部でどのように処理するかを紹介します。
 

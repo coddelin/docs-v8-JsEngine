@@ -1,13 +1,13 @@
 ---
-title: &apos;Raízes Estáticas: Objetos com Endereços Constantes em Tempo de Compilação&apos;
-author: &apos;Olivier Flückiger&apos;
+title: 'Raízes Estáticas: Objetos com Endereços Constantes em Tempo de Compilação'
+author: 'Olivier Flückiger'
 avatars:
   - olivier-flueckiger
 date: 2024-02-05
 tags:
   - JavaScript
 description: "Raízes Estáticas tornam os endereços de certos objetos JS constantes em tempo de compilação."
-tweet: &apos;&apos;
+tweet: ''
 ---
 
 Você já se perguntou de onde vêm `undefined`, `true` e outros objetos principais do JavaScript? Esses objetos são os átomos de qualquer objeto definido por usuário e precisam estar presentes primeiro. O V8 os chama de raízes imutáveis e imovíveis e eles vivem em seu próprio heap – o heap somente leitura. Como eles são usados constantemente, o acesso rápido é crucial. E o que poderia ser mais rápido do que adivinhar corretamente seu endereço de memória em tempo de compilação?

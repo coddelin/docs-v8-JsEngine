@@ -1,10 +1,10 @@
 ---
-title: &apos;V8-Version v4.7&apos;
-author: &apos;das V8-Team&apos;
+title: 'V8-Version v4.7'
+author: 'das V8-Team'
 date: 2015-10-14 13:33:37
 tags:
   - Version
-description: &apos;V8 v4.7 kommt mit reduziertem Speicherverbrauch und Unterstützung für neue ES2015 Sprachfunktionen.&apos;
+description: 'V8 v4.7 kommt mit reduziertem Speicherverbrauch und Unterstützung für neue ES2015 Sprachfunktionen.'
 ---
 Etwa alle sechs Wochen erstellen wir einen neuen V8-Zweig im Rahmen unseres [Release-Prozesses](https://v8.dev/docs/release-process). Jede Version wird direkt vor der Chrome-Verzweigung für einen Chrome-Beta-Meilenstein aus dem Git-Master von V8 verzweigt. Heute freuen wir uns, unseren neuesten Zweig anzukündigen, [V8 Version 4.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.7), der sich in der Beta-Phase befindet, bis er zusammen mit Chrome 47 Stable veröffentlicht wird. V8 v4.7 ist voll mit allerlei Entwicklerproblemen, und wir möchten Ihnen einige Highlights bei der Vorfreude auf die Veröffentlichung in einigen Wochen vorstellen.
 
@@ -19,12 +19,12 @@ Der [Rest-Operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Referen
 // Ohne Rest-Operator
 function concat() {
   var args = Array.prototype.slice.call(arguments, 1);
-  return args.join(&apos;&apos;);
+  return args.join('');
 }
 
 // Mit Rest-Operator
 function concatWithRest(...strings) {
-  return strings.join(&apos;&apos;);
+  return strings.join('');
 }
 ```
 
@@ -36,8 +36,8 @@ function concatWithRest(...strings) {
 
 ```js
 [1, 2, 3].includes(3); // true
-[&apos;apfel&apos;, &apos;banane&apos;, &apos;kirsche&apos;].includes(&apos;apfel&apos;); // true
-[&apos;apfel&apos;, &apos;banane&apos;, &apos;kirsche&apos;].includes(&apos;pfrisch&apos;); // false
+['apfel', 'banane', 'kirsche'].includes('apfel'); // true
+['apfel', 'banane', 'kirsche'].includes('pfrisch'); // false
 ```
 
 ## Verminderung des Speicherverbrauchs beim Parsen

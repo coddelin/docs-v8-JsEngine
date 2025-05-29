@@ -1,7 +1,7 @@
 ---
-title: &apos;Die V8 Sandbox&apos;
-description: &apos;V8 bietet eine leichtgewichtige, prozessinterne Sandbox, um die Auswirkungen von Speicherbeschädigungsfehlern zu begrenzen&apos;
-author: &apos;Samuel Groß&apos;
+title: 'Die V8 Sandbox'
+description: 'V8 bietet eine leichtgewichtige, prozessinterne Sandbox, um die Auswirkungen von Speicherbeschädigungsfehlern zu begrenzen'
+author: 'Samuel Groß'
 avatars:
   - samuel-gross
 date: 2024-04-04
@@ -118,7 +118,7 @@ std::vector<std::string> JSObject::GetPropertyNames() {
 
 Dieser Code macht die (vernünftige) Annahme, dass die Anzahl der direkt in einem JSObject gespeicherten Eigenschaften kleiner sein muss als die Gesamtzahl der Eigenschaften dieses Objekts. Wenn diese Zahlen jedoch einfach irgendwo im JSObject als Ganzzahlen gespeichert werden, könnte ein Angreifer eine davon korrumpieren, um dieses Invariante zu brechen. Anschließend würde der Zugriff auf die (Außerhalb-Sandbox-) `std::vector` aus den Grenzen laufen. Das Hinzufügen einer expliziten Grenzprüfung, beispielsweise mit einem [`SBXCHECK`](https://chromium.googlesource.com/v8/v8.git/+/0deeaf5f593b98d6a6a2bb64e3f71d39314c727c), würde dies beheben.
 
-Erfreulicherweise sind die bisher entdeckten „Sandbox-Verletzungen“ nahezu alle wie diese: triviale (1. Ordnung) Speicherbeschädigungsfehler wie Use-After-Free oder Out-of-Bounds-Zugriffe aufgrund fehlender Grenzprüfung. Im Gegensatz zu den Schwachstellen 2. Ordnung, die typischerweise in V8 zu finden sind, könnten diese Sandbox-Fehler tatsächlich durch die zuvor diskutierten Ansätze verhindert oder abgeschwächt werden. Tatsächlich wäre der obige spezielle Fehler bereits heute abgeschwächt aufgrund der [Hardening von Chrome&apos;s libc++](http://issues.chromium.org/issues/40228527). Daher besteht die Hoffnung, dass die Sandbox langfristig eine **besser verteidigbare Sicherheitsgrenze** wird als V8 selbst. Obwohl die derzeit verfügbare Datensatz von Sandbox-Fehlern sehr begrenzt ist, wird die heute gestartete VRP-Integration hoffentlich ein klareres Bild der Art von Schwachstellen liefern, die auf der Angriffsfläche der Sandbox auftreten.
+Erfreulicherweise sind die bisher entdeckten „Sandbox-Verletzungen“ nahezu alle wie diese: triviale (1. Ordnung) Speicherbeschädigungsfehler wie Use-After-Free oder Out-of-Bounds-Zugriffe aufgrund fehlender Grenzprüfung. Im Gegensatz zu den Schwachstellen 2. Ordnung, die typischerweise in V8 zu finden sind, könnten diese Sandbox-Fehler tatsächlich durch die zuvor diskutierten Ansätze verhindert oder abgeschwächt werden. Tatsächlich wäre der obige spezielle Fehler bereits heute abgeschwächt aufgrund der [Hardening von Chrome's libc++](http://issues.chromium.org/issues/40228527). Daher besteht die Hoffnung, dass die Sandbox langfristig eine **besser verteidigbare Sicherheitsgrenze** wird als V8 selbst. Obwohl die derzeit verfügbare Datensatz von Sandbox-Fehlern sehr begrenzt ist, wird die heute gestartete VRP-Integration hoffentlich ein klareres Bild der Art von Schwachstellen liefern, die auf der Angriffsfläche der Sandbox auftreten.
 
 ## Leistung
 

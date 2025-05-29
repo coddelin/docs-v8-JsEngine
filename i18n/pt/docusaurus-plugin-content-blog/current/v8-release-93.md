@@ -1,13 +1,13 @@
 ---
-title: &apos;Lançamento do V8 v9.3&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))&apos;
+title: 'Lançamento do V8 v9.3'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
 avatars:
- - &apos;ingvar-stepanyan&apos;
+ - 'ingvar-stepanyan'
 date: 2021-08-09
 tags:
  - lançamento
-description: &apos;O lançamento do V8 v9.3 traz suporte a Object.hasOwn e causas de erro, melhora o desempenho da compilação e desativa as mitigações de geração de código não confiável no Android.&apos;
-tweet: &apos;&apos;
+description: 'O lançamento do V8 v9.3 traz suporte a Object.hasOwn e causas de erro, melhora o desempenho da compilação e desativa as mitigações de geração de código não confiável no Android.'
+tweet: ''
 ---
 A cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](https://v8.dev/docs/release-process). Cada versão é ramificada a partir do branch principal do Git do V8 imediatamente antes de um marco beta do Chrome. Hoje estamos felizes em anunciar nosso mais novo branch, [V8 versão 9.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.3), que está em beta até seu lançamento em coordenação com o Chrome 93 Stable em algumas semanas. O V8 v9.3 está repleto de muitas novidades voltadas para desenvolvedores. Este post oferece um preview de alguns destaques em antecipação ao lançamento.
 
@@ -29,7 +29,7 @@ A compilação em lote reduz o tempo geral de compilação (Ignition + Sparkplug
 Por exemplo:
 
 ```javascript
-Object.hasOwn({ prop: 42 }, &apos;prop&apos;)
+Object.hasOwn({ prop: 42 }, 'prop')
 // → true
 ```
 
@@ -42,8 +42,8 @@ A partir da v9.3, os vários construtores embutidos de `Error` são estendidos p
 Por exemplo:
 
 ```javascript
-const parentError = new Error(&apos;parent&apos;);
-const error = new Error(&apos;parent&apos;, { cause: parentError });
+const parentError = new Error('parent');
+const error = new Error('parent', { cause: parentError });
 console.log(error.cause === parentError);
 // → true
 ```

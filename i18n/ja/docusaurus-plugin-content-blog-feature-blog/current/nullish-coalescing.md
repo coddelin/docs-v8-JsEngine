@@ -1,21 +1,21 @@
 ---
-title: &apos;ヌリッシュ合体&apos;
-author: &apos;ジャスティン・リッジウェル&apos;
+title: 'ヌリッシュ合体'
+author: 'ジャスティン・リッジウェル'
 avatars:
-  - &apos;justin-ridgewell&apos;
+  - 'justin-ridgewell'
 date: 2019-09-17
 tags:
   - ECMAScript
   - ES2020
-description: &apos;JavaScriptのヌリッシュ合体演算子は、より安全なデフォルト式を可能にします。&apos;
-tweet: &apos;1173971116865523714&apos;
+description: 'JavaScriptのヌリッシュ合体演算子は、より安全なデフォルト式を可能にします。'
+tweet: '1173971116865523714'
 ---
 ヌリッシュ合体提案 [nullish coalescing proposal](https://github.com/tc39/proposal-nullish-coalescing/) (`??`) は、デフォルト値を処理するために設計された新しいショートサーキット演算子を追加します。
 
 既に他のショートサーキット演算子 `&&` と `||` に慣れているかもしれません。これらの両演算子は「truthy」と「falsy」の値を扱います。コード例 `lhs && rhs` を想像してください。もし `lhs` (左辺) が falsy なら、式は `lhs` を評価します。それ以外の場合、式は `rhs` (右辺) を評価します。コード例 `lhs || rhs` の場合、その逆が真となります。もし `lhs` が truthy なら、式は `lhs` を評価します。それ以外の場合、式は `rhs` を評価します。
 
 <!--truncate-->
-では、「truthy」と「falsy」とは具体的に何を意味するのでしょうか? スペックの用語では、これらは [`ToBoolean`](https://tc39.es/ecma262/#sec-toboolean) 抽象操作に相当します。通常のJavaScript開発者にとっては、**すべての値**がtruthyですが、一部のfalsy値には`undefined`、`null`、`false`、`0`、`NaN`、空文字列`&apos;&apos;`が含まれます。（技術的には`document.all`に関連する値もfalsyですが、それについては後ほど触れます。）
+では、「truthy」と「falsy」とは具体的に何を意味するのでしょうか? スペックの用語では、これらは [`ToBoolean`](https://tc39.es/ecma262/#sec-toboolean) 抽象操作に相当します。通常のJavaScript開発者にとっては、**すべての値**がtruthyですが、一部のfalsy値には`undefined`、`null`、`false`、`0`、`NaN`、空文字列`''`が含まれます。（技術的には`document.all`に関連する値もfalsyですが、それについては後ほど触れます。）
 
 では、`&&`および`||`の問題点は何でしょうか？そして、なぜ新しいヌリッシュ合体演算子が必要なのでしょうか？それはtruthyとfalsyの定義がすべてのシナリオに適合せず、これがバグにつながるためです。以下を想像してください。
 
@@ -37,7 +37,7 @@ function Component(props) {
 }
 ```
 
-この種のバグはすべてのfalsy値で頻繁に発生します。これが非常に簡単にオプションの文字列（空文字列`&apos;&apos;`が有効な入力と見なされる場合）やオプションの数値（`0`が有効な入力と見なされる場合）に関連する場合があるのです。この問題があまりにも一般的であるため、このようなデフォルト値割り当てを処理するためにヌリッシュ合体演算子を導入しています。
+この種のバグはすべてのfalsy値で頻繁に発生します。これが非常に簡単にオプションの文字列（空文字列`''`が有効な入力と見なされる場合）やオプションの数値（`0`が有効な入力と見なされる場合）に関連する場合があるのです。この問題があまりにも一般的であるため、このようなデフォルト値割り当てを処理するためにヌリッシュ合体演算子を導入しています。
 
 ```js
 function Component(props) {
@@ -48,12 +48,12 @@ function Component(props) {
 
 ヌリッシュ合体演算子（`??`）は`||`演算子に非常に似ていますが、演算子を評価する際に「truthy」を使用しません。その代わりに「nullish」の定義、つまり「値が`null`または`undefined`と厳密に等しいか」を使用します。式`lhs ?? rhs`を想像してください。もし`lhs`がnullishでないなら、式は`lhs`を評価します。それ以外の場合、式は`rhs`を評価します。
 
-具体的には、`false`、`0`、`NaN`、空文字列`&apos;&apos;`はすべてfalsy値であるがnullishではありません。そのようなfalsyであるがnullishでない値が`lhs ?? rhs`の左辺である場合、式は右辺ではなくそれらを評価します。バグを撃退！
+具体的には、`false`、`0`、`NaN`、空文字列`''`はすべてfalsy値であるがnullishではありません。そのようなfalsyであるがnullishでない値が`lhs ?? rhs`の左辺である場合、式は右辺ではなくそれらを評価します。バグを撃退！
 
 ```js
 false ?? true;   // => false
 0 ?? 1;          // => 0
-&apos;&apos; ?? &apos;default&apos;; // => &apos;&apos;
+'' ?? 'default'; // => ''
 
 null ?? [];      // => []
 undefined ?? []; // => []
@@ -78,13 +78,13 @@ function Component(props) {
 
 ```js
 // 簡潔なヌリッシュ合体
-const link = document.querySelector(&apos;link&apos;) ?? document.createElement(&apos;link&apos;);
+const link = document.querySelector('link') ?? document.createElement('link');
 
 // デフォルトのアサインメント構文でボイラープレート
 const {
-  link = document.createElement(&apos;link&apos;),
+  link = document.createElement('link'),
 } = {
-  link: document.querySelector(&apos;link&apos;) || undefined
+  link: document.querySelector('link') || undefined
 };
 ```
 
@@ -92,11 +92,11 @@ const {
 
 ```js
 // Optional chainingとnullish coalescingの組み合わせ
-const link = obj.deep?.container.link ?? document.createElement(&apos;link&apos;);
+const link = obj.deep?.container.link ?? document.createElement('link');
 
 // Optional chainingを使用したデフォルトの分割代入
 const {
-  link = document.createElement(&apos;link&apos;),
+  link = document.createElement('link'),
 } = (obj.deep?.container || {});
 ```
 

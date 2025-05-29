@@ -1,45 +1,45 @@
 ---
-title: &apos;Présentation de l&apos;API d&apos;intégration des Promises JavaScript WebAssembly&apos;
-description: &apos;Ce document présente JSPI et fournit quelques exemples simples pour vous aider à commencer à l&apos;utiliser&apos;
-author: &apos;Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl&apos;
+title: 'Présentation de l'API d'intégration des Promises JavaScript WebAssembly'
+description: 'Ce document présente JSPI et fournit quelques exemples simples pour vous aider à commencer à l'utiliser'
+author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
 date: 2024-07-01
 tags:
   - WebAssembly
 ---
-L&apos;API d&apos;intégration des Promises JavaScript (JSPI) permet aux applications WebAssembly écrites en supposant un accès _synchronisé_ à des fonctionnalités externes de fonctionner sans heurt dans un environnement où ces fonctionnalités sont en réalité _asynchrones_.
+L'API d'intégration des Promises JavaScript (JSPI) permet aux applications WebAssembly écrites en supposant un accès _synchronisé_ à des fonctionnalités externes de fonctionner sans heurt dans un environnement où ces fonctionnalités sont en réalité _asynchrones_.
 
 <!--truncate-->
-Cette note décrit les capacités principales de l&apos;API JSPI, comment y accéder, comment développer des logiciels pour elle, et propose quelques exemples à essayer.
+Cette note décrit les capacités principales de l'API JSPI, comment y accéder, comment développer des logiciels pour elle, et propose quelques exemples à essayer.
 
 ## À quoi sert le ‘JSPI’ ?
 
-Les APIs asynchrones fonctionnent en séparant l&apos;_initiation_ d&apos;une opération de sa _résolution_, cette dernière arrivant quelque temps après la première. Plus important encore, l&apos;application poursuit son exécution après avoir lancé l&apos;opération et est ensuite notifiée une fois que l&apos;opération est terminée.
+Les APIs asynchrones fonctionnent en séparant l'_initiation_ d'une opération de sa _résolution_, cette dernière arrivant quelque temps après la première. Plus important encore, l'application poursuit son exécution après avoir lancé l'opération et est ensuite notifiée une fois que l'opération est terminée.
 
-Par exemple, en utilisant l&apos;API `fetch`, les applications Web peuvent accéder aux contenus associés à une URL. Cependant, la fonction `fetch` ne retourne pas directement les résultats de la requête ; elle retourne plutôt un objet `Promise`. La connexion entre la réponse de la requête HTTP et la demande originale est rétablie en attachant une _callback_ à cet objet `Promise`. La fonction callback peut inspecter la réponse et collecter les données (si elles sont disponibles, bien sûr).
+Par exemple, en utilisant l'API `fetch`, les applications Web peuvent accéder aux contenus associés à une URL. Cependant, la fonction `fetch` ne retourne pas directement les résultats de la requête ; elle retourne plutôt un objet `Promise`. La connexion entre la réponse de la requête HTTP et la demande originale est rétablie en attachant une _callback_ à cet objet `Promise`. La fonction callback peut inspecter la réponse et collecter les données (si elles sont disponibles, bien sûr).
 
-Dans de nombreux cas, les applications en C/C++ (et dans de nombreux autres langages) sont initialement écrites en utilisant des APIs _synchrones_. Par exemple, la fonction Posix `read` ne termine pas tant que l&apos;opération d&apos;entrée-sortie n&apos;est pas terminée : la fonction `read` *bloque* jusqu&apos;à ce que la lecture soit terminée.
+Dans de nombreux cas, les applications en C/C++ (et dans de nombreux autres langages) sont initialement écrites en utilisant des APIs _synchrones_. Par exemple, la fonction Posix `read` ne termine pas tant que l'opération d'entrée-sortie n'est pas terminée : la fonction `read` *bloque* jusqu'à ce que la lecture soit terminée.
 
-Cependant, il n&apos;est pas permis de bloquer le thread principal du navigateur ; et de nombreux environnements ne soutiennent pas la programmation synchrone. Le résultat est un décalage entre le désir des programmeurs d&apos;applications d&apos;avoir une API simple à utiliser et l&apos;écosystème plus large qui exige que les entrées-sorties soient conçues avec du code asynchrone. Cela pose particulièrement problème pour des applications existantes (legacy) qui seraient coûteuses à porter.
+Cependant, il n'est pas permis de bloquer le thread principal du navigateur ; et de nombreux environnements ne soutiennent pas la programmation synchrone. Le résultat est un décalage entre le désir des programmeurs d'applications d'avoir une API simple à utiliser et l'écosystème plus large qui exige que les entrées-sorties soient conçues avec du code asynchrone. Cela pose particulièrement problème pour des applications existantes (legacy) qui seraient coûteuses à porter.
 
-Le JSPI est une API qui comble le fossé entre les applications synchrones et les APIs Web asynchrones. Il fonctionne en interceptant les objets `Promise` retournés par les fonctions des APIs Web asynchrones et en _suspendant_ l&apos;application WebAssembly. Lorsque l&apos;opération d&apos;E/S asynchrone est terminée, l&apos;application WebAssembly est _repris_. Cela permet à l&apos;application WebAssembly d&apos;utiliser un code linéaire pour effectuer des opérations asynchrones et traiter leurs résultats.
+Le JSPI est une API qui comble le fossé entre les applications synchrones et les APIs Web asynchrones. Il fonctionne en interceptant les objets `Promise` retournés par les fonctions des APIs Web asynchrones et en _suspendant_ l'application WebAssembly. Lorsque l'opération d'E/S asynchrone est terminée, l'application WebAssembly est _repris_. Cela permet à l'application WebAssembly d'utiliser un code linéaire pour effectuer des opérations asynchrones et traiter leurs résultats.
 
-Essentiellement, l&apos;utilisation du JSPI nécessite très peu de modifications de l&apos;application WebAssembly elle-même.
+Essentiellement, l'utilisation du JSPI nécessite très peu de modifications de l'application WebAssembly elle-même.
 
 ### Comment fonctionne le JSPI ?
 
-Le JSPI fonctionne en interceptant l&apos;objet `Promise` retourné par des appels en JavaScript et en suspendant la logique principale de l&apos;application WebAssembly. Une callback est attachée à cet objet `Promise`, et cette callback reprendra le code WebAssembly suspendu lorsqu&apos;elle sera activée par le gestionnaire de tâches de boucle d&apos;événements du navigateur.
+Le JSPI fonctionne en interceptant l'objet `Promise` retourné par des appels en JavaScript et en suspendant la logique principale de l'application WebAssembly. Une callback est attachée à cet objet `Promise`, et cette callback reprendra le code WebAssembly suspendu lorsqu'elle sera activée par le gestionnaire de tâches de boucle d'événements du navigateur.
 
-En outre, l&apos;export WebAssembly est restructuré pour retourner un objet `Promise` &mdash; au lieu de la valeur originale retournée par l&apos;export. Cet objet `Promise` devient la valeur retournée par l&apos;application WebAssembly : lorsque le code WebAssembly est suspendu,[^first] l&apos;objet `Promise` d&apos;export est retourné comme la valeur de l&apos;appel vers WebAssembly.
+En outre, l'export WebAssembly est restructuré pour retourner un objet `Promise` &mdash; au lieu de la valeur originale retournée par l'export. Cet objet `Promise` devient la valeur retournée par l'application WebAssembly : lorsque le code WebAssembly est suspendu,[^first] l'objet `Promise` d'export est retourné comme la valeur de l'appel vers WebAssembly.
 
-[^first]: Si une application WebAssembly est suspendue plusieurs fois, les suspensions suivantes reviendront à la boucle d&apos;événements du navigateur et ne seront pas directement visibles par l&apos;application Web.
+[^first]: Si une application WebAssembly est suspendue plusieurs fois, les suspensions suivantes reviendront à la boucle d'événements du navigateur et ne seront pas directement visibles par l'application Web.
 
-Le `Promise` d&apos;export est résolu lorsque l&apos;appel initial est terminé : si la fonction WebAssembly originale retourne une valeur normale, l&apos;objet `Promise` d&apos;export est résolu avec cette valeur (convertie en un objet JavaScript) ; si une exception est levée, alors le `Promise` d&apos;export est rejeté.
+Le `Promise` d'export est résolu lorsque l'appel initial est terminé : si la fonction WebAssembly originale retourne une valeur normale, l'objet `Promise` d'export est résolu avec cette valeur (convertie en un objet JavaScript) ; si une exception est levée, alors le `Promise` d'export est rejeté.
 
 #### Envelopper les imports et exports
 
-Cela est activé en _enveloppant_ les imports et exports lors de la phase d&apos;instanciation du module WebAssembly. Les enveloppes de fonction ajoutent le comportement de suspension aux imports asynchrones habituels et routent les suspensions vers les callbacks d&apos;objets `Promise`.
+Cela est activé en _enveloppant_ les imports et exports lors de la phase d'instanciation du module WebAssembly. Les enveloppes de fonction ajoutent le comportement de suspension aux imports asynchrones habituels et routent les suspensions vers les callbacks d'objets `Promise`.
 
-Il n&apos;est pas nécessaire d&apos;envelopper tous les exports et imports d&apos;un module WebAssembly. Certains exports dont les chemins d&apos;exécution n&apos;impliquent pas d&apos;appels d&apos;APIs asynchrones sont mieux laissés non enveloppés. De même, tous les imports d&apos;un module WebAssembly ne se réfèrent pas à des fonctions d&apos;APIs asynchrones ; ces imports aussi ne doivent pas être enveloppés.
+Il n'est pas nécessaire d'envelopper tous les exports et imports d'un module WebAssembly. Certains exports dont les chemins d'exécution n'impliquent pas d'appels d'APIs asynchrones sont mieux laissés non enveloppés. De même, tous les imports d'un module WebAssembly ne se réfèrent pas à des fonctions d'APIs asynchrones ; ces imports aussi ne doivent pas être enveloppés.
 
 Bien sûr, il y a un mécanisme interne significatif qui permet cela ;[^1] mais ni le langage JavaScript ni WebAssembly lui-même ne sont modifiés par le JSPI. Ses opérations sont confinées à la frontière entre JavaScript et WebAssembly.
 
@@ -158,16 +158,16 @@ L'option `-Wl,--import-memory` que nous avons ajoutée à la construction de `p4
 Pour charger dynamiquement du code, nous utilisons l'API standard `WebAssembly.instantiateStreaming` :
 
 ```js
-WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;));
+WebAssembly.instantiateStreaming(fetch('p42.wasm'));
 ```
 
 Cette expression utilise `fetch` pour localiser le module Wasm compilé, `WebAssembly.instantiateStreaming` pour compiler le résultat de la requête et créer un module instancié à partir de celui-ci. `fetch` et `WebAssembly.instantiateStreaming` retournent des Promises, nous ne pouvons donc pas simplement accéder au résultat et extraire la fonction nécessaire. Au lieu de cela, nous intégrons cela dans une importation de style JSPI en utilisant la macro `EM_ASYNC_JS` :
 
 ```c
 EM_ASYNC_JS(fooFun, resolveFun, (), {
-  console.log(&apos;loading promise42&apos;);
-  LoadedModule = (await WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;))).instance;
-  return addFunction(LoadedModule.exports[&apos;provide42&apos;]);
+  console.log('loading promise42');
+  LoadedModule = (await WebAssembly.instantiateStreaming(fetch('p42.wasm'))).instance;
+  return addFunction(LoadedModule.exports['provide42']);
 });
 ```
 
@@ -329,9 +329,9 @@ typedef long (*fooFun)();
 
 // promettre une fonction
 EM_ASYNC_JS(fooFun, resolveFun, (), {
-  console.log(&apos;chargement de promise42&apos;);
-  LoadedModule = (await WebAssembly.instantiateStreaming(fetch(&apos;p42.wasm&apos;))).instance;
-  return addFunction(LoadedModule.exports[&apos;provide42&apos;]);
+  console.log('chargement de promise42');
+  LoadedModule = (await WebAssembly.instantiateStreaming(fetch('p42.wasm'))).instance;
+  return addFunction(LoadedModule.exports['provide42']);
 });
 
 EM_JS_DEPS(funDeps, "$addFunction")

@@ -1,15 +1,15 @@
 ---
-title: &apos;ES2015プロキシのV8における最適化&apos;
-author: &apos;Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), プロキシの最適化者&apos;
+title: 'ES2015プロキシのV8における最適化'
+author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), プロキシの最適化者'
 avatars:
-  - &apos;maya-armyanova&apos;
+  - 'maya-armyanova'
 date: 2017-10-05 13:33:37
 tags:
   - ECMAScript
   - ベンチマーク
   - 内部仕様
-description: &apos;この記事では、V8がJavaScriptプロキシのパフォーマンスを向上させた方法を説明します。&apos;
-tweet: &apos;915846050447003648&apos;
+description: 'この記事では、V8がJavaScriptプロキシのパフォーマンスを向上させた方法を説明します。'
+tweet: '915846050447003648'
 ---
 プロキシは、ES2015以来JavaScriptの重要な部分を形成しています。これらはオブジェクトの基本操作をインターセプトし、その挙動をカスタマイズすることを可能にします。プロキシは、[jsdom](https://github.com/tmpvar/jsdom)や[Comlink RPCライブラリ](https://github.com/GoogleChrome/comlink)のようなプロジェクトのコア部分を形成しています。最近、V8でプロキシのパフォーマンスを向上させるために多くの努力を行いました。この記事では、V8の一般的なパフォーマンス改善パターンについて、特にプロキシに関する内容を解説します。
 
@@ -25,7 +25,7 @@ const callTracer = new Proxy(target, {
   }
 });
 
-callTracer.property = &apos;value&apos;;
+callTracer.property = 'value';
 console.log(callTracer.property);
 // get was called for: property
 // value
@@ -88,11 +88,11 @@ function run() {
   return new P();
 }
 const N = 1e5;
-console.time(&apos;run&apos;);
+console.time('run');
 for (let i = 0; i < N; ++i) {
   run();
 }
-console.timeEnd(&apos;run&apos;);
+console.timeEnd('run');
 ```
 
 ほとんどの時間が`NewObject`およびその呼び出し先関数に費やされることが判明したため、将来のリリースでこれを高速化する方法を計画し始めました。

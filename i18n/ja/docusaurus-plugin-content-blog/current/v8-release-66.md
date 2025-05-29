@@ -1,11 +1,11 @@
 ---
-title: &apos;V8リリースv6.6&apos;
-author: &apos;V8チーム&apos;
+title: 'V8リリースv6.6'
+author: 'V8チーム'
 date: 2018-03-27 13:33:37
 tags:
   - リリース
-description: &apos;V8 v6.6には、オプションのcatchバインディング、拡張された文字列トリミング、いくつかの解析/コンパイル/ランタイム性能改善など、多くの新機能が含まれています！&apos;
-tweet: &apos;978534399938584576&apos;
+description: 'V8 v6.6には、オプションのcatchバインディング、拡張された文字列トリミング、いくつかの解析/コンパイル/ランタイム性能改善など、多くの新機能が含まれています！'
+tweet: '978534399938584576'
 ---
 6週間ごとに、私たちは[リリースプロセス](/docs/release-process)の一環としてV8の新しいブランチを作成します。各バージョンは、Chrome Betaのマイルストーン直前にV8のGitマスタから分岐されます。本日、新しいブランチ[V8バージョン6.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.6)を発表できることを嬉しく思います。このバージョンは、数週間後にChrome 66 Stableと連携してリリースされるまでベータ版です。V8 v6.6には開発者に向けた多くの魅力的な機能が詰まっています。この投稿では、リリースに先立つ注目すべきハイライトのプレビューを提供します。
 
@@ -23,13 +23,13 @@ function /* コメント */ foo () {}
 
 // 以前は:
 foo.toString();
-// → &apos;function foo() {}&apos;
+// → 'function foo() {}'
 //             ^ コメントなし
 //                ^ スペースなし
 
 // 現在は:
 foo.toString();
-// → &apos;function /* コメント */ foo () {}&apos;
+// → 'function /* コメント */ foo () {}'
 ```
 
 ### JSON ⊂ ECMAScript
@@ -53,13 +53,13 @@ try {
 `String.prototype.trim()`に加えて、V8は[`String.prototype.trimStart()` と `String.prototype.trimEnd()`](/features/string-trimming)を実装しました。この機能は以前は非標準の`trimLeft()`および`trimRight()`メソッドを通じて利用可能でしたが、これらのメソッドは新しいメソッドのエイリアスとして後方互換性のために残されています。
 
 ```js
-const string = &apos;  hello world  &apos;;
+const string = '  hello world  ';
 string.trimStart();
-// → &apos;hello world  &apos;
+// → 'hello world  '
 string.trimEnd();
-// → &apos;  hello world&apos;
+// → '  hello world'
 string.trim();
-// → &apos;hello world&apos;
+// → 'hello world'
 ```
 
 ### `Array.prototype.values`

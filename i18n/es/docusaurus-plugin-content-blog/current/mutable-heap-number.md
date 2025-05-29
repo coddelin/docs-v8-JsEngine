@@ -1,6 +1,6 @@
 ---
-title: &apos;Turboalimentando V8 con números mutables en el montón&apos;
-author: &apos;[Victor Gomes](https://twitter.com/VictorBFG), el cambiador de bits&apos;
+title: 'Turboalimentando V8 con números mutables en el montón'
+author: '[Victor Gomes](https://twitter.com/VictorBFG), el cambiador de bits'
 avatars:
   - victor-gomes
 date: 2025-02-25
@@ -9,7 +9,7 @@ tags:
   - benchmarks
   - internals
 description: "Añadiendo números mutables en el montón al contexto de scripts"
-tweet: &apos;&apos;
+tweet: ''
 ---
 
 En V8, siempre estamos buscando mejorar el rendimiento de JavaScript. Como parte de este esfuerzo, recientemente volvimos a analizar el conjunto de pruebas de [JetStream2](https://browserbench.org/JetStream2.1/) para eliminar caídas de rendimiento. Esta publicación detalla una optimización específica que realizamos y que generó una mejora significativa de `2.5x` en la prueba de referencia `async-fs`, contribuyendo a un aumento notable en la puntuación general. La optimización se inspiró en el benchmark, pero este tipo de patrones también aparecen en [código del mundo real](https://github.com/WebAssembly/binaryen/blob/3339c1f38da5b68ce8bf410773fe4b5eee451ab8/scripts/fuzz_shell.js#L248).

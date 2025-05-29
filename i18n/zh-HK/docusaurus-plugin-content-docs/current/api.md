@@ -1,6 +1,6 @@
 ---
-title: &apos;V8 的公共 API&apos;
-description: &apos;本文討論了 V8 的公共 API 穩定性，以及開發者如何對其進行變更。&apos;
+title: 'V8 的公共 API'
+description: '本文討論了 V8 的公共 API 穩定性，以及開發者如何對其進行變更。'
 ---
 本文討論了 V8 的公共 API 穩定性，以及開發者如何對其進行變更。
 

@@ -1,15 +1,15 @@
 ---
-title: &apos;`Object.fromEntries`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias)), JavaScript whisperer&apos;
+title: '`Object.fromEntries`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), JavaScript whisperer'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-06-18
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: &apos;Object.fromEntries 是 JavaScript 內建函式庫的一個實用新增功能，補充了 Object.entries。&apos;
-tweet: &apos;1140993821897121796&apos;
+description: 'Object.fromEntries 是 JavaScript 內建函式庫的一個實用新增功能，補充了 Object.entries。'
+tweet: '1140993821897121796'
 ---
 `Object.fromEntries` 是 JavaScript 內建函式庫的一個實用新增功能。在解釋它的功能之前，了解現有的 `Object.entries` API 會有所幫助。
 
@@ -30,7 +30,7 @@ tweet: &apos;1140993821897121796&apos;
 ```js
 const object = { x: 42, y: 50 };
 const entries = Object.entries(object);
-// → [[&apos;x&apos;, 42], [&apos;y&apos;, 50]]
+// → [['x', 42], ['y', 50]]
 
 for (const [key, value] of entries) {
   console.log(`The value of ${key} is ${value}.`);
@@ -49,7 +49,7 @@ for (const [key, value] of entries) {
 ```js
 const object = { x: 42, y: 50 };
 const entries = Object.entries(object);
-// → [[&apos;x&apos;, 42], [&apos;y&apos;, 50]]
+// → [['x', 42], ['y', 50]]
 
 const result = Object.fromEntries(entries);
 // → { x: 42, y: 50 }
@@ -77,7 +77,7 @@ JavaScript 也支援 `Map`s，這通常比普通物件更加適合用作資料�
 `Object.entries` 使得將物件轉換成 Map 變得容易：
 
 ```js
-const object = { language: &apos;JavaScript&apos;, coolness: 9001 };
+const object = { language: 'JavaScript', coolness: 9001 };
 
 // 將物件轉換為 Map:
 const map = new Map(Object.entries(object));
@@ -88,7 +88,7 @@ const map = new Map(Object.entries(object));
 ```js
 // 將 Map 再轉成物件:
 const objectCopy = Object.fromEntries(map);
-// → { language: &apos;JavaScript&apos;, coolness: 9001 }
+// → { language: 'JavaScript', coolness: 9001 }
 ```
 
 語言中同時擁有 `Object.entries` 和 `Object.fromEntries`，你現在可以輕鬆地在 Map 和物件之間進行轉換。
@@ -99,13 +99,13 @@ const objectCopy = Object.fromEntries(map);
 
 ```js
 const map = new Map([
-  [{}, &apos;a&apos;],
-  [{}, &apos;b&apos;],
+  [{}, 'a'],
+  [{}, 'b'],
 ]);
 Object.fromEntries(map);
-// → { &apos;[object Object]&apos;: &apos;b&apos; }
-// 注意: 值 &apos;a&apos; 已經丟失，因為兩個鍵
-// 都字串化為相同的值 &apos;[object Object]&apos;。
+// → { '[object Object]': 'b' }
+// 注意: 值 'a' 已經丟失，因為兩個鍵
+// 都字串化為相同的值 '[object Object]'。
 ```
 
 在使用 `Object.fromEntries` 或其他技巧將 Map 轉換為物件之前，請確保 Map 的鍵能生成唯一的 `toString` 結果。

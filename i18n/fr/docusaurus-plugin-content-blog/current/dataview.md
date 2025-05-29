@@ -1,25 +1,25 @@
 ---
-title: &apos;Amélioration des performances de `DataView` dans V8&apos;
-author: &apos;Théotime Grohens, <i lang="fr">le savant de Data-Vue</i>, et Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), professionnel de la performance&apos;
+title: 'Amélioration des performances de `DataView` dans V8'
+author: 'Théotime Grohens, <i lang="fr">le savant de Data-Vue</i>, et Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), professionnel de la performance'
 avatars:
-  - &apos;benedikt-meurer&apos;
+  - 'benedikt-meurer'
 date: 2018-09-18 11:20:37
 tags:
   - ECMAScript
   - benchmarks
-description: &apos;V8 v6.9 comble l&apos;écart de performance entre DataView et le code équivalent TypedArray, rendant ainsi DataView utilisable pour des applications réelles critiques en termes de performance.&apos;
-tweet: &apos;1041981091727466496&apos;
+description: 'V8 v6.9 comble l'écart de performance entre DataView et le code équivalent TypedArray, rendant ainsi DataView utilisable pour des applications réelles critiques en termes de performance.'
+tweet: '1041981091727466496'
 ---
-[`DataView`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView) est l&apos;une des deux manières possibles de réaliser des accès mémoire à bas niveau en JavaScript, l&apos;autre étant [`TypedArray`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray). Jusqu&apos;à présent, les `DataView` étaient beaucoup moins optimisés que les `TypedArray` dans V8, ce qui entraînait de moins bonnes performances dans des tâches comme les charges de travail intensives en graphismes ou lors du décodage/encodage de données binaires. Les raisons de cela étaient principalement des choix historiques, comme le fait que [asm.js](http://asmjs.org/) avait opté pour les `TypedArray` au lieu des `DataView`, incitant ainsi les moteurs à se concentrer sur les performances des `TypedArray`.
+[`DataView`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView) est l'une des deux manières possibles de réaliser des accès mémoire à bas niveau en JavaScript, l'autre étant [`TypedArray`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray). Jusqu'à présent, les `DataView` étaient beaucoup moins optimisés que les `TypedArray` dans V8, ce qui entraînait de moins bonnes performances dans des tâches comme les charges de travail intensives en graphismes ou lors du décodage/encodage de données binaires. Les raisons de cela étaient principalement des choix historiques, comme le fait que [asm.js](http://asmjs.org/) avait opté pour les `TypedArray` au lieu des `DataView`, incitant ainsi les moteurs à se concentrer sur les performances des `TypedArray`.
 
 <!--truncate-->
-En raison de cette pénalité de performance, des développeurs JavaScript tels que l&apos;équipe Google Maps ont décidé d&apos;éviter les `DataView` et de se reposer sur les `TypedArray` à la place, au prix d&apos;une complexité accrue du code. Cet article explique comment nous avons amélioré les performances de `DataView` pour correspondre — et même surpasser — celles du code équivalent `TypedArray` dans [V8 v6.9](/blog/v8-release-69), rendant ainsi `DataView` utilisable pour des applications réelles critiques en termes de performance.
+En raison de cette pénalité de performance, des développeurs JavaScript tels que l'équipe Google Maps ont décidé d'éviter les `DataView` et de se reposer sur les `TypedArray` à la place, au prix d'une complexité accrue du code. Cet article explique comment nous avons amélioré les performances de `DataView` pour correspondre — et même surpasser — celles du code équivalent `TypedArray` dans [V8 v6.9](/blog/v8-release-69), rendant ainsi `DataView` utilisable pour des applications réelles critiques en termes de performance.
 
 ## Contexte
 
-Depuis l&apos;introduction de ES2015, JavaScript permet de lire et écrire des données dans des tampons binaires bruts appelés [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer). Les `ArrayBuffer` ne peuvent pas être directement accessibles ; les programmes doivent utiliser ce qu&apos;on appelle un objet *array buffer view* qui peut être soit un `DataView` soit un `TypedArray`.
+Depuis l'introduction de ES2015, JavaScript permet de lire et écrire des données dans des tampons binaires bruts appelés [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer). Les `ArrayBuffer` ne peuvent pas être directement accessibles ; les programmes doivent utiliser ce qu'on appelle un objet *array buffer view* qui peut être soit un `DataView` soit un `TypedArray`.
 
-Les `TypedArray` permettent aux programmes d&apos;accéder au tampon sous forme de tableau de valeurs uniformément typées, comme un `Int16Array` ou un `Float32Array`.
+Les `TypedArray` permettent aux programmes d'accéder au tampon sous forme de tableau de valeurs uniformément typées, comme un `Int16Array` ou un `Float32Array`.
 
 ```js
 const buffer = new ArrayBuffer(32);
@@ -33,7 +33,7 @@ console.log(array);
 // → [0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225]
 ```
 
-D&apos;un autre côté, les `DataView` permettent un accès aux données plus précis. Ils permettent au programmeur de choisir le type de valeurs lues ou écrites dans le tampon en fournissant des getters et setters spécialisés pour chaque type de nombre, les rendant utiles pour la sérialisation des structures de données.
+D'un autre côté, les `DataView` permettent un accès aux données plus précis. Ils permettent au programmeur de choisir le type de valeurs lues ou écrites dans le tampon en fournissant des getters et setters spécialisés pour chaque type de nombre, les rendant utiles pour la sérialisation des structures de données.
 
 ```js
 const buffer = new ArrayBuffer(32);
@@ -48,7 +48,7 @@ console.log(view.getUint8(0)); // Résultat attendu : 42
 console.log(view.getFloat64(1)); // Résultat attendu : 1.76
 ```
 
-De plus, les `DataView` permettent aussi de choisir l&apos;endianness du stockage des données, ce qui peut être utile lors de la réception de données provenant de sources externes, telles que le réseau, un fichier ou un GPU.
+De plus, les `DataView` permettent aussi de choisir l'endianness du stockage des données, ce qui peut être utile lors de la réception de données provenant de sources externes, telles que le réseau, un fichier ou un GPU.
 
 ```js
 const buffer = new ArrayBuffer(32);
@@ -59,13 +59,13 @@ console.log(view.getInt32(0, false)); // Lecture en big-endian.
 // Résultat attendu : 0x0DF0AD8B (233876875)
 ```
 
-Une implémentation efficace de `DataView` était attendue depuis longtemps (voir [ce rapport de bug](https://bugs.chromium.org/p/chromium/issues/detail?id=225811) datant d&apos;il y a plus de 5 ans), et nous sommes heureux d&apos;annoncer que les performances de DataView sont maintenant à la hauteur !
+Une implémentation efficace de `DataView` était attendue depuis longtemps (voir [ce rapport de bug](https://bugs.chromium.org/p/chromium/issues/detail?id=225811) datant d'il y a plus de 5 ans), et nous sommes heureux d'annoncer que les performances de DataView sont maintenant à la hauteur !
 
 ## Implémentation héritée au runtime
 
-Jusqu&apos;à récemment, les méthodes `DataView` étaient mises en œuvre sous forme de fonctions runtime intégrées en C++ dans V8. Cela est très coûteux, car chaque appel nécessitait une transition coûteuse entre JavaScript et C++ (et retour).
+Jusqu'à récemment, les méthodes `DataView` étaient mises en œuvre sous forme de fonctions runtime intégrées en C++ dans V8. Cela est très coûteux, car chaque appel nécessitait une transition coûteuse entre JavaScript et C++ (et retour).
 
-Afin d&apos;étudier le coût réel en termes de performances engendré par cette implémentation, nous avons configuré un benchmark de performance qui compare l&apos;implémentation native getter de `DataView` à un wrapper JavaScript simulant le comportement de `DataView`. Ce wrapper utilise un `Uint8Array` pour lire les données octet par octet à partir du tampon sous-jacent, puis calcule la valeur de retour à partir de ces octets. Voici, par exemple, la fonction pour lire des valeurs entières non signées 32 bits en little-endian :
+Afin d'étudier le coût réel en termes de performances engendré par cette implémentation, nous avons configuré un benchmark de performance qui compare l'implémentation native getter de `DataView` à un wrapper JavaScript simulant le comportement de `DataView`. Ce wrapper utilise un `Uint8Array` pour lire les données octet par octet à partir du tampon sous-jacent, puis calcule la valeur de retour à partir de ces octets. Voici, par exemple, la fonction pour lire des valeurs entières non signées 32 bits en little-endian :
 
 ```js
 function LittleEndian(buffer) { // Simule les lectures little-endian de DataView.

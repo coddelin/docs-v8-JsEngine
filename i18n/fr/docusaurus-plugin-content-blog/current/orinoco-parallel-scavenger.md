@@ -1,15 +1,15 @@
 ---
-title: &apos;Orinoco : collecte des déchets de la jeune génération&apos;
-author: &apos;Ulan Degenbaev, Michael Lippautz, et Hannes Payer, amis de [TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)&apos;
+title: 'Orinoco : collecte des déchets de la jeune génération'
+author: 'Ulan Degenbaev, Michael Lippautz, et Hannes Payer, amis de [TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)'
 avatars:
-  - &apos;ulan-degenbaev&apos;
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'ulan-degenbaev'
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2017-11-29 13:33:37
 tags:
   - internes
   - mémoire
-description: &apos;Cet article présente le Scavenger parallèle, l’une des dernières fonctionnalités d’Orinoco, le collecteur de déchets principalement concurrent et parallèle de V8.&apos;
+description: 'Cet article présente le Scavenger parallèle, l’une des dernières fonctionnalités d’Orinoco, le collecteur de déchets principalement concurrent et parallèle de V8.'
 ---
 Les objets JavaScript dans V8 sont alloués sur un tas géré par le collecteur de déchets de V8. Dans des articles de blog précédents, nous avons déjà parlé de la manière dont nous [réduisons les temps de pause de la collecte des déchets](/blog/jank-busters) ([plus d'une fois](/blog/orinoco)) et [la consommation de mémoire](/blog/optimizing-v8-memory). Dans ce billet, nous introduisons le Scavenger parallèle, l'une des dernières fonctionnalités d'Orinoco, le collecteur de déchets principalement concurrent et parallèle de V8, et discutons des décisions de conception et des approches alternatives que nous avons mises en œuvre en cours de route.
 

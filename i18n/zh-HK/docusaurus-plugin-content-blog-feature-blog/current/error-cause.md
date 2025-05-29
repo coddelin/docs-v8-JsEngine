@@ -1,13 +1,13 @@
 ---
-title: &apos;錯誤原因&apos;
-author: &apos;Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))&apos;
+title: '錯誤原因'
+author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
 avatars:
-  - &apos;victor-gomes&apos;
+  - 'victor-gomes'
 date: 2021-07-07
 tags:
   - ECMAScript
-description: &apos;JavaScript 現在支援錯誤原因。&apos;
-tweet: &apos;1412774651558862850&apos;
+description: 'JavaScript 現在支援錯誤原因。'
+tweet: '1412774651558862850'
 ---
 
 假設你有一個函數正在調用兩個分開的工作負載 `doSomeWork` 和 `doMoreWork`。這兩個函數可以拋出同類型的錯誤，但你需要以不同方式處理它們。
@@ -19,7 +19,7 @@ function doWork() {
   try {
     doSomeWork();
   } catch (err) {
-    throw new CustomError(&apos;某些工作失敗&apos;, err);
+    throw new CustomError('某些工作失敗', err);
   }
   doMoreWork();
 }
@@ -41,12 +41,12 @@ function doWork() {
   try {
     doSomeWork();
   } catch (err) {
-    throw new Error(&apos;某些工作失敗&apos;, { cause: err });
+    throw new Error('某些工作失敗', { cause: err });
   }
   try {
     doMoreWork();
   } catch (err) {
-    throw new Error(&apos;更多工作失敗&apos;, { cause: err });
+    throw new Error('更多工作失敗', { cause: err });
   }
 }
 
@@ -54,10 +54,10 @@ try {
   doWork();
 } catch (err) {
   switch(err.message) {
-    case &apos;某些工作失敗&apos;:
+    case '某些工作失敗':
       handleSomeWorkFailure(err.cause);
       break;
-    case &apos;更多工作失敗&apos;:
+    case '更多工作失敗':
       handleMoreWorkFailure(err.cause);
       break;
   }

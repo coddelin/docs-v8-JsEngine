@@ -119,7 +119,7 @@ TypeError: 无法将 456 转换为 BigInt
 
 ```js
 {
-  type: &apos;BigInt-Int64&apos;,
+  type: 'BigInt-Int64',
   value: 0x12…,
 }
 ```

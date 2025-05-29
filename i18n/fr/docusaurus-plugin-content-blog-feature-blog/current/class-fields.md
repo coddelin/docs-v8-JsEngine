@@ -1,16 +1,16 @@
 ---
-title: &apos;Champs de classe publics et privés&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: 'Champs de classe publics et privés'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2018-12-13
 tags:
   - ECMAScript
   - ES2022
   - io19
   - Node.js 14
-description: &apos;Plusieurs propositions étendent la syntaxe existante des classes JavaScript avec de nouvelles fonctionnalités. Cet article explique la nouvelle syntaxe des champs de classe publics dans V8 v7.2 et Chrome 72, ainsi que la syntaxe des champs de classe privés à venir.&apos;
-tweet: &apos;1121395767170740225&apos;
+description: 'Plusieurs propositions étendent la syntaxe existante des classes JavaScript avec de nouvelles fonctionnalités. Cet article explique la nouvelle syntaxe des champs de classe publics dans V8 v7.2 et Chrome 72, ainsi que la syntaxe des champs de classe privés à venir.'
+tweet: '1121395767170740225'
 ---
 Plusieurs propositions étendent la syntaxe existante des classes JavaScript avec de nouvelles fonctionnalités. Cet article explique la nouvelle syntaxe des champs de classe publics dans V8 v7.2 et Chrome 72, ainsi que la syntaxe des champs de classe privés à venir.
 
@@ -19,11 +19,11 @@ Voici un exemple de code qui crée une instance d'une classe nommée `Increasing
 ```js
 const counter = new IncreasingCounter();
 counter.value;
-// affiche &apos;Récupération de la valeur actuelle !&apos;
+// affiche 'Récupération de la valeur actuelle !'
 // → 0
 counter.increment();
 counter.value;
-// affiche &apos;Récupération de la valeur actuelle !&apos;
+// affiche 'Récupération de la valeur actuelle !'
 // → 1
 ```
 
@@ -39,7 +39,7 @@ class IncreasingCounter {
     this._count = 0;
   }
   get value() {
-    console.log(&apos;Récupération de la valeur actuelle !&apos;);
+    console.log('Récupération de la valeur actuelle !');
     return this._count;
   }
   increment() {
@@ -54,7 +54,7 @@ La classe installe le getter `value` et une méthode `increment` sur le prototyp
 ```js
 const counter = new IncreasingCounter();
 counter.value;
-// affiche &apos;Récupération de la valeur actuelle !&apos;
+// affiche 'Récupération de la valeur actuelle !'
 // → 0
 
 // Rien n'empêche les gens de lire ou de modifier la
@@ -63,7 +63,7 @@ counter._count;
 // → 0
 counter._count = 42;
 counter.value;
-// affiche &apos;Récupération de la valeur actuelle !&apos;
+// affiche 'Récupération de la valeur actuelle !'
 // → 42
 ```
 
@@ -75,7 +75,7 @@ La nouvelle syntaxe des champs de classe publics nous permet de simplifier la d�
 class IncreasingCounter {
   _count = 0;
   get value() {
-    console.log(&apos;Récupération de la valeur actuelle !&apos;);
+    console.log('Récupération de la valeur actuelle !');
     return this._count;
   }
   increment() {
@@ -96,7 +96,7 @@ C'est là que les champs de classe privés interviennent. La nouvelle syntaxe de
 class IncreasingCounter {
   #count = 0;
   get value() {
-    console.log(&apos;Récupération de la valeur actuelle !&apos;);
+    console.log('Récupération de la valeur actuelle !');
     return this.#count;
   }
   increment() {
@@ -135,7 +135,7 @@ class FakeMath {
   // `random` est une méthode statique publique (syntaxe ES2015)
   // qui utilise `#computeRandomNumber`.
   static random() {
-    console.log(&apos;J&apos;ai entendu dire que vous aimez les nombres aléatoires…&apos;);
+    console.log('J'ai entendu dire que vous aimez les nombres aléatoires…');
     return FakeMath.#computeRandomNumber();
   }
 }
@@ -143,7 +143,7 @@ class FakeMath {
 FakeMath.PI;
 // → 3.142857142857143
 FakeMath.random();
-// affiche &apos;J&apos;ai entendu dire que vous aimez les nombres aléatoires…&apos;
+// affiche 'J'ai entendu dire que vous aimez les nombres aléatoires…'
 // → 4
 FakeMath.#totallyRandomNumber;
 // → SyntaxError
@@ -172,7 +172,7 @@ class Cat extends Animal {
     this.likesBaths = false;
   }
   meow() {
-    console.log(&apos;Miaou!&apos;);
+    console.log('Miaou!');
   }
 }
 ```
@@ -183,7 +183,7 @@ C'est beaucoup de code pour simplement indiquer que les chats n'aiment pas les b
 class Cat extends Animal {
   likesBaths = false;
   meow() {
-    console.log(&apos;Miaou!&apos;);
+    console.log('Miaou!');
   }
 }
 ```

@@ -1,15 +1,15 @@
 ---
-title: &apos;Orinoco: 젊은 세대 가비지 컬렉션&apos;
-author: &apos;Ulan Degenbaev, Michael Lippautz, Hannes Payer, [TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)의 친구들&apos;
+title: 'Orinoco: 젊은 세대 가비지 컬렉션'
+author: 'Ulan Degenbaev, Michael Lippautz, Hannes Payer, [TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)의 친구들'
 avatars:
-  - &apos;ulan-degenbaev&apos;
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'ulan-degenbaev'
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2017-11-29 13:33:37
 tags:
   - internals
   - memory
-description: &apos;이 글은 Orinoco의 최신 기능 중 하나인 병렬 Scavenger, V8의 거의 병렬 및 동시 가비지 컬렉터에 대해서 소개합니다.&apos;
+description: '이 글은 Orinoco의 최신 기능 중 하나인 병렬 Scavenger, V8의 거의 병렬 및 동시 가비지 컬렉터에 대해서 소개합니다.'
 ---
 V8의 JavaScript 객체는 V8의 가비지 컬렉터로 관리되는 힙에 할당됩니다. 이전 블로그 글에서는 가비지 컬렉션 일시 중지 시간을 어떻게 [줄이는지](/blog/jank-busters) ([여러 번](/blog/orinoco)) 그리고 [메모리 소비](/blog/optimizing-v8-memory)를 줄이는 방법도 다뤘습니다. 이번 블로그 글에서는 V8의 거의 병렬 및 동시 가비지 컬렉터 Orinoco의 최신 기능 중 하나인 병렬 Scavenger를 소개하고 설계 결정 및 대안 접근 방식에 대해 논의합니다.
 
@@ -22,7 +22,7 @@ V8은 관리되는 힙을 객체가 처음에는 젊은 세대의 'nursery'에 �
 
 **v6.2부터 V8은 젊은 세대를 수집하는 기본 알고리즘을 병렬 Scavenger로 변경했습니다**, 이는 [Halstead의 semispace 복사 컬렉터](https://dl.acm.org/citation.cfm?id=802017)와 유사하지만 V8은 여러 스레드에서 정적 대신 동적 작업 훔침을 사용한다는 차이가 있습니다. 다음에서는 세 가지 알고리즘을 설명합니다: a) 단일 스레드 Cheney semispace 복사 컬렉터, b) 병렬 Mark-Evacuate 스키마, c) 병렬 Scavenger.
 
-## 단일 스레드 Cheney&apos;s Semispace 복사
+## 단일 스레드 Cheney's Semispace 복사
 
 v6.2까지 V8은 단일 코어 실행 및 세대별 스키마에 적합한 [Cheney의 semispace 복사 알고리즘](https://dl.acm.org/citation.cfm?doid=362790.362798)을 사용했습니다. 젊은 세대 수집 전에 메모리의 두 semispace 절반이 커밋되고 적합한 레이블이 할당됩니다: 현재 객체 집합을 포함하는 페이지는 _from-space_라 불리고, 객체가 복사되는 페이지는 _to-space_라 불립니다.
 

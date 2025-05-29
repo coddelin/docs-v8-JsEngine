@@ -1,12 +1,12 @@
 ---
-title: &apos;Node.jsでのハッシュフラッディング脆弱性について…&apos;
-author: &apos;Yang Guo ([@hashseed](https://twitter.com/hashseed))&apos;
+title: 'Node.jsでのハッシュフラッディング脆弱性について…'
+author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed))'
 avatars:
-  - &apos;yang-guo&apos;
+  - 'yang-guo'
 date: 2017-08-11 13:33:37
 tags:
   - セキュリティ
-description: &apos;Node.jsはハッシュフラッディング脆弱性に見舞われました。このポストではその背景を説明し、V8での解決策を解説します。&apos;
+description: 'Node.jsはハッシュフラッディング脆弱性に見舞われました。このポストではその背景を説明し、V8での解決策を解説します。'
 ---
 今年の7月初め、Node.jsはハッシュフラッディング脆弱性に対処するため、現在保守されているすべてのブランチ向けに[セキュリティアップデート](https://nodejs.org/en/blog/vulnerability/july-2017-security-releases/)をリリースしました。この暫定的な修正は、起動時のパフォーマンスに大きな回帰をもたらす代償があります。一方で、V8はパフォーマンスへの悪影響を避ける解決策を実装しました。
 

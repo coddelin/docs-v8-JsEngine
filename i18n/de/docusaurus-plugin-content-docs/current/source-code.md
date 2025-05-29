@@ -1,6 +1,6 @@
 ---
-title: &apos;Überprüfung des V8-Quellcodes&apos;
-description: &apos;Dieses Dokument erklärt, wie man den V8-Quellcode lokal überprüft.&apos;
+title: 'Überprüfung des V8-Quellcodes'
+description: 'Dieses Dokument erklärt, wie man den V8-Quellcode lokal überprüft.'
 ---
 Dieses Dokument erklärt, wie man den V8-Quellcode lokal überprüft. Wenn Sie den Quellcode nur online durchsuchen möchten, verwenden Sie diese Links:
 

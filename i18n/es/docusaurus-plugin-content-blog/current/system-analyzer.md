@@ -1,14 +1,14 @@
 ---
-title: &apos;Indicium: herramienta de trazado para el runtime de V8&apos;
-author: &apos;Zeynep Cankara ([@ZeynepCankara](https://twitter.com/ZeynepCankara))&apos;
+title: 'Indicium: herramienta de trazado para el runtime de V8'
+author: 'Zeynep Cankara ([@ZeynepCankara](https://twitter.com/ZeynepCankara))'
 avatars:
-  - &apos;zeynep-cankara&apos;
+  - 'zeynep-cankara'
 date: 2020-10-01 11:56:00
 tags:
   - herramientas
   - analizador-de-sistemas
-description: &apos;Indicium: herramienta de análisis de sistemas de V8 para analizar eventos de Map/IC.&apos;
-tweet: &apos;1311689392608731140&apos;
+description: 'Indicium: herramienta de análisis de sistemas de V8 para analizar eventos de Map/IC.'
+tweet: '1311689392608731140'
 ---
 # Indicium: analizador de sistemas de V8
 
@@ -49,19 +49,19 @@ for (let i = 0; i < 10e5; i++) {
   dotProduct = a.dotProduct(b);
 }
 
-console.time(&apos;snippet1&apos;);
+console.time('snippet1');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet1&apos;);
+console.timeEnd('snippet1');
 
 a = new Point(-1, -1);
 b = new Point(-2, -2);
-console.time(&apos;snippet2&apos;);
+console.time('snippet2');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet2&apos;);
+console.timeEnd('snippet2');
 ```
 
 Aquí, tenemos una clase `Point` que almacena dos coordenadas y un booleano adicional basado en los valores de las coordenadas. La clase `Point` tiene un método `dotProduct` que devuelve el producto punto entre el objeto pasado y el receptor.
@@ -75,11 +75,11 @@ let a = new Point(1, 1);
 let b = new Point(2, 2);
 let dotProduct;
 
-console.time(&apos;snippet1&apos;);
+console.time('snippet1');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet1&apos;);
+console.timeEnd('snippet1');
 ```
 
 ### *fragmento 2*
@@ -87,11 +87,11 @@ console.timeEnd(&apos;snippet1&apos;);
 ```javascript
 a = new Point(-1, -1);
 b = new Point(-2, -2);
-console.time(&apos;snippet2&apos;);
+console.time('snippet2');
 for (let i = 0; i < 10e6; i++) {
   dotProduct = a.dotProduct(b);
 }
-console.timeEnd(&apos;snippet2&apos;);
+console.timeEnd('snippet2');
 ```
 
 Una vez que ejecutamos el programa, notamos una regresión de rendimiento. A pesar de que estamos midiendo el rendimiento de dos fragmentos similares, accediendo a las propiedades `x` y `y` de instancias de objetos `Point` al llamar a la función `dotProduct` en un bucle for.

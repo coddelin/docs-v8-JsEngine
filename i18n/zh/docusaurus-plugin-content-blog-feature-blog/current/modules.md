@@ -118,7 +118,7 @@ import shout from './lib.mjs';
 
 <script type="module" src="module.mjs"></script>
 <script type="module" src="module.mjs"></script>
-<script type="module">import &apos;./module.mjs&apos;;</script>
+<script type="module">import './module.mjs';</script>
 <!-- module.mjs 只会被执行一次。 -->
 ```
 
@@ -141,10 +141,10 @@ import shout from './lib.mjs';
 
 ### 模块说明符
 
-当`import`模块时，指定模块位置的字符串称为“模块说明符”或“导入说明符”。在我们之前的例子中，模块说明符是`&apos;./lib.mjs&apos;`：
+当`import`模块时，指定模块位置的字符串称为“模块说明符”或“导入说明符”。在我们之前的例子中，模块说明符是`'./lib.mjs'`：
 
 ```js
-import {shout} from &apos;./lib.mjs&apos;;
+import {shout} from './lib.mjs';
 //                  ^^^^^^^^^^^
 ```
 
@@ -152,19 +152,19 @@ import {shout} from &apos;./lib.mjs&apos;;
 
 ```js
 // 尚未支持：
-import {shout} from &apos;jquery&apos;;
-import {shout} from &apos;lib.mjs&apos;;
-import {shout} from &apos;modules/lib.mjs&apos;;
+import {shout} from 'jquery';
+import {shout} from 'lib.mjs';
+import {shout} from 'modules/lib.mjs';
 ```
 
 另一方面，以下示例都受支持：
 
 ```js
 // 支持：
-import {shout} from &apos;./lib.mjs&apos;;
-import {shout} from &apos;../lib.mjs&apos;;
-import {shout} from &apos;/modules/lib.mjs&apos;;
-import {shout} from &apos;https://simple.example/modules/lib.mjs&apos;;
+import {shout} from './lib.mjs';
+import {shout} from '../lib.mjs';
+import {shout} from '/modules/lib.mjs';
+import {shout} from 'https://simple.example/modules/lib.mjs';
 ```
 
 目前，模块说明符必须是完整的URL，或以`/`、`./`或`../`开头的相对URL。
@@ -186,12 +186,12 @@ import {shout} from &apos;https://simple.example/modules/lib.mjs&apos;;
 ```html
 <script type="module">
   (async () => {
-    const moduleSpecifier = &apos;./lib.mjs&apos;;
+    const moduleSpecifier = './lib.mjs';
     const {repeat, shout} = await import(moduleSpecifier);
-    repeat(&apos;hello&apos;);
-    // → &apos;hello hello&apos;
-    shout(&apos;Dynamic import in action&apos;);
-    // → &apos;DYNAMIC IMPORT IN ACTION!&apos;
+    repeat('hello');
+    // → 'hello hello'
+    shout('Dynamic import in action');
+    // → 'DYNAMIC IMPORT IN ACTION!'
   })();
 </script>
 ```
@@ -216,7 +216,7 @@ function loadThumbnail(relativePath) {
   return image;
 }
 
-const thumbnail = loadThumbnail(&apos;../img/thumbnail.png&apos;);
+const thumbnail = loadThumbnail('../img/thumbnail.png');
 container.append(thumbnail);
 ```
 
@@ -335,7 +335,7 @@ Chrome现已实现[Worklets](https://drafts.css-houdini.org/worklets/)，它允�
 Chrome 65支持[`PaintWorklet`](https://developers.google.com/web/updates/2018/01/paintapi)（即CSS Paint API）来控制DOM元素的绘制方式。
 
 ```js
-const result = await css.paintWorklet.addModule(&apos;paint-worklet.mjs&apos;);
+const result = await css.paintWorklet.addModule('paint-worklet.mjs');
 ```
 
 Chrome 66支持[`AudioWorklet`](https://developers.google.com/web/updates/2017/12/audio-worklet)，允许使用自己的代码控制音频处理。同一版本的Chrome还启动了[`AnimationWorklet`](https://groups.google.com/a/chromium.org/d/msg/blink-dev/AZ-PYPMS7EA/DEqbe2u5BQAJ)的[OriginTrial](https://groups.google.com/a/chromium.org/d/msg/blink-dev/AZ-PYPMS7EA/DEqbe2u5BQAJ)，它支持创建滚动关联的或其他高性能过程动画。
@@ -345,14 +345,14 @@ Chrome 66支持[`AudioWorklet`](https://developers.google.com/web/updates/2017/1
 我们在[努力](https://bugs.chromium.org/p/chromium/issues/detail?id=680046)为Chrome的专用Web Workers添加JS模块支持。您可以启用`chrome://flags/#enable-experimental-web-platform-features`进行尝试。
 
 ```js
-const worker = new Worker(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
+const worker = new Worker('worker.mjs', { type: 'module' });
 ```
 
 对共享Workers和服务Workers的JS模块支持即将推出：
 
 ```js
-const worker = new SharedWorker(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
-const registration = await navigator.serviceWorker.register(&apos;worker.mjs&apos;, { type: &apos;module&apos; });
+const worker = new SharedWorker('worker.mjs', { type: 'module' });
+const registration = await navigator.serviceWorker.register('worker.mjs', { type: 'module' });
 ```
 
 ### Import Maps
@@ -360,8 +360,8 @@ const registration = await navigator.serviceWorker.register(&apos;worker.mjs&apo
 在Node.js/npm中，通常通过“包名称”导入JS模块。例如：
 
 ```js
-import moment from &apos;moment&apos;;
-import {pluck} from &apos;lodash-es&apos;;
+import moment from 'moment';
+import {pluck} from 'lodash-es';
 ```
 
 目前，根据[HTML规范](https://html.spec.whatwg.org/multipage/webappapis.html#resolve-a-module-specifier)，这种“裸导入符号”会抛出异常。[我们的Import Maps提案](https://github.com/domenic/import-maps)允许此类代码在Web上使用，包括生产应用中。Import Map是一种JSON资源，帮助浏览器将裸导入符号转换为完整的URL。

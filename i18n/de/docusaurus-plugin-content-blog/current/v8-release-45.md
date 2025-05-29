@@ -1,10 +1,10 @@
 ---
-title: &apos;V8-Version v4.5&apos;
-author: &apos;das V8-Team&apos;
+title: 'V8-Version v4.5'
+author: 'das V8-Team'
 date: 2015-07-17 13:33:37
 tags:
   - Version
-description: &apos;V8 v4.5 bietet Leistungsverbesserungen und unterstützt mehrere ES2015-Funktionen.&apos;
+description: 'V8 v4.5 bietet Leistungsverbesserungen und unterstützt mehrere ES2015-Funktionen.'
 ---
 Etwa alle sechs Wochen erstellen wir im Rahmen unseres [Release-Prozesses](https://v8.dev/docs/release-process) einen neuen Zweig von V8. Jede Version wird direkt vor dem Chrome-Zweig für eine Chrome-Beta-Meilenstein aus dem Git-Master von V8 abgezweigt. Heute freuen wir uns, unseren neuesten Zweig, [V8-Version 4.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.5), anzukündigen, der bis zur Veröffentlichung in Zusammenarbeit mit Chrome 45 Stable in der Beta-Phase sein wird. V8 v4.5 ist vollgepackt mit allerlei Entwickler-Features, daher möchten wir Ihnen einen Überblick über einige Highlights geben, um die Veröffentlichung in einigen Wochen vorzubereiten.
 
@@ -27,12 +27,12 @@ const convertedData = data.map(value => value * 2);
 console.log(convertedData);
 ```
 
-Die lexikalische Bindung von &apos;this&apos; ist ein weiterer großer Vorteil von Pfeilfunktionen. Dadurch wird die Verwendung von Rückrufen in Methoden wesentlich einfacher.
+Die lexikalische Bindung von 'this' ist ein weiterer großer Vorteil von Pfeilfunktionen. Dadurch wird die Verwendung von Rückrufen in Methoden wesentlich einfacher.
 
 ```js
 class MyClass {
-  constructor() { this.a = &apos;Hallo, &apos;; }
-  hello() { setInterval(() => console.log(this.a + &apos;Welt!&apos;), 1000); }
+  constructor() { this.a = 'Hallo, '; }
+  hello() { setInterval(() => console.log(this.a + 'Welt!'), 1000); }
 }
 const myInstance = new MyClass();
 myInstance.hello();
@@ -47,8 +47,8 @@ Alle neuen Methoden für [Arrays und TypedArrays](https://developer.mozilla.org/
 [`Object.assign`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) ermöglicht es Entwicklern, Objekte schnell zusammenzuführen und zu klonen.
 
 ```js
-const target = { a: &apos;Hallo, &apos; };
-const source = { b: &apos;Welt!&apos; };
+const target = { a: 'Hallo, ' };
+const source = { b: 'Welt!' };
 // Zusammenführen der Objekte.
 Object.assign(target, source);
 console.log(target.a + target.b);
@@ -62,13 +62,13 @@ Seit vielen Jahren hat der traditionelle Optimierungskomparator von V8, [Cranksh
 
 Eines der Designziele des neuen Optimierungskompilers von V8, [TurboFan](/blog/turbofan-jit), ist es, schließlich alle JavaScript-Funktionen zu optimieren, einschließlich ECMAScript 2015-Funktionen. In V8 v4.5 haben wir begonnen, TurboFan zur Optimierung einiger Sprachfunktionen einzusetzen, die von Crankshaft nicht unterstützt werden: `for`-`of`, `class`, `with` und berechnete Eigenschaftsnamen.
 
-Hier ist ein Beispiel für Code, der &apos;for-of&apos; verwendet und jetzt von TurboFan kompiliert werden kann:
+Hier ist ein Beispiel für Code, der 'for-of' verwendet und jetzt von TurboFan kompiliert werden kann:
 
 ```js
-const sequence = [&apos;Erste&apos;, &apos;Zweite&apos;, &apos;Dritte&apos;];
+const sequence = ['Erste', 'Zweite', 'Dritte'];
 for (const value of sequence) {
   // Dieser Bereich ist jetzt optimierbar.
-  const object = {a: &apos;Hallo, &apos;, b: &apos;Welt!&apos;, c: value};
+  const object = {a: 'Hallo, ', b: 'Welt!', c: value};
   console.log(object.a + object.b + object.c);
 }
 ```

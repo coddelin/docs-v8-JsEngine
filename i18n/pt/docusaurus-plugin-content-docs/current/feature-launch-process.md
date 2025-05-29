@@ -1,6 +1,6 @@
 ---
-title: &apos;Implementação e envio de recursos de linguagem JavaScript/WebAssembly&apos;
-description: &apos;Este documento explica o processo de implementação e envio de recursos de linguagem JavaScript ou WebAssembly no V8.&apos;
+title: 'Implementação e envio de recursos de linguagem JavaScript/WebAssembly'
+description: 'Este documento explica o processo de implementação e envio de recursos de linguagem JavaScript ou WebAssembly no V8.'
 ---
 Em geral, o V8 segue o [processo de intenção do Blink para padrões já definidos com base em consenso](https://www.chromium.org/blink/launching-features/#process-existing-standard) para recursos de linguagem JavaScript e WebAssembly. Erratas específicas do V8 são descritas abaixo. Por favor, siga o processo de intenção do Blink, a menos que as erratas indiquem o contrário.
 

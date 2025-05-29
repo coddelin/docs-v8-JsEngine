@@ -59,17 +59,17 @@ re.test('👨🏾‍⚕️'); // '\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F'
 
 Im obigen Beispiel stimmt der reguläre Ausdruck nicht mit dem 👨🏾‍⚕️ Emoji überein, da es aus mehreren Codepunkten besteht und `Emoji` eine Unicode-_Zeichen_-Eigenschaft ist.
 
-Glücklicherweise definiert der Unicode-Standard auch mehrere [Eigenschaften von Zeichenketten](https://www.unicode.org/reports/tr18/#domain_of_properties). Solche Eigenschaften umfassen eine Menge von Zeichenketten, von denen jede einen oder mehrere Codepunkte enthält. In regulären Ausdrücken werden Eigenschaften von Zeichenketten in eine Menge von Alternativen übersetzt. Um dies zu veranschaulichen, stellen Sie sich eine Unicode-Eigenschaft vor, die auf die Zeichenketten `&apos;a&apos;`, `&apos;b&apos;`, `&apos;c&apos;`, `&apos;W&apos;`, `&apos;xy&apos;` und `&apos;xyz&apos;` zutrifft. Diese Eigenschaft wird in eines der folgenden regulären Ausdrucksmuster übersetzt (unter Verwendung von Alternativen): `xyz|xy|a|b|c|W` oder `xyz|xy|[a-cW]`. (Die längsten Zeichenketten zuerst, damit ein Präfix wie `&apos;xy&apos;` eine längere Zeichenkette wie `&apos;xyz&apos;` nicht verdeckt.) Im Gegensatz zu bestehenden Unicode-Escape-Eigenschaften kann dieses Muster mehrstellige Zeichenketten erfassen. Hier ist ein Beispiel für die Verwendung einer Eigenschaft von Zeichenketten:
+Glücklicherweise definiert der Unicode-Standard auch mehrere [Eigenschaften von Zeichenketten](https://www.unicode.org/reports/tr18/#domain_of_properties). Solche Eigenschaften umfassen eine Menge von Zeichenketten, von denen jede einen oder mehrere Codepunkte enthält. In regulären Ausdrücken werden Eigenschaften von Zeichenketten in eine Menge von Alternativen übersetzt. Um dies zu veranschaulichen, stellen Sie sich eine Unicode-Eigenschaft vor, die auf die Zeichenketten `'a'`, `'b'`, `'c'`, `'W'`, `'xy'` und `'xyz'` zutrifft. Diese Eigenschaft wird in eines der folgenden regulären Ausdrucksmuster übersetzt (unter Verwendung von Alternativen): `xyz|xy|a|b|c|W` oder `xyz|xy|[a-cW]`. (Die längsten Zeichenketten zuerst, damit ein Präfix wie `'xy'` eine längere Zeichenkette wie `'xyz'` nicht verdeckt.) Im Gegensatz zu bestehenden Unicode-Escape-Eigenschaften kann dieses Muster mehrstellige Zeichenketten erfassen. Hier ist ein Beispiel für die Verwendung einer Eigenschaft von Zeichenketten:
 
 ```js
 const re = /^\p{RGI_Emoji}$/v;
 
 // Ein Emoji erfassen, das nur aus 1 Codepunkt besteht:
-re.test(&apos;⚽&apos;); // &apos;\u26BD&apos;
+re.test('⚽'); // '\u26BD'
 // → true ✅
 
 // Ein Emoji erfassen, das aus mehreren Codepunkten besteht:
-re.test(&apos;👨🏾‍⚕️&apos;); // &apos;\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F&apos;
+re.test('👨🏾‍⚕️'); // '\u{1F468}\u{1F3FE}\u200D\u2695\uFE0F'
 // → true ✅
 ```
 
@@ -102,7 +102,7 @@ Die Syntax `A--B` kann verwendet werden, um Zeichenketten zu erfassen, die _in `
 Zum Beispiel, wenn Sie alle griechischen Symbole außer dem Buchstaben `π` erfassen möchten. Mit Mengen-Notation ist dies trivial zu lösen:
 
 ```js
-/[\p{Script_Extensions=Greek}--π]/v.test(&apos;π&apos;); // → false
+/[\p{Script_Extensions=Greek}--π]/v.test('π'); // → false
 ```
 
 Durch die Verwendung von `--` für Differenz/Subtraktion erledigt die Regex-Engine die harte Arbeit für Sie, während Ihr Code lesbar und wartbar bleibt.
@@ -110,15 +110,15 @@ Durch die Verwendung von `--` für Differenz/Subtraktion erledigt die Regex-Engi
 Was ist, wenn wir anstelle eines einzelnen Zeichens die Menge der Zeichen `α`, `β` und `γ` subtrahieren möchten? Kein Problem - wir können eine geschachtelte Zeichenklasse verwenden und deren Inhalt subtrahieren:
 
 ```js
-/[\p{Script_Extensions=Greek}--[αβγ]]/v.test(&apos;α&apos;); // → false
-/[\p{Script_Extensions=Greek}--[α-γ]]/v.test(&apos;β&apos;); // → false
+/[\p{Script_Extensions=Greek}--[αβγ]]/v.test('α'); // → false
+/[\p{Script_Extensions=Greek}--[α-γ]]/v.test('β'); // → false
 ```
 
 Ein anderes Beispiel ist das Erfassen von nicht-ASCII-Ziffern, zum Beispiel um sie später in ASCII-Ziffern umzuwandeln:
 
 ```js
-/[\p{Decimal_Number}--[0-9]]/v.test(&apos;𑜹&apos;); // → true
-/[\p{Decimal_Number}--[0-9]]/v.test(&apos;4&apos;); // → false
+/[\p{Decimal_Number}--[0-9]]/v.test('𑜹'); // → true
+/[\p{Decimal_Number}--[0-9]]/v.test('4'); // → false
 ```
 
 Die Mengen-Notation kann auch mit den neuen Eigenschaften von Zeichenketten verwendet werden:
@@ -126,8 +126,8 @@ Die Mengen-Notation kann auch mit den neuen Eigenschaften von Zeichenketten verw
 ```js
 // Hinweis: 🏴 besteht aus 7 Codepunkten.
 
-/^\p{RGI_Emoji_Tag_Sequence}$/v.test(&apos;🏴&apos;); // → true
-/^[\p{RGI_Emoji_Tag_Sequence}--\q{🏴}]$/v.test(&apos;🏴&apos;); // → false
+/^\p{RGI_Emoji_Tag_Sequence}$/v.test('🏴'); // → true
+/^[\p{RGI_Emoji_Tag_Sequence}--\q{🏴}]$/v.test('🏴'); // → false
 ```
 
 Dieses Beispiel erfasst jede RGI-E-Emoji-Tag-Sequenz _außer_ der Flagge Schottlands. Beachten Sie die Verwendung von `\q{…}`, einer neuen Syntax für Zeichenkettenliterale innerhalb von Zeichenklassen. Zum Beispiel erfasst `\q{a|bc|def}` die Zeichenketten `a`, `bc` und `def`. Ohne `\q{…}` wäre es nicht möglich, fest kodierte mehrstellige Zeichenketten zu subtrahieren.
@@ -139,17 +139,17 @@ Die `A&&B`-Syntax erfasst Zeichenketten, die _in sowohl `A` als auch `B`_ enthal
 ```js
 const re = /[\p{Script_Extensions=Greek}&&\p{Letter}]/v;
 // U+03C0 GRIECHISCHER BUCHSTABE PI
-re.test(&apos;π&apos;); // → true
+re.test('π'); // → true
 // U+1018A GRIECHISCHES NULLZEICHEN
-re.test(&apos;𐆊&apos;); // → false
+re.test('𐆊'); // → false
 ```
 
 Erfassen aller ASCII-Leerzeichen:
 
 ```js
 const re = /[\p{White_Space}&&\p{ASCII}]/v;
-re.test(&apos;\n&apos;); // → true
-re.test(&apos;\u2028&apos;); // → false
+re.test('\n'); // → true
+re.test('\u2028'); // → false
 ```
 
 Oder Erfassen aller mongolischen Zahlen:
@@ -157,9 +157,9 @@ Oder Erfassen aller mongolischen Zahlen:
 ```js
 const re = /[\p{Script_Extensions=Mongolian}&&\p{Number}]/v;
 // U+1817 MONGOLISCHE ZIFFER SIEBEN
-re.test(&apos;᠗&apos;); // → true
+re.test('᠗'); // → true
 // U+1834 MONGOLISCHER BUCHSTABE CHA
-re.test(&apos;ᠴ&apos;); // → false
+re.test('ᠴ'); // → false
 ```
 
 ### Vereinigung
@@ -169,12 +169,12 @@ Zeichenketten zu erfassen, die _in A oder in B_ enthalten sind, war zuvor bereit
 ```js
 const re = /^[\p{Emoji_Keycap_Sequence}\p{ASCII}\q{🇧🇪|abc}xyz0-9]$/v;
 
-re.test(&apos;4️⃣&apos;); // → true
-re.test(&apos;_&apos;); // → true
-re.test(&apos;🇧🇪&apos;); // → true
-re.test(&apos;abc&apos;); // → true
-re.test(&apos;x&apos;); // → true
-re.test(&apos;4&apos;); // → true
+re.test('4️⃣'); // → true
+re.test('_'); // → true
+re.test('🇧🇪'); // → true
+re.test('abc'); // → true
+re.test('x'); // → true
+re.test('4'); // → true
 ```
 
 Die Zeichenklasse in diesem Muster kombiniert:
@@ -190,13 +190,13 @@ Ein weiteres Beispiel ist das Matching aller häufig verwendeten Flaggen-Emojis,
 ```js
 const reFlag = /[\p{RGI_Emoji_Flag_Sequence}\p{RGI_Emoji_Tag_Sequence}]/v;
 // Eine Flaggen-Sequenz, bestehend aus 2 Codepunkten (Flagge von Belgien):
-reFlag.test(&apos;🇧🇪&apos;); // → true
+reFlag.test('🇧🇪'); // → true
 // Eine Tag-Sequenz, bestehend aus 7 Codepunkten (Flagge von England):
-reFlag.test(&apos;🏴&apos;); // → true
+reFlag.test('🏴'); // → true
 // Eine Flaggen-Sequenz, bestehend aus 2 Codepunkten (Flagge der Schweiz):
-reFlag.test(&apos;🇨🇭&apos;); // → true
+reFlag.test('🇨🇭'); // → true
 // Eine Tag-Sequenz, bestehend aus 7 Codepunkten (Flagge von Wales):
-reFlag.test(&apos;🏴&apos;); // → true
+reFlag.test('🏴'); // → true
 ```
 
 ## Verbesserte Groß-/Kleinschreibungs-unabhängige Übereinstimmung
@@ -216,13 +216,13 @@ Intuitiv könnte man erwarten, dass beide regulären Ausdrücke sich gleich verh
 const re1 = /\p{Lowercase_Letter}/giu;
 const re2 = /[^\P{Lowercase_Letter}]/giu;
 
-const string = &apos;aAbBcC4#&apos;;
+const string = 'aAbBcC4#';
 
-string.replaceAll(re1, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re1, 'X');
+// → 'XXXXXX4#'
 
-string.replaceAll(re2, &apos;X&apos;);
-// → &apos;aAbBcC4#&apos;&apos;
+string.replaceAll(re2, 'X');
+// → 'aAbBcC4#''
 ```
 
 Das neue `v`-Flag verhält sich weniger überraschend. Mit dem `v`-Flag anstelle des `u`-Flags verhalten sich beide Ausdrücke gleich:
@@ -231,13 +231,13 @@ Das neue `v`-Flag verhält sich weniger überraschend. Mit dem `v`-Flag anstelle
 const re1 = /\p{Lowercase_Letter}/giv;
 const re2 = /[^\P{Lowercase_Letter}]/giv;
 
-const string = &apos;aAbBcC4#&apos;;
+const string = 'aAbBcC4#';
 
-string.replaceAll(re1, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re1, 'X');
+// → 'XXXXXX4#'
 
-string.replaceAll(re2, &apos;X&apos;);
-// → &apos;XXXXXX4#&apos;
+string.replaceAll(re2, 'X');
+// → 'XXXXXX4#'
 ```
 
 Allgemeiner macht das `v`-Flag `[^\p{X}]` ≍ `[\P{X}]` ≍ `\P{X}` und `[^\P{X}]` ≍ `[\p{X}]` ≍ `\p{X}`, unabhängig davon, ob das `i`-Flag gesetzt ist oder nicht.

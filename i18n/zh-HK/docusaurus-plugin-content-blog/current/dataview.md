@@ -1,14 +1,14 @@
 ---
-title: &apos;提升 V8 中 `DataView` 性能&apos;
-author: &apos;Théotime Grohens, <i lang="fr">Data-Vue 的學者</i>, 以及 Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), 專業性能伙伴&apos;
+title: '提升 V8 中 `DataView` 性能'
+author: 'Théotime Grohens, <i lang="fr">Data-Vue 的學者</i>, 以及 Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), 專業性能伙伴'
 avatars:
-  - &apos;benedikt-meurer&apos;
+  - 'benedikt-meurer'
 date: 2018-09-18 11:20:37
 tags:
   - ECMAScript
   - 基準測試
-description: &apos;V8 v6.9 縮小了 `DataView` 與相應 `TypedArray` 代碼之間的性能差距，從而使 `DataView` 成為性能要求高的實際應用程式中的可用選擇。&apos;
-tweet: &apos;1041981091727466496&apos;
+description: 'V8 v6.9 縮小了 `DataView` 與相應 `TypedArray` 代碼之間的性能差距，從而使 `DataView` 成為性能要求高的實際應用程式中的可用選擇。'
+tweet: '1041981091727466496'
 ---
 [`DataView`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView) 是 JavaScript 中進行低層記憶體訪問的兩種途徑之一，另一種是 [`TypedArray`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)。直到現在，`DataView` 在 V8 中的優化程度遠低於 `TypedArray`，導致在圖形密集型工作負載或編解碼二進制數據等任務中性能偏低。這些原因主要是歷史選擇，例如 [asm.js](http://asmjs.org/) 選擇了 `TypedArray` 而非 `DataView`，因此引擎專注於提升 `TypedArray` 的性能。
 

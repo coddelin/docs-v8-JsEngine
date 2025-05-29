@@ -1,13 +1,13 @@
 ---
-title: &apos;Causas de errores&apos;
-author: &apos;Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))&apos;
+title: 'Causas de errores'
+author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
 avatars:
-  - &apos;victor-gomes&apos;
+  - 'victor-gomes'
 date: 2021-07-07
 tags:
   - ECMAScript
-description: &apos;JavaScript ahora admite causas de errores.&apos;
-tweet: &apos;1412774651558862850&apos;
+description: 'JavaScript ahora admite causas de errores.'
+tweet: '1412774651558862850'
 ---
 
 Imagina que tienes una función que llama a dos cargas de trabajo separadas `doSomeWork` y `doMoreWork`. Ambas funciones pueden lanzar el mismo tipo de errores, pero necesitas manejarlos de diferentes maneras.
@@ -19,7 +19,7 @@ function doWork() {
   try {
     doSomeWork();
   } catch (err) {
-    throw new CustomError(&apos;Fallo en el trabajo&apos;, err);
+    throw new CustomError('Fallo en el trabajo', err);
   }
   doMoreWork();
 }
@@ -41,12 +41,12 @@ function doWork() {
   try {
     doSomeWork();
   } catch (err) {
-    throw new Error(&apos;Fallo en el trabajo&apos;, { cause: err });
+    throw new Error('Fallo en el trabajo', { cause: err });
   }
   try {
     doMoreWork();
   } catch (err) {
-    throw new Error(&apos;Fallo en más trabajo&apos;, { cause: err });
+    throw new Error('Fallo en más trabajo', { cause: err });
   }
 }
 
@@ -54,10 +54,10 @@ try {
   doWork();
 } catch (err) {
   switch(err.message) {
-    case &apos;Fallo en el trabajo&apos;:
+    case 'Fallo en el trabajo':
       handleSomeWorkFailure(err.cause);
       break;
-    case &apos;Fallo en más trabajo&apos;:
+    case 'Fallo en más trabajo':
       handleMoreWorkFailure(err.cause);
       break;
   }

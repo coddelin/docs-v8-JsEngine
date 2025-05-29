@@ -1,9 +1,9 @@
 ---
-title: &apos;Seguimiento de holgura en V8&apos;
-author: &apos;Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), maestro reconocido de *holgura*&apos;
-description: &apos;Una mirada detallada al mecanismo de seguimiento de holgura de V8.&apos;
+title: 'Seguimiento de holgura en V8'
+author: 'Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), maestro reconocido de *holgura*'
+description: 'Una mirada detallada al mecanismo de seguimiento de holgura de V8.'
 avatars:
- - &apos;michael-stanton&apos;
+ - 'michael-stanton'
 date: 2020-09-24 14:00:00
 tags:
  - internals
@@ -19,7 +19,7 @@ function Peak(name, height) {
   this.height = height;
 }
 
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
+const m1 = new Peak('Matterhorn', 4478);
 ```
 
 Podrías pensar que el motor tiene todo lo que necesita para funcionar bien — después de todo, le has dicho que el objeto tiene dos propiedades. Sin embargo, V8 realmente no tiene idea de lo que vendrá después. Este objeto `m1` podría pasarse a otra función que le agregue 10 propiedades más. El seguimiento de holgura surge de esta necesidad de ser receptivo a lo que venga en un entorno sin compilación estática para inferir la estructura general. Es como muchos otros mecanismos en V8, cuya base son solo cosas que generalmente puedes decir sobre la ejecución, como:
@@ -98,7 +98,7 @@ function Peak(name, height) {
   this.height = height;
 }
 
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
+const m1 = new Peak('Matterhorn', 4478);
 ```
 
 Según el cálculo en `JSFunction::CalculateExpectedNofProperties` y nuestra función `Peak()`, deberíamos tener 2 propiedades en el objeto, y gracias al seguimiento del margen, otras 8 adicionales. Podemos imprimir `m1` con `%DebugPrint()` (_esta práctica función expone la estructura del mapa. Puedes usarla ejecutando `d8` con la bandera `--allow-natives-syntax`_):
@@ -195,13 +195,13 @@ Ahora, un árbol de mapas crece desde el mapa inicial, con una rama para cada pr
 Estas transiciones basadas en nombres de propiedades son cómo el [“topo ciego”](https://www.google.com/search?q=blind+mole&tbm=isch)" de JavaScript construye sus mapas detrás de ti. Este mapa inicial también está almacenado en la función `Peak`, así que cuando se utiliza como un constructor, ese mapa se puede usar para configurar el objeto `this`.
 
 ```js
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
-const m2 = new Peak(&apos;Mont Blanc&apos;, 4810);
-const m3 = new Peak(&apos;Zinalrothorn&apos;, 4221);
-const m4 = new Peak(&apos;Wendelstein&apos;, 1838);
-const m5 = new Peak(&apos;Zugspitze&apos;, 2962);
-const m6 = new Peak(&apos;Watzmann&apos;, 2713);
-const m7 = new Peak(&apos;Eiger&apos;, 3970);
+const m1 = new Peak('Matterhorn', 4478);
+const m2 = new Peak('Mont Blanc', 4810);
+const m3 = new Peak('Zinalrothorn', 4221);
+const m4 = new Peak('Wendelstein', 1838);
+const m5 = new Peak('Zugspitze', 2962);
+const m6 = new Peak('Watzmann', 2713);
+const m7 = new Peak('Eiger', 3970);
 ```
 
 Lo interesante aquí es que después de crear `m7`, ejecutar `%DebugPrint(m1)` nuevamente produce un resultado maravilloso:
@@ -295,7 +295,7 @@ El siguiente diagrama refleja que el seguimiento de holgura está **terminado** 
 Ahora que el seguimiento de holgura ha terminado, ¿qué sucede si añadimos otra propiedad a uno de estos objetos `Peak`?
 
 ```js
-m1.country = &apos;Suiza&apos;;
+m1.country = 'Suiza';
 ```
 
 V8 tiene que entrar en el almacén de respaldo de propiedades. Terminamos con la siguiente disposición del objeto:
@@ -339,13 +339,13 @@ function Peak(name, height, prominence, isClimbed) {
 Añades algunas de estas diferentes variantes:
 
 ```js
-const m1 = new Peak(&apos;Wendelstein&apos;, 1838);
-const m2 = new Peak(&apos;Matterhorn&apos;, 4478, 1040, true);
-const m3 = new Peak(&apos;Zugspitze&apos;, 2962);
-const m4 = new Peak(&apos;Mont Blanc&apos;, 4810, 4695, true);
-const m5 = new Peak(&apos;Watzmann&apos;, 2713);
-const m6 = new Peak(&apos;Zinalrothorn&apos;, 4221, 490, true);
-const m7 = new Peak(&apos;Eiger&apos;, 3970);
+const m1 = new Peak('Wendelstein', 1838);
+const m2 = new Peak('Matterhorn', 4478, 1040, true);
+const m3 = new Peak('Zugspitze', 2962);
+const m4 = new Peak('Mont Blanc', 4810, 4695, true);
+const m5 = new Peak('Watzmann', 2713);
+const m6 = new Peak('Zinalrothorn', 4221, 490, true);
+const m7 = new Peak('Eiger', 3970);
 ```
 
 En este caso, los objetos `m1`, `m3`, `m5` y `m7` tienen un mapa, y los objetos `m2`, `m4` y `m6` tienen un mapa más abajo en la cadena de descendientes desde el mapa inicial debido a las propiedades adicionales. Cuando el seguimiento de holgura ha terminado para esta familia de mapas, hay **4** propiedades internas en lugar de **2** como antes, porque el seguimiento de holgura asegura mantener suficiente espacio para el máximo número de propiedades internas utilizadas por cualquier descendiente en el árbol de mapas debajo del mapa inicial.
@@ -364,10 +364,10 @@ function foo(a1, a2, a3, a4) {
 }
 
 %PrepareFunctionForOptimization(foo);
-const m1 = foo(&apos;Wendelstein&apos;, 1838);
-const m2 = foo(&apos;Matterhorn&apos;, 4478, 1040, true);
+const m1 = foo('Wendelstein', 1838);
+const m2 = foo('Matterhorn', 4478, 1040, true);
 %OptimizeFunctionOnNextCall(foo);
-foo(&apos;Zugspitze&apos;, 2962);
+foo('Zugspitze', 2962);
 ```
 
 Eso debería ser suficiente para compilar y ejecutar código optimizado. Hacemos algo en TurboFan (el compilador optimizador) llamado [**Create Lowering**](https://source.chromium.org/chromium/chromium/src/+/master:v8/src/compiler/js-create-lowering.h;l=32;drc=ee9e7e404e5a3f75a3ca0489aaf80490f625ca27), donde en línea asignamos la creación de objetos. Esto significa que el código nativo que producimos emite instrucciones para pedir al GC el tamaño de instancia del objeto a asignar y luego inicializa cuidadosamente esos campos. Sin embargo, este código sería inválido si el seguimiento de margen se detuviera en algún punto posterior. ¿Qué podemos hacer con eso?

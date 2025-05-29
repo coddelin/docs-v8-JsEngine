@@ -1,11 +1,11 @@
 ---
-title: &apos;Lanzamientos más rápidos&apos;
-author: &apos;Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))&apos;
+title: 'Lanzamientos más rápidos'
+author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
 avatars:
-  - &apos;ingvar-stepanyan&apos;
+  - 'ingvar-stepanyan'
 date: 2021-03-04
-description: &apos;Acelerando el ciclo de lanzamientos de V8&apos;
-tweet: &apos;1367546733643919370&apos;
+description: 'Acelerando el ciclo de lanzamientos de V8'
+tweet: '1367546733643919370'
 ---
 Para poder entregar nuevas funciones y correcciones de errores más rápido a sus usuarios, Chrome está [acelerando su ciclo de lanzamientos](https://developer.chrome.com/blog/faster-release-cycle/).
 

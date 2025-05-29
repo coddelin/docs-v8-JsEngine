@@ -1,11 +1,11 @@
 ---
-title: &apos;V8アーキテクチャの複雑さを飼いならす — CodeStubAssembler&apos;
-author: &apos;[ダニエル・クリフォード](https://twitter.com/expatdanno)、CodeStubAssembler アセンブラ&apos;
+title: 'V8アーキテクチャの複雑さを飼いならす — CodeStubAssembler'
+author: '[ダニエル・クリフォード](https://twitter.com/expatdanno)、CodeStubAssembler アセンブラ'
 date: 2017-11-16 13:33:37
 tags:
   - 内部構造
-description: &apos;V8にはアセンブリコード上の独自の抽象化であるCodeStubAssemblerがあります。CSAにより、V8は複数プラットフォームをサポートしながら、JS機能を低レベルで迅速かつ確実に最適化することが可能です。&apos;
-tweet: &apos;931184976481177600&apos;
+description: 'V8にはアセンブリコード上の独自の抽象化であるCodeStubAssemblerがあります。CSAにより、V8は複数プラットフォームをサポートしながら、JS機能を低レベルで迅速かつ確実に最適化することが可能です。'
+tweet: '931184976481177600'
 ---
 この投稿では、CodeStubAssembler（CSA）を紹介します。これは、最近の複数のV8リリースでいくつかの[大きな](/blog/optimizing-proxies) [パフォーマンス](https://twitter.com/v8js/status/918119002437750784) [向上](https://twitter.com/_gsathya/status/900188695721984000)を達成するために非常に役立ったV8のコンポーネントです。CSAはまた、V8チームが高い信頼性で低レベルのJavaScript機能を迅速に最適化する能力を大幅に向上させ、開発のスピードを向上させました。
 

@@ -1,6 +1,6 @@
 ---
-title: &apos;GDB JIT 编译接口集成&apos;
-description: &apos;GDB JIT 编译接口集成允许 V8 为从 V8 运行时生成的原生代码向 GDB 提供符号和调试信息。&apos;
+title: 'GDB JIT 编译接口集成'
+description: 'GDB JIT 编译接口集成允许 V8 为从 V8 运行时生成的原生代码向 GDB 提供符号和调试信息。'
 ---
 GDB JIT 编译接口集成允许 V8 为从 V8 运行时生成的原生代码向 GDB 提供符号和调试信息。
 

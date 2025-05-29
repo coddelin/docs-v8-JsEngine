@@ -1,6 +1,6 @@
 ---
-title: &apos;Évaluer la couverture du code&apos;
-description: &apos;Ce document explique quoi faire si vous travaillez sur un changement dans V8 et que vous souhaitez évaluer sa couverture de code.&apos;
+title: 'Évaluer la couverture du code'
+description: 'Ce document explique quoi faire si vous travaillez sur un changement dans V8 et que vous souhaitez évaluer sa couverture de code.'
 ---
 Vous travaillez sur un changement. Vous souhaitez évaluer la couverture de code pour votre nouveau code.
 

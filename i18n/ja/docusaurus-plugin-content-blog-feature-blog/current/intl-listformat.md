@@ -1,16 +1,16 @@
 ---
-title: &apos;`Intl.ListFormat`&apos;
-author: &apos;Mathias Bynens（[@mathias](https://twitter.com/mathias)）およびFrank Yung-Fong Tang&apos;
+title: '`Intl.ListFormat`'
+author: 'Mathias Bynens（[@mathias](https://twitter.com/mathias)）およびFrank Yung-Fong Tang'
 avatars:
-  - &apos;mathias-bynens&apos;
-  - &apos;frank-tang&apos;
+  - 'mathias-bynens'
+  - 'frank-tang'
 date: 2018-12-18
 tags:
   - Intl
   - Node.js 12
   - io19
-description: &apos;Intl.ListFormat APIは、パフォーマンスを犠牲にすることなくリストのローカライズされたフォーマットを可能にします。&apos;
-tweet: &apos;1074966915557351424&apos;
+description: 'Intl.ListFormat APIは、パフォーマンスを犠牲にすることなくリストのローカライズされたフォーマットを可能にします。'
+tweet: '1074966915557351424'
 ---
 モダンなWebアプリケーションでは、動的なデータで構成されたリストがよく使用されます。例えば、写真ビューアアプリでは以下のような表示がされることがあります：
 
@@ -30,43 +30,43 @@ tweet: &apos;1074966915557351424&apos;
 以下の例では、英語を使用して接続詞のためのリストフォーマッタを作成する方法を示しています：
 
 ```js
-const lf = new Intl.ListFormat(&apos;en&apos;);
-lf.format([&apos;Frank&apos;]);
-// → &apos;Frank&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;]);
-// → &apos;Frank and Christine&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;]);
-// → &apos;Frank, Christine, and Flora&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;, &apos;Harrison&apos;]);
-// → &apos;Frank, Christine, Flora, and Harrison&apos;
+const lf = new Intl.ListFormat('en');
+lf.format(['Frank']);
+// → 'Frank'
+lf.format(['Frank', 'Christine']);
+// → 'Frank and Christine'
+lf.format(['Frank', 'Christine', 'Flora']);
+// → 'Frank, Christine, and Flora'
+lf.format(['Frank', 'Christine', 'Flora', 'Harrison']);
+// → 'Frank, Christine, Flora, and Harrison'
 ```
 
 英語で「or」となる選択肢のフォーマットも、オプションの`options`パラメータを使用してサポートされています：
 
 ```js
-const lf = new Intl.ListFormat(&apos;en&apos;, { type: &apos;disjunction&apos; });
-lf.format([&apos;Frank&apos;]);
-// → &apos;Frank&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;]);
-// → &apos;Frank or Christine&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;]);
-// → &apos;Frank, Christine, or Flora&apos;
-lf.format([&apos;Frank&apos;, &apos;Christine&apos;, &apos;Flora&apos;, &apos;Harrison&apos;]);
-// → &apos;Frank, Christine, Flora, or Harrison&apos;
+const lf = new Intl.ListFormat('en', { type: 'disjunction' });
+lf.format(['Frank']);
+// → 'Frank'
+lf.format(['Frank', 'Christine']);
+// → 'Frank or Christine'
+lf.format(['Frank', 'Christine', 'Flora']);
+// → 'Frank, Christine, or Flora'
+lf.format(['Frank', 'Christine', 'Flora', 'Harrison']);
+// → 'Frank, Christine, Flora, or Harrison'
 ```
 
 別の言語（中国語、言語コード`zh`）を使用する例を以下に示します：
 
 ```js
-const lf = new Intl.ListFormat(&apos;zh&apos;);
-lf.format([&apos;永鋒&apos;]);
-// → &apos;永鋒&apos;
-lf.format([&apos;永鋒&apos;, &apos;新宇&apos;]);
-// → &apos;永鋒和新宇&apos;
-lf.format([&apos;永鋒&apos;, &apos;新宇&apos;, &apos;芳遠&apos;]);
-// → &apos;永鋒、新宇和芳遠&apos;
-lf.format([&apos;永鋒&apos;, &apos;新宇&apos;, &apos;芳遠&apos;, &apos;澤遠&apos;]);
-// → &apos;永鋒、新宇、芳遠和澤遠&apos;
+const lf = new Intl.ListFormat('zh');
+lf.format(['永鋒']);
+// → '永鋒'
+lf.format(['永鋒', '新宇']);
+// → '永鋒和新宇'
+lf.format(['永鋒', '新宇', '芳遠']);
+// → '永鋒、新宇和芳遠'
+lf.format(['永鋒', '新宇', '芳遠', '澤遠']);
+// → '永鋒、新宇、芳遠和澤遠'
 ```
 
 `options`パラメータを使用すると、より高度な利用が可能です。以下に、様々なオプションとその組み合わせ、およびそれらが[UTS#35](https://unicode.org/reports/tr35/tr35-general.html#ListPatterns)で定義されたリストパターンにどのように対応しているかの概要を示します：
@@ -74,11 +74,11 @@ lf.format([&apos;永鋒&apos;, &apos;新宇&apos;, &apos;芳遠&apos;, &apos;澤
 
 | 種類                  | オプション                                   | 説明                                                                                     | 例                                 |
 | --------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------- | -------------------------------- |
-| 標準（または種類なし） | `{}` (デフォルト)                           | 任意のプレースホルダのための典型的な「and」リスト                                         | `&apos;January, February, and March&apos;` |
-| または                | `{ type: &apos;disjunction&apos; }`                 | 任意のプレースホルダのための典型的な「or」リスト                                         | `&apos;January, February, or March&apos;`  |
-| 単位                  | `{ type: &apos;unit&apos; }`                        | 単位向けの広いリスト                                                                     | `&apos;3 feet, 7 inches&apos;`             |
-| unit-short            | `{ type: &apos;unit&apos;, style: &apos;short&apos; }`        | 短い形式の単位向けのリスト                                                               | `&apos;3 ft, 7 in&apos;`                   |
-| unit-narrow           | `{ type: &apos;unit&apos;, style: &apos;narrow&apos; }`       | 画面スペースが非常に限られている場合の狭い形式の単位向けのリスト                         | `&apos;3′ 7″&apos;`                        |
+| 標準（または種類なし） | `{}` (デフォルト)                           | 任意のプレースホルダのための典型的な「and」リスト                                         | `'January, February, and March'` |
+| または                | `{ type: 'disjunction' }`                 | 任意のプレースホルダのための典型的な「or」リスト                                         | `'January, February, or March'`  |
+| 単位                  | `{ type: 'unit' }`                        | 単位向けの広いリスト                                                                     | `'3 feet, 7 inches'`             |
+| unit-short            | `{ type: 'unit', style: 'short' }`        | 短い形式の単位向けのリスト                                                               | `'3 ft, 7 in'`                   |
+| unit-narrow           | `{ type: 'unit', style: 'narrow' }`       | 画面スペースが非常に限られている場合の狭い形式の単位向けのリスト                         | `'3′ 7″'`                        |
 
 
 多くの言語（英語など）では、これら多くのリスト間で違いがない可能性があります。一方、他の言語では、スペーシング、接続詞の長さや存在、あるいは区切り記号が異なることがあります。

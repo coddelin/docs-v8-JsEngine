@@ -1,17 +1,17 @@
 ---
-title: &apos;Méthode `at` pour l&apos;indexation relative&apos;
-author: &apos;Shu-yu Guo ([@_shu](https://twitter.com/_shu))&apos;
+title: 'Méthode `at` pour l'indexation relative'
+author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
 avatars:
-  - &apos;shu-yu-guo&apos;
+  - 'shu-yu-guo'
 date: 2021-07-13
 tags:
   - ECMAScript
-description: &apos;JavaScript dispose maintenant d&apos;une méthode d&apos;indexation relative pour les tableaux, TypedArrays et chaînes de caractères.&apos;
+description: 'JavaScript dispose maintenant d'une méthode d'indexation relative pour les tableaux, TypedArrays et chaînes de caractères.'
 ---
 
-La nouvelle méthode `at` sur `Array.prototype`, les différents prototypes de TypedArray et `String.prototype` facilite et rend plus succincte l&apos;accès à un élément proche de la fin de la collection.
+La nouvelle méthode `at` sur `Array.prototype`, les différents prototypes de TypedArray et `String.prototype` facilite et rend plus succincte l'accès à un élément proche de la fin de la collection.
 
-Accéder au Nième élément depuis la fin d&apos;une collection est une opération courante. Cependant, les façons habituelles de le faire sont verbeuses, comme `my_array[my_array.length - N]`, ou pourraient ne pas être performantes, comme `my_array.slice(-N)[0]`. La nouvelle méthode `at` rend cette opération plus ergonomique en interprétant les indices négatifs comme signifiant « depuis la fin ». Les exemples précédents peuvent être exprimés comme `my_array.at(-N)`.
+Accéder au Nième élément depuis la fin d'une collection est une opération courante. Cependant, les façons habituelles de le faire sont verbeuses, comme `my_array[my_array.length - N]`, ou pourraient ne pas être performantes, comme `my_array.slice(-N)[0]`. La nouvelle méthode `at` rend cette opération plus ergonomique en interprétant les indices négatifs comme signifiant « depuis la fin ». Les exemples précédents peuvent être exprimés comme `my_array.at(-N)`.
 
 <!--truncate-->
 Pour uniformité, les indices positifs sont également pris en charge et équivalent à un accès ordinaire aux propriétés.
@@ -20,20 +20,20 @@ Cette nouvelle méthode est suffisamment simple pour que ses pleines sémantique
 
 ```js
 function at(n) {
-  // Convertir l&apos;argument en entier
+  // Convertir l'argument en entier
   n = Math.trunc(n) || 0;
-  // Autoriser l&apos;indexation négative depuis la fin
+  // Autoriser l'indexation négative depuis la fin
   if (n < 0) n += this.length;
   // Un accès hors limites renvoie undefined
   if (n < 0 || n >= this.length) return undefined;
-  // Sinon, c&apos;est juste un accès normal aux propriétés
+  // Sinon, c'est juste un accès normal aux propriétés
   return this[n];
 }
 ```
 
 ## Un mot sur les chaînes
 
-Étant donné que `at` effectue finalement un indexage ordinaire, appeler `at` sur des valeurs String retourne des unités de code, tout comme le ferait l&apos;indexation ordinaire. Et comme l&apos;indexation ordinaire sur des chaînes, les unités de code ne sont peut-être pas ce que vous souhaitez pour les chaînes Unicode ! Veuillez envisager si [`String.prototype.codePointAt()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt) est plus approprié pour votre cas d&apos;utilisation.
+Étant donné que `at` effectue finalement un indexage ordinaire, appeler `at` sur des valeurs String retourne des unités de code, tout comme le ferait l'indexation ordinaire. Et comme l'indexation ordinaire sur des chaînes, les unités de code ne sont peut-être pas ce que vous souhaitez pour les chaînes Unicode ! Veuillez envisager si [`String.prototype.codePointAt()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt) est plus approprié pour votre cas d'utilisation.
 
 ## Prise en charge de la méthode `at`
 

@@ -1,7 +1,7 @@
 ---
-title: &apos;WebAssembly JSPIがオリジントライアルに進む&apos;
-description: &apos;JSPIのオリジントライアル開始について説明します&apos;
-author: &apos;Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl&apos;
+title: 'WebAssembly JSPIがオリジントライアルに進む'
+description: 'JSPIのオリジントライアル開始について説明します'
+author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
 date: 2024-03-06
 tags:
   - WebAssembly

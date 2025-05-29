@@ -1,14 +1,14 @@
 ---
-title: &apos;Spectreから1年：V8チームの視点&apos;
-author: &apos;Ben L. TitzerとJaroslav Sevcik&apos;
+title: 'Spectreから1年：V8チームの視点'
+author: 'Ben L. TitzerとJaroslav Sevcik'
 avatars:
-  - &apos;ben-titzer&apos;
-  - &apos;jaroslav-sevcik&apos;
+  - 'ben-titzer'
+  - 'jaroslav-sevcik'
 date: 2019-04-23 14:15:22
 tags:
   - セキュリティ
-tweet: &apos;1120661732836499461&apos;
-description: &apos;V8チームが、2018年の主要なコンピュータセキュリティ問題の1つであるSpectreに対する分析と緩和戦略について詳述します。&apos;
+tweet: '1120661732836499461'
+description: 'V8チームが、2018年の主要なコンピュータセキュリティ問題の1つであるSpectreに対する分析と緩和戦略について詳述します。'
 ---
 2018年1月3日、Google Project Zeroと他の機関が、投機的実行を行うCPUに影響を与える新しいクラスの脆弱性、[Spectre](https://spectreattack.com/spectre.pdf)および[Meltdown](https://meltdownattack.com/meltdown.pdf)と名付けられた脆弱性の最初の3つを[公表](https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html)しました。CPUの[投機的実行](https://en.wikipedia.org/wiki/Speculative_execution)メカニズムを利用し、攻撃者はコード内の暗黙的および明示的な安全性チェックを一時的に回避し、メモリ内の許可されていないデータの読み取りを防止することができます。プロセッサの投機は、アーキテクチャレベルでは見えないマイクロアーキテクチャの詳細として設計されていましたが、注意深く作成されたプログラムは、投機的に許可されていない情報を読み、プログラム断片の実行時間などのサイドチャネルを通じてそれを公開することができます。
 

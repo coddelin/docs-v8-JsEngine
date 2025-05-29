@@ -1,6 +1,6 @@
 ---
-title: &apos;WebAssembly 編譯流水線&apos;
-description: &apos;這篇文章解釋了 V8 的 WebAssembly 編譯器以及它們何時編譯 WebAssembly 程式碼。&apos;
+title: 'WebAssembly 編譯流水線'
+description: '這篇文章解釋了 V8 的 WebAssembly 編譯器以及它們何時編譯 WebAssembly 程式碼。'
 ---
 
 WebAssembly 是一種二進位格式，可以有效率且安全地在網頁上執行非 JavaScript 的編程語言程式碼。在本文中，我們深入探討 V8 中的 WebAssembly 編譯流水線，並解釋我們如何使用不同的編譯器來提供良好的效能。

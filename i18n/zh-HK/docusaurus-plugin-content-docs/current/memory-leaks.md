@@ -1,6 +1,6 @@
 ---
-title: &apos;調查記憶體洩漏&apos;
-description: &apos;本文檔提供了關於在 V8 中調查記憶體洩漏的指導。&apos;
+title: '調查記憶體洩漏'
+description: '本文檔提供了關於在 V8 中調查記憶體洩漏的指導。'
 ---
 如果您正在調查記憶體洩漏並想知道為什麼某個對象沒有被垃圾回收，您可以使用 `%DebugTrackRetainingPath(object)` 打印對象在每次垃圾回收時的實際保留路徑。
 
@@ -10,7 +10,7 @@ description: &apos;本文檔提供了關於在 V8 中調查記憶體洩漏的指
 
 ```js
 function foo() {
-  const x = { bar: &apos;bar&apos; };
+  const x = { bar: 'bar' };
   %DebugTrackRetainingPath(x);
   return () => { return x; }
 }

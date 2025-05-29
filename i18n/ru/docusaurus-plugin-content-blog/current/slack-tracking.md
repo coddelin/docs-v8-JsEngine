@@ -1,9 +1,9 @@
 ---
-title: &apos;Отслеживание неиспользуемого пространства в V8&apos;
-author: &apos;Майкл Стэнтон ([@alpencoder](https://twitter.com/alpencoder)), признанный мастер *неиспользуемого пространства*&apos;
-description: &apos;Детальное рассмотрение механизма отслеживания неиспользуемого пространства в V8.&apos;
+title: 'Отслеживание неиспользуемого пространства в V8'
+author: 'Майкл Стэнтон ([@alpencoder](https://twitter.com/alpencoder)), признанный мастер *неиспользуемого пространства*'
+description: 'Детальное рассмотрение механизма отслеживания неиспользуемого пространства в V8.'
 avatars:
- - &apos;michael-stanton&apos;
+ - 'michael-stanton'
 date: 2020-09-24 14:00:00
 tags:
  - internals
@@ -19,7 +19,7 @@ function Peak(name, height) {
   this.height = height;
 }
 
-const m1 = new Peak(&apos;Маттерхорн&apos;, 4478);
+const m1 = new Peak('Маттерхорн', 4478);
 ```
 
 Может показаться, что движок располагает всей необходимой информацией для оптимальной работы — ведь вы ему сообщили, что у объекта два свойства. Однако V8 на самом деле не знает, что будет дальше. Этот объект `m1` может быть передан другой функции, которая добавит к нему еще 10 свойств. Механизм отслеживания неиспользуемого пространства создается из этой необходимости быть готовым к чему угодно в среде без статической компиляции, которая могла бы предсказать общую структуру. Это похоже на многие другие механизмы в V8, которые основываются на общих утверждениях об исполнении, например:
@@ -98,7 +98,7 @@ function Peak(name, height) {
   this.height = height;
 }
 
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
+const m1 = new Peak('Matterhorn', 4478);
 ```
 
 Согласно расчету в `JSFunction::CalculateExpectedNofProperties` и нашей функции `Peak()`, у нас должно быть 2 свойства внутри объекта, а благодаря отслеживанию свободного пространства, еще дополнительные 8. Мы можем напечатать `m1` с помощью `%DebugPrint()` (_эта удобная функция показывает структуру карты. Вы можете использовать её, запустив `d8`, используя флаг `--allow-natives-syntax`_):
@@ -195,13 +195,13 @@ DebugPrint: 0x46f07295: [Map]
 Эти переходы, основанные на именах свойств, показывают, как [“слепой крот”](https://www.google.com/search?q=blind+mole&tbm=isch)" JavaScript строит свои карты за вашей спиной. Эта начальная карта также хранится в функции `Peak`, поэтому, когда она используется как конструктор, эта карта может быть использована для настройки объекта `this`.
 
 ```js
-const m1 = new Peak(&apos;Matterhorn&apos;, 4478);
-const m2 = new Peak(&apos;Mont Blanc&apos;, 4810);
-const m3 = new Peak(&apos;Zinalrothorn&apos;, 4221);
-const m4 = new Peak(&apos;Wendelstein&apos;, 1838);
-const m5 = new Peak(&apos;Zugspitze&apos;, 2962);
-const m6 = new Peak(&apos;Watzmann&apos;, 2713);
-const m7 = new Peak(&apos;Eiger&apos;, 3970);
+const m1 = new Peak('Matterhorn', 4478);
+const m2 = new Peak('Mont Blanc', 4810);
+const m3 = new Peak('Zinalrothorn', 4221);
+const m4 = new Peak('Wendelstein', 1838);
+const m5 = new Peak('Zugspitze', 2962);
+const m6 = new Peak('Watzmann', 2713);
+const m7 = new Peak('Eiger', 3970);
 ```
 
 Круто то, что после создания `m7`, запуск `%DebugPrint(m1)` снова дает великолепный новый результат:
@@ -295,7 +295,7 @@ void Factory::InitializeJSObjectBody(Handle<JSObject> obj, Handle<Map> map,
 Теперь, когда отслеживание избыточности завершено, что произойдет, если мы добавим еще одно свойство в один из этих объектов `Peak`?
 
 ```js
-m1.country = &apos;Швейцария&apos;;
+m1.country = 'Швейцария';
 ```
 
 V8 должен обратиться к хранилищу свойств. Мы получаем следующий макет объекта:
@@ -339,13 +339,13 @@ function Peak(name, height, prominence, isClimbed) {
 Добавьте несколько таких разных вариантов:
 
 ```js
-const m1 = new Peak(&apos;Вендельштайн&apos;, 1838);
-const m2 = new Peak(&apos;Маттерхорн&apos;, 4478, 1040, true);
-const m3 = new Peak(&apos;Цугшпитце&apos;, 2962);
-const m4 = new Peak(&apos;Монблан&apos;, 4810, 4695, true);
-const m5 = new Peak(&apos;Ватцманн&apos;, 2713);
-const m6 = new Peak(&apos;Цинальротхорн&apos;, 4221, 490, true);
-const m7 = new Peak(&apos;Айгер&apos;, 3970);
+const m1 = new Peak('Вендельштайн', 1838);
+const m2 = new Peak('Маттерхорн', 4478, 1040, true);
+const m3 = new Peak('Цугшпитце', 2962);
+const m4 = new Peak('Монблан', 4810, 4695, true);
+const m5 = new Peak('Ватцманн', 2713);
+const m6 = new Peak('Цинальротхорн', 4221, 490, true);
+const m7 = new Peak('Айгер', 3970);
 ```
 
 В этом случае объекты `m1`, `m3`, `m5` и `m7` имеют одну карту, а объекты `m2`, `m4` и `m6` имеют карты дальше по цепочке потомков от начальной карты из-за дополнительных свойств. Когда отслеживание избыточности завершается для этой семейной группы карт, появляется **4** встроенных свойства вместо **2**, как раньше, потому что отслеживание избыточности обеспечивает достаточное пространство для максимального количества встроенных свойств, используемых любыми потомками в дереве карт ниже начальной карты.
@@ -364,10 +364,10 @@ function foo(a1, a2, a3, a4) {
 }
 
 %PrepareFunctionForOptimization(foo);
-const m1 = foo(&apos;Wendelstein&apos;, 1838);
-const m2 = foo(&apos;Matterhorn&apos;, 4478, 1040, true);
+const m1 = foo('Wendelstein', 1838);
+const m2 = foo('Matterhorn', 4478, 1040, true);
 %OptimizeFunctionOnNextCall(foo);
-foo(&apos;Zugspitze&apos;, 2962);
+foo('Zugspitze', 2962);
 ```
 
 Этого должно быть достаточно, чтобы скомпилировать и выполнить оптимизированный код. Мы делаем в TurboFan (оптимизирующем компиляторе) то, что называется [**Create Lowering**](https://source.chromium.org/chromium/chromium/src/+/master:v8/src/compiler/js-create-lowering.h;l=32;drc=ee9e7e404e5a3f75a3ca0489aaf80490f625ca27), где мы встраиваем создание объектов. Это означает, что код, который мы производим на уровне системы, отправляет команды для запроса у механизма сборки мусора размера экземпляра объекта для выделения пространства и затем аккуратно заполняет эти поля. Однако этот код станет недействительным, если отслеживание коэффициента запаса прекратится позже. Что мы можем с этим сделать?

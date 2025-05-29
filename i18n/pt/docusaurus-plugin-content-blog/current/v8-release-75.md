@@ -1,13 +1,13 @@
 ---
-title: &apos;Lançamento do V8 v7.5&apos;
-author: &apos;Dan Elphick, flagelo dos depreciados&apos;
+title: 'Lançamento do V8 v7.5'
+author: 'Dan Elphick, flagelo dos depreciados'
 avatars:
-  - &apos;dan-elphick&apos;
+  - 'dan-elphick'
 date: 2019-05-16 15:00:00
 tags:
   - lançamento
-description: &apos;O V8 v7.5 apresenta cache implícito de artefatos de compilação WebAssembly, operações de memória em massa, separadores numéricos em JavaScript e muito mais!&apos;
-tweet: &apos;1129073370623086593&apos;
+description: 'O V8 v7.5 apresenta cache implícito de artefatos de compilação WebAssembly, operações de memória em massa, separadores numéricos em JavaScript e muito mais!'
+tweet: '1129073370623086593'
 ---
 A cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](/docs/release-process). Cada versão é ramificada do Git master do V8 imediatamente antes de um marco Beta do Chrome. Hoje, temos o prazer de anunciar nosso mais novo branch, [V8 versão 7.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.5), que está em beta até sua versão final em coordenação com o Chrome 75 Stable em algumas semanas. O V8 v7.5 está cheio de novidades para os desenvolvedores. Este post oferece uma prévia de alguns dos destaques na expectativa do lançamento.
 

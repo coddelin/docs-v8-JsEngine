@@ -1,13 +1,13 @@
 ---
-title: &apos;Deserialización perezosa&apos;
-author: &apos;Jakob Gruber ([@schuay](https://twitter.com/schuay))&apos;
+title: 'Deserialización perezosa'
+author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
 avatars:
-  - &apos;jakob-gruber&apos;
+  - 'jakob-gruber'
 date: 2018-02-12 13:33:37
 tags:
   - internals
-description: &apos;La deserialización perezosa, disponible en V8 v6.4, reduce el consumo de memoria de V8 en más de 500 KB por pestaña del navegador en promedio.&apos;
-tweet: &apos;962989179914383360&apos;
+description: 'La deserialización perezosa, disponible en V8 v6.4, reduce el consumo de memoria de V8 en más de 500 KB por pestaña del navegador en promedio.'
+tweet: '962989179914383360'
 ---
 TL;DR: La deserialización perezosa se habilitó recientemente de manera predeterminada en [V8 v6.4](/blog/v8-release-64), reduciendo el consumo de memoria de V8 en más de 500 KB por pestaña del navegador en promedio. ¡Sigue leyendo para saber más!
 

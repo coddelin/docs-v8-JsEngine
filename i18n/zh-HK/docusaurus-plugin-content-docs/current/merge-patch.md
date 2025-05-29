@@ -1,6 +1,6 @@
 ---
-title: &apos;合併與補丁&apos;
-description: &apos;本文檔說明如何將 V8 的補丁合併到發行分支。&apos;
+title: '合併與補丁'
+description: '本文檔說明如何將 V8 的補丁合併到發行分支。'
 ---
 如果您有一個針對 `main` 分支的重要補丁（例如修復重要的錯誤），需要將其合併到某個 V8 發行分支（refs/branch-heads/12.5），請繼續閱讀。
 
@@ -22,7 +22,7 @@ description: &apos;本文檔說明如何將 V8 的補丁合併到發行分支。
 
 ## 合併過程
 
-在 V8 問題追蹤器中的合併過程由屬性驅動。因此，請將 &apos;Merge-Request&apos; 設置為相關的 Chrome Milestone。如果合併僅影響 V8 的[移植](https://v8.dev/docs/ports)，請相應地設置 HW 屬性。例如：
+在 V8 問題追蹤器中的合併過程由屬性驅動。因此，請將 'Merge-Request' 設置為相關的 Chrome Milestone。如果合併僅影響 V8 的[移植](https://v8.dev/docs/ports)，請相應地設置 HW 屬性。例如：
 
 ```
 Merge-Request: 123

@@ -1,14 +1,14 @@
 ---
-title: &apos;Un año con Spectre: una perspectiva de V8&apos;
-author: &apos;Ben L. Titzer y Jaroslav Sevcik&apos;
+title: 'Un año con Spectre: una perspectiva de V8'
+author: 'Ben L. Titzer y Jaroslav Sevcik'
 avatars:
-  - &apos;ben-titzer&apos;
-  - &apos;jaroslav-sevcik&apos;
+  - 'ben-titzer'
+  - 'jaroslav-sevcik'
 date: 2019-04-23 14:15:22
 tags:
   - seguridad
-tweet: &apos;1120661732836499461&apos;
-description: &apos;El equipo de V8 detalla su análisis y estrategia de mitigación para Spectre, uno de los principales problemas de seguridad informática de 2018.&apos;
+tweet: '1120661732836499461'
+description: 'El equipo de V8 detalla su análisis y estrategia de mitigación para Spectre, uno de los principales problemas de seguridad informática de 2018.'
 ---
 El 3 de enero de 2018, Google Project Zero y otros [revelaron](https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html) las tres primeras vulnerabilidades de una nueva clase que afecta a las CPU que realizan ejecución especulativa, denominadas [Spectre](https://spectreattack.com/spectre.pdf) y [Meltdown](https://meltdownattack.com/meltdown.pdf). Utilizando los mecanismos de [ejecución especulativa](https://en.wikipedia.org/wiki/Speculative_execution) de las CPU, un atacante podía eludir temporalmente tanto las verificaciones de seguridad implícitas como explícitas en el código que impiden que los programas lean datos no autorizados en la memoria. Aunque la especulación del procesador fue diseñada para ser un detalle microarquitectónico, invisible a nivel arquitectónico, los programas elaborados cuidadosamente podían leer información no autorizada en especulación y divulgarla a través de canales encubiertos como el tiempo de ejecución de un fragmento de programa.
 

@@ -1,6 +1,6 @@
 ---
-title: &apos;Сборка V8 с помощью GN&apos;
-description: &apos;Этот документ объясняет, как использовать GN для сборки V8.&apos;
+title: 'Сборка V8 с помощью GN'
+description: 'Этот документ объясняет, как использовать GN для сборки V8.'
 ---
 V8 собирается с помощью [GN](https://gn.googlesource.com/gn/+/master/docs/). GN — это своего рода мета-система сборки, так как она генерирует файлы сборки для множества других систем сборки. Следовательно, то, как вы будете собирать, зависит от используемой «бэкэнд» системы сборки и компилятора.
 Инструкции ниже предполагают, что у вас уже есть [копия V8](/docs/source-code) и что вы [установили зависимости для сборки](/docs/build).
@@ -66,7 +66,7 @@ gn args out/foo
 Это откроет окно редактора для указания [аргументов для `gn`](https://gn.googlesource.com/gn/+/master/docs/reference.md). Альтернативно, вы можете передать аргументы через командную строку:
 
 ```bash
-gn gen out/foo --args=&apos;is_debug=false target_cpu="x64" v8_target_cpu="arm64" use_goma=true&apos;
+gn gen out/foo --args='is_debug=false target_cpu="x64" v8_target_cpu="arm64" use_goma=true'
 ```
 
 Это создаст файлы сборки для компиляции V8 с симулятором arm64 в режиме release с использованием `goma` для компиляции.
@@ -100,7 +100,7 @@ v8gen list -m client.v8
 Сборка аналогичная конкретному боту из `client.v8` в папке `foo`:
 
 ```bash
-v8gen -b &apos;V8 Linux64 - debug builder&apos; -m client.v8 foo
+v8gen -b 'V8 Linux64 - debug builder' -m client.v8 foo
 ```
 
 ### Шаг 2: компиляция V8

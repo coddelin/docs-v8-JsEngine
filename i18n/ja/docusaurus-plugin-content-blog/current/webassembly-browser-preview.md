@@ -1,10 +1,10 @@
 ---
-title: &apos;WebAssemblyブラウザプレビュー&apos;
-author: &apos;V8チーム&apos;
+title: 'WebAssemblyブラウザプレビュー'
+author: 'V8チーム'
 date: 2016-10-31 13:33:37
 tags:
   - WebAssembly
-description: &apos;WebAssembly（またはWasm）はウェブ向けの新しいランタイムおよびコンパイルターゲットであり、現在Chrome Canaryでフラグの背後で利用できます！&apos;
+description: 'WebAssembly（またはWasm）はウェブ向けの新しいランタイムおよびコンパイルターゲットであり、現在Chrome Canaryでフラグの背後で利用できます！'
 ---
 私たちは本日、[Firefox](https://hacks.mozilla.org/2016/10/webassembly-browser-preview)および[Edge](https://blogs.windows.com/msedgedev/2016/10/31/webassembly-browser-preview/)と同時に、WebAssemblyブラウザプレビューを発表します。[WebAssembly](http://webassembly.org/)（またはWasm）は、Google、Mozilla、Microsoft、Apple、そして[W3C WebAssembly Community Group](https://www.w3.org/community/webassembly/)の協力者によって設計された、ウェブ向けの新しいランタイムおよびコンパイルターゲットです。
 

@@ -1,13 +1,13 @@
 ---
-title: &apos;Jank Busters Part One&apos;
-author: &apos;the jank busters: Jochen Eisinger, Michael Lippautz, and Hannes Payer&apos;
+title: 'Jank Busters Part One'
+author: 'the jank busters: Jochen Eisinger, Michael Lippautz, and Hannes Payer'
 avatars:
-  - &apos;michael-lippautz&apos;
-  - &apos;hannes-payer&apos;
+  - 'michael-lippautz'
+  - 'hannes-payer'
 date: 2015-10-30 13:33:37
 tags:
   - memory
-description: &apos;이 글은 Chrome 41과 Chrome 46 사이에 구현된 최적화에 대해 논의하며, 이는 가비지 수집 지연 시간을 상당히 줄여 사용자 경험을 개선합니다.&apos;
+description: '이 글은 Chrome 41과 Chrome 46 사이에 구현된 최적화에 대해 논의하며, 이는 가비지 수집 지연 시간을 상당히 줄여 사용자 경험을 개선합니다.'
 ---
 지연(jank), 즉 눈에 띄는 끊김은 Chrome이 16.66ms(60프레임/초) 내에 프레임을 렌더링하지 못할 때 발생합니다. 현재로서는 V8의 대부분의 가비지 수집 작업이 메인 렌더링 스레드에서 수행되며, 이는 종종 너무 많은 객체를 유지관리해야 할 때 지연을 유발합니다. 지연을 제거하는 것은 항상 V8 팀([1](https://blog.chromium.org/2011/11/game-changer-for-interactive.html), [2](https://www.youtube.com/watch?v=3vPOlGRH6zk), [3](/blog/free-garbage-collection))의 최우선 과제였습니다. 이 글은 Chrome 41에서 Chrome 46 사이에 구현되어 가비지 수집 지연을 크게 줄임으로써 사용자 경험을 개선한 몇 가지 최적화에 대해 논의합니다.
 

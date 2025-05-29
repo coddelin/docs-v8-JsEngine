@@ -1,6 +1,6 @@
 ---
-title: &apos;V8 Torque Benutzerhandbuch&apos;
-description: &apos;Dieses Dokument erklärt die V8 Torque-Sprache, wie sie im V8-Code verwendet wird.&apos;
+title: 'V8 Torque Benutzerhandbuch'
+description: 'Dieses Dokument erklärt die V8 Torque-Sprache, wie sie im V8-Code verwendet wird.'
 ---
 V8 Torque ist eine Sprache, die es Entwicklern, die zum V8-Projekt beitragen, ermöglicht, Änderungen an der VM auszudrücken, indem sie sich auf die _Absicht_ ihrer Änderungen konzentrieren, anstatt sich mit nicht verbundenen Implementierungsdetails zu beschäftigen. Die Sprache wurde so konzipiert, dass sie einfach genug ist, um die [ECMAScript-Spezifikation](https://tc39.es/ecma262/) leicht in eine Implementierung in V8 zu übersetzen. Gleichzeitig ist sie jedoch leistungsstark genug, um die V8-Optimierungstricks auf niedriger Ebene robust darzustellen, wie z. B. das Erstellen von schnelleren Pfaden basierend auf Tests für bestimmte Objektformen.
 
@@ -10,7 +10,7 @@ Torque bietet Sprachkonstrukte, um semantisch reichhaltige Details der V8-Implem
 
 ## Einstieg
 
-Die meisten in Torque geschriebenen Quelltexte werden unter [dem Verzeichnis `src/builtins`](https://github.com/v8/v8/tree/master/src/builtins) im V8-Repository mit der Dateierweiterung `.tq` gespeichert. Torque-Definitionen von V8&apos;s heap-allokierten Klassen befinden sich zusammen mit ihren C++-Definitionen in `.tq`-Dateien mit demselben Namen wie die entsprechenden C++-Dateien in `src/objects`. Der eigentliche Torque-Compiler ist unter [`src/torque`](https://github.com/v8/v8/tree/master/src/torque) zu finden. Tests für die Torque-Funktionalität werden unter [`test/torque`](https://github.com/v8/v8/tree/master/test/torque), [`test/cctest/torque`](https://github.com/v8/v8/tree/master/test/cctest/torque) und [`test/unittests/torque`](https://github.com/v8/v8/tree/master/test/unittests/torque) eingecheckt.
+Die meisten in Torque geschriebenen Quelltexte werden unter [dem Verzeichnis `src/builtins`](https://github.com/v8/v8/tree/master/src/builtins) im V8-Repository mit der Dateierweiterung `.tq` gespeichert. Torque-Definitionen von V8's heap-allokierten Klassen befinden sich zusammen mit ihren C++-Definitionen in `.tq`-Dateien mit demselben Namen wie die entsprechenden C++-Dateien in `src/objects`. Der eigentliche Torque-Compiler ist unter [`src/torque`](https://github.com/v8/v8/tree/master/src/torque) zu finden. Tests für die Torque-Funktionalität werden unter [`test/torque`](https://github.com/v8/v8/tree/master/test/torque), [`test/cctest/torque`](https://github.com/v8/v8/tree/master/test/cctest/torque) und [`test/unittests/torque`](https://github.com/v8/v8/tree/master/test/unittests/torque) eingecheckt.
 
 Um Ihnen einen Eindruck von der Sprache zu geben, schreiben wir ein V8-Builtin, das "Hello World!" ausgibt. Dazu fügen wir einen Torque-`macro` in einen Testfall ein und rufen diesen aus dem `cctest`-Testframework auf.
 
@@ -19,7 +19,7 @@ Beginnen Sie damit, die Datei `test/torque/test-torque.tq` zu öffnen, und füge
 ```torque
 @export
 macro PrintHelloWorld(): void {
-  Print(&apos;Hallo Welt!&apos;);
+  Print('Hallo Welt!');
 }
 ```
 
@@ -161,8 +161,8 @@ ConstexprDeclaration :
 Hier ist ein Beispiel aus `base.tq` für Torques 31- und 32-Bit-Ganzzahltypen mit Vorzeichen:
 
 ```torque
-type int32 generates &apos;TNode<Int32T>&apos; constexpr &apos;int32_t&apos;;
-type int31 extends int32 generates &apos;TNode<Int32T>&apos; constexpr &apos;int31_t&apos;;
+type int32 generates 'TNode<Int32T>' constexpr 'int32_t';
+type int31 extends int32 generates 'TNode<Int32T>' constexpr 'int31_t';
 ```
 
 #### Unionstypen
@@ -424,7 +424,7 @@ In V8 können sich Heap-Objekte zur Laufzeit verändern. Um Objektlayouts auszud
 // Ein HeapObject mit einer JSArray-Karte und entweder schnellen „packed“-Elementen
 // oder schnellen „holey“-Elementen, wenn der globale NoElementsProtector nicht ungültig ist.
 transient type FastJSArray extends JSArray
-    generates &apos;TNode<JSArray>&apos;;
+    generates 'TNode<JSArray>';
 ```
 
 Im Fall von `FastJSArray` wird der transiente Typ beispielsweise ungültig, wenn das Array zu Dictionary-Elementen wechselt oder wenn der globale `NoElementsProtector` ungültig wird. Um dies in Torque auszudrücken, annotieren Sie alle Aufrufbaren, die dies potenziell tun könnten, als `transitioning`. Beispielsweise kann das Aufrufen einer JavaScript-Funktion beliebigen JavaScript-Code ausführen, daher ist sie `transitioning`.
@@ -592,7 +592,7 @@ intrinsic %RawObjectCast<A: type>(o: Object): A;
 intrinsic %RawPointerCast<A: type>(p: RawPtr): A;
 
 // %RawConstexprCast konvertiert einen Compile-Time-Konstantenwert in einen anderen.
-// Sowohl Quell- als auch Zieltypen sollten &apos;constexpr&apos; sein.
+// Sowohl Quell- als auch Zieltypen sollten 'constexpr' sein.
 // %RawConstexprCast wird in den generierten C++-Code als static_cast übersetzt.
 intrinsic %RawConstexprCast<To: type, From: type>(f: From): To;
 
@@ -601,7 +601,7 @@ intrinsic %RawConstexprCast<To: type, From: type>(f: From): To;
 // unterstützt: Smi, Number, String, uintptr, intptr und int32
 intrinsic %FromConstexpr<To: type, From: type>(b: From): To;
 
-// %Allocate reserviert ein uninitialisiertes Objekt der Größe &apos;size&apos; aus V8&apos;s
+// %Allocate reserviert ein uninitialisiertes Objekt der Größe 'size' aus V8's
 // GC-Heap und "reinterpret casts" den resultierenden Objektzeiger auf den
 // angegebene Torque-Klasse, die es den Konstruktoren ermöglicht, anschließend
 // Standardfeldzugriffsoperatoren zu verwenden, um das Objekt zu initialisieren.

@@ -1,6 +1,6 @@
 ---
-title: &apos;端口处理&apos;
-description: &apos;本文档描述了架构特定的 V8 端口应如何处理。&apos;
+title: '端口处理'
+description: '本文档描述了架构特定的 V8 端口应如何处理。'
 ---
 本文档描述了端口应如何处理。
 

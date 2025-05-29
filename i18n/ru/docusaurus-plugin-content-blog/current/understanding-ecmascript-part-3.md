@@ -1,14 +1,14 @@
 ---
-title: &apos;Понимание спецификации ECMAScript, часть 3&apos;
-author: &apos;[Марья Хёлтта](https://twitter.com/marjakh), наблюдатель за спекулятивными спецификациями&apos;
+title: 'Понимание спецификации ECMAScript, часть 3'
+author: '[Марья Хёлтта](https://twitter.com/marjakh), наблюдатель за спекулятивными спецификациями'
 avatars:
   - marja-holtta
 date: 2020-04-01
 tags:
   - ECMAScript
   - Понимание ECMAScript
-description: &apos;Учебное пособие по чтению спецификации ECMAScript&apos;
-tweet: &apos;1245400717667577857&apos;
+description: 'Учебное пособие по чтению спецификации ECMAScript'
+tweet: '1245400717667577857'
 ---
 
 [Все эпизоды](/blog/tags/understanding-ecmascript)
@@ -57,8 +57,8 @@ const r = /foo/;
 Шаблоны вводят схожую неоднозначность — интерпретация <code>}`</code> зависит от контекста, в котором она встречается:
 
 ```js
-const what1 = &apos;temp&apos;;
-const what2 = &apos;late&apos;;
+const what1 = 'temp';
+const what2 = 'late';
 const t = `Я временный ${ what1 + what2 }`;
 ```
 

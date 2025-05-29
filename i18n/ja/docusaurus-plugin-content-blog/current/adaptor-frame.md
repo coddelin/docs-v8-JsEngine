@@ -1,13 +1,13 @@
 ---
-title: &apos;より速いJavaScriptコール&apos;
-author: &apos;[Victor Gomes](https://twitter.com/VictorBFG)、フレームシュレッダー&apos;
+title: 'より速いJavaScriptコール'
+author: '[Victor Gomes](https://twitter.com/VictorBFG)、フレームシュレッダー'
 avatars:
-  - &apos;victor-gomes&apos;
+  - 'victor-gomes'
 date: 2021-02-15
 tags:
   - internals
-description: &apos;引数アダプタフレームを削除して、より速いJavaScriptコール&apos;
-tweet: &apos;1361337569057865735&apos;
+description: '引数アダプタフレームを削除して、より速いJavaScriptコール'
+tweet: '1361337569057865735'
 ---
 
 JavaScriptでは、期待されるパラメータの数とは異なる引数の数で関数を呼び出すことができます。つまり、宣言された形式パラメータより少ないまたは多い引数を渡すことができます。前者の場合は「アンダーアプリケーション」と呼ばれ、後者は「オーバーアプリケーション」と呼ばれます。

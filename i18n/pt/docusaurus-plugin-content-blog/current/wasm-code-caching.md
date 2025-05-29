@@ -1,14 +1,14 @@
 ---
-title: &apos;Cacheamento de código para desenvolvedores WebAssembly&apos;
-author: &apos;[Bill Budge](https://twitter.com/billb), colocando o Ca-ching! no cacheamento&apos;
+title: 'Cacheamento de código para desenvolvedores WebAssembly'
+author: '[Bill Budge](https://twitter.com/billb), colocando o Ca-ching! no cacheamento'
 avatars:
   - bill-budge
 date: 2019-06-17
 tags:
   - WebAssembly
   - internos
-description: &apos;Este artigo explica o cache de código WebAssembly no Chrome e como os desenvolvedores podem tirar proveito disso para acelerar o carregamento de aplicativos com módulos WebAssembly grandes.&apos;
-tweet: &apos;1140631433532334081&apos;
+description: 'Este artigo explica o cache de código WebAssembly no Chrome e como os desenvolvedores podem tirar proveito disso para acelerar o carregamento de aplicativos com módulos WebAssembly grandes.'
+tweet: '1140631433532334081'
 ---
 Existe um ditado entre os desenvolvedores de que o código mais rápido é o código que não roda. Da mesma forma, o código mais rápido para compilar é o código que não precisa ser compilado. O cacheamento de código WebAssembly é uma nova otimização no Chrome e no V8 que tenta evitar a compilação de código armazenando o código nativo produzido pelo compilador. Já escrevemos [anteriormente](/blog/code-caching) [sobre](/blog/improved-code-caching) [como](/blog/code-caching-for-devs) o Chrome e o V8 armazenam em cache o código JavaScript e as melhores práticas para aproveitar essa otimização. Neste post, descrevemos o funcionamento do cache de código WebAssembly do Chrome e como os desenvolvedores podem usá-lo para acelerar o carregamento de aplicativos com grandes módulos WebAssembly.
 
@@ -40,7 +40,7 @@ Como o cache de código só funciona com a API de streaming, compile ou instanci
 
 ```js
 (async () => {
-  const fetchPromise = fetch(&apos;fibonacci.wasm&apos;);
+  const fetchPromise = fetch('fibonacci.wasm');
   const { instance } = await WebAssembly.instantiateStreaming(fetchPromise);
   const result = instance.exports.fibonacci(42);
   console.log(result);

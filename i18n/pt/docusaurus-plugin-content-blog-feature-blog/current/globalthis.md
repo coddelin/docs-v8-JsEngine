@@ -1,16 +1,16 @@
 ---
-title: &apos;`globalThis`&apos;
-author: &apos;Mathias Bynens ([@mathias](https://twitter.com/mathias))&apos;
+title: '`globalThis`'
+author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
-  - &apos;mathias-bynens&apos;
+  - 'mathias-bynens'
 date: 2019-07-16
 tags:
   - ECMAScript
   - ES2020
   - Node.js 12
   - io19
-description: &apos;globalThis introduz um mecanismo unificado para acessar o this global em qualquer ambiente JavaScript, independentemente do objetivo do script.&apos;
-tweet: &apos;1151140681374547969&apos;
+description: 'globalThis introduz um mecanismo unificado para acessar o this global em qualquer ambiente JavaScript, independentemente do objetivo do script.'
+tweet: '1151140681374547969'
 ---
 Se você já escreveu JavaScript para uso em um navegador web antes, pode ter usado `window` para acessar o `this` global. No Node.js, você pode ter usado `global`. Se você escreveu um código que deve funcionar em qualquer um dos ambientes, pode ter detectado qual deles está disponível e usado isso - mas a lista de identificadores a verificar cresce com o número de ambientes e casos de uso que você deseja suportar. Isso foge do controle rapidamente:
 
@@ -18,13 +18,13 @@ Se você já escreveu JavaScript para uso em um navegador web antes, pode ter us
 ```js
 // Uma tentativa ingênua de obter o `this` global. Não use isso!
 const getGlobalThis = () => {
-  if (typeof globalThis !== &apos;undefined&apos;) return globalThis;
-  if (typeof self !== &apos;undefined&apos;) return self;
-  if (typeof window !== &apos;undefined&apos;) return window;
-  if (typeof global !== &apos;undefined&apos;) return global;
+  if (typeof globalThis !== 'undefined') return globalThis;
+  if (typeof self !== 'undefined') return self;
+  if (typeof window !== 'undefined') return window;
+  if (typeof global !== 'undefined') return global;
   // Nota: isso ainda pode retornar o resultado errado!
-  if (typeof this !== &apos;undefined&apos;) return this;
-  throw new Error(&apos;Não é possível localizar o `this` global&apos;);
+  if (typeof this !== 'undefined') return this;
+  throw new Error('Não é possível localizar o `this` global');
 };
 const theGlobalThis = getGlobalThis();
 ```

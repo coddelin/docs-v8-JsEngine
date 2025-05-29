@@ -1,10 +1,10 @@
 ---
-title: &apos;WebAssembly-Browser-Vorschau&apos;
-author: &apos;das V8-Team&apos;
+title: 'WebAssembly-Browser-Vorschau'
+author: 'das V8-Team'
 date: 2016-10-31 13:33:37
 tags:
   - WebAssembly
-description: &apos;WebAssembly oder Wasm ist ein neues Laufzeit- und Kompilierungsziel für das Web, jetzt hinter einer Flagge in Chrome Canary verfügbar!&apos;
+description: 'WebAssembly oder Wasm ist ein neues Laufzeit- und Kompilierungsziel für das Web, jetzt hinter einer Flagge in Chrome Canary verfügbar!'
 ---
 Heute freuen wir uns, zusammen mit [Firefox](https://hacks.mozilla.org/2016/10/webassembly-browser-preview) und [Edge](https://blogs.windows.com/msedgedev/2016/10/31/webassembly-browser-preview/) eine WebAssembly-Browser-Vorschau anzukündigen. [WebAssembly](http://webassembly.org/) oder Wasm ist ein neues Laufzeit- und Kompilierungsziel für das Web, entwickelt von Mitarbeitern von Google, Mozilla, Microsoft, Apple und der [W3C WebAssembly Community Group](https://www.w3.org/community/webassembly/).
 

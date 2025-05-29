@@ -1,6 +1,6 @@
 ---
-title: &apos;Investigando pérdidas de memoria&apos;
-description: &apos;Este documento proporciona orientación sobre cómo investigar pérdidas de memoria en V8.&apos;
+title: 'Investigando pérdidas de memoria'
+description: 'Este documento proporciona orientación sobre cómo investigar pérdidas de memoria en V8.'
 ---
 Si estás investigando una pérdida de memoria y te preguntas por qué un objeto no es recolectado como basura, puedes usar `%DebugTrackRetainingPath(object)` para imprimir la ruta de retención actual del objeto en cada GC.
 
@@ -10,7 +10,7 @@ Considera el siguiente `test.js`:
 
 ```js
 function foo() {
-  const x = { bar: &apos;bar&apos; };
+  const x = { bar: 'bar' };
   %DebugTrackRetainingPath(x);
   return () => { return x; }
 }

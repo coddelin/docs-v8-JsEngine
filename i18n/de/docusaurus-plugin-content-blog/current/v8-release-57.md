@@ -1,10 +1,10 @@
 ---
-title: &apos;V8-Version v5.7&apos;
-author: &apos;das V8-Team&apos;
+title: 'V8-Version v5.7'
+author: 'das V8-Team'
 date: 2017-02-06 13:33:37
 tags:
   - Veröffentlichung
-description: &apos;V8 v5.7 aktiviert WebAssembly standardmäßig und enthält Leistungsverbesserungen sowie erweiterte Unterstützung für ECMAScript-Sprachfunktionen.&apos;
+description: 'V8 v5.7 aktiviert WebAssembly standardmäßig und enthält Leistungsverbesserungen sowie erweiterte Unterstützung für ECMAScript-Sprachfunktionen.'
 ---
 Alle sechs Wochen erstellen wir einen neuen Branch von V8 im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process). Jede Version wird direkt vor einem Chrome-Beta-Meilenstein vom Git-Master von V8 abgezweigt. Heute freuen wir uns, unseren neuesten Branch, [V8 Version 5.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.7), anzukündigen, der sich bis zur Veröffentlichung in Verbindung mit Chrome 57 Stable in einigen Wochen in der Beta-Phase befindet. V8 5.7 ist vollgepackt mit allerlei Entwickler-Features. Wir möchten Ihnen einen Vorgeschmack auf einige der Highlights geben, um die Veröffentlichung zu erwarten.
 
@@ -35,7 +35,7 @@ Chrome 57 (inklusive V8 v5.7) wird die erste Version sein, die WebAssembly stand
 
 ## V8-API-Erweiterungen
 
-Bitte werfen Sie einen Blick auf unsere [Zusammenfassung der API-Änderungen](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit). Dieses Dokument wird regelmäßig ein paar Wochen nach jeder Hauptveröffentlichung aktualisiert. Entwickler mit einem [aktiven V8-Checkout](/docs/source-code#using-git) können `git checkout -b 5.7 -t branch-heads/5.7` verwenden, um mit den neuen Funktionen in V8 v5.7 zu experimentieren. Alternativ können Sie [Chrome&apos;s Beta-Kanal abonnieren](https://www.google.com/chrome/browser/beta.html) und die neuen Funktionen bald selbst ausprobieren.
+Bitte werfen Sie einen Blick auf unsere [Zusammenfassung der API-Änderungen](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit). Dieses Dokument wird regelmäßig ein paar Wochen nach jeder Hauptveröffentlichung aktualisiert. Entwickler mit einem [aktiven V8-Checkout](/docs/source-code#using-git) können `git checkout -b 5.7 -t branch-heads/5.7` verwenden, um mit den neuen Funktionen in V8 v5.7 zu experimentieren. Alternativ können Sie [Chrome's Beta-Kanal abonnieren](https://www.google.com/chrome/browser/beta.html) und die neuen Funktionen bald selbst ausprobieren.
 
 ### `PromiseHook`
 

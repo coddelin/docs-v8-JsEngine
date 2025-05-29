@@ -1,10 +1,10 @@
 ---
-title: &apos;V8에서 WebAssembly의 실험적 지원&apos;
-author: &apos;Seth Thompson, WebAssembly 책임자&apos;
+title: 'V8에서 WebAssembly의 실험적 지원'
+author: 'Seth Thompson, WebAssembly 책임자'
 date: 2016-03-15 13:33:37
 tags:
   - WebAssembly
-description: &apos;오늘부터 V8과 Chromium에서 플래그 뒤에 WebAssembly에 대한 실험적 지원이 제공됩니다.&apos;
+description: '오늘부터 V8과 Chromium에서 플래그 뒤에 WebAssembly에 대한 실험적 지원이 제공됩니다.'
 ---
 _WebAssembly의 포괄적인 개요와 미래의 커뮤니티 협력을 위한 로드맵은 Mozilla Hacks 블로그의 [A WebAssembly Milestone](https://hacks.mozilla.org/2016/03/a-webassembly-milestone/)를 참조하세요._
 
