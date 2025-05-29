@@ -63,6 +63,8 @@ const config: Config = {
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",
+          blogSidebarTitle: 'All posts',
+          blogSidebarCount: 'ALL',
         },
         theme: {
           customCss: "./src/css/custom.css",
@@ -88,22 +90,20 @@ const config: Config = {
           position: "left",
         },
         {
-          to: "/features/array-flat-flatmap",
-          sidebarId:"featureSidebar",
+          to: "/features",
+          // sidebarId:"featureSidebar",
           label: "JS/Wasm 特性",
           position: "left",
         },
         {
-          to: "/research-grant",
-          label: "Research",
+          to: "/blog",
+          label: "博客",
           position: "left",
         },
         {
-          to: "/blog",
-          label: "Blog",
+          to: "/research-grant",
+          label: "研究资助",
           position: "left",
-          blogSidebarTitle: 'All posts',
-          blogSidebarCount: 'ALL',
         },
         {
           to: "/tags",
@@ -113,12 +113,12 @@ const config: Config = {
         // feature     'log branding',    'terms',    'research-grant',
         {
           to: "/logo",
-          label: "Branding",
+          label: "品牌logo",
           position: "left",
         },
         {
           to: "/terms",
-          label: "Terms",
+          label: "条款",
           position: "left",
         },
 
@@ -175,6 +175,28 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+  plugins: [
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        /**
+         * Required for any multi-instance plugin
+         */
+        id: 'feature-blog',
+        /**
+         * URL route for the blog section of your site.
+         * *DO NOT* include a trailing slash.
+         */
+        routeBasePath: 'features',
+        /**
+         * Path to data on filesystem relative to site dir.
+         */
+        path: './features',
+        blogSidebarTitle: 'All posts',
+        blogSidebarCount: 'ALL',
+      },
+    ],
+  ],
 };
 
 export default config;
