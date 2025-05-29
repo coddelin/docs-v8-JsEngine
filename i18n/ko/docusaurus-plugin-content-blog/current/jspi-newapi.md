@@ -1,7 +1,7 @@
 ---
-title: 'WebAssembly JSPI에 새로운 API가 추가되었습니다'
-description: '이 기사는 JavaScript Promise Integration (JSPI) API의 다가올 변경 사항에 대해 자세히 설명합니다.'
-author: '프랜시스 맥케이브, 티보 미쇼, 일리야 레즈보프, 브렌든 달'
+title: "WebAssembly JSPI에 새로운 API가 추가되었습니다"
+description: "이 기사는 JavaScript Promise Integration (JSPI) API의 다가올 변경 사항에 대해 자세히 설명합니다."
+author: "프랜시스 맥케이브, 티보 미쇼, 일리야 레즈보프, 브렌든 달"
 date: 2024-06-04
 tags:
   - WebAssembly

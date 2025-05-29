@@ -1,13 +1,13 @@
 ---
-title: 'Racines Statiques : Objets avec des Adresses Constantes à la Compilation'
-author: 'Olivier Flückiger'
+title: "Racines Statiques : Objets avec des Adresses Constantes à la Compilation"
+author: "Olivier Flückiger"
 avatars:
   - olivier-flueckiger
 date: 2024-02-05
 tags:
   - JavaScript
 description: "Les Racines Statiques rendent les adresses de certains objets JS constantes à la compilation."
-tweet: ''
+tweet: ""
 ---
 
 Vous êtes-vous déjà demandé d’où viennent `undefined`, `true` et les autres objets fondamentaux de JavaScript ? Ces objets sont les atomes de tout objet défini par l'utilisateur et doivent exister en premier. V8 les appelle racines immuables immobiles et ils résident dans leur propre tas – le tas en lecture seule. Étant constamment utilisés, un accès rapide est crucial. Et quoi de plus rapide que de deviner correctement leur adresse mémoire au moment de la compilation ?

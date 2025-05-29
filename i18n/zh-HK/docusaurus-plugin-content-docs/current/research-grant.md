@@ -2,7 +2,7 @@
 permalink: /grant/
 title: 研究資助
 layout: layouts/base.njk
-description: 'V8研究資助基金支援基於V8、JavaScript和WebAssembly的程式語言及軟體系統研究。'
+description: "V8研究資助基金支援基於V8、JavaScript和WebAssembly的程式語言及軟體系統研究。"
 ---
 # V8研究資助
 

@@ -1,14 +1,14 @@
 ---
-title: 'JavaScript開発者向けコードキャッシュ'
-author: '[Leszek Swirski](https://twitter.com/leszekswirski)、キャッシュスマッシャー'
+title: "JavaScript開発者向けコードキャッシュ"
+author: "[Leszek Swirski](https://twitter.com/leszekswirski)、キャッシュスマッシャー"
 avatars:
   - leszek-swirski
 date: 2019-04-08 13:33:37
 updated: 2020-06-16
 tags:
   - internals
-description: '(バイト)コードキャッシュは、JavaScriptの解析とコンパイル結果をキャッシュすることで、頻繁に訪問されるウェブサイトの起動時間を短縮します。'
-tweet: '1115264282675953664'
+description: "(バイト)コードキャッシュは、JavaScriptの解析とコンパイル結果をキャッシュすることで、頻繁に訪問されるウェブサイトの起動時間を短縮します。"
+tweet: "1115264282675953664"
 ---
 コードキャッシュ（_バイトコードキャッシュ_とも呼ばれる）は、ブラウザにおける重要な最適化です。解析とコンパイル結果をキャッシュすることで、頻繁に訪問されるウェブサイトの起動時間を短縮します。多くの[人気のある](https://blog.mozilla.org/javascript/2017/12/12/javascript-startup-bytecode-cache/) [ブラウザ](https://bugs.webkit.org/show_bug.cgi?id=192782)が何らかのコードキャッシング機能を実装しており、Chromeも例外ではありません。実際、過去に[書かれた](/blog/code-caching)ことがありますし[話す](/blog/improved-code-caching)こともありました。[また](https://www.youtube.com/watch?v=YqHOUy2rYZ8)、ChromeとV8がどのようにコンパイル済みコードをキャッシュするかについて説明しています。
 

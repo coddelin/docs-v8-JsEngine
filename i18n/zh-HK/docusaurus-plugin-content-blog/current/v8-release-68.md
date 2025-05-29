@@ -1,11 +1,11 @@
 ---
-title: 'V8 發行版本 v6.8'
-author: 'V8 團隊'
+title: "V8 發行版本 v6.8"
+author: "V8 團隊"
 date: 2018-06-21 13:33:37
 tags:
   - 發佈
-description: 'V8 v6.8 提供了降低記憶體消耗以及多項性能改進的功能。'
-tweet: '1009753739060826112'
+description: "V8 v6.8 提供了降低記憶體消耗以及多項性能改進的功能。"
+tweet: "1009753739060826112"
 ---
 每六周，我們會根據 [發行流程](/docs/release-process) 創建 V8 的新分支。每個版本都是從 V8 的 Git 主分支在 Chrome Beta 哨站開啟之前分支出來的。今天我們很高興宣布我們最新的分支，[V8 版本 6.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.8)，這個版本目前處於 Beta 階段，並將在幾周內配合 Chrome 68 穩定版的發佈一起正式推出。V8 v6.8 包含各種面向開發者的好功能。本文將為大家提前介紹一些亮點。
 

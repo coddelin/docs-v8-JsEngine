@@ -1,6 +1,6 @@
 ---
-title: '文件檔'
-description: 'V8 專案的文件檔。'
+title: "文件檔"
+description: "V8 專案的文件檔。"
 slug: /
 ---
 V8 是 Google 開放源碼的高效能 JavaScript 與 WebAssembly 引擎，由 C++ 編寫。它被用於 Chrome 以及 Node.js 等多個應用中。

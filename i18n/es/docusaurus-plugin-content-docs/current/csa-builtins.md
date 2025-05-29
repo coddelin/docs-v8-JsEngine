@@ -1,6 +1,6 @@
 ---
-title: 'CodeStubAssembler construcciones'
-description: 'Este documento está diseñado como una introducción para escribir construcciones CodeStubAssembler, y está dirigido a desarrolladores de V8.'
+title: "CodeStubAssembler construcciones"
+description: "Este documento está diseñado como una introducción para escribir construcciones CodeStubAssembler, y está dirigido a desarrolladores de V8."
 ---
 Este documento está diseñado como una introducción para escribir construcciones CodeStubAssembler, y está dirigido a desarrolladores de V8.
 

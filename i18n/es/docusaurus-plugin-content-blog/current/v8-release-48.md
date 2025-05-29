@@ -1,10 +1,10 @@
 ---
-title: 'Lanzamiento de V8 v4.8'
-author: 'el equipo de V8'
+title: "Lanzamiento de V8 v4.8"
+author: "el equipo de V8"
 date: 2015-11-25 13:33:37
 tags:
   - lanzamiento
-description: 'V8 v4.8 añade soporte para varias características nuevas del lenguaje ES2015.'
+description: "V8 v4.8 añade soporte para varias características nuevas del lenguaje ES2015."
 ---
 Aproximadamente cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se ramifica desde el maestro Git de V8 inmediatamente antes de que Chrome se ramifique para un hito de Chrome Beta. Hoy nos complace anunciar nuestra nueva rama, [V8 versión 4.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.8), que estará en beta hasta que se libere en coordinación con Chrome 48 Estable. V8 4.8 contiene un puñado de características orientadas a desarrolladores, así que nos gustaría ofrecerles un adelanto de algunos de los aspectos destacados anticipándonos al lanzamiento en unas semanas.
 

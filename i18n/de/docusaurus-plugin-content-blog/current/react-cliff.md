@@ -1,15 +1,15 @@
 ---
-title: 'Die Geschichte einer V8-Leistungsgrenze in React'
-author: 'Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) und Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Die Geschichte einer V8-Leistungsgrenze in React"
+author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) und Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'benedikt-meurer'
-  - 'mathias-bynens'
+  - "benedikt-meurer"
+  - "mathias-bynens"
 date: 2019-08-28 16:45:00
 tags:
   - internals
   - presentations
-description: 'Dieser Artikel beschreibt, wie V8 optimale Speicherrepräsentationen für verschiedene JavaScript-Werte auswählt und wie sich dies auf die Shape-Maschine auswirkt – all dies hilft, eine jüngste V8-Leistungsgrenze im React-Kern zu erklären.'
-tweet: '1166723359696130049'
+description: "Dieser Artikel beschreibt, wie V8 optimale Speicherrepräsentationen für verschiedene JavaScript-Werte auswählt und wie sich dies auf die Shape-Maschine auswirkt – all dies hilft, eine jüngste V8-Leistungsgrenze im React-Kern zu erklären."
+tweet: "1166723359696130049"
 ---
 [Zuvor](https://mathiasbynens.be/notes/shapes-ics) haben wir diskutiert, wie JavaScript-Engines Objekt- und Array-Zugriffe durch die Verwendung von Shapes und Inline-Caches optimieren, und wir haben untersucht, [wie Engines den Prototyp-Property-Zugang beschleunigen](https://mathiasbynens.be/notes/prototypes). Dieser Artikel beschreibt, wie V8 optimale Speicherrepräsentationen für verschiedene JavaScript-Werte auswählt und wie sich dies auf die Shape-Maschine auswirkt – all dies hilft, [eine jüngste V8-Leistungsgrenze im React-Kern](https://github.com/facebook/react/issues/14365) zu erklären.
 

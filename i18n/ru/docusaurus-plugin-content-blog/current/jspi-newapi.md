@@ -1,7 +1,7 @@
 ---
-title: 'В API WebAssembly JSPI появились изменения'
-description: 'В этой статье описаны некоторые грядущие изменения в API интеграции JavaScript Promise (JSPI).'
-author: 'Фрэнсис МакКейб, Тибо Мишо, Илья Резвов, Брэндан Даль'
+title: "В API WebAssembly JSPI появились изменения"
+description: "В этой статье описаны некоторые грядущие изменения в API интеграции JavaScript Promise (JSPI)."
+author: "Фрэнсис МакКейб, Тибо Мишо, Илья Резвов, Брэндан Даль"
 date: 2024-06-04
 tags:
   - WebAssembly

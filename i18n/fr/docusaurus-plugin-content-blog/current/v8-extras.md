@@ -1,8 +1,8 @@
 ---
-title: 'Extras V8'
-author: 'Domenic Denicola ([@domenic](https://twitter.com/domenic)), Sorcier des flux'
+title: "Extras V8"
+author: "Domenic Denicola ([@domenic](https://twitter.com/domenic)), Sorcier des flux"
 avatars:
-  - 'domenic-denicola'
+  - "domenic-denicola"
 date: 2016-02-04 13:33:37
 tags:
   - internals

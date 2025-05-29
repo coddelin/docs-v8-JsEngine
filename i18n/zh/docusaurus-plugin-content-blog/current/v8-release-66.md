@@ -1,11 +1,11 @@
 ---
-title: 'V8 发布 v6.6'
-author: 'V8 团队'
+title: "V8 发布 v6.6"
+author: "V8 团队"
 date: 2018-03-27 13:33:37
 tags:
   - 发布
-description: 'V8 v6.6 包括可选的catch绑定、扩展的字符串修剪、多项解析/编译/运行时性能改进等等！'
-tweet: '978534399938584576'
+description: "V8 v6.6 包括可选的catch绑定、扩展的字符串修剪、多项解析/编译/运行时性能改进等等！"
+tweet: "978534399938584576"
 ---
 每六周，我们根据自己的[发布流程](/docs/release-process)创建一个新的 V8 分支。每个版本都基于 V8 的 Git 主分支，并与 Chrome Beta 里程碑同时分支。今天我们很高兴地宣布我们最新的分支，[V8 版本 6.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.6)，它将在几周后与 Chrome 66 稳定版一起发布并结束测试阶段。V8 v6.6 包含了各种面向开发者的有趣功能。本文提前介绍了一些亮点，敬请期待正式发布。
 

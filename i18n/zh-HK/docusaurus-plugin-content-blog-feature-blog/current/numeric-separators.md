@@ -1,15 +1,15 @@
 ---
-title: '數字分隔符'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "數字分隔符"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-05-28
 tags:
   - ECMAScript
   - ES2021
   - io19
-description: 'JavaScript 現在支援在數字字面值中使用底線作為分隔符，提升原始碼的可讀性和可維護性。'
-tweet: '1129073383931559936'
+description: "JavaScript 現在支援在數字字面值中使用底線作為分隔符，提升原始碼的可讀性和可維護性。"
+tweet: "1129073383931559936"
 ---
 大型數字字面值難以讓人眼快速解析，尤其是當數字中有許多重複的數字時:
 

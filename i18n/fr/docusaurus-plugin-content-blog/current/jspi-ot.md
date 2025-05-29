@@ -1,7 +1,7 @@
 ---
 title: 'L'intégration des promesses JavaScript de WebAssembly (JSPI) entre en phase de test origin'
 description: 'Nous expliquons le début de la phase d'essai pour le JSPI'
-author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
+author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-03-06
 tags:
   - WebAssembly

@@ -1,6 +1,6 @@
 ---
-title: 'ARM/Androidのクロスコンパイルとデバッグ'
-description: 'このドキュメントは、ARM/Android用にV8をクロスコンパイルする方法と、それをデバッグする方法を説明します。'
+title: "ARM/Androidのクロスコンパイルとデバッグ"
+description: "このドキュメントは、ARM/Android用にV8をクロスコンパイルする方法と、それをデバッグする方法を説明します。"
 ---
 まず、[GNでビルドする](/docs/build-gn)ことができることを確認します。
 

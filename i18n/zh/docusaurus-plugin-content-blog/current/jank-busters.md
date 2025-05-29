@@ -1,13 +1,13 @@
 ---
-title: 'Jank Busters 第一部分'
-author: '卡顿终结者：Jochen Eisinger，Michael Lippautz 和 Hannes Payer'
+title: "Jank Busters 第一部分"
+author: "卡顿终结者：Jochen Eisinger，Michael Lippautz 和 Hannes Payer"
 avatars:
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2015-10-30 13:33:37
 tags:
   - 内存
-description: '本文讨论了在 Chrome 41 和 Chrome 46 之间实施的一些优化，这些优化显著减少了垃圾回收的暂停时间，从而提高了用户体验。'
+description: "本文讨论了在 Chrome 41 和 Chrome 46 之间实施的一些优化，这些优化显著减少了垃圾回收的暂停时间，从而提高了用户体验。"
 ---
 卡顿，也就是肉眼可见的卡顿，可以在 Chrome 未能在 16.66 毫秒内渲染一帧时被注意到（导致每秒 60 帧的运动中断）。截至今天，大多数 V8 的垃圾回收工作是在主渲染线程上执行的，参见图 1，这通常导致在需要维护过多对象时出现卡顿。消除卡顿一直是 V8 团队的优先任务之一（[1](https://blog.chromium.org/2011/11/game-changer-for-interactive.html)，[2](https://www.youtube.com/watch?v=3vPOlGRH6zk)，[3](/blog/free-garbage-collection)）。本文讨论了在 Chrome 41 和 Chrome 46 之间实施的一些优化，这些优化显著减少了垃圾回收的暂停时间，从而提高了用户体验。
 

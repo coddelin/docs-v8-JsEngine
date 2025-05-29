@@ -1,13 +1,13 @@
 ---
-title: '超高速な`super`プロパティのアクセス'
-author: '[Marja Hölttä](https://twitter.com/marjakh), super optimizer'
+title: "超高速な`super`プロパティのアクセス"
+author: "[Marja Hölttä](https://twitter.com/marjakh), super optimizer"
 avatars:
   - marja-holtta
 date: 2021-02-18
 tags:
   - JavaScript
-description: 'V8 v9.0におけるより高速なsuperプロパティアクセス'
-tweet: '1362465295848333316'
+description: "V8 v9.0におけるより高速なsuperプロパティアクセス"
+tweet: "1362465295848333316"
 ---
 
 [`super`キーワード](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super)は、オブジェクトの親に存在するプロパティや関数にアクセスするために使用できます。

@@ -1,6 +1,6 @@
 ---
-title: 'GUI und IDE-Setup'
-description: 'Dieses Dokument enthält GUI- und IDE-spezifische Tipps für die Arbeit am V8-Codebasis.'
+title: "GUI und IDE-Setup"
+description: "Dieses Dokument enthält GUI- und IDE-spezifische Tipps für die Arbeit am V8-Codebasis."
 ---
 Der Quellcode von V8 kann online mit [Chromium Code Search](https://cs.chromium.org/chromium/src/v8/) durchsucht werden.
 

@@ -1,11 +1,11 @@
 ---
-title: 'Version V8 v6.4'
+title: "Version V8 v6.4"
 author: 'l'équipe V8'
 date: 2017-12-19 13:33:37
 tags:
   - version
-description: 'V8 v6.4 inclut des améliorations de performance, de nouvelles fonctionnalités du langage JavaScript, et plus encore.'
-tweet: '943057597481082880'
+description: "V8 v6.4 inclut des améliorations de performance, de nouvelles fonctionnalités du langage JavaScript, et plus encore."
+tweet: "943057597481082880"
 ---
 Toutes les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de version](/docs/release-process). Chaque version est créée à partir de la branche principale de V8 juste avant une étape de Chrome Beta. Aujourd'hui, nous sommes heureux d'annoncer notre nouvelle branche, [V8 version 6.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.4), qui est en version bêta jusqu'à son lancement en coordination avec Chrome 64 Stable dans plusieurs semaines. V8 v6.4 est rempli de toutes sortes d'améliorations pour les développeurs. Ce post présente certains des points forts en attendant la sortie.
 

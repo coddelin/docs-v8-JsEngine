@@ -1,13 +1,13 @@
 ---
-title: 'V8 發行 v7.5'
-author: 'Dan Elphick，過時功能的剋星'
+title: "V8 發行 v7.5"
+author: "Dan Elphick，過時功能的剋星"
 avatars:
-  - 'dan-elphick'
+  - "dan-elphick"
 date: 2019-05-16 15:00:00
 tags:
   - release
-description: 'V8 v7.5 提供了 WebAssembly 編譯工件的隱式緩存、大量內存操作、JavaScript 的數字分隔符等眾多新功能！'
-tweet: '1129073370623086593'
+description: "V8 v7.5 提供了 WebAssembly 編譯工件的隱式緩存、大量內存操作、JavaScript 的數字分隔符等眾多新功能！"
+tweet: "1129073370623086593"
 ---
 每隔六周，我們會根據 [發行過程](/docs/release-process) 創建 V8 的新分支。每個版本都是在 Chrome Beta 里程碑之前，直接從 V8 的 Git 主分支分支出來。今天我們很高興地宣布我們最新的分支，[V8 版本 7.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.5)，該版本將在 Chrome 75 穩定版發行前的幾周內進入 beta 階段。V8 v7.5 包含了各種面向開發者的好功能。本篇文章提前向大家展示一些亮點內容。
 

@@ -1,6 +1,6 @@
 ---
-title: 'Ignition'
-description: '本文档收集了有关 Ignition 的资源，Ignition 是 V8 的解释器。'
+title: "Ignition"
+description: "本文档收集了有关 Ignition 的资源，Ignition 是 V8 的解释器。"
 ---
 V8 具有一个名为 Ignition 的解释器。Ignition 是一个快速的基于寄存器的低级解释器，使用 [TurboFan](/docs/turbofan) 的后端编写。V8 博客文章提供了关于 Ignition 解释器的 [高级概述](/blog/ignition-interpreter)。更多详情可以在以下资源中找到：
 

@@ -1,13 +1,13 @@
 ---
-title: '優化哈希表：隱藏哈希碼'
-author: '[Sathya Gunasekaran](https://twitter.com/_gsathya)，哈希碼的守護者'
+title: "優化哈希表：隱藏哈希碼"
+author: "[Sathya Gunasekaran](https://twitter.com/_gsathya)，哈希碼的守護者"
 avatars:
-  - 'sathya-gunasekaran'
+  - "sathya-gunasekaran"
 date: 2018-01-29 13:33:37
 tags:
   - internals
-tweet: '958046113390411776'
-description: '多種 JavaScript 資料結構如 Map、Set、WeakSet 和 WeakMap 在底層使用了哈希表。本文闡述了 V8 v6.3 如何改進哈希表性能。'
+tweet: "958046113390411776"
+description: "多種 JavaScript 資料結構如 Map、Set、WeakSet 和 WeakMap 在底層使用了哈希表。本文闡述了 V8 v6.3 如何改進哈希表性能。"
 ---
 ECMAScript 2015 引入了多種新的資料結構如 Map、Set、WeakSet 和 WeakMap，所有這些在底層都使用了哈希表。本文章詳細介紹了 [最近的改進](https://bugs.chromium.org/p/v8/issues/detail?id=6404)，即 [V8 v6.3+](/blog/v8-release-63) 如何在哈希表中存儲鍵。
 

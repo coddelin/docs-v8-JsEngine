@@ -1,13 +1,13 @@
 ---
-title: 'Causas de errores'
-author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
+title: "Causas de errores"
+author: "Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))"
 avatars:
-  - 'victor-gomes'
+  - "victor-gomes"
 date: 2021-07-07
 tags:
   - ECMAScript
-description: 'JavaScript ahora admite causas de errores.'
-tweet: '1412774651558862850'
+description: "JavaScript ahora admite causas de errores."
+tweet: "1412774651558862850"
 ---
 
 Imagina que tienes una función que llama a dos cargas de trabajo separadas `doSomeWork` y `doMoreWork`. Ambas funciones pueden lanzar el mismo tipo de errores, pero necesitas manejarlos de diferentes maneras.

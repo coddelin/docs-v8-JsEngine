@@ -1,15 +1,15 @@
 ---
-title: '`Intl.NumberFormat`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)) e Shane F. Carr'
+title: "`Intl.NumberFormat`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)) e Shane F. Carr"
 avatars:
-  - 'mathias-bynens'
-  - 'shane-carr'
+  - "mathias-bynens"
+  - "shane-carr"
 date: 2019-08-08
 tags:
   - Intl
   - io19
-description: 'Intl.NumberFormat permite a formatação de números sensível ao local.'
-tweet: '1159476407329873920'
+description: "Intl.NumberFormat permite a formatação de números sensível ao local."
+tweet: "1159476407329873920"
 ---
 Você pode já estar familiarizado com a API `Intl.NumberFormat`, já que tem sido suportada em ambientes modernos há algum tempo.
 

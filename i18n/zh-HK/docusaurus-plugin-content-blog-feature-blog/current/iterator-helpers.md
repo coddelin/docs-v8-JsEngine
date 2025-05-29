@@ -1,13 +1,13 @@
 ---
-title: '迭代器輔助工具'
-author: 'Rezvan Mahdavi Hezaveh'
+title: "迭代器輔助工具"
+author: "Rezvan Mahdavi Hezaveh"
 avatars:
-  - 'rezvan-mahdavi-hezaveh'
+  - "rezvan-mahdavi-hezaveh"
 date: 2024-03-27
 tags:
   - ECMAScript
-description: '幫助一般使用和消耗迭代器的介面。'
-tweet: ''
+description: "幫助一般使用和消耗迭代器的介面。"
+tweet: ""
 ---
 
 *迭代器輔助工具* 是在 Iterator 原型上新增的一組方法，用於幫助迭代器的一般使用。由於這些輔助方法在迭代器原型上，因此任何在其原型鏈上具有 `Iterator.prototype` 的對象（例如陣列迭代器）都可以使用這些方法。在以下子部分中，我們解釋了迭代器輔助工具。所有提供的範例都是在一個包含博客文章列表的博客歸檔頁面上運作，展示如何使用迭代器輔助工具來尋找和操作文章。你可在 [V8 博客頁面](https://v8.dev/blog) 上嘗試它們！

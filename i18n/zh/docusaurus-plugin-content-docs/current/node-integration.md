@@ -1,6 +1,6 @@
 ---
-title: '如果您的 CL 导致 Node.js 集成构建失败，该怎么做'
-description: '本文档解释了如果您的 CL 导致 Node.js 集成构建失败，该怎么做。'
+title: "如果您的 CL 导致 Node.js 集成构建失败，该怎么做"
+description: "本文档解释了如果您的 CL 导致 Node.js 集成构建失败，该怎么做。"
 ---
 [Node.js](https://github.com/nodejs/node) 使用 V8 的稳定版或测试版。为了额外的集成，V8 团队使用 V8 的[主分支](https://chromium.googlesource.com/v8/v8/+/refs/heads/main)构建 Node，也就是使用今天的 V8 版本。我们为[Linux](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Linux64)提供了集成机器人，而[Windows](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Win64)和[Mac](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Mac64)仍在开发中。
 

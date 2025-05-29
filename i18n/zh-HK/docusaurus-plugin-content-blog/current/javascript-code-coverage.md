@@ -1,13 +1,13 @@
 ---
-title: 'JavaScript 程式碼覆蓋率'
-author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
+title: "JavaScript 程式碼覆蓋率"
+author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2017-12-13 13:33:37
 tags:
   - internals
-description: 'V8 現在具備原生支援 JavaScript 程式碼覆蓋率。工具現在可以訪問 V8 的覆蓋率資訊而無需對程式碼進行插入處理！'
-tweet: '940879905079873536'
+description: "V8 現在具備原生支援 JavaScript 程式碼覆蓋率。工具現在可以訪問 V8 的覆蓋率資訊而無需對程式碼進行插入處理！"
+tweet: "940879905079873536"
 ---
 程式碼覆蓋率提供有關應用程式中某些部分是否以及執行次數的資訊。它通常用來確定測試套件在多大程度上檢驗特定程式碼基礎。
 

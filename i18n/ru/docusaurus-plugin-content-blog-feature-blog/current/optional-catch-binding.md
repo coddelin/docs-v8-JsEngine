@@ -1,14 +1,14 @@
 ---
-title: 'Необязательное связывание `catch`'
-author: 'Матиас Байненс ([@mathias](https://twitter.com/mathias))'
+title: "Необязательное связывание `catch`"
+author: "Матиас Байненс ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-03-27
 tags:
   - ECMAScript
   - ES2019
-description: 'В ES2019 `catch` теперь может использоваться без параметра.'
-tweet: '956209997808939008'
+description: "В ES2019 `catch` теперь может использоваться без параметра."
+tweet: "956209997808939008"
 ---
 Конструкция `catch` в инструкции `try` ранее требовала связывание:
 

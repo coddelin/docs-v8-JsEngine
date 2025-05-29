@@ -1,14 +1,14 @@
 ---
-title: 'Encadenamiento opcional'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), rompedora de cadenas opcionales'
+title: "Encadenamiento opcional"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), rompedora de cadenas opcionales"
 avatars:
-  - 'maya-armyanova'
+  - "maya-armyanova"
 date: 2019-08-27
 tags:
   - ECMAScript
   - ES2020
-description: 'El encadenamiento opcional permite expresiones legibles y concisas de accesos a propiedades con verificación integrada de valores nulos.'
-tweet: '1166360971914481669'
+description: "El encadenamiento opcional permite expresiones legibles y concisas de accesos a propiedades con verificación integrada de valores nulos."
+tweet: "1166360971914481669"
 ---
 Las cadenas largas de accesos a propiedades en JavaScript pueden ser propensas a errores, ya que cualquiera de ellas podría evaluarse como `null` o `undefined` (también conocidos como valores “nulos”). Verificar la existencia de propiedades en cada paso fácilmente se convierte en una estructura profundamente anidada de sentencias `if` o en una larga condición `if` que replica la cadena de acceso a propiedades:
 

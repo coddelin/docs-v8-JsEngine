@@ -1,14 +1,14 @@
 ---
-title: 'Tipos de elementos en V8'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Tipos de elementos en V8"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-09-12 13:33:37
 tags:
   - internals
   - presentations
-description: 'Esta profunda explicación técnica detalla cómo V8 optimiza las operaciones con arrays en segundo plano, y qué significa eso para los desarrolladores de JavaScript.'
-tweet: '907608362191376384'
+description: "Esta profunda explicación técnica detalla cómo V8 optimiza las operaciones con arrays en segundo plano, y qué significa eso para los desarrolladores de JavaScript."
+tweet: "907608362191376384"
 ---
 :::note
 **Nota:** Si prefieres ver una presentación en lugar de leer artículos, ¡disfruta del video a continuación!

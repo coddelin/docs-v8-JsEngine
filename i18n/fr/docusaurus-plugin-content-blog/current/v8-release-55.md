@@ -1,10 +1,10 @@
 ---
-title: 'Publication de V8 v5.5'
+title: "Publication de V8 v5.5"
 author: 'l'équipe V8'
 date: 2016-10-24 13:33:37
 tags:
   - publication
-description: 'V8 v5.5 réduit la consommation de mémoire et améliore la prise en charge des fonctionnalités du langage ECMAScript.'
+description: "V8 v5.5 réduit la consommation de mémoire et améliore la prise en charge des fonctionnalités du langage ECMAScript."
 ---
 Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](/docs/release-process). Chaque version est dérivée de la branche principale Git de V8 juste avant une étape bêta de Chrome. Aujourd’hui, nous sommes ravis d’annoncer notre nouvelle branche, [V8 version 5.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.5), qui sera en version bêta jusqu’à sa sortie en coordination avec Chrome 55 Stable dans quelques semaines. V8 v5.5 est rempli de toutes sortes de fonctionnalités pour les développeurs, nous aimerions donc vous donner un aperçu de quelques-uns des points forts en prévision de sa sortie.
 

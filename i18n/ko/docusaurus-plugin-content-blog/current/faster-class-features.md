@@ -1,13 +1,13 @@
 ---
-title: '새로운 클래스 기능으로 인스턴스 초기화 속도 향상'
-author: '[Joyee Cheung](https://twitter.com/JoyeeCheung), 인스턴스 초기화자'
+title: "새로운 클래스 기능으로 인스턴스 초기화 속도 향상"
+author: "[Joyee Cheung](https://twitter.com/JoyeeCheung), 인스턴스 초기화자"
 avatars:
-  - 'joyee-cheung'
+  - "joyee-cheung"
 date: 2022-04-20
 tags:
   - 내부구조
-description: 'V8 v9.7 이후 새로운 클래스 기능으로 인한 인스턴스 초기화 속도가 빨라졌습니다.'
-tweet: '1517041137378373632'
+description: "V8 v9.7 이후 새로운 클래스 기능으로 인한 인스턴스 초기화 속도가 빨라졌습니다."
+tweet: "1517041137378373632"
 ---
 
 클래스 필드는 V8 v7.2부터 제공되었으며, 비공개 클래스 메서드는 V8 v8.4부터 제공되었습니다. 제안이 2021년에 단계 4에 도달한 후, V8에서 새로운 클래스 기능 지원을 향상시키기 위한 작업이 시작되었습니다. 그때까지 채택에 영향을 미치는 두 가지 주요 문제가 있었습니다:

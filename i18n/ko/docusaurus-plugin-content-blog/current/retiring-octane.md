@@ -1,10 +1,10 @@
 ---
-title: 'Octane 은퇴'
-author: 'V8 팀'
+title: "Octane 은퇴"
+author: "V8 팀"
 date: 2017-04-12 13:33:37
 tags:
   - 벤치마크
-description: 'V8 팀은 Octane 을 권장되는 벤치마크에서 은퇴시킬 때가 되었다고 믿습니다.'
+description: "V8 팀은 Octane 을 권장되는 벤치마크에서 은퇴시킬 때가 되었다고 믿습니다."
 ---
 JavaScript 벤치마크의 역사는 지속적인 진화의 이야기입니다. 웹이 단순한 문서에서 동적 클라이언트 측 애플리케이션으로 확장되면서, 새로운 JavaScript 벤치마크가 새로운 사용 사례를 위한 중요한 작업 부하를 측정하기 위해 만들어졌습니다. 이러한 지속적인 변화로 인해 개별 벤치마크의 수명이 제한됩니다. 웹 브라우저와 가상 머신(VM) 구현이 특정 테스트 케이스를 과도하게 최적화하기 시작하면 벤치마크 자체는 원래 사용 사례에 대한 효과적인 대리 역할을 하지 못하게 됩니다. 초기 JavaScript 벤치마크 중 하나인 [SunSpider](https://webkit.org/perf/sunspider/sunspider.html)는 빠른 최적화 컴파일러를 제공하기 위한 초기 유인을 제공했습니다. 그러나 VM 엔지니어들이 [미세 벤치마크의 한계](https://blog.mozilla.org/nnethercote/2014/06/16/a-browser-benchmarking-manifesto/)를 발견하고 SunSpider의 [제한](https://bugs.webkit.org/show_bug.cgi?id=63864)을 [최적화](https://benediktmeurer.de/2016/12/16/the-truth-about-traditional-javascript-benchmarks/#the-notorious-sunspider-examples) [방법](https://bugzilla.mozilla.org/show_bug.cgi?id=787601)을 찾으면서 브라우저 커뮤니티는 [SunSpider를 은퇴시켰습니다](https://trac.webkit.org/changeset/187526/webkit).
 

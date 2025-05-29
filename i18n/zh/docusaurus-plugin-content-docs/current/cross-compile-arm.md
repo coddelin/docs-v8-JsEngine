@@ -1,6 +1,6 @@
 ---
-title: '交叉编译和调试ARM/Android'
-description: '本文档解释了如何为ARM/Android交叉编译V8，以及如何调试它。'
+title: "交叉编译和调试ARM/Android"
+description: "本文档解释了如何为ARM/Android交叉编译V8，以及如何调试它。"
 ---
 首先，请确保您可以[使用GN构建](/docs/build-gn)。
 

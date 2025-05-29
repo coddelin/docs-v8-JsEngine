@@ -1,13 +1,13 @@
 ---
-title: 'V8 Veröffentlichung v7.1'
-author: 'Stephan Herhut ([@herhut](https://twitter.com/herhut)), geklonter Kloner von Klonen'
+title: "V8 Veröffentlichung v7.1"
+author: "Stephan Herhut ([@herhut](https://twitter.com/herhut)), geklonter Kloner von Klonen"
 avatars:
   - stephan-herhut
 date: 2018-10-31 15:44:37
 tags:
   - veröffentlichung
-description: 'V8 v7.1 bietet eingebettete Bytecode-Handler, verbesserte TurboFan-Fluchtanalyse, postMessage(wasmModule), Intl.RelativeTimeFormat und globalThis!'
-tweet: '1057645773465235458'
+description: "V8 v7.1 bietet eingebettete Bytecode-Handler, verbesserte TurboFan-Fluchtanalyse, postMessage(wasmModule), Intl.RelativeTimeFormat und globalThis!"
+tweet: "1057645773465235458"
 ---
 Alle sechs Wochen erstellen wir einen neuen Zweig von V8 im Rahmen unseres [Release-Prozesses](/docs/release-process). Jede Version wird unmittelbar vor einem Chrome-Beta-Meilenstein aus V8’s Git-Master abgezweigt. Heute freuen wir uns, unseren neuesten Zweig, [V8 Version 7.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.1), bekannt zu geben, der bis zur Veröffentlichung in Abstimmung mit Chrome 71 Stable in einigen Wochen in der Betaphase ist. V8 v7.1 ist randvoll mit allerlei Entwickler-Features. Dieser Beitrag bietet eine Vorschau auf einige der Highlights in Erwartung der Veröffentlichung.
 

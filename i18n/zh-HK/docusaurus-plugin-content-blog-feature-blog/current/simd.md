@@ -1,12 +1,12 @@
 ---
-title: '快速、平行應用程式與 WebAssembly SIMD'
-author: 'Deepti Gandluri ([@dptig](https://twitter.com/dptig))、Thomas Lively ([@tlively52](https://twitter.com/tlively52))、Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "快速、平行應用程式與 WebAssembly SIMD"
+author: "Deepti Gandluri ([@dptig](https://twitter.com/dptig))、Thomas Lively ([@tlively52](https://twitter.com/tlively52))、Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 date: 2020-01-30
 updated: 2022-11-06
 tags:
   - WebAssembly
-description: '將向量操作引入 WebAssembly'
-tweet: '1222944308183085058'
+description: "將向量操作引入 WebAssembly"
+tweet: "1222944308183085058"
 ---
 SIMD 代表 _單指令，多資料_。SIMD 指令是一種特別的指令類型，通過同時對多個資料元素進行相同的操作來利用應用程式中的資料平行性。對計算密集型應用程式，例如音訊／影片編解碼器、影像處理器，都是利用 SIMD 指令加速性能的典型範例。大多數現代架構都支援某些種類的 SIMD 指令。
 

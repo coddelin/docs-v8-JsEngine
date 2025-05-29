@@ -1,15 +1,15 @@
 ---
-title: '`Array.prototype.flat` と `Array.prototype.flatMap`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Array.prototype.flat` と `Array.prototype.flatMap`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-11
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: 'Array.prototype.flat は配列を指定した深さまでフラット化します。Array.prototype.flatMap は map を実行し、その後 flat を実行するのと同等です。'
-tweet: '1138457106380709891'
+description: "Array.prototype.flat は配列を指定した深さまでフラット化します。Array.prototype.flatMap は map を実行し、その後 flat を実行するのと同等です。"
+tweet: "1138457106380709891"
 ---
 ## `Array.prototype.flat`
 

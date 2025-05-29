@@ -1,6 +1,6 @@
 ---
-title: 'Maglev - самый быстрый оптимизирующий JIT V8'
-author: '[Тун Верваст](https://twitter.com/tverwaes), [Лешек Свирски](https://twitter.com/leszekswirski), [Виктор Гомес](https://twitter.com/VictorBFG), Оливье Флюкигер, Дариус Меркадье и Камилло Бруни — поваров не так много, чтобы испортить бульон'
+title: "Maglev - самый быстрый оптимизирующий JIT V8"
+author: "[Тун Верваст](https://twitter.com/tverwaes), [Лешек Свирски](https://twitter.com/leszekswirski), [Виктор Гомес](https://twitter.com/VictorBFG), Оливье Флюкигер, Дариус Меркадье и Камилло Бруни — поваров не так много, чтобы испортить бульон"
 avatars:
   - toon-verwaest
   - leszek-swirski
@@ -12,7 +12,7 @@ date: 2023-12-05
 tags:
   - JavaScript
 description: "Новый компилятор V8, Maglev, улучшает производительность, снижая энергопотребление"
-tweet: ''
+tweet: ""
 ---
 
 В Chrome M117 мы представили новый оптимизирующий компилятор: Maglev. Maglev расположен между нашими существующими компиляторами Sparkplug и TurboFan, выполняя роль быстрого оптимизирующего компилятора, который создает достаточно хороший код достаточно быстро.

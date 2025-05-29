@@ -1,12 +1,12 @@
 ---
-title: 'Una pasantía sobre la pereza: desvinculación perezosa de funciones desoptimizadas'
-author: 'Juliana Franco ([@jupvfranco](https://twitter.com/jupvfranco)), Experta en Pereza'
+title: "Una pasantía sobre la pereza: desvinculación perezosa de funciones desoptimizadas"
+author: "Juliana Franco ([@jupvfranco](https://twitter.com/jupvfranco)), Experta en Pereza"
 date: 2017-10-04 13:33:37
 tags:
   - memoria
   - internals
-description: 'Esta inmersión técnica explica cómo V8 solía desvincular funciones desoptimizadas y cómo recientemente cambiamos esto para mejorar el rendimiento.'
-tweet: '915473224187760640'
+description: "Esta inmersión técnica explica cómo V8 solía desvincular funciones desoptimizadas y cómo recientemente cambiamos esto para mejorar el rendimiento."
+tweet: "915473224187760640"
 ---
 Hace aproximadamente tres meses, me uní al equipo de V8 (Google Munich) como pasante y desde entonces he estado trabajando en el _Desoptimizador_ de la máquina virtual, algo completamente nuevo para mí que resultó ser un proyecto interesante y desafiante. La primera parte de mi pasantía se enfocó en [mejorar la seguridad de la máquina virtual](https://docs.google.com/document/d/1ELgd71B6iBaU6UmZ_lvwxf_OrYYnv0e4nuzZpK05-pg/edit). La segunda parte se centró en mejoras de rendimiento, específicamente en la eliminación de una estructura de datos utilizada para la desvinculación de funciones previamente desoptimizadas, que representaba un cuello de botella de rendimiento durante la recolección de basura. Esta publicación describe esta segunda parte de mi pasantía. Explicaré cómo V8 solía desvincular funciones desoptimizadas, cómo cambiamos esto y qué mejoras de rendimiento se obtuvieron.
 

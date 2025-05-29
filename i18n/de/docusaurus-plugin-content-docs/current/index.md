@@ -1,6 +1,6 @@
 ---
-title: 'Dokumentation'
-description: 'Dokumentation für das V8-Projekt.'
+title: "Dokumentation"
+description: "Dokumentation für das V8-Projekt."
 slug: /
 ---
 V8 ist Googles quelloffene, hochleistungsfähige JavaScript- und WebAssembly-Engine, geschrieben in C++. Sie wird unter anderem in Chrome und Node.js verwendet.

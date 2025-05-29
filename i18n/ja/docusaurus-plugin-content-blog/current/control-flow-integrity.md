@@ -1,7 +1,7 @@
 ---
-title: 'V8における制御フローの整合性'
-description: '本ブログ記事では、V8に制御フローの整合性（CFI）を実装する計画について説明します。'
-author: 'Stephen Röttger'
+title: "V8における制御フローの整合性"
+description: "本ブログ記事では、V8に制御フローの整合性（CFI）を実装する計画について説明します。"
+author: "Stephen Röttger"
 date: 2023-10-09
 tags:
  - セキュリティ

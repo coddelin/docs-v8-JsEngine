@@ -1,10 +1,10 @@
 ---
-title: 'V8 版本 v5.2'
-author: 'V8 團隊'
+title: "V8 版本 v5.2"
+author: "V8 團隊"
 date: 2016-06-04 13:33:37
 tags:
   - 版本發布
-description: 'V8 v5.2 包含支援 ES2016 語言功能。'
+description: "V8 v5.2 包含支援 ES2016 語言功能。"
 ---
 大約每隔六週，我們根據[版本發布流程](/docs/release-process)創建 V8 的新分支。每個版本都來自 V8 的 Git 主分支，並立即在 Chrome Beta 的里程碑分支之前創建分支。今天我們榮幸地宣布最新的分支，[V8 版本 5.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.2)，它將進入 Beta 階段，並與 Chrome 52 穩定版協調發布。V8 5.2 包含各種面向開發者的精彩功能，因此我們希望在幾週後版本發布之前為您預覽一些亮點。
 

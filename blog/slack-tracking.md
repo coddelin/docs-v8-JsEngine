@@ -1,9 +1,9 @@
 ---
-title: 'Slack tracking in V8'
-author: 'Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), renowned master of *slack*'
-description: 'A detailed look into the V8 slack tracking mechanism.'
+title: "Slack tracking in V8"
+author: "Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), renowned master of *slack*"
+description: "A detailed look into the V8 slack tracking mechanism."
 avatars:
- - 'michael-stanton'
+ - "michael-stanton"
 date: 2020-09-24 14:00:00
 tags:
  - internals

@@ -1,15 +1,15 @@
 ---
-title: '信じられないほど速いパース、パート2：遅延パース'
-author: 'Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)) と Marja Hölttä ([@marjakh](https://twitter.com/marjakh))、パーサー'
+title: "信じられないほど速いパース、パート2：遅延パース"
+author: "Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)) と Marja Hölttä ([@marjakh](https://twitter.com/marjakh))、パーサー"
 avatars:
-  - 'toon-verwaest'
-  - 'marja-holtta'
+  - "toon-verwaest"
+  - "marja-holtta"
 date: 2019-04-15 17:03:37
 tags:
   - 内部構造
   - パース
-tweet: '1117807107972243456'
-description: 'V8がJavaScriptを可能な限り高速に解析する方法を説明する記事シリーズの第二部です。'
+tweet: "1117807107972243456"
+description: "V8がJavaScriptを可能な限り高速に解析する方法を説明する記事シリーズの第二部です。"
 ---
 V8がJavaScriptを可能な限り高速に解析する方法を説明するシリーズの第二部です。第一部では、V8の[スキャナ](/blog/scanner)を高速化する方法について説明しました。
 

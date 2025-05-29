@@ -1,14 +1,14 @@
 ---
-title: 'オプションの`catch`バインディング'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "オプションの`catch`バインディング"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-03-27
 tags:
   - ECMAScript
   - ES2019
-description: 'ES2019では、catchがパラメータなしで使用できるようになりました。'
-tweet: '956209997808939008'
+description: "ES2019では、catchがパラメータなしで使用できるようになりました。"
+tweet: "956209997808939008"
 ---
 `try`文の`catch`句は以前はバインディングが必要でした:
 

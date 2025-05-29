@@ -1,12 +1,12 @@
 ---
-title: '`at` 메서드 - 상대 인덱싱을 위한 방법'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "`at` 메서드 - 상대 인덱싱을 위한 방법"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2021-07-13
 tags:
   - ECMAScript
-description: 'JavaScript에 이제 배열, TypedArray 및 문자열을 위한 상대 인덱싱 메서드가 추가되었습니다.'
+description: "JavaScript에 이제 배열, TypedArray 및 문자열을 위한 상대 인덱싱 메서드가 추가되었습니다."
 ---
 
 새로운 `at` 메서드는 `Array.prototype`, 다양한 TypedArray 프로토타입 및 `String.prototype`에 추가되어 컬렉션의 끝에 가까운 요소를 더 쉽게 접근하고 간결하게 사용할 수 있습니다.

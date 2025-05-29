@@ -1,15 +1,15 @@
 ---
-title: '`Intl.NumberFormat`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)) y Shane F. Carr'
+title: "`Intl.NumberFormat`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)) y Shane F. Carr"
 avatars:
-  - 'mathias-bynens'
-  - 'shane-carr'
+  - "mathias-bynens"
+  - "shane-carr"
 date: 2019-08-08
 tags:
   - Intl
   - io19
-description: 'Intl.NumberFormat permite el formato de números adaptado al idioma.'
-tweet: '1159476407329873920'
+description: "Intl.NumberFormat permite el formato de números adaptado al idioma."
+tweet: "1159476407329873920"
 ---
 Es posible que ya estés familiarizado con la API `Intl.NumberFormat`, ya que ha sido compatible con varios entornos modernos durante algún tiempo.
 

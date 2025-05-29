@@ -1,14 +1,14 @@
 ---
-title: 'その `.wasm` に何が入っているのか？新機能: `wasm-decompile` を紹介'
-author: 'Wouter van Oortmerssen ([@wvo](https://twitter.com/wvo))'
+title: "その `.wasm` に何が入っているのか？新機能: `wasm-decompile` を紹介"
+author: "Wouter van Oortmerssen ([@wvo](https://twitter.com/wvo))"
 avatars:
-  - 'wouter-van-oortmerssen'
+  - "wouter-van-oortmerssen"
 date: 2020-04-27
 tags:
   - WebAssembly
   - ツール
-description: 'WABT に新しい逆コンパイルツールが加わり、Wasm モジュールの内容を読みやすくします。'
-tweet: '1254829913561014272'
+description: "WABT に新しい逆コンパイルツールが加わり、Wasm モジュールの内容を読みやすくします。"
+tweet: "1254829913561014272"
 ---
 現在、`.wasm` ファイルを生成または操作するためのコンパイラやその他のツールが増えてきています。時には内部を調べたいと思うこともあるでしょう。ツールの開発者である場合や、Wasm を直接対象とするプログラマーであり、生成されたコードが性能やその他の理由でどのように見えるか気になる場合です。
 

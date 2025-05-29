@@ -1,6 +1,6 @@
 ---
-title: 'Pautas de revisión de diseño'
-description: 'Este documento explica las pautas de revisión de diseño del proyecto V8.'
+title: "Pautas de revisión de diseño"
+description: "Este documento explica las pautas de revisión de diseño del proyecto V8."
 ---
 Por favor, asegúrate de seguir las siguientes pautas cuando sea aplicable.
 

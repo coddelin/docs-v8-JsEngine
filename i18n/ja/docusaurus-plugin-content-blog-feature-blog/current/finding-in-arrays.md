@@ -1,13 +1,13 @@
 ---
-title: '`Array` および TypedArray で要素を検索する'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "`Array` および TypedArray で要素を検索する"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2021-10-27
 tags:
   - ECMAScript
-description: 'JavaScript のメソッドで Array と TypedArray の要素を検索する'
-tweet: '1453354998063149066'
+description: "JavaScript のメソッドで Array と TypedArray の要素を検索する"
+tweet: "1453354998063149066"
 ---
 ## 配列の最初から要素を検索する
 

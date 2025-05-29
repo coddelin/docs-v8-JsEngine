@@ -1,13 +1,13 @@
 ---
-title: 'V8リリース v9.9'
-author: 'イングヴァール・ステパニャン（[@RReverser](https://twitter.com/RReverser)） 彼の99%'
+title: "V8リリース v9.9"
+author: "イングヴァール・ステパニャン（[@RReverser](https://twitter.com/RReverser)） 彼の99%"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2022-01-31
 tags:
  - release
-description: 'V8リリース v9.9は、新しい国際化APIを提供します。'
-tweet: '1488190967727411210'
+description: "V8リリース v9.9は、新しい国際化APIを提供します。"
+tweet: "1488190967727411210"
 ---
 4週間ごとに、私たちは[V8のリリースプロセス](https://v8.dev/docs/release-process)の一環として新しいブランチを作成しています。各バージョンは、Chromeのベータマイルストーンの直前にV8のGitメインからブランチされます。本日は、新しいブランチ[V8バージョン9.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.9)を発表できることを嬉しく思います。このバージョンは数週間後のChrome 99の安定版と共にリリースされるまでベータ版です。V8 v9.9には、開発者向けのさまざまな便利なツールが満載されています。この投稿では、リリースに向けたハイライトの一部をプレビューします。
 

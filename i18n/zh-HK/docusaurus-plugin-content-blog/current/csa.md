@@ -1,11 +1,11 @@
 ---
-title: '駕馭 V8 架構複雜性 — CodeStubAssembler'
-author: '[Daniel Clifford](https://twitter.com/expatdanno), CodeStubAssembler 組裝器'
+title: "駕馭 V8 架構複雜性 — CodeStubAssembler"
+author: "[Daniel Clifford](https://twitter.com/expatdanno), CodeStubAssembler 組裝器"
 date: 2017-11-16 13:33:37
 tags:
   - 內部結構
-description: 'V8 在組合語言基礎上擁有自己的抽象層：CodeStubAssembler。CSA 允許 V8 在低層級快速且可靠地優化 JS 特性，同時支持多種平台。'
-tweet: '931184976481177600'
+description: "V8 在組合語言基礎上擁有自己的抽象層：CodeStubAssembler。CSA 允許 V8 在低層級快速且可靠地優化 JS 特性，同時支持多種平台。"
+tweet: "931184976481177600"
 ---
 在本文中，我們將介紹 CodeStubAssembler (CSA)，這是一個對 V8 非常有幫助的組件，它在最近幾個版本中幫助實現了一些 [重大](/blog/optimizing-proxies) [性能](https://twitter.com/v8js/status/918119002437750784) [突破](https://twitter.com/_gsathya/status/900188695721984000)。CSA 也大幅提升了 V8 團隊快速在低層次优化 JavaScript 特性的能力，同時能夠保持高度的可靠性，進一步加快了開發速度。
 

@@ -1,15 +1,15 @@
 ---
-title: 'Blazingly fast parsing, part 2: lazy parsing'
-author: 'Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)) and Marja Hölttä ([@marjakh](https://twitter.com/marjakh)), sparser parsers'
+title: "Blazingly fast parsing, part 2: lazy parsing"
+author: "Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)) and Marja Hölttä ([@marjakh](https://twitter.com/marjakh)), sparser parsers"
 avatars:
-  - 'toon-verwaest'
-  - 'marja-holtta'
+  - "toon-verwaest"
+  - "marja-holtta"
 date: 2019-04-15 17:03:37
 tags:
   - internals
   - parsing
-tweet: '1117807107972243456'
-description: 'This is the second part of our article series explaining how V8 parses JavaScript as fast as possible.'
+tweet: "1117807107972243456"
+description: "This is the second part of our article series explaining how V8 parses JavaScript as fast as possible."
 ---
 This is the second part of our series explaining how V8 parses JavaScript as fast as possible. The first part explained how we made V8’s [scanner](/blog/scanner) fast.
 

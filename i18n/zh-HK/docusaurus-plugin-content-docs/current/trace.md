@@ -1,6 +1,6 @@
 ---
-title: 'Tracing V8'
-description: '本文件説明如何利用 V8 的內建追踪支持功能。'
+title: "Tracing V8"
+description: "本文件説明如何利用 V8 的內建追踪支持功能。"
 ---
 V8 提供了追踪支持。它[在 V8 嵌入到 Chrome 中時通過 Chrome 追踪系統自動工作](/docs/rcs)。但在任何獨立的 V8 或使用 Default Platform 的嵌入程序中，你也可以啟用該功能。有關 trace-viewer 的更多詳細信息可以[此處](https://github.com/catapult-project/catapult/blob/master/tracing/README.md)找到。
 

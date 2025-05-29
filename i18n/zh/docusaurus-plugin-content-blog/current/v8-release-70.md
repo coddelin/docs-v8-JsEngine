@@ -1,13 +1,13 @@
 ---
-title: 'V8发布版本v7.0'
-author: 'Michael Hablich'
+title: "V8发布版本v7.0"
+author: "Michael Hablich"
 avatars:
   - michael-hablich
 date: 2018-10-15 17:17:00
 tags:
   - 发布
-description: 'V8 v7.0包括WebAssembly线程、Symbol.prototype.description以及更多平台上的嵌入式内置功能！'
-tweet: '1051857446279532544'
+description: "V8 v7.0包括WebAssembly线程、Symbol.prototype.description以及更多平台上的嵌入式内置功能！"
+tweet: "1051857446279532544"
 ---
 每六周，我们会根据[发布流程](/docs/release-process)创建一个新的V8分支。每个版本都会在Chrome Beta的一个里程碑之前，从V8的Git主分支分支而出。今天我们很高兴地宣布我们的最新分支，[V8版本7.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.0)，它将在几周内与Chrome 70稳定版协调发布之前进入Beta版。V8 v7.0充满了对开发者有吸引力的各种内容。本文旨在提供发布前的一些亮点预览。
 

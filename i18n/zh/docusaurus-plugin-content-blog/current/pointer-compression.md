@@ -1,15 +1,15 @@
 ---
-title: 'V8中的指针压缩'
-author: 'Igor Sheludko 和 Santiago Aboy Solanes，*指针压缩专家*'
+title: "V8中的指针压缩"
+author: "Igor Sheludko 和 Santiago Aboy Solanes，*指针压缩专家*"
 avatars:
-  - 'igor-sheludko'
-  - 'santiago-aboy-solanes'
+  - "igor-sheludko"
+  - "santiago-aboy-solanes"
 date: 2020-03-30
 tags:
   - 内部结构
   - 内存
-description: 'V8减少了高达43%的堆大小！在“V8中的指针压缩”中了解具体方法！'
-tweet: '1244653541379182596'
+description: "V8减少了高达43%的堆大小！在“V8中的指针压缩”中了解具体方法！"
+tweet: "1244653541379182596"
 ---
 在内存和性能之间总是存在不断的斗争。作为用户，我们希望既能快速又尽量少地使用内存。不幸的是，通常提升性能会带来内存消耗的代价（反之亦然）。
 

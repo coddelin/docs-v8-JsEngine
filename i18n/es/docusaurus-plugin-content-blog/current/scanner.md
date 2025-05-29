@@ -1,14 +1,14 @@
 ---
-title: 'Análisis extremadamente rápido, parte 1: optimizando el escáner'
-author: 'Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)), optimizador escandaloso'
+title: "Análisis extremadamente rápido, parte 1: optimizando el escáner"
+author: "Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)), optimizador escandaloso"
 avatars:
-  - 'toon-verwaest'
+  - "toon-verwaest"
 date: 2019-03-25 13:33:37
 tags:
   - internals
   - análisis
-tweet: '1110205101652787200'
-description: 'La piedra angular del rendimiento del analizador es un escáner rápido. Este artículo explica cómo el escáner de JavaScript de V8 se volvió hasta 2.1× más rápido recientemente.'
+tweet: "1110205101652787200"
+description: "La piedra angular del rendimiento del analizador es un escáner rápido. Este artículo explica cómo el escáner de JavaScript de V8 se volvió hasta 2.1× más rápido recientemente."
 ---
 Para ejecutar un programa de JavaScript, el texto fuente necesita ser procesado para que V8 pueda entenderlo. V8 comienza analizando el texto fuente en un árbol de sintaxis abstracta (AST), un conjunto de objetos que representan la estructura del programa. Ese AST se compila en bytecode mediante Ignition. El rendimiento de estas fases de análisis + compilación es importante: V8 no puede ejecutar código antes de que la compilación esté terminada. En esta serie de publicaciones en el blog, nos enfocamos en el análisis y el trabajo realizado en V8 para entregar un analizador extremadamente rápido.
 

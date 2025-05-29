@@ -1,8 +1,8 @@
 ---
-title: 'Поддержка функций'
+title: "Поддержка функций"
 permalink: /features/support/
 layout: layouts/base.njk
-description: 'Этот документ объясняет списки поддержки функций языка JavaScript и WebAssembly, используемые на сайте V8.'
+description: "Этот документ объясняет списки поддержки функций языка JavaScript и WebAssembly, используемые на сайте V8."
 ---
 # Поддержка функций JavaScript/Wasm
 

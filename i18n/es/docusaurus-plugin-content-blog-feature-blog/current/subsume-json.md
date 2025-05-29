@@ -1,13 +1,13 @@
 ---
-title: 'Subsume JSON también conocido como JSON ⊂ ECMAScript'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Subsume JSON también conocido como JSON ⊂ ECMAScript"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-08-14
 tags:
   - ES2019
-description: 'JSON ahora es un subconjunto sintáctico de ECMAScript.'
-tweet: '1161649929904885762'
+description: "JSON ahora es un subconjunto sintáctico de ECMAScript."
+tweet: "1161649929904885762"
 ---
 Con [la propuesta _JSON ⊂ ECMAScript_](https://github.com/tc39/proposal-json-superset), JSON se convierte en un subconjunto sintáctico de ECMAScript. Si te sorprende que esto no fuera ya el caso, no estás solo.
 

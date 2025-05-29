@@ -1,13 +1,13 @@
 ---
-title: '“理解ECMAScript规范，第二部分”的额外内容'
-author: '[Marja Hölttä](https://twitter.com/marjakh)，推测的规范观察者'
+title: "“理解ECMAScript规范，第二部分”的额外内容"
+author: "[Marja Hölttä](https://twitter.com/marjakh)，推测的规范观察者"
 avatars:
   - marja-holtta
 date: 2020-03-02
 tags:
   - ECMAScript
-description: '关于阅读ECMAScript规范的教程'
-tweet: ''
+description: "关于阅读ECMAScript规范的教程"
+tweet: ""
 ---
 
 ### 为什么`o2.foo`是一个`AssignmentExpression`?

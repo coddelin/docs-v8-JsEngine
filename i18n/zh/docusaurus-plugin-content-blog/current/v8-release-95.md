@@ -1,13 +1,13 @@
 ---
-title: 'V8 版本 v9.5 发布'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "V8 版本 v9.5 发布"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-09-21
 tags:
  - 发布
-description: 'V8 版本 v9.5 带来了更新的国际化 API 和 WebAssembly 异常处理支持。'
-tweet: '1440296019623759872'
+description: "V8 版本 v9.5 带来了更新的国际化 API 和 WebAssembly 异常处理支持。"
+tweet: "1440296019623759872"
 ---
 每四周我们会创建 V8 的一个新分支，作为我们[发布流程](https://v8.dev/docs/release-process)的一部分。每个版本都会在 Chrome Beta 里程碑之前从 V8 的 Git 主分支分叉出来。今天我们很高兴宣布我们的最新分支，[V8 版本 9.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.5)，它将进入 Beta 测试阶段，直到几周后与 Chrome 95 Stable 一起发布。V8 v9.5 带来了各类面向开发者的实用功能。这篇文章将预测一些亮点，期待正式发布。
 

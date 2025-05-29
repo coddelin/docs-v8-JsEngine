@@ -1,10 +1,10 @@
 ---
-title: 'Publication V8 version 5.6'
+title: "Publication V8 version 5.6"
 author: 'l'équipe V8'
 date: 2016-12-02 13:33:37
 tags:
   - publication
-description: 'V8 v5.6 apporte une nouvelle chaîne de compilation, des améliorations de performance, et un soutien accru pour les fonctionnalités du langage ECMAScript.'
+description: "V8 v5.6 apporte une nouvelle chaîne de compilation, des améliorations de performance, et un soutien accru pour les fonctionnalités du langage ECMAScript."
 ---
 Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](/docs/release-process). Chaque version est issue du dépôt Git principal de V8 juste avant une étape bêta de Chrome. Aujourd'hui, nous avons le plaisir d'annoncer notre branche la plus récente, [V8 version 5.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.6), qui sera en bêta jusqu'à sa sortie avec Chrome 56 Stable dans plusieurs semaines. V8 5.6 est rempli de nouveautés destinées aux développeurs, alors nous souhaitons vous donner un aperçu de certaines de ses caractéristiques principales en vue de sa sortie.
 

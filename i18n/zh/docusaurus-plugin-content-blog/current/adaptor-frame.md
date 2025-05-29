@@ -1,13 +1,13 @@
 ---
-title: '更快的JavaScript调用'
-author: '[Victor Gomes](https://twitter.com/VictorBFG)，框架破碎者'
+title: "更快的JavaScript调用"
+author: "[Victor Gomes](https://twitter.com/VictorBFG)，框架破碎者"
 avatars:
-  - 'victor-gomes'
+  - "victor-gomes"
 date: 2021-02-15
 tags:
   - 内部结构
-description: '通过移除参数适配帧实现更快的JavaScript调用'
-tweet: '1361337569057865735'
+description: "通过移除参数适配帧实现更快的JavaScript调用"
+tweet: "1361337569057865735"
 ---
 
 JavaScript允许以与预期参数数量不同的参数数量调用函数，也就是说，可以传递比声明的形式参数少或多的参数。前者称为“少应用（under-application）”，后者称为“多应用（over-application）”。

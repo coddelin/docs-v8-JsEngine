@@ -1,10 +1,10 @@
 ---
-title: 'V8 發佈 v5.7'
-author: 'V8 團隊'
+title: "V8 發佈 v5.7"
+author: "V8 團隊"
 date: 2017-02-06 13:33:37
 tags:
   - 發佈
-description: 'V8 v5.7 預設啟用 WebAssembly，並包含性能改進以及增加對 ECMAScript 語言功能的支持。'
+description: "V8 v5.7 預設啟用 WebAssembly，並包含性能改進以及增加對 ECMAScript 語言功能的支持。"
 ---
 每隔六周，我們會根據[發佈流程](/docs/release-process)創建 V8 的新分支。每個版本都從 V8 的 Git 主分支立即分支，恰逢 Chrome Beta 的里程碑。今天，我們很高興宣布最新的分支，[V8 版本 5.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.7)，這個版本將進行 Beta 測試，直到幾周後與 Chrome 57 穩定版同步發佈為止。V8 5.7 包含各種面向開發者的精彩功能。我們希望提前為您預覽一些亮點。
 

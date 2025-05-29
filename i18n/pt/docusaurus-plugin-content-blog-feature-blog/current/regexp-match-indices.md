@@ -1,14 +1,14 @@
 ---
-title: 'Índices de correspondência RegExp'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), regularmente expressando novos recursos'
+title: "Índices de correspondência RegExp"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), regularmente expressando novos recursos"
 avatars:
-  - 'maya-armyanova'
+  - "maya-armyanova"
 date: 2019-12-17
 tags:
   - ECMAScript
   - Node.js 16
-description: 'Os índices de correspondência RegExp fornecem os índices `início` e `fim` de cada grupo capturado correspondente.'
-tweet: '1206970814400270338'
+description: "Os índices de correspondência RegExp fornecem os índices `início` e `fim` de cada grupo capturado correspondente."
+tweet: "1206970814400270338"
 ---
 O JavaScript agora está equipado com um novo aprimoramento de expressão regular, chamado “índices de correspondência”. Imagine que você deseja encontrar nomes de variáveis inválidas em código JavaScript que coincidem com palavras reservadas e exibir um acento circunflexo e um “sublinhado” sob o nome da variável, como:
 

@@ -1,12 +1,12 @@
 ---
-title: 'Desempenho elevado de ES2015 e além'
-author: 'Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer), Engenheiro de Desempenho ECMAScript'
+title: "Desempenho elevado de ES2015 e além"
+author: "Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer), Engenheiro de Desempenho ECMAScript"
 avatars:
-  - 'benedikt-meurer'
+  - "benedikt-meurer"
 date: 2017-02-17 13:33:37
 tags:
   - ECMAScript
-description: 'O desempenho do V8 para os recursos da linguagem ES2015+ agora está no mesmo nível de seus equivalentes transpilados para ES5.'
+description: "O desempenho do V8 para os recursos da linguagem ES2015+ agora está no mesmo nível de seus equivalentes transpilados para ES5."
 ---
 Nos últimos meses, a equipe do V8 concentrou-se em trazer o desempenho dos recursos recém-adicionados de [ES2015](https://www.ecma-international.org/ecma-262/6.0/) e outros recursos JavaScript ainda mais recentes para o mesmo nível de seus equivalentes transpilados para [ES5](https://www.ecma-international.org/ecma-262/5.1/).
 

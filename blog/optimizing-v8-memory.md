@@ -1,15 +1,15 @@
 ---
-title: 'Optimizing V8 memory consumption'
-author: 'the V8 Memory Sanitation Engineers Ulan Degenbaev, Michael Lippautz, Hannes Payer, and Toon Verwaest'
+title: "Optimizing V8 memory consumption"
+author: "the V8 Memory Sanitation Engineers Ulan Degenbaev, Michael Lippautz, Hannes Payer, and Toon Verwaest"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2016-10-07 13:33:37
 tags:
   - memory
   - benchmarks
-description: 'The V8 team analyzed and significantly reduced the memory footprint of several websites that were identified as representative of modern web development patterns.'
+description: "The V8 team analyzed and significantly reduced the memory footprint of several websites that were identified as representative of modern web development patterns."
 ---
 Memory consumption is an important dimension in the JavaScript virtual machine performance trade-off space. Over the last few months the V8 team analyzed and significantly reduced the memory footprint of several websites that were identified as representative of modern web development patterns. In this blog post we present the workloads and tools we used in our analysis, outline memory optimizations in the garbage collector, and show how we reduced memory consumed by V8’s parser and its compilers.
 

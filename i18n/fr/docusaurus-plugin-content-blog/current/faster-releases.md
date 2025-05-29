@@ -1,11 +1,11 @@
 ---
-title: 'Des versions plus rapides'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "Des versions plus rapides"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
-  - 'ingvar-stepanyan'
+  - "ingvar-stepanyan"
 date: 2021-03-04
-description: 'Accélérer le cycle de publication de V8'
-tweet: '1367546733643919370'
+description: "Accélérer le cycle de publication de V8"
+tweet: "1367546733643919370"
 ---
 Afin de livrer plus rapidement de nouvelles fonctionnalités et corrections de bugs à ses utilisateurs, Chrome [accélère son cycle de publication](https://developer.chrome.com/blog/faster-release-cycle/).
 

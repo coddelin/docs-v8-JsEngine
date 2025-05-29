@@ -1,6 +1,6 @@
 ---
-title: '堆疊追蹤 API'
-description: '本文檔概述 V8 的 JavaScript 堆疊追蹤 API。'
+title: "堆疊追蹤 API"
+description: "本文檔概述 V8 的 JavaScript 堆疊追蹤 API。"
 ---
 所有在 V8 中拋出的內部錯誤在創建時都會捕獲堆疊追蹤。可以通過非標準的 `error.stack` 屬性從 JavaScript 中訪問此堆疊追蹤。V8 還提供了各種鉤子以控制如何收集和格式化堆疊追蹤，以及允許自定義錯誤也可以收集堆疊追蹤。本文檔概述了 V8 的 JavaScript 堆疊追蹤 API。
 

@@ -1,10 +1,10 @@
 ---
-title: 'V8リリース v5.9'
-author: 'V8チーム'
+title: "V8リリース v5.9"
+author: "V8チーム"
 date: 2017-04-27 13:33:37
 tags:
   - リリース
-description: 'V8 v5.9では新しいIgnition + TurboFanパイプラインが導入され、すべてのプラットフォームでWebAssembly TrapIfサポートが追加されています。'
+description: "V8 v5.9では新しいIgnition + TurboFanパイプラインが導入され、すべてのプラットフォームでWebAssembly TrapIfサポートが追加されています。"
 ---
 6週間ごとに、[リリースプロセス](/docs/release-process)の一環として新しいV8ブランチを作成しています。各バージョンは、Chromeのベータマイルストーンの直前にV8のGitマスターから分岐されます。本日、最新ブランチ[V8バージョン5.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.9)を発表することを嬉しく思います。このバージョンは数週間後にChrome 59 ステーブル版と連携してリリースされるまでベータ版になります。V8 5.9は開発者向けのさまざまな新機能を備えています。このリリースに先立ち、そのハイライトのいくつかをプレビューとしてお届けします。
 

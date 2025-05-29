@@ -1,14 +1,14 @@
 ---
-title: 'Optionale `catch`-Bindung'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Optionale `catch`-Bindung"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-03-27
 tags:
   - ECMAScript
   - ES2019
-description: 'In ES2019 kann `catch` jetzt ohne Parameter verwendet werden.'
-tweet: '956209997808939008'
+description: "In ES2019 kann `catch` jetzt ohne Parameter verwendet werden."
+tweet: "956209997808939008"
 ---
 Die `catch`-Klausel von `try`-Anweisungen erforderte früher eine Bindung:
 

@@ -1,6 +1,6 @@
 ---
-title: 'Cross-compilation et débogage pour ARM/Android'
-description: 'Ce document explique comment cross-compiler V8 pour ARM/Android, et comment le déboguer.'
+title: "Cross-compilation et débogage pour ARM/Android"
+description: "Ce document explique comment cross-compiler V8 pour ARM/Android, et comment le déboguer."
 ---
 Tout d'abord, assurez-vous de pouvoir [compiler avec GN](/docs/build-gn).
 

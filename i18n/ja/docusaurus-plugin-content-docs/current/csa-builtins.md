@@ -1,6 +1,6 @@
 ---
-title: 'CodeStubAssembler 内蔵機能'
-description: 'このドキュメントはCodeStubAssembler内蔵機能の記述の導入を目的としており、V8の開発者を対象としています。'
+title: "CodeStubAssembler 内蔵機能"
+description: "このドキュメントはCodeStubAssembler内蔵機能の記述の導入を目的としており、V8の開発者を対象としています。"
 ---
 このドキュメントはCodeStubAssembler内蔵機能の記述の導入を目的としており、V8の開発者を対象としています。
 

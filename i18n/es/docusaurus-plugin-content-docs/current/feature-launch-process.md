@@ -1,6 +1,6 @@
 ---
-title: 'Implementación y distribución de características del lenguaje JavaScript/WebAssembly'
-description: 'Este documento explica el proceso para implementar y distribuir características del lenguaje JavaScript o WebAssembly en V8.'
+title: "Implementación y distribución de características del lenguaje JavaScript/WebAssembly"
+description: "Este documento explica el proceso para implementar y distribuir características del lenguaje JavaScript o WebAssembly en V8."
 ---
 En general, V8 sigue el [proceso de intención de Blink para estándares basados en consenso ya definidos](https://www.chromium.org/blink/launching-features/#process-existing-standard) para características del lenguaje JavaScript y WebAssembly. A continuación se detallan erratas específicas de V8. Por favor, siga el proceso de intención de Blink, salvo que las erratas indiquen lo contrario.
 

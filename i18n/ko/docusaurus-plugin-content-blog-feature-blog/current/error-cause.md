@@ -1,13 +1,13 @@
 ---
-title: '오류 원인'
-author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
+title: "오류 원인"
+author: "Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))"
 avatars:
-  - 'victor-gomes'
+  - "victor-gomes"
 date: 2021-07-07
 tags:
   - ECMAScript
-description: 'JavaScript는 이제 오류 원인을 지원합니다.'
-tweet: '1412774651558862850'
+description: "JavaScript는 이제 오류 원인을 지원합니다."
+tweet: "1412774651558862850"
 ---
 
 두 개의 별도 작업 `doSomeWork`와 `doMoreWork`를 호출하는 함수를 상상해보세요. 두 함수는 동일한 종류의 오류를 던질 수 있지만, 각각 다른 방식으로 처리해야 합니다.

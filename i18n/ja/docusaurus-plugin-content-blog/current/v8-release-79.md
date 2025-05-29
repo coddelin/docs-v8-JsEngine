@@ -1,13 +1,13 @@
 ---
-title: 'V8 リリース v7.9'
-author: 'Santiago Aboy Solanes, ポインター圧縮のエキスパート'
+title: "V8 リリース v7.9"
+author: "Santiago Aboy Solanes, ポインター圧縮のエキスパート"
 avatars:
-  - 'santiago-aboy-solanes'
+  - "santiago-aboy-solanes"
 date: 2019-11-20
 tags:
   - リリース
-description: 'V8 v7.9 では、Double ⇒ Tagged への遷移の非推奨を削除、組み込みでの API ゲッター処理、OSR キャッシング、Wasm の複数コード領域のサポートなどの機能が追加されました。'
-tweet: '1197187184304050176'
+description: "V8 v7.9 では、Double ⇒ Tagged への遷移の非推奨を削除、組み込みでの API ゲッター処理、OSR キャッシング、Wasm の複数コード領域のサポートなどの機能が追加されました。"
+tweet: "1197187184304050176"
 ---
 6週間ごとに、[リリースプロセス](/docs/release-process)の一環として新しい V8 のブランチを作成します。各バージョンは、Chrome のベータマイルストーンの直前に V8 の Git マスターからブランチ分岐されます。本日、[V8 バージョン 7.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.9) を発表できることを嬉しく思います。このバージョンは数週間後の Chrome 79 ステーブルと連携してリリースされるまで、ベータ版として利用可能です。V8 v7.9 には開発者向けの様々な新機能が満載されています。本投稿では、リリースを控えた注目のポイントをいくつかご紹介します。
 

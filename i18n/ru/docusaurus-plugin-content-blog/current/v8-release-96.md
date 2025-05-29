@@ -1,13 +1,13 @@
 ---
-title: 'Выпуск V8 версии v9.6'
-author: 'Ингвар Степанян ([@RReverser](https://twitter.com/RReverser))'
+title: "Выпуск V8 версии v9.6"
+author: "Ингвар Степанян ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-10-13
 tags:
  - release
-description: 'Выпуск V8 v9.6 добавляет поддержку Reference Types для WebAssembly.'
-tweet: '1448262079476076548'
+description: "Выпуск V8 v9.6 добавляет поддержку Reference Types для WebAssembly."
+tweet: "1448262079476076548"
 ---
 Каждые четыре недели мы создаем новую ветку V8 в рамках нашего [процесса выпуска](https://v8.dev/docs/release-process). Каждая версия ветвится от master-ветки V8 прямо перед выходом бета-версии Chrome. Сегодня мы рады представить нашу новую ветку, [V8 версия 9.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.6), которая находится в стадии бета-тестирования до ее выпуска в стабильной версии Chrome 96 через несколько недель. V8 v9.6 наполнена разнообразными интересными новинками для разработчиков. В этом посте представлен обзор ключевых моментов в преддверии выпуска.
 

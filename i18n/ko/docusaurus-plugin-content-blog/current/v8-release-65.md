@@ -1,11 +1,11 @@
 ---
-title: 'V8 릴리스 v6.5'
-author: 'V8 팀'
+title: "V8 릴리스 v6.5"
+author: "V8 팀"
 date: 2018-02-01 13:33:37
 tags:
   - 릴리스
-description: 'V8 v6.5는 스트리밍 WebAssembly 컴파일을 지원하며 새로운 “신뢰할 수 없는 코드 모드”를 포함합니다.'
-tweet: '959174292406640640'
+description: "V8 v6.5는 스트리밍 WebAssembly 컴파일을 지원하며 새로운 “신뢰할 수 없는 코드 모드”를 포함합니다."
+tweet: "959174292406640640"
 ---
 매 6주마다, 우리는 [릴리스 프로세스](/docs/release-process)의 일환으로 V8의 새로운 브랜치를 생성합니다. 각 버전은 크롬 베타 마일스톤 직전에 V8 Git 마스터에서 파생됩니다. 오늘 우리는 우리의 최신 브랜치인 [V8 버전 6.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.5)를 발표하게 되어 기쁩니다. 이는 몇 주 후 Chrome 65 Stable과의 조정에 따라 출시될 때까지 베타 상태에 있습니다. V8 v6.5는 다양한 개발자 중심의 기능으로 가득합니다. 이 게시물은 출시를 기대하며 몇 가지 주요 사항을 미리 제공합니다.
 

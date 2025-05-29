@@ -1,14 +1,14 @@
 ---
-title: 'V8에서 정렬을 처리하기'
-author: 'Simon Zünd ([@nimODota](https://twitter.com/nimODota)), 일관된 비교자'
+title: "V8에서 정렬을 처리하기"
+author: "Simon Zünd ([@nimODota](https://twitter.com/nimODota)), 일관된 비교자"
 avatars:
   - simon-zuend
 date: 2018-09-28 11:20:37
 tags:
   - ECMAScript
   - internals
-description: 'V8 v7.0 / Chrome 70부터 Array.prototype.sort가 안정적으로 작동합니다.'
-tweet: '1045656758700650502'
+description: "V8 v7.0 / Chrome 70부터 Array.prototype.sort가 안정적으로 작동합니다."
+tweet: "1045656758700650502"
 ---
 `Array.prototype.sort`는 V8에서 셀프 호스팅 JavaScript로 구현된 마지막 내장 함수 중 하나였습니다. 이를 이식하는 과정에서 다양한 알고리즘과 구현 전략을 실험할 기회를 얻었고, 마침내 V8 v7.0 / Chrome 70에서 [안정적으로 작동하게 만들었습니다](https://mathiasbynens.be/demo/sort-stability).
 

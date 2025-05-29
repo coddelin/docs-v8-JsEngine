@@ -1,6 +1,6 @@
 ---
-title: '交叉編譯及除錯 ARM/Android'
-description: '本文件解釋如何為 ARM/Android 交叉編譯 V8，以及如何除錯它。'
+title: "交叉編譯及除錯 ARM/Android"
+description: "本文件解釋如何為 ARM/Android 交叉編譯 V8，以及如何除錯它。"
 ---
 首先，確保您能夠[使用 GN 建構](/docs/build-gn)。
 

@@ -1,6 +1,6 @@
 ---
-title: 'Design review guidelines'
-description: 'This document explains the V8 project’s design review guidelines.'
+title: "Design review guidelines"
+description: "This document explains the V8 project’s design review guidelines."
 ---
 Please make sure to follow the following guidelines when applicable.
 

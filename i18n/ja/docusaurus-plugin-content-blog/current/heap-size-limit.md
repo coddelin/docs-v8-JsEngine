@@ -1,14 +1,14 @@
 ---
-title: 'Chromeの小さな一歩、V8の巨大な飛躍'
-author: 'ヒープの守護者 Ulan Degenbaev、Hannes Payer、Michael Lippautz、そしてDevToolsの戦士 Alexey Kozyatinskiy'
+title: "Chromeの小さな一歩、V8の巨大な飛躍"
+author: "ヒープの守護者 Ulan Degenbaev、Hannes Payer、Michael Lippautz、そしてDevToolsの戦士 Alexey Kozyatinskiy"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2017-02-09 13:33:37
 tags:
   - memory
-description: '最近V8ではヒープサイズのハードリミットを増加しました。'
+description: "最近V8ではヒープサイズのハードリミットを増加しました。"
 ---
 V8にはヒープサイズに関するハードリミットがあります。これはメモリリークがあるアプリケーションに対する安全対策として機能します。アプリケーションがこのハードリミットに達すると、V8は緊急措置として一連のガベージコレクションを実行します。ガベージコレクションがメモリを解放するのに役立たない場合、V8は実行を停止し、メモリ不足のエラーを報告します。ハードリミットがなければ、メモリリークがあるアプリケーションがシステムのメモリをすべて使い果たし、他のアプリケーションのパフォーマンスに悪影響を与える可能性があります。
 

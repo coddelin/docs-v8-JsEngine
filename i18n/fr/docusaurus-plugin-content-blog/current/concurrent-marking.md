@@ -1,16 +1,16 @@
 ---
-title: 'Marquage concurrent dans V8'
-author: 'Ulan Degenbaev, Michael Lippautz, et Hannes Payer — libérateurs du thread principal'
+title: "Marquage concurrent dans V8"
+author: "Ulan Degenbaev, Michael Lippautz, et Hannes Payer — libérateurs du thread principal"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2018-06-11 13:33:37
 tags:
   - internes
   - mémoire
-description: 'Cet article décrit la technique de collecte des déchets appelée marquage concurrent.'
-tweet: '1006187194808233985'
+description: "Cet article décrit la technique de collecte des déchets appelée marquage concurrent."
+tweet: "1006187194808233985"
 ---
 Cet article décrit la technique de collecte des déchets appelée _marquage concurrent_. Cette optimisation permet à une application JavaScript de continuer son exécution pendant que le collecteur d’ordures balaie le tas pour trouver et marquer les objets vivants. Nos benchmarks montrent que le marquage concurrent réduit le temps passé à marquer sur le thread principal de 60 % à 70 %. Le marquage concurrent est la dernière pièce du puzzle du [projet Orinoco](/blog/orinoco) — le projet qui remplace progressivement l'ancien collecteur d'ordures par le nouveau collecteur d'ordures principalement concurrent et parallèle. Le marquage concurrent est activé par défaut dans Chrome 64 et Node.js v10.
 

@@ -1,13 +1,13 @@
 ---
-title: 'V8-Version v7.2'
-author: 'Andreas Haas, Verantwortlicher für Traps'
+title: "V8-Version v7.2"
+author: "Andreas Haas, Verantwortlicher für Traps"
 avatars:
   - andreas-haas
 date: 2018-12-18 11:48:21
 tags:
   - Veröffentlichung
-description: 'V8 v7.2 bietet hochschnelles JavaScript-Parsing, schnellere Async-Await-Operationen, reduzierten Speicherverbrauch auf ia32, öffentliche Klassenfelder und vieles mehr!'
-tweet: '1074978755934863361'
+description: "V8 v7.2 bietet hochschnelles JavaScript-Parsing, schnellere Async-Await-Operationen, reduzierten Speicherverbrauch auf ia32, öffentliche Klassenfelder und vieles mehr!"
+tweet: "1074978755934863361"
 ---
 Alle sechs Wochen erstellen wir einen neuen Branch von V8 als Teil unseres [Veröffentlichungsprozesses](/docs/release-process). Jede Version wird direkt vor einem Chrome-Beta-Meilenstein vom Git-Master von V8 abgetrennt. Heute freuen wir uns, unseren neuesten Branch, [V8-Version 7.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.2), anzukündigen, der sich bis zur Veröffentlichung in mehreren Wochen in Koordination mit Chrome 72 Stable in der Beta-Phase befindet. V8 v7.2 ist voller Entwicklerfunktionen. Dieser Beitrag bietet eine Vorschau auf einige Highlights im Vorgriff auf die Veröffentlichung.
 

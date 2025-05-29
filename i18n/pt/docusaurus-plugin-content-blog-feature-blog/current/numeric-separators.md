@@ -1,15 +1,15 @@
 ---
-title: 'Separadores Numéricos'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Separadores Numéricos"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-05-28
 tags:
   - ECMAScript
   - ES2021
   - io19
-description: 'JavaScript agora suporta sublinhados como separadores em literais numéricos, aumentando a legibilidade e a manutenção do código fonte.'
-tweet: '1129073383931559936'
+description: "JavaScript agora suporta sublinhados como separadores em literais numéricos, aumentando a legibilidade e a manutenção do código fonte."
+tweet: "1129073383931559936"
 ---
 Literais numéricos grandes são difíceis para o olho humano interpretar rapidamente, especialmente quando há muitos dígitos repetidos:
 

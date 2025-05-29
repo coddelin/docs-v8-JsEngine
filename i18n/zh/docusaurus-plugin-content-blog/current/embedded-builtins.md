@@ -1,13 +1,13 @@
 ---
-title: '嵌入的内置函数'
-author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
+title: "嵌入的内置函数"
+author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2018-08-14 13:33:37
 tags:
   - 内部原理
-description: 'V8 v6.9将内置代码嵌入到二进制文件的.text节中，将每个网站的V8堆大小中值减少了19%。'
-tweet: '1029382366693937162'
+description: "V8 v6.9将内置代码嵌入到二进制文件的.text节中，将每个网站的V8堆大小中值减少了19%。"
+tweet: "1029382366693937162"
 ---
 V8内置函数（builtins）在每个V8实例中都会消耗内存。内置函数的数量、平均大小以及每个Chrome浏览器标签页中的V8实例数量显著增长。这篇博客描述了过去一年中我们如何将每个网站的V8堆大小中值减少19%。
 

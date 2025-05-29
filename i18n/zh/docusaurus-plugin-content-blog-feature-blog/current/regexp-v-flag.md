@@ -1,15 +1,15 @@
 ---
-title: 'RegExp `v` 标记与集合符号及字符串属性'
-author: 'Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "RegExp `v` 标记与集合符号及字符串属性"
+author: "Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mark-davis'
-  - 'markus-scherer'
-  - 'mathias-bynens'
+  - "mark-davis"
+  - "markus-scherer"
+  - "mathias-bynens"
 date: 2022-06-27
 tags:
   - ECMAScript
-description: '新的 RegExp `v` 标记启用了 `unicodeSets` 模式，支持扩展字符类，包括 Unicode 字符串属性、集合符号以及更先进的大小写不敏感匹配功能。'
-tweet: '1541419838513594368'
+description: "新的 RegExp `v` 标记启用了 `unicodeSets` 模式，支持扩展字符类，包括 Unicode 字符串属性、集合符号以及更先进的大小写不敏感匹配功能。"
+tweet: "1541419838513594368"
 ---
 JavaScript 自 ECMAScript 3（1999）以来就支持正则表达式。十六年后，ES2015 引入了 [Unicode 模式（`u` 标记）](https://mathiasbynens.be/notes/es6-unicode-regex)、[粘滞模式（`y` 标记）](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky#description) 和 [`RegExp.prototype.flags` 访问器](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/flags)。三年后，ES2018 引入了 [`dotAll` 模式（`s` 标记）](https://mathiasbynens.be/notes/es-regexp-proposals#dotAll)、[后瞻断言](https://mathiasbynens.be/notes/es-regexp-proposals#lookbehinds)、[命名捕获组](https://mathiasbynens.be/notes/es-regexp-proposals#named-capture-groups) 和 [Unicode 字符属性转义](https://mathiasbynens.be/notes/es-unicode-property-escapes)。而在 ES2020 中，[`String.prototype.matchAll`](https://v8.dev/features/string-matchall) 简化了使用正则表达式的过程。JavaScript 正则表达式已经取得了长足的发展，并且仍在不断完善。
 

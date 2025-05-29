@@ -1,16 +1,16 @@
 ---
-title: '`Intl.ListFormat`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)) 和 Frank Yung-Fong Tang'
+title: "`Intl.ListFormat`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)) 和 Frank Yung-Fong Tang"
 avatars:
-  - 'mathias-bynens'
-  - 'frank-tang'
+  - "mathias-bynens"
+  - "frank-tang"
 date: 2018-12-18
 tags:
   - Intl
   - Node.js 12
   - io19
-description: 'Intl.ListFormat API 使本地化列表格式化成为可能，同时保证性能不受影响。'
-tweet: '1074966915557351424'
+description: "Intl.ListFormat API 使本地化列表格式化成为可能，同时保证性能不受影响。"
+tweet: "1074966915557351424"
 ---
 现代的网页应用通常使用包含动态数据的列表。例如，一个照片查看器应用可能会显示如下内容：
 

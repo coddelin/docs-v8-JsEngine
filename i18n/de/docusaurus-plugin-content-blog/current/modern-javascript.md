@@ -1,10 +1,10 @@
 ---
-title: 'ES2015, ES2016 und darüber hinaus'
-author: 'das V8-Team, ECMAScript-Enthusiasten'
+title: "ES2015, ES2016 und darüber hinaus"
+author: "das V8-Team, ECMAScript-Enthusiasten"
 date: 2016-04-29 13:33:37
 tags:
   - ECMAScript
-description: 'V8 v5.2 unterstützt ES2015 und ES2016!'
+description: "V8 v5.2 unterstützt ES2015 und ES2016!"
 ---
 Das V8-Team legt großen Wert auf die Weiterentwicklung von JavaScript zu einer zunehmend ausdrucksstarken und klar definierten Sprache, die es erleichtert, schnelle, sichere und korrekte Webanwendungen zu schreiben. Im Juni 2015 wurde die [ES2015-Spezifikation](https://www.ecma-international.org/ecma-262/6.0/) vom TC39-Standardkomitee ratifiziert, was das größte einzelne Update der JavaScript-Sprache darstellt. Neue Funktionen umfassen [Klassen](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [Pfeilfunktionen](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise), [Iteratoren / Generatoren](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators), [Proxy-Objekte](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), [wohlbekannte Symbole](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol#Well-known_symbols) und zusätzliche syntaktische Vereinfachungen. TC39 hat auch die Frequenz neuer Spezifikationen erhöht und im Februar 2016 den [Kandidatenentwurf für ES2016](https://tc39.es/ecma262/2016/) veröffentlicht, der diesen Sommer ratifiziert wird. Während es aufgrund des kürzeren Veröffentlichungszyklus nicht so umfangreich ist wie das ES2015-Update, führt ES2016 bemerkenswerterweise den [Exponentiations-Operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Exponentiation) und [`Array.prototype.includes`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) ein.
 

@@ -1,13 +1,13 @@
 ---
-title: 'V8 发布 v7.7'
-author: 'Mathias Bynens（[@mathias](https://twitter.com/mathias)），发布说明的懒惰编写者'
+title: "V8 发布 v7.7"
+author: "Mathias Bynens（[@mathias](https://twitter.com/mathias)），发布说明的懒惰编写者"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-08-13 16:45:00
 tags:
   - 发布
-description: 'V8 v7.7 包括延迟反馈分配、更快的 WebAssembly 后台编译、堆栈跟踪改进，以及新的 Intl.NumberFormat 功能。'
-tweet: '1161287541611323397'
+description: "V8 v7.7 包括延迟反馈分配、更快的 WebAssembly 后台编译、堆栈跟踪改进，以及新的 Intl.NumberFormat 功能。"
+tweet: "1161287541611323397"
 ---
 每六周，我们根据 [发布流程](/docs/release-process)创建一个新的 V8 分支。每个版本都是在 Chrome Beta 里程碑之前从 V8 的 Git 主分支派生出来的。今天我们很高兴地宣布我们的最新分支，[V8 版本 7.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.7)，该版本将在 beta 阶段持续到几周后与 Chrome 77 正式版同步发布。V8 v7.7充满了各种面向开发人员的新功能。本篇文章在正式发布之前预览了一些亮点。
 

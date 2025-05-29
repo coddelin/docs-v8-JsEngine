@@ -1,10 +1,10 @@
 ---
-title: 'V8 发布 v4.8'
-author: 'V8 团队'
+title: "V8 发布 v4.8"
+author: "V8 团队"
 date: 2015-11-25 13:33:37
 tags:
   - 发布
-description: 'V8 v4.8 增加了对几个新的 ES2015 语言特性的支持。'
+description: "V8 v4.8 增加了对几个新的 ES2015 语言特性的支持。"
 ---
 大约每六周，我们会按照我们的[发布流程](/docs/release-process)创建一个新的 V8 分支。每个版本都直接从 V8 的 Git 主分支分支出来，时间点正好是 Chrome 分支用于 Chrome Beta 里程碑之前。今天我们很高兴地宣布我们的最新分支 [V8 版本 4.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.8)，该版本将在与 Chrome 48 稳定版同步发布之前处于测试阶段。V8 4.8 包含一些面向开发者的功能，下面我们将为即将发布的几个星期内的亮点功能做一个预览。
 

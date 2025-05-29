@@ -1,6 +1,6 @@
 ---
-title: 'WebAssembly compilation pipeline'
-description: 'This article explains V8’s WebAssembly compilers and when they compile WebAssembly code.'
+title: "WebAssembly compilation pipeline"
+description: "This article explains V8’s WebAssembly compilers and when they compile WebAssembly code."
 ---
 
 WebAssembly is a binary format that allows you to run code from programming languages other than JavaScript on the web efficiently and securely. In this document we dive into the WebAssembly compilation pipeline in V8 and explain how we use the different compilers to provide good performance.

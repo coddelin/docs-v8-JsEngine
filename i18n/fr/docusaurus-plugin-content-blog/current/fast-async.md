@@ -1,16 +1,16 @@
 ---
-title: 'Des fonctions asynchrones et des promesses plus rapides'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), anticipatrice toujours en attente, et Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), garant professionnel de performance'
+title: "Des fonctions asynchrones et des promesses plus rapides"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), anticipatrice toujours en attente, et Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), garant professionnel de performance"
 avatars:
-  - 'maya-armyanova'
-  - 'benedikt-meurer'
+  - "maya-armyanova"
+  - "benedikt-meurer"
 date: 2018-11-12 16:45:07
 tags:
   - ECMAScript
   - benchmarks
   - présentations
-description: 'Des fonctions asynchrones plus rapides et plus faciles à déboguer, ainsi que des promesses, arrivent avec V8 v7.2 / Chrome 72.'
-tweet: '1062000102909169670'
+description: "Des fonctions asynchrones plus rapides et plus faciles à déboguer, ainsi que des promesses, arrivent avec V8 v7.2 / Chrome 72."
+tweet: "1062000102909169670"
 ---
 Le traitement asynchrone en JavaScript avait traditionnellement la réputation de ne pas être particulièrement rapide. Pour aggraver les choses, le débogage d'applications JavaScript en direct — en particulier des serveurs Node.js — n'est pas chose aisée, _surtout_ lorsqu'il s'agit de programmation asynchrone. Heureusement, les temps changent. Cet article explore comment nous avons optimisé les fonctions asynchrones et les promesses dans V8 (et dans une certaine mesure dans d'autres moteurs JavaScript également), et décrit comment nous avons amélioré l'expérience de débogage de code asynchrone.
 

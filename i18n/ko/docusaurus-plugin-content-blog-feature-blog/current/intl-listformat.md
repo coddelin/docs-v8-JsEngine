@@ -1,16 +1,16 @@
 ---
-title: '`Intl.ListFormat`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)) 및 Frank Yung-Fong Tang'
+title: "`Intl.ListFormat`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)) 및 Frank Yung-Fong Tang"
 avatars:
-  - 'mathias-bynens'
-  - 'frank-tang'
+  - "mathias-bynens"
+  - "frank-tang"
 date: 2018-12-18
 tags:
   - Intl
   - Node.js 12
   - io19
-description: 'Intl.ListFormat API는 성능을 희생하지 않고 로컬화된 목록 포맷팅을 가능하게 합니다.'
-tweet: '1074966915557351424'
+description: "Intl.ListFormat API는 성능을 희생하지 않고 로컬화된 목록 포맷팅을 가능하게 합니다."
+tweet: "1074966915557351424"
 ---
 모던 웹 애플리케이션은 종종 동적 데이터로 구성된 목록을 사용합니다. 예를 들어, 사진 뷰어 앱은 다음과 같은 내용을 표시할 수 있습니다:
 

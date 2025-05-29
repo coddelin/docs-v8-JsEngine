@@ -1,15 +1,15 @@
 ---
-title: '`Intl.Locale`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Intl.Locale`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-05-20
 tags:
   - Intl
   - Node.js 12
   - io19
-description: 'The new Intl.Locale API offers a unified mechanism to deal with locales, and is more convenient than using strings.'
-tweet: 'TODO'
+description: "The new Intl.Locale API offers a unified mechanism to deal with locales, and is more convenient than using strings."
+tweet: "TODO"
 ---
 When dealing with [internationalization APIs](/features/tags/intl), it’s common to pass strings representing locale IDs to the various `Intl` constructors, such as `'en'` for English. [The new `Intl.Locale` API](https://github.com/tc39/proposal-intl-locale) offers a more powerful mechanism to deal with such locales.
 

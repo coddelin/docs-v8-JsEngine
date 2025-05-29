@@ -1,17 +1,17 @@
 ---
-title: 'C++用の高性能ガベージコレクション'
-author: 'Anton Bikineev、Omer Katz（[@omerktz](https://twitter.com/omerktz)）、およびMichael Lippautz（[@mlippautz](https://twitter.com/mlippautz)）、C++メモリウィスパラー'
+title: "C++用の高性能ガベージコレクション"
+author: "Anton Bikineev、Omer Katz（[@omerktz](https://twitter.com/omerktz)）、およびMichael Lippautz（[@mlippautz](https://twitter.com/mlippautz)）、C++メモリウィスパラー"
 avatars:
-  - 'anton-bikineev'
-  - 'omer-katz'
-  - 'michael-lippautz'
+  - "anton-bikineev"
+  - "omer-katz"
+  - "michael-lippautz"
 date: 2020-05-26
 tags:
   - internals
   - memory
   - cppgc
-description: 'この投稿では、Oilpan C++ガベージコレクター、そのBlinkでの使用方法、およびアクセス不能メモリの回収（スイーピング）の最適化方法について説明します。'
-tweet: '1265304883638480899'
+description: "この投稿では、Oilpan C++ガベージコレクター、そのBlinkでの使用方法、およびアクセス不能メモリの回収（スイーピング）の最適化方法について説明します。"
+tweet: "1265304883638480899"
 ---
 
 これまでに、JavaScript用ガベージコレクション、ドキュメントオブジェクトモデル（DOM）、およびこれらすべてがV8でどのように実装および最適化されているかについて[何度か](https://v8.dev/blog/trash-talk) [記述して](https://v8.dev/blog/concurrent-marking) [きました](https://v8.dev/blog/tracing-js-dom)。しかし、ChromiumのすべてがJavaScriptというわけではありません。というのも、V8が組み込まれているブラウザおよびそのBlinkレンダリングエンジンのほとんどがC++で記述されているからです。JavaScriptはレンダリングパイプラインによって処理されるDOMとのインタラクションに使用できます。

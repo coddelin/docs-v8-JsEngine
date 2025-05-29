@@ -1,13 +1,13 @@
 ---
-title: 'Finding elements in `Array`s and TypedArrays'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "Finding elements in `Array`s and TypedArrays"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2021-10-27
 tags:
   - ECMAScript
-description: 'JavaScript methods to find elements in Arrays and TypedArrays'
-tweet: '1453354998063149066'
+description: "JavaScript methods to find elements in Arrays and TypedArrays"
+tweet: "1453354998063149066"
 ---
 ## Finding elements from the beginning
 

@@ -1,13 +1,13 @@
 ---
-title: '优化哈希表：隐藏哈希代码'
-author: '[Sathya Gunasekaran](https://twitter.com/_gsathya)，哈希代码的守护者'
+title: "优化哈希表：隐藏哈希代码"
+author: "[Sathya Gunasekaran](https://twitter.com/_gsathya)，哈希代码的守护者"
 avatars:
-  - 'sathya-gunasekaran'
+  - "sathya-gunasekaran"
 date: 2018-01-29 13:33:37
 tags:
   - 内部机制
-tweet: '958046113390411776'
-description: 'JavaScript 中的多种数据结构（如 Map、Set、WeakSet 和 WeakMap）底层都使用哈希表。本文解释了 V8 v6.3 如何改进哈希表的性能。'
+tweet: "958046113390411776"
+description: "JavaScript 中的多种数据结构（如 Map、Set、WeakSet 和 WeakMap）底层都使用哈希表。本文解释了 V8 v6.3 如何改进哈希表的性能。"
 ---
 ECMAScript 2015 引入了多种新数据结构，如 Map、Set、WeakSet 和 WeakMap，这些数据结构的底层都使用哈希表。本文详细介绍了 [最近的改进](https://bugs.chromium.org/p/v8/issues/detail?id=6404)，即 [V8 v6.3+](/blog/v8-release-63) 如何存储哈希表中的键。
 

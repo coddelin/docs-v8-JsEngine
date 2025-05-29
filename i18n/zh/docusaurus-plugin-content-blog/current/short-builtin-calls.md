@@ -1,13 +1,13 @@
 ---
-title: '内置调用短化'
-author: '[Toon Verwaest](https://twitter.com/tverwaes), 《大空头》'
+title: "内置调用短化"
+author: "[Toon Verwaest](https://twitter.com/tverwaes), 《大空头》"
 avatars:
   - toon-verwaest
 date: 2021-05-06
 tags:
   - JavaScript
-description: '在 V8 v9.1 中，我们暂时在桌面端取消了嵌入式内置，以避免由远间接调用引起的性能问题。'
-tweet: '1394267917013897216'
+description: "在 V8 v9.1 中，我们暂时在桌面端取消了嵌入式内置，以避免由远间接调用引起的性能问题。"
+tweet: "1394267917013897216"
 ---
 
 在 V8 v9.1 中，我们暂时在桌面端禁用了[嵌入式内置](https://v8.dev/blog/embedded-builtins)。虽然嵌入内置显著改善了内存使用，但我们意识到嵌入内置与 JIT 编译代码之间的函数调用可能会带来可观的性能损失。这种成本取决于 CPU 的微架构。在这篇文章中，我们将解释为什么会发生这种情况、性能的表现如何以及我们计划从长期角度解决这个问题的方法。

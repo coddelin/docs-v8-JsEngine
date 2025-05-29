@@ -1,8 +1,8 @@
 ---
 title: 'Exports de l'espace de noms des modules'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-12-18
 tags:
   - ECMAScript

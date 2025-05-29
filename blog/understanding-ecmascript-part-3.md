@@ -1,14 +1,14 @@
 ---
-title: 'Understanding the ECMAScript spec, part 3'
-author: '[Marja Hölttä](https://twitter.com/marjakh), speculative specification spectator'
+title: "Understanding the ECMAScript spec, part 3"
+author: "[Marja Hölttä](https://twitter.com/marjakh), speculative specification spectator"
 avatars:
   - marja-holtta
 date: 2020-04-01
 tags:
   - ECMAScript
   - Understanding ECMAScript
-description: 'Tutorial on reading the ECMAScript specification'
-tweet: '1245400717667577857'
+description: "Tutorial on reading the ECMAScript specification"
+tweet: "1245400717667577857"
 ---
 
 [All episodes](/blog/tags/understanding-ecmascript)

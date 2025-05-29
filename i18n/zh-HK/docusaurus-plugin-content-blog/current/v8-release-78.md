@@ -1,13 +1,13 @@
 ---
-title: 'V8 發行版本 v7.8'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 懶惰的開發者'
+title: "V8 發行版本 v7.8"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 懶惰的開發者"
 avatars:
-  - 'ingvar-stepanyan'
+  - "ingvar-stepanyan"
 date: 2019-09-27
 tags:
   - release
-description: 'V8 v7.8 提供了預載流式編譯功能、WebAssembly C API、更快的對象解構及正則匹配，以及改進的啟動速度。'
-tweet: '1177600702861971459'
+description: "V8 v7.8 提供了預載流式編譯功能、WebAssembly C API、更快的對象解構及正則匹配，以及改進的啟動速度。"
+tweet: "1177600702861971459"
 ---
 每六週，我們會基於 [發佈流程](/docs/release-process) 創建一個新的 V8 分支。每個版本都是在 Chrome Beta 里程碑之前，直接從 V8 的 Git 主分支中生成。今天，我們很高興宣布最新的分支 [V8 版本 7.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.8)，該版本目前處於 Beta 階段，並將在幾週後與 Chrome 78 穩定版本一起發布。V8 v7.8 包含了許多面向開發者的功能，本文章將提前預覽部分亮點。
 

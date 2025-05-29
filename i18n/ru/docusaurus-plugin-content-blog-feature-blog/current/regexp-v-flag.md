@@ -1,15 +1,15 @@
 ---
-title: 'Флаг `v` в регулярных выражениях с использованием нотации множеств и свойств строк'
-author: 'Марк Дэвис ([@mark_e_davis](https://twitter.com/mark_e_davis)), Маркус Шерер и Матиас Биненс ([@mathias](https://twitter.com/mathias))'
+title: "Флаг `v` в регулярных выражениях с использованием нотации множеств и свойств строк"
+author: "Марк Дэвис ([@mark_e_davis](https://twitter.com/mark_e_davis)), Маркус Шерер и Матиас Биненс ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mark-davis'
-  - 'markus-scherer'
-  - 'mathias-bynens'
+  - "mark-davis"
+  - "markus-scherer"
+  - "mathias-bynens"
 date: 2022-06-27
 tags:
   - ECMAScript
-description: 'Новый флаг `v` в регулярных выражениях включает режим `unicodeSets`, обеспечивая поддержку расширенных символьных классов, включая свойства строк Unicode, нотацию множеств и улучшенное нечёткое сопоставление.'
-tweet: '1541419838513594368'
+description: "Новый флаг `v` в регулярных выражениях включает режим `unicodeSets`, обеспечивая поддержку расширенных символьных классов, включая свойства строк Unicode, нотацию множеств и улучшенное нечёткое сопоставление."
+tweet: "1541419838513594368"
 ---
 JavaScript поддерживает регулярные выражения с ECMAScript 3 (1999). Спустя шестнадцать лет в ES2015 были введены [режим Unicode (флаг `u`)](https://mathiasbynens.be/notes/es6-unicode-regex), [режим липкости (флаг `y`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky#description) и [геттер `RegExp.prototype.flags`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/flags). Ещё через три года в ES2018 появились [режим `dotAll` (флаг `s`)](https://mathiasbynens.be/notes/es-regexp-proposals#dotAll), [обратные проверки](https://mathiasbynens.be/notes/es-regexp-proposals#lookbehinds), [именованные группы захвата](https://mathiasbynens.be/notes/es-regexp-proposals#named-capture-groups) и [экранирование свойств символов Unicode](https://mathiasbynens.be/notes/es-unicode-property-escapes). А в ES2020 [`String.prototype.matchAll`](https://v8.dev/features/string-matchall) упростил работу с регулярными выражениями. Регулярные выражения в JavaScript прошли долгий путь и продолжают совершенствоваться.
 

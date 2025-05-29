@@ -1,15 +1,15 @@
 ---
-title: '`Intl.Locale`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Intl.Locale`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-05-20
 tags:
   - Intl
   - Node.js 12
   - io19
 description: 'La nouvelle API Intl.Locale offre un mécanisme unifié pour gérer les paramètres régionaux et est plus pratique que l'utilisation de chaînes.'
-tweet: 'TODO'
+tweet: "TODO"
 ---
 Lorsqu'on traite des [API d'internationalisation](/features/tags/intl), il est courant de passer des chaînes représentant des identifiants de paramètres régionaux aux différents constructeurs `Intl`, tels que `'en'` pour l'anglais. [La nouvelle API `Intl.Locale`](https://github.com/tc39/proposal-intl-locale) offre un mécanisme plus puissant pour gérer ces paramètres régionaux.
 

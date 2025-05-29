@@ -1,10 +1,10 @@
 ---
-title: 'Version V8 v6.2 publiée'
-author: 'équipe V8'
+title: "Version V8 v6.2 publiée"
+author: "équipe V8"
 date: 2017-09-11 13:33:37
 tags:
   - publication
-description: 'V8 v6.2 inclut des améliorations de performance, de nouvelles fonctionnalités du langage JavaScript, une longueur maximale de chaîne augmentée, et plus encore.'
+description: "V8 v6.2 inclut des améliorations de performance, de nouvelles fonctionnalités du langage JavaScript, une longueur maximale de chaîne augmentée, et plus encore."
 ---
 Toutes les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](/docs/release-process). Chaque version est déviée du maître Git de V8 juste avant un jalon Chrome Beta. Aujourd'hui, nous sommes ravis d'annoncer notre dernière branche, [Version 6.2 de V8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.2), qui est en version bêta jusqu'à sa publication en coordination avec Chrome 62 Stable dans quelques semaines. V8 v6.2 est rempli de toutes sortes de nouveautés à destination des développeurs. Cet article offre un aperçu de certains points forts en anticipation de la publication.
 

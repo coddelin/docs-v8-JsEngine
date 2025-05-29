@@ -1,10 +1,10 @@
 ---
-title: 'V8リリース v5.1'
-author: 'V8チーム'
+title: "V8リリース v5.1"
+author: "V8チーム"
 date: 2016-04-23 13:33:37
 tags:
   - リリース
-description: 'V8 v5.1では、パフォーマンスの向上、ジャンクの削減、メモリ消費量の削減、ECMAScript言語機能のサポート強化が含まれています。'
+description: "V8 v5.1では、パフォーマンスの向上、ジャンクの削減、メモリ消費量の削減、ECMAScript言語機能のサポート強化が含まれています。"
 ---
 V8の[リリースプロセス](/docs/release-process)の最初のステップは、ChromiumがChrome Betaマイルストーン（約6週間ごと）のために分岐を行う直前に、Gitのマスターから新しいブランチを作成することです。我々の最新のリリースブランチは[V8 v5.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.1)であり、Chrome 51 Stableと連携して安定版をリリースするまでベータ版の状態を維持します。このバージョンのV8における開発者向けの新機能のハイライトをご紹介します。
 

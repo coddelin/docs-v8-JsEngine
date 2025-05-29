@@ -1,15 +1,15 @@
 ---
-title: '优化 V8 的内存消耗'
-author: 'V8 内存管理工程师 Ulan Degenbaev、Michael Lippautz、Hannes Payer 和 Toon Verwaest'
+title: "优化 V8 的内存消耗"
+author: "V8 内存管理工程师 Ulan Degenbaev、Michael Lippautz、Hannes Payer 和 Toon Verwaest"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2016-10-07 13:33:37
 tags:
   - 内存
   - 基准测试
-description: 'V8 团队分析并显著减少了多个网站的内存占用，这些网站被认为是现代 Web 开发模式的代表。'
+description: "V8 团队分析并显著减少了多个网站的内存占用，这些网站被认为是现代 Web 开发模式的代表。"
 ---
 内存消耗是 JavaScript 虚拟机性能权衡空间中的一个重要维度。在过去的几个月中，V8 团队分析并显著减少了多个网站的内存占用，这些网站被认为是现代 Web 开发模式的代表。在这篇博客中，我们展示了分析中使用的工作负载和工具，概述了垃圾回收器的内存优化，并展示了我们如何减少 V8 的解析器及其编译器的内存消耗。
 

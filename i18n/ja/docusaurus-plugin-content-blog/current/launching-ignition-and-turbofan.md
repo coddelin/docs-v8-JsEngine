@@ -1,10 +1,10 @@
 ---
-title: 'IgnitionとTurboFanの導入'
-author: 'V8チーム'
+title: "IgnitionとTurboFanの導入"
+author: "V8チーム"
 date: 2017-05-15 13:33:37
 tags:
   - internals
-description: 'V8 v5.9では、IgnitionインタープリターとTurboFan最適化コンパイラを基盤とした新しいJavaScript実行パイプラインが導入されています。'
+description: "V8 v5.9では、IgnitionインタープリターとTurboFan最適化コンパイラを基盤とした新しいJavaScript実行パイプラインが導入されています。"
 ---
 本日、V8 v5.9用の新しいJavaScript実行パイプラインの導入を発表できることに興奮しています。このバージョンはChrome v59の安定版に到達します。この新しいパイプラインにより、実際のJavaScriptアプリケーションで大幅なパフォーマンス改善と大きなメモリ節約を実現しました。本記事の最後で数値について詳しく説明しますが、まずはパイプライン自体について見ていきましょう。
 

@@ -1,13 +1,13 @@
 ---
-title: 'V8リリース v7.0'
-author: 'Michael Hablich'
+title: "V8リリース v7.0"
+author: "Michael Hablich"
 avatars:
   - michael-hablich
 date: 2018-10-15 17:17:00
 tags:
   - リリース
-description: 'V8 v7.0では、WebAssemblyスレッド、Symbol.prototype.description、そしてより多くのプラットフォームでの組み込みバイナリが含まれています！'
-tweet: '1051857446279532544'
+description: "V8 v7.0では、WebAssemblyスレッド、Symbol.prototype.description、そしてより多くのプラットフォームでの組み込みバイナリが含まれています！"
+tweet: "1051857446279532544"
 ---
 約6週間ごとに、私たちは[V8のリリースプロセス](/docs/release-process)の一環として、新しいV8のブランチを作成します。各バージョンはChromeのベータ版マイルストーン直前にV8のGit masterからブランチが切られます。本日、[V8 version 7.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.0)の最新ブランチを発表できることを嬉しく思います。これは今後数週間でChrome 70安定版と調整してリリースされるまでベータ版です。V8 v7.0は開発者向けのすばらしい機能が満載です。この投稿では、リリースに先立ちいくつかの注目ポイントを予告します。
 

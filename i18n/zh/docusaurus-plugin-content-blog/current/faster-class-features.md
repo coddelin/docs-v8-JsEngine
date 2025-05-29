@@ -1,13 +1,13 @@
 ---
-title: '更快地初始化具有新类特性的实例'
-author: '[Joyee Cheung](https://twitter.com/JoyeeCheung)，实例初始化器'
+title: "更快地初始化具有新类特性的实例"
+author: "[Joyee Cheung](https://twitter.com/JoyeeCheung)，实例初始化器"
 avatars:
-  - 'joyee-cheung'
+  - "joyee-cheung"
 date: 2022-04-20
 tags:
   - 内部
-description: '自 V8 v9.7 以来，使用新类特性初始化实例的速度已经加快。'
-tweet: '1517041137378373632'
+description: "自 V8 v9.7 以来，使用新类特性初始化实例的速度已经加快。"
+tweet: "1517041137378373632"
 ---
 
 类字段从 v7.2 开始在 V8 中推出，私有类方法从 v8.4 开始推出。随着提案在 2021 年达到第 4 阶段后，V8 开始着手改善对新类特性的支持——在此之前，这些特性应用存在两大主要问题：

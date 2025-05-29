@@ -1,13 +1,13 @@
 ---
-title: 'Abandon des articles de blog sur les versions'
-author: 'Shu-yu Guo ([@shu_](https://twitter.com/_shu))'
+title: "Abandon des articles de blog sur les versions"
+author: "Shu-yu Guo ([@shu_](https://twitter.com/_shu))"
 avatars:
- - 'shu-yu-guo'
+ - "shu-yu-guo"
 date: 2022-06-17
 tags:
  - release
-description: 'V8 abandonne les articles de blog sur les versions au profit du calendrier de sortie de Chrome et des articles sur les fonctionnalités.'
-tweet: '1537857497825824768'
+description: "V8 abandonne les articles de blog sur les versions au profit du calendrier de sortie de Chrome et des articles sur les fonctionnalités."
+tweet: "1537857497825824768"
 ---
 
 Historiquement, il y avait un article de blog pour chaque nouvelle branche de version de V8. Vous avez peut-être remarqué qu'il n'y a pas eu d'article de blog sur les versions depuis la v9.9. À partir de la v10.0, nous abandonnons les articles de blog sur les versions pour chaque nouvelle branche. Mais ne vous inquiétez pas, toutes les informations auxquelles vous étiez habitué via les articles de blog sur les versions sont toujours disponibles ! Lisez la suite pour découvrir où trouver ces informations à l'avenir.

@@ -1,13 +1,13 @@
 ---
-title: 'Import attributes'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "Import attributes"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2024-01-31
 tags:
   - ECMAScript
-description: 'Import attributes: the evolution of import assertions'
-tweet: ''
+description: "Import attributes: the evolution of import assertions"
+tweet: ""
 ---
 
 ## Previously

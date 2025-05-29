@@ -1,14 +1,14 @@
 ---
-title: 'Decolagem: um novo compilador baseline para WebAssembly no V8'
-author: 'Clemens Backes, maestro da compilação de WebAssembly'
+title: "Decolagem: um novo compilador baseline para WebAssembly no V8"
+author: "Clemens Backes, maestro da compilação de WebAssembly"
 avatars:
-  - 'clemens-backes'
+  - "clemens-backes"
 date: 2018-08-20 15:45:12
 tags:
   - WebAssembly
   - internals
-description: 'Decolagem é um novo compilador baseline para WebAssembly, disponível no V8 v6.9.'
-tweet: '1031538167617413120'
+description: "Decolagem é um novo compilador baseline para WebAssembly, disponível no V8 v6.9."
+tweet: "1031538167617413120"
 ---
 V8 [v6.9](/blog/v8-release-69) inclui Decolagem, um novo compilador baseline para WebAssembly. Decolagem agora está habilitado por padrão em sistemas desktop. Este artigo detalha a motivação para adicionar outro nível de compilação e descreve a implementação e performance de Decolagem.
 

@@ -1,6 +1,6 @@
 ---
-title: '使用 GN 編譯 V8'
-description: '此文件說明如何使用 GN 編譯 V8。'
+title: "使用 GN 編譯 V8"
+description: "此文件說明如何使用 GN 編譯 V8。"
 ---
 V8 使用 [GN](https://gn.googlesource.com/gn/+/master/docs/) 進行編譯。GN 是一種元構建系統，能為多種其他構建系統生成構建文件。因此，如何進行構建依賴於所使用的“後端”構建系統及編譯器。
 以下指引假定您已擁有 [V8 的源代碼檢出](/docs/source-code) 且已 [安裝構建依賴項](/docs/build)。

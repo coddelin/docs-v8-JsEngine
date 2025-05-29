@@ -1,15 +1,15 @@
 ---
-title: 'Verbesserung der regulären Ausdrücke in V8'
-author: 'Patrick Thier und Ana Peško, regelmäßige Meinungsäußerungen über reguläre Ausdrücke'
+title: "Verbesserung der regulären Ausdrücke in V8"
+author: "Patrick Thier und Ana Peško, regelmäßige Meinungsäußerungen über reguläre Ausdrücke"
 avatars:
-  - 'patrick-thier'
-  - 'ana-pesko'
+  - "patrick-thier"
+  - "ana-pesko"
 date: 2019-10-04 15:24:16
 tags:
   - internals
   - RegExp
-description: 'In diesem Blog-Beitrag beschreiben wir, wie wir die Vorteile der Interpretation von regulären Ausdrücken nutzen und gleichzeitig die Nachteile mindern.'
-tweet: '1180131710568030208'
+description: "In diesem Blog-Beitrag beschreiben wir, wie wir die Vorteile der Interpretation von regulären Ausdrücken nutzen und gleichzeitig die Nachteile mindern."
+tweet: "1180131710568030208"
 ---
 In der Standardkonfiguration kompiliert V8 reguläre Ausdrücke beim ersten Ausführen in nativen Code. Im Rahmen unserer Arbeit an [JIT-less V8](/blog/jitless) haben wir einen Interpreter für reguläre Ausdrücke eingeführt. Das Interpretieren von regulären Ausdrücken hat den Vorteil, weniger Speicher zu verwenden, geht jedoch mit einem Leistungseinbußen einher. In diesem Blog-Beitrag beschreiben wir, wie wir die Vorteile des Interpretierens von regulären Ausdrücken nutzen und die Nachteile mindern.
 

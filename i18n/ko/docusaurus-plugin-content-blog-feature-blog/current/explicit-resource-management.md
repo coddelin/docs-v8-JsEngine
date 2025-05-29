@@ -1,13 +1,13 @@
 ---
 title: "JavaScript의 새로운 초능력: 명시적 리소스 관리"
-author: 'Rezvan Mahdavi Hezaveh'
+author: "Rezvan Mahdavi Hezaveh"
 avatars:
-  - 'rezvan-mahdavi-hezaveh'
+  - "rezvan-mahdavi-hezaveh"
 date: 2025-05-09
 tags:
   - ECMAScript
-description: '명시적 리소스 관리 제안은 개발자가 리소스의 수명주기를 명시적으로 관리할 수 있는 권한을 부여합니다.'
-tweet: ''
+description: "명시적 리소스 관리 제안은 개발자가 리소스의 수명주기를 명시적으로 관리할 수 있는 권한을 부여합니다."
+tweet: ""
 ---
 
 *명시적 리소스 관리* 제안은 파일 핸들, 네트워크 연결 등과 같은 리소스의 수명 주기를 명시적으로 관리하기 위한 결정론적 접근 방식을 도입합니다. 이 제안은 다음과 같은 언어 추가 사항을 포함합니다: `using` 및 `await using` 선언은 리소스가 범위를 벗어날 때 자동으로 dispose 메서드를 호출합니다. `[Symbol.dispose]()` 및 `[Symbol.asyncDispose]()` 심볼은 정리 작업용입니다. 두 개의 새로운 글로벌 객체 `DisposableStack` 및 `AsyncDisposableStack`은 폐기 가능한 리소스를 집계하기 위한 컨테이너로 제공되며, `SuppressedError`는 리소스 폐기 중 오류가 발생하고 기존 오류가 마스킹되는 시나리오를 해결하기 위한 새로운 유형의 오류로 (최근에 발생한 오류와 억제된 오류 모두를 포함) 도입되었습니다. 이러한 추가 사항은 리소스 폐기에 대한 세밀한 제어를 제공하여 개발자가 더욱 견고하고 성능이 뛰어나며 유지 관리가 용이한 코드를 작성할 수 있도록 합니다.

@@ -1,14 +1,14 @@
 ---
-title: 'Außerhalb des Webs: eigenständige WebAssembly-Binärdateien mit Emscripten'
-author: 'Alon Zakai'
+title: "Außerhalb des Webs: eigenständige WebAssembly-Binärdateien mit Emscripten"
+author: "Alon Zakai"
 avatars:
-  - 'alon-zakai'
+  - "alon-zakai"
 date: 2019-11-21
 tags:
   - WebAssembly
   - Tools
-description: 'Emscripten unterstützt jetzt eigenständige Wasm-Dateien, die kein JavaScript benötigen.'
-tweet: '1197547645729988608'
+description: "Emscripten unterstützt jetzt eigenständige Wasm-Dateien, die kein JavaScript benötigen."
+tweet: "1197547645729988608"
 ---
 Emscripten hat sich immer zuerst auf das Kompilieren für das Web und andere JavaScript-Umgebungen wie Node.js konzentriert. Aber da WebAssembly beginnt, *ohne* JavaScript verwendet zu werden, entstehen neue Anwendungsfälle, und deshalb haben wir daran gearbeitet, [**eigenständige Wasm**](https://github.com/emscripten-core/emscripten/wiki/WebAssembly-Standalone)-Dateien aus Emscripten zu generieren, die nicht auf die Emscripten-JavaScript-Laufzeit angewiesen sind! Dieser Beitrag erklärt, warum das interessant ist.
 

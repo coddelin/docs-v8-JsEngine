@@ -1,8 +1,8 @@
 ---
-title: 'Un `JSON.stringify` bien formé'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Un `JSON.stringify` bien formé"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-09-11
 tags:
   - ECMAScript

@@ -1,13 +1,13 @@
 ---
-title: '有 `Math.random()`，也有 `Math.random()`'
-author: '杨国 ([@hashseed](https://twitter.com/hashseed))，软件工程师兼骰子设计师'
+title: "有 `Math.random()`，也有 `Math.random()`"
+author: "杨国 ([@hashseed](https://twitter.com/hashseed))，软件工程师兼骰子设计师"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2015-12-17 13:33:37
 tags:
   - ECMAScript
   - 内部机制
-description: 'V8 的 Math.random 实现现在使用一种名为 xorshift128+ 的算法，与旧的 MWC1616 实现相比，提高了随机性。'
+description: "V8 的 Math.random 实现现在使用一种名为 xorshift128+ 的算法，与旧的 MWC1616 实现相比，提高了随机性。"
 ---
 > `Math.random()` 返回一个带正号的 `Number` 值，大于或等于 `0` 但小于 `1`，在该范围内随机或伪随机地选择，近似均匀分布，使用与实现相关的算法或策略。本函数不接受任何参数。
 

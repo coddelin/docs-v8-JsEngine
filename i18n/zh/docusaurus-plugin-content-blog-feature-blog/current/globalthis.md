@@ -1,16 +1,16 @@
 ---
-title: '`globalThis`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`globalThis`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-07-16
 tags:
   - ECMAScript
   - ES2020
   - Node.js 12
   - io19
-description: 'globalThis 引入了一种统一的机制，可以在任何 JavaScript 环境中访问全局 this，无论脚本目标如何。'
-tweet: '1151140681374547969'
+description: "globalThis 引入了一种统一的机制，可以在任何 JavaScript 环境中访问全局 this，无论脚本目标如何。"
+tweet: "1151140681374547969"
 ---
 如果你之前为网页浏览器编写过 JavaScript，你可能用过 `window` 来访问全局 `this`。在 Node.js 中，你可能使用过 `global`。如果你编写的代码需要同时在这两种环境下运行，你可能会检测这些对象哪个可用，然后使用它——但是随着你想支持的环境和用例数量的增加，需要检查的标识符列表会迅速膨胀，事情变得复杂起来：
 

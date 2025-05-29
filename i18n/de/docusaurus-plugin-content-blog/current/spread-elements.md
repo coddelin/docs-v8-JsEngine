@@ -1,12 +1,12 @@
 ---
-title: 'Beschleunigung von Spread-Elementen'
-author: 'Hai Dang & Georg Neis'
+title: "Beschleunigung von Spread-Elementen"
+author: "Hai Dang & Georg Neis"
 date: 2018-12-04 16:57:21
 tags:
   - ECMAScript
   - Benchmarks
-description: 'V8 v7.2 / beschleunigt signifikant Array.from(array) sowie [...spread] für Arrays, Strings, Sets und Maps.'
-tweet: '1070344545685118976'
+description: "V8 v7.2 / beschleunigt signifikant Array.from(array) sowie [...spread] für Arrays, Strings, Sets und Maps."
+tweet: "1070344545685118976"
 ---
 Während seines dreimonatigen Praktikums im V8-Team arbeitete Hai Dang daran, die Leistung von `[...array]`, `[...string]`, `[...set]`, `[...map.keys()]` und `[...map.values()]` zu verbessern (wenn die Spread-Elemente am Anfang des Array-Literals stehen). Er machte auch `Array.from(iterable)` deutlich schneller. Dieser Artikel erklärt einige Details seiner Änderungen, die ab V8 v7.2 enthalten sind.
 

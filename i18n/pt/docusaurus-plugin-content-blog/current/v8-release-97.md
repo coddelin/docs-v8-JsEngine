@@ -1,13 +1,13 @@
 ---
-title: 'Lançamento do V8 v9.7'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "Lançamento do V8 v9.7"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-11-05
 tags:
  - lançamento
-description: 'O lançamento do V8 v9.7 traz novos métodos de JavaScript para busca reversa em arrays.'
-tweet: ''
+description: "O lançamento do V8 v9.7 traz novos métodos de JavaScript para busca reversa em arrays."
+tweet: ""
 ---
 A cada quatro semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](https://v8.dev/docs/release-process). Cada versão é branqueada a partir do Git principal do V8 imediatamente antes de um marco Beta do Chrome. Hoje, temos o prazer de anunciar nosso mais novo branch, [V8 versão 9.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.7), que está em beta até seu lançamento em coordenação com o Chrome 97 Stable em algumas semanas. O V8 v9.7 está repleto de várias novidades voltadas para desenvolvedores. Este post fornece um preview de alguns dos destaques em antecipação ao lançamento.
 

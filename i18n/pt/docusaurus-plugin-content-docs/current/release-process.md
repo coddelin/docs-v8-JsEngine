@@ -1,6 +1,6 @@
 ---
-title: 'Processo de liberação'
-description: 'Este documento explica o processo de lançamento do V8.'
+title: "Processo de liberação"
+description: "Este documento explica o processo de lançamento do V8."
 ---
 O processo de lançamento do V8 está estreitamente conectado aos [canais do Chrome](https://www.chromium.org/getting-involved/dev-channel). A equipe do V8 utiliza todos os quatro canais de lançamento do Chrome para enviar novas versões aos usuários.
 

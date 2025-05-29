@@ -1,14 +1,14 @@
 ---
-title: '`Symbol.prototype.description`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Symbol.prototype.description`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-25
 tags:
   - ECMAScript
   - ES2019
-description: 'Symbol.prototype.description 提供了一種符合人體工學的方式來存取 Symbol 的描述。'
-tweet: '1143432835665211394'
+description: "Symbol.prototype.description 提供了一種符合人體工學的方式來存取 Symbol 的描述。"
+tweet: "1143432835665211394"
 ---
 JavaScript `Symbol` 在建立時可以給予一個描述：
 

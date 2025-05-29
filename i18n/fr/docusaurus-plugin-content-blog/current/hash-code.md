@@ -1,13 +1,13 @@
 ---
-title: 'Optimisation des tables de hachage : cacher le code de hachage'
-author: '[Sathya Gunasekaran](https://twitter.com/_gsathya), gardien des codes de hachage'
+title: "Optimisation des tables de hachage : cacher le code de hachage"
+author: "[Sathya Gunasekaran](https://twitter.com/_gsathya), gardien des codes de hachage"
 avatars:
-  - 'sathya-gunasekaran'
+  - "sathya-gunasekaran"
 date: 2018-01-29 13:33:37
 tags:
   - internals
-tweet: '958046113390411776'
-description: 'Plusieurs structures de données JavaScript comme Map, Set, WeakSet et WeakMap utilisent des tables de hachage sous-jacentes. Cet article explique comment V8 v6.3 améliore les performances des tables de hachage.'
+tweet: "958046113390411776"
+description: "Plusieurs structures de données JavaScript comme Map, Set, WeakSet et WeakMap utilisent des tables de hachage sous-jacentes. Cet article explique comment V8 v6.3 améliore les performances des tables de hachage."
 ---
 ECMAScript 2015 a introduit plusieurs nouvelles structures de données comme Map, Set, WeakSet et WeakMap, qui utilisent toutes des tables de hachage en interne. Cet article détaille les [améliorations récentes](https://bugs.chromium.org/p/v8/issues/detail?id=6404) dans la façon dont [V8 v6.3+](/blog/v8-release-63) stocke les clés dans les tables de hachage.
 

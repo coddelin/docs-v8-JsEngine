@@ -1,6 +1,6 @@
 ---
-title: 'Atomics.wait, Atomics.notify, Atomics.waitAsync'
-author: '[Марья Хёльтта](https://twitter.com/marjakh), неблокирующий блогер'
+title: "Atomics.wait, Atomics.notify, Atomics.waitAsync"
+author: "[Марья Хёльтта](https://twitter.com/marjakh), неблокирующий блогер"
 avatars:
   - marja-holtta
 date: 2020-09-24
@@ -8,8 +8,8 @@ tags:
   - ECMAScript
   - ES2020
   - Node.js 16
-description: 'Atomics.wait и Atomics.notify — это низкоуровневые примитивы синхронизации, полезные для реализации, например, мьютексов. Atomics.wait можно использовать только в рабочих потоках. Версия V8 8.7 теперь поддерживает неблокирующую версию, Atomics.waitAsync, которая также доступна в основном потоке.'
-tweet: '1309118447377358848'
+description: "Atomics.wait и Atomics.notify — это низкоуровневые примитивы синхронизации, полезные для реализации, например, мьютексов. Atomics.wait можно использовать только в рабочих потоках. Версия V8 8.7 теперь поддерживает неблокирующую версию, Atomics.waitAsync, которая также доступна в основном потоке."
+tweet: "1309118447377358848"
 ---
 [Atomics.wait](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/wait) и [Atomics.notify](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/notify) являются низкоуровневыми примитивами синхронизации, полезными для реализации мьютексов и других способов синхронизации. Однако, поскольку Atomics.wait блокирует выполнение, его невозможно вызвать в основном потоке (попытка сделать это вызывает TypeError).
 

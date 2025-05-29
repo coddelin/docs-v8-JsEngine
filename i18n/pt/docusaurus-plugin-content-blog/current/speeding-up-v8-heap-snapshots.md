@@ -1,7 +1,7 @@
 ---
-title: 'Acelerando snapshots do heap do V8'
-description: 'Esta postagem sobre snapshots do heap do V8 apresenta alguns problemas de desempenho encontrados por engenheiros da Bloomberg e como os corrigimos para tornar a análise de memória do JavaScript mais rápida do que nunca.'
-author: 'Jose Dapena Paz'
+title: "Acelerando snapshots do heap do V8"
+description: "Esta postagem sobre snapshots do heap do V8 apresenta alguns problemas de desempenho encontrados por engenheiros da Bloomberg e como os corrigimos para tornar a análise de memória do JavaScript mais rápida do que nunca."
+author: "Jose Dapena Paz"
 date: 2023-07-27
 tags:
  - memória

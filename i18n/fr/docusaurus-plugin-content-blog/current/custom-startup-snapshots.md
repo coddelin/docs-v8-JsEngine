@@ -1,8 +1,8 @@
 ---
-title: 'Snapshots personnalisés au démarrage'
-author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed)), ingénieur logiciel et fournisseur de préchauffeurs pour moteurs'
+title: "Snapshots personnalisés au démarrage"
+author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), ingénieur logiciel et fournisseur de préchauffeurs pour moteurs"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2015-09-25 13:33:37
 tags:
   - internals

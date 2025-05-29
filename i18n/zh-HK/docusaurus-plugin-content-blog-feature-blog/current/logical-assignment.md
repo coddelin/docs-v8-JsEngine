@@ -1,15 +1,15 @@
 ---
-title: '邏輯賦值'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "邏輯賦值"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2020-05-07
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: 'JavaScript 現在支持邏輯運算的複合賦值。'
-tweet: '1258387483823345665'
+description: "JavaScript 現在支持邏輯運算的複合賦值。"
+tweet: "1258387483823345665"
 ---
 JavaScript 支持一系列[複合賦值運算符](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators)，允許程式員簡潔地表達二元運算與賦值操作。目前僅支持數學運算或位元運算。
 

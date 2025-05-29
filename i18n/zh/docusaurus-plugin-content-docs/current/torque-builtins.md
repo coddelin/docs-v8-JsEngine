@@ -1,6 +1,6 @@
 ---
-title: 'V8 Torque 内置函数'
-description: '本文档旨在介绍如何编写 Torque 内置函数，目标读者为 V8 开发者。'
+title: "V8 Torque 内置函数"
+description: "本文档旨在介绍如何编写 Torque 内置函数，目标读者为 V8 开发者。"
 ---
 本文档旨在介绍如何编写 Torque 内置函数，目标读者为 V8 开发者。Torque 取代了 CodeStubAssembler，成为实现新内置函数的推荐方法。参见 [CodeStubAssembler 内置函数](/docs/csa-builtins) 以获取此指南的 CSA 版本。
 

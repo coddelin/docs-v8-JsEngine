@@ -1,13 +1,13 @@
 ---
-title: '임시로 Escape Analysis 비활성화'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), 샌드박스 Escape 분석 전문가'
+title: "임시로 Escape Analysis 비활성화"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), 샌드박스 Escape 분석 전문가"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-09-22 13:33:37
 tags:
   - 보안
-description: '보안 취약점으로부터 사용자를 보호하기 위해 Chrome 61에서 V8의 Escape Analysis를 비활성화했습니다.'
-tweet: '911339802884284416'
+description: "보안 취약점으로부터 사용자를 보호하기 위해 Chrome 61에서 V8의 Escape Analysis를 비활성화했습니다."
+tweet: "911339802884284416"
 ---
 JavaScript에서, 할당된 객체는 현재 함수 밖에서 접근 가능할 경우 _escape_(탈출)하게 됩니다. 일반적으로 V8은 새로운 객체를 JavaScript 힙에 할당하지만, _escape analysis_(탈출 분석)를 사용하면 최적화 컴파일러는 객체의 수명이 함수의 실행에 따라 제한된 것을 입증할 수 있을 때 특수 처리를 할 수 있습니다. 새로 할당된 객체의 참조가 그것을 생성한 함수 밖으로 탈출하지 않는 경우, JavaScript 엔진은 명시적으로 그 객체를 힙에 할당할 필요가 없습니다. 대신 이 객체의 값을 함수의 지역 변수처럼 처리할 수 있습니다. 이는 스택이나 레지스터에 값을 저장하거나, 경우에 따라 값을 완전히 최적화하여 제거하는 등 여러 가지 최적화를 가능하게 합니다. 탈출하는 객체(더 정확히 말하면, 탈출하지 않음을 증명할 수 없는 객체)들은 반드시 힙에 할당되어야 합니다.
 

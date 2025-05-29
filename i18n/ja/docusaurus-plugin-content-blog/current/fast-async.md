@@ -1,16 +1,16 @@
 ---
-title: '非同期関数とプロミスの高速化'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 常に待機する予測者, と Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), プロのパフォーマンス保証者'
+title: "非同期関数とプロミスの高速化"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 常に待機する予測者, と Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), プロのパフォーマンス保証者"
 avatars:
-  - 'maya-armyanova'
-  - 'benedikt-meurer'
+  - "maya-armyanova"
+  - "benedikt-meurer"
 date: 2018-11-12 16:45:07
 tags:
   - ECMAScript
   - ベンチマーク
   - プレゼンテーション
-description: 'V8 v7.2 / Chrome 72に高速でデバッグしやすい非同期関数とプロミスが登場します。'
-tweet: '1062000102909169670'
+description: "V8 v7.2 / Chrome 72に高速でデバッグしやすい非同期関数とプロミスが登場します。"
+tweet: "1062000102909169670"
 ---
 JavaScriptにおける非同期処理は従来、特に速いとは言えないレピュテーションを持っていました。さらに悪いことに、ライブJavaScriptアプリケーション、特にNode.jsサーバーのデバッグは簡単ではありません。_特に_ 非同期プログラミングに関してはそうです。しかし、時代は変わりつつあります。本記事では、V8で非同期関数とプロミスをどのように最適化したか（そしてある程度は他のJavaScriptエンジンでも）、および非同期コードのデバッグ体験をどのように改善したかを探ります。
 

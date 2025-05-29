@@ -1,12 +1,12 @@
 ---
-title: 'V8 릴리즈 v8.1'
-author: 'Dominik Inführ, 신비로운 국제화의 주인공'
+title: "V8 릴리즈 v8.1"
+author: "Dominik Inführ, 신비로운 국제화의 주인공"
 avatars:
-  - 'dominik-infuehr'
+  - "dominik-infuehr"
 date: 2020-02-25
 tags:
   - 릴리즈
-description: 'V8 v8.1은 새로운 Intl.DisplayNames API를 통해 개선된 국제화 지원을 제공합니다.'
+description: "V8 v8.1은 새로운 Intl.DisplayNames API를 통해 개선된 국제화 지원을 제공합니다."
 ---
 
 매 6주마다, 우리는 [릴리즈 프로세스](https://v8.dev/docs/release-process)의 일부로 V8의 새로운 브랜치를 생성합니다. 각 버전은 Chrome Beta 마일스톤 직전에 V8의 Git master에서 브랜치됩니다. 오늘 우리는 새로운 브랜치인 [V8 버전 8.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.1)을 발표하게 되어 기쁩니다. 이 버전은 몇 주 후 Chrome 81 Stable과 함께 릴리즈될 때까지 베타 상태에 있습니다. V8 v8.1은 다양한 개발자 중심 기능을 포함하고 있습니다. 이 게시물은 릴리즈를 기대하며 주요 사항에 대한 미리보기를 제공합니다.

@@ -1,12 +1,12 @@
 ---
-title: 'V8 Version v8.5 Veröffentlichung'
-author: 'Zeynep Cankara, verfolgt einige Maps'
+title: "V8 Version v8.5 Veröffentlichung"
+author: "Zeynep Cankara, verfolgt einige Maps"
 avatars:
- - 'zeynep-cankara'
+ - "zeynep-cankara"
 date: 2020-07-21
 tags:
  - veröffentlichung
-description: 'V8 Version v8.5 enthält Promise.any, String#replaceAll, logische Zuweisungsoperatoren, WebAssembly-Mehrwertunterstützung, BigInt-Unterstützung und Leistungsverbesserungen.'
+description: "V8 Version v8.5 enthält Promise.any, String#replaceAll, logische Zuweisungsoperatoren, WebAssembly-Mehrwertunterstützung, BigInt-Unterstützung und Leistungsverbesserungen."
 tweet:
 ---
 Alle sechs Wochen erstellen wir einen neuen Zweig von V8 im Rahmen unseres [Veröffentlichungsverfahrens](https://v8.dev/docs/release-process). Jede Version wird direkt vor einem Chrome Beta-Meilenstein von V8s Git-Master verzweigt. Heute freuen wir uns, unseren neuesten Zweig bekanntzugeben, [V8 Version 8.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.5), der sich bis zur Veröffentlichung in Zusammenarbeit mit Chrome 85 Stable in einigen Wochen in der Beta befindet. V8 v8.5 ist gefüllt mit allerlei Entwickler-freundlichen Funktionen. Dieser Beitrag bietet eine Vorschau auf einige der Highlights im Vorfeld der Veröffentlichung.

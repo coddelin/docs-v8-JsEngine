@@ -1,13 +1,13 @@
 ---
-title: '`Intl.PluralRules`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Intl.PluralRules`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-10-04
 tags:
   - Intl
-description: '複数形を処理することは、一見簡単そうに見えますが、実際には言語ごとにそれぞれの複数形ルールがあります。Intl.PluralRules API がその助けになります！'
-tweet: '915542989493202944'
+description: "複数形を処理することは、一見簡単そうに見えますが、実際には言語ごとにそれぞれの複数形ルールがあります。Intl.PluralRules API がその助けになります！"
+tweet: "915542989493202944"
 ---
 国際化（Iñtërnâtiônàlizætiøn）は難しいです。複数形を処理することは、一見簡単そうに見えますが、実際には言語ごとにそれぞれの複数形ルールがあります。
 

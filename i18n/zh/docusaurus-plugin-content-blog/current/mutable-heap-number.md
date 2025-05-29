@@ -1,6 +1,6 @@
 ---
-title: '增强版 V8，支持可变堆数字'
-author: '[Victor Gomes](https://twitter.com/VictorBFG)，位移大师'
+title: "增强版 V8，支持可变堆数字"
+author: "[Victor Gomes](https://twitter.com/VictorBFG)，位移大师"
 avatars:
   - victor-gomes
 date: 2025-02-25
@@ -8,8 +8,8 @@ tags:
   - JavaScript
   - 基准测试
   - 内部机制
-description: '向脚本上下文添加可变堆数字'
-tweet: ''
+description: "向脚本上下文添加可变堆数字"
+tweet: ""
 ---
 
 在 V8 中，我们始终致力于提升 JavaScript 性能。作为此项工作的一个部分，我们最近重新审视了 [JetStream2](https://browserbench.org/JetStream2.1/) 基准测试套件，以消除性能瓶颈。本篇文章详细介绍了我们进行的一项优化，该优化使 `async-fs` 基准测试的性能提升了显著的 `2.5 倍`，并对整体得分产生了显著影响。这项优化源于基准测试，但类似的模式确实存在于 [真实代码](https://github.com/WebAssembly/binaryen/blob/3339c1f38da5b68ce8bf410773fe4b5eee451ab8/scripts/fuzz_shell.js#L248)中。

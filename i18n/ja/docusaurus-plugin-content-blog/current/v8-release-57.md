@@ -1,10 +1,10 @@
 ---
-title: 'V8リリースv5.7'
-author: 'V8チーム'
+title: "V8リリースv5.7"
+author: "V8チーム"
 date: 2017-02-06 13:33:37
 tags:
   - リリース
-description: 'V8 v5.7はデフォルトでWebAssemblyを有効化し、パフォーマンスの改善とECMAScript言語機能のサポートを強化しています。'
+description: "V8 v5.7はデフォルトでWebAssemblyを有効化し、パフォーマンスの改善とECMAScript言語機能のサポートを強化しています。"
 ---
 毎6週間ごとに、私たちは[リリースプロセス](/docs/release-process)の一環としてV8の新しいブランチを作成しています。各バージョンは、Chromeのベータマイルストーン直前にV8のGitマスターから分岐されます。本日、私たちは最新のブランチ[V8バージョン5.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.7)を発表します。このブランチは数週間後にChrome 57 Stableと調整してリリースされるまでベータ版となります。V8 5.7には、開発者向けの多くの便利な機能が詰まっています。このリリースを前に、一部のハイライトをご紹介します。
 

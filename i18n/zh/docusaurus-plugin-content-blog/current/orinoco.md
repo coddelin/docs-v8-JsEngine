@@ -1,15 +1,15 @@
 ---
-title: 'Jank克星第二部分：Orinoco'
-author: 'Jank克星：Ulan Degenbaev，Michael Lippautz，和Hannes Payer'
+title: "Jank克星第二部分：Orinoco"
+author: "Jank克星：Ulan Degenbaev，Michael Lippautz，和Hannes Payer"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2016-04-12 13:33:37
 tags:
   - 内部
   - 内存
-description: '本文介绍了三种优化，这些优化为V8中的新垃圾回收器（代号为Orinoco）奠定了基础。'
+description: "本文介绍了三种优化，这些优化为V8中的新垃圾回收器（代号为Orinoco）奠定了基础。"
 ---
 在[之前的博客文章](/blog/jank-busters)中，我们介绍了垃圾回收中断顺畅浏览体验导致的卡顿问题。在本文中，我们介绍了三种优化，这些优化为V8中的新垃圾回收器（代号为_Orinoco_）奠定了基础。Orinoco基于这样一个理念：实现一个大部分并行和并发的垃圾回收器，在没有严格代界限的情况下，可以减少垃圾回收的卡顿和内存消耗，同时提供高吞吐量。我们没有将Orinoco作为单独的垃圾回收器在标志后面实现，而是决定逐步在V8的主代码库中发布Orinoco的功能以便用户立即受益。本篇文章讨论的三个功能是并行压缩、并行记忆集处理和黑色分配。
 

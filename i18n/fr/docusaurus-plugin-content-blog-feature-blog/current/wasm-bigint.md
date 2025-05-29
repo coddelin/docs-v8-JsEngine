@@ -1,14 +1,14 @@
 ---
-title: 'Intégration de WebAssembly avec JavaScript BigInt'
-author: 'Alon Zakai'
+title: "Intégration de WebAssembly avec JavaScript BigInt"
+author: "Alon Zakai"
 avatars:
-  - 'alon-zakai'
+  - "alon-zakai"
 date: 2020-11-12
 tags:
   - WebAssembly
   - ECMAScript
 description: 'Les BigInts permettent de passer facilement des entiers 64 bits entre JavaScript et WebAssembly. Cet article explique ce que cela signifie et pourquoi c'est utile, y compris la simplification pour les développeurs, l'accélération de l'exécution du code, et également la réduction des temps de compilation.'
-tweet: '1331966281571037186'
+tweet: "1331966281571037186"
 ---
 La fonctionnalité [JS-BigInt-Integration](https://github.com/WebAssembly/JS-BigInt-integration) permet de passer facilement des entiers 64 bits entre JavaScript et WebAssembly. Cet article explique ce que cela signifie et pourquoi c'est utile, y compris la simplification pour les développeurs, l'accélération de l'exécution du code, et également la réduction des temps de compilation.
 

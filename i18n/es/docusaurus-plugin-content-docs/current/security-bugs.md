@@ -1,6 +1,6 @@
 ---
-title: 'Informar errores de seguridad'
-description: 'Este documento explica el proceso para informar problemas de seguridad en V8.'
+title: "Informar errores de seguridad"
+description: "Este documento explica el proceso para informar problemas de seguridad en V8."
 ---
 V8 utiliza completamente [el proceso de seguridad de Chromium](https://www.chromium.org/Home/chromium-security). Para informar un error de seguridad en V8, siga estos pasos:
 

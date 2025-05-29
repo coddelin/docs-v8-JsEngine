@@ -1,15 +1,15 @@
 ---
-title: '숫자 구분자'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "숫자 구분자"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-05-28
 tags:
   - ECMAScript
   - ES2021
   - io19
-description: 'JavaScript는 이제 숫자 리터럴에서 언더스코어를 구분 기호로 지원하여 소스 코드의 가독성과 유지 관리성을 높입니다.'
-tweet: '1129073383931559936'
+description: "JavaScript는 이제 숫자 리터럴에서 언더스코어를 구분 기호로 지원하여 소스 코드의 가독성과 유지 관리성을 높입니다."
+tweet: "1129073383931559936"
 ---
 큰 숫자 리터럴은 특히 반복되는 숫자가 많을 때, 인간의 눈으로 빠르게 해석하기 어렵습니다:
 

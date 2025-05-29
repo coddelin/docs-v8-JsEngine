@@ -1,11 +1,11 @@
 ---
-title: 'V8 發佈 v7.4'
-author: 'Georg Neis'
+title: "V8 發佈 v7.4"
+author: "Georg Neis"
 date: 2019-03-22 16:30:42
 tags:
   - 發佈
-description: 'V8 v7.4 特性包括 WebAssembly 執行緒/原子操作、私有類欄位、性能和記憶體改進等等！'
-tweet: '1109094755936489472'
+description: "V8 v7.4 特性包括 WebAssembly 執行緒/原子操作、私有類欄位、性能和記憶體改進等等！"
+tweet: "1109094755936489472"
 ---
 每六週，我們會按照[發佈流程](/docs/release-process)建立一個新的 V8 分支。每個版本都從 V8 的 Git 主分支在 Chrome Beta 里程碑之前立即分支出來。今天，我們很高興宣布我們最新的分支 [V8 版本 7.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.4)，它目前處於測試階段，並將在數週內與 Chrome 74 穩定版一同發佈。V8 v7.4 充滿了各種面向開發者的精彩功能。這篇文章為即將到來的釋出提供了一些亮點預覽。
 

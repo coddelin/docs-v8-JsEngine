@@ -1,13 +1,13 @@
 ---
-title: 'V8 lanza la versión v7.7'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), creador perezoso de notas de lanzamiento'
+title: "V8 lanza la versión v7.7"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), creador perezoso de notas de lanzamiento"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-08-13 16:45:00
 tags:
   - lanzamiento
-description: 'V8 v7.7 incluye asignación perezosa de retroalimentación, compilación en segundo plano de WebAssembly más rápida, mejoras en las trazas de pila y nueva funcionalidad para Intl.NumberFormat.'
-tweet: '1161287541611323397'
+description: "V8 v7.7 incluye asignación perezosa de retroalimentación, compilación en segundo plano de WebAssembly más rápida, mejoras en las trazas de pila y nueva funcionalidad para Intl.NumberFormat."
+tweet: "1161287541611323397"
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se deriva del maestro de Git de V8 inmediatamente antes de un hito de Chrome Beta. Hoy nos complace anunciar nuestra nueva rama, [V8 versión 7.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.7), que está en beta hasta su lanzamiento en coordinación con Chrome 77 Stable en varias semanas. V8 v7.7 está lleno de todo tipo de novedades para desarrolladores. Este artículo proporciona un avance de algunos de los aspectos destacados en anticipación al lanzamiento.
 

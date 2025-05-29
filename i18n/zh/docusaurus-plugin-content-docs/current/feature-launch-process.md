@@ -1,6 +1,6 @@
 ---
-title: '实现和发布 JavaScript/WebAssembly 语言特性'
-description: '本文档解释了在 V8 中实现和发布 JavaScript 或 WebAssembly 语言特性的过程。'
+title: "实现和发布 JavaScript/WebAssembly 语言特性"
+description: "本文档解释了在 V8 中实现和发布 JavaScript 或 WebAssembly 语言特性的过程。"
 ---
 通常情况下，V8 遵循 [Blink 的已定义共识标准的意向流程](https://www.chromium.org/blink/launching-features/#process-existing-standard)，用于 JavaScript 和 WebAssembly 语言特性。以下是 V8 的特定修订内容。请遵循 Blink 的意向流程，除非修订内容另有规定。
 

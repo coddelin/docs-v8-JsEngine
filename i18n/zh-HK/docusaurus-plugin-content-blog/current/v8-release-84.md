@@ -1,13 +1,13 @@
 ---
-title: 'V8 發布 v8.4'
-author: 'Camillo Bruni，享受一些新鮮的布林值'
+title: "V8 發布 v8.4"
+author: "Camillo Bruni，享受一些新鮮的布林值"
 avatars:
- - 'camillo-bruni'
+ - "camillo-bruni"
 date: 2020-06-30
 tags:
  - 發布
-description: 'V8 v8.4 支援弱引用以及改良 WebAssembly 性能。'
-tweet: '1277983235641761795'
+description: "V8 v8.4 支援弱引用以及改良 WebAssembly 性能。"
+tweet: "1277983235641761795"
 ---
 每六週，我們會按照 [發布流程](https://v8.dev/docs/release-process) 為 V8 創建一個新分支。每個版本都是在 Chrome Beta 里程碑之前直接從 V8 的 Git 主線分出。今天，我們很高興地宣布我們最新的分支，[V8 版本 8.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.4)，該分支將處於 Beta 階段，直到與 Chrome 84 穩定版協同發布的幾週後完成。V8 v8.4 滿載著各種針對開發者的好功能。這篇文章提供了一些亮點的預覽，以期盼此次發布。
 

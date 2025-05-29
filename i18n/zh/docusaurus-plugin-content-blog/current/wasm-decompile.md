@@ -1,14 +1,14 @@
 ---
-title: '那个 `.wasm` 文件里有什么？介绍：`wasm-decompile`'
-author: 'Wouter van Oortmerssen ([@wvo](https://twitter.com/wvo))'
+title: "那个 `.wasm` 文件里有什么？介绍：`wasm-decompile`"
+author: "Wouter van Oortmerssen ([@wvo](https://twitter.com/wvo))"
 avatars:
-  - 'wouter-van-oortmerssen'
+  - "wouter-van-oortmerssen"
 date: 2020-04-27
 tags:
   - WebAssembly
   - 工具
-description: 'WABT 增加了一种新的反编译工具，可以更容易地阅读 Wasm 模块的内容。'
-tweet: '1254829913561014272'
+description: "WABT 增加了一种新的反编译工具，可以更容易地阅读 Wasm 模块的内容。"
+tweet: "1254829913561014272"
 ---
 我们拥有越来越多的编译器和其他工具来生成或操作 `.wasm` 文件，有时候您可能会想看看里面的内容。也许您是该类工具的开发者，或者更直接地说，您是针对 Wasm 的程序员，想知道生成的代码是什么样子，出于性能或其他原因。
 

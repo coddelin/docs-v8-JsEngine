@@ -1,14 +1,14 @@
 ---
-title: '`Promise.prototype.finally`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Promise.prototype.finally`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-10-23
 tags:
   - ECMAScript
   - ES2018
-description: 'Promise.prototype.finally を使用すると、Promise が完了した際（成功または失敗が確定した場合）に呼び出されるコールバックを登録できます。'
-tweet: '922459978857824261'
+description: "Promise.prototype.finally を使用すると、Promise が完了した際（成功または失敗が確定した場合）に呼び出されるコールバックを登録できます。"
+tweet: "922459978857824261"
 ---
 `Promise.prototype.finally` を使用すると、Promise が _完了_（成功または失敗が確定）した際に呼び出されるコールバックを登録できます。
 

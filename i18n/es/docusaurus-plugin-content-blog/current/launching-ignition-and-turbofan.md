@@ -1,10 +1,10 @@
 ---
-title: 'Lanzamiento de Ignition y TurboFan'
-author: 'el equipo de V8'
+title: "Lanzamiento de Ignition y TurboFan"
+author: "el equipo de V8"
 date: 2017-05-15 13:33:37
 tags:
   - internos
-description: 'V8 v5.9 viene con una nueva tubería de ejecución de JavaScript, basada en el intérprete Ignition y el compilador optimizador TurboFan.'
+description: "V8 v5.9 viene con una nueva tubería de ejecución de JavaScript, basada en el intérprete Ignition y el compilador optimizador TurboFan."
 ---
 Hoy estamos emocionados de anunciar el lanzamiento de una nueva tubería de ejecución de JavaScript para V8 v5.9 que llegará a Chrome Stable en la versión 59. Con la nueva tubería, logramos grandes mejoras de rendimiento y significativos ahorros de memoria en aplicaciones de JavaScript del mundo real. Discutiremos los números en detalle al final de este artículo, pero primero echemos un vistazo a la propia tubería.
 

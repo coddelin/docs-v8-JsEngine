@@ -1,6 +1,6 @@
 ---
-title: 'Untersuchung von Speicherlecks'
-description: 'Dieses Dokument bietet Anleitungen zur Untersuchung von Speicherlecks in V8.'
+title: "Untersuchung von Speicherlecks"
+description: "Dieses Dokument bietet Anleitungen zur Untersuchung von Speicherlecks in V8."
 ---
 Wenn Sie ein Speicherleck untersuchen und sich fragen, warum ein Objekt nicht vom Garbage Collector gesammelt wird, können Sie `%DebugTrackRetainingPath(object)` verwenden, um den tatsächlichen Haltepfad des Objekts bei jeder GC auszugeben.
 

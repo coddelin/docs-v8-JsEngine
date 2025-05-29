@@ -1,14 +1,14 @@
 ---
-title: '`Symbol.prototype.description`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Symbol.prototype.description`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-25
 tags:
   - ECMAScript
   - ES2019
-description: 'Symbol.prototype.description bietet eine ergonomische Möglichkeit, auf die Beschreibung eines Symbols zuzugreifen.'
-tweet: '1143432835665211394'
+description: "Symbol.prototype.description bietet eine ergonomische Möglichkeit, auf die Beschreibung eines Symbols zuzugreifen."
+tweet: "1143432835665211394"
 ---
 JavaScript-`Symbol`s können bei ihrer Erstellung eine Beschreibung erhalten:
 

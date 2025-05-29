@@ -1,6 +1,6 @@
 ---
-title: 'Construire V8 à partir du code source'
-description: 'Ce document explique comment construire V8 à partir de sa source.'
+title: "Construire V8 à partir du code source"
+description: "Ce document explique comment construire V8 à partir de sa source."
 ---
 Pour pouvoir construire V8 à partir de zéro sur Windows/Linux/macOS pour x64, veuillez suivre les étapes suivantes.
 

@@ -1,7 +1,7 @@
 ---
-title: 'Die V8 Sandbox'
-description: 'V8 bietet eine leichtgewichtige, prozessinterne Sandbox, um die Auswirkungen von Speicherbeschädigungsfehlern zu begrenzen'
-author: 'Samuel Groß'
+title: "Die V8 Sandbox"
+description: "V8 bietet eine leichtgewichtige, prozessinterne Sandbox, um die Auswirkungen von Speicherbeschädigungsfehlern zu begrenzen"
+author: "Samuel Groß"
 avatars:
   - samuel-gross
 date: 2024-04-04

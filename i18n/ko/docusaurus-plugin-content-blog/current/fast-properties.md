@@ -1,12 +1,12 @@
 ---
-title: 'V8에서 빠른 속성'
-author: 'Camillo Bruni ([@camillobruni](https://twitter.com/camillobruni)), [“빠른 `for`-`in`”](/blog/fast-for-in)의 저자'
+title: "V8에서 빠른 속성"
+author: "Camillo Bruni ([@camillobruni](https://twitter.com/camillobruni)), [“빠른 `for`-`in`”](/blog/fast-for-in)의 저자"
 avatars:
-  - 'camillo-bruni'
+  - "camillo-bruni"
 date: 2017-08-30 13:33:37
 tags:
   - internals
-description: '이 기술적 심층 다이브는 V8이 JavaScript 속성을 내부적으로 처리하는 방법을 설명합니다.'
+description: "이 기술적 심층 다이브는 V8이 JavaScript 속성을 내부적으로 처리하는 방법을 설명합니다."
 ---
 이 블로그 게시물에서는 V8이 JavaScript 속성을 내부적으로 어떻게 처리하는지 설명하고자 합니다. JavaScript의 관점에서 속성에 대한 몇 가지 구별만 필요합니다. JavaScript 객체는 대부분 문자열 키와 임의 객체를 값으로 하는 사전처럼 작동합니다. 하지만 사양에서는 정수 인덱스 속성과 다른 속성을 [반복 중](https://tc39.es/ecma262/#sec-ordinaryownpropertykeys) 다르게 취급합니다. 그 외에는 정수 인덱스인지 아닌지에 관계없이 서로 다른 속성이 대부분 동일하게 작동합니다.
 

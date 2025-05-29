@@ -1,16 +1,16 @@
 ---
-title: '더 빠른 비동기 함수와 프로미스'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 항상 대기하는 기대자, 그리고 Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), 전문 성능 약속자'
+title: "더 빠른 비동기 함수와 프로미스"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 항상 대기하는 기대자, 그리고 Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), 전문 성능 약속자"
 avatars:
-  - 'maya-armyanova'
-  - 'benedikt-meurer'
+  - "maya-armyanova"
+  - "benedikt-meurer"
 date: 2018-11-12 16:45:07
 tags:
   - ECMAScript
   - benchmarks
   - presentations
-description: '더 빠르고 디버그하기 쉬운 비동기 함수와 프로미스가 V8 v7.2 / Chrome 72에 도입됩니다.'
-tweet: '1062000102909169670'
+description: "더 빠르고 디버그하기 쉬운 비동기 함수와 프로미스가 V8 v7.2 / Chrome 72에 도입됩니다."
+tweet: "1062000102909169670"
 ---
 자바스크립트에서 비동기 처리는 전통적으로 빠르지 않다고 여겨졌습니다. 게다가 라이브 자바스크립트 애플리케이션, 특히 Node.js 서버를 디버그하는 일은 쉬운 일이 아닙니다. _특히나_ 비동기 프로그래밍에서는 그러합니다. 다행히도 시간이 지나면서 변화가 일어나고 있습니다. 이 글에서는 V8(및 어느 정도는 다른 자바스크립트 엔진들에서도)에서 비동기 함수와 프로미스를 최적화한 방법과 비동기 코드를 디버깅하는 경험을 향상시킨 방법을 설명합니다.
 

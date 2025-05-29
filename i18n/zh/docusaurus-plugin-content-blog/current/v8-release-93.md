@@ -1,13 +1,13 @@
 ---
-title: 'V8版本9.3发布'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "V8版本9.3发布"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-08-09
 tags:
  - 发布
-description: 'V8版本9.3支持Object.hasOwn和Error原因，提升编译性能，并在Android上禁用不可信代码生成缓解措施。'
-tweet: ''
+description: "V8版本9.3支持Object.hasOwn和Error原因，提升编译性能，并在Android上禁用不可信代码生成缓解措施。"
+tweet: ""
 ---
 每六周我们都会在[发布流程](https://v8.dev/docs/release-process)的一部分中创建一个新的V8分支。每个版本都是在Chrome Beta里程碑之前，从V8的主Git分支分支出来的。今天，我们很高兴宣布我们的最新分支，[V8版本9.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.3)，将在接下来的几周内与Chrome 93稳定版协调发布之前进行beta测试。V8 v9.3包含各种面向开发者的实用功能。这篇文章对于一些重点功能提供了预览，以期待即将的发布。
 

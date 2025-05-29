@@ -1,13 +1,13 @@
 ---
-title: 'プライベートブランドチェック、別名`#foo in obj`'
-author: 'Marja Hölttä ([@marjakh](https://twitter.com/marjakh))'
+title: "プライベートブランドチェック、別名`#foo in obj`"
+author: "Marja Hölttä ([@marjakh](https://twitter.com/marjakh))"
 avatars:
-  - 'marja-holtta'
+  - "marja-holtta"
 date: 2021-04-14
 tags:
   - ECMAScript
-description: 'プライベートブランドチェックにより、オブジェクト内のプライベートフィールドの存在を確認できます。'
-tweet: '1382327454975590401'
+description: "プライベートブランドチェックにより、オブジェクト内のプライベートフィールドの存在を確認できます。"
+tweet: "1382327454975590401"
 ---
 
 [`in`演算子](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in)は、与えられたオブジェクト（またはそのプロトタイプチェーン内の任意のオブジェクト）が与えられたプロパティを持っているかどうかを確認するために使用できます:

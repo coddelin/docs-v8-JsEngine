@@ -1,9 +1,9 @@
 ---
-title: 'V8에서의 슬랙 추적'
-author: 'Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), *슬랙*의 권위있는 대가'
-description: 'V8의 슬랙 추적 메커니즘에 대한 자세한 분석.'
+title: "V8에서의 슬랙 추적"
+author: "Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), *슬랙*의 권위있는 대가"
+description: "V8의 슬랙 추적 메커니즘에 대한 자세한 분석."
 avatars:
- - 'michael-stanton'
+ - "michael-stanton"
 date: 2020-09-24 14:00:00
 tags:
  - 내부 구조

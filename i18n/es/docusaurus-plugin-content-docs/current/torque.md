@@ -1,6 +1,6 @@
 ---
-title: 'Manual de usuario de V8 Torque'
-description: 'Este documento explica el lenguaje V8 Torque, tal como se utiliza en la base de código de V8.'
+title: "Manual de usuario de V8 Torque"
+description: "Este documento explica el lenguaje V8 Torque, tal como se utiliza en la base de código de V8."
 ---
 V8 Torque es un lenguaje que permite a los desarrolladores que contribuyen al proyecto V8 expresar cambios en la máquina virtual centrándose en la _intención_ de sus cambios, en lugar de preocuparse por detalles de implementación no relacionados. El lenguaje fue diseñado para ser lo suficientemente simple para facilitar la traducción directa de la [especificación ECMAScript](https://tc39.es/ecma262/) a una implementación en V8, pero lo suficientemente potente para expresar los trucos de optimización de bajo nivel de V8 de manera robusta, como crear caminos rápidos basados en pruebas de formas específicas de objetos.
 

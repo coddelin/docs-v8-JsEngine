@@ -1,12 +1,12 @@
 ---
-title: '追加のバックトラッキングしないRegExpエンジン'
-author: 'Martin Bidlingmaier'
+title: "追加のバックトラッキングしないRegExpエンジン"
+author: "Martin Bidlingmaier"
 date: 2021-01-11
 tags:
  - 内部機構
  - RegExp
-description: 'V8には、フォールバックとして機能し、多くの破滅的なバックトラッキングを防ぐ追加のRegExpエンジンが導入されました。'
-tweet: '1348635270762139650'
+description: "V8には、フォールバックとして機能し、多くの破滅的なバックトラッキングを防ぐ追加のRegExpエンジンが導入されました。"
+tweet: "1348635270762139650"
 ---
 v8.8以降、V8は既存の[Irregexpエンジン](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html)に加えて、新しい実験的なバックトラッキングしないRegExpエンジンを搭載しました。このエンジンは、対象文字列のサイズに対して線形時間で実行されることを保証します。実験的なエンジンは以下の機能フラグの背後で利用可能です。
 

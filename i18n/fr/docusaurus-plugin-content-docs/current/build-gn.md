@@ -1,6 +1,6 @@
 ---
-title: 'Construire V8 avec GN'
-description: 'Ce document explique comment utiliser GN pour construire V8.'
+title: "Construire V8 avec GN"
+description: "Ce document explique comment utiliser GN pour construire V8."
 ---
 V8 est construit avec l'aide de [GN](https://gn.googlesource.com/gn/+/master/docs/). GN est un système de construction méta, car il génère des fichiers de construction pour plusieurs autres systèmes de compilation. La manière dont vous compilez dépend donc du système de construction « back-end » et du compilateur que vous utilisez.
 Les instructions ci-dessous supposent que vous avez déjà un [code source de V8](/docs/source-code) et que vous avez [installé les dépendances nécessaires](/docs/build).

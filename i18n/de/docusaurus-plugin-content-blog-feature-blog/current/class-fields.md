@@ -1,16 +1,16 @@
 ---
-title: 'Öffentliche und private Klassenfelder'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Öffentliche und private Klassenfelder"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-12-13
 tags:
   - ECMAScript
   - ES2022
   - io19
   - Node.js 14
-description: 'Mehrere Vorschläge erweitern die bestehende JavaScript-Klassensyntax um neue Funktionen. Dieser Artikel erklärt die neue Syntax von öffentlichen Klassenfeldern in V8 v7.2 und Chrome 72 sowie die kommende Syntax von privaten Klassenfeldern.'
-tweet: '1121395767170740225'
+description: "Mehrere Vorschläge erweitern die bestehende JavaScript-Klassensyntax um neue Funktionen. Dieser Artikel erklärt die neue Syntax von öffentlichen Klassenfeldern in V8 v7.2 und Chrome 72 sowie die kommende Syntax von privaten Klassenfeldern."
+tweet: "1121395767170740225"
 ---
 Mehrere Vorschläge erweitern die bestehende JavaScript-Klassensyntax um neue Funktionen. Dieser Artikel erklärt die neue Syntax von öffentlichen Klassenfeldern in V8 v7.2 und Chrome 72 sowie die kommende Syntax von privaten Klassenfeldern.
 

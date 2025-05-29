@@ -1,15 +1,15 @@
 ---
-title: '改善 V8 正则表达式'
-author: 'Patrick Thier 和 Ana Peško，对正则表达式发表意见的常规专家'
+title: "改善 V8 正则表达式"
+author: "Patrick Thier 和 Ana Peško，对正则表达式发表意见的常规专家"
 avatars:
-  - 'patrick-thier'
-  - 'ana-pesko'
+  - "patrick-thier"
+  - "ana-pesko"
 date: 2019-10-04 15:24:16
 tags:
   - internals
   - RegExp
-description: '在本文中，我们介绍了如何利用解释正则表达式的优势并缓解其缺点。'
-tweet: '1180131710568030208'
+description: "在本文中，我们介绍了如何利用解释正则表达式的优势并缓解其缺点。"
+tweet: "1180131710568030208"
 ---
 在默认配置下，V8 在正则表达式第一次执行时会将其编译为本地代码。作为我们对 [无 JIT 的 V8](/blog/jitless) 的工作的一部分，我们引入了一个正则表达式解释器。解释正则表达式的优势在于使用更少的内存，但会带来性能上的损失。本文中我们介绍了如何利用解释正则表达式的优势，同时减轻其缺点。
 

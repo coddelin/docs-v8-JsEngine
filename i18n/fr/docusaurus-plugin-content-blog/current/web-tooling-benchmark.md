@@ -1,14 +1,14 @@
 ---
-title: 'Annonce du Web Tooling Benchmark'
-author: 'Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), Jongleur de performance JavaScript'
+title: "Annonce du Web Tooling Benchmark"
+author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), Jongleur de performance JavaScript"
 avatars:
-  - 'benedikt-meurer'
+  - "benedikt-meurer"
 date: 2017-11-06 13:33:37
 tags:
   - benchmarks
   - Node.js
 description: 'Le tout nouveau Web Tooling Benchmark aide à identifier et corriger les goulots d'étranglement de performance de V8 dans Babel, TypeScript, et d'autres projets réels.'
-tweet: '927572065598824448'
+tweet: "927572065598824448"
 ---
 La performance du JavaScript a toujours été importante pour l'équipe V8, et dans cet article, nous souhaitons discuter d'un nouveau [Web Tooling Benchmark](https://v8.github.io/web-tooling-benchmark) que nous avons récemment utilisé pour identifier et corriger certains goulots d'étranglement en termes de performance dans V8. Vous connaissez peut-être déjà l'[engagement fort de V8 envers Node.js](/blog/v8-nodejs), et ce benchmark prolonge cet engagement en exécutant spécifiquement des tests de performance basés sur des outils courants de développement construits sur Node.js. Les outils du Web Tooling Benchmark sont les mêmes que ceux utilisés aujourd'hui par les développeurs et concepteurs pour créer des sites web modernes et des applications basées sur le cloud. Dans le prolongement de nos efforts continus pour nous concentrer sur la [performance réelle](/blog/real-world-performance/) plutôt que sur des benchmarks artificiels, nous avons créé le benchmark en utilisant le code réel que les développeurs exécutent quotidiennement.
 

@@ -1,6 +1,6 @@
 ---
-title: 'Oilpan中的指针压缩'
-author: 'Anton Bikineev 和 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz))，行走的反汇编程序'
+title: "Oilpan中的指针压缩"
+author: "Anton Bikineev 和 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz))，行走的反汇编程序"
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -9,8 +9,8 @@ tags:
   - 内部构造
   - 内存
   - cppgc
-description: 'Oilpan中的指针压缩允许压缩C++指针，并最多减少33%的堆大小。'
-tweet: '1597274125780893697'
+description: "Oilpan中的指针压缩允许压缩C++指针，并最多减少33%的堆大小。"
+tweet: "1597274125780893697"
 ---
 
 > 当我编译一个使用少于4GB RAM的程序时，却用64位指针，这绝对是愚蠢的。当这样的指针值出现在结构中时，既浪费了一半的内存，也实质上丢掉了一半的缓存。

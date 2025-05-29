@@ -1,13 +1,13 @@
 ---
-title: '有 `Math.random()`，然後有 `Math.random()`'
-author: '楊國 ([@hashseed](https://twitter.com/hashseed))，軟體工程師兼骰子設計師'
+title: "有 `Math.random()`，然後有 `Math.random()`"
+author: "楊國 ([@hashseed](https://twitter.com/hashseed))，軟體工程師兼骰子設計師"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2015-12-17 13:33:37
 tags:
   - ECMAScript
   - internals
-description: 'V8 的 Math.random 實現現在使用名為 xorshift128+ 的算法，相較於舊的 MWC1616 實現提升了隨機性。'
+description: "V8 的 Math.random 實現現在使用名為 xorshift128+ 的算法，相較於舊的 MWC1616 實現提升了隨機性。"
 ---
 > `Math.random()` 返回一個帶正號、且大於等於 `0` 且小於 `1` 的 `Number` 值，這個值是隨機選出的或是伪隨機選出的，並且在該範圍內近似於均勻分佈，使用實現依賴的算法或策略。此函數不接受任何參數。
 

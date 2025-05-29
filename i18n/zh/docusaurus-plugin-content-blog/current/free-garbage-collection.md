@@ -1,14 +1,14 @@
 ---
-title: '免费获得垃圾回收'
-author: 'Hannes Payer和Ross McIlroy，Idle垃圾收集器'
+title: "免费获得垃圾回收"
+author: "Hannes Payer和Ross McIlroy，Idle垃圾收集器"
 avatars:
-  - 'hannes-payer'
-  - 'ross-mcilroy'
+  - "hannes-payer"
+  - "ross-mcilroy"
 date: 2015-08-07 13:33:37
 tags:
   - 内部结构
   - 内存
-description: 'Chrome 41在小的闲置时间片段中隐藏了昂贵的内存管理操作，从而减少卡顿现象。'
+description: "Chrome 41在小的闲置时间片段中隐藏了昂贵的内存管理操作，从而减少卡顿现象。"
 ---
 JavaScript性能仍然是Chrome核心价值的关键部分，尤其是在提供流畅体验方面。自Chrome 41开始，V8采用了一种新技术，通过在小的、否则会被闲置的时间片段中隐藏昂贵的内存管理操作，提高了网页应用程序的响应性。因此，网页开发者可以期望更流畅的滚动效果和柔顺动画，同时由于垃圾回收减少了大量卡顿现象。
 

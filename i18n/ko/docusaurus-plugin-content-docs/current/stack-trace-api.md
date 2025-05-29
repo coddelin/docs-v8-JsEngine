@@ -1,6 +1,6 @@
 ---
-title: '스택 추적 API'
-description: '이 문서는 V8의 JavaScript 스택 추적 API에 대해 설명합니다.'
+title: "스택 추적 API"
+description: "이 문서는 V8의 JavaScript 스택 추적 API에 대해 설명합니다."
 ---
 V8에서 생성된 모든 내부 오류는 생성 시 스택 추적을 캡처합니다. 이 스택 추적은 JavaScript에서 비표준 `error.stack` 속성을 통해 접근할 수 있습니다. V8은 스택 추적을 수집하고 형식화하는 방법을 제어하기 위한 다양한 훅 및 사용자 정의 오류가 스택 추적을 수집할 수 있도록 허용하는 기능을 가지고 있습니다. 이 문서는 V8의 JavaScript 스택 추적 API를 설명합니다.
 

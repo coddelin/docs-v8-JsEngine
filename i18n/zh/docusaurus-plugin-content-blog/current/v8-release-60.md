@@ -1,10 +1,10 @@
 ---
-title: 'V8发布版本6.0'
-author: 'V8团队'
+title: "V8发布版本6.0"
+author: "V8团队"
 date: 2017-06-09 13:33:37
 tags:
   - 发布
-description: 'V8版本6.0带来了多个性能改进，并引入了对`SharedArrayBuffer`和对象剩余/展开属性的支持。'
+description: "V8版本6.0带来了多个性能改进，并引入了对`SharedArrayBuffer`和对象剩余/展开属性的支持。"
 ---
 每六周，我们会按照[发布流程](/docs/release-process)创建一个新的V8分支。每个版本都是在Chrome Beta里程碑之前从V8的Git主分支分出去的。今天，我们很高兴地宣布最新分支[V8版本6.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.0)，它将处于测试阶段，直到几周后与Chrome 60稳定版协调发布。V8 6.0中充满了各种面向开发者的特性。我们希望提前展示一些亮点，以期为发布做好准备。
 

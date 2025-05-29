@@ -1,13 +1,13 @@
 ---
-title: '額外內容：「理解 ECMAScript 規格，第二部分」'
-author: '[Marja Hölttä](https://twitter.com/marjakh)，投機規格觀察者'
+title: "額外內容：「理解 ECMAScript 規格，第二部分」"
+author: "[Marja Hölttä](https://twitter.com/marjakh)，投機規格觀察者"
 avatars:
   - marja-holtta
 date: 2020-03-02
 tags:
   - ECMAScript
-description: '閱讀 ECMAScript 規格的教程'
-tweet: ''
+description: "閱讀 ECMAScript 規格的教程"
+tweet: ""
 ---
 
 ### 為什麼 `o2.foo` 是一個 `AssignmentExpression`？

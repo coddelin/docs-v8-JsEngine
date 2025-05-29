@@ -1,10 +1,10 @@
 ---
-title: '帮助我们测试 V8 的未来！'
-author: 'Daniel Clifford（[@expatdanno](https://twitter.com/expatdanno)），原慕尼黑 V8 酿酒师'
+title: "帮助我们测试 V8 的未来！"
+author: "Daniel Clifford（[@expatdanno](https://twitter.com/expatdanno)），原慕尼黑 V8 酿酒师"
 date: 2017-02-14 13:33:37
 tags:
   - internals
-description: '今天就在 Chrome Canary 中预览 V8 的新编译管道：Ignition 和 TurboFan！'
+description: "今天就在 Chrome Canary 中预览 V8 的新编译管道：Ignition 和 TurboFan！"
 ---
 V8 团队目前正在开发一种新的默认编译管道，将帮助我们为[真实世界的 JavaScript](/blog/real-world-performance)带来未来的加速效果。您可以在 Chrome Canary 中预览新管道，帮助我们确保当我们为所有 Chrome 频道推出新配置时不会出现任何意外。
 

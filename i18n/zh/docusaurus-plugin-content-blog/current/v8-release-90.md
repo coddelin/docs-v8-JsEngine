@@ -1,13 +1,13 @@
 ---
-title: 'V8 发布 v9.0'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))，站内分享'
+title: "V8 发布 v9.0"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))，站内分享"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-03-17
 tags:
  - 发布
-description: 'V8 v9.0 发布，新增支持正则表达式匹配索引，并带来多种性能改进。'
-tweet: '1372227274712494084'
+description: "V8 v9.0 发布，新增支持正则表达式匹配索引，并带来多种性能改进。"
+tweet: "1372227274712494084"
 ---
 每六周，我们会按照[发布流程](https://v8.dev/docs/release-process)创建一个新的 V8 分支。每个版本都会在 Chrome Beta 里程碑发布之前从 V8 的 Git 主分支分出。今天我们很高兴地宣布我们的最新分支 [V8 版本 9.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.0)。此版本目前处于 Beta 阶段，将在几周后与 Chrome 90 稳定版同时发布。V8 v9.0 包含了各种对开发者友好的新功能。这篇文章将提前预览一些亮点。
 

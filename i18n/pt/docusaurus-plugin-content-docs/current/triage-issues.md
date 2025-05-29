@@ -1,6 +1,6 @@
 ---
-title: 'Triagem de problemas'
-description: 'Este documento explica como lidar com problemas no rastreador de bugs do V8.'
+title: "Triagem de problemas"
+description: "Este documento explica como lidar com problemas no rastreador de bugs do V8."
 ---
 Este documento explica como lidar com problemas no [rastreador de bugs do V8](/bugs).
 

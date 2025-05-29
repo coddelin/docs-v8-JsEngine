@@ -1,13 +1,13 @@
 ---
-title: '짧은 내장 호출'
-author: '[툰 버웨스트](https://twitter.com/tverwaes), 더 빅 쇼트'
+title: "짧은 내장 호출"
+author: "[툰 버웨스트](https://twitter.com/tverwaes), 더 빅 쇼트"
 avatars:
   - toon-verwaest
 date: 2021-05-06
 tags:
   - JavaScript
-description: 'V8 v9.1에서 성능 문제를 피하기 위해 데스크톱에서 내장 기능을 일시적으로 비활성화했습니다.'
-tweet: '1394267917013897216'
+description: "V8 v9.1에서 성능 문제를 피하기 위해 데스크톱에서 내장 기능을 일시적으로 비활성화했습니다."
+tweet: "1394267917013897216"
 ---
 
 V8 v9.1에서는 데스크톱 환경에서 [내장 기능](https://v8.dev/blog/embedded-builtins)을 일시적으로 비활성화했습니다. 내장 기능은 메모리 사용을 크게 개선하지만, 내장 기능과 JIT(Just-In-Time) 컴파일된 코드 간 함수 호출이 상당한 성능 저하를 일으킬 수 있음을 발견했습니다. 이 비용은 CPU의 마이크로아키텍처에 따라 달라질 수 있습니다. 이 게시물에서는 이러한 현상이 발생하는 이유, 성능 측면에서 어떻게 보이는지, 그리고 장기적으로 이를 해결하기 위한 계획에 대해 설명하겠습니다.

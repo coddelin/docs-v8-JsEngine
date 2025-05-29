@@ -1,6 +1,6 @@
 ---
-title: 'Verificando o código-fonte do V8'
-description: 'Este documento explica como verificar localmente o código-fonte do V8.'
+title: "Verificando o código-fonte do V8"
+description: "Este documento explica como verificar localmente o código-fonte do V8."
 ---
 Este documento explica como verificar localmente o código-fonte do V8. Se você deseja apenas navegar pelo código online, use estes links:
 

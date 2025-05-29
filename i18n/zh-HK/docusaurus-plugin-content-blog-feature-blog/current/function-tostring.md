@@ -1,13 +1,13 @@
 ---
-title: '修改後的 `Function.prototype.toString`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "修改後的 `Function.prototype.toString`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-03-25
 tags:
   - ECMAScript
   - ES2019
-description: 'Function.prototype.toString 現在返回源代码文本的準確片段，包括空格和註釋。'
+description: "Function.prototype.toString 現在返回源代码文本的準確片段，包括空格和註釋。"
 ---
 [`Function.prototype.toString()`](https://tc39.es/Function-prototype-toString-revision/) 現在返回源代码文本的準確片段，包括空格和註釋。以下是舊行為與新行為的比較示例：
 

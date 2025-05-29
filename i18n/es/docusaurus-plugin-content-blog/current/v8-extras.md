@@ -1,12 +1,12 @@
 ---
-title: 'Extras de V8'
-author: 'Domenic Denicola ([@domenic](https://twitter.com/domenic)), Experto en Streams'
+title: "Extras de V8"
+author: "Domenic Denicola ([@domenic](https://twitter.com/domenic)), Experto en Streams"
 avatars:
-  - 'domenic-denicola'
+  - "domenic-denicola"
 date: 2016-02-04 13:33:37
 tags:
   - internos
-description: 'V8 v4.8 incluye “extras de V8”, una interfaz simple diseñada con el objetivo de permitir que los integradores escriban APIs autoalojadas de alto rendimiento.'
+description: "V8 v4.8 incluye “extras de V8”, una interfaz simple diseñada con el objetivo de permitir que los integradores escriban APIs autoalojadas de alto rendimiento."
 ---
 V8 implementa un gran subconjunto de los objetos y funciones integrados del lenguaje JavaScript en el propio JavaScript. Por ejemplo, puedes ver nuestra [implementación de promesas](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js) escrita en JavaScript. Estos integrados se denominan _autoalojados_. Estas implementaciones se incluyen en nuestra [instantánea de inicio](/blog/custom-startup-snapshots) para que se puedan crear nuevos contextos rápidamente sin necesidad de configurar e inicializar los integrados autoalojados en tiempo de ejecución.
 

@@ -1,10 +1,10 @@
 ---
-title: 'V8-Version v4.9'
-author: 'das V8-Team'
+title: "V8-Version v4.9"
+author: "das V8-Team"
 date: 2016-01-26 13:33:37
 tags:
   - Veröffentlichung
-description: 'V8 v4.9 kommt mit einer verbesserten `Math.random`-Implementierung und Unterstützung für mehrere neue ES2015-Sprachfeatures.'
+description: "V8 v4.9 kommt mit einer verbesserten `Math.random`-Implementierung und Unterstützung für mehrere neue ES2015-Sprachfeatures."
 ---
 Etwa alle sechs Wochen erstellen wir einen neuen Branch von V8 im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process). Jede Version wird direkt aus dem Git-Master von V8 branchiert, unmittelbar bevor Chrome für einen Chrome-Beta-Meilenstein branchiert. Heute freuen wir uns, unseren neuesten Branch, [V8-Version 4.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.9), bekannt zu geben, der bis zur Veröffentlichung in Abstimmung mit Chrome 49 Stable Beta sein wird. V8 4.9 ist vollgepackt mit allerlei Entwickler-Goodies, und wir möchten Ihnen einen Vorgeschmack auf einige der Highlights geben, die in mehreren Wochen veröffentlicht werden.
 

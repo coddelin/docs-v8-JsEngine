@@ -1,15 +1,15 @@
 ---
-title: 'RegExp `v` Flag mit Mengennotation und Eigenschaften von Zeichenketten'
-author: 'Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer und Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "RegExp `v` Flag mit Mengennotation und Eigenschaften von Zeichenketten"
+author: "Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer und Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mark-davis'
-  - 'markus-scherer'
-  - 'mathias-bynens'
+  - "mark-davis"
+  - "markus-scherer"
+  - "mathias-bynens"
 date: 2022-06-27
 tags:
   - ECMAScript
-description: 'Das neue RegExp `v`-Flag aktiviert den `unicodeSets`-Modus und ermöglicht die Unterstützung erweiterter Zeichenklassen, einschließlich Unicode-Eigenschaften von Zeichenketten, Mengennotation und verbesserter Groß-/Kleinschreibung-übergreifender Übereinstimmung.'
-tweet: '1541419838513594368'
+description: "Das neue RegExp `v`-Flag aktiviert den `unicodeSets`-Modus und ermöglicht die Unterstützung erweiterter Zeichenklassen, einschließlich Unicode-Eigenschaften von Zeichenketten, Mengennotation und verbesserter Groß-/Kleinschreibung-übergreifender Übereinstimmung."
+tweet: "1541419838513594368"
 ---
 JavaScript unterstützt reguläre Ausdrücke seit ECMAScript 3 (1999). Sechzehn Jahre später führte ES2015 [Unicode-Modus (das `u`-Flag)](https://mathiasbynens.be/notes/es6-unicode-regex), [Sticky-Modus (das `y`-Flag)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky#description) und [die `RegExp.prototype.flags` Getter-Funktion](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/flags) ein. Weitere drei Jahre später führte ES2018 [`dotAll`-Modus (das `s`-Flag)](https://mathiasbynens.be/notes/es-regexp-proposals#dotAll), [Lookbehind-Assertions](https://mathiasbynens.be/notes/es-regexp-proposals#lookbehinds), [Named Capture Groups](https://mathiasbynens.be/notes/es-regexp-proposals#named-capture-groups) und [Unicode-Zeicheneigenschafts-Auswege](https://mathiasbynens.be/notes/es-unicode-property-escapes) ein. Und in ES2020 erleichterte [`String.prototype.matchAll`](https://v8.dev/features/string-matchall) die Arbeit mit regulären Ausdrücken. JavaScript-Regular Expressions haben sich enorm weiterentwickelt und verbessern sich weiterhin.
 

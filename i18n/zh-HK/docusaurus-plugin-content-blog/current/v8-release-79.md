@@ -1,13 +1,13 @@
 ---
-title: 'V8 發布 v7.9'
-author: 'Santiago Aboy Solanes，指針壓縮技術專家'
+title: "V8 發布 v7.9"
+author: "Santiago Aboy Solanes，指針壓縮技術專家"
 avatars:
-  - 'santiago-aboy-solanes'
+  - "santiago-aboy-solanes"
 date: 2019-11-20
 tags:
   - release
-description: 'V8 v7.9 功能移除了 Double ⇒ Tagged 過渡的棄用處理，內建函數中的 API getter處理、OSR 快取，和支持多代碼區的 Wasm。'
-tweet: '1197187184304050176'
+description: "V8 v7.9 功能移除了 Double ⇒ Tagged 過渡的棄用處理，內建函數中的 API getter處理、OSR 快取，和支持多代碼區的 Wasm。"
+tweet: "1197187184304050176"
 ---
 每六週，我們會在 [發布流程](/docs/release-process)中創建一個 V8 新分支。每個版本都是在 Chrome Beta 里程碑之前直接從 V8 的 Git 主分支中分支出來的。今天我們很高興宣佈我們最新的分支，[V8 版本 7.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.9)，目前處於 Beta 階段，並將在幾週後與 Chrome 79 穩定版協調發布。V8 v7.9 滿載了各種面向開發者的功能。此篇文章提供了一些亮點的預覽，以迎接正式發布。
 

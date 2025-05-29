@@ -1,13 +1,13 @@
 ---
-title: 'Kurze eingebaute Aufrufe'
-author: '[Toon Verwaest](https://twitter.com/tverwaes), Der große Short'
+title: "Kurze eingebaute Aufrufe"
+author: "[Toon Verwaest](https://twitter.com/tverwaes), Der große Short"
 avatars:
   - toon-verwaest
 date: 2021-05-06
 tags:
   - JavaScript
-description: 'In V8 v9.1 haben wir die eingebetteten Builtins vorübergehend auf Desktop deaktiviert, um Leistungsprobleme zu vermeiden, die durch weit entfernte indirekte Aufrufe verursacht werden.'
-tweet: '1394267917013897216'
+description: "In V8 v9.1 haben wir die eingebetteten Builtins vorübergehend auf Desktop deaktiviert, um Leistungsprobleme zu vermeiden, die durch weit entfernte indirekte Aufrufe verursacht werden."
+tweet: "1394267917013897216"
 ---
 
 In V8 v9.1 haben wir die [eingebetteten Builtins](https://v8.dev/blog/embedded-builtins) vorübergehend auf Desktop deaktiviert. Obwohl das Einbetten von Builtins die Speichernutzung erheblich verbessert, haben wir festgestellt, dass Funktionsaufrufe zwischen eingebetteten Builtins und JIT-kompiliertem Code zu erheblichen Leistungseinbußen führen können. Diese Kosten hängen von der Mikroarchitektur der CPU ab. In diesem Beitrag erklären wir, warum dies passiert, wie die Leistung aussieht und was wir planen, um dieses Problem langfristig zu lösen.

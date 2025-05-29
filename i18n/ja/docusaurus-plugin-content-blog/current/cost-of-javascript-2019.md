@@ -1,15 +1,15 @@
 ---
-title: '2019年のJavaScriptコスト'
-author: 'Addy Osmani（[@addyosmani](https://twitter.com/addyosmani)）、JavaScriptジャニター、Mathias Bynens（[@mathias](https://twitter.com/mathias)）、メインスレッド解放者'
+title: "2019年のJavaScriptコスト"
+author: "Addy Osmani（[@addyosmani](https://twitter.com/addyosmani)）、JavaScriptジャニター、Mathias Bynens（[@mathias](https://twitter.com/mathias)）、メインスレッド解放者"
 avatars:
-  - 'addy-osmani'
-  - 'mathias-bynens'
+  - "addy-osmani"
+  - "mathias-bynens"
 date: 2019-06-25
 tags:
   - internals
   - parsing
-description: 'JavaScript処理の主なコストはダウンロードとCPU実行時間です。'
-tweet: '1143531042361487360'
+description: "JavaScript処理の主なコストはダウンロードとCPU実行時間です。"
+tweet: "1143531042361487360"
 ---
 :::note
 **注意:** 記事を読むのではなく、プレゼンテーションを見る方が好きなら、以下の動画をご覧ください！そうでない場合は、動画をスキップして読み進めてください。

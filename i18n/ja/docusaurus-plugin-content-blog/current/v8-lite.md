@@ -1,17 +1,17 @@
 ---
-title: '軽量化されたV8'
-author: 'Mythri Alle, Dan Elphick, および [Ross McIlroy](https://twitter.com/rossmcilroy), V8軽量化チーム'
+title: "軽量化されたV8"
+author: "Mythri Alle, Dan Elphick, および [Ross McIlroy](https://twitter.com/rossmcilroy), V8軽量化チーム"
 avatars:
-  - 'mythri-alle'
-  - 'dan-elphick'
-  - 'ross-mcilroy'
+  - "mythri-alle"
+  - "dan-elphick"
+  - "ross-mcilroy"
 date: 2019-09-12 12:44:37
 tags:
   - 内部構造
   - メモリ
   - プレゼンテーション
-description: 'V8 Liteプロジェクトは、典型的なウェブサイトでV8のメモリオーバーヘッドを劇的に削減しました。ここでその方法をご紹介します。'
-tweet: '1172155403343298561'
+description: "V8 Liteプロジェクトは、典型的なウェブサイトでV8のメモリオーバーヘッドを劇的に削減しました。ここでその方法をご紹介します。"
+tweet: "1172155403343298561"
 ---
 2018年末、私たちはV8のメモリ使用量を劇的に削減することを目指してV8 Liteというプロジェクトを開始しました。このプロジェクトは当初、低メモリモバイルデバイスやメモリ使用量の削減を重視したエンベッダー利用ケース向けに、V8の別の*Liteモード*として構想されていました。しかし、この作業の過程で、この*Liteモード*のために行った多くのメモリ最適化が、通常のV8にも適用可能であり、V8のすべてのユーザーに利益をもたらせることに気付きました。
 

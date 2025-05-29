@@ -1,7 +1,7 @@
 ---
-title: 'O WebAssembly JSPI tem uma nova API'
-description: 'Este artigo detalha algumas mudanças futuras na API de Integração de Promessas do JavaScript (JSPI).'
-author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
+title: "O WebAssembly JSPI tem uma nova API"
+description: "Este artigo detalha algumas mudanças futuras na API de Integração de Promessas do JavaScript (JSPI)."
+author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-06-04
 tags:
   - WebAssembly

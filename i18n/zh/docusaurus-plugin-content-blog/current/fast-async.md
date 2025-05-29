@@ -1,16 +1,16 @@
 ---
-title: '更快的异步函数和Promise'
-author: 'Maya Armyanova（[@Zmayski](https://twitter.com/Zmayski)），永远等待的预测者，以及Benedikt Meurer（[@bmeurer](https://twitter.com/bmeurer)），专业性能承诺者'
+title: "更快的异步函数和Promise"
+author: "Maya Armyanova（[@Zmayski](https://twitter.com/Zmayski)），永远等待的预测者，以及Benedikt Meurer（[@bmeurer](https://twitter.com/bmeurer)），专业性能承诺者"
 avatars:
-  - 'maya-armyanova'
-  - 'benedikt-meurer'
+  - "maya-armyanova"
+  - "benedikt-meurer"
 date: 2018-11-12 16:45:07
 tags:
   - ECMAScript
   - 基准测试
   - 演讲
-description: '更快且更易于调试的异步函数和Promise即将登陆V8 v7.2 / Chrome 72。'
-tweet: '1062000102909169670'
+description: "更快且更易于调试的异步函数和Promise即将登陆V8 v7.2 / Chrome 72。"
+tweet: "1062000102909169670"
 ---
 JavaScript中的异步处理传统上被认为速度不是特别快。更糟糕的是，调试实时JavaScript应用程序——特别是Node.js服务器——并不是一件容易的事，尤其是异步编程。幸运的是，时代正在改变。这篇文章探讨了我们如何优化V8中的异步函数和Promise（也在一定程度上优化了其他JavaScript引擎），并描述了我们如何改进异步代码的调试体验。
 

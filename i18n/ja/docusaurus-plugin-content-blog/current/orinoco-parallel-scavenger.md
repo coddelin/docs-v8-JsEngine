@@ -1,15 +1,15 @@
 ---
-title: 'Orinoco: 若い世代のガベージコレクション'
-author: 'Ulan Degenbaev, Michael Lippautz, and Hannes Payer, [TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)の友人'
+title: "Orinoco: 若い世代のガベージコレクション"
+author: "Ulan Degenbaev, Michael Lippautz, and Hannes Payer, [TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)の友人"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2017-11-29 13:33:37
 tags:
   - 内部構造
   - メモリ
-description: 'この記事では、Orinocoの最新機能の1つである並列スカベンジャーを紹介します。OrinocoはV8の主に並行して並列処理を行うガベージコレクタです。'
+description: "この記事では、Orinocoの最新機能の1つである並列スカベンジャーを紹介します。OrinocoはV8の主に並行して並列処理を行うガベージコレクタです。"
 ---
 V8でのJavaScriptオブジェクトは、V8のガベージコレクタによって管理されているヒープ上に割り当てられます。以前のブログ記事では、[ガベージコレクションの停止時間を短縮する方法](/blog/jank-busters)（[複数回](/blog/orinoco)）や[メモリ消費量を削減する方法](/blog/optimizing-v8-memory)について既に説明しました。本記事では、Orinocoの最新機能の1つである並列スカベンジャーを紹介し、V8のガベージコレクタの設計決定や、進行途中で実装した代替アプローチについて議論します。
 

@@ -1,6 +1,6 @@
 ---
-title: 'Depuração Arm com o simulador'
-description: 'O simulador e depurador Arm podem ser muito úteis ao trabalhar com a geração de código V8.'
+title: "Depuração Arm com o simulador"
+description: "O simulador e depurador Arm podem ser muito úteis ao trabalhar com a geração de código V8."
 ---
 O simulador e depurador podem ser muito úteis ao trabalhar com a geração de código V8.
 

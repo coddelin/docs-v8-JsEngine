@@ -1,15 +1,15 @@
 ---
-title: 'Orinoco: 젊은 세대 가비지 컬렉션'
-author: 'Ulan Degenbaev, Michael Lippautz, Hannes Payer, [TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)의 친구들'
+title: "Orinoco: 젊은 세대 가비지 컬렉션"
+author: "Ulan Degenbaev, Michael Lippautz, Hannes Payer, [TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)의 친구들"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2017-11-29 13:33:37
 tags:
   - internals
   - memory
-description: '이 글은 Orinoco의 최신 기능 중 하나인 병렬 Scavenger, V8의 거의 병렬 및 동시 가비지 컬렉터에 대해서 소개합니다.'
+description: "이 글은 Orinoco의 최신 기능 중 하나인 병렬 Scavenger, V8의 거의 병렬 및 동시 가비지 컬렉터에 대해서 소개합니다."
 ---
 V8의 JavaScript 객체는 V8의 가비지 컬렉터로 관리되는 힙에 할당됩니다. 이전 블로그 글에서는 가비지 컬렉션 일시 중지 시간을 어떻게 [줄이는지](/blog/jank-busters) ([여러 번](/blog/orinoco)) 그리고 [메모리 소비](/blog/optimizing-v8-memory)를 줄이는 방법도 다뤘습니다. 이번 블로그 글에서는 V8의 거의 병렬 및 동시 가비지 컬렉터 Orinoco의 최신 기능 중 하나인 병렬 Scavenger를 소개하고 설계 결정 및 대안 접근 방식에 대해 논의합니다.
 

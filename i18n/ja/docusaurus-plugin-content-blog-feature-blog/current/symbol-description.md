@@ -1,14 +1,14 @@
 ---
-title: '`Symbol.prototype.description`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Symbol.prototype.description`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-25
 tags:
   - ECMAScript
   - ES2019
-description: 'Symbol.prototype.description は、Symbol の説明を取得するための使いやすい方法を提供します。'
-tweet: '1143432835665211394'
+description: "Symbol.prototype.description は、Symbol の説明を取得するための使いやすい方法を提供します。"
+tweet: "1143432835665211394"
 ---
 JavaScript の `Symbol` は作成時に説明を付けることができます:
 

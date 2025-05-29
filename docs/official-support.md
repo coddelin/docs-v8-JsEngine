@@ -1,6 +1,6 @@
 ---
-title: 'Officially supported configurations'
-description: 'This document explains which build configurations are maintained by the V8 team.'
+title: "Officially supported configurations"
+description: "This document explains which build configurations are maintained by the V8 team."
 ---
 V8 supports a multitude of different build configurations across operating systems, their versions, architecture ports, build flags and so on.
 

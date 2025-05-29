@@ -1,5 +1,5 @@
 ---
-title: 'V8 à la conférence BlinkOn 6'
+title: "V8 à la conférence BlinkOn 6"
 author: 'l'équipe V8'
 date: 2016-07-21 13:33:37
 tags:

@@ -1,13 +1,13 @@
 ---
-title: 'Importbedingungen'
-author: 'Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), entschlossener Importeur von Importbedingungen'
+title: "Importbedingungen"
+author: "Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), entschlossener Importeur von Importbedingungen"
 avatars:
-  - 'dan-clark'
+  - "dan-clark"
 date: 2021-06-15
 tags:
   - ECMAScript
-description: 'Importbedingungen ermöglichen es, dass Modulimportanweisungen zusätzliche Informationen neben dem Modulspezifizierer enthalten'
-tweet: ''
+description: "Importbedingungen ermöglichen es, dass Modulimportanweisungen zusätzliche Informationen neben dem Modulspezifizierer enthalten"
+tweet: ""
 ---
 
 Die neue Funktion [Importbedingungen](https://github.com/tc39/proposal-import-assertions) ermöglicht es, dass Modulimportanweisungen zusätzliche Informationen neben dem Modulspezifizierer enthalten. Eine erste Anwendung dieser Funktion besteht darin, JSON-Dokumente als [JSON-Module](https://github.com/tc39/proposal-json-modules) zu importieren:

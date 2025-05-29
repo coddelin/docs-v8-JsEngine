@@ -1,15 +1,15 @@
 ---
-title: '優化 V8 中的 ES2015 代理'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 代理優化專家'
+title: "優化 V8 中的 ES2015 代理"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 代理優化專家"
 avatars:
-  - 'maya-armyanova'
+  - "maya-armyanova"
 date: 2017-10-05 13:33:37
 tags:
   - ECMAScript
   - 基準測試
   - 內部結構
-description: '本文解釋了 V8 如何提升 JavaScript 代理的性能。'
-tweet: '915846050447003648'
+description: "本文解釋了 V8 如何提升 JavaScript 代理的性能。"
+tweet: "915846050447003648"
 ---
 代理自 ES2015 起便成為 JavaScript 的重要部分。它們允許攔截物件上的基本操作並自訂其行為。代理是像 [jsdom](https://github.com/tmpvar/jsdom) 和 [Comlink RPC 函式庫](https://github.com/GoogleChrome/comlink) 等項目的核心部分。最近，我們在提升 V8 中代理的性能方面投入了大量精力。本文著重於 V8 中的一般性能改進模式以及代理的特定改進。
 

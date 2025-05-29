@@ -1,14 +1,14 @@
 ---
-title: '可选的`catch`绑定'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "可选的`catch`绑定"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-03-27
 tags:
   - ECMAScript
   - ES2019
-description: '在ES2019中，catch现在可以不带参数使用。'
-tweet: '956209997808939008'
+description: "在ES2019中，catch现在可以不带参数使用。"
+tweet: "956209997808939008"
 ---
 `try`语句的`catch`子句过去需要一个绑定：
 

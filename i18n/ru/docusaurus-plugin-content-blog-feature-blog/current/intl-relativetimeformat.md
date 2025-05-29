@@ -1,15 +1,15 @@
 ---
-title: '`Intl.RelativeTimeFormat`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Intl.RelativeTimeFormat`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-10-22
 tags:
   - Intl
   - Node.js 12
   - io19
-description: 'Intl.RelativeTimeFormat позволяет локализованно форматировать относительное время без ущерба для производительности.'
-tweet: '1054387117571354624'
+description: "Intl.RelativeTimeFormat позволяет локализованно форматировать относительное время без ущерба для производительности."
+tweet: "1054387117571354624"
 ---
 Современные веб-приложения часто используют выражения вроде «вчера», «42 секунды назад» или «через 3 месяца» вместо полных дат и временных меток. Такие _значения относительного времени_ стали настолько распространёнными, что несколько популярных библиотек реализовали утилитарные функции для их локализованного форматирования. (Примеры включают [Moment.js](https://momentjs.com/), [Globalize](https://github.com/globalizejs/globalize) и [date-fns](https://date-fns.org/docs/).)
 

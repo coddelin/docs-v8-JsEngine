@@ -1,6 +1,6 @@
 ---
-title: 'Documentation'
-description: 'Documentation pour le projet V8.'
+title: "Documentation"
+description: "Documentation pour le projet V8."
 slug: /
 ---
 V8 est un moteur JavaScript et WebAssembly open source haute performance de Google, écrit en C++. Il est utilisé dans Chrome et Node.js, entre autres.

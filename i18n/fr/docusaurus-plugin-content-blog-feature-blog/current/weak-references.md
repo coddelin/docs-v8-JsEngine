@@ -1,11 +1,11 @@
 ---
-title: 'Références faibles et finalisateurs'
-author: 'Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), et Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))'
+title: "Références faibles et finalisateurs"
+author: "Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), et Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))"
 avatars:
-- 'sathya-gunasekaran'
-- 'mathias-bynens'
-- 'shu-yu-guo'
-- 'leszek-swirski'
+- "sathya-gunasekaran"
+- "mathias-bynens"
+- "shu-yu-guo"
+- "leszek-swirski"
 date: 2019-07-09
 updated: 2020-06-19
 tags:
@@ -13,8 +13,8 @@ tags:
   - ES2021
   - io19
   - Node.js 14
-description: 'Les références faibles et les finalisateurs arrivent en JavaScript ! Cet article explique cette nouvelle fonctionnalité.'
-tweet: '1148603966848151553'
+description: "Les références faibles et les finalisateurs arrivent en JavaScript ! Cet article explique cette nouvelle fonctionnalité."
+tweet: "1148603966848151553"
 ---
 Généralement, les références aux objets sont _fortement conservées_ en JavaScript, ce qui signifie que tant que vous avez une référence à l'objet, il ne sera pas collecté par le garbage collector.
 

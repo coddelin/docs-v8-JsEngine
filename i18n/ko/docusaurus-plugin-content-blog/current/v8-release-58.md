@@ -1,10 +1,10 @@
 ---
-title: 'V8 릴리즈 v5.8'
-author: 'V8 팀'
+title: "V8 릴리즈 v5.8"
+author: "V8 팀"
 date: 2017-03-20 13:33:37
 tags:
   - release
-description: 'V8 v5.8은 임의의 힙 크기 사용을 가능하게 하며 시작 성능을 향상시킵니다.'
+description: "V8 v5.8은 임의의 힙 크기 사용을 가능하게 하며 시작 성능을 향상시킵니다."
 ---
 매 6주마다 V8의 새로운 브랜치를 우리의 [릴리즈 프로세스](/docs/release-process)의 일환으로 만듭니다. 각 버전은 V8의 Git 마스터에서 바로 Chrome 베타 마일스톤 직전에 분기됩니다. 오늘 우리는 우리의 최신 브랜치 [V8 버전 5.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.8)을 발표하게 되어 기쁩니다. 이 브랜치는 몇 주 후에 Chrome 58 Stable과의 협력으로 릴리즈되기 전까지 베타 단계에 있을 예정입니다. V8 5.8은 개발자를 위한 다양한 유용한 기능들로 가득합니다. 릴리즈를 앞두고 주요 내용을 미리 살펴보도록 하겠습니다.
 

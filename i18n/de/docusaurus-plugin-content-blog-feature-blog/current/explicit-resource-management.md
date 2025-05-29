@@ -1,13 +1,13 @@
 ---
 title: "Die neue Superkraft von JavaScript: Explizites Ressourcenmanagement"
-author: 'Rezvan Mahdavi Hezaveh'
+author: "Rezvan Mahdavi Hezaveh"
 avatars:
-  - 'rezvan-mahdavi-hezaveh'
+  - "rezvan-mahdavi-hezaveh"
 date: 2025-05-09
 tags:
   - ECMAScript
-description: 'Der Vorschlag zum expliziten Ressourcenmanagement ermöglicht es Entwicklern, den Lebenszyklus von Ressourcen ausdrücklich zu verwalten.'
-tweet: ''
+description: "Der Vorschlag zum expliziten Ressourcenmanagement ermöglicht es Entwicklern, den Lebenszyklus von Ressourcen ausdrücklich zu verwalten."
+tweet: ""
 ---
 
 Der Vorschlag *Explizites Ressourcenmanagement* führt einen deterministischen Ansatz ein, um den Lebenszyklus von Ressourcen wie Datei-Handles, Netzwerkverbindungen und mehr ausdrücklich zu verwalten. Dieser Vorschlag bringt folgende Erweiterungen in die Sprache ein: die `using`- und `await using`-Deklarationen, die automatisch die Dispose-Methode aufrufen, wenn eine Ressource aus dem Gültigkeitsbereich fällt; `[Symbol.dispose]()`- und `[Symbol.asyncDispose]()`-Symbole für Bereinigungsoperationen; zwei neue globale Objekte `DisposableStack` und `AsyncDisposableStack` als Container zur Aggregation von disposablen Ressourcen; und `SuppressedError` als neuen Fehler-Typ (enthält sowohl den zuletzt geworfenen Fehler als auch den unterdrückten Fehler), um das Szenario zu adressieren, in dem während der Bereinigung einer Ressource ein Fehler auftritt und möglicherweise ein bereits vorhandener Fehler verdeckt wird, der aus dem Body oder der Bereinigung einer anderen Ressource geworfen wurde. Diese Erweiterungen ermöglichen es Entwicklern, robusteren, leistungsfähigeren und leichter wartbaren Code zu schreiben, indem sie eine feingliedrige Kontrolle über die Ressourcenbereinigung bieten.

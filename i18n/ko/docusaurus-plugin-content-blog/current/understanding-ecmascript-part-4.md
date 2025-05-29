@@ -1,14 +1,14 @@
 ---
-title: 'ECMAScript 명세 이해하기, 4부'
-author: '[Marja Hölttä](https://twitter.com/marjakh), 추측적 명세 관찰자'
+title: "ECMAScript 명세 이해하기, 4부"
+author: "[Marja Hölttä](https://twitter.com/marjakh), 추측적 명세 관찰자"
 avatars:
   - marja-holtta
 date: 2020-05-19
 tags:
   - ECMAScript
   - ECMAScript 이해하기
-description: 'ECMAScript 명세 읽기에 대한 튜토리얼'
-tweet: '1262815621756014594'
+description: "ECMAScript 명세 읽기에 대한 튜토리얼"
+tweet: "1262815621756014594"
 ---
 
 [모든 에피소드](/blog/tags/understanding-ecmascript)

@@ -1,13 +1,13 @@
 ---
-title: 'Lanzamiento de V8 v7.3'
-author: 'Clemens Backes, encargado del compilador'
+title: "Lanzamiento de V8 v7.3"
+author: "Clemens Backes, encargado del compilador"
 avatars:
   - clemens-backes
 date: 2019-02-07 11:30:42
 tags:
   - lanzamiento
-description: '¡V8 v7.3 incluye mejoras en el rendimiento de WebAssembly y async, rastros de stacks async, Object.fromEntries, String#matchAll, y mucho más!'
-tweet: '1093457099441561611'
+description: "¡V8 v7.3 incluye mejoras en el rendimiento de WebAssembly y async, rastros de stacks async, Object.fromEntries, String#matchAll, y mucho más!"
+tweet: "1093457099441561611"
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se ramifica desde el maestro de Git de V8 inmediatamente antes de un hito de Chrome Beta. Hoy nos complace anunciar nuestra rama más reciente, [V8 versión 7.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.3), que está en beta hasta su lanzamiento en coordinación con Chrome 73 Stable en varias semanas. V8 v7.3 está llena de toda clase de novedades orientadas a desarrolladores. Esta publicación proporciona una vista previa de algunos de los aspectos destacados en anticipación al lanzamiento.
 

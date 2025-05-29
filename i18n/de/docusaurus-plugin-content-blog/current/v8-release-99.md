@@ -1,13 +1,13 @@
 ---
-title: 'V8-Veröffentlichung v9.9'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), zu seinen 99%'
+title: "V8-Veröffentlichung v9.9"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), zu seinen 99%"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2022-01-31
 tags:
  - veröffentlichung
-description: 'V8-Veröffentlichung v9.9 bringt neue Internationalisierungs-APIs.'
-tweet: '1488190967727411210'
+description: "V8-Veröffentlichung v9.9 bringt neue Internationalisierungs-APIs."
+tweet: "1488190967727411210"
 ---
 Alle vier Wochen erstellen wir einen neuen Zweig von V8 als Teil unseres [Veröffentlichungsprozesses](https://v8.dev/docs/release-process). Jede Version wird direkt vor einem Chrome-Beta-Meilenstein aus dem Hauptzweig von V8 Git abgezweigt. Heute freuen wir uns, unseren neuesten Zweig [V8 Version 9.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.9) anzukündigen, der bis zu seiner Veröffentlichung in Abstimmung mit Chrome 99 Stable in einigen Wochen in der Beta ist. V8 v9.9 ist vollgepackt mit allerlei Entwickler-Neuerungen. Dieser Beitrag bietet eine Vorschau auf einige der Highlights in Erwartung der Veröffentlichung.
 

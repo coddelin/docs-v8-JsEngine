@@ -1,6 +1,6 @@
 ---
 title: 'Aidez-nous à tester l'avenir de V8 !'
-author: 'Daniel Clifford ([@expatdanno](https://twitter.com/expatdanno)), Original Munich V8 Brewer'
+author: "Daniel Clifford ([@expatdanno](https://twitter.com/expatdanno)), Original Munich V8 Brewer"
 date: 2017-02-14 13:33:37
 tags:
   - internals

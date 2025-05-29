@@ -1,13 +1,13 @@
 ---
-title: '正規表現の後読みアサーション'
-author: 'Yang Guo, 正規表現エンジニア'
+title: "正規表現の後読みアサーション"
+author: "Yang Guo, 正規表現エンジニア"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2016-02-26 13:33:37
 tags:
   - ECMAScript
   - 正規表現
-description: 'JavaScriptの正規表現に新しい機能「後読みアサーション」が追加されます。'
+description: "JavaScriptの正規表現に新しい機能「後読みアサーション」が追加されます。"
 ---
 ECMA-262仕様の第3版で導入された正規表現は、1999年以来JavaScriptの一部となっています。機能性と表現力において、JavaScriptの正規表現の実装は他のプログラミング言語とほぼ同等です。
 

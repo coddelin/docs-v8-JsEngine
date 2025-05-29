@@ -1,6 +1,6 @@
 ---
-title: '堆栈追踪API'
-description: '本文档概述了V8的JavaScript堆栈追踪API。'
+title: "堆栈追踪API"
+description: "本文档概述了V8的JavaScript堆栈追踪API。"
 ---
 V8中抛出的所有内部错误都会在创建时捕获堆栈追踪信息。这些堆栈追踪信息可以通过JavaScript中的非标准`error.stack`属性访问。V8还具备多种钩子，用于控制堆栈追踪的收集和格式化方式，并支持定制错误同样能够收集堆栈追踪信息。本文档概述了V8的JavaScript堆栈追踪API。
 

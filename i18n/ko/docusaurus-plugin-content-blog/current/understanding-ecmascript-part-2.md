@@ -1,14 +1,14 @@
 ---
-title: 'ECMAScript 사양 이해하기, 파트 2'
-author: '[Marja Hölttä](https://twitter.com/marjakh), 추측적 사양 관찰자'
+title: "ECMAScript 사양 이해하기, 파트 2"
+author: "[Marja Hölttä](https://twitter.com/marjakh), 추측적 사양 관찰자"
 avatars:
   - marja-holtta
 date: 2020-03-02
 tags:
   - ECMAScript
   - ECMAScript 이해하기
-description: 'ECMAScript 사양 읽기에 대한 튜토리얼, 파트 2'
-tweet: '1234550773629014016'
+description: "ECMAScript 사양 읽기에 대한 튜토리얼, 파트 2"
+tweet: "1234550773629014016"
 ---
 
 우리는 사양 읽기 기술을 더 연습해볼 것입니다. 이전 에피소드를 아직 보지 않았다면, 지금 확인해보세요!

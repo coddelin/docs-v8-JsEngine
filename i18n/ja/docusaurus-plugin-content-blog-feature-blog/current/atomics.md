@@ -1,6 +1,6 @@
 ---
-title: '`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`'
-author: '[マリヤ・ホルタ](https://twitter.com/marjakh)、ノンブロッキングブロガー'
+title: "`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`"
+author: "[マリヤ・ホルタ](https://twitter.com/marjakh)、ノンブロッキングブロガー"
 avatars:
   - marja-holtta
 date: 2020-09-24
@@ -8,8 +8,8 @@ tags:
   - ECMAScript
   - ES2020
   - Node.js 16
-description: 'Atomics.wait と Atomics.notify は、ミューテックスなどを実装するための低レベルの同期プリミティブです。Atomics.wait はワーカースレッドでのみ使用可能です。V8 バージョン 8.7 は、非同期版である Atomics.waitAsync を新しくサポートし、メインスレッドでも使用可能です。'
-tweet: '1309118447377358848'
+description: "Atomics.wait と Atomics.notify は、ミューテックスなどを実装するための低レベルの同期プリミティブです。Atomics.wait はワーカースレッドでのみ使用可能です。V8 バージョン 8.7 は、非同期版である Atomics.waitAsync を新しくサポートし、メインスレッドでも使用可能です。"
+tweet: "1309118447377358848"
 ---
 [`Atomics.wait`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/wait) および [`Atomics.notify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/notify) は、ミューテックスやその他の同期手段を実装するために便利な低レベルの同期プリミティブです。しかし、`Atomics.wait` はブロッキングであるため、メインスレッドで呼び出すことはできません（試みると `TypeError` が投げられます）。
 

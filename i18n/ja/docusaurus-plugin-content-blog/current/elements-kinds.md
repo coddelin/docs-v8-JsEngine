@@ -1,14 +1,14 @@
 ---
-title: 'V8におけるElementsの種類'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "V8におけるElementsの種類"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-09-12 13:33:37
 tags:
   - internals
   - presentations
-description: 'この記事では、V8が配列操作を裏で最適化する仕組みと、それがJavaScript開発者にとって何を意味するかを技術的に深掘りします。'
-tweet: '907608362191376384'
+description: "この記事では、V8が配列操作を裏で最適化する仕組みと、それがJavaScript開発者にとって何を意味するかを技術的に深掘りします。"
+tweet: "907608362191376384"
 ---
 :::note
 **注:** 記事を読むよりプレゼンを見る方が好みの方には、以下の動画をぜひお楽しみください！

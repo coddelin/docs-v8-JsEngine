@@ -1,6 +1,6 @@
 ---
-title: 'WebAssembly - 新增一个操作码'
-description: '本教程解释了如何在V8中实现一个新的WebAssembly指令。'
+title: "WebAssembly - 新增一个操作码"
+description: "本教程解释了如何在V8中实现一个新的WebAssembly指令。"
 ---
 [WebAssembly](https://webassembly.org/) (Wasm) 是一种基于堆栈的虚拟机的二进制指令格式。本教程将指导读者如何在V8中实现一个新的WebAssembly指令。
 

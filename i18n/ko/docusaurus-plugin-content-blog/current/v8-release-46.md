@@ -1,10 +1,10 @@
 ---
-title: 'V8 릴리스 v4.6'
-author: 'V8 팀'
+title: "V8 릴리스 v4.6"
+author: "V8 팀"
 date: 2015-08-28 13:33:37
 tags:
   - release
-description: 'V8 v4.6은 지연 감소와 새로운 ES2015 언어 기능 지원을 제공합니다.'
+description: "V8 v4.6은 지연 감소와 새로운 ES2015 언어 기능 지원을 제공합니다."
 ---
 대략 여섯 주마다, 우리는 [릴리스 프로세스](https://v8.dev/docs/release-process)의 일환으로 V8의 새 브랜치를 만듭니다. 각 버전은 Chrome이 Chrome Beta 마일스톤을 위해 분기하기 직전에 V8의 Git master에서 분기됩니다. 오늘 우리는 최신 브랜치인 [V8 버전 4.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.6)을 발표하게 되어 기쁘며, 이 버전은 Chrome 46 Stable과 조정되어 릴리스될 때까지 베타 상태로 유지됩니다. V8 4.6은 개발자 중심의 다양한 혜택으로 가득 차 있으며, 몇 주 후 릴리스를 기대하며 주요 내용을 미리 소개하고자 합니다.
 

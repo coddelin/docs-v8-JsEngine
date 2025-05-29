@@ -1,14 +1,14 @@
 ---
-title: 'Propriétés rest et spread des objets'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Propriétés rest et spread des objets"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-06-06
 tags:
   - ECMAScript
   - ES2018
-description: 'Cet article explique comment fonctionnent les propriétés rest et spread des objets en JavaScript, et revient sur les éléments rest et spread des tableaux.'
-tweet: '890269994688315394'
+description: "Cet article explique comment fonctionnent les propriétés rest et spread des objets en JavaScript, et revient sur les éléments rest et spread des tableaux."
+tweet: "890269994688315394"
 ---
 Avant de discuter des _propriétés rest et spread des objets_, faisons un petit retour en arrière pour nous rappeler une fonctionnalité très similaire.
 

@@ -1,13 +1,13 @@
 ---
-title: '私有品牌檢查，也就是 `#foo in obj`'
-author: 'Marja Hölttä ([@marjakh](https://twitter.com/marjakh))'
+title: "私有品牌檢查，也就是 `#foo in obj`"
+author: "Marja Hölttä ([@marjakh](https://twitter.com/marjakh))"
 avatars:
-  - 'marja-holtta'
+  - "marja-holtta"
 date: 2021-04-14
 tags:
   - ECMAScript
-description: '私有品牌檢查允許測試物件中是否存在私有字段。'
-tweet: '1382327454975590401'
+description: "私有品牌檢查允許測試物件中是否存在私有字段。"
+tweet: "1382327454975590401"
 ---
 
 The [`in` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in) 可用於測試給定的物件（或其原型鏈上的任何物件）是否具有給定屬性:

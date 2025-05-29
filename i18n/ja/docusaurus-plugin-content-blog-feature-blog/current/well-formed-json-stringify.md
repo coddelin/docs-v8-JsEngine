@@ -1,13 +1,13 @@
 ---
-title: '適切に形成された`JSON.stringify`'
-author: 'Mathias Bynens（[@mathias](https://twitter.com/mathias)）'
+title: "適切に形成された`JSON.stringify`"
+author: "Mathias Bynens（[@mathias](https://twitter.com/mathias)）"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-09-11
 tags:
   - ECMAScript
   - ES2019
-description: 'JSON.stringifyは現在、孤立したサロゲートペアにエスケープシーケンスを出力するため、その出力は有効なUnicode（UTF-8で表現可能）となっている。'
+description: "JSON.stringifyは現在、孤立したサロゲートペアにエスケープシーケンスを出力するため、その出力は有効なUnicode（UTF-8で表現可能）となっている。"
 ---
 `JSON.stringify`は以前、入力に孤立したサロゲートペアが含まれている場合、不正な形式のUnicode文字列を返す仕様でした：
 

@@ -1,14 +1,14 @@
 ---
-title: 'Nullish Coalescing'
-author: 'Justin Ridgewell'
+title: "Nullish Coalescing"
+author: "Justin Ridgewell"
 avatars:
-  - 'justin-ridgewell'
+  - "justin-ridgewell"
 date: 2019-09-17
 tags:
   - ECMAScript
   - ES2020
-description: 'Der JavaScript-Operator für nullish coalescing ermöglicht sicherere Standardausdrücke.'
-tweet: '1173971116865523714'
+description: "Der JavaScript-Operator für nullish coalescing ermöglicht sicherere Standardausdrücke."
+tweet: "1173971116865523714"
 ---
 Der [Nullish-Coalescing-Vorschlag](https://github.com/tc39/proposal-nullish-coalescing/) (`??`) fügt einen neuen Kurzschlussoperator hinzu, der für die Verarbeitung von Standardwerten gedacht ist.
 

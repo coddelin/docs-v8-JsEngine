@@ -1,13 +1,13 @@
 ---
-title: 'Jank Busters Part One'
-author: 'the jank busters: Jochen Eisinger, Michael Lippautz, and Hannes Payer'
+title: "Jank Busters Part One"
+author: "the jank busters: Jochen Eisinger, Michael Lippautz, and Hannes Payer"
 avatars:
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2015-10-30 13:33:37
 tags:
   - memory
-description: 'This article discusses optimizations that were implemented between Chrome 41 and Chrome 46 which significantly reduce garbage collection pauses, resulting in better user experience.'
+description: "This article discusses optimizations that were implemented between Chrome 41 and Chrome 46 which significantly reduce garbage collection pauses, resulting in better user experience."
 ---
 Jank, or in other words visible stutters, can be noticed when Chrome fails to render a frame within 16.66 ms (disrupting 60 frames per second motion). As of today most of the V8 garbage collection work is performed on the main rendering thread, c.f. Figure 1, often resulting in jank when too many objects need to be maintained. Eliminating jank has always been a high priority for the V8 team ([1](https://blog.chromium.org/2011/11/game-changer-for-interactive.html), [2](https://www.youtube.com/watch?v=3vPOlGRH6zk), [3](/blog/free-garbage-collection)). This article discusses a few optimizations that were implemented between Chrome 41 and Chrome 46 which significantly reduce garbage collection pauses resulting in better user experience.
 

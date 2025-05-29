@@ -1,15 +1,15 @@
 ---
-title: '`Intl.RelativeTimeFormat`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Intl.RelativeTimeFormat`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-10-22
 tags:
   - Intl
   - Node.js 12
   - io19
-description: 'Intl.RelativeTimeFormat를 사용하면 성능을 희생하지 않고 상대적인 시간을 로컬화된 형식으로 출력할 수 있습니다.'
-tweet: '1054387117571354624'
+description: "Intl.RelativeTimeFormat를 사용하면 성능을 희생하지 않고 상대적인 시간을 로컬화된 형식으로 출력할 수 있습니다."
+tweet: "1054387117571354624"
 ---
 현대적인 웹 애플리케이션은 종종 &quot;어제&quot;, &quot;42초 전&quot;, &quot;3개월 후&quot;와 같은 구문을 사용하여 전체 날짜와 타임스탬프 대신 사용합니다. 이러한 _상대적인 시간 형식 값_은 매우 일반적으로 사용되어 여러 인기 있는 라이브러리에서 이러한 값을 로컬화된 형식으로 출력하는 유틸리티 함수를 구현하고 있습니다. (예로는 [Moment.js](https://momentjs.com/), [Globalize](https://github.com/globalizejs/globalize), 그리고 [date-fns](https://date-fns.org/docs/) 등이 있습니다.)
 

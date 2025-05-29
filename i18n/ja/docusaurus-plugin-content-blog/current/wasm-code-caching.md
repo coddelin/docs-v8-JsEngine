@@ -1,14 +1,14 @@
 ---
-title: 'WebAssembly開発者のためのコードキャッシュ'
-author: '[ビル・バッジ](https://twitter.com/billb)、キャッシュにCa-ching！を加える'
+title: "WebAssembly開発者のためのコードキャッシュ"
+author: "[ビル・バッジ](https://twitter.com/billb)、キャッシュにCa-ching！を加える"
 avatars:
   - bill-budge
 date: 2019-06-17
 tags:
   - WebAssembly
   - 内部構造
-description: 'この記事では、ChromeのWebAssemblyコードキャッシュについて説明し、これを利用して大規模なWebAssemblyモジュールを持つアプリケーションの読み込みを高速化する方法を開発者がどのように活用できるかを紹介します。'
-tweet: '1140631433532334081'
+description: "この記事では、ChromeのWebAssemblyコードキャッシュについて説明し、これを利用して大規模なWebAssemblyモジュールを持つアプリケーションの読み込みを高速化する方法を開発者がどのように活用できるかを紹介します。"
+tweet: "1140631433532334081"
 ---
 開発者の間で「最も速いコードは実行されないコードだ」という言葉があります。同様に、最も速いコンパイルコードは、コンパイルする必要がないコードです。WebAssemblyコードキャッシュはChromeとV8における新しい最適化技術で、コンパイラによって生成されたネイティブコードをキャッシュすることでコードのコンパイルを回避することを目指しています。以前、ChromeとV8がJavaScriptコードをキャッシュする方法や、これらの最適化を活用するためのベストプラクティスについて[執筆](/blog/code-caching) [しました](/blog/improved-code-caching) [。](/blog/code-caching-for-devs) 今回のブログ記事では、ChromeのWebAssemblyコードキャッシュの動作と、大規模なWebAssemblyモジュールを持つアプリケーションの読み込みを高速化するために、開発者がこれをどのように活用できるかを説明します。
 

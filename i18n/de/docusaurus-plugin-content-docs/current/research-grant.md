@@ -2,7 +2,7 @@
 permalink: /grant/
 title: Forschungsstipendium
 layout: layouts/base.njk
-description: 'Das V8-Forschungsstipendium finanziert Forschung zu Programmiersprachen und Softwaresystemen, die auf V8, JavaScript und WebAssembly basieren.'
+description: "Das V8-Forschungsstipendium finanziert Forschung zu Programmiersprachen und Softwaresystemen, die auf V8, JavaScript und WebAssembly basieren."
 ---
 # V8-Forschungsstipendium
 

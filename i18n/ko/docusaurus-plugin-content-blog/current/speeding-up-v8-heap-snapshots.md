@@ -1,7 +1,7 @@
 ---
-title: 'V8 힙 스냅샷 가속화'
-description: '이 게시물에서는 V8 힙 스냅샷과 관련된 Bloomberg 엔지니어들이 발견한 몇 가지 성능 문제와 이를 해결하여 JavaScript 메모리 분석을 그 어느 때보다 빠르게 만든 방법에 대해 설명합니다.'
-author: 'Jose Dapena Paz'
+title: "V8 힙 스냅샷 가속화"
+description: "이 게시물에서는 V8 힙 스냅샷과 관련된 Bloomberg 엔지니어들이 발견한 몇 가지 성능 문제와 이를 해결하여 JavaScript 메모리 분석을 그 어느 때보다 빠르게 만든 방법에 대해 설명합니다."
+author: "Jose Dapena Paz"
 date: 2023-07-27
 tags:
  - 메모리

@@ -1,14 +1,14 @@
 ---
-title: '脱离网络：使用 Emscripten 的独立 WebAssembly 二进制文件'
-author: 'Alon Zakai'
+title: "脱离网络：使用 Emscripten 的独立 WebAssembly 二进制文件"
+author: "Alon Zakai"
 avatars:
-  - 'alon-zakai'
+  - "alon-zakai"
 date: 2019-11-21
 tags:
   - WebAssembly
   - 工具
-description: 'Emscripten 现在支持独立的 Wasm 文件，无需依赖 JavaScript。'
-tweet: '1197547645729988608'
+description: "Emscripten 现在支持独立的 Wasm 文件，无需依赖 JavaScript。"
+tweet: "1197547645729988608"
 ---
 Emscripten 一直以来主要专注于编译到 Web 和其他 JavaScript 环境（如 Node.js）。但是，随着 WebAssembly 开始在*不需要*JavaScript 的情况下被使用，出现了一些新的用例，因此我们一直在努力支持从 Emscripten 发出的[**独立 Wasm**](https://github.com/emscripten-core/emscripten/wiki/WebAssembly-Standalone) 文件，这些文件不依赖于 Emscripten 的 JS 运行时！本文会解释为什么这很有趣。
 

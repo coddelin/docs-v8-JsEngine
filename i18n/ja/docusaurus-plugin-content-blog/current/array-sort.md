@@ -1,14 +1,14 @@
 ---
-title: 'V8でのソートの整理'
-author: 'Simon Zünd（[@nimODota](https://twitter.com/nimODota)）、一貫性のある比較関数'
+title: "V8でのソートの整理"
+author: "Simon Zünd（[@nimODota](https://twitter.com/nimODota)）、一貫性のある比較関数"
 avatars:
   - simon-zuend
 date: 2018-09-28 11:20:37
 tags:
   - ECMAScript
   - 内部構造
-description: 'V8 v7.0 / Chrome 70以降、Array.prototype.sortは安定的です。'
-tweet: '1045656758700650502'
+description: "V8 v7.0 / Chrome 70以降、Array.prototype.sortは安定的です。"
+tweet: "1045656758700650502"
 ---
 `Array.prototype.sort`は、V8でセルフホスティングJavaScriptで実装された最後のビルトインの1つでした。このポート作業を通じて、異なるアルゴリズムや実装戦略を試す機会を得、それを最終的に[V8 v7.0 / Chrome 70で安定化する](https://mathiasbynens.be/demo/sort-stability)ことができました。
 

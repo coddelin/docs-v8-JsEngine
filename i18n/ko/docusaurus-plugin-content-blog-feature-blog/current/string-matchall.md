@@ -1,14 +1,14 @@
 ---
-title: '`String.prototype.matchAll`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`String.prototype.matchAll`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-02-02
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: 'String.prototype.matchAll를 사용하여 주어진 정규식이 생성하는 모든 매치 객체를 쉽게 순회할 수 있습니다.'
+description: "String.prototype.matchAll를 사용하여 주어진 정규식이 생성하는 모든 매치 객체를 쉽게 순회할 수 있습니다."
 ---
 문자열에서 동일한 정규식을 반복 적용하여 모든 매치를 찾는 것은 일반적인 경우입니다. 어느 정도는 `String#match` 메서드를 사용하여 오늘날에도 가능합니다.
 

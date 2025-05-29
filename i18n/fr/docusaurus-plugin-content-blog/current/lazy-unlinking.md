@@ -1,12 +1,12 @@
 ---
-title: 'Un stage sur la paresse : délier paresseusement les fonctions désoptimisées'
-author: 'Juliana Franco ([@jupvfranco](https://twitter.com/jupvfranco)), Experte en Paresse'
+title: "Un stage sur la paresse : délier paresseusement les fonctions désoptimisées"
+author: "Juliana Franco ([@jupvfranco](https://twitter.com/jupvfranco)), Experte en Paresse"
 date: 2017-10-04 13:33:37
 tags:
   - mémoire
   - interne
-description: 'Cette analyse technique approfondie explique comment V8 délait les fonctions désoptimisées auparavant et comment nous avons récemment changé cela pour améliorer les performances.'
-tweet: '915473224187760640'
+description: "Cette analyse technique approfondie explique comment V8 délait les fonctions désoptimisées auparavant et comment nous avons récemment changé cela pour améliorer les performances."
+tweet: "915473224187760640"
 ---
 Il y a environ trois mois, j’ai rejoint l’équipe V8 (Google Munich) en tant que stagiaire et depuis, j’ai travaillé sur le _Deoptimizer_ de la VM — quelque chose de totalement nouveau pour moi qui s’est avéré être un projet intéressant et stimulant. La première partie de mon stage s’est concentrée sur [l’amélioration de la sécurité de la VM](https://docs.google.com/document/d/1ELgd71B6iBaU6UmZ_lvwxf_OrYYnv0e4nuzZpK05-pg/edit). La deuxième partie portait sur les améliorations des performances. Notamment, sur la suppression d’une structure de données utilisée pour délier les fonctions précédemment désoptimisées, ce qui était un goulot d’étranglement de performance durant la collecte des ordures. Cet article de blog décrit cette deuxième partie de mon stage. J’expliquerai comment V8 délait les fonctions désoptimisées auparavant, comment nous avons changé cela et quelles améliorations de performance ont été obtenues.
 

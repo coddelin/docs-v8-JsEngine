@@ -1,10 +1,10 @@
 ---
-title: 'V8 릴리즈 v6.2'
-author: 'V8 팀'
+title: "V8 릴리즈 v6.2"
+author: "V8 팀"
 date: 2017-09-11 13:33:37
 tags:
   - 릴리즈
-description: 'V8 v6.2는 성능 개선, 더 많은 JavaScript 언어 기능, 증가된 최대 문자열 길이 등을 포함합니다.'
+description: "V8 v6.2는 성능 개선, 더 많은 JavaScript 언어 기능, 증가된 최대 문자열 길이 등을 포함합니다."
 ---
 6주마다 우리는 [릴리즈 프로세스](/docs/release-process)의 일부분으로 V8의 새 브랜치를 생성합니다. 각 버전은 Chrome 베타 이정표 직전에 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 새 브랜치인 [V8 버전 6.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.2)를 발표하게 되어 기쁩니다. 이것은 몇 주 뒤 Chrome 62 안정 버전과 함께 릴리즈될 때까지 베타 상태입니다. V8 v6.2는 개발자에게 유용한 다양한 기능으로 가득 차 있습니다. 이 글에서는 릴리즈를 기대하며 주요 내용을 미리 살펴봅니다.
 

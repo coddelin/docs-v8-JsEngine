@@ -1,13 +1,13 @@
 ---
-title: 'V8-Version v8.7-Veröffentlichung'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), ein V8-Fahnenträger'
+title: "V8-Version v8.7-Veröffentlichung"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), ein V8-Fahnenträger"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2020-10-23
 tags:
  - Veröffentlichung
-description: 'Die V8-Version v8.7 bringt neue APIs für native Aufrufe, Atomics.waitAsync, Fehlerbehebungen und Leistungsverbesserungen.'
-tweet: '1319654229863182338'
+description: "Die V8-Version v8.7 bringt neue APIs für native Aufrufe, Atomics.waitAsync, Fehlerbehebungen und Leistungsverbesserungen."
+tweet: "1319654229863182338"
 ---
 Alle sechs Wochen erstellen wir einen neuen Zweig von V8 im Rahmen unseres [Veröffentlichungsprozesses](https://v8.dev/docs/release-process). Jede Version wird unmittelbar vor einem Chrome-Beta-Meilenstein vom V8-Git-Master abgezweigt. Heute freuen wir uns, unseren neuesten Zweig [V8-Version 8.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.7) anzukündigen, der sich bis zur Veröffentlichung in Zusammenarbeit mit Chrome 87 Stable in mehreren Wochen in der Beta-Phase befindet. V8 v8.7 ist vollgepackt mit allerlei Entwickler-Features. Dieser Beitrag bietet eine Vorschau auf einige Highlights im Hinblick auf die Veröffentlichung.
 

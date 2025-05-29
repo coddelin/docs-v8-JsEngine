@@ -1,6 +1,6 @@
 ---
-title: 'Verwendung von V8s Sample-basiertem Profiler'
-description: 'Dieses Dokument erklärt, wie man den Sample-basierten Profiler von V8 verwendet.'
+title: "Verwendung von V8s Sample-basiertem Profiler"
+description: "Dieses Dokument erklärt, wie man den Sample-basierten Profiler von V8 verwendet."
 ---
 V8 verfügt über einen eingebauten Sample-basierten Profiler. Das Profiling ist standardmäßig deaktiviert, kann jedoch über die Befehlszeilenoption `--prof` aktiviert werden. Der Sampler zeichnet Stapel von JavaScript- und C/C++-Code auf.
 

@@ -1,13 +1,13 @@
 ---
-title: 'V8 发布 v7.5'
-author: 'Dan Elphick，被弃用功能的克星'
+title: "V8 发布 v7.5"
+author: "Dan Elphick，被弃用功能的克星"
 avatars:
-  - 'dan-elphick'
+  - "dan-elphick"
 date: 2019-05-16 15:00:00
 tags:
   - 发布
-description: 'V8 v7.5 引入了 WebAssembly 编译产物的隐式缓存、大规模内存操作、JavaScript 中的数值分隔符以及更多功能！'
-tweet: '1129073370623086593'
+description: "V8 v7.5 引入了 WebAssembly 编译产物的隐式缓存、大规模内存操作、JavaScript 中的数值分隔符以及更多功能！"
+tweet: "1129073370623086593"
 ---
 每隔六周，我们会根据 [发布流程](/docs/release-process) 创建一个新的 V8 分支。每个版本都在 Chrome Beta 里程碑之前直接从 V8 的 Git 主分支中分出。今天我们很高兴地宣布最新的分支，[V8 版本 7.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.5)，它将在几个星期后与 Chrome 75 的稳定版一同发布。在此期间处于 Beta 阶段。V8 v7.5 包含了丰富多样的开发者友好功能。本文提前展示了一些亮点功能，敬请期待正式发布。
 

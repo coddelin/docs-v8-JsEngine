@@ -1,6 +1,6 @@
 ---
-title: 'Compilación cruzada y depuración para ARM/Android'
-description: 'Este documento explica cómo compilar V8 cruzadamente para ARM/Android y cómo depurarlo.'
+title: "Compilación cruzada y depuración para ARM/Android"
+description: "Este documento explica cómo compilar V8 cruzadamente para ARM/Android y cómo depurarlo."
 ---
 Primero, asegúrate de poder [compilar con GN](/docs/build-gn).
 

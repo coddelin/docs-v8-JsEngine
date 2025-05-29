@@ -1,12 +1,12 @@
 ---
-title: 'Extras do V8'
-author: 'Domenic Denicola ([@domenic](https://twitter.com/domenic)), Feiticeiro de Streams'
+title: "Extras do V8"
+author: "Domenic Denicola ([@domenic](https://twitter.com/domenic)), Feiticeiro de Streams"
 avatars:
-  - 'domenic-denicola'
+  - "domenic-denicola"
 date: 2016-02-04 13:33:37
 tags:
   - internos
-description: 'V8 v4.8 inclui “extras do V8”, uma interface simples projetada com o objetivo de permitir que emuladores escrevam APIs autogerenciadas de alto desempenho.'
+description: "V8 v4.8 inclui “extras do V8”, uma interface simples projetada com o objetivo de permitir que emuladores escrevam APIs autogerenciadas de alto desempenho."
 ---
 O V8 implementa um grande subconjunto dos objetos e funções incorporados da linguagem JavaScript no próprio JavaScript. Por exemplo, você pode ver nossa [implementação de promessas](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js) escrita em JavaScript. Tais recursos incorporados são chamados de _autogerenciados_. Essas implementações são incluídas em nosso [instantâneo de inicialização](/blog/custom-startup-snapshots) para que novos contextos possam ser criados rapidamente, sem a necessidade de configurar e inicializar os elementos autogerenciados durante a execução.
 

@@ -1,6 +1,6 @@
 ---
-title: 'TurboFan'
-description: 'この文書はTurboFan、V8の最適化コンパイラに関するリソースをまとめています。'
+title: "TurboFan"
+description: "この文書はTurboFan、V8の最適化コンパイラに関するリソースをまとめています。"
 ---
 TurboFanはV8の最適化コンパイラの一つで、[「Sea of Nodes」](https://darksi.de/d.sea-of-nodes/)という概念を利用しています。V8のブログ記事に[TurboFanの概要](/blog/turbofan-jit)が紹介されています。以下のリソースで更に詳細を確認できます。
 

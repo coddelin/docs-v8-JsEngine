@@ -1,14 +1,14 @@
 ---
-title: '空值合并'
-author: 'Justin Ridgewell'
+title: "空值合并"
+author: "Justin Ridgewell"
 avatars:
-  - 'justin-ridgewell'
+  - "justin-ridgewell"
 date: 2019-09-17
 tags:
   - ECMAScript
   - ES2020
-description: 'JavaScript 的空值合并操作符可以实现更安全的默认值表达式。'
-tweet: '1173971116865523714'
+description: "JavaScript 的空值合并操作符可以实现更安全的默认值表达式。"
+tweet: "1173971116865523714"
 ---
 [空值合并提案](https://github.com/tc39/proposal-nullish-coalescing/) (`??`) 添加了一个新的短路操作符，用于处理默认值。
 

@@ -1,13 +1,13 @@
 ---
-title: 'Static Roots: Objects with Compile-Time Constant Addresses'
-author: 'Olivier Flückiger'
+title: "Static Roots: Objects with Compile-Time Constant Addresses"
+author: "Olivier Flückiger"
 avatars:
   - olivier-flueckiger
 date: 2024-02-05
 tags:
   - JavaScript
 description: "Static Roots 使得某些 JS 物件的位址成為編譯時的常數。"
-tweet: ''
+tweet: ""
 ---
 
 你是否曾經好奇像 `undefined`、`true` 等核心 JavaScript 物件是從哪裡來的？這些物件是任何使用者定義物件的基本單位，必須先存在。V8 將它們稱為不可移動且不可變的根物件，並將它們存放於自己的堆區——唯讀堆。由於這些物件被頻繁使用，因此快速存取至關重要。而什麼能比在編譯時正確推測它們的記憶體位址更快呢？

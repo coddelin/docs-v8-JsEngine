@@ -1,15 +1,15 @@
 ---
-title: 'Pointer Compression in V8'
-author: 'Igor Sheludko and Santiago Aboy Solanes, *the* pointer compressors'
+title: "Pointer Compression in V8"
+author: "Igor Sheludko and Santiago Aboy Solanes, *the* pointer compressors"
 avatars:
-  - 'igor-sheludko'
-  - 'santiago-aboy-solanes'
+  - "igor-sheludko"
+  - "santiago-aboy-solanes"
 date: 2020-03-30
 tags:
   - internals
   - memory
-description: 'V8 reduced its heap size up to 43%! Learn how in “Pointer Compression in V8”!'
-tweet: '1244653541379182596'
+description: "V8 reduced its heap size up to 43%! Learn how in “Pointer Compression in V8”!"
+tweet: "1244653541379182596"
 ---
 There is a constant battle between memory and performance. As users, we would like things to be fast as well as consume as little memory as possible. Unfortunately, usually improving performance comes at a cost of memory consumption (and vice versa).
 

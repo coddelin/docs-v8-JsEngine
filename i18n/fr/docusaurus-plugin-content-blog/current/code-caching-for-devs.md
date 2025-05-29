@@ -1,14 +1,14 @@
 ---
-title: 'Mise en cache de code pour les développeurs JavaScript'
-author: '[Leszek Swirski](https://twitter.com/leszekswirski), casseur de cache'
+title: "Mise en cache de code pour les développeurs JavaScript"
+author: "[Leszek Swirski](https://twitter.com/leszekswirski), casseur de cache"
 avatars:
   - leszek-swirski
 date: 2019-04-08 13:33:37
 updated: 2020-06-16
 tags:
   - interne
-description: 'La mise en cache du (byte)code réduit le temps de démarrage des sites web fréquemment visités en mettant en cache le résultat de l’analyse et de la compilation du JavaScript.'
-tweet: '1115264282675953664'
+description: "La mise en cache du (byte)code réduit le temps de démarrage des sites web fréquemment visités en mettant en cache le résultat de l’analyse et de la compilation du JavaScript."
+tweet: "1115264282675953664"
 ---
 La mise en cache de code (également appelée _mise en cache de bytecode_) est une optimisation importante dans les navigateurs. Elle réduit le temps de démarrage des sites web fréquemment visités en mettant en cache le résultat de l’analyse et de la compilation. La plupart des [navigateurs](https://blog.mozilla.org/javascript/2017/12/12/javascript-startup-bytecode-cache/) [populaires](https://bugs.webkit.org/show_bug.cgi?id=192782) implémentent une forme de mise en cache de code, et Chrome ne fait pas exception. En effet, nous avons déjà [écrit](/blog/code-caching) [et](/blog/improved-code-caching) [parlé](https://www.youtube.com/watch?v=YqHOUy2rYZ8) de la façon dont Chrome et V8 mettent en cache le code compilé.
 

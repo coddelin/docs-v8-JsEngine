@@ -1,13 +1,13 @@
 ---
-title: 'JIT-less V8'
-author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
+title: "JIT-less V8"
+author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2019-03-13 13:03:19
 tags:
   - internals
-description: 'V8 v7.4 supports JavaScript execution without allocating executable memory at runtime.'
-tweet: '1105777150051999744'
+description: "V8 v7.4 supports JavaScript execution without allocating executable memory at runtime."
+tweet: "1105777150051999744"
 ---
 V8 v7.4 now supports JavaScript execution without allocating executable memory at runtime.
 

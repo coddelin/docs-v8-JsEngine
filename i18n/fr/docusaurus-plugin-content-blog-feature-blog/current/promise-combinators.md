@@ -1,8 +1,8 @@
 ---
-title: 'Promise combinators'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Promise combinators"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-12
 tags:
   - ECMAScript
@@ -10,8 +10,8 @@ tags:
   - ES2021
   - io19
   - Node.js 16
-description: 'Il existe quatre combinateurs de promesses en JavaScript : Promise.all, Promise.race, Promise.allSettled et Promise.any.'
-tweet: '1138819493956710400'
+description: "Il existe quatre combinateurs de promesses en JavaScript : Promise.all, Promise.race, Promise.allSettled et Promise.any."
+tweet: "1138819493956710400"
 ---
 Depuis l'introduction des promesses dans ES2015, JavaScript a pris en charge exactement deux combinateurs de promesses : les méthodes statiques `Promise.all` et `Promise.race`.
 

@@ -1,13 +1,13 @@
 ---
-title: '`JSON.stringify` Bem-formado'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`JSON.stringify` Bem-formado"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-09-11
 tags:
   - ECMAScript
   - ES2019
-description: 'JSON.stringify agora gera sequências de escape para surrogates solitários, tornando sua saída Unicode válido (e representável em UTF-8).'
+description: "JSON.stringify agora gera sequências de escape para surrogates solitários, tornando sua saída Unicode válido (e representável em UTF-8)."
 ---
 `JSON.stringify` anteriormente era especificado para retornar strings Unicode malformadas se a entrada contivesse algum surrogate solitário:
 

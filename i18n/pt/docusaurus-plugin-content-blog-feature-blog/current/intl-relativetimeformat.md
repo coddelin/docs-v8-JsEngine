@@ -1,15 +1,15 @@
 ---
-title: '`Intl.RelativeTimeFormat`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Intl.RelativeTimeFormat`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-10-22
 tags:
   - Intl
   - Node.js 12
   - io19
-description: 'Intl.RelativeTimeFormat permite a formatação localizada de tempos relativos sem sacrificar o desempenho.'
-tweet: '1054387117571354624'
+description: "Intl.RelativeTimeFormat permite a formatação localizada de tempos relativos sem sacrificar o desempenho."
+tweet: "1054387117571354624"
 ---
 Aplicações web modernas frequentemente utilizam frases como “ontem”, “há 42 segundos” ou “em 3 meses” em vez de datas completas e carimbos temporais. Valores _formatados como tempo relativo_ tornaram-se tão comuns que várias bibliotecas populares implementam funções utilitárias que os formatam de maneira localizada. (Exemplos incluem [Moment.js](https://momentjs.com/), [Globalize](https://github.com/globalizejs/globalize), e [date-fns](https://date-fns.org/docs/).)
 

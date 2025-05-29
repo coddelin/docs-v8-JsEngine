@@ -1,15 +1,15 @@
 ---
-title: '数字分隔符'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "数字分隔符"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-05-28
 tags:
   - ECMAScript
   - ES2021
   - io19
-description: 'JavaScript现在支持用下划线作为数字字面量的分隔符，从而提升源码的可读性和可维护性。'
-tweet: '1129073383931559936'
+description: "JavaScript现在支持用下划线作为数字字面量的分隔符，从而提升源码的可读性和可维护性。"
+tweet: "1129073383931559936"
 ---
 大型数字字面量对人眼来说难以快速解析，特别是当数字中有大量重复数字时：
 

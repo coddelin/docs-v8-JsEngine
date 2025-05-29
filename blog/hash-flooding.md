@@ -1,12 +1,12 @@
 ---
-title: 'About that hash flooding vulnerability in Node.js…'
-author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed))'
+title: "About that hash flooding vulnerability in Node.js…"
+author: "Yang Guo ([@hashseed](https://twitter.com/hashseed))"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2017-08-11 13:33:37
 tags:
   - security
-description: 'Node.js suffered from a hash flooding vulnerability. This post provides some background, and explains the solution in V8.'
+description: "Node.js suffered from a hash flooding vulnerability. This post provides some background, and explains the solution in V8."
 ---
 Early July this year, Node.js released a [security update](https://nodejs.org/en/blog/vulnerability/july-2017-security-releases/) for all currently maintained branches to address a hash flooding vulnerability. This intermediate fix comes at the cost of a significant startup performance regression. In the meantime, V8 has implemented a solution which avoids the performance penalty.
 

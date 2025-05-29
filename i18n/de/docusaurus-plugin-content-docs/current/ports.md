@@ -1,6 +1,6 @@
 ---
-title: 'Bearbeitung von Ports'
-description: 'Dieses Dokument beschreibt, wie architekturspezifische V8-Ports gehandhabt werden sollten.'
+title: "Bearbeitung von Ports"
+description: "Dieses Dokument beschreibt, wie architekturspezifische V8-Ports gehandhabt werden sollten."
 ---
 Dieses Dokument beschreibt, wie Ports gehandhabt werden sollten.
 

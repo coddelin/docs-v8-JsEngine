@@ -1,13 +1,13 @@
 ---
-title: '导入断言'
-author: 'Dan Clark ([@dandclark1](https://twitter.com/dandclark1))，断言导入的坚定支持者'
+title: "导入断言"
+author: "Dan Clark ([@dandclark1](https://twitter.com/dandclark1))，断言导入的坚定支持者"
 avatars:
-  - 'dan-clark'
+  - "dan-clark"
 date: 2021-06-15
 tags:
   - ECMAScript
-description: '导入断言允许模块导入语句在模块规范符旁边包含额外信息'
-tweet: ''
+description: "导入断言允许模块导入语句在模块规范符旁边包含额外信息"
+tweet: ""
 ---
 
 新的[导入断言](https://github.com/tc39/proposal-import-assertions)功能允许模块导入语句在模块规范符旁边包含额外的信息。该功能的初始用途是使 JSON 文档可以作为 [JSON 模块](https://github.com/tc39/proposal-json-modules) 导入：

@@ -1,10 +1,10 @@
 ---
-title: 'V8-Version v5.5'
-author: 'das V8-Team'
+title: "V8-Version v5.5"
+author: "das V8-Team"
 date: 2016-10-24 13:33:37
 tags:
   - Veröffentlichung
-description: 'V8 v5.5 bietet reduzierte Speicherauslastung und erweiterte Unterstützung für ECMAScript-Sprachfunktionen.'
+description: "V8 v5.5 bietet reduzierte Speicherauslastung und erweiterte Unterstützung für ECMAScript-Sprachfunktionen."
 ---
 Alle sechs Wochen erstellen wir im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process) einen neuen Branch von V8. Jede Version wird direkt vor einer Chrome-Beta-Meilenstein aus dem Git-Master von V8 abgezweigt. Heute freuen wir uns, unseren neuesten Branch [V8-Version 5.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.5) bekannt zu geben, der bis zur Freigabe in Kombination mit Chrome 55 Stable in einigen Wochen in der Beta-Phase sein wird. V8 v5.5 ist voller neuer Funktionen für Entwickler, und wir möchten Ihnen einen Vorgeschmack auf einige Highlights geben, die in der Veröffentlichung enthalten sind.
 

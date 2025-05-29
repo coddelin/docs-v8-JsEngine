@@ -1,13 +1,13 @@
 ---
-title: 'Lançamento do V8 v7.7'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), alocador preguiçoso de notas de lançamento'
+title: "Lançamento do V8 v7.7"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), alocador preguiçoso de notas de lançamento"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-08-13 16:45:00
 tags:
   - lançamento
-description: 'O V8 v7.7 apresenta alocação preguiçosa de feedback, compilação em segundo plano mais rápida para WebAssembly, melhorias em rastreamento de pilha e novas funcionalidades do Intl.NumberFormat.'
-tweet: '1161287541611323397'
+description: "O V8 v7.7 apresenta alocação preguiçosa de feedback, compilação em segundo plano mais rápida para WebAssembly, melhorias em rastreamento de pilha e novas funcionalidades do Intl.NumberFormat."
+tweet: "1161287541611323397"
 ---
 A cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](/docs/release-process). Cada versão é branqueada a partir do mestre do Git do V8 imediatamente antes de uma etapa Beta do Chrome. Hoje, temos o prazer de anunciar nosso mais novo branch, [a versão 7.7 do V8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.7), que está em beta até seu lançamento em coordenação com o Chrome 77 Stable em algumas semanas. O V8 v7.7 está repleto de recursos interessantes voltados para desenvolvedores. Este post fornece uma prévia de alguns dos destaques em antecipação ao lançamento.
 

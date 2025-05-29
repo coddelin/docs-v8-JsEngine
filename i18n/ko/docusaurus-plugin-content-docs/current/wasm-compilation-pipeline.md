@@ -1,6 +1,6 @@
 ---
-title: 'WebAssembly 컴파일 파이프라인'
-description: '이 글에서는 V8의 WebAssembly 컴파일러와 언제 WebAssembly 코드를 컴파일하는지에 대해 설명합니다.'
+title: "WebAssembly 컴파일 파이프라인"
+description: "이 글에서는 V8의 WebAssembly 컴파일러와 언제 WebAssembly 코드를 컴파일하는지에 대해 설명합니다."
 ---
 
 WebAssembly는 자바스크립트 외의 프로그래밍 언어 코드를 웹에서 효율적이고 안전하게 실행할 수 있는 바이너리 형식입니다. 이 문서에서는 V8의 WebAssembly 컴파일 파이프라인을 자세히 살펴보고 성능 향상을 위해 서로 다른 컴파일러를 어떻게 사용하는지 설명합니다.

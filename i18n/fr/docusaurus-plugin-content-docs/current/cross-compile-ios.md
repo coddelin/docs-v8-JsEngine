@@ -1,6 +1,6 @@
 ---
-title: 'Compilation croisée pour iOS'
-description: 'Ce document explique comment effectuer une compilation croisée de V8 pour iOS.'
+title: "Compilation croisée pour iOS"
+description: "Ce document explique comment effectuer une compilation croisée de V8 pour iOS."
 ---
 Cette page sert d'introduction brève à la construction de V8 pour les cibles iOS.
 

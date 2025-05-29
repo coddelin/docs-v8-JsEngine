@@ -1,14 +1,14 @@
 ---
-title: 'Optional chaining'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), breaker of optional chains'
+title: "Optional chaining"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), breaker of optional chains"
 avatars:
-  - 'maya-armyanova'
+  - "maya-armyanova"
 date: 2019-08-27
 tags:
   - ECMAScript
   - ES2020
-description: 'Optional chaining enables readable and concise expression of property accesses with built-in nullish checking.'
-tweet: '1166360971914481669'
+description: "Optional chaining enables readable and concise expression of property accesses with built-in nullish checking."
+tweet: "1166360971914481669"
 ---
 Long chains of property accesses in JavaScript can be error-prone, as any of them might evaluate to `null` or `undefined` (also known as “nullish” values). Checking for property existence on each step easily turns into a deeply-nested structure of `if`-statements or a long `if`-condition replicating the property access chain:
 

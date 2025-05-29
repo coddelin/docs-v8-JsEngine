@@ -1,13 +1,13 @@
 ---
-title: 'V8 릴리즈 v8.4'
-author: 'Camillo Bruni, 신선한 불값을 즐기는 중'
+title: "V8 릴리즈 v8.4"
+author: "Camillo Bruni, 신선한 불값을 즐기는 중"
 avatars:
- - 'camillo-bruni'
+ - "camillo-bruni"
 date: 2020-06-30
 tags:
  - release
-description: 'V8 v8.4는 약한 참조와 개선된 WebAssembly 성능을 제공합니다.'
-tweet: '1277983235641761795'
+description: "V8 v8.4는 약한 참조와 개선된 WebAssembly 성능을 제공합니다."
+tweet: "1277983235641761795"
 ---
 6주마다 우리는 [릴리즈 프로세스](https://v8.dev/docs/release-process)의 일환으로 V8의 새로운 브랜치를 만듭니다. 각 버전은 Chrome 베타 마일스톤 직전에 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 새 브랜치, [V8 버전 8.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.4)를 발표하게 되어 기쁩니다. 이 버전은 몇 주 후 Chrome 84 정식 버전 출시와 함께 출시될 때까지 베타 상태에 있습니다. V8 v8.4는 개발자를 위한 여러 가지 좋은 기능들로 가득합니다. 이 게시물은 출시를 앞둔 주요 하이라이트들을 미리 보여줍니다.
 

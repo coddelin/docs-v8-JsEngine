@@ -1,15 +1,15 @@
 ---
-title: 'BigInt：JavaScriptにおける任意精度整数'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "BigInt：JavaScriptにおける任意精度整数"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-05-01
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: 'BigIntはJavaScriptにおける新しい数値プリミティブで、任意精度の整数を表現できます。本記事ではいくつかの使用例を紹介し、JavaScriptのNumberと比較することでChrome 67における新しい機能について説明します。'
-tweet: '990991035630206977'
+description: "BigIntはJavaScriptにおける新しい数値プリミティブで、任意精度の整数を表現できます。本記事ではいくつかの使用例を紹介し、JavaScriptのNumberと比較することでChrome 67における新しい機能について説明します。"
+tweet: "990991035630206977"
 ---
 `BigInt`はJavaScriptにおける新しい数値プリミティブで、任意精度の整数を表現できます。`BigInt`を使用すると、`Number`で安全な整数制限を超える大きな整数を安全に保存し操作することができます。本記事ではいくつかの使用例を紹介し、JavaScriptの`Number`と比較することでChrome 67における新機能を説明します。
 

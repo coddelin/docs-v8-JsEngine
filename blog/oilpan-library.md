@@ -1,6 +1,6 @@
 ---
-title: 'Oilpan library'
-author: 'Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), and Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), efficient and effective file movers'
+title: "Oilpan library"
+author: "Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), and Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), efficient and effective file movers"
 avatars:
   - anton-bikineev
   - omer-katz
@@ -10,8 +10,8 @@ tags:
   - internals
   - memory
   - cppgc
-description: 'V8 ships with Oilpan, a garbage collection library for hosting managed C++ memory.'
-tweet: '1458406645181165574'
+description: "V8 ships with Oilpan, a garbage collection library for hosting managed C++ memory."
+tweet: "1458406645181165574"
 ---
 
 While the title of this post may suggest taking a deep dive into a collection of books around oil pans – which, considering construction norms for pans, is a topic with a surprising amount of literature – we are instead looking a bit closer at Oilpan, a C++ garbage collector that is hosted through V8 as a library since V8 v9.4.

@@ -1,6 +1,6 @@
 ---
-title: 'V8의 Linux `perf` 통합'
-description: '이 문서는 Linux `perf` 도구를 사용하여 V8의 JIT 코드 성능을 분석하는 방법을 설명합니다.'
+title: "V8의 Linux `perf` 통합"
+description: "이 문서는 Linux `perf` 도구를 사용하여 V8의 JIT 코드 성능을 분석하는 방법을 설명합니다."
 ---
 V8은 Linux `perf` 도구에 대한 기본 지원을 제공합니다. 이를 활성화하려면 `--perf-prof` 명령줄 옵션을 사용하십시오.
 V8은 실행 중에 성능 데이터를 파일에 기록하여 Linux `perf` 도구를 사용해 V8의 JIT 코드(예: JS 함수 이름)를 분석할 수 있게 합니다.

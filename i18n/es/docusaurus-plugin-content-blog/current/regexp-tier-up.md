@@ -1,15 +1,15 @@
 ---
-title: 'Mejorando las expresiones regulares de V8'
-author: 'Patrick Thier y Ana Peško, expresadores regulares de opiniones sobre expresiones regulares'
+title: "Mejorando las expresiones regulares de V8"
+author: "Patrick Thier y Ana Peško, expresadores regulares de opiniones sobre expresiones regulares"
 avatars:
-  - 'patrick-thier'
-  - 'ana-pesko'
+  - "patrick-thier"
+  - "ana-pesko"
 date: 2019-10-04 15:24:16
 tags:
   - internals
   - RegExp
-description: 'En esta publicación de blog describimos cómo aprovechamos las ventajas de interpretar expresiones regulares y mitigamos las desventajas.'
-tweet: '1180131710568030208'
+description: "En esta publicación de blog describimos cómo aprovechamos las ventajas de interpretar expresiones regulares y mitigamos las desventajas."
+tweet: "1180131710568030208"
 ---
 En su configuración predeterminada, V8 compila las expresiones regulares a código nativo en la primera ejecución. Como parte de nuestro trabajo en [V8 sin JIT](/blog/jitless), introdujimos un intérprete para expresiones regulares. Interpretar expresiones regulares tiene la ventaja de usar menos memoria, pero conlleva una penalización de rendimiento. En esta publicación de blog describimos cómo aprovechamos las ventajas de interpretar expresiones regulares mientras mitigamos las desventajas.
 

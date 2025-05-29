@@ -1,13 +1,13 @@
 ---
-title: 'Inicialização mais rápida de instâncias com novos recursos de classe'
-author: '[Joyee Cheung](https://twitter.com/JoyeeCheung), inicializador de instâncias'
+title: "Inicialização mais rápida de instâncias com novos recursos de classe"
+author: "[Joyee Cheung](https://twitter.com/JoyeeCheung), inicializador de instâncias"
 avatars:
-  - 'joyee-cheung'
+  - "joyee-cheung"
 date: 2022-04-20
 tags:
   - internals
-description: 'As inicializações de instâncias com novos recursos de classe se tornaram mais rápidas desde o V8 v9.7.'
-tweet: '1517041137378373632'
+description: "As inicializações de instâncias com novos recursos de classe se tornaram mais rápidas desde o V8 v9.7."
+tweet: "1517041137378373632"
 ---
 
 Os campos de classe foram introduzidos no V8 desde a versão v7.2 e os métodos privados de classe foram incluídos desde a versão v8.4. Após as propostas alcançarem o estágio 4 em 2021, começou o trabalho de aprimorar o suporte aos novos recursos de classe no V8 - até então, havia dois principais problemas que impactavam sua adoção:

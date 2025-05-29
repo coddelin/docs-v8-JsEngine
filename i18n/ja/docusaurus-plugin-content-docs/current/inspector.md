@@ -1,6 +1,6 @@
 ---
-title: 'V8インスペクタープロトコルを使用したデバッグ'
-description: 'このページは、V8におけるデバッグサポートを実装するための基本的なツールを埋め込み者に提供することを目的としています。'
+title: "V8インスペクタープロトコルを使用したデバッグ"
+description: "このページは、V8におけるデバッグサポートを実装するための基本的なツールを埋め込み者に提供することを目的としています。"
 ---
 V8は、ユーザーおよび埋め込み者の両方に対して広範なデバッグ機能を提供します。ユーザーは通常、[Chrome DevTools](https://developer.chrome.com/devtools)インターフェースを通じてV8デバッガを操作します。埋め込み者（DevToolsを含む）は、[Inspector Protocol](https://chromedevtools.github.io/debugger-protocol-viewer/tot/)を直接利用する必要があります。
 

@@ -1,15 +1,15 @@
 ---
-title: '`Intl.NumberFormat`について'
-author: 'Mathias Bynens（[@mathias](https://twitter.com/mathias)）とShane F. Carr'
+title: "`Intl.NumberFormat`について"
+author: "Mathias Bynens（[@mathias](https://twitter.com/mathias)）とShane F. Carr"
 avatars:
-  - 'mathias-bynens'
-  - 'shane-carr'
+  - "mathias-bynens"
+  - "shane-carr"
 date: 2019-08-08
 tags:
   - Intl
   - io19
-description: 'Intl.NumberFormatは、ロケールに対応した数値のフォーマットを可能にします。'
-tweet: '1159476407329873920'
+description: "Intl.NumberFormatは、ロケールに対応した数値のフォーマットを可能にします。"
+tweet: "1159476407329873920"
 ---
 すでにご存知かもしれませんが、`Intl.NumberFormat` APIはモダンな環境でしばらくの間サポートされてきました。
 

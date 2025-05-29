@@ -1,13 +1,13 @@
 ---
-title: 'インポートアサーション'
-author: 'Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), インポートアサーションの主張者'
+title: "インポートアサーション"
+author: "Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), インポートアサーションの主張者"
 avatars:
-  - 'dan-clark'
+  - "dan-clark"
 date: 2021-06-15
 tags:
   - ECMAScript
-description: 'インポートアサーションにより、モジュール指定子とともに追加の情報をインポート文に含めることができます'
-tweet: ''
+description: "インポートアサーションにより、モジュール指定子とともに追加の情報をインポート文に含めることができます"
+tweet: ""
 ---
 
 新しい[インポートアサーション](https://github.com/tc39/proposal-import-assertions)機能により、モジュール指定子とともに追加の情報をインポート文に含めることができます。この機能の初期の用途として、JSON文書を[JSONモジュール](https://github.com/tc39/proposal-json-modules)としてインポート可能にすることがあります:

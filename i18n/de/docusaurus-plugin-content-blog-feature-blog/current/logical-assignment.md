@@ -1,15 +1,15 @@
 ---
-title: 'Logische Zuweisung'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "Logische Zuweisung"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2020-05-07
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: 'JavaScript unterstützt jetzt zusammengesetzte Zuweisungen mit logischen Operationen.'
-tweet: '1258387483823345665'
+description: "JavaScript unterstützt jetzt zusammengesetzte Zuweisungen mit logischen Operationen."
+tweet: "1258387483823345665"
 ---
 JavaScript unterstützt eine Reihe von [zusammengesetzten Zuweisungsoperatoren](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators), mit denen Programmierer eine binäre Operation zusammen mit einer Zuweisung prägnant ausdrücken können. Derzeit werden nur mathematische oder bitweise Operationen unterstützt.
 

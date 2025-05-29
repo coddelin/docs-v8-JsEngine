@@ -1,15 +1,15 @@
 ---
-title: 'JavaScriptモジュール'
-author: 'Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) と Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "JavaScriptモジュール"
+author: "Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) と Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-- 'addy-osmani'
-- 'mathias-bynens'
+- "addy-osmani"
+- "mathias-bynens"
 date: 2018-06-18
 tags:
   - ECMAScript
   - ES2015
-description: 'この記事では、JavaScriptモジュールの使い方、責任を持ってデプロイする方法、そしてChromeチームが将来モジュールをさらに良くするために取り組んでいることについて説明します。'
-tweet: '1008725884575109120'
+description: "この記事では、JavaScriptモジュールの使い方、責任を持ってデプロイする方法、そしてChromeチームが将来モジュールをさらに良くするために取り組んでいることについて説明します。"
+tweet: "1008725884575109120"
 ---
 JavaScriptモジュールは現在、[すべての主要なブラウザでサポートされています](https://caniuse.com/#feat=es6-module)!
 

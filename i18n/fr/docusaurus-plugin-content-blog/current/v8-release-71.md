@@ -1,13 +1,13 @@
 ---
-title: 'Publication de V8 v7.1'
-author: 'Stephan Herhut ([@herhut](https://twitter.com/herhut)), cloneur cloné de clones'
+title: "Publication de V8 v7.1"
+author: "Stephan Herhut ([@herhut](https://twitter.com/herhut)), cloneur cloné de clones"
 avatars:
   - stephan-herhut
 date: 2018-10-31 15:44:37
 tags:
   - publication
-description: 'V8 v7.1 inclut des gestionnaires de bytecode intégrés, une analyse d’évasion TurboFan améliorée, postMessage(wasmModule), Intl.RelativeTimeFormat, et globalThis!'
-tweet: '1057645773465235458'
+description: "V8 v7.1 inclut des gestionnaires de bytecode intégrés, une analyse d’évasion TurboFan améliorée, postMessage(wasmModule), Intl.RelativeTimeFormat, et globalThis!"
+tweet: "1057645773465235458"
 ---
 Toutes les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](/docs/release-process). Chaque version est dérivée du maître Git de V8 juste avant une étape bêta de Chrome. Aujourd’hui, nous sommes heureux d’annoncer notre nouvelle branche, [V8 version 7.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.1), qui est en version bêta jusqu’à sa publication en coordination avec Chrome 71 Stable dans quelques semaines. V8 v7.1 regorge de toutes sortes de fonctionnalités pour les développeurs. Cet article présente un aperçu de certains points forts en prévision de la publication.
 

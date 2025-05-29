@@ -1,13 +1,13 @@
 ---
 title: "JavaScript's 新超能力：顯式資源管理"
-author: 'Rezvan Mahdavi Hezaveh'
+author: "Rezvan Mahdavi Hezaveh"
 avatars:
-  - 'rezvan-mahdavi-hezaveh'
+  - "rezvan-mahdavi-hezaveh"
 date: 2025-05-09
 tags:
   - ECMAScript
-description: '「顯式資源管理提案」使開發者能夠顯式管理資源的生命週期。'
-tweet: ''
+description: "「顯式資源管理提案」使開發者能夠顯式管理資源的生命週期。"
+tweet: ""
 ---
 
 「顯式資源管理提案」引入了一種確定性的方法，用於顯式管理資源的生命週期，比如檔案控制代碼、網絡連線等。該提案帶來了以下新增功能：`using` 和 `await using` 聲明，可在資源超出作用域時自動呼叫 dispose 方法；`[Symbol.dispose]()` 和 `[Symbol.asyncDispose]()` 符號，用於清理操作；兩個全新的全域物件 `DisposableStack` 和 `AsyncDisposableStack` 作為容器以匯總可清除的資源；以及 `SuppressedError`，作為一種新的錯誤類型（包含最近拋出的錯誤及被抑制的錯誤），用於解決在處置資源期間出現錯誤可能掩蓋既存錯誤的情況，或者另一資源的處置過程中拋出的錯誤。這些新增功能使開發者能夠通過細粒度的資源處置控制撰寫更可靠、高效且可維護的代碼。

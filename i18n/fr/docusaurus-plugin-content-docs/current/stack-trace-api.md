@@ -1,5 +1,5 @@
 ---
-title: 'API de trace de pile'
+title: "API de trace de pile"
 description: 'Ce document décrit l'API de trace de pile JavaScript de V8.'
 ---
 Toutes les erreurs internes levées dans V8 capturent une trace de pile lorsqu'elles sont créées. Cette trace de pile peut être accédée depuis JavaScript via la propriété non standard `error.stack`. V8 dispose également de divers crochets pour contrôler la manière dont les traces de pile sont collectées et formatées, et pour permettre aux erreurs personnalisées de capturer également des traces de pile. Ce document décrit l'API de trace de pile JavaScript de V8.

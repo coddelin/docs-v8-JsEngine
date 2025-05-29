@@ -1,13 +1,13 @@
 ---
-title: '`Object.hasOwn`'
-author: 'Виктор Гомес ([@VictorBFG](https://twitter.com/VictorBFG))'
+title: "`Object.hasOwn`"
+author: "Виктор Гомес ([@VictorBFG](https://twitter.com/VictorBFG))"
 avatars:
-  - 'victor-gomes'
+  - "victor-gomes"
 date: 2021-07-01
 tags:
   - ECMAScript
-description: '`Object.hasOwn` делает `Object.prototype.hasOwnProperty` более доступным.'
-tweet: '1410577516943847424'
+description: "`Object.hasOwn` делает `Object.prototype.hasOwnProperty` более доступным."
+tweet: "1410577516943847424"
 ---
 
 Сегодня очень часто пишут код примерно так:

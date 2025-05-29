@@ -1,14 +1,14 @@
 ---
-title: '`String.prototype.matchAll`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`String.prototype.matchAll`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-02-02
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: 'String.prototype.matchAll erleichtert das Iterieren über alle Übereinstimmungsobjekte, die ein bestimmter regulärer Ausdruck erzeugt.'
+description: "String.prototype.matchAll erleichtert das Iterieren über alle Übereinstimmungsobjekte, die ein bestimmter regulärer Ausdruck erzeugt."
 ---
 Es ist üblich, denselben regulären Ausdruck wiederholt auf einen String anzuwenden, um alle Übereinstimmungen zu erhalten. Bis zu einem gewissen Grad ist dies heute bereits durch die Methode `String#match` möglich.
 

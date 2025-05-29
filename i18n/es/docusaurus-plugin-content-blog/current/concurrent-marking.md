@@ -1,16 +1,16 @@
 ---
-title: 'Marcado concurrente en V8'
-author: 'Ulan Degenbaev, Michael Lippautz y Hannes Payer — liberadores del hilo principal'
+title: "Marcado concurrente en V8"
+author: "Ulan Degenbaev, Michael Lippautz y Hannes Payer — liberadores del hilo principal"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2018-06-11 13:33:37
 tags:
   - internals
   - memory
-description: 'Este artículo describe la técnica de recolección de basura llamada marcado concurrente.'
-tweet: '1006187194808233985'
+description: "Este artículo describe la técnica de recolección de basura llamada marcado concurrente."
+tweet: "1006187194808233985"
 ---
 Este artículo describe la técnica de recolección de basura llamada _marcado concurrente_. La optimización permite que una aplicación de JavaScript continúe ejecutándose mientras el recolector de basura escanea el montón para encontrar y marcar objetos vivos. Nuestros benchmarks muestran que el marcado concurrente reduce el tiempo dedicado al marcado en el hilo principal en un 60%–70%. El marcado concurrente es la última pieza del proyecto [Orinoco](/blog/orinoco) — el proyecto para reemplazar incrementalmente el antiguo recolector de basura con el nuevo recolector de basura mayormente concurrente y paralelo. El marcado concurrente está habilitado por defecto en Chrome 64 y Node.js v10.
 

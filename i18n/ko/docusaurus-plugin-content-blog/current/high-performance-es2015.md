@@ -1,12 +1,12 @@
 ---
-title: '고성능 ES2015 및 이후'
-author: '베네딕트 뮤어러 [@bmeurer](https://twitter.com/bmeurer), ECMAScript 성능 엔지니어'
+title: "고성능 ES2015 및 이후"
+author: "베네딕트 뮤어러 [@bmeurer](https://twitter.com/bmeurer), ECMAScript 성능 엔지니어"
 avatars:
-  - '베네딕트-뮤어러'
+  - "베네딕트-뮤어러"
 date: 2017-02-17 13:33:37
 tags:
   - ECMAScript
-description: 'V8의 ES2015+ 언어 기능 성능은 이제 해당 기능의 변환된 ES5 버전과 동등합니다.'
+description: "V8의 ES2015+ 언어 기능 성능은 이제 해당 기능의 변환된 ES5 버전과 동등합니다."
 ---
 지난 몇 달 동안 V8 팀은 새롭게 추가된 [ES2015](https://www.ecma-international.org/ecma-262/6.0/) 및 기타 최신 JavaScript 기능의 성능을 그들의 변환된 [ES5](https://www.ecma-international.org/ecma-262/5.1/) 버전과 동등하게 만드는 작업에 집중했습니다.
 

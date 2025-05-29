@@ -1,12 +1,12 @@
 ---
-title: 'ガベージコレクテッドプログラミング言語を効率的にWebAssemblyに導入する新しい方法'
-author: 'Alon Zakai'
+title: "ガベージコレクテッドプログラミング言語を効率的にWebAssemblyに導入する新しい方法"
+author: "Alon Zakai"
 avatars:
-  - 'alon-zakai'
+  - "alon-zakai"
 date: 2023-11-01
 tags:
   - WebAssembly
-tweet: '1720161507324076395'
+tweet: "1720161507324076395"
 ---
 
 [WebAssembly Garbage Collection (WasmGC)](https://developer.chrome.com/blog/wasmgc)に関する最近の記事では、[ガベージコレクション(GC)提案](https://github.com/WebAssembly/gc)が、人気のあるGC言語をWasmでより良くサポートする方法について高いレベルで説明されています。このことでいかに重要であるかがわかります。この記事では、Java、Kotlin、Dart、Python、C#のようなGC言語をWasmに移植するための技術的な詳細に踏み込んでいきます。実際には2つの主なアプローチがあります:

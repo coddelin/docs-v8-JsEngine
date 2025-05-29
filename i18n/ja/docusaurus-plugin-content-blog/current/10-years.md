@@ -1,13 +1,13 @@
 ---
-title: 'V8の10周年を祝う'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), V8の歴史家'
+title: "V8の10周年を祝う"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), V8の歴史家"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-09-11 19:00:00
 tags:
   - ベンチマーク
-description: 'V8プロジェクトの過去10年間の主なマイルストーン、そしてプロジェクトがまだ秘密だった頃の概要を紹介します。'
-tweet: '1039559389324238850'
+description: "V8プロジェクトの過去10年間の主なマイルストーン、そしてプロジェクトがまだ秘密だった頃の概要を紹介します。"
+tweet: "1039559389324238850"
 ---
 今月は、Google Chromeだけでなく、V8プロジェクトも出荷開始から10周年を迎えます。この投稿では、V8プロジェクトの過去10年間の主なマイルストーン、およびプロジェクトがまだ秘密であったころの出来事を概観します。
 

@@ -1,15 +1,15 @@
 ---
-title: 'Numerische Separatoren'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Numerische Separatoren"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-05-28
 tags:
   - ECMAScript
   - ES2021
   - io19
-description: 'JavaScript unterstützt jetzt Unterstriche als Trennzeichen in numerischen Literalen, was die Lesbarkeit und Wartbarkeit des Quellcodes erhöht.'
-tweet: '1129073383931559936'
+description: "JavaScript unterstützt jetzt Unterstriche als Trennzeichen in numerischen Literalen, was die Lesbarkeit und Wartbarkeit des Quellcodes erhöht."
+tweet: "1129073383931559936"
 ---
 Große numerische Literale sind für das menschliche Auge schwer schnell zu erkennen, besonders wenn viele sich wiederholende Ziffern vorhanden sind:
 

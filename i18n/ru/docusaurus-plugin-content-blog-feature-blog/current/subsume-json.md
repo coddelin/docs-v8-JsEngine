@@ -1,13 +1,13 @@
 ---
-title: 'Подмножество JSON, также известное как JSON ⊂ ECMAScript'
-author: 'Матиас Биненс ([@mathias](https://twitter.com/mathias))'
+title: "Подмножество JSON, также известное как JSON ⊂ ECMAScript"
+author: "Матиас Биненс ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-08-14
 tags:
   - ES2019
-description: 'JSON теперь является синтаксическим подмножеством ECMAScript.'
-tweet: '1161649929904885762'
+description: "JSON теперь является синтаксическим подмножеством ECMAScript."
+tweet: "1161649929904885762"
 ---
 Благодаря [предложению _JSON ⊂ ECMAScript_](https://github.com/tc39/proposal-json-superset), JSON стал синтаксическим подмножеством ECMAScript. Если вас удивляет, что это не было так ранее, вы не одиноки!
 

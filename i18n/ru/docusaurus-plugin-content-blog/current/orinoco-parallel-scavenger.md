@@ -1,15 +1,15 @@
 ---
-title: 'Orinoco: сборка мусора для молодого поколения'
-author: 'Улан Дегенбаев, Михаэль Липпаутц и Ханнес Пайер, друзья [TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)'
+title: "Orinoco: сборка мусора для молодого поколения"
+author: "Улан Дегенбаев, Михаэль Липпаутц и Ханнес Пайер, друзья [TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2017-11-29 13:33:37
 tags:
   - internals
   - memory
-description: 'В этой статье представлен параллельный Scavenger, одна из последних функций Orinoco, преимущественно параллельного сборщика мусора V8.'
+description: "В этой статье представлен параллельный Scavenger, одна из последних функций Orinoco, преимущественно параллельного сборщика мусора V8."
 ---
 Объекты JavaScript в V8 размещаются в куче, управляемой сборщиком мусора V8. В предыдущих публикациях в блоге мы уже обсуждали, как мы [уменьшаем время пауз при сборке мусора](/blog/jank-busters) ([неоднократно](/blog/orinoco)) и [потребление памяти](/blog/optimizing-v8-memory). В этом посте мы представляем параллельный Scavenger, одну из последних функций Orinoco, преимущественно параллельного сборщика мусора V8, и обсуждаем принятые проектные решения и альтернативные подходы, которые мы реализовали в процессе.
 

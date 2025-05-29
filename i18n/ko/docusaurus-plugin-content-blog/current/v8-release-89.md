@@ -1,13 +1,13 @@
 ---
-title: 'V8 릴리스 v8.9'
-author: '인그바르 스테파냔 ([@RReverser](https://twitter.com/RReverser)), 대기 중인 호출'
+title: "V8 릴리스 v8.9"
+author: "인그바르 스테파냔 ([@RReverser](https://twitter.com/RReverser)), 대기 중인 호출"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-02-04
 tags:
  - release
-description: 'V8 릴리스 v8.9는 인수 크기 불일치로 인한 호출 성능을 개선합니다.'
-tweet: '1357358418902802434'
+description: "V8 릴리스 v8.9는 인수 크기 불일치로 인한 호출 성능을 개선합니다."
+tweet: "1357358418902802434"
 ---
 매 6주마다 [릴리스 프로세스](https://v8.dev/docs/release-process)의 일환으로 V8의 새로운 브랜치를 만듭니다. 각 버전은 Chrome 베타 마일스톤 직전에 V8의 Git 마스터에서 브랜칭됩니다. 오늘 우리는 새로운 브랜치인 [V8 버전 8.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.9)를 발표하게 되어 기쁩니다. 이는 몇 주 후 Chrome 89 Stable과 함께 출시될 때까지 베타 상태로 유지됩니다. V8 v8.9는 개발자들에게 다양한 이점을 제공합니다. 이번 포스트에서는 릴리스를 앞두고 몇 가지 주요 기능을 미리 소개합니다.
 

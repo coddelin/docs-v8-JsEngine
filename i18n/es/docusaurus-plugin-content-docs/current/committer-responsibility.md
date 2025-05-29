@@ -1,6 +1,6 @@
 ---
-title: 'Responsabilidades de los colaboradores y revisores de V8'
-description: 'Este documento enumera directrices para los contribuyentes de V8.'
+title: "Responsabilidades de los colaboradores y revisores de V8"
+description: "Este documento enumera directrices para los contribuyentes de V8."
 ---
 Cuando estés contribuyendo a los repositorios de V8, asegúrate de seguir estas directrices (adaptadas de https://dev.chromium.org/developers/committers-responsibility):
 

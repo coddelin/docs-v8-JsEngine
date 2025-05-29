@@ -1,10 +1,10 @@
 ---
-title: 'V8 릴리스 v4.7'
-author: 'V8 팀'
+title: "V8 릴리스 v4.7"
+author: "V8 팀"
 date: 2015-10-14 13:33:37
 tags:
   - 릴리스
-description: 'V8 v4.7은 메모리 소모 감소와 새로운 ES2015 언어 기능 지원을 제공합니다.'
+description: "V8 v4.7은 메모리 소모 감소와 새로운 ES2015 언어 기능 지원을 제공합니다."
 ---
 약 6주마다 [릴리스 프로세스](https://v8.dev/docs/release-process)의 일환으로 V8의 새로운 브랜치를 생성합니다. 각 버전은 Chrome의 Chrome Beta 마일스톤 브랜치가 이루어지기 직전에 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 최신 브랜치를 발표하게 되어 기쁩니다. [V8 버전 4.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.7)은 Chrome 47 안정 버전과 조정하여 출시될 때까지 베타 단계에 있을 것입니다. V8 v4.7은 개발자 중심의 다양한 기능으로 가득 차 있으며, 몇 주 후에 있을 릴리스를 기대하며 주요 내용의 미리보기를 제공하고자 합니다.
 

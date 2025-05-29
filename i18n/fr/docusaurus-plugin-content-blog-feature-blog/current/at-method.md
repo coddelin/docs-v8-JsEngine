@@ -1,8 +1,8 @@
 ---
 title: 'Méthode `at` pour l'indexation relative'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2021-07-13
 tags:
   - ECMAScript

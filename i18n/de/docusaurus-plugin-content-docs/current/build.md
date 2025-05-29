@@ -1,6 +1,6 @@
 ---
-title: 'V8-Quellcode aus den Quellen bauen'
-description: 'Dieses Dokument erklärt, wie man V8 aus den Quellen baut.'
+title: "V8-Quellcode aus den Quellen bauen"
+description: "Dieses Dokument erklärt, wie man V8 aus den Quellen baut."
 ---
 Um in der Lage zu sein, V8 von Grund auf unter Windows/Linux/macOS für x64 zu bauen, folgen Sie bitte den folgenden Schritten.
 

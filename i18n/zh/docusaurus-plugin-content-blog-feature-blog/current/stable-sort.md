@@ -1,15 +1,15 @@
 ---
-title: '稳定的 `Array.prototype.sort`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "稳定的 `Array.prototype.sort`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-07-02
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: 'Array.prototype.sort 现在已保证是稳定的。'
-tweet: '1146067251302244353'
+description: "Array.prototype.sort 现在已保证是稳定的。"
+tweet: "1146067251302244353"
 ---
 假设你有一个由狗组成的数组，每只狗都有一个名字和一个评分。（如果这个例子听起来很奇怪，你应该知道有一个专门研究这个内容的 Twitter 帐号……别问！）
 

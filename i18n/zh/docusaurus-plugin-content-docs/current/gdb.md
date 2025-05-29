@@ -1,6 +1,6 @@
 ---
-title: '使用 GDB 调试内建函数'
-description: '从 V8 v6.9 开始，可以在 GDB 中创建断点来调试 CSA / ASM / Torque 内建函数。'
+title: "使用 GDB 调试内建函数"
+description: "从 V8 v6.9 开始，可以在 GDB 中创建断点来调试 CSA / ASM / Torque 内建函数。"
 ---
 从 V8 v6.9 开始，可以在 GDB（以及可能的其他调试器）中创建断点来调试 CSA / ASM / Torque 内建函数。
 

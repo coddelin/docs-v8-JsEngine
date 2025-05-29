@@ -1,13 +1,13 @@
 ---
-title: 'Verificaciones de marca privada, también conocido como `#foo in obj`'
-author: 'Marja Hölttä ([@marjakh](https://twitter.com/marjakh))'
+title: "Verificaciones de marca privada, también conocido como `#foo in obj`"
+author: "Marja Hölttä ([@marjakh](https://twitter.com/marjakh))"
 avatars:
-  - 'marja-holtta'
+  - "marja-holtta"
 date: 2021-04-14
 tags:
   - ECMAScript
-description: 'Las verificaciones de marca privada permiten comprobar la existencia de un campo privado en un objeto.'
-tweet: '1382327454975590401'
+description: "Las verificaciones de marca privada permiten comprobar la existencia de un campo privado en un objeto."
+tweet: "1382327454975590401"
 ---
 
 El operador [`in`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in) puede ser usado para comprobar si un objeto dado (o cualquier objeto en su cadena de prototipos) tiene la propiedad especificada:

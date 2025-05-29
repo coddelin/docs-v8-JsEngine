@@ -1,13 +1,13 @@
 ---
-title: 'Afirmativas lookbehind do RegExp'
-author: 'Yang Guo, Engenheiro de Expressões Regulares'
+title: "Afirmativas lookbehind do RegExp"
+author: "Yang Guo, Engenheiro de Expressões Regulares"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2016-02-26 13:33:37
 tags:
   - ECMAScript
   - RegExp
-description: 'Expressões regulares em JavaScript estão ganhando nova funcionalidade: afirmações lookbehind.'
+description: "Expressões regulares em JavaScript estão ganhando nova funcionalidade: afirmações lookbehind."
 ---
 Introduzidas com a terceira edição da especificação ECMA-262, expressões regulares fazem parte do JavaScript desde 1999. Em termos de funcionalidade e expressividade, a implementação de expressões regulares no JavaScript espelha, aproximadamente, a de outras linguagens de programação.
 

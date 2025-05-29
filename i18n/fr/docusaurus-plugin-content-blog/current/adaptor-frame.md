@@ -1,13 +1,13 @@
 ---
-title: 'Appels JavaScript plus rapides'
-author: '[Victor Gomes](https://twitter.com/VictorBFG), le déchiqueteur de frames'
+title: "Appels JavaScript plus rapides"
+author: "[Victor Gomes](https://twitter.com/VictorBFG), le déchiqueteur de frames"
 avatars:
-  - 'victor-gomes'
+  - "victor-gomes"
 date: 2021-02-15
 tags:
   - internals
 description: 'Appels JavaScript plus rapides en supprimant le frame adaptateur d'arguments'
-tweet: '1361337569057865735'
+tweet: "1361337569057865735"
 ---
 
 JavaScript permet d'appeler une fonction avec un nombre d'arguments différent de celui attendu par les paramètres formels, c'est-à-dire que l'on peut passer moins ou plus d'arguments que les paramètres déclarés. Le premier cas est appelé sous-application, et le second est appelé sur-application.

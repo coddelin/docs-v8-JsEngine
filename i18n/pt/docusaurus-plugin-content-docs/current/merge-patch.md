@@ -1,6 +1,6 @@
 ---
-title: 'Mesclagem & aplicação de patches'
-description: 'Este documento explica como mesclar patches do V8 para um branch de lançamento.'
+title: "Mesclagem & aplicação de patches"
+description: "Este documento explica como mesclar patches do V8 para um branch de lançamento."
 ---
 Se você tem um patch no branch `main` (por exemplo, uma correção importante de bug) que precisa ser mesclado em um dos branches de lançamento do V8 (refs/branch-heads/12.5), continue lendo.
 

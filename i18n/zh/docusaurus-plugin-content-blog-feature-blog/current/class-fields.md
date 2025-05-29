@@ -1,16 +1,16 @@
 ---
-title: '公共和私有类字段'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "公共和私有类字段"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-12-13
 tags:
   - ECMAScript
   - ES2022
   - io19
   - Node.js 14
-description: '多个提案扩展了现有的JavaScript类语法，新增了功能。本文解释了V8 v7.2和Chrome 72中的公共类字段的新语法，以及即将到来的私有类字段语法。'
-tweet: '1121395767170740225'
+description: "多个提案扩展了现有的JavaScript类语法，新增了功能。本文解释了V8 v7.2和Chrome 72中的公共类字段的新语法，以及即将到来的私有类字段语法。"
+tweet: "1121395767170740225"
 ---
 多个提案扩展了现有的JavaScript类语法，新增了功能。本文解释了V8 v7.2和Chrome 72中的公共类字段的新语法，以及即将到来的私有类字段语法。
 

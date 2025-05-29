@@ -1,15 +1,15 @@
 ---
-title: 'A história de um declínio de desempenho no V8 do React'
-author: 'Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) e Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "A história de um declínio de desempenho no V8 do React"
+author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) e Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'benedikt-meurer'
-  - 'mathias-bynens'
+  - "benedikt-meurer"
+  - "mathias-bynens"
 date: 2019-08-28 16:45:00
 tags:
   - internos
   - apresentações
-description: 'Este artigo descreve como o V8 escolhe representações otimizadas na memória para vários valores JavaScript e como isso afeta a máquina de formas — tudo isso ajuda a explicar um recente declínio de desempenho no núcleo do React.'
-tweet: '1166723359696130049'
+description: "Este artigo descreve como o V8 escolhe representações otimizadas na memória para vários valores JavaScript e como isso afeta a máquina de formas — tudo isso ajuda a explicar um recente declínio de desempenho no núcleo do React."
+tweet: "1166723359696130049"
 ---
 [Anteriormente](https://mathiasbynens.be/notes/shapes-ics), discutimos como os motores de JavaScript otimizam o acesso a objetos e arrays por meio do uso de Shapes e Inline Caches, e exploramos [como os motores aceleram o acesso a propriedades do protótipo](https://mathiasbynens.be/notes/prototypes) em particular. Este artigo descreve como o V8 escolhe representações otimizadas na memória para vários valores JavaScript e como isso afeta a máquina de formas — tudo isso ajuda a explicar [um recente declínio de desempenho no núcleo do React](https://github.com/facebook/react/issues/14365).
 

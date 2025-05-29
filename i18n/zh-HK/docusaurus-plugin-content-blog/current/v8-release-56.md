@@ -1,10 +1,10 @@
 ---
-title: 'V8 發佈 v5.6'
-author: 'V8 團隊'
+title: "V8 發佈 v5.6"
+author: "V8 團隊"
 date: 2016-12-02 13:33:37
 tags:
   - 發佈
-description: 'V8 v5.6 帶來了全新的編譯器管線、效能改進以及對 ECMAScript 語言功能的增強支持。'
+description: "V8 v5.6 帶來了全新的編譯器管線、效能改進以及對 ECMAScript 語言功能的增強支持。"
 ---
 每六週，我們會根據[發佈過程](/docs/release-process)創建 V8 的新分支。每個版本都從 V8 的 Git master 分支在 Chrome Beta 里程碑之前建立。今天，我們很高興宣布最新的分支，[V8 版本 5.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.6)，該版本將進入 Beta 阶段，並在幾週後與 Chrome 56 Stable 的發佈同步推出。V8 5.6 為開發人員帶來了各種新功能，以下是一些亮點的預覽，我們期待其正式發佈。
 

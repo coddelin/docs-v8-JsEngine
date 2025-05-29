@@ -1,10 +1,10 @@
 ---
-title: 'Веб-просмотр WebAssembly'
-author: 'Команда V8'
+title: "Веб-просмотр WebAssembly"
+author: "Команда V8"
 date: 2016-10-31 13:33:37
 tags:
   - WebAssembly
-description: 'WebAssembly или Wasm — это новая среда выполнения и цель компиляции для веба, теперь доступная за флагом в Chrome Canary!'
+description: "WebAssembly или Wasm — это новая среда выполнения и цель компиляции для веба, теперь доступная за флагом в Chrome Canary!"
 ---
 Сегодня мы рады объявить совместно с [Firefox](https://hacks.mozilla.org/2016/10/webassembly-browser-preview) и [Edge](https://blogs.windows.com/msedgedev/2016/10/31/webassembly-browser-preview/) о веб-просмотре WebAssembly. [WebAssembly](http://webassembly.org/) или Wasm — это новая среда выполнения и цель компиляции для веба, разработанная совместно специалистами из Google, Mozilla, Microsoft, Apple и [W3C WebAssembly Community Group](https://www.w3.org/community/webassembly/).
 

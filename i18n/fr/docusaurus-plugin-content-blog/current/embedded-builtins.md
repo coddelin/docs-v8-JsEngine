@@ -1,13 +1,13 @@
 ---
-title: 'Fonctions intégrées embarquées'
-author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
+title: "Fonctions intégrées embarquées"
+author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2018-08-14 13:33:37
 tags:
   - internes
-description: 'V8 v6.9 intègre du code intégré dans la section .text du binaire, réduisant la taille médiane du tas V8 par site web de 19%.'
-tweet: '1029382366693937162'
+description: "V8 v6.9 intègre du code intégré dans la section .text du binaire, réduisant la taille médiane du tas V8 par site web de 19%."
+tweet: "1029382366693937162"
 ---
 Les fonctions intégrées de V8 (builtins) consomment de la mémoire dans chaque instance de V8. Le nombre de fonctions intégrées, leur taille moyenne et le nombre d'instances de V8 par onglet de navigateur Chrome ont considérablement augmenté. Ce billet de blog décrit comment nous avons réduit la taille médiane du tas V8 par site web de 19% au cours de l'année dernière.
 

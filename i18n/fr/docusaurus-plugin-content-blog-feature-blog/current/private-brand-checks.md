@@ -1,13 +1,13 @@
 ---
-title: 'Vérifications des marques privées alias `#foo in obj`'
-author: 'Marja Hölttä ([@marjakh](https://twitter.com/marjakh))'
+title: "Vérifications des marques privées alias `#foo in obj`"
+author: "Marja Hölttä ([@marjakh](https://twitter.com/marjakh))"
 avatars:
-  - 'marja-holtta'
+  - "marja-holtta"
 date: 2021-04-14
 tags:
   - ECMAScript
 description: 'Les vérifications des marques privées permettent de tester l'existence d'un champ privé dans un objet.'
-tweet: '1382327454975590401'
+tweet: "1382327454975590401"
 ---
 
 L'[opérateur `in`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in) peut être utilisé pour tester si l'objet donné (ou tout objet dans sa chaîne de prototypes) possède la propriété donnée :

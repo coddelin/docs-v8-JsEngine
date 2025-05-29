@@ -1,17 +1,17 @@
 ---
-title: 'Recolección de basura de alto rendimiento para C++'
-author: 'Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), y Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), expertos en memoria de C++'
+title: "Recolección de basura de alto rendimiento para C++"
+author: "Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), y Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), expertos en memoria de C++"
 avatars:
-  - 'anton-bikineev'
-  - 'omer-katz'
-  - 'michael-lippautz'
+  - "anton-bikineev"
+  - "omer-katz"
+  - "michael-lippautz"
 date: 2020-05-26
 tags:
   - internos
   - memoria
   - cppgc
-description: 'Esta publicación describe el recolector de basura Oilpan para C++, su uso en Blink y cómo optimiza el barrido, es decir, la recuperación de memoria inaccesible.'
-tweet: '1265304883638480899'
+description: "Esta publicación describe el recolector de basura Oilpan para C++, su uso en Blink y cómo optimiza el barrido, es decir, la recuperación de memoria inaccesible."
+tweet: "1265304883638480899"
 ---
 
 En el pasado ya hemos [escrito](https://v8.dev/blog/trash-talk) [bastante](https://v8.dev/blog/concurrent-marking) [sobre](https://v8.dev/blog/tracing-js-dom) la recolección de basura para JavaScript, el modelo de objetos del documento (DOM) y cómo todo esto está implementado y optimizado en V8. Sin embargo, no todo en Chromium es JavaScript, ya que la mayor parte del navegador y su motor de renderizado Blink, donde V8 está integrado, están escritos en C++. JavaScript puede usarse para interactuar con el DOM, que luego es procesado por la tubería de renderizado.

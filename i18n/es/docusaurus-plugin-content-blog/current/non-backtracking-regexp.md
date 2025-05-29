@@ -1,12 +1,12 @@
 ---
-title: 'Un motor adicional de RegExp sin retroceso'
-author: 'Martin Bidlingmaier'
+title: "Un motor adicional de RegExp sin retroceso"
+author: "Martin Bidlingmaier"
 date: 2021-01-11
 tags:
  - internals
  - RegExp
-description: 'V8 ahora tiene un motor de RegExp adicional que sirve como respaldo y evita muchas instancias de retroceso catastrófico.'
-tweet: '1348635270762139650'
+description: "V8 ahora tiene un motor de RegExp adicional que sirve como respaldo y evita muchas instancias de retroceso catastrófico."
+tweet: "1348635270762139650"
 ---
 A partir de la versión v8.8, V8 incluye un nuevo motor experimental de RegExp sin retroceso (además del existente [motor Irregexp](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html)) que garantiza la ejecución en tiempo lineal con respecto al tamaño de la cadena de entrada. El motor experimental está disponible detrás de las banderas de características mencionadas a continuación.
 

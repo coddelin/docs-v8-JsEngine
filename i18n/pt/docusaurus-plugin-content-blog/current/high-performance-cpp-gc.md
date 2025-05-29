@@ -1,17 +1,17 @@
 ---
-title: 'Coleta de lixo de alto desempenho para C++'
-author: 'Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), e Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), especialistas em memória C++'
+title: "Coleta de lixo de alto desempenho para C++"
+author: "Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), e Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), especialistas em memória C++"
 avatars:
-  - 'anton-bikineev'
-  - 'omer-katz'
-  - 'michael-lippautz'
+  - "anton-bikineev"
+  - "omer-katz"
+  - "michael-lippautz"
 date: 2020-05-26
 tags:
   - internals
   - memória
   - cppgc
-description: 'Este post descreve o coletor de lixo Oilpan para C++, seu uso no Blink e como ele otimiza a varredura, ou seja, a recuperação de memória inacessível.'
-tweet: '1265304883638480899'
+description: "Este post descreve o coletor de lixo Oilpan para C++, seu uso no Blink e como ele otimiza a varredura, ou seja, a recuperação de memória inacessível."
+tweet: "1265304883638480899"
 ---
 
 No passado, já [falamos](https://v8.dev/blog/trash-talk) [muito](https://v8.dev/blog/concurrent-marking) [sobre](https://v8.dev/blog/tracing-js-dom) coleta de lixo para JavaScript, o modelo de objetos de documentos (DOM) e como tudo isso é implementado e otimizado no V8. No entanto, nem tudo no Chromium é JavaScript, já que a maior parte do navegador e de seu mecanismo de renderização Blink, onde o V8 está embutido, são escritos em C++. O JavaScript pode ser usado para interagir com o DOM, que é então processado pelo pipeline de renderização.

@@ -1,11 +1,11 @@
 ---
-title: 'Weak references and finalizers'
-author: 'Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), and Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))'
+title: "Weak references and finalizers"
+author: "Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), and Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))"
 avatars:
-- 'sathya-gunasekaran'
-- 'mathias-bynens'
-- 'shu-yu-guo'
-- 'leszek-swirski'
+- "sathya-gunasekaran"
+- "mathias-bynens"
+- "shu-yu-guo"
+- "leszek-swirski"
 date: 2019-07-09
 updated: 2020-06-19
 tags:
@@ -13,8 +13,8 @@ tags:
   - ES2021
   - io19
   - Node.js 14
-description: 'Weak references and finalizers are coming to JavaScript! This article explains the new functionality.'
-tweet: '1148603966848151553'
+description: "Weak references and finalizers are coming to JavaScript! This article explains the new functionality."
+tweet: "1148603966848151553"
 ---
 Generally, references to objects are _strongly held_ in JavaScript, meaning that as long you have a reference to the object, it won’t be garbage-collected.
 

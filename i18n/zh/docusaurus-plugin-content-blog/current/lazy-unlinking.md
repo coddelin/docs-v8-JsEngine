@@ -1,12 +1,12 @@
 ---
-title: '关于懒惰的实习：被优化函数的懒惰取消链接'
-author: 'Juliana Franco ([@jupvfranco](https://twitter.com/jupvfranco)), 懒惰性专家'
+title: "关于懒惰的实习：被优化函数的懒惰取消链接"
+author: "Juliana Franco ([@jupvfranco](https://twitter.com/jupvfranco)), 懒惰性专家"
 date: 2017-10-04 13:33:37
 tags:
   - 内存
   - 内部工作原理
-description: '这篇技术深度分析解释了V8过去如何取消链接被优化的函数，以及我们最近为了提高性能所做出的改变。'
-tweet: '915473224187760640'
+description: "这篇技术深度分析解释了V8过去如何取消链接被优化的函数，以及我们最近为了提高性能所做出的改变。"
+tweet: "915473224187760640"
 ---
 大约三个月前，我作为实习生加入了V8团队（Google Munich），从那时起，我一直在研究虚拟机的 _去优化器_ —— 这是对我来说全新的领域，但也证明了是一个有趣且具挑战性的项目。实习的第一部分重点在于[提高虚拟机的安全性](https://docs.google.com/document/d/1ELgd71B6iBaU6UmZ_lvwxf_OrYYnv0e4nuzZpK05-pg/edit)。第二部分则集中于性能改进，即删除用于取消链接以前被优化的函数的数据结构，而这个结构在垃圾回收时是性能瓶颈。本博客文章描述了我实习的第二部分。我将解释V8过去如何取消链接被优化的函数，我们如何对其进行更改，以及获得了哪些性能提升。
 

@@ -1,6 +1,6 @@
 ---
-title: 'TurboFan'
-description: 'Dieses Dokument sammelt Ressourcen über TurboFan, den optimierenden Compiler von V8.'
+title: "TurboFan"
+description: "Dieses Dokument sammelt Ressourcen über TurboFan, den optimierenden Compiler von V8."
 ---
 TurboFan ist einer der optimierenden Compiler von V8 und nutzt ein Konzept, das als [„Sea of Nodes“](https://darksi.de/d.sea-of-nodes/) bekannt ist. Einer der Blogeinträge von V8 bietet eine [Übersicht über TurboFan](/blog/turbofan-jit). Weitere Details finden sich in den folgenden Ressourcen.
 

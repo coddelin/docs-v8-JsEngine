@@ -1,6 +1,6 @@
 ---
-title: '實作及發佈 JavaScript/WebAssembly 語言特性'
-description: '此文件詳細說明在 V8 中實作及發佈 JavaScript 或 WebAssembly 語言特性的流程。'
+title: "實作及發佈 JavaScript/WebAssembly 語言特性"
+description: "此文件詳細說明在 V8 中實作及發佈 JavaScript 或 WebAssembly 語言特性的流程。"
 ---
 一般而言，V8 遵循 [Blink Intent 已定義共識標準流程](https://www.chromium.org/blink/launching-features/#process-existing-standard)，以處理 JavaScript 和 WebAssembly 語言特性。以下是 V8 特有的附註。請遵循 Blink Intent 流程，除非附註另有規定。
 

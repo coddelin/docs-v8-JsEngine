@@ -1,14 +1,14 @@
 ---
-title: 'JavaScript开发者的代码缓存'
-author: '[Leszek Swirski](https://twitter.com/leszekswirski)，缓存破坏者'
+title: "JavaScript开发者的代码缓存"
+author: "[Leszek Swirski](https://twitter.com/leszekswirski)，缓存破坏者"
 avatars:
   - leszek-swirski
 date: 2019-04-08 13:33:37
 updated: 2020-06-16
 tags:
   - 内部原理
-description: '(字节码)缓存通过缓存JavaScript解析和编译结果来减少经常访问的网站的启动时间。'
-tweet: '1115264282675953664'
+description: "(字节码)缓存通过缓存JavaScript解析和编译结果来减少经常访问的网站的启动时间。"
+tweet: "1115264282675953664"
 ---
 代码缓存（也称为字节码缓存）是浏览器中的一个重要优化。它通过缓存解析和编译的结果来减少经常访问的网站的启动时间。大多数[主流](https://blog.mozilla.org/javascript/2017/12/12/javascript-startup-bytecode-cache/) [浏览器](https://bugs.webkit.org/show_bug.cgi?id=192782)都实现了某种形式的代码缓存，而Chrome也不例外。事实上，我们过去曾[撰写](/blog/code-caching) [和](/blog/improved-code-caching) [讨论](https://www.youtube.com/watch?v=YqHOUy2rYZ8)过Chrome和V8是如何缓存已编译代码的。
 

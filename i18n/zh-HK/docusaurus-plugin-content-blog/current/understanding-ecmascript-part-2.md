@@ -1,14 +1,14 @@
 ---
-title: '理解 ECMAScript 規範，第2部分'
-author: '[Marja Hölttä](https://twitter.com/marjakh)，推測規範觀察員'
+title: "理解 ECMAScript 規範，第2部分"
+author: "[Marja Hölttä](https://twitter.com/marjakh)，推測規範觀察員"
 avatars:
   - marja-holtta
 date: 2020-03-02
 tags:
   - ECMAScript
   - 理解 ECMAScript
-description: '閱讀 ECMAScript 規範的教程，第2部分'
-tweet: '1234550773629014016'
+description: "閱讀 ECMAScript 規範的教程，第2部分"
+tweet: "1234550773629014016"
 ---
 
 讓我們來多練習一些我們驚人的規範閱讀技巧。如果你還沒看過上一集，現在是個好機會！

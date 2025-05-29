@@ -1,15 +1,15 @@
 ---
-title: '2019년 JavaScript 비용'
-author: 'Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)), JavaScript 정리자, Mathias Bynens ([@mathias](https://twitter.com/mathias)), 메인 스레드 해방자'
+title: "2019년 JavaScript 비용"
+author: "Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)), JavaScript 정리자, Mathias Bynens ([@mathias](https://twitter.com/mathias)), 메인 스레드 해방자"
 avatars:
-  - 'addy-osmani'
-  - 'mathias-bynens'
+  - "addy-osmani"
+  - "mathias-bynens"
 date: 2019-06-25
 tags:
   - internals
   - parsing
-description: 'JavaScript를 처리하는 데 주된 비용은 다운로드와 CPU 실행 시간입니다.'
-tweet: '1143531042361487360'
+description: "JavaScript를 처리하는 데 주된 비용은 다운로드와 CPU 실행 시간입니다."
+tweet: "1143531042361487360"
 ---
 :::note
 **참고:** 기사를 읽는 것보다 프레젠테이션을 보는 것을 선호한다면, 아래 영상을 즐겨보세요! 그렇지 않다면, 영상을 건너뛰고 읽어주세요.

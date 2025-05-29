@@ -1,6 +1,6 @@
 ---
-title: 'V8 Torque內建功能'
-description: '此文件旨在作為撰寫Torque內建功能的介紹，目標讀者為V8開發人員。'
+title: "V8 Torque內建功能"
+description: "此文件旨在作為撰寫Torque內建功能的介紹，目標讀者為V8開發人員。"
 ---
 此文件旨在作為撰寫Torque內建功能的介紹，目標讀者為V8開發人員。Torque取代了CodeStubAssembler，成為實現新內建功能的建議方式。請參閱[CodeStubAssembler內建功能](/docs/csa-builtins)了解本指南的CSA版本。
 

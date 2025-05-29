@@ -1,6 +1,6 @@
 ---
-title: '使用 GDB 調試內建函數'
-description: '從 V8 v6.9 開始，可以在 GDB 中創建斷點以調試 CSA / ASM / Torque 內建函數。'
+title: "使用 GDB 調試內建函數"
+description: "從 V8 v6.9 開始，可以在 GDB 中創建斷點以調試 CSA / ASM / Torque 內建函數。"
 ---
 從 V8 v6.9 開始，可以在 GDB（以及可能的其他調試器）中創建斷點以調試 CSA / ASM / Torque 內建函數。
 

@@ -1,10 +1,10 @@
 ---
-title: 'Publication de V8 v6.0'
+title: "Publication de V8 v6.0"
 author: 'l'équipe de V8'
 date: 2017-06-09 13:33:37
 tags:
   - publication
-description: 'V8 v6.0 apporte plusieurs améliorations de performance, et introduit la prise en charge des `SharedArrayBuffer` et des propriétés rest/spread pour les objets.'
+description: "V8 v6.0 apporte plusieurs améliorations de performance, et introduit la prise en charge des `SharedArrayBuffer` et des propriétés rest/spread pour les objets."
 ---
 Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](/docs/release-process). Chaque version est dérivée du dépôt principal Git de V8 juste avant une étape Beta de Chrome. Aujourd’hui, nous sommes ravis d’annoncer notre toute dernière branche, [V8 version 6.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.0), qui sera en version bêta jusqu'à sa sortie coordonnée avec Chrome 60 Stable dans quelques semaines. V8 6.0 regorge de toutes sortes de nouveautés pour les développeurs. Nous aimerions vous donner un aperçu de certaines des fonctionnalités phares en attendant le lancement.
 

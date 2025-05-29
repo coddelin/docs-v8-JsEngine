@@ -1,9 +1,9 @@
 ---
-title: 'Slack-Verfolgung in V8'
-author: 'Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), renommierter Meister des *Slack*'
-description: 'Eine detaillierte Betrachtung des Slack-Verfolgungsmechanismus in V8.'
+title: "Slack-Verfolgung in V8"
+author: "Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), renommierter Meister des *Slack*"
+description: "Eine detaillierte Betrachtung des Slack-Verfolgungsmechanismus in V8."
 avatars:
- - 'michael-stanton'
+ - "michael-stanton"
 date: 2020-09-24 14:00:00
 tags:
  - internals

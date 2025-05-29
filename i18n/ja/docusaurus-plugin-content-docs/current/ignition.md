@@ -1,6 +1,6 @@
 ---
-title: '点火'
-description: 'このドキュメントはIgnition、V8のインタープリターに関するリソースを集めたものです。'
+title: "点火"
+description: "このドキュメントはIgnition、V8のインタープリターに関するリソースを集めたものです。"
 ---
 V8にはIgnitionと呼ばれるインタープリターが搭載されています。Ignitionは、[TurboFan](/docs/turbofan)のバックエンドを使用して記述された、低レベルでレジスタベースの高速インタープリターです。V8のブログ記事では、Ignitionインタープリターに関する[ハイレベルな概要](/blog/ignition-interpreter)を紹介しています。詳細は以下のリソースでも確認できます。
 

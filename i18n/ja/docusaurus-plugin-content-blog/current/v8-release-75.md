@@ -1,13 +1,13 @@
 ---
-title: 'V8リリース v7.5'
-author: 'Dan Elphick, 廃止された機能の恐怖'
+title: "V8リリース v7.5"
+author: "Dan Elphick, 廃止された機能の恐怖"
 avatars:
-  - 'dan-elphick'
+  - "dan-elphick"
 date: 2019-05-16 15:00:00
 tags:
   - リリース
-description: 'V8 v7.5は、WebAssemblyコンパイルアーティファクトの暗黙的キャッシュ、大量メモリ操作、JavaScriptの数値セパレータなど、多くの機能を備えています！'
-tweet: '1129073370623086593'
+description: "V8 v7.5は、WebAssemblyコンパイルアーティファクトの暗黙的キャッシュ、大量メモリ操作、JavaScriptの数値セパレータなど、多くの機能を備えています！"
+tweet: "1129073370623086593"
 ---
 6週間ごとに、V8の新しいブランチを[リリースプロセス](/docs/release-process)の一環として作成します。各バージョンは、Chromeのベータ版マイルストーン直前にV8のGitマスターからブランチされます。本日、最新のブランチである[V8バージョン7.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.5)を発表できることを嬉しく思います。このバージョンは、数週間後にChrome 75 Stableと連動してリリースされるまでベータ版です。V8 v7.5は、開発者向けのあらゆる機能が盛り込まれています。本投稿では、リリースに先立ち、いくつかの注目点を紹介します。
 

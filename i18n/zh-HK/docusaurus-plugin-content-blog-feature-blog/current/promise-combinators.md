@@ -1,8 +1,8 @@
 ---
-title: 'Promise 組合子'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Promise 組合子"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-12
 tags:
   - ECMAScript
@@ -10,8 +10,8 @@ tags:
   - ES2021
   - io19
   - Node.js 16
-description: '在 JavaScript 中有四種 Promise 組合子：Promise.all、Promise.race、Promise.allSettled 和 Promise.any。'
-tweet: '1138819493956710400'
+description: "在 JavaScript 中有四種 Promise 組合子：Promise.all、Promise.race、Promise.allSettled 和 Promise.any。"
+tweet: "1138819493956710400"
 ---
 自從在 ES2015 引入 Promise 以來，JavaScript 就支持了兩種 Promise 組合子：靜態方法 `Promise.all` 和 `Promise.race`。
 

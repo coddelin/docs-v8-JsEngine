@@ -1,13 +1,13 @@
 ---
-title: '백그라운드 컴파일'
-author: '[로스 맥일로이](https://twitter.com/rossmcilroy), 메인 스레드 옹호자'
+title: "백그라운드 컴파일"
+author: "[로스 맥일로이](https://twitter.com/rossmcilroy), 메인 스레드 옹호자"
 avatars:
-  - 'ross-mcilroy'
+  - "ross-mcilroy"
 date: 2018-03-26 13:33:37
 tags:
   - 내부 기능
-description: 'Chrome 66부터 V8은 JavaScript 소스 코드를 백그라운드 스레드에서 컴파일하여 일반적인 웹사이트에서 메인 스레드가 컴파일에 소비하는 시간을 5%에서 20% 정도 감소시킵니다.'
-tweet: '978319362837958657'
+description: "Chrome 66부터 V8은 JavaScript 소스 코드를 백그라운드 스레드에서 컴파일하여 일반적인 웹사이트에서 메인 스레드가 컴파일에 소비하는 시간을 5%에서 20% 정도 감소시킵니다."
+tweet: "978319362837958657"
 ---
 요약: Chrome 66부터 V8은 JavaScript 소스 코드를 백그라운드 스레드에서 컴파일하여 일반적인 웹사이트에서 메인 스레드가 컴파일에 소비하는 시간을 5%에서 20% 정도 감소시킵니다.
 

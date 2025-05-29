@@ -1,6 +1,6 @@
 ---
-title: 'Configurações oficialmente suportadas'
-description: 'Este documento explica quais configurações de build são mantidas pela equipe do V8.'
+title: "Configurações oficialmente suportadas"
+description: "Este documento explica quais configurações de build são mantidas pela equipe do V8."
 ---
 O V8 suporta uma variedade de diferentes configurações de build através de sistemas operacionais, suas versões, arquiteturas, flags de build e assim por diante.
 

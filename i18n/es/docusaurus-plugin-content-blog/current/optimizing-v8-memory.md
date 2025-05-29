@@ -1,15 +1,15 @@
 ---
-title: 'Optimizando el consumo de memoria de V8'
-author: 'los Ingenieros de Saneamiento de Memoria de V8: Ulan Degenbaev, Michael Lippautz, Hannes Payer y Toon Verwaest'
+title: "Optimizando el consumo de memoria de V8"
+author: "los Ingenieros de Saneamiento de Memoria de V8: Ulan Degenbaev, Michael Lippautz, Hannes Payer y Toon Verwaest"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2016-10-07 13:33:37
 tags:
   - memoria
   - benchmarks
-description: 'El equipo de V8 analizó y redujo significativamente el consumo de memoria de varios sitios web que fueron identificados como representativos de los patrones modernos de desarrollo web.'
+description: "El equipo de V8 analizó y redujo significativamente el consumo de memoria de varios sitios web que fueron identificados como representativos de los patrones modernos de desarrollo web."
 ---
 El consumo de memoria es una dimensión importante en el espacio de compensación de rendimiento de las máquinas virtuales de JavaScript. En los últimos meses, el equipo de V8 analizó y redujo significativamente el consumo de memoria de varios sitios web identificados como representativos de los patrones modernos de desarrollo web. En esta publicación de blog presentamos las cargas de trabajo y las herramientas que utilizamos en nuestro análisis, describimos las optimizaciones de memoria en el recolector de basura y mostramos cómo reducimos la memoria consumida por el analizador y los compiladores de V8.
 

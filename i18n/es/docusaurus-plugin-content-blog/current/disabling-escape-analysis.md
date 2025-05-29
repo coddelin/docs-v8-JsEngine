@@ -1,13 +1,13 @@
 ---
-title: 'Desactivación temporal del análisis de escape'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), analista de escape de sandbox'
+title: "Desactivación temporal del análisis de escape"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), analista de escape de sandbox"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-09-22 13:33:37
 tags:
   - seguridad
-description: 'Hemos desactivado el análisis de escape de V8 en Chrome 61 para proteger a los usuarios contra una vulnerabilidad de seguridad.'
-tweet: '911339802884284416'
+description: "Hemos desactivado el análisis de escape de V8 en Chrome 61 para proteger a los usuarios contra una vulnerabilidad de seguridad."
+tweet: "911339802884284416"
 ---
 En JavaScript, un objeto asignado _escapa_ si es accesible desde fuera de la función actual. Normalmente, V8 asigna nuevos objetos en el heap de JavaScript, pero utilizando el análisis de escape, un compilador optimizador puede identificar cuándo un objeto puede ser tratado de manera especial porque su tiempo de vida está demostrablemente limitado a la activación de la función. Cuando la referencia a un objeto recién asignado no escapa de la función que lo crea, los motores de JavaScript no necesitan asignar explícitamente ese objeto en el heap. En su lugar, pueden tratar los valores del objeto como variables locales de la función. Esto, a su vez, permite todo tipo de optimizaciones, como almacenar estos valores en la pila o en registros, o en algunos casos, eliminar los valores por completo. Los objetos que escapan (más precisamente, los objetos de los que no se puede demostrar que no escapan) deben ser asignados en el heap.
 

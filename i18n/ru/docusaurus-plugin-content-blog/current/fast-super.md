@@ -1,13 +1,13 @@
 ---
-title: 'Супербыстрый доступ к свойствам `super`'
-author: '[Марья Хётта](https://twitter.com/marjakh), супероптимизатор'
+title: "Супербыстрый доступ к свойствам `super`"
+author: "[Марья Хётта](https://twitter.com/marjakh), супероптимизатор"
 avatars:
   - marja-holtta
 date: 2021-02-18
 tags:
   - JavaScript
-description: 'Быстрее доступ к свойствам `super` в V8 v9.0'
-tweet: '1362465295848333316'
+description: "Быстрее доступ к свойствам `super` в V8 v9.0"
+tweet: "1362465295848333316"
 ---
 
 [`super`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super) может быть использован для доступа к свойствам и методам родителя объекта.

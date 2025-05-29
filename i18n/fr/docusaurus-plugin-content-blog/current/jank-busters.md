@@ -1,9 +1,9 @@
 ---
-title: 'Jank Busters Partie Un'
-author: 'les jank busters : Jochen Eisinger, Michael Lippautz et Hannes Payer'
+title: "Jank Busters Partie Un"
+author: "les jank busters : Jochen Eisinger, Michael Lippautz et Hannes Payer"
 avatars:
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2015-10-30 13:33:37
 tags:
   - mémoire

@@ -1,15 +1,15 @@
 ---
-title: '論理代入'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "論理代入"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2020-05-07
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: 'JavaScriptは論理演算を伴う複合代入をサポートするようになりました。'
-tweet: '1258387483823345665'
+description: "JavaScriptは論理演算を伴う複合代入をサポートするようになりました。"
+tweet: "1258387483823345665"
 ---
 JavaScriptは、代入と二項演算を簡潔に表現できる一連の[複合代入演算子](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators)をサポートしています。現在は、数学的またはビット演算のみがサポートされています。
 

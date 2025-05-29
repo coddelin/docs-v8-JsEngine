@@ -1,13 +1,13 @@
 ---
-title: 'V8 發布 v7.2'
-author: 'Andreas Haas, 陷阱處理者'
+title: "V8 發布 v7.2"
+author: "Andreas Haas, 陷阱處理者"
 avatars:
   - andreas-haas
 date: 2018-12-18 11:48:21
 tags:
   - 發布
-description: 'V8 v7.2 提供高速的 JavaScript 解析、更快的 async-await、降低 ia32 的內存消耗、公開類字段等多項功能！'
-tweet: '1074978755934863361'
+description: "V8 v7.2 提供高速的 JavaScript 解析、更快的 async-await、降低 ia32 的內存消耗、公開類字段等多項功能！"
+tweet: "1074978755934863361"
 ---
 每六週，我們會根據 [發布流程](/docs/release-process) 創建一個新的 V8 分支。每個版本都在 Chrome Beta 的里程碑之前，直接從 V8 的 Git 主分支中分出。今天我們很高興地宣布我們最新的分支，[V8 版本 7.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.2)，目前處於 Beta 階段，直到幾周後與 Chrome 72 穩定版本協同發布。V8 v7.2 擁有許多面向開發者的功能。本文提供一些發布前的亮點預覽。
 

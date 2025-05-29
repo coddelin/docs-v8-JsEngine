@@ -1,13 +1,13 @@
 ---
-title: 'Embedded builtins'
-author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
+title: "Embedded builtins"
+author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2018-08-14 13:33:37
 tags:
   - internals
-description: 'V8 v6.9 embeds built-in code into the binary’s .text section, reducing the median V8 heap size per website by 19%.'
-tweet: '1029382366693937162'
+description: "V8 v6.9 embeds built-in code into the binary’s .text section, reducing the median V8 heap size per website by 19%."
+tweet: "1029382366693937162"
 ---
 V8 built-in functions (builtins) consume memory in every instance of V8. The builtin count, average size, and the number of V8 instances per Chrome browser tab have been growing significantly. This blog post describes how we reduced the median V8 heap size per website by 19% over the past year.
 

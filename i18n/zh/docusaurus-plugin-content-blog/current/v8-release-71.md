@@ -1,13 +1,13 @@
 ---
-title: 'V8 发布 v7.1'
-author: 'Stephan Herhut ([@herhut](https://twitter.com/herhut))，克隆克隆者的克隆者'
+title: "V8 发布 v7.1"
+author: "Stephan Herhut ([@herhut](https://twitter.com/herhut))，克隆克隆者的克隆者"
 avatars:
   - stephan-herhut
 date: 2018-10-31 15:44:37
 tags:
   - release
-description: 'V8 v7.1 包含嵌入式字节码处理程序、改进的 TurboFan 逃逸分析、postMessage(wasmModule)、Intl.RelativeTimeFormat，以及 globalThis!'
-tweet: '1057645773465235458'
+description: "V8 v7.1 包含嵌入式字节码处理程序、改进的 TurboFan 逃逸分析、postMessage(wasmModule)、Intl.RelativeTimeFormat，以及 globalThis!"
+tweet: "1057645773465235458"
 ---
 每六周我们会创建一个新的 V8 分支，这是我们[发布流程](/docs/release-process)的一部分。每个版本都会在 Chrome Beta 里程碑之前从 V8 的 Git 主分支分离出来。今天，我们很高兴宣布最新的分支：[V8 版本 7.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.1)，目前已进入 Beta 阶段，几周后将在与 Chrome 71 稳定版的协调发布中正式发布。V8 v7.1 包含各种面向开发者的好功能。本篇文章将提前预览一些亮点。
 

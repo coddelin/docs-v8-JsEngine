@@ -1,13 +1,13 @@
 ---
 title: '"ECMAScript 사양 이해하기, 2부"의 추가 콘텐츠'
-author: '[Marja Hölttä](https://twitter.com/marjakh), 추측적 사양 관찰자'
+author: "[Marja Hölttä](https://twitter.com/marjakh), 추측적 사양 관찰자"
 avatars:
   - marja-holtta
 date: 2020-03-02
 tags:
   - ECMAScript
-description: 'ECMAScript 사양을 읽는 튜토리얼'
-tweet: ''
+description: "ECMAScript 사양을 읽는 튜토리얼"
+tweet: ""
 ---
 
 ### 왜 `o2.foo`가 `AssignmentExpression`인가요?

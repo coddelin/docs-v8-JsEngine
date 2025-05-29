@@ -1,6 +1,6 @@
 ---
-title: '使用 GN 构建 V8'
-description: '本文档介绍如何使用 GN 构建 V8。'
+title: "使用 GN 构建 V8"
+description: "本文档介绍如何使用 GN 构建 V8。"
 ---
 V8 是通过 [GN](https://gn.googlesource.com/gn/+/master/docs/) 构建的。GN 是一种元构建系统，它为多种其他构建系统生成构建文件。因此，如何构建取决于您使用的“后台”构建系统和编译器。
 以下说明假定您已经有一个 [V8 的代码库](/docs/source-code) 并且已[安装构建依赖项](/docs/build)。

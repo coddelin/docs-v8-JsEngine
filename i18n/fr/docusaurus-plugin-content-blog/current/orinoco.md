@@ -1,10 +1,10 @@
 ---
-title: 'Jank Busters Partie Deux : Orinoco'
-author: 'les chasseurs de jank : Ulan Degenbaev, Michael Lippautz, et Hannes Payer'
+title: "Jank Busters Partie Deux : Orinoco"
+author: "les chasseurs de jank : Ulan Degenbaev, Michael Lippautz, et Hannes Payer"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2016-04-12 13:33:37
 tags:
   - internes

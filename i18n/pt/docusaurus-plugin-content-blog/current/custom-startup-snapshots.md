@@ -1,12 +1,12 @@
 ---
-title: 'Snapshots personalizados de inicialização'
-author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed)), Engenheiro de Software e fornecedor de pré-aquecedor de motor'
+title: "Snapshots personalizados de inicialização"
+author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), Engenheiro de Software e fornecedor de pré-aquecedor de motor"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2015-09-25 13:33:37
 tags:
   - internos
-description: 'Embedders do V8 podem utilizar snapshots para pular o tempo de inicialização causado por inicializações de programas JavaScript.'
+description: "Embedders do V8 podem utilizar snapshots para pular o tempo de inicialização causado por inicializações de programas JavaScript."
 ---
 A especificação do JavaScript inclui muitas funcionalidades integradas, desde [funções matemáticas](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) até um [motor de expressões regulares completo](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions). Todo contexto recém-criado do V8 tem essas funções disponíveis desde o início. Para que isso funcione, o objeto global (por exemplo, o objeto window em um navegador) e todas as funcionalidades integradas devem ser configurados e inicializados no heap do V8 no momento em que o contexto é criado. Isso leva um tempo considerável para ser feito do zero.
 

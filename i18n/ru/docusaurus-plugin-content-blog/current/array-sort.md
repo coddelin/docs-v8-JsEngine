@@ -1,14 +1,14 @@
 ---
-title: 'Упорядочивание в V8'
-author: 'Саймон Цюнд ([@nimODota](https://twitter.com/nimODota)), согласованный компаратор'
+title: "Упорядочивание в V8"
+author: "Саймон Цюнд ([@nimODota](https://twitter.com/nimODota)), согласованный компаратор"
 avatars:
   - simon-zuend
 date: 2018-09-28 11:20:37
 tags:
   - ECMAScript
   - internals
-description: 'Начиная с V8 v7.0 / Chrome 70, Array.prototype.sort работает стабильно.'
-tweet: '1045656758700650502'
+description: "Начиная с V8 v7.0 / Chrome 70, Array.prototype.sort работает стабильно."
+tweet: "1045656758700650502"
 ---
 `Array.prototype.sort` был одним из последних встроенных методов, реализованных на JavaScript с самохостингом в V8. Его портирование предоставило нам возможность экспериментировать с различными алгоритмами и стратегиями реализации, а затем наконец [сделать его стабильным](https://mathiasbynens.be/demo/sort-stability) в V8 v7.0 / Chrome 70.
 

@@ -1,13 +1,13 @@
 ---
-title: 'V8の正規表現を高速化する'
-author: 'Jakob Gruber、レギュラーソフトウェアエンジニア'
+title: "V8の正規表現を高速化する"
+author: "Jakob Gruber、レギュラーソフトウェアエンジニア"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2017-01-10 13:33:37
 tags:
   - internals
   - RegExp
-description: 'V8は最近、自己ホスト型JavaScript実装から、新しいコード生成アーキテクチャ（TurboFanベース）に直接接続する形の実装にRegExpの組み込み関数を移行しました。'
+description: "V8は最近、自己ホスト型JavaScript実装から、新しいコード生成アーキテクチャ（TurboFanベース）に直接接続する形の実装にRegExpの組み込み関数を移行しました。"
 ---
 このブログ投稿では、V8が最近実施したRegExpの組み込み関数を自己ホスト型JavaScript実装から[TurboFan](/blog/v8-release-56)を基盤とする新しいコード生成アーキテクチャに直接接続する形になった移行について説明します。
 

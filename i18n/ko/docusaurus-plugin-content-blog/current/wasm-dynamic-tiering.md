@@ -1,13 +1,13 @@
 ---
-title: 'Chrome 96에서 WebAssembly Dynamic Tiering 사용해보기'
-author: 'Andreas Haas — 즐거운 시간'
+title: "Chrome 96에서 WebAssembly Dynamic Tiering 사용해보기"
+author: "Andreas Haas — 즐거운 시간"
 avatars:
   - andreas-haas
 date: 2021-10-29
 tags:
   - WebAssembly
-description: 'Chrome 96과 V8 v9.6에서 WebAssembly Dynamic Tiering을 명령줄 플래그 또는 Origin Trial을 통해 사용해볼 수 있습니다.'
-tweet: '1454158971674271760'
+description: "Chrome 96과 V8 v9.6에서 WebAssembly Dynamic Tiering을 명령줄 플래그 또는 Origin Trial을 통해 사용해볼 수 있습니다."
+tweet: "1454158971674271760"
 ---
 
 V8에는 WebAssembly 코드를 기계 코드로 컴파일하여 실행할 수 있도록 하는 두 가지 컴파일러가 있습니다: 기본 컴파일러 __Liftoff__와 최적화 컴파일러 __TurboFan__ 입니다. Liftoff는 TurboFan보다 훨씬 빠르게 코드를 생성할 수 있어 빠른 시작 시간을 제공합니다. 반면 TurboFan은 더 빠른 코드를 생성하여 높은 성능을 제공합니다.

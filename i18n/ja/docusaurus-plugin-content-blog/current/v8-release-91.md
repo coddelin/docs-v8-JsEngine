@@ -1,13 +1,13 @@
 ---
-title: 'V8リリース v9.1'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))、私のプライベートブランドのテスト'
+title: "V8リリース v9.1"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))、私のプライベートブランドのテスト"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-05-04
 tags:
  - リリース
-description: 'V8リリースv9.1では、プライベートブランドチェックのサポート、デフォルトで有効化されたトップレベルawait、そしてパフォーマンス改善を提供します。'
-tweet: '1389613320953532417'
+description: "V8リリースv9.1では、プライベートブランドチェックのサポート、デフォルトで有効化されたトップレベルawait、そしてパフォーマンス改善を提供します。"
+tweet: "1389613320953532417"
 ---
 6週間ごとに、[リリースプロセス](https://v8.dev/docs/release-process)の一環としてV8の新しいブランチを作成しています。それぞれのバージョンは、Chrome Betaマイルストーン直前にV8のGitマスターからブランチ化されます。本日、私たちは最新のブランチ、[V8バージョン9.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.1)を発表できることを嬉しく思います。このバージョンは、数週間後にChrome 91 Stableと連携してリリースされるまでベータ版となります。V8 v9.1は、開発者に向けたさまざまな便利な機能に満ちています。この投稿では、リリースを見越した重要なハイライトの一部をご紹介します。
 

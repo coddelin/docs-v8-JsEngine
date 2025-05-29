@@ -1,6 +1,6 @@
 ---
-title: 'Blink 网页测试（又称布局测试）'
-description: 'V8 的基础设施会持续运行 Blink 的网页测试，以防止与 Chromium 集成出现问题。本文件描述在这些测试失败时应该怎么做。'
+title: "Blink 网页测试（又称布局测试）"
+description: "V8 的基础设施会持续运行 Blink 的网页测试，以防止与 Chromium 集成出现问题。本文件描述在这些测试失败时应该怎么做。"
 ---
 我们会在[集成控制台](https://ci.chromium.org/p/v8/g/integration/console)上持续运行[Blink 网页测试（以前称为“布局测试”）](https://chromium.googlesource.com/chromium/src/+/master/docs/testing/web_tests.md)，以防止与 Chromium 集成出现问题。
 

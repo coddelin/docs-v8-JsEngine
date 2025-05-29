@@ -1,15 +1,15 @@
 ---
-title: 'Logical assignment'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "Logical assignment"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2020-05-07
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: 'JavaScript now supports compound assignment with logical operations.'
-tweet: '1258387483823345665'
+description: "JavaScript now supports compound assignment with logical operations."
+tweet: "1258387483823345665"
 ---
 JavaScript supports a range of [compound assignment operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators) that let programmers succinctly express a binary operation together with assignment. Currently, only mathematical or bitwise operations are supported.
 

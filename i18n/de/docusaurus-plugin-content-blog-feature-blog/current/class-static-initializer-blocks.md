@@ -1,13 +1,13 @@
 ---
-title: 'Statische Initialisierungsblöcke von Klassen'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "Statische Initialisierungsblöcke von Klassen"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2021-03-30
 tags:
   - ECMAScript
-description: 'JavaScript-Klassen erhalten eigens entwickelte Syntax für statische Initialisierung.'
-tweet: '1376925666780798989'
+description: "JavaScript-Klassen erhalten eigens entwickelte Syntax für statische Initialisierung."
+tweet: "1376925666780798989"
 ---
 Die neue Syntax der statischen Initialisierungsblöcke ermöglicht es Entwicklern, Code zu bündeln, der einmal für eine bestimmte Klassendefinition ausgeführt werden soll, und ihn an einem einzigen Ort zu platzieren. Betrachten Sie das folgende Beispiel, bei dem ein Pseudo-Zufallszahlengenerator einen statischen Block verwendet, um einmalig einen Entropie-Pool zu initialisieren, wenn die `class MyPRNG`-Definition ausgewertet wird.
 

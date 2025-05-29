@@ -1,17 +1,17 @@
 ---
-title: 'C++를 위한 고성능 가비지 컬렉션'
-author: 'Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), 그리고 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), C++ 메모리 전문가'
+title: "C++를 위한 고성능 가비지 컬렉션"
+author: "Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), 그리고 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), C++ 메모리 전문가"
 avatars:
-  - 'anton-bikineev'
-  - 'omer-katz'
-  - 'michael-lippautz'
+  - "anton-bikineev"
+  - "omer-katz"
+  - "michael-lippautz"
 date: 2020-05-26
 tags:
   - internals
   - memory
   - cppgc
-description: '이 게시물은 Oilpan C++ 가비지 컬렉터, Blink에서의 사용 및 비활성 메모리 회수, 즉 스위핑 작업을 최적화하는 방법에 대해 설명합니다.'
-tweet: '1265304883638480899'
+description: "이 게시물은 Oilpan C++ 가비지 컬렉터, Blink에서의 사용 및 비활성 메모리 회수, 즉 스위핑 작업을 최적화하는 방법에 대해 설명합니다."
+tweet: "1265304883638480899"
 ---
 
 과거에는 [이미](https://v8.dev/blog/trash-talk) [여러 번](https://v8.dev/blog/concurrent-marking) [게시물에](https://v8.dev/blog/tracing-js-dom) JavaScript의 가비지 컬렉션, 문서 객체 모델(DOM), 그리고 이것이 V8에서 구현되고 최적화되는 방식에 대해 작성한 적이 있습니다. 하지만 Chromium의 모든 요소가 JavaScript로 작성된 것은 아닙니다. 대부분의 브라우저와 V8이 내장된 Blink 렌더링 엔진은 C++로 작성되었습니다. JavaScript는 DOM과 상호 작용할 수 있으며, 이는 이후 렌더링 파이프라인에 의해 처리됩니다.

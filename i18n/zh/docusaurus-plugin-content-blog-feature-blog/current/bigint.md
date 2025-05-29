@@ -1,15 +1,15 @@
 ---
-title: 'BigInt: JavaScript 中任意精度的整数'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "BigInt: JavaScript 中任意精度的整数"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-05-01
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: 'BigInt 是 JavaScript 中的一个新型数字原始值，可表示任意精度的整数。本文通过对比 JavaScript 中的 BigInt 和 Number，逐步介绍 BigInt 的一些使用场景，并说明 Chrome 67 中的新功能。'
-tweet: '990991035630206977'
+description: "BigInt 是 JavaScript 中的一个新型数字原始值，可表示任意精度的整数。本文通过对比 JavaScript 中的 BigInt 和 Number，逐步介绍 BigInt 的一些使用场景，并说明 Chrome 67 中的新功能。"
+tweet: "990991035630206977"
 ---
 `BigInt` 是 JavaScript 中的一种新型数字原始值，可以表示任意精度的整数。通过 `BigInt`，您可以安全地存储并操作即使超出 `Number` 安全整数限制的大整数。本文通过对比 JavaScript 中的 `BigInt` 和 `Number`，逐步介绍它的一些使用场景，并说明 Chrome 67 中的新功能。
 

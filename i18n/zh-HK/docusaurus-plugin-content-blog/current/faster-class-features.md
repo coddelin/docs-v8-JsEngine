@@ -1,13 +1,13 @@
 ---
-title: '更快初始化具有新類特性的實例'
-author: '[Joyee Cheung](https://twitter.com/JoyeeCheung)，實例初始化器'
+title: "更快初始化具有新類特性的實例"
+author: "[Joyee Cheung](https://twitter.com/JoyeeCheung)，實例初始化器"
 avatars:
-  - 'joyee-cheung'
+  - "joyee-cheung"
 date: 2022-04-20
 tags:
   - internals
-description: '自從 V8 v9.7 以來，具有新類特性的實例初始化速度變得更快。'
-tweet: '1517041137378373632'
+description: "自從 V8 v9.7 以來，具有新類特性的實例初始化速度變得更快。"
+tweet: "1517041137378373632"
 ---
 
 自 v8 v7.2 開始，類字段已在 V8 中推出，而私有類方法自 v8.4 啟用。隨著相關提案於 2021 年達到第 4 階段，針對 V8 中新類特性的支持改進工作開始啟動 —— 在此之前，這些特性的採用主要受到兩個問題的影響：

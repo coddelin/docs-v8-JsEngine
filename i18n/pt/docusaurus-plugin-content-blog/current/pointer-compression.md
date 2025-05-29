@@ -1,15 +1,15 @@
 ---
-title: 'Compressão de Ponteiros no V8'
-author: 'Igor Sheludko e Santiago Aboy Solanes, *os* compressores de ponteiros'
+title: "Compressão de Ponteiros no V8"
+author: "Igor Sheludko e Santiago Aboy Solanes, *os* compressores de ponteiros"
 avatars:
-  - 'igor-sheludko'
-  - 'santiago-aboy-solanes'
+  - "igor-sheludko"
+  - "santiago-aboy-solanes"
 date: 2020-03-30
 tags:
   - internos
   - memória
-description: 'O V8 reduziu o tamanho do seu heap em até 43%! Saiba como em “Compressão de Ponteiros no V8”!'
-tweet: '1244653541379182596'
+description: "O V8 reduziu o tamanho do seu heap em até 43%! Saiba como em “Compressão de Ponteiros no V8”!"
+tweet: "1244653541379182596"
 ---
 Há uma batalha constante entre memória e desempenho. Como usuários, gostaríamos que as coisas fossem rápidas e consumissem o menor espaço de memória possível. Infelizmente, normalmente melhorar o desempenho tem um custo no consumo de memória (e vice-versa).
 

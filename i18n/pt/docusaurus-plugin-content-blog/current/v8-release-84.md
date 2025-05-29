@@ -1,13 +1,13 @@
 ---
-title: 'Lançamento do V8 v8.4'
-author: 'Camillo Bruni, aproveitando alguns booleanos frescos'
+title: "Lançamento do V8 v8.4"
+author: "Camillo Bruni, aproveitando alguns booleanos frescos"
 avatars:
- - 'camillo-bruni'
+ - "camillo-bruni"
 date: 2020-06-30
 tags:
  - lançamento
-description: 'O V8 v8.4 apresenta referências fracas e desempenho aprimorado do WebAssembly.'
-tweet: '1277983235641761795'
+description: "O V8 v8.4 apresenta referências fracas e desempenho aprimorado do WebAssembly."
+tweet: "1277983235641761795"
 ---
 A cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](https://v8.dev/docs/release-process). Cada versão é ramificada do Git master do V8 imediatamente antes de um marco Beta do Chrome. Hoje estamos felizes em anunciar nosso branch mais recente, [V8 versão 8.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.4), que está em beta até seu lançamento em coordenação com o Chrome 84 Stable em algumas semanas. O V8 v8.4 está repleto de novidades voltadas para desenvolvedores. Este post fornece uma prévia de alguns dos destaques em antecipação ao lançamento.
 

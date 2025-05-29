@@ -1,16 +1,16 @@
 ---
-title: 'Rastreamento do JS para o DOM e de volta novamente'
-author: 'Ulan Degenbaev, Alexei Filippov, Michael Lippautz e Hannes Payer — a sociedade do DOM'
+title: "Rastreamento do JS para o DOM e de volta novamente"
+author: "Ulan Degenbaev, Alexei Filippov, Michael Lippautz e Hannes Payer — a sociedade do DOM"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2018-03-01 13:33:37
 tags:
   - internals
   - memória
-description: 'As DevTools do Chrome agora podem rastrear e fazer snapshot de objetos DOM C++ e exibir todos os objetos DOM alcançáveis a partir do JavaScript com suas referências.'
-tweet: '969184997545562112'
+description: "As DevTools do Chrome agora podem rastrear e fazer snapshot de objetos DOM C++ e exibir todos os objetos DOM alcançáveis a partir do JavaScript com suas referências."
+tweet: "969184997545562112"
 ---
 Depurar vazamentos de memória no Chrome 66 ficou muito mais fácil. As DevTools do Chrome agora podem rastrear e fazer snapshot de objetos DOM C++ e exibir todos os objetos DOM alcançáveis a partir do JavaScript com suas referências. Este recurso é um dos benefícios do novo mecanismo de rastreamento em C++ do coletor de lixo V8.
 

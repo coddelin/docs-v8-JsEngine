@@ -1,13 +1,13 @@
 ---
-title: 'V8 發佈 v9.1'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 測試我的私人品牌'
+title: "V8 發佈 v9.1"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 測試我的私人品牌"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-05-04
 tags:
  - 發佈
-description: 'V8 發佈 v9.1 帶來了對私人品牌檢查的支持，預設啟用頂層 await，以及效能改進。'
-tweet: '1389613320953532417'
+description: "V8 發佈 v9.1 帶來了對私人品牌檢查的支持，預設啟用頂層 await，以及效能改進。"
+tweet: "1389613320953532417"
 ---
 每隔六周，我們會按照 [發佈流程](https://v8.dev/docs/release-process) 建立 V8 新的分支。每個版本都是在 Chrome Beta 的里程碑之前，直接從 V8 的 Git 主分支出分支。今天，我們很高興宣佈最新的分支 [V8 版本 9.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.1)，該版本將進入 Beta 階段，直到幾周後與 Chrome 91 穩定版協調發佈。V8 v9.1 包含了各種針對開發者的功能。本篇文章提供了一些亮點的預覽以期待發佈。
 

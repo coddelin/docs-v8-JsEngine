@@ -1,16 +1,16 @@
 ---
-title: 'Marcação concorrente no V8'
-author: 'Ulan Degenbaev, Michael Lippautz, e Hannes Payer — libertadores da thread principal'
+title: "Marcação concorrente no V8"
+author: "Ulan Degenbaev, Michael Lippautz, e Hannes Payer — libertadores da thread principal"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2018-06-11 13:33:37
 tags:
   - internos
   - memória
-description: 'Este post descreve a técnica de coleta de lixo chamada marcação concorrente.'
-tweet: '1006187194808233985'
+description: "Este post descreve a técnica de coleta de lixo chamada marcação concorrente."
+tweet: "1006187194808233985"
 ---
 Este post descreve a técnica de coleta de lixo chamada _marcação concorrente_. A otimização permite que uma aplicação JavaScript continue a execução enquanto o coletor de lixo escaneia o heap para encontrar e marcar objetos vivos. Nossos benchmarks mostram que a marcação concorrente reduz o tempo gasto marcando na thread principal em 60%–70%. A marcação concorrente é a última peça do projeto [Orinoco](/blog/orinoco) — o projeto para substituir incrementalmente o antigo coletor de lixo pelo novo coletor de lixo principalmente concorrente e paralelo. A marcação concorrente está habilitada por padrão no Chrome 64 e Node.js v10.
 

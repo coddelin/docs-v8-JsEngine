@@ -1,12 +1,12 @@
 ---
-title: '스프레드 요소의 속도 향상'
-author: 'Hai Dang & Georg Neis'
+title: "스프레드 요소의 속도 향상"
+author: "Hai Dang & Georg Neis"
 date: 2018-12-04 16:57:21
 tags:
   - ECMAScript
   - benchmarks
-description: 'V8 v7.2 / 배열, 문자열, 집합 및 맵에 대해 Array.from(array)와 [...spread]를 대폭 빠르게 개선했습니다.'
-tweet: '1070344545685118976'
+description: "V8 v7.2 / 배열, 문자열, 집합 및 맵에 대해 Array.from(array)와 [...spread]를 대폭 빠르게 개선했습니다."
+tweet: "1070344545685118976"
 ---
 Hai Dang은 V8 팀에서 3개월 간의 인턴십 동안 `[...array]`, `[...string]`, `[...set]`, `[...map.keys()]`, 및 `[...map.values()]`의 성능을 개선하기 위해 작업했습니다. 그는 또한 `Array.from(iterable)` 역시 훨씬 빠르게 만들었습니다. 이 기사에서는 그의 수정 사항에 대한 상세 내용을 설명하며, 해당 변경 사항은 v7.2부터 V8에 포함되었습니다.
 

@@ -1,17 +1,17 @@
 ---
-title: '更轻量的 V8'
-author: 'Mythri Alle、Dan Elphick 和 [Ross McIlroy](https://twitter.com/rossmcilroy)，V8 内存优化团队'
+title: "更轻量的 V8"
+author: "Mythri Alle、Dan Elphick 和 [Ross McIlroy](https://twitter.com/rossmcilroy)，V8 内存优化团队"
 avatars:
-  - 'mythri-alle'
-  - 'dan-elphick'
-  - 'ross-mcilroy'
+  - "mythri-alle"
+  - "dan-elphick"
+  - "ross-mcilroy"
 date: 2019-09-12 12:44:37
 tags:
   - 内部结构
   - 内存
   - 演讲
-description: 'V8 Lite 项目显著减少了 V8 在典型网站上的内存开销，以下是我们实现的方式。'
-tweet: '1172155403343298561'
+description: "V8 Lite 项目显著减少了 V8 在典型网站上的内存开销，以下是我们实现的方式。"
+tweet: "1172155403343298561"
 ---
 2018 年末，我们启动了一个名为 V8 Lite 的项目，旨在显著减少 V8 的内存使用量。起初，这个项目被设想为 V8 的一种独立的 *轻量模式*，专门针对低内存移动设备或更注重内存使用而非吞吐执行速度的嵌入场景。然而，在进行这项工作时，我们发现许多针对这个 *轻量模式* 的内存优化可以迁移到常规 V8，从而让所有 V8 的用户受益。
 

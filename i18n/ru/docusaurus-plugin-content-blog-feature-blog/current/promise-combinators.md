@@ -1,8 +1,8 @@
 ---
-title: 'Комбинаторы Promise'
-author: 'Маттиас Биненс ([@mathias](https://twitter.com/mathias))'
+title: "Комбинаторы Promise"
+author: "Маттиас Биненс ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-12
 tags:
   - ECMAScript
@@ -10,8 +10,8 @@ tags:
   - ES2021
   - io19
   - Node.js 16
-description: 'В JavaScript есть четыре комбинатора promise: Promise.all, Promise.race, Promise.allSettled и Promise.any.'
-tweet: '1138819493956710400'
+description: "В JavaScript есть четыре комбинатора promise: Promise.all, Promise.race, Promise.allSettled и Promise.any."
+tweet: "1138819493956710400"
 ---
 С момента появления промисов в ES2015 JavaScript поддерживал ровно два комбинатора promise: статические методы `Promise.all` и `Promise.race`.
 

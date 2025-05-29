@@ -1,13 +1,13 @@
 ---
 title: 'Causes d'erreur'
-author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
+author: "Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))"
 avatars:
-  - 'victor-gomes'
+  - "victor-gomes"
 date: 2021-07-07
 tags:
   - ECMAScript
 description: 'JavaScript prend désormais en charge les causes d'erreur.'
-tweet: '1412774651558862850'
+tweet: "1412774651558862850"
 ---
 
 Imaginez que vous avez une fonction qui appelle deux charges de travail distinctes `doSomeWork` et `doMoreWork`. Les deux fonctions peuvent lancer le même type d'erreurs, mais vous devez les traiter de manière différente.

@@ -1,6 +1,6 @@
 ---
-title: '使用 V8 對 Chromium 進行分析'
-description: '本文件解釋如何使用 V8 的 CPU 和堆分析器搭配 Chromium。'
+title: "使用 V8 對 Chromium 進行分析"
+description: "本文件解釋如何使用 V8 的 CPU 和堆分析器搭配 Chromium。"
 ---
 [V8 的 CPU 和堆分析器](/docs/profile) 在 V8 的 shell 中使用十分簡單，但在 Chromium 中使用可能會令人感到疑惑。本頁面旨在為您提供幫助。
 

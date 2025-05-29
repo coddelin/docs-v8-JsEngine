@@ -1,6 +1,6 @@
 ---
-title: 'Debuggen über das V8-Inspector-Protokoll'
-description: 'Diese Seite soll Embeds die grundlegenden Werkzeuge bereitstellen, die sie benötigen, um Debugging-Unterstützung in V8 zu implementieren.'
+title: "Debuggen über das V8-Inspector-Protokoll"
+description: "Diese Seite soll Embeds die grundlegenden Werkzeuge bereitstellen, die sie benötigen, um Debugging-Unterstützung in V8 zu implementieren."
 ---
 V8 bietet sowohl für Benutzer als auch für Embeds umfassende Debugging-Funktionen. Benutzer interagieren normalerweise über die [Chrome DevTools](https://developer.chrome.com/devtools)-Schnittstelle mit dem V8-Debugger. Embeds (einschließlich DevTools) müssen direkt auf das [Inspector-Protokoll](https://chromedevtools.github.io/debugger-protocol-viewer/tot/) zurückgreifen.
 

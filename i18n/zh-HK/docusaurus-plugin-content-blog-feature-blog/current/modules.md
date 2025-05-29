@@ -1,15 +1,15 @@
 ---
-title: 'JavaScript 模組'
-author: 'Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "JavaScript 模組"
+author: "Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-- 'addy-osmani'
-- 'mathias-bynens'
+- "addy-osmani"
+- "mathias-bynens"
 date: 2018-06-18
 tags:
   - ECMAScript
   - ES2015
-description: '本文說明如何使用 JavaScript 模組、如何負責任地部署它們，以及 Chrome 團隊如何努力在未來改進模組。'
-tweet: '1008725884575109120'
+description: "本文說明如何使用 JavaScript 模組、如何負責任地部署它們，以及 Chrome 團隊如何努力在未來改進模組。"
+tweet: "1008725884575109120"
 ---
 JavaScript 模組現在已經被[所有主流瀏覽器支援](https://caniuse.com/#feat=es6-module)!
 

@@ -1,6 +1,6 @@
 ---
-title: 'Oilpan 中的指標壓縮'
-author: 'Anton Bikineev，以及 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz))，行走的反編譯器'
+title: "Oilpan 中的指標壓縮"
+author: "Anton Bikineev，以及 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz))，行走的反編譯器"
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -9,8 +9,8 @@ tags:
   - internals
   - memory
   - cppgc
-description: 'Oilpan 中的指標壓縮可以壓縮 C++ 指標，並最多減少 33% 的堆大小。'
-tweet: '1597274125780893697'
+description: "Oilpan 中的指標壓縮可以壓縮 C++ 指標，並最多減少 33% 的堆大小。"
+tweet: "1597274125780893697"
 ---
 
 > 當我編譯一個使用不到 4GB RAM 的程式時，使用 64 位元指標是完全荒謬的。在結構體中出現這些指標值時，它們不僅浪費了一半的記憶體，還有效地丟掉了一半的快取。

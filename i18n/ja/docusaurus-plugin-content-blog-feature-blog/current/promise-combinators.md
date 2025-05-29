@@ -1,8 +1,8 @@
 ---
-title: 'Promiseの組み合わせ'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Promiseの組み合わせ"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-12
 tags:
   - ECMAScript
@@ -10,8 +10,8 @@ tags:
   - ES2021
   - io19
   - Node.js 16
-description: 'JavaScriptには4つのPromiseコンビネーターがあります: Promise.all, Promise.race, Promise.allSettled, そしてPromise.anyです。'
-tweet: '1138819493956710400'
+description: "JavaScriptには4つのPromiseコンビネーターがあります: Promise.all, Promise.race, Promise.allSettled, そしてPromise.anyです。"
+tweet: "1138819493956710400"
 ---
 ES2015でPromiseが導入されて以来、JavaScriptでは静的メソッド`Promise.all`と`Promise.race`の2つのPromiseコンビネーターがサポートされています。
 

@@ -1,15 +1,15 @@
 ---
-title: 'ReactにおけるV8の性能の崖についての物語'
-author: 'Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) と Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "ReactにおけるV8の性能の崖についての物語"
+author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) と Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'benedikt-meurer'
-  - 'mathias-bynens'
+  - "benedikt-meurer"
+  - "mathias-bynens"
 date: 2019-08-28 16:45:00
 tags:
   - internals
   - presentations
-description: 'この記事では、V8がさまざまなJavaScript値に対して最適なメモリ内表現を選択する方法と、それがShapeの仕組みにどのように影響を与えるかについて説明しています。これらすべては、Reactコアにおける最近のV8の性能の崖を説明する助けとなります。'
-tweet: '1166723359696130049'
+description: "この記事では、V8がさまざまなJavaScript値に対して最適なメモリ内表現を選択する方法と、それがShapeの仕組みにどのように影響を与えるかについて説明しています。これらすべては、Reactコアにおける最近のV8の性能の崖を説明する助けとなります。"
+tweet: "1166723359696130049"
 ---
 [以前](https://mathiasbynens.be/notes/shapes-ics)に、JavaScriptエンジンがShapesとInline Cachesを使用してオブジェクトと配列のアクセスを最適化する方法や、[エンジンがプロトタイプのプロパティアクセスを高速化する仕組み](https://mathiasbynens.be/notes/prototypes)について詳しく探りました。この記事では、V8がさまざまなJavaScript値に対して最適なメモリ内表現を選択する方法と、それがShapeの仕組みにどのように影響を与えるかについて説明しています。これらすべては[Reactコアにおける最近のV8の性能の崖](https://github.com/facebook/react/issues/14365)を説明する助けとなります。
 

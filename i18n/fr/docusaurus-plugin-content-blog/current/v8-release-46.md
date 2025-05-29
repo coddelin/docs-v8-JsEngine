@@ -1,10 +1,10 @@
 ---
-title: 'Version V8 v4.6'
-author: 'l’équipe V8'
+title: "Version V8 v4.6"
+author: "l’équipe V8"
 date: 2015-08-28 13:33:37
 tags:
   - version
-description: 'V8 v4.6 offre moins de saccades et prend en charge les nouvelles fonctionnalités linguistiques d’ES2015.'
+description: "V8 v4.6 offre moins de saccades et prend en charge les nouvelles fonctionnalités linguistiques d’ES2015."
 ---
 Environ toutes les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de version](https://v8.dev/docs/release-process). Chaque version est dérivée de la branche master de Git V8 immédiatement avant que Chrome ne crée une branche pour une étape bêta de Chrome. Aujourd'hui, nous sommes heureux d’annoncer notre toute nouvelle branche, [V8 version 4.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.6), qui sera en bêta jusqu’à sa sortie coordonnée avec Chrome 46 Stable. V8 4.6 est rempli de nombreuses fonctionnalités utiles aux développeurs, nous aimerions donc vous donner un aperçu de certains points forts en prévision de la sortie dans quelques semaines.
 

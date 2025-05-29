@@ -1,13 +1,13 @@
 ---
-title: '类的静态初始化块'
-author: '郭舒语 ([@_shu](https://twitter.com/_shu))'
+title: "类的静态初始化块"
+author: "郭舒语 ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2021-03-30
 tags:
   - ECMAScript
-description: 'JavaScript 类获得用于静态初始化的专用语法。'
-tweet: '1376925666780798989'
+description: "JavaScript 类获得用于静态初始化的专用语法。"
+tweet: "1376925666780798989"
 ---
 新的类静态初始化块语法允许开发者将针对某个类定义只运行一次的代码集中到一个地方。考虑下面的示例，其中一个伪随机数生成器使用静态块在 `class MyPRNG` 定义被评估时初始化一个熵池。
 

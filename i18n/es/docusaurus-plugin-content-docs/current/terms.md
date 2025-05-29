@@ -1,7 +1,7 @@
 ---
-title: 'Términos del servicio'
+title: "Términos del servicio"
 layout: layouts/base.njk
-description: 'Este documento describe los términos de servicio para el sitio web y proyecto V8.'
+description: "Este documento describe los términos de servicio para el sitio web y proyecto V8."
 ---
 # Términos del servicio
 

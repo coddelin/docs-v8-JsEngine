@@ -1,13 +1,13 @@
 ---
-title: 'V8 릴리스 v9.6'
-author: '잉그바 스테파니안 ([@RReverser](https://twitter.com/RReverser))'
+title: "V8 릴리스 v9.6"
+author: "잉그바 스테파니안 ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-10-13
 tags:
  - 릴리스
-description: 'V8 릴리스 v9.6은 WebAssembly에 참조 타입 지원을 제공합니다.'
-tweet: '1448262079476076548'
+description: "V8 릴리스 v9.6은 WebAssembly에 참조 타입 지원을 제공합니다."
+tweet: "1448262079476076548"
 ---
 매 4주마다 우리는 [릴리스 프로세스](https://v8.dev/docs/release-process)의 일환으로 V8의 새 브랜치를 생성합니다. 각 버전은 Chrome 베타 마일스톤 직전 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 최신 브랜치 [V8 버전 9.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.6)을 발표하게 되어 기쁩니다. 이 버전은 몇 주 후 Chrome 96 스테이블과 함께 릴리스될 때까지 베타 상태에 있습니다. V8 v9.6은 개발자들이 활용할 수 있는 다양한 요소들로 가득 차 있습니다. 이번 게시물에서는 릴리스에 앞서 몇 가지 주요 하이라이트를 미리 살펴봅니다.
 

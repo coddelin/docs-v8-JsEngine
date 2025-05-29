@@ -1,14 +1,14 @@
 ---
-title: 'Emscripten과 LLVM WebAssembly 백엔드'
-author: 'Alon Zakai'
+title: "Emscripten과 LLVM WebAssembly 백엔드"
+author: "Alon Zakai"
 avatars:
-  - 'alon-zakai'
+  - "alon-zakai"
 date: 2019-07-01 16:45:00
 tags:
   - WebAssembly
   - tooling
-description: 'Emscripten이 LLVM WebAssembly 백엔드로 전환하여 링크 시간이 훨씬 더 빨라지고 많은 이점을 제공합니다.'
-tweet: '1145704863377981445'
+description: "Emscripten이 LLVM WebAssembly 백엔드로 전환하여 링크 시간이 훨씬 더 빨라지고 많은 이점을 제공합니다."
+tweet: "1145704863377981445"
 ---
 WebAssembly는 일반적으로 소스 언어에서 컴파일되며, 이는 개발자가 WebAssembly를 사용하기 위해 *도구*가 필요함을 의미합니다. 그렇기 때문에 V8 팀은 [LLVM](http://llvm.org/), [Emscripten](https://emscripten.org/), [Binaryen](https://github.com/WebAssembly/binaryen/), [WABT](https://github.com/WebAssembly/wabt)와 같은 관련 오픈 소스 프로젝트에서 작업하고 있습니다. 이 게시물은 Emscripten과 LLVM에서 우리가 수행해 온 작업을 설명하며, 곧 Emscripten이 기본적으로 [LLVM WebAssembly 백엔드](https://github.com/llvm/llvm-project/tree/main/llvm/lib/Target/WebAssembly)로 전환할 수 있게 될 것입니다. 많은 테스트를 거쳐 문제를 보고해주세요!
 

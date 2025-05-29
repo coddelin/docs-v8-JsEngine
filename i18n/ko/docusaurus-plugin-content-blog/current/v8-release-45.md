@@ -1,10 +1,10 @@
 ---
-title: 'V8 릴리스 v4.5'
-author: 'V8 팀'
+title: "V8 릴리스 v4.5"
+author: "V8 팀"
 date: 2015-07-17 13:33:37
 tags:
   - 릴리스
-description: 'V8 v4.5는 성능 향상과 함께 여러 ES2015 기능 지원을 추가합니다.'
+description: "V8 v4.5는 성능 향상과 함께 여러 ES2015 기능 지원을 추가합니다."
 ---
 약 6주마다 [릴리스 프로세스](https://v8.dev/docs/release-process)의 일환으로 V8의 새로운 브랜치를 만듭니다. 각 버전은 V8의 Git 마스터에서 Chrome이 Chrome Beta 마일스톤을 위해 브랜치하기 직전에 분기됩니다. 오늘은 최신 브랜치인 [V8 버전 4.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.5)를 발표하게 되어 기쁩니다. 이 브랜치는 Chrome 45 Stable과 함께 릴리스될 때까지 베타 상태에 있을 것입니다. V8 v4.5는 개발자가 사용하기 좋은 다양한 기능들로 가득 차 있어 몇 주 후에 릴리스될 예정인 주요 내용을 미리 보여드리고자 합니다.
 

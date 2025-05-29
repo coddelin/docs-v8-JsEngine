@@ -1,14 +1,14 @@
 ---
-title: 'より高速で多機能な国際化API'
-author: '[சத்யா குணசேகரன் (Sathya Gunasekaran)](https://twitter.com/_gsathya)'
+title: "より高速で多機能な国際化API"
+author: "[சத்யா குணசேகரன் (Sathya Gunasekaran)](https://twitter.com/_gsathya)"
 date: 2019-04-25 16:45:37
 avatars:
-  - 'sathya-gunasekaran'
+  - "sathya-gunasekaran"
 tags:
   - ECMAScript
   - Intl
-description: 'JavaScriptの国際化APIが拡張され、V8での実装がより高速化しています！'
-tweet: '1121424877142122500'
+description: "JavaScriptの国際化APIが拡張され、V8での実装がより高速化しています！"
+tweet: "1121424877142122500"
 ---
 [ECMAScript国際化APIの仕様書](https://tc39.es/ecma402/) (ECMA-402、または`Intl`) は、日付フォーマット、数値フォーマット、複数形選択、並べ替えなどのロケール固有の重要な機能を提供します。Chrome V8とGoogle国際化チームは、V8のECMA-402の実装に機能を追加しつつ、技術的負債を整理し、パフォーマンスや他のブラウザとの互換性を向上させる取り組みを行っています。
 

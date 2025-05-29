@@ -1,6 +1,6 @@
 ---
-title: 'ChromiumのV8プロファイリング'
-description: 'このドキュメントでは、ChromiumでV8のCPUプロファイラーとヒーププロファイラーを使用する方法を説明します。'
+title: "ChromiumのV8プロファイリング"
+description: "このドキュメントでは、ChromiumでV8のCPUプロファイラーとヒーププロファイラーを使用する方法を説明します。"
 ---
 [V8のCPU & ヒーププロファイラー](/docs/profile)は、V8のシェルでは簡単に使用できますが、Chromiumで使用する方法は少し混乱するかもしれません。このページでは、その方法を説明します。
 

@@ -1,14 +1,14 @@
 ---
-title: '顶层 `await`'
-author: 'Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))'
+title: "顶层 `await`"
+author: "Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))"
 avatars:
-  - 'myles-borins'
+  - "myles-borins"
 date: 2019-10-08
 tags:
   - ECMAScript
   - Node.js 14
-description: '顶层 `await` 即将引入 JavaScript 模块！您将能够在不需要处于异步函数中的情况下使用 `await`。'
-tweet: '1181581262399643650'
+description: "顶层 `await` 即将引入 JavaScript 模块！您将能够在不需要处于异步函数中的情况下使用 `await`。"
+tweet: "1181581262399643650"
 ---
 [顶层 `await`](https://github.com/tc39/proposal-top-level-await) 使开发者能够在异步函数之外使用 `await` 关键字。它像一个大的异步函数，使其他 `import` 它的模块在开始执行其主体之前会等待。
 

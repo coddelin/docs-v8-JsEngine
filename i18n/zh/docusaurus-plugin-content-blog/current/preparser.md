@@ -1,15 +1,15 @@
 ---
-title: '极快的解析，第2部分：惰性解析'
-author: 'Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)) 和 Marja Hölttä ([@marjakh](https://twitter.com/marjakh))，精简解析器'
+title: "极快的解析，第2部分：惰性解析"
+author: "Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)) 和 Marja Hölttä ([@marjakh](https://twitter.com/marjakh))，精简解析器"
 avatars:
-  - 'toon-verwaest'
-  - 'marja-holtta'
+  - "toon-verwaest"
+  - "marja-holtta"
 date: 2019-04-15 17:03:37
 tags:
   - 内部功能
   - 解析
-tweet: '1117807107972243456'
-description: '这是我们系列文章的第二部分，解释了 V8 如何以尽可能快的速度解析 JavaScript。'
+tweet: "1117807107972243456"
+description: "这是我们系列文章的第二部分，解释了 V8 如何以尽可能快的速度解析 JavaScript。"
 ---
 这是我们系列文章的第二部分，解释了 V8 如何以尽可能快的速度解析 JavaScript。第一部分解释了我们如何让 V8 的[扫描器](/blog/scanner)变得快速。
 

@@ -1,6 +1,6 @@
 ---
-title: 'GDB JIT Compilation Interface 整合'
-description: 'GDB JIT Compilation Interface 整合讓 V8 可以提供 GDB 與 V8 執行時產生的原生程式碼的符號和除錯資訊。'
+title: "GDB JIT Compilation Interface 整合"
+description: "GDB JIT Compilation Interface 整合讓 V8 可以提供 GDB 與 V8 執行時產生的原生程式碼的符號和除錯資訊。"
 ---
 GDB JIT Compilation Interface 整合讓 V8 可以提供 GDB 與 V8 執行時產生的原生程式碼的符號和除錯資訊。
 

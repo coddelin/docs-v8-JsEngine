@@ -1,6 +1,6 @@
 ---
-title: 'GUI 和 IDE 設置'
-description: '本文檔包含針對 V8 代碼庫的 GUI 和 IDE 特定提示。'
+title: "GUI 和 IDE 設置"
+description: "本文檔包含針對 V8 代碼庫的 GUI 和 IDE 特定提示。"
 ---
 可以通過 [Chromium Code Search](https://cs.chromium.org/chromium/src/v8/) 在線瀏覽 V8 源代碼。
 

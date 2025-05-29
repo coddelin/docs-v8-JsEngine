@@ -1,12 +1,12 @@
 ---
-title: 'Accélérer les éléments de propagation'
-author: 'Hai Dang & Georg Neis'
+title: "Accélérer les éléments de propagation"
+author: "Hai Dang & Georg Neis"
 date: 2018-12-04 16:57:21
 tags:
   - ECMAScript
   - benchmarks
-description: 'V8 v7.2 accélère de manière significative Array.from(array) ainsi que [...spread] pour les tableaux, chaînes, ensembles et maps.'
-tweet: '1070344545685118976'
+description: "V8 v7.2 accélère de manière significative Array.from(array) ainsi que [...spread] pour les tableaux, chaînes, ensembles et maps."
+tweet: "1070344545685118976"
 ---
 Pendant son stage de trois mois au sein de l'équipe V8, Hai Dang a travaillé à améliorer les performances de `[...array]`, `[...string]`, `[...set]`, `[...map.keys()]`, et `[...map.values()]` (quand les éléments de propagation sont au début du littéral de tableau). Il a même rendu `Array.from(iterable)` beaucoup plus rapide. Cet article explique certains détails techniques de ses modifications, incluses dans V8 à partir de la version 7.2.
 

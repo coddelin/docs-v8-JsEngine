@@ -1,6 +1,6 @@
 ---
-title: 'Utilisation du profileur basé sur échantillons de V8'
-description: 'Ce document explique comment utiliser le profileur basé sur échantillons de V8.'
+title: "Utilisation du profileur basé sur échantillons de V8"
+description: "Ce document explique comment utiliser le profileur basé sur échantillons de V8."
 ---
 V8 dispose d'un profilage intégré basé sur des échantillons. Le profilage est désactivé par défaut, mais peut être activé via l'option de ligne de commande `--prof`. L'échantillonneur enregistre les piles de code JavaScript et de code C/C++.
 

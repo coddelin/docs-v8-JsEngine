@@ -1,6 +1,6 @@
 ---
-title: 'Depuração de builtins com GDB'
-description: 'A partir do V8 v6.9, é possível criar pontos de interrupção no GDB para depurar builtins de CSA / ASM / Torque.'
+title: "Depuração de builtins com GDB"
+description: "A partir do V8 v6.9, é possível criar pontos de interrupção no GDB para depurar builtins de CSA / ASM / Torque."
 ---
 A partir do V8 v6.9, é possível criar pontos de interrupção no GDB (e possivelmente em outros depuradores) para depurar builtins de CSA / ASM / Torque.
 

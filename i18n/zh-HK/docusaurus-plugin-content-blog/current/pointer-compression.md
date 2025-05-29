@@ -1,15 +1,15 @@
 ---
-title: 'V8 中的指針壓縮'
-author: 'Igor Sheludko 和 Santiago Aboy Solanes, *指針壓縮者'
+title: "V8 中的指針壓縮"
+author: "Igor Sheludko 和 Santiago Aboy Solanes, *指針壓縮者"
 avatars:
-  - 'igor-sheludko'
-  - 'santiago-aboy-solanes'
+  - "igor-sheludko"
+  - "santiago-aboy-solanes"
 date: 2020-03-30
 tags:
   - internals
   - memory
-description: 'V8 將其堆大小減少至最多 43%！了解詳細資訊，見“V8 中的指針壓縮”！'
-tweet: '1244653541379182596'
+description: "V8 將其堆大小減少至最多 43%！了解詳細資訊，見“V8 中的指針壓縮”！"
+tweet: "1244653541379182596"
 ---
 記憶體和效能之間總是一場持續的鬥爭。作為使用者，我們希望事情既快速又盡可能少地消耗記憶體。不幸的是，通常提升效能會以增加記憶體消耗為代價（反之亦然）。
 

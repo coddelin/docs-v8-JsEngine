@@ -1,14 +1,14 @@
 ---
-title: '与Spectre的一年：V8的视角'
-author: 'Ben L. Titzer 与 Jaroslav Sevcik'
+title: "与Spectre的一年：V8的视角"
+author: "Ben L. Titzer 与 Jaroslav Sevcik"
 avatars:
-  - 'ben-titzer'
-  - 'jaroslav-sevcik'
+  - "ben-titzer"
+  - "jaroslav-sevcik"
 date: 2019-04-23 14:15:22
 tags:
   - 安全
-tweet: '1120661732836499461'
-description: 'V8团队详述他们对Spectre的分析及缓解策略，这是2018年最重要的计算机安全问题之一。'
+tweet: "1120661732836499461"
+description: "V8团队详述他们对Spectre的分析及缓解策略，这是2018年最重要的计算机安全问题之一。"
 ---
 2018年1月3日，Google Project Zero及其他团队[披露](https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html)了一类新的CPU漏洞统称为[Spectre](https://spectreattack.com/spectre.pdf)与[Meltdown](https://meltdownattack.com/meltdown.pdf)。利用CPU的[预测执行](https://en.wikipedia.org/wiki/Speculative_execution)机制，攻击者可以暂时绕过代码中的隐式和显式安全检查，从而读取内存中未经授权的数据。尽管预测执行设计为微架构细节，原本应该在架构层面不可见，但精心构造的程序可以在预测过程中读取未经授权的信息，并通过诸如程序片段的执行时间这样的侧信道将其泄露。
 

@@ -1,11 +1,11 @@
 ---
-title: '더 빠른 릴리스'
-author: '잉바르 스테파니안 ([@RReverser](https://twitter.com/RReverser))'
+title: "더 빠른 릴리스"
+author: "잉바르 스테파니안 ([@RReverser](https://twitter.com/RReverser))"
 avatars:
-  - '잉바르-스테파니안'
+  - "잉바르-스테파니안"
 date: 2021-03-04
-description: 'V8의 릴리스 주기를 가속화'
-tweet: '1367546733643919370'
+description: "V8의 릴리스 주기를 가속화"
+tweet: "1367546733643919370"
 ---
 새로운 기능과 버그 수정을 사용자가 더 빠르게 이용할 수 있도록 하기 위해, Chrome은 [릴리스 주기를 가속화](https://developer.chrome.com/blog/faster-release-cycle/)하고 있습니다.
 

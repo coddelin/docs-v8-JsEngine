@@ -1,13 +1,13 @@
 ---
-title: 'V8リリース v7.3'
-author: 'Clemens Backes, コンパイラ担当'
+title: "V8リリース v7.3"
+author: "Clemens Backes, コンパイラ担当"
 avatars:
   - clemens-backes
 date: 2019-02-07 11:30:42
 tags:
   - リリース
-description: 'V8 v7.3には、WebAssemblyや非同期のパフォーマンス改善、非同期スタックトレース、Object.fromEntries、String#matchAllなど、非常に多くの新機能が詰まっています！'
-tweet: '1093457099441561611'
+description: "V8 v7.3には、WebAssemblyや非同期のパフォーマンス改善、非同期スタックトレース、Object.fromEntries、String#matchAllなど、非常に多くの新機能が詰まっています！"
+tweet: "1093457099441561611"
 ---
 6週間ごとに、私たちは[V8リリースプロセス](/docs/release-process)の一環としてV8の新しいブランチを作成します。各バージョンはV8のGitマスターから直接Chrome Betaのマイルストーン直前に派生しています。本日、最新のブランチ[V8バージョン7.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.3)を発表します。このバージョンは数週間後にChrome 73 Stableと連携してリリースされるまでベータ段階です。V8 v7.3は、開発者向けの魅力的な機能が満載です。この投稿では、リリースを待ついくつかのハイライトを紹介します。
 

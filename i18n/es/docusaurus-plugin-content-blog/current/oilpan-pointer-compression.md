@@ -1,6 +1,6 @@
 ---
-title: 'Compresión de punteros en Oilpan'
-author: 'Anton Bikineev y Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), desensambladores caminantes'
+title: "Compresión de punteros en Oilpan"
+author: "Anton Bikineev y Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), desensambladores caminantes"
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -9,8 +9,8 @@ tags:
   - internalidades
   - memoria
   - cppgc
-description: 'La compresión de punteros en Oilpan permite comprimir los punteros de C++ y reducir el tamaño del heap hasta en un 33%.'
-tweet: '1597274125780893697'
+description: "La compresión de punteros en Oilpan permite comprimir los punteros de C++ y reducir el tamaño del heap hasta en un 33%."
+tweet: "1597274125780893697"
 ---
 
 > Es absolutamente idiota tener punteros de 64 bits cuando compilo un programa que usa menos de 4 gigabytes de RAM. Cuando tales valores de puntero aparecen dentro de una estructura, no solo desperdician la mitad de la memoria, sino que también efectivamente descartan la mitad de la caché.

@@ -1,6 +1,6 @@
 ---
 title: 'WebAssembly - ajout d'un nouvel opcode'
-description: 'Ce tutoriel explique comment implémenter une nouvelle instruction WebAssembly dans V8.'
+description: "Ce tutoriel explique comment implémenter une nouvelle instruction WebAssembly dans V8."
 ---
 [WebAssembly](https://webassembly.org/) (Wasm) est un format d'instruction binaire pour une machine virtuelle basée sur une pile. Ce tutoriel guide le lecteur à travers l'implémentation d'une nouvelle instruction WebAssembly dans V8.
 

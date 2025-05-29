@@ -1,15 +1,15 @@
 ---
-title: '`Intl.RelativeTimeFormat`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Intl.RelativeTimeFormat`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-10-22
 tags:
   - Intl
   - Node.js 12
   - io19
-description: 'Intl.RelativeTimeFormat 使相对时间的本地化格式化成为可能，同时不牺牲性能。'
-tweet: '1054387117571354624'
+description: "Intl.RelativeTimeFormat 使相对时间的本地化格式化成为可能，同时不牺牲性能。"
+tweet: "1054387117571354624"
 ---
 现代 Web 应用程序通常使用诸如“昨天”、“42 秒前”或“3 个月后”的短语代替完整的日期和时间戳。这种 _相对时间格式化值_ 已经变得如此普遍，以至于许多流行的库都实现了以本地化方式格式化它们的工具函数。（例如 [Moment.js](https://momentjs.com/)、[Globalize](https://github.com/globalizejs/globalize)、和 [date-fns](https://date-fns.org/docs/)。）
 

@@ -1,8 +1,8 @@
 ---
-title: 'Funktionsunterstützung'
+title: "Funktionsunterstützung"
 permalink: /funktionen/unterstuetzung/
 layout: layouts/base.njk
-description: 'Dieses Dokument erklärt die Listen der unterstützten Sprachfunktionen von JavaScript und WebAssembly, wie sie auf der V8-Website verwendet werden.'
+description: "Dieses Dokument erklärt die Listen der unterstützten Sprachfunktionen von JavaScript und WebAssembly, wie sie auf der V8-Website verwendet werden."
 ---
 # Unterstützung für JavaScript/Wasm-Funktionen
 

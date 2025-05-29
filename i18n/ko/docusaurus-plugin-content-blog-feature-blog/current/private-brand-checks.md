@@ -1,13 +1,13 @@
 ---
-title: '개인 브랜드 검사 일명 `#foo in obj`'
-author: '마르야 헐타 ([@marjakh](https://twitter.com/marjakh))'
+title: "개인 브랜드 검사 일명 `#foo in obj`"
+author: "마르야 헐타 ([@marjakh](https://twitter.com/marjakh))"
 avatars:
-  - 'marja-holtta'
+  - "marja-holtta"
 date: 2021-04-14
 tags:
   - ECMAScript
-description: '개인 브랜드 검사를 통해 객체에 개인 필드의 존재를 테스트할 수 있습니다.'
-tweet: '1382327454975590401'
+description: "개인 브랜드 검사를 통해 객체에 개인 필드의 존재를 테스트할 수 있습니다."
+tweet: "1382327454975590401"
 ---
 
 [`in` 연산자](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in)는 주어진 객체(또는 그 프로토타입 체인의 객체)에 주어진 속성이 있는지 테스트하는 데 사용할 수 있습니다:

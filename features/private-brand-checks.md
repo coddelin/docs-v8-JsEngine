@@ -1,13 +1,13 @@
 ---
-title: 'Private brand checks a.k.a. `#foo in obj`'
-author: 'Marja Hölttä ([@marjakh](https://twitter.com/marjakh))'
+title: "Private brand checks a.k.a. `#foo in obj`"
+author: "Marja Hölttä ([@marjakh](https://twitter.com/marjakh))"
 avatars:
-  - 'marja-holtta'
+  - "marja-holtta"
 date: 2021-04-14
 tags:
   - ECMAScript
-description: 'Private brand checks allow testing for the existence of a private field in an object.'
-tweet: '1382327454975590401'
+description: "Private brand checks allow testing for the existence of a private field in an object."
+tweet: "1382327454975590401"
 ---
 
 The [`in` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in) can be used for testing whether the given object (or any object in its prototype chain) has the given property:

@@ -1,13 +1,13 @@
 ---
-title: 'V8 リリース v9.3'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "V8 リリース v9.3"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-08-09
 tags:
  - リリース
-description: 'V8 リリース v9.3 は、Object.hasOwnとError causesのサポートを提供し、コンパイル性能を向上させ、Androidでの不信コード生成緩和策を無効化します。'
-tweet: ''
+description: "V8 リリース v9.3 は、Object.hasOwnとError causesのサポートを提供し、コンパイル性能を向上させ、Androidでの不信コード生成緩和策を無効化します。"
+tweet: ""
 ---
 約6週間ごとに、私たちは[リリースプロセス](https://v8.dev/docs/release-process)の一環として新しい V8 のブランチを作成しています。各バージョンは Chrome ベータ版のマイルストーン直前に V8 のメイン Git ブランチから分岐されます。本日は、新しいブランチである[V8 バージョン9.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.3)を発表することができました。このバージョンは数週間後の Chrome 93 安定版のリリースと連携してリリースされるまでベータ版となります。V8 v9.3 には開発者に役立つ様々な新機能が含まれています。この投稿では、リリースを待ち望む一部のハイライトを紹介します。
 

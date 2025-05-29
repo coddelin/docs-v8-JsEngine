@@ -1,6 +1,6 @@
 ---
 title: 'Débogage via le protocole d'Inspecteur V8'
-description: 'Cette page est destinée à fournir aux intégrateurs les outils de base dont ils ont besoin pour implémenter la prise en charge du débogage dans V8.'
+description: "Cette page est destinée à fournir aux intégrateurs les outils de base dont ils ont besoin pour implémenter la prise en charge du débogage dans V8."
 ---
 V8 offre de nombreuses fonctionnalités de débogage aux utilisateurs et aux intégrateurs. Les utilisateurs interagissent généralement avec le débogueur V8 via l'interface [Chrome DevTools](https://developer.chrome.com/devtools). Les intégrateurs (y compris DevTools) doivent s'appuyer directement sur le [protocole Inspecteur](https://chromedevtools.github.io/debugger-protocol-viewer/tot/).
 

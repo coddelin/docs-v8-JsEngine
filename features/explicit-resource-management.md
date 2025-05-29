@@ -1,13 +1,13 @@
 ---
 title: "JavaScript's New Superpower: Explicit Resource Management"
-author: 'Rezvan Mahdavi Hezaveh'
+author: "Rezvan Mahdavi Hezaveh"
 avatars:
-  - 'rezvan-mahdavi-hezaveh'
+  - "rezvan-mahdavi-hezaveh"
 date: 2025-05-09
 tags:
   - ECMAScript
-description: 'The Explicit Resource Management proposal empowers developers to explicitly manage the lifecycle of resources.'
-tweet: ''
+description: "The Explicit Resource Management proposal empowers developers to explicitly manage the lifecycle of resources."
+tweet: ""
 ---
 
 The *Explicit Resource Management* proposal introduces a deterministic approach to explicitly manage the lifecycle of resources like file handles, network connections, and more. This proposal brings the following additions to the language: the `using` and `await using` declarations, which automatically calls dispose method when a resource goes out of scope; `[Symbol.dispose]()` and `[Symbol.asyncDispose]()` symbols for cleanup operations; two new global objects `DisposableStack` and `AsyncDisposableStack` as containers to aggregate disposable resources; and `SuppressedError` as a new type of error (contain both the error that was most recently thrown, as well as the error that was suppressed) to address the scenario where an error occurs during the disposal of a resource, and potientially masking an existing error thrown from the body, or from the disposal of another resource. These additions enable developers to write more robust, performant, and maintainable code by providing fine-grained control over resource disposal.

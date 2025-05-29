@@ -1,13 +1,13 @@
 ---
-title: 'V8 릴리즈 v7.8'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 게으른 소서러'
+title: "V8 릴리즈 v7.8"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 게으른 소서러"
 avatars:
-  - 'ingvar-stepanyan'
+  - "ingvar-stepanyan"
 date: 2019-09-27
 tags:
   - release
-description: 'V8 v7.8는 프리로드에서의 스트리밍 컴파일, WebAssembly C API, 더 빠른 객체 비구조화 및 정규표현식 매칭, 그리고 향상된 시작 속도를 제공합니다.'
-tweet: '1177600702861971459'
+description: "V8 v7.8는 프리로드에서의 스트리밍 컴파일, WebAssembly C API, 더 빠른 객체 비구조화 및 정규표현식 매칭, 그리고 향상된 시작 속도를 제공합니다."
+tweet: "1177600702861971459"
 ---
 6주마다 우리는 [릴리즈 프로세스](/docs/release-process)의 일환으로 V8의 새 브랜치를 생성합니다. 각 버전은 Chrome Beta 마일스톤 직전에 V8의 Git 마스터에서 브랜치됩니다. 오늘 우리는 새로운 브랜치 [V8 버전 7.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.8)을 발표하게 되어 기쁩니다. 이는 몇 주 내에 Chrome 78 Stable과의 협력 하에 릴리즈될 때까지 베타 상태에 있습니다. V8 v7.8은 개발자 대상의 다양한 기능들로 가득합니다. 이 포스트는 릴리즈를 예상하며 몇 가지 주요 내용을 미리 제공합니다.
 

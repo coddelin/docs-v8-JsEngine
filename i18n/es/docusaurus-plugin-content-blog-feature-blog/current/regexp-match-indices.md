@@ -1,14 +1,14 @@
 ---
-title: 'Índices de coincidencia de RegExp'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), expresando nuevas características regularmente'
+title: "Índices de coincidencia de RegExp"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), expresando nuevas características regularmente"
 avatars:
-  - 'maya-armyanova'
+  - "maya-armyanova"
 date: 2019-12-17
 tags:
   - ECMAScript
   - Node.js 16
-description: 'Los índices de coincidencia de RegExp proporcionan los índices de `inicio` y `fin` de cada grupo de captura coincidente.'
-tweet: '1206970814400270338'
+description: "Los índices de coincidencia de RegExp proporcionan los índices de `inicio` y `fin` de cada grupo de captura coincidente."
+tweet: "1206970814400270338"
 ---
 JavaScript ahora está equipado con una nueva mejora de expresiones regulares, llamada “índices de coincidencia”. Imagínate que quieres encontrar nombres de variables inválidos en el código JavaScript que coincidan con palabras reservadas, y mostrar un símbolo de intercalación y una “línea de subrayado” debajo del nombre de la variable, como:
 

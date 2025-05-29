@@ -1,14 +1,14 @@
 ---
-title: '免費獲得垃圾回收'
-author: 'Hannes Payer 和 Ross McIlroy，閒置垃圾回收器'
+title: "免費獲得垃圾回收"
+author: "Hannes Payer 和 Ross McIlroy，閒置垃圾回收器"
 avatars:
-  - 'hannes-payer'
-  - 'ross-mcilroy'
+  - "hannes-payer"
+  - "ross-mcilroy"
 date: 2015-08-07 13:33:37
 tags:
   - internals
   - memory
-description: 'Chrome 41 將昂貴的內存管理操作隱藏在閒置時間中的小型未使用片段，減少卡頓。'
+description: "Chrome 41 將昂貴的內存管理操作隱藏在閒置時間中的小型未使用片段，減少卡頓。"
 ---
 JavaScript 的效能始終是 Chrome 價值的關鍵，尤其是在提供流暢的體驗方面。從 Chrome 41 開始，V8 採用了一種新技術通過在閒置時間的小型未使用片段中隱藏昂貴的內存管理操作來提升 Web 應用的響應速度。結果，Web 開發者可期待更順暢的滾動和流暢的動畫，垃圾回收引起的卡頓大幅減少。
 

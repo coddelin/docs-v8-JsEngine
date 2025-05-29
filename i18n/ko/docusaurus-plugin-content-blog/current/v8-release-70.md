@@ -1,13 +1,13 @@
 ---
-title: 'V8 릴리스 v7.0'
-author: 'Michael Hablich'
+title: "V8 릴리스 v7.0"
+author: "Michael Hablich"
 avatars:
   - michael-hablich
 date: 2018-10-15 17:17:00
 tags:
   - release
-description: 'V8 v7.0에는 WebAssembly 스레드, Symbol.prototype.description, 더 많은 플랫폼에서의 내장 기능이 포함되었습니다!'
-tweet: '1051857446279532544'
+description: "V8 v7.0에는 WebAssembly 스레드, Symbol.prototype.description, 더 많은 플랫폼에서의 내장 기능이 포함되었습니다!"
+tweet: "1051857446279532544"
 ---
 매 6주마다 우리는 [릴리스 프로세스](/docs/release-process)의 일환으로 새로운 V8 브랜치를 만듭니다. 각 버전은 Chrome Beta 마일스톤 직전에 V8의 Git 마스터에서 브랜치됩니다. 오늘 우리는 크롬 70 안정판과의 협력으로 몇 주 후 출시될 때까지 베타 상태에 있는 [V8 버전 7.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.0)라는 최신 브랜치를 발표하게 되어 기쁩니다. V8 v7.0에는 다양한 개발자들이 활용할 수 있는 도구들이 가득합니다. 이 포스팅에서는 릴리스에 앞서 몇 가지 주요 기능을 미리 만나볼 수 있습니다.
 

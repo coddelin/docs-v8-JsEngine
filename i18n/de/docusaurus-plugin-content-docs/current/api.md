@@ -1,6 +1,6 @@
 ---
-title: 'Die öffentliche API von V8'
-description: 'Dieses Dokument behandelt die Stabilität der öffentlichen API von V8 und erklärt, wie Entwickler Änderungen daran vornehmen können.'
+title: "Die öffentliche API von V8"
+description: "Dieses Dokument behandelt die Stabilität der öffentlichen API von V8 und erklärt, wie Entwickler Änderungen daran vornehmen können."
 ---
 Dieses Dokument behandelt die Stabilität der öffentlichen API von V8 und erklärt, wie Entwickler Änderungen daran vornehmen können.
 

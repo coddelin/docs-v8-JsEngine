@@ -1,13 +1,13 @@
 ---
-title: 'V8 릴리즈 v7.7'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), 릴리즈 노트의 게으른 작성자'
+title: "V8 릴리즈 v7.7"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), 릴리즈 노트의 게으른 작성자"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-08-13 16:45:00
 tags:
   - release
-description: 'V8 v7.7은 지연된 피드백 할당, 더 빠른 WebAssembly 백그라운드 컴파일, 스택 트레이스 개선 및 새로운 Intl.NumberFormat 기능을 제공한다.'
-tweet: '1161287541611323397'
+description: "V8 v7.7은 지연된 피드백 할당, 더 빠른 WebAssembly 백그라운드 컴파일, 스택 트레이스 개선 및 새로운 Intl.NumberFormat 기능을 제공한다."
+tweet: "1161287541611323397"
 ---
 6주마다 우리는 [릴리즈 프로세스](/docs/release-process)의 일환으로 새 V8 브랜치를 생성합니다. 각 버전은 Chrome 베타 마일스톤 직전에 V8의 Git 마스터에서 브랜치됩니다. 오늘 우리는 최신 브랜치인 [V8 버전 7.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.7)을 발표하게 되어 기쁩니다. 이 버전은 수 주 후에 Chrome 77 안정 버전과 함께 릴리즈될 때까지 베타 상태에 있습니다. V8 v7.7은 개발자에게 유용한 다양한 기능으로 가득 차 있습니다. 이 글은 릴리즈를 앞두고 주요 기능의 미리보기를 제공합니다.
 

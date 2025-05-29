@@ -1,15 +1,15 @@
 ---
-title: 'Compression des pointeurs dans V8'
-author: 'Igor Sheludko et Santiago Aboy Solanes, *les* compresseurs de pointeurs'
+title: "Compression des pointeurs dans V8"
+author: "Igor Sheludko et Santiago Aboy Solanes, *les* compresseurs de pointeurs"
 avatars:
-  - 'igor-sheludko'
-  - 'santiago-aboy-solanes'
+  - "igor-sheludko"
+  - "santiago-aboy-solanes"
 date: 2020-03-30
 tags:
   - internes
   - mémoire
 description: 'V8 a réduit la taille de son tas jusqu'à 43 % ! Découvrez comment dans “Compression des pointeurs dans V8”!'
-tweet: '1244653541379182596'
+tweet: "1244653541379182596"
 ---
 Il existe une bataille constante entre mémoire et performance. En tant qu'utilisateurs, nous souhaitons que les choses soient rapides tout en consommant le moins de mémoire possible. Malheureusement, améliorer la performance se fait généralement au détriment de la consommation de mémoire (et vice versa).
 

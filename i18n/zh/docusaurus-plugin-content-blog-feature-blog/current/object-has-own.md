@@ -1,13 +1,13 @@
 ---
-title: '`Object.hasOwn`'
-author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
+title: "`Object.hasOwn`"
+author: "Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))"
 avatars:
-  - 'victor-gomes'
+  - "victor-gomes"
 date: 2021-07-01
 tags:
   - ECMAScript
 description: '`Object.hasOwn` 使得 `Object.prototype.hasOwnProperty` 更易访问。
-tweet: '1410577516943847424'
+tweet: "1410577516943847424"
 ---
 
 今天，写如下代码很常见：

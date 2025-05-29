@@ -1,6 +1,6 @@
 ---
-title: 'Offiziell unterstützte Konfigurationen'
-description: 'Dieses Dokument erklärt, welche Build-Konfigurationen vom V8-Team gewartet werden.'
+title: "Offiziell unterstützte Konfigurationen"
+description: "Dieses Dokument erklärt, welche Build-Konfigurationen vom V8-Team gewartet werden."
 ---
 V8 unterstützt eine Vielzahl von verschiedenen Build-Konfigurationen über Betriebssysteme, deren Versionen, Architektur-Portierungen, Build-Flags und so weiter.
 

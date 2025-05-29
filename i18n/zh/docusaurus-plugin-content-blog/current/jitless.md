@@ -1,13 +1,13 @@
 ---
-title: '无即时编译的 V8'
-author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
+title: "无即时编译的 V8"
+author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2019-03-13 13:03:19
 tags:
   - 内部结构
-description: 'V8 v7.4 支持在运行时不分配可执行内存的情况下执行 JavaScript。'
-tweet: '1105777150051999744'
+description: "V8 v7.4 支持在运行时不分配可执行内存的情况下执行 JavaScript。"
+tweet: "1105777150051999744"
 ---
 V8 v7.4 现在支持在运行时不分配可执行内存的情况下执行 JavaScript。
 

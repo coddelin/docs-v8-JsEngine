@@ -1,15 +1,15 @@
 ---
-title: 'V8에 ES2015 프록시를 최적화하기'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 프록시 최적화 담당'
+title: "V8에 ES2015 프록시를 최적화하기"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 프록시 최적화 담당"
 avatars:
-  - 'maya-armyanova'
+  - "maya-armyanova"
 date: 2017-10-05 13:33:37
 tags:
   - ECMAScript
   - 벤치마크
   - 내부 구조
-description: '이 글은 V8에서 JavaScript 프록시 성능이 어떻게 개선되었는지 설명합니다.'
-tweet: '915846050447003648'
+description: "이 글은 V8에서 JavaScript 프록시 성능이 어떻게 개선되었는지 설명합니다."
+tweet: "915846050447003648"
 ---
 프록시는 ES2015 이래 JavaScript에서 중요한 부분이었습니다. 이들은 객체에 대해 근본적인 작업을 가로채고 동작을 사용자 정의할 수 있게 해줍니다. 프록시는 [jsdom](https://github.com/tmpvar/jsdom) 및 [Comlink RPC 라이브러리](https://github.com/GoogleChrome/comlink)와 같은 프로젝트의 핵심 부분을 형성합니다. 최근에 우리는 V8에서 프록시 성능을 개선하기 위해 많은 노력을 기울였습니다. 이 글은 V8에서의 일반적인 성능 개선 패턴과 특히 프록시에 대해 설명합니다.
 

@@ -1,7 +1,7 @@
 ---
-title: 'WebAssembly JavaScript Promise Integration APIの紹介'
-description: 'この文書はJSPIを紹介し、それを使用して始めるための簡単な例を提供します'
-author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
+title: "WebAssembly JavaScript Promise Integration APIの紹介"
+description: "この文書はJSPIを紹介し、それを使用して始めるための簡単な例を提供します"
+author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-07-01
 tags:
   - WebAssembly

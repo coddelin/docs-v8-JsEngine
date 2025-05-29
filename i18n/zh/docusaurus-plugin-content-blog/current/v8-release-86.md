@@ -1,13 +1,13 @@
 ---
-title: 'V8 发布 v8.6'
-author: 'Ingvar Stepanyan（[@RReverser](https://twitter.com/RReverser)），一位键盘模糊测试者'
+title: "V8 发布 v8.6"
+author: "Ingvar Stepanyan（[@RReverser](https://twitter.com/RReverser)），一位键盘模糊测试者"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2020-09-21
 tags:
  - 发布
-description: 'V8 发布 v8.6 带来了更尊重的代码、性能改进和规范更改。'
-tweet: '1308062287731789825'
+description: "V8 发布 v8.6 带来了更尊重的代码、性能改进和规范更改。"
+tweet: "1308062287731789825"
 ---
 每六周，我们会根据我们的[发布流程](https://v8.dev/docs/release-process)创建一个新的 V8 分支。每个版本在 Chrome Beta 里程碑之前都会从 V8 的 Git 主分支中分支而出。今天，我们很高兴宣布我们最新的分支，[V8 版本 8.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.6)，此版本目前处于测试阶段，几周后将与 Chrome 86 Stable 一起发布。V8 v8.6 包含了各种对开发者有益的功能。这篇文章为您提供了一些亮点的预览以期待发布。
 

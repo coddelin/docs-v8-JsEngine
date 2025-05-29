@@ -1,9 +1,9 @@
 ---
-title: 'V8 中的 Slack 追蹤'
-author: 'Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), 著名的 *slack* 大師'
-description: '深入探討 V8 的 Slack 追蹤機制。'
+title: "V8 中的 Slack 追蹤"
+author: "Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), 著名的 *slack* 大師"
+description: "深入探討 V8 的 Slack 追蹤機制。"
 avatars:
- - 'michael-stanton'
+ - "michael-stanton"
 date: 2020-09-24 14:00:00
 tags:
  - internals

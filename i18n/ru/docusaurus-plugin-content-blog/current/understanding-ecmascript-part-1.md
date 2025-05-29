@@ -1,14 +1,14 @@
 ---
-title: 'Понимание спецификации ECMAScript, часть 1'
-author: '[Марья Хёльтта](https://twitter.com/marjakh), наблюдатель за спецификациями'
+title: "Понимание спецификации ECMAScript, часть 1"
+author: "[Марья Хёльтта](https://twitter.com/marjakh), наблюдатель за спецификациями"
 avatars:
   - marja-holtta
 date: 2020-02-03 13:33:37
 tags:
   - ECMAScript
   - Понимание ECMAScript
-description: 'Учебное пособие по чтению спецификации ECMAScript'
-tweet: '1224363301146189824'
+description: "Учебное пособие по чтению спецификации ECMAScript"
+tweet: "1224363301146189824"
 ---
 
 [Все эпизоды](/blog/tags/understanding-ecmascript)

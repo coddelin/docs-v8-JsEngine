@@ -1,6 +1,6 @@
 ---
-title: 'Tubería de compilación de WebAssembly'
-description: 'Este artículo explica los compiladores de WebAssembly de V8 y cuándo compilan el código de WebAssembly.'
+title: "Tubería de compilación de WebAssembly"
+description: "Este artículo explica los compiladores de WebAssembly de V8 y cuándo compilan el código de WebAssembly."
 ---
 
 WebAssembly es un formato binario que permite ejecutar código de lenguajes de programación diferentes a JavaScript en la web de manera eficiente y segura. En este documento profundizamos en la tubería de compilación de WebAssembly en V8 y explicamos cómo utilizamos los diferentes compiladores para proporcionar un buen rendimiento.

@@ -1,6 +1,6 @@
 ---
-title: 'Tests web Blink (a.k.a. tests de mise en page)'
-description: 'L’infrastructure de V8 exécute en continu les tests web de Blink pour prévenir les problèmes d’intégration avec Chromium. Ce document décrit quoi faire en cas d’échec d’un tel test.'
+title: "Tests web Blink (a.k.a. tests de mise en page)"
+description: "L’infrastructure de V8 exécute en continu les tests web de Blink pour prévenir les problèmes d’intégration avec Chromium. Ce document décrit quoi faire en cas d’échec d’un tel test."
 ---
 Nous exécutons en continu [les tests web Blink (anciennement appelés “tests de mise en page”)](https://chromium.googlesource.com/chromium/src/+/master/docs/testing/web_tests.md) sur notre [console d’intégration](https://ci.chromium.org/p/v8/g/integration/console) pour prévenir les problèmes d’intégration avec Chromium.
 

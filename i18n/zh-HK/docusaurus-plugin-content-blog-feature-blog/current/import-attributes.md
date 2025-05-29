@@ -1,13 +1,13 @@
 ---
-title: '導入屬性'
-author: '郭書宇 ([@_shu](https://twitter.com/_shu))'
+title: "導入屬性"
+author: "郭書宇 ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2024-01-31
 tags:
   - ECMAScript
-description: '導入屬性：導入斷言的演進'
-tweet: ''
+description: "導入屬性：導入斷言的演進"
+tweet: ""
 ---
 
 ## 之前

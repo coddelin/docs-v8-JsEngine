@@ -1,10 +1,10 @@
 ---
-title: 'V8リリース v5.0'
-author: 'V8チーム'
+title: "V8リリース v5.0"
+author: "V8チーム"
 date: 2016-03-15 13:33:37
 tags:
   - リリース
-description: 'V8 v5.0は性能改善を伴い、いくつかの新しいES2015言語機能のサポートを追加します。'
+description: "V8 v5.0は性能改善を伴い、いくつかの新しいES2015言語機能のサポートを追加します。"
 ---
 V8の[リリースプロセス](/docs/release-process)での最初のステップは、Gitマスターから新しいブランチを作成することです。この作業はおおよそ6週間ごとにChrome BetaマイルストーンのためにChromiumがブランチする直前に行われます。我々の最新のリリースブランチは[V8 v5.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.0)で、Chrome 50 Stableと併せて安定版をリリースするまでベータ版として維持されます。このバージョンのV8での開発者向け新機能のハイライトを以下に示します。
 

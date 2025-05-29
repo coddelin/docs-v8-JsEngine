@@ -1,15 +1,15 @@
 ---
-title: '`Intl.DisplayNames`'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu)) 과 Frank Yung-Fong Tang'
+title: "`Intl.DisplayNames`"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu)) 과 Frank Yung-Fong Tang"
 avatars:
-  - 'shu-yu-guo'
-  - 'frank-tang'
+  - "shu-yu-guo"
+  - "frank-tang"
 date: 2020-02-13
 tags:
   - Intl
   - Node.js 14
-description: 'Intl.DisplayNames API는 언어, 지역, 스크립트, 통화의 로컬화된 이름을 제공합니다.'
-tweet: '1232333889005334529'
+description: "Intl.DisplayNames API는 언어, 지역, 스크립트, 통화의 로컬화된 이름을 제공합니다."
+tweet: "1232333889005334529"
 ---
 전 세계를 대상으로 하는 웹 애플리케이션은 다양한 언어로 언어, 지역, 스크립트, 통화의 표시 이름을 보여줄 필요가 있습니다. 이러한 이름의 번역에는 데이터가 필요하며, 이는 [Unicode CLDR](http://cldr.unicode.org/translation/)에서 제공됩니다. 애플리케이션의 일부로 데이터를 포함시키는 것은 개발자 시간에 비용이 발생합니다. 사용자들은 언어 및 지역 이름의 일관된 번역을 선호할 가능성이 있으며, 세계의 지리적 변화에 맞춰 해당 데이터를 최신 상태로 유지하려면 지속적인 유지 관리가 필요합니다.
 

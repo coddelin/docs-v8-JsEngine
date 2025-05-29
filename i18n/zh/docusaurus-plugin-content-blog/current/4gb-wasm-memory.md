@@ -1,16 +1,16 @@
 ---
-title: 'WebAssembly 支持高达 4GB 的内存'
-author: 'Andreas Haas、Jakob Kummerow 和 Alon Zakai'
+title: "WebAssembly 支持高达 4GB 的内存"
+author: "Andreas Haas、Jakob Kummerow 和 Alon Zakai"
 avatars:
-  - 'andreas-haas'
-  - 'jakob-kummerow'
-  - 'alon-zakai'
+  - "andreas-haas"
+  - "jakob-kummerow"
+  - "alon-zakai"
 date: 2020-05-14
 tags:
   - WebAssembly
   - JavaScript
   - 工具链
-tweet: '1260944314441633793'
+tweet: "1260944314441633793"
 ---
 
 ## 引言

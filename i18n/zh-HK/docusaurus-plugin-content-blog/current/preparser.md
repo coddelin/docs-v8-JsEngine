@@ -1,15 +1,15 @@
 ---
-title: '極速解析，第2部分：延遲解析'
-author: 'Toon Verwaest（[@tverwaes](https://twitter.com/tverwaes)）和 Marja Hölttä（[@marjakh](https://twitter.com/marjakh)），解析器專家'
+title: "極速解析，第2部分：延遲解析"
+author: "Toon Verwaest（[@tverwaes](https://twitter.com/tverwaes)）和 Marja Hölttä（[@marjakh](https://twitter.com/marjakh)），解析器專家"
 avatars:
-  - 'toon-verwaest'
-  - 'marja-holtta'
+  - "toon-verwaest"
+  - "marja-holtta"
 date: 2019-04-15 17:03:37
 tags:
   - internals
   - parsing
-tweet: '1117807107972243456'
-description: '這是我們文章系列的第二部分，解釋了V8如何以最快速度解析JavaScript。'
+tweet: "1117807107972243456"
+description: "這是我們文章系列的第二部分，解釋了V8如何以最快速度解析JavaScript。"
 ---
 這是我們系列文章的第二部分，解釋了V8如何以最快速度解析JavaScript。第一部分解釋了我們如何讓V8的[掃描器](/blog/scanner)更快。
 

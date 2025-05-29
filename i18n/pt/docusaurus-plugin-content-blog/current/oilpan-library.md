@@ -1,6 +1,6 @@
 ---
-title: 'Biblioteca Oilpan'
-author: 'Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)) e Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), eficientes e eficazes na movimentação de arquivos'
+title: "Biblioteca Oilpan"
+author: "Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)) e Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), eficientes e eficazes na movimentação de arquivos"
 avatars:
   - anton-bikineev
   - omer-katz
@@ -10,8 +10,8 @@ tags:
   - internals
   - memory
   - cppgc
-description: 'O V8 inclui Oilpan, uma biblioteca de coleta de lixo para gerenciar memória C++'
-tweet: '1458406645181165574'
+description: "O V8 inclui Oilpan, uma biblioteca de coleta de lixo para gerenciar memória C++"
+tweet: "1458406645181165574"
 ---
 
 Embora o título deste post possa sugerir uma imersão em uma coleção de livros sobre cárteres de óleo - o que, considerando as normas de construção para cárteres, é um tema com uma quantidade surpreendente de literatura - nós, em vez disso, iremos olhar mais de perto para o Oilpan, um coletor de lixo C++ que é oferecido por meio do V8 como uma biblioteca desde a versão V8 v9.4.

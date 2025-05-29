@@ -1,13 +1,13 @@
 ---
-title: 'V8 release v8.9'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), awaiting a call'
+title: "V8 release v8.9"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), awaiting a call"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-02-04
 tags:
  - release
-description: 'V8 release v8.9 brings performance improvements to calls with argument size mismatch.'
-tweet: '1357358418902802434'
+description: "V8 release v8.9 brings performance improvements to calls with argument size mismatch."
+tweet: "1357358418902802434"
 ---
 Every six weeks, we create a new branch of V8 as part of our [release process](https://v8.dev/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 8.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.9), which is in beta until its release in coordination with Chrome 89 Stable in several weeks. V8 v8.9 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
 

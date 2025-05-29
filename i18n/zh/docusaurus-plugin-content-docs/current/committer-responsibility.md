@@ -1,6 +1,6 @@
 ---
-title: 'V8提交者和评审者的职责'
-description: '本文档列出了V8贡献者的指南。'
+title: "V8提交者和评审者的职责"
+description: "本文档列出了V8贡献者的指南。"
 ---
 当您向V8代码库提交时，请确保遵循以下指南（改编自https://dev.chromium.org/developers/committers-responsibility）：
 

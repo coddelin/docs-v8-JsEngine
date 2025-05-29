@@ -1,10 +1,10 @@
 ---
-title: 'Lanzamiento de V8 v5.4'
-author: 'el equipo de V8'
+title: "Lanzamiento de V8 v5.4"
+author: "el equipo de V8"
 date: 2016-09-09 13:33:37
 tags:
   - lanzamiento
-description: 'V8 v5.4 viene con mejoras de rendimiento y menor consumo de memoria.'
+description: "V8 v5.4 viene con mejoras de rendimiento y menor consumo de memoria."
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se deriva del maestro de Git de V8 inmediatamente antes de un hito Beta de Chrome. Hoy nos complace anunciar nuestra rama más reciente, [V8 versión 5.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.4), que estará en beta hasta que se lance en coordinación con Chrome 54 Stable en varias semanas. V8 v5.4 está llena de recursos útiles para los desarrolladores, así que queremos darles un adelanto de algunos de los aspectos más destacados en anticipación al lanzamiento.
 

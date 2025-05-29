@@ -1,8 +1,8 @@
 ---
-title: '¡Hola, mundo!'
-author: 'el equipo de V8'
+title: "¡Hola, mundo!"
+author: "el equipo de V8"
 date: 2015-07-10 13:33:37
-description: '¡El proyecto V8 ahora tiene un blog!'
+description: "¡El proyecto V8 ahora tiene un blog!"
 ---
 ¡Bienvenido al blog de desarrolladores de V8!
 

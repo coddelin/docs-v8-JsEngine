@@ -1,13 +1,13 @@
 ---
-title: 'V8 發佈 v8.3'
-author: '[Victor Gomes](https://twitter.com/VictorBFG)，在家安全辦公'
+title: "V8 發佈 v8.3"
+author: "[Victor Gomes](https://twitter.com/VictorBFG)，在家安全辦公"
 avatars:
- - 'victor-gomes'
+ - "victor-gomes"
 date: 2020-05-04
 tags:
  - 發佈
-description: 'V8 v8.3 提供更快的 ArrayBuffer、更大的 Wasm 記憶體以及已棄用的 API。'
-tweet: '1257333120115847171'
+description: "V8 v8.3 提供更快的 ArrayBuffer、更大的 Wasm 記憶體以及已棄用的 API。"
+tweet: "1257333120115847171"
 ---
 
 每六週，我們會按照 [發佈流程](https://v8.dev/docs/release-process) 創建 V8 的新分支。每個版本都是在 Chrome Beta 版本里程碑之前，從 V8 的 Git 主分支中分支出來的。今天，我們很高興地宣佈我們的最新分支 [V8 版本 8.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.3)，它將進入 Beta 階段，直到幾週後與 Chrome 83 穩定版本協同發佈。V8 v8.3 包含了各種對開發者友好的新功能。本文提供了一些亮點內容的預覽。

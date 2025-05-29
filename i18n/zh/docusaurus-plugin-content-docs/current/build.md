@@ -1,6 +1,6 @@
 ---
-title: '从源代码构建V8'
-description: '本文档解释了如何从源代码构建V8。'
+title: "从源代码构建V8"
+description: "本文档解释了如何从源代码构建V8。"
 ---
 为了能够在Windows/Linux/macOS上为x64从头构建V8，请按照以下步骤操作。
 

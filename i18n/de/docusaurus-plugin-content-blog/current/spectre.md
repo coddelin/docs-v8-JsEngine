@@ -1,14 +1,14 @@
 ---
-title: 'Ein Jahr mit Spectre: Eine V8-Perspektive'
-author: 'Ben L. Titzer und Jaroslav Sevcik'
+title: "Ein Jahr mit Spectre: Eine V8-Perspektive"
+author: "Ben L. Titzer und Jaroslav Sevcik"
 avatars:
-  - 'ben-titzer'
-  - 'jaroslav-sevcik'
+  - "ben-titzer"
+  - "jaroslav-sevcik"
 date: 2019-04-23 14:15:22
 tags:
   - sicherheit
-tweet: '1120661732836499461'
-description: 'Das V8-Team beschreibt ihre Analyse- und Minderungstrategie für Spectre, eines der größten Computerschutzprobleme von 2018.'
+tweet: "1120661732836499461"
+description: "Das V8-Team beschreibt ihre Analyse- und Minderungstrategie für Spectre, eines der größten Computerschutzprobleme von 2018."
 ---
 Am 3. Januar 2018 veröffentlichten Google Project Zero und andere [die ersten drei Schwachstellen](https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html) einer neuen Klasse von Sicherheitslücken, die CPUs betreffen, die spekulative Ausführung verwenden. Genannt wurden sie [Spectre](https://spectreattack.com/spectre.pdf) und [Meltdown](https://meltdownattack.com/meltdown.pdf). Mit den Mechanismen der [spekulativen Ausführung](https://de.wikipedia.org/wiki/Speculative_Ausführung) von CPUs kann ein Angreifer sowohl implizite als auch explizite Sicherheitsüberprüfungen im Code vorübergehend umgehen, die verhindern, dass Programme unautorisierte Daten aus dem Speicher lesen. Obwohl die Prozessor-Spekulation als mikroarchitektonisches Detail entworfen wurde, unsichtbar auf architektonischer Ebene, können sorgfältig gestaltete Programme unautorisierte Informationen während der Spekulation lesen und sie durch Seiteneffekte wie die Ausführungszeit eines Programmfragments preisgeben.
 

@@ -1,6 +1,6 @@
 ---
-title: 'Triages des problèmes'
-description: 'Ce document explique comment traiter les problèmes dans le traqueur de bugs de V8.'
+title: "Triages des problèmes"
+description: "Ce document explique comment traiter les problèmes dans le traqueur de bugs de V8."
 ---
 Ce document explique comment traiter les problèmes dans le [traqueur de bugs de V8](/bugs).
 

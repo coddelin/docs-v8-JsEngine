@@ -1,17 +1,17 @@
 ---
-title: 'A lighter V8'
-author: 'Mythri Alle, Dan Elphick, and [Ross McIlroy](https://twitter.com/rossmcilroy), V8 weight-watchers'
+title: "A lighter V8"
+author: "Mythri Alle, Dan Elphick, and [Ross McIlroy](https://twitter.com/rossmcilroy), V8 weight-watchers"
 avatars:
-  - 'mythri-alle'
-  - 'dan-elphick'
-  - 'ross-mcilroy'
+  - "mythri-alle"
+  - "dan-elphick"
+  - "ross-mcilroy"
 date: 2019-09-12 12:44:37
 tags:
   - internals
   - memory
   - presentations
-description: 'The V8 Lite project dramatically reduced the memory overhead of V8 on typical websites, this is how we did it.'
-tweet: '1172155403343298561'
+description: "The V8 Lite project dramatically reduced the memory overhead of V8 on typical websites, this is how we did it."
+tweet: "1172155403343298561"
 ---
 In late 2018 we started a project called V8 Lite, aimed at dramatically reducing V8’s memory usage. Initially this project was envisioned as a separate *Lite mode* of V8 specifically aimed at low-memory mobile devices or embedder use-cases that care more about reduced memory usage than throughput execution speed. However, in the process of this work, we realized that many of the memory optimizations we had made for this *Lite mode* could be brought over to regular V8 thereby benefiting all users of V8.
 

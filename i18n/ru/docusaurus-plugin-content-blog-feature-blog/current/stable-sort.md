@@ -1,15 +1,15 @@
 ---
-title: 'Стабильная `Array.prototype.sort`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Стабильная `Array.prototype.sort`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-07-02
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: 'Теперь гарантируется стабильность Array.prototype.sort.'
-tweet: '1146067251302244353'
+description: "Теперь гарантируется стабильность Array.prototype.sort."
+tweet: "1146067251302244353"
 ---
 Допустим, у вас есть массив собак, где каждая собака имеет имя и рейтинг. (Если это кажется странным примером, знайте, что существует аккаунт в Twitter, который специализируется именно на этом… Не спрашивайте!)
 

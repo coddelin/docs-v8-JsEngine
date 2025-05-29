@@ -1,10 +1,10 @@
 ---
-title: 'V8 릴리즈 v5.5'
-author: 'V8 팀'
+title: "V8 릴리즈 v5.5"
+author: "V8 팀"
 date: 2016-10-24 13:33:37
 tags:
   - 릴리즈
-description: 'V8 v5.5는 메모리 소비 감소와 ECMAScript 언어 기능 지원 증가를 제공합니다.'
+description: "V8 v5.5는 메모리 소비 감소와 ECMAScript 언어 기능 지원 증가를 제공합니다."
 ---
 매 6주마다 [릴리즈 프로세스](/docs/release-process)의 일환으로 V8의 새로운 브랜치를 만듭니다. 각 버전은 Chrome 베타 마일스톤 전 바로 V8의 Git 마스터에서 분기됩니다. 오늘은 새로운 브랜치인 [V8 버전 5.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.5)를 발표하게 되어 기쁩니다. 이 버전은 몇 주 후 Chrome 55 Stable과의 협업을 통해 출시되기 전까지 베타 상태에 있습니다. V8 v5.5에는 개발자에게 유용한 다양한 기능이 포함되어 있으므로, 릴리즈를 기대하며 몇 가지 주요 사항을 미리 살펴보고자 합니다.
 

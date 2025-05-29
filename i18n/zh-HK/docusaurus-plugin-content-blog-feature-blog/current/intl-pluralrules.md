@@ -1,13 +1,13 @@
 ---
-title: '`Intl.PluralRules`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Intl.PluralRules`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-10-04
 tags:
   - Intl
-description: '處理複數是許多看似簡單的問題之一，直到你意識到每種語言都有自己的複數規則。`Intl.PluralRules` API 可以幫助！'
-tweet: '915542989493202944'
+description: "處理複數是許多看似簡單的問題之一，直到你意識到每種語言都有自己的複數規則。`Intl.PluralRules` API 可以幫助！"
+tweet: "915542989493202944"
 ---
 Iñtërnâtiônàlizætiøn 很難。處理複數是許多看似簡單的問題之一，直到你意識到每種語言都有自己的複數規則。
 

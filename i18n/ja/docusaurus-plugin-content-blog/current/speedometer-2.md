@@ -1,11 +1,11 @@
 ---
-title: 'ChromeがSpeedometer 2.0を歓迎！'
-author: 'BlinkとV8チーム'
+title: "ChromeがSpeedometer 2.0を歓迎！"
+author: "BlinkとV8チーム"
 date: 2018-01-24 13:33:37
 tags:
   - ベンチマーク
-description: 'Speedometer 2.0を基にしたBlinkとV8におけるパフォーマンス改善の概要。'
-tweet: '956232641736421377'
+description: "Speedometer 2.0を基にしたBlinkとV8におけるパフォーマンス改善の概要。"
+tweet: "956232641736421377"
 ---
 Speedometer 1.0が2014年にリリースされて以来、BlinkとV8チームはこのベンチマークを人気のJavaScriptフレームワークの実際の使用状況の代理として活用し、ベンチマーク上で大幅な性能向上を達成しました。これらの改善が実際のユーザーに利益をもたらしていることを確認するため、実際のウェブサイトを測定したところ、人気のウェブサイトのページロード時間が改善されることでSpeedometerスコアも向上することを観察しました。
 

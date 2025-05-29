@@ -1,6 +1,6 @@
 ---
-title: 'Arm64 Linux에서 컴파일'
-description: 'Arm64 Linux에서 V8 네이티브 빌드를 수행하기 위한 팁과 요령'
+title: "Arm64 Linux에서 컴파일"
+description: "Arm64 Linux에서 V8 네이티브 빌드를 수행하기 위한 팁과 요령"
 ---
 만약 [소스 코드 확인](/docs/source-code) 및 [빌드](/docs/build-gn) 지침을 따라 x86이 아니거나 Apple Silicon Mac이 아닌 머신에서 V8을 빌드하려고 했다면, 네이티브 바이너리를 다운로드하고 실행할 수 없어서 몇 가지 문제가 발생했을 수 있습니다. 하지만 __Arm64 Linux 머신을 사용하여 V8 작업을 하는 것은 공식적으로 지원되지 않더라도__, 이러한 문제를 극복하는 것은 비교적 간단합니다.
 

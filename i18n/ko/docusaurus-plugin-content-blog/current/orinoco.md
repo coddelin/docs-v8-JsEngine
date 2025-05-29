@@ -1,15 +1,15 @@
 ---
-title: 'Jank Busters Part Two: Orinoco'
-author: 'the jank busters: Ulan Degenbaev, Michael Lippautz, and Hannes Payer'
+title: "Jank Busters Part Two: Orinoco"
+author: "the jank busters: Ulan Degenbaev, Michael Lippautz, and Hannes Payer"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2016-04-12 13:33:37
 tags:
   - internals
   - memory
-description: '이 글은 V8에서 새로운 가비지 컬렉터를 기반으로한 세 가지 최적화를 소개합니다. 해당 코드는 Orinoco로 명명되었습니다.'
+description: "이 글은 V8에서 새로운 가비지 컬렉터를 기반으로한 세 가지 최적화를 소개합니다. 해당 코드는 Orinoco로 명명되었습니다."
 ---
 [이전 블로그 게시글](/blog/jank-busters)에서 우리는 가비지 컬렉션이 부드러운 브라우징 경험을 방해하며 발생하는 잉크 문제를 소개했습니다. 이 블로그 게시글에서는 새로운 V8 가비지 컬렉터인 _Orinoco_를 구축하기 위한 세 가지 최적화를 소개합니다. Orinoco는 대부분 병렬적이고 동시적 가비지 컬렉터를 엄격한 세대 경계를 넘어 구현함으로써 가비지 컬렉션 잉크와 메모리 소비를 줄이는 동시에 높은 처리량을 제공할 수 있다는 아이디어를 바탕에 두고 있습니다. Orinoco를 별도의 가비지 컬렉터로서의 플래그 뒤에 구현하는 대신, 즉각적으로 사용자에게 도움을 줄 수 있도록 Orinoco의 기능들을 V8의 최상위 트리에 점진적으로 배포하기로 결정하였습니다. 이번 글에서 논의된 세 가지 기능은 병렬 압축, 병렬 기억 집합 처리, 및 블랙 할당입니다.
 

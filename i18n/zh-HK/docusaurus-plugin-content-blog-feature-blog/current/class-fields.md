@@ -1,16 +1,16 @@
 ---
-title: '公開與私有類別字段'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "公開與私有類別字段"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-12-13
 tags:
   - ECMAScript
   - ES2022
   - io19
   - Node.js 14
-description: '多個提案擴展了現有的 JavaScript 類別語法，提供了新功能。本文章解釋了 V8 v7.2 和 Chrome 72 中新增的公開類別字段語法，以及即將推出的私有類別字段語法。'
-tweet: '1121395767170740225'
+description: "多個提案擴展了現有的 JavaScript 類別語法，提供了新功能。本文章解釋了 V8 v7.2 和 Chrome 72 中新增的公開類別字段語法，以及即將推出的私有類別字段語法。"
+tweet: "1121395767170740225"
 ---
 多個提案擴展了現有的 JavaScript 類別語法，提供了新功能。本文章解釋了 V8 v7.2 和 Chrome 72 中新增的公開類別字段語法，以及即將推出的私有類別字段語法。
 

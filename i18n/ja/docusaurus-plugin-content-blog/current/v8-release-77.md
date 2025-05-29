@@ -1,13 +1,13 @@
 ---
-title: 'V8リリース v7.7'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))、リリースノートの怠けた作成者'
+title: "V8リリース v7.7"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))、リリースノートの怠けた作成者"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-08-13 16:45:00
 tags:
   - リリース
-description: 'V8 v7.7 は遅延フィードバック割り当て、WebAssemblyのバックグラウンドコンパイルの高速化、スタックトレースの改善、新しいIntl.NumberFormat機能を備えています。'
-tweet: '1161287541611323397'
+description: "V8 v7.7 は遅延フィードバック割り当て、WebAssemblyのバックグラウンドコンパイルの高速化、スタックトレースの改善、新しいIntl.NumberFormat機能を備えています。"
+tweet: "1161287541611323397"
 ---
 V8では、6週間ごとに[リリースプロセス](/docs/release-process)の一環として新しいブランチを作成します。各バージョンはChrome Betaの節目直前にV8のGitマスターからブランチされます。本日、私たちは最新のブランチ、[V8バージョン7.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.7)を発表できることを嬉しく思います。このブランチは数週間後にChrome 77 Stableと連携してリリースされるまでベータ版です。V8 v7.7には開発者に向けた様々な魅力的な新機能が満載です。この投稿ではリリースに向けたハイライトのプレビューを提供します。
 

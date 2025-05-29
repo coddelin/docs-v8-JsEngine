@@ -1,6 +1,6 @@
 ---
-title: 'Usando o profiler baseado em amostras do V8'
-description: 'Este documento explica como usar o profiler baseado em amostras do V8.'
+title: "Usando o profiler baseado em amostras do V8"
+description: "Este documento explica como usar o profiler baseado em amostras do V8."
 ---
 O V8 possui um sistema de perfilamento baseado em amostras. O perfilamento está desativado por padrão, mas pode ser habilitado via a opção de linha de comando `--prof`. O amostrador registra pilhas de código tanto em JavaScript quanto em C/C++.
 

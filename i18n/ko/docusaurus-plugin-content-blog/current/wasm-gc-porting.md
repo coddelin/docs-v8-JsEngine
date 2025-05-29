@@ -1,12 +1,12 @@
 ---
-title: 'WebAssembly에 쓰레기 수집형 프로그래밍 언어를 효율적으로 도입하는 새로운 방법'
-author: 'Alon Zakai'
+title: "WebAssembly에 쓰레기 수집형 프로그래밍 언어를 효율적으로 도입하는 새로운 방법"
+author: "Alon Zakai"
 avatars:
-  - 'alon-zakai'
+  - "alon-zakai"
 date: 2023-11-01
 tags:
   - WebAssembly
-tweet: '1720161507324076395'
+tweet: "1720161507324076395"
 ---
 
 [WebAssembly Garbage Collection (WasmGC)](https://developer.chrome.com/blog/wasmgc)에 대한 최근의 글은 [쓰레기 수집(GC) 제안](https://github.com/WebAssembly/gc)이 GC 언어를 Wasm에서 더 잘 지원하도록 어떻게 목표를 설정하는지 고수준에서 설명하고 있습니다. GC 언어들의 인기를 고려할 때 이는 매우 중요합니다. 이번 글에서는 Java, Kotlin, Dart, Python, C# 같은 GC 언어를 Wasm으로 포팅하는 기술적 세부 사항에 대해 살펴볼 것입니다. 실제로 두 가지 주요 접근 방식이 있습니다:

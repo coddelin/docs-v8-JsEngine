@@ -1,14 +1,14 @@
 ---
-title: '`String.prototype.matchAll`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`String.prototype.matchAll`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-02-02
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: 'String.prototype.matchAll makes it easy to iterate through all the match objects a given regular expression produces.'
+description: "String.prototype.matchAll makes it easy to iterate through all the match objects a given regular expression produces."
 ---
 It’s common to repeatedly apply the same regular expression on a string to get all the matches. To some extent, this is already possible today by using the `String#match` method.
 

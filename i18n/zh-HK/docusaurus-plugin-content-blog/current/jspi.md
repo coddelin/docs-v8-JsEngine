@@ -1,7 +1,7 @@
 ---
-title: '介紹 WebAssembly JavaScript Promise Integration API'
-description: '本文介紹 JSPI，並提供一些簡單的範例以幫助您開始使用它'
-author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
+title: "介紹 WebAssembly JavaScript Promise Integration API"
+description: "本文介紹 JSPI，並提供一些簡單的範例以幫助您開始使用它"
+author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-07-01
 tags:
   - WebAssembly

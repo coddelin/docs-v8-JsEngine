@@ -1,13 +1,13 @@
 ---
-title: 'V8 릴리즈 v7.6'
-author: 'Adam Klein'
+title: "V8 릴리즈 v7.6"
+author: "Adam Klein"
 avatars:
-  - 'adam-klein'
+  - "adam-klein"
 date: 2019-06-19 16:45:00
 tags:
   - release
-description: 'V8 v7.6은 Promise.allSettled, 더 빠른 JSON.parse, 지역화된 BigInt, 더 빠른 frozen/sealed 배열 등 다양한 기능을 제공합니다!'
-tweet: '1141356209179516930'
+description: "V8 v7.6은 Promise.allSettled, 더 빠른 JSON.parse, 지역화된 BigInt, 더 빠른 frozen/sealed 배열 등 다양한 기능을 제공합니다!"
+tweet: "1141356209179516930"
 ---
 매 6주마다 [릴리즈 프로세스](/docs/release-process)의 일환으로 V8의 새로운 브랜치를 생성합니다. 각 버전은 Chrome Beta 마일스톤 직전에 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 최신 브랜치인 [V8 버전 7.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.6)을 발표하게 되어 기쁩니다. 이는 몇 주 후 Chrome 76 Stable과의 협업 릴리즈까지 베타 단계에 있습니다. V8 v7.6은 다양한 개발자 중심의 기능을 제공합니다. 출시를 기대하며 몇 가지 주요 사항을 미리 살펴봅니다.
 

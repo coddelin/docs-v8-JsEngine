@@ -1,13 +1,13 @@
 ---
-title: 'V8 정규 표현식을 더 빠르게 만드는 방법'
-author: 'Jakob Gruber, 정규 소프트웨어 엔지니어'
+title: "V8 정규 표현식을 더 빠르게 만드는 방법"
+author: "Jakob Gruber, 정규 소프트웨어 엔지니어"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2017-01-10 13:33:37
 tags:
   - 내부 메커니즘
   - RegExp
-description: 'V8는 최근 정규 표현식의 내장 기능을 셀프 호스팅 JavaScript 구현에서 TurboFan 기반의 새로운 코드 생성 아키텍처에 직접 연결되는 방식으로 이전했습니다.'
+description: "V8는 최근 정규 표현식의 내장 기능을 셀프 호스팅 JavaScript 구현에서 TurboFan 기반의 새로운 코드 생성 아키텍처에 직접 연결되는 방식으로 이전했습니다."
 ---
 이 블로그 게시물은 TurboFan 기반의 새로운 코드 생성 아키텍처를 통해 정규 표현식의 내장 기능을 셀프 호스팅 JavaScript 구현에서 이전한 V8의 최근 변화를 다룹니다.
 

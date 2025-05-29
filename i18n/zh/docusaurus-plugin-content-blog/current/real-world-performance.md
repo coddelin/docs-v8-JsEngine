@@ -1,10 +1,10 @@
 ---
-title: 'V8如何衡量真实世界的性能'
-author: 'V8团队'
+title: "V8如何衡量真实世界的性能"
+author: "V8团队"
 date: 2016-12-21 13:33:37
 tags:
   - 基准测试
-description: 'V8团队开发了一种新方法来衡量和理解真实的JavaScript性能。'
+description: "V8团队开发了一种新方法来衡量和理解真实的JavaScript性能。"
 ---
 在过去的一年里，V8团队开发了一种新方法来衡量和理解真实的JavaScript性能。我们利用从中获得的洞察力改变了V8团队加速JavaScript的方法。我们新的真实世界关注点代表了从传统性能关注点的重大转变。我们相信，当我们在2017年继续应用这一方法时，它将显著提高用户和开发人员在Chrome和Node.js中对V8真实世界JavaScript性能的依赖性。
 

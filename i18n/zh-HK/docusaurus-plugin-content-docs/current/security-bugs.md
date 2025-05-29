@@ -1,6 +1,6 @@
 ---
-title: '回報安全漏洞'
-description: '本文檔解釋了在 V8 中回報安全問題的流程。'
+title: "回報安全漏洞"
+description: "本文檔解釋了在 V8 中回報安全問題的流程。"
 ---
 V8 完全遵循 [Chromium 的安全流程](https://www.chromium.org/Home/chromium-security)。若要回報 V8 的安全漏洞，請依照以下步驟進行：
 

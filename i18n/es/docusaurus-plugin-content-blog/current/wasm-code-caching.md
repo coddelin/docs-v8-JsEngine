@@ -1,14 +1,14 @@
 ---
-title: 'Almacenamiento en caché de código para desarrolladores de WebAssembly'
-author: '[Bill Budge](https://twitter.com/billb), poniendo el ¡Ca-ching! en el almacenamiento en caché'
+title: "Almacenamiento en caché de código para desarrolladores de WebAssembly"
+author: "[Bill Budge](https://twitter.com/billb), poniendo el ¡Ca-ching! en el almacenamiento en caché"
 avatars:
   - bill-budge
 date: 2019-06-17
 tags:
   - WebAssembly
   - internals
-description: 'Este artículo explica el almacenamiento en caché de código de WebAssembly en Chrome y cómo los desarrolladores pueden aprovecharlo para acelerar la carga de aplicaciones con módulos WebAssembly grandes.'
-tweet: '1140631433532334081'
+description: "Este artículo explica el almacenamiento en caché de código de WebAssembly en Chrome y cómo los desarrolladores pueden aprovecharlo para acelerar la carga de aplicaciones con módulos WebAssembly grandes."
+tweet: "1140631433532334081"
 ---
 Hay un dicho entre los desarrolladores que dice que el código más rápido es aquel que no se ejecuta. Del mismo modo, el código más rápido para compilar es aquel que no necesita ser compilado. El almacenamiento en caché de código de WebAssembly es una nueva optimización en Chrome y V8 que intenta evitar la compilación de código almacenando en caché el código nativo generado por el compilador. Hemos [escrito](/blog/code-caching) [sobre](/blog/improved-code-caching) [cómo](/blog/code-caching-for-devs) Chrome y V8 almacenan en caché el código de JavaScript en el pasado, y sobre las mejores prácticas para aprovechar esta optimización. En esta publicación de blog, describimos el funcionamiento del almacenamiento en caché de código de WebAssembly en Chrome y cómo los desarrolladores pueden aprovecharlo para acelerar la carga de aplicaciones con módulos WebAssembly grandes.
 

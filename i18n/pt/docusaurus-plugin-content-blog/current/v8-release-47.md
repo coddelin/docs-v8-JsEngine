@@ -1,10 +1,10 @@
 ---
-title: 'Lançamento do V8 v4.7'
-author: 'a equipe V8'
+title: "Lançamento do V8 v4.7"
+author: "a equipe V8"
 date: 2015-10-14 13:33:37
 tags:
   - lançamento
-description: 'O V8 v4.7 vem com consumo reduzido de memória e suporte para novos recursos de linguagem ES2015.'
+description: "O V8 v4.7 vem com consumo reduzido de memória e suporte para novos recursos de linguagem ES2015."
 ---
 Aproximadamente a cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](https://v8.dev/docs/release-process). Cada versão é ramificada do Git master do V8 imediatamente antes de o Chrome ser ramificado para um marco de Beta do Chrome. Hoje estamos felizes em anunciar nosso mais novo branch, [V8 versão 4.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.7), que estará em beta até ser lançado em coordenação com o Chrome 47 Stable. O V8 v4.7 está carregado de várias melhorias voltadas para os desenvolvedores, então gostaríamos de dar uma prévia de alguns dos destaques em antecipação ao lançamento em algumas semanas.
 

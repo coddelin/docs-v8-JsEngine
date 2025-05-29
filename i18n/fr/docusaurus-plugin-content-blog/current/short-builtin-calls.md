@@ -1,13 +1,13 @@
 ---
-title: 'Appels intégrés courts'
-author: '[Toon Verwaest](https://twitter.com/tverwaes), The Big Short'
+title: "Appels intégrés courts"
+author: "[Toon Verwaest](https://twitter.com/tverwaes), The Big Short"
 avatars:
   - toon-verwaest
 date: 2021-05-06
 tags:
   - JavaScript
 description: 'Dans V8 v9.1, nous avons temporairement désintégré les fonctions intégrées sur le bureau pour éviter des problèmes de performance résultant d'appels indirects éloignés.'
-tweet: '1394267917013897216'
+tweet: "1394267917013897216"
 ---
 
 Dans V8 v9.1, nous avons temporairement désactivé les [fonctionnalités intégrées](https://v8.dev/blog/embedded-builtins) sur le bureau. Bien que l'intégration des fonctionnalités améliore significativement l'utilisation de la mémoire, nous avons remarqué que les appels de fonction entre les fonctions intégrées et le code compilé JIT peuvent entraîner une pénalité de performance considérable. Ce coût dépend de la microarchitecture du processeur. Dans ce post, nous expliquerons pourquoi cela se produit, à quoi ressemblent les performances et ce que nous prévoyons de faire pour résoudre ce problème à long terme.

@@ -1,10 +1,10 @@
 ---
-title: 'Suporte experimental para WebAssembly no V8'
-author: 'Seth Thompson, Especialista em WebAssembly'
+title: "Suporte experimental para WebAssembly no V8"
+author: "Seth Thompson, Especialista em WebAssembly"
 date: 2016-03-15 13:33:37
 tags:
   - WebAssembly
-description: 'A partir de hoje, suporte experimental para WebAssembly está disponível no V8 e Chromium, ativável por uma flag.'
+description: "A partir de hoje, suporte experimental para WebAssembly está disponível no V8 e Chromium, ativável por uma flag."
 ---
 _Para uma visão geral completa sobre WebAssembly e um roteiro para colaboração futura da comunidade, veja [A WebAssembly Milestone](https://hacks.mozilla.org/2016/03/a-webassembly-milestone/) no blog Mozilla Hacks._
 

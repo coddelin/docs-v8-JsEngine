@@ -1,12 +1,12 @@
 ---
-title: 'V8 エクストラ'
-author: 'ドメニック・ドニコラ（[@domenic](https://twitter.com/domenic)）、ストリーム魔術師'
+title: "V8 エクストラ"
+author: "ドメニック・ドニコラ（[@domenic](https://twitter.com/domenic)）、ストリーム魔術師"
 avatars:
-  - 'domenic-denicola'
+  - "domenic-denicola"
 date: 2016-02-04 13:33:37
 tags:
   - 内部構造
-description: 'V8 v4.8には「V8 エクストラ」が含まれています。これは高性能で自己ホスト型APIを書くことを可能にするシンプルなインターフェイスです。'
+description: "V8 v4.8には「V8 エクストラ」が含まれています。これは高性能で自己ホスト型APIを書くことを可能にするシンプルなインターフェイスです。"
 ---
 V8はJavaScript言語の組み込みオブジェクトと関数の大部分をJavaScript自体で実装しています。たとえば、[Promisesの実装](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js)がJavaScriptで書かれているのを見ることができます。このような組み込み機能は、_自己ホスト型_ と呼ばれます。これらの実装は、[スタートアップスナップショット](/blog/custom-startup-snapshots)に含まれており、新しいコンテキストをランタイムで自己ホスト型の組み込み機能をセットアップして初期化する必要なく迅速に作成できます。
 

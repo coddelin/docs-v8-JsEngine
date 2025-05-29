@@ -1,11 +1,11 @@
 ---
-title: '¡Chrome da la bienvenida a Speedometer 2.0!'
-author: 'los equipos de Blink y V8'
+title: "¡Chrome da la bienvenida a Speedometer 2.0!"
+author: "los equipos de Blink y V8"
 date: 2018-01-24 13:33:37
 tags:
   - benchmarks
-description: 'Un resumen de las mejoras de rendimiento que hemos realizado hasta ahora en Blink y V8 basándonos en Speedometer 2.0.'
-tweet: '956232641736421377'
+description: "Un resumen de las mejoras de rendimiento que hemos realizado hasta ahora en Blink y V8 basándonos en Speedometer 2.0."
+tweet: "956232641736421377"
 ---
 Desde el lanzamiento inicial de Speedometer 1.0 en 2014, los equipos de Blink y V8 han utilizado este benchmark como un proxy para el uso real de frameworks populares de JavaScript y hemos logrado aceleraciones considerablemente en este benchmark. Verificamos de manera independiente que estas mejoras se traducen en beneficios reales para los usuarios al medir contra sitios web reales y observar que las mejoras en los tiempos de carga de páginas de sitios web populares también mejoraron la puntuación de Speedometer.
 

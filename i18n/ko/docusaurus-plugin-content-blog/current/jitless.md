@@ -1,13 +1,13 @@
 ---
-title: 'JIT-less V8'
-author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
+title: "JIT-less V8"
+author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2019-03-13 13:03:19
 tags:
   - internals
-description: 'V8 v7.4는 런타임 실행 코드 메모리를 할당하지 않고 자바스크립트를 실행합니다.'
-tweet: '1105777150051999744'
+description: "V8 v7.4는 런타임 실행 코드 메모리를 할당하지 않고 자바스크립트를 실행합니다."
+tweet: "1105777150051999744"
 ---
 V8 v7.4는 이제 런타임 실행 코드 메모리를 할당하지 않고 자바스크립트를 실행할 수 있습니다.
 

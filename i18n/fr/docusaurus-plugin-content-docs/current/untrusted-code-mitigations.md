@@ -1,6 +1,6 @@
 ---
-title: 'Atténuations du code non fiable'
-description: 'Si vous intégrez V8 et exécutez du code JavaScript non fiable, activez les atténuations de V8 pour aider à protéger contre les attaques spéculatives par canal auxiliaire.'
+title: "Atténuations du code non fiable"
+description: "Si vous intégrez V8 et exécutez du code JavaScript non fiable, activez les atténuations de V8 pour aider à protéger contre les attaques spéculatives par canal auxiliaire."
 ---
 Début 2018, des chercheurs du Project Zero de Google ont révélé [une nouvelle classe d'attaques](https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html) qui [exploitent](https://security.googleblog.com/2018/01/more-details-about-mitigations-for-cpu_4.html) les optimisations d'exécution spéculative utilisées par de nombreux processeurs. Étant donné que V8 utilise un compilateur JIT optimisant, TurboFan, pour exécuter rapidement le code JavaScript, il est, dans certaines circonstances, vulnérable aux attaques par canal auxiliaire décrites dans la divulgation.
 

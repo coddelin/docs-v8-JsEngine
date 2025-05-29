@@ -1,12 +1,12 @@
 ---
-title: '`at` method for relative indexing'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "`at` method for relative indexing"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2021-07-13
 tags:
   - ECMAScript
-description: 'JavaScript now has a relative indexing method for Arrays, TypedArrays, and Strings.'
+description: "JavaScript now has a relative indexing method for Arrays, TypedArrays, and Strings."
 ---
 
 The new `at` method on `Array.prototype`, the various TypedArray prototypes, and `String.prototype` makes accessing an element nearer to the end of the collection easier and more succinct.

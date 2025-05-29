@@ -1,11 +1,11 @@
 ---
-title: 'Chamadas em cauda no WebAssembly'
-author: 'Thibaud Michaud, Thomas Lively'
+title: "Chamadas em cauda no WebAssembly"
+author: "Thibaud Michaud, Thomas Lively"
 date: 2023-04-06
 tags:
   - WebAssembly
-description: 'Este documento explica a proposta de chamadas em cauda do WebAssembly e a demonstra com alguns exemplos.'
-tweet: '1644077795059044353'
+description: "Este documento explica a proposta de chamadas em cauda do WebAssembly e a demonstra com alguns exemplos."
+tweet: "1644077795059044353"
 ---
 Estamos implementando chamadas em cauda no WebAssembly no V8 v11.2! Neste post, fornecemos uma breve visão geral dessa proposta, demonstramos um caso de uso interessante para corrotinas em C++ com Emscripten e mostramos como o V8 lida com chamadas em cauda internamente.
 

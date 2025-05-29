@@ -1,12 +1,12 @@
 ---
-title: 'V8 发布 v8.1'
-author: 'Dominik Inführ，国际化的神秘人物'
+title: "V8 发布 v8.1"
+author: "Dominik Inführ，国际化的神秘人物"
 avatars:
-  - 'dominik-infuehr'
+  - "dominik-infuehr"
 date: 2020-02-25
 tags:
   - 发布
-description: 'V8 v8.1 通过新的 Intl.DisplayNames API 提供了改进的国际化支持功能。'
+description: "V8 v8.1 通过新的 Intl.DisplayNames API 提供了改进的国际化支持功能。"
 ---
 
 每六周，我们根据[发布流程](https://v8.dev/docs/release-process)创建一个新的 V8 分支。每个版本都基于 V8 的 Git 主分支，在 Chrome Beta 里程碑之前立即分支出来。今天我们很高兴宣布我们的最新分支，[V8 版本 8.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.1)，该版本处于测试阶段，直到数周后与 Chrome 81 稳定版协调发布。V8 v8.1 包含各种开发者相关的好东西。这篇文章预览了一些亮点，以期待该版本的发布。

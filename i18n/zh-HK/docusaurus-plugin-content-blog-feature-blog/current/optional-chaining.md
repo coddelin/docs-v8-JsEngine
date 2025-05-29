@@ -1,14 +1,14 @@
 ---
-title: '可選鏈（Optional chaining）'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski))，可選鏈的破壞者'
+title: "可選鏈（Optional chaining）"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski))，可選鏈的破壞者"
 avatars:
-  - 'maya-armyanova'
+  - "maya-armyanova"
 date: 2019-08-27
 tags:
   - ECMAScript
   - ES2020
-description: '可選鏈使屬性訪問的表達更加可讀且簡潔，並內建了空值檢查功能。'
-tweet: '1166360971914481669'
+description: "可選鏈使屬性訪問的表達更加可讀且簡潔，並內建了空值檢查功能。"
+tweet: "1166360971914481669"
 ---
 在 JavaScript 中，長鏈的屬性訪問可能容易出錯，因為其中任何一步都可能評估為 `null` 或 `undefined`（也稱為“空值”）。在每一步進行屬性存在檢查，很容易變成深度嵌套的 `if` 語句或一個長長的 `if` 條件，複製屬性訪問的鏈路：
 

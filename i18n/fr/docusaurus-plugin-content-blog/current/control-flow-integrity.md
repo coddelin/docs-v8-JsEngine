@@ -1,7 +1,7 @@
 ---
-title: 'Intégrité du flux de contrôle dans V8'
+title: "Intégrité du flux de contrôle dans V8"
 description: 'Cet article de blog aborde les plans pour implémenter l'intégrité du flux de contrôle dans V8.'
-author: 'Stephen Röttger'
+author: "Stephen Röttger"
 date: 2023-10-09
 tags:
  - sécurité

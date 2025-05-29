@@ -1,13 +1,13 @@
 ---
-title: 'Cache de código melhorado'
-author: 'Mythri Alle, Chefe de Cache de Código'
+title: "Cache de código melhorado"
+author: "Mythri Alle, Chefe de Cache de Código"
 date: 2018-04-24 13:33:37
 avatars:
-  - 'mythri-alle'
+  - "mythri-alle"
 tags:
   - internos
-tweet: '988728000677142528'
-description: 'A partir do Chrome 66, o V8 armazena em cache mais (byte)código gerando o cache após a execução de alto nível.'
+tweet: "988728000677142528"
+description: "A partir do Chrome 66, o V8 armazena em cache mais (byte)código gerando o cache após a execução de alto nível."
 ---
 O V8 usa [armazenamento em cache de código](/blog/code-caching) para guardar o código gerado de scripts usados frequentemente. A partir do Chrome 66, estamos armazenando mais código em cache ao gerar o cache após a execução de alto nível. Isso resulta em uma redução de 20–40% no tempo de análise e compilação durante o carregamento inicial.
 

@@ -1,10 +1,10 @@
 ---
-title: 'V8 ❤️ Node.js'
-author: 'Franziska Hinkelmann, Node Monkey Patcher'
+title: "V8 ❤️ Node.js"
+author: "Franziska Hinkelmann, Node Monkey Patcher"
 date: 2016-12-15 13:33:37
 tags:
   - Node.js
-description: '이 블로그 게시물은 V8 및 Chrome DevTools에서 Node.js에 대한 지원을 개선하기 위한 최근의 노력들을 강조합니다.'
+description: "이 블로그 게시물은 V8 및 Chrome DevTools에서 Node.js에 대한 지원을 개선하기 위한 최근의 노력들을 강조합니다."
 ---
 Node.js의 인기는 지난 몇 년 동안 꾸준히 증가해 왔으며, 우리는 Node.js를 더 나아지게 만들기 위해 노력해 왔습니다. 이 블로그 게시물은 V8과 DevTools에서의 최근 노력을 강조합니다.
 

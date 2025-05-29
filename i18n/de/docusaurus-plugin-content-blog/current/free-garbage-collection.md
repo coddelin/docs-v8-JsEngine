@@ -1,14 +1,14 @@
 ---
-title: 'Kostenlose Speicherbereinigung'
-author: 'Hannes Payer und Ross McIlroy, Idle Garbage Collectors'
+title: "Kostenlose Speicherbereinigung"
+author: "Hannes Payer und Ross McIlroy, Idle Garbage Collectors"
 avatars:
-  - 'hannes-payer'
-  - 'ross-mcilroy'
+  - "hannes-payer"
+  - "ross-mcilroy"
 date: 2015-08-07 13:33:37
 tags:
   - internals
   - speicher
-description: 'Chrome 41 versteckt aufwendige Speicherverwaltungsoperationen in kleinen, sonst ungenutzten Leerlaufzeiten, wodurch Ruckler reduziert werden.'
+description: "Chrome 41 versteckt aufwendige Speicherverwaltungsoperationen in kleinen, sonst ungenutzten Leerlaufzeiten, wodurch Ruckler reduziert werden."
 ---
 Die JavaScript-Performance bleibt einer der zentralen Werte von Chrome, insbesondere wenn es darum geht, eine flüssige Benutzererfahrung zu ermöglichen. Ab Chrome 41 nutzt V8 eine neue Technik, um die Reaktionsfähigkeit von Webanwendungen zu erhöhen, indem aufwendige Speicherverwaltungsoperationen in kleinen, sonst ungenutzten Leerlaufzeiten verborgen werden. Dadurch können Webentwickler mit flüssigerem Scrolling und geschmeidigen Animationen mit deutlich weniger Rucklern aufgrund von Speicherbereinigung rechnen.
 

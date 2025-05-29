@@ -1,12 +1,12 @@
 ---
-title: '自定义启动快照'
-author: '杨国（[@hashseed](https://twitter.com/hashseed)），软件工程师和引擎预热供应商'
+title: "自定义启动快照"
+author: "杨国（[@hashseed](https://twitter.com/hashseed)），软件工程师和引擎预热供应商"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2015-09-25 13:33:37
 tags:
   - 内部结构
-description: 'V8 嵌入者可以利用快照来跳过初始化 JavaScript 程序带来的启动时间。'
+description: "V8 嵌入者可以利用快照来跳过初始化 JavaScript 程序带来的启动时间。"
 ---
 JavaScript 规范中包含了许多内置功能，从[数学函数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math)到一个[功能齐全的正则表达式引擎](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions)。每个新创建的 V8 上下文从一开始就可以使用这些功能。为了实现这一点，全局对象（例如浏览器中的 window 对象）和所有内置功能必须在创建上下文时设置并初始化到 V8 的堆中。从头开始执行这些操作需要相当多的时间。
 

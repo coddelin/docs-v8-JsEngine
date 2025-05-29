@@ -1,7 +1,7 @@
 ---
-title: 'Beschleunigung von V8-Heap-Snapshots'
-description: 'Dieser Beitrag über V8-Heap-Snapshots präsentiert einige von Bloomberg-Ingenieuren entdeckte Leistungsprobleme und wie wir diese gelöst haben, um die JavaScript-Speicheranalyse schneller als je zuvor zu machen.'
-author: 'Jose Dapena Paz'
+title: "Beschleunigung von V8-Heap-Snapshots"
+description: "Dieser Beitrag über V8-Heap-Snapshots präsentiert einige von Bloomberg-Ingenieuren entdeckte Leistungsprobleme und wie wir diese gelöst haben, um die JavaScript-Speicheranalyse schneller als je zuvor zu machen."
+author: "Jose Dapena Paz"
 date: 2023-07-27
 tags:
  - Speicher

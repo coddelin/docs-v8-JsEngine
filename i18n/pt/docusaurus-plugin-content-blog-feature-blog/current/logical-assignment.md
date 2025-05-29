@@ -1,15 +1,15 @@
 ---
-title: 'Atribuição lógica'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "Atribuição lógica"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2020-05-07
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: 'JavaScript agora suporta atribuições compostas com operações lógicas.'
-tweet: '1258387483823345665'
+description: "JavaScript agora suporta atribuições compostas com operações lógicas."
+tweet: "1258387483823345665"
 ---
 O JavaScript suporta uma gama de [operadores de atribuição compostos](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators) que permitem aos programadores expressar de forma sucinta uma operação binária em conjunto com a atribuição. Atualmente, apenas operações matemáticas ou bit a bit são suportadas.
 

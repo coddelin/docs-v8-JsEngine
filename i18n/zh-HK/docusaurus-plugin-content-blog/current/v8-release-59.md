@@ -1,10 +1,10 @@
 ---
-title: 'V8 發佈 v5.9'
-author: 'V8 團隊'
+title: "V8 發佈 v5.9"
+author: "V8 團隊"
 date: 2017-04-27 13:33:37
 tags:
   - release
-description: 'V8 v5.9 包含新的 Ignition + TurboFan 管道，並在所有平台上新增了 WebAssembly TrapIf 支援。'
+description: "V8 v5.9 包含新的 Ignition + TurboFan 管道，並在所有平台上新增了 WebAssembly TrapIf 支援。"
 ---
 每六週，我們會根據 [發佈流程](/docs/release-process) 為 V8 建立一個新的分支。每個版本都從 V8 的 Git 主分支在 Chrome Beta 里程碑之前立即分出。今天我們很高興地宣布我們最新的分支，[V8 版本 5.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.9)，它將處於 Beta 阶段，直到數週後與 Chrome 59 Stable 一起發佈。V8 5.9 有各種面向開發者的好功能。我們願意在發佈之前為您提供一些亮點預覽。
 

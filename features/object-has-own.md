@@ -1,13 +1,13 @@
 ---
-title: '`Object.hasOwn`'
-author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
+title: "`Object.hasOwn`"
+author: "Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))"
 avatars:
-  - 'victor-gomes'
+  - "victor-gomes"
 date: 2021-07-01
 tags:
   - ECMAScript
-description: '`Object.hasOwn` makes `Object.prototype.hasOwnProperty` more accessible.'
-tweet: '1410577516943847424'
+description: "`Object.hasOwn` makes `Object.prototype.hasOwnProperty` more accessible."
+tweet: "1410577516943847424"
 ---
 
 Today, it is very common to write code like this:

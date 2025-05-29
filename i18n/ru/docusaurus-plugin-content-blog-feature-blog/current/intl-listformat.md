@@ -1,16 +1,16 @@
 ---
-title: '`Intl.ListFormat`'
-author: 'Матиас Биненс ([@mathias](https://twitter.com/mathias)) и Фрэнк Юнг-Фонг Танг'
+title: "`Intl.ListFormat`"
+author: "Матиас Биненс ([@mathias](https://twitter.com/mathias)) и Фрэнк Юнг-Фонг Танг"
 avatars:
-  - 'mathias-bynens'
-  - 'frank-tang'
+  - "mathias-bynens"
+  - "frank-tang"
 date: 2018-12-18
 tags:
   - Intl
   - Node.js 12
   - io19
-description: 'API Intl.ListFormat позволяет локализованно форматировать списки без ущерба для производительности.'
-tweet: '1074966915557351424'
+description: "API Intl.ListFormat позволяет локализованно форматировать списки без ущерба для производительности."
+tweet: "1074966915557351424"
 ---
 Современные веб-приложения часто используют списки, состоящие из динамических данных. Например, приложение для просмотра фотографий может отображать что-то вроде:
 

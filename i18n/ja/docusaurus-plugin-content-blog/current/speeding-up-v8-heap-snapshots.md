@@ -1,7 +1,7 @@
 ---
-title: 'V8ヒープスナップショットの高速化'
-description: 'この投稿では、Bloombergのエンジニアが発見したV8ヒープスナップショットに関するパフォーマンスの問題と、それを解決してJavaScriptのメモリ分析をこれまで以上に高速化する方法について説明します。'
-author: 'Jose Dapena Paz'
+title: "V8ヒープスナップショットの高速化"
+description: "この投稿では、Bloombergのエンジニアが発見したV8ヒープスナップショットに関するパフォーマンスの問題と、それを解決してJavaScriptのメモリ分析をこれまで以上に高速化する方法について説明します。"
+author: "Jose Dapena Paz"
 date: 2023-07-27
 tags:
  - memory

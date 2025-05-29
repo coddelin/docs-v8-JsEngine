@@ -1,13 +1,13 @@
 ---
-title: 'Inicialización más rápida de instancias con nuevas características de clase'
-author: '[Joyee Cheung](https://twitter.com/JoyeeCheung), inicializador de instancias'
+title: "Inicialización más rápida de instancias con nuevas características de clase"
+author: "[Joyee Cheung](https://twitter.com/JoyeeCheung), inicializador de instancias"
 avatars:
-  - 'joyee-cheung'
+  - "joyee-cheung"
 date: 2022-04-20
 tags:
   - internals
-description: 'La inicialización de instancias con nuevas características de clase se ha vuelto más rápida desde V8 v9.7.'
-tweet: '1517041137378373632'
+description: "La inicialización de instancias con nuevas características de clase se ha vuelto más rápida desde V8 v9.7."
+tweet: "1517041137378373632"
 ---
 
 Los campos de clase se implementaron en V8 desde la versión v7.2 y los métodos privados de clase se implementaron desde la versión v8.4. Después de que las propuestas alcanzaran el estadio 4 en 2021, comenzó el trabajo para mejorar el soporte de las nuevas características de clase en V8; hasta entonces, había dos problemas principales que afectaban su adopción:

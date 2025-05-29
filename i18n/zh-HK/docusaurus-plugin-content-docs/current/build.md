@@ -1,6 +1,6 @@
 ---
-title: '從原始碼編譯 V8'
-description: '本文檔説明如何從原始碼編譯 V8。'
+title: "從原始碼編譯 V8"
+description: "本文檔説明如何從原始碼編譯 V8。"
 ---
 為了能夠在 Windows/Linux/macOS 上從零開始編譯 V8（針對 x64），請遵循以下步驟。
 

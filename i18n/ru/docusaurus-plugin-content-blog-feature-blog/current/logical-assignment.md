@@ -1,15 +1,15 @@
 ---
-title: 'Логические присваивания'
-author: 'Шу-Ю Го ([@_shu](https://twitter.com/_shu))'
+title: "Логические присваивания"
+author: "Шу-Ю Го ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2020-05-07
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: 'JavaScript теперь поддерживает составные присваивания с логическими операциями.'
-tweet: '1258387483823345665'
+description: "JavaScript теперь поддерживает составные присваивания с логическими операциями."
+tweet: "1258387483823345665"
 ---
 JavaScript поддерживает ряд [операторов составного присваивания](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators), которые позволяют программистам лаконично выражать бинарную операцию вместе с присваиванием. На данный момент поддерживаются только математические или побитовые операции.
 

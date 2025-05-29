@@ -1,6 +1,6 @@
 ---
-title: 'Что делать, если ваш CL сломал сборку интеграции Node.js'
-description: 'Этот документ объясняет, что делать, если ваш CL сломал сборку интеграции Node.js.'
+title: "Что делать, если ваш CL сломал сборку интеграции Node.js"
+description: "Этот документ объясняет, что делать, если ваш CL сломал сборку интеграции Node.js."
 ---
 [Node.js](https://github.com/nodejs/node) использует стабильную или бета-версию V8. Для дополнительной интеграции команда V8 собирает Node с [основной веткой](https://chromium.googlesource.com/v8/v8/+/refs/heads/main) V8, то есть с версией V8 на сегодняшний день. Мы предоставляем интеграционного бота для [Linux](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Linux64), в то время как [Windows](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Win64) и [Mac](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Mac64) находятся в процессе разработки.
 

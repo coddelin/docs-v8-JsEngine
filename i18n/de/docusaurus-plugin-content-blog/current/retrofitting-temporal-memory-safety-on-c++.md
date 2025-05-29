@@ -1,6 +1,6 @@
 ---
-title: 'Nachrüstung zeitlicher Speichersicherheit in C++'
-author: 'Anton Bikineev, Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), Hannes Payer ([@PayerHannes](https://twitter.com/PayerHannes))'
+title: "Nachrüstung zeitlicher Speichersicherheit in C++"
+author: "Anton Bikineev, Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), Hannes Payer ([@PayerHannes](https://twitter.com/PayerHannes))"
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -10,7 +10,7 @@ tags:
   - internals
   - speicher
   - sicherheit
-description: 'Beseitigung von Use-After-Free-Schwachstellen in Chrome mittels Heap-Scanning.'
+description: "Beseitigung von Use-After-Free-Schwachstellen in Chrome mittels Heap-Scanning."
 ---
 :::note
 **Hinweis:** Dieser Beitrag wurde ursprünglich im [Google Security Blog](https://security.googleblog.com/2022/05/retrofitting-temporal-memory-safety-on-c.html) veröffentlicht.

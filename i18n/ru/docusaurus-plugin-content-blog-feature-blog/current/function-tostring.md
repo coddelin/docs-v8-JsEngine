@@ -1,13 +1,13 @@
 ---
-title: 'Обновленный `Function.prototype.toString`'
-author: 'Матиас Биненс ([@mathias](https://twitter.com/mathias))'
+title: "Обновленный `Function.prototype.toString`"
+author: "Матиас Биненс ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-03-25
 tags:
   - ECMAScript
   - ES2019
-description: 'Function.prototype.toString теперь возвращает точно такие же фрагменты текста исходного кода, включая пробелы и комментарии.'
+description: "Function.prototype.toString теперь возвращает точно такие же фрагменты текста исходного кода, включая пробелы и комментарии."
 ---
 [`Function.prototype.toString()`](https://tc39.es/Function-prototype-toString-revision/) теперь возвращает точно такие же фрагменты текста исходного кода, включая пробелы и комментарии. Вот пример, сравнивающий старое и новое поведение:
 

@@ -1,6 +1,6 @@
 ---
-title: 'Depuración de funciones incorporadas con GDB'
-description: 'A partir de V8 v6.9, es posible crear puntos de interrupción en GDB para depurar funciones incorporadas de CSA / ASM / Torque.'
+title: "Depuración de funciones incorporadas con GDB"
+description: "A partir de V8 v6.9, es posible crear puntos de interrupción en GDB para depurar funciones incorporadas de CSA / ASM / Torque."
 ---
 A partir de V8 v6.9, es posible crear puntos de interrupción en GDB (y posiblemente en otros depuradores) para depurar funciones incorporadas de CSA / ASM / Torque.
 

@@ -1,15 +1,15 @@
 ---
-title: 'Orinoco：年轻代垃圾回收'
-author: '乌兰·德根巴耶夫、迈克尔·利普奥茨和汉内斯·派尔，[TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)的朋友们'
+title: "Orinoco：年轻代垃圾回收"
+author: "乌兰·德根巴耶夫、迈克尔·利普奥茨和汉内斯·派尔，[TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)的朋友们"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2017-11-29 13:33:37
 tags:
   - 内部机制
   - 内存
-description: '本文介绍了并行Scavenger，这是V8的主要并发和并行垃圾回收器Orinoco的最新功能之一。'
+description: "本文介绍了并行Scavenger，这是V8的主要并发和并行垃圾回收器Orinoco的最新功能之一。"
 ---
 在V8中，JavaScript对象被分配到由V8垃圾回收器管理的堆上。在之前的博客文章中，我们已经讨论了如何[减少垃圾回收暂停时间](/blog/jank-busters)（[不止一次](/blog/orinoco)）以及[内存消耗](/blog/optimizing-v8-memory)。在这篇博客文章中，我们介绍了并行Scavenger，这是V8的主要并发和并行垃圾回收器Orinoco的最新功能之一，并讨论了设计决策以及我们实施的一些备选方法。
 

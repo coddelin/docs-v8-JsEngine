@@ -1,6 +1,6 @@
 ---
-title: 'Fusión y parcheo'
-description: 'Este documento explica cómo fusionar parches de V8 a una rama de lanzamiento.'
+title: "Fusión y parcheo"
+description: "Este documento explica cómo fusionar parches de V8 a una rama de lanzamiento."
 ---
 Si tienes un parche para la rama `main` (por ejemplo, una corrección importante de un error) que necesita ser fusionado en una de las ramas de lanzamiento de V8 (refs/branch-heads/12.5), sigue leyendo.
 

@@ -1,11 +1,11 @@
 ---
-title: 'Llamadas en cola WebAssembly'
-author: 'Thibaud Michaud, Thomas Lively'
+title: "Llamadas en cola WebAssembly"
+author: "Thibaud Michaud, Thomas Lively"
 date: 2023-04-06
 tags:
   - WebAssembly
-description: 'Este documento explica la propuesta de llamadas en cola de WebAssembly y la demuestra con algunos ejemplos.'
-tweet: '1644077795059044353'
+description: "Este documento explica la propuesta de llamadas en cola de WebAssembly y la demuestra con algunos ejemplos."
+tweet: "1644077795059044353"
 ---
 ¡Estamos implementando las llamadas en cola de WebAssembly en V8 v11.2! En esta publicación, ofrecemos una breve descripción de esta propuesta, demostramos un caso de uso interesante para las corrutinas en C++ con Emscripten y mostramos cómo maneja V8 las llamadas en cola internamente.
 

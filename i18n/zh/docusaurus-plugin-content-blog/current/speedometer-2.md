@@ -1,11 +1,11 @@
 ---
-title: 'Chrome欢迎Speedometer 2.0！'
-author: '来自Blink和V8团队'
+title: "Chrome欢迎Speedometer 2.0！"
+author: "来自Blink和V8团队"
 date: 2018-01-24 13:33:37
 tags:
   - 基准测试
-description: '基于Speedometer 2.0，概述我们在Blink和V8中迄今为止所进行的性能改进。'
-tweet: '956232641736421377'
+description: "基于Speedometer 2.0，概述我们在Blink和V8中迄今为止所进行的性能改进。"
+tweet: "956232641736421377"
 ---
 自从Speedometer 1.0于2014年首次发布以来，Blink和V8团队一直将其作为衡量流行JavaScript框架实际使用的基准测试，我们在该基准测试中取得了显著的加速成效。我们通过对比真实网站进行独立验证，证实了这些改进确实给用户带来了实际好处，数据显示流行网站的页面加载时间的改善也提高了Speedometer的得分。
 

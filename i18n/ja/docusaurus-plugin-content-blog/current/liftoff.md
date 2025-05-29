@@ -1,14 +1,14 @@
 ---
-title: 'Liftoff: WebAssemblyのためのV8における新しいベースラインコンパイラ'
-author: 'Clemens Backes、WebAssemblyコンパイルの達人'
+title: "Liftoff: WebAssemblyのためのV8における新しいベースラインコンパイラ"
+author: "Clemens Backes、WebAssemblyコンパイルの達人"
 avatars:
-  - 'clemens-backes'
+  - "clemens-backes"
 date: 2018-08-20 15:45:12
 tags:
   - WebAssembly
   - internals
-description: 'LiftoffはWebAssemblyのための新しいベースラインコンパイラで、V8 v6.9に搭載されています。'
-tweet: '1031538167617413120'
+description: "LiftoffはWebAssemblyのための新しいベースラインコンパイラで、V8 v6.9に搭載されています。"
+tweet: "1031538167617413120"
 ---
 V8 [v6.9](/blog/v8-release-69)には、WebAssemblyのための新しいベースラインコンパイラであるLiftoffが含まれています。Liftoffは現在デスクトップシステムでデフォルトで有効になっています。この記事では新しいコンパイルレベルを導入する動機と、Liftoffの実装とパフォーマンスについて詳しく説明します。
 

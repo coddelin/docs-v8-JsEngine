@@ -1,13 +1,13 @@
 ---
-title: 'RegExp 後行斷言'
-author: 'Yang Guo，正則表達式工程師'
+title: "RegExp 後行斷言"
+author: "Yang Guo，正則表達式工程師"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2016-02-26 13:33:37
 tags:
   - ECMAScript
   - RegExp
-description: 'JavaScript 正則表達式功能有了新進展：後行斷言。'
+description: "JavaScript 正則表達式功能有了新進展：後行斷言。"
 ---
 自 ECMA-262 規範的第三版引入以來，正則表達式就自 1999 年起成為 JavaScript 的一部分。在功能性和表達能力上，JavaScript 的正則表達式實現與其他程式語言大致相當。
 

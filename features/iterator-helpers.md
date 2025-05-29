@@ -1,13 +1,13 @@
 ---
-title: 'Iterator helpers'
-author: 'Rezvan Mahdavi Hezaveh'
+title: "Iterator helpers"
+author: "Rezvan Mahdavi Hezaveh"
 avatars:
-  - 'rezvan-mahdavi-hezaveh'
+  - "rezvan-mahdavi-hezaveh"
 date: 2024-03-27
 tags:
   - ECMAScript
-description: 'Interfaces that help with general usage and consumption of iterators.'
-tweet: ''
+description: "Interfaces that help with general usage and consumption of iterators."
+tweet: ""
 ---
 
 *Iterator helpers* are a collection of new methods on Iterator prototype that help in general use of iterators. Since these helper methods are on the iterator prototype, any object that has `Iterator.prototype` on its prototype chain (e.g. array iterators) will get the methods. In the following subsections, we explain iterator helpers. All the provided examples are working in a blog archive page that includes list of blog posts, illustrating how iterator helpers are helpful for finding and manupulating posts. You can try them on [V8 blog page](https://v8.dev/blog)!

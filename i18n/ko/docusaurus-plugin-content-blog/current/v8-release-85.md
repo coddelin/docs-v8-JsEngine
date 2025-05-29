@@ -1,12 +1,12 @@
 ---
-title: 'V8 릴리스 v8.5'
-author: 'Zeynep Cankara, 일부 Maps 트랙킹'
+title: "V8 릴리스 v8.5"
+author: "Zeynep Cankara, 일부 Maps 트랙킹"
 avatars:
- - 'zeynep-cankara'
+ - "zeynep-cankara"
 date: 2020-07-21
 tags:
  - 릴리스
-description: 'V8 릴리스 v8.5는 Promise.any, String#replaceAll, 논리 할당 연산자, WebAssembly 다중 값 및 BigInt 지원, 그리고 성능 개선을 포함합니다.'
+description: "V8 릴리스 v8.5는 Promise.any, String#replaceAll, 논리 할당 연산자, WebAssembly 다중 값 및 BigInt 지원, 그리고 성능 개선을 포함합니다."
 tweet:
 ---
 6주마다 우리는 [릴리스 프로세스](https://v8.dev/docs/release-process)의 일부로 V8의 새 브랜치를 만듭니다. 각 버전은 Chrome Beta 마일스톤 직전에 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 [V8 버전 8.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.5)라는 새로운 브랜치를 발표하게 되어 기쁩니다. 이 버전은 몇 주 후 Chrome 85 Stable과 함께 출시될 때까지 베타 상태에 있습니다. V8 v8.5는 다양한 개발자 중심의 재미있는 기능으로 가득 찹니다. 출시를 앞두고 이 게시물에서는 일부 주요 기능에 대한 미리보기를 제공합니다.

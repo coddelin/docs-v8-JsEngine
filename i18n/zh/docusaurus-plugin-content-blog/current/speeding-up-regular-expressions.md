@@ -1,13 +1,13 @@
 ---
-title: '加快 V8 正则表达式速度'
-author: 'Jakob Gruber，常规软件工程师'
+title: "加快 V8 正则表达式速度"
+author: "Jakob Gruber，常规软件工程师"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2017-01-10 13:33:37
 tags:
   - 内部结构
   - 正则表达式
-description: 'V8 最近将正则表达式的内置函数从自托管的 JavaScript 实现过渡为直接连接到我们基于 TurboFan 的新代码生成架构的实现。'
+description: "V8 最近将正则表达式的内置函数从自托管的 JavaScript 实现过渡为直接连接到我们基于 TurboFan 的新代码生成架构的实现。"
 ---
 这篇博文讲述了 V8 最近将正则表达式的内置函数从自托管的 JavaScript 实现过渡为直接连接到我们基于 [TurboFan](/blog/v8-release-56) 的新代码生成架构的实现。
 

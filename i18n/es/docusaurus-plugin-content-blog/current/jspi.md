@@ -1,7 +1,7 @@
 ---
-title: 'Introduciendo la API de Integración de Promesas de JavaScript para WebAssembly'
-description: 'Este documento presenta JSPI y proporciona algunos ejemplos simples para que comiences a usarlo'
-author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
+title: "Introduciendo la API de Integración de Promesas de JavaScript para WebAssembly"
+description: "Este documento presenta JSPI y proporciona algunos ejemplos simples para que comiences a usarlo"
+author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-07-01
 tags:
   - WebAssembly

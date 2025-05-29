@@ -1,6 +1,6 @@
 ---
-title: '為 iOS 進行交叉編譯'
-description: '本文件解釋了如何為 iOS 進行交叉編譯 V8。'
+title: "為 iOS 進行交叉編譯"
+description: "本文件解釋了如何為 iOS 進行交叉編譯 V8。"
 ---
 此頁面簡要介紹如何構建用於 iOS 的 V8 目標。
 

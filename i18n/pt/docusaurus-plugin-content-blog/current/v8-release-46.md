@@ -1,10 +1,10 @@
 ---
-title: 'Lançamento do V8 v4.6'
-author: 'a equipe do V8'
+title: "Lançamento do V8 v4.6"
+author: "a equipe do V8"
 date: 2015-08-28 13:33:37
 tags:
   - lançamento
-description: 'O V8 v4.6 vem com menos travamentos e suporte para novos recursos de linguagem ES2015.'
+description: "O V8 v4.6 vem com menos travamentos e suporte para novos recursos de linguagem ES2015."
 ---
 Aproximadamente a cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](https://v8.dev/docs/release-process). Cada versão é criada a partir do Git master do V8 imediatamente antes de o Chrome criar um branch para uma versão Beta do Chrome. Hoje estamos felizes em anunciar nosso mais novo branch, [V8 versão 4.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.6), que estará em beta até ser lançado em coordenação com o Chrome 46 Stable. O V8 4.6 está repleto de novidades voltadas para desenvolvedores, e gostaríamos de oferecer um preview de alguns dos destaques em antecipação ao lançamento dentro de algumas semanas.
 

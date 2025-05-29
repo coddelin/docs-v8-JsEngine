@@ -1,13 +1,13 @@
 ---
-title: '無 JIT 的 V8'
-author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
+title: "無 JIT 的 V8"
+author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2019-03-13 13:03:19
 tags:
   - internals
-description: 'V8 v7.4 支援在執行期間不分配可執行記憶體的 JavaScript 執行功能。'
-tweet: '1105777150051999744'
+description: "V8 v7.4 支援在執行期間不分配可執行記憶體的 JavaScript 執行功能。"
+tweet: "1105777150051999744"
 ---
 V8 v7.4 現已支援在執行期間不分配可執行記憶體的 JavaScript 執行功能。
 

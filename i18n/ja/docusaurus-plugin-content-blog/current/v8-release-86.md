@@ -1,13 +1,13 @@
 ---
-title: 'V8 リリース v8.6'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), キーボードファザー'
+title: "V8 リリース v8.6"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), キーボードファザー"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2020-09-21
 tags:
  - リリース
-description: 'V8 リリース v8.6 は、尊重するコード、パフォーマンスの向上、規範的な変更をもたらします。'
-tweet: '1308062287731789825'
+description: "V8 リリース v8.6 は、尊重するコード、パフォーマンスの向上、規範的な変更をもたらします。"
+tweet: "1308062287731789825"
 ---
 私たちは6週間ごとに、新しいバージョンのV8を[リリースプロセス](https://v8.dev/docs/release-process)の一環として作成します。各バージョンは、Chrome Beta のマイルストーン直前に V8 の Git マスターから分岐されます。本日は、新しいブランチ [V8 バージョン 8.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.6)を正式発表します。このバージョンは、数週間後に Chrome 86 Stable と連携してリリースされるまで Beta 段階にあります。V8 v8.6 には、開発者向けの様々な機能が詰め込まれています。この投稿ではリリースを前にそのハイライトの一部をプレビューします。
 

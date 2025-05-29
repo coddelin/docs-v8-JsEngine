@@ -1,14 +1,14 @@
 ---
-title: 'WebAssembly 開發人員的程式碼快取'
-author: '[比爾·巴奇 (Bill Budge)](https://twitter.com/billb)，在快取中放入 Ca-ching!'
+title: "WebAssembly 開發人員的程式碼快取"
+author: "[比爾·巴奇 (Bill Budge)](https://twitter.com/billb)，在快取中放入 Ca-ching!"
 avatars:
   - bill-budge
 date: 2019-06-17
 tags:
   - WebAssembly
   - internals
-description: '本文解釋了 Chrome 的 WebAssembly 程式碼快取，並說明開發人員如何利用它來加速載入大型 WebAssembly 模組的應用程式。'
-tweet: '1140631433532334081'
+description: "本文解釋了 Chrome 的 WebAssembly 程式碼快取，並說明開發人員如何利用它來加速載入大型 WebAssembly 模組的應用程式。"
+tweet: "1140631433532334081"
 ---
 有句開發人員中的諺語叫做：最快的程式碼是不需要執行的程式碼。同樣，最快編譯的程式碼是不需要編譯的程式碼。WebAssembly 程式碼快取是 Chrome 和 V8 中的一項新優化，試圖通過快取編譯器生成的原生程式碼來避免程式碼編譯。我們之前曾[寫過](/blog/code-caching) [探討過](/blog/improved-code-caching) [如何](/blog/code-caching-for-devs) 總結 Chrome 和 V8 快取 JavaScript 程式碼的方式，以及如何利用這項優化的最佳實踐。在本文中，我們將描述 Chrome 的 WebAssembly 程式碼快取的運作方式，以及開發人員如何利用它來加速大型 WebAssembly 模組的應用程式載入。
 

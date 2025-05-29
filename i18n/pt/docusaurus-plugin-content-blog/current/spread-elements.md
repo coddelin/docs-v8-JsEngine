@@ -1,12 +1,12 @@
 ---
-title: 'Acelerando elementos espalhados'
-author: 'Hai Dang & Georg Neis'
+title: "Acelerando elementos espalhados"
+author: "Hai Dang & Georg Neis"
 date: 2018-12-04 16:57:21
 tags:
   - ECMAScript
   - benchmarks
-description: 'O V8 v7.2 acelera significativamente Array.from(array) assim como [...spread] para arrays, strings, conjuntos e mapas.'
-tweet: '1070344545685118976'
+description: "O V8 v7.2 acelera significativamente Array.from(array) assim como [...spread] para arrays, strings, conjuntos e mapas."
+tweet: "1070344545685118976"
 ---
 Durante seu estágio de três meses na equipe do V8, Hai Dang trabalhou na melhoria do desempenho de `[...array]`, `[...string]`, `[...set]`, `[...map.keys()]` e `[...map.values()]` (quando os elementos espalhados estão no início do literal do array). Ele até tornou `Array.from(iterable)` muito mais rápido também. Este artigo explica alguns dos detalhes técnicos de suas mudanças, que estão incluídas no V8 a partir da versão v7.2.
 

@@ -1,12 +1,12 @@
 ---
-title: 'Zündung des Ignition-Interpreters'
-author: 'Ross McIlroy, V8 Ignition Jump Starter'
+title: "Zündung des Ignition-Interpreters"
+author: "Ross McIlroy, V8 Ignition Jump Starter"
 avatars:
-  - 'ross-mcilroy'
+  - "ross-mcilroy"
 date: 2016-08-23 13:33:37
 tags:
   - internals
-description: 'Mit dem Ignition-Interpreter kompiliert V8 JavaScript-Funktionen in einen kompakten Bytecode, der nur 50 % bis 25 % der Größe des entsprechenden Baseline-Maschinencodes beträgt.'
+description: "Mit dem Ignition-Interpreter kompiliert V8 JavaScript-Funktionen in einen kompakten Bytecode, der nur 50 % bis 25 % der Größe des entsprechenden Baseline-Maschinencodes beträgt."
 ---
 V8 und andere moderne JavaScript-Engines erzielen ihre Geschwindigkeit durch [Just-in-Time (JIT)-Kompilierung](https://de.wikipedia.org/wiki/Just-in-time-Kompilierung) von Skripten in nativen Maschinencode unmittelbar vor der Ausführung. Der Code wird zunächst von einem Baseline-Compiler kompiliert, der nicht optimierten Maschinencode schnell generieren kann. Der kompilierte Code wird während der Laufzeit analysiert und optional dynamisch mit einem fortschrittlicheren optimierenden Compiler für maximale Leistung erneut kompiliert. In V8 weist diese Skriptausführungspipeline eine Vielzahl von Sonderfällen und Bedingungen auf, die eine komplexe Mechanik erfordern, um zwischen dem Baseline-Compiler und zwei optimierenden Compilern, Crankshaft und TurboFan, zu wechseln.
 

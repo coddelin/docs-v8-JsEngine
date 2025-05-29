@@ -1,14 +1,14 @@
 ---
-title: 'Obtenir la collecte des déchets gratuitement'
-author: 'Hannes Payer et Ross McIlroy, Collecteurs de déchets en idle'
+title: "Obtenir la collecte des déchets gratuitement"
+author: "Hannes Payer et Ross McIlroy, Collecteurs de déchets en idle"
 avatars:
-  - 'hannes-payer'
-  - 'ross-mcilroy'
+  - "hannes-payer"
+  - "ross-mcilroy"
 date: 2015-08-07 13:33:37
 tags:
   - internes
   - mémoire
-description: 'Chrome 41 cache les opérations coûteuses de gestion de la mémoire dans de petits morceaux de temps inactif autrement inutilisés, réduisant les saccades.'
+description: "Chrome 41 cache les opérations coûteuses de gestion de la mémoire dans de petits morceaux de temps inactif autrement inutilisés, réduisant les saccades."
 ---
 Les performances de JavaScript continuent d'être l'un des aspects clés des valeurs de Chrome, notamment lorsqu'il s'agit d'offrir une expérience fluide. À partir de Chrome 41, V8 utilise une nouvelle technique pour augmenter la réactivité des applications web en cachant les opérations coûteuses de gestion de la mémoire dans de petits morceaux de temps inactif autrement inutilisés. En conséquence, les développeurs web devraient s'attendre à un défilement plus fluide et à des animations légères avec des saccades considérablement réduites dues à la collecte des déchets.
 

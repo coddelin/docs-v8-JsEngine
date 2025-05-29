@@ -1,14 +1,14 @@
 ---
-title: '`String.prototype.matchAll`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`String.prototype.matchAll`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-02-02
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: 'String.prototype.matchAll 让遍历给定正则表达式生成的所有匹配对象变得更容易。'
+description: "String.prototype.matchAll 让遍历给定正则表达式生成的所有匹配对象变得更容易。"
 ---
 通常会在字符串上重复应用相同的正则表达式以获取所有匹配项。在一定程度上，现在可以通过使用 `String#match` 方法来实现这一点。
 

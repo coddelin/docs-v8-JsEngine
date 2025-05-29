@@ -1,10 +1,10 @@
 ---
-title: '退休 Octane'
-author: 'V8 团队'
+title: "退休 Octane"
+author: "V8 团队"
 date: 2017-04-12 13:33:37
 tags:
   - 基准测试
-description: 'V8 团队认为现在是时候将 Octane 从推荐基准测试中退休了。'
+description: "V8 团队认为现在是时候将 Octane 从推荐基准测试中退休了。"
 ---
 JavaScript 基准测试的历史是一段不断演进的故事。当 Web 从简单的文档扩展到动态客户端应用程序时，人们创建了新的 JavaScript 基准测试来测量那些对新用途变得重要的工作负载。这种不断的变化使得单个基准测试具有有限的生命周期。当网络浏览器和虚拟机（VM）的实现开始过度优化特定测试用例时，基准测试本身不再是其原始用途的有效代理。最早的 JavaScript 基准测试之一 [SunSpider](https://webkit.org/perf/sunspider/sunspider.html)，为推出快速优化编译器提供了早期的动力。然而，随着 VM 工程师发现了 [微基准测试的局限性](https://blog.mozilla.org/nnethercote/2014/06/16/a-browser-benchmarking-manifesto/) 并找到新的方法来 [优化](https://benediktmeurer.de/2016/12/16/the-truth-about-traditional-javascript-benchmarks/#the-notorious-sunspider-examples) [规避](https://bugzilla.mozilla.org/show_bug.cgi?id=787601) SunSpider 的 [局限性](https://bugs.webkit.org/show_bug.cgi?id=63864)，浏览器社区 [宣布退休](https://trac.webkit.org/changeset/187526/webkit) SunSpider 作为推荐基准测试。
 

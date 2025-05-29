@@ -1,13 +1,13 @@
 ---
-title: 'Initialisation plus rapide des instances avec les nouvelles fonctionnalités des classes'
+title: "Initialisation plus rapide des instances avec les nouvelles fonctionnalités des classes"
 author: '[Joyee Cheung](https://twitter.com/JoyeeCheung), initialisateur d'instances'
 avatars:
-  - 'joyee-cheung'
+  - "joyee-cheung"
 date: 2022-04-20
 tags:
   - internes
 description: 'L'initialisation des instances avec les nouvelles fonctionnalités des classes est devenue plus rapide depuis V8 v9.7.'
-tweet: '1517041137378373632'
+tweet: "1517041137378373632"
 ---
 
 Les champs de classe ont été introduits dans V8 à partir de la version v7.2 et les méthodes privées de classe depuis la version v8.4. Après que les propositions ont atteint le stade 4 en 2021, des travaux ont commencé pour améliorer le support des nouvelles fonctionnalités des classes dans V8 - jusque-là, deux problèmes principaux affectaient leur adoption :

@@ -1,13 +1,13 @@
 ---
-title: 'V8 版本發佈 v7.3'
-author: 'Clemens Backes，編譯器專家'
+title: "V8 版本發佈 v7.3"
+author: "Clemens Backes，編譯器專家"
 avatars:
   - clemens-backes
 date: 2019-02-07 11:30:42
 tags:
   - 發佈
-description: 'V8 v7.3 提供 WebAssembly 和非同步性能改進、非同步堆疊追蹤、Object.fromEntries、String#matchAll 等多項新功能！'
-tweet: '1093457099441561611'
+description: "V8 v7.3 提供 WebAssembly 和非同步性能改進、非同步堆疊追蹤、Object.fromEntries、String#matchAll 等多項新功能！"
+tweet: "1093457099441561611"
 ---
 每六周，我們會根據[發佈流程](/docs/release-process)創建一個 V8 的新分支。每個版本均從 V8 的 Git 主分支中分出，並在 Chrome Beta 里程碑之前完成。今天我們很高興地宣布我們的最新分支，[V8 版本 7.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.3)，該版本目前處於測試版，幾周後將與 Chrome 73 穩定版同步發布。V8 v7.3 提供了許多面向開發者的精彩功能，本文將預覽部分亮點以期待其正式發佈。
 

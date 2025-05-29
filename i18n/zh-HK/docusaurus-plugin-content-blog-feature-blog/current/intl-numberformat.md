@@ -1,15 +1,15 @@
 ---
-title: '`Intl.NumberFormat`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)) 與 Shane F. Carr'
+title: "`Intl.NumberFormat`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)) 與 Shane F. Carr"
 avatars:
-  - 'mathias-bynens'
-  - 'shane-carr'
+  - "mathias-bynens"
+  - "shane-carr"
 date: 2019-08-08
 tags:
   - Intl
   - io19
-description: 'Intl.NumberFormat 支援語系感知的數字格式化功能。'
-tweet: '1159476407329873920'
+description: "Intl.NumberFormat 支援語系感知的數字格式化功能。"
+tweet: "1159476407329873920"
 ---
 你可能已經熟悉 `Intl.NumberFormat` API，因為它在現代環境中已被支援了一段時間。
 

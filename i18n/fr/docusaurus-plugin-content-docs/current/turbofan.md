@@ -1,6 +1,6 @@
 ---
-title: 'TurboFan'
-description: 'Ce document recueille des ressources sur TurboFan, le compilateur optimisant de V8.'
+title: "TurboFan"
+description: "Ce document recueille des ressources sur TurboFan, le compilateur optimisant de V8."
 ---
 TurboFan est l'un des compilateurs optimisants de V8 exploitant un concept appelé [« Sea of Nodes »](https://darksi.de/d.sea-of-nodes/). L'un des articles du blog de V8 propose une [vue d'ensemble de TurboFan](/blog/turbofan-jit). Plus de détails peuvent être trouvés dans les ressources suivantes.
 

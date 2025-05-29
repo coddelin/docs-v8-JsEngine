@@ -1,6 +1,6 @@
 ---
-title: '为C++改造时间内存安全'
-author: 'Anton Bikineev, Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), Hannes Payer ([@PayerHannes](https://twitter.com/PayerHannes))'
+title: "为C++改造时间内存安全"
+author: "Anton Bikineev, Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), Hannes Payer ([@PayerHannes](https://twitter.com/PayerHannes))"
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -10,7 +10,7 @@ tags:
   - 内部机制
   - 内存
   - 安全
-description: '通过堆扫描技术消除Chrome中的释放后使用漏洞。'
+description: "通过堆扫描技术消除Chrome中的释放后使用漏洞。"
 ---
 :::note
 **注意：** 本文最初发布在[Google安全博客](https://security.googleblog.com/2022/05/retrofitting-temporal-memory-safety-on-c.html)。

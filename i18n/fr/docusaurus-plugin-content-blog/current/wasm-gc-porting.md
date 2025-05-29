@@ -1,12 +1,12 @@
 ---
 title: 'Une nouvelle façon d'apporter des langages de programmation avec ramasse-miettes efficacement à WebAssembly'
-author: 'Alon Zakai'
+author: "Alon Zakai"
 avatars:
-  - 'alon-zakai'
+  - "alon-zakai"
 date: 2023-11-01
 tags:
   - WebAssembly
-tweet: '1720161507324076395'
+tweet: "1720161507324076395"
 ---
 
 Un article récent sur [WebAssembly Garbage Collection (WasmGC)](https://developer.chrome.com/blog/wasmgc) explique à un niveau général comment la [proposition de Garbage Collection (GC)](https://github.com/WebAssembly/gc) vise à mieux prendre en charge les langages à GC dans Wasm, ce qui est très important compte tenu de leur popularité. Dans cet article, nous entrerons dans les détails techniques sur la manière dont les langages à GC tels que Java, Kotlin, Dart, Python et C# peuvent être portés sur Wasm. Il existe en fait deux approches principales :

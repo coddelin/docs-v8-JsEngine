@@ -1,13 +1,13 @@
 ---
-title: 'V8 發佈 v9.6'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "V8 發佈 v9.6"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-10-13
 tags:
  - release
-description: 'V8 發佈 v9.6 為 WebAssembly 帶來了支援 Reference Types (參考類型) 的功能。'
-tweet: '1448262079476076548'
+description: "V8 發佈 v9.6 為 WebAssembly 帶來了支援 Reference Types (參考類型) 的功能。"
+tweet: "1448262079476076548"
 ---
 每四週，我們會按照[發佈流程](https://v8.dev/docs/release-process)創建一個新的 V8 分支。每個版本都在緊接 Chrome Beta 里程碑之前，從 V8 的 Git 主分支中分支出來。今天，我們很高興地宣佈我們最新的分支，[V8 version 9.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.6)，目前處於 Beta 測試階段，將在幾週內隨 Chrome 96 穩定版一同推出。V8 v9.6 帶來了許多面向開發者的新功能和改進。這篇文章提前預覽了一些亮點，敬請期待正式發佈。
 

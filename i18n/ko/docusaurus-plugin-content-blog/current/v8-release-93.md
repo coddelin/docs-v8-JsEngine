@@ -1,13 +1,13 @@
 ---
-title: 'V8 릴리스 v9.3'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "V8 릴리스 v9.3"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-08-09
 tags:
  - release
-description: 'V8 릴리스 v9.3에는 Object.hasOwn 및 Error 원인 지원이 추가되었으며, 컴파일 성능이 향상되고 Android에서 신뢰할 수 없는 코드 생성을 방지하는 완화 기능이 비활성화되었습니다.'
-tweet: ''
+description: "V8 릴리스 v9.3에는 Object.hasOwn 및 Error 원인 지원이 추가되었으며, 컴파일 성능이 향상되고 Android에서 신뢰할 수 없는 코드 생성을 방지하는 완화 기능이 비활성화되었습니다."
+tweet: ""
 ---
 매 6주마다 우리는 [릴리스 프로세스](https://v8.dev/docs/release-process)의 일환으로 V8의 새 브랜치를 만듭니다. 각 버전은 Chrome 베타 마일스톤 직전에 V8의 주요 Git 브랜치에서 분기됩니다. 오늘 우리는 V8 버전 9.3 ([링크](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.3)) 라는 최신 브랜치를 기쁜 마음으로 발표합니다. 이는 몇 주 후 Chrome 93 Stable과 함께 릴리스될 때까지 베타 상태입니다. V8 v9.3은 개발자 친화적인 다양한 기능들로 가득합니다. 이 게시물은 릴리스를 기대하며 몇 가지 주요 내용을 미리 살펴봅니다.
 

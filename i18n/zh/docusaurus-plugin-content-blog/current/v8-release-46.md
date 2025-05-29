@@ -1,10 +1,10 @@
 ---
-title: 'V8版本发布v4.6'
-author: 'V8团队'
+title: "V8版本发布v4.6"
+author: "V8团队"
 date: 2015-08-28 13:33:37
 tags:
   - 发布
-description: 'V8 v4.6带来了减少卡顿和支持新的ES2015语言特性。'
+description: "V8 v4.6带来了减少卡顿和支持新的ES2015语言特性。"
 ---
 大约每六周，我们会创建一个新的V8分支作为我们[发布流程](https://v8.dev/docs/release-process)的一部分。每个版本是在Chrome为Beta里程碑分支之前，直接从V8的Git主分支分支出来的。今天我们很高兴宣布我们的最新分支，[V8版本4.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.6)，它将在Chrome 46稳定版发布之前处于Beta版本阶段。V8 4.6包含各种面向开发者的实用功能，因此我们想提前向你介绍一些亮点，以期待未来几周的发布。
 

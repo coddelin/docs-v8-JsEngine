@@ -1,14 +1,14 @@
 ---
-title: 'Indicium: Ferramenta de rastreamento de runtime do V8'
-author: 'Zeynep Cankara ([@ZeynepCankara](https://twitter.com/ZeynepCankara))'
+title: "Indicium: Ferramenta de rastreamento de runtime do V8"
+author: "Zeynep Cankara ([@ZeynepCankara](https://twitter.com/ZeynepCankara))"
 avatars:
-  - 'zeynep-cankara'
+  - "zeynep-cankara"
 date: 2020-10-01 11:56:00
 tags:
   - ferramentas
   - analisador-de-sistema
-description: 'Indicium: Ferramenta de análise de sistema do V8 para analisar eventos de Map/IC.'
-tweet: '1311689392608731140'
+description: "Indicium: Ferramenta de análise de sistema do V8 para analisar eventos de Map/IC."
+tweet: "1311689392608731140"
 ---
 # Indicium: analisador de sistema do V8
 

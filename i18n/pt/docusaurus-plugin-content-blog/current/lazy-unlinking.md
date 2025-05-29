@@ -1,12 +1,12 @@
 ---
-title: 'Um estágio sobre preguiça: desvinculação preguiçosa de funções desotimizadas'
-author: 'Juliana Franco ([@jupvfranco](https://twitter.com/jupvfranco)), Especialista em Preguiça'
+title: "Um estágio sobre preguiça: desvinculação preguiçosa de funções desotimizadas"
+author: "Juliana Franco ([@jupvfranco](https://twitter.com/jupvfranco)), Especialista em Preguiça"
 date: 2017-10-04 13:33:37
 tags:
   - memória
   - internos
-description: 'Este mergulho técnico explica como o V8 costumava desvincular funções desotimizadas e como recentemente mudamos isso para melhorar o desempenho.'
-tweet: '915473224187760640'
+description: "Este mergulho técnico explica como o V8 costumava desvincular funções desotimizadas e como recentemente mudamos isso para melhorar o desempenho."
+tweet: "915473224187760640"
 ---
 Há cerca de três meses, me juntei à equipe V8 (Google Munique) como estagiária e, desde então, tenho trabalhado no _Desotimizador_ da máquina virtual — algo completamente novo para mim, que se revelou um projeto interessante e desafiador. A primeira parte do meu estágio focou em [melhorar a segurança da máquina virtual](https://docs.google.com/document/d/1ELgd71B6iBaU6UmZ_lvwxf_OrYYnv0e4nuzZpK05-pg/edit). A segunda parte focou em melhorias de desempenho, especificamente na remoção de uma estrutura de dados usada para desvincular funções previamente desotimizadas, que era um gargalo de desempenho durante a coleta de lixo. Este post descreve essa segunda parte do meu estágio. Vou explicar como o V8 costumava desvincular funções desotimizadas, como mudamos isso e quais foram as melhorias de desempenho obtidas.
 

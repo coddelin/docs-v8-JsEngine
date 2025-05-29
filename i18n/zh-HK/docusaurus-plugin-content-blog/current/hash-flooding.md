@@ -1,12 +1,12 @@
 ---
-title: '關於 Node.js 的 Hash flooding 漏洞問題…'
-author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed))'
+title: "關於 Node.js 的 Hash flooding 漏洞問題…"
+author: "Yang Guo ([@hashseed](https://twitter.com/hashseed))"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2017-08-11 13:33:37
 tags:
   - security
-description: 'Node.js 曾受到 Hash flooding 漏洞的影響。本篇文章提供一些背景資料，並解釋 V8 中的解決方案。'
+description: "Node.js 曾受到 Hash flooding 漏洞的影響。本篇文章提供一些背景資料，並解釋 V8 中的解決方案。"
 ---
 今年七月初，Node.js 發佈了一個[安全更新](https://nodejs.org/en/blog/vulnerability/july-2017-security-releases/)，針對所有當前維護的分支來解決 Hash flooding 漏洞問題。這項臨時修復以顯著降低啟動性能為代價。同時，V8 已實施了一項解決方案，可以避免性能下降。
 

@@ -1,11 +1,11 @@
 ---
-title: 'Sortie de V8 v7.4'
-author: 'Georg Neis'
+title: "Sortie de V8 v7.4"
+author: "Georg Neis"
 date: 2019-03-22 16:30:42
 tags:
   - sortie
-description: 'V8 v7.4 introduit les threads/Atomics WebAssembly, les champs privés de classes, des améliorations de performance et de mémoire, et bien plus encore !'
-tweet: '1109094755936489472'
+description: "V8 v7.4 introduit les threads/Atomics WebAssembly, les champs privés de classes, des améliorations de performance et de mémoire, et bien plus encore !"
+tweet: "1109094755936489472"
 ---
 Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](/docs/release-process). Chaque version est dérivée du Git master de V8 juste avant une étape Beta de Chrome. Aujourd’hui, nous sommes heureux d’annoncer notre nouvelle branche, [V8 version 7.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.4), qui est en version bêta jusqu’à sa sortie coordonnée avec Chrome 74 Stable dans quelques semaines. V8 v7.4 est rempli de toutes sortes de nouveautés pour les développeurs. Cet article fournit un aperçu de certains des points forts en prévision de la sortie.
 

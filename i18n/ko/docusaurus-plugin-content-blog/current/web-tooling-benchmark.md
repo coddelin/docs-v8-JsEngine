@@ -1,14 +1,14 @@
 ---
-title: '웹 툴링 벤치마크 발표'
-author: 'Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), 자바스크립트 성능 전문가'
+title: "웹 툴링 벤치마크 발표"
+author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), 자바스크립트 성능 전문가"
 avatars:
-  - 'benedikt-meurer'
+  - "benedikt-meurer"
 date: 2017-11-06 13:33:37
 tags:
   - 벤치마크
   - Node.js
-description: '최신 웹 툴링 벤치마크는 Babel, TypeScript 및 기타 실제 프로젝트의 V8 성능 병목 현상을 식별하고 수정하는 데 도움이 됩니다.'
-tweet: '927572065598824448'
+description: "최신 웹 툴링 벤치마크는 Babel, TypeScript 및 기타 실제 프로젝트의 V8 성능 병목 현상을 식별하고 수정하는 데 도움이 됩니다."
+tweet: "927572065598824448"
 ---
 자바스크립트 성능은 항상 V8 팀의 중요 관심사였으며, 이번 포스트에서는 최근에 V8에서 일부 성능 병목 현상을 식별하고 수정하기 위해 사용한 최신 자바스크립트 [웹 툴링 벤치마크](https://v8.github.io/web-tooling-benchmark)에 대해 논의하고자 합니다. 이미 V8의 [Node.js에 대한 강력한 의지](/blog/v8-nodejs)에 대해 알고 계실 수도 있습니다. 이 벤치마크는 Node.js를 기반으로 개발된 일반적인 개발자 도구를 사용하여 성능 테스트를 실행함으로써 이러한 의지를 확장합니다. 웹 툴링 벤치마크 도구는 오늘날 개발자와 디자이너가 현대 웹 사이트나 클라우드 기반 애플리케이션을 구축하기 위해 사용하는 동일한 도구들로 구성되어 있습니다. [실제 성능](/blog/real-world-performance/)에 집중하려는 지속적인 노력의 일환으로, 매일 개발자가 실행하는 실제 코드로 벤치마크를 작성하였습니다.
 

@@ -1,7 +1,7 @@
 ---
-title: 'WebAssembly JSPI가 오리진 트라이얼을 시작합니다'
-description: 'JSPI의 오리진 트라이얼 시작을 설명합니다'
-author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
+title: "WebAssembly JSPI가 오리진 트라이얼을 시작합니다"
+description: "JSPI의 오리진 트라이얼 시작을 설명합니다"
+author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-03-06
 tags:
   - WebAssembly

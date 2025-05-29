@@ -1,6 +1,6 @@
 ---
-title: 'Blink-Webtests (auch bekannt als Layouttests)'
-description: 'Die Infrastruktur von V8 führt kontinuierlich die Webtests von Blink aus, um Integrationsprobleme mit Chromium zu verhindern. Dieses Dokument beschreibt, was zu tun ist, falls ein solcher Test fehlschlägt.'
+title: "Blink-Webtests (auch bekannt als Layouttests)"
+description: "Die Infrastruktur von V8 führt kontinuierlich die Webtests von Blink aus, um Integrationsprobleme mit Chromium zu verhindern. Dieses Dokument beschreibt, was zu tun ist, falls ein solcher Test fehlschlägt."
 ---
 Wir führen kontinuierlich [Blinks Webtests (früher bekannt als „Layouttests“)](https://chromium.googlesource.com/chromium/src/+/master/docs/testing/web_tests.md) in unserer [Integrationskonsole](https://ci.chromium.org/p/v8/g/integration/console) aus, um Integrationsprobleme mit Chromium zu verhindern.
 

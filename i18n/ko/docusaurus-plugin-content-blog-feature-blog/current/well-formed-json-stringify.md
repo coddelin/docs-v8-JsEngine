@@ -1,13 +1,13 @@
 ---
-title: '잘 구성된 `JSON.stringify`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "잘 구성된 `JSON.stringify`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-09-11
 tags:
   - ECMAScript
   - ES2019
-description: 'JSON.stringify가 이제 고립된 서러게이트를 위한 이스케이프 시퀀스를 출력하여, 출력이 유효한 유니코드(및 UTF-8로 표현 가능)로 만듭니다.'
+description: "JSON.stringify가 이제 고립된 서러게이트를 위한 이스케이프 시퀀스를 출력하여, 출력이 유효한 유니코드(및 UTF-8로 표현 가능)로 만듭니다."
 ---
 `JSON.stringify`는 이전에 입력에 고립된 서러게이트가 포함되어 있으면 잘못된 유니코드 문자열을 반환하도록 지정되었습니다:
 

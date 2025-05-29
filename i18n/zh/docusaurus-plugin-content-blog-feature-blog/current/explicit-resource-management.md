@@ -1,13 +1,13 @@
 ---
 title: "JavaScript 的新超能力：显式资源管理"
-author: 'Rezvan Mahdavi Hezaveh'
+author: "Rezvan Mahdavi Hezaveh"
 avatars:
-  - 'rezvan-mahdavi-hezaveh'
+  - "rezvan-mahdavi-hezaveh"
 date: 2025-05-09
 tags:
   - ECMAScript
-description: '显式资源管理提案使开发者能够显式管理资源的生命周期。'
-tweet: ''
+description: "显式资源管理提案使开发者能够显式管理资源的生命周期。"
+tweet: ""
 ---
 
 显式资源管理（Explicit Resource Management）提案引入了一种确定性方法，用于显式管理像文件句柄、网络连接等资源的生命周期。这一提案包括以下语言新增功能：`using` 和 `await using` 声明，自动在资源超出作用域时调用 dispose 方法；`[Symbol.dispose]()` 和 `[Symbol.asyncDispose]()` 符号用于清理操作；两个新的全局对象 `DisposableStack` 和 `AsyncDisposableStack` 作为容器来聚合可清理的资源；以及一种新的错误类型 `SuppressedError`（同时包含最近抛出的错误以及被抑制的错误），用于处理在资源清理期间发生错误而可能掩盖从代码主体或其他资源清理中抛出的现有错误的场景。这些新增功能使开发者能够通过提供对资源清理的精细控制，编写更强健、高效且可维护的代码。

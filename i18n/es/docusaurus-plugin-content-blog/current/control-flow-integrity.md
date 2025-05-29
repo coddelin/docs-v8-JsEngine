@@ -1,7 +1,7 @@
 ---
-title: 'Integridad del flujo de control en V8'
-description: 'Esta publicación de blog discute los planes para implementar la integridad del flujo de control en V8.'
-author: 'Stephen Röttger'
+title: "Integridad del flujo de control en V8"
+description: "Esta publicación de blog discute los planes para implementar la integridad del flujo de control en V8."
+author: "Stephen Röttger"
 date: 2023-10-09
 tags:
  - seguridad

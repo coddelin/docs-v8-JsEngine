@@ -1,6 +1,6 @@
 ---
-title: 'GN으로 V8 빌드하기'
-description: '이 문서는 GN을 사용하여 V8을 빌드하는 방법을 설명합니다.'
+title: "GN으로 V8 빌드하기"
+description: "이 문서는 GN을 사용하여 V8을 빌드하는 방법을 설명합니다."
 ---
 V8은 [GN](https://gn.googlesource.com/gn/+/master/docs/)의 도움으로 빌드됩니다. GN은 여러 빌드 시스템의 빌드 파일을 생성하는 일종의 메타 빌드 시스템입니다. 따라서 사용하는 “백엔드” 빌드 시스템 및 컴파일러에 따라 빌드 방식이 달라집니다.
 아래의 지침은 이미 V8의 [체크아웃](/docs/source-code)을 완료하고 [빌드 종속성](/docs/build)을 설치한 것으로 가정합니다.

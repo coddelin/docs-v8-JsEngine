@@ -1,17 +1,17 @@
 ---
-title: '高性能C++垃圾回收器'
-author: 'Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), 和 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz))，C++内存专家'
+title: "高性能C++垃圾回收器"
+author: "Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), 和 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz))，C++内存专家"
 avatars:
-  - 'anton-bikineev'
-  - 'omer-katz'
-  - 'michael-lippautz'
+  - "anton-bikineev"
+  - "omer-katz"
+  - "michael-lippautz"
 date: 2020-05-26
 tags:
   - 内部
   - 内存
   - cppgc
-description: '本文描述了Oilpan C++垃圾回收器，其在Blink中的使用以及如何优化清扫，即释放不可达内存的过程。'
-tweet: '1265304883638480899'
+description: "本文描述了Oilpan C++垃圾回收器，其在Blink中的使用以及如何优化清扫，即释放不可达内存的过程。"
+tweet: "1265304883638480899"
 ---
 
 过去我们曾[写过](https://v8.dev/blog/trash-talk) [关于](https://v8.dev/blog/concurrent-marking) [垃圾回收](https://v8.dev/blog/tracing-js-dom)的文章，介绍了JavaScript、文档对象模型（DOM）的垃圾回收以及这些功能在V8中的实现和优化。然而，Chromium中并非所有内容都是JavaScript，因为大部分浏览器及其Blink渲染引擎是用C++编写的，而V8嵌入其中。JavaScript可以用来与DOM交互，然后由渲染管线处理。

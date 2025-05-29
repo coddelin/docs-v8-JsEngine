@@ -1,12 +1,12 @@
 ---
-title: '高速で並列処理が可能なWebAssembly SIMD'
-author: 'ディープティ・ガンドルリ ([@dptig](https://twitter.com/dptig))、トーマス・ライブリー ([@tlively52](https://twitter.com/tlively52))、イングヴァル・ステパニャン ([@RReverser](https://twitter.com/RReverser))'
+title: "高速で並列処理が可能なWebAssembly SIMD"
+author: "ディープティ・ガンドルリ ([@dptig](https://twitter.com/dptig))、トーマス・ライブリー ([@tlively52](https://twitter.com/tlively52))、イングヴァル・ステパニャン ([@RReverser](https://twitter.com/RReverser))"
 date: 2020-01-30
 updated: 2022-11-06
 tags:
   - WebAssembly
-description: 'WebAssemblyにベクトル操作を追加する'
-tweet: '1222944308183085058'
+description: "WebAssemblyにベクトル操作を追加する"
+tweet: "1222944308183085058"
 ---
 SIMDは、_Single Instruction, Multiple Data_（単一命令、複数データ）の略称です。SIMD命令は特別な種類の命令で、アプリケーション内のデータ並列性を活用し、複数のデータ要素に同時に同じ操作を行います。音声/映像コーデックや画像処理など、計算負荷の高いアプリケーションは、SIMD命令を利用してパフォーマンスを向上させています。ほとんどの現代的なアーキテクチャは、何らかの形でSIMD命令をサポートしています。
 

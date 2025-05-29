@@ -1,13 +1,13 @@
 ---
-title: 'V8 release v9.9'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), at his 99%'
+title: "V8 release v9.9"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), at his 99%"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2022-01-31
 tags:
  - release
-description: 'V8 release v9.9 brings new internationalization APIs.'
-tweet: '1488190967727411210'
+description: "V8 release v9.9 brings new internationalization APIs."
+tweet: "1488190967727411210"
 ---
 매 4주마다, 우리는 [릴리스 프로세스](https://v8.dev/docs/release-process)의 일환으로 V8의 새 브랜치를 만듭니다. 각 버전은 Chrome 베타 단계 이전에 V8의 Git 메인 브랜치에서 생성됩니다. 오늘 우리는 가장 최신 브랜치인 [V8 버전 9.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.9)를 발표하게 되어 기쁩니다. V8 v9.9는 몇 주 후 Chrome 99 Stable 릴리스와 함께 발표될 예정이며 현재 베타 버전을 제공합니다. V8 v9.9는 개발자 친화적인 다양한 신규 기능으로 가득합니다. 이 포스트에서는 릴리스를 앞두고 하이라이트를 미리 보여드립니다.
 

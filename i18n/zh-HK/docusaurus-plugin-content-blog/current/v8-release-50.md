@@ -1,10 +1,10 @@
 ---
-title: 'V8 發布 v5.0'
-author: 'V8 團隊'
+title: "V8 發布 v5.0"
+author: "V8 團隊"
 date: 2016-03-15 13:33:37
 tags:
   - 發布
-description: 'V8 v5.0 提供性能改進，並加入對多個新的 ES2015 語言特性的支持。'
+description: "V8 v5.0 提供性能改進，並加入對多個新的 ES2015 語言特性的支持。"
 ---
 V8 [發布流程](/docs/release-process) 的第一步是從 Git 主分支中新建一個分支，這通常在 Chromium 為 Chrome Beta 里程碑分支（大約每六週一次）之前進行。我們最新的發布分支是 [V8 v5.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.0)，這個版本將在與 Chrome 50 穩定版一同發布之前保持 Beta 狀態。以下是此版本 V8 面向開發者的新功能亮點。
 

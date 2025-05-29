@@ -1,13 +1,13 @@
 ---
-title: 'Iterator-Helfer'
-author: 'Rezvan Mahdavi Hezaveh'
+title: "Iterator-Helfer"
+author: "Rezvan Mahdavi Hezaveh"
 avatars:
-  - 'rezvan-mahdavi-hezaveh'
+  - "rezvan-mahdavi-hezaveh"
 date: 2024-03-27
 tags:
   - ECMAScript
-description: 'Schnittstellen, die bei der allgemeinen Nutzung und Verarbeitung von Iteratoren helfen.'
-tweet: ''
+description: "Schnittstellen, die bei der allgemeinen Nutzung und Verarbeitung von Iteratoren helfen."
+tweet: ""
 ---
 
 *Iterator-Helfer* sind eine Sammlung neuer Methoden auf dem Iterator-Prototyp, die bei der allgemeinen Verwendung von Iteratoren helfen. Da sich diese Hilfsmethoden auf dem Iterator-Prototyp befinden, erhalten alle Objekte, die `Iterator.prototype` in ihrer Prototypenkette haben (z. B. Array-Iteratoren), diese Methoden. In den folgenden Abschnitten erklären wir die Iterator-Helfer. Alle bereitgestellten Beispiele funktionieren auf einer Blog-Archivseite, die eine Liste von Blog-Beiträgen enthält, und veranschaulichen, wie Iterator-Helfer beim Finden und Bearbeiten der Beiträge hilfreich sind. Sie können sie auf der [V8-Blogseite](https://v8.dev/blog) ausprobieren!

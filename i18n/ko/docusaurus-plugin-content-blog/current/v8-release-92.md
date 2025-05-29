@@ -1,13 +1,13 @@
 ---
-title: 'V8 릴리스 v9.2'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "V8 릴리스 v9.2"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-07-16
 tags:
  - release
-description: 'V8 릴리스 v9.2는 `at` 메서드와 포인터 압축 개선 사항을 제공합니다.'
-tweet: ''
+description: "V8 릴리스 v9.2는 `at` 메서드와 포인터 압축 개선 사항을 제공합니다."
+tweet: ""
 ---
 V8은 [릴리스 프로세스](https://v8.dev/docs/release-process)의 일환으로 6주마다 새로운 브랜치를 만듭니다. 각 버전은 크롬 베타 마일스톤 직전 V8의 Git master에서 분기됩니다. 오늘 우리는 최신 브랜치인 [V8 버전 9.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.2)를 발표하게 되어 기쁩니다. 이 버전은 몇 주 후 크롬 92 안정 버전과 함께 출시될 때까지 베타 상태로 유지됩니다. V8 v9.2는 다양한 개발자 친화적인 기능으로 가득합니다. 이 글은 릴리스를 기대하며 몇 가지 주요 기능을 미리 소개합니다.
 

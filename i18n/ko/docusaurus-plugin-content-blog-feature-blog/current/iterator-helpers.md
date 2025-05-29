@@ -1,13 +1,13 @@
 ---
-title: '반복자 도우미'
-author: 'Rezvan Mahdavi Hezaveh'
+title: "반복자 도우미"
+author: "Rezvan Mahdavi Hezaveh"
 avatars:
-  - 'rezvan-mahdavi-hezaveh'
+  - "rezvan-mahdavi-hezaveh"
 date: 2024-03-27
 tags:
   - ECMAScript
-description: '반복자를 일반적으로 사용하고 소비하는 데 도움을 주는 인터페이스.'
-tweet: ''
+description: "반복자를 일반적으로 사용하고 소비하는 데 도움을 주는 인터페이스."
+tweet: ""
 ---
 
 *반복자 도우미*는 반복자를 일반적으로 사용하는 데 도움을 주는 Iterator 프로토타입에 대한 새로운 메서드 모음입니다. 이 도우미 메서드들은 반복자 프로토타입에 있기 때문에, 프로토타입 체인에 `Iterator.prototype`을 가진 모든 객체(예: 배열 반복자)는 이 메서드들을 사용할 수 있습니다. 다음 단락에서는 반복자 도우미를 설명합니다. 제공된 모든 예시는 블로그 포스팅 목록이 포함된 블로그 아카이브 페이지에서 작동하며, 반복자 도우미가 포스트를 찾고 조작하는 데 어떻게 유용한지 보여줍니다. [V8 블로그 페이지](https://v8.dev/blog)에서 시도해 볼 수 있습니다!

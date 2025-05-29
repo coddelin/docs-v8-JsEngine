@@ -1,13 +1,13 @@
 ---
-title: 'Compilación en segundo plano'
-author: '[Ross McIlroy](https://twitter.com/rossmcilroy), defensor del hilo principal'
+title: "Compilación en segundo plano"
+author: "[Ross McIlroy](https://twitter.com/rossmcilroy), defensor del hilo principal"
 avatars:
-  - 'ross-mcilroy'
+  - "ross-mcilroy"
 date: 2018-03-26 13:33:37
 tags:
   - internals
-description: 'A partir de Chrome 66, V8 compila el código fuente de JavaScript en un hilo en segundo plano, reduciendo el tiempo dedicado a la compilación en el hilo principal entre un 5% y un 20% en sitios web típicos.'
-tweet: '978319362837958657'
+description: "A partir de Chrome 66, V8 compila el código fuente de JavaScript en un hilo en segundo plano, reduciendo el tiempo dedicado a la compilación en el hilo principal entre un 5% y un 20% en sitios web típicos."
+tweet: "978319362837958657"
 ---
 TL;DR: A partir de Chrome 66, V8 compila el código fuente de JavaScript en un hilo en segundo plano, reduciendo el tiempo dedicado a la compilación en el hilo principal entre un 5% y un 20% en sitios web típicos.
 

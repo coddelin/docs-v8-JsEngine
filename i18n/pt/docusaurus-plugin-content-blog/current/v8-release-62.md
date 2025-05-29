@@ -1,10 +1,10 @@
 ---
-title: 'Lançamento do V8 v6.2'
-author: 'a equipe V8'
+title: "Lançamento do V8 v6.2"
+author: "a equipe V8"
 date: 2017-09-11 13:33:37
 tags:
   - lançamento
-description: 'O V8 v6.2 inclui melhorias de desempenho, mais recursos para a linguagem JavaScript, um aumento no comprimento máximo de string e muito mais.'
+description: "O V8 v6.2 inclui melhorias de desempenho, mais recursos para a linguagem JavaScript, um aumento no comprimento máximo de string e muito mais."
 ---
 A cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](/docs/release-process). Cada versão é derivada do Git master do V8 imediatamente antes de uma etapa de Beta do Chrome. Hoje estamos satisfeitos em anunciar nosso mais novo branch, [V8 versão 6.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.2), que está na versão beta até seu lançamento em coordenação com o Chrome 62 Stable em algumas semanas. O V8 v6.2 está repleto de vários recursos voltados para desenvolvedores. Este post fornece uma prévia de alguns dos destaques em antecipação ao lançamento.
 

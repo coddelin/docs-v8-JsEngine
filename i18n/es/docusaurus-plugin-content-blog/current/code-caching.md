@@ -1,12 +1,12 @@
 ---
-title: 'Almacenamiento en caché de código'
-author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed)), Ingeniero de Software'
+title: "Almacenamiento en caché de código"
+author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), Ingeniero de Software"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2015-07-27 13:33:37
 tags:
   - internos
-description: 'V8 ahora soporta almacenamiento en caché de (byte)código, es decir, guardar en caché el resultado del análisis y la compilación de JavaScript.'
+description: "V8 ahora soporta almacenamiento en caché de (byte)código, es decir, guardar en caché el resultado del análisis y la compilación de JavaScript."
 ---
 V8 utiliza [compilación justo a tiempo](https://es.wikipedia.org/wiki/Compilaci%C3%B3n_en_tiempo_de_ejecuci%C3%B3n) (JIT) para ejecutar código JavaScript. Esto significa que inmediatamente antes de ejecutar un script, debe ser analizado y compilado, lo que puede generar una sobrecarga considerable. Como [anunciamos recientemente](https://blog.chromium.org/2015/03/new-javascript-techniques-for-rapid.html), el almacenamiento en caché de código es una técnica que reduce esta sobrecarga. Cuando un script se compila por primera vez, se generan y almacenan datos en caché. La próxima vez que V8 necesite compilar el mismo script, incluso en una instancia diferente de V8, puede usar los datos en caché para recrear el resultado de la compilación en lugar de compilar desde cero. Como resultado, el script se ejecuta mucho más rápido.
 

@@ -1,11 +1,11 @@
 ---
-title: 'Schwache Verweise und Finalizer'
-author: 'Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), und Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))'
+title: "Schwache Verweise und Finalizer"
+author: "Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), und Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))"
 avatars:
-- 'sathya-gunasekaran'
-- 'mathias-bynens'
-- 'shu-yu-guo'
-- 'leszek-swirski'
+- "sathya-gunasekaran"
+- "mathias-bynens"
+- "shu-yu-guo"
+- "leszek-swirski"
 date: 2019-07-09
 updated: 2020-06-19
 tags:
@@ -13,8 +13,8 @@ tags:
   - ES2021
   - io19
   - Node.js 14
-description: 'Schwache Verweise und Finalizer kommen zu JavaScript! In diesem Artikel wird die neue Funktionalität erklärt.'
-tweet: '1148603966848151553'
+description: "Schwache Verweise und Finalizer kommen zu JavaScript! In diesem Artikel wird die neue Funktionalität erklärt."
+tweet: "1148603966848151553"
 ---
 Im Allgemeinen werden Referenzen auf Objekte in JavaScript _stark gehalten_, was bedeutet, dass das Objekt nicht vom Garbage Collector gesammelt wird, solange eine Referenz darauf existiert.
 

@@ -1,13 +1,13 @@
 ---
-title: 'Static Roots: Objects with Compile-Time Constant Addresses'
-author: 'Olivier Flückiger'
+title: "Static Roots: Objects with Compile-Time Constant Addresses"
+author: "Olivier Flückiger"
 avatars:
   - olivier-flueckiger
 date: 2024-02-05
 tags:
   - JavaScript
 description: "Static Roots makes the addresses of certain JS objects a compile-time constant."
-tweet: ''
+tweet: ""
 ---
 
 Did you ever wonder where `undefined`, `true`, and other core JavaScript objects come from? These objects are the atoms of any user defined object and need to be there first. V8 calls them immovable immutable roots and they live in their own heap – the read-only heap. Since they are used constantly, quick access is crucial. And what could be quicker than correctly guessing their memory address at compile time?

@@ -1,16 +1,16 @@
 ---
-title: '公開および非公開のクラスフィールド'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "公開および非公開のクラスフィールド"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-12-13
 tags:
   - ECMAScript
   - ES2022
   - io19
   - Node.js 14
-description: 'いくつかの提案が既存のJavaScriptクラス構文を新機能で拡張しています。この記事では、V8 v7.2およびChrome 72で導入された新しい公開クラスフィールド構文と、近日公開予定の非公開クラスフィールド構文について説明します。'
-tweet: '1121395767170740225'
+description: "いくつかの提案が既存のJavaScriptクラス構文を新機能で拡張しています。この記事では、V8 v7.2およびChrome 72で導入された新しい公開クラスフィールド構文と、近日公開予定の非公開クラスフィールド構文について説明します。"
+tweet: "1121395767170740225"
 ---
 いくつかの提案が既存のJavaScriptクラス構文を新機能で拡張しています。この記事では、V8 v7.2およびChrome 72で導入された新しい公開クラスフィールド構文と、近日公開予定の非公開クラスフィールド構文について説明します。
 

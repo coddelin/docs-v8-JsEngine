@@ -1,12 +1,12 @@
 ---
-title: '高性能的ES2015及更高版本'
-author: 'Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer)，ECMAScript性能工程师'
+title: "高性能的ES2015及更高版本"
+author: "Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer)，ECMAScript性能工程师"
 avatars:
-  - 'benedikt-meurer'
+  - "benedikt-meurer"
 date: 2017-02-17 13:33:37
 tags:
   - ECMAScript
-description: 'V8对于ES2015+语言特性的性能现已与其转译为ES5的对应版本相媲美。'
+description: "V8对于ES2015+语言特性的性能现已与其转译为ES5的对应版本相媲美。"
 ---
 过去几个月里，V8团队专注于使新添加的[ES2015](https://www.ecma-international.org/ecma-262/6.0/)及其他更新的JavaScript特性的性能达到与其转译为[ES5](https://www.ecma-international.org/ecma-262/5.1/)对应版本相当的水平。
 

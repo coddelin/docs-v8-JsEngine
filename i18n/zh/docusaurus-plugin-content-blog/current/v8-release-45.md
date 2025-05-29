@@ -1,10 +1,10 @@
 ---
-title: 'V8发布v4.5'
-author: 'V8团队'
+title: "V8发布v4.5"
+author: "V8团队"
 date: 2015-07-17 13:33:37
 tags:
   - 发布
-description: 'V8 v4.5带来了性能提升，并增加了对多个ES2015特性的支持。'
+description: "V8 v4.5带来了性能提升，并增加了对多个ES2015特性的支持。"
 ---
 大约每六周，我们会根据[发布流程](https://v8.dev/docs/release-process)创建一个新的V8分支。每个版本都是在Chrome为Chrome Beta里程碑分支之前从V8的Git主分支派生出来的。今天，我们很高兴地宣布最新的分支，[V8版本4.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.5)，这个版本将在Beta阶段，直到和Chrome 45稳定版同步发布。V8 v4.5包含了各种面向开发者的精彩内容，因此在几周后的发布之前，我们希望预览一些亮点。
 

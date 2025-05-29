@@ -1,10 +1,10 @@
 ---
-title: 'V8-Version v4.5'
-author: 'das V8-Team'
+title: "V8-Version v4.5"
+author: "das V8-Team"
 date: 2015-07-17 13:33:37
 tags:
   - Version
-description: 'V8 v4.5 bietet Leistungsverbesserungen und unterstützt mehrere ES2015-Funktionen.'
+description: "V8 v4.5 bietet Leistungsverbesserungen und unterstützt mehrere ES2015-Funktionen."
 ---
 Etwa alle sechs Wochen erstellen wir im Rahmen unseres [Release-Prozesses](https://v8.dev/docs/release-process) einen neuen Zweig von V8. Jede Version wird direkt vor dem Chrome-Zweig für eine Chrome-Beta-Meilenstein aus dem Git-Master von V8 abgezweigt. Heute freuen wir uns, unseren neuesten Zweig, [V8-Version 4.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.5), anzukündigen, der bis zur Veröffentlichung in Zusammenarbeit mit Chrome 45 Stable in der Beta-Phase sein wird. V8 v4.5 ist vollgepackt mit allerlei Entwickler-Features, daher möchten wir Ihnen einen Überblick über einige Highlights geben, um die Veröffentlichung in einigen Wochen vorzubereiten.
 

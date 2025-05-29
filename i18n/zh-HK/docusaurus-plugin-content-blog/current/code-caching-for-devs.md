@@ -1,14 +1,14 @@
 ---
-title: 'JavaScript 開發者的程式碼快取'
-author: '[Leszek Swirski](https://twitter.com/leszekswirski)，快取擊碎者'
+title: "JavaScript 開發者的程式碼快取"
+author: "[Leszek Swirski](https://twitter.com/leszekswirski)，快取擊碎者"
 avatars:
   - leszek-swirski
 date: 2019-04-08 13:33:37
 updated: 2020-06-16
 tags:
   - internals
-description: '(位元碼)快取透過快取 JavaScript 解析及編譯的結果，減少常訪網站的啟動時間。'
-tweet: '1115264282675953664'
+description: "(位元碼)快取透過快取 JavaScript 解析及編譯的結果，減少常訪網站的啟動時間。"
+tweet: "1115264282675953664"
 ---
 程式碼快取（也稱為 _位元碼快取_）是瀏覽器中的一項重要優化。它透過快取解析及編譯的結果，減少常訪網站的啟動時間。大多數 [流行](https://blog.mozilla.org/javascript/2017/12/12/javascript-startup-bytecode-cache/) 的 [瀏覽器](https://bugs.webkit.org/show_bug.cgi?id=192782) 都實現了某種形式的程式碼快取，Chrome 也不例外。事實上，我們曾經 [撰文](/blog/code-caching) [並且](/blog/improved-code-caching) [談論](https://www.youtube.com/watch?v=YqHOUy2rYZ8) 過 Chrome 和 V8 如何快取已編譯的程式碼。
 

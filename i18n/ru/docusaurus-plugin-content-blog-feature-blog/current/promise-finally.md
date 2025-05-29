@@ -1,14 +1,14 @@
 ---
-title: '`Promise.prototype.finally`'
-author: 'Матиас Байненс ([@mathias](https://twitter.com/mathias))'
+title: "`Promise.prototype.finally`"
+author: "Матиас Байненс ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-10-23
 tags:
   - ECMAScript
   - ES2018
-description: 'Promise.prototype.finally позволяет зарегистрировать обратный вызов, который вызывается при завершении промиса (то есть при выполнении или отклонении).'
-tweet: '922459978857824261'
+description: "Promise.prototype.finally позволяет зарегистрировать обратный вызов, который вызывается при завершении промиса (то есть при выполнении или отклонении)."
+tweet: "922459978857824261"
 ---
 `Promise.prototype.finally` позволяет зарегистрировать обратный вызов, который вызывается при _завершении_ промиса (то есть при выполнении или отклонении).
 

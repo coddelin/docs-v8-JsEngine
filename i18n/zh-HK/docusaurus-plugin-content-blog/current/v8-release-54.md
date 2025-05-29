@@ -1,10 +1,10 @@
 ---
-title: 'V8 發佈 v5.4'
-author: 'V8 團隊'
+title: "V8 發佈 v5.4"
+author: "V8 團隊"
 date: 2016-09-09 13:33:37
 tags:
   - 發佈
-description: 'V8 v5.4 帶來性能改善及降低記憶體使用量。'
+description: "V8 v5.4 帶來性能改善及降低記憶體使用量。"
 ---
 每隔六週，我們會根據 [發佈流程](/docs/release-process) 的一部分創建新的 V8 分支。每次新版本都從 V8 的 Git 主版分支中分支出，時間在 Chrome Beta 的里程碑前夕。今天我們很高興宣佈最新的分支 [V8 version 5.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.4)，此版本將進入 beta 測試階段，直到幾週後與 Chrome 54 Stable 一同發佈。V8 v5.4 包含各種面向開發者的功能亮點，以下是一些主要改進的預覽。
 

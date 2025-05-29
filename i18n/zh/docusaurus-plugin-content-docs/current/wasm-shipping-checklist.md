@@ -1,6 +1,6 @@
 ---
-title: 'WebAssembly特性阶段研发与发布的检查清单'
-description: '本文档提供在V8中阶段研发和发布WebAssembly特性时的工程需求检查清单。'
+title: "WebAssembly特性阶段研发与发布的检查清单"
+description: "本文档提供在V8中阶段研发和发布WebAssembly特性时的工程需求检查清单。"
 ---
 本文档提供V8中阶段研发和发布WebAssembly特性时的工程需求检查清单。这些检查清单是作为指导原则的，可能不适用于所有特性。实际的发布流程详见[V8发布流程](https://v8.dev/docs/feature-launch-process)。
 

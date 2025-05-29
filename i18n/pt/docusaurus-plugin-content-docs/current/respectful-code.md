@@ -1,6 +1,6 @@
 ---
-title: 'Código respeitoso'
-description: 'A inclusão é central para a cultura do V8, e nossos valores incluem tratar uns aos outros com dignidade. Assim, é importante que todos possam contribuir sem enfrentar os efeitos prejudiciais de preconceito e discriminação.'
+title: "Código respeitoso"
+description: "A inclusão é central para a cultura do V8, e nossos valores incluem tratar uns aos outros com dignidade. Assim, é importante que todos possam contribuir sem enfrentar os efeitos prejudiciais de preconceito e discriminação."
 ---
 
 A inclusão é central para a cultura do V8, e nossos valores incluem tratar uns aos outros com dignidade. Assim, é importante que todos possam contribuir sem enfrentar os efeitos prejudiciais de preconceito e discriminação. No entanto, termos em nosso código, interfaces de usuário e documentações podem perpetuar essa discriminação. Este documento estabelece orientações destinadas a abordar terminologias desrespeitosas no código e na documentação.

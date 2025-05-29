@@ -1,14 +1,14 @@
 ---
-title: '可选的链式操作'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 可选链的破除者'
+title: "可选的链式操作"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 可选链的破除者"
 avatars:
-  - 'maya-armyanova'
+  - "maya-armyanova"
 date: 2019-08-27
 tags:
   - ECMAScript
   - ES2020
-description: '可选的链式操作通过内置的空值检查实现了更易读且简洁的属性访问表达式。'
-tweet: '1166360971914481669'
+description: "可选的链式操作通过内置的空值检查实现了更易读且简洁的属性访问表达式。"
+tweet: "1166360971914481669"
 ---
 在 JavaScript 中长链式的属性访问可能容易出错，因为它们中的任何一个都可能会计算为 `null` 或 `undefined`（也称为“空值”）。在每一步检查属性的存在性容易演变为深度嵌套的 `if` 语句结构，或者带有长链属性访问的 `if` 条件语句。
 

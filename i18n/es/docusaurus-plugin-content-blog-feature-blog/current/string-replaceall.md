@@ -1,15 +1,15 @@
 ---
-title: '`String.prototype.replaceAll`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`String.prototype.replaceAll`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-11-11
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: 'JavaScript ahora tiene soporte de primera clase para la sustitución global de subcadenas a través de la nueva API `String.prototype.replaceAll`.'
-tweet: '1193917549060280320'
+description: "JavaScript ahora tiene soporte de primera clase para la sustitución global de subcadenas a través de la nueva API `String.prototype.replaceAll`."
+tweet: "1193917549060280320"
 ---
 Si alguna vez has trabajado con cadenas en JavaScript, es probable que te hayas encontrado con el método `String#replace`. `String.prototype.replace(searchValue, replacement)` devuelve una cadena con algunas coincidencias reemplazadas, basándose en los parámetros que especifiques:
 

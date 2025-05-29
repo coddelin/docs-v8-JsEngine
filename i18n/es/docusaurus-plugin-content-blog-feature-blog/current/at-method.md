@@ -1,12 +1,12 @@
 ---
-title: 'Método `at` para indexación relativa'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "Método `at` para indexación relativa"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2021-07-13
 tags:
   - ECMAScript
-description: 'JavaScript ahora tiene un método de indexación relativa para Arrays, TypedArrays y Strings.'
+description: "JavaScript ahora tiene un método de indexación relativa para Arrays, TypedArrays y Strings."
 ---
 
 El nuevo método `at` en `Array.prototype`, los distintos prototipos de TypedArray y `String.prototype` facilita el acceso a un elemento más cercano al final de la colección y lo hace más conciso.

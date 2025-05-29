@@ -1,14 +1,14 @@
 ---
-title: 'V8中的元素种类'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "V8中的元素种类"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-09-12 13:33:37
 tags:
   - 内部原理
   - 演讲
-description: '这篇技术深度剖析文章解释了V8如何在幕后优化数组操作，以及这对JavaScript开发者意味着什么。'
-tweet: '907608362191376384'
+description: "这篇技术深度剖析文章解释了V8如何在幕后优化数组操作，以及这对JavaScript开发者意味着什么。"
+tweet: "907608362191376384"
 ---
 :::note
 **注意:** 如果你更喜欢观看演示而不是阅读文章，那么请欣赏下面的视频！

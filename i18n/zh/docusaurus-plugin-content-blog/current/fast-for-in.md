@@ -1,12 +1,12 @@
 ---
-title: 'V8 中快速的 `for`-`in`'
-author: 'Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))'
+title: "V8 中快速的 `for`-`in`"
+author: "Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))"
 avatars:
-  - 'camillo-bruni'
+  - "camillo-bruni"
 date: 2017-03-01 13:33:37
 tags:
   - 内部机制
-description: '这篇技术深度解析解释了 V8 如何让 JavaScript 的 for-in 尽可能快。'
+description: "这篇技术深度解析解释了 V8 如何让 JavaScript 的 for-in 尽可能快。"
 ---
 `for`-`in` 是一种被许多框架广泛使用的语言特性。尽管它十分常见，但从实现角度来看，它是一种较为晦涩的语言构造。V8 付出了巨大努力，使得这一特性尽可能快。在过去的一年里，`for`-`in` 变得完全符合规范，并在某些情况下速度提高了 3 倍。
 

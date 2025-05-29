@@ -1,6 +1,6 @@
 ---
-title: 'Turboalimentando o V8 com números de heap mutáveis'
-author: '[Victor Gomes](https://twitter.com/VictorBFG), o deslocador de bits'
+title: "Turboalimentando o V8 com números de heap mutáveis"
+author: "[Victor Gomes](https://twitter.com/VictorBFG), o deslocador de bits"
 avatars:
   - victor-gomes
 date: 2025-02-25
@@ -9,7 +9,7 @@ tags:
   - benchmarks
   - internals
 description: "Adicionando números de heap mutáveis ao contexto de script"
-tweet: ''
+tweet: ""
 ---
 
 No V8, estamos constantemente buscando melhorar o desempenho do JavaScript. Como parte desse esforço, recentemente revisamos o conjunto de benchmarks [JetStream2](https://browserbench.org/JetStream2.1/) para eliminar gargalos de desempenho. Este post detalha uma otimização específica que realizamos e que resultou em uma melhoria significativa de `2.5x` no benchmark `async-fs`, contribuindo para um aumento perceptível na pontuação geral. A otimização foi inspirada pelo benchmark, mas padrões como esses aparecem em [código do mundo real](https://github.com/WebAssembly/binaryen/blob/3339c1f38da5b68ce8bf410773fe4b5eee451ab8/scripts/fuzz_shell.js#L248).

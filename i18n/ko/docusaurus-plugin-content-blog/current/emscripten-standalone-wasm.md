@@ -1,14 +1,14 @@
 ---
-title: '웹 외부: Emscripten을 사용한 독립형 WebAssembly 바이너리'
-author: '알론 자카이'
+title: "웹 외부: Emscripten을 사용한 독립형 WebAssembly 바이너리"
+author: "알론 자카이"
 avatars:
-  - '알론 자카이'
+  - "알론 자카이"
 date: 2019-11-21
 tags:
   - WebAssembly
   - 도구
-description: 'Emscripten은 이제 JavaScript가 필요 없는 독립형 Wasm 파일을 지원합니다.'
-tweet: '1197547645729988608'
+description: "Emscripten은 이제 JavaScript가 필요 없는 독립형 Wasm 파일을 지원합니다."
+tweet: "1197547645729988608"
 ---
 Emscripten은 항상 웹 및 Node.js와 같은 기타 JavaScript 환경에 컴파일하는 것을 최우선으로 고려해 왔습니다. 하지만 WebAssembly가 JavaScript *없이* 사용되기 시작하면서 새로운 사용 사례가 등장하고, 우리는 Emscripten에서 [**독립형 Wasm**](https://github.com/emscripten-core/emscripten/wiki/WebAssembly-Standalone) 파일을 출력할 수 있는 지원을 개발해 왔습니다. 이는 Emscripten JS 런타임에 의존하지 않는 파일입니다. 이 게시물에서는 그 이유가 흥미로운 이유를 설명합니다.
 

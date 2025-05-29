@@ -1,14 +1,14 @@
 ---
-title: '그 `.wasm` 안에 무엇이 있을까? 소개: `wasm-decompile`'
-author: 'Wouter van Oortmerssen ([@wvo](https://twitter.com/wvo))'
+title: "그 `.wasm` 안에 무엇이 있을까? 소개: `wasm-decompile`"
+author: "Wouter van Oortmerssen ([@wvo](https://twitter.com/wvo))"
 avatars:
-  - 'wouter-van-oortmerssen'
+  - "wouter-van-oortmerssen"
 date: 2020-04-27
 tags:
   - WebAssembly
   - 도구
-description: 'WABT에 새로운 디컴파일 도구가 추가되어 Wasm 모듈 내용을 읽기가 더 쉬워졌습니다.'
-tweet: '1254829913561014272'
+description: "WABT에 새로운 디컴파일 도구가 추가되어 Wasm 모듈 내용을 읽기가 더 쉬워졌습니다."
+tweet: "1254829913561014272"
 ---
 우리는 `.wasm` 파일을 생성하거나 조작하는 컴파일러 및 기타 도구의 수가 점점 늘어나고 있으며, 때로는 그 안을 살펴보고 싶을 때가 있습니다. 아마도 당신은 그런 도구의 개발자이거나, 더 직접적으로는 Wasm을 대상으로 삼는 프로그래머로서 생성된 코드가 어떤 모습인지 성능이나 기타 이유로 궁금할 수 있습니다.
 

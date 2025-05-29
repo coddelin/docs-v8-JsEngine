@@ -1,6 +1,6 @@
 ---
-title: 'V8はこれまで以上に速く、安全です！'
-author: '[Victor Gomes](https://twitter.com/VictorBFG)、グリューワインの専門家'
+title: "V8はこれまで以上に速く、安全です！"
+author: "[Victor Gomes](https://twitter.com/VictorBFG)、グリューワインの専門家"
 avatars:
   - victor-gomes
 date: 2023-12-14
@@ -10,7 +10,7 @@ tags:
   - セキュリティ
   - ベンチマーク
 description: "2023年におけるV8の印象的な成果"
-tweet: ''
+tweet: ""
 ---
 
 速さが単なる特徴ではなく、生活の一部である刺激的なV8の世界へようこそ。2023年を締めくくるにあたり、今年達成したV8の印象的な成果を祝う時が来ました。

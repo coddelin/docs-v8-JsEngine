@@ -1,14 +1,14 @@
 ---
-title: 'Объектные свойства rest и spread'
-author: 'Матиас Биненс ([@mathias](https://twitter.com/mathias))'
+title: "Объектные свойства rest и spread"
+author: "Матиас Биненс ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-06-06
 tags:
   - ECMAScript
   - ES2018
-description: 'В этой статье объясняется, как работают объектные свойства rest и spread в JavaScript, а также рассматриваются элементы rest и spread для массивов.'
-tweet: '890269994688315394'
+description: "В этой статье объясняется, как работают объектные свойства rest и spread в JavaScript, а также рассматриваются элементы rest и spread для массивов."
+tweet: "890269994688315394"
 ---
 Прежде чем обсуждать _объектные свойства rest и spread_, давайте вспомним очень похожую функцию из прошлого.
 

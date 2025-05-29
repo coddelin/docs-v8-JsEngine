@@ -1,13 +1,13 @@
 ---
-title: 'Publication de la version V8 v7.7'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), rédacteur paresseux des notes de version'
+title: "Publication de la version V8 v7.7"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), rédacteur paresseux des notes de version"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-08-13 16:45:00
 tags:
   - version
-description: 'V8 v7.7 introduit une affectation différée des retours, une compilation WebAssembly en arrière-plan plus rapide, des améliorations des traces de pile et de nouvelles fonctionnalités pour Intl.NumberFormat.'
-tweet: '1161287541611323397'
+description: "V8 v7.7 introduit une affectation différée des retours, une compilation WebAssembly en arrière-plan plus rapide, des améliorations des traces de pile et de nouvelles fonctionnalités pour Intl.NumberFormat."
+tweet: "1161287541611323397"
 ---
 Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](/docs/release-process). Chaque version est issue directement de la branche principale Git de V8, juste avant une étape importante Beta de Chrome. Aujourd’hui, nous sommes ravis d’annoncer notre toute dernière branche, [V8 version 7.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.7), actuellement en version bêta avant sa publication coordonnée avec Chrome 77 Stable dans quelques semaines. V8 v7.7 regorge de nouvelles fonctionnalités destinées aux développeurs. Ce billet présente un aperçu de certains points forts en prévision de sa mise en production.
 

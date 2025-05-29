@@ -1,13 +1,13 @@
 ---
-title: 'There’s `Math.random()`, and then there’s `Math.random()`'
-author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed)), software engineer and dice designer'
+title: "There’s `Math.random()`, and then there’s `Math.random()`"
+author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), software engineer and dice designer"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2015-12-17 13:33:37
 tags:
   - ECMAScript
   - internals
-description: 'V8’s Math.random implementation now uses an algorithm called xorshift128+, improving the randomness compared to the old MWC1616 implementation.'
+description: "V8’s Math.random implementation now uses an algorithm called xorshift128+, improving the randomness compared to the old MWC1616 implementation."
 ---
 > `Math.random()` returns a `Number` value with positive sign, greater than or equal to `0` but less than `1`, chosen randomly or pseudo-randomly with approximately uniform distribution over that range, using an implementation-dependent algorithm or strategy. This function takes no arguments.
 

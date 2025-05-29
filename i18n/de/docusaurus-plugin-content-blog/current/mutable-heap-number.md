@@ -1,6 +1,6 @@
 ---
-title: 'Turbocharging V8 mit veränderlichen Heap-Zahlen'
-author: '[Victor Gomes](https://twitter.com/VictorBFG), der Bit-Shifter'
+title: "Turbocharging V8 mit veränderlichen Heap-Zahlen"
+author: "[Victor Gomes](https://twitter.com/VictorBFG), der Bit-Shifter"
 avatars:
   - victor-gomes
 date: 2025-02-25
@@ -9,7 +9,7 @@ tags:
   - Benchmarks
   - Internals
 description: "Hinzufügen von veränderlichen Heap-Zahlen zum Skriptkontext"
-tweet: ''
+tweet: ""
 ---
 
 Bei V8 streben wir ständig danach, die Leistung von JavaScript zu verbessern. Im Rahmen dieser Bemühungen haben wir kürzlich die [JetStream2](https://browserbench.org/JetStream2.1/)-Benchmark-Suite geprüft, um Leistungseinbrüche zu beseitigen. Dieser Beitrag beschreibt eine spezifische Optimierung, die eine signifikante Verbesserung von `2.5x` im `async-fs`-Benchmark ergab und zu einem spürbaren Anstieg der Gesamtpunktzahl beitrug. Die Optimierung wurde durch den Benchmark inspiriert, aber solche Muster finden sich auch im [echten Code](https://github.com/WebAssembly/binaryen/blob/3339c1f38da5b68ce8bf410773fe4b5eee451ab8/scripts/fuzz_shell.js#L248).

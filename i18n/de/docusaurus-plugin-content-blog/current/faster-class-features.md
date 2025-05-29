@@ -1,13 +1,13 @@
 ---
-title: 'Schnellere Initialisierung von Instanzen mit neuen Klassenfeatures'
-author: '[Joyee Cheung](https://twitter.com/JoyeeCheung), Instanzinitialisierer'
+title: "Schnellere Initialisierung von Instanzen mit neuen Klassenfeatures"
+author: "[Joyee Cheung](https://twitter.com/JoyeeCheung), Instanzinitialisierer"
 avatars:
-  - 'joyee-cheung'
+  - "joyee-cheung"
 date: 2022-04-20
 tags:
   - internals
-description: 'Die Initialisierung von Instanzen mit neuen Klassenfeatures ist seit V8 v9.7 schneller geworden.'
-tweet: '1517041137378373632'
+description: "Die Initialisierung von Instanzen mit neuen Klassenfeatures ist seit V8 v9.7 schneller geworden."
+tweet: "1517041137378373632"
 ---
 
 Klassenfelder wurden in V8 seit v7.2 eingeführt, und private Klassenmethoden wurden seit v8.4 verfügbar. Nachdem die Vorschläge 2021 die Stufe 4 erreicht hatten, begann die Arbeit an der Verbesserung der Unterstützung für die neuen Klassenfeatures in V8 - bis dahin gab es zwei Hauptprobleme, die ihre Akzeptanz beeinträchtigten:

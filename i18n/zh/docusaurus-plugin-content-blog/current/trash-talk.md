@@ -1,15 +1,15 @@
 ---
-title: '垃圾话：Orinoco垃圾回收器'
-author: 'Peter “垃圾” Marshall ([@hooraybuffer](https://twitter.com/hooraybuffer))'
+title: "垃圾话：Orinoco垃圾回收器"
+author: "Peter “垃圾” Marshall ([@hooraybuffer](https://twitter.com/hooraybuffer))"
 avatars:
-  - 'peter-marshall'
+  - "peter-marshall"
 date: 2019-01-03 17:45:34
 tags:
   - 内部机制
   - 内存
   - 演讲
-description: 'Orinoco，V8的垃圾回收器，从一个顺序的全停式实现演变为一个大部分并行和并发的回收器，并具有增量回退功能。'
-tweet: '1080867305532416000'
+description: "Orinoco，V8的垃圾回收器，从一个顺序的全停式实现演变为一个大部分并行和并发的回收器，并具有增量回退功能。"
+tweet: "1080867305532416000"
 ---
 在过去的几年里，V8垃圾回收器（GC）发生了很大的变化。Orinoco项目将一个顺序的、全停式的垃圾回收器转变成了一个大部分并行和并发的回收器，具备增量回退功能。
 

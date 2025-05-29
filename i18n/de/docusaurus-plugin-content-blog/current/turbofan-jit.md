@@ -1,12 +1,12 @@
 ---
-title: 'Einblicke in den TurboFan JIT'
-author: 'Ben L. Titzer, Software-Ingenieur und TurboFan-Mechaniker'
+title: "Einblicke in den TurboFan JIT"
+author: "Ben L. Titzer, Software-Ingenieur und TurboFan-Mechaniker"
 avatars:
-  - 'ben-titzer'
+  - "ben-titzer"
 date: 2015-07-13 13:33:37
 tags:
   - internals
-description: 'Ein tiefgehender Blick auf das Design des neuen TurboFan-Optimierungskompilers von V8.'
+description: "Ein tiefgehender Blick auf das Design des neuen TurboFan-Optimierungskompilers von V8."
 ---
 [Letzte Woche haben wir angekündigt](https://blog.chromium.org/2015/07/revving-up-javascript-performance-with.html), dass TurboFan für bestimmte Arten von JavaScript aktiviert wurde. In diesem Beitrag möchten wir tiefer in das Design von TurboFan eintauchen.
 

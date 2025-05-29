@@ -1,14 +1,14 @@
 ---
-title: '`Promise.prototype.finally`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Promise.prototype.finally`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-10-23
 tags:
   - ECMAScript
   - ES2018
-description: 'Promise.prototype.finally는 프로미스가 정산될 때(즉, 완료 또는 거부됨)에 호출될 콜백을 등록할 수 있도록 합니다.'
-tweet: '922459978857824261'
+description: "Promise.prototype.finally는 프로미스가 정산될 때(즉, 완료 또는 거부됨)에 호출될 콜백을 등록할 수 있도록 합니다."
+tweet: "922459978857824261"
 ---
 `Promise.prototype.finally`는 프로미스가 _정산_될 때(즉, 완료 또는 거부됨)에 호출될 콜백을 등록할 수 있도록 합니다.
 

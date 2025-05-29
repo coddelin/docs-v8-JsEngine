@@ -1,13 +1,13 @@
 ---
-title: 'Compilation en arrière-plan'
-author: '[Ross McIlroy](https://twitter.com/rossmcilroy), défenseur du thread principal'
+title: "Compilation en arrière-plan"
+author: "[Ross McIlroy](https://twitter.com/rossmcilroy), défenseur du thread principal"
 avatars:
-  - 'ross-mcilroy'
+  - "ross-mcilroy"
 date: 2018-03-26 13:33:37
 tags:
   - internals
-description: 'À partir de Chrome 66, V8 compile le code source JavaScript sur un thread en arrière-plan, réduisant de 5% à 20% le temps passé à compiler sur le thread principal sur les sites web typiques.'
-tweet: '978319362837958657'
+description: "À partir de Chrome 66, V8 compile le code source JavaScript sur un thread en arrière-plan, réduisant de 5% à 20% le temps passé à compiler sur le thread principal sur les sites web typiques."
+tweet: "978319362837958657"
 ---
 TL;DR: À partir de Chrome 66, V8 compile le code source JavaScript sur un thread en arrière-plan, réduisant de 5% à 20% le temps passé à compiler sur le thread principal sur les sites web typiques.
 

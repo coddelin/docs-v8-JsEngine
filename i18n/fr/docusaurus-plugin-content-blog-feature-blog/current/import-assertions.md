@@ -2,12 +2,12 @@
 title: 'Assertions d'importation'
 author: 'Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), importateur assertif d'assertions d'importation'
 avatars:
-  - 'dan-clark'
+  - "dan-clark"
 date: 2021-06-15
 tags:
   - ECMAScript
 description: 'Les assertions d'importation permettent aux instructions d'importation de module d'inclure des informations supplémentaires en plus du spécificateur de module'
-tweet: ''
+tweet: ""
 ---
 
 La nouvelle fonctionnalité [assertions d'importation](https://github.com/tc39/proposal-import-assertions) permet aux instructions d'importation de module d'inclure des informations supplémentaires en plus du spécificateur de module. Une utilisation initiale de cette fonctionnalité est de permettre l'importation de documents JSON sous forme de [modules JSON](https://github.com/tc39/proposal-json-modules) :

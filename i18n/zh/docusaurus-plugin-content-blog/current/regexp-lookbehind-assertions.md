@@ -1,13 +1,13 @@
 ---
-title: '正则表达式后向断言'
-author: '杨国，正则表达式工程师'
+title: "正则表达式后向断言"
+author: "杨国，正则表达式工程师"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2016-02-26 13:33:37
 tags:
   - ECMAScript
   - 正则表达式
-description: 'JavaScript 正则表达式新增了一些新功能：后向断言。'
+description: "JavaScript 正则表达式新增了一些新功能：后向断言。"
 ---
 正则表达式自 ECMA-262 规范第三版发布以来，就已经从 1999 年开始成为 JavaScript 的一部分。在功能和表达能力方面，JavaScript 对正则表达式的实现大致与其他编程语言相似。
 

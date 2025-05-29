@@ -1,14 +1,14 @@
 ---
 title: 'Types d'éléments dans V8'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-09-12 13:33:37
 tags:
   - internals
   - presentations
-description: 'Cette plongée technique explique comment V8 optimise les opérations sur les tableaux en coulisses, et ce que cela signifie pour les développeurs JavaScript.'
-tweet: '907608362191376384'
+description: "Cette plongée technique explique comment V8 optimise les opérations sur les tableaux en coulisses, et ce que cela signifie pour les développeurs JavaScript."
+tweet: "907608362191376384"
 ---
 :::note
 **Note :** Si vous préférez regarder une présentation plutôt que lire des articles, profitez de la vidéo ci-dessous !

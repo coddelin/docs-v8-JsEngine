@@ -1,10 +1,10 @@
 ---
-title: 'V8 ❤️ Node.js'
-author: 'Franziska Hinkelmann, Node Monkey Patcher'
+title: "V8 ❤️ Node.js"
+author: "Franziska Hinkelmann, Node Monkey Patcher"
 date: 2016-12-15 13:33:37
 tags:
   - Node.js
-description: 'Ce billet de blog met en lumière certains des efforts récents pour améliorer le support de Node.js dans V8 et Chrome DevTools.'
+description: "Ce billet de blog met en lumière certains des efforts récents pour améliorer le support de Node.js dans V8 et Chrome DevTools."
 ---
 La popularité de Node.js a augmenté régulièrement ces dernières années, et nous avons travaillé pour rendre Node.js meilleur. Ce billet de blog met en lumière certains des efforts récents dans V8 et DevTools.
 

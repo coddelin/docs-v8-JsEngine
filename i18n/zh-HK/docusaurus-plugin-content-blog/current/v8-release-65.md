@@ -1,11 +1,11 @@
 ---
-title: 'V8 發佈 v6.5'
-author: 'V8 團隊'
+title: "V8 發佈 v6.5"
+author: "V8 團隊"
 date: 2018-02-01 13:33:37
 tags:
   - 發佈
-description: 'V8 v6.5 增加了對 WebAssembly 流式編譯的支持，並引入了新的“非信任代碼模式”。'
-tweet: '959174292406640640'
+description: "V8 v6.5 增加了對 WebAssembly 流式編譯的支持，並引入了新的“非信任代碼模式”。"
+tweet: "959174292406640640"
 ---
 每六週，我們會根據 [發佈流程](/docs/release-process) 創建一個新的 V8 分支。每個版本都從 V8 的 Git 主分支分出，時間選定在 Chrome Beta 里程碑之前。今天，我們很高興地宣佈最新的分支 [V8 版本 6.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.5)，它目前處於 Beta 階段，並將在幾週內與 Chrome 65 的穩定版本一起正式發佈。V8 v6.5 提供了各種面向開發者的功能。本篇文章為即將到來的正式發佈提供了一些亮點的預覽。
 

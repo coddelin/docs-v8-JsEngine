@@ -1,13 +1,13 @@
 ---
-title: 'Lançamento do V8 v7.1'
-author: 'Stephan Herhut ([@herhut](https://twitter.com/herhut)), clonador clonado de clones'
+title: "Lançamento do V8 v7.1"
+author: "Stephan Herhut ([@herhut](https://twitter.com/herhut)), clonador clonado de clones"
 avatars:
   - stephan-herhut
 date: 2018-10-31 15:44:37
 tags:
   - lançamento
-description: 'O V8 v7.1 apresenta manipuladores de bytecode embutidos, análise de escape TurboFan aprimorada, postMessage(wasmModule), Intl.RelativeTimeFormat e globalThis!'
-tweet: '1057645773465235458'
+description: "O V8 v7.1 apresenta manipuladores de bytecode embutidos, análise de escape TurboFan aprimorada, postMessage(wasmModule), Intl.RelativeTimeFormat e globalThis!"
+tweet: "1057645773465235458"
 ---
 A cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](/docs/release-process). Cada versão é derivada diretamente do Git master do V8 antes de um marco Beta do Chrome. Hoje estamos animados em anunciar nosso mais novo branch, [V8 versão 7.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.1), que está em beta até seu lançamento em coordenação com o Chrome 71 Stable em algumas semanas. O V8 v7.1 está repleto de todos os tipos de novidades para desenvolvedores. Este post fornece uma prévia de alguns dos destaques em antecipação ao lançamento.
 

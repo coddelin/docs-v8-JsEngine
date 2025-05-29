@@ -1,6 +1,6 @@
 ---
-title: 'Lista de verificación para el ensayo y envío de características de WebAssembly'
-description: 'Este documento proporciona listas de verificación de requisitos de ingeniería sobre cuándo ensayar y enviar una característica de WebAssembly en V8.'
+title: "Lista de verificación para el ensayo y envío de características de WebAssembly"
+description: "Este documento proporciona listas de verificación de requisitos de ingeniería sobre cuándo ensayar y enviar una característica de WebAssembly en V8."
 ---
 Este documento proporciona listas de verificación de requisitos de ingeniería para el ensayo y envío de características de WebAssembly en V8. Estas listas de verificación están destinadas como una guía y pueden no ser aplicables a todas las características. El proceso de lanzamiento real se describe en el [Proceso de lanzamiento de V8](https://v8.dev/docs/feature-launch-process).
 

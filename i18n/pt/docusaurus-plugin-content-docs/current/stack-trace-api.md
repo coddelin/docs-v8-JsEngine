@@ -1,6 +1,6 @@
 ---
-title: 'API de rastreamento de pilha'
-description: 'Este documento descreve a API de rastreamento de pilha de JavaScript do V8.'
+title: "API de rastreamento de pilha"
+description: "Este documento descreve a API de rastreamento de pilha de JavaScript do V8."
 ---
 Todos os erros internos lançados no V8 capturam uma rastreamento de pilha quando são criados. Esse rastreamento pode ser acessado a partir do JavaScript por meio da propriedade não-padrão `error.stack`. O V8 também possui vários hooks para controlar como os rastreamentos de pilha são coletados e formatados, permitindo que erros personalizados também coletem rastreamentos de pilha. Este documento descreve a API de rastreamento de pilha de JavaScript do V8.
 

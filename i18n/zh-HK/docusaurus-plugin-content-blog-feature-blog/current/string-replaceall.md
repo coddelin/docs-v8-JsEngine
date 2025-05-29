@@ -1,15 +1,15 @@
 ---
-title: '`String.prototype.replaceAll`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`String.prototype.replaceAll`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-11-11
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: 'JavaScript 現在透過新的 `String.prototype.replaceAll` API，正式支援全局子字串替換。'
-tweet: '1193917549060280320'
+description: "JavaScript 現在透過新的 `String.prototype.replaceAll` API，正式支援全局子字串替換。"
+tweet: "1193917549060280320"
 ---
 如果你曾經在 JavaScript 中處理過字串，很可能遇到過 `String#replace` 方法。`String.prototype.replace(searchValue, replacement)` 根據你指定的參數返回一個進行部分匹配替換後的字串：
 

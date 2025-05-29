@@ -1,13 +1,13 @@
 ---
-title: 'V8リリース v9.5'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "V8リリース v9.5"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-09-21
 tags:
  - リリース
-description: 'V8リリース v9.5では、更新された国際化APIとWebAssembly例外処理のサポートを提供します。'
-tweet: '1440296019623759872'
+description: "V8リリース v9.5では、更新された国際化APIとWebAssembly例外処理のサポートを提供します。"
+tweet: "1440296019623759872"
 ---
 毎月4週間ごとに、私たちは[リリースプロセス](https://v8.dev/docs/release-process)の一環としてV8の新しいブランチを作成しています。各バージョンは、Chrome Betaマイルストーン直前にV8のGitマスターからブランチされます。本日、私たちは最新のブランチである[V8バージョン9.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.5)を発表できることを嬉しく思います。このブランチは、数週間後にChrome 95 Stableとの連携でリリースされるまでベータ版です。V8 v9.5には、開発者向けの魅力的な機能が詰め込まれています。この投稿では、リリースまでの期待を高める主なハイライトをご紹介します。
 

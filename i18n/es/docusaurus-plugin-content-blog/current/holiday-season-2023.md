@@ -1,6 +1,6 @@
 ---
-title: '¡V8 es más rápido y seguro que nunca!'
-author: '[Victor Gomes](https://twitter.com/VictorBFG), el experto en Glühwein'
+title: "¡V8 es más rápido y seguro que nunca!"
+author: "[Victor Gomes](https://twitter.com/VictorBFG), el experto en Glühwein"
 avatars:
   - victor-gomes
 date: 2023-12-14
@@ -10,7 +10,7 @@ tags:
   - seguridad
   - benchmarks
 description: "Los impresionantes logros de V8 en 2023"
-tweet: ''
+tweet: ""
 ---
 
 Bienvenido al emocionante mundo de V8, donde la velocidad no es solo una característica, sino un estilo de vida. Al despedirnos de 2023, es hora de celebrar los impresionantes logros que V8 ha alcanzado este año.

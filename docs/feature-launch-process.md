@@ -1,6 +1,6 @@
 ---
-title: 'Implementing and shipping JavaScript/WebAssembly language features'
-description: 'This document explains the process for implementing and shipping JavaScript or WebAssembly language features in V8.'
+title: "Implementing and shipping JavaScript/WebAssembly language features"
+description: "This document explains the process for implementing and shipping JavaScript or WebAssembly language features in V8."
 ---
 In general, V8 follows the [Blink Intent process for already-defined consensus-based standards](https://www.chromium.org/blink/launching-features/#process-existing-standard) for JavaScript and WebAssembly language features. V8-specific errata are laid out below. Please follow the Blink Intent process, unless the errata tells you otherwise.
 

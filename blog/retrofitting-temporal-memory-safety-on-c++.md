@@ -1,6 +1,6 @@
 ---
-title: 'Retrofitting temporal memory safety on C++'
-author: 'Anton Bikineev, Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), Hannes Payer ([@PayerHannes](https://twitter.com/PayerHannes))'
+title: "Retrofitting temporal memory safety on C++"
+author: "Anton Bikineev, Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), Hannes Payer ([@PayerHannes](https://twitter.com/PayerHannes))"
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -10,7 +10,7 @@ tags:
   - internals
   - memory
   - security
-description: 'Eliminating use-after-frees vulnerabilities in Chrome with heap scanning.'
+description: "Eliminating use-after-frees vulnerabilities in Chrome with heap scanning."
 ---
 :::note
 **Note:** This post was originally posted on the [Google Security Blog](https://security.googleblog.com/2022/05/retrofitting-temporal-memory-safety-on-c.html).

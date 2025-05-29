@@ -1,13 +1,13 @@
 ---
-title: '`String.prototype.trimStart` et `String.prototype.trimEnd`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`String.prototype.trimStart` et `String.prototype.trimEnd`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-03-26
 tags:
   - ECMAScript
   - ES2019
-description: 'ES2019 introduit String.prototype.trimStart() et String.prototype.trimEnd().'
+description: "ES2019 introduit String.prototype.trimStart() et String.prototype.trimEnd()."
 ---
 ES2019 introduit [`String.prototype.trimStart()` et `String.prototype.trimEnd()`](https://github.com/tc39/proposal-string-left-right-trim) :
 

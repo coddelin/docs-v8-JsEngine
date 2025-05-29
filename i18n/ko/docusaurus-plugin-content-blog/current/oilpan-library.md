@@ -1,6 +1,6 @@
 ---
-title: 'Oilpan 라이브러리'
-author: 'Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)) - 효율적이고 효과적인 파일 이동자'
+title: "Oilpan 라이브러리"
+author: "Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)) - 효율적이고 효과적인 파일 이동자"
 avatars:
   - anton-bikineev
   - omer-katz
@@ -10,8 +10,8 @@ tags:
   - internals
   - memory
   - cppgc
-description: 'V8은 관리되는 C++ 메모리를 호스팅하기 위한 가비지 컬렉션 라이브러리인 Oilpan을 제공합니다.'
-tweet: '1458406645181165574'
+description: "V8은 관리되는 C++ 메모리를 호스팅하기 위한 가비지 컬렉션 라이브러리인 Oilpan을 제공합니다."
+tweet: "1458406645181165574"
 ---
 
 이 글의 제목이 오일팬 관련 책 모음을 깊이 탐구하자는 의미로 보일 수 있으나(오일팬을 위한 구조적 기준을 생각하면 놀라울 정도로 많은 문헌이 이에 대해 다룹니다), 우리는 V8 v9.4부터 라이브러리로 호스팅되고 있는 C++ 가비지 컬렉터인 Oilpan에 대해 좀 더 자세히 살펴보려고 합니다.

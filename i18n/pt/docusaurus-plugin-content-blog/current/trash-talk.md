@@ -1,15 +1,15 @@
 ---
-title: 'Trash talk: o coletor de lixo Orinoco'
-author: 'Peter ‘o garbo’ Marshall ([@hooraybuffer](https://twitter.com/hooraybuffer))'
+title: "Trash talk: o coletor de lixo Orinoco"
+author: "Peter ‘o garbo’ Marshall ([@hooraybuffer](https://twitter.com/hooraybuffer))"
 avatars:
-  - 'peter-marshall'
+  - "peter-marshall"
 date: 2019-01-03 17:45:34
 tags:
   - internals
   - memória
   - apresentações
-description: 'Orinoco, o coletor de lixo do V8, evoluiu de uma implementação sequencial de pausa total para um coletor em grande parte paralelo e concorrente com fallback incremental.'
-tweet: '1080867305532416000'
+description: "Orinoco, o coletor de lixo do V8, evoluiu de uma implementação sequencial de pausa total para um coletor em grande parte paralelo e concorrente com fallback incremental."
+tweet: "1080867305532416000"
 ---
 Ao longo dos últimos anos, o coletor de lixo (GC) do V8 mudou bastante. O projeto Orinoco transformou um coletor de lixo sequencial e de pausa total em um coletor em grande parte paralelo e concorrente com fallback incremental.
 

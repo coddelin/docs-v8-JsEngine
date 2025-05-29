@@ -1,16 +1,16 @@
 ---
-title: '웹어셈블리에서 최대 4GB 메모리'
-author: '안드레아스 하스, 야콥 쿠머로우, 알론 자카이'
+title: "웹어셈블리에서 최대 4GB 메모리"
+author: "안드레아스 하스, 야콥 쿠머로우, 알론 자카이"
 avatars:
-  - 'andreas-haas'
-  - 'jakob-kummerow'
-  - 'alon-zakai'
+  - "andreas-haas"
+  - "jakob-kummerow"
+  - "alon-zakai"
 date: 2020-05-14
 tags:
   - 웹어셈블리
   - 자바스크립트
   - 도구
-tweet: '1260944314441633793'
+tweet: "1260944314441633793"
 ---
 
 ## 소개

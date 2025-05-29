@@ -1,8 +1,8 @@
 ---
-title: 'Promise 조합자들'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Promise 조합자들"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-12
 tags:
   - ECMAScript
@@ -10,8 +10,8 @@ tags:
   - ES2021
   - io19
   - Node.js 16
-description: '자바스크립트에는 네 가지 Promise 조합자가 있습니다: Promise.all, Promise.race, Promise.allSettled, 그리고 Promise.any.'
-tweet: '1138819493956710400'
+description: "자바스크립트에는 네 가지 Promise 조합자가 있습니다: Promise.all, Promise.race, Promise.allSettled, 그리고 Promise.any."
+tweet: "1138819493956710400"
 ---
 ES2015에서 Promise가 도입된 이후, 자바스크립트는 정확히 두 가지 Promise 조합자: `Promise.all` 과 `Promise.race`를 지원했습니다.
 

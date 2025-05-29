@@ -1,13 +1,13 @@
 ---
-title: '`Object.hasOwn`'
-author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
+title: "`Object.hasOwn`"
+author: "Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))"
 avatars:
-  - 'victor-gomes'
+  - "victor-gomes"
 date: 2021-07-01
 tags:
   - ECMAScript
-description: '`Object.hasOwn`は`Object.prototype.hasOwnProperty`をより使いやすくします。'
-tweet: '1410577516943847424'
+description: "`Object.hasOwn`は`Object.prototype.hasOwnProperty`をより使いやすくします。"
+tweet: "1410577516943847424"
 ---
 
 今日では、次のようなコードを書くことが非常に一般的です。

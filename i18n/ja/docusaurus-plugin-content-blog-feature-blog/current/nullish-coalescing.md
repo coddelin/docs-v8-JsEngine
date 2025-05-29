@@ -1,14 +1,14 @@
 ---
-title: 'ヌリッシュ合体'
-author: 'ジャスティン・リッジウェル'
+title: "ヌリッシュ合体"
+author: "ジャスティン・リッジウェル"
 avatars:
-  - 'justin-ridgewell'
+  - "justin-ridgewell"
 date: 2019-09-17
 tags:
   - ECMAScript
   - ES2020
-description: 'JavaScriptのヌリッシュ合体演算子は、より安全なデフォルト式を可能にします。'
-tweet: '1173971116865523714'
+description: "JavaScriptのヌリッシュ合体演算子は、より安全なデフォルト式を可能にします。"
+tweet: "1173971116865523714"
 ---
 ヌリッシュ合体提案 [nullish coalescing proposal](https://github.com/tc39/proposal-nullish-coalescing/) (`??`) は、デフォルト値を処理するために設計された新しいショートサーキット演算子を追加します。
 

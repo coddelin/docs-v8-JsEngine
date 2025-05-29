@@ -1,13 +1,13 @@
 ---
-title: 'Couverture de code JavaScript'
-author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
+title: "Couverture de code JavaScript"
+author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2017-12-13 13:33:37
 tags:
   - internes
-description: 'V8 prend désormais en charge nativement la couverture de code JavaScript. Les outils peuvent maintenant accéder aux informations de couverture de V8 sans instrumenter le code !'
-tweet: '940879905079873536'
+description: "V8 prend désormais en charge nativement la couverture de code JavaScript. Les outils peuvent maintenant accéder aux informations de couverture de V8 sans instrumenter le code !"
+tweet: "940879905079873536"
 ---
 La couverture de code fournit des informations sur si, et éventuellement à quelle fréquence, certaines parties d'une application ont été exécutées. Elle est couramment utilisée pour déterminer dans quelle mesure une suite de tests examine une base de code particulière.
 

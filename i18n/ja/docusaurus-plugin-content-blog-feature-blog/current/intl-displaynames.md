@@ -1,15 +1,15 @@
 ---
-title: '`Intl.DisplayNames`'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu)) と Frank Yung-Fong Tang'
+title: "`Intl.DisplayNames`"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu)) と Frank Yung-Fong Tang"
 avatars:
-  - 'shu-yu-guo'
-  - 'frank-tang'
+  - "shu-yu-guo"
+  - "frank-tang"
 date: 2020-02-13
 tags:
   - Intl
   - Node.js 14
-description: 'Intl.DisplayNames APIは、言語、地域、スクリプト、通貨のローカライズされた名前を提供します。'
-tweet: '1232333889005334529'
+description: "Intl.DisplayNames APIは、言語、地域、スクリプト、通貨のローカライズされた名前を提供します。"
+tweet: "1232333889005334529"
 ---
 全世界のユーザーに届くWebアプリケーションは、多くの異なる言語で言語名、地域名、スクリプト名、通貨名を表示する必要があります。それらの名称の翻訳にはデータが必要であり、そのデータは[Unicode CLDR](http://cldr.unicode.org/translation/)で利用可能です。これらのデータをアプリケーションの一部としてパッケージングすることは開発者の時間を費やすことにつながります。ユーザーは言語名や地域名の翻訳において一貫性を好む傾向があり、世界の地政学的動向に合わせてそのデータを更新するには、絶え間ないメンテナンスが必要です。
 

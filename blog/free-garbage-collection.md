@@ -1,14 +1,14 @@
 ---
-title: 'Getting garbage collection for free'
-author: 'Hannes Payer and Ross McIlroy, Idle Garbage Collectors'
+title: "Getting garbage collection for free"
+author: "Hannes Payer and Ross McIlroy, Idle Garbage Collectors"
 avatars:
-  - 'hannes-payer'
-  - 'ross-mcilroy'
+  - "hannes-payer"
+  - "ross-mcilroy"
 date: 2015-08-07 13:33:37
 tags:
   - internals
   - memory
-description: 'Chrome 41 hides expensive memory management operations inside of small, otherwise unused chunks of idle time, reducing jank.'
+description: "Chrome 41 hides expensive memory management operations inside of small, otherwise unused chunks of idle time, reducing jank."
 ---
 JavaScript performance continues to be one of the key aspects of Chrome’s values, especially when it comes to enabling a smooth experience. Starting in Chrome 41, V8 takes advantage of a new technique to increase the responsiveness of web applications by hiding expensive memory management operations inside of small, otherwise unused chunks of idle time. As a result, web developers should expect smoother scrolling and buttery animations with much reduced jank due to garbage collection.
 

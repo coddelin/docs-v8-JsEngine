@@ -1,11 +1,11 @@
 ---
-title: '약한 참조와 파이널라이저'
-author: '사티야 구나세카란 ([@_gsathya](https://twitter.com/_gsathya)), 마티아스 바이넨스 ([@mathias](https://twitter.com/mathias)), 슈유 꿔 ([@_shu](https://twitter.com/_shu)), 레셰크 스비르스키 ([@leszekswirski](https://twitter.com/leszekswirski))'
+title: "약한 참조와 파이널라이저"
+author: "사티야 구나세카란 ([@_gsathya](https://twitter.com/_gsathya)), 마티아스 바이넨스 ([@mathias](https://twitter.com/mathias)), 슈유 꿔 ([@_shu](https://twitter.com/_shu)), 레셰크 스비르스키 ([@leszekswirski](https://twitter.com/leszekswirski))"
 avatars:
-- 'sathya-gunasekaran'
-- 'mathias-bynens'
-- 'shu-yu-guo'
-- 'leszek-swirski'
+- "sathya-gunasekaran"
+- "mathias-bynens"
+- "shu-yu-guo"
+- "leszek-swirski"
 date: 2019-07-09
 updated: 2020-06-19
 tags:
@@ -13,8 +13,8 @@ tags:
   - ES2021
   - io19
   - Node.js 14
-description: '약한 참조와 파이널라이저가 자바스크립트에 등장합니다! 이 글에서는 새로운 기능을 설명합니다.'
-tweet: '1148603966848151553'
+description: "약한 참조와 파이널라이저가 자바스크립트에 등장합니다! 이 글에서는 새로운 기능을 설명합니다."
+tweet: "1148603966848151553"
 ---
 일반적으로 자바스크립트에서 객체에 대한 참조는 _강하게 유지_됩니다. 즉, 객체를 참조하고 있는 동안에는 가비지 컬렉션이 이루어지지 않습니다.
 

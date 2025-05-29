@@ -1,6 +1,6 @@
 ---
-title: 'Fonctions intégrées'
-description: 'Ce document explique ce que sont les « intégrées » dans V8.'
+title: "Fonctions intégrées"
+description: "Ce document explique ce que sont les « intégrées » dans V8."
 ---
 Les fonctions intégrées dans V8 disposent de différentes méthodes d’implémentation, selon leur fonctionnalité, leurs exigences en matière de performances, et parfois leur développement historique.
 

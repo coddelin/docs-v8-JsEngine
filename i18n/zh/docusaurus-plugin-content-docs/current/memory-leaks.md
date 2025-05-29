@@ -1,6 +1,6 @@
 ---
-title: '调查内存泄漏'
-description: '本文档提供了关于在V8中调查内存泄漏的指导。'
+title: "调查内存泄漏"
+description: "本文档提供了关于在V8中调查内存泄漏的指导。"
 ---
 如果你正在调查内存泄漏，并想知道为什么某个对象没有被垃圾回收，你可以使用`%DebugTrackRetainingPath(object)`在每次GC时打印该对象的实际保留路径。
 

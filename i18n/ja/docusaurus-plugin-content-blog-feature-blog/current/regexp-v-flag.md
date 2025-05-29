@@ -1,15 +1,15 @@
 ---
-title: 'RegExp `v` フラグとセット表記および文字列のプロパティ'
-author: 'Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer, Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "RegExp `v` フラグとセット表記および文字列のプロパティ"
+author: "Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer, Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mark-davis'
-  - 'markus-scherer'
-  - 'mathias-bynens'
+  - "mark-davis"
+  - "markus-scherer"
+  - "mathias-bynens"
 date: 2022-06-27
 tags:
   - ECMAScript
-description: '新しい RegExp `v` フラグは `unicodeSets` モードを有効化し、Unicode の文字列のプロパティ、セット表記、改良された大文字小文字無視マッチングを含む拡張文字クラスのサポートを解放します。'
-tweet: '1541419838513594368'
+description: "新しい RegExp `v` フラグは `unicodeSets` モードを有効化し、Unicode の文字列のプロパティ、セット表記、改良された大文字小文字無視マッチングを含む拡張文字クラスのサポートを解放します。"
+tweet: "1541419838513594368"
 ---
 JavaScript は ECMAScript 3 (1999) 以来、正規表現をサポートしています。16 年後、ES2015 は [Unicode モード (`u` フラグ)](https://mathiasbynens.be/notes/es6-unicode-regex)、[スティッキーモード (`y` フラグ)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky#description)、および [`RegExp.prototype.flags` エッター](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/flags) を導入しました。そのさらに 3 年後、ES2018 は [`dotAll` モード (`s` フラグ)](https://mathiasbynens.be/notes/es-regexp-proposals#dotAll)、[後読みアサーション](https://mathiasbynens.be/notes/es-regexp-proposals#lookbehinds)、[名前付きキャプチャグループ](https://mathiasbynens.be/notes/es-regexp-proposals#named-capture-groups)、および [Unicode 文字プロパティエスケープ](https://mathiasbynens.be/notes/es-unicode-property-escapes) を導入しました。そして ES2020 では、[`String.prototype.matchAll`](https://v8.dev/features/string-matchall) により正規表現の操作がさらに簡単になりました。JavaScript の正規表現は大きく進化しており、現在も進化中です。
 

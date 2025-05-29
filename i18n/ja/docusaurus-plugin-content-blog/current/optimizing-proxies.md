@@ -1,15 +1,15 @@
 ---
-title: 'ES2015プロキシのV8における最適化'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), プロキシの最適化者'
+title: "ES2015プロキシのV8における最適化"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), プロキシの最適化者"
 avatars:
-  - 'maya-armyanova'
+  - "maya-armyanova"
 date: 2017-10-05 13:33:37
 tags:
   - ECMAScript
   - ベンチマーク
   - 内部仕様
-description: 'この記事では、V8がJavaScriptプロキシのパフォーマンスを向上させた方法を説明します。'
-tweet: '915846050447003648'
+description: "この記事では、V8がJavaScriptプロキシのパフォーマンスを向上させた方法を説明します。"
+tweet: "915846050447003648"
 ---
 プロキシは、ES2015以来JavaScriptの重要な部分を形成しています。これらはオブジェクトの基本操作をインターセプトし、その挙動をカスタマイズすることを可能にします。プロキシは、[jsdom](https://github.com/tmpvar/jsdom)や[Comlink RPCライブラリ](https://github.com/GoogleChrome/comlink)のようなプロジェクトのコア部分を形成しています。最近、V8でプロキシのパフォーマンスを向上させるために多くの努力を行いました。この記事では、V8の一般的なパフォーマンス改善パターンについて、特にプロキシに関する内容を解説します。
 

@@ -1,11 +1,11 @@
 ---
-title: 'Appels en queue dans WebAssembly'
-author: 'Thibaud Michaud, Thomas Lively'
+title: "Appels en queue dans WebAssembly"
+author: "Thibaud Michaud, Thomas Lively"
 date: 2023-04-06
 tags:
   - WebAssembly
-description: 'Ce document explique la proposition concernant les appels en queue dans WebAssembly et la démontre avec quelques exemples.'
-tweet: '1644077795059044353'
+description: "Ce document explique la proposition concernant les appels en queue dans WebAssembly et la démontre avec quelques exemples."
+tweet: "1644077795059044353"
 ---
 Nous intégrons les appels en queue de WebAssembly dans V8 v11.2 ! Dans cet article, nous donnons un aperçu de cette proposition, présentons un cas d’utilisation intéressant pour les coroutines C++ avec Emscripten, et montrons comment V8 gère les appels en queue en interne.
 

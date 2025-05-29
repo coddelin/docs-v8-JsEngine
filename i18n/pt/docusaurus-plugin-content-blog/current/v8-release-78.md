@@ -1,13 +1,13 @@
 ---
-title: 'Lançamento V8 v7.8'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), o feiticeiro preguiçoso'
+title: "Lançamento V8 v7.8"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), o feiticeiro preguiçoso"
 avatars:
-  - 'ingvar-stepanyan'
+  - "ingvar-stepanyan"
 date: 2019-09-27
 tags:
   - lançamento
-description: 'V8 v7.8 apresenta compilação em streaming no preload, API C para WebAssembly, desestruturação de objetos mais rápida, correspondência RegExp melhorada e tempos de inicialização otimizados.'
-tweet: '1177600702861971459'
+description: "V8 v7.8 apresenta compilação em streaming no preload, API C para WebAssembly, desestruturação de objetos mais rápida, correspondência RegExp melhorada e tempos de inicialização otimizados."
+tweet: "1177600702861971459"
 ---
 A cada seis semanas, criamos uma nova ramificação do V8 como parte de nosso [processo de lançamento](/docs/release-process). Cada versão é criada a partir do master do Git do V8 imediatamente antes de uma etapa Beta do Chrome. Hoje estamos felizes em anunciar nossa ramificação mais recente, [V8 versão 7.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.8), que está em beta até seu lançamento em coordenação com o Chrome 78 Stable em algumas semanas. O V8 v7.8 está recheado de diversos recursos voltados para desenvolvedores. Este artigo fornece uma prévia de alguns dos destaques na antecipação do lançamento.
 

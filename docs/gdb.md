@@ -1,6 +1,6 @@
 ---
-title: 'Debugging builtins with GDB'
-description: 'As of V8 v6.9, it’s possible to create breakpoints in GDB to debug CSA / ASM / Torque builtins.'
+title: "Debugging builtins with GDB"
+description: "As of V8 v6.9, it’s possible to create breakpoints in GDB to debug CSA / ASM / Torque builtins."
 ---
 As of V8 v6.9, it’s possible to create breakpoints in GDB (and possibly other debuggers) to debug CSA / ASM / Torque builtins.
 

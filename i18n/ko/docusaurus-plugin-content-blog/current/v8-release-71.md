@@ -1,13 +1,13 @@
 ---
-title: 'V8 릴리즈 v7.1'
-author: 'Stephan Herhut ([@herhut](https://twitter.com/herhut)), 클론 클론에서 클론된 클론자'
+title: "V8 릴리즈 v7.1"
+author: "Stephan Herhut ([@herhut](https://twitter.com/herhut)), 클론 클론에서 클론된 클론자"
 avatars:
   - stephan-herhut
 date: 2018-10-31 15:44:37
 tags:
   - release
-description: 'V8 v7.1은 임베디드 바이트코드 핸들러, 개선된 TurboFan 탈출 분석, postMessage(wasmModule), Intl.RelativeTimeFormat, 그리고 globalThis를 제공합니다!'
-tweet: '1057645773465235458'
+description: "V8 v7.1은 임베디드 바이트코드 핸들러, 개선된 TurboFan 탈출 분석, postMessage(wasmModule), Intl.RelativeTimeFormat, 그리고 globalThis를 제공합니다!"
+tweet: "1057645773465235458"
 ---
 매 6주마다 우리는 [릴리즈 프로세스](/docs/release-process)의 일환으로 새로운 V8 브랜치를 생성합니다. 각 버전은 Chrome 베타 마일스톤 직전에 V8의 Git 마스터로부터 브랜치됩니다. 오늘 우리는 최신 브랜치 [V8 버전 7.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.1)을 발표하게 되어 기쁩니다. 이는 몇 주 내에 Chrome 71 안정 버전과 함께 출시될 때까지 베타 상태에 있습니다. V8 v7.1은 모든 종류의 개발자 친화적인 기능으로 가득합니다. 이 게시물은 릴리즈를 앞두고 몇 가지 주요 사항을 미리 살펴봅니다.
 

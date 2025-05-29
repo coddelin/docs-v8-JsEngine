@@ -1,14 +1,14 @@
 ---
-title: 'Chrome 的一小步，V8 的一大堆'
-author: '堆守護者 Ulan Degenbaev、Hannes Payer、Michael Lippautz，和 DevTools 戰士 Alexey Kozyatinskiy'
+title: "Chrome 的一小步，V8 的一大堆"
+author: "堆守護者 Ulan Degenbaev、Hannes Payer、Michael Lippautz，和 DevTools 戰士 Alexey Kozyatinskiy"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2017-02-09 13:33:37
 tags:
   - memory
-description: 'V8 最近增加了堆大小的硬性限制。'
+description: "V8 最近增加了堆大小的硬性限制。"
 ---
 V8 對其堆大小有硬性限制。這充當了防止有記憶體洩漏的應用程序的保險機制。當應用程序達到此硬性限制時，V8 會執行一系列最後的垃圾回收。如果垃圾回收無法釋放記憶體，V8 停止執行並報告記憶體不足錯誤。沒有硬性限制的話，有記憶體洩漏的應用程序可能耗盡所有系統記憶體，損害其他應用程序的效能。
 

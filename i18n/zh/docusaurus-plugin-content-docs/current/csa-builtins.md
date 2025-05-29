@@ -1,6 +1,6 @@
 ---
-title: 'CodeStubAssembler 内建函数'
-description: '本文档旨在为编写 CodeStubAssembler 内建函数提供入门指导，目标读者为 V8 开发者。'
+title: "CodeStubAssembler 内建函数"
+description: "本文档旨在为编写 CodeStubAssembler 内建函数提供入门指导，目标读者为 V8 开发者。"
 ---
 本文档旨在为编写 CodeStubAssembler 内建函数提供入门指导，目标读者为 V8 开发者。
 

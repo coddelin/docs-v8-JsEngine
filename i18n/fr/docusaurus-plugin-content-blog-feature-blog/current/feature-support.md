@@ -1,5 +1,5 @@
 ---
-title: 'Prise en charge des fonctionnalités'
+title: "Prise en charge des fonctionnalités"
 permalink: /features/support/
 layout: layouts/base.njk
 description: 'Ce document explique les listes de prise en charge des fonctionnalités des langages JavaScript et WebAssembly telles qu'utilisées sur le site Web de V8.'

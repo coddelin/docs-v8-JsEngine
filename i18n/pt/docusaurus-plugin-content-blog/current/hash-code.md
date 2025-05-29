@@ -1,13 +1,13 @@
 ---
-title: 'Otimizando tabelas de hash: ocultando o código de hash'
-author: '[Sathya Gunasekaran](https://twitter.com/_gsathya), guardião dos códigos de hash'
+title: "Otimizando tabelas de hash: ocultando o código de hash"
+author: "[Sathya Gunasekaran](https://twitter.com/_gsathya), guardião dos códigos de hash"
 avatars:
-  - 'sathya-gunasekaran'
+  - "sathya-gunasekaran"
 date: 2018-01-29 13:33:37
 tags:
   - internals
-tweet: '958046113390411776'
-description: 'Várias estruturas de dados em JavaScript, como Map, Set, WeakSet e WeakMap, usam tabelas de hash internamente. Este artigo explica como o V8 v6.3 melhora o desempenho das tabelas de hash.'
+tweet: "958046113390411776"
+description: "Várias estruturas de dados em JavaScript, como Map, Set, WeakSet e WeakMap, usam tabelas de hash internamente. Este artigo explica como o V8 v6.3 melhora o desempenho das tabelas de hash."
 ---
 ECMAScript 2015 introduziu várias novas estruturas de dados, como Map, Set, WeakSet e WeakMap, todas elas usam tabelas de hash internamente. Este post detalha as [melhorias recentes](https://bugs.chromium.org/p/v8/issues/detail?id=6404) no modo como o [V8 v6.3+](/blog/v8-release-63) armazena as chaves nas tabelas de hash.
 

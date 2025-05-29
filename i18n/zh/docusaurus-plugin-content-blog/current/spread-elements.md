@@ -1,12 +1,12 @@
 ---
-title: '加速展开元素'
-author: 'Hai Dang 和 Georg Neis'
+title: "加速展开元素"
+author: "Hai Dang 和 Georg Neis"
 date: 2018-12-04 16:57:21
 tags:
   - ECMAScript
   - 性能测试
-description: 'V8 v7.2 显著加速了 Array.from(array) 以及 [...扩展] 对数组、字符串、集合和映射的性能。'
-tweet: '1070344545685118976'
+description: "V8 v7.2 显著加速了 Array.from(array) 以及 [...扩展] 对数组、字符串、集合和映射的性能。"
+tweet: "1070344545685118976"
 ---
 在 V8 团队的三个月实习期间，Hai Dang 改进了 `[...array]`, `[...string]`, `[...set]`, `[...map.keys()]` 和 `[...map.values()]` 的性能（当展开元素处于数组字面量开头时）。他还大幅加速了 `Array.from(iterable)`。本文将解释他所做的一些详细修改，这些优化从 V8 v7.2 开始生效。
 

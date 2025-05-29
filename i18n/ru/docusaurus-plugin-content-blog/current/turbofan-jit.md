@@ -1,12 +1,12 @@
 ---
-title: 'Изучение TurboFan JIT'
-author: 'Бен Л. Титцер, инженер-программист и механик TurboFan'
+title: "Изучение TurboFan JIT"
+author: "Бен Л. Титцер, инженер-программист и механик TurboFan"
 avatars:
-  - 'ben-titzer'
+  - "ben-titzer"
 date: 2015-07-13 13:33:37
 tags:
   - internals
-description: 'Глубокое изучение дизайна нового оптимизирующего компилятора TurboFan для V8.'
+description: "Глубокое изучение дизайна нового оптимизирующего компилятора TurboFan для V8."
 ---
 [На прошлой неделе мы объявили](https://blog.chromium.org/2015/07/revving-up-javascript-performance-with.html), что включили TurboFan для определенных типов JavaScript. В этом посте мы хотели углубиться в дизайн TurboFan.
 

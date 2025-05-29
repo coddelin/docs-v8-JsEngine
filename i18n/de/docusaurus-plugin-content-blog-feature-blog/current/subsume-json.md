@@ -1,13 +1,13 @@
 ---
-title: 'Subsume JSON a.k.a. JSON ⊂ ECMAScript'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Subsume JSON a.k.a. JSON ⊂ ECMAScript"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-08-14
 tags:
   - ES2019
-description: 'JSON ist jetzt ein syntaktisches Teilmengen von ECMAScript.'
-tweet: '1161649929904885762'
+description: "JSON ist jetzt ein syntaktisches Teilmengen von ECMAScript."
+tweet: "1161649929904885762"
 ---
 Mit [dem _JSON ⊂ ECMAScript_ Vorschlag](https://github.com/tc39/proposal-json-superset) wird JSON zu einer syntaktischen Teilmenge von ECMAScript. Wenn Sie überrascht sind, dass dies nicht bereits der Fall war, sind Sie nicht allein!
 

@@ -1,15 +1,15 @@
 ---
-title: 'The story of a V8 performance cliff in React'
-author: 'Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) and Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "The story of a V8 performance cliff in React"
+author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) and Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'benedikt-meurer'
-  - 'mathias-bynens'
+  - "benedikt-meurer"
+  - "mathias-bynens"
 date: 2019-08-28 16:45:00
 tags:
   - internals
   - presentations
-description: 'This article describes how V8 chooses optimal in-memory representations for various JavaScript values, and how that impacts the shape machinery — all of which helps explain a recent V8 performance cliff in React core.'
-tweet: '1166723359696130049'
+description: "This article describes how V8 chooses optimal in-memory representations for various JavaScript values, and how that impacts the shape machinery — all of which helps explain a recent V8 performance cliff in React core."
+tweet: "1166723359696130049"
 ---
 [Previously](https://mathiasbynens.be/notes/shapes-ics), we discussed how JavaScript engines optimize object and array access through the use of Shapes and Inline Caches, and we’ve explored [how engines speed up prototype property access](https://mathiasbynens.be/notes/prototypes) in particular. This article describes how V8 chooses optimal in-memory representations for various JavaScript values, and how that impacts the shape machinery — all of which helps explain [a recent V8 performance cliff in React core](https://github.com/facebook/react/issues/14365).
 

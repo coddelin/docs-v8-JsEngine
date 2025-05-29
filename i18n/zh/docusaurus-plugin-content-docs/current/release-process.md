@@ -1,6 +1,6 @@
 ---
-title: '发布流程'
-description: '本文档解释了 V8 的发布流程。'
+title: "发布流程"
+description: "本文档解释了 V8 的发布流程。"
 ---
 V8 的发布流程与 [Chrome](https://www.chromium.org/getting-involved/dev-channel) 的发布流程紧密相关。V8 团队使用 Chrome 的四个发布渠道向用户推送新版本。
 

@@ -1,6 +1,6 @@
 ---
-title: '在 Arm64 Linux 上編譯'
-description: '在 Arm64 Linux 上原生構建 V8 的技巧和注意事項'
+title: "在 Arm64 Linux 上編譯"
+description: "在 Arm64 Linux 上原生構建 V8 的技巧和注意事項"
 ---
 如果您已經按照說明完成了如何在非 x86 或蘋果 Silicon Mac 的機器上[檢出](/docs/source-code)和[構建](/docs/build-gn) V8 的操作，您可能遇到了一些麻煩，這是因為構建系統下載了原生二進制文件但無法運行它們。然而，即便在 Arm64 Linux 機器上使用 V8 是__不受官方支持的__，克服這些障礙其實非常簡單。
 

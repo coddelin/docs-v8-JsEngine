@@ -1,6 +1,6 @@
 ---
-title: '使用V8进行Chromium性能分析'
-description: '本文档解释了如何在Chromium中使用V8的CPU和内存分析工具。'
+title: "使用V8进行Chromium性能分析"
+description: "本文档解释了如何在Chromium中使用V8的CPU和内存分析工具。"
 ---
 [V8的CPU和内存分析工具](/docs/profile)从V8的shell中使用非常简单，但与Chromium结合使用可能会显得有些混乱。此页面应该可以帮助您解决问题。
 

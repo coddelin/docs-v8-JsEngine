@@ -1,11 +1,11 @@
 ---
-title: 'Lanzamiento de V8 v7.4'
-author: 'Georg Neis'
+title: "Lanzamiento de V8 v7.4"
+author: "Georg Neis"
 date: 2019-03-22 16:30:42
 tags:
   - lanzamiento
-description: 'V8 v7.4 incluye hilos/atómicos de WebAssembly, campos privados de clase, mejoras de rendimiento y memoria, ¡y mucho más!'
-tweet: '1109094755936489472'
+description: "V8 v7.4 incluye hilos/atómicos de WebAssembly, campos privados de clase, mejoras de rendimiento y memoria, ¡y mucho más!"
+tweet: "1109094755936489472"
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se deriva del maestro de Git de V8 inmediatamente antes de un hito de Chrome Beta. Hoy nos complace anunciar nuestra nueva rama, [V8 versión 7.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.4), que está en beta hasta su lanzamiento en coordinación con Chrome 74 Stable en varias semanas. V8 v7.4 está repleto de todo tipo de beneficios para desarrolladores. Esta publicación ofrece un adelanto de algunos de los aspectos destacados en anticipación al lanzamiento.
 

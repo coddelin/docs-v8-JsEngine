@@ -1,10 +1,10 @@
 ---
-title: 'V8 發佈版本 v5.5'
-author: 'V8 團隊'
+title: "V8 發佈版本 v5.5"
+author: "V8 團隊"
 date: 2016-10-24 13:33:37
 tags:
   - 發佈
-description: 'V8 v5.5 帶來了更低的記憶體消耗以及對 ECMAScript 語言功能的更高支援。'
+description: "V8 v5.5 帶來了更低的記憶體消耗以及對 ECMAScript 語言功能的更高支援。"
 ---
 每六周，我們會為 V8 創建一個新的分支，這是我們[發佈流程](/docs/release-process)的一部分。每個版本都是在 Chrome Beta 里程碑之前直接從 V8 的 Git 主分支中分出來的。今天，我們很高興地宣佈我們最新的分支，[V8 版本 5.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.5)，該版本將在未來幾周內與 Chrome 55 穩定版同步釋出之前進入 Beta 階段。V8 v5.5 充滿了各種面向開發者的好功能，我們希望向您預覽一些亮點，讓您期待該版本的到來。
 

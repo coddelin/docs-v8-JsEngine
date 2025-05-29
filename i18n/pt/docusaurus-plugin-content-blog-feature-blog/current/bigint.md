@@ -1,15 +1,15 @@
 ---
-title: 'BigInt: inteiros de precisão arbitrária em JavaScript'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "BigInt: inteiros de precisão arbitrária em JavaScript"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-05-01
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: 'BigInts são um novo tipo numérico em JavaScript que pode representar inteiros com precisão arbitrária. Este artigo explora alguns casos de uso e explica a nova funcionalidade no Chrome 67, comparando BigInts a Numbers em JavaScript.'
-tweet: '990991035630206977'
+description: "BigInts são um novo tipo numérico em JavaScript que pode representar inteiros com precisão arbitrária. Este artigo explora alguns casos de uso e explica a nova funcionalidade no Chrome 67, comparando BigInts a Numbers em JavaScript."
+tweet: "990991035630206977"
 ---
 `BigInt`s são um novo tipo numérico em JavaScript que pode representar inteiros com precisão arbitrária. Com `BigInt`s, você pode armazenar e operar com segurança em grandes inteiros, mesmo além do limite seguro de inteiros para `Number`s. Este artigo explora alguns casos de uso e explica a nova funcionalidade no Chrome 67 comparando `BigInt`s com `Number`s em JavaScript.
 

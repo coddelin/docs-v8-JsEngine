@@ -1,14 +1,14 @@
 ---
-title: '최상위 `await`'
-author: 'Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))'
+title: "최상위 `await`"
+author: "Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))"
 avatars:
-  - 'myles-borins'
+  - "myles-borins"
 date: 2019-10-08
 tags:
   - ECMAScript
   - Node.js 14
-description: 'JavaScript 모듈에 최상위 `await`가 도입됩니다! 곧 비동기 함수에 있지 않아도 `await`를 사용할 수 있습니다.'
-tweet: '1181581262399643650'
+description: "JavaScript 모듈에 최상위 `await`가 도입됩니다! 곧 비동기 함수에 있지 않아도 `await`를 사용할 수 있습니다."
+tweet: "1181581262399643650"
 ---
 [최상위 `await`](https://github.com/tc39/proposal-top-level-await)는 개발자가 비동기 함수 외부에서 `await` 키워드를 사용할 수 있도록 합니다. 이는 큰 비동기 함수처럼 동작하며, 이를 `import`하는 다른 모듈들이 본문의 평가를 시작하기 전에 대기하게 합니다.
 

@@ -1,14 +1,14 @@
 ---
-title: 'Almacenamiento en caché de código para desarrolladores de JavaScript'
-author: '[Leszek Swirski](https://twitter.com/leszekswirski), destructor de caché'
+title: "Almacenamiento en caché de código para desarrolladores de JavaScript"
+author: "[Leszek Swirski](https://twitter.com/leszekswirski), destructor de caché"
 avatars:
   - leszek-swirski
 date: 2019-04-08 13:33:37
 updated: 2020-06-16
 tags:
   - internals
-description: 'El almacenamiento en caché de (byte)código reduce el tiempo de inicio de sitios web visitados frecuentemente almacenando en caché el resultado del análisis y la compilación de JavaScript.'
-tweet: '1115264282675953664'
+description: "El almacenamiento en caché de (byte)código reduce el tiempo de inicio de sitios web visitados frecuentemente almacenando en caché el resultado del análisis y la compilación de JavaScript."
+tweet: "1115264282675953664"
 ---
 El almacenamiento en caché de código (también conocido como _almacenamiento en caché de bytecode_) es una optimización importante en los navegadores. Reduce el tiempo de inicio de sitios web visitados frecuentemente almacenando en caché el resultado del análisis y la compilación. La mayoría de los [navegadores](https://blog.mozilla.org/javascript/2017/12/12/javascript-startup-bytecode-cache/) [populares](https://bugs.webkit.org/show_bug.cgi?id=192782) implementan alguna forma de almacenamiento en caché de código, y Chrome no es una excepción. De hecho, hemos [escrito](/blog/code-caching), [y](/blog/improved-code-caching) [hablado](https://www.youtube.com/watch?v=YqHOUy2rYZ8) sobre cómo Chrome y V8 almacenan en caché el código compilado en el pasado.
 

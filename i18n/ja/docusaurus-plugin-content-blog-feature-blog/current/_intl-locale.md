@@ -1,15 +1,15 @@
 ---
-title: '`Intl.Locale`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Intl.Locale`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-05-20
 tags:
   - Intl
   - Node.js 12
   - io19
-description: '新しいIntl.Locale APIは、ロケールを扱うための統一された仕組みを提供し、文字列を使用するよりも便利です。'
-tweet: 'TODO'
+description: "新しいIntl.Locale APIは、ロケールを扱うための統一された仕組みを提供し、文字列を使用するよりも便利です。"
+tweet: "TODO"
 ---
 国際化API[internationalization APIs](/features/tags/intl)を扱う際には、`'en'`（英語）などのロケールIDを表す文字列をさまざまな`Intl`コンストラクターに渡すのが一般的です。[新しい`Intl.Locale` API](https://github.com/tc39/proposal-intl-locale)は、これらのロケールを処理するためのより強力な仕組みを提供します。
 

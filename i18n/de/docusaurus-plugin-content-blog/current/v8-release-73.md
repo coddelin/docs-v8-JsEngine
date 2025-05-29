@@ -1,13 +1,13 @@
 ---
-title: 'V8-Veröffentlichung v7.3'
-author: 'Clemens Backes, Compiler-Bändiger'
+title: "V8-Veröffentlichung v7.3"
+author: "Clemens Backes, Compiler-Bändiger"
 avatars:
   - clemens-backes
 date: 2019-02-07 11:30:42
 tags:
   - veröffentlichung
-description: 'V8 v7.3 bietet Verbesserungen in WebAssembly und asynchroner Leistung, asynchrone Stack-Traces, Object.fromEntries, String#matchAll und vieles mehr!'
-tweet: '1093457099441561611'
+description: "V8 v7.3 bietet Verbesserungen in WebAssembly und asynchroner Leistung, asynchrone Stack-Traces, Object.fromEntries, String#matchAll und vieles mehr!"
+tweet: "1093457099441561611"
 ---
 Alle sechs Wochen erstellen wir einen neuen Branch von V8 im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process). Jede Version wird direkt vor einem Chrome-Beta-Meilenstein aus dem Git-Master von V8 verzweigt. Heute freuen wir uns, unseren neuesten Branch, [V8 Version 7.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.3), anzukündigen, der bis zu seiner Veröffentlichung in mehreren Wochen in Zusammenarbeit mit Chrome 73 Stable in der Beta-Phase ist. V8 v7.3 ist vollgepackt mit allerlei von Entwicklern geschätzten Features. Dieser Beitrag bietet einen Überblick über einige der Highlights als Vorgeschmack auf die Veröffentlichung.
 

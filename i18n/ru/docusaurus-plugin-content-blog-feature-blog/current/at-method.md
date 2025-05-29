@@ -1,12 +1,12 @@
 ---
-title: 'Метод `at` для относительного индексации'
-author: 'Шу-ю Го ([@_shu](https://twitter.com/_shu))'
+title: "Метод `at` для относительного индексации"
+author: "Шу-ю Го ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2021-07-13
 tags:
   - ECMAScript
-description: 'Теперь в JavaScript есть метод относительной индексации для Arrays, TypedArrays и Strings.'
+description: "Теперь в JavaScript есть метод относительной индексации для Arrays, TypedArrays и Strings."
 ---
 
 Новый метод `at` в `Array.prototype`, различных TypedArray прототипах и `String.prototype` упрощает доступ к элементу ближе к концу коллекции.

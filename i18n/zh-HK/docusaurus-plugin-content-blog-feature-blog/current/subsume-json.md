@@ -1,13 +1,13 @@
 ---
-title: '包括 JSON，即 JSON ⊂ ECMAScript'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "包括 JSON，即 JSON ⊂ ECMAScript"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-08-14
 tags:
   - ES2019
-description: 'JSON 現在是 ECMAScript 的語法子集。'
-tweet: '1161649929904885762'
+description: "JSON 現在是 ECMAScript 的語法子集。"
+tweet: "1161649929904885762"
 ---
 隨著[提案 _JSON ⊂ ECMAScript_](https://github.com/tc39/proposal-json-superset)，JSON 成為 ECMAScript 的語法子集。如果你對此感到驚訝，並非只有你一個！
 

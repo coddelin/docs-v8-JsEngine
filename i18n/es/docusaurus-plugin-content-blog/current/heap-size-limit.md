@@ -1,14 +1,14 @@
 ---
-title: 'Un pequeño paso para Chrome, un gran salto para V8'
-author: 'guardianes del heap Ulan Degenbaev, Hannes Payer, Michael Lippautz, y el guerrero de DevTools Alexey Kozyatinskiy'
+title: "Un pequeño paso para Chrome, un gran salto para V8"
+author: "guardianes del heap Ulan Degenbaev, Hannes Payer, Michael Lippautz, y el guerrero de DevTools Alexey Kozyatinskiy"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2017-02-09 13:33:37
 tags:
   - memoria
-description: 'V8 ha aumentado recientemente su límite máximo de tamaño de heap.'
+description: "V8 ha aumentado recientemente su límite máximo de tamaño de heap."
 ---
 V8 tiene un límite máximo en el tamaño de su heap. Esto actúa como una salvaguarda contra aplicaciones con fugas de memoria. Cuando una aplicación alcanza este límite máximo, V8 realiza una serie de recolecciones de basura como último recurso. Si estas recolecciones no ayudan a liberar memoria, V8 detiene la ejecución y reporta un error de falta de memoria. Sin este límite, una aplicación con fugas de memoria podría consumir toda la memoria del sistema, afectando el rendimiento de otras aplicaciones.
 

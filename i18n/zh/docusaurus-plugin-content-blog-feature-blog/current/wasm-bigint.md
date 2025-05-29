@@ -1,14 +1,14 @@
 ---
-title: 'WebAssembly 与 JavaScript BigInt 的集成'
-author: 'Alon Zakai'
+title: "WebAssembly 与 JavaScript BigInt 的集成"
+author: "Alon Zakai"
 avatars:
-  - 'alon-zakai'
+  - "alon-zakai"
 date: 2020-11-12
 tags:
   - WebAssembly
   - ECMAScript
-description: 'BigInt 使在 JavaScript 和 WebAssembly 之间传递 64 位整数变得简单。本文解释了这意味着什么以及为什么有用，包括让开发者更容易、让代码运行更快，以及加速构建时间。'
-tweet: '1331966281571037186'
+description: "BigInt 使在 JavaScript 和 WebAssembly 之间传递 64 位整数变得简单。本文解释了这意味着什么以及为什么有用，包括让开发者更容易、让代码运行更快，以及加速构建时间。"
+tweet: "1331966281571037186"
 ---
 JS-BigInt-Integration 特性使在 JavaScript 和 WebAssembly 之间传递 64 位整数变得简单。本文解释了这意味着什么以及为什么有用，包括让开发者更容易、让代码运行更快，以及加速构建时间。
 

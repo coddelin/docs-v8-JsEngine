@@ -1,15 +1,15 @@
 ---
-title: 'BigInt: Ganzzahlen mit beliebiger Genauigkeit in JavaScript'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "BigInt: Ganzzahlen mit beliebiger Genauigkeit in JavaScript"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-05-01
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: 'BigInts sind eine neue numerische Primitive in JavaScript, die Ganzzahlen mit beliebiger Genauigkeit darstellen können. Dieser Artikel erklärt einige Anwendungsfälle und vergleicht die neue Funktionalität in Chrome 67 durch den Vergleich von BigInts mit Zahlen in JavaScript.'
-tweet: '990991035630206977'
+description: "BigInts sind eine neue numerische Primitive in JavaScript, die Ganzzahlen mit beliebiger Genauigkeit darstellen können. Dieser Artikel erklärt einige Anwendungsfälle und vergleicht die neue Funktionalität in Chrome 67 durch den Vergleich von BigInts mit Zahlen in JavaScript."
+tweet: "990991035630206977"
 ---
 `BigInt`s sind eine neue numerische Primitive in JavaScript, die Ganzzahlen mit beliebiger Genauigkeit darstellen können. Mit `BigInt`s können Sie große Ganzzahlen sicher speichern und bearbeiten, sogar über die sichere Ganzzahlen-Grenze von `Number`s hinaus. Dieser Artikel erklärt einige Anwendungsfälle und vergleicht die neue Funktionalität in Chrome 67 mit `Number`s in JavaScript.
 

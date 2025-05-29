@@ -1,6 +1,6 @@
 ---
-title: 'Pruebas web de Blink (también conocidas como pruebas de diseño)'
-description: 'La infraestructura de V8 ejecuta continuamente las pruebas web de Blink para evitar problemas de integración con Chromium. Este documento describe qué hacer en caso de que falle una prueba.'
+title: "Pruebas web de Blink (también conocidas como pruebas de diseño)"
+description: "La infraestructura de V8 ejecuta continuamente las pruebas web de Blink para evitar problemas de integración con Chromium. Este documento describe qué hacer en caso de que falle una prueba."
 ---
 Ejecutamos continuamente [las pruebas web de Blink (anteriormente conocidas como “pruebas de diseño”)](https://chromium.googlesource.com/chromium/src/+/master/docs/testing/web_tests.md) en nuestra [consola de integración](https://ci.chromium.org/p/v8/g/integration/console) para evitar problemas de integración con Chromium.
 

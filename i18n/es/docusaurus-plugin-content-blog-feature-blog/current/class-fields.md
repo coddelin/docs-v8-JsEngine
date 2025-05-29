@@ -1,16 +1,16 @@
 ---
-title: 'Campos de clase públicos y privados'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Campos de clase públicos y privados"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-12-13
 tags:
   - ECMAScript
   - ES2022
   - io19
   - Node.js 14
-description: 'Varias propuestas amplían la sintaxis existente de clases en JavaScript con nuevas funcionalidades. Este artículo explica la nueva sintaxis de campos de clase públicos en V8 v7.2 y Chrome 72, así como la próxima sintaxis de campos de clase privados.'
-tweet: '1121395767170740225'
+description: "Varias propuestas amplían la sintaxis existente de clases en JavaScript con nuevas funcionalidades. Este artículo explica la nueva sintaxis de campos de clase públicos en V8 v7.2 y Chrome 72, así como la próxima sintaxis de campos de clase privados."
+tweet: "1121395767170740225"
 ---
 Varias propuestas amplían la sintaxis existente de clases en JavaScript con nuevas funcionalidades. Este artículo explica la nueva sintaxis de campos de clase públicos en V8 v7.2 y Chrome 72, así como la próxima sintaxis de campos de clase privados.
 

@@ -1,15 +1,15 @@
 ---
-title: 'Ordenação estável de `Array.prototype.sort`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Ordenação estável de `Array.prototype.sort`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-07-02
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: 'Agora `Array.prototype.sort` é garantido como estável.'
-tweet: '1146067251302244353'
+description: "Agora `Array.prototype.sort` é garantido como estável."
+tweet: "1146067251302244353"
 ---
 Digamos que você tenha um array de cachorros, onde cada cachorro tem um nome e uma classificação. (Se isso parecer um exemplo estranho, você deve saber que existe uma conta no Twitter que se especializa exatamente nisso... Não pergunte!)
 

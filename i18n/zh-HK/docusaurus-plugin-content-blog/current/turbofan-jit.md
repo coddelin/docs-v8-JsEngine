@@ -1,12 +1,12 @@
 ---
-title: '深入研究TurboFan JIT'
-author: 'Ben L. Titzer，軟體工程師兼TurboFan維修技術人員'
+title: "深入研究TurboFan JIT"
+author: "Ben L. Titzer，軟體工程師兼TurboFan維修技術人員"
 avatars:
-  - 'ben-titzer'
+  - "ben-titzer"
 date: 2015-07-13 13:33:37
 tags:
   - internals
-description: '深入探討V8的新TurboFan優化編譯器的設計。'
+description: "深入探討V8的新TurboFan優化編譯器的設計。"
 ---
 [上週我們宣布](https://blog.chromium.org/2015/07/revving-up-javascript-performance-with.html)我們已經為某些類型的JavaScript啟用了TurboFan。在這篇文章中，我們希望深入探討TurboFan的設計。
 

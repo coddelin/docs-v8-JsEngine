@@ -1,10 +1,10 @@
 ---
-title: 'V8 發佈 v4.6'
-author: 'V8 團隊'
+title: "V8 發佈 v4.6"
+author: "V8 團隊"
 date: 2015-08-28 13:33:37
 tags:
   - 發佈
-description: 'V8 v4.6 提供減少停頓並支援新的 ES2015 語言特性。'
+description: "V8 v4.6 提供減少停頓並支援新的 ES2015 語言特性。"
 ---
 大約每六週，我們會基於我們的[發佈過程](https://v8.dev/docs/release-process)創建一個新的 V8 分支。每個版本都是從 V8 的 Git 主分支分出，緊接著 Chrome 分出一個 Chrome Beta 的里程碑分支。今天，我們很高興地宣佈我們最新的分支[V8 版本 4.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.6)，該版本將進入 Beta 階段，直到與 Chrome 46 Stable 一同發佈為止。V8 4.6 包含各種為開發者準備的好東西，因此我們希望在幾週後正式發佈前給大家預覽一些亮點。
 

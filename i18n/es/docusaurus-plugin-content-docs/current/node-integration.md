@@ -1,6 +1,6 @@
 ---
-title: 'Qué hacer si tu CL rompió la construcción de integración de Node.js'
-description: 'Este documento explica qué hacer si tu CL rompió la construcción de integración de Node.js.'
+title: "Qué hacer si tu CL rompió la construcción de integración de Node.js"
+description: "Este documento explica qué hacer si tu CL rompió la construcción de integración de Node.js."
 ---
 [Node.js](https://github.com/nodejs/node) utiliza V8 estable o beta. Para una integración adicional, el equipo de V8 compila Node con la [rama principal](https://chromium.googlesource.com/v8/v8/+/refs/heads/main) de V8, es decir, con una versión de V8 actual. Proporcionamos un bot de integración para [Linux](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Linux64), mientras que [Windows](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Win64) y [Mac](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Mac64) están en proceso.
 

@@ -1,13 +1,13 @@
 ---
-title: '해시 테이블 최적화: 해시 코드 숨기기'
-author: '[사트야 구나세카라](https://twitter.com/_gsathya), 해시 코드의 관리인'
+title: "해시 테이블 최적화: 해시 코드 숨기기"
+author: "[사트야 구나세카라](https://twitter.com/_gsathya), 해시 코드의 관리인"
 avatars:
-  - 'sathya-gunasekaran'
+  - "sathya-gunasekaran"
 date: 2018-01-29 13:33:37
 tags:
   - internals
-tweet: '958046113390411776'
-description: 'Map, Set, WeakSet, WeakMap과 같은 여러 JavaScript 데이터 구조 는 기본적으로 해시 테이블을 사용합니다. 이 글은 V8 v6.3이 해시 테이블 성능을 어떻게 개선했는지 설명합니다.'
+tweet: "958046113390411776"
+description: "Map, Set, WeakSet, WeakMap과 같은 여러 JavaScript 데이터 구조 는 기본적으로 해시 테이블을 사용합니다. 이 글은 V8 v6.3이 해시 테이블 성능을 어떻게 개선했는지 설명합니다."
 ---
 ECMAScript 2015는 Map, Set, WeakSet, WeakMap과 같은 해시 테이블을 기본적으로 사용하는 몇 가지 새로운 데이터 구조를 도입했습니다. 이 글에서는 [최근 개선 사항](https://bugs.chromium.org/p/v8/issues/detail?id=6404)에 대해 설명하며, [V8 v6.3+](/blog/v8-release-63)이 해시 테이블에서 키를 저장하는 방법을 제공합니다.
 

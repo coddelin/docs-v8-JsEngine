@@ -1,12 +1,12 @@
 ---
-title: 'スプレッド要素の高速化'
-author: 'Hai Dang & Georg Neis'
+title: "スプレッド要素の高速化"
+author: "Hai Dang & Georg Neis"
 date: 2018-12-04 16:57:21
 tags:
   - ECMAScript
   - ベンチマーク
-description: 'V8 v7.2 / Array.from(array) および [...spread] の配列、文字列、セット、マップに対するパフォーマンスを大幅に向上させました。'
-tweet: '1070344545685118976'
+description: "V8 v7.2 / Array.from(array) および [...spread] の配列、文字列、セット、マップに対するパフォーマンスを大幅に向上させました。"
+tweet: "1070344545685118976"
 ---
 Hai DangはV8チームでの3か月間のインターンシップ中に、`[...array]`, `[...string]`, `[...set]`, `[...map.keys()]`, および `[...map.values()]`（配列リテラルの最初にスプレッド要素がある場合）のパフォーマンスを改善しました。さらに、`Array.from(iterable)` の速度も大幅に向上させました。この記事では、彼の変更の詳細について説明します。これらの変更はv7.2以降のV8に含まれています。
 

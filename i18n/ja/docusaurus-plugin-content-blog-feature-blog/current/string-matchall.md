@@ -1,14 +1,14 @@
 ---
-title: '`String.prototype.matchAll`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`String.prototype.matchAll`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-02-02
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: 'String.prototype.matchAllは、指定された正規表現が生成するすべてのマッチオブジェクトを簡単に反復処理する方法を提供します。'
+description: "String.prototype.matchAllは、指定された正規表現が生成するすべてのマッチオブジェクトを簡単に反復処理する方法を提供します。"
 ---
 文字列に対して同じ正規表現を繰り返し適用し、すべての一致を取得することは一般的です。ある程度、`String#match`メソッドを使用することでこれを今日行うことは可能です。
 

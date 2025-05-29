@@ -1,13 +1,13 @@
 ---
-title: '卡頓克星第一部分'
-author: '卡頓克星: Jochen Eisinger、Michael Lippautz 和 Hannes Payer'
+title: "卡頓克星第一部分"
+author: "卡頓克星: Jochen Eisinger、Michael Lippautz 和 Hannes Payer"
 avatars:
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2015-10-30 13:33:37
 tags:
   - memory
-description: '這篇文章討論了在 Chrome 41 和 Chrome 46 之間實現的一些優化，這些優化顯著減少了垃圾回收滯後，從而提高了用戶體驗。'
+description: "這篇文章討論了在 Chrome 41 和 Chrome 46 之間實現的一些優化，這些優化顯著減少了垃圾回收滯後，從而提高了用戶體驗。"
 ---
 卡頓，或者說明顯的卡頓，可以在 Chrome 沒有在 16.66 毫秒內渲染一帧（打斷 60 幀每秒的流暢運動）時被注意到。目前，大多數的 V8 垃圾回收工作都在主渲染執行緒上執行，見圖1，當需要維護過多對象時，往往會導致卡頓。消除卡頓一直是 V8 團隊的首要任務（[1](https://blog.chromium.org/2011/11/game-changer-for-interactive.html)、[2](https://www.youtube.com/watch?v=3vPOlGRH6zk)、[3](/blog/free-garbage-collection)）。這篇文章討論了在 Chrome 41 和 Chrome 46 之間實現的一些優化，這些優化顯著減少了垃圾回收滯後，從而提高了用戶體驗。
 

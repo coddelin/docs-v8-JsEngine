@@ -1,15 +1,15 @@
 ---
-title: 'Array.prototype.flat`과 `Array.prototype.flatMap`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Array.prototype.flat`과 `Array.prototype.flatMap`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-11
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: 'Array.prototype.flat은 지정된 깊이까지 배열을 평탄화합니다. Array.prototype.flatMap은 map을 수행하고 flat을 별도로 적용하는 것과 동일합니다.'
-tweet: '1138457106380709891'
+description: "Array.prototype.flat은 지정된 깊이까지 배열을 평탄화합니다. Array.prototype.flatMap은 map을 수행하고 flat을 별도로 적용하는 것과 동일합니다."
+tweet: "1138457106380709891"
 ---
 ## `Array.prototype.flat`
 

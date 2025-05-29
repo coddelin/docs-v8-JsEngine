@@ -1,6 +1,6 @@
 ---
-title: '플레이크 바이섹트'
-description: '이 문서는 플래키 테스트를 바이섹트하는 방법을 설명합니다.'
+title: "플레이크 바이섹트"
+description: "이 문서는 플래키 테스트를 바이섹트하는 방법을 설명합니다."
 ---
 플래키 테스트는 봇의 별도 단계에서 보고됩니다. ([예제 빌드](https://ci.chromium.org/ui/p/v8/builders/ci/V8%20Linux64%20TSAN/38630/overview))
 

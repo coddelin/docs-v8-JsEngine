@@ -1,10 +1,10 @@
 ---
-title: 'V8 릴리스 v4.9'
-author: 'V8 팀'
+title: "V8 릴리스 v4.9"
+author: "V8 팀"
 date: 2016-01-26 13:33:37
 tags:
   - release
-description: 'V8 v4.9는 개선된 `Math.random` 구현을 제공하며 몇 가지 새로운 ES2015 언어 기능을 지원합니다.'
+description: "V8 v4.9는 개선된 `Math.random` 구현을 제공하며 몇 가지 새로운 ES2015 언어 기능을 지원합니다."
 ---
 약 6주마다 우리는 [릴리스 프로세스](/docs/release-process)의 일환으로 V8의 새로운 브랜치를 만듭니다. 각 버전은 Chrome Beta 마일스톤을 위해 Chrome이 분리되기 직전에 V8의 Git 마스터로부터 분기됩니다. 오늘 우리는 최신 브랜치인 [V8 버전 4.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.9)를 발표하게 되어 기쁩니다. 이 브랜치는 Chrome 49 Stable과의 협업을 통해 출시될 때까지 베타 버전으로 제공됩니다. V8 4.9는 개발자들이 직면하는 다양한 유용한 기능들로 가득 차 있으므로 몇 주 후 출시에 앞서 주요 내용을 미리 보여드리고자 합니다.
 

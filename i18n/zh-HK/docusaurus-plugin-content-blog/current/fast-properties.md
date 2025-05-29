@@ -1,12 +1,12 @@
 ---
-title: 'V8中的快速屬性'
-author: 'Camillo Bruni ([@camillobruni](https://twitter.com/camillobruni)), 也是 [“快速的 `for`-`in`”](/blog/fast-for-in) 的作者'
+title: "V8中的快速屬性"
+author: "Camillo Bruni ([@camillobruni](https://twitter.com/camillobruni)), 也是 [“快速的 `for`-`in`”](/blog/fast-for-in) 的作者"
 avatars:
-  - 'camillo-bruni'
+  - "camillo-bruni"
 date: 2017-08-30 13:33:37
 tags:
   - internals
-description: '這篇技術深潛文章解釋了V8在幕後如何處理JavaScript屬性。'
+description: "這篇技術深潛文章解釋了V8在幕後如何處理JavaScript屬性。"
 ---
 在這篇博客文章中，我們想解釋V8如何在內部處理JavaScript屬性。從JavaScript的角度看，屬性只需要少量的區分。JavaScript對象主要表現為字典形式，具有字符串鍵和任意對象作為值。不過，規範確實會在[迭代過程中](https://tc39.es/ecma262/#sec-ordinaryownpropertykeys)將整數索引的屬性與其他屬性區分開來。除此之外，無論是整數索引還是非整數索引的屬性，行為大致相同。
 

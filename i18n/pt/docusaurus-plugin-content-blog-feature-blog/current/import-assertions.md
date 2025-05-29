@@ -1,13 +1,13 @@
 ---
-title: 'Declarações de importação'
-author: 'Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), importador assertivo de declarações de importação'
+title: "Declarações de importação"
+author: "Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), importador assertivo de declarações de importação"
 avatars:
-  - 'dan-clark'
+  - "dan-clark"
 date: 2021-06-15
 tags:
   - ECMAScript
-description: 'As declarações de importação permitem que instruções de importação de módulos incluam informações adicionais junto ao especificador do módulo'
-tweet: ''
+description: "As declarações de importação permitem que instruções de importação de módulos incluam informações adicionais junto ao especificador do módulo"
+tweet: ""
 ---
 
 O novo recurso de [declarações de importação](https://github.com/tc39/proposal-import-assertions) permite que instruções de importação de módulos incluam informações adicionais junto ao especificador do módulo. Um uso inicial para o recurso é permitir que documentos JSON sejam importados como [módulos JSON](https://github.com/tc39/proposal-json-modules):

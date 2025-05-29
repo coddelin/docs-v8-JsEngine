@@ -1,14 +1,14 @@
 ---
-title: 'Liftoff：V8 中 WebAssembly 的新基线编译器'
-author: 'Clemens Backes，WebAssembly 编译大师'
+title: "Liftoff：V8 中 WebAssembly 的新基线编译器"
+author: "Clemens Backes，WebAssembly 编译大师"
 avatars:
-  - 'clemens-backes'
+  - "clemens-backes"
 date: 2018-08-20 15:45:12
 tags:
   - WebAssembly
   - 内部机制
-description: 'Liftoff 是 WebAssembly 的新基线编译器，现已在 V8 v6.9 中使用。'
-tweet: '1031538167617413120'
+description: "Liftoff 是 WebAssembly 的新基线编译器，现已在 V8 v6.9 中使用。"
+tweet: "1031538167617413120"
 ---
 V8 [v6.9](/blog/v8-release-69) 包括了 Liftoff，一款 WebAssembly 的新基线编译器。Liftoff 现已默认在桌面系统上启用。本文详细介绍了添加另一个编译层的动机，并描述了 Liftoff 的实现及性能表现。
 

@@ -1,10 +1,10 @@
 ---
-title: 'Lançamento do V8 v5.0'
-author: 'a equipe V8'
+title: "Lançamento do V8 v5.0"
+author: "a equipe V8"
 date: 2016-03-15 13:33:37
 tags:
   - lançamento
-description: 'V8 v5.0 vem com melhorias de desempenho e adiciona suporte a vários novos recursos de linguagem ES2015.'
+description: "V8 v5.0 vem com melhorias de desempenho e adiciona suporte a vários novos recursos de linguagem ES2015."
 ---
 O primeiro passo no [processo de lançamento](/docs/release-process) do V8 é o início de um novo branch a partir do Git master imediatamente antes que o Chromium faça o branch para um marco Beta do Chrome (aproximadamente a cada seis semanas). Nosso mais novo branch de lançamento é [V8 v5.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.0), que permanecerá em beta até lançarmos uma versão estável em conjunto com o Chrome 50 Stable. Aqui estão os destaques dos novos recursos voltados para desenvolvedores nesta versão do V8.
 

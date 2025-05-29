@@ -1,14 +1,14 @@
 ---
-title: 'Importation dynamique `import()`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Importation dynamique `import()`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-11-21
 tags:
   - ECMAScript
   - ES2020
 description: 'L'importation dynamique via `import()` débloque de nouvelles capacités par rapport à l'importation statique. Cet article compare les deux et donne un aperçu des nouveautés.'
-tweet: '932914724060254208'
+tweet: "932914724060254208"
 ---
 [`import()` dynamique](https://github.com/tc39/proposal-dynamic-import) introduit une nouvelle forme fonctionnelle d'`import` qui débloque de nouvelles capacités par rapport à l'`import` statique. Cet article compare les deux et donne un aperçu des nouveautés.
 

@@ -1,13 +1,13 @@
 ---
-title: 'Lançamento do V8 v7.9'
-author: 'Santiago Aboy Solanes, especialista em compressão de ponteiros'
+title: "Lançamento do V8 v7.9"
+author: "Santiago Aboy Solanes, especialista em compressão de ponteiros"
 avatars:
-  - 'santiago-aboy-solanes'
+  - "santiago-aboy-solanes"
 date: 2019-11-20
 tags:
   - lançamento
-description: 'O V8 v7.9 apresenta a remoção da depreciação para transições de Double ⇒ Tagged, tratamento de getters de API em funções internas, cache de OSR e suporte do Wasm para múltiplos espaços de código.'
-tweet: '1197187184304050176'
+description: "O V8 v7.9 apresenta a remoção da depreciação para transições de Double ⇒ Tagged, tratamento de getters de API em funções internas, cache de OSR e suporte do Wasm para múltiplos espaços de código."
+tweet: "1197187184304050176"
 ---
 A cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](/docs/release-process). Cada versão é ramificada do master do Git do V8 imediatamente antes de um marco Beta do Chrome. Hoje, estamos felizes em anunciar nosso mais novo branch, [V8 versão 7.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.9), que está em beta até seu lançamento em coordenação com o Chrome 79 Stable em algumas semanas. O V8 v7.9 está repleto de novidades voltadas para desenvolvedores. Esta postagem fornece uma prévia de alguns dos destaques em antecipação ao lançamento.
 

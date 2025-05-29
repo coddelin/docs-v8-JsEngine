@@ -1,6 +1,6 @@
 ---
-title: 'Stacktrace-API'
-description: 'Dieses Dokument beschreibt die JavaScript-Stacktrace-API von V8.'
+title: "Stacktrace-API"
+description: "Dieses Dokument beschreibt die JavaScript-Stacktrace-API von V8."
 ---
 Alle internen Fehler, die in V8 auftreten, erfassen beim Erstellen einen Stacktrace. Dieser Stacktrace kann in JavaScript über die nicht standardisierte Eigenschaft `error.stack` abgerufen werden. V8 verfügt außerdem über verschiedene Hooks, um zu steuern, wie Stacktraces erfasst und formatiert werden, und um benutzerdefinierten Fehlern ebenfalls das Erfassen von Stacktraces zu ermöglichen. Dieses Dokument beschreibt die JavaScript-Stacktrace-API von V8.
 

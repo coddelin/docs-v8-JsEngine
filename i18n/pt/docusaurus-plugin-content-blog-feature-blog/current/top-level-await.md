@@ -1,14 +1,14 @@
 ---
-title: '`await` de nível superior'
-author: 'Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))'
+title: "`await` de nível superior"
+author: "Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))"
 avatars:
-  - 'myles-borins'
+  - "myles-borins"
 date: 2019-10-08
 tags:
   - ECMAScript
   - Node.js 14
-description: '`await` de nível superior está chegando aos módulos JavaScript! Em breve, você poderá usar `await` sem precisar estar em uma função assíncrona.'
-tweet: '1181581262399643650'
+description: "`await` de nível superior está chegando aos módulos JavaScript! Em breve, você poderá usar `await` sem precisar estar em uma função assíncrona."
+tweet: "1181581262399643650"
 ---
 [`await` de nível superior](https://github.com/tc39/proposal-top-level-await) permite que os desenvolvedores usem a palavra-chave `await` fora de funções assíncronas. Ele age como uma grande função assíncrona, fazendo com que outros módulos que o `importam` esperem antes de começar a avaliar seu corpo.
 

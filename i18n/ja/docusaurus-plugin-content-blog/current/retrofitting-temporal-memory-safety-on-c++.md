@@ -1,6 +1,6 @@
 ---
-title: 'C++における時間的メモリ安全性のレトロフィット'
-author: 'Anton Bikineev, Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), Hannes Payer ([@PayerHannes](https://twitter.com/PayerHannes))'
+title: "C++における時間的メモリ安全性のレトロフィット"
+author: "Anton Bikineev, Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), Hannes Payer ([@PayerHannes](https://twitter.com/PayerHannes))"
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -10,7 +10,7 @@ tags:
   - 内部
   - メモリ
   - セキュリティ
-description: 'Chromeにおけるヒープスキャンニングを利用したuse-after-frees脆弱性の排除。'
+description: "Chromeにおけるヒープスキャンニングを利用したuse-after-frees脆弱性の排除。"
 ---
 :::note
 **注:** 本投稿は元々[Google Security Blog](https://security.googleblog.com/2022/05/retrofitting-temporal-memory-safety-on-c.html)に投稿された内容です。

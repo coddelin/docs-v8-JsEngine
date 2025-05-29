@@ -1,6 +1,6 @@
 ---
-title: '`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`'
-author: '[Marja Hölttä](https://twitter.com/marjakh), una bloguera no bloqueante'
+title: "`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`"
+author: "[Marja Hölttä](https://twitter.com/marjakh), una bloguera no bloqueante"
 avatars:
   - marja-holtta
 date: 2020-09-24
@@ -8,8 +8,8 @@ tags:
   - ECMAScript
   - ES2020
   - Node.js 16
-description: 'Atomics.wait y Atomics.notify son primitivas de sincronización de bajo nivel útiles para implementar, por ejemplo, mutexes. Atomics.wait solo se puede usar en hilos de trabajo. La versión 8.7 de V8 ahora admite una versión no bloqueante, Atomics.waitAsync, que también es utilizable en el hilo principal.'
-tweet: '1309118447377358848'
+description: "Atomics.wait y Atomics.notify son primitivas de sincronización de bajo nivel útiles para implementar, por ejemplo, mutexes. Atomics.wait solo se puede usar en hilos de trabajo. La versión 8.7 de V8 ahora admite una versión no bloqueante, Atomics.waitAsync, que también es utilizable en el hilo principal."
+tweet: "1309118447377358848"
 ---
 [`Atomics.wait`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/wait) y [`Atomics.notify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/notify) son primitivas de sincronización de bajo nivel útiles para implementar mutexes y otros mecanismos de sincronización. Sin embargo, dado que `Atomics.wait` es bloqueante, no es posible llamarlo en el hilo principal (intentarlo genera un `TypeError`).
 

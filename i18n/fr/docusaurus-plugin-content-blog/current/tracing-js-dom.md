@@ -1,16 +1,16 @@
 ---
-title: 'Tracer de JS au DOM et revenir'
-author: 'Ulan Degenbaev, Alexei Filippov, Michael Lippautz et Hannes Payer — la communauté du DOM'
+title: "Tracer de JS au DOM et revenir"
+author: "Ulan Degenbaev, Alexei Filippov, Michael Lippautz et Hannes Payer — la communauté du DOM"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2018-03-01 13:33:37
 tags:
   - internals
   - memory
-description: 'Les DevTools de Chrome peuvent désormais tracer et prendre un instantané des objets DOM C++ et afficher tous les objets DOM accessibles depuis JavaScript avec leurs références.'
-tweet: '969184997545562112'
+description: "Les DevTools de Chrome peuvent désormais tracer et prendre un instantané des objets DOM C++ et afficher tous les objets DOM accessibles depuis JavaScript avec leurs références."
+tweet: "969184997545562112"
 ---
 Déboguer les fuites de mémoire dans Chrome 66 est devenu beaucoup plus facile. Les DevTools de Chrome peuvent désormais tracer et prendre un instantané des objets DOM C++ et afficher tous les objets DOM accessibles depuis JavaScript avec leurs références. Cette fonctionnalité est l'un des avantages du nouveau mécanisme de traçage C++ du ramasse-miettes V8.
 

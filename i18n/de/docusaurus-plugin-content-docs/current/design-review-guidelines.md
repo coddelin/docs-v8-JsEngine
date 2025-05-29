@@ -1,6 +1,6 @@
 ---
-title: 'Richtlinien für Design-Reviews'
-description: 'Dieses Dokument erklärt die Richtlinien für Design-Reviews des V8-Projekts.'
+title: "Richtlinien für Design-Reviews"
+description: "Dieses Dokument erklärt die Richtlinien für Design-Reviews des V8-Projekts."
 ---
 Bitte stellen Sie sicher, dass Sie die folgenden Richtlinien befolgen, sofern anwendbar.
 

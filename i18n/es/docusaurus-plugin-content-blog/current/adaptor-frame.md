@@ -1,13 +1,13 @@
 ---
-title: 'Llamadas más rápidas en JavaScript'
-author: '[Victor Gomes](https://twitter.com/VictorBFG), el destructor de marcos'
+title: "Llamadas más rápidas en JavaScript"
+author: "[Victor Gomes](https://twitter.com/VictorBFG), el destructor de marcos"
 avatars:
-  - 'victor-gomes'
+  - "victor-gomes"
 date: 2021-02-15
 tags:
   - internals
-description: 'Llamadas más rápidas en JavaScript eliminando el marco adaptador de argumentos'
-tweet: '1361337569057865735'
+description: "Llamadas más rápidas en JavaScript eliminando el marco adaptador de argumentos"
+tweet: "1361337569057865735"
 ---
 
 JavaScript permite llamar a una función con un número de argumentos diferente al número esperado de parámetros; es decir, se pueden pasar menos o más argumentos de los parámetros formales declarados. El primer caso se llama subaplicación y el segundo se llama sobreaplicación.

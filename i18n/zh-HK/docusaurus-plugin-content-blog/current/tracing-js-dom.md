@@ -1,16 +1,16 @@
 ---
-title: '從 JavaScript 到 DOM 並回溯的追蹤'
-author: 'Ulan Degenbaev、Alexei Filippov、Michael Lippautz 和 Hannes Payer —— DOM 的合作夥伴'
+title: "從 JavaScript 到 DOM 並回溯的追蹤"
+author: "Ulan Degenbaev、Alexei Filippov、Michael Lippautz 和 Hannes Payer —— DOM 的合作夥伴"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2018-03-01 13:33:37
 tags:
   - internals
   - memory
-description: 'Chrome 的 DevTools 現在可以追蹤並快照 C++ DOM 物件，並顯示所有從 JavaScript 可達的 DOM 物件及其引用。'
-tweet: '969184997545562112'
+description: "Chrome 的 DevTools 現在可以追蹤並快照 C++ DOM 物件，並顯示所有從 JavaScript 可達的 DOM 物件及其引用。"
+tweet: "969184997545562112"
 ---
 在 Chrome 66 中調試記憶體洩漏變得更容易。Chrome 的 DevTools 現在可以追蹤並快照 C++ DOM 物件，並顯示所有從 JavaScript 可達的 DOM 物件及其引用。這項功能是新 V8 垃圾回收器的 C++ 追蹤機制的一項優勢。
 

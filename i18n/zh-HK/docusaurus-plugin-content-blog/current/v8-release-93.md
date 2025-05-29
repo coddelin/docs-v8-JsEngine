@@ -1,13 +1,13 @@
 ---
-title: 'V8 發佈 v9.3'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "V8 發佈 v9.3"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-08-09
 tags:
  - 發佈
-description: 'V8 發佈 v9.3 帶來了 Object.hasOwn 和 Error cause 的支援，改進了編譯效能，並在 Android 上禁用了不受信任的程式碼生成緩解措施。'
-tweet: ''
+description: "V8 發佈 v9.3 帶來了 Object.hasOwn 和 Error cause 的支援，改進了編譯效能，並在 Android 上禁用了不受信任的程式碼生成緩解措施。"
+tweet: ""
 ---
 每隔六週，我們會根據我們的[發佈流程](https://v8.dev/docs/release-process)創建一個新的 V8 分支。每個版本都是在 Chrome Beta 里程碑之前從 V8 的主 Git 分支分離出來。今天我們很高興地宣佈我們最新的分支，[V8 版本 9.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.3)，該版本目前處於測試版本，直到幾週後與 Chrome 93 Stable 一起發佈。V8 v9.3 包含了各種面向開發者的全新功能。本篇文章將預覽一些期待中的亮點。
 

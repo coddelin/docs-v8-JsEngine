@@ -1,14 +1,14 @@
 ---
-title: 'Propiedades de reposo y propagación de objetos'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Propiedades de reposo y propagación de objetos"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-06-06
 tags:
   - ECMAScript
   - ES2018
-description: 'Este artículo explica cómo funcionan las propiedades de reposo y propagación de objetos en JavaScript, y revisa los elementos de reposo y propagación de arrays.'
-tweet: '890269994688315394'
+description: "Este artículo explica cómo funcionan las propiedades de reposo y propagación de objetos en JavaScript, y revisa los elementos de reposo y propagación de arrays."
+tweet: "890269994688315394"
 ---
 Antes de discutir _propiedades de reposo y propagación de objetos_, hagamos un viaje al pasado y recordemos una característica muy similar.
 

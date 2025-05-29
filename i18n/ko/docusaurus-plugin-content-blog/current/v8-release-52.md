@@ -1,10 +1,10 @@
 ---
-title: 'V8 릴리즈 v5.2'
-author: 'V8 팀'
+title: "V8 릴리즈 v5.2"
+author: "V8 팀"
 date: 2016-06-04 13:33:37
 tags:
   - 릴리즈
-description: 'V8 v5.2에는 ES2016 언어 기능 지원이 포함되어 있습니다.'
+description: "V8 v5.2에는 ES2016 언어 기능 지원이 포함되어 있습니다."
 ---
 약 6주마다 [릴리즈 프로세스](/docs/release-process)의 일환으로 V8의 새 브랜치를 생성합니다. 각 버전은 Chrome이 Chrome Beta 마일스톤을 위한 브랜치를 분기하기 직전에 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 최신 브랜치인 [V8 버전 5.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.2)를 발표하게 되어 기쁩니다. 이 브랜치는 Chrome 52 안정 버전과 협력하여 릴리즈될 때까지 베타 상태에 있을 것입니다. V8 5.2는 개발자에게 유용한 다양한 기능으로 가득 차 있으므로 몇 주 후에 릴리즈를 기대하며 몇 가지 주요 내용을 미리 소개해 드리고자 합니다.
 

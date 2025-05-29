@@ -1,6 +1,6 @@
 ---
-title: 'Node.js統合ビルドがCLで壊れた場合の対処方法'
-description: 'このドキュメントは、CLがNode.js統合ビルドを壊した場合の対処方法を説明します。'
+title: "Node.js統合ビルドがCLで壊れた場合の対処方法"
+description: "このドキュメントは、CLがNode.js統合ビルドを壊した場合の対処方法を説明します。"
 ---
 [Node.js](https://github.com/nodejs/node)はV8の安定版またはベータ版を使用しています。追加の統合のため、V8チームはV8の[メインブランチ](https://chromium.googlesource.com/v8/v8/+/refs/heads/main)、つまり今日のV8バージョンでNodeをビルドします。我々は[Linux](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Linux64)用の統合ボットを提供しており、[Windows](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Win64)および[Mac](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Mac64)用は現在準備中です。
 

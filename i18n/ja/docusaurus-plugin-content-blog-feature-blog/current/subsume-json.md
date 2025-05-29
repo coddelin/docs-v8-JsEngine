@@ -1,13 +1,13 @@
 ---
-title: 'JSONをECMAScriptの部分集合として統合する（Subsume JSON a.k.a. JSON ⊂ ECMAScript）'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "JSONをECMAScriptの部分集合として統合する（Subsume JSON a.k.a. JSON ⊂ ECMAScript）"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-08-14
 tags:
   - ES2019
-description: 'JSONは現在、ECMAScriptの構文的部分集合になりました。'
-tweet: '1161649929904885762'
+description: "JSONは現在、ECMAScriptの構文的部分集合になりました。"
+tweet: "1161649929904885762"
 ---
 [_JSON ⊂ ECMAScript_ 提案](https://github.com/tc39/proposal-json-superset)により、JSONはECMAScriptの構文的部分集合となりました。これがすでにそうでなかったことに驚いたなら、あなたは一人ではありません！
 

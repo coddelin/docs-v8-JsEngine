@@ -1,15 +1,15 @@
 ---
-title: 'RegExp `v` 플래그와 집합 표기법 및 문자열 속성'
-author: 'Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer, 그리고 Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "RegExp `v` 플래그와 집합 표기법 및 문자열 속성"
+author: "Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer, 그리고 Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mark-davis'
-  - 'markus-scherer'
-  - 'mathias-bynens'
+  - "mark-davis"
+  - "markus-scherer"
+  - "mathias-bynens"
 date: 2022-06-27
 tags:
   - ECMAScript
-description: '새로운 RegExp `v` 플래그는 `unicodeSets` 모드를 활성화하여 확장된 문자 클래스, 유니코드 문자열 속성, 집합 표기법 및 향상된 대소문자 무시 매칭을 지원합니다.'
-tweet: '1541419838513594368'
+description: "새로운 RegExp `v` 플래그는 `unicodeSets` 모드를 활성화하여 확장된 문자 클래스, 유니코드 문자열 속성, 집합 표기법 및 향상된 대소문자 무시 매칭을 지원합니다."
+tweet: "1541419838513594368"
 ---
 JavaScript는 ECMAScript 3 (1999)부터 정규 표현식을 지원했습니다. 16년 후, ES2015는 [유니코드 모드 (`u` 플래그)](https://mathiasbynens.be/notes/es6-unicode-regex), [스티키 모드 (`y` 플래그)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky#description), 그리고 [`RegExp.prototype.flags` 게터](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/flags)를 도입했습니다. 또 3년 뒤, ES2018은 [`dotAll` 모드 (`s` 플래그)](https://mathiasbynens.be/notes/es-regexp-proposals#dotAll), [후행 어설션](https://mathiasbynens.be/notes/es-regexp-proposals#lookbehinds), [명명된 캡처 그룹](https://mathiasbynens.be/notes/es-regexp-proposals#named-capture-groups) 및 [유니코드 문자 속성 이스케이프](https://mathiasbynens.be/notes/es-unicode-property-escapes)를 도입했습니다. ES2020에서는 [`String.prototype.matchAll`](https://v8.dev/features/string-matchall)이 정규 표현식을 다루는 데 더 쉽도록 만들어졌습니다. JavaScript 정규 표현식은 많은 발전을 이루었고, 여전히 진화하고 있습니다.
 

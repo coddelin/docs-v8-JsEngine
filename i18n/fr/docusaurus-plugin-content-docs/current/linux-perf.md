@@ -1,5 +1,5 @@
 ---
-title: 'Intégration de `perf` de V8 sous Linux'
+title: "Intégration de `perf` de V8 sous Linux"
 description: 'Ce document explique comment analyser les performances du code JIT de V8 avec l'outil `perf` de Linux.'
 ---
 V8 prend en charge l'outil `perf` de Linux en natif. Cela est activé via les options de ligne de commande `--perf-prof`.

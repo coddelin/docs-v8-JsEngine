@@ -1,6 +1,6 @@
 ---
-title: 'Zusammenführen & Patchen'
-description: 'Dieses Dokument erklärt, wie V8-Patches in einen Release-Zweig zusammengeführt werden.'
+title: "Zusammenführen & Patchen"
+description: "Dieses Dokument erklärt, wie V8-Patches in einen Release-Zweig zusammengeführt werden."
 ---
 Wenn Sie einen Patch für den `main`-Zweig haben (z. B. einen wichtigen Fehlerbehebungs-Patch), der in einen der V8-Release-Zweige (refs/branch-heads/12.5) zusammengeführt werden muss, lesen Sie weiter.
 

@@ -1,6 +1,6 @@
 ---
-title: 'Sparkplug — un compilador de JavaScript no optimizante'
-author: '[Leszek Swirski](https://twitter.com/leszekswirski) — quizás no la chispa más brillante, pero al menos la más rápida'
+title: "Sparkplug — un compilador de JavaScript no optimizante"
+author: "[Leszek Swirski](https://twitter.com/leszekswirski) — quizás no la chispa más brillante, pero al menos la más rápida"
 avatars:
   - leszek-swirski
 date: 2021-05-27
@@ -9,8 +9,8 @@ tags:
 extra_links:
   - href: https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap
     rel: stylesheet
-description: 'En V8 v9.1 estamos mejorando el rendimiento de V8 entre un 5–15% con Sparkplug: un nuevo compilador de JavaScript no optimizante.'
-tweet: '1397945205198835719'
+description: "En V8 v9.1 estamos mejorando el rendimiento de V8 entre un 5–15% con Sparkplug: un nuevo compilador de JavaScript no optimizante."
+tweet: "1397945205198835719"
 ---
 
 <!-- markdownlint-capture -->

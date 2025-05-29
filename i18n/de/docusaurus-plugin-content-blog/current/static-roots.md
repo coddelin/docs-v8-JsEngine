@@ -1,13 +1,13 @@
 ---
-title: 'Statische Wurzeln: Objekte mit zur Kompilierungszeit konstanten Adressen'
-author: 'Olivier Flückiger'
+title: "Statische Wurzeln: Objekte mit zur Kompilierungszeit konstanten Adressen"
+author: "Olivier Flückiger"
 avatars:
   - olivier-flueckiger
 date: 2024-02-05
 tags:
   - JavaScript
 description: "Statische Wurzeln machen die Adressen bestimmter JS-Objekte zu einer zur Kompilierungszeit konstanten Größe."
-tweet: ''
+tweet: ""
 ---
 
 Haben Sie sich jemals gefragt, woher `undefined`, `true` und andere zentrale JavaScript-Objekte stammen? Diese Objekte sind die Atome eines jeden benutzerdefinierten Objekts und müssen zuerst vorhanden sein. V8 nennt sie unbewegliche, unveränderliche Wurzeln, und sie befinden sich in ihrem eigenen Heap – dem schreibgeschützten Heap. Da sie ständig verwendet werden, ist ein schneller Zugriff entscheidend. Und was könnte schneller sein, als ihre Speicheradresse zur Kompilierungszeit korrekt zu erraten?

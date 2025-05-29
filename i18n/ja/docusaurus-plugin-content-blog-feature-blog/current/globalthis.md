@@ -1,16 +1,16 @@
 ---
-title: 'globalThis'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "globalThis"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-07-16
 tags:
   - ECMAScript
   - ES2020
   - Node.js 12
   - io19
-description: 'globalThisは、スクリプトの目標に関係なく、任意のJavaScript環境でグローバルthisにアクセスするための統一されたメカニズムを導入します。'
-tweet: '1151140681374547969'
+description: "globalThisは、スクリプトの目標に関係なく、任意のJavaScript環境でグローバルthisにアクセスするための統一されたメカニズムを導入します。"
+tweet: "1151140681374547969"
 ---
 もし以前にWebブラウザで使用するJavaScriptを書いたことがあるなら、グローバル`this`にアクセスするために`window`を使用した可能性があります。Node.jsでは、`global`を使ったことがあるかもしれません。どちらの環境でも動作するコードを書く場合、利用可能なものを検出して使用してきたかもしれませんが、サポートする環境とユースケースの数が増えるごとにチェックすべき識別子のリストは増加します。それはすぐに管理ができなくなります：
 

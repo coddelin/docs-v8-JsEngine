@@ -1,8 +1,8 @@
 ---
-title: 'Быстрый `for`-`in` в V8'
-author: 'Камилло Бруни ([@camillobruni](http://twitter.com/camillobruni))'
+title: "Быстрый `for`-`in` в V8"
+author: "Камилло Бруни ([@camillobruni](http://twitter.com/camillobruni))"
 avatars:
-  - 'camillo-bruni'
+  - "camillo-bruni"
 date: 2017-03-01 13:33:37
 tags:
   - internals

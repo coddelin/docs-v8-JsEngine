@@ -1,6 +1,6 @@
 ---
-title: 'V8-Tracing'
-description: 'Dieses Dokument erklärt, wie man die in V8 integrierte Tracing-Unterstützung nutzt.'
+title: "V8-Tracing"
+description: "Dieses Dokument erklärt, wie man die in V8 integrierte Tracing-Unterstützung nutzt."
 ---
 V8 bietet Unterstützung für Tracing. Es [funktioniert automatisch, wenn V8 über das Chrome-Tracing-System in Chrome eingebettet ist](/docs/rcs). Sie können es jedoch auch in einem eigenständigen V8 oder innerhalb eines Embedders, der die Standardplattform verwendet, aktivieren. Weitere Details über den Trace-Viewer finden Sie [hier](https://github.com/catapult-project/catapult/blob/master/tracing/README.md).
 

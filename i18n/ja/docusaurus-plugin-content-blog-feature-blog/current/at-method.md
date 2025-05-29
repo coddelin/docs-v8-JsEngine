@@ -1,12 +1,12 @@
 ---
-title: '`at`メソッドで相対インデックスアクセス'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "`at`メソッドで相対インデックスアクセス"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2021-07-13
 tags:
   - ECMAScript
-description: 'JavaScriptは、配列、TypedArray、および文字列に対する相対インデックスメソッドを導入しました。'
+description: "JavaScriptは、配列、TypedArray、および文字列に対する相対インデックスメソッドを導入しました。"
 ---
 
 新しい`at`メソッドは、`Array.prototype`、各種TypedArrayプロトタイプ、そして`String.prototype`に追加され、コレクションの末尾付近にある要素に簡潔かつ簡単にアクセスできるようになります。

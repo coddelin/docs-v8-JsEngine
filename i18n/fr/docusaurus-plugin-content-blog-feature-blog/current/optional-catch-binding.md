@@ -1,14 +1,14 @@
 ---
-title: 'Variable `catch` facultative'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Variable `catch` facultative"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-03-27
 tags:
   - ECMAScript
   - ES2019
-description: 'En ES2019, catch peut maintenant être utilisé sans paramètre.'
-tweet: '956209997808939008'
+description: "En ES2019, catch peut maintenant être utilisé sans paramètre."
+tweet: "956209997808939008"
 ---
 La clause `catch` des instructions `try` nécessitait un paramètre :
 

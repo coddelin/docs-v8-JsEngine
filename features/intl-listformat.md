@@ -1,16 +1,16 @@
 ---
-title: '`Intl.ListFormat`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)) and Frank Yung-Fong Tang'
+title: "`Intl.ListFormat`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)) and Frank Yung-Fong Tang"
 avatars:
-  - 'mathias-bynens'
-  - 'frank-tang'
+  - "mathias-bynens"
+  - "frank-tang"
 date: 2018-12-18
 tags:
   - Intl
   - Node.js 12
   - io19
-description: 'The Intl.ListFormat API enables localized formatting of lists without sacrificing performance.'
-tweet: '1074966915557351424'
+description: "The Intl.ListFormat API enables localized formatting of lists without sacrificing performance."
+tweet: "1074966915557351424"
 ---
 Modern web applications often use lists consisting of dynamic data. For example, a photo viewer app might display something like:
 

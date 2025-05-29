@@ -1,15 +1,15 @@
 ---
-title: 'Assignation logique'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "Assignation logique"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2020-05-07
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
 description: 'JavaScript prend désormais en charge l'assignation combinée avec des opérations logiques.'
-tweet: '1258387483823345665'
+tweet: "1258387483823345665"
 ---
 JavaScript prend en charge une gamme d'[opérateurs d'assignation combinés](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators) permettant aux programmeurs d'exprimer succinctement une opération binaire avec assignation. Actuellement, seules les opérations mathématiques ou binaires sont prises en charge.
 

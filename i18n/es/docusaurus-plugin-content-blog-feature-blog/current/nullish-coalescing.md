@@ -1,14 +1,14 @@
 ---
-title: 'Coalescencia nula'
-author: 'Justin Ridgewell'
+title: "Coalescencia nula"
+author: "Justin Ridgewell"
 avatars:
-  - 'justin-ridgewell'
+  - "justin-ridgewell"
 date: 2019-09-17
 tags:
   - ECMAScript
   - ES2020
-description: 'El operador de coalescencia nula de JavaScript permite expresiones predeterminadas más seguras.'
-tweet: '1173971116865523714'
+description: "El operador de coalescencia nula de JavaScript permite expresiones predeterminadas más seguras."
+tweet: "1173971116865523714"
 ---
 La [propuesta de coalescencia nula](https://github.com/tc39/proposal-nullish-coalescing/) (`??`) agrega un nuevo operador de cortocircuito destinado a manejar valores predeterminados.
 

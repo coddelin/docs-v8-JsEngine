@@ -1,10 +1,10 @@
 ---
-title: 'V8发布v4.7'
-author: 'V8团队'
+title: "V8发布v4.7"
+author: "V8团队"
 date: 2015-10-14 13:33:37
 tags:
   - 发布
-description: 'V8 v4.7减少了内存消耗，并支持新的ES2015语言特性。'
+description: "V8 v4.7减少了内存消耗，并支持新的ES2015语言特性。"
 ---
 大约每六周，我们根据[发布流程](https://v8.dev/docs/release-process)为V8创建一个新的分支。每个版本都从V8的Git主分支中分离出来，时间正好在Chrome分支进入Chrome Beta里程碑之前。今天我们很高兴宣布我们的最新分支，[V8版本4.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.7)，它将处于测试阶段，直到与Chrome 47稳定版协调发布为止。V8 v4.7包含各种面向开发者的功能，因此为了迎接几周后的正式发布，我们想介绍一些亮点。
 

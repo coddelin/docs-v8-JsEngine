@@ -1,6 +1,6 @@
 ---
-title: '可変ヒープ数でV8をターボチャージ'
-author: '[Victor Gomes](https://twitter.com/VictorBFG)、ビットシフター'
+title: "可変ヒープ数でV8をターボチャージ"
+author: "[Victor Gomes](https://twitter.com/VictorBFG)、ビットシフター"
 avatars:
   - victor-gomes
 date: 2025-02-25
@@ -9,7 +9,7 @@ tags:
   - ベンチマーク
   - 内部構造
 description: "スクリプトコンテキストに可変ヒープ数を追加"
-tweet: ''
+tweet: ""
 ---
 
 V8では、JavaScriptのパフォーマンス向上に常に努めています。この努力の一環として、最近[JetStream2](https://browserbench.org/JetStream2.1/)のベンチマークスイートを見直し、パフォーマンスの問題を解消しました。この投稿では、`async-fs`ベンチマークで大幅な`2.5倍`の改善を達成し、全体スコアに著しい向上をもたらした特定の最適化について詳しく説明します。この最適化はベンチマークから着想を得ましたが、[実際のコード](https://github.com/WebAssembly/binaryen/blob/3339c1f38da5b68ce8bf410773fe4b5eee451ab8/scripts/fuzz_shell.js#L248)でも類似のパターンが見られます。

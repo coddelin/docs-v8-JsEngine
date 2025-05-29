@@ -1,6 +1,6 @@
 ---
-title: 'Usando el perfilador basado en muestras de V8'
-description: 'Este documento explica cómo usar el perfilador basado en muestras de V8.'
+title: "Usando el perfilador basado en muestras de V8"
+description: "Este documento explica cómo usar el perfilador basado en muestras de V8."
 ---
 V8 tiene un perfilador integrado basado en muestras. El perfilador está desactivado por defecto, pero puede activarse con la opción de línea de comandos `--prof`. El muestreador registra las pilas de código JavaScript y C/C++.
 

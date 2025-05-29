@@ -1,10 +1,10 @@
 ---
-title: 'V8 릴리스 v5.9'
-author: 'V8 팀'
+title: "V8 릴리스 v5.9"
+author: "V8 팀"
 date: 2017-04-27 13:33:37
 tags:
   - release
-description: 'V8 v5.9는 새로운 Ignition + TurboFan 파이프라인을 포함하며, 모든 플랫폼에서 WebAssembly TrapIf 지원을 추가합니다.'
+description: "V8 v5.9는 새로운 Ignition + TurboFan 파이프라인을 포함하며, 모든 플랫폼에서 WebAssembly TrapIf 지원을 추가합니다."
 ---
 매 6주마다 우리는 [릴리스 프로세스](/docs/release-process)의 일환으로 V8의 새 브랜치를 만듭니다. 각 버전은 Chrome Beta 마일스톤 직전에 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 우리의 최신 브랜치, [V8 버전 5.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.9)를 발표하게 되어 기쁩니다. 이 버전은 몇 주 후 Chrome 59 Stable과 함께 릴리스될 때까지 베타 상태에 있습니다. V8 5.9는 개발자 친화적 기능들로 가득 차 있습니다. 릴리스를 기대하며 몇 가지 주요 사항을 미리 살펴보겠습니다.
 

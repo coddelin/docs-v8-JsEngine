@@ -1,13 +1,13 @@
 ---
-title: 'JavaScriptコードカバレッジ'
-author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
+title: "JavaScriptコードカバレッジ"
+author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2017-12-13 13:33:37
 tags:
   - internals
-description: 'V8がJavaScriptコードカバレッジのネイティブサポートを提供。ツールはコードを計測することなくV8のカバレッジ情報にアクセス可能です！'
-tweet: '940879905079873536'
+description: "V8がJavaScriptコードカバレッジのネイティブサポートを提供。ツールはコードを計測することなくV8のカバレッジ情報にアクセス可能です！"
+tweet: "940879905079873536"
 ---
 コードカバレッジは、アプリケーションの特定部分が実行されたかどうか、必要に応じてどれくらい頻繁に実行されたかについての情報を提供します。テストスイートが特定のコードベースをどれほど徹底的に試験しているかを判断するために一般的に使用されます。
 

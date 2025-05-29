@@ -1,6 +1,6 @@
 ---
-title: 'Manuseio de portas'
-description: 'Este documento descreve como as portas específicas de arquitetura no V8 devem ser manuseadas.'
+title: "Manuseio de portas"
+description: "Este documento descreve como as portas específicas de arquitetura no V8 devem ser manuseadas."
 ---
 Este documento descreve como as portas devem ser manuseadas.
 

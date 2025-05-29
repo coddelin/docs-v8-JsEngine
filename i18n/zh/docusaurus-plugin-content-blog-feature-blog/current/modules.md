@@ -1,15 +1,15 @@
 ---
-title: 'JavaScript 模块'
-author: 'Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "JavaScript 模块"
+author: "Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-- 'addy-osmani'
-- 'mathias-bynens'
+- "addy-osmani"
+- "mathias-bynens"
 date: 2018-06-18
 tags:
   - ECMAScript
   - ES2015
-description: '本文解释了如何使用 JavaScript 模块、如何合理地部署它们，以及 Chrome 团队如何努力在未来使模块更加完善。'
-tweet: '1008725884575109120'
+description: "本文解释了如何使用 JavaScript 模块、如何合理地部署它们，以及 Chrome 团队如何努力在未来使模块更加完善。"
+tweet: "1008725884575109120"
 ---
 JavaScript 模块现在已经在[所有主流浏览器中支持](https://caniuse.com/#feat=es6-module)！
 

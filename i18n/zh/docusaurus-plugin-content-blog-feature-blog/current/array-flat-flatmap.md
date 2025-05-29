@@ -1,15 +1,15 @@
 ---
-title: '`Array.prototype.flat` 和 `Array.prototype.flatMap`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Array.prototype.flat` 和 `Array.prototype.flatMap`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-11
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: 'Array.prototype.flat 可以根据指定的深度扁平化数组。Array.prototype.flatMap 相当于先 map 再单独 flat 的结合体。'
-tweet: '1138457106380709891'
+description: "Array.prototype.flat 可以根据指定的深度扁平化数组。Array.prototype.flatMap 相当于先 map 再单独 flat 的结合体。"
+tweet: "1138457106380709891"
 ---
 ## `Array.prototype.flat`
 

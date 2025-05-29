@@ -1,14 +1,14 @@
 ---
-title: 'Symbol.prototype.description'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Symbol.prototype.description"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-25
 tags:
   - ECMAScript
   - ES2019
-description: 'Symbol.prototype.description은 Symbol의 설명을 접근하는 데 있어 편리한 방법을 제공합니다.'
-tweet: '1143432835665211394'
+description: "Symbol.prototype.description은 Symbol의 설명을 접근하는 데 있어 편리한 방법을 제공합니다."
+tweet: "1143432835665211394"
 ---
 JavaScript `Symbol`은 생성 시 설명을 제공할 수 있습니다:
 

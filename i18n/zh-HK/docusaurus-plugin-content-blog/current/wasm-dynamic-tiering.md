@@ -1,13 +1,13 @@
 ---
-title: 'WebAssembly 動態分層可於 Chrome 96 試用'
-author: 'Andreas Haas — 有趣的階層'
+title: "WebAssembly 動態分層可於 Chrome 96 試用"
+author: "Andreas Haas — 有趣的階層"
 avatars:
   - andreas-haas
 date: 2021-10-29
 tags:
   - WebAssembly
-description: 'WebAssembly 動態分層可於 V8 v9.6 和 Chrome 96 試用，可透過命令行標誌或來源試驗進行'
-tweet: '1454158971674271760'
+description: "WebAssembly 動態分層可於 V8 v9.6 和 Chrome 96 試用，可透過命令行標誌或來源試驗進行"
+tweet: "1454158971674271760"
 ---
 
 V8 有兩個編譯器用於將 WebAssembly 程式碼編譯為可執行的機器代碼：基線編譯器 __Liftoff__ 和優化編譯器 __TurboFan__。Liftoff 能比 TurboFan 更快地生成代碼，從而提供快速的啟動時間。而 TurboFan 則生成更快的代碼，從而實現高峰性能。

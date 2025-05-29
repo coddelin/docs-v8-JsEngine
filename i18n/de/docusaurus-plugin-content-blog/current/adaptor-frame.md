@@ -1,13 +1,13 @@
 ---
-title: 'Schnellere JavaScript-Aufrufe'
-author: '[Victor Gomes](https://twitter.com/VictorBFG), der Frame-Zerkleinerer'
+title: "Schnellere JavaScript-Aufrufe"
+author: "[Victor Gomes](https://twitter.com/VictorBFG), der Frame-Zerkleinerer"
 avatars:
-  - 'victor-gomes'
+  - "victor-gomes"
 date: 2021-02-15
 tags:
   - internals
-description: 'Schnellere JavaScript-Aufrufe durch Entfernen des Argument-Adaptor-Frames'
-tweet: '1361337569057865735'
+description: "Schnellere JavaScript-Aufrufe durch Entfernen des Argument-Adaptor-Frames"
+tweet: "1361337569057865735"
 ---
 
 JavaScript ermöglicht das Aufrufen einer Funktion mit einer anderen Anzahl von Argumenten als der erwarteten Parameteranzahl, d. h., man kann weniger oder mehr Argumente übergeben als die deklarierten formalen Parameter. Der erste Fall wird als Unteranwendung und der zweite als Überanwendung bezeichnet.

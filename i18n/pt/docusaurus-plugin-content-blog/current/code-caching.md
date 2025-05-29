@@ -1,12 +1,12 @@
 ---
-title: 'Cache de código'
-author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed)), Engenheiro de Software'
+title: "Cache de código"
+author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), Engenheiro de Software"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2015-07-27 13:33:37
 tags:
   - internos
-description: 'O V8 agora suporta (byte)cache de código, ou seja, armazenar em cache o resultado do parsing + compilação do JavaScript.'
+description: "O V8 agora suporta (byte)cache de código, ou seja, armazenar em cache o resultado do parsing + compilação do JavaScript."
 ---
 O V8 utiliza [compilação em tempo de execução](https://en.wikipedia.org/wiki/Just-in-time_compilation) (JIT) para executar código JavaScript. Isso significa que, imediatamente antes de executar um script, ele precisa ser analisado e compilado — o que pode causar uma sobrecarga considerável. Como [anunciamos recentemente](https://blog.chromium.org/2015/03/new-javascript-techniques-for-rapid.html), o cache de código é uma técnica que reduz essa sobrecarga. Quando um script é compilado pela primeira vez, os dados de cache são gerados e armazenados. Na próxima vez que o V8 precisar compilar o mesmo script, mesmo em uma instância diferente do V8, ele pode usar os dados do cache para recriar o resultado da compilação, em vez de compilar do zero. Como resultado, o script é executado muito mais rapidamente.
 

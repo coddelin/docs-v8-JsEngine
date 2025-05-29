@@ -1,11 +1,11 @@
 ---
-title: '弱引用和终结器'
-author: 'Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), and Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))'
+title: "弱引用和终结器"
+author: "Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), and Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))"
 avatars:
-- 'sathya-gunasekaran'
-- 'mathias-bynens'
-- 'shu-yu-guo'
-- 'leszek-swirski'
+- "sathya-gunasekaran"
+- "mathias-bynens"
+- "shu-yu-guo"
+- "leszek-swirski"
 date: 2019-07-09
 updated: 2020-06-19
 tags:
@@ -13,8 +13,8 @@ tags:
   - ES2021
   - io19
   - Node.js 14
-description: '弱引用和终结器即将在 JavaScript 中实现！本文解释了这一新功能。'
-tweet: '1148603966848151553'
+description: "弱引用和终结器即将在 JavaScript 中实现！本文解释了这一新功能。"
+tweet: "1148603966848151553"
 ---
 一般来说，JavaScript 中对象的引用是_强引用_，这意味着只要你有对对象的引用，它就不会被垃圾回收。
 

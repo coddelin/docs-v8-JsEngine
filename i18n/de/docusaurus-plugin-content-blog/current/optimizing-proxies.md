@@ -1,15 +1,15 @@
 ---
-title: 'Optimierung von ES2015-Proxys in V8'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), Optimierer von Proxys'
+title: "Optimierung von ES2015-Proxys in V8"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), Optimierer von Proxys"
 avatars:
-  - 'maya-armyanova'
+  - "maya-armyanova"
 date: 2017-10-05 13:33:37
 tags:
   - ECMAScript
   - Benchmarks
   - Interna
-description: 'Dieser Artikel erklärt, wie V8 die Leistung von JavaScript-Proxys verbessert hat.'
-tweet: '915846050447003648'
+description: "Dieser Artikel erklärt, wie V8 die Leistung von JavaScript-Proxys verbessert hat."
+tweet: "915846050447003648"
 ---
 Proxys sind seit ES2015 ein integraler Bestandteil von JavaScript. Sie ermöglichen das Abfangen grundlegender Operationen an Objekten und die Anpassung ihres Verhaltens. Proxys sind ein Kernbestandteil von Projekten wie [jsdom](https://github.com/tmpvar/jsdom) und der [Comlink RPC-Bibliothek](https://github.com/GoogleChrome/comlink). Kürzlich haben wir viel Aufwand in die Verbesserung der Leistung von Proxys in V8 investiert. Dieser Artikel beleuchtet allgemeine Muster zur Leistungsverbesserung in V8 und speziell für Proxys.
 

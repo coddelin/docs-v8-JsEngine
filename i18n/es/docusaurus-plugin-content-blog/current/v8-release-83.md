@@ -1,13 +1,13 @@
 ---
-title: 'Lanzamiento de V8 v8.3'
-author: '[Victor Gomes](https://twitter.com/VictorBFG), trabajando de forma segura desde casa'
+title: "Lanzamiento de V8 v8.3"
+author: "[Victor Gomes](https://twitter.com/VictorBFG), trabajando de forma segura desde casa"
 avatars:
- - 'victor-gomes'
+ - "victor-gomes"
 date: 2020-05-04
 tags:
  - lanzamiento
-description: 'V8 v8.3 presenta búferes de array más rápidos, memorias Wasm más grandes y API en desuso.'
-tweet: '1257333120115847171'
+description: "V8 v8.3 presenta búferes de array más rápidos, memorias Wasm más grandes y API en desuso."
+tweet: "1257333120115847171"
 ---
 
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](https://v8.dev/docs/release-process). Cada versión se deriva del maestro Git de V8 inmediatamente antes de un hito Beta de Chrome. Hoy nos complace anunciar nuestra rama más reciente, [V8 versión 8.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.3), que estará en beta hasta su lanzamiento en coordinación con Chrome 83 Stable en varias semanas. V8 v8.3 está lleno de todo tipo de novedades orientadas a desarrolladores. Este artículo ofrece un adelanto de algunos de los aspectos destacados en anticipación al lanzamiento.

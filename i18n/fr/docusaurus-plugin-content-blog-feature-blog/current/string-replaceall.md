@@ -1,15 +1,15 @@
 ---
-title: '`String.prototype.replaceAll`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`String.prototype.replaceAll`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-11-11
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: 'Le JavaScript prend désormais en charge le remplacement global de sous-chaînes grâce à la nouvelle API `String.prototype.replaceAll`.'
-tweet: '1193917549060280320'
+description: "Le JavaScript prend désormais en charge le remplacement global de sous-chaînes grâce à la nouvelle API `String.prototype.replaceAll`."
+tweet: "1193917549060280320"
 ---
 Si vous avez déjà travaillé avec des chaînes de caractères en JavaScript, il y a de fortes chances que vous ayez rencontré la méthode `String#replace`. `String.prototype.replace(searchValue, replacement)` renvoie une chaîne avec certains correspondances remplacées, en fonction des paramètres que vous spécifiez :
 

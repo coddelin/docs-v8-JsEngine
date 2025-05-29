@@ -1,12 +1,12 @@
 ---
-title: '빠른 `for`-`in` V8'
-author: 'Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))'
+title: "빠른 `for`-`in` V8"
+author: "Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))"
 avatars:
-  - 'camillo-bruni'
+  - "camillo-bruni"
 date: 2017-03-01 13:33:37
 tags:
   - internals
-description: '이 기술적인 심층 다이브는 V8이 JavaScript의 for-in을 가능한 한 빠르게 만든 방법을 설명합니다.'
+description: "이 기술적인 심층 다이브는 V8이 JavaScript의 for-in을 가능한 한 빠르게 만든 방법을 설명합니다."
 ---
 `for`-`in`은 많은 프레임워크에서 널리 사용되는 언어 기능입니다. 그 보편성에도 불구하고, 구현 관점에서는 비교적 모호한 언어 구조 중 하나입니다. V8은 이 기능을 가능한 한 빠르게 만들기 위해 많은 노력을 기울였습니다. 지난 1년 동안, `for`-`in`은 완전히 사양을 준수하게 되었고 문맥에 따라 최대 3배 빨라졌습니다.
 

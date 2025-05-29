@@ -1,6 +1,6 @@
 ---
-title: '`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`'
-author: '[Marja Hölttä](https://twitter.com/marjakh), a non-blocking blogger'
+title: "`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`"
+author: "[Marja Hölttä](https://twitter.com/marjakh), a non-blocking blogger"
 avatars:
   - marja-holtta
 date: 2020-09-24
@@ -8,8 +8,8 @@ tags:
   - ECMAScript
   - ES2020
   - Node.js 16
-description: 'Atomics.wait and Atomics.notify are low-level synchronization primitives useful for implementing e.g. mutexes. Atomics.wait is only usable on worker threads. V8 version 8.7 now supports a non-blocking version, Atomics.waitAsync, which is also usable on the main thread.'
-tweet: '1309118447377358848'
+description: "Atomics.wait and Atomics.notify are low-level synchronization primitives useful for implementing e.g. mutexes. Atomics.wait is only usable on worker threads. V8 version 8.7 now supports a non-blocking version, Atomics.waitAsync, which is also usable on the main thread."
+tweet: "1309118447377358848"
 ---
 [`Atomics.wait`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/wait) and [`Atomics.notify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/notify) are low-level synchronization primitives useful for implementing mutexes and other means of synchronization. However, since `Atomics.wait` is blocking, it’s not possible to call it on the main thread (trying to do so throws a `TypeError`).
 

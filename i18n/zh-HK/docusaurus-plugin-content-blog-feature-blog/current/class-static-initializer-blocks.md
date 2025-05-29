@@ -1,13 +1,13 @@
 ---
-title: '類別靜態初始化區塊'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "類別靜態初始化區塊"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2021-03-30
 tags:
   - ECMAScript
-description: 'JavaScript 類別獲得用於靜態初始化的專用語法。'
-tweet: '1376925666780798989'
+description: "JavaScript 類別獲得用於靜態初始化的專用語法。"
+tweet: "1376925666780798989"
 ---
 新的類別靜態初始化區塊語法允許開發者將應該在某個類別定義中執行一次的代碼集中到一個地方。以下是一個示例，其中一個偽隨機數生成器使用靜態區塊在 `class MyPRNG` 定義被評估時初始化熵池一次。
 

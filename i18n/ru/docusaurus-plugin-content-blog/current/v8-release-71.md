@@ -1,13 +1,13 @@
 ---
-title: 'Релиз V8 версии 7.1'
-author: 'Штефан Херхут ([@herhut](https://twitter.com/herhut)), клонированный создатель клонов'
+title: "Релиз V8 версии 7.1"
+author: "Штефан Херхут ([@herhut](https://twitter.com/herhut)), клонированный создатель клонов"
 avatars:
   - stephan-herhut
 date: 2018-10-31 15:44:37
 tags:
   - релиз
-description: 'V8 версии 7.1 добавляет встроенные обработчики байткода, улучшенный анализ выхода TurboFan, postMessage(wasmModule), Intl.RelativeTimeFormat и globalThis!'
-tweet: '1057645773465235458'
+description: "V8 версии 7.1 добавляет встроенные обработчики байткода, улучшенный анализ выхода TurboFan, postMessage(wasmModule), Intl.RelativeTimeFormat и globalThis!"
+tweet: "1057645773465235458"
 ---
 Каждые шесть недель мы создаём новую ветку V8 в рамках нашего [процесса релизов](/docs/release-process). Каждая версия разветвляется из основного репозитория Git V8 сразу перед стадией Beta Chrome. Сегодня мы рады представить нашу новейшую ветку, [V8 версия 7.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.1), которая находится в стадии бета-тестирования до её выпуска вместе с Chrome 71 Stable через несколько недель. V8 v7.1 наполнен различными инструментами для разработчиков. В этом посте представлен обзор некоторых главных нововведений в ожидании релиза.
 

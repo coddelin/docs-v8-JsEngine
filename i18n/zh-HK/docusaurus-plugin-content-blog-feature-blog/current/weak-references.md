@@ -1,11 +1,11 @@
 ---
-title: '弱引用與終結器'
-author: 'Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), 和 Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))'
+title: "弱引用與終結器"
+author: "Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), 和 Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))"
 avatars:
-- 'sathya-gunasekaran'
-- 'mathias-bynens'
-- 'shu-yu-guo'
-- 'leszek-swirski'
+- "sathya-gunasekaran"
+- "mathias-bynens"
+- "shu-yu-guo"
+- "leszek-swirski"
 date: 2019-07-09
 updated: 2020-06-19
 tags:
@@ -13,8 +13,8 @@ tags:
   - ES2021
   - io19
   - Node.js 14
-description: '弱引用與終結器即將加入 JavaScript！本文將解釋這項新功能。'
-tweet: '1148603966848151553'
+description: "弱引用與終結器即將加入 JavaScript！本文將解釋這項新功能。"
+tweet: "1148603966848151553"
 ---
 通常，在 JavaScript 中對物件的引用是 _強引用_，這意味著只要你擁有對該物件的引用，它就不會被垃圾回收機制回收。
 

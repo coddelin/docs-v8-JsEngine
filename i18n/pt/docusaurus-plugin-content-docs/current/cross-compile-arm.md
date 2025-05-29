@@ -1,6 +1,6 @@
 ---
-title: 'Cross-compilation e depuração para ARM/Android'
-description: 'Este documento explica como cross-compilar o V8 para ARM/Android e como depurá-lo.'
+title: "Cross-compilation e depuração para ARM/Android"
+description: "Este documento explica como cross-compilar o V8 para ARM/Android e como depurá-lo."
 ---
 Primeiro, certifique-se de que você pode [compilar com GN](/docs/build-gn).
 

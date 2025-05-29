@@ -1,13 +1,13 @@
 ---
-title: 'Lanzamiento de V8 v8.9'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), esperando una llamada'
+title: "Lanzamiento de V8 v8.9"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), esperando una llamada"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-02-04
 tags:
  - lanzamiento
-description: 'El lanzamiento de V8 v8.9 trae mejoras de rendimiento para llamadas con desajuste en el tamaño de los argumentos.'
-tweet: '1357358418902802434'
+description: "El lanzamiento de V8 v8.9 trae mejoras de rendimiento para llamadas con desajuste en el tamaño de los argumentos."
+tweet: "1357358418902802434"
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](https://v8.dev/docs/release-process). Cada versión se ramifica desde el maestro de Git de V8 justo antes de un hito Beta de Chrome. Hoy nos complace anunciar nuestra rama más reciente, [V8 versión 8.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.9), que está en beta hasta su lanzamiento en coordinación con Chrome 89 Stable en varias semanas. V8 v8.9 está lleno de todo tipo de mejoras para los desarrolladores. Este artículo ofrece un adelanto de algunos de los aspectos destacados en anticipación al lanzamiento.
 

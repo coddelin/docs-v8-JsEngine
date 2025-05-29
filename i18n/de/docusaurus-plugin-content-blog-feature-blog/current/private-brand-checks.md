@@ -1,13 +1,13 @@
 ---
-title: 'Private-Markenüberprüfungen, alias `#foo in obj`'
-author: 'Marja Hölttä ([@marjakh](https://twitter.com/marjakh))'
+title: "Private-Markenüberprüfungen, alias `#foo in obj`"
+author: "Marja Hölttä ([@marjakh](https://twitter.com/marjakh))"
 avatars:
-  - 'marja-holtta'
+  - "marja-holtta"
 date: 2021-04-14
 tags:
   - ECMAScript
-description: 'Private-Markenüberprüfungen ermöglichen es, das Vorhandensein eines privaten Feldes in einem Objekt zu testen.'
-tweet: '1382327454975590401'
+description: "Private-Markenüberprüfungen ermöglichen es, das Vorhandensein eines privaten Feldes in einem Objekt zu testen."
+tweet: "1382327454975590401"
 ---
 
 Der [`in`-Operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in) kann verwendet werden, um zu testen, ob das angegebene Objekt (oder ein beliebiges Objekt in seiner Prototypenkette) die angegebene Eigenschaft besitzt:

@@ -1,13 +1,13 @@
 ---
-title: 'import assertions'
-author: 'Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), import assertions를 강하게 주장하는 임포터'
+title: "import assertions"
+author: "Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), import assertions를 강하게 주장하는 임포터"
 avatars:
-  - 'dan-clark'
+  - "dan-clark"
 date: 2021-06-15
 tags:
   - ECMAScript
-description: 'import assertions를 통해 모듈 임포트 문에서 모듈 지정자와 함께 추가 정보를 포함할 수 있습니다'
-tweet: ''
+description: "import assertions를 통해 모듈 임포트 문에서 모듈 지정자와 함께 추가 정보를 포함할 수 있습니다"
+tweet: ""
 ---
 
 새로운 [import assertions](https://github.com/tc39/proposal-import-assertions) 기능을 사용하면 모듈 임포트 문에서 모듈 지정자와 함께 추가 정보를 포함할 수 있습니다. 이 기능의 초기 용도는 JSON 문서를 [JSON 모듈](https://github.com/tc39/proposal-json-modules)로 임포트할 수 있도록 하는 것입니다:

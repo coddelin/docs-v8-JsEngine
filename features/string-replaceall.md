@@ -1,15 +1,15 @@
 ---
-title: '`String.prototype.replaceAll`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`String.prototype.replaceAll`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-11-11
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: 'JavaScript now has first-class support for global substring replacement through the new `String.prototype.replaceAll` API.'
-tweet: '1193917549060280320'
+description: "JavaScript now has first-class support for global substring replacement through the new `String.prototype.replaceAll` API."
+tweet: "1193917549060280320"
 ---
 If you’ve ever dealt with strings in JavaScript, chances are you came across the `String#replace` method. `String.prototype.replace(searchValue, replacement)` returns a string with some matches replaced, based on the parameters you specify:
 

@@ -1,10 +1,10 @@
 ---
-title: 'V8 Version v4.8'
-author: 'Das V8-Team'
+title: "V8 Version v4.8"
+author: "Das V8-Team"
 date: 2015-11-25 13:33:37
 tags:
   - Veröffentlichung
-description: 'V8 v4.8 fügt Unterstützung für mehrere neue ES2015-Sprachfunktionen hinzu.'
+description: "V8 v4.8 fügt Unterstützung für mehrere neue ES2015-Sprachfunktionen hinzu."
 ---
 Etwa alle sechs Wochen erstellen wir einen neuen Branch von V8 im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process). Jede Version wird direkt vor der Verzweigung des Chrome-Beta-Meilensteins aus dem Git-Master von V8 abgezweigt. Heute freuen wir uns, unseren neuesten Branch, [V8 Version 4.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.8), anzukündigen, der sich in der Beta-Phase befindet, bis er zusammen mit Chrome 48 Stable veröffentlicht wird. V8 4.8 enthält eine Reihe von Funktionen, die für Entwickler wichtig sind, daher möchten wir Ihnen einen Vorgeschmack auf einige der Höhepunkte geben, die in einigen Wochen veröffentlicht werden.
 

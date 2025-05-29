@@ -1,10 +1,10 @@
 ---
-title: 'ES2015, ES2016, et au-delà'
+title: "ES2015, ES2016, et au-delà"
 author: 'l'équipe V8, Les passionnés d'ECMAScript'
 date: 2016-04-29 13:33:37
 tags:
   - ECMAScript
-description: 'V8 v5.2 prend en charge ES2015 et ES2016 !'
+description: "V8 v5.2 prend en charge ES2015 et ES2016 !"
 ---
 L'équipe V8 accorde une grande importance à l'évolution de JavaScript vers un langage de plus en plus expressif et bien défini qui facilite l'écriture d'applications web rapides, sûres et correctes. En juin 2015, la [spécification ES2015](https://www.ecma-international.org/ecma-262/6.0/) a été ratifiée par le comité de normalisation TC39, faisant d'elle la plus grande mise à jour unique du langage JavaScript. Les nouvelles fonctionnalités incluent les [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), les [fonctions fléchées](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), les [promesses](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise), les [itérateurs / générateurs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators), les [proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), les [symboles bien connus](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol#Well-known_symbols), et un sucre syntaxique supplémentaire. TC39 a également accéléré le rythme des nouvelles spécifications et a publié en février 2016 le [projet de candidat pour ES2016](https://tc39.es/ecma262/2016/) qui doit être ratifié cet été. Bien qu'il ne soit pas aussi vaste que la mise à jour ES2015 en raison du cycle de publication plus court, ES2016 introduit notamment l'[opérateur d'exponentiation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Exponentiation) et [`Array.prototype.includes`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes).
 

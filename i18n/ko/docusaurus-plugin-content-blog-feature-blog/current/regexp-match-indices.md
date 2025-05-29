@@ -1,14 +1,14 @@
 ---
-title: 'RegExp 매치 인덱스'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 새로운 기능을 정기적으로 표현'
+title: "RegExp 매치 인덱스"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 새로운 기능을 정기적으로 표현"
 avatars:
-  - 'maya-armyanova'
+  - "maya-armyanova"
 date: 2019-12-17
 tags:
   - ECMAScript
   - Node.js 16
-description: 'RegExp 매치 인덱스는 각 매치된 캡처 그룹의 `start`와 `end` 인덱스를 제공합니다.'
-tweet: '1206970814400270338'
+description: "RegExp 매치 인덱스는 각 매치된 캡처 그룹의 `start`와 `end` 인덱스를 제공합니다."
+tweet: "1206970814400270338"
 ---
 JavaScript는 이제 '매치 인덱스(match indices)'라는 새 정규 표현식 기능을 갖추게 되었습니다. JavaScript 코드에서 예약어와 일치하는 유효하지 않은 변수 이름을 찾아 변수 이름 아래에 캐럿(caret)과 '밑줄'을 출력하고 싶다고 상상해보세요:
 

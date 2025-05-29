@@ -1,11 +1,11 @@
 ---
-title: 'Lançamento V8 v6.6'
-author: 'a equipe do V8'
+title: "Lançamento V8 v6.6"
+author: "a equipe do V8"
 date: 2018-03-27 13:33:37
 tags:
   - lançamento
-description: 'O V8 v6.6 inclui vinculação de captura opcional, extensão de aparagem de strings, várias melhorias de desempenho na análise/compilação/runtime, e muito mais!'
-tweet: '978534399938584576'
+description: "O V8 v6.6 inclui vinculação de captura opcional, extensão de aparagem de strings, várias melhorias de desempenho na análise/compilação/runtime, e muito mais!"
+tweet: "978534399938584576"
 ---
 A cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](/docs/release-process). Cada versão é criada a partir do Git master do V8 imediatamente antes de um marco Beta do Chrome. Hoje estamos felizes em anunciar nosso mais novo branch, [versão 6.6 do V8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.6), que está em fase beta até seu lançamento coordenado com o Chrome 66 Stable nas próximas semanas. O V8 v6.6 está repleto de recursos voltados para desenvolvedores. Este post oferece uma prévia de alguns destaques em antecipação ao lançamento.
 

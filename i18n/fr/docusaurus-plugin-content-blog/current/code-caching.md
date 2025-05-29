@@ -1,8 +1,8 @@
 ---
-title: 'Mise en cache de code'
-author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed)), Ingénieur logiciel'
+title: "Mise en cache de code"
+author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), Ingénieur logiciel"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2015-07-27 13:33:37
 tags:
   - internals

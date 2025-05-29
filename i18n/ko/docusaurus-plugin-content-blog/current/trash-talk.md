@@ -1,15 +1,15 @@
 ---
-title: '쓰레기 토크: 오리노코 가비지 컬렉터'
-author: 'Peter ‘the garbo’ Marshall ([@hooraybuffer](https://twitter.com/hooraybuffer))'
+title: "쓰레기 토크: 오리노코 가비지 컬렉터"
+author: "Peter ‘the garbo’ Marshall ([@hooraybuffer](https://twitter.com/hooraybuffer))"
 avatars:
-  - 'peter-marshall'
+  - "peter-marshall"
 date: 2019-01-03 17:45:34
 tags:
   - 내부 구조
   - 메모리
   - 발표
-description: '오리노코, V8의 가비지 컬렉터는 순차적 중단 방식에서 대체로 병렬적이고 동시 실행 가능한 컬렉터로 점진적 대체 방식을 포함해 발전했습니다.'
-tweet: '1080867305532416000'
+description: "오리노코, V8의 가비지 컬렉터는 순차적 중단 방식에서 대체로 병렬적이고 동시 실행 가능한 컬렉터로 점진적 대체 방식을 포함해 발전했습니다."
+tweet: "1080867305532416000"
 ---
 지난 몇 년 동안 V8 가비지 컬렉터(GC)는 많은 변화를 겪었습니다. 오리노코 프로젝트는 순차적으로 중단되는 가비지 컬렉터를 대부분 병렬적이고 동시적으로 실행 가능한 컬렉터로 변환시켰으며, 점진적 대체 방식도 포함했습니다.
 

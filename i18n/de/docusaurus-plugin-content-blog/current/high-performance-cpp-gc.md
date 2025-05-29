@@ -1,17 +1,17 @@
 ---
-title: 'Hochleistungs-Müllsammlung für C++'
-author: 'Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)) und Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), C++ Speicherflüsterer'
+title: "Hochleistungs-Müllsammlung für C++"
+author: "Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)) und Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), C++ Speicherflüsterer"
 avatars:
-  - 'anton-bikineev'
-  - 'omer-katz'
-  - 'michael-lippautz'
+  - "anton-bikineev"
+  - "omer-katz"
+  - "michael-lippautz"
 date: 2020-05-26
 tags:
   - Interna
   - Speicher
   - cppgc
-description: 'Dieser Beitrag beschreibt den Oilpan C++ Garbage Collector, seine Verwendung in Blink und wie er das Sweeping, d.h. die Rückgewinnung von nicht mehr erreichbarem Speicher, optimiert.'
-tweet: '1265304883638480899'
+description: "Dieser Beitrag beschreibt den Oilpan C++ Garbage Collector, seine Verwendung in Blink und wie er das Sweeping, d.h. die Rückgewinnung von nicht mehr erreichbarem Speicher, optimiert."
+tweet: "1265304883638480899"
 ---
 
 In der Vergangenheit haben wir [bereits](https://v8.dev/blog/trash-talk) [über](https://v8.dev/blog/concurrent-marking) [die](https://v8.dev/blog/tracing-js-dom) Müllsammlung für JavaScript, das Document Object Model (DOM) und wie dies alles in V8 implementiert und optimiert wird, geschrieben. Nicht alles in Chromium ist jedoch JavaScript, da der größte Teil des Browsers und seiner Blink-Rendering-Engine, in die V8 eingebettet ist, in C++ geschrieben wurde. JavaScript kann verwendet werden, um mit dem DOM zu interagieren, das dann von der Rendering-Pipeline verarbeitet wird.

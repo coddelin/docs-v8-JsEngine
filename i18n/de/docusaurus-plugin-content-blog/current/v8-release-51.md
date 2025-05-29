@@ -1,10 +1,10 @@
 ---
-title: 'V8-Version v5.1'
-author: 'das V8-Team'
+title: "V8-Version v5.1"
+author: "das V8-Team"
 date: 2016-04-23 13:33:37
 tags:
   - Veröffentlichung
-description: 'V8 v5.1 bringt Verbesserungen in der Performance, reduzierte Unterbrechungen und Speicherverbrauch sowie erhöhte Unterstützung für ECMAScript-Sprachfunktionen.'
+description: "V8 v5.1 bringt Verbesserungen in der Performance, reduzierte Unterbrechungen und Speicherverbrauch sowie erhöhte Unterstützung für ECMAScript-Sprachfunktionen."
 ---
 Der erste Schritt im [Veröffentlichungsprozess](/docs/release-process) von V8 ist, einen neuen Branch von der Git-Master-Version zu erstellen, unmittelbar bevor Chromium für einen Chrome-Beta-Meilenstein verzweigt (etwa alle sechs Wochen). Unser neuester Release-Branch ist [V8 v5.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.1), der bis zu einer stabilen Version als Beta bleibt, die zusammen mit Chrome 51 Stable veröffentlicht wird. Hier sind die Highlights der neuen Entwicklerfunktionen dieser Version von V8.
 

@@ -1,15 +1,15 @@
 ---
-title: '`Intl.RelativeTimeFormat`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Intl.RelativeTimeFormat`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-10-22
 tags:
   - Intl
   - Node.js 12
   - io19
-description: '`Intl.RelativeTimeFormat`は、パフォーマンスを犠牲にすることなく、相対的な時刻のローカライズされた形式化を可能にします。'
-tweet: '1054387117571354624'
+description: "`Intl.RelativeTimeFormat`は、パフォーマンスを犠牲にすることなく、相対的な時刻のローカライズされた形式化を可能にします。"
+tweet: "1054387117571354624"
 ---
 現代のウェブアプリケーションでは、完全な日付やタイムスタンプの代わりに「昨日」「42秒前」「3ヶ月後」といったフレーズを使用することが増えています。このような_相対的な時刻形式の値_は非常に一般的となり、いくつかの人気のあるライブラリがこれをローカライズして形式化するユーティリティ関数を実装しています。（例として、[Moment.js](https://momentjs.com/)、[Globalize](https://github.com/globalizejs/globalize)、[date-fns](https://date-fns.org/docs/)があります。）
 

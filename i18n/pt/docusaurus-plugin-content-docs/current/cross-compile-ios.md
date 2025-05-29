@@ -1,6 +1,6 @@
 ---
-title: 'Cross-compilação para iOS'
-description: 'Este documento explica como cross-compilar o V8 para iOS.'
+title: "Cross-compilação para iOS"
+description: "Este documento explica como cross-compilar o V8 para iOS."
 ---
 Esta página serve como uma breve introdução à construção do V8 para alvos iOS.
 

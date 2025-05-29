@@ -1,15 +1,15 @@
 ---
-title: '`Object.fromEntries`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), JavaScript 전문가'
+title: "`Object.fromEntries`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), JavaScript 전문가"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-18
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: 'Object.fromEntries는 Object.entries를 보완하는 유용한 자바스크립트 내장 라이브러리 추가 기능입니다.'
-tweet: '1140993821897121796'
+description: "Object.fromEntries는 Object.entries를 보완하는 유용한 자바스크립트 내장 라이브러리 추가 기능입니다."
+tweet: "1140993821897121796"
 ---
 `Object.fromEntries`는 자바스크립트 내장 라이브러리에 유용한 추가 기능입니다. 무엇을 하는지 설명하기 전에 기존의 `Object.entries` API를 이해하는 것이 도움이 됩니다.
 

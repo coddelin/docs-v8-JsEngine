@@ -1,6 +1,6 @@
 ---
-title: 'Arm-Debugging mit dem Simulator'
-description: 'Der Arm-Simulator und Debugger können sehr hilfreich sein, wenn man mit der V8-Codegenerierung arbeitet.'
+title: "Arm-Debugging mit dem Simulator"
+description: "Der Arm-Simulator und Debugger können sehr hilfreich sein, wenn man mit der V8-Codegenerierung arbeitet."
 ---
 Der Simulator und Debugger können sehr hilfreich sein, wenn man mit der V8-Codegenerierung arbeitet.
 

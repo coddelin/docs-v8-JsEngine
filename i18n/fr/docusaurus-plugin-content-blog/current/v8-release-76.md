@@ -1,13 +1,13 @@
 ---
-title: 'Version V8 v7.6'
-author: 'Adam Klein'
+title: "Version V8 v7.6"
+author: "Adam Klein"
 avatars:
-  - 'adam-klein'
+  - "adam-klein"
 date: 2019-06-19 16:45:00
 tags:
   - sortie
-description: 'V8 v7.6 inclut Promise.allSettled, un JSON.parse plus rapide, des BigInts localisés, des tableaux congelés/sellés plus rapides, et bien plus encore !'
-tweet: '1141356209179516930'
+description: "V8 v7.6 inclut Promise.allSettled, un JSON.parse plus rapide, des BigInts localisés, des tableaux congelés/sellés plus rapides, et bien plus encore !"
+tweet: "1141356209179516930"
 ---
 Toutes les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de sortie](/docs/release-process). Chaque version est dérivée du master Git de V8 juste avant une étape Beta de Chrome. Aujourd’hui, nous sommes heureux d’annoncer notre nouvelle branche, [V8 version 7.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.6), actuellement en version beta jusqu’à sa sortie en coordination avec Chrome 76 Stable dans plusieurs semaines. V8 v7.6 est rempli de nombreuses nouveautés pour les développeurs. Cet article donne un aperçu de certains points forts en prévision de la sortie.
 

@@ -1,12 +1,12 @@
 ---
-title: '커스텀 시작 스냅샷'
-author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed)), 소프트웨어 엔지니어 겸 엔진 사전 예열 공급자'
+title: "커스텀 시작 스냅샷"
+author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), 소프트웨어 엔지니어 겸 엔진 사전 예열 공급자"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2015-09-25 13:33:37
 tags:
   - 내부 구조
-description: 'V8 임베더는 스냅샷을 활용하여 JavaScript 프로그램 초기화 시 소요되는 시작 시간을 줄일 수 있습니다.'
+description: "V8 임베더는 스냅샷을 활용하여 JavaScript 프로그램 초기화 시 소요되는 시작 시간을 줄일 수 있습니다."
 ---
 JavaScript 명세에는 [수학 함수](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math)에서부터 [정규 표현식 엔진](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions)에 이르기까지 많은 내장 기능이 포함되어 있습니다. 새로 생성된 V8 컨텍스트는 시작 시 이러한 기능들을 사용할 수 있습니다. 이를 위해, 전역 객체(브라우저의 경우 window 객체 등)와 모든 내장 기능이 V8 힙에 설정되고 초기화되어야 합니다. 이 작업을 처음부터 수행하려면 시간이 꽤 걸립니다.
 

@@ -1,13 +1,13 @@
 ---
-title: 'V8リリース v7.2'
-author: 'Andreas Haas、トラップの管理者'
+title: "V8リリース v7.2"
+author: "Andreas Haas、トラップの管理者"
 avatars:
   - andreas-haas
 date: 2018-12-18 11:48:21
 tags:
   - release
-description: 'V8 v7.2は、ハイスピードのJavaScript解析、高速なasync-await、ia32でのメモリ消費削減、パブリッククラスフィールド、その他多数の機能を特徴としています！'
-tweet: '1074978755934863361'
+description: "V8 v7.2は、ハイスピードのJavaScript解析、高速なasync-await、ia32でのメモリ消費削減、パブリッククラスフィールド、その他多数の機能を特徴としています！"
+tweet: "1074978755934863361"
 ---
 私たちは6週間ごとに、[リリースプロセス](/docs/release-process)の一環としてV8の新しいブランチを作成しています。各バージョンはChrome Betaのマイルストーン直前にV8のGitマスターからブランチされます。本日、新しいブランチ[V8 version 7.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.2)を発表できることを嬉しく思います。このバージョンは数週間後にChrome 72 Stableと連携してリリースされるまでベータ段階にあります。V8 v7.2は開発者向けのさまざまな便利機能が満載です。この投稿ではリリースに先立っていくつかの主要な特徴を紹介します。
 

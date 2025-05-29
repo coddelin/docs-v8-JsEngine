@@ -1,15 +1,15 @@
 ---
-title: 'Optimierung des V8-Speicherverbrauchs'
-author: 'die V8 Memory Sanitation Engineers Ulan Degenbaev, Michael Lippautz, Hannes Payer und Toon Verwaest'
+title: "Optimierung des V8-Speicherverbrauchs"
+author: "die V8 Memory Sanitation Engineers Ulan Degenbaev, Michael Lippautz, Hannes Payer und Toon Verwaest"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2016-10-07 13:33:37
 tags:
   - speicher
   - benchmarks
-description: 'Das V8-Team hat den Speicherverbrauch mehrerer Websites analysiert und signifikant reduziert, die als repräsentativ für moderne Webentwicklungsmuster identifiziert wurden.'
+description: "Das V8-Team hat den Speicherverbrauch mehrerer Websites analysiert und signifikant reduziert, die als repräsentativ für moderne Webentwicklungsmuster identifiziert wurden."
 ---
 Der Speicherverbrauch ist eine wichtige Dimension im Bereich der Leistungsabstimmung virtueller JavaScript-Maschinen. In den letzten Monaten hat das V8-Team den Speicherverbrauch mehrerer Websites analysiert und dabei signifikant reduziert, die als repräsentativ für moderne Webentwicklungsmuster betrachtet wurden. In diesem Blogpost stellen wir die Arbeitslasten und Werkzeuge vor, die wir in unserer Analyse verwendet haben, erläutern Speicheroptimierungen im Garbage Collector und zeigen, wie wir den von V8 analysierten Speicherverbrauch beim Parser und bei den Compilern reduziert haben.
 

@@ -1,14 +1,14 @@
 ---
-title: 'Emscripten 和 LLVM WebAssembly 後端'
-author: 'Alon Zakai'
+title: "Emscripten 和 LLVM WebAssembly 後端"
+author: "Alon Zakai"
 avatars:
-  - 'alon-zakai'
+  - "alon-zakai"
 date: 2019-07-01 16:45:00
 tags:
   - WebAssembly
   - 工具
-description: 'Emscripten 正在切換至 LLVM WebAssembly 後端，這將帶來更快的鏈接時間以及其他許多好處。'
-tweet: '1145704863377981445'
+description: "Emscripten 正在切換至 LLVM WebAssembly 後端，這將帶來更快的鏈接時間以及其他許多好處。"
+tweet: "1145704863377981445"
 ---
 WebAssembly 通常是從源代碼語言編譯而來，這意味著開發人員需要 *工具* 才能使用它。因此，V8 團隊致力於相關的開源項目，例如 [LLVM](http://llvm.org/)、[Emscripten](https://emscripten.org/)、[Binaryen](https://github.com/WebAssembly/binaryen/)、和 [WABT](https://github.com/WebAssembly/wabt)。本文描述了我們在 Emscripten 和 LLVM 上的部分工作，這項工作將很快使 Emscripten 默认切換到 [LLVM WebAssembly 後端](https://github.com/llvm/llvm-project/tree/main/llvm/lib/Target/WebAssembly)——請測試並回報任何問題！
 

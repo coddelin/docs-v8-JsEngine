@@ -1,6 +1,6 @@
 ---
-title: 'Responsabilidades dos committers e revisores do V8'
-description: 'Este documento lista diretrizes para os contribuidores do V8.'
+title: "Responsabilidades dos committers e revisores do V8"
+description: "Este documento lista diretrizes para os contribuidores do V8."
 ---
 Ao fazer commits nos repositórios do V8, certifique-se de seguir estas diretrizes (adaptadas de https://dev.chromium.org/developers/committers-responsibility):
 

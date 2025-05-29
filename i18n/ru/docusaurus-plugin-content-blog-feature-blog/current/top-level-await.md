@@ -1,14 +1,14 @@
 ---
-title: 'Высокоуровневый `await`'
-author: 'Майлз Боринс ([@MylesBorins](https://twitter.com/MylesBorins))'
+title: "Высокоуровневый `await`"
+author: "Майлз Боринс ([@MylesBorins](https://twitter.com/MylesBorins))"
 avatars:
-  - 'myles-borins'
+  - "myles-borins"
 date: 2019-10-08
 tags:
   - ECMAScript
   - Node.js 14
-description: 'Высокоуровневый `await` приходит в модули JavaScript! Очень скоро вы сможете использовать `await`, не находясь внутри асинхронной функции.'
-tweet: '1181581262399643650'
+description: "Высокоуровневый `await` приходит в модули JavaScript! Очень скоро вы сможете использовать `await`, не находясь внутри асинхронной функции."
+tweet: "1181581262399643650"
 ---
 [Высокоуровневый `await`](https://github.com/tc39/proposal-top-level-await) позволяет разработчикам использовать ключевое слово `await` за пределами асинхронных функций. Он действует как большая асинхронная функция, заставляя другие модули, которые их `import`, ожидать перед началом выполнения своего тела.
 

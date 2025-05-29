@@ -1,13 +1,13 @@
 ---
-title: '暂时禁用逃逸分析'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), 沙盒逃逸分析员'
+title: "暂时禁用逃逸分析"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), 沙盒逃逸分析员"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-09-22 13:33:37
 tags:
   - 安全
-description: '我们已在 Chrome 61 中禁用 V8 的逃逸分析，以保护用户免受安全漏洞的影响。'
-tweet: '911339802884284416'
+description: "我们已在 Chrome 61 中禁用 V8 的逃逸分析，以保护用户免受安全漏洞的影响。"
+tweet: "911339802884284416"
 ---
 在 JavaScript 中，一个分配的对象如果从当前函数外部可以访问，就被称为 _逃逸_。通常情况下，V8 会在 JavaScript 堆中分配新对象，但通过 _逃逸分析_，优化编译器可以确定一个对象是否可以特殊处理，因为其生命周期被证明仅限于函数的激活状态。当对新分配对象的引用不会逃逸创建它的函数时，JavaScript 引擎不需要显式地在堆中分配该对象。相反，它们可以有效地将对象的值视为函数的局部变量。这反过来又启用了各种优化，如将这些值存储在堆栈或寄存器中，或者在某些情况下完全优化掉这些值。逃逸的对象（更准确地说，不能证明其不会逃逸的对象）必须在堆中分配。
 

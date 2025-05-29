@@ -1,13 +1,13 @@
 ---
-title: '庆祝V8发布十周年'
-author: 'Mathias Bynens（[@mathias](https://twitter.com/mathias)），V8历史学者'
+title: "庆祝V8发布十周年"
+author: "Mathias Bynens（[@mathias](https://twitter.com/mathias)），V8历史学者"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-09-11 19:00:00
 tags:
   - 基准测试
-description: '概述V8项目在过去10年中的主要里程碑，以及在项目仍处于保密阶段时的早期发展。'
-tweet: '1039559389324238850'
+description: "概述V8项目在过去10年中的主要里程碑，以及在项目仍处于保密阶段时的早期发展。"
+tweet: "1039559389324238850"
 ---
 本月标志着不仅是谷歌浏览器发布的十周年，同时也是V8项目发布的十周年。这篇文章概述了V8项目在过去10年中的主要里程碑，以及项目仍处于保密阶段时的早期发展。
 

@@ -1,13 +1,13 @@
 ---
-title: '修正された `Function.prototype.toString`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "修正された `Function.prototype.toString`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-03-25
 tags:
   - ECMAScript
   - ES2019
-description: 'Function.prototype.toString はホワイトスペースやコメントを含むソースコードの正確なスライスを返すようになりました。'
+description: "Function.prototype.toString はホワイトスペースやコメントを含むソースコードの正確なスライスを返すようになりました。"
 ---
 [`Function.prototype.toString()`](https://tc39.es/Function-prototype-toString-revision/) は、ホワイトスペースやコメントを含むソースコードの正確なスライスを返すようになりました。以下は、旧動作と新動作を比較した例です:
 

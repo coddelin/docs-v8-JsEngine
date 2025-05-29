@@ -1,6 +1,6 @@
 ---
-title: 'Diretrizes para revisão de design'
-description: 'Este documento explica as diretrizes de revisão de design do projeto V8.'
+title: "Diretrizes para revisão de design"
+description: "Este documento explica as diretrizes de revisão de design do projeto V8."
 ---
 Certifique-se de seguir as diretrizes abaixo, sempre que aplicável.
 

@@ -1,13 +1,13 @@
 ---
-title: '迭代器助手'
-author: 'Rezvan Mahdavi Hezaveh'
+title: "迭代器助手"
+author: "Rezvan Mahdavi Hezaveh"
 avatars:
-  - 'rezvan-mahdavi-hezaveh'
+  - "rezvan-mahdavi-hezaveh"
 date: 2024-03-27
 tags:
   - ECMAScript
-description: '用于简化迭代器一般使用和消费的接口。'
-tweet: ''
+description: "用于简化迭代器一般使用和消费的接口。"
+tweet: ""
 ---
 
 *迭代器助手* 是迭代器原型上的一组新方法，帮助简化迭代器的使用。由于这些辅助方法在迭代器原型上，任何在其原型链上包含 `Iterator.prototype` 的对象（例如数组迭代器）都可以使用这些方法。在以下小节中，我们将解释这些迭代器助手功能。所有提供的示例均在博客归档页面中运行，包含博客文章列表，展示如何通过迭代器助手查找和操作文章。您可以在 [V8 博客页面](https://v8.dev/blog) 上试用它们！

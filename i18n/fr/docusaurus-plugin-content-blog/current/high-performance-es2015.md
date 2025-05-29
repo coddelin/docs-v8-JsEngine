@@ -1,12 +1,12 @@
 ---
-title: 'Performances élevées ES2015 et au-delà'
-author: 'Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer), Ingénieur Performances ECMAScript'
+title: "Performances élevées ES2015 et au-delà"
+author: "Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer), Ingénieur Performances ECMAScript"
 avatars:
-  - 'benedikt-meurer'
+  - "benedikt-meurer"
 date: 2017-02-17 13:33:37
 tags:
   - ECMAScript
-description: 'Les performances des fonctionnalités de langage ES2015+ dans V8 sont désormais comparables à celles de leurs homologues transpilés en ES5.'
+description: "Les performances des fonctionnalités de langage ES2015+ dans V8 sont désormais comparables à celles de leurs homologues transpilés en ES5."
 ---
 Au cours des derniers mois, l'équipe V8 s'est concentrée sur l'amélioration des performances des nouvelles fonctionnalités JavaScript [ES2015](https://www.ecma-international.org/ecma-262/6.0/) et autres encore plus récentes à un niveau comparable à celui de leurs homologues transpilés en [ES5](https://www.ecma-international.org/ecma-262/5.1/).
 

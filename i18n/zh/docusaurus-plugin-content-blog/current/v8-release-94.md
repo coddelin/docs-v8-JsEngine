@@ -1,13 +1,13 @@
 ---
-title: 'V8 发布 v9.4'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "V8 发布 v9.4"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-09-06
 tags:
  - 发布
-description: 'V8 发布 v9.4 为 JavaScript 带来了类静态初始化块功能。'
-tweet: '1434915404418277381'
+description: "V8 发布 v9.4 为 JavaScript 带来了类静态初始化块功能。"
+tweet: "1434915404418277381"
 ---
 每六周，我们按照我们的[发布流程](https://v8.dev/docs/release-process)创建一个新的 V8 分支。每个版本都在 Chrome Beta 版本里程碑之前从 V8 的 Git 主分支分支而来。今天我们很高兴地宣布我们的最新分支，[V8 版本 9.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.4)，它目前处于 beta 阶段，直到几周后与 Chrome 94 稳定版一起发布。V8 v9.4 包含了各种面向开发者的精彩内容。这篇文章提供了发布前一些亮点的预览。
 

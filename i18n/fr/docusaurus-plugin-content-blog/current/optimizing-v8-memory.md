@@ -1,10 +1,10 @@
 ---
-title: 'Optimisation de la consommation de mémoire de V8'
-author: 'Les Ingénieurs Sanitation de Mémoire de V8 Ulan Degenbaev, Michael Lippautz, Hannes Payer, et Toon Verwaest'
+title: "Optimisation de la consommation de mémoire de V8"
+author: "Les Ingénieurs Sanitation de Mémoire de V8 Ulan Degenbaev, Michael Lippautz, Hannes Payer, et Toon Verwaest"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2016-10-07 13:33:37
 tags:
   - mémoire

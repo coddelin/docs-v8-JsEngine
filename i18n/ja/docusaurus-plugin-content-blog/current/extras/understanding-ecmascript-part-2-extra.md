@@ -1,13 +1,13 @@
 ---
-title: 'ECMAScript仕様理解パート2の「追加内容」'
-author: '[Marja Hölttä](https://twitter.com/marjakh), 推測的仕様の観察者'
+title: "ECMAScript仕様理解パート2の「追加内容」"
+author: "[Marja Hölttä](https://twitter.com/marjakh), 推測的仕様の観察者"
 avatars:
   - marja-holtta
 date: 2020-03-02
 tags:
   - ECMAScript
-description: 'ECMAScript仕様を読むためのチュートリアル'
-tweet: ''
+description: "ECMAScript仕様を読むためのチュートリアル"
+tweet: ""
 ---
 
 ### なぜ`o2.foo`は`AssignmentExpression`なのか？

@@ -1,13 +1,13 @@
 ---
-title: 'Class static initialization blocks'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "Class static initialization blocks"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2021-03-30
 tags:
   - ECMAScript
-description: 'JavaScript classes get dedicated syntax for static initialization.'
-tweet: '1376925666780798989'
+description: "JavaScript classes get dedicated syntax for static initialization."
+tweet: "1376925666780798989"
 ---
 The new class static initialization block syntax lets developers gather code that should run once for a given class definition and put them in a single place. Consider the following example where a pseudo-random number generator uses a static block to initialize an entropy pool once, when the `class MyPRNG` definition is evaluated.
 

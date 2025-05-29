@@ -1,6 +1,6 @@
 ---
-title: 'Depuración mediante el protocolo V8 Inspector'
-description: 'Esta página está destinada a proporcionar a los integradores las herramientas básicas que necesitan para implementar soporte de depuración en V8.'
+title: "Depuración mediante el protocolo V8 Inspector"
+description: "Esta página está destinada a proporcionar a los integradores las herramientas básicas que necesitan para implementar soporte de depuración en V8."
 ---
 V8 ofrece funcionalidades extensivas de depuración tanto a usuarios como a integradores. Los usuarios habitualmente interactúan con el depurador de V8 a través de la interfaz de [Chrome DevTools](https://developer.chrome.com/devtools). Los integradores (incluyendo DevTools) necesitan depender directamente del [Protocolo de Inspector](https://chromedevtools.github.io/debugger-protocol-viewer/tot/).
 

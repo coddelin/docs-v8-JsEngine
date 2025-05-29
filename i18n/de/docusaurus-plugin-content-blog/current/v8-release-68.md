@@ -1,11 +1,11 @@
 ---
-title: 'V8 Release v6.8'
-author: 'Das V8-Team'
+title: "V8 Release v6.8"
+author: "Das V8-Team"
 date: 2018-06-21 13:33:37
 tags:
   - Veröffentlichung
-description: 'V8 v6.8 bietet reduzierten Speicherverbrauch und mehrere Leistungsverbesserungen.'
-tweet: '1009753739060826112'
+description: "V8 v6.8 bietet reduzierten Speicherverbrauch und mehrere Leistungsverbesserungen."
+tweet: "1009753739060826112"
 ---
 Alle sechs Wochen erstellen wir einen neuen Zweig von V8 im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process). Jede Version wird direkt vor einem Chrome-Beta-Meilenstein vom Git-Master von V8 abgezweigt. Heute freuen wir uns, unseren neuesten Zweig ankündigen zu können, [V8 Version 6.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.8), der bis zur Veröffentlichung in Zusammenarbeit mit Chrome 68 Stable in einigen Wochen in der Beta-Phase ist. V8 v6.8 ist voller Entwickler-feindlicher Leckerbissen. Dieses Posting bietet eine Vorschau auf einige Highlights in Erwartung der Veröffentlichung.
 

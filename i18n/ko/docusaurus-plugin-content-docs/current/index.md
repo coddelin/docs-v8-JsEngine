@@ -1,6 +1,6 @@
 ---
-title: '문서'
-description: 'V8 프로젝트에 대한 문서입니다.'
+title: "문서"
+description: "V8 프로젝트에 대한 문서입니다."
 slug: /
 ---
 V8는 Google의 오픈 소스 고성능 JavaScript 및 WebAssembly 엔진으로, C++로 작성되었습니다. 이는 Chrome 및 Node.js를 포함한 여러 곳에서 사용됩니다.

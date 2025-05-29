@@ -1,15 +1,15 @@
 ---
-title: '`Array.prototype.flat` and `Array.prototype.flatMap`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Array.prototype.flat` and `Array.prototype.flatMap`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-11
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: 'Array.prototype.flat flattens an array up to the specified depth. Array.prototype.flatMap is equivalent to doing a map followed by a flat separately.'
-tweet: '1138457106380709891'
+description: "Array.prototype.flat flattens an array up to the specified depth. Array.prototype.flatMap is equivalent to doing a map followed by a flat separately."
+tweet: "1138457106380709891"
 ---
 ## `Array.prototype.flat`
 
@@ -32,7 +32,7 @@ array.flat();
 array.flat(1);
 // → [1, 2, [3]]
 ```
-
+<!-- truncate -->
 The default depth is `1`, but you can pass any number to recursively flatten up to that depth. To keep flattening recursively until the result contains no more nested arrays, we pass `Infinity`.
 
 ```js

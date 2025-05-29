@@ -1,6 +1,6 @@
 ---
-title: 'GDB로 내장 함수 디버깅'
-description: 'V8 v6.9 버전부터 CSA / ASM / Torque 내장 함수에서 GDB를 사용하여 디버그를 위한 브레이크포인트를 설정할 수 있습니다.'
+title: "GDB로 내장 함수 디버깅"
+description: "V8 v6.9 버전부터 CSA / ASM / Torque 내장 함수에서 GDB를 사용하여 디버그를 위한 브레이크포인트를 설정할 수 있습니다."
 ---
 V8 v6.9 버전부터 CSA / ASM / Torque 내장 함수를 디버깅하기 위해 GDB (및 다른 디버거일 가능성 있음)에서 브레이크포인트를 설정할 수 있습니다.
 

@@ -1,12 +1,12 @@
 ---
-title: 'Um mecanismo adicional de RegExp sem retrocesso'
-author: 'Martin Bidlingmaier'
+title: "Um mecanismo adicional de RegExp sem retrocesso"
+author: "Martin Bidlingmaier"
 date: 2021-01-11
 tags:
  - internos
  - RegExp
-description: 'O V8 agora possui um mecanismo de RegExp adicional que atua como um mecanismo de fallback e previne muitos casos de retrocessos catastróficos.'
-tweet: '1348635270762139650'
+description: "O V8 agora possui um mecanismo de RegExp adicional que atua como um mecanismo de fallback e previne muitos casos de retrocessos catastróficos."
+tweet: "1348635270762139650"
 ---
 A partir da versão 8.8, o V8 inclui um novo mecanismo experimental de RegExp sem retrocesso (além do já existente [mecanismo Irregexp](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html)) que garante execução em tempo linear em relação ao tamanho da string de entrada. O mecanismo experimental está disponível por trás dos sinalizadores de funcionalidade mencionados abaixo.
 

@@ -1,10 +1,10 @@
 ---
-title: 'V8 ❤️ Node.js'
-author: 'フランツィスカ・ヒンケルマン, Node モンキーパッチャー'
+title: "V8 ❤️ Node.js"
+author: "フランツィスカ・ヒンケルマン, Node モンキーパッチャー"
 date: 2016-12-15 13:33:37
 tags:
   - Node.js
-description: 'このブログ記事では、Node.jsがV8とChrome DevToolsでより良くサポートされるための最近の取り組みを紹介します。'
+description: "このブログ記事では、Node.jsがV8とChrome DevToolsでより良くサポートされるための最近の取り組みを紹介します。"
 ---
 Node.jsの人気はここ数年で着実に成長しており、私たちはNode.jsをより良くするために取り組んでいます。このブログ記事では、V8とDevToolsにおける最近の取り組みをいくつか紹介します。
 

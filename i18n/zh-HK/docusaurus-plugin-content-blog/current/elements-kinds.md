@@ -1,14 +1,14 @@
 ---
-title: 'V8 中的元素類型'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "V8 中的元素類型"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-09-12 13:33:37
 tags:
   - internals
   - presentations
-description: '這篇技術性深入解析文章，詳細說明了 V8 背後如何優化對陣列的操作，並向 JavaScript 開發者解釋其意義。'
-tweet: '907608362191376384'
+description: "這篇技術性深入解析文章，詳細說明了 V8 背後如何優化對陣列的操作，並向 JavaScript 開發者解釋其意義。"
+tweet: "907608362191376384"
 ---
 :::note
 **注意:** 如果您更喜歡觀看演示，而不是閱讀文章，請欣賞以下視頻！

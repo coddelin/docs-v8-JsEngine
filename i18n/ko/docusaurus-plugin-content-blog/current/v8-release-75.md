@@ -1,13 +1,13 @@
 ---
-title: 'V8 릴리스 v7.5'
-author: 'Dan Elphick, 더 이상 사용되지 않는 기능의 악몽'
+title: "V8 릴리스 v7.5"
+author: "Dan Elphick, 더 이상 사용되지 않는 기능의 악몽"
 avatars:
-  - 'dan-elphick'
+  - "dan-elphick"
 date: 2019-05-16 15:00:00
 tags:
   - 릴리스
-description: 'V8 v7.5는 WebAssembly 컴파일 아티팩트의 암시적 캐싱, 대량 메모리 작업, JavaScript의 숫자 구분자 등 많은 기능을 제공합니다!'
-tweet: '1129073370623086593'
+description: "V8 v7.5는 WebAssembly 컴파일 아티팩트의 암시적 캐싱, 대량 메모리 작업, JavaScript의 숫자 구분자 등 많은 기능을 제공합니다!"
+tweet: "1129073370623086593"
 ---
 매 6주마다 우리는 [릴리스 과정](/docs/release-process)의 일환으로 V8의 새로운 브랜치를 만듭니다. 각 버전은 Chrome Beta 이정표 직전에 V8의 Git master로부터 분기됩니다. 오늘 우리는 최신 브랜치인 [V8 버전 7.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.5)를 발표하게 되어 기쁩니다. 이 버전은 몇 주 후 Chrome 75 안정 버전과 함께 출시될 때까지 베타 단계에 있습니다. V8 v7.5는 개발자가 사용할 수 있는 여러 가지 유용한 기능으로 가득합니다. 이 게시물에서는 출시를 기대하며 몇 가지 주요 기능을 미리 살펴봅니다.
 

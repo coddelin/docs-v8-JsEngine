@@ -1,15 +1,15 @@
 ---
-title: 'RegExp `v` 標誌與集合符號及字符串屬性'
-author: 'Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "RegExp `v` 標誌與集合符號及字符串屬性"
+author: "Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mark-davis'
-  - 'markus-scherer'
-  - 'mathias-bynens'
+  - "mark-davis"
+  - "markus-scherer"
+  - "mathias-bynens"
 date: 2022-06-27
 tags:
   - ECMAScript
-description: '新的 RegExp `v` 標誌啟用了 `unicodeSets` 模式，解鎖了擴展字符類的支持，包括字符串的 Unicode 屬性、集合符號和改進的大小寫不敏感匹配。'
-tweet: '1541419838513594368'
+description: "新的 RegExp `v` 標誌啟用了 `unicodeSets` 模式，解鎖了擴展字符類的支持，包括字符串的 Unicode 屬性、集合符號和改進的大小寫不敏感匹配。"
+tweet: "1541419838513594368"
 ---
 JavaScript 自 ECMAScript 3（1999 年）以來便支持正則表達式。十六年後，ES2015 引入了[Unicode 模式（`u` 標誌）](https://mathiasbynens.be/notes/es6-unicode-regex)、[粘性模式（`y` 標誌）](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky#description)和[ `RegExp.prototype.flags` 的取數器](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/flags)。再過三年，ES2018 引入了[`dotAll` 模式（`s` 標誌）](https://mathiasbynens.be/notes/es-regexp-proposals#dotAll)、[後行斷言](https://mathiasbynens.be/notes/es-regexp-proposals#lookbehinds)、[命名捕獲組](https://mathiasbynens.be/notes/es-regexp-proposals#named-capture-groups)以及[Unicode 字符屬性逃脫](https://mathiasbynens.be/notes/es-unicode-property-escapes)。而在 ES2020 中，[`String.prototype.matchAll`](https://v8.dev/features/string-matchall) 讓使用正則表達式變得更簡單。JavaScript 正則表達式已走過很長一段路，並仍在改進。
 

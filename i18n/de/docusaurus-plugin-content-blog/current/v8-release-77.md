@@ -1,13 +1,13 @@
 ---
-title: 'V8-Version v7.7'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), entspannter Verfasser von Release-Notes'
+title: "V8-Version v7.7"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), entspannter Verfasser von Release-Notes"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-08-13 16:45:00
 tags:
   - freigabe
-description: 'V8 v7.7 bietet eine verzögerte Feedback-Zuweisung, schnellere WebAssembly-Hintergrundkompilierung, Stacktrace-Verbesserungen und neue Intl.NumberFormat-Funktionalität.'
-tweet: '1161287541611323397'
+description: "V8 v7.7 bietet eine verzögerte Feedback-Zuweisung, schnellere WebAssembly-Hintergrundkompilierung, Stacktrace-Verbesserungen und neue Intl.NumberFormat-Funktionalität."
+tweet: "1161287541611323397"
 ---
 Alle sechs Wochen erstellen wir einen neuen Zweig von V8 im Rahmen unseres [Release-Prozesses](/docs/release-process). Jede Version wird direkt aus dem Git-Master von V8 vor einem Chrome-Beta-Meilenstein abgezweigt. Heute freuen wir uns, unseren neuesten Zweig bekannt zu geben, [V8-Version 7.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.7), der bis zur Veröffentlichung in Verbindung mit Chrome 77 Stable in einigen Wochen in der Beta-Version ist. V8 v7.7 ist voller Entwickler-freundlicher Neuerungen. Dieser Beitrag bietet eine Vorschau auf einige der Highlights, die vor der Veröffentlichung erwartet werden.
 

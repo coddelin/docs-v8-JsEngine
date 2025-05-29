@@ -1,13 +1,13 @@
 ---
-title: 'Discontinuing release blog posts'
-author: 'Shu-yu Guo ([@shu_](https://twitter.com/_shu))'
+title: "Discontinuing release blog posts"
+author: "Shu-yu Guo ([@shu_](https://twitter.com/_shu))"
 avatars:
- - 'shu-yu-guo'
+ - "shu-yu-guo"
 date: 2022-06-17
 tags:
  - release
-description: 'V8 to discontinue release blog posts in favor of Chrome release schedule and feature blog posts.'
-tweet: '1537857497825824768'
+description: "V8 to discontinue release blog posts in favor of Chrome release schedule and feature blog posts."
+tweet: "1537857497825824768"
 ---
 
 Historically, there has been a blog post for each new release branch of V8. You may have noticed there has not been a release blog post since v9.9. From v10.0 onward, we are discontinuing release blog posts for each new branch. But don’t worry, all the information you were used to getting via release blog posts are still available! Read on to see where to find that information going forward.

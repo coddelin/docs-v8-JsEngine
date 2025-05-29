@@ -1,14 +1,14 @@
 ---
-title: 'JavaScript 개발자를 위한 코드 캐싱'
-author: '[Leszek Swirski](https://twitter.com/leszekswirski), 캐시 스매셔'
+title: "JavaScript 개발자를 위한 코드 캐싱"
+author: "[Leszek Swirski](https://twitter.com/leszekswirski), 캐시 스매셔"
 avatars:
   - leszek-swirski
 date: 2019-04-08 13:33:37
 updated: 2020-06-16
 tags:
   - internals
-description: '(바이트)코드 캐싱은 JavaScript 파싱 + 컴파일 결과를 캐싱하여 자주 방문하는 웹사이트의 시작 시간을 줄입니다.'
-tweet: '1115264282675953664'
+description: "(바이트)코드 캐싱은 JavaScript 파싱 + 컴파일 결과를 캐싱하여 자주 방문하는 웹사이트의 시작 시간을 줄입니다."
+tweet: "1115264282675953664"
 ---
 코드 캐싱(바이트코드 캐싱이라고도 함)은 브라우저에서 중요한 최적화 기술입니다. 이것은 파싱 + 컴파일 결과를 캐싱하여 자주 접속하는 웹사이트의 시작 시간을 줄입니다. 대부분의 [인기](https://blog.mozilla.org/javascript/2017/12/12/javascript-startup-bytecode-cache/) [브라우저](https://bugs.webkit.org/show_bug.cgi?id=192782)에서 어떤 형태로든 코드 캐싱을 구현하고 있으며, Chrome도 예외는 아닙니다. 실제로 우리는 Chrome과 V8이 컴파일된 코드를 어떻게 캐싱하는지에 대해 [작성](/blog/code-caching)하고, [개선](/blog/improved-code-caching)하며, [설명](https://www.youtube.com/watch?v=YqHOUy2rYZ8)한 바 있습니다.
 

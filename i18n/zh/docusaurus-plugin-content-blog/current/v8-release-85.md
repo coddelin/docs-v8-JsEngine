@@ -1,12 +1,12 @@
 ---
-title: 'V8 发布 v8.5'
-author: 'Zeynep Cankara，追踪一些地图'
+title: "V8 发布 v8.5"
+author: "Zeynep Cankara，追踪一些地图"
 avatars:
- - 'zeynep-cankara'
+ - "zeynep-cankara"
 date: 2020-07-21
 tags:
  - 发布
-description: 'V8 发布 v8.5 提供了 Promise.any、String#replaceAll、逻辑赋值运算符、WebAssembly 多值支持和 BigInt 支持，以及性能改进。'
+description: "V8 发布 v8.5 提供了 Promise.any、String#replaceAll、逻辑赋值运算符、WebAssembly 多值支持和 BigInt 支持，以及性能改进。"
 tweet:
 ---
 每六周，我们会根据[发布流程](https://v8.dev/docs/release-process)创建一个 V8 的新分支。每个版本都会在 Chrome Beta 里程碑之前立即从 V8 的 Git 主分支分出。今天，我们很高兴地宣布我们的最新分支，[V8 版本 8.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.5)，它将在几个星期后与 Chrome 85 稳定版一起发布。V8 v8.5 充满了各种对开发者有益的新功能。这篇文章展示了一些亮点内容的预览，期待发布。

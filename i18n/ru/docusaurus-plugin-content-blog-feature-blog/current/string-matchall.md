@@ -1,14 +1,14 @@
 ---
-title: '`String.prototype.matchAll`'
-author: 'Матиас Биненс ([@mathias](https://twitter.com/mathias))'
+title: "`String.prototype.matchAll`"
+author: "Матиас Биненс ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-02-02
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: 'String.prototype.matchAll делает проще итерацию по всем объектам совпадения от заданного регулярного выражения.'
+description: "String.prototype.matchAll делает проще итерацию по всем объектам совпадения от заданного регулярного выражения."
 ---
 Часто нужно повторно применять одно и то же регулярное выражение к строке, чтобы получить все совпадения. В некоторой степени это уже возможно с помощью метода `String#match`.
 

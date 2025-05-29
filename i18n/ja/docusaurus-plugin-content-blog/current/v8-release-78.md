@@ -1,13 +1,13 @@
 ---
-title: 'V8リリースv7.8'
-author: 'Ingvar Stepanyan（[@RReverser](https://twitter.com/RReverser)）、怠惰なソーサラー'
+title: "V8リリースv7.8"
+author: "Ingvar Stepanyan（[@RReverser](https://twitter.com/RReverser)）、怠惰なソーサラー"
 avatars:
-  - 'ingvar-stepanyan'
+  - "ingvar-stepanyan"
 date: 2019-09-27
 tags:
   - release
-description: 'V8 v7.8はプリロード時のストリーミングコンパイル、WebAssembly C API、高速なオブジェクト分解と正規表現の一致、そして起動時間の改善を特徴としています。'
-tweet: '1177600702861971459'
+description: "V8 v7.8はプリロード時のストリーミングコンパイル、WebAssembly C API、高速なオブジェクト分解と正規表現の一致、そして起動時間の改善を特徴としています。"
+tweet: "1177600702861971459"
 ---
 V8では6週間ごとに新しいブランチを作成する[リリースプロセス](/docs/release-process)を実施しています。各バージョンはChrome Betaマイルストーン直前のV8 Gitマスターから分岐します。本日、最新のブランチ[V8 version 7.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.8)を発表できることを嬉しく思います。このブランチは数週間後にChrome 78 Stableに合わせてリリースされるまでベータ版です。V8 v7.8には、開発者向けの数々の素晴らしい機能が詰まっています。本記事では、リリースを期待していくつかのハイライトをご紹介します。
 

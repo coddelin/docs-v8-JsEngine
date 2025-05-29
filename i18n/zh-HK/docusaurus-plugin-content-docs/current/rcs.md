@@ -1,6 +1,6 @@
 ---
-title: 'Runtime Call Stats'
-description: '本文件解釋瞭如何使用 Runtime Call Stats 獲取詳細的 V8 內部指標。'
+title: "Runtime Call Stats"
+description: "本文件解釋瞭如何使用 Runtime Call Stats 獲取詳細的 V8 內部指標。"
 ---
 [開發者工具性能面板 (DevTools Performance panel)](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/) 通過可視化各種 Chrome 內部指標，為您的網頁應用提供運行時性能洞察。然而，某些低層次的 V8 指標目前尚未在開發者工具中公開。本文將指導您通過 `chrome://tracing` 收集詳細的 V8 內部指標，這被稱為 Runtime Call Stats 或 RCS。
 

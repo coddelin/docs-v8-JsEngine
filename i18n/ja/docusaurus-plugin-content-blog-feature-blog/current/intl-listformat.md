@@ -1,16 +1,16 @@
 ---
-title: '`Intl.ListFormat`'
-author: 'Mathias Bynens（[@mathias](https://twitter.com/mathias)）およびFrank Yung-Fong Tang'
+title: "`Intl.ListFormat`"
+author: "Mathias Bynens（[@mathias](https://twitter.com/mathias)）およびFrank Yung-Fong Tang"
 avatars:
-  - 'mathias-bynens'
-  - 'frank-tang'
+  - "mathias-bynens"
+  - "frank-tang"
 date: 2018-12-18
 tags:
   - Intl
   - Node.js 12
   - io19
-description: 'Intl.ListFormat APIは、パフォーマンスを犠牲にすることなくリストのローカライズされたフォーマットを可能にします。'
-tweet: '1074966915557351424'
+description: "Intl.ListFormat APIは、パフォーマンスを犠牲にすることなくリストのローカライズされたフォーマットを可能にします。"
+tweet: "1074966915557351424"
 ---
 モダンなWebアプリケーションでは、動的なデータで構成されたリストがよく使用されます。例えば、写真ビューアアプリでは以下のような表示がされることがあります：
 

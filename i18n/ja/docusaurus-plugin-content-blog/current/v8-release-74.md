@@ -1,11 +1,11 @@
 ---
-title: 'V8リリース v7.4'
-author: 'Georg Neis'
+title: "V8リリース v7.4"
+author: "Georg Neis"
 date: 2019-03-22 16:30:42
 tags:
   - リリース
-description: 'V8 v7.4はWebAssemblyスレッド/Atomics、プライベートクラスフィールド、パフォーマンスおよびメモリ改善、その他多数の機能を提供します！'
-tweet: '1109094755936489472'
+description: "V8 v7.4はWebAssemblyスレッド/Atomics、プライベートクラスフィールド、パフォーマンスおよびメモリ改善、その他多数の機能を提供します！"
+tweet: "1109094755936489472"
 ---
 6週間ごとに、私たちは新しいV8のブランチをリリースプロセスの一環として作成します。[リリースプロセス](/docs/release-process)の詳細を参照してください。各バージョンは、Chromeのベータ段階に入る直前にV8のGitマスターから分岐されます。本日は最新のブランチ[V8バージョン7.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.4)のお知らせです。このバージョンは数週間後にChrome 74 Stableと連携してリリースされるまでベータ版となります。V8 v7.4は開発者向けのさまざまな機能が満載です。この投稿では、リリース前にいくつかのハイライトを事前に紹介します。
 

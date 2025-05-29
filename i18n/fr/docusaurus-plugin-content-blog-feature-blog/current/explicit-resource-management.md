@@ -1,13 +1,13 @@
 ---
 title: "La Nouvelle Superpuissance de JavaScript : Gestion Explicite des Ressources"
-author: 'Rezvan Mahdavi Hezaveh'
+author: "Rezvan Mahdavi Hezaveh"
 avatars:
-  - 'rezvan-mahdavi-hezaveh'
+  - "rezvan-mahdavi-hezaveh"
 date: 2025-05-09
 tags:
   - ECMAScript
-description: 'La proposition de Gestion Explicite des Ressources permet aux développeurs de gérer explicitement le cycle de vie des ressources.'
-tweet: ''
+description: "La proposition de Gestion Explicite des Ressources permet aux développeurs de gérer explicitement le cycle de vie des ressources."
+tweet: ""
 ---
 
 La proposition *Gestion Explicite des Ressources* introduit une approche déterministe pour gérer explicitement le cycle de vie des ressources telles que les gestionnaires de fichiers, les connexions réseau, et plus encore. Cette proposition apporte les ajouts suivants au langage : les déclarations `using` et `await using`, qui appellent automatiquement la méthode de disposition lorsqu'une ressource sort de leur champ d'application ; les symboles `[Symbol.dispose]()` et `[Symbol.asyncDispose]()` pour les opérations de nettoyage ; deux nouveaux objets globaux `DisposableStack` et `AsyncDisposableStack` en tant que conteneurs pour agréger les ressources jetables ; et `SuppressedError` comme nouveau type d'erreur (contient à la fois l'erreur la plus récemment levée, ainsi que l'erreur supprimée) pour gérer le scénario où une erreur se produit lors de la disposition d'une ressource, masquant potentiellement une erreur existante levée dans le corps, ou lors de la disposition d'une autre ressource. Ces ajouts permettent aux développeurs d'écrire un code plus robuste, performant et maintenable en offrant un contrôle précis sur la disposition des ressources.

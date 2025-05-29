@@ -1,13 +1,13 @@
 ---
-title: 'Eingebettete Builtins'
-author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
+title: "Eingebettete Builtins"
+author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2018-08-14 13:33:37
 tags:
   - internals
-description: 'V8 v6.9 bettet eingebauten Code in den .text-Bereich der Binärdatei ein, wodurch die mediane V8-Heap-Größe pro Website um 19 % reduziert wird.'
-tweet: '1029382366693937162'
+description: "V8 v6.9 bettet eingebauten Code in den .text-Bereich der Binärdatei ein, wodurch die mediane V8-Heap-Größe pro Website um 19 % reduziert wird."
+tweet: "1029382366693937162"
 ---
 V8-Funktionen (Builtins) verbrauchen Speicher in jeder Instanz von V8. Die Anzahl der Builtins, deren durchschnittliche Größe und die Anzahl der V8-Instanzen pro Chrome-Browser-Tab haben erheblich zugenommen. Dieser Blog-Beitrag beschreibt, wie wir die mediane V8-Heap-Größe pro Website im vergangenen Jahr um 19 % reduziert haben.
 

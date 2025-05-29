@@ -1,13 +1,13 @@
 ---
-title: '暫時停用逃逸分析'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), 沙盒逃逸分析師'
+title: "暫時停用逃逸分析"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), 沙盒逃逸分析師"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-09-22 13:33:37
 tags:
   - 安全性
-description: '我們已停用 Chrome 61 中的 V8 逃逸分析功能，以保護使用者免受安全漏洞的威脅。'
-tweet: '911339802884284416'
+description: "我們已停用 Chrome 61 中的 V8 逃逸分析功能，以保護使用者免受安全漏洞的威脅。"
+tweet: "911339802884284416"
 ---
 在 JavaScript 中，如果分配的物件從外部可存取當前函式，那麼該物件即被認定為_逃逸_。通常，V8 將新物件分配到 JavaScript 堆中，但通過_逃逸分析_，優化編譯器可以判斷物件的生命週期是否確實束縛於函式的啟用。當對新分配物件的引用未逃逸創建它的函式時，JavaScript 引擎不需要顯式地將該物件分配到堆中。它們可以有效地將物件的值視為函式的局部變數。這反過來又可以實現各種優化，例如將這些值存儲在堆疊或寄存器中，或者在某些情況下，完全優化掉這些值。而逃逸的物件（更準確地說，無法證明它們不會逃逸的物件）必須在堆上分配。
 

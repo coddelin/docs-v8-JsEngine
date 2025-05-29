@@ -1,13 +1,13 @@
 ---
 title: 'Contenu supplémentaire pour "Comprendre la spécification ECMAScript, partie 2"'
-author: '[Marja Hölttä](https://twitter.com/marjakh), spectatrice de spécifications spéculatives'
+author: "[Marja Hölttä](https://twitter.com/marjakh), spectatrice de spécifications spéculatives"
 avatars:
   - marja-holtta
 date: 2020-03-02
 tags:
   - ECMAScript
-description: 'Tutoriel sur la lecture de la spécification ECMAScript'
-tweet: ''
+description: "Tutoriel sur la lecture de la spécification ECMAScript"
+tweet: ""
 ---
 
 ### Pourquoi `o2.foo` est-il une `AssignmentExpression` ?

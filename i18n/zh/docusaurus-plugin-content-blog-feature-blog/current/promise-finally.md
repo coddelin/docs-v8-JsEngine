@@ -1,14 +1,14 @@
 ---
-title: '`Promise.prototype.finally`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Promise.prototype.finally`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-10-23
 tags:
   - ECMAScript
   - ES2018
-description: 'Promise.prototype.finally 使得可以注册在 Promise 被解决（即成功或拒绝）时调用的回调函数。'
-tweet: '922459978857824261'
+description: "Promise.prototype.finally 使得可以注册在 Promise 被解决（即成功或拒绝）时调用的回调函数。"
+tweet: "922459978857824261"
 ---
 `Promise.prototype.finally` 使得可以注册在 Promise 被解决（即成功或拒绝）时调用的回调函数。
 

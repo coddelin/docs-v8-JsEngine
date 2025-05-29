@@ -1,15 +1,15 @@
 ---
-title: 'React에서의 V8 성능 저하 이야기'
-author: 'Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) 및 Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "React에서의 V8 성능 저하 이야기"
+author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) 및 Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'benedikt-meurer'
-  - 'mathias-bynens'
+  - "benedikt-meurer"
+  - "mathias-bynens"
 date: 2019-08-28 16:45:00
 tags:
   - internals
   - presentations
-description: '이 글에서는 V8이 다양한 JavaScript 값을 메모리에 최적으로 표현하는 방법과 그로 인해 Shape 기계에 어떤 영향을 미치는지를 설명합니다. 이를 통해 최근 React 핵심에서 발생한 V8 성능 저하 현상을 이해할 수 있습니다.'
-tweet: '1166723359696130049'
+description: "이 글에서는 V8이 다양한 JavaScript 값을 메모리에 최적으로 표현하는 방법과 그로 인해 Shape 기계에 어떤 영향을 미치는지를 설명합니다. 이를 통해 최근 React 핵심에서 발생한 V8 성능 저하 현상을 이해할 수 있습니다."
+tweet: "1166723359696130049"
 ---
 [이전](https://mathiasbynens.be/notes/shapes-ics)에는 Shapes와 Inline Caches를 사용하여 JavaScript 엔진이 객체 및 배열 접근을 최적화하는 방식을 논의했고, [프로토타입 속성 접근 속도를 높이는 방법](https://mathiasbynens.be/notes/prototypes)을 탐구했습니다. 이번 글에서는 V8이 다양한 JavaScript 값을 메모리에 최적으로 표현하는 방식을 설명하며, Shape 기계에 어떤 영향을 미치는지 — 이러한 모든 내용은 [React 핵심에서 발생한 최근 V8 성능 저하](https://github.com/facebook/react/issues/14365)를 이해하는 데 도움이 됩니다.
 

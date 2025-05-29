@@ -1,12 +1,12 @@
 ---
-title: 'Lançamento do V8 v8.1'
-author: 'Dominik Inführ, homem internacional(mistério da internacionalização)'
+title: "Lançamento do V8 v8.1"
+author: "Dominik Inführ, homem internacional(mistério da internacionalização)"
 avatars:
-  - 'dominik-infuehr'
+  - "dominik-infuehr"
 date: 2020-02-25
 tags:
   - lançamento
-description: 'O V8 v8.1 oferece suporte aprimorado à internacionalização por meio da nova API Intl.DisplayNames.'
+description: "O V8 v8.1 oferece suporte aprimorado à internacionalização por meio da nova API Intl.DisplayNames."
 ---
 
 A cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](https://v8.dev/docs/release-process). Cada versão é originada do Git master do V8 imediatamente antes de um marco Beta do Chrome. Hoje temos o prazer de anunciar nosso mais novo ramo, [V8 versão 8.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.1), que está em beta até seu lançamento em coordenação com o Chrome 81 Stable em algumas semanas. O V8 v8.1 está repleto de vários recursos voltados para desenvolvedores. Este post fornece uma prévia de alguns dos destaques em antecipação ao lançamento.

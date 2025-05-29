@@ -1,13 +1,13 @@
 ---
-title: 'Lazy deserialization'
-author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
+title: "Lazy deserialization"
+author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2018-02-12 13:33:37
 tags:
   - internals
-description: 'Lazy deserialization, available in V8 v6.4, reduces V8’s memory consumption by over 500 KB per browser tab on average.'
-tweet: '962989179914383360'
+description: "Lazy deserialization, available in V8 v6.4, reduces V8’s memory consumption by over 500 KB per browser tab on average."
+tweet: "962989179914383360"
 ---
 TL;DR: Lazy deserialization was recently enabled by default in [V8 v6.4](/blog/v8-release-64), reducing V8’s memory consumption by over 500 KB per browser tab on average. Read on to find out more!
 

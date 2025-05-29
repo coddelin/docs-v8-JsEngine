@@ -1,13 +1,13 @@
 ---
-title: '자바스크립트 코드 커버리지'
-author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
+title: "자바스크립트 코드 커버리지"
+author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2017-12-13 13:33:37
 tags:
   - internals
-description: 'V8는 이제 자바스크립트 코드 커버리지를 네이티브 지원합니다. 도구들은 이제 V8의 커버리지 정보를 코드에 계측 없이 액세스할 수 있습니다!'
-tweet: '940879905079873536'
+description: "V8는 이제 자바스크립트 코드 커버리지를 네이티브 지원합니다. 도구들은 이제 V8의 커버리지 정보를 코드에 계측 없이 액세스할 수 있습니다!"
+tweet: "940879905079873536"
 ---
 코드 커버리지는 애플리케이션의 특정 부분이 실행되었는지 여부와 선택적으로 얼마나 자주 실행되었는지에 대한 정보를 제공합니다. 이는 테스트 스위트가 특정 코드베이스를 얼마나 철저히 검증하는지 판단하는 데 자주 사용됩니다.
 

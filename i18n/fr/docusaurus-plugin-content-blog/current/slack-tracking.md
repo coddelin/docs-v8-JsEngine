@@ -1,9 +1,9 @@
 ---
-title: 'Suivi de slack dans V8'
-author: 'Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), maître renommé du *slack*'
-description: 'Un regard détaillé sur le mécanisme de suivi de slack de V8.'
+title: "Suivi de slack dans V8"
+author: "Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), maître renommé du *slack*"
+description: "Un regard détaillé sur le mécanisme de suivi de slack de V8."
 avatars:
- - 'michael-stanton'
+ - "michael-stanton"
 date: 2020-09-24 14:00:00
 tags:
  - internals

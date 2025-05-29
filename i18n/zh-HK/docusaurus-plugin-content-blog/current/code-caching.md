@@ -1,12 +1,12 @@
 ---
-title: '程式碼緩存'
-author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed)), 軟體工程師'
+title: "程式碼緩存"
+author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), 軟體工程師"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2015-07-27 13:33:37
 tags:
   - internals
-description: 'V8 現在支援（位元組）程式碼緩存，即緩存 JavaScript 解析和編譯的結果。'
+description: "V8 現在支援（位元組）程式碼緩存，即緩存 JavaScript 解析和編譯的結果。"
 ---
 V8 使用 [即時編譯](https://en.wikipedia.org/wiki/Just-in-time_compilation)（JIT）來執行 JavaScript 程式碼。這表示在執行腳本之前，必須先對其進行解析和編譯，這可能會導致相當大的額外開銷。正如我們[最近公告](https://blog.chromium.org/2015/03/new-javascript-techniques-for-rapid.html)提到的，程式碼緩存是一種減少這種開銷的技術。當腳本第一次被編譯時，會生成緩存數據並將其儲存。下一次 V8 需要編譯相同的腳本時，即使在不同的 V8 實例中，也可以使用緩存數據來重建編譯結果，而不是從頭編譯。因此，腳本能夠更快地執行。
 

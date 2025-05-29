@@ -1,6 +1,6 @@
 ---
-title: 'Oilpanにおけるポインタ圧縮'
-author: 'Anton Bikineev および Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz))、ウォーキング逆アセンブラ'
+title: "Oilpanにおけるポインタ圧縮"
+author: "Anton Bikineev および Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz))、ウォーキング逆アセンブラ"
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -9,8 +9,8 @@ tags:
   - internals
   - memory
   - cppgc
-description: 'Oilpanにおけるポインタ圧縮は、C++ポインタを圧縮し、ヒープサイズを最大33%削減することを可能にします。'
-tweet: '1597274125780893697'
+description: "Oilpanにおけるポインタ圧縮は、C++ポインタを圧縮し、ヒープサイズを最大33%削減することを可能にします。"
+tweet: "1597274125780893697"
 ---
 
 > 4ギガバイト未満のRAMを使用するプログラムをコンパイルする場合に、64ビットのポインタを使用するのは全くもって愚かなことです。このようなポインタの値が構造体内に現れると、メモリの半分を無駄にするだけでなく、キャッシュの半分を効果的に捨てることになります。

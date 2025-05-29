@@ -1,13 +1,13 @@
 ---
-title: '错误原因'
-author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
+title: "错误原因"
+author: "Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))"
 avatars:
-  - 'victor-gomes'
+  - "victor-gomes"
 date: 2021-07-07
 tags:
   - ECMAScript
-description: 'JavaScript 现在支持错误原因。'
-tweet: '1412774651558862850'
+description: "JavaScript 现在支持错误原因。"
+tweet: "1412774651558862850"
 ---
 
 假设你有一个函数要调用两个独立的工作负载 `doSomeWork` 和 `doMoreWork`。这两个函数可能抛出同样类型的错误，但你需要以不同的方式处理它们。

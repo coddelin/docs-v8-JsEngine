@@ -1,14 +1,14 @@
 ---
-title: 'Optional chaining'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), オプショナルチェーンの突破者'
+title: "Optional chaining"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), オプショナルチェーンの突破者"
 avatars:
-  - 'maya-armyanova'
+  - "maya-armyanova"
 date: 2019-08-27
 tags:
   - ECMAScript
   - ES2020
-description: 'オプショナルチェーンは組み込みのヌルチェックを伴うプロパティアクセスを読みやすく簡潔に記述することを可能にします。'
-tweet: '1166360971914481669'
+description: "オプショナルチェーンは組み込みのヌルチェックを伴うプロパティアクセスを読みやすく簡潔に記述することを可能にします。"
+tweet: "1166360971914481669"
 ---
 JavaScriptでの長いプロパティアクセスチェーンはエラーが発生しやすく、そのどれもが`null`または`undefined`（「ヌリッシュ」値として知られる）に評価される可能性があります。それぞれの手順でプロパティの存在を確認することは、簡単に深く入れ子になった`if`文構造やプロパティアクセスチェーンを複製する長い`if`条件に変わる可能性があります：
 

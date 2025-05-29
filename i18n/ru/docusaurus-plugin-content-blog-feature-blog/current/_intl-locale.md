@@ -1,15 +1,15 @@
 ---
-title: '`Intl.Locale`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Intl.Locale`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-05-20
 tags:
   - Intl
   - Node.js 12
   - io19
-description: 'Новый API Intl.Locale предлагает унифицированный механизм работы с локалями, который является более удобным, чем использование строк.'
-tweet: 'TODO'
+description: "Новый API Intl.Locale предлагает унифицированный механизм работы с локалями, который является более удобным, чем использование строк."
+tweet: "TODO"
 ---
 При работе с [API интернационализации](/features/tags/intl) обычно передаются строки, представляющие идентификаторы локалей, в различные конструкторы `Intl`, такие как `'en'` для английского языка. [Новый API `Intl.Locale`](https://github.com/tc39/proposal-intl-locale) предлагает более мощный механизм работы с такими локалями.
 

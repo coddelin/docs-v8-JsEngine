@@ -1,6 +1,6 @@
 ---
-title: 'Oilpan库'
-author: 'Anton Bikineev、Omer Katz（[@omerktz](https://twitter.com/omerktz)）和Michael Lippautz（[@mlippautz](https://twitter.com/mlippautz)），高效且有效的文件搬运者'
+title: "Oilpan库"
+author: "Anton Bikineev、Omer Katz（[@omerktz](https://twitter.com/omerktz)）和Michael Lippautz（[@mlippautz](https://twitter.com/mlippautz)），高效且有效的文件搬运者"
 avatars:
   - anton-bikineev
   - omer-katz
@@ -10,8 +10,8 @@ tags:
   - 内部构造
   - 内存
   - cppgc
-description: 'V8附带了Oilpan，一个用于托管托管C++内存的垃圾回收库。'
-tweet: '1458406645181165574'
+description: "V8附带了Oilpan，一个用于托管托管C++内存的垃圾回收库。"
+tweet: "1458406645181165574"
 ---
 
 虽然此篇文章标题可能暗示深入探讨有关油底壳的书籍集合——这个主题因其设计规范意外地涉及了大量文献——实际上，我们会仔细探讨Oilpan，它是一个通过V8作为库托管的C++垃圾回收器，从V8 v9.4开始。

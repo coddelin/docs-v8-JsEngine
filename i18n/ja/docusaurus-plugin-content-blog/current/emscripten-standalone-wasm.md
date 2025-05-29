@@ -1,14 +1,14 @@
 ---
-title: 'ウェブ外: Emscriptenを使用した単独のWebAssemblyバイナリ'
-author: 'Alon Zakai'
+title: "ウェブ外: Emscriptenを使用した単独のWebAssemblyバイナリ"
+author: "Alon Zakai"
 avatars:
-  - 'alon-zakai'
+  - "alon-zakai"
 date: 2019-11-21
 tags:
   - WebAssembly
   - tooling
-description: 'Emscriptenは、JavaScriptを必要としない単独のWasmファイルをサポートします。'
-tweet: '1197547645729988608'
+description: "Emscriptenは、JavaScriptを必要としない単独のWasmファイルをサポートします。"
+tweet: "1197547645729988608"
 ---
 Emscriptenは常に、ウェブやNode.jsのような他のJavaScript環境へのコンパイルを最優先にしてきました。しかし、WebAssemblyがJavaScriptなしで使用され始めると、新しいユースケースが登場し、それに合わせてEmscriptenのJSランタイムに依存しない[**単独のWasm**](https://github.com/emscripten-core/emscripten/wiki/WebAssembly-Standalone)ファイルの生成をサポートするようになりました。この投稿では、その理由が興味深い点について説明します。
 

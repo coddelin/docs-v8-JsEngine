@@ -1,11 +1,11 @@
 ---
-title: 'V8 릴리즈 v6.4'
-author: 'V8 팀'
+title: "V8 릴리즈 v6.4"
+author: "V8 팀"
 date: 2017-12-19 13:33:37
 tags:
   - 릴리즈
-description: 'V8 v6.4는 성능 향상, 새로운 JavaScript 언어 기능 등을 포함하고 있습니다.'
-tweet: '943057597481082880'
+description: "V8 v6.4는 성능 향상, 새로운 JavaScript 언어 기능 등을 포함하고 있습니다."
+tweet: "943057597481082880"
 ---
 매 6주마다 [릴리즈 프로세스](/docs/release-process)의 일환으로 V8의 새로운 브랜치를 생성합니다. 각 버전은 Chrome Beta 마일스톤 직전에 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 [V8 버전 6.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.4)의 새로운 브랜치를 발표하게 되어 기쁩니다. 이 버전은 몇 주 후 Chrome 64 Stable과 함께 릴리즈될 때까지 베타 상태입니다. V8 v6.4는 개발자들에게 유용한 여러 기능들로 가득 차 있습니다. 이 게시물은 릴리즈를 앞두고 주요 내용을 미리 살펴봅니다.
 

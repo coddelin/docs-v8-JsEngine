@@ -1,14 +1,14 @@
 ---
-title: '`Promise.prototype.finally`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Promise.prototype.finally`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-10-23
 tags:
   - ECMAScript
   - ES2018
-description: 'Promise.prototype.finally permite registrar un callback que será invocado cuando una promesa sea resuelta (es decir, cumplida o rechazada).'
-tweet: '922459978857824261'
+description: "Promise.prototype.finally permite registrar un callback que será invocado cuando una promesa sea resuelta (es decir, cumplida o rechazada)."
+tweet: "922459978857824261"
 ---
 `Promise.prototype.finally` permite registrar un callback que será invocado cuando una promesa esté _resuelta_ (es decir, cumplida o rechazada).
 

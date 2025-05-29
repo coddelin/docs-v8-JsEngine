@@ -1,10 +1,10 @@
 ---
-title: 'V8 release v5.0'
+title: "V8 release v5.0"
 author: 'l'équipe V8'
 date: 2016-03-15 13:33:37
 tags:
   - sortie
-description: 'V8 v5.0 offre des améliorations de performance et ajoute la prise en charge de plusieurs nouvelles fonctionnalités du langage ES2015.'
+description: "V8 v5.0 offre des améliorations de performance et ajoute la prise en charge de plusieurs nouvelles fonctionnalités du langage ES2015."
 ---
 La première étape du [processus de publication](/docs/release-process) de V8 est une nouvelle branche créée depuis le master Git juste avant que Chromium ne ramifie pour un jalon Beta Chrome (environ toutes les six semaines). Notre dernière branche de publication est [V8 v5.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.0), qui restera en version beta jusqu'à la publication d'une version stable avec Chrome 50 Stable. Voici un aperçu des nouvelles fonctionnalités pour les développeurs dans cette version de V8.
 

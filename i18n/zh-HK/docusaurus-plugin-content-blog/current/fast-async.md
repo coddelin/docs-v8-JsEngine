@@ -1,16 +1,16 @@
 ---
-title: '更快的非同步函式與 Promise'
-author: 'Maya Armyanova（[@Zmayski](https://twitter.com/Zmayski)），永遠處於等待狀態的預測者，以及 Benedikt Meurer（[@bmeurer](https://twitter.com/bmeurer)），專業性能承諾者'
+title: "更快的非同步函式與 Promise"
+author: "Maya Armyanova（[@Zmayski](https://twitter.com/Zmayski)），永遠處於等待狀態的預測者，以及 Benedikt Meurer（[@bmeurer](https://twitter.com/bmeurer)），專業性能承諾者"
 avatars:
-  - 'maya-armyanova'
-  - 'benedikt-meurer'
+  - "maya-armyanova"
+  - "benedikt-meurer"
 date: 2018-11-12 16:45:07
 tags:
   - ECMAScript
   - 基準測試
   - 簡報
-description: '更快且更易於除錯的非同步函式與 Promise 即將於 V8 v7.2 / Chrome 72 推出。'
-tweet: '1062000102909169670'
+description: "更快且更易於除錯的非同步函式與 Promise 即將於 V8 v7.2 / Chrome 72 推出。"
+tweet: "1062000102909169670"
 ---
 JavaScript 中的非同步處理傳統上被認為速度並不特別快。更糟的是，對即時運行的 JavaScript 應用進行除錯——尤其是 Node.js 伺服器——並不容易，_特別是_涉及非同步程式時。不過幸運的是，時代正在改變。本文將探討我們如何在 V8（以及某種程度上其他 JavaScript 引擎）中優化非同步函式與 Promise，並描述我們如何改進非同步程式碼的除錯體驗。
 

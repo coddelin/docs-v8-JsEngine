@@ -1,15 +1,15 @@
 ---
-title: 'V8 정규 표현식 개선'
-author: '정규 표현식에 대한 의견을 자주 표현하는 Patrick Thier와 Ana Peško'
+title: "V8 정규 표현식 개선"
+author: "정규 표현식에 대한 의견을 자주 표현하는 Patrick Thier와 Ana Peško"
 avatars:
-  - 'patrick-thier'
-  - 'ana-pesko'
+  - "patrick-thier"
+  - "ana-pesko"
 date: 2019-10-04 15:24:16
 tags:
   - internals
   - RegExp
-description: '이 블로그 포스트에서는 정규 표현식을 해석의 장점을 활용하고 단점을 완화하는 방법을 설명합니다.'
-tweet: '1180131710568030208'
+description: "이 블로그 포스트에서는 정규 표현식을 해석의 장점을 활용하고 단점을 완화하는 방법을 설명합니다."
+tweet: "1180131710568030208"
 ---
 기본 설정에서 V8은 정규 표현식을 처음 실행할 때 네이티브 코드로 컴파일합니다. [JIT-less V8](/blog/jitless) 작업의 일부로 우리는 정규 표현식을 위한 인터프리터를 도입했습니다. 정규 표현식을 해석하면 더 적은 메모리를 사용하는 장점이 있지만, 성능 상의 단점도 동반됩니다. 이 블로그 게시물에서는 정규 표현식을 해석하는 장점을 활용하고 단점을 완화하는 방법을 설명합니다.
 

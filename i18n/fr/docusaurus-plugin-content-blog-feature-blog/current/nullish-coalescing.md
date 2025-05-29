@@ -1,14 +1,14 @@
 ---
-title: 'Coalescence nulle'
-author: 'Justin Ridgewell'
+title: "Coalescence nulle"
+author: "Justin Ridgewell"
 avatars:
-  - 'justin-ridgewell'
+  - "justin-ridgewell"
 date: 2019-09-17
 tags:
   - ECMAScript
   - ES2020
 description: 'L'opérateur de coalescence nulle en JavaScript permet des expressions par défaut plus sûres.'
-tweet: '1173971116865523714'
+tweet: "1173971116865523714"
 ---
 La [proposition de coalescence nulle](https://github.com/tc39/proposal-nullish-coalescing/) (`??`) ajoute un nouvel opérateur de court-circuit destiné à gérer les valeurs par défaut.
 

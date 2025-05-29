@@ -1,15 +1,15 @@
 ---
-title: 'Hablar basura: el recolector de basura Orinoco'
-author: 'Peter ‘el basurero’ Marshall ([@hooraybuffer](https://twitter.com/hooraybuffer))'
+title: "Hablar basura: el recolector de basura Orinoco"
+author: "Peter ‘el basurero’ Marshall ([@hooraybuffer](https://twitter.com/hooraybuffer))"
 avatars:
-  - 'peter-marshall'
+  - "peter-marshall"
 date: 2019-01-03 17:45:34
 tags:
   - internals
   - memoria
   - presentaciones
-description: 'Orinoco, el recolector de basura de V8, evolucionó de una implementación secuencial que detenía completamente el mundo a un recolector mayormente paralelo y concurrente con retroceso incremental.'
-tweet: '1080867305532416000'
+description: "Orinoco, el recolector de basura de V8, evolucionó de una implementación secuencial que detenía completamente el mundo a un recolector mayormente paralelo y concurrente con retroceso incremental."
+tweet: "1080867305532416000"
 ---
 En los últimos años, el recolector de basura (GC) de V8 ha cambiado mucho. El proyecto Orinoco ha transformado un recolector de basura secuencial que detenía completamente la ejecución en un recolector mayormente paralelo y concurrente con retroceso incremental.
 

@@ -1,6 +1,6 @@
 ---
-title: 'Perfilando Chromium con V8'
-description: 'Este documento explica cómo usar los perfiles de CPU y heap de V8 con Chromium.'
+title: "Perfilando Chromium con V8"
+description: "Este documento explica cómo usar los perfiles de CPU y heap de V8 con Chromium."
 ---
 [Los perfiles de CPU y heap de V8](/docs/profile) son muy fáciles de usar desde los shells de V8, pero puede parecer confuso cómo utilizarlos con Chromium. Esta página debería ayudarte con eso.
 

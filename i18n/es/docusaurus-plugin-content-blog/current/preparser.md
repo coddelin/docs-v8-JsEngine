@@ -1,15 +1,15 @@
 ---
-title: 'Análisis increíblemente rápido, parte 2: análisis perezoso'
-author: 'Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)) y Marja Hölttä ([@marjakh](https://twitter.com/marjakh)), parsers más ligeros'
+title: "Análisis increíblemente rápido, parte 2: análisis perezoso"
+author: "Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)) y Marja Hölttä ([@marjakh](https://twitter.com/marjakh)), parsers más ligeros"
 avatars:
-  - 'toon-verwaest'
-  - 'marja-holtta'
+  - "toon-verwaest"
+  - "marja-holtta"
 date: 2019-04-15 17:03:37
 tags:
   - internos
   - análisis
-tweet: '1117807107972243456'
-description: 'Esta es la segunda parte de nuestra serie de artículos que explica cómo V8 analiza JavaScript lo más rápido posible.'
+tweet: "1117807107972243456"
+description: "Esta es la segunda parte de nuestra serie de artículos que explica cómo V8 analiza JavaScript lo más rápido posible."
 ---
 Esta es la segunda parte de nuestra serie que explica cómo V8 analiza JavaScript lo más rápido posible. La primera parte explicó cómo hicimos rápido el [escáner](/blog/scanner) de V8.
 

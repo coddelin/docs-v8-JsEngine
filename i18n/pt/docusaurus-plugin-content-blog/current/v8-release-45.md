@@ -1,10 +1,10 @@
 ---
-title: 'Lançamento do V8 v4.5'
-author: 'a equipe V8'
+title: "Lançamento do V8 v4.5"
+author: "a equipe V8"
 date: 2015-07-17 13:33:37
 tags:
   - lançamento
-description: 'O V8 v4.5 vem com melhorias de desempenho e adiciona suporte a vários recursos do ES2015.'
+description: "O V8 v4.5 vem com melhorias de desempenho e adiciona suporte a vários recursos do ES2015."
 ---
 Aproximadamente a cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](https://v8.dev/docs/release-process). Cada versão é criada a partir do repositório principal do V8 no Git logo antes de o Chrome criar um branch para um marco de Beta do Chrome. Hoje estamos felizes em anunciar o nosso mais novo branch, [V8 versão 4.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.5), que estará em beta até ser lançado juntamente com o Chrome 45 Stable. O V8 v4.5 está cheio de novidades voltadas para os desenvolvedores, então gostaríamos de dar uma prévia de alguns dos destaques em antecipação ao lançamento nas próximas semanas.
 

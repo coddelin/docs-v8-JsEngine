@@ -1,11 +1,11 @@
 ---
-title: '更快的发布节奏'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "更快的发布节奏"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
-  - 'ingvar-stepanyan'
+  - "ingvar-stepanyan"
 date: 2021-03-04
-description: '加速 V8 的发布周期'
-tweet: '1367546733643919370'
+description: "加速 V8 的发布周期"
+tweet: "1367546733643919370"
 ---
 为了更快地向用户提供新功能和问题修复，Chrome 正在[加速其发布周期](https://developer.chrome.com/blog/faster-release-cycle/)。
 

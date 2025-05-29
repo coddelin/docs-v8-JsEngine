@@ -1,16 +1,16 @@
 ---
-title: 'Schnellere asynchrone Funktionen und Versprechen'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), immer-wartende Antizipatorin, und Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), professioneller Leistungsversprecher'
+title: "Schnellere asynchrone Funktionen und Versprechen"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), immer-wartende Antizipatorin, und Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), professioneller Leistungsversprecher"
 avatars:
-  - 'maya-armyanova'
-  - 'benedikt-meurer'
+  - "maya-armyanova"
+  - "benedikt-meurer"
 date: 2018-11-12 16:45:07
 tags:
   - ECMAScript
   - Benchmarks
   - Präsentationen
-description: 'Schnellere und leichter zu debuggende asynchrone Funktionen und Versprechen kommen mit V8 v7.2 / Chrome 72.'
-tweet: '1062000102909169670'
+description: "Schnellere und leichter zu debuggende asynchrone Funktionen und Versprechen kommen mit V8 v7.2 / Chrome 72."
+tweet: "1062000102909169670"
 ---
 Asynchrone Verarbeitung in JavaScript hatte traditionell den Ruf, nicht besonders schnell zu sein. Noch schlimmer war es, Live-JavaScript-Anwendungen – insbesondere Node.js-Server – zu debuggen, _besonders_ wenn es um asynchrone Programmierung geht. Glücklicherweise ändern sich die Zeiten. Dieser Artikel untersucht, wie wir asynchrone Funktionen und Versprechen in V8 (und teilweise auch in anderen JavaScript-Engines) optimiert haben und beschreibt, wie wir die Debugging-Erfahrung für asynchronen Code verbessert haben.
 

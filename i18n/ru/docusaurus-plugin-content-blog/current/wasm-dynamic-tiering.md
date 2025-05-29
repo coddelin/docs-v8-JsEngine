@@ -1,13 +1,13 @@
 ---
-title: 'WebAssembly Dynamic Tiering готова к тестированию в Chrome 96'
-author: 'Андреас Хаас — Tierisch fun'
+title: "WebAssembly Dynamic Tiering готова к тестированию в Chrome 96"
+author: "Андреас Хаас — Tierisch fun"
 avatars:
   - andreas-haas
 date: 2021-10-29
 tags:
   - WebAssembly
-description: 'WebAssembly Dynamic Tiering готова к тестированию в V8 v9.6 и Chrome 96, либо через командную строку, либо через Origin Trial'
-tweet: '1454158971674271760'
+description: "WebAssembly Dynamic Tiering готова к тестированию в V8 v9.6 и Chrome 96, либо через командную строку, либо через Origin Trial"
+tweet: "1454158971674271760"
 ---
 
 V8 имеет два компилятора для компиляции кода WebAssembly в машинный код, который затем можно выполнять: базовый компилятор __Liftoff__ и оптимизирующий компилятор __TurboFan__. Liftoff может генерировать код гораздо быстрее, чем TurboFan, что позволяет добиться быстрого запуска. TurboFan, в свою очередь, может генерировать более быстрый код, обеспечивая высокую производительность.

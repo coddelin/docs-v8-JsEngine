@@ -1,15 +1,15 @@
 ---
-title: '`Intl.NumberFormat`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)) 그리고 Shane F. Carr'
+title: "`Intl.NumberFormat`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)) 그리고 Shane F. Carr"
 avatars:
-  - 'mathias-bynens'
-  - 'shane-carr'
+  - "mathias-bynens"
+  - "shane-carr"
 date: 2019-08-08
 tags:
   - Intl
   - io19
-description: 'Intl.NumberFormat는 지역별 숫자 형식을 지원합니다.'
-tweet: '1159476407329873920'
+description: "Intl.NumberFormat는 지역별 숫자 형식을 지원합니다."
+tweet: "1159476407329873920"
 ---
 현재 `Intl.NumberFormat` API에 대해 알고 있을 수도 있습니다. 이 API는 현대 환경에서 이미 오랫동안 지원되고 있습니다.
 

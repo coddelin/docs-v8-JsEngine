@@ -1,6 +1,6 @@
 ---
-title: '釋出流程'
-description: '本文檔解釋了 V8 的釋出流程。'
+title: "釋出流程"
+description: "本文檔解釋了 V8 的釋出流程。"
 ---
 V8 的釋出流程與 [Chrome](https://www.chromium.org/getting-involved/dev-channel) 的釋出流程緊密相連。V8 團隊使用所有四個 Chrome 釋出渠道將新版本推送給用戶。
 

@@ -1,13 +1,13 @@
 ---
 title: 'Assistants d'itérateurs'
-author: 'Rezvan Mahdavi Hezaveh'
+author: "Rezvan Mahdavi Hezaveh"
 avatars:
-  - 'rezvan-mahdavi-hezaveh'
+  - "rezvan-mahdavi-hezaveh"
 date: 2024-03-27
 tags:
   - ECMAScript
 description: 'Interfaces qui aident à l'utilisation générale et à la consommation des itérateurs.'
-tweet: ''
+tweet: ""
 ---
 
 *Les assistants d'itérateurs* sont une collection de nouvelles méthodes sur le prototype d'Iterator qui aident à l'utilisation générale des itérateurs. Puisque ces méthodes d'assistance se trouvent sur le prototype d'Iterator, tout objet qui possède `Iterator.prototype` dans sa chaîne de prototypes (par exemple, les itérateurs de tableau) héritera des méthodes. Dans les sous-sections suivantes, nous expliquons les assistants d'itérateurs. Tous les exemples fournis fonctionnent sur une page d'archive de blog contenant une liste d'articles de blog, illustrant comment les assistants d'itérateurs sont utiles pour rechercher et manipuler des articles. Vous pouvez les essayer sur la [page du blog V8](https://v8.dev/blog) !

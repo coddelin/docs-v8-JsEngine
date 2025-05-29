@@ -1,6 +1,6 @@
 ---
-title: 'Sparkplug——一种非优化的JavaScript编译器'
-author: '[Leszek Swirski](https://twitter.com/leszekswirski)——也许不是最聪明的火花，但至少是最快的一个'
+title: "Sparkplug——一种非优化的JavaScript编译器"
+author: "[Leszek Swirski](https://twitter.com/leszekswirski)——也许不是最聪明的火花，但至少是最快的一个"
 avatars:
   - leszek-swirski
 date: 2021-05-27
@@ -9,8 +9,8 @@ tags:
 extra_links:
   - href: https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap
     rel: stylesheet
-description: '在V8 v9.1中，我们通过Sparkplug改进了V8的性能，提升了5-15%。Sparkplug是一款新的非优化JavaScript编译器。'
-tweet: '1397945205198835719'
+description: "在V8 v9.1中，我们通过Sparkplug改进了V8的性能，提升了5-15%。Sparkplug是一款新的非优化JavaScript编译器。"
+tweet: "1397945205198835719"
 ---
 
 <!-- markdownlint-capture -->

@@ -1,15 +1,15 @@
 ---
-title: 'JavaScript-Module'
-author: 'Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) und Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "JavaScript-Module"
+author: "Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) und Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-- 'addy-osmani'
-- 'mathias-bynens'
+- "addy-osmani"
+- "mathias-bynens"
 date: 2018-06-18
 tags:
   - ECMAScript
   - ES2015
-description: 'Dieser Artikel erklärt, wie man JavaScript-Module verwendet, wie man sie verantwortungsbewusst einsetzt und wie das Chrome-Team daran arbeitet, Module in Zukunft noch besser zu machen.'
-tweet: '1008725884575109120'
+description: "Dieser Artikel erklärt, wie man JavaScript-Module verwendet, wie man sie verantwortungsbewusst einsetzt und wie das Chrome-Team daran arbeitet, Module in Zukunft noch besser zu machen."
+tweet: "1008725884575109120"
 ---
 JavaScript-Module werden jetzt [in allen großen Browsern unterstützt](https://caniuse.com/#feat=es6-module)!
 

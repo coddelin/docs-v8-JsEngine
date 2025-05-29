@@ -1,7 +1,7 @@
 ---
-title: 'O Sandbox do V8'
-description: 'O V8 apresenta um sandbox leve e em processo para limitar o impacto de bugs de corrupção de memória'
-author: 'Samuel Groß'
+title: "O Sandbox do V8"
+description: "O V8 apresenta um sandbox leve e em processo para limitar o impacto de bugs de corrupção de memória"
+author: "Samuel Groß"
 avatars:
   - samuel-gross
 date: 2024-04-04

@@ -1,14 +1,14 @@
 ---
-title: 'Indices de correspondance RegExp'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), exprimant régulièrement de nouvelles fonctionnalités'
+title: "Indices de correspondance RegExp"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), exprimant régulièrement de nouvelles fonctionnalités"
 avatars:
-  - 'maya-armyanova'
+  - "maya-armyanova"
 date: 2019-12-17
 tags:
   - ECMAScript
   - Node.js 16
-description: 'Les indices de correspondance RegExp fournissent les indices `start` et `end` de chaque groupe de capture correspondant.'
-tweet: '1206970814400270338'
+description: "Les indices de correspondance RegExp fournissent les indices `start` et `end` de chaque groupe de capture correspondant."
+tweet: "1206970814400270338"
 ---
 JavaScript est désormais doté d'une nouvelle amélioration des expressions régulières, appelée "indices de correspondance". Imaginez que vous souhaitez trouver des noms de variables invalides dans des codes JavaScript qui coïncident avec des mots réservés, et afficher un caret et un « soulignement » sous le nom de la variable, comme suit :
 

@@ -1,6 +1,6 @@
 ---
-title: 'Suivi de V8'
-description: 'Ce document explique comment utiliser la prise en charge de suivi intégrée de V8.'
+title: "Suivi de V8"
+description: "Ce document explique comment utiliser la prise en charge de suivi intégrée de V8."
 ---
 V8 offre une prise en charge pour le suivi. Cela [fonctionne automatiquement lorsque V8 est intégré dans Chrome via le système de suivi de Chrome](/docs/rcs). Mais vous pouvez également l'activer dans tout V8 autonome ou au sein d'un intégrateur qui utilise la plateforme par défaut. Plus de détails sur le trace-viewer sont disponibles [ici](https://github.com/catapult-project/catapult/blob/master/tracing/README.md).
 

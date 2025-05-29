@@ -1,6 +1,6 @@
 ---
-title: 'Zeiger-Komprimierung in Oilpan'
-author: 'Anton Bikineev und Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), gehende Disassembler'
+title: "Zeiger-Komprimierung in Oilpan"
+author: "Anton Bikineev und Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), gehende Disassembler"
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -9,8 +9,8 @@ tags:
   - internals
   - speicher
   - cppgc
-description: 'Die Zeiger-Komprimierung in Oilpan ermöglicht die Komprimierung von C++-Zeigern und eine Reduzierung der Heap-Größe um bis zu 33%.'
-tweet: '1597274125780893697'
+description: "Die Zeiger-Komprimierung in Oilpan ermöglicht die Komprimierung von C++-Zeigern und eine Reduzierung der Heap-Größe um bis zu 33%."
+tweet: "1597274125780893697"
 ---
 
 > Es ist absolut unsinnig, 64-Bit-Zeiger zu verwenden, wenn ich ein Programm kompiliere, das weniger als 4 Gigabyte RAM benötigt. Wenn solche Zeigerwerte in einer Struktur erscheinen, verschwenden sie nicht nur die Hälfte des Speichers, sondern verbrauchen effektiv die Hälfte des Caches.

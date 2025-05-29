@@ -1,6 +1,6 @@
 ---
-title: 'V8 Torque integrados'
-description: 'Este documento está destinado como una introducción a la escritura de integrados Torque, y está dirigido a los desarrolladores de V8.'
+title: "V8 Torque integrados"
+description: "Este documento está destinado como una introducción a la escritura de integrados Torque, y está dirigido a los desarrolladores de V8."
 ---
 Este documento está destinado como una introducción a la escritura de integrados Torque, y está dirigido a los desarrolladores de V8. Torque reemplaza a CodeStubAssembler como la forma recomendada de implementar nuevos integrados. Consulte [Integrados de CodeStubAssembler](/docs/csa-builtins) para la versión de CSA de esta guía.
 

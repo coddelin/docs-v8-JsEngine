@@ -1,16 +1,16 @@
 ---
-title: '공용 및 비공용 클래스 필드'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "공용 및 비공용 클래스 필드"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-12-13
 tags:
   - ECMAScript
   - ES2022
   - io19
   - Node.js 14
-description: '여러 제안이 기존 JavaScript 클래스 문법을 새로운 기능으로 확장합니다. 이 글은 V8 v7.2와 Chrome 72에서 새로운 공용 클래스 필드 문법, 그리고 곧 출시될 비공용 클래스 필드 문법에 대해 설명합니다.'
-tweet: '1121395767170740225'
+description: "여러 제안이 기존 JavaScript 클래스 문법을 새로운 기능으로 확장합니다. 이 글은 V8 v7.2와 Chrome 72에서 새로운 공용 클래스 필드 문법, 그리고 곧 출시될 비공용 클래스 필드 문법에 대해 설명합니다."
+tweet: "1121395767170740225"
 ---
 여러 제안이 기존 JavaScript 클래스 문법을 새로운 기능으로 확장합니다. 이 글은 V8 v7.2와 Chrome 72에서 새로운 공용 클래스 필드 문법, 그리고 곧 출시될 비공용 클래스 필드 문법에 대해 설명합니다.
 

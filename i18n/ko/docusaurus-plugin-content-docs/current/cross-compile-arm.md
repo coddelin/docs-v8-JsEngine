@@ -1,6 +1,6 @@
 ---
-title: 'ARM/Android를 위한 크로스 컴파일 및 디버깅'
-description: '이 문서는 ARM/Android를 위한 V8 크로스 컴파일 및 디버깅 방법을 설명합니다.'
+title: "ARM/Android를 위한 크로스 컴파일 및 디버깅"
+description: "이 문서는 ARM/Android를 위한 V8 크로스 컴파일 및 디버깅 방법을 설명합니다."
 ---
 먼저, [GN으로 빌드하기](/docs/build-gn)를 확인하십시오.
 

@@ -1,13 +1,13 @@
 ---
-title: 'V8 release v9.0'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 줄바꿈 포함'
+title: "V8 release v9.0"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 줄바꿈 포함"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-03-17
 tags:
  - 릴리스
-description: 'V8 release v9.0은 정규 표현식 매칭 인덱스와 다양한 성능 개선 사항을 지원합니다.'
-tweet: '1372227274712494084'
+description: "V8 release v9.0은 정규 표현식 매칭 인덱스와 다양한 성능 개선 사항을 지원합니다."
+tweet: "1372227274712494084"
 ---
 매 6주마다 우리는 [릴리스 프로세스](https://v8.dev/docs/release-process)의 일환으로 V8의 새로운 브랜치를 생성합니다. 각 버전은 Chrome Beta 마일스톤 직전 바로 V8의 Git 마스터에서 분기됩니다. 오늘 우리는 최신 브랜치 [V8 버전 9.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.0)을 발표하게 되어 기쁩니다. 이 브랜치는 몇 주 뒤 Chrome 90 Stable과 함께 릴리스될 때까지 베타 상태에 있습니다. V8 v9.0은 개발자에게 유용한 다양한 기능들로 가득 차 있습니다. 이 게시물은 릴리스에 앞서 몇 가지 하이라이트를 미리 보여줍니다.
 

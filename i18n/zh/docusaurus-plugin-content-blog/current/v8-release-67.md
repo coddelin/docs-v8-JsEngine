@@ -1,11 +1,11 @@
 ---
-title: 'V8 发布 v6.7'
-author: 'V8 团队'
+title: "V8 发布 v6.7"
+author: "V8 团队"
 date: 2018-05-04 13:33:37
 tags:
   - 发布
-tweet: '992506342391742465'
-description: 'V8 v6.7 添加了更多不受信任代码的防护并提供了 BigInt 支持。'
+tweet: "992506342391742465"
+description: "V8 v6.7 添加了更多不受信任代码的防护并提供了 BigInt 支持。"
 ---
 每六周，我们都会基于我们的[发布流程](/docs/release-process)创建一个新的 V8 分支。每个版本分支都在 Chrome Beta 里程碑之前立即从 V8 的 Git 主分支中分出。今天我们很高兴地宣布我们的最新分支，[V8 版本 6.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.7)，该版本目前处于测试阶段，几周后将与 Chrome 67 稳定版同步发布。V8 v6.7 包含了各种面向开发者的实用功能。这篇文章提供了期待发布的一些亮点预览。
 

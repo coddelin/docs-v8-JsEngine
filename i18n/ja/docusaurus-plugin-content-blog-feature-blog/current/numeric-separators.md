@@ -1,15 +1,15 @@
 ---
-title: '数値区切り文字'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "数値区切り文字"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-05-28
 tags:
   - ECMAScript
   - ES2021
   - io19
-description: 'JavaScriptは数値リテラルにアンダースコアを区切り文字として使用することをサポートし、ソースコードの可読性と保守性を向上させます。'
-tweet: '1129073383931559936'
+description: "JavaScriptは数値リテラルにアンダースコアを区切り文字として使用することをサポートし、ソースコードの可読性と保守性を向上させます。"
+tweet: "1129073383931559936"
 ---
 大きな数値リテラルは、特に繰り返しの数字が多い場合、人間の目で素早く解析するのが困難です。
 

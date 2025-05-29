@@ -1,13 +1,13 @@
 ---
-title: 'Lançamento do V8 v9.6'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "Lançamento do V8 v9.6"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-10-13
 tags:
  - lançamento
-description: 'O V8 v9.6 traz suporte para Tipos de Referência no WebAssembly.'
-tweet: '1448262079476076548'
+description: "O V8 v9.6 traz suporte para Tipos de Referência no WebAssembly."
+tweet: "1448262079476076548"
 ---
 A cada quatro semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](https://v8.dev/docs/release-process). Cada versão é ramificada do Git master do V8 imediatamente antes de um marco Beta do Chrome. Hoje estamos felizes em anunciar nosso mais novo branch, [V8 versão 9.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.6), que está em beta até o lançamento em coordenação com o Chrome 96 Stable em algumas semanas. O V8 v9.6 está repleto de diversos recursos voltados para desenvolvedores. Este post fornece uma prévia de alguns dos destaques na antecipação do lançamento.
 

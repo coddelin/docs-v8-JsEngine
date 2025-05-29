@@ -1,6 +1,6 @@
 ---
-title: 'WebAssembly - Hinzufügen eines neuen Opcodes'
-description: 'Dieses Tutorial erklärt, wie man eine neue WebAssembly-Anweisung in V8 implementiert.'
+title: "WebAssembly - Hinzufügen eines neuen Opcodes"
+description: "Dieses Tutorial erklärt, wie man eine neue WebAssembly-Anweisung in V8 implementiert."
 ---
 [WebAssembly](https://webassembly.org/) (Wasm) ist ein binäres Anweisungsformat für eine stackbasierte virtuelle Maschine. Dieses Tutorial führt den Leser durch die Implementierung einer neuen WebAssembly-Anweisung in V8.
 

@@ -1,15 +1,15 @@
 ---
-title: '`Object.fromEntries`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), susurrador de JavaScript'
+title: "`Object.fromEntries`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), susurrador de JavaScript"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-18
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: 'Object.fromEntries es una adición útil a la biblioteca incorporada de JavaScript que complementa Object.entries.'
-tweet: '1140993821897121796'
+description: "Object.fromEntries es una adición útil a la biblioteca incorporada de JavaScript que complementa Object.entries."
+tweet: "1140993821897121796"
 ---
 `Object.fromEntries` es una adición útil a la biblioteca incorporada de JavaScript. Antes de explicar lo que hace, es útil entender la API `Object.entries` ya existente.
 

@@ -1,13 +1,13 @@
 ---
-title: 'Desserialização preguiçosa'
-author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
+title: "Desserialização preguiçosa"
+author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2018-02-12 13:33:37
 tags:
   - internals
-description: 'Desserialização preguiçosa, disponível no V8 v6.4, reduz o consumo de memória do V8 em mais de 500 KB por aba do navegador em média.'
-tweet: '962989179914383360'
+description: "Desserialização preguiçosa, disponível no V8 v6.4, reduz o consumo de memória do V8 em mais de 500 KB por aba do navegador em média."
+tweet: "962989179914383360"
 ---
 TL;DR: A desserialização preguiçosa foi recentemente ativada como padrão no [V8 v6.4](/blog/v8-release-64), reduzindo o consumo de memória do V8 em mais de 500 KB por aba do navegador em média. Leia para saber mais!
 

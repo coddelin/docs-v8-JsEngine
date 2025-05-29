@@ -1,12 +1,12 @@
 ---
-title: 'V8 附加功能'
-author: 'Domenic Denicola ([@domenic](https://twitter.com/domenic)), Streams 魔法師'
+title: "V8 附加功能"
+author: "Domenic Denicola ([@domenic](https://twitter.com/domenic)), Streams 魔法師"
 avatars:
-  - 'domenic-denicola'
+  - "domenic-denicola"
 date: 2016-02-04 13:33:37
 tags:
   - internals
-description: 'V8 v4.8 包含 “V8 附加功能”，一個簡單的介面，旨在允許嵌入者編寫高效能的自托管 API。'
+description: "V8 v4.8 包含 “V8 附加功能”，一個簡單的介面，旨在允許嵌入者編寫高效能的自托管 API。"
 ---
 V8 用 JavaScript 自身實現了 JavaScript 語言內建物件和函數的一個大子集。例如，您可以看到我們的 [Promise 實現](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js) 是用 JavaScript 編寫的。這樣的內建物件被稱為 _自托管_。這些實現被包含在我們的 [啟動快照](/blog/custom-startup-snapshots) 中，以便可以快速創建新上下文，而不需要在運行時設置和初始化自托管的內建物件。
 

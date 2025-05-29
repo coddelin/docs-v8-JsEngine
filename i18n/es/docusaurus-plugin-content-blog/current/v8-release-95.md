@@ -1,13 +1,13 @@
 ---
-title: 'Lanzamiento de V8 v9.5'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "Lanzamiento de V8 v9.5"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-09-21
 tags:
  - lanzamiento
-description: 'El lanzamiento de V8 v9.5 trae APIs de internacionalización actualizadas y soporte para manejo de excepciones WebAssembly.'
-tweet: '1440296019623759872'
+description: "El lanzamiento de V8 v9.5 trae APIs de internacionalización actualizadas y soporte para manejo de excepciones WebAssembly."
+tweet: "1440296019623759872"
 ---
 Cada cuatro semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](https://v8.dev/docs/release-process). Cada versión se ramifica desde el maestro de Git de V8 justo antes de un hito de Chrome Beta. Hoy nos complace anunciar nuestra rama más reciente, [V8 versión 9.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.5), que está en beta hasta su lanzamiento, en coordinación con Chrome 95 Stable en varias semanas. V8 v9.5 está llena de todo tipo de mejoras orientadas a los desarrolladores. Esta publicación proporciona una vista previa de algunos aspectos destacados anticipándose al lanzamiento.
 

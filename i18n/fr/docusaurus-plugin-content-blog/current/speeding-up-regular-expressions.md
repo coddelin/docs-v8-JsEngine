@@ -1,8 +1,8 @@
 ---
-title: 'Accélérer les expressions régulières V8'
-author: 'Jakob Gruber, Ingénieur Logiciel Régulier'
+title: "Accélérer les expressions régulières V8"
+author: "Jakob Gruber, Ingénieur Logiciel Régulier"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2017-01-10 13:33:37
 tags:
   - internals

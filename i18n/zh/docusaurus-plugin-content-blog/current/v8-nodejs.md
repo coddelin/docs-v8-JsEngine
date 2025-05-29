@@ -1,10 +1,10 @@
 ---
-title: 'V8 ❤️ Node.js'
-author: 'Franziska Hinkelmann, Node 猴子补丁开发者'
+title: "V8 ❤️ Node.js"
+author: "Franziska Hinkelmann, Node 猴子补丁开发者"
 date: 2016-12-15 13:33:37
 tags:
   - Node.js
-description: '本文重点介绍了最近为在 V8 和 Chrome DevTools 中更好支持 Node.js 所做的一些努力。'
+description: "本文重点介绍了最近为在 V8 和 Chrome DevTools 中更好支持 Node.js 所做的一些努力。"
 ---
 Node.js 的受欢迎程度在过去几年里稳步增长，我们一直致力于让 Node.js 更加优秀。本文重点介绍了 V8 和 DevTools 的一些最新努力。
 

@@ -1,13 +1,13 @@
 ---
-title: '静态根：具有编译时恒定地址的对象'
-author: 'Olivier Flückiger'
+title: "静态根：具有编译时恒定地址的对象"
+author: "Olivier Flückiger"
 avatars:
   - olivier-flueckiger
 date: 2024-02-05
 tags:
   - JavaScript
 description: "静态根使某些JS对象的地址成为编译时常量。"
-tweet: ''
+tweet: ""
 ---
 
 你是否曾想过 `undefined`、`true` 和其他核心JavaScript对象是从哪里来的？这些对象是任何用户定义对象的原子，并且必须首先存在。V8将它们称为不可移动的不可变根，它们位于自己的堆——只读堆中。由于它们被频繁使用，快速访问至关重要。而什么比在编译时正确猜测它们的内存地址更快呢？

@@ -1,13 +1,13 @@
 ---
-title: '属性をインポート'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "属性をインポート"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2024-01-31
 tags:
   - ECMAScript
-description: 'インポート属性: インポートアサーションの進化'
-tweet: ''
+description: "インポート属性: インポートアサーションの進化"
+tweet: ""
 ---
 
 ## 以前は

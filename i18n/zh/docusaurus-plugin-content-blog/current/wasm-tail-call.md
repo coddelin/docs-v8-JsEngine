@@ -1,11 +1,11 @@
 ---
-title: 'WebAssembly尾调用'
-author: 'Thibaud Michaud, Thomas Lively'
+title: "WebAssembly尾调用"
+author: "Thibaud Michaud, Thomas Lively"
 date: 2023-04-06
 tags:
   - WebAssembly
-description: '本文详细介绍了WebAssembly尾调用提案，并通过一些示例进行演示。'
-tweet: '1644077795059044353'
+description: "本文详细介绍了WebAssembly尾调用提案，并通过一些示例进行演示。"
+tweet: "1644077795059044353"
 ---
 我们在V8 v11.2中推出了WebAssembly尾调用！在本文中，我们将简要介绍该提案，展示一个关于使用Emscripten的C++协程的有趣用例，并说明V8如何在内部处理尾调用。
 

@@ -1,12 +1,12 @@
 ---
-title: 'Amélioration de la mise en cache du code'
-author: 'Mythri Alle, Responsable en chef de la mise en cache du code'
+title: "Amélioration de la mise en cache du code"
+author: "Mythri Alle, Responsable en chef de la mise en cache du code"
 date: 2018-04-24 13:33:37
 avatars:
-  - 'mythri-alle'
+  - "mythri-alle"
 tags:
   - internes
-tweet: '988728000677142528'
+tweet: "988728000677142528"
 description: 'À partir de Chrome 66, V8 met en cache davantage de code (byte) en générant le cache après l'exécution au niveau supérieur.'
 ---
 V8 utilise [la mise en cache du code](/blog/code-caching) pour mettre en cache le code généré pour les scripts fréquemment utilisés. À partir de Chrome 66, nous mettons en cache plus de code en générant le cache après l'exécution au niveau supérieur. Cela conduit à une réduction de 20 à 40 % du temps d'analyse et de compilation lors du premier chargement.

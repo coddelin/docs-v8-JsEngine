@@ -1,11 +1,11 @@
 ---
-title: 'Publication de V8 version v6.5'
+title: "Publication de V8 version v6.5"
 author: 'l'équipe V8'
 date: 2018-02-01 13:33:37
 tags:
   - publication
-description: 'V8 v6.5 ajoute la prise en charge de la compilation WebAssembly en streaming et inclut un nouveau “mode code non fiable”.'
-tweet: '959174292406640640'
+description: "V8 v6.5 ajoute la prise en charge de la compilation WebAssembly en streaming et inclut un nouveau “mode code non fiable”."
+tweet: "959174292406640640"
 ---
 Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](/docs/release-process). Chaque version est créée depuis le dépôt Git principal de V8 juste avant un jalon de Chrome Beta. Aujourd’hui, nous sommes ravis d’annoncer notre plus récente branche, [V8 version 6.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.5), qui est en phase bêta jusqu’à sa publication en coordination avec Chrome 65 Stable dans quelques semaines. V8 v6.5 est rempli de toutes sortes de nouveautés dédiées aux développeurs. Ce post donne un aperçu de certains des points forts en prévision de la publication.
 

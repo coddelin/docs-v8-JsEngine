@@ -1,15 +1,15 @@
 ---
-title: 'Orinoco: Müllentsorgung jüngerer Generation'
-author: 'Ulan Degenbaev, Michael Lippautz und Hannes Payer, Freunde von [TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)'
+title: "Orinoco: Müllentsorgung jüngerer Generation"
+author: "Ulan Degenbaev, Michael Lippautz und Hannes Payer, Freunde von [TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2017-11-29 13:33:37
 tags:
   - internals
   - speicher
-description: 'Dieser Artikel führt den parallelen Scavenger ein, eine der neuesten Funktionen von Orinoco, V8s überwiegend nebenläufigem und parallel arbeitendem Müllsammler.'
+description: "Dieser Artikel führt den parallelen Scavenger ein, eine der neuesten Funktionen von Orinoco, V8s überwiegend nebenläufigem und parallel arbeitendem Müllsammler."
 ---
 JavaScript-Objekte in V8 werden auf einem Heap gespeichert, der vom Müllsammler von V8 verwaltet wird. In früheren Blogposts haben wir bereits darüber gesprochen, wie wir [die Pausenzeiten der Müllsammlung reduzieren](/blog/jank-busters) ([mehr als einmal](/blog/orinoco)) und den [Speicherverbrauch](/blog/optimizing-v8-memory) verringern. In diesem Blogbeitrag stellen wir den parallelen Scavenger vor, eine der neuesten Funktionen von Orinoco, V8s überwiegend nebenläufigem und parallel arbeitendem Müllsammler, und diskutieren Designentscheidungen sowie alternative Ansätze, die wir auf dem Weg implementiert haben.
 

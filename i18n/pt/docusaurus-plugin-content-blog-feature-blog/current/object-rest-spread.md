@@ -1,14 +1,14 @@
 ---
-title: 'Propriedades de descanso e espalhamento de objeto'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Propriedades de descanso e espalhamento de objeto"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-06-06
 tags:
   - ECMAScript
   - ES2018
-description: 'Este artigo explica como as propriedades de descanso e espalhamento de objeto funcionam em JavaScript, e revisita os elementos de descanso e espalhamento de arrays.'
-tweet: '890269994688315394'
+description: "Este artigo explica como as propriedades de descanso e espalhamento de objeto funcionam em JavaScript, e revisita os elementos de descanso e espalhamento de arrays."
+tweet: "890269994688315394"
 ---
 Antes de discutir _propriedades de descanso e espalhamento de objeto_, vamos dar uma volta pela memória e relembrar um recurso muito semelhante.
 

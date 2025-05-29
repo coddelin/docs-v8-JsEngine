@@ -1,13 +1,13 @@
 ---
-title: '클래스 정적 초기화 블록'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "클래스 정적 초기화 블록"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2021-03-30
 tags:
   - ECMAScript
-description: '자바스크립트 클래스는 정적 초기화를 위한 전용 문법을 갖습니다.'
-tweet: '1376925666780798989'
+description: "자바스크립트 클래스는 정적 초기화를 위한 전용 문법을 갖습니다."
+tweet: "1376925666780798989"
 ---
 새로운 클래스 정적 초기화 블록 문법은 개발자가 특정 클래스 정의에 대해 한 번 실행되어야 할 코드를 수집하고 이를 한 곳에 모을 수 있게 합니다. 아래는 암호화 랜덤 숫자 생성기가 정적 블록을 사용하여 `class MyPRNG` 정의가 평가될 때 한 번 엔트로피 풀을 초기화하는 예제입니다.
 

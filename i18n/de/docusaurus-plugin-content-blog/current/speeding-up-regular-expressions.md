@@ -1,13 +1,13 @@
 ---
-title: 'Beschleunigung von V8-Regulären Ausdrücken'
-author: 'Jakob Gruber, Softwareingenieur für reguläre Ausdrücke'
+title: "Beschleunigung von V8-Regulären Ausdrücken"
+author: "Jakob Gruber, Softwareingenieur für reguläre Ausdrücke"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2017-01-10 13:33:37
 tags:
   - internals
   - RegExp
-description: 'V8 hat kürzlich die eingebauten Funktionen von regulären Ausdrücken von einer in sich gehosteten JavaScript-Implementierung auf eine umgestellt, die direkt in unsere neue Code-Generierungsarchitektur auf Basis von TurboFan integriert ist.'
+description: "V8 hat kürzlich die eingebauten Funktionen von regulären Ausdrücken von einer in sich gehosteten JavaScript-Implementierung auf eine umgestellt, die direkt in unsere neue Code-Generierungsarchitektur auf Basis von TurboFan integriert ist."
 ---
 Dieser Blogbeitrag behandelt die jüngste Migration der eingebauten Funktionen von regulären Ausdrücken in V8 von einer in sich gehosteten JavaScript-Implementierung auf eine, die direkt in unsere neue Code-Generierungsarchitektur auf Basis von [TurboFan](/blog/v8-release-56) integriert ist.
 

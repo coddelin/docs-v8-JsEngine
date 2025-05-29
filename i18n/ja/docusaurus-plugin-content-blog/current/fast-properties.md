@@ -1,12 +1,12 @@
 ---
-title: 'V8での高速なプロパティ'
-author: 'Camillo Bruni（[@camillobruni](https://twitter.com/camillobruni)）、また[「Fast `for`-`in`](/blog/fast-for-in)」の著者でもあります'
+title: "V8での高速なプロパティ"
+author: "Camillo Bruni（[@camillobruni](https://twitter.com/camillobruni)）、また[「Fast `for`-`in`](/blog/fast-for-in)」の著者でもあります"
 avatars:
-  - 'camillo-bruni'
+  - "camillo-bruni"
 date: 2017-08-30 13:33:37
 tags:
   - internals
-description: 'この記事は、V8がJavaScriptのプロパティを舞台裏でどのように処理するかを技術的に掘り下げて説明します。'
+description: "この記事は、V8がJavaScriptのプロパティを舞台裏でどのように処理するかを技術的に掘り下げて説明します。"
 ---
 この記事では、V8が内部的にJavaScriptプロパティをどのように扱うかを説明したいと思います。JavaScriptの観点からは、プロパティに必要な区別はわずかです。JavaScriptオブジェクトは主に辞書のように振る舞い、キーは文字列であり、値には任意のオブジェクトを使用できます。ただし仕様では、整数インデックス付きのプロパティとその他のプロパティを[反復中](https://tc39.es/ecma262/#sec-ordinaryownpropertykeys)に異なる扱いをしています。それ以外では、異なるプロパティは、整数インデックス付きであるかどうかに関係なくほぼ同じ動作をします。
 

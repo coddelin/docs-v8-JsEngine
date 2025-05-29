@@ -1,13 +1,13 @@
 ---
-title: '模块命名空间导出'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "模块命名空间导出"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-12-18
 tags:
   - ECMAScript
   - ES2020
-description: 'JavaScript模块现在支持新的语法以重新导出命名空间中的所有属性。'
+description: "JavaScript模块现在支持新的语法以重新导出命名空间中的所有属性。"
 ---
 在[JavaScript模块](/features/modules)中，已经可以使用以下语法：
 

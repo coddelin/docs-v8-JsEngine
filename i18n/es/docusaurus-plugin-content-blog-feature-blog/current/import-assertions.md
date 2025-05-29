@@ -1,13 +1,13 @@
 ---
-title: 'Aserciones de importación'
-author: 'Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), importador asertivo de aserciones de importación'
+title: "Aserciones de importación"
+author: "Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), importador asertivo de aserciones de importación"
 avatars:
-  - 'dan-clark'
+  - "dan-clark"
 date: 2021-06-15
 tags:
   - ECMAScript
-description: 'Las aserciones de importación permiten que las declaraciones de importación de módulos incluyan información adicional junto al especificador del módulo'
-tweet: ''
+description: "Las aserciones de importación permiten que las declaraciones de importación de módulos incluyan información adicional junto al especificador del módulo"
+tweet: ""
 ---
 
 La nueva función de [aserciones de importación](https://github.com/tc39/proposal-import-assertions) permite que las declaraciones de importación de módulos incluyan información adicional junto al especificador del módulo. Un uso inicial de esta función es habilitar la importación de documentos JSON como [módulos JSON](https://github.com/tc39/proposal-json-modules):

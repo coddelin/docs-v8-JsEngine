@@ -1,17 +1,17 @@
 ---
-title: 'Collecte des ordures haute performance pour C++'
-author: 'Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), et Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), experts en mémoire C++'
+title: "Collecte des ordures haute performance pour C++"
+author: "Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), et Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), experts en mémoire C++"
 avatars:
-  - 'anton-bikineev'
-  - 'omer-katz'
-  - 'michael-lippautz'
+  - "anton-bikineev"
+  - "omer-katz"
+  - "michael-lippautz"
 date: 2020-05-26
 tags:
   - internes
   - mémoire
   - cppgc
 description: 'Cet article décrit le collecteur d'ordures C++ Oilpan, son utilisation dans Blink et comment il optimise le balayage, c'est-à-dire la récupération de la mémoire inaccessible.'
-tweet: '1265304883638480899'
+tweet: "1265304883638480899"
 ---
 
 Dans le passé, nous avons [déjà](https://v8.dev/blog/trash-talk) [écrit](https://v8.dev/blog/concurrent-marking) [des articles](https://v8.dev/blog/tracing-js-dom) sur la collecte des ordures pour JavaScript, le modèle objet document (DOM), et comment tout cela est implémenté et optimisé dans V8. Cependant, tout n'est pas JavaScript dans Chromium, car la majeure partie du navigateur et de son moteur de rendu Blink, où V8 est intégré, est écrite en C++. JavaScript peut être utilisé pour interagir avec le DOM, qui est ensuite traité par la chaîne de rendu.

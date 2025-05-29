@@ -1,6 +1,6 @@
 ---
-title: 'Maglev - El JIT de optimización más rápido de V8'
-author: '[Toon Verwaest](https://twitter.com/tverwaes), [Leszek Swirski](https://twitter.com/leszekswirski), [Victor Gomes](https://twitter.com/VictorBFG), Olivier Flückiger, Darius Mercadier y Camillo Bruni — no hay demasiados cocineros para estropear el caldo'
+title: "Maglev - El JIT de optimización más rápido de V8"
+author: "[Toon Verwaest](https://twitter.com/tverwaes), [Leszek Swirski](https://twitter.com/leszekswirski), [Victor Gomes](https://twitter.com/VictorBFG), Olivier Flückiger, Darius Mercadier y Camillo Bruni — no hay demasiados cocineros para estropear el caldo"
 avatars:
   - toon-verwaest
   - leszek-swirski
@@ -12,7 +12,7 @@ date: 2023-12-05
 tags:
   - JavaScript
 description: "El nuevo compilador de V8, Maglev, mejora el rendimiento mientras reduce el consumo de energía"
-tweet: ''
+tweet: ""
 ---
 
 En Chrome M117 presentamos un nuevo compilador de optimización: Maglev. Maglev se sitúa entre nuestros compiladores existentes Sparkplug y TurboFan, y cumple el rol de un compilador de optimización rápida que genera un código suficientemente bueno, lo suficientemente rápido.

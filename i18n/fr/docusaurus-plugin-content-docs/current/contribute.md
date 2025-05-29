@@ -1,6 +1,6 @@
 ---
-title: 'Contribuer à V8'
-description: 'Ce document explique comment contribuer à V8.'
+title: "Contribuer à V8"
+description: "Ce document explique comment contribuer à V8."
 ---
 Les informations figurant sur cette page expliquent comment contribuer à V8. Assurez-vous de tout lire avant de nous envoyer une contribution.
 

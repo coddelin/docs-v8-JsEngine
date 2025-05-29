@@ -1,6 +1,6 @@
 ---
-title: 'WebAssembly - 新しいオペコードの追加'
-description: 'このチュートリアルは、V8で新しいWebAssembly命令を実装する方法を説明します。'
+title: "WebAssembly - 新しいオペコードの追加"
+description: "このチュートリアルは、V8で新しいWebAssembly命令を実装する方法を説明します。"
 ---
 [WebAssembly](https://webassembly.org/) (Wasm) はスタックベースの仮想マシンのためのバイナリ命令形式です。このチュートリアルでは、新しいWebAssembly命令をV8に実装する手順を紹介します。
 

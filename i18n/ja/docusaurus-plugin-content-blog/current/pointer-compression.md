@@ -1,15 +1,15 @@
 ---
-title: 'V8におけるポインタ圧縮'
-author: 'Igor SheludkoとSantiago Aboy Solanes、*ポインタ圧縮の達人*'
+title: "V8におけるポインタ圧縮"
+author: "Igor SheludkoとSantiago Aboy Solanes、*ポインタ圧縮の達人*"
 avatars:
-  - 'igor-sheludko'
-  - 'santiago-aboy-solanes'
+  - "igor-sheludko"
+  - "santiago-aboy-solanes"
 date: 2020-03-30
 tags:
   - 内部構造
   - メモリ
-description: 'V8はヒープサイズを最大43%削減しました！「V8におけるポインタ圧縮」でその仕組みを学びましょう！'
-tweet: '1244653541379182596'
+description: "V8はヒープサイズを最大43%削減しました！「V8におけるポインタ圧縮」でその仕組みを学びましょう！"
+tweet: "1244653541379182596"
 ---
 メモリとパフォーマンスの間には常に戦いがあります。ユーザーとしては、速度が速いことを望むと同時に、できるだけ少ないメモリ消費で済ませたいと思います。しかし、通常、パフォーマンスを向上させるにはメモリ消費の代償が伴い（その逆も然り）、ジレンマを抱えることになります。
 

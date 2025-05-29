@@ -1,14 +1,14 @@
 ---
-title: '`Promise.prototype.finally`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Promise.prototype.finally`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-10-23
 tags:
   - ECMAScript
   - ES2018
 description: 'Promise.prototype.finally permet d'enregistrer un callback qui sera invoqué une fois qu'une promesse est réglée (c'est-à-dire résolue ou rejetée).'
-tweet: '922459978857824261'
+tweet: "922459978857824261"
 ---
 `Promise.prototype.finally` permet d'enregistrer un callback qui sera invoqué une fois qu'une promesse est _réglée_ (c'est-à-dire résolue ou rejetée).
 

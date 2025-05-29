@@ -1,13 +1,13 @@
 ---
-title: 'Version v9.5 de V8'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "Version v9.5 de V8"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-09-21
 tags:
  - release
 description: 'La version v9.5 de V8 apporte des API de mise à jour pour l'internationalisation ainsi que la prise en charge de la gestion des exceptions WebAssembly.'
-tweet: '1440296019623759872'
+tweet: "1440296019623759872"
 ---
 Toutes les quatre semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](https://v8.dev/docs/release-process). Chaque version est issue du dépôt principal Git de V8 juste avant une étape bêta de Chrome. Aujourd'hui, nous sommes heureux d'annoncer notre dernière branche, [V8 version 9.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.5), qui est en bêta jusqu'à sa sortie en coordination avec Chrome 95 Stable dans plusieurs semaines. V8 v9.5 regorge de nouveautés pour les développeurs. Ce post donne un aperçu des points forts en prévision de la sortie.
 

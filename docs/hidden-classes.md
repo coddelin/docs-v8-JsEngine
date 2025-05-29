@@ -1,6 +1,6 @@
 ---
-title: 'Maps (Hidden Classes) in V8'
-description: 'How does V8 track and optimize the perceived structure of your objects?'
+title: "Maps (Hidden Classes) in V8"
+description: "How does V8 track and optimize the perceived structure of your objects?"
 ---
 
 Let's show how V8 builds it's hidden classes. The principal data structures are:

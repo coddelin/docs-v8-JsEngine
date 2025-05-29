@@ -1,13 +1,13 @@
 ---
-title: 'V8 发布 v9.2'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "V8 发布 v9.2"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-07-16
 tags:
  - 发布
-description: 'V8 v9.2 发布引入了用于相对索引的 `at` 方法和指针压缩改进。'
-tweet: ''
+description: "V8 v9.2 发布引入了用于相对索引的 `at` 方法和指针压缩改进。"
+tweet: ""
 ---
 每六周，作为我们的[发布流程](https://v8.dev/docs/release-process)的一部分，我们会创建一个新的 V8 分支。每个版本都是在 Chrome Beta 里程碑之前立即从 V8 的 Git 主分支分出分支。今天，我们很高兴地宣布我们的最新分支，[V8 版本 9.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.2)，它将处于 Beta 阶段，直到几周后与 Chrome 92 稳定版一起发布。V8 v9.2 充满了各种面向开发者的功能。本文将为即将发布的版本提供一些亮点预览。
 

@@ -1,13 +1,13 @@
 ---
-title: 'Überarbeitetes `Function.prototype.toString`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Überarbeitetes `Function.prototype.toString`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-03-25
 tags:
   - ECMAScript
   - ES2019
-description: 'Function.prototype.toString gibt jetzt exakte Ausschnitte des Quelltextes zurück, einschließlich Leerzeichen und Kommentare.'
+description: "Function.prototype.toString gibt jetzt exakte Ausschnitte des Quelltextes zurück, einschließlich Leerzeichen und Kommentare."
 ---
 [`Function.prototype.toString()`](https://tc39.es/Function-prototype-toString-revision/) gibt jetzt exakte Ausschnitte des Quelltextes zurück, einschließlich Leerzeichen und Kommentare. Hier ist ein Beispiel, das das alte und das neue Verhalten vergleicht:
 

@@ -1,14 +1,14 @@
 ---
-title: '在V8中实现排序'
-author: 'Simon Zünd ([@nimODota](https://twitter.com/nimODota))，一致的比较器'
+title: "在V8中实现排序"
+author: "Simon Zünd ([@nimODota](https://twitter.com/nimODota))，一致的比较器"
 avatars:
   - simon-zuend
 date: 2018-09-28 11:20:37
 tags:
   - ECMAScript
   - 内部机制
-description: '从V8 v7.0 / Chrome 70开始，Array.prototype.sort变为稳定排序算法。'
-tweet: '1045656758700650502'
+description: "从V8 v7.0 / Chrome 70开始，Array.prototype.sort变为稳定排序算法。"
+tweet: "1045656758700650502"
 ---
 `Array.prototype.sort`是V8中最后几个用自托管JavaScript实现的内置函数之一。移植它为我们提供了实验不同算法和实现策略的机会，并最终在V8 v7.0 / Chrome 70中[让它变得稳定](https://mathiasbynens.be/demo/sort-stability)。
 

@@ -1,13 +1,13 @@
 ---
-title: 'Хорошо сформированный `JSON.stringify`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Хорошо сформированный `JSON.stringify`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-09-11
 tags:
   - ECMAScript
   - ES2019
-description: 'JSON.stringify теперь выводит экранированные последовательности для одиночных суррогатов, что делает его вывод валидным Unicode (и представимым в UTF-8).'
+description: "JSON.stringify теперь выводит экранированные последовательности для одиночных суррогатов, что делает его вывод валидным Unicode (и представимым в UTF-8)."
 ---
 `JSON.stringify` ранее был определен так, что возвращал некорректные строки Unicode, если входные данные содержали одиночные суррогаты:
 

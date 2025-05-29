@@ -1,14 +1,14 @@
 ---
-title: 'Top-level `await`'
-author: 'Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))'
+title: "Top-level `await`"
+author: "Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))"
 avatars:
-  - 'myles-borins'
+  - "myles-borins"
 date: 2019-10-08
 tags:
   - ECMAScript
   - Node.js 14
-description: 'Top-level `await` is coming to JavaScript modules! You’ll soon be able to use `await` without needing to be in an async function.'
-tweet: '1181581262399643650'
+description: "Top-level `await` is coming to JavaScript modules! You’ll soon be able to use `await` without needing to be in an async function."
+tweet: "1181581262399643650"
 ---
 [Top-level `await`](https://github.com/tc39/proposal-top-level-await) enables developers to use the `await` keyword outside of async functions. It acts like a big async function causing other modules who `import` them to wait before they start evaluating their body.
 

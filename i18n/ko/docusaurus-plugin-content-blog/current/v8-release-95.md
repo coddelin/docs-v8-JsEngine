@@ -1,13 +1,13 @@
 ---
-title: 'V8 릴리즈 v9.5'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "V8 릴리즈 v9.5"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-09-21
 tags:
  - 릴리즈
-description: 'V8 릴리즈 v9.5는 업데이트된 국제화 API와 WebAssembly 예외 처리 지원을 제공합니다.'
-tweet: '1440296019623759872'
+description: "V8 릴리즈 v9.5는 업데이트된 국제화 API와 WebAssembly 예외 처리 지원을 제공합니다."
+tweet: "1440296019623759872"
 ---
 매 4주마다 우리는 [릴리즈 프로세스](https://v8.dev/docs/release-process)의 일환으로 V8의 새로운 브랜치를 생성합니다. 각 버전은 크롬 베타 마일스톤 직전에 V8의 Git 마스터에서 브랜칭됩니다. 오늘 우리는 최신 브랜치인 [V8 버전 9.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.5)를 발표하게 되어 기쁩니다. 이번 브랜치는 크롬 95 안정 릴리즈와 함께 몇 주 동안 베타 단계에 있습니다. V8 v9.5는 개발자를 위한 다양한 기능으로 가득합니다. 이 글에서는 릴리즈를 기대하며 주요 하이라이트를 미리 소개합니다.
 

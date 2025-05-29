@@ -1,6 +1,6 @@
 ---
-title: 'Configuraciones oficialmente compatibles'
-description: 'Este documento explica qué configuraciones de compilación son mantenidas por el equipo de V8.'
+title: "Configuraciones oficialmente compatibles"
+description: "Este documento explica qué configuraciones de compilación son mantenidas por el equipo de V8."
 ---
 V8 admite una multitud de diferentes configuraciones de compilación en diversos sistemas operativos, sus versiones, puertos de arquitectura, banderas de compilación, y más.
 

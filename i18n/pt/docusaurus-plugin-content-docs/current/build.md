@@ -1,6 +1,6 @@
 ---
-title: 'Construindo o V8 a partir do código-fonte'
-description: 'Este documento explica como compilar o V8 a partir do código-fonte.'
+title: "Construindo o V8 a partir do código-fonte"
+description: "Este documento explica como compilar o V8 a partir do código-fonte."
 ---
 Para conseguir compilar o V8 do zero em Windows/Linux/macOS para x64, siga os passos abaixo.
 

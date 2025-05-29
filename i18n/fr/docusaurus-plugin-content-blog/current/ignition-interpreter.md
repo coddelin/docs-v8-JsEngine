@@ -2,7 +2,7 @@
 title: 'Allumer l'interpréteur Ignition'
 author: 'Ross McIlroy, Jump Starter d'Ignition V8'
 avatars:
-  - 'ross-mcilroy'
+  - "ross-mcilroy"
 date: 2016-08-23 13:33:37
 tags:
   - internals

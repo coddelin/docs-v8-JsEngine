@@ -1,13 +1,13 @@
 ---
-title: 'JavaScript-Codeabdeckung'
-author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
+title: "JavaScript-Codeabdeckung"
+author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2017-12-13 13:33:37
 tags:
   - Interna
-description: 'V8 unterstützt jetzt nativ die JavaScript-Codeabdeckung. Tools können jetzt auf die Abdeckungsinformationen von V8 zugreifen, ohne den Code zu instrumentieren!'
-tweet: '940879905079873536'
+description: "V8 unterstützt jetzt nativ die JavaScript-Codeabdeckung. Tools können jetzt auf die Abdeckungsinformationen von V8 zugreifen, ohne den Code zu instrumentieren!"
+tweet: "940879905079873536"
 ---
 Codeabdeckung liefert Informationen darüber, ob und optional wie oft bestimmte Teile einer Anwendung ausgeführt wurden. Sie wird häufig verwendet, um festzustellen, wie gründlich eine Testsuite eine bestimmte Codebasis prüft.
 

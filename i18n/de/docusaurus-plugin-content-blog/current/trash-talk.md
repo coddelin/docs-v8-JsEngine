@@ -1,15 +1,15 @@
 ---
-title: 'Trash talk: der Orinoco Müllsammler'
-author: 'Peter ‘der Garbo’ Marshall ([@hooraybuffer](https://twitter.com/hooraybuffer))'
+title: "Trash talk: der Orinoco Müllsammler"
+author: "Peter ‘der Garbo’ Marshall ([@hooraybuffer](https://twitter.com/hooraybuffer))"
 avatars:
-  - 'peter-marshall'
+  - "peter-marshall"
 date: 2019-01-03 17:45:34
 tags:
   - internals
   - speicher
   - präsentationen
-description: 'Orinoco, V8s Müllsammler, entwickelte sich von einer sequentiellen Stop-the-World-Implementierung zu einem überwiegend parallelen und gleichzeitigen Sammler mit inkrementellem Fallback.'
-tweet: '1080867305532416000'
+description: "Orinoco, V8s Müllsammler, entwickelte sich von einer sequentiellen Stop-the-World-Implementierung zu einem überwiegend parallelen und gleichzeitigen Sammler mit inkrementellem Fallback."
+tweet: "1080867305532416000"
 ---
 Im Laufe der letzten Jahre hat sich der V8-Müllsammler (GC) stark verändert. Das Orinoco-Projekt hat einen sequentiellen Stop-the-World-Müllsammler in einen überwiegend parallelen und gleichzeitigen Sammler mit inkrementellem Fallback verwandelt.
 

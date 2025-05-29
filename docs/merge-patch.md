@@ -1,6 +1,6 @@
 ---
-title: 'Merging & patching'
-description: 'This document explains how to merge V8 patches to a release branch.'
+title: "Merging & patching"
+description: "This document explains how to merge V8 patches to a release branch."
 ---
 If you have a patch to the `main` branch (e.g. an important bug fix) that needs to be merged into one of the release V8 branches (refs/branch-heads/12.5), read on.
 

@@ -1,13 +1,13 @@
 ---
-title: '格式良好的 `JSON.stringify`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "格式良好的 `JSON.stringify`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-09-11
 tags:
   - ECMAScript
   - ES2019
-description: 'JSON.stringify 現在對孤立代理項輸出轉義序列，令輸出有效 Unicode（並且可在 UTF-8 中表示）。'
+description: "JSON.stringify 現在對孤立代理項輸出轉義序列，令輸出有效 Unicode（並且可在 UTF-8 中表示）。"
 ---
 `JSON.stringify` 之前的規範是當輸入包含任何孤立代理項時，返回格式不良的 Unicode 字串：
 

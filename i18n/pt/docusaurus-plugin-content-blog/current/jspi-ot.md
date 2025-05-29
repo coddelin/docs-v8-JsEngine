@@ -1,7 +1,7 @@
 ---
-title: 'WebAssembly JSPI está entrando em fase de teste de origem'
-description: 'Explicamos o início do teste de origem para JSPI'
-author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
+title: "WebAssembly JSPI está entrando em fase de teste de origem"
+description: "Explicamos o início do teste de origem para JSPI"
+author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-03-06
 tags:
   - WebAssembly

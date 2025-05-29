@@ -1,6 +1,6 @@
 ---
-title: 'Compressão de ponteiros em Oilpan'
-author: 'Anton Bikineev, e Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), analisadores de desmontagem em ação'
+title: "Compressão de ponteiros em Oilpan"
+author: "Anton Bikineev, e Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), analisadores de desmontagem em ação"
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -9,8 +9,8 @@ tags:
   - internals
   - memória
   - cppgc
-description: 'A compressão de ponteiros em Oilpan permite comprimir ponteiros C++ e reduzir o tamanho do heap em até 33%.'
-tweet: '1597274125780893697'
+description: "A compressão de ponteiros em Oilpan permite comprimir ponteiros C++ e reduzir o tamanho do heap em até 33%."
+tweet: "1597274125780893697"
 ---
 
 > É absolutamente idiota ter ponteiros de 64 bits quando eu compilo um programa que utiliza menos de 4 gigabytes de RAM. Quando esses valores de ponteiros aparecem dentro de uma estrutura, eles não apenas desperdiçam metade da memória, mas também efetivamente descartam metade do cache.

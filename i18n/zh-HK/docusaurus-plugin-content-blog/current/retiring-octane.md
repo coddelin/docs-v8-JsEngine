@@ -1,10 +1,10 @@
 ---
-title: '退休 Octane'
-author: 'V8 團隊'
+title: "退休 Octane"
+author: "V8 團隊"
 date: 2017-04-12 13:33:37
 tags:
   - 基準測試
-description: 'V8 團隊認為是時候將 Octane 作為推薦基準測試退出歷史舞臺。'
+description: "V8 團隊認為是時候將 Octane 作為推薦基準測試退出歷史舞臺。"
 ---
 JavaScript 基準測試的歷史是一個不斷演變的故事。隨著網頁從簡單的文檔擴展到動態的客戶端應用，新的 JavaScript 基準測試被創建以衡量新用例中重要的工作負載。這種不斷變化導致了各個基準測試有限的壽命。隨著網頁瀏覽器和虛擬機 (VM) 實現開始對特定的測試用例進行過度優化，基準測試本身停止成為其原始用途的有效代理工具。最早的 JavaScript 基準測試之一 [SunSpider](https://webkit.org/perf/sunspider/sunspider.html)，在早期推動了快速優化編譯器的推出。然而，隨著 VM 工程師揭示了 [微基準測試的局限性](https://blog.mozilla.org/nnethercote/2014/06/16/a-browser-benchmarking-manifesto/) 並找到新的方法去 [優化](https://benediktmeurer.de/2016/12/16/the-truth-about-traditional-javascript-benchmarks/#the-notorious-sunspider-examples) [繞過](https://bugzilla.mozilla.org/show_bug.cgi?id=787601) SunSpider 的 [局限性](https://bugs.webkit.org/show_bug.cgi?id=63864)，瀏覽器社區 [正式退役](https://trac.webkit.org/changeset/187526/webkit) SunSpider 作為推薦基準測試。
 

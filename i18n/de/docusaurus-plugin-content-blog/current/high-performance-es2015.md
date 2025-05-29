@@ -1,12 +1,12 @@
 ---
-title: 'Leistungsstarkes ES2015 und darüber hinaus'
-author: 'Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer), ECMAScript-Performance-Ingenieur'
+title: "Leistungsstarkes ES2015 und darüber hinaus"
+author: "Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer), ECMAScript-Performance-Ingenieur"
 avatars:
-  - 'benedikt-meurer'
+  - "benedikt-meurer"
 date: 2017-02-17 13:33:37
 tags:
   - ECMAScript
-description: 'Die Leistung der ES2015+ Sprachfunktionen in V8 ist jetzt auf Augenhöhe mit ihren transpilierten ES5-Gegenstücken.'
+description: "Die Leistung der ES2015+ Sprachfunktionen in V8 ist jetzt auf Augenhöhe mit ihren transpilierten ES5-Gegenstücken."
 ---
 In den letzten Monaten hat sich das V8-Team darauf konzentriert, die Leistung der neu eingeführten [ES2015](https://www.ecma-international.org/ecma-262/6.0/) und anderer noch neuerer JavaScript-Funktionen auf das Niveau ihrer transpilierten [ES5](https://www.ecma-international.org/ecma-262/5.1/) Gegenstücke zu bringen.
 

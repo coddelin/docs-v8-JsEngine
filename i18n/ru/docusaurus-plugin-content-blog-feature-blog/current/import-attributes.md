@@ -1,13 +1,13 @@
 ---
-title: 'Импорт атрибутов'
-author: 'Шу-ю Гуо ([@_shu](https://twitter.com/_shu))'
+title: "Импорт атрибутов"
+author: "Шу-ю Гуо ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2024-01-31
 tags:
   - ECMAScript
-description: 'Импорт атрибутов: эволюция утверждений импорта'
-tweet: ''
+description: "Импорт атрибутов: эволюция утверждений импорта"
+tweet: ""
 ---
 
 ## Ранее

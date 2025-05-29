@@ -1,15 +1,15 @@
 ---
-title: '`Object.fromEntries`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), JavaScript ウィスパラー'
+title: "`Object.fromEntries`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), JavaScript ウィスパラー"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-18
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: 'Object.fromEntries は、Object.entries を補完する JavaScript ライブラリへの有益な追加機能です。'
-tweet: '1140993821897121796'
+description: "Object.fromEntries は、Object.entries を補完する JavaScript ライブラリへの有益な追加機能です。"
+tweet: "1140993821897121796"
 ---
 `Object.fromEntries` は、組み込みの JavaScript ライブラリへの有益な追加機能です。その機能を説明する前に、既存の `Object.entries` API を理解することが助けになります。
 

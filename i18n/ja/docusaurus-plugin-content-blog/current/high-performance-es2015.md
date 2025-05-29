@@ -1,12 +1,12 @@
 ---
-title: '高性能のES2015以降'
-author: 'Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer), ECMAScriptパフォーマンスエンジニア'
+title: "高性能のES2015以降"
+author: "Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer), ECMAScriptパフォーマンスエンジニア"
 avatars:
-  - 'benedikt-meurer'
+  - "benedikt-meurer"
 date: 2017-02-17 13:33:37
 tags:
   - ECMAScript
-description: 'V8におけるES2015+言語機能のパフォーマンスは、今やトランスパイルされたES5の対応機能に匹敵します。'
+description: "V8におけるES2015+言語機能のパフォーマンスは、今やトランスパイルされたES5の対応機能に匹敵します。"
 ---
 過去数ヶ月間にわたり、V8チームは新たに追加された[ES2015](https://www.ecma-international.org/ecma-262/6.0/)およびさらに最近のJavaScript機能のパフォーマンスを、トランスパイルされた[ES5](https://www.ecma-international.org/ecma-262/5.1/)の対応機能と同等にすることに注力しました。
 

@@ -1,14 +1,14 @@
 ---
-title: '宣布 Web Tooling Benchmark'
-author: 'Benedikt Meurer（[@bmeurer](https://twitter.com/bmeurer)），JavaScript 性能协调员'
+title: "宣布 Web Tooling Benchmark"
+author: "Benedikt Meurer（[@bmeurer](https://twitter.com/bmeurer)），JavaScript 性能协调员"
 avatars:
-  - 'benedikt-meurer'
+  - "benedikt-meurer"
 date: 2017-11-06 13:33:37
 tags:
   - 基准测试
   - Node.js
-description: '全新的 Web Tooling Benchmark 通过在 Babel、TypeScript 和其他实际项目中，帮助识别和修复 V8 的性能瓶颈。'
-tweet: '927572065598824448'
+description: "全新的 Web Tooling Benchmark 通过在 Babel、TypeScript 和其他实际项目中，帮助识别和修复 V8 的性能瓶颈。"
+tweet: "927572065598824448"
 ---
 JavaScript 性能对 V8 团队来说一直很重要，在这篇文章中，我们希望讨论一个新的 JavaScript [Web Tooling Benchmark](https://v8.github.io/web-tooling-benchmark)。我们最近正在使用它来识别和修复 V8 中的一些性能瓶颈。您可能已经知道 V8 对 [Node.js 的强烈承诺](/blog/v8-nodejs)，而这个基准测试进一步延续了这一承诺，特别是通过运行基于 Node.js 构建的常见开发者工具的性能测试。Web Tooling Benchmark 中包含的工具是现代开发者和设计师今天使用的构建现代网站和基于云的应用程序的工具。为了继续我们专注于 [现实场景性能](/blog/real-world-performance/) 而不是人工基准测试的努力，我们使用开发者每天运行的实际代码创建了这个基准测试。
 

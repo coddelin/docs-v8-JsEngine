@@ -1,13 +1,13 @@
 ---
-title: '改進程式碼快取'
-author: 'Mythri Alle, 首席程式碼快取專家'
+title: "改進程式碼快取"
+author: "Mythri Alle, 首席程式碼快取專家"
 date: 2018-04-24 13:33:37
 avatars:
-  - 'mythri-alle'
+  - "mythri-alle"
 tags:
   - internals
-tweet: '988728000677142528'
-description: '從Chrome 66開始，V8透過在頂層執行後生成快取，使更多的(字節)程式碼得以快取。'
+tweet: "988728000677142528"
+description: "從Chrome 66開始，V8透過在頂層執行後生成快取，使更多的(字節)程式碼得以快取。"
 ---
 V8使用[程式碼快取](/blog/code-caching)來快取常用腳本的生成程式碼。從Chrome 66開始，我們透過在頂層執行後生成快取，使更多的程式碼得以快取。這使初次載入時的解析及編譯時間減少了20–40%。
 

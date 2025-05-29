@@ -1,6 +1,6 @@
 ---
-title: '透過 V8 Inspector Protocol 進行調試'
-description: '本頁旨在向嵌入者提供實現 V8 調試支持所需的基本工具。'
+title: "透過 V8 Inspector Protocol 進行調試"
+description: "本頁旨在向嵌入者提供實現 V8 調試支持所需的基本工具。"
 ---
 V8 為使用者和嵌入者提供了廣泛的調試功能。使用者通常會通過 [Chrome DevTools](https://developer.chrome.com/devtools) 介面與 V8 調試器互動。嵌入者（包括 DevTools）需要直接依賴 [Inspector Protocol](https://chromedevtools.github.io/debugger-protocol-viewer/tot/)。
 

@@ -1,11 +1,11 @@
 ---
-title: 'Lanzamiento de V8 versión 6.6'
-author: 'el equipo de V8'
+title: "Lanzamiento de V8 versión 6.6"
+author: "el equipo de V8"
 date: 2018-03-27 13:33:37
 tags:
   - lanzamiento
-description: '¡V8 v6.6 incluye enlace opcional en catch, recorte extendido de cadenas, varias mejoras de rendimiento en análisis/compilación/ejecución y mucho más!'
-tweet: '978534399938584576'
+description: "¡V8 v6.6 incluye enlace opcional en catch, recorte extendido de cadenas, varias mejoras de rendimiento en análisis/compilación/ejecución y mucho más!"
+tweet: "978534399938584576"
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se divide desde el maestro de Git de V8 inmediatamente antes de un hito de Chrome Beta. Hoy nos complace anunciar nuestra rama más reciente, [V8 versión 6.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.6), que está en beta hasta su lanzamiento en coordinación con Chrome 66 Stable en varias semanas. V8 v6.6 está repleto de muchas novedades para los desarrolladores. Este artículo ofrece una vista previa de algunos de los aspectos destacados en anticipación al lanzamiento.
 

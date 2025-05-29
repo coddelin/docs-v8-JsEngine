@@ -1,7 +1,7 @@
 ---
-title: 'Представляем WebAssembly JavaScript Promise Integration API'
-description: 'Этот документ знакомит с JSPI и предоставляет несколько простых примеров для начала использования'
-author: 'Фрэнсис МакКейб, Тибо Мишо, Илья Резвов, Брэндан Даль'
+title: "Представляем WebAssembly JavaScript Promise Integration API"
+description: "Этот документ знакомит с JSPI и предоставляет несколько простых примеров для начала использования"
+author: "Фрэнсис МакКейб, Тибо Мишо, Илья Резвов, Брэндан Даль"
 date: 2024-07-01
 tags:
   - WebAssembly

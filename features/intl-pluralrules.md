@@ -1,13 +1,13 @@
 ---
-title: '`Intl.PluralRules`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Intl.PluralRules`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-10-04
 tags:
   - Intl
-description: 'Handling plurals is one of many problems that might seem simple, until you realize every language has its own pluralization rules. The Intl.PluralRules API can help!'
-tweet: '915542989493202944'
+description: "Handling plurals is one of many problems that might seem simple, until you realize every language has its own pluralization rules. The Intl.PluralRules API can help!"
+tweet: "915542989493202944"
 ---
 Iñtërnâtiônàlizætiøn is hard. Handling plurals is one of many problems that might seem simple, until you realize every language has its own pluralization rules.
 

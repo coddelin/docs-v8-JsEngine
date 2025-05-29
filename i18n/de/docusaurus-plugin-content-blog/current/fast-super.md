@@ -1,13 +1,13 @@
 ---
-title: 'Super schnelle `super`-Eigenschaftszugriffe'
-author: '[Marja Hölttä](https://twitter.com/marjakh), Super-Optimierer'
+title: "Super schnelle `super`-Eigenschaftszugriffe"
+author: "[Marja Hölttä](https://twitter.com/marjakh), Super-Optimierer"
 avatars:
   - marja-holtta
 date: 2021-02-18
 tags:
   - JavaScript
-description: 'Schnellere `super`-Eigenschaftszugriffe in V8 v9.0'
-tweet: '1362465295848333316'
+description: "Schnellere `super`-Eigenschaftszugriffe in V8 v9.0"
+tweet: "1362465295848333316"
 ---
 
 Das [`super`-Schlüsselwort](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/super) kann verwendet werden, um auf Eigenschaften und Funktionen des Elternobjekts eines Objekts zuzugreifen.

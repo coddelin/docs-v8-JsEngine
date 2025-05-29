@@ -1,13 +1,13 @@
 ---
-title: 'Ayudantes de iterador'
-author: 'Rezvan Mahdavi Hezaveh'
+title: "Ayudantes de iterador"
+author: "Rezvan Mahdavi Hezaveh"
 avatars:
-  - 'rezvan-mahdavi-hezaveh'
+  - "rezvan-mahdavi-hezaveh"
 date: 2024-03-27
 tags:
   - ECMAScript
-description: 'Interfaces que ayudan con el uso y consumo general de iteradores.'
-tweet: ''
+description: "Interfaces que ayudan con el uso y consumo general de iteradores."
+tweet: ""
 ---
 
 *Los ayudantes de iterador* son una colección de nuevos métodos en el prototipo de Iterator que facilitan el uso general de los iteradores. Dado que estos métodos de ayuda están en el prototipo de iterador, cualquier objeto que tenga `Iterator.prototype` en su cadena de prototipos (por ejemplo, iteradores de arrays) obtendrá los métodos. En las siguientes subsecciones, explicamos los ayudantes de iterador. Todos los ejemplos proporcionados funcionan en una página de archivo de blog que incluye una lista de publicaciones, ilustrando cómo los ayudantes de iterador son útiles para encontrar y manipular publicaciones. ¡Puedes probarlos en [la página del blog de V8](https://v8.dev/blog)!

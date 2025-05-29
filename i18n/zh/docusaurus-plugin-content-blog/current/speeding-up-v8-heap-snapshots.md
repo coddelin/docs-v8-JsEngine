@@ -1,7 +1,7 @@
 ---
-title: '加速 V8 堆快照'
-description: '这篇关于 V8 堆快照的文章介绍了由 Bloomberg 工程师发现的一些性能问题，以及我们如何解决这些问题，使 JavaScript 内存分析比以往更快。'
-author: 'Jose Dapena Paz'
+title: "加速 V8 堆快照"
+description: "这篇关于 V8 堆快照的文章介绍了由 Bloomberg 工程师发现的一些性能问题，以及我们如何解决这些问题，使 JavaScript 内存分析比以往更快。"
+author: "Jose Dapena Paz"
 date: 2023-07-27
 tags:
  - 内存

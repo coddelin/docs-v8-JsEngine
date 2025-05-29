@@ -1,5 +1,5 @@
 ---
-title: 'Code respectueux'
+title: "Code respectueux"
 description: 'L'inclusivité est au cœur de la culture de V8, et nos valeurs incluent le respect mutuel. Ainsi, il est important que chacun puisse contribuer sans être confronté aux effets nuisibles des préjugés et de la discrimination.'
 ---
 

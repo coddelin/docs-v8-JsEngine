@@ -1,13 +1,13 @@
 ---
-title: 'エラー原因'
-author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
+title: "エラー原因"
+author: "Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))"
 avatars:
-  - 'victor-gomes'
+  - "victor-gomes"
 date: 2021-07-07
 tags:
   - ECMAScript
-description: 'JavaScriptはエラー原因をサポートするようになりました。'
-tweet: '1412774651558862850'
+description: "JavaScriptはエラー原因をサポートするようになりました。"
+tweet: "1412774651558862850"
 ---
 
 例えば、`doSomeWork` と `doMoreWork` という2つの異なる作業を呼び出す関数があるとします。この2つの関数は同じ種類のエラーを投げる可能性がありますが、それらを別々に処理する必要があります。

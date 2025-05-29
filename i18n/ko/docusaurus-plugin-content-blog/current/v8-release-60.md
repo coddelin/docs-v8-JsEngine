@@ -1,10 +1,10 @@
 ---
-title: 'V8 릴리즈 v6.0'
-author: 'V8 팀'
+title: "V8 릴리즈 v6.0"
+author: "V8 팀"
 date: 2017-06-09 13:33:37
 tags:
   - release
-description: 'V8 v6.0은 여러 성능 개선 사항과 함께 SharedArrayBuffer 및 객체 rest/spread 속성에 대한 지원을 도입합니다.'
+description: "V8 v6.0은 여러 성능 개선 사항과 함께 SharedArrayBuffer 및 객체 rest/spread 속성에 대한 지원을 도입합니다."
 ---
 V8는 [릴리즈 프로세스](/docs/release-process)의 일환으로 6주마다 새로운 브랜치를 만듭니다. 각 버전은 Chrome Beta 마일스톤 직전에 V8 Git 마스터에서 분기됩니다. 오늘 우리는 최신 브랜치인 [V8 버전 6.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.0)을 발표하게 되어 기쁩니다. 이 브랜치는 몇 주 이내에 Chrome 60 Stable과 함께 공개될 때까지 베타 상태로 유지됩니다. V8 6.0에는 다양한 개발자 중심의 기능들이 가득합니다. 릴리즈를 기대하며 주요 기능 몇 가지를 미리 소개해드리고자 합니다.
 

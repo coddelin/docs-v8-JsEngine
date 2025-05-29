@@ -1,13 +1,13 @@
 ---
-title: '在`Array`和TypedArray中查找元素'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "在`Array`和TypedArray中查找元素"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2021-10-27
 tags:
   - ECMAScript
-description: 'JavaScript方法用于在数组和TypedArray中查找元素'
-tweet: '1453354998063149066'
+description: "JavaScript方法用于在数组和TypedArray中查找元素"
+tweet: "1453354998063149066"
 ---
 ## 从开头查找元素
 

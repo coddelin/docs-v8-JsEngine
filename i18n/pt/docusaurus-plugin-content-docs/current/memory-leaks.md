@@ -1,6 +1,6 @@
 ---
-title: 'Investigando vazamentos de memória'
-description: 'Este documento fornece orientações sobre como investigar vazamentos de memória no V8.'
+title: "Investigando vazamentos de memória"
+description: "Este documento fornece orientações sobre como investigar vazamentos de memória no V8."
 ---
 Se você estiver investigando um vazamento de memória e se perguntar por que um objeto não é coletado como lixo, pode usar `%DebugTrackRetainingPath(object)` para imprimir o caminho real de retenção do objeto a cada GC.
 

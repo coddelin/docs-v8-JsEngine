@@ -1,6 +1,6 @@
 ---
-title: 'V8 提交者與審閱者的職責'
-description: '本文列出了 V8 貢獻者的指導方針。'
+title: "V8 提交者與審閱者的職責"
+description: "本文列出了 V8 貢獻者的指導方針。"
 ---
 當您向 V8 存儲庫提交代碼時，請確保遵循以下指導方針（改編自 https://dev.chromium.org/developers/committers-responsibility）：
 

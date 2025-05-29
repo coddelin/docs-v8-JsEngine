@@ -1,13 +1,13 @@
 ---
-title: 'Static Roots: 컴파일 시간에 고정된 주소를 가지는 객체'
-author: 'Olivier Flückiger'
+title: "Static Roots: 컴파일 시간에 고정된 주소를 가지는 객체"
+author: "Olivier Flückiger"
 avatars:
   - olivier-flueckiger
 date: 2024-02-05
 tags:
   - JavaScript
 description: "Static Roots는 특정 JS 객체의 주소를 컴파일 시간에 고정된 주소로 만듭니다."
-tweet: ''
+tweet: ""
 ---
 
 `undefined`, `true`와 같은 핵심 JavaScript 객체들이 어디에서 오는지 궁금해해 본 적이 있나요? 이러한 객체들은 사용자가 정의한 객체의 원소이며, 먼저 존재해야 합니다. V8은 이들을 이동 불가, 불변의 루트로 간주하며, 읽기 전용 힙이라는 자체 힙에 저장합니다. 이들이 끊임없이 사용되기 때문에, 빠른 액세스가 필수적입니다. 그렇다면 이들의 메모리 주소를 컴파일 시간에 정확히 추측할 수 있다면 얼마나 빠를까요?

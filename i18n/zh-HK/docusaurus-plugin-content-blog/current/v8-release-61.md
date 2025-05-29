@@ -1,10 +1,10 @@
 ---
-title: 'V8 發佈版本 v6.1'
-author: 'V8 團隊'
+title: "V8 發佈版本 v6.1"
+author: "V8 團隊"
 date: 2017-08-03 13:33:37
 tags:
   - 發佈
-description: 'V8 v6.1 附帶減少的二進制大小並包括性能改進。此外，asm.js 現已經過驗證並編譯為 WebAssembly。'
+description: "V8 v6.1 附帶減少的二進制大小並包括性能改進。此外，asm.js 現已經過驗證並編譯為 WebAssembly。"
 ---
 每六週，我們會根據 [發佈流程](/docs/release-process) 創建一個新的 V8 分支。每個版本都從 V8 的 Git 主分支中選擇，恰好在 Chrome Beta 里程碑之前。今天我們很高興宣布我們的最新分支 [V8 版本 6.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.1)，該版本將會處於 Beta 階段，直到幾週後與 Chrome 61 的穩定版協同發佈。V8 v6.1 為開發人員帶來了各種好處，接下來我們將提前預覽一些亮點。
 

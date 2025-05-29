@@ -1,6 +1,6 @@
 ---
-title: 'V8 的 Linux `perf` 整合'
-description: '本文檔說明如何使用 Linux `perf` 工具分析 V8 的 JIT 編譯代碼之性能。'
+title: "V8 的 Linux `perf` 整合"
+description: "本文檔說明如何使用 Linux `perf` 工具分析 V8 的 JIT 編譯代碼之性能。"
 ---
 V8 內建支持 Linux `perf` 工具。透過 `--perf-prof` 命令行選項啟用此功能。
 V8 在執行期間會將性能數據寫出到文件，可用於使用 Linux `perf` 工具分析 V8 的 JIT 編譯代碼（包括 JS 函數名稱）。

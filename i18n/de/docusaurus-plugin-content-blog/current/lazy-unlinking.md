@@ -1,12 +1,12 @@
 ---
-title: 'Ein Praktikum über Faulheit: Faules Aufheben der Verlinkung von deoptimierten Funktionen'
-author: 'Juliana Franco ([@jupvfranco](https://twitter.com/jupvfranco)), Expertin für Faulheit'
+title: "Ein Praktikum über Faulheit: Faules Aufheben der Verlinkung von deoptimierten Funktionen"
+author: "Juliana Franco ([@jupvfranco](https://twitter.com/jupvfranco)), Expertin für Faulheit"
 date: 2017-10-04 13:33:37
 tags:
   - Speicher
   - Interna
-description: 'Diese technische Tiefenanalyse erklärt, wie V8 früher deoptimierte Funktionen entlinkt hat und wie wir dies kürzlich geändert haben, um die Leistung zu verbessern.'
-tweet: '915473224187760640'
+description: "Diese technische Tiefenanalyse erklärt, wie V8 früher deoptimierte Funktionen entlinkt hat und wie wir dies kürzlich geändert haben, um die Leistung zu verbessern."
+tweet: "915473224187760640"
 ---
 Vor ungefähr drei Monaten trat ich dem V8-Team (Google München) als Praktikant bei und habe seitdem am VM Deoptimizer gearbeitet — etwas völlig Neues für mich, das sich als interessantes und herausforderndes Projekt erwies. Der erste Teil meines Praktikums konzentrierte sich auf [die Verbesserung der VM aus Sicherheitsaspekten](https://docs.google.com/document/d/1ELgd71B6iBaU6UmZ_lvwxf_OrYYnv0e4nuzZpK05-pg/edit). Der zweite Teil konzentrierte sich auf Leistungsverbesserungen. Nämlich auf das Entfernen einer Datenstruktur, die zum Entlinken zuvor deoptimierter Funktionen verwendet wurde und während der Garbage Collection zu einem Leistungsengpass wurde. Dieser Blog-Beitrag beschreibt diesen zweiten Teil meines Praktikums. Ich werde erklären, wie V8 früher deoptimierte Funktionen entlinkte, wie wir dies geändert haben und welche Leistungsverbesserungen erzielt wurden.
 

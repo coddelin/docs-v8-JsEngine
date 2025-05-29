@@ -1,6 +1,6 @@
 ---
-title: 'Estatísticas de Chamadas em Tempo de Execução'
-description: 'Este documento explica como usar as Estatísticas de Chamadas em Tempo de Execução para obter métricas internas detalhadas do V8.'
+title: "Estatísticas de Chamadas em Tempo de Execução"
+description: "Este documento explica como usar as Estatísticas de Chamadas em Tempo de Execução para obter métricas internas detalhadas do V8."
 ---
 [O painel de desempenho do DevTools](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/) fornece insights sobre o desempenho em tempo de execução do seu aplicativo web visualizando várias métricas internas do Chrome. No entanto, certas métricas de baixo nível do V8 não estão atualmente expostas no DevTools. Este artigo guia você através da maneira mais robusta de coletar métricas internas detalhadas do V8, conhecidas como Estatísticas de Chamadas em Tempo de Execução ou RCS, através de `chrome://tracing`.
 

@@ -1,15 +1,15 @@
 ---
-title: '`String.prototype.replaceAll`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`String.prototype.replaceAll`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-11-11
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: 'JavaScript は、`String.prototype.replaceAll` API を使用して、グローバルな部分文字列置換に直接対応するようになりました。'
-tweet: '1193917549060280320'
+description: "JavaScript は、`String.prototype.replaceAll` API を使用して、グローバルな部分文字列置換に直接対応するようになりました。"
+tweet: "1193917549060280320"
 ---
 JavaScript で文字列を扱ったことがあるなら、`String#replace` メソッドに出会ったことがあるでしょう。`String.prototype.replace(searchValue, replacement)` は指定されたパラメーターに基づいて一致する部分を置換した結果の文字列を返します:
 

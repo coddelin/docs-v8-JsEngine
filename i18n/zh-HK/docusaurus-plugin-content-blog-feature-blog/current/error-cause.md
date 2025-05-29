@@ -1,13 +1,13 @@
 ---
-title: '錯誤原因'
-author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
+title: "錯誤原因"
+author: "Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))"
 avatars:
-  - 'victor-gomes'
+  - "victor-gomes"
 date: 2021-07-07
 tags:
   - ECMAScript
-description: 'JavaScript 現在支援錯誤原因。'
-tweet: '1412774651558862850'
+description: "JavaScript 現在支援錯誤原因。"
+tweet: "1412774651558862850"
 ---
 
 假設你有一個函數正在調用兩個分開的工作負載 `doSomeWork` 和 `doMoreWork`。這兩個函數可以拋出同類型的錯誤，但你需要以不同方式處理它們。

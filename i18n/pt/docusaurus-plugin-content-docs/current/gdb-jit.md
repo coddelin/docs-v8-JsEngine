@@ -1,6 +1,6 @@
 ---
-title: 'Integração com a Interface de Compilação JIT do GDB'
-description: 'A integração com a Interface de Compilação JIT do GDB permite que o V8 forneça ao GDB informações de símbolos e depuração para o código nativo emitido pelo runtime do V8.'
+title: "Integração com a Interface de Compilação JIT do GDB"
+description: "A integração com a Interface de Compilação JIT do GDB permite que o V8 forneça ao GDB informações de símbolos e depuração para o código nativo emitido pelo runtime do V8."
 ---
 A integração com a Interface de Compilação JIT do GDB permite que o V8 forneça ao GDB informações de símbolos e depuração para o código nativo emitido pelo runtime do V8.
 

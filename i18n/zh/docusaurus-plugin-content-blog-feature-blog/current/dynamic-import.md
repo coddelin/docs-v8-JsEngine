@@ -1,14 +1,14 @@
 ---
-title: '动态 `import()`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "动态 `import()`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-11-21
 tags:
   - ECMAScript
   - ES2020
-description: '动态导入(import())相比于静态导入解锁了新的功能。这篇文章对比了两者并概述了新功能。'
-tweet: '932914724060254208'
+description: "动态导入(import())相比于静态导入解锁了新的功能。这篇文章对比了两者并概述了新功能。"
+tweet: "932914724060254208"
 ---
 [动态 `import()`](https://github.com/tc39/proposal-dynamic-import) 引入了一种类似函数的新形式的 `import`，相比静态 `import` 解锁了新的功能。这篇文章对比了两者并概述了新功能。
 

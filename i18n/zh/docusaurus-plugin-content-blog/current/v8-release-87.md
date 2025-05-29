@@ -1,13 +1,13 @@
 ---
-title: 'V8 发布 v8.7'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), V8 旗手'
+title: "V8 发布 v8.7"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), V8 旗手"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2020-10-23
 tags:
  - 发布
-description: 'V8 发布 v8.7，带来了新的原生调用 API、Atomics.waitAsync、错误修复以及性能改进。'
-tweet: '1319654229863182338'
+description: "V8 发布 v8.7，带来了新的原生调用 API、Atomics.waitAsync、错误修复以及性能改进。"
+tweet: "1319654229863182338"
 ---
 每六周，我们会创建一个新的 V8 分支，作为我们[发布流程](https://v8.dev/docs/release-process)的一部分。每个版本都会在 Chrome Beta 的里程碑之前立即从 V8 的 Git 主分支创建分支。今天，我们很高兴宣布我们的最新分支，[V8 版本 8.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.7)，它将在几周内作为 Chrome 87 稳定版进行协调发布前的 Beta 测试。V8 v8.7 包含各种面向开发者的新功能。本文章将对发布前的一些亮点进行预览。
 

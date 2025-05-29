@@ -1,6 +1,6 @@
 ---
-title: 'Directives pour la revue de conception'
-description: 'Ce document explique les directives de revue de conception du projet V8.'
+title: "Directives pour la revue de conception"
+description: "Ce document explique les directives de revue de conception du projet V8."
 ---
 Veuillez vous assurer de suivre les directives suivantes lorsque cela est applicable.
 

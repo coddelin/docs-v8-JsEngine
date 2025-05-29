@@ -1,12 +1,12 @@
 ---
-title: '代码缓存'
-author: '杨果 ([@hashseed](https://twitter.com/hashseed))，软件工程师'
+title: "代码缓存"
+author: "杨果 ([@hashseed](https://twitter.com/hashseed))，软件工程师"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2015-07-27 13:33:37
 tags:
   - 内部机制
-description: 'V8 现在支持（字节）代码缓存，即缓存 JavaScript 解析和编译的结果。'
+description: "V8 现在支持（字节）代码缓存，即缓存 JavaScript 解析和编译的结果。"
 ---
 V8 使用[即时编译](https://en.wikipedia.org/wiki/Just-in-time_compilation)（JIT）来执行 JavaScript 代码。这意味着在运行脚本之前必须立即对其进行解析和编译，这可能会导致相当大的开销。正如我们[最近宣布](https://blog.chromium.org/2015/03/new-javascript-techniques-for-rapid.html)，代码缓存是一种减少开销的技术。首次编译脚本时，会生成并存储缓存数据。下次 V8 需要编译相同的脚本时，即使在不同的 V8 实例中，也可以使用缓存数据重新生成编译结果，而无需从头编译。因此，脚本执行速度显著提高。
 

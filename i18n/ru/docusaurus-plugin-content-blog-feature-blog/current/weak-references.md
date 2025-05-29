@@ -1,11 +1,11 @@
 ---
-title: 'Слабые ссылки и финализаторы'
-author: 'Сатья Гунасекаран ([@_gsathya](https://twitter.com/_gsathya)), Матиас Биненс ([@mathias](https://twitter.com/mathias)), Шу-ю Го ([@_shu](https://twitter.com/_shu)) и Лешек Свирски ([@leszekswirski](https://twitter.com/leszekswirski))'
+title: "Слабые ссылки и финализаторы"
+author: "Сатья Гунасекаран ([@_gsathya](https://twitter.com/_gsathya)), Матиас Биненс ([@mathias](https://twitter.com/mathias)), Шу-ю Го ([@_shu](https://twitter.com/_shu)) и Лешек Свирски ([@leszekswirski](https://twitter.com/leszekswirski))"
 avatars:
-- 'sathya-gunasekaran'
-- 'mathias-bynens'
-- 'shu-yu-guo'
-- 'leszek-swirski'
+- "sathya-gunasekaran"
+- "mathias-bynens"
+- "shu-yu-guo"
+- "leszek-swirski"
 date: 2019-07-09
 updated: 2020-06-19
 tags:
@@ -13,8 +13,8 @@ tags:
   - ES2021
   - io19
   - Node.js 14
-description: 'Слабые ссылки и финализаторы приходят в JavaScript! Эта статья объясняет новую функциональность.'
-tweet: '1148603966848151553'
+description: "Слабые ссылки и финализаторы приходят в JavaScript! Эта статья объясняет новую функциональность."
+tweet: "1148603966848151553"
 ---
 В общем случае ссылки на объекты в JavaScript являются _сильно удерживаемыми_, что означает, что пока у вас есть ссылка на объект, он не будет удален сборщиком мусора.
 

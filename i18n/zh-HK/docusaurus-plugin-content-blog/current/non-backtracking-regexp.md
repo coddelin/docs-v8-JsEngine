@@ -1,12 +1,12 @@
 ---
-title: '一個附加的無回溯正規表示法引擎'
-author: 'Martin Bidlingmaier'
+title: "一個附加的無回溯正規表示法引擎"
+author: "Martin Bidlingmaier"
 date: 2021-01-11
 tags:
  - internals
  - RegExp
-description: 'V8 現在擁有一個附加的正規表示法引擎，作為備援並防止許多災難性回溯情況。'
-tweet: '1348635270762139650'
+description: "V8 現在擁有一個附加的正規表示法引擎，作為備援並防止許多災難性回溯情況。"
+tweet: "1348635270762139650"
 ---
 從 v8.8 開始，V8 提供一個新的實驗性無回溯正規表示法引擎（除了現有的 [Irregexp 引擎](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html)以外），該引擎保證相對於主串大小以線性時間執行。實驗性引擎可通過下面的功能標誌開啟。
 

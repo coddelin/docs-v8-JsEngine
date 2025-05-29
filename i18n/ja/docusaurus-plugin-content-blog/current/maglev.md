@@ -1,6 +1,6 @@
 ---
-title: 'Maglev - V8の最速最適化JIT'
-author: '[Toon Verwaest](https://twitter.com/tverwaes), [Leszek Swirski](https://twitter.com/leszekswirski), [Victor Gomes](https://twitter.com/VictorBFG), Olivier Flückiger, Darius Mercadier, and Camillo Bruni — スープを台無しにしないには十分な人数のシェフがいること'
+title: "Maglev - V8の最速最適化JIT"
+author: "[Toon Verwaest](https://twitter.com/tverwaes), [Leszek Swirski](https://twitter.com/leszekswirski), [Victor Gomes](https://twitter.com/VictorBFG), Olivier Flückiger, Darius Mercadier, and Camillo Bruni — スープを台無しにしないには十分な人数のシェフがいること"
 avatars:
   - toon-verwaest
   - leszek-swirski
@@ -12,7 +12,7 @@ date: 2023-12-05
 tags:
   - JavaScript
 description: "V8の最新のコンパイラMaglevがパフォーマンスを改善し、電力消費を削減します"
-tweet: ''
+tweet: ""
 ---
 
 Chrome M117では、新しい最適化コンパイラMaglevを導入しました。Maglevは既存のSparkplugとTurboFanコンパイラの間に位置し、高速な最適化コンパイラとしての役割を果たし、十分に良いコードを十分に速く生成します。

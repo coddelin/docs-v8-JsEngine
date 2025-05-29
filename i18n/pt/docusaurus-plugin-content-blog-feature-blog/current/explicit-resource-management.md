@@ -1,13 +1,13 @@
 ---
 title: "O Novo Superpoder do JavaScript: Gerenciamento Explícito de Recursos"
-author: 'Rezvan Mahdavi Hezaveh'
+author: "Rezvan Mahdavi Hezaveh"
 avatars:
-  - 'rezvan-mahdavi-hezaveh'
+  - "rezvan-mahdavi-hezaveh"
 date: 2025-05-09
 tags:
   - ECMAScript
-description: 'A proposta de Gerenciamento Explícito de Recursos capacita os desenvolvedores a gerenciar explicitamente o ciclo de vida dos recursos.'
-tweet: ''
+description: "A proposta de Gerenciamento Explícito de Recursos capacita os desenvolvedores a gerenciar explicitamente o ciclo de vida dos recursos."
+tweet: ""
 ---
 
 A proposta de *Gerenciamento Explícito de Recursos* introduz uma abordagem determinística para gerenciar explicitamente o ciclo de vida de recursos como manipuladores de arquivos, conexões de rede e mais. Esta proposta traz as seguintes adições à linguagem: as declarações `using` e `await using`, que chamam automaticamente o método dispose quando um recurso sai do escopo; os símbolos `[Symbol.dispose]()` e `[Symbol.asyncDispose]()` para operações de limpeza; dois novos objetos globais `DisposableStack` e `AsyncDisposableStack` como contêineres para agregar recursos descartáveis; e `SuppressedError` como um novo tipo de erro (contém tanto o erro que foi lançado mais recentemente, quanto o erro que foi suprimido) para lidar com o cenário onde um erro ocorre durante o descarte de um recurso, potencialmente mascarando um erro existente lançado pelo corpo ou pelo descarte de outro recurso. Essas adições permitem que os desenvolvedores escrevam códigos mais robustos, performáticos e mantíveis, fornecendo controle granular sobre o descarte de recursos.

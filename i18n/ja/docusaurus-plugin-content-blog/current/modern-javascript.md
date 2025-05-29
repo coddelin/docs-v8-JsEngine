@@ -1,10 +1,10 @@
 ---
-title: 'ES2015、ES2016、そしてその先'
-author: 'V8チーム、ECMAScriptの愛好家たち'
+title: "ES2015、ES2016、そしてその先"
+author: "V8チーム、ECMAScriptの愛好家たち"
 date: 2016-04-29 13:33:37
 tags:
   - ECMAScript
-description: 'V8 v5.2がES2015とES2016をサポート！'
+description: "V8 v5.2がES2015とES2016をサポート！"
 ---
 V8チームは、JavaScriptをますます表現力豊かで明確化された言語に進化させることに大きな重要性を置いています。これにより、高速で安全かつ正確なWebアプリケーションの開発が容易になります。2015年6月に、[ES2015仕様](https://www.ecma-international.org/ecma-262/6.0/)がTC39標準委員会によって批准され、これまでで最大規模のJavaScript言語の更新が行われました。新機能には、[クラス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)、[アロー関数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)、[プロミス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)、[イテレータ/ジェネレータ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)、[プロキシ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)、[よく知られたシンボル](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol#Well-known_symbols)、および追加の糖衣構文が含まれています。TC39はまた、新しい仕様のリリースペースを向上させ、2016年2月に[ES2016の候補草案](https://tc39.es/ecma262/2016/)を発表しました。これが今夏に批准される予定です。リリースサイクルが短いためES2015ほど広範ではありませんが、ES2016では[べき乗演算子](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Exponentiation)と[`Array.prototype.includes`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes)が重要な位置づけを占めています。
 

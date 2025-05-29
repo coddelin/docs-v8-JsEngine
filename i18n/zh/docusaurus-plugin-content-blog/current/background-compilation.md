@@ -1,13 +1,13 @@
 ---
-title: '后台编译'
-author: '[Ross McIlroy](https://twitter.com/rossmcilroy)，主线程维护者'
+title: "后台编译"
+author: "[Ross McIlroy](https://twitter.com/rossmcilroy)，主线程维护者"
 avatars:
-  - 'ross-mcilroy'
+  - "ross-mcilroy"
 date: 2018-03-26 13:33:37
 tags:
   - 内部构造
-description: '从Chrome 66开始，V8在后台线程上编译JavaScript源代码，减少主线程上编译时间5%到20%，适用于典型网站.'
-tweet: '978319362837958657'
+description: "从Chrome 66开始，V8在后台线程上编译JavaScript源代码，减少主线程上编译时间5%到20%，适用于典型网站."
+tweet: "978319362837958657"
 ---
 简要说明: 从Chrome 66开始，V8在后台线程上编译JavaScript源代码，减少主线程上编译时间5%到20%，适用于典型网站。
 

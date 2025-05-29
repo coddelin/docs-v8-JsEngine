@@ -1,6 +1,6 @@
 ---
 title: '`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`
-author: '[Marja Hölttä](https://twitter.com/marjakh), 一个非阻塞的博主'
+author: "[Marja Hölttä](https://twitter.com/marjakh), 一个非阻塞的博主"
 avatars:
   - marja-holtta
 date: 2020-09-24
@@ -8,8 +8,8 @@ tags:
   - ECMAScript
   - ES2020
   - Node.js 16
-description: 'Atomics.wait和Atomics.notify是底层同步原语，适用于实现例如互斥锁。Atomics.wait仅适用于工作线程。V8版本8.7现已支持非阻塞版本Atomics.waitAsync，也可用于主线程。'
-tweet: '1309118447377358848'
+description: "Atomics.wait和Atomics.notify是底层同步原语，适用于实现例如互斥锁。Atomics.wait仅适用于工作线程。V8版本8.7现已支持非阻塞版本Atomics.waitAsync，也可用于主线程。"
+tweet: "1309118447377358848"
 ---
 [`Atomics.wait`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/wait) 和 [`Atomics.notify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/notify) 是底层同步原语，适用于实现互斥锁和其他同步手段。然而，由于`Atomics.wait`是阻塞的，无法在主线程上调用（尝试这样做会抛出 `TypeError`）。
 

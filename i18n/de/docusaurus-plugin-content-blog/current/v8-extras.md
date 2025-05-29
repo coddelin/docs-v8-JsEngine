@@ -1,12 +1,12 @@
 ---
-title: 'V8-Extras'
-author: 'Domenic Denicola ([@domenic](https://twitter.com/domenic)), Streams-Zauberer'
+title: "V8-Extras"
+author: "Domenic Denicola ([@domenic](https://twitter.com/domenic)), Streams-Zauberer"
 avatars:
-  - 'domenic-denicola'
+  - "domenic-denicola"
 date: 2016-02-04 13:33:37
 tags:
   - internals
-description: 'V8 v4.8 umfasst „V8-Extras“, eine einfache Schnittstelle, die es Embedding-Anwendungen ermöglicht, hochleistungsfähige, selbst gehostete APIs zu schreiben.'
+description: "V8 v4.8 umfasst „V8-Extras“, eine einfache Schnittstelle, die es Embedding-Anwendungen ermöglicht, hochleistungsfähige, selbst gehostete APIs zu schreiben."
 ---
 V8 implementiert eine große Teilmenge der eingebauten Objekte und Funktionen der JavaScript-Sprache in JavaScript selbst. Beispielsweise ist unsere [Promises-Implementierung](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js) in JavaScript geschrieben. Solche eingebauten Objekte nennt man _self-hosted_. Diese Implementierungen sind in unserem [Startup-Snapshot](/blog/custom-startup-snapshots) enthalten, sodass neue Kontexte schnell erstellt werden können, ohne die selbst gehosteten Built-ins zur Laufzeit einrichten und initialisieren zu müssen.
 

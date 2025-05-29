@@ -1,15 +1,15 @@
 ---
-title: 'String.prototype.replaceAll'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "String.prototype.replaceAll"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-11-11
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: 'JavaScript는 이제 새로운 `String.prototype.replaceAll` API를 통해 글로벌 하위 문자열 교체를 위한 일류 지원을 제공합니다.'
-tweet: '1193917549060280320'
+description: "JavaScript는 이제 새로운 `String.prototype.replaceAll` API를 통해 글로벌 하위 문자열 교체를 위한 일류 지원을 제공합니다."
+tweet: "1193917549060280320"
 ---
 JavaScript에서 문자열을 다뤄본 적이 있다면, `String#replace` 메서드에 대해 들어본 적이 있을 가능성이 큽니다. `String.prototype.replace(searchValue, replacement)`는 지정한 매개변수에 따라 일부 일치 항목이 교체된 문자열을 반환합니다:
 

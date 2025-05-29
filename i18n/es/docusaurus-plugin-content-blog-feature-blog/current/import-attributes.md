@@ -1,13 +1,13 @@
 ---
-title: 'Importar atributos'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "Importar atributos"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2024-01-31
 tags:
   - ECMAScript
-description: 'Atributos de importación: la evolución de las declaraciones de importación'
-tweet: ''
+description: "Atributos de importación: la evolución de las declaraciones de importación"
+tweet: ""
 ---
 
 ## Previamente

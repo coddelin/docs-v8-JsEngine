@@ -1,6 +1,6 @@
 ---
 title: 'Liste de contrôle pour la mise en scène et l'expédition des fonctionnalités WebAssembly'
-description: 'Ce document fournit des listes de contrôle des exigences techniques sur le moment où mettre en scène et expédier une fonctionnalité WebAssembly dans V8.'
+description: "Ce document fournit des listes de contrôle des exigences techniques sur le moment où mettre en scène et expédier une fonctionnalité WebAssembly dans V8."
 ---
 Ce document fournit des listes de contrôle des exigences techniques pour la mise en scène et l'expédition des fonctionnalités WebAssembly dans V8. Ces listes de contrôle sont conçues comme une ligne directrice et peuvent ne pas s'appliquer à toutes les fonctionnalités. Le processus de lancement réel est décrit dans le [processus de lancement V8](https://v8.dev/docs/feature-launch-process).
 

@@ -1,10 +1,10 @@
 ---
-title: 'Version V8 v4.7'
+title: "Version V8 v4.7"
 author: 'l'équipe V8'
 date: 2015-10-14 13:33:37
 tags:
   - sortie
-description: 'La version V8 v4.7 offre une réduction de la consommation de mémoire et prend en charge les nouvelles fonctionnalités du langage ES2015.'
+description: "La version V8 v4.7 offre une réduction de la consommation de mémoire et prend en charge les nouvelles fonctionnalités du langage ES2015."
 ---
 Environ toutes les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de sortie](https://v8.dev/docs/release-process). Chaque version est issue du master Git de V8 juste avant que Chrome ne branche pour une étape bêta de Chrome. Aujourd'hui, nous sommes heureux d'annoncer notre toute nouvelle branche, [Version V8 4.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.7), qui sera en bêta jusqu'à sa libération en coordination avec Chrome 47 Stable. La version V8 v4.7 est remplie de toutes sortes de nouveautés destinées aux développeurs, alors nous aimerions vous donner un aperçu de certains des points forts en prévision de la sortie dans quelques semaines.
 

@@ -1,14 +1,14 @@
 ---
-title: '正則表達式匹配索引'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski))，經常表達新功能'
+title: "正則表達式匹配索引"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski))，經常表達新功能"
 avatars:
-  - 'maya-armyanova'
+  - "maya-armyanova"
 date: 2019-12-17
 tags:
   - ECMAScript
   - Node.js 16
-description: '正則表達式匹配索引提供每個匹配捕獲組的 `start` 和 `end` 索引。'
-tweet: '1206970814400270338'
+description: "正則表達式匹配索引提供每個匹配捕獲組的 `start` 和 `end` 索引。"
+tweet: "1206970814400270338"
 ---
 JavaScript 現在配備了一項新的正則表達式增強功能，稱為「匹配索引」。假設您想在 JavaScript 代碼中找到與保留字重合的無效變量名，並在變量名稱下方顯示插入符號和「下劃線」，例如：
 

@@ -1,6 +1,6 @@
 ---
-title: 'Processus de publication'
-description: 'Ce document explique le processus de publication de V8.'
+title: "Processus de publication"
+description: "Ce document explique le processus de publication de V8."
 ---
 Le processus de publication de V8 est étroitement lié aux [canaux de Chrome](https://www.chromium.org/getting-involved/dev-channel). L’équipe V8 utilise les quatre canaux de publication de Chrome pour distribuer de nouvelles versions aux utilisateurs.
 

@@ -1,12 +1,12 @@
 ---
-title: 'Applications rapides et parallèles avec SIMD WebAssembly'
-author: 'Deepti Gandluri ([@dptig](https://twitter.com/dptig)), Thomas Lively ([@tlively52](https://twitter.com/tlively52)), Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "Applications rapides et parallèles avec SIMD WebAssembly"
+author: "Deepti Gandluri ([@dptig](https://twitter.com/dptig)), Thomas Lively ([@tlively52](https://twitter.com/tlively52)), Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 date: 2020-01-30
 updated: 2022-11-06
 tags:
   - WebAssembly
-description: 'Apporter les opérations vectorielles à WebAssembly'
-tweet: '1222944308183085058'
+description: "Apporter les opérations vectorielles à WebAssembly"
+tweet: "1222944308183085058"
 ---
 SIMD signifie _Single Instruction, Multiple Data_. Les instructions SIMD sont une classe spéciale d'instructions qui exploitent le parallélisme des données dans les applications en effectuant simultanément la même opération sur plusieurs éléments de données. Les applications intensives en calcul comme les codecs audio/vidéo, les processeurs d'image, sont toutes des exemples d'applications qui tirent parti des instructions SIMD pour accélérer les performances. La plupart des architectures modernes supportent certains variantes d'instructions SIMD.
 

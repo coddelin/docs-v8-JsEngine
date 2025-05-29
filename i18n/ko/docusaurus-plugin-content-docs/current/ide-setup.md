@@ -1,6 +1,6 @@
 ---
-title: 'GUI 및 IDE 설정'
-description: '이 문서는 V8 코드 기반 작업을 위한 GUI 및 IDE 관련 팁을 포함하고 있습니다.'
+title: "GUI 및 IDE 설정"
+description: "이 문서는 V8 코드 기반 작업을 위한 GUI 및 IDE 관련 팁을 포함하고 있습니다."
 ---
 V8 소스 코드는 [Chromium Code Search](https://cs.chromium.org/chromium/src/v8/)에서 온라인으로 볼 수 있습니다.
 

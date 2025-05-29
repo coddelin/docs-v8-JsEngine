@@ -1,15 +1,15 @@
 ---
-title: '논리적 할당'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "논리적 할당"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2020-05-07
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: '자바스크립트가 이제 논리 연산과 함께 복합 할당을 지원합니다.'
-tweet: '1258387483823345665'
+description: "자바스크립트가 이제 논리 연산과 함께 복합 할당을 지원합니다."
+tweet: "1258387483823345665"
 ---
 자바스크립트는 [복합 할당 연산자](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators)의 범위를 지원하여 프로그래머가 이진 연산과 할당을 간결하게 표현할 수 있게 합니다. 현재는 수학적 또는 비트 연산만 지원되고 있습니다.
 

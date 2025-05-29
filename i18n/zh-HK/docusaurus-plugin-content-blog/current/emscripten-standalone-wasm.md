@@ -1,14 +1,14 @@
 ---
-title: '脫離網頁：使用 Emscripten 的獨立 WebAssembly 二進位檔'
-author: 'Alon Zakai'
+title: "脫離網頁：使用 Emscripten 的獨立 WebAssembly 二進位檔"
+author: "Alon Zakai"
 avatars:
-  - 'alon-zakai'
+  - "alon-zakai"
 date: 2019-11-21
 tags:
   - WebAssembly
   - 工具
-description: 'Emscripten 現在支援獨立的 Wasm 檔案，這些檔案不需要 JavaScript。'
-tweet: '1197547645729988608'
+description: "Emscripten 現在支援獨立的 Wasm 檔案，這些檔案不需要 JavaScript。"
+tweet: "1197547645729988608"
 ---
 Emscripten 一直以來主要專注於編譯到 Web 和其他像是 Node.js 的 JavaScript 環境。但隨著 WebAssembly 開始被 *獨立於* JavaScript 使用，新的用例正在出現，因此我們一直在努力為 Emscripten 增加支援生成 [**獨立 Wasm**](https://github.com/emscripten-core/emscripten/wiki/WebAssembly-Standalone) 檔案的功能，這些檔案不依賴於 Emscripten 的 JS 運行時！這篇文章將解釋為什麼這很有趣。
 

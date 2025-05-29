@@ -1,14 +1,14 @@
 ---
-title: '動態 `import()`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "動態 `import()`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-11-21
 tags:
   - ECMAScript
   - ES2020
-description: '動態 import() 相較於靜態 import 解鎖了新功能。本文比較了兩者並概述了新功能。'
-tweet: '932914724060254208'
+description: "動態 import() 相較於靜態 import 解鎖了新功能。本文比較了兩者並概述了新功能。"
+tweet: "932914724060254208"
 ---
 [動態 `import()`](https://github.com/tc39/proposal-dynamic-import) 引入了一種新的類函數形式的 `import`，相較於靜態 `import` 解鎖了新的功能。本文比較了兩者並概述了新功能。
 

@@ -1,14 +1,14 @@
 ---
-title: 'トップレベルの`await`'
-author: 'Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))'
+title: "トップレベルの`await`"
+author: "Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))"
 avatars:
-  - 'myles-borins'
+  - "myles-borins"
 date: 2019-10-08
 tags:
   - ECMAScript
   - Node.js 14
-description: 'トップレベルの`await`がJavaScriptモジュールに登場！間もなく非同期関数に入ることなく`await`を使用できるようになります。'
-tweet: '1181581262399643650'
+description: "トップレベルの`await`がJavaScriptモジュールに登場！間もなく非同期関数に入ることなく`await`を使用できるようになります。"
+tweet: "1181581262399643650"
 ---
 [トップレベルの`await`](https://github.com/tc39/proposal-top-level-await)は、開発者が非同期関数の外部で`await`キーワードを使用できるようにします。それは、他のモジュールがそれらを`import`する際に、モジュールのボディを評価する前に待機する大きな非同期関数のように動作します。
 

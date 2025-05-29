@@ -1,15 +1,15 @@
 ---
-title: '`String.prototype.replaceAll`'
-author: 'Матиас Байненс ([@mathias](https://twitter.com/mathias))'
+title: "`String.prototype.replaceAll`"
+author: "Матиас Байненс ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-11-11
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: 'Теперь JavaScript поддерживает замену всех совпадений подстрок благодаря новому API `String.prototype.replaceAll`.'
-tweet: '1193917549060280320'
+description: "Теперь JavaScript поддерживает замену всех совпадений подстрок благодаря новому API `String.prototype.replaceAll`."
+tweet: "1193917549060280320"
 ---
 Если вы когда-либо работали со строками в JavaScript, то, скорее всего, сталкивались с методом `String#replace`. `String.prototype.replace(searchValue, replacement)` возвращает строку с некоторыми заменёнными совпадениями в зависимости от указанных параметров:
 

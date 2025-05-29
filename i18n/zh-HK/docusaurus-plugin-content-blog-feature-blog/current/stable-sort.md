@@ -1,15 +1,15 @@
 ---
-title: '穩定的 `Array.prototype.sort`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "穩定的 `Array.prototype.sort`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-07-02
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: '現在可以保證 Array.prototype.sort 是穩定的。'
-tweet: '1146067251302244353'
+description: "現在可以保證 Array.prototype.sort 是穩定的。"
+tweet: "1146067251302244353"
 ---
 假設你有一個狗狗的陣列，每隻狗有一個名字和一個評級。（如果這聽起來是個奇怪的例子，你應該知道，Twitter 上有一個專門做這件事的賬號……請不要深究！）
 

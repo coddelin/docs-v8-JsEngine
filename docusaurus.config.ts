@@ -265,7 +265,8 @@ const config: Config = {
       {
         //需要安装的依赖    "docusaurus-lunr-search": "^3.5.0",     "@node-rs/jieba": "^2.0.1",
         // "lunr-languages": "^1.14.0",
-        languages: ["en", "zh", "ja", "ko", "fr", "de", "es", "ru", "pt"], // language codes
+        // 编译太慢了，就支持这两种先
+        languages: ["en", "zh",]// "ja", "ko", "fr", "de", "es", "ru", "pt"], // language codes
       },
     ],
   ],

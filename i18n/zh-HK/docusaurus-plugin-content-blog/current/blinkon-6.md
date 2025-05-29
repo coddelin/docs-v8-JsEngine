@@ -1,10 +1,10 @@
 ---
-title: 'V8 在 BlinkOn 6 會議'
-author: 'V8 團隊'
+title: "V8 在 BlinkOn 6 會議"
+author: "V8 團隊"
 date: 2016-07-21 13:33:37
 tags:
   - 展示
-description: 'V8 團隊在 BlinkOn 6 上的展示概覽。'
+description: "V8 團隊在 BlinkOn 6 上的展示概覽。"
 ---
 BlinkOn 是 Blink、V8 和 Chromium 貢獻者的半年一次會議。BlinkOn 6 於6月16日至17日在慕尼黑舉行。V8 團隊進行了多場有關架構、設計、性能計劃以及語言實現的展示。
 

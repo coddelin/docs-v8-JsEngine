@@ -1,13 +1,13 @@
 ---
-title: 'Désérialisation paresseuse'
-author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
+title: "Désérialisation paresseuse"
+author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2018-02-12 13:33:37
 tags:
   - internes
-description: 'La désérialisation paresseuse, disponible dans V8 v6.4, réduit en moyenne la consommation de mémoire de V8 de plus de 500 KB par onglet de navigateur.'
-tweet: '962989179914383360'
+description: "La désérialisation paresseuse, disponible dans V8 v6.4, réduit en moyenne la consommation de mémoire de V8 de plus de 500 KB par onglet de navigateur."
+tweet: "962989179914383360"
 ---
 TL;DR : La désérialisation paresseuse a récemment été activée par défaut dans [V8 v6.4](/blog/v8-release-64), réduisant en moyenne la consommation de mémoire de V8 de plus de 500 KB par onglet de navigateur. Lisez la suite pour en savoir plus !
 

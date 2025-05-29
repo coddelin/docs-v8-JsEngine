@@ -1,10 +1,10 @@
 ---
-title: 'V8リリース v6.0'
-author: 'V8チーム'
+title: "V8リリース v6.0"
+author: "V8チーム"
 date: 2017-06-09 13:33:37
 tags:
   - リリース
-description: 'V8 v6.0は複数のパフォーマンス改善を含み、`SharedArrayBuffer`やオブジェクトのrest/spreadプロパティのサポートを導入しました。'
+description: "V8 v6.0は複数のパフォーマンス改善を含み、`SharedArrayBuffer`やオブジェクトのrest/spreadプロパティのサポートを導入しました。"
 ---
 6週間ごとに、[リリースプロセス](/docs/release-process)の一環としてV8の新しいブランチを作成します。各バージョンはChrome Betaマイルストーンの直前にV8のGitのマスターからブランチされます。本日、[V8バージョン6.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.0)を発表いたします。このバージョンは数週間後にChrome 60 Stableとの連携でリリースされるまでベータ版となります。V8 6.0は開発者向けのさまざまな機能で満たされています。このリリースを見越して、いくつかのハイライトをご紹介したいと思います。
 

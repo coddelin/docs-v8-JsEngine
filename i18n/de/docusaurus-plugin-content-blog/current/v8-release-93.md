@@ -1,13 +1,13 @@
 ---
-title: 'V8-Version v9.3 veröffentlicht'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "V8-Version v9.3 veröffentlicht"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-08-09
 tags:
  - release
-description: 'Die V8-Version v9.3 bietet Unterstützung für Object.hasOwn und Fehlerursachen, verbessert die Kompilierungsperformance und deaktiviert Schutzmaßnahmen gegen untrusted Codegen auf Android.'
-tweet: ''
+description: "Die V8-Version v9.3 bietet Unterstützung für Object.hasOwn und Fehlerursachen, verbessert die Kompilierungsperformance und deaktiviert Schutzmaßnahmen gegen untrusted Codegen auf Android."
+tweet: ""
 ---
 Alle sechs Wochen erstellen wir einen neuen Branch von V8 im Rahmen unseres [Release-Prozesses](https://v8.dev/docs/release-process). Jede Version wird unmittelbar vor einem Chrome-Beta-Meilenstein vom Haupt-Git-Branch von V8 abgezweigt. Heute freuen wir uns, unseren neuesten Branch [V8-Version 9.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.3) anzukündigen, der sich bis zu seiner Veröffentlichung in Koordination mit Chrome 93 Stable in einigen Wochen in der Beta-Phase befindet. V8 v9.3 ist vollgepackt mit allerlei Entwickler-Features. Dieser Beitrag bietet eine Vorschau auf einige der Highlights als Vorgeschmack auf die Veröffentlichung.
 

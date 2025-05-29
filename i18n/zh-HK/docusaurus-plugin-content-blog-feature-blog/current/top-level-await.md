@@ -1,14 +1,14 @@
 ---
-title: '頂層`await`'
-author: 'Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))'
+title: "頂層`await`"
+author: "Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))"
 avatars:
-  - 'myles-borins'
+  - "myles-borins"
 date: 2019-10-08
 tags:
   - ECMAScript
   - Node.js 14
-description: '頂層`await`即將登陸 JavaScript 模組！您很快就能在非 async 函數中使用 `await`。'
-tweet: '1181581262399643650'
+description: "頂層`await`即將登陸 JavaScript 模組！您很快就能在非 async 函數中使用 `await`。"
+tweet: "1181581262399643650"
 ---
 [頂層`await`](https://github.com/tc39/proposal-top-level-await)使開發者能夠在 async 函數之外使用 `await` 關鍵字。它像是一個大的 async 函數，會讓其他`import`它的模組在開始評估它們的主體之前等待。
 

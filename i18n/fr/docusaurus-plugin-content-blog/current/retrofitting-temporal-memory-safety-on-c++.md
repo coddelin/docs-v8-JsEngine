@@ -1,6 +1,6 @@
 ---
-title: 'Réadaptation de la sécurité mémoire temporelle sur C++'
-author: 'Anton Bikineev, Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), Hannes Payer ([@PayerHannes](https://twitter.com/PayerHannes))'
+title: "Réadaptation de la sécurité mémoire temporelle sur C++"
+author: "Anton Bikineev, Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), Hannes Payer ([@PayerHannes](https://twitter.com/PayerHannes))"
 avatars:
   - anton-bikineev
   - michael-lippautz

@@ -1,13 +1,13 @@
 ---
-title: '私有品牌检查，也就是 `#foo in obj`'
-author: 'Marja Hölttä ([@marjakh](https://twitter.com/marjakh))'
+title: "私有品牌检查，也就是 `#foo in obj`"
+author: "Marja Hölttä ([@marjakh](https://twitter.com/marjakh))"
 avatars:
-  - 'marja-holtta'
+  - "marja-holtta"
 date: 2021-04-14
 tags:
   - ECMAScript
-description: '私有品牌检查允许测试对象中是否存在私有字段。'
-tweet: '1382327454975590401'
+description: "私有品牌检查允许测试对象中是否存在私有字段。"
+tweet: "1382327454975590401"
 ---
 
 [`in` 操作符](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in) 可以用来测试给定对象（或它的原型链上的任意对象）中是否有给定的属性：

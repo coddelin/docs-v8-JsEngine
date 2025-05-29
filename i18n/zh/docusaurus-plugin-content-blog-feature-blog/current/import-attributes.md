@@ -1,13 +1,13 @@
 ---
-title: '导入属性'
-author: '郭恕宇 ([@_shu](https://twitter.com/_shu))'
+title: "导入属性"
+author: "郭恕宇 ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2024-01-31
 tags:
   - ECMAScript
-description: '导入属性：导入声明的演变'
-tweet: ''
+description: "导入属性：导入声明的演变"
+tweet: ""
 ---
 
 ## 之前

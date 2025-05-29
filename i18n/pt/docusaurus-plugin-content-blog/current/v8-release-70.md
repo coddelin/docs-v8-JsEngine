@@ -1,13 +1,13 @@
 ---
-title: 'Lançamento do V8 v7.0'
-author: 'Michael Hablich'
+title: "Lançamento do V8 v7.0"
+author: "Michael Hablich"
 avatars:
   - michael-hablich
 date: 2018-10-15 17:17:00
 tags:
   - lançamento
-description: 'O V8 v7.0 inclui threads WebAssembly, Symbol.prototype.description e funções embutidas em mais plataformas!'
-tweet: '1051857446279532544'
+description: "O V8 v7.0 inclui threads WebAssembly, Symbol.prototype.description e funções embutidas em mais plataformas!"
+tweet: "1051857446279532544"
 ---
 A cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](/docs/release-process). Cada versão é derivada do master do Git do V8 imediatamente antes de uma etapa Beta do Chrome. Hoje estamos felizes em anunciar nosso branch mais recente, [V8 versão 7.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.0), que está em beta até seu lançamento em coordenação com o Chrome 70 Stable em algumas semanas. O V8 v7.0 está repleto de várias novidades para desenvolvedores. Este post fornece uma prévia de alguns destaques em antecipação ao lançamento.
 

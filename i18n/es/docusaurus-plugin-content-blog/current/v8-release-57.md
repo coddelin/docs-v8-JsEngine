@@ -1,10 +1,10 @@
 ---
-title: 'Lanzamiento de V8 v5.7'
-author: 'el equipo de V8'
+title: "Lanzamiento de V8 v5.7"
+author: "el equipo de V8"
 date: 2017-02-06 13:33:37
 tags:
   - lanzamiento
-description: 'V8 v5.7 habilita WebAssembly por defecto e incluye mejoras de rendimiento y mayor soporte para características del lenguaje ECMAScript.'
+description: "V8 v5.7 habilita WebAssembly por defecto e incluye mejoras de rendimiento y mayor soporte para características del lenguaje ECMAScript."
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se ramifica desde el repositorio maestro de Git de V8 inmediatamente antes de un hito Beta de Chrome. Hoy nos complace anunciar nuestra nueva rama, [V8 versión 5.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.7), que estará en beta hasta que sea lanzada en coordinación con Chrome 57 Estable en varias semanas. V8 5.7 está llena de todo tipo de beneficios visibles para los desarrolladores. Nos gustaría ofrecerte un adelanto de algunos de los aspectos destacados en anticipación al lanzamiento.
 

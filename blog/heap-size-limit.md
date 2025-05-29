@@ -1,14 +1,14 @@
 ---
-title: 'One small step for Chrome, one giant heap for V8'
-author: 'guardians of the heap Ulan Degenbaev, Hannes Payer, Michael Lippautz, and DevTools warrior Alexey Kozyatinskiy'
+title: "One small step for Chrome, one giant heap for V8"
+author: "guardians of the heap Ulan Degenbaev, Hannes Payer, Michael Lippautz, and DevTools warrior Alexey Kozyatinskiy"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2017-02-09 13:33:37
 tags:
   - memory
-description: 'V8 recently increased its hard limit on heap size.'
+description: "V8 recently increased its hard limit on heap size."
 ---
 V8 has a hard limit on its heap size. This serves as a safeguard against applications with memory leaks. When an application reaches this hard limit, V8 does a series of last resort garbage collections. If the garbage collections do not help to free memory V8 stops execution and reports an out-of-memory failure. Without the hard limit a memory leaking application could use up all system memory hurting the performance of other applications.
 

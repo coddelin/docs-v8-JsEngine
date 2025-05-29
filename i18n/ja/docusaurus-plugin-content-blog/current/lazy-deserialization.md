@@ -1,13 +1,13 @@
 ---
-title: '遅延デシリアライズ'
-author: 'Jakob Gruber（[@schuay](https://twitter.com/schuay)）'
+title: "遅延デシリアライズ"
+author: "Jakob Gruber（[@schuay](https://twitter.com/schuay)）"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2018-02-12 13:33:37
 tags:
   - 内部仕組み
-description: 'V8 v6.4で利用可能な遅延デシリアライズにより、V8のメモリ消費を平均でブラウザタブあたり500 KB以上削減します。'
-tweet: '962989179914383360'
+description: "V8 v6.4で利用可能な遅延デシリアライズにより、V8のメモリ消費を平均でブラウザタブあたり500 KB以上削減します。"
+tweet: "962989179914383360"
 ---
 要約: 遅延デシリアライズが最近[V8 v6.4](/blog/v8-release-64)でデフォルトで有効化され、V8のメモリ消費を平均でブラウザタブあたり500 KB以上削減しました。詳しくは以下をご覧ください！
 

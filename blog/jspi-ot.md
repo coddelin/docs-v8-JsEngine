@@ -1,7 +1,7 @@
 ---
-title: 'WebAssembly JSPI is going to origin trial'
-description: 'We explain the start of the origin trial for JSPI'
-author: 'Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl'
+title: "WebAssembly JSPI is going to origin trial"
+description: "We explain the start of the origin trial for JSPI"
+author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-03-06
 tags:
   - WebAssembly

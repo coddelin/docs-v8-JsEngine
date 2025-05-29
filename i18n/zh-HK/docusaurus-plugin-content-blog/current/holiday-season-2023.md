@@ -1,6 +1,6 @@
 ---
-title: 'V8 比以往更快、更安全！'
-author: '[Victor Gomes](https://twitter.com/VictorBFG)，Glühwein 專家'
+title: "V8 比以往更快、更安全！"
+author: "[Victor Gomes](https://twitter.com/VictorBFG)，Glühwein 專家"
 avatars:
   - victor-gomes
 date: 2023-12-14
@@ -10,7 +10,7 @@ tags:
   - 安全性
   - 基準測試
 description: "V8 在 2023 年的令人印象深刻的成就"
-tweet: ''
+tweet: ""
 ---
 
 歡迎來到令人興奮的 V8 世界，在這裡速度不僅僅是一項功能，而是一種生活方式。當我們向 2023 年告別時，是時候慶祝 V8 今年取得的令人印象深刻的成就了。

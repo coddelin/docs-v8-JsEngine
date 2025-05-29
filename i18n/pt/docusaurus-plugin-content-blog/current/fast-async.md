@@ -1,16 +1,16 @@
 ---
-title: 'Funções assíncronas mais rápidas e promessas'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), sempre antecipando, e Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), profissional em desempenho de promessas'
+title: "Funções assíncronas mais rápidas e promessas"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), sempre antecipando, e Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), profissional em desempenho de promessas"
 avatars:
-  - 'maya-armyanova'
-  - 'benedikt-meurer'
+  - "maya-armyanova"
+  - "benedikt-meurer"
 date: 2018-11-12 16:45:07
 tags:
   - ECMAScript
   - benchmarks
   - apresentações
-description: 'Funções assíncronas mais rápidas e mais fáceis de depurar e promessas estão chegando ao V8 v7.2 / Chrome 72.'
-tweet: '1062000102909169670'
+description: "Funções assíncronas mais rápidas e mais fáceis de depurar e promessas estão chegando ao V8 v7.2 / Chrome 72."
+tweet: "1062000102909169670"
 ---
 O processamento assíncrono em JavaScript tradicionalmente tinha a reputação de não ser particularmente rápido. Para piorar, depurar aplicativos JavaScript ao vivo — especialmente servidores Node.js — não é uma tarefa fácil, _especialmente_ quando se trata de programação assíncrona. Felizmente os tempos estão mudando. Este artigo explora como otimizamos funções assíncronas e promessas no V8 (e até certo ponto em outros motores JavaScript também), e descreve como melhoramos a experiência de depuração para código assíncrono.
 

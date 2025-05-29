@@ -1,10 +1,10 @@
 ---
-title: 'V8의 미래 테스트를 도와주세요!'
-author: 'Daniel Clifford ([@expatdanno](https://twitter.com/expatdanno)), Original Munich V8 Brewer'
+title: "V8의 미래 테스트를 도와주세요!"
+author: "Daniel Clifford ([@expatdanno](https://twitter.com/expatdanno)), Original Munich V8 Brewer"
 date: 2017-02-14 13:33:37
 tags:
   - internals
-description: '오늘 Chrome Canary에서 Ignition 및 TurboFan과 함께 V8의 새로운 컴파일러 파이프라인을 미리 경험하세요!'
+description: "오늘 Chrome Canary에서 Ignition 및 TurboFan과 함께 V8의 새로운 컴파일러 파이프라인을 미리 경험하세요!"
 ---
 V8 팀은 현재 [실제 JavaScript 성능](/blog/real-world-performance)에 개선을 가져올 수 있는 새로운 기본 컴파일러 파이프라인을 개발 중입니다. Chrome Canary에서 새로운 파이프라인을 오늘 미리 경험하여 모든 Chrome 채널에 새로운 설정을 배포할 때 예상치 못한 문제가 없는지 확인하는 데 도움을 줄 수 있습니다.
 

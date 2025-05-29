@@ -1,15 +1,15 @@
 ---
-title: 'BigInt: JavaScript에서 임의 정밀도를 가진 정수'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "BigInt: JavaScript에서 임의 정밀도를 가진 정수"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-05-01
 tags:
   - ECMAScript
   - ES2020
   - io19
-description: 'BigInt는 JavaScript에서 임의 정밀도의 정수를 표현할 수 있는 새로운 숫자형 원시 자료형입니다. 이 글은 몇 가지 사용 사례를 살펴보고 BigInt와 JavaScript의 Number를 비교하여 Chrome 67에서 추가된 새로운 기능을 설명합니다.'
-tweet: '990991035630206977'
+description: "BigInt는 JavaScript에서 임의 정밀도의 정수를 표현할 수 있는 새로운 숫자형 원시 자료형입니다. 이 글은 몇 가지 사용 사례를 살펴보고 BigInt와 JavaScript의 Number를 비교하여 Chrome 67에서 추가된 새로운 기능을 설명합니다."
+tweet: "990991035630206977"
 ---
 `BigInt`는 JavaScript에서 임의 정밀도로 정수를 표현할 수 있는 새로운 숫자형 원시 자료형입니다. `BigInt`를 사용하면 `Number`의 안전한 정수 범위를 초과하는 큰 정수를 안전하게 저장하고 연산할 수 있습니다. 이 글은 몇 가지 사용 사례를 살펴보고 `BigInt`와 `Number`를 비교하여 Chrome 67에서 추가된 새로운 기능을 설명합니다.
 

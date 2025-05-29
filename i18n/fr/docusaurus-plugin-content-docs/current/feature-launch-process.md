@@ -1,5 +1,5 @@
 ---
-title: 'Implémentation et expédition des fonctionnalités de langage JavaScript/WebAssembly'
+title: "Implémentation et expédition des fonctionnalités de langage JavaScript/WebAssembly"
 description: 'Ce document explique le processus d'implémentation et d'expédition des fonctionnalités de langage JavaScript ou WebAssembly dans V8.'
 ---
 En général, V8 suit le [processus d'intention Blink pour les standards consensuels déjà définis](https://www.chromium.org/blink/launching-features/#process-existing-standard) pour les fonctionnalités de langage JavaScript et WebAssembly. Les errata spécifiques à V8 sont décrits ci-dessous. Veuillez suivre le processus d'intention Blink, sauf indication contraire dans les errata.

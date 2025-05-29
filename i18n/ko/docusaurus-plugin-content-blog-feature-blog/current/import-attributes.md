@@ -1,13 +1,13 @@
 ---
-title: '속성 가져오기'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "속성 가져오기"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2024-01-31
 tags:
   - ECMAScript
-description: '속성 가져오기: 가져오기 어설션의 진화'
-tweet: ''
+description: "속성 가져오기: 가져오기 어설션의 진화"
+tweet: ""
 ---
 
 ## 이전에

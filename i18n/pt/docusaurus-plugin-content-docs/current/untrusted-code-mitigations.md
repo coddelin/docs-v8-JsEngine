@@ -1,6 +1,6 @@
 ---
-title: 'Mitigações de código não confiável'
-description: 'Se você integrar o V8 e executar código JavaScript não confiável, habilite as mitigações do V8 para ajudar a proteger contra ataques especulativos de canal lateral.'
+title: "Mitigações de código não confiável"
+description: "Se você integrar o V8 e executar código JavaScript não confiável, habilite as mitigações do V8 para ajudar a proteger contra ataques especulativos de canal lateral."
 ---
 No início de 2018, pesquisadores do Project Zero do Google divulgaram [uma nova classe de ataques](https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html) que [exploram](https://security.googleblog.com/2018/01/more-details-about-mitigations-for-cpu_4.html) otimizações de execução especulativa usadas por muitos CPUs. Como o V8 usa um compilador JIT otimizado, TurboFan, para executar JavaScript rapidamente, em certas circunstâncias ele é vulnerável aos ataques de canal lateral descritos na divulgação.
 

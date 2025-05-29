@@ -1,13 +1,13 @@
 ---
-title: '匯入聲明'
-author: 'Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), 匯入聲明的強勢進口商'
+title: "匯入聲明"
+author: "Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), 匯入聲明的強勢進口商"
 avatars:
-  - 'dan-clark'
+  - "dan-clark"
 date: 2021-06-15
 tags:
   - ECMAScript
-description: '匯入聲明允許模組匯入語句在模組規範之外附加額外的信息'
-tweet: ''
+description: "匯入聲明允許模組匯入語句在模組規範之外附加額外的信息"
+tweet: ""
 ---
 
 全新的[匯入聲明](https://github.com/tc39/proposal-import-assertions)功能允許模組匯入語句在模組規範之外附加額外的信息。該功能的初始用途是啟用以[JSON 模組](https://github.com/tc39/proposal-json-modules)形式匯入 JSON 文件：

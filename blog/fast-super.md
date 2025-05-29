@@ -1,13 +1,13 @@
 ---
-title: 'Super fast `super` property access'
-author: '[Marja Hölttä](https://twitter.com/marjakh), super optimizer'
+title: "Super fast `super` property access"
+author: "[Marja Hölttä](https://twitter.com/marjakh), super optimizer"
 avatars:
   - marja-holtta
 date: 2021-02-18
 tags:
   - JavaScript
-description: 'Faster super property access in V8 v9.0'
-tweet: '1362465295848333316'
+description: "Faster super property access in V8 v9.0"
+tweet: "1362465295848333316"
 ---
 
 The [`super` keyword](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super) can be used for accessing properties and functions on an object’s parent.

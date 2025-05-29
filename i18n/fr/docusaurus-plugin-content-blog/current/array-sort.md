@@ -1,14 +1,14 @@
 ---
-title: 'Classer les choses dans V8'
-author: 'Simon Zünd ([@nimODota](https://twitter.com/nimODota)), comparateur cohérent'
+title: "Classer les choses dans V8"
+author: "Simon Zünd ([@nimODota](https://twitter.com/nimODota)), comparateur cohérent"
 avatars:
   - simon-zuend
 date: 2018-09-28 11:20:37
 tags:
   - ECMAScript
   - internals
-description: 'À partir de V8 v7.0 / Chrome 70, Array.prototype.sort est stable.'
-tweet: '1045656758700650502'
+description: "À partir de V8 v7.0 / Chrome 70, Array.prototype.sort est stable."
+tweet: "1045656758700650502"
 ---
 `Array.prototype.sort` était parmi les derniers modules intégrés mis en œuvre en JavaScript auto-hébergé dans V8. Le porter nous a offert l'opportunité d'expérimenter avec différents algorithmes et stratégies d'implémentation et finalement [le rendre stable](https://mathiasbynens.be/demo/sort-stability) dans V8 v7.0 / Chrome 70.
 

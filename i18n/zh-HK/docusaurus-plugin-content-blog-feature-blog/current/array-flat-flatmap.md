@@ -1,15 +1,15 @@
 ---
-title: '`Array.prototype.flat` 和 `Array.prototype.flatMap`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Array.prototype.flat` 和 `Array.prototype.flatMap`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-11
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: 'Array.prototype.flat 將陣列展平到指定的深度。Array.prototype.flatMap 等同於先執行 map 再分別執行 flat。'
-tweet: '1138457106380709891'
+description: "Array.prototype.flat 將陣列展平到指定的深度。Array.prototype.flatMap 等同於先執行 map 再分別執行 flat。"
+tweet: "1138457106380709891"
 ---
 ## `Array.prototype.flat`
 

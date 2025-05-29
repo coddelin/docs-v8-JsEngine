@@ -1,11 +1,11 @@
 ---
-title: 'Lanzamiento de V8 versión v6.4'
-author: 'el equipo de V8'
+title: "Lanzamiento de V8 versión v6.4"
+author: "el equipo de V8"
 date: 2017-12-19 13:33:37
 tags:
   - lanzamiento
-description: 'V8 v6.4 incluye mejoras de rendimiento, nuevas características del lenguaje JavaScript y más.'
-tweet: '943057597481082880'
+description: "V8 v6.4 incluye mejoras de rendimiento, nuevas características del lenguaje JavaScript y más."
+tweet: "943057597481082880"
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se ramifica desde el maestro de Git de V8 inmediatamente antes de un hito Beta de Chrome. Hoy nos complace anunciar nuestra nueva rama, [V8 versión 6.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.4), que está en beta hasta su lanzamiento junto con Chrome 64 Estable en unas semanas. V8 v6.4 está lleno de todo tipo de novedades para los desarrolladores. Este artículo ofrece un adelanto de algunos de los aspectos destacados en anticipación al lanzamiento.
 

@@ -1,6 +1,6 @@
 ---
-title: 'Arm debugging with the simulator'
-description: 'The Arm simulator and debugger can be very helpful when working with V8 code generation.'
+title: "Arm debugging with the simulator"
+description: "The Arm simulator and debugger can be very helpful when working with V8 code generation."
 ---
 The simulator and debugger can be very helpful when working with V8 code generation.
 

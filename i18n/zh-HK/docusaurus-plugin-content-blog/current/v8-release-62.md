@@ -1,10 +1,10 @@
 ---
-title: 'V8 發佈 v6.2'
-author: 'V8 團隊'
+title: "V8 發佈 v6.2"
+author: "V8 團隊"
 date: 2017-09-11 13:33:37
 tags:
   - 發佈
-description: 'V8 v6.2 包含性能改進、更豐富的 JavaScript 語言功能、增加的最大字串長度等其他特性。'
+description: "V8 v6.2 包含性能改進、更豐富的 JavaScript 語言功能、增加的最大字串長度等其他特性。"
 ---
 每隔六週，我們會根據[發佈過程](/docs/release-process)創建一個新的 V8 分支。每個版本會在 Chrome Beta 里程碑之前直接從 V8 的 Git 主分支拉出分支。我們今天很高興宣佈最新的分支，[V8 版本 6.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.2)，此版本目前處於 Beta 階段，並將於幾週內與 Chrome 62 穩定版同步發佈。V8 v6.2 滿載了眾多面向開發者的功能。本篇提供一些亮點的預覽，期待正式發佈。
 

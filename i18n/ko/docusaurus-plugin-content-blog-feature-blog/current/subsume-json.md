@@ -1,13 +1,13 @@
 ---
-title: 'JSON ⊂ ECMAScript 제안'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "JSON ⊂ ECMAScript 제안"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-08-14
 tags:
   - ES2019
-description: 'JSON이 이제 ECMAScript의 문법적 하위 집합이 되었습니다.'
-tweet: '1161649929904885762'
+description: "JSON이 이제 ECMAScript의 문법적 하위 집합이 되었습니다."
+tweet: "1161649929904885762"
 ---
 [_JSON ⊂ ECMAScript_ 제안](https://github.com/tc39/proposal-json-superset)을 통해 JSON은 ECMAScript의 문법적 하위 집합이 되었습니다. 이것이 이미 그렇지 않았다는 사실에 놀란다면, 당신은 혼자가 아닙니다!
 

@@ -1,6 +1,6 @@
 ---
-title: 'Relatando bugs de segurança'
-description: 'Este documento explica o processo para relatar problemas de segurança no V8.'
+title: "Relatando bugs de segurança"
+description: "Este documento explica o processo para relatar problemas de segurança no V8."
 ---
 V8 utiliza totalmente o [processo de segurança do Chromium](https://www.chromium.org/Home/chromium-security). Para relatar um bug de segurança no V8, siga estas etapas:
 

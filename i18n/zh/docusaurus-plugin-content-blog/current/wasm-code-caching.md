@@ -1,14 +1,14 @@
 ---
-title: '代码缓存为WebAssembly开发者服务'
-author: '[比尔·巴奇](https://twitter.com/billb)，让缓存充满Ca-ching！'
+title: "代码缓存为WebAssembly开发者服务"
+author: "[比尔·巴奇](https://twitter.com/billb)，让缓存充满Ca-ching！"
 avatars:
   - bill-budge
 date: 2019-06-17
 tags:
   - WebAssembly
   - 内部工作原理
-description: '本文介绍了Chrome的WebAssembly代码缓存机制，以及开发者如何利用该机制来加速加载具有大型WebAssembly模块的应用程序。'
-tweet: '1140631433532334081'
+description: "本文介绍了Chrome的WebAssembly代码缓存机制，以及开发者如何利用该机制来加速加载具有大型WebAssembly模块的应用程序。"
+tweet: "1140631433532334081"
 ---
 开发者中流传着这样一句话：最快的代码是不需要运行的代码。同样，最快的编译代码是不需要编译的代码。WebAssembly代码缓存是Chrome和V8中的一种新型优化，通过缓存编译器生成的原生代码来避免代码编译。我们之前已经[写过](/blog/code-caching)[关于](/blog/improved-code-caching)[如何](/blog/code-caching-for-devs)Chrome和V8缓存JavaScript代码的内容，以及利用这种优化的最佳实践。在这篇博客文章中，我们将描述Chrome的WebAssembly代码缓存的工作原理，并说明开发者如何利用它来加速加载具有大型WebAssembly模块的应用程序。
 

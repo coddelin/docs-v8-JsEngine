@@ -1,15 +1,15 @@
 ---
-title: 'Orinoco：年輕代垃圾收集'
-author: 'Ulan Degenbaev、Michael Lippautz 和 Hannes Payer，[TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual) 的朋友們'
+title: "Orinoco：年輕代垃圾收集"
+author: "Ulan Degenbaev、Michael Lippautz 和 Hannes Payer，[TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual) 的朋友們"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2017-11-29 13:33:37
 tags:
   - internals
   - memory
-description: '本文介紹了平行 Scavenger，Orinoco 之一，V8 主要併發和平行垃圾收集器的最新功能之一。'
+description: "本文介紹了平行 Scavenger，Orinoco 之一，V8 主要併發和平行垃圾收集器的最新功能之一。"
 ---
 V8 中的 JavaScript 物件分配在由 V8 的垃圾收集器管理的堆上。在之前的博客文章中，我們已經討論了如何[減少垃圾收集暫停時間](/blog/jank-busters)（[多次](/blog/orinoco)）和[記憶體消耗](/blog/optimizing-v8-memory)。在這篇博客文章中，我們介紹了平行 Scavenger，Orinoco，V8 主要併發和平行垃圾收集器的一項最新功能，並討論了我們在過程中實現的設計決策和替代方法。
 

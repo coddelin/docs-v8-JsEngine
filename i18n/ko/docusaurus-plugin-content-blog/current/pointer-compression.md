@@ -1,15 +1,15 @@
 ---
-title: 'V8에서의 포인터 압축'
-author: 'Igor Sheludko와 Santiago Aboy Solanes, *포인터 압축 전문가들*'
+title: "V8에서의 포인터 압축"
+author: "Igor Sheludko와 Santiago Aboy Solanes, *포인터 압축 전문가들*"
 avatars:
-  - 'igor-sheludko'
-  - 'santiago-aboy-solanes'
+  - "igor-sheludko"
+  - "santiago-aboy-solanes"
 date: 2020-03-30
 tags:
   - 내부 구조
   - 메모리
-description: 'V8은 힙 크기를 최대 43%까지 줄였습니다! “V8에서의 포인터 압축”에서 그 방법을 알아보세요!'
-tweet: '1244653541379182596'
+description: "V8은 힙 크기를 최대 43%까지 줄였습니다! “V8에서의 포인터 압축”에서 그 방법을 알아보세요!"
+tweet: "1244653541379182596"
 ---
 메모리와 성능 사이에는 항상 끊임없는 싸움이 있습니다. 사용자로서 우리는 빠르면서도 가능한 적은 메모리를 소비하기를 원합니다. 불행히도 일반적으로 성능을 향상시키면 메모리 소비가 증가하고 (그 반대도 마찬가지입니다).
 

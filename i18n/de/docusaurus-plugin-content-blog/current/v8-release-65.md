@@ -1,11 +1,11 @@
 ---
-title: 'V8-Version v6.5'
-author: 'das V8-Team'
+title: "V8-Version v6.5"
+author: "das V8-Team"
 date: 2018-02-01 13:33:37
 tags:
   - Veröffentlichung
-description: 'V8 v6.5 unterstützt die Streaming-WebAssembly-Kompilierung und umfasst einen neuen “Modus für unzuverlässigen Code”.'
-tweet: '959174292406640640'
+description: "V8 v6.5 unterstützt die Streaming-WebAssembly-Kompilierung und umfasst einen neuen “Modus für unzuverlässigen Code”."
+tweet: "959174292406640640"
 ---
 Alle sechs Wochen erstellen wir im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process) einen neuen Branch von V8. Jede Version wird direkt vor einem Chrome-Beta-Meilenstein aus dem Git-Master von V8 herausgelöst. Heute freuen wir uns, unseren neuesten Branch, [V8-Version 6.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.5), anzukündigen, der sich bis zur Veröffentlichung im Einklang mit Chrome 65 Stable in mehreren Wochen in der Beta-Phase befindet. V8 v6.5 ist vollgepackt mit allerlei Entwickler-Extras. Dieser Beitrag bietet eine Vorschau auf einige der Highlights als Vorgeschmack auf die Veröffentlichung.
 

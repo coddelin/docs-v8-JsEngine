@@ -1,8 +1,8 @@
 ---
-title: 'Promise 组合器'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Promise 组合器"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-12
 tags:
   - ECMAScript
@@ -10,8 +10,8 @@ tags:
   - ES2021
   - io19
   - Node.js 16
-description: 'JavaScript 中有四种 Promise 组合器：Promise.all、Promise.race、Promise.allSettled 和 Promise.any.'
-tweet: '1138819493956710400'
+description: "JavaScript 中有四种 Promise 组合器：Promise.all、Promise.race、Promise.allSettled 和 Promise.any."
+tweet: "1138819493956710400"
 ---
 自从 ES2015 引入 Promise 后，JavaScript 支持的 Promise 组合器只有两个：静态方法 `Promise.all` 和 `Promise.race`。
 

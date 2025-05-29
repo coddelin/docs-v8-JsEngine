@@ -1,13 +1,13 @@
 ---
-title: 'V8 リリース v7.6'
-author: 'Adam Klein'
+title: "V8 リリース v7.6"
+author: "Adam Klein"
 avatars:
-  - 'adam-klein'
+  - "adam-klein"
 date: 2019-06-19 16:45:00
 tags:
   - リリース
-description: 'V8 v7.6では、Promise.allSettled、高速なJSON.parse、ローカライズされたBigInts、より迅速な凍結/封印された配列など、多くの新機能が追加されています！'
-tweet: '1141356209179516930'
+description: "V8 v7.6では、Promise.allSettled、高速なJSON.parse、ローカライズされたBigInts、より迅速な凍結/封印された配列など、多くの新機能が追加されています！"
+tweet: "1141356209179516930"
 ---
 6週間ごとに、私たちはV8の新しいブランチを作成します。これは[リリースプロセス](/docs/release-process)の一環です。各バージョンはChrome Betaマイルストーンの直前にV8のGitマスターから分岐します。本日、数週間後にChrome 76 Stableと協調してリリースされるまでベータ版である、最新のブランチ[V8 バージョン 7.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.6)を発表できることを嬉しく思います。V8 v7.6には開発者向けの数多くの機能が盛り込まれています。この投稿では、リリース前に注目すべきポイントのいくつかを紹介します。
 

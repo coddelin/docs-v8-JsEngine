@@ -1,13 +1,13 @@
 ---
-title: 'V8 sans JIT'
-author: 'Jakob Gruber ([@schuay](https://twitter.com/schuay))'
+title: "V8 sans JIT"
+author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
 avatars:
-  - 'jakob-gruber'
+  - "jakob-gruber"
 date: 2019-03-13 13:03:19
 tags:
   - internes
 description: 'V8 v7.4 prend en charge l'exécution de JavaScript sans allocation de mémoire exécutable à l'exécution.'
-tweet: '1105777150051999744'
+tweet: "1105777150051999744"
 ---
 V8 v7.4 prend désormais en charge l'exécution de JavaScript sans allocation de mémoire exécutable à l'exécution.
 

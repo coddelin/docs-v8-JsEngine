@@ -1,10 +1,10 @@
 ---
-title: 'V8 发布 v5.1'
-author: 'V8 团队'
+title: "V8 发布 v5.1"
+author: "V8 团队"
 date: 2016-04-23 13:33:37
 tags:
   - 发布
-description: 'V8 v5.1 带来了性能改进、降低卡顿和内存消耗，以及对 ECMAScript 语言功能的支持增强。'
+description: "V8 v5.1 带来了性能改进、降低卡顿和内存消耗，以及对 ECMAScript 语言功能的支持增强。"
 ---
 V8 [发布流程](/docs/release-process) 的第一步是在 Chromium 分支出 Chrome Beta 里程碑之前（大约每六周一次）从 Git 主分支创建一个新分支。我们最新的发布分支是 [V8 v5.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.1)，它将在 beta 版中保持一段时间，直到与 Chrome 51 稳定版一起发布一个稳定版本。以下是这个 V8 版本中的新开发者功能亮点。
 

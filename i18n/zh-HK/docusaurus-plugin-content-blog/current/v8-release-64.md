@@ -1,11 +1,11 @@
 ---
-title: 'V8 發布 v6.4'
-author: 'V8 團隊'
+title: "V8 發布 v6.4"
+author: "V8 團隊"
 date: 2017-12-19 13:33:37
 tags:
   - 發布
-description: 'V8 v6.4 包含性能改進、新的 JavaScript 語言特性等內容。'
-tweet: '943057597481082880'
+description: "V8 v6.4 包含性能改進、新的 JavaScript 語言特性等內容。"
+tweet: "943057597481082880"
 ---
 每六週，我們會根據[發布流程](/docs/release-process)創建一個新的 V8 分支。每個版本在 Chrome Beta 里程碑前都會從 V8 的 Git 主分支分叉而來。今天我們很高興宣布最新分支 [V8 版本 6.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.4)，該版本目前處於 beta 階段，數週後將與 Chrome 64 Stable 一起發布。V8 v6.4 為開發者帶來了各種令人欣喜的功能。本篇文章預覽了一些即將推出的亮點內容。
 

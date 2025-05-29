@@ -1,15 +1,15 @@
 ---
-title: 'Trie stable `Array.prototype.sort`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Trie stable `Array.prototype.sort`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-07-02
 tags:
   - ECMAScript
   - ES2019
   - io19
 description: 'Array.prototype.sort est maintenant garanti d'être stable.'
-tweet: '1146067251302244353'
+tweet: "1146067251302244353"
 ---
 Disons que vous avez un tableau de chiens, où chaque chien a un nom et une note. (Si cet exemple vous semble bizarre, sachez qu'il existe un compte Twitter qui se spécialise exactement là-dedans… Ne demandez pas !)
 

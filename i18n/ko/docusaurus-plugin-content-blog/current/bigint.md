@@ -1,11 +1,11 @@
 ---
-title: 'V8에 BigInt 추가'
-author: '정밀성을 담당하는 Jakob Kummerow'
+title: "V8에 BigInt 추가"
+author: "정밀성을 담당하는 Jakob Kummerow"
 date: 2018-05-02 13:33:37
 tags:
   - ECMAScript
-description: 'V8이 이제 임의 정밀도 정수를 지원하는 JavaScript 언어 기능인 BigInt를 지원합니다.'
-tweet: '991705626391732224'
+description: "V8이 이제 임의 정밀도 정수를 지원하는 JavaScript 언어 기능인 BigInt를 지원합니다."
+tweet: "991705626391732224"
 ---
 지난 몇 달 동안, 향후 ECMAScript 버전에 포함될 예정인 [이 제안서](https://github.com/tc39/proposal-bigint)에 따라 V8에서 [BigInt](/features/bigint)를 지원하는 기능을 구현했습니다. 아래 글에서 우리의 모험 이야기를 들어보세요.
 

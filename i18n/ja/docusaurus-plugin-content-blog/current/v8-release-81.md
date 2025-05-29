@@ -1,12 +1,12 @@
 ---
-title: 'V8 リリース v8.1'
-author: 'Dominik Inführ、謎の国際化男'
+title: "V8 リリース v8.1"
+author: "Dominik Inführ、謎の国際化男"
 avatars:
-  - 'dominik-infuehr'
+  - "dominik-infuehr"
 date: 2020-02-25
 tags:
   - リリース
-description: 'V8 v8.1 では、Intl.DisplayNames API による国際化サポートが改善されました。'
+description: "V8 v8.1 では、Intl.DisplayNames API による国際化サポートが改善されました。"
 ---
 
 6週間ごとに、私たちは[V8 リリースプロセス](https://v8.dev/docs/release-process)の一環として新しいブランチを作成します。各バージョンは Chrome ベータマイルストーンの直前に V8 の Git マスターからブランチ化されます。本日、最新のブランチ [V8 バージョン 8.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.1) を発表できることを嬉しく思います。このバージョンは数週間後に Chrome 81 安定版と連携してリリースされるまで、ベータ版として公開されます。V8 v8.1 には開発者向けのさまざまな新機能が満載です。この投稿ではリリースを前にした注目ポイントのプレビューを提供します。

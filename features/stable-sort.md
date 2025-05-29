@@ -1,15 +1,15 @@
 ---
-title: 'Stable `Array.prototype.sort`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Stable `Array.prototype.sort`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-07-02
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: 'Array.prototype.sort is now guaranteed to be stable.'
-tweet: '1146067251302244353'
+description: "Array.prototype.sort is now guaranteed to be stable."
+tweet: "1146067251302244353"
 ---
 Let’s say you have an array of dogs, where each dog has a name and a rating. (If this sounds like a weird example, you should know that there’s a Twitter account that specializes in exactly this… Don’t ask!)
 

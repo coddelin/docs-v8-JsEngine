@@ -1,6 +1,6 @@
 ---
-title: '`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`'
-author: '[Marja Hölttä](https://twitter.com/marjakh), eine nicht blockierende Bloggerin'
+title: "`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`"
+author: "[Marja Hölttä](https://twitter.com/marjakh), eine nicht blockierende Bloggerin"
 avatars:
   - marja-holtta
 date: 2020-09-24
@@ -8,8 +8,8 @@ tags:
   - ECMAScript
   - ES2020
   - Node.js 16
-description: 'Atomics.wait und Atomics.notify sind Low-Level-Synchronisationsprimitiven, die nützlich für die Implementierung von beispielsweise Mutexen sind. Atomics.wait kann nur in Worker-Threads benutzt werden. V8 Version 8.7 unterstützt jetzt eine nicht-blockierende Version, Atomics.waitAsync, die auch im Haupt-Thread verwendet werden kann.'
-tweet: '1309118447377358848'
+description: "Atomics.wait und Atomics.notify sind Low-Level-Synchronisationsprimitiven, die nützlich für die Implementierung von beispielsweise Mutexen sind. Atomics.wait kann nur in Worker-Threads benutzt werden. V8 Version 8.7 unterstützt jetzt eine nicht-blockierende Version, Atomics.waitAsync, die auch im Haupt-Thread verwendet werden kann."
+tweet: "1309118447377358848"
 ---
 [`Atomics.wait`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Atomics/wait) und [`Atomics.notify`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Atomics/notify) sind Low-Level-Synchronisationsprimitiven, die nützlich für die Implementierung von Mutexen und anderen Synchronisationsmethoden sind. Da `Atomics.wait` blockierend ist, ist es jedoch nicht möglich, es im Haupt-Thread aufzurufen (ein solcher Versuch löst einen `TypeError` aus).
 

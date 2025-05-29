@@ -1,15 +1,15 @@
 ---
-title: '안정적인 `Array.prototype.sort`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "안정적인 `Array.prototype.sort`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-07-02
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: 'Array.prototype.sort가 이제 안정적인 동작을 보장합니다.'
-tweet: '1146067251302244353'
+description: "Array.prototype.sort가 이제 안정적인 동작을 보장합니다."
+tweet: "1146067251302244353"
 ---
 강아지 배열이 있다고 가정합시다. 각 강아지는 이름과 등급을 가지고 있습니다. (이것이 이상한 예제처럼 느껴진다면, 정확히 이런 내용을 전문으로 하는 Twitter 계정이 있다는 것을 알아두세요... 묻지 마세요!)
 

@@ -1,13 +1,13 @@
 ---
-title: 'Revisado `Function.prototype.toString`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Revisado `Function.prototype.toString`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-03-25
 tags:
   - ECMAScript
   - ES2019
-description: 'Function.prototype.toString agora retorna trechos exatos do texto do código-fonte, incluindo espaços em branco e comentários.'
+description: "Function.prototype.toString agora retorna trechos exatos do texto do código-fonte, incluindo espaços em branco e comentários."
 ---
 [`Function.prototype.toString()`](https://tc39.es/Function-prototype-toString-revision/) agora retorna trechos exatos do texto do código-fonte, incluindo espaços em branco e comentários. Aqui está um exemplo comparando o comportamento antigo e o novo:
 

@@ -1,13 +1,13 @@
 ---
-title: 'RegExp Lookbehind Assertions'
-author: 'Yang Guo, Regular Expression Engineer'
+title: "RegExp Lookbehind Assertions"
+author: "Yang Guo, Regular Expression Engineer"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2016-02-26 13:33:37
 tags:
   - ECMAScript
   - RegExp
-description: 'JavaScript Reguläre Ausdrücke erhalten neue Funktionalität: Lookbehind Assertions.'
+description: "JavaScript Reguläre Ausdrücke erhalten neue Funktionalität: Lookbehind Assertions."
 ---
 Eingeführt mit der dritten Ausgabe der ECMA-262-Spezifikation sind reguläre Ausdrücke seit 1999 Teil von JavaScript. In Bezug auf Funktionalität und Ausdruckskraft spiegelt die Implementierung regulärer Ausdrücke in JavaScript ungefähr die anderer Programmiersprachen wider.
 

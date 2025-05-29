@@ -1,13 +1,13 @@
 ---
-title: '초고속 `super` 프로퍼티 접근'
-author: '[Marja Hölttä](https://twitter.com/marjakh), super 최적화 전문가'
+title: "초고속 `super` 프로퍼티 접근"
+author: "[Marja Hölttä](https://twitter.com/marjakh), super 최적화 전문가"
 avatars:
   - marja-holtta
 date: 2021-02-18
 tags:
   - JavaScript
-description: 'V8 v9.0에서 더 빠른 super 프로퍼티 접근'
-tweet: '1362465295848333316'
+description: "V8 v9.0에서 더 빠른 super 프로퍼티 접근"
+tweet: "1362465295848333316"
 ---
 
 [`super` 키워드](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/super)는 객체의 부모에 있는 프로퍼티와 함수에 접근하기 위해 사용될 수 있습니다.

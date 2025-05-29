@@ -1,6 +1,6 @@
 ---
-title: 'V8 Torque 빌트인'
-description: '이 문서는 Torque 빌트인 작성을 소개하며, V8 개발자를 대상으로 합니다.'
+title: "V8 Torque 빌트인"
+description: "이 문서는 Torque 빌트인 작성을 소개하며, V8 개발자를 대상으로 합니다."
 ---
 이 문서는 Torque 빌트인 작성을 소개하며, V8 개발자를 대상으로 합니다. Torque는 CodeStubAssembler를 대체하여 새로운 빌트인을 구현하는 데 추천되는 방법입니다. 이 가이드의 CSA 버전에 대해서는 [CodeStubAssembler 빌트인](/docs/csa-builtins)을 참조하세요.
 

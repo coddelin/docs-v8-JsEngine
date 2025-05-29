@@ -1,15 +1,15 @@
 ---
-title: 'React 中 V8 性能瓶颈的故事'
-author: 'Benedikt Meurer（[@bmeurer](https://twitter.com/bmeurer)）和 Mathias Bynens（[@mathias](https://twitter.com/mathias)）'
+title: "React 中 V8 性能瓶颈的故事"
+author: "Benedikt Meurer（[@bmeurer](https://twitter.com/bmeurer)）和 Mathias Bynens（[@mathias](https://twitter.com/mathias)）"
 avatars:
-  - 'benedikt-meurer'
-  - 'mathias-bynens'
+  - "benedikt-meurer"
+  - "mathias-bynens"
 date: 2019-08-28 16:45:00
 tags:
   - 内部原理
   - 演示
-description: '本文描述了 V8 如何为各种 JavaScript 值选择最佳的内存表示形式，以及这些选择如何影响 Shape 机制——这有助于解释 React 核心中最近的一个 V8 性能瓶颈问题。'
-tweet: '1166723359696130049'
+description: "本文描述了 V8 如何为各种 JavaScript 值选择最佳的内存表示形式，以及这些选择如何影响 Shape 机制——这有助于解释 React 核心中最近的一个 V8 性能瓶颈问题。"
+tweet: "1166723359696130049"
 ---
 [之前](https://mathiasbynens.be/notes/shapes-ics)，我们讨论了 JavaScript 引擎如何通过使用 Shapes 和 Inline Caches 优化对象和数组的访问，并特别探讨了[引擎如何加速原型属性访问](https://mathiasbynens.be/notes/prototypes)。本文将描述 V8 如何为各种 JavaScript 值选择最佳的内存表示形式，以及这些选择如何影响 Shape 机制——所有这些都有助于解释[React 核心中最近的一个 V8 性能瓶颈](https://github.com/facebook/react/issues/14365)。
 

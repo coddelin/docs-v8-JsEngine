@@ -1,13 +1,13 @@
 ---
-title: 'V8 發佈 v9.7'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "V8 發佈 v9.7"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-11-05
 tags:
  - release
-description: 'V8 發佈 v9.7，帶來了在陣列中向後查找的新的 JavaScript 方法。'
-tweet: ''
+description: "V8 發佈 v9.7，帶來了在陣列中向後查找的新的 JavaScript 方法。"
+tweet: ""
 ---
 每隔四周，我們會創建一個新的 V8 分支，作為我們[發佈流程](https://v8.dev/docs/release-process)的一部分。每個版本的分支都在 Chrome Beta 的里程碑之前，直接從 V8 的 Git main 分支中分出。今天，我們很高興公佈我們的最新分支，[V8 版本 9.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.7)，目前它正在 Beta 測試，直到幾周後與 Chrome 97 穩定版協同發佈。V8 v9.7 充滿了各種面向開發者的功能。本文提供了一些亮點的預覽，以期對即將的發佈引發期待。
 

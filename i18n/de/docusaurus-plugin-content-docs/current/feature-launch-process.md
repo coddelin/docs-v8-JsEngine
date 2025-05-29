@@ -1,6 +1,6 @@
 ---
-title: 'Implementierung und Auslieferung von JavaScript/WebAssembly-Sprachfunktionen'
-description: 'Dieses Dokument erklärt den Prozess der Implementierung und Auslieferung von JavaScript- oder WebAssembly-Sprachfunktionen in V8.'
+title: "Implementierung und Auslieferung von JavaScript/WebAssembly-Sprachfunktionen"
+description: "Dieses Dokument erklärt den Prozess der Implementierung und Auslieferung von JavaScript- oder WebAssembly-Sprachfunktionen in V8."
 ---
 Im Allgemeinen folgt V8 dem [Blink Intent-Prozess für bereits definierte konsensbasierte Standards](https://www.chromium.org/blink/launching-features/#process-existing-standard) für JavaScript- und WebAssembly-Sprachfunktionen. V8-spezifische Ergänzungen sind unten aufgeführt. Bitte folgen Sie dem Blink Intent-Prozess, sofern die Ergänzungen nichts anderes vorsehen.
 

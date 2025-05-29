@@ -1,11 +1,11 @@
 ---
-title: 'WebAssembly 꼬리 호출'
-author: 'Thibaud Michaud, Thomas Lively'
+title: "WebAssembly 꼬리 호출"
+author: "Thibaud Michaud, Thomas Lively"
 date: 2023-04-06
 tags:
   - WebAssembly
-description: '이 문서는 WebAssembly 꼬리 호출 제안을 설명하고 일부 예제를 통해 이를 보여줍니다.'
-tweet: '1644077795059044353'
+description: "이 문서는 WebAssembly 꼬리 호출 제안을 설명하고 일부 예제를 통해 이를 보여줍니다."
+tweet: "1644077795059044353"
 ---
 우리는 WebAssembly 꼬리 호출을 V8 v11.2에 출시합니다! 이 게시물에서는 이 제안에 대한 간략한 개요를 제공하고, Emscripten을 사용한 C++ 코루틴의 흥미로운 사용 사례를 보여주며, V8이 꼬리 호출을 내부적으로 처리하는 방법을 보여줍니다.
 

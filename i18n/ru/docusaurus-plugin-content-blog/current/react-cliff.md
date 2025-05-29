@@ -1,15 +1,15 @@
 ---
-title: 'История о производительности V8 в React'
-author: 'Бенедикт Меурер ([@bmeurer](https://twitter.com/bmeurer)) и Матиас Биненс ([@mathias](https://twitter.com/mathias))'
+title: "История о производительности V8 в React"
+author: "Бенедикт Меурер ([@bmeurer](https://twitter.com/bmeurer)) и Матиас Биненс ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'benedikt-meurer'
-  - 'mathias-bynens'
+  - "benedikt-meurer"
+  - "mathias-bynens"
 date: 2019-08-28 16:45:00
 tags:
   - internals
   - presentations
-description: 'В этой статье описано, как V8 выбирает оптимальные представления в памяти для различных значений JavaScript и как это влияет на механизм форм — что помогает объяснить недавнее падение производительности V8 в ядре React.'
-tweet: '1166723359696130049'
+description: "В этой статье описано, как V8 выбирает оптимальные представления в памяти для различных значений JavaScript и как это влияет на механизм форм — что помогает объяснить недавнее падение производительности V8 в ядре React."
+tweet: "1166723359696130049"
 ---
 [Ранее](https://mathiasbynens.be/notes/shapes-ics) мы обсуждали, как движки JavaScript оптимизируют доступ к объектам и массивам с помощью Shapes и Inline Caches, а также исследовали [как движки ускоряют доступ к свойствам прототипа](https://mathiasbynens.be/notes/prototypes). В этой статье описано, как V8 выбирает оптимальные внутренние представления в памяти для различных значений JavaScript и как это влияет на механизм форм — что помогает объяснить [недавнее падение производительности V8 в ядре React](https://github.com/facebook/react/issues/14365).
 

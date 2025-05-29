@@ -1,15 +1,15 @@
 ---
-title: '逻辑赋值'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "逻辑赋值"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2020-05-07
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: 'JavaScript 现在支持带有逻辑运算的复合赋值。'
-tweet: '1258387483823345665'
+description: "JavaScript 现在支持带有逻辑运算的复合赋值。"
+tweet: "1258387483823345665"
 ---
 JavaScript 支持一系列[复合赋值运算符](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators)，允许程序员简洁地表达二元运算和赋值。当前，仅支持数学或按位运算。
 

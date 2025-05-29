@@ -1,6 +1,6 @@
 ---
-title: 'Compilação em Linux Arm64'
-description: 'Dicas e truques para compilar o V8 nativamente no Linux Arm64'
+title: "Compilação em Linux Arm64"
+description: "Dicas e truques para compilar o V8 nativamente no Linux Arm64"
 ---
 Se você seguiu as instruções sobre como [obter](/docs/source-code) e [compilar](/docs/build-gn) o V8 em uma máquina que não seja x86 ou um Mac com Apple Silicon, pode ter encontrado alguns problemas, devido ao sistema de compilação baixar binários nativos e não conseguir executá-los. No entanto, embora usar uma máquina Linux Arm64 para trabalhar no V8 __não seja oficialmente suportado__, superar esses obstáculos é bastante simples.
 

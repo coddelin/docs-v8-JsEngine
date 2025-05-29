@@ -1,14 +1,14 @@
 ---
-title: 'Вне Интернета: автономные бинарные файлы WebAssembly с использованием Emscripten'
-author: 'Алон Закай'
+title: "Вне Интернета: автономные бинарные файлы WebAssembly с использованием Emscripten"
+author: "Алон Закай"
 avatars:
-  - 'alon-zakai'
+  - "alon-zakai"
 date: 2019-11-21
 tags:
   - WebAssembly
   - инструменты
-description: 'Emscripten теперь поддерживает автономные файлы Wasm, которые не нуждаются в JavaScript.'
-tweet: '1197547645729988608'
+description: "Emscripten теперь поддерживает автономные файлы Wasm, которые не нуждаются в JavaScript."
+tweet: "1197547645729988608"
 ---
 Emscripten всегда был ориентирован в первую очередь на компиляцию для использования в Интернете и других средах JavaScript, таких как Node.js. Однако по мере того, как WebAssembly начинает использоваться *без* JavaScript, появляются новые варианты применения, и поэтому мы работаем над поддержкой генерации [**автономных файлов Wasm**](https://github.com/emscripten-core/emscripten/wiki/WebAssembly-Standalone) с помощью Emscripten, которые не зависят от JavaScript-рантайма Emscripten! Этот пост объясняет, почему это интересно.
 

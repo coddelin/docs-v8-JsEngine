@@ -1,15 +1,15 @@
 ---
-title: 'Separadores numéricos'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Separadores numéricos"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-05-28
 tags:
   - ECMAScript
   - ES2021
   - io19
-description: 'JavaScript ahora admite guiones bajos como separadores en literales numéricos, lo que aumenta la legibilidad y el mantenimiento del código fuente.'
-tweet: '1129073383931559936'
+description: "JavaScript ahora admite guiones bajos como separadores en literales numéricos, lo que aumenta la legibilidad y el mantenimiento del código fuente."
+tweet: "1129073383931559936"
 ---
 Los literales numéricos grandes son difíciles de interpretar rápidamente para el ojo humano, especialmente cuando hay muchos dígitos repetidos:
 

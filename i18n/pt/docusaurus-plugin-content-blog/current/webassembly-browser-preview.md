@@ -1,10 +1,10 @@
 ---
-title: 'Visualização do navegador WebAssembly'
-author: 'a equipe V8'
+title: "Visualização do navegador WebAssembly"
+author: "a equipe V8"
 date: 2016-10-31 13:33:37
 tags:
   - WebAssembly
-description: 'WebAssembly ou Wasm é um novo runtime e destino de compilação para a web, agora disponível sob um flag no Chrome Canary!'
+description: "WebAssembly ou Wasm é um novo runtime e destino de compilação para a web, agora disponível sob um flag no Chrome Canary!"
 ---
 Hoje estamos felizes em anunciar, junto com o [Firefox](https://hacks.mozilla.org/2016/10/webassembly-browser-preview) e [Edge](https://blogs.windows.com/msedgedev/2016/10/31/webassembly-browser-preview/), uma visualização de navegador para WebAssembly. [WebAssembly](http://webassembly.org/) ou Wasm é um novo runtime e destino de compilação para a web, projetado por colaboradores da Google, Mozilla, Microsoft, Apple e do [Grupo Comunitário WebAssembly do W3C](https://www.w3.org/community/webassembly/).
 

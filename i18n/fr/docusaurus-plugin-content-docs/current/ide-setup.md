@@ -1,5 +1,5 @@
 ---
-title: 'Configuration de GUI et IDE'
+title: "Configuration de GUI et IDE"
 description: 'Ce document contient des astuces spécifiques à l'interface graphique (GUI) et aux IDE pour travailler sur le code source de V8.'
 ---
 Le code source de V8 peut être consulté en ligne avec [Chromium Code Search](https://cs.chromium.org/chromium/src/v8/).

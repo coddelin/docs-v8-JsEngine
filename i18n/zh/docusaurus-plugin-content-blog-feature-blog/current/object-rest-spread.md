@@ -1,14 +1,14 @@
 ---
-title: '对象的剩余和扩展属性'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "对象的剩余和扩展属性"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-06-06
 tags:
   - ECMAScript
   - ES2018
-description: '本文解释了 JavaScript 中对象的剩余和扩展属性如何工作，并重新介绍了数组的剩余和扩展元素。'
-tweet: '890269994688315394'
+description: "本文解释了 JavaScript 中对象的剩余和扩展属性如何工作，并重新介绍了数组的剩余和扩展元素。"
+tweet: "890269994688315394"
 ---
 在讨论_对象的剩余和扩展属性_之前，让我们回忆一下一个非常相似的功能。
 

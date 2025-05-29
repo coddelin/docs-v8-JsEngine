@@ -1,13 +1,13 @@
 ---
-title: 'V8 リリース v9.0'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))、スタンディングインライン'
+title: "V8 リリース v9.0"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))、スタンディングインライン"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-03-17
 tags:
  - リリース
-description: 'V8 リリース v9.0 は正規表現のマッチインデックスサポートとさまざまなパフォーマンス改善をもたらします。'
-tweet: '1372227274712494084'
+description: "V8 リリース v9.0 は正規表現のマッチインデックスサポートとさまざまなパフォーマンス改善をもたらします。"
+tweet: "1372227274712494084"
 ---
 6週間ごとに、V8の[リリースプロセス](https://v8.dev/docs/release-process)の一環として新しいブランチを作成します。それぞれのバージョンはChrome Betaマイルストーン直前にV8のGitマスターから分岐します。本日、最新のブランチである[V8バージョン9.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.0)を発表します。このバージョンは、数週間後にChrome 90 Stableと共にリリースされるまでベータ版です。V8 v9.0は、開発者に向けたさまざまな便利な機能に満ちています。この投稿では、リリースに先立ち、そのハイライトをいくつか紹介します。
 

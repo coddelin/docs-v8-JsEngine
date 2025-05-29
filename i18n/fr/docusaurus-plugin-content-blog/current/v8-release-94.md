@@ -1,13 +1,13 @@
 ---
-title: 'Version V8 v9.4'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "Version V8 v9.4"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-09-06
 tags:
  - release
 description: 'La version V8 v9.4 apporte des blocs d'initialisation statique de classe à JavaScript.'
-tweet: '1434915404418277381'
+tweet: "1434915404418277381"
 ---
 Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](https://v8.dev/docs/release-process). Chaque version est dérivée du master Git de V8 immédiatement avant une étape bêta de Chrome. Aujourd'hui, nous sommes heureux d'annoncer notre nouvelle branche, [V8 version 9.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.4), qui est en version bêta jusqu'à sa sortie en coordination avec Chrome 94 Stable dans plusieurs semaines. V8 v9.4 est rempli de toutes sortes de nouveautés pour les développeurs. Ce post offre un aperçu de certains des points forts en prévision de la sortie.
 

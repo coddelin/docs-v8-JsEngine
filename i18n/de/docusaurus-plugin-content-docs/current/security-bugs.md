@@ -1,6 +1,6 @@
 ---
-title: 'Sicherheitsprobleme melden'
-description: 'Dieses Dokument erklärt den Prozess zur Meldung von Sicherheitsproblemen in V8.'
+title: "Sicherheitsprobleme melden"
+description: "Dieses Dokument erklärt den Prozess zur Meldung von Sicherheitsproblemen in V8."
 ---
 V8 nutzt vollständig [Chromiums Sicherheitsprozess](https://www.chromium.org/Home/chromium-security). Um einen Sicherheitsfehler in V8 zu melden, folgen Sie bitte diesen Schritten:
 

@@ -1,13 +1,13 @@
 ---
-title: 'Feiern von 10 Jahren V8'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), V8-Historiker'
+title: "Feiern von 10 Jahren V8"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), V8-Historiker"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-09-11 19:00:00
 tags:
   - Benchmarks
-description: 'Ein Überblick über die wichtigsten Meilensteine des V8-Projekts in den letzten 10 Jahren sowie die Jahre davor, als das Projekt noch geheim war.'
-tweet: '1039559389324238850'
+description: "Ein Überblick über die wichtigsten Meilensteine des V8-Projekts in den letzten 10 Jahren sowie die Jahre davor, als das Projekt noch geheim war."
+tweet: "1039559389324238850"
 ---
 In diesem Monat jährt sich zum 10. Mal die Veröffentlichung von nicht nur Google Chrome, sondern auch des V8-Projekts. Dieser Beitrag gibt einen Überblick über die wichtigsten Meilensteine des V8-Projekts in den letzten 10 Jahren sowie die Jahre davor, als das Projekt noch geheim war.
 

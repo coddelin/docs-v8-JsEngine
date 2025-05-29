@@ -1,6 +1,6 @@
 ---
-title: 'Einordnung von Problemen'
-description: 'Dieses Dokument erklärt, wie man mit Problemen im V8-Bugtracker umgeht.'
+title: "Einordnung von Problemen"
+description: "Dieses Dokument erklärt, wie man mit Problemen im V8-Bugtracker umgeht."
 ---
 Dieses Dokument erklärt, wie man mit Problemen im [V8-Bugtracker](/bugs) umgeht.
 

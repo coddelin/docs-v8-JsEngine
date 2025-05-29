@@ -1,13 +1,13 @@
 ---
-title: '`Object.hasOwn`'
-author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
+title: "`Object.hasOwn`"
+author: "Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))"
 avatars:
-  - 'victor-gomes'
+  - "victor-gomes"
 date: 2021-07-01
 tags:
   - ECMAScript
-description: '`Object.hasOwn` 讓 `Object.prototype.hasOwnProperty` 更加易用。'
-tweet: '1410577516943847424'
+description: "`Object.hasOwn` 讓 `Object.prototype.hasOwnProperty` 更加易用。"
+tweet: "1410577516943847424"
 ---
 
 今天，編寫像這樣的代碼很常見：

@@ -1,13 +1,13 @@
 ---
-title: 'V8 릴리즈 v7.3'
-author: '크레멘스 배커스, 컴파일러 관리자'
+title: "V8 릴리즈 v7.3"
+author: "크레멘스 배커스, 컴파일러 관리자"
 avatars:
   - clemens-backes
 date: 2019-02-07 11:30:42
 tags:
   - release
-description: 'V8 v7.3는 WebAssembly 및 비동기 성능 개선, 비동기 스택 추적, Object.fromEntries, String#matchAll 등을 포함하여 많은 새로운 기능을 제공합니다!'
-tweet: '1093457099441561611'
+description: "V8 v7.3는 WebAssembly 및 비동기 성능 개선, 비동기 스택 추적, Object.fromEntries, String#matchAll 등을 포함하여 많은 새로운 기능을 제공합니다!"
+tweet: "1093457099441561611"
 ---
 매 6주마다 우리는 [릴리즈 프로세스](/docs/release-process)의 일부로 V8의 새로운 브랜치를 만듭니다. 각 버전은 Chrome 베타 마일스톤 직전에 V8의 Git master에서 분기됩니다. 오늘 우리는 최신 브랜치 [V8 버전 7.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.3)을 발표하게 되어 기쁩니다. 이 브랜치는 몇 주 후 Chrome 73 Stable과 함께 릴리즈될 때까지 베타 단계에 있습니다. V8 v7.3는 개발자 중심의 다양한 새로운 기능들로 가득합니다. 이 글에서는 릴리즈를 기대하며 주요 기능 몇 가지를 미리 살펴봅니다.
 

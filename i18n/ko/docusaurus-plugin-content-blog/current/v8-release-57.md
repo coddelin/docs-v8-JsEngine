@@ -1,10 +1,10 @@
 ---
-title: 'V8 릴리스 v5.7'
-author: 'V8 팀'
+title: "V8 릴리스 v5.7"
+author: "V8 팀"
 date: 2017-02-06 13:33:37
 tags:
   - 릴리스
-description: 'V8 v5.7은 기본적으로 WebAssembly를 활성화하고, 성능 향상과 ECMAScript 언어 기능 지원을 강화했습니다.'
+description: "V8 v5.7은 기본적으로 WebAssembly를 활성화하고, 성능 향상과 ECMAScript 언어 기능 지원을 강화했습니다."
 ---
 매 6주마다, 우리는 [릴리스 프로세스](/docs/release-process)의 일환으로 V8의 새로운 브랜치를 만듭니다. 각 버전은 Chrome 베타 마일스톤 직전에 V8의 Git master에서 브랜칭됩니다. 오늘 우리는 [V8 버전 5.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.7)의 출시를 발표하게 되어 기쁩니다. 이 버전은 Chrome 57 안정 버전과 함께 몇 주 후 출시될 때까지 베타 단계에 있습니다. V8 5.7은 개발자들에게 많은 혜택을 제공합니다. 출시를 기대하며 몇 가지 주요 사항을 미리 소개하고자 합니다.
 

@@ -1,16 +1,16 @@
 ---
-title: 'JS에서 DOM로, 그리고 다시 되돌아오는 경로 추적'
-author: 'DOM의 동맹 — 울란 데겐바에브, 알렉세이 필리포브, 미하엘 립파우츠, 그리고 한네스 페이어'
+title: "JS에서 DOM로, 그리고 다시 되돌아오는 경로 추적"
+author: "DOM의 동맹 — 울란 데겐바에브, 알렉세이 필리포브, 미하엘 립파우츠, 그리고 한네스 페이어"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2018-03-01 13:33:37
 tags:
   - internals
   - memory
-description: 'Chrome DevTools는 이제 C++ DOM 객체를 추적하고 스냅샷을 찍을 수 있으며 JavaScript에서 참조된 모든 접근 가능한 DOM 객체를 표시할 수 있습니다.'
-tweet: '969184997545562112'
+description: "Chrome DevTools는 이제 C++ DOM 객체를 추적하고 스냅샷을 찍을 수 있으며 JavaScript에서 참조된 모든 접근 가능한 DOM 객체를 표시할 수 있습니다."
+tweet: "969184997545562112"
 ---
 Chrome 66에서 메모리 누수를 디버깅하는 것이 훨씬 쉬워졌습니다. Chrome DevTools는 이제 C++ DOM 객체를 추적하고 스냅샷을 찍을 수 있으며 JavaScript에서 참조된 모든 접근 가능한 DOM 객체를 표시할 수 있습니다. 이 기능은 V8 가비지 컬렉터의 새로운 C++ 추적 메커니즘의 이점 중 하나입니다.
 

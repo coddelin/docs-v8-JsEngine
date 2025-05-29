@@ -1,13 +1,13 @@
 ---
-title: 'Descontinuando postagens de blog de lançamento'
-author: 'Shu-yu Guo ([@shu_](https://twitter.com/_shu))'
+title: "Descontinuando postagens de blog de lançamento"
+author: "Shu-yu Guo ([@shu_](https://twitter.com/_shu))"
 avatars:
- - 'shu-yu-guo'
+ - "shu-yu-guo"
 date: 2022-06-17
 tags:
  - lançamento
-description: 'V8 descontinuará postagens de blog de lançamento em favor do cronograma de lançamento do Chrome e postagens de blog sobre recursos.'
-tweet: '1537857497825824768'
+description: "V8 descontinuará postagens de blog de lançamento em favor do cronograma de lançamento do Chrome e postagens de blog sobre recursos."
+tweet: "1537857497825824768"
 ---
 
 Historicamente, houve uma postagem no blog para cada novo ramo de lançamento do V8. Você pode ter notado que não houve uma postagem de blog de lançamento desde o v9.9. A partir do v10.0, estamos descontinuando as postagens de blog de lançamento para cada novo ramo. Mas não se preocupe, todas as informações que você estava acostumado a receber através das postagens de blog de lançamento ainda estão disponíveis! Continue lendo para ver onde encontrar essas informações daqui para frente.

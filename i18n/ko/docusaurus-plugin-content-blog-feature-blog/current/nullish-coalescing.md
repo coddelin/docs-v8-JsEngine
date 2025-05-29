@@ -1,14 +1,14 @@
 ---
-title: '널 병합(nüllish coalescing)'
-author: '저스틴 리지웰(Justin Ridgewell)'
+title: "널 병합(nüllish coalescing)"
+author: "저스틴 리지웰(Justin Ridgewell)"
 avatars:
-  - 'justin-ridgewell'
+  - "justin-ridgewell"
 date: 2019-09-17
 tags:
   - ECMAScript
   - ES2020
-description: 'JavaScript의 널 병합 연산자는 보다 안전한 기본값 표현식을 가능하게 합니다.'
-tweet: '1173971116865523714'
+description: "JavaScript의 널 병합 연산자는 보다 안전한 기본값 표현식을 가능하게 합니다."
+tweet: "1173971116865523714"
 ---
 [널 병합 제안](https://github.com/tc39/proposal-nullish-coalescing/) (`??`)은 기본값을 처리하기 위한 새로운 단축 평가 연산자를 추가합니다.
 

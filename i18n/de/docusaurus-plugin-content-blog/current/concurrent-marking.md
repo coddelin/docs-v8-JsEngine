@@ -1,16 +1,16 @@
 ---
-title: 'Gleichzeitiges Markieren in V8'
-author: 'Ulan Degenbaev, Michael Lippautz und Hannes Payer — Befreier des Hauptthreads'
+title: "Gleichzeitiges Markieren in V8"
+author: "Ulan Degenbaev, Michael Lippautz und Hannes Payer — Befreier des Hauptthreads"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2018-06-11 13:33:37
 tags:
   - internals
   - memory
-description: 'Dieser Beitrag beschreibt die Garbage-Collection-Technik namens gleichzeitiges Markieren.'
-tweet: '1006187194808233985'
+description: "Dieser Beitrag beschreibt die Garbage-Collection-Technik namens gleichzeitiges Markieren."
+tweet: "1006187194808233985"
 ---
 Dieser Beitrag beschreibt die Garbage-Collection-Technik namens _gleichzeitiges Markieren_. Die Optimierung ermöglicht einer JavaScript-Anwendung, die Ausführung fortzusetzen, während der Garbage Collector den Heap scannt, um lebende Objekte zu finden und zu markieren. Unsere Benchmarks zeigen, dass gleichzeitiges Markieren die auf dem Hauptthread verbrachte Zeit beim Markieren um 60%–70% reduziert. Gleichzeitiges Markieren ist das letzte Puzzlestück des [Orinoco-Projekts](/blog/orinoco) — das Projekt zum schrittweisen Austausch des alten Garbage Collectors mit dem neuen überwiegend gleichzeitigen und parallelen Garbage Collector. Gleichzeitiges Markieren ist in Chrome 64 und Node.js v10 standardmäßig aktiviert.
 

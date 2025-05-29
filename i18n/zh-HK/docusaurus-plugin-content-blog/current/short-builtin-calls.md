@@ -1,13 +1,13 @@
 ---
-title: '精簡內建函式呼叫'
-author: '[Toon Verwaest](https://twitter.com/tverwaes), 縮短距離'
+title: "精簡內建函式呼叫"
+author: "[Toon Verwaest](https://twitter.com/tverwaes), 縮短距離"
 avatars:
   - toon-verwaest
 date: 2021-05-06
 tags:
   - JavaScript
-description: '在 V8 v9.1 中，我們暫時在桌面端取消內建函式的嵌入，以避免由於遠距間接呼叫所帶來的效能問題。'
-tweet: '1394267917013897216'
+description: "在 V8 v9.1 中，我們暫時在桌面端取消內建函式的嵌入，以避免由於遠距間接呼叫所帶來的效能問題。"
+tweet: "1394267917013897216"
 ---
 
 在 V8 v9.1 中，我們暫時取消在桌面端的[內建函式嵌入](https://v8.dev/blog/embedded-builtins)。雖然嵌入內建函式能顯著改善記憶體使用處理，我們發現嵌入函式與 JIT 編譯程式碼之間的函式呼叫可能帶來顯著的效能損失。此成本會依 CPU 的微架構而異。在本文中，我們會解釋為何這種情況會發生、效能表現如何，以及我們長期規劃的解決方案。

@@ -1,14 +1,14 @@
 ---
-title: 'Liftoff: a new baseline compiler for WebAssembly in V8'
-author: 'Clemens Backes, WebAssembly compilation maestro'
+title: "Liftoff: a new baseline compiler for WebAssembly in V8"
+author: "Clemens Backes, WebAssembly compilation maestro"
 avatars:
-  - 'clemens-backes'
+  - "clemens-backes"
 date: 2018-08-20 15:45:12
 tags:
   - WebAssembly
   - internals
-description: 'Liftoff is a new baseline compiler for WebAssembly, shipping in V8 v6.9.'
-tweet: '1031538167617413120'
+description: "Liftoff is a new baseline compiler for WebAssembly, shipping in V8 v6.9."
+tweet: "1031538167617413120"
 ---
 V8 [v6.9](/blog/v8-release-69) includes Liftoff, a new baseline compiler for WebAssembly. Liftoff is now enabled by default on desktop systems. This article details the motivation to add another compilation tier and describes the implementation and performance of Liftoff.
 

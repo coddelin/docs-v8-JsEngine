@@ -1,11 +1,11 @@
 ---
-title: 'Adding BigInts to V8'
-author: 'Jakob Kummerow, arbitrator of precision'
+title: "Adding BigInts to V8"
+author: "Jakob Kummerow, arbitrator of precision"
 date: 2018-05-02 13:33:37
 tags:
   - ECMAScript
-description: 'V8 now supports BigInts, a JavaScript language feature enabling arbitrary-precision integers.'
-tweet: '991705626391732224'
+description: "V8 now supports BigInts, a JavaScript language feature enabling arbitrary-precision integers."
+tweet: "991705626391732224"
 ---
 Over the past couple of months, we have implemented support for [BigInts](/features/bigint) in V8, as currently specified by [this proposal](https://github.com/tc39/proposal-bigint), to be included in a future version of ECMAScript. The following post tells the story of our adventures.
 

@@ -1,13 +1,13 @@
 ---
-title: 'V8-Veröffentlichung v7.5'
-author: 'Dan Elphick, der Schrecken der Veralteten'
+title: "V8-Veröffentlichung v7.5"
+author: "Dan Elphick, der Schrecken der Veralteten"
 avatars:
-  - 'dan-elphick'
+  - "dan-elphick"
 date: 2019-05-16 15:00:00
 tags:
   - release
-description: 'V8 v7.5 bietet implizites Caching von WebAssembly-Kompilierungsartefakten, Speicheroperationen im Bulk, numerische Trenner in JavaScript und vieles mehr!'
-tweet: '1129073370623086593'
+description: "V8 v7.5 bietet implizites Caching von WebAssembly-Kompilierungsartefakten, Speicheroperationen im Bulk, numerische Trenner in JavaScript und vieles mehr!"
+tweet: "1129073370623086593"
 ---
 Alle sechs Wochen erstellen wir im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process) einen neuen Branch von V8. Jede Version wird direkt vom Git-Master von V8 vor einem Chrome Beta-Meilenstein verzweigt. Heute freuen wir uns, unseren neuesten Branch, [V8 Version 7.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.5), ankündigen zu dürfen. Dieser befindet sich bis zur Veröffentlichung in Kooperation mit Chrome 75 Stable in mehreren Wochen in der Beta-Phase. V8 v7.5 ist vollgepackt mit allerlei Entwickler-freundlichen Neuerungen. In diesem Beitrag geben wir eine Vorschau auf einige Highlights vor der Veröffentlichung.
 

@@ -2,7 +2,7 @@
 permalink: /grant/
 title: Beca de Investigación
 layout: layouts/base.njk
-description: 'La beca de investigación V8 financia investigaciones sobre lenguajes de programación y sistemas de software basados en V8, JavaScript y WebAssembly.'
+description: "La beca de investigación V8 financia investigaciones sobre lenguajes de programación y sistemas de software basados en V8, JavaScript y WebAssembly."
 ---
 # Beca de Investigación V8
 

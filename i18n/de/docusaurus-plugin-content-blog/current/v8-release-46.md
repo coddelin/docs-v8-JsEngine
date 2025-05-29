@@ -1,10 +1,10 @@
 ---
-title: 'V8 Veröffentlichung v4.6'
-author: 'das V8-Team'
+title: "V8 Veröffentlichung v4.6"
+author: "das V8-Team"
 date: 2015-08-28 13:33:37
 tags:
   - Veröffentlichung
-description: 'V8 v4.6 kommt mit reduzierten Rucklern und Unterstützung für neue ES2015-Sprachfunktionen.'
+description: "V8 v4.6 kommt mit reduzierten Rucklern und Unterstützung für neue ES2015-Sprachfunktionen."
 ---
 Etwa alle sechs Wochen erstellen wir im Rahmen unseres [Veröffentlichungsprozesses](https://v8.dev/docs/release-process) einen neuen Branch von V8. Jede Version wird unmittelbar vor dem Branch von Chrome für einen Chrome-Beta-Meilenstein vom Git-Master von V8 abgezweigt. Heute freuen wir uns, unseren neuesten Branch [V8 Version 4.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.6) vorzustellen, der sich in der Beta-Phase befinden wird, bis er in Abstimmung mit Chrome 46 Stable freigegeben wird. V8 4.6 ist vollgepackt mit allerlei Neuerungen für Entwickler, daher möchten wir Ihnen einen Vorgeschmack auf einige Highlights geben, die in den kommenden Wochen veröffentlicht werden.
 

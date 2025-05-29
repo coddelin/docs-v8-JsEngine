@@ -1,13 +1,13 @@
 ---
-title: 'Bloques de inicialización estática de clases'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "Bloques de inicialización estática de clases"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2021-03-30
 tags:
   - ECMAScript
-description: 'Las clases de JavaScript obtienen una sintaxis dedicada para la inicialización estática.'
-tweet: '1376925666780798989'
+description: "Las clases de JavaScript obtienen una sintaxis dedicada para la inicialización estática."
+tweet: "1376925666780798989"
 ---
 La nueva sintaxis del bloque de inicialización estática de clases permite a los desarrolladores reunir el código que debe ejecutarse una vez para una definición de clase dada y colocarlo en un solo lugar. Considere el siguiente ejemplo, donde un generador de números pseudoaleatorios utiliza un bloque estático para inicializar un grupo de entropía una vez, cuando se evalúa la definición de `class MyPRNG`.
 

@@ -1,15 +1,15 @@
 ---
-title: '`Intl.NumberFormat`'
-author: 'Маттиас Байненс ([@mathias](https://twitter.com/mathias)) и Шейн Ф. Карр'
+title: "`Intl.NumberFormat`"
+author: "Маттиас Байненс ([@mathias](https://twitter.com/mathias)) и Шейн Ф. Карр"
 avatars:
-  - 'mathias-bynens'
-  - 'shane-carr'
+  - "mathias-bynens"
+  - "shane-carr"
 date: 2019-08-08
 tags:
   - Intl
   - io19
-description: 'Intl.NumberFormat позволяет форматировать числа в соответствии с локалью.'
-tweet: '1159476407329873920'
+description: "Intl.NumberFormat позволяет форматировать числа в соответствии с локалью."
+tweet: "1159476407329873920"
 ---
 Вы, возможно, уже знакомы с API `Intl.NumberFormat`, так как его поддержка существует в современных средах уже некоторое время.
 

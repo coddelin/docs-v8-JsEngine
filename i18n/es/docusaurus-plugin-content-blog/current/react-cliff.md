@@ -1,15 +1,15 @@
 ---
-title: 'La historia de un límite de rendimiento en V8 para React'
-author: 'Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) y Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "La historia de un límite de rendimiento en V8 para React"
+author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) y Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'benedikt-meurer'
-  - 'mathias-bynens'
+  - "benedikt-meurer"
+  - "mathias-bynens"
 date: 2019-08-28 16:45:00
 tags:
   - internals
   - presentaciones
-description: 'Este artículo describe cómo V8 elige representaciones optimizadas en memoria para varios valores de JavaScript, y cómo eso impacta en la maquinaria de formas. Todo esto ayuda a explicar un reciente límite de rendimiento en V8 en el núcleo de React.'
-tweet: '1166723359696130049'
+description: "Este artículo describe cómo V8 elige representaciones optimizadas en memoria para varios valores de JavaScript, y cómo eso impacta en la maquinaria de formas. Todo esto ayuda a explicar un reciente límite de rendimiento en V8 en el núcleo de React."
+tweet: "1166723359696130049"
 ---
 [Anteriormente](https://mathiasbynens.be/notes/shapes-ics), discutimos cómo los motores de JavaScript optimizan el acceso a objetos y arreglos mediante el uso de Shapes y Inline Caches, y exploramos [cómo los motores aceleran el acceso a las propiedades de prototipo](https://mathiasbynens.be/notes/prototypes) en particular. Este artículo describe cómo V8 elige representaciones en memoria óptimas para varios valores de JavaScript, y cómo eso impacta en la maquinaria de formas, todo lo cual ayuda a explicar [un reciente límite de rendimiento en V8 en el núcleo de React](https://github.com/facebook/react/issues/14365).
 

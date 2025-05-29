@@ -1,15 +1,15 @@
 ---
-title: 'Pointer-Komprimierung in V8'
-author: 'Igor Sheludko und Santiago Aboy Solanes, *die* Pointer-Komprimierer'
+title: "Pointer-Komprimierung in V8"
+author: "Igor Sheludko und Santiago Aboy Solanes, *die* Pointer-Komprimierer"
 avatars:
-  - 'igor-sheludko'
-  - 'santiago-aboy-solanes'
+  - "igor-sheludko"
+  - "santiago-aboy-solanes"
 date: 2020-03-30
 tags:
   - internals
   - memory
-description: 'V8 hat seine Heap-Größe um bis zu 43 % reduziert! Erfahren Sie, wie dies in „Pointer-Komprimierung in V8“ gelingt!'
-tweet: '1244653541379182596'
+description: "V8 hat seine Heap-Größe um bis zu 43 % reduziert! Erfahren Sie, wie dies in „Pointer-Komprimierung in V8“ gelingt!"
+tweet: "1244653541379182596"
 ---
 Es gibt einen ständigen Kampf zwischen Speicher und Leistung. Als Nutzer wünschen wir uns, dass Dinge sowohl schnell sind als auch möglichst wenig Speicher verbrauchen. Leider geht eine Leistungssteigerung gewöhnlich mit einem höheren Speicherverbrauch einher (und umgekehrt).
 

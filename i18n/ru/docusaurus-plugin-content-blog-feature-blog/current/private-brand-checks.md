@@ -1,13 +1,13 @@
 ---
-title: 'Проверка наличия приватных свойств, например, `#foo in obj`'
-author: 'Марья Хёльтта ([@marjakh](https://twitter.com/marjakh))'
+title: "Проверка наличия приватных свойств, например, `#foo in obj`"
+author: "Марья Хёльтта ([@marjakh](https://twitter.com/marjakh))"
 avatars:
-  - 'marja-holtta'
+  - "marja-holtta"
 date: 2021-04-14
 tags:
   - ECMAScript
-description: 'Проверка приватных свойств позволяет тестировать наличие приватного поля в объекте.'
-tweet: '1382327454975590401'
+description: "Проверка приватных свойств позволяет тестировать наличие приватного поля в объекте."
+tweet: "1382327454975590401"
 ---
 
 Оператор [`in`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in) можно использовать для проверки, существует ли указанное свойство в объекте (или в любом объекте его цепочки прототипов):

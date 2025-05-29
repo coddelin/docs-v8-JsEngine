@@ -1,6 +1,6 @@
 ---
-title: 'V8 Torque ビルトイン'
-description: 'このドキュメントはTorqueビルトインの作成に関する入門として、V8開発者を対象としています。'
+title: "V8 Torque ビルトイン"
+description: "このドキュメントはTorqueビルトインの作成に関する入門として、V8開発者を対象としています。"
 ---
 このドキュメントはTorqueビルトインの作成に関する入門として、V8開発者を対象としています。TorqueはCodeStubAssemblerの代わりとして、新しいビルトインを実装するための推奨方法です。[CodeStubAssembler builtins](/docs/csa-builtins) を参照して、このガイドのCSAバージョンをご覧ください。
 

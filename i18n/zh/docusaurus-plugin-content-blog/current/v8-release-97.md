@@ -1,13 +1,13 @@
 ---
-title: 'V8发布版本v9.7'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "V8发布版本v9.7"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-11-05
 tags:
  - release
-description: 'V8发布版本v9.7为数组提供了新的JavaScript方法用于从后向前搜索元素。'
-tweet: ''
+description: "V8发布版本v9.7为数组提供了新的JavaScript方法用于从后向前搜索元素。"
+tweet: ""
 ---
 每四周，我们都会根据[发布流程](https://v8.dev/docs/release-process)创建一个新的V8分支。每个版本都是在Chrome Beta里程碑之前从V8的Git主分支创建的分支。今天我们很高兴宣布我们最新的分支，[V8版本9.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.7)，目前处于测试版状态，并将在几周后与Chrome 97稳定版同步发布。V8 v9.7包含了各种面向开发者的功能亮点。这篇文章提供了即将发布的一些重点预览。
 

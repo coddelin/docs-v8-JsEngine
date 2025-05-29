@@ -1,6 +1,6 @@
 ---
-title: 'Eingebaute Funktionen'
-description: 'Dieses Dokument erklärt, was „Built-ins“ in V8 sind.'
+title: "Eingebaute Funktionen"
+description: "Dieses Dokument erklärt, was „Built-ins“ in V8 sind."
 ---
 Eingebaute Funktionen in V8 kommen je nach Funktionalität, Leistungsanforderungen und manchmal auch aufgrund historischer Entwicklungen in verschiedenen Ausführungen hinsichtlich ihrer Implementierung vor.
 

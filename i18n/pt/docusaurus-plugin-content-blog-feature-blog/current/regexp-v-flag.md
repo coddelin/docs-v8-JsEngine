@@ -1,15 +1,15 @@
 ---
-title: 'Flag `v` do RegExp com notação de conjunto e propriedades de strings'
-author: 'Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer, e Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Flag `v` do RegExp com notação de conjunto e propriedades de strings"
+author: "Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer, e Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mark-davis'
-  - 'markus-scherer'
-  - 'mathias-bynens'
+  - "mark-davis"
+  - "markus-scherer"
+  - "mathias-bynens"
 date: 2022-06-27
 tags:
   - ECMAScript
-description: 'A nova flag `v` do RegExp habilita o modo `unicodeSets`, desbloqueando suporte para classes de caracteres estendidas, incluindo propriedades Unicode de strings, notação de conjuntos e correspondência melhorada para maiúsculas e minúsculas.'
-tweet: '1541419838513594368'
+description: "A nova flag `v` do RegExp habilita o modo `unicodeSets`, desbloqueando suporte para classes de caracteres estendidas, incluindo propriedades Unicode de strings, notação de conjuntos e correspondência melhorada para maiúsculas e minúsculas."
+tweet: "1541419838513594368"
 ---
 JavaScript suporta expressões regulares desde o ECMAScript 3 (1999). Dezesseis anos depois, o ES2015 introduziu [modo Unicode (a flag `u`)](https://mathiasbynens.be/notes/es6-unicode-regex), [modo sticky (a flag `y`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky#description), e [o getter `RegExp.prototype.flags`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/flags). Três anos depois, o ES2018 introduziu [modo `dotAll` (a flag `s`)](https://mathiasbynens.be/notes/es-regexp-proposals#dotAll), [afirmações lookbehind](https://mathiasbynens.be/notes/es-regexp-proposals#lookbehinds), [grupos de captura nomeados](https://mathiasbynens.be/notes/es-regexp-proposals#named-capture-groups), e [escapes de propriedades de caracteres Unicode](https://mathiasbynens.be/notes/es-unicode-property-escapes). E no ES2020, [`String.prototype.matchAll`](https://v8.dev/features/string-matchall) tornou mais fácil trabalhar com expressões regulares. As expressões regulares do JavaScript evoluíram bastante e continuam melhorando.
 

@@ -1,15 +1,15 @@
 ---
-title: '`Intl.RelativeTimeFormat`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Intl.RelativeTimeFormat`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-10-22
 tags:
   - Intl
   - Node.js 12
   - io19
-description: 'Intl.RelativeTimeFormat ermöglicht die lokalisierte Formatierung relativer Zeitangaben, ohne die Leistung zu beeinträchtigen.'
-tweet: '1054387117571354624'
+description: "Intl.RelativeTimeFormat ermöglicht die lokalisierte Formatierung relativer Zeitangaben, ohne die Leistung zu beeinträchtigen."
+tweet: "1054387117571354624"
 ---
 Moderne Webanwendungen verwenden häufig Phrasen wie „gestern“, „vor 42 Sekunden“ oder „in 3 Monaten“ anstelle vollständiger Datumsangaben und Zeitstempel. Solche _relativen Zeitformatierungswerte_ sind so gebräuchlich geworden, dass mehrere beliebte Bibliotheken Utility-Funktionen bereitstellen, die sie auf lokalisierte Weise formatieren. (Beispiele sind [Moment.js](https://momentjs.com/), [Globalize](https://github.com/globalizejs/globalize) und [date-fns](https://date-fns.org/docs/).)
 

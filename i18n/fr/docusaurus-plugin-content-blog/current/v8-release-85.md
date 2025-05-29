@@ -1,8 +1,8 @@
 ---
-title: 'Publication V8 v8.5'
-author: 'Zeynep Cankara, suivant quelques cartes'
+title: "Publication V8 v8.5"
+author: "Zeynep Cankara, suivant quelques cartes"
 avatars:
- - 'zeynep-cankara'
+ - "zeynep-cankara"
 date: 2020-07-21
 tags:
  - publication

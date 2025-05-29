@@ -1,6 +1,6 @@
 ---
-title: 'Maps (Verborgene Klassen) in V8'
-description: 'Wie verfolgt und optimiert V8 die wahrgenommene Struktur Ihrer Objekte?'
+title: "Maps (Verborgene Klassen) in V8"
+description: "Wie verfolgt und optimiert V8 die wahrgenommene Struktur Ihrer Objekte?"
 ---
 
 Lassen Sie uns zeigen, wie V8 seine verborgenen Klassen aufbaut. Die wichtigsten Datenstrukturen sind:

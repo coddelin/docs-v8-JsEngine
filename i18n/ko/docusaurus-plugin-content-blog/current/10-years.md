@@ -1,13 +1,13 @@
 ---
-title: 'V8 출시 10주년 기념'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), V8 역사가'
+title: "V8 출시 10주년 기념"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), V8 역사가"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-09-11 19:00:00
 tags:
   - benchmarks
-description: 'V8 프로젝트의 지난 10년 동안 주요 이정표와 프로젝트가 비밀로 유지되었던 초기 시절에 대한 개요입니다.'
-tweet: '1039559389324238850'
+description: "V8 프로젝트의 지난 10년 동안 주요 이정표와 프로젝트가 비밀로 유지되었던 초기 시절에 대한 개요입니다."
+tweet: "1039559389324238850"
 ---
 이번 달은 Google Chrome과 V8 프로젝트가 출시된 지 10주년이 되는 달입니다. 이 글은 V8 프로젝트의 지난 10년 동안 주요 이정표와 프로젝트가 여전히 비밀로 유지되었던 초기 시절에 대한 개요를 제공합니다.
 

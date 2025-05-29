@@ -1,14 +1,14 @@
 ---
-title: 'Objekt Rest- und Spread-Eigenschaften'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Objekt Rest- und Spread-Eigenschaften"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-06-06
 tags:
   - ECMAScript
   - ES2018
-description: 'Dieser Artikel erklärt, wie Objekt-Rest- und Spread-Eigenschaften in JavaScript funktionieren, und geht noch einmal auf Array-Rest- und Spread-Elemente ein.'
-tweet: '890269994688315394'
+description: "Dieser Artikel erklärt, wie Objekt-Rest- und Spread-Eigenschaften in JavaScript funktionieren, und geht noch einmal auf Array-Rest- und Spread-Elemente ein."
+tweet: "890269994688315394"
 ---
 Bevor wir über _Objekt-Rest- und Spread-Eigenschaften_ sprechen, machen wir eine Reise in die Vergangenheit und erinnern uns an ein sehr ähnliches Merkmal.
 

@@ -1,6 +1,6 @@
 ---
-title: '在 Arm64 Linux 上编译'
-description: '在 Arm64 Linux 上本地构建 V8 的技巧和方法'
+title: "在 Arm64 Linux 上编译"
+description: "在 Arm64 Linux 上本地构建 V8 的技巧和方法"
 ---
 如果你已阅读如何在 [检出代码](/docs/source-code) 和 [构建](/docs/build-gn) V8 的说明，但你的机器既不是 x86 也不是 Apple Silicon Mac，你可能会遇到一些麻烦，因为构建系统会下载原生二进制文件，但无法运行它们。然而，即使使用 Arm64 Linux 机器进行 V8 工作 __并非官方支持__，克服这些障碍其实很简单。
 

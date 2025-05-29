@@ -1,13 +1,13 @@
 ---
-title: 'V8リリース v9.6'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "V8リリース v9.6"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-10-13
 tags:
  - release
-description: 'V8リリース v9.6 では、WebAssemblyへの参照型のサポートが追加されました。'
-tweet: '1448262079476076548'
+description: "V8リリース v9.6 では、WebAssemblyへの参照型のサポートが追加されました。"
+tweet: "1448262079476076548"
 ---
 毎月4週間ごとに、私たちは[リリースプロセス](https://v8.dev/docs/release-process)の一環として、新しいV8のブランチを作成しています。各バージョンは、Chrome Betaマイルストーンの直前にV8のGitマスターから分岐されます。本日、最新のブランチ [V8バージョン9.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.6) を発表できて大変嬉しいです。このバージョンは、数週間後にChrome 96の安定版と連携してリリースされるまでベータ版となります。V8 v9.6は、開発者向けのさまざまな新機能を備えています。この投稿では、リリースに先立っていくつかの注目すべき点を予習としてご紹介します。
 

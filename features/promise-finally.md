@@ -1,14 +1,14 @@
 ---
-title: '`Promise.prototype.finally`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Promise.prototype.finally`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-10-23
 tags:
   - ECMAScript
   - ES2018
-description: 'Promise.prototype.finally enables registering a callback to be invoked when a promise is settled (i.e. either fulfilled or rejected).'
-tweet: '922459978857824261'
+description: "Promise.prototype.finally enables registering a callback to be invoked when a promise is settled (i.e. either fulfilled or rejected)."
+tweet: "922459978857824261"
 ---
 `Promise.prototype.finally` enables registering a callback to be invoked when a promise is _settled_ (i.e. either fulfilled or rejected).
 

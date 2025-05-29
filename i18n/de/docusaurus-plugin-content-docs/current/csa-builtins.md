@@ -1,6 +1,6 @@
 ---
-title: 'CodeStubAssembler-Builtins'
-description: 'Dieses Dokument dient als Einführung in das Schreiben von CodeStubAssembler-Builtins und richtet sich an V8-Entwickler.'
+title: "CodeStubAssembler-Builtins"
+description: "Dieses Dokument dient als Einführung in das Schreiben von CodeStubAssembler-Builtins und richtet sich an V8-Entwickler."
 ---
 Dieses Dokument dient als Einführung in das Schreiben von CodeStubAssembler-Builtins und richtet sich an V8-Entwickler.
 

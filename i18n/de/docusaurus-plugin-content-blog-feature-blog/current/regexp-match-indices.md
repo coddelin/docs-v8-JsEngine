@@ -1,14 +1,14 @@
 ---
-title: 'RegExp-Match-Indizes'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), regelmäßig neue Features ausdrückend'
+title: "RegExp-Match-Indizes"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), regelmäßig neue Features ausdrückend"
 avatars:
-  - 'maya-armyanova'
+  - "maya-armyanova"
 date: 2019-12-17
 tags:
   - ECMAScript
   - Node.js 16
-description: 'RegExp-Match-Indizes bieten `start`- und `end`-Indizes für jede gefangene Gruppe.'
-tweet: '1206970814400270338'
+description: "RegExp-Match-Indizes bieten `start`- und `end`-Indizes für jede gefangene Gruppe."
+tweet: "1206970814400270338"
 ---
 JavaScript ist nun mit einer neuen Verbesserung für reguläre Ausdrücke ausgestattet, genannt „Match-Indizes“. Stellen Sie sich vor, Sie möchten ungültige Variablennamen in JavaScript-Code finden, die mit reservierten Wörtern übereinstimmen, und ein Caret sowie eine „Unterstreichung“ unter dem Variablennamen anzeigen, wie:
 

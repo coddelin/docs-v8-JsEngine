@@ -1,14 +1,14 @@
 ---
-title: '옵셔널 체이닝'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 옵셔널 체인의 브레이커'
+title: "옵셔널 체이닝"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 옵셔널 체인의 브레이커"
 avatars:
-  - 'maya-armyanova'
+  - "maya-armyanova"
 date: 2019-08-27
 tags:
   - ECMAScript
   - ES2020
-description: '옵셔널 체이닝은 읽기 쉽고 간결한 표현으로 빌트인 널리쉬(nullish) 체크를 포함한 속성 접근을 가능하게 합니다.'
-tweet: '1166360971914481669'
+description: "옵셔널 체이닝은 읽기 쉽고 간결한 표현으로 빌트인 널리쉬(nullish) 체크를 포함한 속성 접근을 가능하게 합니다."
+tweet: "1166360971914481669"
 ---
 JavaScript에서 긴 속성 접근 체인은 오류를 일으키기 쉽습니다. 이 중 하나라도 `null` 또는 `undefined`(“nullish” 값으로 알려짐)일 수 있기 때문입니다. 각 단계에서 속성 존재 여부를 확인하는 것은 쉽게 깊이 중첩된 `if`-문 구조 또는 속성 접근 체인을 복제하는 긴 `if`-조건으로 바뀔 수 있습니다:
 

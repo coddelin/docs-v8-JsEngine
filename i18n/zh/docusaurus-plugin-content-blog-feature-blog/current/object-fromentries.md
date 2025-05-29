@@ -1,15 +1,15 @@
 ---
-title: 'Object.fromEntries'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), JavaScript 爱好者'
+title: "Object.fromEntries"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), JavaScript 爱好者"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-18
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: 'Object.fromEntries 是内置 JavaScript 库的一个有用补充，和 Object.entries 相得益彰。'
-tweet: '1140993821897121796'
+description: "Object.fromEntries 是内置 JavaScript 库的一个有用补充，和 Object.entries 相得益彰。"
+tweet: "1140993821897121796"
 ---
 `Object.fromEntries` 是内置 JavaScript 库的一个很有用的补充。在解释它的作用之前，先了解一下已有的 `Object.entries` API 会有所帮助。
 

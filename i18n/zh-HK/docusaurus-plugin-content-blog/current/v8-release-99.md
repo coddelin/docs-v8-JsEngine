@@ -1,13 +1,13 @@
 ---
-title: 'V8 發佈 v9.9'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 在他的 99% 時間代碼中'
+title: "V8 發佈 v9.9"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 在他的 99% 時間代碼中"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2022-01-31
 tags:
  - release
-description: 'V8 發佈 v9.9 帶來了全新的國際化 API。'
-tweet: '1488190967727411210'
+description: "V8 發佈 v9.9 帶來了全新的國際化 API。"
+tweet: "1488190967727411210"
 ---
 每隔四週，我們就會按照我們的[發佈流程](https://v8.dev/docs/release-process)創建一個新的 V8 分支。每個版本都會在 Chrome 測試版里程碑之前，從 V8 的 Git 主分支分出。今天我們很高興地宣布我們的新分支，[V8 版本 9.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.9)，它將處於測試階段，直到幾週後與 Chrome 99 正式穩定版同期發佈。V8 v9.9 包含了各種面向開發人員的好功能。這篇文章提前介紹了一些亮點功能，迎接發佈。
 

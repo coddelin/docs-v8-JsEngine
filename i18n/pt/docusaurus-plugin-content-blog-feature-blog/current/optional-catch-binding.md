@@ -1,14 +1,14 @@
 ---
-title: 'Vínculo opcional de `catch`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Vínculo opcional de `catch`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2018-03-27
 tags:
   - ECMAScript
   - ES2019
-description: 'No ES2019, `catch` agora pode ser usado sem um parâmetro.'
-tweet: '956209997808939008'
+description: "No ES2019, `catch` agora pode ser usado sem um parâmetro."
+tweet: "956209997808939008"
 ---
 A cláusula `catch` de instruções `try` costumava exigir um vínculo:
 

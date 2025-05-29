@@ -1,6 +1,6 @@
 ---
-title: 'JavaScript/WebAssemblyの言語機能の実装と出荷'
-description: 'この文書は、V8でJavaScriptまたはWebAssemblyの言語機能を実装し出荷するプロセスについて説明します。'
+title: "JavaScript/WebAssemblyの言語機能の実装と出荷"
+description: "この文書は、V8でJavaScriptまたはWebAssemblyの言語機能を実装し出荷するプロセスについて説明します。"
 ---
 一般的に、V8はJavaScriptおよびWebAssemblyの言語機能に関して、[既に定義された合意に基づく標準のためのBlink Intentプロセス](https://www.chromium.org/blink/launching-features/#process-existing-standard)に従います。V8固有の補足事項は以下に示されています。補足事項で特に指示がない限り、Blink Intentプロセスに従ってください。
 

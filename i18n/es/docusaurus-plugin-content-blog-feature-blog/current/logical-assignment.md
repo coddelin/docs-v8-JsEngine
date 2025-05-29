@@ -1,15 +1,15 @@
 ---
-title: 'Asignación lógica'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "Asignación lógica"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2020-05-07
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: 'JavaScript ahora admite asignación compuesta con operaciones lógicas.'
-tweet: '1258387483823345665'
+description: "JavaScript ahora admite asignación compuesta con operaciones lógicas."
+tweet: "1258387483823345665"
 ---
 JavaScript admite una gama de [operadores de asignación compuesta](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators) que permiten a los programadores expresar de manera sucinta una operación binaria junto con la asignación. Actualmente, solo se admiten operaciones matemáticas o de bits.
 

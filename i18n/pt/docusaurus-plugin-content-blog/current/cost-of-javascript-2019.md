@@ -1,15 +1,15 @@
 ---
-title: 'O custo do JavaScript em 2019'
-author: 'Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)), Faxineiro de JavaScript, e Mathias Bynens ([@mathias](https://twitter.com/mathias)), Libertador da Thread Principal'
+title: "O custo do JavaScript em 2019"
+author: "Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)), Faxineiro de JavaScript, e Mathias Bynens ([@mathias](https://twitter.com/mathias)), Libertador da Thread Principal"
 avatars:
-  - 'addy-osmani'
-  - 'mathias-bynens'
+  - "addy-osmani"
+  - "mathias-bynens"
 date: 2019-06-25
 tags:
   - internos
   - análise sintática
-description: 'Os principais custos do processamento de JavaScript são o tempo de download e de execução de CPU.'
-tweet: '1143531042361487360'
+description: "Os principais custos do processamento de JavaScript são o tempo de download e de execução de CPU."
+tweet: "1143531042361487360"
 ---
 :::note
 **Nota:** Se você prefere assistir a uma apresentação em vez de ler artigos, aproveite o vídeo abaixo! Caso contrário, pule o vídeo e continue lendo.

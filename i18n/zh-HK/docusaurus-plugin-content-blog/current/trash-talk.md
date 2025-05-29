@@ -1,15 +1,15 @@
 ---
-title: '垃圾話：奧里諾科垃圾回收器'
-author: 'Peter ‘垃圾處理者’ Marshall ([@hooraybuffer](https://twitter.com/hooraybuffer))'
+title: "垃圾話：奧里諾科垃圾回收器"
+author: "Peter ‘垃圾處理者’ Marshall ([@hooraybuffer](https://twitter.com/hooraybuffer))"
 avatars:
-  - 'peter-marshall'
+  - "peter-marshall"
 date: 2019-01-03 17:45:34
 tags:
   - 內部機制
   - 記憶體
   - 演講
-description: '奧里諾科，V8 的垃圾回收器，從一個順序性的全程停頓實現演變為一個主要併行和並發的回收器，並具有增量回退功能。'
-tweet: '1080867305532416000'
+description: "奧里諾科，V8 的垃圾回收器，從一個順序性的全程停頓實現演變為一個主要併行和並發的回收器，並具有增量回退功能。"
+tweet: "1080867305532416000"
 ---
 在過去幾年中，V8 的垃圾回收器（GC）發生了很大的變化。奧里諾科項目將一個順序性的全程停頓垃圾回收器轉變為一個主要併行並發且具有增量回退功能的回收器。
 

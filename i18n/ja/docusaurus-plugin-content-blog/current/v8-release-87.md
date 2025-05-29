@@ -1,13 +1,13 @@
 ---
-title: 'V8リリースv8.7'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), V8の旗手'
+title: "V8リリースv8.7"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), V8の旗手"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2020-10-23
 tags:
  - リリース
-description: 'V8リリースv8.7はネイティブ呼び出し用の新しいAPI、Atomics.waitAsync、バグ修正、パフォーマンス改善をもたらします。'
-tweet: '1319654229863182338'
+description: "V8リリースv8.7はネイティブ呼び出し用の新しいAPI、Atomics.waitAsync、バグ修正、パフォーマンス改善をもたらします。"
+tweet: "1319654229863182338"
 ---
 V8では、6週間ごとに新しいブランチを作成する[リリースプロセス](https://v8.dev/docs/release-process)の一環として、新しいバージョンを提供しています。各バージョンは、Chromeのベータ版マイルストーンの直前にV8のGitマスターからブランチが作成されます。本日、最新のブランチ[V8バージョン8.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.7)を発表できることを嬉しく思います。このバージョンは数週間後にChrome 87の安定版に合わせてリリースされるまでベータ版にあります。V8 v8.7は、開発者向けの数多くの機能が盛り込まれています。この投稿では、リリースに先駆けていくつかのハイライトを紹介します。
 

@@ -1,9 +1,9 @@
 ---
-title: 'Rastreamento de slack no V8'
-author: 'Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), renomado mestre do *slack*'
-description: 'Um olhar detalhado sobre o mecanismo de rastreamento de slack no V8.'
+title: "Rastreamento de slack no V8"
+author: "Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), renomado mestre do *slack*"
+description: "Um olhar detalhado sobre o mecanismo de rastreamento de slack no V8."
 avatars:
- - 'michael-stanton'
+ - "michael-stanton"
 date: 2020-09-24 14:00:00
 tags:
  - internals

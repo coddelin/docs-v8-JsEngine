@@ -1,13 +1,13 @@
 ---
-title: 'Assertions de lookbehind avec RegExp'
-author: 'Yang Guo, Ingénieur en expressions régulières'
+title: "Assertions de lookbehind avec RegExp"
+author: "Yang Guo, Ingénieur en expressions régulières"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2016-02-26 13:33:37
 tags:
   - ECMAScript
   - RegExp
-description: 'Les expressions régulières en JavaScript gagnent de nouvelles fonctionnalités : les assertions de lookbehind.'
+description: "Les expressions régulières en JavaScript gagnent de nouvelles fonctionnalités : les assertions de lookbehind."
 ---
 Introduites avec la troisième édition de la spécification ECMA-262, les expressions régulières font partie de JavaScript depuis 1999. En termes de fonctionnalité et d'expressivité, l'implémentation des expressions régulières en JavaScript reflète globalement celle d'autres langages de programmation.
 

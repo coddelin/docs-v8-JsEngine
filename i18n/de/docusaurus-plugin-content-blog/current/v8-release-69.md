@@ -1,11 +1,11 @@
 ---
-title: 'V8-Version v6.9'
-author: 'das V8-Team'
+title: "V8-Version v6.9"
+author: "das V8-Team"
 date: 2018-08-07 13:33:37
 tags:
   - Veröffentlichung
-description: 'V8 v6.9 bietet reduzierten Speicherverbrauch durch eingebettete Built-ins, schnelleren Start von WebAssembly durch Liftoff, bessere Leistung von DataView und WeakMap und vieles mehr!'
-tweet: '1026825606003150848'
+description: "V8 v6.9 bietet reduzierten Speicherverbrauch durch eingebettete Built-ins, schnelleren Start von WebAssembly durch Liftoff, bessere Leistung von DataView und WeakMap und vieles mehr!"
+tweet: "1026825606003150848"
 ---
 Alle sechs Wochen erstellen wir einen neuen Branch von V8 im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process). Jede Version wird direkt vor einem Chrome-Beta-Meilenstein von V8s Git-Master abgespalten. Heute freuen wir uns, unseren neuesten Branch, [V8-Version 6.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.9), ankündigen zu können, der in Beta ist, bis er in einigen Wochen zusammen mit Chrome 69 Stable veröffentlicht wird. V8 v6.9 ist vollgepackt mit allerlei Entwickler-freundlichen Features. Dieser Beitrag bietet eine Vorschau auf einige Highlights in Vorfreude auf die Veröffentlichung.
 

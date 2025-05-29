@@ -1,6 +1,6 @@
 ---
-title: 'Ein Committer werden'
-description: 'Wie wird man ein V8-Committer? Dieses Dokument erklärt es.'
+title: "Ein Committer werden"
+description: "Wie wird man ein V8-Committer? Dieses Dokument erklärt es."
 ---
 Technisch gesehen sind Committer Personen, die Schreibzugriff auf das V8-Repository haben. Alle Patches müssen von mindestens zwei Committern (einschließlich des Autors) überprüft werden. Unabhängig von dieser Anforderung müssen Patches auch von einem OWNER erstellt oder überprüft werden.
 

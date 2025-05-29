@@ -1,10 +1,10 @@
 ---
-title: 'Einführung von Ignition und TurboFan'
-author: 'das V8-Team'
+title: "Einführung von Ignition und TurboFan"
+author: "das V8-Team"
 date: 2017-05-15 13:33:37
 tags:
   - internals
-description: 'V8 v5.9 kommt mit einer brandneuen JavaScript-Ausführungspipeline, die auf dem Ignition-Interpreter und dem TurboFan-optimierenden Compiler basiert.'
+description: "V8 v5.9 kommt mit einer brandneuen JavaScript-Ausführungspipeline, die auf dem Ignition-Interpreter und dem TurboFan-optimierenden Compiler basiert."
 ---
 Heute freuen wir uns, die Einführung einer neuen JavaScript-Ausführungspipeline für V8 v5.9 bekannt zu geben, die in Chrome Stable in v59 verfügbar sein wird. Mit der neuen Pipeline erzielen wir große Leistungsverbesserungen und erhebliche Speicherersparnisse bei realen JavaScript-Anwendungen. Wir werden die Zahlen am Ende dieses Beitrags genauer diskutieren, aber zuerst werfen wir einen Blick auf die Pipeline selbst.
 

@@ -1,15 +1,15 @@
 ---
-title: '2019 年 JavaScript 的成本'
-author: 'Addy Osmani ([@addyosmani](https://twitter.com/addyosmani))，JavaScript 清洁工，以及 Mathias Bynens ([@mathias](https://twitter.com/mathias))，主线程解放者'
+title: "2019 年 JavaScript 的成本"
+author: "Addy Osmani ([@addyosmani](https://twitter.com/addyosmani))，JavaScript 清洁工，以及 Mathias Bynens ([@mathias](https://twitter.com/mathias))，主线程解放者"
 avatars:
-  - 'addy-osmani'
-  - 'mathias-bynens'
+  - "addy-osmani"
+  - "mathias-bynens"
 date: 2019-06-25
 tags:
   - 内部
   - 解析
-description: '处理 JavaScript 的主要成本是下载和 CPU 执行时间。'
-tweet: '1143531042361487360'
+description: "处理 JavaScript 的主要成本是下载和 CPU 执行时间。"
+tweet: "1143531042361487360"
 ---
 :::note
 **注意:** 如果你更喜欢观看演讲而不是阅读文章，请欣赏以下视频！如果不是，请跳过视频继续阅读。

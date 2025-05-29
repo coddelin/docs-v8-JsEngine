@@ -1,13 +1,13 @@
 ---
-title: 'Vorübergehende Deaktivierung der Escape-Analyse'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), Sandbox-Escape-Analytiker'
+title: "Vorübergehende Deaktivierung der Escape-Analyse"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), Sandbox-Escape-Analytiker"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-09-22 13:33:37
 tags:
   - sicherheit
-description: 'Wir haben die Escape-Analyse von V8 in Chrome 61 deaktiviert, um Benutzer vor einer Sicherheitslücke zu schützen.'
-tweet: '911339802884284416'
+description: "Wir haben die Escape-Analyse von V8 in Chrome 61 deaktiviert, um Benutzer vor einer Sicherheitslücke zu schützen."
+tweet: "911339802884284416"
 ---
 In JavaScript _entweicht_ ein zugewiesenes Objekt, wenn es von außerhalb der aktuellen Funktion zugänglich ist. Normalerweise weist V8 neue Objekte auf dem JavaScript-Heap zu, aber mithilfe der _Escape-Analyse_ kann ein optimierender Compiler feststellen, wann ein Objekt speziell behandelt werden kann, da seine Lebensdauer nachweislich an die Aktivierung der Funktion gebunden ist. Wenn die Referenz zu einem neu zugewiesenen Objekt die Funktion, die es erstellt, nicht verlässt, müssen JavaScript-Engines das Objekt nicht explizit auf dem Heap zuweisen. Sie können stattdessen die Werte des Objekts effektiv als lokale Variablen der Funktion behandeln. Dies ermöglicht wiederum verschiedene Optimierungen, wie das Speichern dieser Werte auf dem Stack oder in Registern oder in einigen Fällen das vollständige Weglassen der Werte. Objekte, die entweichen (genauer gesagt, Objekte, bei denen nicht bewiesen werden kann, dass sie nicht entweichen), müssen auf dem Heap zugewiesen werden.
 

@@ -1,6 +1,6 @@
 ---
-title: 'Compression des pointeurs dans Oilpan'
-author: 'Anton Bikineev et Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), désassembleurs ambulants'
+title: "Compression des pointeurs dans Oilpan"
+author: "Anton Bikineev et Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), désassembleurs ambulants"
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -10,7 +10,7 @@ tags:
   - mémoire
   - cppgc
 description: 'La compression des pointeurs dans Oilpan permet de compresser les pointeurs C++ et de réduire la taille de la mémoire dynamique jusqu'à 33%.'
-tweet: '1597274125780893697'
+tweet: "1597274125780893697"
 ---
 
 > Il est absolument idiot d'avoir des pointeurs 64 bits lorsque je compile un programme qui utilise moins de 4 gigaoctets de RAM. Lorsque de telles valeurs de pointeur apparaissent à l'intérieur d'une structure, elles ne font pas seulement perdre la moitié de la mémoire, elles jettent effectivement la moitié du cache.

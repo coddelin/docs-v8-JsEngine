@@ -1,15 +1,15 @@
 ---
-title: 'Numeric separators'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Numeric separators"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-05-28
 tags:
   - ECMAScript
   - ES2021
   - io19
-description: 'JavaScript now supports underscores as separators in numeric literals, increasing readability and maintainability of source code.'
-tweet: '1129073383931559936'
+description: "JavaScript now supports underscores as separators in numeric literals, increasing readability and maintainability of source code."
+tweet: "1129073383931559936"
 ---
 Large numeric literals are difficult for the human eye to parse quickly, especially when there are lots of repeating digits:
 

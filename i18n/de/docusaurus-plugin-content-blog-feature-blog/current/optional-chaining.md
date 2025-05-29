@@ -1,14 +1,14 @@
 ---
-title: 'Optionale Verkettung'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), Brecherin optionaler Verkettungen'
+title: "Optionale Verkettung"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), Brecherin optionaler Verkettungen"
 avatars:
-  - 'maya-armyanova'
+  - "maya-armyanova"
 date: 2019-08-27
 tags:
   - ECMAScript
   - ES2020
-description: 'Optionale Verkettung ermöglicht eine lesbare und prägnante Ausdrucksweise von Eigenschaftszugriffen mit integriertem Nullwert-Check.'
-tweet: '1166360971914481669'
+description: "Optionale Verkettung ermöglicht eine lesbare und prägnante Ausdrucksweise von Eigenschaftszugriffen mit integriertem Nullwert-Check."
+tweet: "1166360971914481669"
 ---
 Lange Reihen von Eigenschaftszugriffen in JavaScript können fehleranfällig sein, da jeder von ihnen den Wert `null` oder `undefined` (auch als „nullish“-Werte bekannt) ergeben könnte. Das Überprüfen der Existenz von Eigenschaften auf jedem Schritt verwandelt sich leicht in eine tief verschachtelte Struktur von `if`-Anweisungen oder eine lange `if`-Bedingung, die die Eigenschaftszugriffsreihe repliziert:
 

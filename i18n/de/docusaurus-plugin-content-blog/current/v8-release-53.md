@@ -1,10 +1,10 @@
 ---
-title: 'V8-Version v5.3'
-author: 'das V8-Team'
+title: "V8-Version v5.3"
+author: "das V8-Team"
 date: 2016-07-18 13:33:37
 tags:
   - Veröffentlichung
-description: 'V8 v5.3 bietet Leistungsverbesserungen und einen geringeren Speicherverbrauch.'
+description: "V8 v5.3 bietet Leistungsverbesserungen und einen geringeren Speicherverbrauch."
 ---
 Ungefähr alle sechs Wochen erstellen wir einen neuen Branch von V8 im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process). Jede Version wird direkt vor der Erstellung eines Chrome-Beta-Meilensteins aus dem Git-Master von V8 abgezweigt. Heute freuen wir uns, unseren neuesten Branch anzukündigen, [V8-Version 5.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.3), der bis zu seiner Veröffentlichung in Verbindung mit Chrome 53 Stable in der Beta bleiben wird. V8 v5.3 ist vollgepackt mit allerlei Entwicklerfunktionen, und wir möchten Ihnen eine Vorschau auf einige der Highlights geben, die in wenigen Wochen veröffentlicht werden.
 

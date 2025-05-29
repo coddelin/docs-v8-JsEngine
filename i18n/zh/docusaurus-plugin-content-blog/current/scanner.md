@@ -1,14 +1,14 @@
 ---
-title: '令人惊叹的快速解析，第1部分：优化扫描器'
-author: 'Toon Verwaest（[@tverwaes](https://twitter.com/tverwaes)），高效优化专家'
+title: "令人惊叹的快速解析，第1部分：优化扫描器"
+author: "Toon Verwaest（[@tverwaes](https://twitter.com/tverwaes)），高效优化专家"
 avatars:
-  - 'toon-verwaest'
+  - "toon-verwaest"
 date: 2019-03-25 13:33:37
 tags:
   - 内部机制
   - 解析
-tweet: '1110205101652787200'
-description: '解析器性能的核心是一个快速的扫描器。本文解释了V8的JavaScript扫描器最近如何提升到2.1倍的速度。'
+tweet: "1110205101652787200"
+description: "解析器性能的核心是一个快速的扫描器。本文解释了V8的JavaScript扫描器最近如何提升到2.1倍的速度。"
 ---
 为了运行JavaScript程序，需要对源代码进行处理，使V8能够理解它。V8首先将源代码解析为抽象语法树（AST），即表示程序结构的一组对象。这些AST随后会由Ignition编译成字节码。这些解析+编译阶段的性能很重要：V8在完成编译之前无法运行代码。在这一系列的博客文章中，我们专注于解析以及V8为实现快速解析器所做的工作。
 

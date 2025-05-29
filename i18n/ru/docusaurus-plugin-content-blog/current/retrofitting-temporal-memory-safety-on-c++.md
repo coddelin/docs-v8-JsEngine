@@ -1,6 +1,6 @@
 ---
-title: 'Модификация временной безопасности памяти в C++'
-author: 'Антон Бикинеев, Михаэль Липпаутц ([@mlippautz](https://twitter.com/mlippautz)), Ханнес Пайер ([@PayerHannes](https://twitter.com/PayerHannes))'
+title: "Модификация временной безопасности памяти в C++"
+author: "Антон Бикинеев, Михаэль Липпаутц ([@mlippautz](https://twitter.com/mlippautz)), Ханнес Пайер ([@PayerHannes](https://twitter.com/PayerHannes))"
 avatars:
   - anton-bikineev
   - michael-lippautz
@@ -10,7 +10,7 @@ tags:
   - internals
   - memory
   - security
-description: 'Устранение уязвимостей использования освобожденной памяти в Chrome с помощью сканирования кучи.'
+description: "Устранение уязвимостей использования освобожденной памяти в Chrome с помощью сканирования кучи."
 ---
 :::note
 **Примечание:** Этот пост был первоначально опубликован в [Google Security Blog](https://security.googleblog.com/2022/05/retrofitting-temporal-memory-safety-on-c.html).

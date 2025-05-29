@@ -1,5 +1,5 @@
 ---
-title: 'WebAssembly 개발자를 위한 코드 캐싱'
+title: "WebAssembly 개발자를 위한 코드 캐싱"
 author: '[Bill Budge](https://twitter.com/billb), 캐싱에 'Ca-ching!'을 더하다'
 avatars:
   - bill-budge
@@ -7,8 +7,8 @@ date: 2019-06-17
 tags:
   - WebAssembly
   - internals
-description: '이 글은 Chrome의 WebAssembly 코드 캐싱 시스템과, 대형 WebAssembly 모듈을 사용하는 애플리케이션의 로딩 속도를 높이기 위해 이를 어떻게 활용할 수 있는지를 설명합니다.'
-tweet: '1140631433532334081'
+description: "이 글은 Chrome의 WebAssembly 코드 캐싱 시스템과, 대형 WebAssembly 모듈을 사용하는 애플리케이션의 로딩 속도를 높이기 위해 이를 어떻게 활용할 수 있는지를 설명합니다."
+tweet: "1140631433532334081"
 ---
 개발자들 사이에는 가장 빠른 코드는 실행되지 않는 코드라는 말이 있습니다. 마찬가지로, 가장 빠른 컴파일 코드도 컴파일되지 않아야 합니다. WebAssembly 코드 캐싱은 Chrome과 V8에 새롭게 도입된 최적화 기술로, 컴파일러가 생성한 네이티브 코드를 캐싱하여 코드 컴파일을 피하려고 합니다. 우리는 [JavaScript 코드 캐싱](/blog/code-caching)에 관해 이미 [글을 작성](/blog/improved-code-caching)했으며, 이 최적화를 활용하기 위한 모범 사례에 대해 논의한 바 있습니다. 이번 블로그 글에서는 Chrome의 WebAssembly 코드 캐싱 운영 방식과 이를 통해 대형 WebAssembly 모듈을 사용하는 애플리케이션의 로딩 속도를 높이는 방법에 대해 설명합니다.
 

@@ -1,6 +1,6 @@
 ---
-title: 'Devenir un committer'
-description: 'Comment devient-on un committer de V8 ? Ce document explique.'
+title: "Devenir un committer"
+description: "Comment devient-on un committer de V8 ? Ce document explique."
 ---
 Techniquement, les committers sont des personnes qui ont un accès en écriture au dépôt V8. Tous les correctifs doivent être revus par au moins deux committers (y compris l'auteur). Indépendamment de cette exigence, les correctifs doivent également être rédigés ou examinés par un OWNER.
 

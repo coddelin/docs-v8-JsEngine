@@ -1,12 +1,12 @@
 ---
-title: '高效能 ES2015 與後續進階'
-author: 'Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer), ECMAScript 效能工程師'
+title: "高效能 ES2015 與後續進階"
+author: "Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer), ECMAScript 效能工程師"
 avatars:
-  - 'benedikt-meurer'
+  - "benedikt-meurer"
 date: 2017-02-17 13:33:37
 tags:
   - ECMAScript
-description: 'V8 對 ES2015+ 語言功能的效能表現如今已與其編譯後的 ES5 對應功能相當。'
+description: "V8 對 ES2015+ 語言功能的效能表現如今已與其編譯後的 ES5 對應功能相當。"
 ---
 過去幾個月中，V8 團隊致力於提升新加入的 [ES2015](https://www.ecma-international.org/ecma-262/6.0/) 及其他更最新的 JavaScript 功能效能，使其能與編譯後的 [ES5](https://www.ecma-international.org/ecma-262/5.1/) 對應功能相媲美。
 

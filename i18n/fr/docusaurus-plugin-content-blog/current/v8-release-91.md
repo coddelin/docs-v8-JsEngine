@@ -1,13 +1,13 @@
 ---
-title: 'Version V8 v9.1'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), testant ma marque personnelle'
+title: "Version V8 v9.1"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), testant ma marque personnelle"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-05-04
 tags:
  - sortie
-description: 'La version V8 v9.1 apporte la prise en charge des vérifications de marque privée, await au niveau supérieur activé par défaut et des améliorations de performances.'
-tweet: '1389613320953532417'
+description: "La version V8 v9.1 apporte la prise en charge des vérifications de marque privée, await au niveau supérieur activé par défaut et des améliorations de performances."
+tweet: "1389613320953532417"
 ---
 Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](https://v8.dev/docs/release-process). Chaque version est issue du dépôt maître de Git V8 juste avant une étape Beta de Chrome. Aujourd'hui, nous sommes ravis d'annoncer notre nouvelle branche, [version V8 v9.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.1), actuellement en phase bêta et prévue pour une sortie en coordination avec Chrome 91 Stable dans quelques semaines. V8 v9.1 est rempli de nouveautés pour les développeurs. Cet article offre un aperçu des points forts dans l'attente de la sortie officielle.
 

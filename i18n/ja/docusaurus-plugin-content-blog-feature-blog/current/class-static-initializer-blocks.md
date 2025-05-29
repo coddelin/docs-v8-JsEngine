@@ -1,13 +1,13 @@
 ---
-title: 'クラスの静的初期化ブロック'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu))'
+title: "クラスの静的初期化ブロック"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars:
-  - 'shu-yu-guo'
+  - "shu-yu-guo"
 date: 2021-03-30
 tags:
   - ECMAScript
-description: 'JavaScript クラスに静的初期化専用の構文が登場しました。'
-tweet: '1376925666780798989'
+description: "JavaScript クラスに静的初期化専用の構文が登場しました。"
+tweet: "1376925666780798989"
 ---
 新しいクラス静的初期化ブロック構文により、クラス定義ごとに1度だけ実行するコードをまとめて1つの場所に配置することができます。以下の例では、疑似乱数生成器が静的ブロックを使用してエントロピーのプールを初期化し、`class MyPRNG` の定義が評価される際に1度だけ実行されることを示しています。
 

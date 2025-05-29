@@ -1,14 +1,14 @@
 ---
-title: '更快且功能更丰富的国际化 API'
-author: '[சத்யா குணசேகரன் (Sathya Gunasekaran)](https://twitter.com/_gsathya)'
+title: "更快且功能更丰富的国际化 API"
+author: "[சத்யா குணசேகரன் (Sathya Gunasekaran)](https://twitter.com/_gsathya)"
 date: 2019-04-25 16:45:37
 avatars:
-  - 'sathya-gunasekaran'
+  - "sathya-gunasekaran"
 tags:
   - ECMAScript
   - Intl
-description: 'JavaScript 国际化 API 正在成长，其 V8 的实现变得更快了！'
-tweet: '1121424877142122500'
+description: "JavaScript 国际化 API 正在成长，其 V8 的实现变得更快了！"
+tweet: "1121424877142122500"
 ---
 [ECMAScript 国际化 API 规范](https://tc39.es/ecma402/) (ECMA-402，或 `Intl`) 提供了关键的区域特定功能，如日期格式化、数字格式化、复数形式选择和排序。Chrome V8 和 Google 国际化团队一直在合作，为 V8 的 ECMA-402 实现添加功能，同时清理技术债务并改善性能和与其他浏览器的互操作性。
 

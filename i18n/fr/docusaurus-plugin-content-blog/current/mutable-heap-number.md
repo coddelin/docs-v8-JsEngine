@@ -1,6 +1,6 @@
 ---
-title: 'Suralimenter V8 avec des nombres sur le tas mutables'
-author: '[Victor Gomes](https://twitter.com/VictorBFG), le manipulateur de bits'
+title: "Suralimenter V8 avec des nombres sur le tas mutables"
+author: "[Victor Gomes](https://twitter.com/VictorBFG), le manipulateur de bits"
 avatars:
   - victor-gomes
 date: 2025-02-25
@@ -9,7 +9,7 @@ tags:
   - benchmarks
   - internals
 description: "Ajout de nombres sur le tas mutables au contexte du script"
-tweet: ''
+tweet: ""
 ---
 
 Chez V8, nous nous efforçons constamment d'améliorer les performances de JavaScript. Dans le cadre de cet effort, nous avons récemment revisité la suite de tests [JetStream2](https://browserbench.org/JetStream2.1/) pour éliminer les goulets d'étranglement de performance. Cet article détaille une optimisation spécifique que nous avons réalisée et qui a permis une amélioration significative de `2.5x` dans le test `async-fs`, contribuant ainsi à une augmentation notable du score global. L'optimisation a été inspirée par le test, mais de tels motifs apparaissent également dans le [code du monde réel](https://github.com/WebAssembly/binaryen/blob/3339c1f38da5b68ce8bf410773fe4b5eee451ab8/scripts/fuzz_shell.js#L248).

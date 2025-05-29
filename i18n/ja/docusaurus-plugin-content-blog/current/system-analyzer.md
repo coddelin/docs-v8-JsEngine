@@ -1,14 +1,14 @@
 ---
-title: 'Indicium: V8 ランタイムトレーサーツール'
-author: 'ゼイネプ・キャンカラ ([@ZeynepCankara](https://twitter.com/ZeynepCankara))'
+title: "Indicium: V8 ランタイムトレーサーツール"
+author: "ゼイネプ・キャンカラ ([@ZeynepCankara](https://twitter.com/ZeynepCankara))"
 avatars:
-  - 'zeynep-cankara'
+  - "zeynep-cankara"
 date: 2020-10-01 11:56:00
 tags:
   - tools
   - system-analyzer
-description: 'Indicium: V8 システム解析ツール。Map/IC イベントを分析する。'
-tweet: '1311689392608731140'
+description: "Indicium: V8 システム解析ツール。Map/IC イベントを分析する。"
+tweet: "1311689392608731140"
 ---
 # Indicium: V8 システム解析ツール
 

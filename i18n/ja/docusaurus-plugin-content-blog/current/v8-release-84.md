@@ -1,13 +1,13 @@
 ---
-title: 'V8リリース v8.4'
-author: 'Camillo Bruni、新鮮なブール値を楽しんでいます'
+title: "V8リリース v8.4"
+author: "Camillo Bruni、新鮮なブール値を楽しんでいます"
 avatars:
- - 'camillo-bruni'
+ - "camillo-bruni"
 date: 2020-06-30
 tags:
  - リリース
-description: 'V8 v8.4は弱参照と改善されたWebAssemblyパフォーマンスを備えています。'
-tweet: '1277983235641761795'
+description: "V8 v8.4は弱参照と改善されたWebAssemblyパフォーマンスを備えています。"
+tweet: "1277983235641761795"
 ---
 6週間ごとに、新しいV8のブランチを[リリースプロセス](https://v8.dev/docs/release-process)の一環として作成します。各バージョンはChrome Betaのマイルストーン直前にV8のGitマスターからブランチ分けされます。本日、私たちは最新のブランチ[V8バージョン8.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.4)をご紹介します。このブランチは数週間後にChrome 84 Stableと連携してリリースされるまでベータ版にあります。V8 v8.4は開発者向けのさまざまな便利な機能で満たされています。この記事では、リリースを前にハイライトのいくつかをプレビューします。
 

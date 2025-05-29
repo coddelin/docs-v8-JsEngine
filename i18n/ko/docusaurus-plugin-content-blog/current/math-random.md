@@ -1,13 +1,13 @@
 ---
-title: '`Math.random()`이 있고, 또 다른 `Math.random()`도 있다'
-author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed)), 소프트웨어 엔지니어 겸 주사위 디자이너'
+title: "`Math.random()`이 있고, 또 다른 `Math.random()`도 있다"
+author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), 소프트웨어 엔지니어 겸 주사위 디자이너"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2015-12-17 13:33:37
 tags:
   - ECMAScript
   - internals
-description: 'V8의 Math.random 구현이 이제 xorshift128+ 알고리즘을 사용하여, 이전 MWC1616 구현보다 무작위성을 개선했습니다.'
+description: "V8의 Math.random 구현이 이제 xorshift128+ 알고리즘을 사용하여, 이전 MWC1616 구현보다 무작위성을 개선했습니다."
 ---
 > `Math.random()`은 0 이상 1 미만의 양수 `Number` 값을 무작위 또는 유사 무작위로 선택하여 대략적으로 균등하게 분포시키는, 구현 의존적 알고리즘 또는 전략을 사용해 반환합니다. 이 함수는 인수를 받지 않습니다.
 

@@ -1,9 +1,9 @@
 ---
-title: 'Seguimiento de holgura en V8'
-author: 'Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), maestro reconocido de *holgura*'
-description: 'Una mirada detallada al mecanismo de seguimiento de holgura de V8.'
+title: "Seguimiento de holgura en V8"
+author: "Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), maestro reconocido de *holgura*"
+description: "Una mirada detallada al mecanismo de seguimiento de holgura de V8."
 avatars:
- - 'michael-stanton'
+ - "michael-stanton"
 date: 2020-09-24 14:00:00
 tags:
  - internals

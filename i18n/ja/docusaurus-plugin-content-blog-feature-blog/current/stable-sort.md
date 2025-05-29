@@ -1,15 +1,15 @@
 ---
-title: '安定した `Array.prototype.sort`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "安定した `Array.prototype.sort`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-07-02
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: 'Array.prototype.sort が安定ソートであることが保証されました。'
-tweet: '1146067251302244353'
+description: "Array.prototype.sort が安定ソートであることが保証されました。"
+tweet: "1146067251302244353"
 ---
 犬の配列を持っているとして、それぞれの犬には名前と評価があります。（これが奇妙な例に聞こえるなら、これを専門としているTwitterアカウントがあることを知っておくと良いでしょう…聞かないでくださいね！）
 

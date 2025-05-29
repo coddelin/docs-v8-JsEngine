@@ -1,10 +1,10 @@
 ---
-title: '启动 Ignition 和 TurboFan'
-author: 'V8 团队'
+title: "启动 Ignition 和 TurboFan"
+author: "V8 团队"
 date: 2017-05-15 13:33:37
 tags:
   - 内部
-description: 'V8 v5.9 引入了全新的 JavaScript 执行管线，基于 Ignition 解释器和 TurboFan 优化编译器构建而成。'
+description: "V8 v5.9 引入了全新的 JavaScript 执行管线，基于 Ignition 解释器和 TurboFan 优化编译器构建而成。"
 ---
 今天我们很高兴宣布 V8 v5.9 的新 JavaScript 执行管线即将推出，并将在 v59 稳定版的 Chrome 中上线。借助这一新管线，我们在现实世界的 JavaScript 应用中实现了显著的性能提升和内存节省。我们将在本文最后详细讨论相关数据，但首先让我们来看看这条管线。 
 

@@ -1,13 +1,13 @@
 ---
-title: 'Lançamento do V8 v9.2'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "Lançamento do V8 v9.2"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-07-16
 tags:
  - release
-description: 'O lançamento do V8 v9.2 traz um método `at` para indexação relativa e melhorias na compressão de ponteiros.'
-tweet: ''
+description: "O lançamento do V8 v9.2 traz um método `at` para indexação relativa e melhorias na compressão de ponteiros."
+tweet: ""
 ---
 A cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](https://v8.dev/docs/release-process). Cada versão é derivada do Git master do V8 imediatamente antes de um marco Beta do Chrome. Hoje estamos felizes em anunciar nosso mais novo branch, [V8 versão 9.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.2), que está em beta até seu lançamento em coordenação com o Chrome 92 Stable nas próximas semanas. O V8 v9.2 está repleto de recursos interessantes voltados para desenvolvedores. Este post fornece uma prévia de alguns dos destaques na expectativa do lançamento.
 

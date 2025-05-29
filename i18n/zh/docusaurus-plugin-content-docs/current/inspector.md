@@ -1,6 +1,6 @@
 ---
-title: '通过 V8 检查器协议进行调试'
-description: '本页面旨在为嵌入者提供实现 V8 中调试支持所需的基本工具。'
+title: "通过 V8 检查器协议进行调试"
+description: "本页面旨在为嵌入者提供实现 V8 中调试支持所需的基本工具。"
 ---
 V8 为用户和嵌入者提供了广泛的调试功能。用户通常通过 [Chrome 开发者工具](https://developer.chrome.com/devtools) 接口与 V8 调试器进行交互。嵌入者（包括开发者工具）需要直接依赖 [检查器协议](https://chromedevtools.github.io/debugger-protocol-viewer/tot/)。
 

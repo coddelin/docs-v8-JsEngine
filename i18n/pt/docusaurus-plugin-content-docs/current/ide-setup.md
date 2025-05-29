@@ -1,6 +1,6 @@
 ---
-title: 'Configuração de GUI e IDE'
-description: 'Este documento contém dicas específicas de GUI e IDE para trabalhar no código-fonte do V8.'
+title: "Configuração de GUI e IDE"
+description: "Este documento contém dicas específicas de GUI e IDE para trabalhar no código-fonte do V8."
 ---
 O código-fonte do V8 pode ser visualizado online com o [Chromium Code Search](https://cs.chromium.org/chromium/src/v8/).
 

@@ -1,16 +1,16 @@
 ---
-title: 'WebAssemblyで最大4GBのメモリ使用を実現'
-author: 'Andreas Haas、Jakob Kummerow、Alon Zakai'
+title: "WebAssemblyで最大4GBのメモリ使用を実現"
+author: "Andreas Haas、Jakob Kummerow、Alon Zakai"
 avatars:
-  - 'andreas-haas'
-  - 'jakob-kummerow'
-  - 'alon-zakai'
+  - "andreas-haas"
+  - "jakob-kummerow"
+  - "alon-zakai"
 date: 2020-05-14
 tags:
   - WebAssembly
   - JavaScript
   - ツール
-tweet: '1260944314441633793'
+tweet: "1260944314441633793"
 ---
 
 ## はじめに

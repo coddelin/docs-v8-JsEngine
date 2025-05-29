@@ -1,11 +1,11 @@
 ---
-title: 'Lançamento do V8 v6.3'
-author: 'A equipe V8'
+title: "Lançamento do V8 v6.3"
+author: "A equipe V8"
 date: 2017-10-25 13:33:37
 tags:
   - lançamento
-description: 'V8 v6.3 inclui melhorias de desempenho, redução no consumo de memória e suporte para novos recursos da linguagem JavaScript.'
-tweet: '923168001108643840'
+description: "V8 v6.3 inclui melhorias de desempenho, redução no consumo de memória e suporte para novos recursos da linguagem JavaScript."
+tweet: "923168001108643840"
 ---
 A cada seis semanas, criamos um novo ramo do V8 como parte do nosso [processo de lançamento](/docs/release-process). Cada versão é ramificada do Git master do V8 imediatamente antes de um marco Beta do Chrome. Hoje estamos felizes em anunciar nosso novo ramo, [V8 versão 6.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.3), que estará em beta até seu lançamento em conjunto com o Chrome 63 Stable em algumas semanas. O V8 v6.3 está repleto de todos os tipos de benefícios voltados para desenvolvedores. Esta postagem fornece uma prévia de alguns dos destaques em antecipação ao lançamento.
 

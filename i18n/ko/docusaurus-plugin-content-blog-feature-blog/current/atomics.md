@@ -1,6 +1,6 @@
 ---
-title: '`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`'
-author: '[Marja Hölttä](https://twitter.com/marjakh), a non-blocking blogger'
+title: "`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`"
+author: "[Marja Hölttä](https://twitter.com/marjakh), a non-blocking blogger"
 avatars:
   - marja-holtta
 date: 2020-09-24
@@ -8,8 +8,8 @@ tags:
   - ECMAScript
   - ES2020
   - Node.js 16
-description: 'Atomics.wait와 Atomics.notify는 예를 들어 뮤텍스를 구현하는 데 유용한 저수준 동기화 프리미티브입니다. Atomics.wait는 워커 스레드에서만 사용할 수 있습니다. V8 버전 8.7부터는 비블로킹 버전인 Atomics.waitAsync를 지원하며, 메인 스레드에서도 사용할 수 있습니다.'
-tweet: '1309118447377358848'
+description: "Atomics.wait와 Atomics.notify는 예를 들어 뮤텍스를 구현하는 데 유용한 저수준 동기화 프리미티브입니다. Atomics.wait는 워커 스레드에서만 사용할 수 있습니다. V8 버전 8.7부터는 비블로킹 버전인 Atomics.waitAsync를 지원하며, 메인 스레드에서도 사용할 수 있습니다."
+tweet: "1309118447377358848"
 ---
 [`Atomics.wait`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/wait)와 [`Atomics.notify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/notify)는 뮤텍스 및 기타 동기화 수단을 구현하는 데 유용한 저수준 동기화 프리미티브입니다. 하지만 `Atomics.wait`는 블로킹이기 때문에 메인 스레드에서 호출할 수 없습니다(시도 시 `TypeError`가 발생합니다).
 

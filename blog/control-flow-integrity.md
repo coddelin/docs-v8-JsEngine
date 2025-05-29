@@ -1,7 +1,7 @@
 ---
-title: 'Control-flow Integrity in V8'
-description: 'This blog post discusses the plans to implement control-flow integrity in V8.'
-author: 'Stephen Röttger'
+title: "Control-flow Integrity in V8"
+description: "This blog post discusses the plans to implement control-flow integrity in V8."
+author: "Stephen Röttger"
 date: 2023-10-09
 tags:
  - security

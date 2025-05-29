@@ -1,12 +1,12 @@
 ---
-title: 'V8 추가 기능'
-author: '도메닉 데니콜라 ([@domenic](https://twitter.com/domenic)), Streams 마법사'
+title: "V8 추가 기능"
+author: "도메닉 데니콜라 ([@domenic](https://twitter.com/domenic)), Streams 마법사"
 avatars:
-  - 'domenic-denicola'
+  - "domenic-denicola"
 date: 2016-02-04 13:33:37
 tags:
   - internals
-description: 'V8 v4.8에는 고성능의 자체 호스팅 API를 작성할 수 있도록 설계된 간단한 인터페이스인 “V8 추가 기능”이 포함되어 있습니다.'
+description: "V8 v4.8에는 고성능의 자체 호스팅 API를 작성할 수 있도록 설계된 간단한 인터페이스인 “V8 추가 기능”이 포함되어 있습니다."
 ---
 V8은 JavaScript 언어의 기본 객체와 함수의 큰 부분을 JavaScript 자체로 구현합니다. 예를 들어, 우리의 [프라미스 구현](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js)은 JavaScript로 작성된 것을 볼 수 있습니다. 이러한 내장 요소들은 _자체 호스팅_ 이라고 불립니다. 이러한 구현들은 [시작 스냅샷](/blog/custom-startup-snapshots)에 포함되어 있어 새로운 컨텍스트를 실행 중에 자체 호스팅 내장 요소를 준비하고 초기화할 필요 없이 빠르게 생성할 수 있습니다.
 

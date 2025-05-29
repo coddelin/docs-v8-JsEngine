@@ -1,6 +1,6 @@
 ---
-title: 'Prise en charge expérimentale de WebAssembly dans V8'
-author: 'Seth Thompson, Responsable WebAssembly'
+title: "Prise en charge expérimentale de WebAssembly dans V8"
+author: "Seth Thompson, Responsable WebAssembly"
 date: 2016-03-15 13:33:37
 tags:
   - WebAssembly

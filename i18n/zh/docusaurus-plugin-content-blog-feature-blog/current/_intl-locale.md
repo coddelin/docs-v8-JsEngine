@@ -1,15 +1,15 @@
 ---
-title: '《Intl.Locale》'
-author: 'Mathias Bynens （[@mathias](https://twitter.com/mathias)）'
+title: "《Intl.Locale》"
+author: "Mathias Bynens （[@mathias](https://twitter.com/mathias)）"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-05-20
 tags:
   - Intl
   - Node.js 12
   - io19
-description: '新的 Intl.Locale API 提供了一种统一的机制来处理语言环境，比直接使用字符串更方便。'
-tweet: '待办'
+description: "新的 Intl.Locale API 提供了一种统一的机制来处理语言环境，比直接使用字符串更方便。"
+tweet: "待办"
 ---
 处理 [国际化 API](/features/tags/intl) 时，通常通过向各种 `Intl` 构造函数传递表示语言环境 ID 的字符串，例如英语的 `‘en’`。[新的 `Intl.Locale` API](https://github.com/tc39/proposal-intl-locale) 提供了一个更强大的机制来处理这些语言环境。
 

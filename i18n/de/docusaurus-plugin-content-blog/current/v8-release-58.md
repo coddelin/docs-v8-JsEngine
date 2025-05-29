@@ -1,10 +1,10 @@
 ---
-title: 'V8-Version v5.8 veröffentlicht'
-author: 'das V8-Team'
+title: "V8-Version v5.8 veröffentlicht"
+author: "das V8-Team"
 date: 2017-03-20 13:33:37
 tags:
   - Veröffentlichung
-description: 'V8 v5.8 ermöglicht die Nutzung beliebiger Heap-Größen und verbessert die Startleistung.'
+description: "V8 v5.8 ermöglicht die Nutzung beliebiger Heap-Größen und verbessert die Startleistung."
 ---
 Alle sechs Wochen erstellen wir einen neuen Branch von V8 im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process). Jede Version wird direkt vor einem Chrome-Beta-Meilenstein aus dem Git-Master von V8 abgezweigt. Heute freuen wir uns, unseren neuesten Branch, [V8-Version 5.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.8), anzukündigen, der sich bis zur gemeinsamen Veröffentlichung mit Chrome 58 Stable in einigen Wochen in der Beta-Phase befinden wird. V8 5.8 ist vollgepackt mit allerlei Entwicklerfreundlichem. Wir möchten Ihnen einen Vorgeschmack auf einige Highlights geben, um Sie auf die Veröffentlichung einzustimmen.
 

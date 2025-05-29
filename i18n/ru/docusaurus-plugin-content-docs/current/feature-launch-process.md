@@ -1,6 +1,6 @@
 ---
-title: 'Реализация и доставка языковых функций JavaScript/WebAssembly'
-description: 'Этот документ объясняет процесс реализации и доставки языковых функций JavaScript или WebAssembly в V8.'
+title: "Реализация и доставка языковых функций JavaScript/WebAssembly"
+description: "Этот документ объясняет процесс реализации и доставки языковых функций JavaScript или WebAssembly в V8."
 ---
 Как правило, V8 следует [процессу намерений Blink для уже определенных стандартов на основе консенсуса](https://www.chromium.org/blink/launching-features/#process-existing-standard) для языковых функций JavaScript и WebAssembly. Ошибки, специфичные для V8, изложены ниже. Пожалуйста, следуйте процессу намерений Blink, если только ошибки не указывают на иное.
 

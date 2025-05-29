@@ -1,14 +1,14 @@
 ---
-title: '正则表达式匹配索引'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski))，经常表达新特性'
+title: "正则表达式匹配索引"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski))，经常表达新特性"
 avatars:
-  - 'maya-armyanova'
+  - "maya-armyanova"
 date: 2019-12-17
 tags:
   - ECMAScript
   - Node.js 16
-description: '正则表达式匹配索引用于提供每个匹配捕获组的 `start` 和 `end` 索引位置。'
-tweet: '1206970814400270338'
+description: "正则表达式匹配索引用于提供每个匹配捕获组的 `start` 和 `end` 索引位置。"
+tweet: "1206970814400270338"
 ---
 JavaScript现在具备一个新的正则表达式增强功能，称为“匹配索引”。假设您希望找到JavaScript代码中与保留词重合的无效变量名，并在变量名下输出一个插入号和一个“下划线”，例如：
 

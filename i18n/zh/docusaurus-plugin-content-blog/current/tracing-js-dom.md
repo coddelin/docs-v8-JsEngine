@@ -1,16 +1,16 @@
 ---
-title: '从JS到DOM再回溯的跟踪'
-author: 'Ulan Degenbaev、Alexei Filippov、Michael Lippautz 和 Hannes Payer——DOM 小组'
+title: "从JS到DOM再回溯的跟踪"
+author: "Ulan Degenbaev、Alexei Filippov、Michael Lippautz 和 Hannes Payer——DOM 小组"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2018-03-01 13:33:37
 tags:
   - 内部原理
   - 内存
-description: 'Chrome 的开发者工具现在可以跟踪和快照C++ DOM对象，并显示从JavaScript可达的所有DOM对象及其引用。'
-tweet: '969184997545562112'
+description: "Chrome 的开发者工具现在可以跟踪和快照C++ DOM对象，并显示从JavaScript可达的所有DOM对象及其引用。"
+tweet: "969184997545562112"
 ---
 在Chrome 66中调试内存泄漏变得更加容易了。Chrome的开发者工具现在可以跟踪和快照C++ DOM对象，并显示从JavaScript可达的所有DOM对象及其引用。这项功能是V8垃圾回收器的新C++跟踪机制的优点之一。
 

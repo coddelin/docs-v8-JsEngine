@@ -1,13 +1,13 @@
 ---
 title: "JavaScriptの新たなスーパーパワー：明示的リソース管理"
-author: 'Rezvan Mahdavi Hezaveh'
+author: "Rezvan Mahdavi Hezaveh"
 avatars:
-  - 'rezvan-mahdavi-hezaveh'
+  - "rezvan-mahdavi-hezaveh"
 date: 2025-05-09
 tags:
   - ECMAScript
-description: '明示的リソース管理提案により、開発者はリソースのライフサイクルを明示的に管理できるようになります。'
-tweet: ''
+description: "明示的リソース管理提案により、開発者はリソースのライフサイクルを明示的に管理できるようになります。"
+tweet: ""
 ---
 
 明示的リソース管理(*Explicit Resource Management*)提案は、ファイルハンドル、ネットワーク接続などのリソースのライフサイクルを明示的に管理するための決定的なアプローチを導入します。この提案により、次の言語拡張が行われます：スコープ外になったリソースで自動的にdisposeメソッドを呼び出す`using`と`await using`宣言、クリーンアップ操作のための`[Symbol.dispose]()`および`[Symbol.asyncDispose]()`シンボル、破棄可能なリソースを集約するコンテナとしての新しいグローバルオブジェクト`DisposableStack`と`AsyncDisposableStack`、リソースの破棄中にエラーが発生し、ボディや別のリソースから発生した既存のエラーを潜在的にマスクするシナリオに対応するための新しいエラータイプ`SuppressedError`。これにより、リソースの破棄を細かく制御できるため、より堅牢でパフォーマンスに優れた、メンテナンスが容易なコードを記述することが可能になります。

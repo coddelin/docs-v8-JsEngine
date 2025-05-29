@@ -1,11 +1,11 @@
 ---
-title: 'V8 릴리스 v6.3'
-author: 'V8 팀'
+title: "V8 릴리스 v6.3"
+author: "V8 팀"
 date: 2017-10-25 13:33:37
 tags:
   - 릴리스
-description: 'V8 v6.3는 성능 개선, 메모리 소비 감소 및 새로운 JavaScript 언어 기능 지원을 포함합니다.'
-tweet: '923168001108643840'
+description: "V8 v6.3는 성능 개선, 메모리 소비 감소 및 새로운 JavaScript 언어 기능 지원을 포함합니다."
+tweet: "923168001108643840"
 ---
 6주마다 우리는 [릴리스 프로세스](/docs/release-process)의 일환으로 V8의 새로운 브랜치를 만듭니다. 각 버전은 Chrome 베타 마일스톤 직전에 V8의 Git 마스터에서 브랜치됩니다. 오늘 우리는 최신 브랜치인 [V8 버전 6.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.3)를 발표하게 되어 기쁩니다. 이 브랜치는 몇 주 후 Chrome 63 안정 버전과 함께 릴리스될 때까지 베타 버전입니다. V8 v6.3는 다양한 개발자 친화적인 기능으로 가득 찼습니다. 이 글에서는 릴리스를 기대하며 주목할 만한 하이라이트를 미리 살펴봅니다.
 

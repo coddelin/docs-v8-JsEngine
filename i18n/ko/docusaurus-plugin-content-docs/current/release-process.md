@@ -1,6 +1,6 @@
 ---
-title: '릴리스 프로세스'
-description: '이 문서는 V8 릴리스 프로세스를 설명합니다.'
+title: "릴리스 프로세스"
+description: "이 문서는 V8 릴리스 프로세스를 설명합니다."
 ---
 V8 릴리스 프로세스는 [Chrome](https://www.chromium.org/getting-involved/dev-channel)과 긴밀히 연결되어 있습니다. V8 팀은 Chrome의 모든 네 가지 릴리스 채널을 사용하여 사용자에게 새로운 버전을 배포합니다.
 

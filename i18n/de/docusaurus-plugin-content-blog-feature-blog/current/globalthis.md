@@ -1,16 +1,16 @@
 ---
-title: '`globalThis`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`globalThis`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-07-16
 tags:
   - ECMAScript
   - ES2020
   - Node.js 12
   - io19
-description: 'globalThis führt einen einheitlichen Mechanismus ein, um das globale this in jeder JavaScript-Umgebung unabhängig vom Ziel des Scripts zuzugreifen.'
-tweet: '1151140681374547969'
+description: "globalThis führt einen einheitlichen Mechanismus ein, um das globale this in jeder JavaScript-Umgebung unabhängig vom Ziel des Scripts zuzugreifen."
+tweet: "1151140681374547969"
 ---
 Wenn Sie schon einmal JavaScript für die Verwendung in einem Webbrowser geschrieben haben, haben Sie möglicherweise `window` verwendet, um auf das globale `this` zuzugreifen. In Node.js haben Sie möglicherweise `global` verwendet. Wenn Sie Code geschrieben haben, der in beiden Umgebungen funktionieren muss, haben Sie möglicherweise festgestellt, welche von diesen verfügbar ist, und diese dann verwendet – aber die Liste der zu überprüfenden Bezeichner wächst mit der Anzahl der Umgebungen und Anwendungsfälle, die Sie unterstützen möchten. Das gerät schnell außer Kontrolle:
 

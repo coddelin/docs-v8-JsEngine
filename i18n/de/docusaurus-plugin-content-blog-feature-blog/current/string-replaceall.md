@@ -1,15 +1,15 @@
 ---
-title: '`String.prototype.replaceAll`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`String.prototype.replaceAll`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-11-11
 tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: 'JavaScript unterstützt jetzt die globale Ersetzung von Teilzeichenfolgen durch die neue `String.prototype.replaceAll` API.'
-tweet: '1193917549060280320'
+description: "JavaScript unterstützt jetzt die globale Ersetzung von Teilzeichenfolgen durch die neue `String.prototype.replaceAll` API."
+tweet: "1193917549060280320"
 ---
 Wenn Sie jemals mit Zeichenfolgen in JavaScript gearbeitet haben, sind Sie wahrscheinlich auf die Methode `String#replace` gestoßen. `String.prototype.replace(searchValue, replacement)` gibt eine Zeichenfolge zurück, bei der einige Übereinstimmungen basierend auf den angegebenen Parametern ersetzt werden:
 

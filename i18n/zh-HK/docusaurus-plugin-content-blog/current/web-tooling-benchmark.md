@@ -1,14 +1,14 @@
 ---
-title: '宣佈 Web 工具基準測試'
-author: 'Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), JavaScript 性能專家'
+title: "宣佈 Web 工具基準測試"
+author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), JavaScript 性能專家"
 avatars:
-  - 'benedikt-meurer'
+  - "benedikt-meurer"
 date: 2017-11-06 13:33:37
 tags:
   - 基準測試
   - Node.js
-description: '全新 Web 工具基準測試幫助識別並解決 Babel、TypeScript 和其他實際項目中的 V8 性能瓶頸問題。'
-tweet: '927572065598824448'
+description: "全新 Web 工具基準測試幫助識別並解決 Babel、TypeScript 和其他實際項目中的 V8 性能瓶頸問題。"
+tweet: "927572065598824448"
 ---
 JavaScript 性能一直是 V8 團隊關注的焦點，在本文中，我們想討論一個最近用於識別並解決 V8 中一些性能瓶頸問題的新 JavaScript [Web 工具基準測試](https://v8.github.io/web-tooling-benchmark)。您可能已經知道 V8 對 [Node.js 的重大承諾](/blog/v8-nodejs)，這個基準測試通過專門針對基於 Node.js 的常用開發工具進行性能測試來延續這一承諾。Web 工具基準測試中的工具是開發者和設計師今天用來構建現代網站和基於雲的應用程序的同一工具。為了繼續我們專注於 [實際性能](/blog/real-world-performance/) 而非人工基準測試的持續努力，我們使用開發人員每天運行的實際代碼創建了這個基準測試。
 

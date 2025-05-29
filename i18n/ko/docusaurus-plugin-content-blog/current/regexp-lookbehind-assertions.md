@@ -1,13 +1,13 @@
 ---
-title: 'RegExp lookbehind assertions'
-author: 'Yang Guo, 정규 표현식 엔지니어'
+title: "RegExp lookbehind assertions"
+author: "Yang Guo, 정규 표현식 엔지니어"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2016-02-26 13:33:37
 tags:
   - ECMAScript
   - RegExp
-description: 'JavaScript 정규 표현식은 lookbehind 어설션과 같은 새로운 기능을 제공합니다.'
+description: "JavaScript 정규 표현식은 lookbehind 어설션과 같은 새로운 기능을 제공합니다."
 ---
 ECMA-262 사양의 세 번째 버전과 함께 도입된 정규 표현식은 1999년부터 JavaScript의 일부였습니다. 기능과 표현력에서 JavaScript의 정규 표현식 구현은 다른 프로그래밍 언어와 대략 비슷한 수준을 보입니다.
 

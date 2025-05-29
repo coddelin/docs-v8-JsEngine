@@ -2,7 +2,7 @@
 permalink: /logo/
 title: V8 로고
 layout: layouts/base.njk
-description: '여기서 V8 공식 로고를 벡터 형식(SVG)으로 다운로드하십시오.'
+description: "여기서 V8 공식 로고를 벡터 형식(SVG)으로 다운로드하십시오."
 ---
 # V8 로고
 

@@ -1,7 +1,7 @@
 ---
-title: 'Acelerando las instantáneas de montón de V8'
-description: 'Esta publicación sobre instantáneas de montón de V8 presenta algunos problemas de rendimiento encontrados por ingenieros de Bloomberg, y cómo los solucionamos para que el análisis de memoria de JavaScript sea más rápido que nunca.'
-author: 'Jose Dapena Paz'
+title: "Acelerando las instantáneas de montón de V8"
+description: "Esta publicación sobre instantáneas de montón de V8 presenta algunos problemas de rendimiento encontrados por ingenieros de Bloomberg, y cómo los solucionamos para que el análisis de memoria de JavaScript sea más rápido que nunca."
+author: "Jose Dapena Paz"
 date: 2023-07-27
 tags:
  - memoria

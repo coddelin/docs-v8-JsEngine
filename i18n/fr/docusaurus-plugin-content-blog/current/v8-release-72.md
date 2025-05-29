@@ -1,13 +1,13 @@
 ---
-title: 'Sortie de V8 v7.2'
-author: 'Andreas Haas, responsable des pièges'
+title: "Sortie de V8 v7.2"
+author: "Andreas Haas, responsable des pièges"
 avatars:
   - andreas-haas
 date: 2018-12-18 11:48:21
 tags:
   - sortie
-description: 'V8 v7.2 propose un parsing JavaScript ultra-rapide, une exécution plus rapide des fonctions async-await, une réduction de la consommation de mémoire sur ia32, des champs de classe publics, et bien plus encore !'
-tweet: '1074978755934863361'
+description: "V8 v7.2 propose un parsing JavaScript ultra-rapide, une exécution plus rapide des fonctions async-await, une réduction de la consommation de mémoire sur ia32, des champs de classe publics, et bien plus encore !"
+tweet: "1074978755934863361"
 ---
 Toutes les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de sortie](/docs/release-process). Chaque version est dérivée de la branche principale Git de V8 immédiatement avant une version Beta de Chrome. Aujourd'hui, nous sommes ravis d'annoncer notre dernière branche, [V8 version 7.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.2), actuellement en beta, en attendant sa sortie en coordination avec la version stable de Chrome 72 dans quelques semaines. V8 v7.2 regorge de fonctionnalités pour les développeurs. Cet article fournit un aperçu de quelques points forts en prévision de la sortie.
 

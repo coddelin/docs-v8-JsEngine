@@ -1,14 +1,14 @@
 ---
-title: 'Verbesserung der `DataView`-Leistung in V8'
+title: "Verbesserung der `DataView`-Leistung in V8"
 author: 'Théotime Grohens, <i lang="fr">der Gelehrte von Daten-Ansicht</i>, und Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), professioneller Leistungsfreund'
 avatars:
-  - 'benedikt-meurer'
+  - "benedikt-meurer"
 date: 2018-09-18 11:20:37
 tags:
   - ECMAScript
   - Benchmarks
-description: 'V8 v6.9 schließt die Leistungslücke zwischen DataView und äquivalentem TypedArray-Code, wodurch DataView effektiv für leistungsrelevante Anwendungen in der realen Welt nutzbar wird.'
-tweet: '1041981091727466496'
+description: "V8 v6.9 schließt die Leistungslücke zwischen DataView und äquivalentem TypedArray-Code, wodurch DataView effektiv für leistungsrelevante Anwendungen in der realen Welt nutzbar wird."
+tweet: "1041981091727466496"
 ---
 [`DataView`s](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView) sind eine der zwei möglichen Methoden, um Speicher auf niedriger Ebene in JavaScript zuzugreifen, die andere ist [`TypedArray`s](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray). Bislang waren `DataView`s in V8 viel weniger optimiert als `TypedArray`s, was zu einer schlechteren Leistung bei Aufgaben wie grafikintensiven Workloads oder beim Decodieren/Kodieren von Binärdaten führte. Die Gründe dafür waren hauptsächlich historische Entscheidungen, wie die Tatsache, dass [asm.js](http://asmjs.org/) `TypedArray`s statt `DataView`s gewählt hat, und so waren Engines motiviert, sich auf die Leistung von `TypedArray`s zu konzentrieren.
 

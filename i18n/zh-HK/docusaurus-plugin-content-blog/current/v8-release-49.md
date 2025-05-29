@@ -1,10 +1,10 @@
 ---
-title: 'V8 發佈 v4.9'
-author: 'V8 團隊'
+title: "V8 發佈 v4.9"
+author: "V8 團隊"
 date: 2016-01-26 13:33:37
 tags:
   - 發佈
-description: 'V8 v4.9 帶來改進的 `Math.random` 實現，並新增對多個 ES2015 語言功能的支持。'
+description: "V8 v4.9 帶來改進的 `Math.random` 實現，並新增對多個 ES2015 語言功能的支持。"
 ---
 大約每六週，我們會根據 [發佈流程](/docs/release-process) 創建 V8 的新分支。每個版本均從 V8 的 Git 主分支分支出來，正好在 Chrome 分支到 Chrome Beta 里程碑之前。今天我們很高興宣布我們最新的分支 [V8 版本 4.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.9)，該版本將進入 Beta，直到與 Chrome 49 Stable 協調釋出為止。V8 4.9 包含各種面向開發者的更新，因此我們希望在幾周後發佈之前為您提供一些亮點預覽。
 

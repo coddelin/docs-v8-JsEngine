@@ -1,15 +1,15 @@
 ---
-title: '`Intl.DisplayNames`'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu)) 和 Frank Yung-Fong Tang'
+title: "`Intl.DisplayNames`"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu)) 和 Frank Yung-Fong Tang"
 avatars:
-  - 'shu-yu-guo'
-  - 'frank-tang'
+  - "shu-yu-guo"
+  - "frank-tang"
 date: 2020-02-13
 tags:
   - Intl
   - Node.js 14
-description: 'Intl.DisplayNames API 使得语言、地区、书写系统和货币的本地化名称变得更加方便。'
-tweet: '1232333889005334529'
+description: "Intl.DisplayNames API 使得语言、地区、书写系统和货币的本地化名称变得更加方便。"
+tweet: "1232333889005334529"
 ---
 面向全球用户的 Web 应用需要以许多不同语言显示语言、地区、书写系统和货币的名称。这些名称的翻译需要数据，该数据可在 [Unicode CLDR](http://cldr.unicode.org/translation/) 中找到。将数据打包为应用的一部分会耗费开发时间。用户往往更喜欢语言和地区名称的统一翻译，而随着全球地缘政治情况的变化保持数据更新需要持续维护。
 

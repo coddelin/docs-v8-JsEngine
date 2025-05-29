@@ -1,14 +1,14 @@
 ---
-title: 'RegExp マッチングインデックス'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski))、新しい機能を定期的に表現する'
+title: "RegExp マッチングインデックス"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski))、新しい機能を定期的に表現する"
 avatars:
-  - 'maya-armyanova'
+  - "maya-armyanova"
 date: 2019-12-17
 tags:
   - ECMAScript
   - Node.js 16
-description: 'RegExp マッチングインデックスは、各キャプチャグループの `start` と `end` のインデックスを提供します。'
-tweet: '1206970814400270338'
+description: "RegExp マッチングインデックスは、各キャプチャグループの `start` と `end` のインデックスを提供します。"
+tweet: "1206970814400270338"
 ---
 JavaScript は、新しい正規表現拡張機能「マッチングインデックス」を搭載されました。JavaScript コードの中で予約語と一致する無効な変数名を見つけて、その変数名の下にキャレット（^）や「下線」を表示したい場合を想像してください。例えば以下のように:
 

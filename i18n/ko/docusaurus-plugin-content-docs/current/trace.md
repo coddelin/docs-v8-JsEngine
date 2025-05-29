@@ -1,6 +1,6 @@
 ---
-title: 'V8 추적하기'
-description: '이 문서는 V8의 내장 추적 지원을 사용하는 방법을 설명합니다.'
+title: "V8 추적하기"
+description: "이 문서는 V8의 내장 추적 지원을 사용하는 방법을 설명합니다."
 ---
 V8는 추적을 지원합니다. [Chrome 추적 시스템을 통해 Chrome에 V8가 포함되었을 때 자동으로 작동합니다](/docs/rcs). 하지만 독립형 V8이나 Default Platform을 사용하는 임베더 내부에서 이를 활성화할 수도 있습니다. 추적 뷰어에 대한 자세한 내용은 [여기](https://github.com/catapult-project/catapult/blob/master/tracing/README.md)를 참조하세요.
 

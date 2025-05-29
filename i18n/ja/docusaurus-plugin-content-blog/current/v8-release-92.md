@@ -1,13 +1,13 @@
 ---
-title: 'V8リリースv9.2'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "V8リリースv9.2"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-07-16
 tags:
  - リリース
-description: 'V8リリースv9.2では、相対的なインデックス付けのための`at`メソッドとポインタ圧縮の改善が導入されています。'
-tweet: ''
+description: "V8リリースv9.2では、相対的なインデックス付けのための`at`メソッドとポインタ圧縮の改善が導入されています。"
+tweet: ""
 ---
 V8では、[リリースプロセス](https://v8.dev/docs/release-process)の一環として、6週間ごとに新しいブランチを作成しています。各バージョンは、Chrome Betaマイルストーン直前にV8のGitマスターから分岐されます。本日、最新のブランチ[V8バージョン9.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.2)を発表します。このバージョンはChrome 92 Stableとの調整後、数週間後にリリースされる予定ですが、それまではベータ版です。V8 v9.2は開発者向けのさまざまな機能を備えています。この投稿では、リリースを期待してハイライトを紹介します。
 

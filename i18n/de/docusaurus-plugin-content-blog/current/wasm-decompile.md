@@ -1,14 +1,14 @@
 ---
-title: 'Was steckt in dieser `.wasm`? Einführung: `wasm-decompile`'
-author: 'Wouter van Oortmerssen ([@wvo](https://twitter.com/wvo))'
+title: "Was steckt in dieser `.wasm`? Einführung: `wasm-decompile`"
+author: "Wouter van Oortmerssen ([@wvo](https://twitter.com/wvo))"
 avatars:
-  - 'wouter-van-oortmerssen'
+  - "wouter-van-oortmerssen"
 date: 2020-04-27
 tags:
   - WebAssembly
   - Tools
-description: 'WABT erhält ein neues Dekompilierungswerkzeug, das das Lesen der Inhalte von Wasm-Modulen erleichtern kann.'
-tweet: '1254829913561014272'
+description: "WABT erhält ein neues Dekompilierungswerkzeug, das das Lesen der Inhalte von Wasm-Modulen erleichtern kann."
+tweet: "1254829913561014272"
 ---
 Wir haben eine wachsende Anzahl von Compilern und anderen Werkzeugen, die `.wasm`-Dateien erzeugen oder bearbeiten, und manchmal möchte man hineinschauen. Vielleicht sind Sie Entwickler eines solchen Werkzeugs oder direkt Programmierer, der auf Wasm abzielt und darüber nachdenkt, wie der erzeugte Code aussieht - aus Leistungsgründen oder anderen Gründen.
 

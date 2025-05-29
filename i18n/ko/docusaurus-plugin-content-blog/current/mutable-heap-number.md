@@ -1,6 +1,6 @@
 ---
-title: 'V8의 성능 가속화 – 가변 힙 숫자를 활용한 개선'
-author: '[Victor Gomes](https://twitter.com/VictorBFG), 비트 건너기 전문'
+title: "V8의 성능 가속화 – 가변 힙 숫자를 활용한 개선"
+author: "[Victor Gomes](https://twitter.com/VictorBFG), 비트 건너기 전문"
 avatars:
   - victor-gomes
 date: 2025-02-25
@@ -9,7 +9,7 @@ tags:
   - 벤치마크
   - 내부 소개
 description: "스크립트 컨텍스트에 가변 힙 숫자를 추가"
-tweet: ''
+tweet: ""
 ---
 
 V8에서는 JavaScript 성능을 지속적으로 개선하고 있습니다. 이러한 노력의 일환으로 최근 [JetStream2](https://browserbench.org/JetStream2.1/) 벤치마크 스위트를 재검토하여 성능 급락 현상을 제거했습니다. 이 글에서는 `async-fs` 벤치마크에서 `2.5배`라는 획기적인 성능 향상을 가져온 특정 최적화 작업을 다룹니다. 이 작업은 전체 점수의 괄목할 만한 상승에 기여했습니다. 최적화는 벤치마크에서 영감을 받았지만, 이러한 패턴은 [실제 코드](https://github.com/WebAssembly/binaryen/blob/3339c1f38da5b68ce8bf410773fe4b5eee451ab8/scripts/fuzz_shell.js#L248)에서도 나타나고 있습니다.

@@ -1,15 +1,15 @@
 ---
-title: '`Intl.NumberFormat`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)) and Shane F. Carr'
+title: "`Intl.NumberFormat`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)) and Shane F. Carr"
 avatars:
-  - 'mathias-bynens'
-  - 'shane-carr'
+  - "mathias-bynens"
+  - "shane-carr"
 date: 2019-08-08
 tags:
   - Intl
   - io19
-description: 'Intl.NumberFormat enables locale-aware number formatting.'
-tweet: '1159476407329873920'
+description: "Intl.NumberFormat enables locale-aware number formatting."
+tweet: "1159476407329873920"
 ---
 You might already be familiar with the `Intl.NumberFormat` API, as it’s been supported across modern environments for a while now.
 

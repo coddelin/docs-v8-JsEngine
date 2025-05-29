@@ -1,10 +1,10 @@
 ---
-title: 'Lançamento do V8 v4.9'
-author: 'a equipe do V8'
+title: "Lançamento do V8 v4.9"
+author: "a equipe do V8"
 date: 2016-01-26 13:33:37
 tags:
   - lançamento
-description: 'V8 v4.9 vem com uma implementação aprimorada de `Math.random` e adiciona suporte a diversos novos recursos da linguagem ES2015.'
+description: "V8 v4.9 vem com uma implementação aprimorada de `Math.random` e adiciona suporte a diversos novos recursos da linguagem ES2015."
 ---
 Aproximadamente a cada seis semanas, criamos um novo branch do V8 como parte do nosso [processo de lançamento](/docs/release-process). Cada versão é criada a partir do master do Git do V8 imediatamente antes do Chrome ramificar para um marco Beta do Chrome. Hoje estamos felizes em anunciar nossa mais nova ramificação, [V8 versão 4.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.9), que ficará em beta até ser lançada em coordenação com a versão Estável do Chrome 49. V8 4.9 está repleto de novidades voltadas para os desenvolvedores, então gostaríamos de dar uma prévia de alguns destaques em antecipação ao lançamento nas próximas semanas.
 

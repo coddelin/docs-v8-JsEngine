@@ -1,15 +1,15 @@
 ---
-title: '`Array.prototype.flat` и `Array.prototype.flatMap`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`Array.prototype.flat` и `Array.prototype.flatMap`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-06-11
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: 'Array.prototype.flat сводит многомерный массив в одномерный до указанной глубины. Array.prototype.flatMap эквивалентно применению map, за которым следует flat.'
-tweet: '1138457106380709891'
+description: "Array.prototype.flat сводит многомерный массив в одномерный до указанной глубины. Array.prototype.flatMap эквивалентно применению map, за которым следует flat."
+tweet: "1138457106380709891"
 ---
 ## `Array.prototype.flat`
 

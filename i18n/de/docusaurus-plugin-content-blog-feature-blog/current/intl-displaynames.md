@@ -1,15 +1,15 @@
 ---
-title: '`Intl.DisplayNames`'
-author: 'Shu-yu Guo ([@_shu](https://twitter.com/_shu)) und Frank Yung-Fong Tang'
+title: "`Intl.DisplayNames`"
+author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu)) und Frank Yung-Fong Tang"
 avatars:
-  - 'shu-yu-guo'
-  - 'frank-tang'
+  - "shu-yu-guo"
+  - "frank-tang"
 date: 2020-02-13
 tags:
   - Intl
   - Node.js 14
-description: 'Die Intl.DisplayNames API ermöglicht lokalisierte Namen von Sprachen, Regionen, Schriften und Währungen.'
-tweet: '1232333889005334529'
+description: "Die Intl.DisplayNames API ermöglicht lokalisierte Namen von Sprachen, Regionen, Schriften und Währungen."
+tweet: "1232333889005334529"
 ---
 Webanwendungen, die ein globales Publikum erreichen, müssen die Anzeigennamen von Sprachen, Regionen, Schriften und Währungen in vielen verschiedenen Sprachen anzeigen. Die Übersetzungen dieser Namen erfordern Daten, die im [Unicode CLDR](http://cldr.unicode.org/translation/) verfügbar sind. Die Aufnahme dieser Daten in die Anwendung verursacht Kosten für die Entwickler. Nutzer bevorzugen wahrscheinlich konsistente Übersetzungen von Sprach- und Regionsnamen, und um diese Daten mit den geopolitischen Entwicklungen der Welt aktuell zu halten, ist eine kontinuierliche Wartung erforderlich.
 

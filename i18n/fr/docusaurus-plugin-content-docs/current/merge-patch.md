@@ -1,6 +1,6 @@
 ---
-title: 'Fusionner et appliquer des correctifs'
-description: 'Ce document explique comment fusionner des correctifs V8 dans une branche de publication.'
+title: "Fusionner et appliquer des correctifs"
+description: "Ce document explique comment fusionner des correctifs V8 dans une branche de publication."
 ---
 Si vous avez un correctif dans la branche `main` (par exemple, une correction de bogue important) qui doit être fusionné dans l'une des branches de publication de V8 (refs/branch-heads/12.5), lisez ce qui suit.
 

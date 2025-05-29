@@ -1,13 +1,13 @@
 ---
-title: 'WebAssembly动态分级已在Chrome 96中准备好试用'
-author: 'Andreas Haas — Tierisch fun'
+title: "WebAssembly动态分级已在Chrome 96中准备好试用"
+author: "Andreas Haas — Tierisch fun"
 avatars:
   - andreas-haas
 date: 2021-10-29
 tags:
   - WebAssembly
-description: 'WebAssembly动态分级已可在V8 v9.6和Chrome 96中试用，可以通过命令行标志或源试验启用'
-tweet: '1454158971674271760'
+description: "WebAssembly动态分级已可在V8 v9.6和Chrome 96中试用，可以通过命令行标志或源试验启用"
+tweet: "1454158971674271760"
 ---
 
 V8拥有两个编译器，可以将WebAssembly代码编译为可执行的机器代码：基线编译器__Liftoff__ 和优化编译器 __TurboFan__。Liftoff生成代码的速度比TurboFan快得多，从而实现快速启动时间。而TurboFan可以生成更快的代码，从而实现高峰性能。

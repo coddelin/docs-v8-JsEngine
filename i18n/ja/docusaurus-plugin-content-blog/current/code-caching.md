@@ -1,12 +1,12 @@
 ---
-title: 'コードキャッシュ'
-author: 'Yang Guo ([@hashseed](https://twitter.com/hashseed)), ソフトウェアエンジニア'
+title: "コードキャッシュ"
+author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), ソフトウェアエンジニア"
 avatars:
-  - 'yang-guo'
+  - "yang-guo"
 date: 2015-07-27 13:33:37
 tags:
   - 内部構造
-description: 'V8は現在、(バイト)コードキャッシュ、すなわちJavaScriptの解析とコンパイルの結果をキャッシュすることをサポートしています。'
+description: "V8は現在、(バイト)コードキャッシュ、すなわちJavaScriptの解析とコンパイルの結果をキャッシュすることをサポートしています。"
 ---
 V8は[ジャストインタイムコンパイル](https://en.wikipedia.org/wiki/Just-in-time_compilation) (JIT) を使用してJavaScriptコードを実行します。これは、スクリプトを実行する直前にそれを解析してコンパイルしなければならないことを意味し、これがかなりのオーバーヘッドを引き起こす可能性があります。私たちが[最近発表した](https://blog.chromium.org/2015/03/new-javascript-techniques-for-rapid.html)ように、コードキャッシュはこのオーバーヘッドを軽減するための技術です。スクリプトが初めてコンパイルされる際、キャッシュデータが生成されて保存されます。次回V8が同じスクリプトをコンパイルする必要があるとき、たとえ異なるV8インスタンスであっても、キャッシュデータを使用してコンパイル結果を再現することができ、一からコンパイルする必要がありません。その結果、スクリプトはより速く実行されます。
 

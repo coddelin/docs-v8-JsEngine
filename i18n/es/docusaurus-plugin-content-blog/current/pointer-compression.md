@@ -1,15 +1,15 @@
 ---
-title: 'Compresión de punteros en V8'
-author: 'Igor Sheludko y Santiago Aboy Solanes, *los* compresores de punteros'
+title: "Compresión de punteros en V8"
+author: "Igor Sheludko y Santiago Aboy Solanes, *los* compresores de punteros"
 avatars:
-  - 'igor-sheludko'
-  - 'santiago-aboy-solanes'
+  - "igor-sheludko"
+  - "santiago-aboy-solanes"
 date: 2020-03-30
 tags:
   - internals
   - memory
-description: '¡V8 redujo el tamaño de su montón hasta en un 43%! Aprende cómo en “Compresión de punteros en V8”!'
-tweet: '1244653541379182596'
+description: "¡V8 redujo el tamaño de su montón hasta en un 43%! Aprende cómo en “Compresión de punteros en V8”!"
+tweet: "1244653541379182596"
 ---
 Hay una batalla constante entre la memoria y el rendimiento. Como usuarios, nos gustaría que las cosas fueran rápidas y que consumieran la menor cantidad de memoria posible. Desafortunadamente, generalmente mejorar el rendimiento tiene un costo en el consumo de memoria (y viceversa).
 

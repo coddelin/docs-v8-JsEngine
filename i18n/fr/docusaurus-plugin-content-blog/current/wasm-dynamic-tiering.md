@@ -1,13 +1,13 @@
 ---
-title: 'Le Dynamic Tiering de WebAssembly prêt à être testé dans Chrome 96'
-author: 'Andreas Haas — Tierisch fun'
+title: "Le Dynamic Tiering de WebAssembly prêt à être testé dans Chrome 96"
+author: "Andreas Haas — Tierisch fun"
 avatars:
   - andreas-haas
 date: 2021-10-29
 tags:
   - WebAssembly
-description: 'Le Dynamic Tiering de WebAssembly est prêt à être testé dans V8 v9.6 et Chrome 96, soit via un argument en ligne de commande, soit via un essai origin'
-tweet: '1454158971674271760'
+description: "Le Dynamic Tiering de WebAssembly est prêt à être testé dans V8 v9.6 et Chrome 96, soit via un argument en ligne de commande, soit via un essai origin"
+tweet: "1454158971674271760"
 ---
 
 V8 dispose de deux compilateurs pour compiler le code WebAssembly en code machine pouvant ensuite être exécuté : le compilateur de base __Liftoff__ et le compilateur optimisé __TurboFan__. Liftoff peut générer du code beaucoup plus rapidement que TurboFan, ce qui permet un démarrage rapide. TurboFan, en revanche, peut générer du code plus rapide, ce qui permet des performances maximales.

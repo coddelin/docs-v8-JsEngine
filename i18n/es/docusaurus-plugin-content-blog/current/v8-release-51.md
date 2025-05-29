@@ -1,10 +1,10 @@
 ---
-title: 'Lanzamiento de V8 v5.1'
-author: 'el equipo de V8'
+title: "Lanzamiento de V8 v5.1"
+author: "el equipo de V8"
 date: 2016-04-23 13:33:37
 tags:
   - lanzamiento
-description: 'V8 v5.1 incluye mejoras en el rendimiento, reducción de interrupciones y consumo de memoria, y aumenta el soporte para funcionalidades del lenguaje ECMAScript.'
+description: "V8 v5.1 incluye mejoras en el rendimiento, reducción de interrupciones y consumo de memoria, y aumenta el soporte para funcionalidades del lenguaje ECMAScript."
 ---
 El primer paso en el [proceso de lanzamiento](/docs/release-process) de V8 es crear una nueva rama desde el maestro de Git inmediatamente antes de que Chromium haga una rama para una versión beta de Chrome (aproximadamente cada seis semanas). Nuestra más reciente rama de lanzamiento es [V8 v5.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.1), que permanecerá en beta hasta que publiquemos una versión estable en conjunto con Chrome 51 Stable. Aquí hay un resumen de las nuevas características orientadas a desarrolladores en esta versión de V8.
 

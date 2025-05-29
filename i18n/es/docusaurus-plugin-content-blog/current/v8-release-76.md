@@ -1,13 +1,13 @@
 ---
-title: 'Lanzamiento de V8 v7.6'
-author: 'Adam Klein'
+title: "Lanzamiento de V8 v7.6"
+author: "Adam Klein"
 avatars:
-  - 'adam-klein'
+  - "adam-klein"
 date: 2019-06-19 16:45:00
 tags:
   - lanzamiento
-description: 'V8 v7.6 incluye Promise.allSettled, JSON.parse más rápido, BigInts localizados, arreglos congelados/asegurados más veloces ¡y mucho más!'
-tweet: '1141356209179516930'
+description: "V8 v7.6 incluye Promise.allSettled, JSON.parse más rápido, BigInts localizados, arreglos congelados/asegurados más veloces ¡y mucho más!"
+tweet: "1141356209179516930"
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](/docs/release-process). Cada versión se deriva del Git master de V8 inmediatamente antes de un hito de Chrome Beta. Hoy nos complace anunciar nuestra última rama, [la versión 7.6 de V8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.6), que está en beta hasta su lanzamiento en coordinación con Chrome 76 Stable en varias semanas. V8 v7.6 está llena de todo tipo de características útiles para los desarrolladores. Esta publicación proporciona un avance de algunos de los puntos destacados en anticipación al lanzamiento.
 

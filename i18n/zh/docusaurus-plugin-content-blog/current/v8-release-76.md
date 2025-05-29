@@ -1,13 +1,13 @@
 ---
-title: 'V8 发布版本 v7.6'
-author: 'Adam Klein'
+title: "V8 发布版本 v7.6"
+author: "Adam Klein"
 avatars:
-  - 'adam-klein'
+  - "adam-klein"
 date: 2019-06-19 16:45:00
 tags:
   - release
-description: 'V8 v7.6 的功能包括 Promise.allSettled、更快的 JSON.parse、本地化的 BigInts、更快的冻结/密封数组等等！'
-tweet: '1141356209179516930'
+description: "V8 v7.6 的功能包括 Promise.allSettled、更快的 JSON.parse、本地化的 BigInts、更快的冻结/密封数组等等！"
+tweet: "1141356209179516930"
 ---
 每六周，我们会根据 [发布流程](/docs/release-process) 创建一个 V8 的新分支。每个版本都会在 Chrome Beta 里程碑之前从 V8 的 Git 主分支分出。今天，我们很高兴地宣布我们的最新分支 [V8 版本 7.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.6)，该版本将处于 Beta 阶段，直到几周后与 Chrome 76 Stable 协同发布。V8 v7.6 充满了各种面向开发者的精彩功能。本文旨在为即将发布的版本提供一些亮点预览。
 

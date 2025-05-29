@@ -1,13 +1,13 @@
 ---
-title: 'Lanzamiento de V8 v9.4'
-author: 'Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))'
+title: "Lanzamiento de V8 v9.4"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars:
- - 'ingvar-stepanyan'
+ - "ingvar-stepanyan"
 date: 2021-09-06
 tags:
  - lanzamiento
-description: 'El lanzamiento de V8 v9.4 trae bloques de inicialización estáticos de clase a JavaScript.'
-tweet: '1434915404418277381'
+description: "El lanzamiento de V8 v9.4 trae bloques de inicialización estáticos de clase a JavaScript."
+tweet: "1434915404418277381"
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](https://v8.dev/docs/release-process). Cada versión se crea a partir del maestro de Git de V8 inmediatamente antes de un hito de Chrome Beta. Hoy nos complace anunciar nuestra nueva rama, [V8 versión 9.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.4), que está en beta hasta su lanzamiento en coordinación con Chrome 94 Stable en varias semanas. V8 v9.4 está lleno de todo tipo de novedades orientadas a los desarrolladores. Esta publicación proporciona un avance de algunos de los aspectos destacados en anticipación al lanzamiento.
 

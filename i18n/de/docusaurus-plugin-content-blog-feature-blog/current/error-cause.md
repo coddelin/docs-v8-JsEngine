@@ -1,13 +1,13 @@
 ---
-title: 'Fehlerursachen'
-author: 'Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))'
+title: "Fehlerursachen"
+author: "Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))"
 avatars:
-  - 'victor-gomes'
+  - "victor-gomes"
 date: 2021-07-07
 tags:
   - ECMAScript
-description: 'JavaScript unterstützt jetzt Fehlerursachen.'
-tweet: '1412774651558862850'
+description: "JavaScript unterstützt jetzt Fehlerursachen."
+tweet: "1412774651558862850"
 ---
 
 Stellen Sie sich vor, Sie haben eine Funktion, die zwei separate Arbeitslasten `doSomeWork` und `doMoreWork` aufruft. Beide Funktionen können dieselben Arten von Fehlern werfen, aber Sie müssen sie auf unterschiedliche Weise behandeln.

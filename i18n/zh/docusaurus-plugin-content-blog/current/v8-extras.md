@@ -1,12 +1,12 @@
 ---
-title: 'V8扩展功能'
-author: 'Domenic Denicola ([@domenic](https://twitter.com/domenic)), 流处理大师'
+title: "V8扩展功能"
+author: "Domenic Denicola ([@domenic](https://twitter.com/domenic)), 流处理大师"
 avatars:
-  - 'domenic-denicola'
+  - "domenic-denicola"
 date: 2016-02-04 13:33:37
 tags:
   - 内部结构
-description: 'V8 v4.8包含“V8扩展功能”，一个旨在让嵌入者编写高性能、基于自身的API的简单接口。'
+description: "V8 v4.8包含“V8扩展功能”，一个旨在让嵌入者编写高性能、基于自身的API的简单接口。"
 ---
 V8在JavaScript本身中实现了JavaScript语言内置对象和函数的大部分子集。例如，您可以看到我们的[Promise实现](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js)是用JavaScript编写的。这类内置对象称为_基于自身的_。这些实现包含在我们[启动快照](/blog/custom-startup-snapshots)中，因此可以快速创建新上下文，而无需在运行时设置和初始化基于自身的内置对象。
 

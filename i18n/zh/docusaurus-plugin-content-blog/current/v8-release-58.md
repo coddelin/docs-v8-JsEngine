@@ -1,10 +1,10 @@
 ---
-title: 'V8 发布 v5.8'
-author: 'V8 团队'
+title: "V8 发布 v5.8"
+author: "V8 团队"
 date: 2017-03-20 13:33:37
 tags:
   - 发布
-description: 'V8 v5.8 启用了任意堆大小的使用并改进了启动性能。'
+description: "V8 v5.8 启用了任意堆大小的使用并改进了启动性能。"
 ---
 每六周，我们会根据我们的[发布流程](/docs/release-process)创建一个新的 V8 分支。每个版本都会在 Chrome Beta 重要里程碑之前直接从 V8 的 Git 主版本分支出来。今天，我们很高兴地宣布我们的最新分支，[V8 版本 5.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.8)，它将在几周后与 Chrome 58 稳定版协调后发布之前进入 Beta 状态。V8 5.8 包含各种面向开发者的改进。我们希望为您预览一些亮点，以期待最终的发布。
 

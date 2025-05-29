@@ -1,12 +1,12 @@
 ---
-title: '快速并行应用与WebAssembly SIMD'
-author: 'Deepti Gandluri（[@dptig](https://twitter.com/dptig)）, Thomas Lively（[@tlively52](https://twitter.com/tlively52)）, Ingvar Stepanyan（[@RReverser](https://twitter.com/RReverser)）'
+title: "快速并行应用与WebAssembly SIMD"
+author: "Deepti Gandluri（[@dptig](https://twitter.com/dptig)）, Thomas Lively（[@tlively52](https://twitter.com/tlively52)）, Ingvar Stepanyan（[@RReverser](https://twitter.com/RReverser)）"
 date: 2020-01-30
 updated: 2022-11-06
 tags:
   - WebAssembly
-description: '为WebAssembly带来矢量运算'
-tweet: '1222944308183085058'
+description: "为WebAssembly带来矢量运算"
+tweet: "1222944308183085058"
 ---
 SIMD代表 _单指令，多数据_。SIMD指令是一类特殊的指令，通过在多个数据元素上同时执行相同的操作来利用应用程序中的数据并行性。计算密集型应用程序如音频/视频编解码器、图像处理器，都是利用SIMD指令加速性能的例子。大多数现代架构都支持某些变体的SIMD指令。
 

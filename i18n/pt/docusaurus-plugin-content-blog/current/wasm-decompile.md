@@ -1,14 +1,14 @@
 ---
-title: 'O que há naquele `.wasm`? Introduzindo: `wasm-decompile`'
-author: 'Wouter van Oortmerssen ([@wvo](https://twitter.com/wvo))'
+title: "O que há naquele `.wasm`? Introduzindo: `wasm-decompile`"
+author: "Wouter van Oortmerssen ([@wvo](https://twitter.com/wvo))"
 avatars:
-  - 'wouter-van-oortmerssen'
+  - "wouter-van-oortmerssen"
 date: 2020-04-27
 tags:
   - WebAssembly
   - ferramentas
-description: 'WABT ganha uma nova ferramenta de descompilação que pode facilitar a leitura do conteúdo dos módulos Wasm.'
-tweet: '1254829913561014272'
+description: "WABT ganha uma nova ferramenta de descompilação que pode facilitar a leitura do conteúdo dos módulos Wasm."
+tweet: "1254829913561014272"
 ---
 Temos um número crescente de compiladores e outras ferramentas que geram ou manipulam arquivos `.wasm`, e às vezes você pode querer dar uma olhada por dentro. Talvez você seja um desenvolvedor de tal ferramenta, ou, mais diretamente, um programador direcionado ao Wasm, e esteja se perguntando como é o código gerado, seja por motivo de desempenho ou outros.
 

@@ -1,14 +1,14 @@
 ---
-title: 'Dynamic `import()`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Dynamic `import()`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2017-11-21
 tags:
   - ECMAScript
   - ES2020
-description: 'Dynamic import() 는 정적 import 와 비교하여 새로운 기능을 제공합니다. 이 기사에서는 두 가지를 비교하고 새로운 내용을 개괄적으로 소개합니다.'
-tweet: '932914724060254208'
+description: "Dynamic import() 는 정적 import 와 비교하여 새로운 기능을 제공합니다. 이 기사에서는 두 가지를 비교하고 새로운 내용을 개괄적으로 소개합니다."
+tweet: "932914724060254208"
 ---
 [Dynamic `import()`](https://github.com/tc39/proposal-dynamic-import)는 정적 `import`와 비교하여 새로운 기능을 해제하는 함수 같은 형태의 `import`를 도입합니다. 이 기사에서는 두 가지를 비교하고 새로운 내용을 개괄적으로 소개합니다.
 

@@ -1,16 +1,16 @@
 ---
-title: 'Até 4GB de memória em WebAssembly'
-author: 'Andreas Haas, Jakob Kummerow, e Alon Zakai'
+title: "Até 4GB de memória em WebAssembly"
+author: "Andreas Haas, Jakob Kummerow, e Alon Zakai"
 avatars:
-  - 'andreas-haas'
-  - 'jakob-kummerow'
-  - 'alon-zakai'
+  - "andreas-haas"
+  - "jakob-kummerow"
+  - "alon-zakai"
 date: 2020-05-14
 tags:
   - WebAssembly
   - JavaScript
   - ferramentas
-tweet: '1260944314441633793'
+tweet: "1260944314441633793"
 ---
 
 ## Introdução

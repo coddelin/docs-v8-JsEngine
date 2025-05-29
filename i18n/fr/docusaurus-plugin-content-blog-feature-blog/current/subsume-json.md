@@ -1,13 +1,13 @@
 ---
-title: 'Incorporer JSON, autrement dit JSON ⊂ ECMAScript'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Incorporer JSON, autrement dit JSON ⊂ ECMAScript"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-08-14
 tags:
   - ES2019
 description: 'JSON est désormais un sous-ensemble syntaxique d'ECMAScript.'
-tweet: '1161649929904885762'
+tweet: "1161649929904885762"
 ---
 Avec [la proposition _JSON ⊂ ECMAScript_](https://github.com/tc39/proposal-json-superset), JSON devient un sous-ensemble syntaxique d'ECMAScript. Si vous êtes surpris que cela n'était pas déjà le cas, vous n'êtes pas le seul !
 

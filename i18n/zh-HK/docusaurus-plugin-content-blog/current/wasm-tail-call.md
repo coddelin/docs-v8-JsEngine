@@ -1,11 +1,11 @@
 ---
-title: 'WebAssembly 尾呼叫'
-author: 'Thibaud Michaud, Thomas Lively'
+title: "WebAssembly 尾呼叫"
+author: "Thibaud Michaud, Thomas Lively"
 date: 2023-04-06
 tags:
   - WebAssembly
-description: '本文檔說明了 WebAssembly 尾呼叫提案，並通過一些範例進行演示。'
-tweet: '1644077795059044353'
+description: "本文檔說明了 WebAssembly 尾呼叫提案，並通過一些範例進行演示。"
+tweet: "1644077795059044353"
 ---
 我們在 V8 v11.2 推出了 WebAssembly 尾呼叫！在本文中，我們將簡要概述此提案，展示 C++ 協程與 Emscripten 的一個有趣用例，並說明 V8 如何內部處理尾呼叫。
 

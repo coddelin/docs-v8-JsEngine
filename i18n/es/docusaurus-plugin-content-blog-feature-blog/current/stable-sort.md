@@ -1,15 +1,15 @@
 ---
-title: 'Array.prototype.sort` estable'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "Array.prototype.sort` estable"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-07-02
 tags:
   - ECMAScript
   - ES2019
   - io19
-description: 'Ahora se garantiza que Array.prototype.sort sea estable.'
-tweet: '1146067251302244353'
+description: "Ahora se garantiza que Array.prototype.sort sea estable."
+tweet: "1146067251302244353"
 ---
 Supongamos que tienes un array de perros, donde cada perro tiene un nombre y una calificación. (Si esto suena a un ejemplo extraño, debes saber que hay una cuenta de Twitter que se especializa exactamente en esto… ¡No preguntes!)
 

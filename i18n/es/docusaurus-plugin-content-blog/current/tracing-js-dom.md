@@ -1,16 +1,16 @@
 ---
-title: 'Trazando desde JS al DOM y de vuelta'
-author: 'Ulan Degenbaev, Alexei Filippov, Michael Lippautz y Hannes Payer — la hermandad del DOM'
+title: "Trazando desde JS al DOM y de vuelta"
+author: "Ulan Degenbaev, Alexei Filippov, Michael Lippautz y Hannes Payer — la hermandad del DOM"
 avatars:
-  - 'ulan-degenbaev'
-  - 'michael-lippautz'
-  - 'hannes-payer'
+  - "ulan-degenbaev"
+  - "michael-lippautz"
+  - "hannes-payer"
 date: 2018-03-01 13:33:37
 tags:
   - internals
   - memory
-description: 'Las DevTools de Chrome ahora pueden trazar y capturar objetos DOM en C++ y mostrar todos los objetos DOM accesibles desde JavaScript junto con sus referencias.'
-tweet: '969184997545562112'
+description: "Las DevTools de Chrome ahora pueden trazar y capturar objetos DOM en C++ y mostrar todos los objetos DOM accesibles desde JavaScript junto con sus referencias."
+tweet: "969184997545562112"
 ---
 Depurar fugas de memoria en Chrome 66 se ha vuelto mucho más fácil. Las DevTools de Chrome ahora pueden trazar y capturar objetos DOM en C++ y mostrar todos los objetos DOM accesibles desde JavaScript junto con sus referencias. Esta funcionalidad es uno de los beneficios del nuevo mecanismo de trazado en C++ del recolector de basura de V8.
 

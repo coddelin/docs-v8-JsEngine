@@ -1,14 +1,14 @@
 ---
-title: 'Nullish coalescing'
-author: 'Justin Ridgewell'
+title: "Nullish coalescing"
+author: "Justin Ridgewell"
 avatars:
-  - 'justin-ridgewell'
+  - "justin-ridgewell"
 date: 2019-09-17
 tags:
   - ECMAScript
   - ES2020
-description: 'JavaScript 的 Nullish 合併運算符使得默認表達式更安全。'
-tweet: '1173971116865523714'
+description: "JavaScript 的 Nullish 合併運算符使得默認表達式更安全。"
+tweet: "1173971116865523714"
 ---
 新的 [Nullish 合併提案](https://github.com/tc39/proposal-nullish-coalescing/) (`??`) 添加了一個短路運算符，用於處理默認值。
 

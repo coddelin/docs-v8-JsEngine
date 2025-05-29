@@ -1,16 +1,16 @@
 ---
-title: '`globalThis`'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "`globalThis`"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'mathias-bynens'
+  - "mathias-bynens"
 date: 2019-07-16
 tags:
   - ECMAScript
   - ES2020
   - Node.js 12
   - io19
-description: 'globalThis вводит единый механизм для доступа к глобальному объекту this в любой среде JavaScript, независимо от цели сценария.'
-tweet: '1151140681374547969'
+description: "globalThis вводит единый механизм для доступа к глобальному объекту this в любой среде JavaScript, независимо от цели сценария."
+tweet: "1151140681374547969"
 ---
 Если вы писали JavaScript для использования в веб-браузере, возможно, вы использовали `window` для доступа к глобальному объекту `this`. В Node.js вы могли использовать `global`. Если вы писали код, который должен работать в обеих средах, вы могли определить, какой из них доступен, и затем использовать его — но список идентификаторов, которые нужно проверять, растет с увеличением числа окружений и случаев использования. Это быстро выходит из-под контроля:
 

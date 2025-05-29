@@ -1,12 +1,12 @@
 ---
-title: 'Eine zusätzliche nicht-backtracking RegExp-Engine'
-author: 'Martin Bidlingmaier'
+title: "Eine zusätzliche nicht-backtracking RegExp-Engine"
+author: "Martin Bidlingmaier"
 date: 2021-01-11
 tags:
  - Interna
  - RegExp
-description: 'V8 verfügt nun über eine zusätzliche RegExp-Engine, die als Fallback dient und viele Fälle von katastrophalem Backtracking verhindert.'
-tweet: '1348635270762139650'
+description: "V8 verfügt nun über eine zusätzliche RegExp-Engine, die als Fallback dient und viele Fälle von katastrophalem Backtracking verhindert."
+tweet: "1348635270762139650"
 ---
 Ab Version v8.8 wird V8 mit einer neuen experimentellen nicht-backtracking RegExp-Engine ausgeliefert (zusätzlich zur bestehenden [Irregexp-Engine](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html)), die garantiert, dass die Ausführung in linearer Zeit in Bezug auf die Größe der Eingabestrings erfolgt. Die experimentelle Engine ist hinter den unten erwähnten Feature-Flags verfügbar.
 

@@ -1,6 +1,6 @@
 ---
-title: 'GUIとIDEの設定'
-description: 'このドキュメントには、V8コードベースを操作するためのGUIおよびIDE固有のヒントが含まれています。'
+title: "GUIとIDEの設定"
+description: "このドキュメントには、V8コードベースを操作するためのGUIおよびIDE固有のヒントが含まれています。"
 ---
 V8のソースコードは[Chromium Code Search](https://cs.chromium.org/chromium/src/v8/)でオンラインで閲覧できます。
 

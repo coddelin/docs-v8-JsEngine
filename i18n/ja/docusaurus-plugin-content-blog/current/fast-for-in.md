@@ -1,12 +1,12 @@
 ---
-title: 'V8における高速な`for`-`in`'
-author: 'Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))'
+title: "V8における高速な`for`-`in`"
+author: "Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))"
 avatars:
-  - 'camillo-bruni'
+  - "camillo-bruni"
 date: 2017-03-01 13:33:37
 tags:
   - internals
-description: 'V8がJavaScriptのfor-inを可能な限り高速化した技術的な詳細を説明します。'
+description: "V8がJavaScriptのfor-inを可能な限り高速化した技術的な詳細を説明します。"
 ---
 `for`-`in`は多くのフレームワークで使用される広く普及した言語機能です。その普及にもかかわらず、実装の観点から見るとやや分かりづらい言語構造の一つです。V8はこの機能を可能な限り高速化するために大変な努力を重ねました。昨年にかけて、`for`-`in`は完全に仕様に準拠し、コンテキストによっては最大で3倍速くなりました。
 

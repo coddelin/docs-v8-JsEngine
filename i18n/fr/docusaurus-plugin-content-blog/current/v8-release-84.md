@@ -1,13 +1,13 @@
 ---
-title: 'Sortie V8 v8.4'
-author: 'Camillo Bruni, profitant de nouveaux booléens'
+title: "Sortie V8 v8.4"
+author: "Camillo Bruni, profitant de nouveaux booléens"
 avatars:
- - 'camillo-bruni'
+ - "camillo-bruni"
 date: 2020-06-30
 tags:
  - sortie
-description: 'V8 v8.4 propose des références faibles et des performances améliorées pour WebAssembly.'
-tweet: '1277983235641761795'
+description: "V8 v8.4 propose des références faibles et des performances améliorées pour WebAssembly."
+tweet: "1277983235641761795"
 ---
 Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de sortie](https://v8.dev/docs/release-process). Chaque version est dérivée du maître Git de V8 juste avant une étape Beta de Chrome. Aujourd’hui, nous sommes ravis d’annoncer notre nouvelle branche, [V8 version 8.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.4), qui est en phase beta jusqu’à sa sortie en coordination avec la version stable de Chrome 84 dans quelques semaines. V8 v8.4 regorge de nombreuses fonctionnalités axées sur les développeurs. Ce poste fournit un aperçu de certains faits saillants en prévision de la sortie.
 

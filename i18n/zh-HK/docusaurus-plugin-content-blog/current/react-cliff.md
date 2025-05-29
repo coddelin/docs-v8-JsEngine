@@ -1,15 +1,15 @@
 ---
-title: '在 React 中 V8 性能崖的故事'
-author: 'Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))'
+title: "在 React 中 V8 性能崖的故事"
+author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars:
-  - 'benedikt-meurer'
-  - 'mathias-bynens'
+  - "benedikt-meurer"
+  - "mathias-bynens"
 date: 2019-08-28 16:45:00
 tags:
   - internals
   - presentations
-description: '本文敘述 V8 如何為各種 JavaScript 值選擇最佳的內存表示方式，以及這如何影響形狀機制——這有助於解釋最近在 React 核心中出現的 V8 性能崖。'
-tweet: '1166723359696130049'
+description: "本文敘述 V8 如何為各種 JavaScript 值選擇最佳的內存表示方式，以及這如何影響形狀機制——這有助於解釋最近在 React 核心中出現的 V8 性能崖。"
+tweet: "1166723359696130049"
 ---
 [之前](https://mathiasbynens.be/notes/shapes-ics)，我們討論了 JavaScript 引擎如何通過使用形狀和內線快取來優化物件和數組訪問，並探索了[引擎如何加速原型屬性訪問](https://mathiasbynens.be/notes/prototypes)。本文敘述 V8 如何為各種 JavaScript 值選擇最佳的內存表示方式，以及這如何影響形狀機制——這有助於解釋[React 核心中最近的 V8 性能崖](https://github.com/facebook/react/issues/14365)。
 

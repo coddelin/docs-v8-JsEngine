@@ -1,6 +1,6 @@
 ---
-title: 'Cross-Kompilierung und Debuggen für ARM/Android'
-description: 'Dieses Dokument erklärt, wie man V8 für ARM/Android cross-kompiliert und wie man es debuggt.'
+title: "Cross-Kompilierung und Debuggen für ARM/Android"
+description: "Dieses Dokument erklärt, wie man V8 für ARM/Android cross-kompiliert und wie man es debuggt."
 ---
 Zuerst stellen Sie sicher, dass Sie mit [GN bauen können](/docs/build-gn).
 

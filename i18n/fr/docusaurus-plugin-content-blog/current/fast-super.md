@@ -1,13 +1,13 @@
 ---
-title: 'Accès ultra-rapide aux propriétés `super`'
-author: '[Marja Hölttä](https://twitter.com/marjakh), optimiseur super'
+title: "Accès ultra-rapide aux propriétés `super`"
+author: "[Marja Hölttä](https://twitter.com/marjakh), optimiseur super"
 avatars:
   - marja-holtta
 date: 2021-02-18
 tags:
   - JavaScript
-description: 'Accès plus rapide aux propriétés super dans V8 v9.0'
-tweet: '1362465295848333316'
+description: "Accès plus rapide aux propriétés super dans V8 v9.0"
+tweet: "1362465295848333316"
 ---
 
 Le [mot-clé `super`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super) peut être utilisé pour accéder aux propriétés et fonctions présentes sur l'objet parent.

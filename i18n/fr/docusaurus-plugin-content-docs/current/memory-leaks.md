@@ -1,6 +1,6 @@
 ---
-title: 'Investiguer les fuites de mémoire'
-description: 'Ce document fournit des conseils pour enquêter sur les fuites de mémoire dans V8.'
+title: "Investiguer les fuites de mémoire"
+description: "Ce document fournit des conseils pour enquêter sur les fuites de mémoire dans V8."
 ---
 Si vous enquêtez sur une fuite de mémoire et vous demandez pourquoi un objet n'est pas collecté par le ramasse-miettes, vous pouvez utiliser `%DebugTrackRetainingPath(object)` pour imprimer le chemin de rétention réel de l'objet à chaque GC.
 
