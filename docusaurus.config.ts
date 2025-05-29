@@ -15,7 +15,7 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: "https://v8.codelin.vip",
+  url: "https://v8-scriptengine.codelin.vip",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
@@ -35,12 +35,50 @@ const config: Config = {
   i18n: {
     defaultLocale: "en",
     locales: ["en"],
+    // defaultLocale: "zh-Hans",
+    // locales: ["zh-Hans","zh-HK","ja","ko","en","pt","es","fr","de","ru"],
+    // localeConfigs: {
+    // 	"en": {
+    // 		label: 'English',
+    // 	},
+    // 	"zh": {
+    // 		label: '简体中文',
+    // 	},
+    // 	"zh-HK": {
+    // 		label: '繁體中文',
+    // 	},
+    // 	"ja": {
+    // 		label: '日本語',
+    // 	},
+    // 	"ko": {
+    // 		label: '한국어（韩语）',
+    // 	},
+    // 	"de": {
+    // 		label: 'Deutsch（德语）',
+    // 	},
+    // 	"es": {
+    // 		label: 'Español（西班牙语）',
+    // 	},
+    // 	"fr": {
+    // 		label: 'Français（法语）',
+    // 	},
+    // 	"pt": {
+    // 		label: 'Português（葡萄牙）',
+    // 	},
+    // 	"ru": {
+    // 		label: 'Русский（俄语）',
+    // 	},
+    // },
   },
 
   presets: [
     [
       "classic",
       {
+        gtag: {
+          trackingID: "G-DTT1T416RS",
+          anonymizeIP: false,
+        },
         docs: {
           routeBasePath: '/', // Serve the docs at the site's root
           sidebarPath: "./sidebars.ts",
@@ -119,11 +157,6 @@ const config: Config = {
           label: "研究资助",
           position: "left",
         },
-        {
-          to: "/tags",
-          label: "标签",
-          position: "left",
-        },
         // feature     'log branding',    'terms',    'research-grant',
         {
           to: "/logo",
@@ -143,6 +176,8 @@ const config: Config = {
           href: "https://github.com/v8/v8.dev",
           label: "GitHub",
           position: "right",
+          className: "header-github-link",
+          "aria-label": "GitHub repository",
         },
       ],
     },
@@ -166,7 +201,7 @@ const config: Config = {
               href: "https://policies.google.com/privacy",
             },
             {
-              label: "X",
+              label: "𝕏",
               href: "https://x.com/v8js",
             },
           ],
@@ -213,6 +248,30 @@ const config: Config = {
         blogSidebarCount: 'ALL',
       },
     ],
+    [require.resolve("docusaurus-lunr-search"),{
+      languages: ['en', 'de'] // language codes
+    }],
+  ],
+
+  // Enable Mermaid for diagrams
+  markdown: {
+    mermaid: true,
+  },
+  themes: ["@docusaurus/theme-mermaid"],
+
+  headTags: [
+    // add google adsense
+    // <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5363852791482518"
+    //  crossorigin="anonymous"></script>
+    {
+      tagName: "script",
+      attributes: {
+        async: "true",
+        crossorigin: "anonymous",
+        src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5363852791482518",
+        // "data-ad-client": "ca-pub-5363852791482518",
+      },
+    },
   ],
 };
 
