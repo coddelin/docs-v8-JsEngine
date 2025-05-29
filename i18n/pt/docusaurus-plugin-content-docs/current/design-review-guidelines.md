@@ -70,7 +70,7 @@ Os Proprietários de Revisão de Engenharia do V8 podem anular não-LGTMs ou LGT
 1. IC adiciona pessoas à lista de fornecedores de LGTM que o IC acredita que devem dar seu LGTM. O TL é obrigatório na lista de fornecedores de LGTM.
 1. IC incorpora feedback.
 1. TL adiciona mais pessoas à lista de fornecedores de LGTM.
-1. IC envia o documento de design inicial/explicador/uma página para <[v8-dev+design@googlegroups.com](mailto:v8-dev+design@googlegroups.com)>.
+1. IC envia o documento de design inicial/explicador/uma página para [v8-dev+design@googlegroups.com](mailto:v8-dev+design@googlegroups.com).
 1. IC coleta os LGTMs. TL ajuda-o.
     1. O fornecedor de LGTM revisa o documento, adiciona comentários e dá um LGTM ou não LGTM no início do documento. Se eles adicionarem um não LGTM, estão obrigados a listar o(s) motivo(s).
     1. Opcionais: fornecedores de LGTM podem se remover da lista de fornecedores de LGTM e/ou sugerir outros fornecedores de LGTM

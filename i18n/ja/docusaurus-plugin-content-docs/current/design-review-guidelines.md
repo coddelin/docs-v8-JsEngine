@@ -70,7 +70,7 @@ V8 Eng Review Ownersは非LGTMまたはLGTMを覆すことができます。
 1. ICは自身が考えるLGTM提供者のリストに人々を追加します。TLはLGTM提供者のリストに必須です。
 1. ICがフィードバックを取り入れる。
 1. TLがLGTM提供者のリストにさらに人々を追加する。
-1. ICが初期デザインドキュメント/説明資料/一枚の文書を<[v8-dev+design@googlegroups.com](mailto:v8-dev+design@googlegroups.com)>に送る。
+1. ICが初期デザインドキュメント/説明資料/一枚の文書を[v8-dev+design@googlegroups.com](mailto:v8-dev+design@googlegroups.com)に送る。
 1. ICがLGTMsを収集する。TLが手助けする。
     1. LGTM提供者が文書をレビューし、コメントを追加し、文書の冒頭にLGTMまたは非LGTMを示す。非LGTMを追加する場合は理由を列挙する。
     1. オプション: LGTM提供者は自分自身をLGTM提供者リストから外すことができる/他のLGTM提供者を提案できる
