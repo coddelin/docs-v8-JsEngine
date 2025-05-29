@@ -12,6 +12,7 @@ description: 'Chrome 41 hides expensive memory management operations inside of s
 ---
 JavaScript performance continues to be one of the key aspects of Chrome’s values, especially when it comes to enabling a smooth experience. Starting in Chrome 41, V8 takes advantage of a new technique to increase the responsiveness of web applications by hiding expensive memory management operations inside of small, otherwise unused chunks of idle time. As a result, web developers should expect smoother scrolling and buttery animations with much reduced jank due to garbage collection.
 
+<!--truncate-->
 Many modern language engines such as Chrome’s V8 JavaScript engine dynamically manage memory for running applications so that developers don’t need to worry about it themselves. The engine periodically passes over the memory allocated to the application, determines which data is no longer needed, and clears it out to free up room. This process is known as [garbage collection](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)).
 
 In Chrome, we strive to deliver a smooth, 60 frames per second (FPS) visual experience. Although V8 already attempts to perform garbage collection in small chunks, larger garbage collection operations can and do occur at unpredictable times — sometimes in the middle of an animation — pausing execution and preventing Chrome from hitting that 60 FPS goal.

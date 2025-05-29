@@ -15,6 +15,7 @@ TL;DR: Starting with Chrome 66, V8 compiles JavaScript source code on a backgrou
 
 Since version 41, Chrome has supported [parsing of JavaScript source files on a background thread](https://blog.chromium.org/2015/03/new-javascript-techniques-for-rapid.html) via V8’s [`StreamedSource`](https://cs.chromium.org/chromium/src/v8/include/v8.h?q=StreamedSource&sq=package:chromium&l=1389) API. This enables V8 to start parsing JavaScript source code as soon as Chrome has downloaded the first chunk of the file from the network, and to continue parsing in parallel while Chrome streams the file over the network. This can provide considerable loading time improvements since V8 can be almost finished parsing the JavaScript by the time the file has finished downloading.
 
+<!--truncate-->
 However, due to limitations in V8’s original baseline compiler, V8 still needed to go back to the main thread to finalize parsing and compile the script into JIT machine code that would execute the script’s code. With the switch to our new [Ignition + TurboFan pipeline](/blog/launching-ignition-and-turbofan), we are now able to move bytecode compilation to the background thread as well, thereby freeing up Chrome’s main-thread to deliver a smoother, more responsive web browsing experience.
 
 ## Building a background thread bytecode compiler

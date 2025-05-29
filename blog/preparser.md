@@ -15,6 +15,7 @@ This is the second part of our series explaining how V8 parses JavaScript as fas
 
 Parsing is the step where source code is turned into an intermediate representation to be consumed by a compiler (in V8, the bytecode compiler [Ignition](/blog/ignition-interpreter)). Parsing and compiling happens on the critical path of web page startup, and not all functions shipped to the browser are immediately needed during startup. Even though developers can delay such code with async and deferred scripts, that’s not always feasible. Additionally, many web pages ship code that’s only used by certain features which may not be accessed by a user at all during any individual run of the page.
 
+<!--truncate-->
 Eagerly compiling code unnecessarily has real resource costs:
 
 - CPU cycles are used to create the code, delaying the availability of code that’s actually needed for startup.

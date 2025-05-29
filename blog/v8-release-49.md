@@ -8,6 +8,7 @@ description: 'V8 v4.9 comes with an improved `Math.random` implementation and ad
 ---
 Roughly every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before Chrome branches for a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 4.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.9), which will be in beta until it is released in coordination with Chrome 49 Stable. V8 4.9 is filled with all sorts of developer-facing goodies, so we’d like to give you a preview of some of the highlights in anticipation of the release in several weeks.
 
+<!--truncate-->
 ## 91% ECMAScript 2015 (ES6) support
 
 In V8 release 4.9 we shipped more JavaScript ES2015 features than in any other previous release, bringing us to 91% completion as measured by the [Kangax compatibility table](https://kangax.github.io/compat-table/es6/) (as of January 26). V8 now supports destructuring, default parameters, Proxy objects, and the Reflect API. Release 4.9 also makes block level constructs such as `class` and `let` available outside of strict mode and adds support for the sticky flag on regular expressions and customizable `Object.prototype.toString` output.

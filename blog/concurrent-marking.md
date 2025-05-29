@@ -14,6 +14,7 @@ tweet: '1006187194808233985'
 ---
 This post describes the garbage collection technique called _concurrent marking_. The optimization allows a JavaScript application to continue execution while the garbage collector scans the heap to find and mark live objects. Our benchmarks show that concurrent marking reduces the time spent marking on the main thread by 60%–70%. Concurrent marking is the last puzzle piece of the [Orinoco project](/blog/orinoco) — the project to incrementally replace the old garbage collector with the new mostly concurrent and parallel garbage collector. Concurrent marking is enabled by default in Chrome 64 and Node.js v10.
 
+<!--truncate-->
 ## Background
 
 Marking is a phase of V8’s [Mark-Compact](https://en.wikipedia.org/wiki/Tracing_garbage_collection) garbage collector. During this phase the collector discovers and marks all live objects. Marking starts from the set of known live objects such as the global object and the currently active functions — the so-called roots. The collector marks the roots as live and follows the pointers in them to discover more live objects. The collector continues marking the newly discovered objects and following pointers until there are no more objects to mark. At the end of marking, all unmarked objects on the heap are unreachable from the application and can be safely reclaimed.

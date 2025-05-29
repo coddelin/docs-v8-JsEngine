@@ -35,6 +35,7 @@ tweet: '1397945205198835719'
 </style>
 <!-- markdownlint-restore -->
 
+<!--truncate-->
 Writing a high-performance JavaScript engine takes more than just having a highly optimising compiler like TurboFan. Particularly for short-lived sessions, like loading websites or command line tools, there’s a lot of work that happens before the optimising compiler even has a chance to start optimising, let alone having time to generate the optimised code.
 
 This is the reason why, since 2016, we’ve moved away from tracking synthetic benchmarks (like Octane) to measuring [real-world performance](/blog/real-world-performance), and why since then we’ve worked hard on the performance of JavaScript outside of the optimising compiler. This has meant work on the parser, on streaming, on our object model, on concurrency in the garbage collector, on caching compiled code… let’s just say we were never bored.

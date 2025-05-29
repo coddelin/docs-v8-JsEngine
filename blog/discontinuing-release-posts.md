@@ -12,6 +12,7 @@ tweet: '1537857497825824768'
 
 Historically, there has been a blog post for each new release branch of V8. You may have noticed there has not been a release blog post since v9.9. From v10.0 onward, we are discontinuing release blog posts for each new branch. But don’t worry, all the information you were used to getting via release blog posts are still available! Read on to see where to find that information going forward.
 
+<!--truncate-->
 ## Release schedule and current version
 
 Were you reading the release blog posts to determine the most up-to-date release of V8?

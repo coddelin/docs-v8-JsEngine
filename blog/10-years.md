@@ -11,6 +11,7 @@ tweet: '1039559389324238850'
 ---
 This month marks the 10-year anniversary of shipping not just Google Chrome, but also the V8 project. This post gives an overview of major milestones for the V8 project in the past 10 years as well as the years before, when the project was still secret.
 
+<!--truncate-->
 <figure>
   <div class="video video-16:9">
     <iframe src="https://www.youtube.com/embed/G0vnrPTuxZA" width="640" height="360" loading="lazy"></iframe>

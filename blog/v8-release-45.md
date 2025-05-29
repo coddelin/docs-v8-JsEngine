@@ -8,6 +8,7 @@ description: 'V8 v4.5 comes with performance improvements and adds support for s
 ---
 Roughly every six weeks, we create a new branch of V8 as part of our [release process](https://v8.dev/docs/release-process). Each version is branched from V8’s Git master immediately before Chrome branches for a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 4.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.5), which will be in beta until it is released in coordination with Chrome 45 Stable. V8 v4.5 is filled with all sorts of developer-facing goodies, so we’d like to give you a preview of some of the highlights in anticipation of the release in several weeks.
 
+<!--truncate-->
 ## Improved ECMAScript 2015 (ES6) support
 
 V8 v4.5 adds support for several [ECMAScript 2015 (ES6)](https://www.ecma-international.org/ecma-262/6.0/) features.

@@ -8,6 +8,7 @@ tags:
 ---
 The JavaScript Promise Integration (JSPI) API allows WebAssembly applications that were written assuming _synchronous_ access to external functionality to operate smoothly in an environment where the functionality is actually _asynchronous_.
 
+<!--truncate-->
 This note outlines what the core capabilities of the JSPI API are, how to access it, how to develop software for it and offers some examples to try out.
 
 ## What is ‘JSPI’ for?

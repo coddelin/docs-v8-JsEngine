@@ -11,6 +11,7 @@ tweet: '1057645773465235458'
 ---
 Every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 7.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.1), which is in beta until its release in coordination with Chrome 71 Stable in several weeks. V8 v7.1 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
 
+<!--truncate-->
 ## Memory
 
 Following the work in v6.9/v7.0 to [embed builtins directly into the binary](/blog/embedded-builtins), bytecode handlers for the interpreter are now also [embedded into the binary](https://bugs.chromium.org/p/v8/issues/detail?id=8068). This saves around 200 KB on average per Isolate.

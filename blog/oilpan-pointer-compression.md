@@ -17,6 +17,7 @@ tweet: '1597274125780893697'
 >
 > – [Donald Knuth (2008)](https://cs.stanford.edu/~knuth/news08.html)
 
+<!--truncate-->
 
 Truer words have (almost) never been spoken.  We also see CPU vendors not actually shipping [64-bit CPUs](https://en.wikipedia.org/wiki/64-bit_computing#Limits_of_processors) and Android OEMs [opting for only 39-bit of address space](https://www.kernel.org/doc/Documentation/arm64/memory.txt) to speed up page table walks in the Kernel.  V8 running in Chrome also [isolates sites into separate processes](https://www.chromium.org/Home/chromium-security/site-isolation/), which further limits the requirements of actual address space needed for a single tab.  None of this is completely new though, which is why we launched [pointer compression for V8 in 2020](https://v8.dev/blog/pointer-compression) and saw great improvements in memory across the web.  With the [Oilpan library](https://v8.dev/blog/oilpan-library) we have another building block of the web under control.  [Oilpan](https://source.chromium.org/chromium/chromium/src/+/main:v8/include/cppgc/README.md) is a traced-based garbage collector for C++ which is among other things used to host the Document Object Model in Blink and thus an interesting target for optimizing memory.
 

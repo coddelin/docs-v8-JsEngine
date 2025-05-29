@@ -10,6 +10,7 @@ description: 'V8 embedders can utilize snapshots to skip over the startup time i
 ---
 The JavaScript specification includes a lot of built-in functionality, from [math functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) to a [full-featured regular expression engine](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions). Every newly-created V8 context has these functions available from the start. For this to work, the global object (for example, the window object in a browser) and all the built-in functionality must be set up and initialized into V8’s heap at the time the context is created. It takes quite some time to do this from scratch.
 
+<!--truncate-->
 Fortunately, V8 uses a shortcut to speed things up: just like thawing a frozen pizza for a quick dinner, we deserialize a previously-prepared snapshot directly into the heap to get an initialized context. On a regular desktop computer, this can bring the time to create a context from 40 ms down to less than 2 ms. On an average mobile phone, this could mean a difference between 270 ms and 10 ms.
 
 Applications other than Chrome that embed V8 may require more than vanilla Javascript. Many load additional library scripts at startup, before the “actual” application runs. For example, a simple TypeScript VM based on V8 would have to load the TypeScript compiler on startup in order to translate TypeScript source code into JavaScript on-the-fly.

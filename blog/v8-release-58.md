@@ -8,6 +8,7 @@ description: 'V8 v5.8 enables the use of arbitrary heap sizes and improves start
 ---
 Every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 5.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.8), which will be in beta until it is released in coordination with Chrome 58 Stable in several weeks. V8 5.8 is filled with all sorts of developer-facing goodies. We’d like to give you a preview of some of the highlights in anticipation of the release.
 
+<!--truncate-->
 ## Arbitrary heap sizes
 
 Historically the V8 heap limit was conveniently set to fit the signed 32-bit integer range with some margin. Over time this convenience lead to sloppy code in V8 that mixed types of different bit widths, effectively breaking the ability to increase the limit. In V8 v5.8 we enabled the use of arbitrary heap sizes. See the [dedicated blog post](/blog/heap-size-limit) for more information.

@@ -10,6 +10,7 @@ tweet: '1348635270762139650'
 ---
 Starting with v8.8, V8 ships with a new experimental non-backtracking RegExp engine (in addition to the existing [Irregexp engine](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html)) which guarantees execution in linear time with respect to the size of the subject string. The experimental engine is available behind the feature flags mentioned below.
 
+<!--truncate-->
 ![Runtime of `/(a*)*b/.exec('a'.repeat(n))` for n ≤ 100](/_img/non-backtracking-regexp/runtime-plot.svg)
 
 Here’s how you can configure the new RegExp engine:

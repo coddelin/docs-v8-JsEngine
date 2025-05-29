@@ -10,6 +10,7 @@ tags:
 ---
 Slack tracking is a way to give new objects an initial size that is **larger than what they may actually use**, so they can have new properties added quickly. And then, after some period of time, to **magically return that unused space to the system**. Neat, huh?
 
+<!--truncate-->
 It’s especially useful because JavaScript doesn’t have static classes. The system can never see “at a glance” how many properties you have. The engine experiences them one by one. So when you read:
 
 ```js

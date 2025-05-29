@@ -22,6 +22,7 @@ tweet: '1143531042361487360'
   <figcaption><a href="https://www.youtube.com/watch?v=X9eRLElSW1c">“The cost of JavaScript”</a> as presented by Addy Osmani at #PerfMatters Conference 2019.</figcaption>
 </figure>
 
+<!--truncate-->
 One large change to [the cost of JavaScript](https://medium.com/@addyosmani/the-cost-of-javascript-in-2018-7d8950fbb5d4) over the last few years has been an improvement in how fast browsers can parse and compile script. **In 2019, the dominant costs of processing scripts are now download and CPU execution time.**
 
 User interaction can be delayed if the browser’s main thread is busy executing JavaScript, so optimizing bottlenecks with script execution time and network can be impactful.

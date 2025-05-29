@@ -10,6 +10,7 @@ tweet: '1070344545685118976'
 ---
 During his three-months internship on the V8 team, Hai Dang worked on improving the performance of `[...array]`, `[...string]`, `[...set]`, `[...map.keys()]`, and `[...map.values()]` (when the spread elements are at the start of the array literal). He even made `Array.from(iterable)` much faster as well. This article explains some of the gory details of his changes, which are included in V8 starting with v7.2.
 
+<!--truncate-->
 ## Spread elements
 
 Spread elements are components of array literals that have the form `...iterable`. They were introduced in ES2015 as a way to create arrays from iterable objects. For example, the array literal `[1, ...arr, 4, ...b]` creates an array whose first element is `1` followed by the elements of the array `arr`, then `4`, and finally the elements of the array `b`:

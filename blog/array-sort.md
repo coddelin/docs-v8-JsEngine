@@ -12,6 +12,7 @@ tweet: '1045656758700650502'
 ---
 `Array.prototype.sort` was among the last builtins implemented in self-hosted JavaScript in V8. Porting it offered us the opportunity to experiment with different algorithms and implementation strategies and finally [make it stable](https://mathiasbynens.be/demo/sort-stability) in V8 v7.0 / Chrome 70.
 
+<!--truncate-->
 ## Background
 
 Sorting in JavaScript is hard. This blog post looks at some of the quirks in the interaction between a sorting algorithm and the JavaScript language, and describes our journey to move V8 to a stable algorithm and make performance more predictable.

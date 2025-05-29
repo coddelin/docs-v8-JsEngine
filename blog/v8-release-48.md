@@ -8,6 +8,7 @@ description: 'V8 v4.8 adds support for several new ES2015 language features.'
 ---
 Roughly every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before Chrome branches for a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 4.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.8), which will be in beta until it is released in coordination with Chrome 48 Stable. V8 4.8 contains a handful of developer-facing features, so we’d like to give you a preview of some of the highlights in anticipation of the release in several weeks.
 
+<!--truncate-->
 ## Improved ECMAScript 2015 (ES6) support
 
 This release of V8 provides support for two [well-known symbols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol#Well-known_symbols), built-in symbols from the ES2015 spec that allow developers to leverage several low-level language constructs which were previously hidden.

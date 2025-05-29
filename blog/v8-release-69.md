@@ -9,6 +9,7 @@ tweet: '1026825606003150848'
 ---
 Every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 6.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.9), which is in beta until its release in coordination with Chrome 69 Stable in several weeks. V8 v6.9 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
 
+<!--truncate-->
 ## Memory savings through embedded built-ins
 
 V8 ships with an extensive library of built-in functions. Examples are methods on built-in objects such as `Array.prototype.sort` and `RegExp.prototype.exec`, but also a wide range of internal functionality. Because their generation takes a long time, built-in functions are compiled at build-time and serialized into a [snapshot](/blog/custom-startup-snapshots), which is later deserialized at runtime to create the initial JavaScript heap state.

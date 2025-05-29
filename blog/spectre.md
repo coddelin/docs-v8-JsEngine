@@ -12,6 +12,7 @@ description: 'The V8 team details their analysis and mitigation strategy for Spe
 ---
 On January 3, 2018, Google Project Zero and others [disclosed](https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html) the first three of a new class of vulnerabilities that affect CPUs that perform speculative execution, dubbed [Spectre](https://spectreattack.com/spectre.pdf) and [Meltdown](https://meltdownattack.com/meltdown.pdf). Using the [speculative execution](https://en.wikipedia.org/wiki/Speculative_execution) mechanisms of CPUs, an attacker could temporarily bypass both implicit and explicit safety checks in code that prevent programs from reading unauthorized data in memory. While processor speculation was designed to be a microarchitectural detail, invisible at the architectural level, carefully crafted programs could read unauthorized information in speculation and disclose it through side channels such as the execution time of a program fragment.
 
+<!--truncate-->
 When it was shown that JavaScript could be used to mount Spectre attacks, the V8 team became involved in tackling the problem. We formed an emergency response team and worked closely with other teams at Google, our partners at other browser vendors, and our hardware partners. In concert with them, we proactively engaged in both offensive research (constructing proof-of-concept gadgets) and defensive research (mitigations for potential attacks).
 
 A Spectre attack consists of two parts:

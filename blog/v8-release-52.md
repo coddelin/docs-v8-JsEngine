@@ -8,6 +8,7 @@ description: 'V8 v5.2 includes support for ES2016 language features.'
 ---
 Roughly every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before Chrome branches for a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 5.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.2), which will be in beta until it is released in coordination with Chrome 52 Stable. V8 5.2 is filled with all sorts of developer-facing goodies, so we’d like to give you a preview of some of the highlights in anticipation of the release in several weeks.
 
+<!--truncate-->
 ## ES2015 & ES2016 support
 
 V8 v5.2 contains support for ES2015 (a.k.a. ES6) and ES2016 (a.k.a. ES7).

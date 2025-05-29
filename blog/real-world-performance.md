@@ -8,6 +8,7 @@ description: 'The V8 team has developed a new methodology to measure and underst
 ---
 Over the last year the V8 team has developed a new methodology to measure and understand real-world JavaScript performance. We’ve used the insights that we gleaned from it to change how the V8 team makes JavaScript faster. Our new real-world focus represents a significant shift from our traditional performance focus. We’re confident that as we continue to apply this methodology in 2017, it will significantly improve users’ and developers’ ability to rely on predictable performance from V8 for real-world JavaScript in both Chrome and Node.js.
 
+<!--truncate-->
 The old adage “what gets measured gets improved” is particularly true in the world of JavaScript virtual machine (VM) development. Choosing the right metrics to guide performance optimization is one of the most important things a VM team can do over time. The following timeline roughly illustrates how JavaScript benchmarking has evolved since the initial release of V8:
 
 ![Evolution of JavaScript benchmarks](/_img/real-world-performance/evolution.png)

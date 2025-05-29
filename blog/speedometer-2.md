@@ -9,6 +9,7 @@ tweet: '956232641736421377'
 ---
 Ever since its initial release of Speedometer 1.0 in 2014, the Blink and V8 teams have been using the benchmark as a proxy for real-world use of popular JavaScript frameworks and we achieved considerable speedups on this benchmark. We verified independently that these improvements translate to real user benefits by measuring against real-world websites and observed that improvements of page load times of popular websites also improved the Speedometer score.
 
+<!--truncate-->
 JavaScript has rapidly evolved in the meantime, adding many new language features with ES2015 and later standards. The same is true for the frameworks themselves, and as such Speedometer 1.0 has become outdated over time. Hence using Speedometer 1.0 as an optimization indicator raises the risk of not measuring newer code patterns that are actively used.
 
 The Blink and V8 teams welcome [the recent release of the updated Speedometer 2.0 benchmark](https://webkit.org/blog/8063/speedometer-2-0-a-benchmark-for-modern-web-app-responsiveness/). Applying the original concept to a list of contemporary frameworks, transpilers and ES2015 features makes the benchmark a prime candidate for optimizations again. Speedometer 2.0 is a great addition to [our real-world performance benchmarking tool belt](/blog/real-world-performance).

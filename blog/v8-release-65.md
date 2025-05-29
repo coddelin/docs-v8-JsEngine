@@ -9,6 +9,7 @@ tweet: '959174292406640640'
 ---
 Every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 6.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.5), which is in beta until its release in coordination with Chrome 65 Stable in several weeks. V8 v6.5 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
 
+<!--truncate-->
 ## Untrusted code mode
 
 In response to the latest speculative side-channel attack called Spectre, V8 introduced an [untrusted code mode](/docs/untrusted-code-mitigations). If you embed V8, consider leveraging this mode in case your application processes user-generated, not-trustworthy code. Please note that the mode is enabled by default, including in Chrome.

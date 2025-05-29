@@ -18,6 +18,7 @@ This system analyzer is a unified web interface to trace, debug and analyse patt
 
 V8 already has a tracing infrastructure for [ICs](https://mathiasbynens.be/notes/shapes-ics) and [Maps](https://v8.dev/blog/fast-properties) which can process and analyse IC events using the [IC Explorer](https://v8.dev/tools/v8.7/ic-explorer.html) and Map events using [Map Processor](https://v8.dev/tools/v8.7/map-processor.html). However, previous tools didn't allow us to analyze maps and ICs holistically and this is now possible with system analyzer.
 
+<!--truncate-->
 ![Indicium](/_img/system-analyzer/indicium-logo.png)
 
 ## Case Study

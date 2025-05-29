@@ -9,6 +9,7 @@ tweet: '943057597481082880'
 ---
 Every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 6.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.4), which is in beta until its release in coordination with Chrome 64 Stable in several weeks. V8 v6.4 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
 
+<!--truncate-->
 ## Speed
 
 V8 v6.4 [improves](https://bugs.chromium.org/p/v8/issues/detail?id=6971) the performance of the `instanceof` operator by 3.6×. As a direct result, [uglify-js](http://lisperator.net/uglifyjs/) is now 15–20% faster according to [V8’s Web Tooling Benchmark](https://github.com/v8/web-tooling-benchmark).

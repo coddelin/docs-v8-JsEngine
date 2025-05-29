@@ -8,6 +8,7 @@ description: 'WebAssembly or Wasm is a new runtime and compilation target for th
 ---
 Today we’re happy to announce, in tandem with [Firefox](https://hacks.mozilla.org/2016/10/webassembly-browser-preview) and [Edge](https://blogs.windows.com/msedgedev/2016/10/31/webassembly-browser-preview/), a WebAssembly browser preview. [WebAssembly](http://webassembly.org/) or Wasm is a new runtime and compilation target for the web, designed by collaborators from Google, Mozilla, Microsoft, Apple, and the [W3C WebAssembly Community Group](https://www.w3.org/community/webassembly/).
 
+<!--truncate-->
 ## What does this milestone mark?
 
 This milestone is significant because it marks:

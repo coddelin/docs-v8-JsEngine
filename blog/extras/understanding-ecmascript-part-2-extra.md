@@ -64,6 +64,7 @@ And so on:
 >
 > [`RelationalExpression : ShiftExpression`](https://tc39.es/ecma262/#prod-RelationalExpression)
 
+<!--truncate-->
 Almost there…
 
 > [`ShiftExpression : AdditiveExpression`](https://tc39.es/ecma262/#prod-ShiftExpression)

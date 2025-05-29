@@ -12,6 +12,7 @@ tweet: '1254829913561014272'
 ---
 We have a growing number of compilers and other tools that generate or manipulate `.wasm` files, and sometimes you might want to have a look inside. Maybe you’re a developer of such a tool, or more directly, you’re a programmer targeting Wasm, and wondering what the generated code looks like, for performance or other reasons.
 
+<!--truncate-->
 Problem is, Wasm is rather low-level, much like actual assembly code. In particular, unlike, say, the JVM, all data structures have been compiled down to load/store operations, rather than conveniently named classes and fields. Compilers like LLVM can do an impressive amount of transformations that make the generated code look nothing like the code that went in.
 
 ## Disassemble or.. decompile?

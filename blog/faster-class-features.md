@@ -12,6 +12,7 @@ tweet: '1517041137378373632'
 
 Class fields have been shipped in V8 since v7.2 and private class methods have been shipped since v8.4. After the proposals reached stage 4 in 2021, work had begun to improve the support of the new class features in V8 - until then, there had been two main issues affecting their adoption:
 
+<!--truncate-->
 1. The initialization of class fields and private methods was much slower than the assignment of ordinary properties.
 2. The class field initializers were broken in [startup snapshots](https://v8.dev/blog/custom-startup-snapshots) used by embedders like Node.js and Deno to speed up the bootstrapping of themselves or user applications.
 

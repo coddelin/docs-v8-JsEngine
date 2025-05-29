@@ -17,6 +17,7 @@ tweet: '1262815621756014594'
 
 [Jason Orendorff](https://github.com/jorendorff) from Mozilla published [a great in-depth analysis of JS syntactic quirks](https://github.com/mozilla-spidermonkey/jsparagus/blob/master/js-quirks.md#readme). Even though the implementation details differ, every JS engine faces the same problems with these quirks.
 
+<!--truncate-->
 ## Cover grammars
 
 In this episode, we take a deeper look into *cover grammars*. They are a way to specify the grammar for syntactic constructs which look ambiguous at first.

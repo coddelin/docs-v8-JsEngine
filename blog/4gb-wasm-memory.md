@@ -17,6 +17,7 @@ tweet: '1260944314441633793'
 
 Thanks to recent work in Chrome and Emscripten, you can now use up to 4GB of memory in WebAssembly applications. That’s up from the previous limit of 2GB. It might seem odd that there was ever a limit - after all, no work was needed to allow people to use 512MB or 1GB of memory! - but it turns out that there are some special things happening in the jump from 2GB to 4GB, both in the browser and in the toolchain, which we’ll describe in this post.
 
+<!--truncate-->
 ## 32 bits
 
 Some background before we get into more details: the new 4GB limit is the largest amount of memory possible with 32-bit pointers, which is what WebAssembly currently supports, known as “wasm32” in LLVM and elsewhere. There is work towards a “wasm64” ([“memory64”](https://github.com/WebAssembly/memory64/blob/master/proposals/memory64/Overview.md) in the wasm spec) in which pointers can be 64-bit and we would be able to make use of over 16 million terabytes of memory (!), but until then, 4GB is the most we can possibly hope to be able to access.

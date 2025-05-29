@@ -10,6 +10,7 @@ description: 'Node.js suffered from a hash flooding vulnerability. This post pro
 ---
 Early July this year, Node.js released a [security update](https://nodejs.org/en/blog/vulnerability/july-2017-security-releases/) for all currently maintained branches to address a hash flooding vulnerability. This intermediate fix comes at the cost of a significant startup performance regression. In the meantime, V8 has implemented a solution which avoids the performance penalty.
 
+<!--truncate-->
 In this post, we want to give some background and history on the vulnerability and the eventual solution.
 
 ## Hash flooding attack

@@ -11,6 +11,7 @@ description: 'JavaScript regular expressions are getting some new functionality:
 ---
 Introduced with the third edition of the ECMA-262 specification, regular expressions have been part of Javascript since 1999. In functionality and expressiveness, JavaScript’s implementation of regular expressions roughly mirrors that of other programming languages.
 
+<!--truncate-->
 One feature in JavaScript’s RegExp that is often overlooked, but can be quite useful at times, is lookahead assertions. For example, to match a sequence of digits that is followed by a percent sign, we can use `/\d+(?=%)/`. The percent sign itself is not part of the match result. The negation thereof, `/\d+(?!%)/`, would match a sequence of digits not followed by a percent sign:
 
 ```js

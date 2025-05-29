@@ -11,6 +11,7 @@ description: 'V8 recently migrated RegExp’s built-in functions from a self-hos
 ---
 This blog post covers V8’s recent migration of RegExp’s built-in functions from a self-hosted JavaScript implementation to one that hooks straight into our new code generation architecture based on [TurboFan](/blog/v8-release-56).
 
+<!--truncate-->
 V8’s RegExp implementation is built on top of [Irregexp](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html), which is widely considered to be one of the fastest RegExp engines. While the engine itself encapsulates the low-level logic to perform pattern matching against strings, functions on the RegExp prototype such as [`RegExp.prototype.exec`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec) do the additional work required to expose its functionality to the user.
 
 Historically, various components of V8 have been implemented in JavaScript. Until recently, `regexp.js` has been one of them, hosting the implementation of the RegExp constructor, all of its properties as well as its prototype’s properties.

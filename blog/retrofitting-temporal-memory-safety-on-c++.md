@@ -18,6 +18,7 @@ description: 'Eliminating use-after-frees vulnerabilities in Chrome with heap sc
 
 [Memory safety in Chrome](https://security.googleblog.com/2021/09/an-update-on-memory-safety-in-chrome.html) is an ever-ongoing effort to protect our users. We are constantly experimenting with different technologies to stay ahead of malicious actors. In this spirit, this post is about our journey of using heap scanning technologies to improve memory safety of C++.
 
+<!--truncate-->
 Let’s start at the beginning though. Throughout the lifetime of an application its state is generally represented in memory. Temporal memory safety refers to the problem of guaranteeing that memory is always accessed with the most up to date information of its structure, its type. C++ unfortunately does not provide such guarantees. While there is appetite for different languages than C++ with stronger memory safety guarantees, large codebases such as Chromium will use C++ for the foreseeable future.
 
 ```cpp

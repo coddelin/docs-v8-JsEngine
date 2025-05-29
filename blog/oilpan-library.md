@@ -16,6 +16,7 @@ tweet: '1458406645181165574'
 
 While the title of this post may suggest taking a deep dive into a collection of books around oil pans – which, considering construction norms for pans, is a topic with a surprising amount of literature – we are instead looking a bit closer at Oilpan, a C++ garbage collector that is hosted through V8 as a library since V8 v9.4.
 
+<!--truncate-->
 Oilpan is a [trace-based garbage collector](https://en.wikipedia.org/wiki/Tracing_garbage_collection), meaning that it determines live objects by traversing an object graph in a marking phase. Dead objects are then reclaimed in a sweeping phase, which we have [blogged about in the past](https://v8.dev/blog/high-performance-cpp-gc). Both phases may run interleaved or parallel to actual C++ application code. Reference handling for heap objects is precise, and conservative for the native stack. This means that Oilpan knows where references are on the heap but has to scan the memory assuming random bit sequences represent pointers for the stack. Oilpan also supports compaction (defragmenting the heap) for certain objects when garbage collection runs without a native stack.
 
 So, what’s the deal with providing it as a library through V8?

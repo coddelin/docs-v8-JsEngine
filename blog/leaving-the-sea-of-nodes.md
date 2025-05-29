@@ -13,6 +13,7 @@
 
 V8’s end-tier optimizing compiler, Turbofan, is famously one of the few large-scale production compilers to use [Sea of Nodes](https://en.wikipedia.org/wiki/Sea_of_nodes) (SoN). However, since almost 3 years ago, we’ve started to get rid of Sea of Nodes and fall back to a more traditional [Control-Flow Graph](https://en.wikipedia.org/wiki/Control-flow_graph) (CFG) [Intermediate Representation](https://en.wikipedia.org/wiki/Intermediate_representation) (IR), which we named Turboshaft. By now, the whole JavaScript backend of Turbofan uses Turboshaft instead, and WebAssembly uses Turboshaft throughout its whole pipeline. Two parts of Turbofan still use some Sea of Nodes: the builtin pipeline, which we’re slowly replacing by Turboshaft, and the frontend of the JavaScript pipeline, which we’re replacing by Maglev, another CFG-based IR. This blog post explains the reasons that led us to move away from Sea of Nodes.
 
+<!--truncate-->
 # The birth of Turbofan and Sea of Nodes
 
 12 years ago, in 2013, V8 had a single optimizing compiler: [Crankshaft](https://blog.chromium.org/2010/12/new-crankshaft-for-v8.html). It was using a Control-Flow Graph based Intermediate Representation. The initial version of Crankshaft provided significant performance improvements despite still being quite limited in what it supported. Over the next few years, the team kept improving it to generate even faster code in ever more situations. However, technical debt was starting to stack up and a number of issues were arising with Crankshaft:

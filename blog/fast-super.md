@@ -14,6 +14,7 @@ The [`super` keyword](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Re
 
 Previously, accessing a super property (like `super.x`) was implemented via a runtime call. Starting from V8 v9.0, we reuse the [inline cache (IC) system](https://mathiasbynens.be/notes/shapes-ics) in non-optimized code and generate the proper optimized code for super property access, without having to jump to the runtime.
 
+<!--truncate-->
 As you can see from the graphs below, super property access used to be an order of magnitude slower than normal property access because of the runtime call. Now we’re much closer to being on par.
 
 ![Compare super property access to regular property access, optimized](/_img/fast-super/super-opt.svg)

@@ -15,6 +15,7 @@ tweet: '1245400717667577857'
 
 In this episode, we’ll go deeper in the definition of the ECMAScript language and its syntax. If you’re not familiar with context-free grammars, now is a good time to check out the basics, since the spec uses context-free grammars to define the language. See [the chapter about context free grammars in "Crafting Interpreters"](https://craftinginterpreters.com/representing-code.html#context-free-grammars) for an approachable introduction or the [Wikipedia page](https://en.wikipedia.org/wiki/Context-free_grammar) for a more mathematical definition.
 
+<!--truncate-->
 ## ECMAScript grammars
 
 The ECMAScript spec defines four grammars:

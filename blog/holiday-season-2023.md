@@ -17,6 +17,7 @@ Welcome to the thrilling world of V8, where speed is not just a feature but a wa
 
 Through innovative performance optimizations, V8 continues to push the boundaries of what's possible in the ever-evolving landscape of the Web. We introduced a new mid-tier compiler and implemented several improvements to the top-tier compiler infrastructure, the runtime and the garbage collector, which have resulted in significant speed gains across the board.
 
+<!--truncate-->
 In addition to performance improvements, we landed exciting new features for both Javascript and WebAssembly. We also shipped a new approach to bringing garbage-collected programming languages efficiently to the Web with [WebAssembly Garbage Collection (WasmGC)](https://v8.dev/blog/wasm-gc-porting).
 
 But our commitment to excellence doesn't stop there – we've also prioritized safety. We improved our sandboxing infrastructure and introduced [Control-flow Integrity (CFI)](https://en.wikipedia.org/wiki/Control-flow_integrity) to V8, providing a safer environment for users.

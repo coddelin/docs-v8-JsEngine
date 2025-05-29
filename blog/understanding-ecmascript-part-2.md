@@ -41,6 +41,7 @@ There’s both `[[GetOwnProperty]]` and `[[Get]]` — we’re interested in the 
 
 Unfortunately, the [Property Descriptor specification type](https://tc39.es/ecma262/#sec-property-descriptor-specification-type) also has a field called `[[Get]]`, so while browsing the spec for `[[Get]]`, we need to carefully distinguish between the two independent usages.
 
+<!--truncate-->
 `[[Get]]` is an **essential internal method**. **Ordinary objects** implement the default behavior for essential internal methods. **Exotic objects** can define their own internal method `[[Get]]` which deviates from the default behavior. In this post, we focus on ordinary objects.
 
 The default implementation for `[[Get]]` delegates to `OrdinaryGet`:

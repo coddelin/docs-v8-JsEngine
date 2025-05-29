@@ -19,6 +19,7 @@ As a JavaScript developer, you may often find yourself in a situation in which c
 - Want to quickly know if a particular part of the codebase is reached? Instead of instrumenting with `console.log` for `printf`\-style debugging or manually stepping through the code, code coverage can display live information about which parts of your applications have been executed.
 - Or maybe you’re optimizing for speed and would like to know which spots to focus on? Execution counts can point out hot functions and loops.
 
+<!--truncate-->
 ## JavaScript code coverage in V8
 
 Earlier this year, we added native support for JavaScript code coverage to V8. The initial release in version 5.9 provided coverage at function granularity (showing which functions have been executed), which was later extended to support coverage at block granularity in v6.2 (likewise, but for individual expressions).

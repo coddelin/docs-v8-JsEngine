@@ -13,6 +13,7 @@ tweet: '1180131710568030208'
 ---
 In its default configuration, V8 compiles regular expressions to native code upon the first execution. As part of our work on [JIT-less V8](/blog/jitless), we introduced an interpreter for regular expressions. Interpreting regular expressions has the advantage of using less memory, but it comes with a performance penalty. In this blog post we describe how we take advantage of the upsides of interpreting regular expressions while mitigating the downsides.
 
+<!--truncate-->
 ## Tier-up strategy for RegExp
 
 We want to use the ‘best of both worlds’ for regular expressions. In order to do so, we first compile all regular expressions to bytecode and interpret them. This way, we save a lot of memory, and overall (and with the new, faster interpreter) the performance penalty is acceptable. If a regular expression with the same pattern is used again, we consider it to be ‘hot’ so we recompile to native code. From this point on, we continue the execution as fast as we can.

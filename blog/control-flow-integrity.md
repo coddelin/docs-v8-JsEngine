@@ -8,6 +8,7 @@ tags:
 ---
 Control-flow integrity (CFI) is a security feature aiming to prevent exploits from hijacking control-flow. The idea is that even if an attacker manages to corrupt the memory of a process, additional integrity checks can prevent them from executing arbitrary code. In this blog post, we want to discuss our work to enable CFI in V8.
 
+<!--truncate-->
 # Background
 
 The popularity of Chrome makes it a valuable target for 0-day attacks and most in-the-wild exploits we’ve seen target V8 to gain initial code execution. V8 exploits typically follow a similar pattern: an initial bug leads to memory corruption but often the initial corruption is limited and the attacker has to find a way to arbitrarily read/write in the whole address space. This allows them to hijack the control-flow and run shellcode that executes the next step of the exploit chain that will try to break out of the Chrome sandbox.

@@ -8,6 +8,7 @@ description: 'V8 v5.4 comes with performance improvements and reduced memory con
 ---
 Every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 5.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.4), which will be in beta until it is released in coordination with Chrome 54 Stable in several weeks. V8 v5.4 is filled with all sorts of developer-facing goodies, so we’d like to give you a preview of some of the highlights in anticipation of the release.
 
+<!--truncate-->
 ## Performance improvements
 
 V8 v5.4 delivers a number of key improvements in memory footprint and startup speed. These primarily help accelerate initial script execution and reduce page load in Chrome.

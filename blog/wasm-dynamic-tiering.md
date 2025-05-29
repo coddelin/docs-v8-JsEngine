@@ -12,6 +12,7 @@ tweet: '1454158971674271760'
 
 V8 has two compilers to compile WebAssembly code to machine code that can then be executed: the baseline compiler __Liftoff__ and the optimizing compiler __TurboFan__. Liftoff can generate code much faster than TurboFan, which allows fast startup time. TurboFan, on the other hand, can generate faster code, which allows high peak performance.
 
+<!--truncate-->
 In the current configuration of Chrome a WebAssembly module first gets compiled completely by Liftoff. After Liftoff compilation is finished, the whole module gets compiled again immediately in the background by TurboFan. With streaming compilation, TurboFan compilation can start earlier if Liftoff compiles WebAssembly code faster than the WebAssembly code is downloaded. The initial Liftoff compilation allows fast startup time, whereas the TurboFan compilation in the background provides high peak performance as soon as possible. More details about Liftoff, TurboFan, and the whole compilation process can be found in a [separate document](https://v8.dev/docs/wasm-compilation-pipeline).
 
 Compiling the whole WebAssembly module with TurboFan provides the best possible performance once compilation is completed, but that comes at a cost:

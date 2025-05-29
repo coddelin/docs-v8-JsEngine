@@ -15,6 +15,7 @@ TL;DR: Lazy deserialization was recently enabled by default in [V8 v6.4](/blog/v
 
 But first, let’s take a step back and have a look at how V8 uses heap snapshots to speed up creation of new Isolates (which roughly correspond to a browser tab in Chrome). My colleague Yang Guo gave a good introduction on that front in his article on [custom startup snapshots](/blog/custom-startup-snapshots):
 
+<!--truncate-->
 > The JavaScript specification includes a lot of built-in functionality, from math functions to a full-featured regular expression engine. Every newly-created V8 context has these functions available from the start. For this to work, the global object (for example, the `window` object in a browser) and all the built-in functionality must be set up and initialized into V8’s heap at the time the context is created. It takes quite some time to do this from scratch.
 >
 > Fortunately, V8 uses a shortcut to speed things up: just like thawing a frozen pizza for a quick dinner, we deserialize a previously-prepared snapshot directly into the heap to get an initialized context. On a regular desktop computer, this can bring the time to create a context from 40 ms down to less than 2 ms. On an average mobile phone, this could mean a difference between 270 ms and 10 ms.

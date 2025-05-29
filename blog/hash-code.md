@@ -11,6 +11,7 @@ description: 'Several JavaScript data structures such as Map, Set, WeakSet, and 
 ---
 ECMAScript 2015 introduced several new data structures such as Map, Set, WeakSet, and WeakMap, all of which use hash tables under the hood. This post details the [recent improvements](https://bugs.chromium.org/p/v8/issues/detail?id=6404) in how [V8 v6.3+](/blog/v8-release-63) stores the keys in hash tables.
 
+<!--truncate-->
 ## Hash code
 
 A [_hash function_](https://en.wikipedia.org/wiki/Hash_function) is used to map a given key to a location in the hash table. A _hash code_ is the result of running this hash function over a given key.

@@ -8,6 +8,7 @@ description: 'V8 v6.1 comes with a reduced binary size and includes performance 
 ---
 Every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 6.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.1), which is in beta until its release in coordination with Chrome 61 Stable in several weeks. V8 v6.1 is filled with all sorts of developer-facing goodies. We’d like to give you a preview of some of the highlights in anticipation of the release.
 
+<!--truncate-->
 ## Performance improvements
 
 Visiting all the elements of the Maps and Sets — either via [iteration](http://exploringjs.com/es6/ch_iteration.html) or the [`Map.prototype.forEach`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/forEach) / [`Set.prototype.forEach`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/forEach) methods — became significantly faster, with a raw performance improvement of up to 11× since V8 version 6.0. Check the [dedicated blog post](https://benediktmeurer.de/2017/07/14/faster-collection-iterators/) for additional information.

@@ -10,6 +10,7 @@ tweet: '915473224187760640'
 ---
 Roughly three months ago, I joined the V8 team (Google Munich) as an intern and since then I’ve been working on the VM’s _Deoptimizer_ — something completely new to me which proved to be an interesting and challenging project. The first part of my internship focused on [improving the VM security-wise](https://docs.google.com/document/d/1ELgd71B6iBaU6UmZ_lvwxf_OrYYnv0e4nuzZpK05-pg/edit). The second part focused on performance improvements. Namely, on the removal of a data-structure used for the unlinking of previously deoptimized functions, which was a performance bottleneck during garbage collection. This blog post describes this second part of my internship. I’ll explain how V8 used to unlink deoptimized functions, how we changed this, and what performance improvements were obtained.
 
+<!--truncate-->
 Let’s (very) briefly recap the V8 pipeline for a JavaScript function: V8’s interpreter, Ignition, collects profiling information about that function while interpreting it. Once the function becomes hot, this information is passed to V8’s compiler, TurboFan, which generates optimized machine code. When the profiling information is no longer valid — for example because one of the profiled objects gets a different type during runtime — the optimized machine code might become invalid. In that case, V8 needs to deoptimize it.
 
 ![An overview of V8, as seen in [JavaScript Start-up Performance](https://medium.com/reloading/javascript-start-up-performance-69200f43b201)](/_img/lazy-unlinking/v8-overview.png)

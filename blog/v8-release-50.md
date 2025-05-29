@@ -8,6 +8,7 @@ description: 'V8 v5.0 comes with performance improvements and adds support for s
 ---
 The first step in the V8 [release process](/docs/release-process) is a new branch from the Git master immediately before Chromium branches for a Chrome Beta milestone (roughly every six weeks). Our newest release branch is [V8 v5.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.0), which will remain in beta until we release a stable build in conjunction with Chrome 50 Stable. Here’s a highlight of the new developer-facing features in this version of V8.
 
+<!--truncate-->
 :::note
 **Note:** The version number 5.0 does not carry semantic significance or mark a major release (as opposed to a minor release).
 :::

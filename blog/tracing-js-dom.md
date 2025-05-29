@@ -14,6 +14,7 @@ tweet: '969184997545562112'
 ---
 Debugging memory leaks in Chrome 66 just became much easier. Chrome’s DevTools can now trace and snapshot C++ DOM objects and display all reachable DOM objects from JavaScript with their references. This feature is one of the benefits of the new C++ tracing mechanism of the V8 garbage collector.
 
+<!--truncate-->
 ## Background
 
 A memory leak in a garbage collection system occurs when an unused object is not freed due to unintentional references from other objects. Memory leaks in web pages often involve interaction between JavaScript objects and DOM elements.

@@ -12,6 +12,7 @@
 
 Getting JavaScript running fast is key for a responsive web app. Even with V8's advanced optimizations, parsing and compiling critical JavaScript during startup can still create performance bottlenecks. Knowing which JavaScript functions to compile during the initial script compilation can speed up web page loading.
 
+<!--truncate-->
 When processing a script loaded from the network, V8 has to choose for each function: either compile it immediately ("eagerly") or defer this process. If a function that hasn't been compiled is later called, V8 must then compile it on demand.
 
 If a JavaScript function ends up being called during page load, compiling it eagerly is beneficial, because:

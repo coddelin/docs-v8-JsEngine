@@ -24,6 +24,7 @@ int sum(List* list, int acc) {
 
 With a regular call, this consumes 𝒪(n) stack space: each element of the list adds a new frame on the call stack. With a long enough list, this could very quickly overflow the stack. By replacing the call with a jump, tail call optimization effectively turns this recursive function into a loop which uses 𝒪(1) stack space:
 
+<!--truncate-->
 ```c
 int sum(List* list, int acc) {
   while (list != nullptr) {

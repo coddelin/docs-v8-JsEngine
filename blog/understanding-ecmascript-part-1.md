@@ -19,6 +19,7 @@ In this article, we take a simple function in the spec and try to understand the
 
 Even if you know JavaScript, reading its language specification, [ECMAScript Language specification, or the ECMAScript spec for short](https://tc39.es/ecma262/), can be pretty daunting. At least that’s how I felt when I started reading it for the first time.
 
+<!--truncate-->
 Let’s start with a concrete example and walk through the spec to understand it. The following code demonstrates usage of `Object.prototype.hasOwnProperty`:
 
 ```js

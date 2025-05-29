@@ -10,6 +10,7 @@ description: 'This technical deep-dive explains how V8 made JavaScript’s for-i
 ---
 `for`-`in` is a widely used language feature present in many frameworks. Despite its ubiquity, it is one of the more obscure language constructs from an implementation perspective. V8 went to great lengths to make this feature as fast as possible. Over the course of the past year, `for`-`in` became fully spec-compliant and up to 3 times faster, depending on the context.
 
+<!--truncate-->
 Many popular websites rely heavily on for-in and benefit from its optimization. For example, in early 2016 Facebook spent roughly 7% of its total JavaScript time during startup in the implementation of `for`-`in` itself. On Wikipedia this number was even higher at around 8%. By improving the performance of certain slow cases, Chrome 51 significantly improved the performance on these two websites:
 
 ![](/_img/fast-for-in/wikipedia.png)

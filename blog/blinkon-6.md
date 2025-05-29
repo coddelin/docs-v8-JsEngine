@@ -8,6 +8,7 @@ description: 'An overview of the V8 team’s presentations at BlinkOn 6.'
 ---
 BlinkOn is a biannual meeting of Blink, V8, and Chromium contributors. BlinkOn 6 was held in Munich on June 16 and June 17. The V8 team gave a number of presentations on architecture, design, performance initiatives, and language implementation.
 
+<!--truncate-->
 The V8 BlinkOn talks are embedded below.
 
 ## Real-world JavaScript performance

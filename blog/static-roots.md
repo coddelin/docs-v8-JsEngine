@@ -12,6 +12,7 @@ tweet: ''
 
 Did you ever wonder where `undefined`, `true`, and other core JavaScript objects come from? These objects are the atoms of any user defined object and need to be there first. V8 calls them immovable immutable roots and they live in their own heap – the read-only heap. Since they are used constantly, quick access is crucial. And what could be quicker than correctly guessing their memory address at compile time?
 
+<!--truncate-->
 As an example, consider the extremely common `IsUndefined` [API function](https://source.chromium.org/chromium/chromium/src/+/main:v8/include/v8-value.h?q=symbol:%5Cbv8::Value::IsUndefined%5Cb%20case:yes). Instead of having to look up the address of the `undefined` object for reference, what if we could simply check if an object's pointer ends in, say, `0x61` to know if it is undefined. This is exactly what the V8’s *static roots* feature achieves. This post explores the hurdles we had to take to get there. The feature landed in Chrome 111 and brought performance benefits across the whole VM, particularly speeding up C++ code and builtin functions.
 
 ## Bootstrapping the Read-Only Heap

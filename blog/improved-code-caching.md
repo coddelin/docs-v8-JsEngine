@@ -11,6 +11,7 @@ description: 'Starting with Chrome 66, V8 caches more (byte)code by generating t
 ---
 V8 uses [code caching](/blog/code-caching) to cache the generated code for frequently-used scripts. Starting with Chrome 66, we are caching more code by generating the cache after top-level execution. This leads to a 20–40% reduction in parse and compilation time during the initial load.
 
+<!--truncate-->
 ## Background
 
 V8 uses two kinds of code caching to cache generated code to be reused later. The first is the in-memory cache that is available within each instance of V8. The code generated after the initial compile is stored into this cache, keyed on the source string. This is available for reuse within the same instance of V8. The other kind of code caching serializes the generated code and stores it on disk for future use. This cache is not specific to a particular instance of V8 and can be used across different instances of V8. This blog post focuses on this second kind of code caching as used in Chrome. (Other embedders also use this kind of code caching; it’s not limited to Chrome. However, this blog post only focuses on the usage in Chrome.)

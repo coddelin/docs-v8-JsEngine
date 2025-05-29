@@ -13,6 +13,7 @@ description: 'The V8 team analyzed and significantly reduced the memory footprin
 ---
 Memory consumption is an important dimension in the JavaScript virtual machine performance trade-off space. Over the last few months the V8 team analyzed and significantly reduced the memory footprint of several websites that were identified as representative of modern web development patterns. In this blog post we present the workloads and tools we used in our analysis, outline memory optimizations in the garbage collector, and show how we reduced memory consumed by V8’s parser and its compilers.
 
+<!--truncate-->
 ## Benchmarks
 
 In order to profile V8 and discover optimizations that have impact for the largest number of users, it is crucial to define workloads that are reproducible, meaningful, and simulate common real-world JavaScript usage scenarios. A great tool for this task is [Telemetry](https://catapult.gsrc.io/telemetry), a performance testing framework that runs scripted website interactions in Chrome and records all server responses in order to enable predictable replay of these interactions in our test environment. We selected a set of popular news, social, and media websites and defined the following common user interactions for them:

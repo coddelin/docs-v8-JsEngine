@@ -13,6 +13,7 @@ V8 v7.4 now supports JavaScript execution without allocating executable memory a
 
 In its default configuration, V8 relies heavily on the ability to allocate and modify executable memory at runtime. For example, the [TurboFan optimizing compiler](/blog/turbofan-jit) creates native code for hot JavaScript (JS) functions just-in-time, and most JS regular expressions are compiled down to native code by the [irregexp engine](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html). Creating executable memory at runtime is part of what makes V8 fast.
 
+<!--truncate-->
 But in some situations it can be desirable to run V8 without allocating executable memory:
 
 1. Some platforms (e.g. iOS, smart TVs, game consoles) prohibit write access to executable memory for non-privileged applications, and it has thus been impossible to use V8 there so far; and

@@ -16,6 +16,7 @@ tweet: '1265304883638480899'
 
 In the past we have [already](https://v8.dev/blog/trash-talk) [been](https://v8.dev/blog/concurrent-marking) [writing](https://v8.dev/blog/tracing-js-dom) about garbage collection for JavaScript, the document object model (DOM), and how all of this is implemented and optimized in V8. Not everything in Chromium is JavaScript though, as most of the browser and its Blink rendering engine where V8 is embedded are written in C++. JavaScript can be used to interact with the DOM that is then processed by the rendering pipeline.
 
+<!--truncate-->
 Because the C++ object graph around the DOM is heavily tangled with Javascript objects, the Chromium team switched a couple of years ago to a garbage collector, called [Oilpan](https://www.youtube.com/watch?v=_uxmEyd6uxo), for managing this kind of memory. Oilpan is a garbage collector written in C++ for managing C++ memory that can be connected to V8 using [cross-component tracing](https://research.google/pubs/pub47359/) that treats the tangled C++/JavaScript object graph as one heap.
 
 This post is the first in a series of Oilpan blog posts which will provide an overview of the core principles of Oilpan and its C++ APIs. For this post we will cover some of the supported features, explain how they interact with various subsystems of the garbage collector, and do a deep dive into concurrently reclaiming objects in the sweeper.

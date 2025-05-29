@@ -9,6 +9,7 @@ tweet: '991705626391732224'
 ---
 Over the past couple of months, we have implemented support for [BigInts](/features/bigint) in V8, as currently specified by [this proposal](https://github.com/tc39/proposal-bigint), to be included in a future version of ECMAScript. The following post tells the story of our adventures.
 
+<!--truncate-->
 ## TL;DR
 
 As a JavaScript programmer, you now[^1] have integers with arbitrary[^2] precision in your toolbox:

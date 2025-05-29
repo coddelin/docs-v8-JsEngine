@@ -9,6 +9,7 @@ tweet: '931184976481177600'
 ---
 In this post we’d like to introduce the CodeStubAssembler (CSA), a component in V8 that has been a very useful tool in achieving some [big](/blog/optimizing-proxies) [performance](https://twitter.com/v8js/status/918119002437750784) [wins](https://twitter.com/_gsathya/status/900188695721984000) over the last several V8 releases. The CSA also significantly improved the V8 team’s ability to quickly optimize JavaScript features at a low-level with a high degree of reliability, which improved the team’s development velocity.
 
+<!--truncate-->
 ## A brief history of builtins and hand-written assembly in V8
 
 To understand the CSA’s role in V8, it’s important to understand a little bit of the context and history that led to its development.

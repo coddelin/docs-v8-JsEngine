@@ -13,6 +13,7 @@ tweet: '1244653541379182596'
 ---
 There is a constant battle between memory and performance. As users, we would like things to be fast as well as consume as little memory as possible. Unfortunately, usually improving performance comes at a cost of memory consumption (and vice versa).
 
+<!--truncate-->
 Back in 2014 Chrome switched from being a 32-bit process to a 64-bit process. This gave Chrome better [security, stability and performance](https://blog.chromium.org/2014/08/64-bits-of-awesome-64-bit-windows_26.html), but it came at a memory cost since each pointer now occupies eight bytes instead of four. We took on the challenge to reduce this overhead in V8 to try and get back as many wasted 4 bytes as possible.
 
 Before diving into the implementation, we need to know where we are standing to correctly assess the situation. To measure our memory and performance we use a set of [web pages](https://v8.dev/blog/optimizing-v8-memory) that reflect popular real-world websites. The data showed that V8 contributes up to 60% of Chrome’s [renderer process](https://www.chromium.org/developers/design-documents/multi-process-architecture) memory consumption on desktop, with an average of 40%.

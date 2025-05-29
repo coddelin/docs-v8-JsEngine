@@ -11,6 +11,7 @@ tags:
 
 After almost three years since the [initial design document](https://docs.google.com/document/d/1FM4fQmIhEqPG8uGp5o9A-mnPB5BOeScZYpkHjo0KKA8/edit?usp=sharing) and [hundreds of CLs](https://github.com/search?q=repo%3Av8%2Fv8+%5Bsandbox%5D&type=commits&s=committer-date&o=desc) in the meantime, the V8 Sandbox — a lightweight, in-process sandbox for V8 — has now progressed to the point where it is no longer considered an experimental security feature. Starting today, the [V8 Sandbox is included in Chrome's Vulnerability Reward Program](https://g.co/chrome/vrp/#v8-sandbox-bypass-rewards) (VRP). While there are still a number of issues to resolve before it becomes a strong security boundary, the VRP inclusion is an important step in that direction. Chrome 123 could therefore be considered to be a sort of "beta" release for the sandbox. This blog post uses this opportunity to discuss the motivation behind the sandbox, show how it prevents memory corruption in V8 from spreading within the host process, and ultimately explain why it is a necessary step towards memory safety.
 
+<!--truncate-->
 
 # Motivation
 
