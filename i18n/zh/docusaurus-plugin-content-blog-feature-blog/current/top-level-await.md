@@ -1,10 +1,10 @@
 ---
 title: "顶层 `await`"
 author: "Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))"
-avatars:
+avatars: 
   - "myles-borins"
 date: 2019-10-08
-tags:
+tags: 
   - ECMAScript
   - Node.js 14
 description: "顶层 `await` 即将引入 JavaScript 模块！您将能够在不需要处于异步函数中的情况下使用 `await`。"

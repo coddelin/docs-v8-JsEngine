@@ -1,10 +1,10 @@
 ---
 title: "Node.jsでのハッシュフラッディング脆弱性について…"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed))"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2017-08-11 13:33:37
-tags:
+date: "2017-08-11 13:33:37"
+tags: 
   - セキュリティ
 description: "Node.jsはハッシュフラッディング脆弱性に見舞われました。このポストではその背景を説明し、V8での解決策を解説します。"
 ---

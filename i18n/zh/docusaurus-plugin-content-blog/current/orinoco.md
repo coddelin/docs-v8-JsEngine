@@ -1,12 +1,12 @@
 ---
 title: "Jank克星第二部分：Orinoco"
 author: "Jank克星：Ulan Degenbaev，Michael Lippautz，和Hannes Payer"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2016-04-12 13:33:37
-tags:
+date: "2016-04-12 13:33:37"
+tags: 
   - 内部
   - 内存
 description: "本文介绍了三种优化，这些优化为V8中的新垃圾回收器（代号为Orinoco）奠定了基础。"

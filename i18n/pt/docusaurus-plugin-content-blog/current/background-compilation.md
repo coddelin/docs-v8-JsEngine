@@ -1,10 +1,10 @@
 ---
 title: "Compilação em segundo plano"
 author: "[Ross McIlroy](https://twitter.com/rossmcilroy), defensor da thread principal"
-avatars:
+avatars: 
   - "ross-mcilroy"
-date: 2018-03-26 13:33:37
-tags:
+date: "2018-03-26 13:33:37"
+tags: 
   - internals
 description: "A partir do Chrome 66, o V8 compila o código-fonte JavaScript em uma thread de fundo, reduzindo o tempo gasto na compilação na thread principal entre 5% a 20% em sites típicos."
 tweet: "978319362837958657"

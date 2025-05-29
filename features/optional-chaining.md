@@ -1,10 +1,10 @@
 ---
 title: "Optional chaining"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), breaker of optional chains"
-avatars:
+avatars: 
   - "maya-armyanova"
 date: 2019-08-27
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "Optional chaining enables readable and concise expression of property accesses with built-in nullish checking."

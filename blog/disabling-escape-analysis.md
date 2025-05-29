@@ -1,10 +1,10 @@
 ---
 title: "Temporarily disabling escape analysis"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), sandbox escape analyzer"
-avatars:
+avatars: 
   - "mathias-bynens"
-date: 2017-09-22 13:33:37
-tags:
+date: "2017-09-22 13:33:37"
+tags: 
   - security
 description: "We’ve disabled V8’s escape analysis in Chrome 61 to protect users against a security vulnerability."
 tweet: "911339802884284416"

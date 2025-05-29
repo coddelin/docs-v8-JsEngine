@@ -1,10 +1,10 @@
 ---
 title: "高性能のES2015以降"
 author: "Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer), ECMAScriptパフォーマンスエンジニア"
-avatars:
+avatars: 
   - "benedikt-meurer"
-date: 2017-02-17 13:33:37
-tags:
+date: "2017-02-17 13:33:37"
+tags: 
   - ECMAScript
 description: "V8におけるES2015+言語機能のパフォーマンスは、今やトランスパイルされたES5の対応機能に匹敵します。"
 ---

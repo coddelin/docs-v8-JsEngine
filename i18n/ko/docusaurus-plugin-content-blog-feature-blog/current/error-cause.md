@@ -1,10 +1,10 @@
 ---
 title: "오류 원인"
 author: "Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))"
-avatars:
+avatars: 
   - "victor-gomes"
 date: 2021-07-07
-tags:
+tags: 
   - ECMAScript
 description: "JavaScript는 이제 오류 원인을 지원합니다."
 tweet: "1412774651558862850"

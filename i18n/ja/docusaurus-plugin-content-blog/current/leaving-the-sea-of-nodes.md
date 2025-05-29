@@ -1,14 +1,14 @@
 ---
- title: '陸地が見えた：Sea of Nodesを離れて'
- author: 'ダリウス・メルカディエ'
- avatars:
+ title: "陸地が見えた：Sea of Nodesを離れて"
+ author: "ダリウス・メルカディエ"
+ avatars: 
    - darius-mercadier
  date: 2025-03-25
- tags:
+ tags: 
    - JavaScript
    - 内部構造
  description: "なぜV8がSea of NodesをやめてCFGに戻る決断をしたのか"
- tweet: ''
+ tweet: ""
 ---
 
 V8の最上位最適化コンパイラTurbofanは、[Sea of Nodes](https://en.wikipedia.org/wiki/Sea_of_nodes) (SoN)を使用する数少ない大規模プロダクションコンパイラの1つとして知られています。しかし、約3年前からSea of Nodesを廃止し、より伝統的な[制御フローグラフ](https://en.wikipedia.org/wiki/Control-flow_graph) (CFG) [中間表現](https://en.wikipedia.org/wiki/Intermediate_representation) (IR)に戻りました。それをTurboshaftと名付けました。現在では、TurbofanのJavaScriptバックエンド全体がTurboshaftを使用しており、WebAssemblyはその全パイプラインを通じてTurboshaftを使用しています。Turbofanの2つの部分ではまだSea of Nodesが一部使用されています。1つは組み込みパイプラインで、これをTurboshaftに置き換えつつあります。もう1つはJavaScriptパイプラインのフロントエンドで、これをMaglevという別のCFGベースのIRに置き換えています。このブログ記事では、Sea of Nodesを廃止することになった理由を説明します。

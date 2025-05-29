@@ -1,8 +1,8 @@
 ---
 title: "V8如何衡量真实世界的性能"
 author: "V8团队"
-date: 2016-12-21 13:33:37
-tags:
+date: "2016-12-21 13:33:37"
+tags: 
   - 基准测试
 description: "V8团队开发了一种新方法来衡量和理解真实的JavaScript性能。"
 ---

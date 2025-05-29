@@ -1,11 +1,11 @@
 ---
 title: "Code-Caching für JavaScript-Entwickler"
 author: "[Leszek Swirski](https://twitter.com/leszekswirski), Cache-Zerkleinerer"
-avatars:
+avatars: 
   - leszek-swirski
-date: 2019-04-08 13:33:37
+date: "2019-04-08 13:33:37"
 updated: 2020-06-16
-tags:
+tags: 
   - internals
 description: "(Byte)code-Caching reduziert die Startzeit häufig besuchter Websites, indem es das Ergebnis des JavaScript-Parsings + der Kompilierung zwischenspeichert."
 tweet: "1115264282675953664"

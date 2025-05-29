@@ -1,10 +1,10 @@
 ---
 title: "Встроенные функции"
 author: "Якоб Грубер ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2018-08-14 13:33:37
-tags:
+date: "2018-08-14 13:33:37"
+tags: 
   - internals
 description: "V8 v6.9 внедряет встроенный код в секцию .text бинарного файла, уменьшая медианный размер кучи V8 на сайте на 19%."
 tweet: "1029382366693937162"

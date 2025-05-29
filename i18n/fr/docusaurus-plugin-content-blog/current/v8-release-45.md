@@ -1,8 +1,8 @@
 ---
 title: "Publication de V8 version v4.5"
-author: 'l'équipe V8'
-date: 2015-07-17 13:33:37
-tags:
+author: "l'équipe V8"
+date: "2015-07-17 13:33:37"
+tags: 
   - publication
 description: "V8 v4.5 apporte des améliorations de performance et ajoute la prise en charge de plusieurs fonctionnalités ES2015."
 ---

@@ -1,10 +1,10 @@
 ---
 title: "Что находится в этом `.wasm`? Представляем: `wasm-decompile`"
 author: "Ваутер ван Оортмерссен ([@wvo](https://twitter.com/wvo))"
-avatars:
+avatars: 
   - "wouter-van-oortmerssen"
 date: 2020-04-27
-tags:
+tags: 
   - WebAssembly
   - инструменты
 description: "WABT получил новый инструмент декомпиляции, который облегчает чтение содержимого модулей Wasm."

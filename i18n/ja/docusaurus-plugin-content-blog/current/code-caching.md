@@ -1,10 +1,10 @@
 ---
 title: "コードキャッシュ"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), ソフトウェアエンジニア"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-07-27 13:33:37
-tags:
+date: "2015-07-27 13:33:37"
+tags: 
   - 内部構造
 description: "V8は現在、(バイト)コードキャッシュ、すなわちJavaScriptの解析とコンパイルの結果をキャッシュすることをサポートしています。"
 ---

@@ -1,10 +1,10 @@
 ---
 title: "À propos de cette vulnérabilité de hash flooding dans Node.js…"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed))"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2017-08-11 13:33:37
-tags:
+date: "2017-08-11 13:33:37"
+tags: 
   - sécurité
 description: "Node.js a subi une vulnérabilité liée au hash flooding. Ce post fournit un contexte et explique la solution dans V8."
 ---

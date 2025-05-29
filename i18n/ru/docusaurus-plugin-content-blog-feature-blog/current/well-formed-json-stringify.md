@@ -1,10 +1,10 @@
 ---
 title: "Хорошо сформированный `JSON.stringify`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-09-11
-tags:
+tags: 
   - ECMAScript
   - ES2019
 description: "JSON.stringify теперь выводит экранированные последовательности для одиночных суррогатов, что делает его вывод валидным Unicode (и представимым в UTF-8)."

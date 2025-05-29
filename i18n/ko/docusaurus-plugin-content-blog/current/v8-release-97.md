@@ -1,10 +1,10 @@
 ---
 title: "V8 릴리스 v9.7"
 author: "잉그바르 스테파냔 ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-11-05
-tags:
+tags: 
  - 릴리스
 description: "V8 릴리스 v9.7에서는 배열에서 역방향으로 검색할 수 있는 새로운 JavaScript 메소드를 제공합니다."
 tweet: ""

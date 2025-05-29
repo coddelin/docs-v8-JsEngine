@@ -1,12 +1,12 @@
 ---
 title: "Appels JavaScript plus rapides"
 author: "[Victor Gomes](https://twitter.com/VictorBFG), le déchiqueteur de frames"
-avatars:
+avatars: 
   - "victor-gomes"
 date: 2021-02-15
-tags:
+tags: 
   - internals
-description: 'Appels JavaScript plus rapides en supprimant le frame adaptateur d'arguments'
+description: "Appels JavaScript plus rapides en supprimant le frame adaptateur d'arguments"
 tweet: "1361337569057865735"
 ---
 

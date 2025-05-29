@@ -1,12 +1,12 @@
 ---
 title: "RegExp `v` フラグとセット表記および文字列のプロパティ"
 author: "Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer, Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mark-davis"
   - "markus-scherer"
   - "mathias-bynens"
 date: 2022-06-27
-tags:
+tags: 
   - ECMAScript
 description: "新しい RegExp `v` フラグは `unicodeSets` モードを有効化し、Unicode の文字列のプロパティ、セット表記、改良された大文字小文字無視マッチングを含む拡張文字クラスのサポートを解放します。"
 tweet: "1541419838513594368"

@@ -1,10 +1,10 @@
 ---
 title: "更快的 JavaScript 調用"
 author: "[Victor Gomes](https://twitter.com/VictorBFG)，框架撕裂者"
-avatars:
+avatars: 
   - "victor-gomes"
 date: 2021-02-15
-tags:
+tags: 
   - internals
 description: "通過移除參數適配框架來實現更快的 JavaScript 調用"
 tweet: "1361337569057865735"

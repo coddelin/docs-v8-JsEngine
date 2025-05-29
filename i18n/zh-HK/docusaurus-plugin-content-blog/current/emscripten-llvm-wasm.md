@@ -1,10 +1,10 @@
 ---
 title: "Emscripten 和 LLVM WebAssembly 後端"
 author: "Alon Zakai"
-avatars:
+avatars: 
   - "alon-zakai"
-date: 2019-07-01 16:45:00
-tags:
+date: "2019-07-01 16:45:00"
+tags: 
   - WebAssembly
   - 工具
 description: "Emscripten 正在切換至 LLVM WebAssembly 後端，這將帶來更快的鏈接時間以及其他許多好處。"

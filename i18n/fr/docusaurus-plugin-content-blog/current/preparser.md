@@ -1,11 +1,11 @@
 ---
 title: "Parsing ultra-rapide, partie 2 : analyse syntaxique paresseuse"
 author: "Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)) et Marja Hölttä ([@marjakh](https://twitter.com/marjakh)), parsers plus légers"
-avatars:
+avatars: 
   - "toon-verwaest"
   - "marja-holtta"
-date: 2019-04-15 17:03:37
-tags:
+date: "2019-04-15 17:03:37"
+tags: 
   - internals
   - parsing
 tweet: "1117807107972243456"

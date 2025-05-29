@@ -1,10 +1,10 @@
 ---
 title: "Покрытие кода JavaScript"
 author: "Якоб Грубер ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2017-12-13 13:33:37
-tags:
+date: "2017-12-13 13:33:37"
+tags: 
   - internals
 description: "V8 теперь имеет встроенную поддержку покрытия кода JavaScript. Инструменты теперь могут получать информацию о покрытии V8 без инструментирования кода!"
 tweet: "940879905079873536"

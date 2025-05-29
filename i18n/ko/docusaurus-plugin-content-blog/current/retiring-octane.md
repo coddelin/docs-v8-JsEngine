@@ -1,8 +1,8 @@
 ---
 title: "Octane 은퇴"
 author: "V8 팀"
-date: 2017-04-12 13:33:37
-tags:
+date: "2017-04-12 13:33:37"
+tags: 
   - 벤치마크
 description: "V8 팀은 Octane 을 권장되는 벤치마크에서 은퇴시킬 때가 되었다고 믿습니다."
 ---

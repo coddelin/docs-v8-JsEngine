@@ -1,10 +1,10 @@
 ---
 title: "修改後的 `Function.prototype.toString`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-03-25
-tags:
+tags: 
   - ECMAScript
   - ES2019
 description: "Function.prototype.toString 現在返回源代码文本的準確片段，包括空格和註釋。"

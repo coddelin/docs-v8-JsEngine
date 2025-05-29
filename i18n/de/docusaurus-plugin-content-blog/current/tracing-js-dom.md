@@ -1,12 +1,12 @@
 ---
 title: "Von JS zum DOM und zurück verfolgen"
 author: "Ulan Degenbaev, Alexei Filippov, Michael Lippautz und Hannes Payer — die Gemeinschaft des DOM"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2018-03-01 13:33:37
-tags:
+date: "2018-03-01 13:33:37"
+tags: 
   - internals
   - speicher
 description: "Chrome DevTools können jetzt C++ DOM-Objekte verfolgen und schnappschussartig erfassen sowie alle erreichbaren DOM-Objekte von JavaScript mit ihren Referenzen anzeigen."

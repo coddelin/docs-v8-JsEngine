@@ -1,10 +1,10 @@
 ---
 title: "V8 附加功能"
 author: "Domenic Denicola ([@domenic](https://twitter.com/domenic)), Streams 魔法師"
-avatars:
+avatars: 
   - "domenic-denicola"
-date: 2016-02-04 13:33:37
-tags:
+date: "2016-02-04 13:33:37"
+tags: 
   - internals
 description: "V8 v4.8 包含 “V8 附加功能”，一個簡單的介面，旨在允許嵌入者編寫高效能的自托管 API。"
 ---

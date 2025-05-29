@@ -1,12 +1,12 @@
 ---
 title: "Orinoco : collecte des déchets de la jeune génération"
 author: "Ulan Degenbaev, Michael Lippautz, et Hannes Payer, amis de [TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2017-11-29 13:33:37
-tags:
+date: "2017-11-29 13:33:37"
+tags: 
   - internes
   - mémoire
 description: "Cet article présente le Scavenger parallèle, l’une des dernières fonctionnalités d’Orinoco, le collecteur de déchets principalement concurrent et parallèle de V8."

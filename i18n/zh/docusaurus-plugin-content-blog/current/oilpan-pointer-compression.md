@@ -1,11 +1,11 @@
 ---
 title: "Oilpan中的指针压缩"
 author: "Anton Bikineev 和 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz))，行走的反汇编程序"
-avatars:
+avatars: 
   - anton-bikineev
   - michael-lippautz
 date: 2022-11-28
-tags:
+tags: 
   - 内部构造
   - 内存
   - cppgc

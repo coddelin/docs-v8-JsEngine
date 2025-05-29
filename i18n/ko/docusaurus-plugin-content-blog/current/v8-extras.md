@@ -1,10 +1,10 @@
 ---
 title: "V8 추가 기능"
 author: "도메닉 데니콜라 ([@domenic](https://twitter.com/domenic)), Streams 마법사"
-avatars:
+avatars: 
   - "domenic-denicola"
-date: 2016-02-04 13:33:37
-tags:
+date: "2016-02-04 13:33:37"
+tags: 
   - internals
 description: "V8 v4.8에는 고성능의 자체 호스팅 API를 작성할 수 있도록 설계된 간단한 인터페이스인 “V8 추가 기능”이 포함되어 있습니다."
 ---

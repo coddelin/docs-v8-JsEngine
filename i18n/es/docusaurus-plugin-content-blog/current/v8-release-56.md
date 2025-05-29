@@ -1,8 +1,8 @@
 ---
 title: "Lanzamiento de V8 v5.6"
 author: "el equipo de V8"
-date: 2016-12-02 13:33:37
-tags:
+date: "2016-12-02 13:33:37"
+tags: 
   - lanzamiento
 description: "V8 v5.6 viene con una nueva canalización de compiladores, mejoras en el rendimiento y mayor soporte para las características del lenguaje ECMAScript."
 ---

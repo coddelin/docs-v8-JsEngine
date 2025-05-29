@@ -1,8 +1,8 @@
 ---
 title: "V8 release v5.4"
 author: "the V8 team"
-date: 2016-09-09 13:33:37
-tags:
+date: "2016-09-09 13:33:37"
+tags: 
   - release
 description: "V8 v5.4 comes with performance improvements and reduced memory consumption."
 ---

@@ -1,10 +1,10 @@
 ---
 title: "Boucle `for`-`in` rapide dans V8"
 author: "Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))"
-avatars:
+avatars: 
   - "camillo-bruni"
-date: 2017-03-01 13:33:37
-tags:
+date: "2017-03-01 13:33:37"
+tags: 
   - internals
 description: "Cette plongée technique explique comment V8 a rendu la boucle for-in de JavaScript aussi rapide que possible."
 ---

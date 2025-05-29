@@ -2,10 +2,10 @@
 title: "Rastreamento de slack no V8"
 author: "Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), renomado mestre do *slack*"
 description: "Um olhar detalhado sobre o mecanismo de rastreamento de slack no V8."
-avatars:
+avatars: 
  - "michael-stanton"
-date: 2020-09-24 14:00:00
-tags:
+date: "2020-09-24 14:00:00"
+tags: 
  - internals
 ---
 O rastreamento de slack é uma forma de dar aos novos objetos um tamanho inicial que é **maior do que eles podem realmente usar**, para que possam ter novas propriedades adicionadas rapidamente. E então, após algum período de tempo, **magicamente devolver esse espaço não utilizado ao sistema**. Legal, né?

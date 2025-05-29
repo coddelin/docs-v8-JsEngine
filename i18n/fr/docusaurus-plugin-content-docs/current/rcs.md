@@ -1,6 +1,6 @@
 ---
-title: 'Statistiques d'Appels au Runtime'
-description: 'Ce document explique comment utiliser les Statistiques d'Appels au Runtime pour obtenir des métriques détaillées internes à V8.'
+title: "Statistiques d'Appels au Runtime"
+description: "Ce document explique comment utiliser les Statistiques d'Appels au Runtime pour obtenir des métriques détaillées internes à V8."
 ---
 [Le panneau Performance de DevTools](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/) fournit des informations sur les performances de runtime de votre application web en visualisant diverses métriques internes à Chrome. Cependant, certaines métriques de bas niveau de V8 ne sont pas actuellement exposées dans DevTools. Cet article vous guide à travers la manière la plus robuste de collecter des métriques détaillées internes à V8, appelées Statistiques d'Appels au Runtime ou RCS, via `chrome://tracing`.
 

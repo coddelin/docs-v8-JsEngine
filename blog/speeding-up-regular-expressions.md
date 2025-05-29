@@ -1,10 +1,10 @@
 ---
 title: "Speeding up V8 regular expressions"
 author: "Jakob Gruber, Regular Software Engineer"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2017-01-10 13:33:37
-tags:
+date: "2017-01-10 13:33:37"
+tags: 
   - internals
   - RegExp
 description: "V8 recently migrated RegExp’s built-in functions from a self-hosted JavaScript implementation to one that hooks straight into our new code generation architecture based on TurboFan."

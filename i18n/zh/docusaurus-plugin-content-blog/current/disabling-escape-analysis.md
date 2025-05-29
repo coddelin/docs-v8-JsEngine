@@ -1,10 +1,10 @@
 ---
 title: "暂时禁用逃逸分析"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), 沙盒逃逸分析员"
-avatars:
+avatars: 
   - "mathias-bynens"
-date: 2017-09-22 13:33:37
-tags:
+date: "2017-09-22 13:33:37"
+tags: 
   - 安全
 description: "我们已在 Chrome 61 中禁用 V8 的逃逸分析，以保护用户免受安全漏洞的影响。"
 tweet: "911339802884284416"

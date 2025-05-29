@@ -1,10 +1,10 @@
 ---
 title: "Descontinuando postagens de blog de lançamento"
 author: "Shu-yu Guo ([@shu_](https://twitter.com/_shu))"
-avatars:
+avatars: 
  - "shu-yu-guo"
 date: 2022-06-17
-tags:
+tags: 
  - lançamento
 description: "V8 descontinuará postagens de blog de lançamento em favor do cronograma de lançamento do Chrome e postagens de blog sobre recursos."
 tweet: "1537857497825824768"

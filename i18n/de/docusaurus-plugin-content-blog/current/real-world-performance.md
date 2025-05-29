@@ -1,8 +1,8 @@
 ---
 title: "Wie V8 die reale Leistung misst"
 author: "das V8-Team"
-date: 2016-12-21 13:33:37
-tags:
+date: "2016-12-21 13:33:37"
+tags: 
   - Benchmarks
 description: "Das V8-Team hat eine neue Methodik entwickelt, um die reale JavaScript-Leistung zu messen und zu verstehen."
 ---

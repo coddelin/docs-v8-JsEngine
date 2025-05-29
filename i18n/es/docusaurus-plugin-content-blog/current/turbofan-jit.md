@@ -1,10 +1,10 @@
 ---
 title: "Profundizando en el JIT TurboFan"
 author: "Ben L. Titzer, Ingeniero de Software y Mecánico de TurboFan"
-avatars:
+avatars: 
   - "ben-titzer"
-date: 2015-07-13 13:33:37
-tags:
+date: "2015-07-13 13:33:37"
+tags: 
   - internos
 description: "Un análisis detallado del diseño del nuevo compilador optimizador TurboFan de V8."
 ---

@@ -1,8 +1,8 @@
 ---
 title: "ES2015、ES2016，以及未來發展"
 author: "V8 團隊，ECMAScript 愛好者"
-date: 2016-04-29 13:33:37
-tags:
+date: "2016-04-29 13:33:37"
+tags: 
   - ECMAScript
 description: "V8 v5.2 支援 ES2015 和 ES2016！"
 ---

@@ -1,10 +1,10 @@
 ---
 title: "V8 release v7.2"
 author: "Andreas Haas, handler of traps"
-avatars:
+avatars: 
   - andreas-haas
-date: 2018-12-18 11:48:21
-tags:
+date: "2018-12-18 11:48:21"
+tags: 
   - release
 description: "V8 v7.2 features high-speed JavaScript parsing, faster async-await, reduced memory consumption on ia32, public class fields, and much more!"
 tweet: "1074978755934863361"

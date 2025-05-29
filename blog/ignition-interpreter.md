@@ -1,10 +1,10 @@
 ---
 title: "Firing up the Ignition interpreter"
 author: "Ross McIlroy, V8 Ignition Jump Starter"
-avatars:
+avatars: 
   - "ross-mcilroy"
-date: 2016-08-23 13:33:37
-tags:
+date: "2016-08-23 13:33:37"
+tags: 
   - internals
 description: "With the Ignition interpreter, V8 compiles JavaScript functions to a concise bytecode, which is between 50% to 25% the size of the equivalent baseline machine code."
 ---

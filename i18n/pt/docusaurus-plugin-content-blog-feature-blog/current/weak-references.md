@@ -1,14 +1,14 @@
 ---
 title: "Referências fracas e finalizadores"
 author: "Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), e Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))"
-avatars:
+avatars: 
 - "sathya-gunasekaran"
 - "mathias-bynens"
 - "shu-yu-guo"
 - "leszek-swirski"
 date: 2019-07-09
 updated: 2020-06-19
-tags:
+tags: 
   - ECMAScript
   - ES2021
   - io19

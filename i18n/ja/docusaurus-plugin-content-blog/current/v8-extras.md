@@ -1,10 +1,10 @@
 ---
 title: "V8 エクストラ"
 author: "ドメニック・ドニコラ（[@domenic](https://twitter.com/domenic)）、ストリーム魔術師"
-avatars:
+avatars: 
   - "domenic-denicola"
-date: 2016-02-04 13:33:37
-tags:
+date: "2016-02-04 13:33:37"
+tags: 
   - 内部構造
 description: "V8 v4.8には「V8 エクストラ」が含まれています。これは高性能で自己ホスト型APIを書くことを可能にするシンプルなインターフェイスです。"
 ---

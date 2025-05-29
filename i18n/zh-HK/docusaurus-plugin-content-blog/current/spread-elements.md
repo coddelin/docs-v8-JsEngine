@@ -1,8 +1,8 @@
 ---
 title: "加速擴展元素"
 author: "Hai Dang & Georg Neis"
-date: 2018-12-04 16:57:21
-tags:
+date: "2018-12-04 16:57:21"
+tags: 
   - ECMAScript
   - 基準測試
 description: "V8 v7.2 / 顯著加速了 Array.from(array) 以及 [...spread] 對於數組、字串、集合和映射的性能。"

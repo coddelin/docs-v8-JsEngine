@@ -1,10 +1,10 @@
 ---
 title: "V8 릴리스 v7.2"
 author: "Andreas Haas, 트랩 관리자"
-avatars:
+avatars: 
   - andreas-haas
-date: 2018-12-18 11:48:21
-tags:
+date: "2018-12-18 11:48:21"
+tags: 
   - release
 description: "V8 v7.2는 고속 JavaScript 파싱, 더 빠른 async-await, ia32에서의 메모리 소비 감소, 공개 클래스 필드 등 다양한 기능을 제공합니다!"
 tweet: "1074978755934863361"

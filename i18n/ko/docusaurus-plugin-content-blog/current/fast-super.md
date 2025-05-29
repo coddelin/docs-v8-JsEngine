@@ -1,10 +1,10 @@
 ---
 title: "초고속 `super` 프로퍼티 접근"
 author: "[Marja Hölttä](https://twitter.com/marjakh), super 최적화 전문가"
-avatars:
+avatars: 
   - marja-holtta
 date: 2021-02-18
-tags:
+tags: 
   - JavaScript
 description: "V8 v9.0에서 더 빠른 super 프로퍼티 접근"
 tweet: "1362465295848333316"

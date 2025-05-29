@@ -1,10 +1,10 @@
 ---
 title: "빠른 `for`-`in` V8"
 author: "Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))"
-avatars:
+avatars: 
   - "camillo-bruni"
-date: 2017-03-01 13:33:37
-tags:
+date: "2017-03-01 13:33:37"
+tags: 
   - internals
 description: "이 기술적인 심층 다이브는 V8이 JavaScript의 for-in을 가능한 한 빠르게 만든 방법을 설명합니다."
 ---

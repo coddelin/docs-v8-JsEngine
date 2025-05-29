@@ -1,11 +1,11 @@
 ---
 title: "非同期関数とプロミスの高速化"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 常に待機する予測者, と Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), プロのパフォーマンス保証者"
-avatars:
+avatars: 
   - "maya-armyanova"
   - "benedikt-meurer"
-date: 2018-11-12 16:45:07
-tags:
+date: "2018-11-12 16:45:07"
+tags: 
   - ECMAScript
   - ベンチマーク
   - プレゼンテーション

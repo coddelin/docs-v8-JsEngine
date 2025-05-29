@@ -1,10 +1,10 @@
 ---
 title: "ガベージコレクテッドプログラミング言語を効率的にWebAssemblyに導入する新しい方法"
 author: "Alon Zakai"
-avatars:
+avatars: 
   - "alon-zakai"
 date: 2023-11-01
-tags:
+tags: 
   - WebAssembly
 tweet: "1720161507324076395"
 ---

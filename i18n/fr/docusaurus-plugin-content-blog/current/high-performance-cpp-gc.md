@@ -1,16 +1,16 @@
 ---
 title: "Collecte des ordures haute performance pour C++"
 author: "Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), et Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), experts en mémoire C++"
-avatars:
+avatars: 
   - "anton-bikineev"
   - "omer-katz"
   - "michael-lippautz"
 date: 2020-05-26
-tags:
+tags: 
   - internes
   - mémoire
   - cppgc
-description: 'Cet article décrit le collecteur d'ordures C++ Oilpan, son utilisation dans Blink et comment il optimise le balayage, c'est-à-dire la récupération de la mémoire inaccessible.'
+description: "Cet article décrit le collecteur d'ordures C++ Oilpan, son utilisation dans Blink et comment il optimise le balayage, c'est-à-dire la récupération de la mémoire inaccessible."
 tweet: "1265304883638480899"
 ---
 

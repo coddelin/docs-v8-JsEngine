@@ -1,10 +1,10 @@
 ---
 title: "V8 lanza la versión v7.7"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), creador perezoso de notas de lanzamiento"
-avatars:
+avatars: 
   - "mathias-bynens"
-date: 2019-08-13 16:45:00
-tags:
+date: "2019-08-13 16:45:00"
+tags: 
   - lanzamiento
 description: "V8 v7.7 incluye asignación perezosa de retroalimentación, compilación en segundo plano de WebAssembly más rápida, mejoras en las trazas de pila y nueva funcionalidad para Intl.NumberFormat."
 tweet: "1161287541611323397"

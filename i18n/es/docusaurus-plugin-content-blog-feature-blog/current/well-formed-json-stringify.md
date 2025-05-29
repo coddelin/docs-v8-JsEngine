@@ -1,10 +1,10 @@
 ---
 title: "`JSON.stringify` bien formado"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-09-11
-tags:
+tags: 
   - ECMAScript
   - ES2019
 description: "JSON.stringify ahora produce secuencias de escape para sustitutos solitarios, haciendo que su salida sea Unicode válido (y representable en UTF-8)."

@@ -1,10 +1,10 @@
 ---
 title: "宣布 Web Tooling Benchmark"
 author: "Benedikt Meurer（[@bmeurer](https://twitter.com/bmeurer)），JavaScript 性能协调员"
-avatars:
+avatars: 
   - "benedikt-meurer"
-date: 2017-11-06 13:33:37
-tags:
+date: "2017-11-06 13:33:37"
+tags: 
   - 基准测试
   - Node.js
 description: "全新的 Web Tooling Benchmark 通过在 Babel、TypeScript 和其他实际项目中，帮助识别和修复 V8 的性能瓶颈。"

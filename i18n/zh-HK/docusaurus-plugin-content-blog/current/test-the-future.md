@@ -1,8 +1,8 @@
 ---
 title: "協助我們測試 V8 的未來!"
 author: "Daniel Clifford ([@expatdanno](https://twitter.com/expatdanno)), 原始慕尼黑 V8 啤酒釀造師"
-date: 2017-02-14 13:33:37
-tags:
+date: "2017-02-14 13:33:37"
+tags: 
   - 內部結構
 description: "今日即能在 Chrome Canary 中預覽使用 Ignition 與 TurboFan 的 V8 新編譯器管線!"
 ---

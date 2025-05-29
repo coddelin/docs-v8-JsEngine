@@ -1,10 +1,10 @@
 ---
 title: "WebAssembly Dynamic Tiering bereit zum Ausprobieren in Chrome 96"
 author: "Andreas Haas — Tierisch Spaß"
-avatars:
+avatars: 
   - andreas-haas
 date: 2021-10-29
-tags:
+tags: 
   - WebAssembly
 description: "WebAssembly Dynamic Tiering ist bereit zum Ausprobieren in V8 v9.6 und Chrome 96, entweder über ein Kommandozeilen-Flag oder über ein Origin-Trial"
 tweet: "1454158971674271760"

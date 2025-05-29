@@ -1,11 +1,11 @@
 ---
 title: "V8 정규 표현식 개선"
 author: "정규 표현식에 대한 의견을 자주 표현하는 Patrick Thier와 Ana Peško"
-avatars:
+avatars: 
   - "patrick-thier"
   - "ana-pesko"
-date: 2019-10-04 15:24:16
-tags:
+date: "2019-10-04 15:24:16"
+tags: 
   - internals
   - RegExp
 description: "이 블로그 포스트에서는 정규 표현식을 해석의 장점을 활용하고 단점을 완화하는 방법을 설명합니다."

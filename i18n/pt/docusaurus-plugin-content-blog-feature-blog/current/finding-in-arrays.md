@@ -1,10 +1,10 @@
 ---
 title: "Encontrando elementos em `Array`s e TypedArrays"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2021-10-27
-tags:
+tags: 
   - ECMAScript
 description: "Métodos JavaScript para encontrar elementos em Arrays e TypedArrays"
 tweet: "1453354998063149066"

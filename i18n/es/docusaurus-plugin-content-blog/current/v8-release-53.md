@@ -1,8 +1,8 @@
 ---
 title: "Lanzamiento de V8 v5.3"
 author: "el equipo de V8"
-date: 2016-07-18 13:33:37
-tags:
+date: "2016-07-18 13:33:37"
+tags: 
   - lanzamiento
 description: "V8 v5.3 incluye mejoras de rendimiento y un menor consumo de memoria."
 ---

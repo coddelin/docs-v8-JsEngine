@@ -1,10 +1,10 @@
 ---
 title: "V8 release v7.3"
 author: "Clemens Backes, compiler wrangler"
-avatars:
+avatars: 
   - clemens-backes
-date: 2019-02-07 11:30:42
-tags:
+date: "2019-02-07 11:30:42"
+tags: 
   - release
 description: "V8 v7.3 features WebAssembly and async performance improvements, async stack traces, Object.fromEntries, String#matchAll, and much more!"
 tweet: "1093457099441561611"

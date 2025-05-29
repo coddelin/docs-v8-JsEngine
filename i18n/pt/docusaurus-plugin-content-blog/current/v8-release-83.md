@@ -1,10 +1,10 @@
 ---
 title: "Lançamento do V8 v8.3"
 author: "[Victor Gomes](https://twitter.com/VictorBFG), trabalhando em segurança de casa"
-avatars:
+avatars: 
  - "victor-gomes"
 date: 2020-05-04
-tags:
+tags: 
  - lançamento
 description: "O V8 v8.3 apresenta ArrayBuffers mais rápidos, memórias Wasm maiores e APIs obsoletas."
 tweet: "1257333120115847171"

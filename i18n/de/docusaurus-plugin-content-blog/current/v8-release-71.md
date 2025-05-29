@@ -1,10 +1,10 @@
 ---
 title: "V8 Veröffentlichung v7.1"
 author: "Stephan Herhut ([@herhut](https://twitter.com/herhut)), geklonter Kloner von Klonen"
-avatars:
+avatars: 
   - stephan-herhut
-date: 2018-10-31 15:44:37
-tags:
+date: "2018-10-31 15:44:37"
+tags: 
   - veröffentlichung
 description: "V8 v7.1 bietet eingebettete Bytecode-Handler, verbesserte TurboFan-Fluchtanalyse, postMessage(wasmModule), Intl.RelativeTimeFormat und globalThis!"
 tweet: "1057645773465235458"

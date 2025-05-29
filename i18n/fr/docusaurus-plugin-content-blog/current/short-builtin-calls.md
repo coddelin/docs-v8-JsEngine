@@ -1,12 +1,12 @@
 ---
 title: "Appels intégrés courts"
 author: "[Toon Verwaest](https://twitter.com/tverwaes), The Big Short"
-avatars:
+avatars: 
   - toon-verwaest
 date: 2021-05-06
-tags:
+tags: 
   - JavaScript
-description: 'Dans V8 v9.1, nous avons temporairement désintégré les fonctions intégrées sur le bureau pour éviter des problèmes de performance résultant d'appels indirects éloignés.'
+description: "Dans V8 v9.1, nous avons temporairement désintégré les fonctions intégrées sur le bureau pour éviter des problèmes de performance résultant d'appels indirects éloignés."
 tweet: "1394267917013897216"
 ---
 

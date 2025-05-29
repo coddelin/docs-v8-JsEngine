@@ -1,10 +1,10 @@
 ---
 title: "Iterator-Helfer"
 author: "Rezvan Mahdavi Hezaveh"
-avatars:
+avatars: 
   - "rezvan-mahdavi-hezaveh"
 date: 2024-03-27
-tags:
+tags: 
   - ECMAScript
 description: "Schnittstellen, die bei der allgemeinen Nutzung und Verarbeitung von Iteratoren helfen."
 tweet: ""

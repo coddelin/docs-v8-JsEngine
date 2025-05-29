@@ -1,10 +1,10 @@
 ---
 title: "V8 發佈 v7.6"
 author: "Adam Klein"
-avatars:
+avatars: 
   - "adam-klein"
-date: 2019-06-19 16:45:00
-tags:
+date: "2019-06-19 16:45:00"
+tags: 
   - release
 description: "V8 v7.6 支持 Promise.allSettled、更快速的 JSON.parse、本地化的 BigInt、更快的凍結/密封陣列等更多功能！"
 tweet: "1141356209179516930"

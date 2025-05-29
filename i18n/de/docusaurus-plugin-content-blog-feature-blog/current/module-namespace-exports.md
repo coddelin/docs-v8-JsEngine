@@ -1,10 +1,10 @@
 ---
 title: "Modul-Namespace-Exporte"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-12-18
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "JavaScript-Module unterstützen jetzt neue Syntax zum erneuten Export aller Eigenschaften innerhalb eines Namespaces."

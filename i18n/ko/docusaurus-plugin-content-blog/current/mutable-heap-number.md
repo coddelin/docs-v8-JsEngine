@@ -1,10 +1,10 @@
 ---
 title: "V8의 성능 가속화 – 가변 힙 숫자를 활용한 개선"
 author: "[Victor Gomes](https://twitter.com/VictorBFG), 비트 건너기 전문"
-avatars:
+avatars: 
   - victor-gomes
 date: 2025-02-25
-tags:
+tags: 
   - JavaScript
   - 벤치마크
   - 내부 소개

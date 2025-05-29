@@ -1,10 +1,10 @@
 ---
 title: "`at` 方法用於相對索引"
 author: "郭书宇 ([`@_shu`](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2021-07-13
-tags:
+tags: 
   - ECMAScript
 description: "JavaScript 現在擁有一個用於 Arrays、TypedArrays 和 Strings 的相對索引方法。"
 ---

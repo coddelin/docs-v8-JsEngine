@@ -1,10 +1,10 @@
 ---
 title: "Web Tooling Benchmarkを発表"
 author: "Benedikt Meurer（[@bmeurer](https://twitter.com/bmeurer)、JavaScriptパフォーマンスのジャグラー）"
-avatars:
+avatars: 
   - "benedikt-meurer"
-date: 2017-11-06 13:33:37
-tags:
+date: "2017-11-06 13:33:37"
+tags: 
   - ベンチマーク
   - Node.js
 description: "新しいWeb Tooling Benchmarkは、Babel、TypeScript、その他の実際のプロジェクトにおけるV8のパフォーマンスボトルネックを特定し修正するのに役立ちます。"

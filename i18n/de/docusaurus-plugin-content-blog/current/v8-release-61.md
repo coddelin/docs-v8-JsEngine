@@ -1,8 +1,8 @@
 ---
 title: "V8 Veröffentlichung v6.1"
 author: "das V8-Team"
-date: 2017-08-03 13:33:37
-tags:
+date: "2017-08-03 13:33:37"
+tags: 
   - Veröffentlichung
 description: "V8 v6.1 kommt mit einer reduzierten Binärgröße und enthält Leistungsverbesserungen. Zusätzlich wird asm.js jetzt validiert und in WebAssembly kompiliert."
 ---

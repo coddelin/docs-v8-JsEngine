@@ -1,14 +1,14 @@
 ---
 title: "Слабые ссылки и финализаторы"
 author: "Сатья Гунасекаран ([@_gsathya](https://twitter.com/_gsathya)), Матиас Биненс ([@mathias](https://twitter.com/mathias)), Шу-ю Го ([@_shu](https://twitter.com/_shu)) и Лешек Свирски ([@leszekswirski](https://twitter.com/leszekswirski))"
-avatars:
+avatars: 
 - "sathya-gunasekaran"
 - "mathias-bynens"
 - "shu-yu-guo"
 - "leszek-swirski"
 date: 2019-07-09
 updated: 2020-06-19
-tags:
+tags: 
   - ECMAScript
   - ES2021
   - io19

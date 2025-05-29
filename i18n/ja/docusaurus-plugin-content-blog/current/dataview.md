@@ -1,10 +1,10 @@
 ---
 title: "V8での`DataView`パフォーマンスの向上"
-author: 'Théotime Grohens（<i lang="fr">データビューの賢人</i>）とBenedikt Meurer（[@bmeurer](https://twitter.com/bmeurer)）、プロフェッショナルなパフォーマンスパル'
-avatars:
+author: "Théotime Grohens（<i lang=\"fr\">データビューの賢人</i>）とBenedikt Meurer（[@bmeurer](https://twitter.com/bmeurer)）、プロフェッショナルなパフォーマンスパル"
+avatars: 
   - "benedikt-meurer"
-date: 2018-09-18 11:20:37
-tags:
+date: "2018-09-18 11:20:37"
+tags: 
   - ECMAScript
   - ベンチマーク
 description: "V8 v6.9では、DataViewと同等のTypedArrayコード間のパフォーマンスギャップを埋め、DataViewをパフォーマンスが重要なリアルワールドアプリケーションで利用可能にしました。"

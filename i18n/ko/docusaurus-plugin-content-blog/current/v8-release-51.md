@@ -1,8 +1,8 @@
 ---
 title: "V8 릴리스 v5.1"
 author: "V8 팀"
-date: 2016-04-23 13:33:37
-tags:
+date: "2016-04-23 13:33:37"
+tags: 
   - release
 description: "V8 v5.1은 성능 개선, 지터 감소, 메모리 소비 감소 및 ECMAScript 언어 기능 지원 증가를 제공합니다."
 ---

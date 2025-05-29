@@ -1,10 +1,10 @@
 ---
 title: "Propiedades rápidas en V8"
 author: "Camillo Bruni ([@camillobruni](https://twitter.com/camillobruni)), también autor de [“Fast `for`-`in`”](/blog/fast-for-in)"
-avatars:
+avatars: 
   - "camillo-bruni"
-date: 2017-08-30 13:33:37
-tags:
+date: "2017-08-30 13:33:37"
+tags: 
   - internals
 description: "Este análisis técnico profundo explica cómo V8 maneja las propiedades de JavaScript detrás de escena."
 ---

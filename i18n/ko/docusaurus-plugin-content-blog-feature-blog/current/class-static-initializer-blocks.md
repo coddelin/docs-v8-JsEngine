@@ -1,10 +1,10 @@
 ---
 title: "클래스 정적 초기화 블록"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2021-03-30
-tags:
+tags: 
   - ECMAScript
 description: "자바스크립트 클래스는 정적 초기화를 위한 전용 문법을 갖습니다."
 tweet: "1376925666780798989"

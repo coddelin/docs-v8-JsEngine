@@ -1,6 +1,6 @@
 ---
 title: "API publique de V8"
-description: 'Ce document traite de la stabilité de l'API publique de V8 et de la manière dont les développeurs peuvent y apporter des modifications.'
+description: "Ce document traite de la stabilité de l'API publique de V8 et de la manière dont les développeurs peuvent y apporter des modifications."
 ---
 Ce document traite de la stabilité de l'API publique de V8 et de la manière dont les développeurs peuvent y apporter des modifications.
 

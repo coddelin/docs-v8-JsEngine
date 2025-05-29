@@ -1,10 +1,10 @@
 ---
 title: "Анонс Web Tooling Benchmark"
 author: "Бенедикт Мойрер ([@bmeurer](https://twitter.com/bmeurer)), жонглёр производительности JavaScript"
-avatars:
+avatars: 
   - "benedikt-meurer"
-date: 2017-11-06 13:33:37
-tags:
+date: "2017-11-06 13:33:37"
+tags: 
   - бенчмарки
   - Node.js
 description: "Совершенно новый Web Tooling Benchmark помогает выявлять и устранять узкие места производительности V8 в Babel, TypeScript и других реальных проектах."

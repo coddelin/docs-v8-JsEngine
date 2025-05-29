@@ -1,7 +1,7 @@
 ---
 title: "更快的版本發布"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
   - "ingvar-stepanyan"
 date: 2021-03-04
 description: "加快 V8 的版本發布周期"

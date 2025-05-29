@@ -1,10 +1,10 @@
 ---
 title: "模块命名空间导出"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-12-18
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "JavaScript模块现在支持新的语法以重新导出命名空间中的所有属性。"

@@ -1,8 +1,8 @@
 ---
 title: "Lanzamiento de V8 v6.3"
 author: "el equipo de V8"
-date: 2017-10-25 13:33:37
-tags:
+date: "2017-10-25 13:33:37"
+tags: 
   - lanzamiento
 description: "V8 v6.3 incluye mejoras de rendimiento, reducción en el consumo de memoria y soporte para nuevas características del lenguaje JavaScript."
 tweet: "923168001108643840"

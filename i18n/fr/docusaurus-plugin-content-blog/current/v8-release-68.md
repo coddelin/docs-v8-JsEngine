@@ -1,8 +1,8 @@
 ---
 title: "Version v6.8 de V8"
-author: 'l'équipe V8'
-date: 2018-06-21 13:33:37
-tags:
+author: "l'équipe V8"
+date: "2018-06-21 13:33:37"
+tags: 
   - publication
 description: "La version v6.8 de V8 propose une réduction de la consommation de mémoire et plusieurs améliorations de performance."
 tweet: "1009753739060826112"

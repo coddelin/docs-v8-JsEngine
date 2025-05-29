@@ -1,10 +1,10 @@
 ---
 title: "Propiedades de reposo y propagación de objetos"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-06-06
-tags:
+tags: 
   - ECMAScript
   - ES2018
 description: "Este artículo explica cómo funcionan las propiedades de reposo y propagación de objetos en JavaScript, y revisa los elementos de reposo y propagación de arrays."

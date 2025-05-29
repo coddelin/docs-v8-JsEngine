@@ -1,10 +1,10 @@
 ---
 title: "О той уязвимости хеш-флуда в Node.js…"
 author: "Ян Го ([@hashseed](https://twitter.com/hashseed))"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2017-08-11 13:33:37
-tags:
+date: "2017-08-11 13:33:37"
+tags: 
   - security
 description: "Node.js подвергся уязвимости хеш-флуда. В этом посте предоставляется некоторый контекст и объясняется решение в V8."
 ---

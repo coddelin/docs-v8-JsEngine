@@ -1,10 +1,10 @@
 ---
 title: "Version V8.6 de V8"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), un testeur de fuzzing pour clavier"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2020-09-21
-tags:
+tags: 
  - release
 description: "La version V8.6 de V8 apporte un code respectueux, des améliorations de performance et des changements normatifs."
 tweet: "1308062287731789825"

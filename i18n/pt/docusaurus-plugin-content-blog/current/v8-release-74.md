@@ -1,8 +1,8 @@
 ---
 title: "Lançamento do V8 v7.4"
 author: "Georg Neis"
-date: 2019-03-22 16:30:42
-tags:
+date: "2019-03-22 16:30:42"
+tags: 
   - lançamento
 description: "O V8 v7.4 apresenta threads/átomos WebAssembly, campos privados de classe, melhorias de desempenho e memória, e muito mais!"
 tweet: "1109094755936489472"

@@ -1,10 +1,10 @@
 ---
 title: "より速いJavaScriptコール"
 author: "[Victor Gomes](https://twitter.com/VictorBFG)、フレームシュレッダー"
-avatars:
+avatars: 
   - "victor-gomes"
 date: 2021-02-15
-tags:
+tags: 
   - internals
 description: "引数アダプタフレームを削除して、より速いJavaScriptコール"
 tweet: "1361337569057865735"

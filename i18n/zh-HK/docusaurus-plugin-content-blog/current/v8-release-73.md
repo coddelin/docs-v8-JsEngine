@@ -1,10 +1,10 @@
 ---
 title: "V8 版本發佈 v7.3"
 author: "Clemens Backes，編譯器專家"
-avatars:
+avatars: 
   - clemens-backes
-date: 2019-02-07 11:30:42
-tags:
+date: "2019-02-07 11:30:42"
+tags: 
   - 發佈
 description: "V8 v7.3 提供 WebAssembly 和非同步性能改進、非同步堆疊追蹤、Object.fromEntries、String#matchAll 等多項新功能！"
 tweet: "1093457099441561611"

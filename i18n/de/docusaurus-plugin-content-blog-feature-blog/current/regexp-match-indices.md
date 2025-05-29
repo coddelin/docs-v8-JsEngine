@@ -1,10 +1,10 @@
 ---
 title: "RegExp-Match-Indizes"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), regelmäßig neue Features ausdrückend"
-avatars:
+avatars: 
   - "maya-armyanova"
 date: 2019-12-17
-tags:
+tags: 
   - ECMAScript
   - Node.js 16
 description: "RegExp-Match-Indizes bieten `start`- und `end`-Indizes für jede gefangene Gruppe."

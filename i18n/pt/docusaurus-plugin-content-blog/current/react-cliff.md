@@ -1,11 +1,11 @@
 ---
 title: "A história de um declínio de desempenho no V8 do React"
 author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) e Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "benedikt-meurer"
   - "mathias-bynens"
-date: 2019-08-28 16:45:00
-tags:
+date: "2019-08-28 16:45:00"
+tags: 
   - internos
   - apresentações
 description: "Este artigo descreve como o V8 escolhe representações otimizadas na memória para vários valores JavaScript e como isso afeta a máquina de formas — tudo isso ajuda a explicar um recente declínio de desempenho no núcleo do React."

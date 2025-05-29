@@ -1,10 +1,10 @@
 ---
 title: "Оптимизация прокси ES2015 в V8"
 author: "Мая Армянова ([@Zmayski](https://twitter.com/Zmayski)), оптимизатор прокси"
-avatars:
+avatars: 
   - "maya-armyanova"
-date: 2017-10-05 13:33:37
-tags:
+date: "2017-10-05 13:33:37"
+tags: 
   - ECMAScript
   - тесты производительности
   - внутреннее устройство

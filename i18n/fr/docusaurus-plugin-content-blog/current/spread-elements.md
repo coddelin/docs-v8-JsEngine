@@ -1,8 +1,8 @@
 ---
 title: "Accélérer les éléments de propagation"
 author: "Hai Dang & Georg Neis"
-date: 2018-12-04 16:57:21
-tags:
+date: "2018-12-04 16:57:21"
+tags: 
   - ECMAScript
   - benchmarks
 description: "V8 v7.2 accélère de manière significative Array.from(array) ainsi que [...spread] pour les tableaux, chaînes, ensembles et maps."

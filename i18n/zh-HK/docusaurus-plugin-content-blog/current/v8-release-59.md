@@ -1,8 +1,8 @@
 ---
 title: "V8 發佈 v5.9"
 author: "V8 團隊"
-date: 2017-04-27 13:33:37
-tags:
+date: "2017-04-27 13:33:37"
+tags: 
   - release
 description: "V8 v5.9 包含新的 Ignition + TurboFan 管道，並在所有平台上新增了 WebAssembly TrapIf 支援。"
 ---

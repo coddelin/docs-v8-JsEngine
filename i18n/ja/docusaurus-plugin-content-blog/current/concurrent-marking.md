@@ -1,12 +1,12 @@
 ---
 title: "V8の並行マーク"
 author: "Ulan Degenbaev、Michael Lippautz、Hannes Payer — メインスレッドの解放者"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2018-06-11 13:33:37
-tags:
+date: "2018-06-11 13:33:37"
+tags: 
   - internals
   - memory
 description: "この投稿では並行マークと呼ばれるガベージコレクション技術について説明します。"

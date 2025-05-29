@@ -1,10 +1,10 @@
 ---
 title: "Метод `at` для относительного индексации"
 author: "Шу-ю Го ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2021-07-13
-tags:
+tags: 
   - ECMAScript
 description: "Теперь в JavaScript есть метод относительной индексации для Arrays, TypedArrays и Strings."
 ---

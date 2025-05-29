@@ -1,8 +1,8 @@
 ---
 title: "스프레드 요소의 속도 향상"
 author: "Hai Dang & Georg Neis"
-date: 2018-12-04 16:57:21
-tags:
+date: "2018-12-04 16:57:21"
+tags: 
   - ECMAScript
   - benchmarks
 description: "V8 v7.2 / 배열, 문자열, 집합 및 맵에 대해 Array.from(array)와 [...spread]를 대폭 빠르게 개선했습니다."

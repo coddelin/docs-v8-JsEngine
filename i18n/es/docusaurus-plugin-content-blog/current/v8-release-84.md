@@ -1,10 +1,10 @@
 ---
 title: "Lanzamiento de V8 v8.4"
 author: "Camillo Bruni, disfrutando de algunos booleanos frescos"
-avatars:
+avatars: 
  - "camillo-bruni"
 date: 2020-06-30
-tags:
+tags: 
  - lanzamiento
 description: "V8 v8.4 incluye referencias débiles y un rendimiento mejorado de WebAssembly."
 tweet: "1277983235641761795"

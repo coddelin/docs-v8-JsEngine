@@ -1,7 +1,7 @@
 ---
-permalink: /grant/
-title: Bolsa de Pesquisa
-layout: layouts/base.njk
+permalink: "/grant/"
+title: "Bolsa de Pesquisa"
+layout: "layouts/base.njk"
 description: "A Bolsa de Pesquisa V8 financia pesquisas em linguagens de programação e sistemas de software baseados em V8, JavaScript e WebAssembly."
 ---
 # Bolsa de Pesquisa V8

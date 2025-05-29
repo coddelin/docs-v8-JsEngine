@@ -1,10 +1,10 @@
 ---
 title: "V8 릴리스 v9.4"
 author: "잉바르 스테파냐안 ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-09-06
-tags:
+tags: 
  - release
 description: "V8 릴리스 v9.4는 자바스크립트에 클래스 정적 초기화 블록을 도입합니다."
 tweet: "1434915404418277381"

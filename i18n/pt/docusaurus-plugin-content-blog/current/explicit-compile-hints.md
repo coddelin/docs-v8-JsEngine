@@ -1,13 +1,13 @@
 ---
- title: 'Dando uma Visão Geral ao V8: Início Mais Rápido do JavaScript com Dicas Explícitas de Compilação'
- author: 'Marja Hölttä'
- avatars:
+ title: "Dando uma Visão Geral ao V8: Início Mais Rápido do JavaScript com Dicas Explícitas de Compilação"
+ author: "Marja Hölttä"
+ avatars: 
    - marja-holtta
  date: 2025-04-29
- tags:
+ tags: 
    - JavaScript
  description: "Dicas explícitas de compilação controlam quais arquivos e funções JavaScript são analisados e compilados antecipadamente"
- tweet: ''
+ tweet: ""
 ---
 
 Fazer o JavaScript rodar rapidamente é essencial para um aplicativo web responsivo. Mesmo com as otimizações avançadas do V8, analisar e compilar JavaScript crítico durante a inicialização ainda pode criar gargalos de desempenho. Saber quais funções JavaScript compilar durante a compilação inicial do script pode acelerar o carregamento da página da web.

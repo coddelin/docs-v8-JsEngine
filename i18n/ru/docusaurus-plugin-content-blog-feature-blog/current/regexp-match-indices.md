@@ -1,10 +1,10 @@
 ---
 title: "Индексы совпадений RegExp"
 author: "Майя Армянова ([@Zmayski](https://twitter.com/Zmayski)), регулярно выражая новые возможности"
-avatars:
+avatars: 
   - "maya-armyanova"
 date: 2019-12-17
-tags:
+tags: 
   - ECMAScript
   - Node.js 16
 description: "Индексы совпадений RegExp предоставляют `начало` и `конец` диапазонов каждой группы захвата."

@@ -1,11 +1,11 @@
 ---
 title: "Die Kosten von JavaScript im Jahr 2019"
 author: "Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)), JavaScript-Hausmeister, und Mathias Bynens ([@mathias](https://twitter.com/mathias)), Hauptthread-Befreier"
-avatars:
+avatars: 
   - "addy-osmani"
   - "mathias-bynens"
 date: 2019-06-25
-tags:
+tags: 
   - internals
   - parsing
 description: "Die dominierenden Kosten bei der Verarbeitung von JavaScript sind der Download und die CPU-Ausführungszeit."

@@ -1,10 +1,10 @@
 ---
 title: "Static Roots: Objects with Compile-Time Constant Addresses"
 author: "Olivier Flückiger"
-avatars:
+avatars: 
   - olivier-flueckiger
 date: 2024-02-05
-tags:
+tags: 
   - JavaScript
 description: "Static Roots 使得某些 JS 物件的位址成為編譯時的常數。"
 tweet: ""

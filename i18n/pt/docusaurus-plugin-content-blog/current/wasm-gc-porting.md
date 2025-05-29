@@ -1,10 +1,10 @@
 ---
 title: "Uma nova maneira de trazer linguagens de programação com coleta de lixo de forma eficiente para WebAssembly"
 author: "Alon Zakai"
-avatars:
+avatars: 
   - "alon-zakai"
 date: 2023-11-01
-tags:
+tags: 
   - WebAssembly
 tweet: "1720161507324076395"
 ---

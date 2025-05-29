@@ -1,8 +1,8 @@
 ---
 title: "V8 發佈 v6.9"
 author: "V8 團隊"
-date: 2018-08-07 13:33:37
-tags:
+date: "2018-08-07 13:33:37"
+tags: 
   - release
 description: "V8 v6.9 特性包括透過嵌入內建功能降低記憶體使用量、更快的 WebAssembly 啟動速度（使用 Liftoff 引擎）、更好的 DataView 與 WeakMap 性能，以及更多內容！"
 tweet: "1026825606003150848"

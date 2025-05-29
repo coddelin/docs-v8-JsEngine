@@ -1,10 +1,10 @@
 ---
 title: "Anunciando o Benchmark de Ferramentas Web"
 author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), Equilibrista de Performance em JavaScript"
-avatars:
+avatars: 
   - "benedikt-meurer"
-date: 2017-11-06 13:33:37
-tags:
+date: "2017-11-06 13:33:37"
+tags: 
   - benchmarks
   - Node.js
 description: "O novíssimo Benchmark de Ferramentas Web ajuda a identificar e corrigir gargalos de desempenho do V8 em Babel, TypeScript e outros projetos do mundo real."

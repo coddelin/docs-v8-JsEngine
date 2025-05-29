@@ -1,11 +1,11 @@
 ---
 title: "V8 release v6.7"
-author: 'l'équipe V8'
-date: 2018-05-04 13:33:37
-tags:
+author: "l'équipe V8"
+date: "2018-05-04 13:33:37"
+tags: 
   - sortie
 tweet: "992506342391742465"
-description: 'V8 v6.7 ajoute plus de mesures d'atténuation pour le code non fiable et introduit la prise en charge de BigInt.'
+description: "V8 v6.7 ajoute plus de mesures d'atténuation pour le code non fiable et introduit la prise en charge de BigInt."
 ---
 Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de sortie](/docs/release-process). Chaque version est dérivée du dépôt principal de V8 juste avant un jalon Chrome Beta. Aujourd'hui, nous sommes ravis d'annoncer notre nouvelle branche, [V8 version 6.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.7), qui est en version bêta jusqu'à sa sortie en coordination avec Chrome 67 Stable dans plusieurs semaines. V8 v6.7 regorge de nouveautés à destination des développeurs. Cet article offre un aperçu de certaines des principales nouveautés en prévision de la sortie.
 

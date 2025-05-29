@@ -1,7 +1,7 @@
 ---
 title: "Maglev - El JIT de optimización más rápido de V8"
 author: "[Toon Verwaest](https://twitter.com/tverwaes), [Leszek Swirski](https://twitter.com/leszekswirski), [Victor Gomes](https://twitter.com/VictorBFG), Olivier Flückiger, Darius Mercadier y Camillo Bruni — no hay demasiados cocineros para estropear el caldo"
-avatars:
+avatars: 
   - toon-verwaest
   - leszek-swirski
   - victor-gomes
@@ -9,7 +9,7 @@ avatars:
   - darius-mercadier
   - camillo-bruni
 date: 2023-12-05
-tags:
+tags: 
   - JavaScript
 description: "El nuevo compilador de V8, Maglev, mejora el rendimiento mientras reduce el consumo de energía"
 tweet: ""

@@ -1,8 +1,8 @@
 ---
 title: "Ein Praktikum über Faulheit: Faules Aufheben der Verlinkung von deoptimierten Funktionen"
 author: "Juliana Franco ([@jupvfranco](https://twitter.com/jupvfranco)), Expertin für Faulheit"
-date: 2017-10-04 13:33:37
-tags:
+date: "2017-10-04 13:33:37"
+tags: 
   - Speicher
   - Interna
 description: "Diese technische Tiefenanalyse erklärt, wie V8 früher deoptimierte Funktionen entlinkt hat und wie wir dies kürzlich geändert haben, um die Leistung zu verbessern."

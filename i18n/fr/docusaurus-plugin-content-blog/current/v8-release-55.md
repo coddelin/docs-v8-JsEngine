@@ -1,8 +1,8 @@
 ---
 title: "Publication de V8 v5.5"
-author: 'l'équipe V8'
-date: 2016-10-24 13:33:37
-tags:
+author: "l'équipe V8"
+date: "2016-10-24 13:33:37"
+tags: 
   - publication
 description: "V8 v5.5 réduit la consommation de mémoire et améliore la prise en charge des fonctionnalités du langage ECMAScript."
 ---

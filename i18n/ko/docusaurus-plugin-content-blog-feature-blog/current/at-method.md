@@ -1,10 +1,10 @@
 ---
 title: "`at` 메서드 - 상대 인덱싱을 위한 방법"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2021-07-13
-tags:
+tags: 
   - ECMAScript
 description: "JavaScript에 이제 배열, TypedArray 및 문자열을 위한 상대 인덱싱 메서드가 추가되었습니다."
 ---

@@ -1,13 +1,13 @@
 ---
 title: "V8 リリース v8.5"
 author: "Zeynep Cankara、いくつかのマップを追跡中"
-avatars:
+avatars: 
  - "zeynep-cankara"
 date: 2020-07-21
-tags:
+tags: 
  - リリース
 description: "V8 リリース v8.5 は Promise.any、String#replaceAll、論理代入演算子、WebAssembly マルチ値と BigInt サポート、そしてパフォーマンス改善を特徴とします。"
-tweet:
+tweet: 
 ---
 V8 の[リリースプロセス](https://v8.dev/docs/release-process)の一環として、私たちは6週間ごとに新しいブランチを作成します。各バージョンは、Chrome ベータマイルストーン直前に V8 の Git マスターからブランチされています。本日、私たちは最新のブランチ [V8 バージョン 8.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.5) を発表できることを嬉しく思っています。このバージョンは数週間で Chrome 85 安定版と連動してリリースされるまでベータ版となります。V8 v8.5 は、開発者向けの様々な特典が詰まっています。この投稿ではリリースを見越していくつかのハイライトを事前に紹介します。
 

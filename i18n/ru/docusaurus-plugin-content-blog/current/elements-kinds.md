@@ -1,10 +1,10 @@
 ---
 title: "Виды элементов в V8"
 author: "Матиас Байненс ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
-date: 2017-09-12 13:33:37
-tags:
+date: "2017-09-12 13:33:37"
+tags: 
   - internals
   - presentations
 description: "Этот технический анализ объясняет, как V8 оптимизирует операции с массивами за кулисами, и что это означает для разработчиков JavaScript."

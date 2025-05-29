@@ -1,8 +1,8 @@
 ---
 title: "Sortie de V8 v6.3"
-author: 'l'équipe V8'
-date: 2017-10-25 13:33:37
-tags:
+author: "l'équipe V8"
+date: "2017-10-25 13:33:37"
+tags: 
   - sortie
 description: "V8 v6.3 inclut des améliorations de performances, une réduction de la consommation mémoire et une prise en charge des nouvelles fonctionnalités du langage JavaScript."
 tweet: "923168001108643840"

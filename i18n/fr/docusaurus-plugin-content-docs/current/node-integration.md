@@ -1,6 +1,6 @@
 ---
-title: 'Que faire si votre CL a cassé la construction d'intégration Node.js'
-description: 'Ce document explique que faire si votre CL a cassé la construction d'intégration Node.js.'
+title: "Que faire si votre CL a cassé la construction d'intégration Node.js"
+description: "Ce document explique que faire si votre CL a cassé la construction d'intégration Node.js."
 ---
 [Node.js](https://github.com/nodejs/node) utilise V8 stable ou bêta. Pour une intégration supplémentaire, l'équipe V8 construit Node avec la [branche principale de V8](https://chromium.googlesource.com/v8/v8/+/refs/heads/main), c'est-à-dire avec une version de V8 actuelle. Nous fournissons un bot d'intégration pour [Linux](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Linux64), tandis que [Windows](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Win64) et [Mac](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Mac64) sont en cours de développement.
 

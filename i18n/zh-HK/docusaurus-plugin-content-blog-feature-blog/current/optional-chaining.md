@@ -1,10 +1,10 @@
 ---
 title: "可選鏈（Optional chaining）"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski))，可選鏈的破壞者"
-avatars:
+avatars: 
   - "maya-armyanova"
 date: 2019-08-27
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "可選鏈使屬性訪問的表達更加可讀且簡潔，並內建了空值檢查功能。"

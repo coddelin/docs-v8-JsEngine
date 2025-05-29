@@ -1,10 +1,10 @@
 ---
 title: "Optimisation des tables de hachage : cacher le code de hachage"
 author: "[Sathya Gunasekaran](https://twitter.com/_gsathya), gardien des codes de hachage"
-avatars:
+avatars: 
   - "sathya-gunasekaran"
-date: 2018-01-29 13:33:37
-tags:
+date: "2018-01-29 13:33:37"
+tags: 
   - internals
 tweet: "958046113390411776"
 description: "Plusieurs structures de données JavaScript comme Map, Set, WeakSet et WeakMap utilisent des tables de hachage sous-jacentes. Cet article explique comment V8 v6.3 améliore les performances des tables de hachage."

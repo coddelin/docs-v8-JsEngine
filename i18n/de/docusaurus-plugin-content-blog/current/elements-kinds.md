@@ -1,10 +1,10 @@
 ---
 title: "Elementarten in V8"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
-date: 2017-09-12 13:33:37
-tags:
+date: "2017-09-12 13:33:37"
+tags: 
   - internals
   - präsentationen
 description: "Dieser technische Deep-Dive erklärt, wie V8 Operationen auf Arrays im Hintergrund optimiert und was das für JavaScript-Entwickler bedeutet."

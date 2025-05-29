@@ -1,10 +1,10 @@
 ---
 title: "Lanzamiento de V8 v8.1"
 author: "Dominik Inführ, el hombre internacional (de la internacionalización) misterioso"
-avatars:
+avatars: 
   - "dominik-infuehr"
 date: 2020-02-25
-tags:
+tags: 
   - lanzamiento
 description: "V8 v8.1 incluye soporte mejorado para internacionalización mediante la nueva API Intl.DisplayNames."
 ---

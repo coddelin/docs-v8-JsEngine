@@ -1,10 +1,10 @@
 ---
 title: "物件的剩餘與展開特性"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-06-06
-tags:
+tags: 
   - ECMAScript
   - ES2018
 description: "本文解釋了 JavaScript 中物件剩餘與展開特性的運作方式，並回顧了陣列的剩餘與展開元素。"

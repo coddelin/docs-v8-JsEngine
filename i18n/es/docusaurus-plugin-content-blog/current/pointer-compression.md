@@ -1,11 +1,11 @@
 ---
 title: "Compresión de punteros en V8"
 author: "Igor Sheludko y Santiago Aboy Solanes, *los* compresores de punteros"
-avatars:
+avatars: 
   - "igor-sheludko"
   - "santiago-aboy-solanes"
 date: 2020-03-30
-tags:
+tags: 
   - internals
   - memory
 description: "¡V8 redujo el tamaño de su montón hasta en un 43%! Aprende cómo en “Compresión de punteros en V8”!"

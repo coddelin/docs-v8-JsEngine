@@ -1,10 +1,10 @@
 ---
 title: "더 빠른 JavaScript 호출"
 author: "[Victor Gomes](https://twitter.com/VictorBFG), 프레임 제거기"
-avatars:
+avatars: 
   - "victor-gomes"
 date: 2021-02-15
-tags:
+tags: 
   - internals
 description: "인수 어댑터 프레임 제거를 통해 더 빠른 JavaScript 호출"
 tweet: "1361337569057865735"

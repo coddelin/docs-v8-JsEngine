@@ -1,10 +1,10 @@
 ---
 title: "Trash talk: der Orinoco Müllsammler"
 author: "Peter ‘der Garbo’ Marshall ([@hooraybuffer](https://twitter.com/hooraybuffer))"
-avatars:
+avatars: 
   - "peter-marshall"
-date: 2019-01-03 17:45:34
-tags:
+date: "2019-01-03 17:45:34"
+tags: 
   - internals
   - speicher
   - präsentationen

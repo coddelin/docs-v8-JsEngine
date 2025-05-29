@@ -1,11 +1,11 @@
 ---
 title: "無料でガベージコレクションを実現"
 author: "ハンネス・ペイヤーとロス・マクイルロイ、アイドルガベージコレクターズ"
-avatars:
+avatars: 
   - "hannes-payer"
   - "ross-mcilroy"
-date: 2015-08-07 13:33:37
-tags:
+date: "2015-08-07 13:33:37"
+tags: 
   - internals
   - メモリ
 description: "Chrome 41では、アイドル時間の小さな未使用時間内に高コストのメモリ管理操作を隠すことで、ジャンクを軽減しています。"

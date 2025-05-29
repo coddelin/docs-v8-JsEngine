@@ -1,10 +1,10 @@
 ---
 title: "V8 release v7.8"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), the lazy sourcerer"
-avatars:
+avatars: 
   - "ingvar-stepanyan"
 date: 2019-09-27
-tags:
+tags: 
   - release
 description: "V8 v7.8 features streaming compilation on preload, WebAssembly C API, faster object destructuring and RegExp matching, and improved startup times."
 tweet: "1177600702861971459"

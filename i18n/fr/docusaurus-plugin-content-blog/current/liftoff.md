@@ -1,10 +1,10 @@
 ---
 title: "Liftoff : un nouveau compilateur de base pour WebAssembly dans V8"
 author: "Clemens Backes, maestro de la compilation WebAssembly"
-avatars:
+avatars: 
   - "clemens-backes"
-date: 2018-08-20 15:45:12
-tags:
+date: "2018-08-20 15:45:12"
+tags: 
   - WebAssembly
   - internes
 description: "Liftoff est un nouveau compilateur de base pour WebAssembly, inclus dans V8 v6.9."

@@ -1,10 +1,10 @@
 ---
 title: "Almacenamiento en caché de código para desarrolladores de WebAssembly"
 author: "[Bill Budge](https://twitter.com/billb), poniendo el ¡Ca-ching! en el almacenamiento en caché"
-avatars:
+avatars: 
   - bill-budge
 date: 2019-06-17
-tags:
+tags: 
   - WebAssembly
   - internals
 description: "Este artículo explica el almacenamiento en caché de código de WebAssembly en Chrome y cómo los desarrolladores pueden aprovecharlo para acelerar la carga de aplicaciones con módulos WebAssembly grandes."

@@ -1,10 +1,10 @@
 ---
 title: "Schnellere Initialisierung von Instanzen mit neuen Klassenfeatures"
 author: "[Joyee Cheung](https://twitter.com/JoyeeCheung), Instanzinitialisierer"
-avatars:
+avatars: 
   - "joyee-cheung"
 date: 2022-04-20
-tags:
+tags: 
   - internals
 description: "Die Initialisierung von Instanzen mit neuen Klassenfeatures ist seit V8 v9.7 schneller geworden."
 tweet: "1517041137378373632"

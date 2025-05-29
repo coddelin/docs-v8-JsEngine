@@ -1,10 +1,10 @@
 ---
 title: "Statische Initialisierungsblöcke von Klassen"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2021-03-30
-tags:
+tags: 
   - ECMAScript
 description: "JavaScript-Klassen erhalten eigens entwickelte Syntax für statische Initialisierung."
 tweet: "1376925666780798989"

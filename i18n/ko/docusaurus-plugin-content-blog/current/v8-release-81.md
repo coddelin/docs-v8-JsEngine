@@ -1,10 +1,10 @@
 ---
 title: "V8 릴리즈 v8.1"
 author: "Dominik Inführ, 신비로운 국제화의 주인공"
-avatars:
+avatars: 
   - "dominik-infuehr"
 date: 2020-02-25
-tags:
+tags: 
   - 릴리즈
 description: "V8 v8.1은 새로운 Intl.DisplayNames API를 통해 개선된 국제화 지원을 제공합니다."
 ---

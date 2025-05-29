@@ -1,8 +1,8 @@
 ---
 title: "Lanzamiento de V8 v5.1"
 author: "el equipo de V8"
-date: 2016-04-23 13:33:37
-tags:
+date: "2016-04-23 13:33:37"
+tags: 
   - lanzamiento
 description: "V8 v5.1 incluye mejoras en el rendimiento, reducción de interrupciones y consumo de memoria, y aumenta el soporte para funcionalidades del lenguaje ECMAScript."
 ---

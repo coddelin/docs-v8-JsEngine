@@ -1,10 +1,10 @@
 ---
 title: "Optionale Verkettung"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), Brecherin optionaler Verkettungen"
-avatars:
+avatars: 
   - "maya-armyanova"
 date: 2019-08-27
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "Optionale Verkettung ermöglicht eine lesbare und prägnante Ausdrucksweise von Eigenschaftszugriffen mit integriertem Nullwert-Check."

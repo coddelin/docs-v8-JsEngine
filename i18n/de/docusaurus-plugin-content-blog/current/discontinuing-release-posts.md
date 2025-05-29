@@ -1,10 +1,10 @@
 ---
 title: "Einstellungen der Veröffentlichungs-Blogbeiträge"
 author: "Shu-yu Guo ([@shu_](https://twitter.com/_shu))"
-avatars:
+avatars: 
  - "shu-yu-guo"
 date: 2022-06-17
-tags:
+tags: 
  - Veröffentlichung
 description: "V8 stellt die Veröffentlichungs-Blogbeiträge ein zugunsten des Chrome-Veröffentlichungsplans und funktionsbezogener Blogbeiträge."
 tweet: "1537857497825824768"

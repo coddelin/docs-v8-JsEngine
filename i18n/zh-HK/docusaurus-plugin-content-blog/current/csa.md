@@ -1,8 +1,8 @@
 ---
 title: "駕馭 V8 架構複雜性 — CodeStubAssembler"
 author: "[Daniel Clifford](https://twitter.com/expatdanno), CodeStubAssembler 組裝器"
-date: 2017-11-16 13:33:37
-tags:
+date: "2017-11-16 13:33:37"
+tags: 
   - 內部結構
 description: "V8 在組合語言基礎上擁有自己的抽象層：CodeStubAssembler。CSA 允許 V8 在低層級快速且可靠地優化 JS 特性，同時支持多種平台。"
 tweet: "931184976481177600"

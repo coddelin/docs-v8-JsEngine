@@ -1,12 +1,12 @@
 ---
 title: "Orinoco：年輕代垃圾收集"
 author: "Ulan Degenbaev、Michael Lippautz 和 Hannes Payer，[TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual) 的朋友們"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2017-11-29 13:33:37
-tags:
+date: "2017-11-29 13:33:37"
+tags: 
   - internals
   - memory
 description: "本文介紹了平行 Scavenger，Orinoco 之一，V8 主要併發和平行垃圾收集器的最新功能之一。"

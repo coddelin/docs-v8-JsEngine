@@ -2,7 +2,7 @@
 title: "WebAssembly尾调用"
 author: "Thibaud Michaud, Thomas Lively"
 date: 2023-04-06
-tags:
+tags: 
   - WebAssembly
 description: "本文详细介绍了WebAssembly尾调用提案，并通过一些示例进行演示。"
 tweet: "1644077795059044353"

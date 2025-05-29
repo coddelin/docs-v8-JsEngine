@@ -1,11 +1,11 @@
 ---
 title: "Mejorando las expresiones regulares de V8"
 author: "Patrick Thier y Ana Peško, expresadores regulares de opiniones sobre expresiones regulares"
-avatars:
+avatars: 
   - "patrick-thier"
   - "ana-pesko"
-date: 2019-10-04 15:24:16
-tags:
+date: "2019-10-04 15:24:16"
+tags: 
   - internals
   - RegExp
 description: "En esta publicación de blog describimos cómo aprovechamos las ventajas de interpretar expresiones regulares y mitigamos las desventajas."

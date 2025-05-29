@@ -1,10 +1,10 @@
 ---
 title: "Версия V8 v9.0"
 author: "Ингвар Степанян ([@RReverser](https://twitter.com/RReverser)), на линии"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-03-17
-tags:
+tags: 
  - релиз
 description: "Релиз V8 версии 9.0 представляет поддержку индексов совпадений RegExp и различные улучшения производительности."
 tweet: "1372227274712494084"

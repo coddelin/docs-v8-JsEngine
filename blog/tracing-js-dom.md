@@ -1,12 +1,12 @@
 ---
 title: "Tracing from JS to the DOM and back again"
 author: "Ulan Degenbaev, Alexei Filippov, Michael Lippautz, and Hannes Payer — the fellowship of the DOM"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2018-03-01 13:33:37
-tags:
+date: "2018-03-01 13:33:37"
+tags: 
   - internals
   - memory
 description: "Chrome’s DevTools can now trace and snapshot C++ DOM objects and display all reachable DOM objects from JavaScript with their references."

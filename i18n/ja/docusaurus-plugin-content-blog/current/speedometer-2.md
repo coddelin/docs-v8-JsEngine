@@ -1,8 +1,8 @@
 ---
 title: "ChromeがSpeedometer 2.0を歓迎！"
 author: "BlinkとV8チーム"
-date: 2018-01-24 13:33:37
-tags:
+date: "2018-01-24 13:33:37"
+tags: 
   - ベンチマーク
 description: "Speedometer 2.0を基にしたBlinkとV8におけるパフォーマンス改善の概要。"
 tweet: "956232641736421377"

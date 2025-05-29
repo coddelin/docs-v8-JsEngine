@@ -1,10 +1,10 @@
 ---
 title: "究極に高速な解析、第1部：スキャナーの最適化"
 author: "トーン・ベルウェースト ([@tverwaes](https://twitter.com/tverwaes)), スキャンダラスな最適化者"
-avatars:
+avatars: 
   - "toon-verwaest"
-date: 2019-03-25 13:33:37
-tags:
+date: "2019-03-25 13:33:37"
+tags: 
   - 内部機能
   - 解析
 tweet: "1110205101652787200"

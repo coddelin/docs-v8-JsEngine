@@ -1,10 +1,10 @@
 ---
 title: "Lançamento do V8 v7.7"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), alocador preguiçoso de notas de lançamento"
-avatars:
+avatars: 
   - "mathias-bynens"
-date: 2019-08-13 16:45:00
-tags:
+date: "2019-08-13 16:45:00"
+tags: 
   - lançamento
 description: "O V8 v7.7 apresenta alocação preguiçosa de feedback, compilação em segundo plano mais rápida para WebAssembly, melhorias em rastreamento de pilha e novas funcionalidades do Intl.NumberFormat."
 tweet: "1161287541611323397"

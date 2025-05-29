@@ -1,12 +1,12 @@
 ---
 title: "더 가벼운 V8"
 author: "Mythri Alle, Dan Elphick, 그리고 [Ross McIlroy](https://twitter.com/rossmcilroy), V8 웨이트워처"
-avatars:
+avatars: 
   - "mythri-alle"
   - "dan-elphick"
   - "ross-mcilroy"
-date: 2019-09-12 12:44:37
-tags:
+date: "2019-09-12 12:44:37"
+tags: 
   - internals
   - memory
   - presentations

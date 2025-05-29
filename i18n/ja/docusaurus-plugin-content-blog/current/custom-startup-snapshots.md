@@ -1,10 +1,10 @@
 ---
 title: "カスタムスタートアップスナップショット"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), ソフトウェアエンジニアおよびエンジンプリヒーターの提供者"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-09-25 13:33:37
-tags:
+date: "2015-09-25 13:33:37"
+tags: 
   - internals
 description: "V8組み込み可能者はスナップショットを利用して、JavaScriptプログラムの初期化によるスタートアップ時間を短縮できます。"
 ---

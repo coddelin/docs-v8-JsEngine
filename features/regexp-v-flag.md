@@ -1,12 +1,12 @@
 ---
 title: "RegExp `v` flag with set notation and properties of strings"
 author: "Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer, and Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mark-davis"
   - "markus-scherer"
   - "mathias-bynens"
 date: 2022-06-27
-tags:
+tags: 
   - ECMAScript
 description: "The new RegExp `v` flag enables `unicodeSets` mode, unlocking support for extended character classes, including Unicode properties of strings, set notation, and improved case-insensitive matching."
 tweet: "1541419838513594368"

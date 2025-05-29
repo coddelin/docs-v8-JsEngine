@@ -1,10 +1,10 @@
 ---
 title: "Mise en cache du code pour les développeurs WebAssembly"
 author: "[Bill Budge](https://twitter.com/billb), ajoutant le Ca-ching! à la mise en cache"
-avatars:
+avatars: 
   - bill-budge
 date: 2019-06-17
-tags:
+tags: 
   - WebAssembly
   - internals
 description: "Cet article explique la mise en cache du code WebAssembly dans Chrome et comment les développeurs peuvent en tirer parti pour accélérer le chargement des applications avec de grands modules WebAssembly."

@@ -1,10 +1,10 @@
 ---
 title: "正则表达式后向断言"
 author: "杨国，正则表达式工程师"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2016-02-26 13:33:37
-tags:
+date: "2016-02-26 13:33:37"
+tags: 
   - ECMAScript
   - 正则表达式
 description: "JavaScript 正则表达式新增了一些新功能：后向断言。"

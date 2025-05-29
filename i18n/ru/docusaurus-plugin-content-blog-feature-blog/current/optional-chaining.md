@@ -1,10 +1,10 @@
 ---
 title: "Опциональная цепочка"
 author: "Майя Армянова ([@Zmayski](https://twitter.com/Zmayski)), разрыватель опциональных цепочек"
-avatars:
+avatars: 
   - "maya-armyanova"
 date: 2019-08-27
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "Опциональная цепочка позволяет выразить доступ к свойствам с проверкой на null более читабельным и кратким образом."

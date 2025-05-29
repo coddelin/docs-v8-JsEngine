@@ -1,10 +1,10 @@
 ---
 title: "類別靜態初始化區塊"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2021-03-30
-tags:
+tags: 
   - ECMAScript
 description: "JavaScript 類別獲得用於靜態初始化的專用語法。"
 tweet: "1376925666780798989"

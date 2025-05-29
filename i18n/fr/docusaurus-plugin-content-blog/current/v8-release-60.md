@@ -1,8 +1,8 @@
 ---
 title: "Publication de V8 v6.0"
-author: 'l'équipe de V8'
-date: 2017-06-09 13:33:37
-tags:
+author: "l'équipe de V8"
+date: "2017-06-09 13:33:37"
+tags: 
   - publication
 description: "V8 v6.0 apporte plusieurs améliorations de performance, et introduit la prise en charge des `SharedArrayBuffer` et des propriétés rest/spread pour les objets."
 ---

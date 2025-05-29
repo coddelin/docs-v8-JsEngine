@@ -1,10 +1,10 @@
 ---
 title: "Comprendre la spécification ECMAScript, partie 4"
 author: "[Marja Hölttä](https://twitter.com/marjakh), spectatrice spéculative des spécifications"
-avatars:
+avatars: 
   - marja-holtta
 date: 2020-05-19
-tags:
+tags: 
   - ECMAScript
   - Comprendre ECMAScript
 description: "Tutoriel pour lire la spécification ECMAScript"

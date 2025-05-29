@@ -1,8 +1,8 @@
 ---
 title: "Chrome welcomes Speedometer 2.0!"
 author: "the Blink and V8 teams"
-date: 2018-01-24 13:33:37
-tags:
+date: "2018-01-24 13:33:37"
+tags: 
   - benchmarks
 description: "An overview of the performance improvements we’ve made so far in Blink and V8 based on Speedometer 2.0."
 tweet: "956232641736421377"

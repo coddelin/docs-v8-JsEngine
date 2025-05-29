@@ -1,12 +1,12 @@
 ---
 title: "Marquage concurrent dans V8"
 author: "Ulan Degenbaev, Michael Lippautz, et Hannes Payer — libérateurs du thread principal"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2018-06-11 13:33:37
-tags:
+date: "2018-06-11 13:33:37"
+tags: 
   - internes
   - mémoire
 description: "Cet article décrit la technique de collecte des déchets appelée marquage concurrent."

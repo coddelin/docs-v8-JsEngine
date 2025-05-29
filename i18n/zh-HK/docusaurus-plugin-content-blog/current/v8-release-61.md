@@ -1,8 +1,8 @@
 ---
 title: "V8 發佈版本 v6.1"
 author: "V8 團隊"
-date: 2017-08-03 13:33:37
-tags:
+date: "2017-08-03 13:33:37"
+tags: 
   - 發佈
 description: "V8 v6.1 附帶減少的二進制大小並包括性能改進。此外，asm.js 現已經過驗證並編譯為 WebAssembly。"
 ---

@@ -1,10 +1,10 @@
 ---
 title: "Intl.Locale"
 author: "매티아스 바이넨스 ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2019-05-20
-tags:
+tags: 
   - Intl
   - Node.js 12
   - io19

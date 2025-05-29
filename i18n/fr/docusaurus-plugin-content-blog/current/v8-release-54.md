@@ -1,8 +1,8 @@
 ---
 title: "Publication V8 v5.4"
-author: 'l'équipe V8'
-date: 2016-09-09 13:33:37
-tags:
+author: "l'équipe V8"
+date: "2016-09-09 13:33:37"
+tags: 
   - publication
 description: "V8 v5.4 offre des améliorations de performance et une consommation de mémoire réduite."
 ---

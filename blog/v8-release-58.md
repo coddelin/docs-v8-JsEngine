@@ -1,8 +1,8 @@
 ---
 title: "V8 release v5.8"
 author: "the V8 team"
-date: 2017-03-20 13:33:37
-tags:
+date: "2017-03-20 13:33:37"
+tags: 
   - release
 description: "V8 v5.8 enables the use of arbitrary heap sizes and improves startup performance."
 ---

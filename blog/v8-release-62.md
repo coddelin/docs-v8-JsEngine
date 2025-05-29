@@ -1,8 +1,8 @@
 ---
 title: "V8 release v6.2"
 author: "the V8 team"
-date: 2017-09-11 13:33:37
-tags:
+date: "2017-09-11 13:33:37"
+tags: 
   - release
 description: "V8 v6.2 includes performance improvements, more JavaScript language features, an increased max string length, and more."
 ---

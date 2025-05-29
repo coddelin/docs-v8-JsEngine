@@ -1,8 +1,8 @@
 ---
 title: "V8 release v6.5"
 author: "the V8 team"
-date: 2018-02-01 13:33:37
-tags:
+date: "2018-02-01 13:33:37"
+tags: 
   - release
 description: "V8 v6.5 adds support for streaming WebASsembly compilation and includes a new “untrusted code mode”."
 tweet: "959174292406640640"

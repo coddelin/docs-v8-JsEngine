@@ -1,10 +1,10 @@
 ---
 title: "停止發佈版本部落格文章"
 author: "郭書宇 ([@shu_](https://twitter.com/_shu))"
-avatars:
+avatars: 
  - "shu-yu-guo"
 date: 2022-06-17
-tags:
+tags: 
  - release
 description: "V8 將停止版本部落格文章，改為根據 Chrome 發佈計劃和功能部落格文章進行更新。"
 tweet: "1537857497825824768"

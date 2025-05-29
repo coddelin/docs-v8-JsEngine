@@ -1,10 +1,10 @@
 ---
 title: "Performances élevées ES2015 et au-delà"
 author: "Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer), Ingénieur Performances ECMAScript"
-avatars:
+avatars: 
   - "benedikt-meurer"
-date: 2017-02-17 13:33:37
-tags:
+date: "2017-02-17 13:33:37"
+tags: 
   - ECMAScript
 description: "Les performances des fonctionnalités de langage ES2015+ dans V8 sont désormais comparables à celles de leurs homologues transpilés en ES5."
 ---

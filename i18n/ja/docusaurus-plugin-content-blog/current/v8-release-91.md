@@ -1,10 +1,10 @@
 ---
 title: "V8リリース v9.1"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))、私のプライベートブランドのテスト"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-05-04
-tags:
+tags: 
  - リリース
 description: "V8リリースv9.1では、プライベートブランドチェックのサポート、デフォルトで有効化されたトップレベルawait、そしてパフォーマンス改善を提供します。"
 tweet: "1389613320953532417"

@@ -1,10 +1,10 @@
 ---
 title: "Propriedades de descanso e espalhamento de objeto"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-06-06
-tags:
+tags: 
   - ECMAScript
   - ES2018
 description: "Este artigo explica como as propriedades de descanso e espalhamento de objeto funcionam em JavaScript, e revisita os elementos de descanso e espalhamento de arrays."

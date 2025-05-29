@@ -1,8 +1,8 @@
 ---
 title: "IgnitionとTurboFanの導入"
 author: "V8チーム"
-date: 2017-05-15 13:33:37
-tags:
+date: "2017-05-15 13:33:37"
+tags: 
   - internals
 description: "V8 v5.9では、IgnitionインタープリターとTurboFan最適化コンパイラを基盤とした新しいJavaScript実行パイプラインが導入されています。"
 ---

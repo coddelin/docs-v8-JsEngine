@@ -1,10 +1,10 @@
 ---
 title: "Lançamento do V8 v9.0"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), em linha contínua"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-03-17
-tags:
+tags: 
  - lançamento
 description: "O lançamento do V8 v9.0 traz suporte para índices de correspondência RegExp e várias melhorias de desempenho."
 tweet: "1372227274712494084"

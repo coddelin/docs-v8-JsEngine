@@ -1,6 +1,6 @@
 ---
-title: 'Intégration de l'interface de compilation JIT GDB'
-description: 'L'intégration de l'interface de compilation JIT GDB permet à V8 de fournir à GDB les symboles et les informations de débogage pour le code natif émis par le runtime V8.'
+title: "Intégration de l'interface de compilation JIT GDB"
+description: "L'intégration de l'interface de compilation JIT GDB permet à V8 de fournir à GDB les symboles et les informations de débogage pour le code natif émis par le runtime V8."
 ---
 L'intégration de l'interface de compilation JIT GDB permet à V8 de fournir à GDB les symboles et les informations de débogage pour le code natif émis par le runtime V8.
 

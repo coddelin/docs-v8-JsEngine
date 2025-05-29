@@ -1,8 +1,8 @@
 ---
 title: "V8-Version v5.1"
 author: "das V8-Team"
-date: 2016-04-23 13:33:37
-tags:
+date: "2016-04-23 13:33:37"
+tags: 
   - Veröffentlichung
 description: "V8 v5.1 bringt Verbesserungen in der Performance, reduzierte Unterbrechungen und Speicherverbrauch sowie erhöhte Unterstützung für ECMAScript-Sprachfunktionen."
 ---

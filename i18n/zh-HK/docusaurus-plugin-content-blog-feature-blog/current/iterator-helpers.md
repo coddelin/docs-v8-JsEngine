@@ -1,10 +1,10 @@
 ---
 title: "迭代器輔助工具"
 author: "Rezvan Mahdavi Hezaveh"
-avatars:
+avatars: 
   - "rezvan-mahdavi-hezaveh"
 date: 2024-03-27
-tags:
+tags: 
   - ECMAScript
 description: "幫助一般使用和消耗迭代器的介面。"
 tweet: ""

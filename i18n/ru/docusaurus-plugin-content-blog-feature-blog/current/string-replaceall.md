@@ -1,10 +1,10 @@
 ---
 title: "`String.prototype.replaceAll`"
 author: "Матиас Байненс ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2019-11-11
-tags:
+tags: 
   - ECMAScript
   - ES2021
   - Node.js 16

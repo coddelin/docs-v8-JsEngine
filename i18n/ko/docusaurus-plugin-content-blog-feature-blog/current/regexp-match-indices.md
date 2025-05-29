@@ -1,10 +1,10 @@
 ---
 title: "RegExp 매치 인덱스"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 새로운 기능을 정기적으로 표현"
-avatars:
+avatars: 
   - "maya-armyanova"
 date: 2019-12-17
-tags:
+tags: 
   - ECMAScript
   - Node.js 16
 description: "RegExp 매치 인덱스는 각 매치된 캡처 그룹의 `start`와 `end` 인덱스를 제공합니다."

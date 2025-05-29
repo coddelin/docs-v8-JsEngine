@@ -1,8 +1,8 @@
 ---
 title: "V8에 BigInt 추가"
 author: "정밀성을 담당하는 Jakob Kummerow"
-date: 2018-05-02 13:33:37
-tags:
+date: "2018-05-02 13:33:37"
+tags: 
   - ECMAScript
 description: "V8이 이제 임의 정밀도 정수를 지원하는 JavaScript 언어 기능인 BigInt를 지원합니다."
 tweet: "991705626391732224"

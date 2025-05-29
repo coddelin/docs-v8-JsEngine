@@ -1,10 +1,10 @@
 ---
 title: "V8 發佈 v9.9"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 在他的 99% 時間代碼中"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2022-01-31
-tags:
+tags: 
  - release
 description: "V8 發佈 v9.9 帶來了全新的國際化 API。"
 tweet: "1488190967727411210"

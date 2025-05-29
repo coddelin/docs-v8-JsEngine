@@ -1,10 +1,10 @@
 ---
 title: "V8发布v8.9版本"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 等待来电"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-02-04
-tags:
+tags: 
  - 发布
 description: "V8发布v8.9版本，改进了参数数量不匹配时的调用性能。"
 tweet: "1357358418902802434"

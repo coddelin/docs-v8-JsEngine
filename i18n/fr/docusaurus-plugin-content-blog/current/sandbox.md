@@ -1,11 +1,11 @@
 ---
 title: "Le Bac à Sable de V8"
-description: 'V8 propose un bac à sable léger et intégré pour limiter l'impact des bugs de corruption de mémoire'
+description: "V8 propose un bac à sable léger et intégré pour limiter l'impact des bugs de corruption de mémoire"
 author: "Samuel Groß"
-avatars:
+avatars: 
   - samuel-gross
 date: 2024-04-04
-tags:
+tags: 
  - sécurité
 ---
 

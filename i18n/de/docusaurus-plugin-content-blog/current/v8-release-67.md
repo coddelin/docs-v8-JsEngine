@@ -1,8 +1,8 @@
 ---
 title: "V8-Version v6.7"
 author: "das V8-Team"
-date: 2018-05-04 13:33:37
-tags:
+date: "2018-05-04 13:33:37"
+tags: 
   - Veröffentlichung
 tweet: "992506342391742465"
 description: "V8 v6.7 fügt weitere Maßnahmen gegen nicht vertrauenswürdigen Code hinzu und bietet BigInt-Unterstützung."

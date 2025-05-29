@@ -1,10 +1,10 @@
 ---
 title: "Custom startup snapshots"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), Software Engineer and engine pre-heater supplier"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-09-25 13:33:37
-tags:
+date: "2015-09-25 13:33:37"
+tags: 
   - internals
 description: "V8 embedders can utilize snapshots to skip over the startup time incurred by initializations of JavaScript programs."
 ---

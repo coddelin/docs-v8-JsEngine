@@ -1,10 +1,10 @@
 ---
 title: "ECMAScript 사양 이해하기, Part 3"
 author: "[Marja Hölttä](https://twitter.com/marjakh), 추측적 사양 관찰자"
-avatars:
+avatars: 
   - marja-holtta
 date: 2020-04-01
-tags:
+tags: 
   - ECMAScript
   - ECMAScript 이해하기
 description: "ECMAScript 사양 읽기에 대한 튜토리얼"

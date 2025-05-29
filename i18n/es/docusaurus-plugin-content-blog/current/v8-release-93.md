@@ -1,10 +1,10 @@
 ---
 title: "Lanzamiento de V8 versión v9.3"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-08-09
-tags:
+tags: 
  - lanzamiento
 description: "El lanzamiento de V8 versión v9.3 incluye soporte para Object.hasOwn y causas de Error, mejora el rendimiento de compilación y deshabilita mitigaciones de generación de código no confiable en Android."
 tweet: ""

@@ -1,10 +1,10 @@
 ---
 title: "Encadeamento opcional"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), destruidora de cadeias opcionais"
-avatars:
+avatars: 
   - "maya-armyanova"
 date: 2019-08-27
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "O encadeamento opcional permite a expressão legível e concisa de acessos a propriedades com verificação de valores nulos embutida."

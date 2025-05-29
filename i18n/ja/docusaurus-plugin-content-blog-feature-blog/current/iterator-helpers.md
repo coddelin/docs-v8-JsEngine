@@ -1,10 +1,10 @@
 ---
 title: "イテレーター ヘルパー"
 author: "レズヴァン・マハダヴィ・ヘザヴェ"
-avatars:
+avatars: 
   - "rezvan-mahdavi-hezaveh"
 date: 2024-03-27
-tags:
+tags: 
   - ECMAScript
 description: "イテレーターの一般的な使用と消費を助けるインターフェイス。"
 tweet: ""

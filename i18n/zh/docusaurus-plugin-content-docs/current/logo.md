@@ -1,7 +1,7 @@
 ---
-permalink: /logo/
-title: V8 标志
-layout: layouts/base.njk
+permalink: "/logo/"
+title: "V8 标志"
+layout: "layouts/base.njk"
 description: "在这里下载官方 V8 标志的矢量格式 (SVG)。"
 ---
 # V8 标志

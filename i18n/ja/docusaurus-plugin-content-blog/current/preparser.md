@@ -1,11 +1,11 @@
 ---
 title: "信じられないほど速いパース、パート2：遅延パース"
 author: "Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)) と Marja Hölttä ([@marjakh](https://twitter.com/marjakh))、パーサー"
-avatars:
+avatars: 
   - "toon-verwaest"
   - "marja-holtta"
-date: 2019-04-15 17:03:37
-tags:
+date: "2019-04-15 17:03:37"
+tags: 
   - 内部構造
   - パース
 tweet: "1117807107972243456"

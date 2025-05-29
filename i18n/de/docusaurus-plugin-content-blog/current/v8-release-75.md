@@ -1,10 +1,10 @@
 ---
 title: "V8-Veröffentlichung v7.5"
 author: "Dan Elphick, der Schrecken der Veralteten"
-avatars:
+avatars: 
   - "dan-elphick"
-date: 2019-05-16 15:00:00
-tags:
+date: "2019-05-16 15:00:00"
+tags: 
   - release
 description: "V8 v7.5 bietet implizites Caching von WebAssembly-Kompilierungsartefakten, Speicheroperationen im Bulk, numerische Trenner in JavaScript und vieles mehr!"
 tweet: "1129073370623086593"

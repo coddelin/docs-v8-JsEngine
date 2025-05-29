@@ -1,8 +1,8 @@
 ---
 title: "V8 release v5.1"
 author: "the V8 team"
-date: 2016-04-23 13:33:37
-tags:
+date: "2016-04-23 13:33:37"
+tags: 
   - release
 description: "V8 v5.1 comes with performance improvements, reduced jank and memory consumption, and increased support for ECMAScript language features."
 ---

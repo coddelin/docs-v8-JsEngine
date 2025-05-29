@@ -1,8 +1,8 @@
 ---
 title: "Ajude-nos a testar o futuro do V8!"
 author: "Daniel Clifford ([@expatdanno](https://twitter.com/expatdanno)), Cervejeiro Original de V8 em Munique"
-date: 2017-02-14 13:33:37
-tags:
+date: "2017-02-14 13:33:37"
+tags: 
   - internos
 description: "Pré-visualize o novo pipeline de compiladores do V8 com Ignition e TurboFan no Chrome Canary hoje!"
 ---

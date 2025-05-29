@@ -1,10 +1,10 @@
 ---
 title: "V8 Veröffentlichung v8.1"
 author: "Dominik Inführ, international(ization) Mann des Geheimnisses"
-avatars:
+avatars: 
   - "dominik-infuehr"
 date: 2020-02-25
-tags:
+tags: 
   - veröffentlichung
 description: "V8 v8.1 bietet verbesserte Unterstützung für Internationalisierung durch die neue Intl.DisplayNames API."
 ---

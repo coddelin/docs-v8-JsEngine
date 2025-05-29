@@ -1,10 +1,10 @@
 ---
 title: "V8-Version v8.4"
 author: "Camillo Bruni, genießt einige frische Booleans"
-avatars:
+avatars: 
  - "camillo-bruni"
 date: 2020-06-30
-tags:
+tags: 
  - Veröffentlichung
 description: "V8 v8.4 bietet schwache Referenzen und verbesserte WebAssembly-Leistung."
 tweet: "1277983235641761795"

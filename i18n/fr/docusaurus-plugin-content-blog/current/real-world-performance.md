@@ -1,10 +1,10 @@
 ---
 title: "Comment V8 mesure les performances réelles"
-author: 'l'équipe V8'
-date: 2016-12-21 13:33:37
-tags:
+author: "l'équipe V8"
+date: "2016-12-21 13:33:37"
+tags: 
   - benchmarks
-description: 'L'équipe V8 a développé une nouvelle méthodologie pour mesurer et comprendre les performances réelles de JavaScript.'
+description: "L'équipe V8 a développé une nouvelle méthodologie pour mesurer et comprendre les performances réelles de JavaScript."
 ---
 Au cours de l'année passée, l'équipe V8 a mis au point une nouvelle méthodologie pour mesurer et comprendre les performances réelles de JavaScript. Nous avons utilisé les enseignements que nous en avons tirés pour changer la façon dont l'équipe V8 accélère JavaScript. Notre nouvel objectif axé sur le monde réel représente un changement significatif par rapport à notre approche traditionnelle des performances. Nous sommes convaincus qu'en continuant d'appliquer cette méthodologie en 2017, cela améliorera significativement la capacité des utilisateurs et des développeurs à s'appuyer sur des performances prévisibles de V8 pour les JavaScript réels dans Chrome et Node.js.
 

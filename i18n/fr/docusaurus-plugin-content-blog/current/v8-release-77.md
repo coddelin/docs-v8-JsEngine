@@ -1,10 +1,10 @@
 ---
 title: "Publication de la version V8 v7.7"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), rédacteur paresseux des notes de version"
-avatars:
+avatars: 
   - "mathias-bynens"
-date: 2019-08-13 16:45:00
-tags:
+date: "2019-08-13 16:45:00"
+tags: 
   - version
 description: "V8 v7.7 introduit une affectation différée des retours, une compilation WebAssembly en arrière-plan plus rapide, des améliorations des traces de pile et de nouvelles fonctionnalités pour Intl.NumberFormat."
 tweet: "1161287541611323397"

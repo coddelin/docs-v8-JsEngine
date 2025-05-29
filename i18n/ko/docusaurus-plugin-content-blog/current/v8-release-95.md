@@ -1,10 +1,10 @@
 ---
 title: "V8 릴리즈 v9.5"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-09-21
-tags:
+tags: 
  - 릴리즈
 description: "V8 릴리즈 v9.5는 업데이트된 국제화 API와 WebAssembly 예외 처리 지원을 제공합니다."
 tweet: "1440296019623759872"

@@ -1,12 +1,12 @@
 ---
 title: "Extras V8"
 author: "Domenic Denicola ([@domenic](https://twitter.com/domenic)), Sorcier des flux"
-avatars:
+avatars: 
   - "domenic-denicola"
-date: 2016-02-04 13:33:37
-tags:
+date: "2016-02-04 13:33:37"
+tags: 
   - internals
-description: 'La version 4.8 de V8 inclut les “extras V8”, une interface simple conçue dans le but de permettre aux utilisateurs d'intégrer des APIs performantes et auto hébergées.'
+description: "La version 4.8 de V8 inclut les “extras V8”, une interface simple conçue dans le but de permettre aux utilisateurs d'intégrer des APIs performantes et auto hébergées."
 ---
 V8 implémente une grande partie des objets et fonctions intégrés du langage JavaScript directement en JavaScript. Par exemple, vous pouvez voir notre [implémentation des promesses](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js) qui est écrite en JavaScript. Ces objets intégrés sont appelés _auto hébergés_. Ces implémentations sont incluses dans notre [instantané de démarrage](/blog/custom-startup-snapshots) afin que de nouveaux contextes puissent être rapidement créés sans avoir besoin de configurer et d'initialiser les objets auto hébergés durant l'exécution.
 

@@ -1,10 +1,10 @@
 ---
 title: "Cacheamento de código para desenvolvedores WebAssembly"
 author: "[Bill Budge](https://twitter.com/billb), colocando o Ca-ching! no cacheamento"
-avatars:
+avatars: 
   - bill-budge
 date: 2019-06-17
-tags:
+tags: 
   - WebAssembly
   - internos
 description: "Este artigo explica o cache de código WebAssembly no Chrome e como os desenvolvedores podem tirar proveito disso para acelerar o carregamento de aplicativos com módulos WebAssembly grandes."

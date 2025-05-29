@@ -1,12 +1,12 @@
 ---
 title: "Lancement de V8 v9.3"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-08-09
-tags:
+tags: 
  - release
-description: 'La version v9.3 de V8 apporte le support de Object.hasOwn et des causes d'erreurs, améliore les performances de compilation et désactive les atténuations de génération de code non fiable sur Android.'
+description: "La version v9.3 de V8 apporte le support de Object.hasOwn et des causes d'erreurs, améliore les performances de compilation et désactive les atténuations de génération de code non fiable sur Android."
 tweet: ""
 ---
 Toutes les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](https://v8.dev/docs/release-process). Chaque version est dérivée de la branche principale de V8 juste avant une étape bêta de Chrome. Aujourd'hui, nous sommes ravis d'annoncer notre toute nouvelle branche, [V8 version 9.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.3), qui est en bêta jusqu'à sa publication en coordination avec Chrome 93 Stable dans plusieurs semaines. V8 v9.3 est remplie de nouveautés intéressantes pour les développeurs. Cet article offre un aperçu de certaines des principales nouveautés en prévision de la sortie.

@@ -1,8 +1,8 @@
 ---
 title: "Einführung von Ignition und TurboFan"
 author: "das V8-Team"
-date: 2017-05-15 13:33:37
-tags:
+date: "2017-05-15 13:33:37"
+tags: 
   - internals
 description: "V8 v5.9 kommt mit einer brandneuen JavaScript-Ausführungspipeline, die auf dem Ignition-Interpreter und dem TurboFan-optimierenden Compiler basiert."
 ---

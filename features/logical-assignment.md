@@ -1,10 +1,10 @@
 ---
 title: "Logical assignment"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2020-05-07
-tags:
+tags: 
   - ECMAScript
   - ES2021
   - Node.js 16

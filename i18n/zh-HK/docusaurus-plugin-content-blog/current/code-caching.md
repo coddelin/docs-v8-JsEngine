@@ -1,10 +1,10 @@
 ---
 title: "程式碼緩存"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), 軟體工程師"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-07-27 13:33:37
-tags:
+date: "2015-07-27 13:33:37"
+tags: 
   - internals
 description: "V8 現在支援（位元組）程式碼緩存，即緩存 JavaScript 解析和編譯的結果。"
 ---

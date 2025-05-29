@@ -1,10 +1,10 @@
 ---
 title: "Ajuda para Iteradores"
 author: "Rezvan Mahdavi Hezaveh"
-avatars:
+avatars: 
   - "rezvan-mahdavi-hezaveh"
 date: 2024-03-27
-tags:
+tags: 
   - ECMAScript
 description: "Interfaces que ajudam no uso geral e consumo de iteradores."
 tweet: ""

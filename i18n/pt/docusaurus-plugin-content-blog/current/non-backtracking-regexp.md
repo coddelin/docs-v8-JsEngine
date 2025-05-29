@@ -2,7 +2,7 @@
 title: "Um mecanismo adicional de RegExp sem retrocesso"
 author: "Martin Bidlingmaier"
 date: 2021-01-11
-tags:
+tags: 
  - internos
  - RegExp
 description: "O V8 agora possui um mecanismo de RegExp adicional que atua como um mecanismo de fallback e previne muitos casos de retrocessos catastróficos."

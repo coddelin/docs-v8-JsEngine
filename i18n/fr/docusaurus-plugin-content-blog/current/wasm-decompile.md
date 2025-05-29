@@ -1,10 +1,10 @@
 ---
-title: 'Qu'y a-t-il dans ce `.wasm`? Présentation : `wasm-decompile`'
+title: "Qu'y a-t-il dans ce `.wasm`? Présentation : `wasm-decompile`"
 author: "Wouter van Oortmerssen ([@wvo](https://twitter.com/wvo))"
-avatars:
+avatars: 
   - "wouter-van-oortmerssen"
 date: 2020-04-27
-tags:
+tags: 
   - WebAssembly
   - outils
 description: "WABT propose un nouvel outil de décompilation qui peut faciliter la lecture du contenu des modules Wasm."

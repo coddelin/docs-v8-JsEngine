@@ -1,10 +1,10 @@
 ---
 title: "Liftoff: WebAssemblyのためのV8における新しいベースラインコンパイラ"
 author: "Clemens Backes、WebAssemblyコンパイルの達人"
-avatars:
+avatars: 
   - "clemens-backes"
-date: 2018-08-20 15:45:12
-tags:
+date: "2018-08-20 15:45:12"
+tags: 
   - WebAssembly
   - internals
 description: "LiftoffはWebAssemblyのための新しいベースラインコンパイラで、V8 v6.9に搭載されています。"

@@ -1,10 +1,10 @@
 ---
 title: "V8 版本 v7.9 发布"
 author: "Santiago Aboy Solanes，指针压缩高手"
-avatars:
+avatars: 
   - "santiago-aboy-solanes"
 date: 2019-11-20
-tags:
+tags: 
   - 发布
 description: "V8 v7.9 的功能包括移除了 Double ⇒ Tagged 转换的弃用处理，内建函数中处理 API getters，OSR 缓存，以及支持多代码空间的 WebAssembly。"
 tweet: "1197187184304050176"

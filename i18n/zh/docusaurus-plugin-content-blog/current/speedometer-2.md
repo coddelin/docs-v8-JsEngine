@@ -1,8 +1,8 @@
 ---
 title: "Chrome欢迎Speedometer 2.0！"
 author: "来自Blink和V8团队"
-date: 2018-01-24 13:33:37
-tags:
+date: "2018-01-24 13:33:37"
+tags: 
   - 基准测试
 description: "基于Speedometer 2.0，概述我们在Blink和V8中迄今为止所进行的性能改进。"
 tweet: "956232641736421377"

@@ -1,10 +1,10 @@
 ---
-title: 'Дополнительный контент для "Понимание спецификации ECMAScript, часть 2"'
+title: "Дополнительный контент для \"Понимание спецификации ECMAScript, часть 2\""
 author: "[Марья Хёлтта](https://twitter.com/marjakh), наблюдатель за спекулятивной спецификацией"
-avatars:
+avatars: 
   - marja-holtta
 date: 2020-03-02
-tags:
+tags: 
   - ECMAScript
 description: "Учебник по чтению спецификации ECMAScript"
 tweet: ""

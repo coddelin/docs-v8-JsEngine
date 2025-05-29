@@ -1,14 +1,14 @@
 ---
 title: "약한 참조와 파이널라이저"
 author: "사티야 구나세카란 ([@_gsathya](https://twitter.com/_gsathya)), 마티아스 바이넨스 ([@mathias](https://twitter.com/mathias)), 슈유 꿔 ([@_shu](https://twitter.com/_shu)), 레셰크 스비르스키 ([@leszekswirski](https://twitter.com/leszekswirski))"
-avatars:
+avatars: 
 - "sathya-gunasekaran"
 - "mathias-bynens"
 - "shu-yu-guo"
 - "leszek-swirski"
 date: 2019-07-09
 updated: 2020-06-19
-tags:
+tags: 
   - ECMAScript
   - ES2021
   - io19

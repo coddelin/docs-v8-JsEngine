@@ -1,10 +1,10 @@
 ---
 title: "Short builtin calls"
 author: "[Toon Verwaest](https://twitter.com/tverwaes), The Big Short"
-avatars:
+avatars: 
   - toon-verwaest
 date: 2021-05-06
-tags:
+tags: 
   - JavaScript
 description: "In V8 v9.1 we’ve temporarily unembedded the builtins on desktop to avoid performance issues resulting from far indirect calls."
 tweet: "1394267917013897216"

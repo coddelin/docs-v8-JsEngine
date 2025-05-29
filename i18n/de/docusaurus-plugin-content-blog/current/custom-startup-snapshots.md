@@ -1,10 +1,10 @@
 ---
 title: "Benutzerdefinierte Start-Snapshots"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), Software Engineer und Lieferant von Motorvorwärmern"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-09-25 13:33:37
-tags:
+date: "2015-09-25 13:33:37"
+tags: 
   - internals
 description: "V8-Embeds können Snapshots nutzen, um die Startzeit zu überspringen, die durch die Initialisierungen von JavaScript-Programmen verursacht wird."
 ---

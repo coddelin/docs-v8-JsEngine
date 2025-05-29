@@ -1,10 +1,10 @@
 ---
 title: "Version V8 v9.1"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), testant ma marque personnelle"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-05-04
-tags:
+tags: 
  - sortie
 description: "La version V8 v9.1 apporte la prise en charge des vérifications de marque privée, await au niveau supérieur activé par défaut et des améliorations de performances."
 tweet: "1389613320953532417"

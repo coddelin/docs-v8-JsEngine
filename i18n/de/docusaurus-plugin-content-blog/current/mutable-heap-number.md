@@ -1,10 +1,10 @@
 ---
 title: "Turbocharging V8 mit veränderlichen Heap-Zahlen"
 author: "[Victor Gomes](https://twitter.com/VictorBFG), der Bit-Shifter"
-avatars:
+avatars: 
   - victor-gomes
 date: 2025-02-25
-tags:
+tags: 
   - JavaScript
   - Benchmarks
   - Internals

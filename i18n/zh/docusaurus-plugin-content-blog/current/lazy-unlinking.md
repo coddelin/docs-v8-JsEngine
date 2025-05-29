@@ -1,8 +1,8 @@
 ---
 title: "关于懒惰的实习：被优化函数的懒惰取消链接"
 author: "Juliana Franco ([@jupvfranco](https://twitter.com/jupvfranco)), 懒惰性专家"
-date: 2017-10-04 13:33:37
-tags:
+date: "2017-10-04 13:33:37"
+tags: 
   - 内存
   - 内部工作原理
 description: "这篇技术深度分析解释了V8过去如何取消链接被优化的函数，以及我们最近为了提高性能所做出的改变。"

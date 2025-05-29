@@ -1,12 +1,12 @@
 ---
 title: "垃圾怪客破壞者第二部：Orinoco"
 author: "垃圾怪客破壞者：烏蘭·德根巴耶夫，邁克爾·利帕烏茨，以及哈內斯·佩耶爾"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2016-04-12 13:33:37
-tags:
+date: "2016-04-12 13:33:37"
+tags: 
   - internals
   - memory
 description: "本文介紹了三項優化，它們為 V8 中一個新的垃圾回收器奠定了基礎，代號為 Orinoco。"

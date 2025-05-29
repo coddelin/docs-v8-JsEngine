@@ -1,12 +1,12 @@
 ---
 title: "C++에 시간적 메모리 안전성 레트로피팅"
 author: "안톤 비키네브, 마이클 립파우츠 ([@mlippautz](https://twitter.com/mlippautz)), 한네스 페이어 ([@PayerHannes](https://twitter.com/PayerHannes))"
-avatars:
+avatars: 
   - anton-bikineev
   - michael-lippautz
   - hannes-payer
 date: 2022-06-14
-tags:
+tags: 
   - 내부
   - 메모리
   - 보안

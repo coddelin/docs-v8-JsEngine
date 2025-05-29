@@ -1,10 +1,10 @@
 ---
 title: "`at`メソッドで相対インデックスアクセス"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2021-07-13
-tags:
+tags: 
   - ECMAScript
 description: "JavaScriptは、配列、TypedArray、および文字列に対する相対インデックスメソッドを導入しました。"
 ---

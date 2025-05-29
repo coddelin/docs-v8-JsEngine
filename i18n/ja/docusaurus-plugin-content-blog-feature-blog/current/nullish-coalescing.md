@@ -1,10 +1,10 @@
 ---
 title: "ヌリッシュ合体"
 author: "ジャスティン・リッジウェル"
-avatars:
+avatars: 
   - "justin-ridgewell"
 date: 2019-09-17
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "JavaScriptのヌリッシュ合体演算子は、より安全なデフォルト式を可能にします。"

@@ -1,10 +1,10 @@
 ---
 title: "JITなしのV8"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2019-03-13 13:03:19
-tags:
+date: "2019-03-13 13:03:19"
+tags: 
   - internals
 description: "V8 v7.4は、実行時に実行可能なメモリを割り当てずにJavaScriptを実行することをサポートします。"
 tweet: "1105777150051999744"

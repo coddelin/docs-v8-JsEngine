@@ -1,10 +1,10 @@
 ---
 title: "TurboFan JITの掘り下げ"
 author: "Ben L. Titzer、ソフトウェアエンジニアおよびTurboFanメカニック"
-avatars:
+avatars: 
   - "ben-titzer"
-date: 2015-07-13 13:33:37
-tags:
+date: "2015-07-13 13:33:37"
+tags: 
   - internals
 description: "V8の新しいTurboFan最適化コンパイラの設計の徹底解説。"
 ---

@@ -1,8 +1,8 @@
 ---
 title: "Веб-просмотр WebAssembly"
 author: "Команда V8"
-date: 2016-10-31 13:33:37
-tags:
+date: "2016-10-31 13:33:37"
+tags: 
   - WebAssembly
 description: "WebAssembly или Wasm — это новая среда выполнения и цель компиляции для веба, теперь доступная за флагом в Chrome Canary!"
 ---

@@ -1,10 +1,10 @@
 ---
 title: "WebAssembly动态分级已在Chrome 96中准备好试用"
 author: "Andreas Haas — Tierisch fun"
-avatars:
+avatars: 
   - andreas-haas
 date: 2021-10-29
-tags:
+tags: 
   - WebAssembly
 description: "WebAssembly动态分级已可在V8 v9.6和Chrome 96中试用，可以通过命令行标志或源试验启用"
 tweet: "1454158971674271760"

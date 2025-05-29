@@ -1,8 +1,8 @@
 ---
 title: "V8リリースv6.3"
 author: "V8チーム"
-date: 2017-10-25 13:33:37
-tags:
+date: "2017-10-25 13:33:37"
+tags: 
   - release
 description: "V8 v6.3はパフォーマンスの向上、メモリ消費の削減、新しいJavaScript言語機能のサポートを含みます。"
 tweet: "923168001108643840"

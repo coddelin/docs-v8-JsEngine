@@ -1,10 +1,10 @@
 ---
 title: "옵셔널 체이닝"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 옵셔널 체인의 브레이커"
-avatars:
+avatars: 
   - "maya-armyanova"
 date: 2019-08-27
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "옵셔널 체이닝은 읽기 쉽고 간결한 표현으로 빌트인 널리쉬(nullish) 체크를 포함한 속성 접근을 가능하게 합니다."

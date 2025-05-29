@@ -1,14 +1,14 @@
 ---
- title: 'Land ahoy: Verlassen des Meer der Knoten'
- author: 'Darius Mercadier'
- avatars:
+ title: "Land ahoy: Verlassen des Meer der Knoten"
+ author: "Darius Mercadier"
+ avatars: 
    - darius-mercadier
  date: 2025-03-25
- tags:
+ tags: 
    - JavaScript
    - Interna
  description: "Warum V8 sich entschieden hat, vom Meer der Knoten wegzugehen und stattdessen zurück zur Steuerflussgraphen-Darstellung (CFG) zu wechseln"
- tweet: ''
+ tweet: ""
 ---
 
 Der endstufige optimierende Compiler von V8, Turbofan, ist bekanntlich einer der wenigen großflächig eingesetzten Produktions-Compiler, die [Sea of Nodes](https://en.wikipedia.org/wiki/Sea_of_nodes) (SoN) verwenden. Jedoch haben wir vor fast 3 Jahren begonnen, Sea of Nodes loszuwerden und stattdessen auf eine traditionellere [Control-Flow Graph](https://en.wikipedia.org/wiki/Control-flow_graph) (CFG) [Intermediate Representation](https://en.wikipedia.org/wiki/Intermediate_representation) (IR) zurückzugreifen, die wir Turboshaft genannt haben. Mittlerweile nutzt der gesamte JavaScript-Backend von Turbofan Turboshaft, und WebAssembly verwendet Turboshaft in seiner gesamten Pipeline. Zwei Teile von Turbofan benutzen weiterhin Sea of Nodes: die eingebaute Pipeline, die wir langsam durch Turboshaft ersetzen, und die Frontend-Pipeline von JavaScript, die wir durch Maglev, eine weitere auf CFG basierende IR, ersetzen. In diesem Blogbeitrag erklären wir die Gründe, die uns dazu geführt haben, vom Meer der Knoten wegzugehen.

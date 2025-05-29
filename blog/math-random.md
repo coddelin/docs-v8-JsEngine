@@ -1,10 +1,10 @@
 ---
 title: "There’s `Math.random()`, and then there’s `Math.random()`"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), software engineer and dice designer"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-12-17 13:33:37
-tags:
+date: "2015-12-17 13:33:37"
+tags: 
   - ECMAScript
   - internals
 description: "V8’s Math.random implementation now uses an algorithm called xorshift128+, improving the randomness compared to the old MWC1616 implementation."

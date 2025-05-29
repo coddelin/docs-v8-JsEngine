@@ -1,16 +1,16 @@
 ---
 title: "Réadaptation de la sécurité mémoire temporelle sur C++"
 author: "Anton Bikineev, Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), Hannes Payer ([@PayerHannes](https://twitter.com/PayerHannes))"
-avatars:
+avatars: 
   - anton-bikineev
   - michael-lippautz
   - hannes-payer
 date: 2022-06-14
-tags:
+tags: 
   - internals
   - mémoire
   - sécurité
-description: 'Éliminer les vulnérabilités liées aux utilisations après libération (use-after-frees) dans Chrome grâce à l'analyse du tas.'
+description: "Éliminer les vulnérabilités liées aux utilisations après libération (use-after-frees) dans Chrome grâce à l'analyse du tas."
 ---
 :::note
 **Remarque :** Cet article a été initialement publié sur le [blog de sécurité de Google](https://security.googleblog.com/2022/05/retrofitting-temporal-memory-safety-on-c.html).

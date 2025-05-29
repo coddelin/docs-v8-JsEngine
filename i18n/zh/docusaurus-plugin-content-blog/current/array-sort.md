@@ -1,10 +1,10 @@
 ---
 title: "在V8中实现排序"
 author: "Simon Zünd ([@nimODota](https://twitter.com/nimODota))，一致的比较器"
-avatars:
+avatars: 
   - simon-zuend
-date: 2018-09-28 11:20:37
-tags:
+date: "2018-09-28 11:20:37"
+tags: 
   - ECMAScript
   - 内部机制
 description: "从V8 v7.0 / Chrome 70开始，Array.prototype.sort变为稳定排序算法。"

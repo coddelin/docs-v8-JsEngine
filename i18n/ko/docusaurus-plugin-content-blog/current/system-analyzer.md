@@ -1,10 +1,10 @@
 ---
 title: "Indicium: V8 런타임 추적 도구"
 author: "Zeynep Cankara ([@ZeynepCankara](https://twitter.com/ZeynepCankara))"
-avatars:
+avatars: 
   - "zeynep-cankara"
-date: 2020-10-01 11:56:00
-tags:
+date: "2020-10-01 11:56:00"
+tags: 
   - 도구
   - 시스템-분석기
 description: "Indicium: Map/IC 이벤트를 분석하는 V8 시스템 분석 도구"

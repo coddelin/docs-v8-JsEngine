@@ -1,10 +1,10 @@
 ---
 title: "Static Roots: Объекты с Константными Адресами во Времени Компиляции"
 author: "Оливье Флюкигер"
-avatars:
+avatars: 
   - olivier-flueckiger
 date: 2024-02-05
-tags:
+tags: 
   - JavaScript
 description: "Static Roots делает адреса некоторых JS-объектов константами во времени компиляции."
 tweet: ""

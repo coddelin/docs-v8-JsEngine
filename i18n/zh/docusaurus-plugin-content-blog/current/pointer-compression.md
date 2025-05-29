@@ -1,11 +1,11 @@
 ---
 title: "V8中的指针压缩"
 author: "Igor Sheludko 和 Santiago Aboy Solanes，*指针压缩专家*"
-avatars:
+avatars: 
   - "igor-sheludko"
   - "santiago-aboy-solanes"
 date: 2020-03-30
-tags:
+tags: 
   - 内部结构
   - 内存
 description: "V8减少了高达43%的堆大小！在“V8中的指针压缩”中了解具体方法！"

@@ -1,10 +1,10 @@
 ---
 title: "正則表達式匹配索引"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski))，經常表達新功能"
-avatars:
+avatars: 
   - "maya-armyanova"
 date: 2019-12-17
-tags:
+tags: 
   - ECMAScript
   - Node.js 16
 description: "正則表達式匹配索引提供每個匹配捕獲組的 `start` 和 `end` 索引。"

@@ -1,10 +1,10 @@
 ---
 title: "Turboalimentando o V8 com números de heap mutáveis"
 author: "[Victor Gomes](https://twitter.com/VictorBFG), o deslocador de bits"
-avatars:
+avatars: 
   - victor-gomes
 date: 2025-02-25
-tags:
+tags: 
   - JavaScript
   - benchmarks
   - internals

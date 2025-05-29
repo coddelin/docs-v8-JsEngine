@@ -1,10 +1,10 @@
 ---
 title: "增强版 V8，支持可变堆数字"
 author: "[Victor Gomes](https://twitter.com/VictorBFG)，位移大师"
-avatars:
+avatars: 
   - victor-gomes
 date: 2025-02-25
-tags:
+tags: 
   - JavaScript
   - 基准测试
   - 内部机制

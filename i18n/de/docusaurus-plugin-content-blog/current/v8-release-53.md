@@ -1,8 +1,8 @@
 ---
 title: "V8-Version v5.3"
 author: "das V8-Team"
-date: 2016-07-18 13:33:37
-tags:
+date: "2016-07-18 13:33:37"
+tags: 
   - Veröffentlichung
 description: "V8 v5.3 bietet Leistungsverbesserungen und einen geringeren Speicherverbrauch."
 ---

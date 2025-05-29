@@ -1,10 +1,10 @@
 ---
 title: "Importbedingungen"
 author: "Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), entschlossener Importeur von Importbedingungen"
-avatars:
+avatars: 
   - "dan-clark"
 date: 2021-06-15
-tags:
+tags: 
   - ECMAScript
 description: "Importbedingungen ermöglichen es, dass Modulimportanweisungen zusätzliche Informationen neben dem Modulspezifizierer enthalten"
 tweet: ""

@@ -1,11 +1,11 @@
 ---
 title: "Verbesserung der regulären Ausdrücke in V8"
 author: "Patrick Thier und Ana Peško, regelmäßige Meinungsäußerungen über reguläre Ausdrücke"
-avatars:
+avatars: 
   - "patrick-thier"
   - "ana-pesko"
-date: 2019-10-04 15:24:16
-tags:
+date: "2019-10-04 15:24:16"
+tags: 
   - internals
   - RegExp
 description: "In diesem Blog-Beitrag beschreiben wir, wie wir die Vorteile der Interpretation von regulären Ausdrücken nutzen und gleichzeitig die Nachteile mindern."

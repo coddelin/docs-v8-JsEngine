@@ -1,10 +1,10 @@
 ---
 title: "V8 發佈 v9.0"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 內嵌展示"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-03-17
-tags:
+tags: 
  - 發佈
 description: "V8 發佈 v9.0，引入對 RegExp 比對索引的支持及各種性能提升。"
 tweet: "1372227274712494084"

@@ -1,14 +1,14 @@
 ---
 title: "Le coût de JavaScript en 2019"
 author: "Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)), Concierge JavaScript, et Mathias Bynens ([@mathias](https://twitter.com/mathias)), Libérateur du fil principal"
-avatars:
+avatars: 
   - "addy-osmani"
   - "mathias-bynens"
 date: 2019-06-25
-tags:
+tags: 
   - internals
   - parsing
-description: 'Les coûts principaux du traitement de JavaScript sont le téléchargement et le temps d'exécution sur le CPU.'
+description: "Les coûts principaux du traitement de JavaScript sont le téléchargement et le temps d'exécution sur le CPU."
 tweet: "1143531042361487360"
 ---
 :::note

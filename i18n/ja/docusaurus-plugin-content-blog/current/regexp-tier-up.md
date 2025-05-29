@@ -1,11 +1,11 @@
 ---
 title: "V8正規表現の改善"
 author: "Patrick ThierとAna Peško、正規表現に関する意見を持つ正規表現擁護者"
-avatars:
+avatars: 
   - "patrick-thier"
   - "ana-pesko"
-date: 2019-10-04 15:24:16
-tags:
+date: "2019-10-04 15:24:16"
+tags: 
   - internals
   - RegExp
 description: "このブログ投稿では、正規表現の解釈の利点を活用し、その欠点を軽減する方法を説明しています。"

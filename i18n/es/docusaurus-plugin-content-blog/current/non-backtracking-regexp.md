@@ -2,7 +2,7 @@
 title: "Un motor adicional de RegExp sin retroceso"
 author: "Martin Bidlingmaier"
 date: 2021-01-11
-tags:
+tags: 
  - internals
  - RegExp
 description: "V8 ahora tiene un motor de RegExp adicional que sirve como respaldo y evita muchas instancias de retroceso catastrófico."

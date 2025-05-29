@@ -1,8 +1,8 @@
 ---
 title: "Помогите нам протестировать будущее V8!"
 author: "Даниэль Клиффорд ([@expatdanno](https://twitter.com/expatdanno)), оригинальный мюнхенский пивовар V8"
-date: 2017-02-14 13:33:37
-tags:
+date: "2017-02-14 13:33:37"
+tags: 
   - internals
 description: "Испытайте новую компиляторную архитектуру V8 с Ignition и TurboFan в Chrome Canary уже сегодня!"
 ---

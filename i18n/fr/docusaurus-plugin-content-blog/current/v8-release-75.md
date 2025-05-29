@@ -1,10 +1,10 @@
 ---
 title: "Version V8 v7.5"
 author: "Dan Elphick, fléau des fonctionnalités obsolètes"
-avatars:
+avatars: 
   - "dan-elphick"
-date: 2019-05-16 15:00:00
-tags:
+date: "2019-05-16 15:00:00"
+tags: 
   - release
 description: "V8 v7.5 propose la mise en cache implicite des artefacts de compilation WebAssembly, des opérations de mémoire en bloc, des séparateurs numériques en JavaScript, et bien plus encore !"
 tweet: "1129073370623086593"

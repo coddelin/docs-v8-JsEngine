@@ -1,10 +1,10 @@
 ---
 title: "V8 release v9.2"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-07-16
-tags:
+tags: 
  - release
 description: "V8 release v9.2 brings an `at` method for relative indexing and pointer compression improvements."
 tweet: ""

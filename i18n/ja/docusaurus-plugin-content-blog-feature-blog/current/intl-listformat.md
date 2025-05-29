@@ -1,11 +1,11 @@
 ---
 title: "`Intl.ListFormat`"
 author: "Mathias Bynens（[@mathias](https://twitter.com/mathias)）およびFrank Yung-Fong Tang"
-avatars:
+avatars: 
   - "mathias-bynens"
   - "frank-tang"
 date: 2018-12-18
-tags:
+tags: 
   - Intl
   - Node.js 12
   - io19

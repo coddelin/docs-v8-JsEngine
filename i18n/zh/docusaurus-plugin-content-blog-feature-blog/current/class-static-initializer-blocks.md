@@ -1,10 +1,10 @@
 ---
 title: "类的静态初始化块"
 author: "郭舒语 ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2021-03-30
-tags:
+tags: 
   - ECMAScript
 description: "JavaScript 类获得用于静态初始化的专用语法。"
 tweet: "1376925666780798989"

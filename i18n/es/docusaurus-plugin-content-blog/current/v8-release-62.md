@@ -1,8 +1,8 @@
 ---
 title: "Versión V8 v6.2"
 author: "el equipo de V8"
-date: 2017-09-11 13:33:37
-tags:
+date: "2017-09-11 13:33:37"
+tags: 
   - lanzamiento
 description: "V8 v6.2 incluye mejoras de rendimiento, más características del lenguaje JavaScript, un aumento en la longitud máxima de cadenas y más."
 ---

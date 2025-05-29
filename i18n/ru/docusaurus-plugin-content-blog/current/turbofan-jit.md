@@ -1,10 +1,10 @@
 ---
 title: "Изучение TurboFan JIT"
 author: "Бен Л. Титцер, инженер-программист и механик TurboFan"
-avatars:
+avatars: 
   - "ben-titzer"
-date: 2015-07-13 13:33:37
-tags:
+date: "2015-07-13 13:33:37"
+tags: 
   - internals
 description: "Глубокое изучение дизайна нового оптимизирующего компилятора TurboFan для V8."
 ---

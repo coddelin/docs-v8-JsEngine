@@ -1,10 +1,10 @@
 ---
 title: "`Promise.prototype.finally`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-10-23
-tags:
+tags: 
   - ECMAScript
   - ES2018
 description: "Promise.prototype.finally を使用すると、Promise が完了した際（成功または失敗が確定した場合）に呼び出されるコールバックを登録できます。"

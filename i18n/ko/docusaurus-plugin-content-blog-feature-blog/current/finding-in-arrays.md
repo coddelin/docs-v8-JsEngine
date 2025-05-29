@@ -1,10 +1,10 @@
 ---
 title: "`Array`와 TypedArray에서 요소 찾기"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2021-10-27
-tags:
+tags: 
   - ECMAScript
 description: "JavaScript에서 Arrays와 TypedArrays에서 요소를 찾는 방법"
 tweet: "1453354998063149066"

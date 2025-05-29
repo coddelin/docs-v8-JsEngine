@@ -1,11 +1,11 @@
 ---
 title: "Pointer Compression in V8"
 author: "Igor Sheludko and Santiago Aboy Solanes, *the* pointer compressors"
-avatars:
+avatars: 
   - "igor-sheludko"
   - "santiago-aboy-solanes"
 date: 2020-03-30
-tags:
+tags: 
   - internals
   - memory
 description: "V8 reduced its heap size up to 43%! Learn how in “Pointer Compression in V8”!"

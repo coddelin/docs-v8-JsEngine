@@ -1,8 +1,8 @@
 ---
 title: "Lançamento do V8 v6.5"
 author: "a equipe V8"
-date: 2018-02-01 13:33:37
-tags:
+date: "2018-02-01 13:33:37"
+tags: 
   - lançamento
 description: "O V8 v6.5 adiciona suporte para a compilação de WebAssembly por streaming e inclui um novo “modo de código não confiável”."
 tweet: "959174292406640640"

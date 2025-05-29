@@ -1,10 +1,10 @@
 ---
 title: "V8 릴리스 v9.6"
 author: "잉그바 스테파니안 ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-10-13
-tags:
+tags: 
  - 릴리스
 description: "V8 릴리스 v9.6은 WebAssembly에 참조 타입 지원을 제공합니다."
 tweet: "1448262079476076548"

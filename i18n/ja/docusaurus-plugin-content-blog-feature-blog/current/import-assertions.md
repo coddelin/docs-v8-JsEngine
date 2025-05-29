@@ -1,10 +1,10 @@
 ---
 title: "インポートアサーション"
 author: "Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), インポートアサーションの主張者"
-avatars:
+avatars: 
   - "dan-clark"
 date: 2021-06-15
-tags:
+tags: 
   - ECMAScript
 description: "インポートアサーションにより、モジュール指定子とともに追加の情報をインポート文に含めることができます"
 tweet: ""

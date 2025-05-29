@@ -1,15 +1,15 @@
 ---
 title: "Jank Busters Partie Deux : Orinoco"
 author: "les chasseurs de jank : Ulan Degenbaev, Michael Lippautz, et Hannes Payer"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2016-04-12 13:33:37
-tags:
+date: "2016-04-12 13:33:37"
+tags: 
   - internes
   - mémoire
-description: 'Cet article présente trois optimisations qui posent les bases d'un nouveau ramasse-miettes dans V8, nommé Orinoco.'
+description: "Cet article présente trois optimisations qui posent les bases d'un nouveau ramasse-miettes dans V8, nommé Orinoco."
 ---
 Dans un [article de blog précédent](/blog/jank-busters), nous avons introduit le problème du jank causé par la collecte des déchets interrompant une expérience de navigation fluide. Dans cet article, nous présentons trois optimisations qui posent les bases d'un nouveau ramasse-miettes dans V8, nommé _Orinoco_. Orinoco repose sur l'idée qu'implémenter un ramasse-miettes majoritairement parallèle et concurrent sans frontières générationnelles strictes réduira le jank causé par la collecte des déchets et la consommation mémoire tout en fournissant un haut débit. Au lieu d'implémenter Orinoco derrière un drapeau comme un ramasse-miettes distinct, nous avons décidé de déployer les fonctionnalités d'Orinoco de manière incrémentale dans la version principale de V8 pour en faire bénéficier immédiatement les utilisateurs. Les trois fonctionnalités discutées dans cet article sont le compactage parallèle, le traitement parallèle de l'ensemble mémorisé, et l'allocation en noir.
 

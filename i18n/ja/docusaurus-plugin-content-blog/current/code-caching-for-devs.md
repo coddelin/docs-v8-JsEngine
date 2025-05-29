@@ -1,11 +1,11 @@
 ---
 title: "JavaScript開発者向けコードキャッシュ"
 author: "[Leszek Swirski](https://twitter.com/leszekswirski)、キャッシュスマッシャー"
-avatars:
+avatars: 
   - leszek-swirski
-date: 2019-04-08 13:33:37
+date: "2019-04-08 13:33:37"
 updated: 2020-06-16
-tags:
+tags: 
   - internals
 description: "(バイト)コードキャッシュは、JavaScriptの解析とコンパイル結果をキャッシュすることで、頻繁に訪問されるウェブサイトの起動時間を短縮します。"
 tweet: "1115264282675953664"

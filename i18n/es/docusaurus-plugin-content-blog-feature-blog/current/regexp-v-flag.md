@@ -1,12 +1,12 @@
 ---
 title: "RegExp `v` flag con notación de conjuntos y propiedades de cadenas"
 author: "Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer y Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mark-davis"
   - "markus-scherer"
   - "mathias-bynens"
 date: 2022-06-27
-tags:
+tags: 
   - ECMAScript
 description: "El nuevo flag `v` de RegExp activa el modo `unicodeSets`, habilitando soporte para clases de caracteres extendidas, incluyendo propiedades Unicode de cadenas, notación de conjuntos y una mejor coincidencia sin distinción de mayúsculas y minúsculas."
 tweet: "1541419838513594368"

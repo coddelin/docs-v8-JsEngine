@@ -1,11 +1,11 @@
 ---
 title: "`Intl.NumberFormat`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)) 與 Shane F. Carr"
-avatars:
+avatars: 
   - "mathias-bynens"
   - "shane-carr"
 date: 2019-08-08
-tags:
+tags: 
   - Intl
   - io19
 description: "Intl.NumberFormat 支援語系感知的數字格式化功能。"

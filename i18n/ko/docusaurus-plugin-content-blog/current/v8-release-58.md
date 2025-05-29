@@ -1,8 +1,8 @@
 ---
 title: "V8 릴리즈 v5.8"
 author: "V8 팀"
-date: 2017-03-20 13:33:37
-tags:
+date: "2017-03-20 13:33:37"
+tags: 
   - release
 description: "V8 v5.8은 임의의 힙 크기 사용을 가능하게 하며 시작 성능을 향상시킵니다."
 ---

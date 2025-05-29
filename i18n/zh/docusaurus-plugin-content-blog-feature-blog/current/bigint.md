@@ -1,10 +1,10 @@
 ---
 title: "BigInt: JavaScript 中任意精度的整数"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-05-01
-tags:
+tags: 
   - ECMAScript
   - ES2020
   - io19

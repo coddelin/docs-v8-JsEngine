@@ -1,12 +1,12 @@
 ---
 title: "Importer des attributs"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2024-01-31
-tags:
+tags: 
   - ECMAScript
-description: 'Importer des attributs : l'évolution des assertions d'importation'
+description: "Importer des attributs : l'évolution des assertions d'importation"
 tweet: ""
 ---
 

@@ -1,11 +1,11 @@
 ---
 title: "Des fonctions asynchrones et des promesses plus rapides"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), anticipatrice toujours en attente, et Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), garant professionnel de performance"
-avatars:
+avatars: 
   - "maya-armyanova"
   - "benedikt-meurer"
-date: 2018-11-12 16:45:07
-tags:
+date: "2018-11-12 16:45:07"
+tags: 
   - ECMAScript
   - benchmarks
   - présentations

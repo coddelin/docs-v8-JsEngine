@@ -1,10 +1,10 @@
 ---
 title: "Indicium: Werkzeug zur Analyse der V8-Laufzeit"
 author: "Zeynep Cankara ([@ZeynepCankara](https://twitter.com/ZeynepCankara))"
-avatars:
+avatars: 
   - "zeynep-cankara"
-date: 2020-10-01 11:56:00
-tags:
+date: "2020-10-01 11:56:00"
+tags: 
   - tools
   - system-analyzer
 description: "Indicium: V8-Systemanalysetool zur Analyse von Map/IC-Ereignissen."

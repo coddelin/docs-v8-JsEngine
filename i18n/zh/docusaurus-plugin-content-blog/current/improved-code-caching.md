@@ -1,10 +1,10 @@
 ---
 title: "改进的代码缓存"
 author: "Mythri Alle，首席代码缓存官"
-date: 2018-04-24 13:33:37
-avatars:
+date: "2018-04-24 13:33:37"
+avatars: 
   - "mythri-alle"
-tags:
+tags: 
   - internals
 tweet: "988728000677142528"
 description: "从 Chrome 66 开始，V8通过在顶层执行后生成缓存，缓存了更多的（字节）代码。"

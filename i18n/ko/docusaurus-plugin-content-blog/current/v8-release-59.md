@@ -1,8 +1,8 @@
 ---
 title: "V8 릴리스 v5.9"
 author: "V8 팀"
-date: 2017-04-27 13:33:37
-tags:
+date: "2017-04-27 13:33:37"
+tags: 
   - release
 description: "V8 v5.9는 새로운 Ignition + TurboFan 파이프라인을 포함하며, 모든 플랫폼에서 WebAssembly TrapIf 지원을 추가합니다."
 ---

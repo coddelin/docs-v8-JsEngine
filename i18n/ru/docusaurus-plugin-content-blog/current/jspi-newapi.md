@@ -3,7 +3,7 @@ title: "В API WebAssembly JSPI появились изменения"
 description: "В этой статье описаны некоторые грядущие изменения в API интеграции JavaScript Promise (JSPI)."
 author: "Фрэнсис МакКейб, Тибо Мишо, Илья Резвов, Брэндан Даль"
 date: 2024-06-04
-tags:
+tags: 
   - WebAssembly
 ---
 В API интеграции JavaScript Promise (JSPI) WebAssembly появился новый API, доступный в Chrome версии M126. Мы расскажем, что изменилось, как использовать это с Emscripten, и как выглядит дорожная карта JSPI.

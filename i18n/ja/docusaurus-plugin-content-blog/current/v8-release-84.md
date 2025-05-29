@@ -1,10 +1,10 @@
 ---
 title: "V8リリース v8.4"
 author: "Camillo Bruni、新鮮なブール値を楽しんでいます"
-avatars:
+avatars: 
  - "camillo-bruni"
 date: 2020-06-30
-tags:
+tags: 
  - リリース
 description: "V8 v8.4は弱参照と改善されたWebAssemblyパフォーマンスを備えています。"
 tweet: "1277983235641761795"

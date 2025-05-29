@@ -1,10 +1,10 @@
 ---
 title: "Iniciando o interpretador Ignition"
 author: "Ross McIlroy, Iniciador do Ignition no V8"
-avatars:
+avatars: 
   - "ross-mcilroy"
-date: 2016-08-23 13:33:37
-tags:
+date: "2016-08-23 13:33:37"
+tags: 
   - internals
 description: "Com o interpretador Ignition, o V8 compila funções JavaScript para um bytecode conciso, que tem entre 50% a 25% do tamanho do código de máquina equivalente de baixo nível."
 ---

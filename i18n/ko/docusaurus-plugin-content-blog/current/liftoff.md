@@ -1,10 +1,10 @@
 ---
 title: "Liftoff: V8에서 WebAssembly의 새로운 기본 컴파일러"
 author: "Clemens Backes, WebAssembly 컴파일의 대가"
-avatars:
+avatars: 
   - "clemens-backes"
-date: 2018-08-20 15:45:12
-tags:
+date: "2018-08-20 15:45:12"
+tags: 
   - WebAssembly
   - internals
 description: "Liftoff는 V8 v6.9에 탑재된 WebAssembly의 새로운 기본 컴파일러입니다."

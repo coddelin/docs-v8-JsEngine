@@ -2,7 +2,7 @@
 title: "Appels en queue dans WebAssembly"
 author: "Thibaud Michaud, Thomas Lively"
 date: 2023-04-06
-tags:
+tags: 
   - WebAssembly
 description: "Ce document explique la proposition concernant les appels en queue dans WebAssembly et la démontre avec quelques exemples."
 tweet: "1644077795059044353"

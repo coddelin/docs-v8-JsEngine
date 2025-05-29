@@ -1,10 +1,10 @@
 ---
 title: "私有品牌檢查，也就是 `#foo in obj`"
 author: "Marja Hölttä ([@marjakh](https://twitter.com/marjakh))"
-avatars:
+avatars: 
   - "marja-holtta"
 date: 2021-04-14
-tags:
+tags: 
   - ECMAScript
 description: "私有品牌檢查允許測試物件中是否存在私有字段。"
 tweet: "1382327454975590401"

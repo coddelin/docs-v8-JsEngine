@@ -1,11 +1,11 @@
 ---
 title: "Oilpan에서의 포인터 압축"
 author: "Anton Bikineev와 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), walking disassemblers"
-avatars:
+avatars: 
   - anton-bikineev
   - michael-lippautz
 date: 2022-11-28
-tags:
+tags: 
   - internals
   - memory
   - cppgc

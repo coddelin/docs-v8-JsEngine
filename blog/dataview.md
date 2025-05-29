@@ -1,10 +1,10 @@
 ---
 title: "Improving `DataView` performance in V8"
-author: 'Théotime Grohens, <i lang="fr">le savant de Data-Vue</i>, and Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), professional performance pal'
-avatars:
+author: "Théotime Grohens, <i lang=\"fr\">le savant de Data-Vue</i>, and Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), professional performance pal"
+avatars: 
   - "benedikt-meurer"
-date: 2018-09-18 11:20:37
-tags:
+date: "2018-09-18 11:20:37"
+tags: 
   - ECMAScript
   - benchmarks
 description: "V8 v6.9 bridges the performance gap between DataView and equivalent TypedArray code, effectively making DataView usable for performance-critical real-world applications."

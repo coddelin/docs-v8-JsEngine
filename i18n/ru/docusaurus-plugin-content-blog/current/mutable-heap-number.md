@@ -1,10 +1,10 @@
 ---
 title: "Ускорение V8 с помощью изменяемых чисел в куче"
 author: "[Виктор Гомес](https://twitter.com/VictorBFG), манипулятор битами"
-avatars:
+avatars: 
   - victor-gomes
 date: 2025-02-25
-tags:
+tags: 
   - JavaScript
   - бенчмарки
   - внутренности

@@ -1,10 +1,10 @@
 ---
 title: "V8リリース v7.3"
 author: "Clemens Backes, コンパイラ担当"
-avatars:
+avatars: 
   - clemens-backes
-date: 2019-02-07 11:30:42
-tags:
+date: "2019-02-07 11:30:42"
+tags: 
   - リリース
 description: "V8 v7.3には、WebAssemblyや非同期のパフォーマンス改善、非同期スタックトレース、Object.fromEntries、String#matchAllなど、非常に多くの新機能が詰まっています！"
 tweet: "1093457099441561611"

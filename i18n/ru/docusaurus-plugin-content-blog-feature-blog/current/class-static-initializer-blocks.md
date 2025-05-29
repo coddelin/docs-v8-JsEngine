@@ -1,10 +1,10 @@
 ---
 title: "Статические блоки инициализации классов"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2021-03-30
-tags:
+tags: 
   - ECMAScript
 description: "Классы JavaScript получили синтаксис для статической инициализации."
 tweet: "1376925666780798989"

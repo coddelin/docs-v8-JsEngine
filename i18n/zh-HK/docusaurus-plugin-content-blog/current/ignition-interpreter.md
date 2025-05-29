@@ -1,10 +1,10 @@
 ---
 title: "啟動 Ignition 解釋器"
 author: "Ross McIlroy, V8 Ignition 啟動器"
-avatars:
+avatars: 
   - "ross-mcilroy"
-date: 2016-08-23 13:33:37
-tags:
+date: "2016-08-23 13:33:37"
+tags: 
   - internals
 description: "使用 Ignition 解釋器，V8 將 JavaScript 函數編譯為簡潔的位元碼，其大小僅相當於等效基準機器碼的 50% 到 25%。"
 ---

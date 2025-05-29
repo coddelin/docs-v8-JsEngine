@@ -1,10 +1,10 @@
 ---
 title: "`Math.random()`には`Math.random()`だけではない"
 author: "ヤン・グオ ([@hashseed](https://twitter.com/hashseed))、ソフトウェアエンジニア兼サイコロデザイナー"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-12-17 13:33:37
-tags:
+date: "2015-12-17 13:33:37"
+tags: 
   - ECMAScript
   - 内部構造
 description: "V8のMath.random実装は、以前のMWC1616実装に比べてランダム性を向上させるxorshift128+というアルゴリズムを採用しました。"

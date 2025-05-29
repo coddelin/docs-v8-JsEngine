@@ -1,10 +1,10 @@
 ---
 title: "より高速で多機能な国際化API"
 author: "[சத்யா குணசேகரன் (Sathya Gunasekaran)](https://twitter.com/_gsathya)"
-date: 2019-04-25 16:45:37
-avatars:
+date: "2019-04-25 16:45:37"
+avatars: 
   - "sathya-gunasekaran"
-tags:
+tags: 
   - ECMAScript
   - Intl
 description: "JavaScriptの国際化APIが拡張され、V8での実装がより高速化しています！"

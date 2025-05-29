@@ -1,6 +1,6 @@
 ---
 title: "Code respectueux"
-description: 'L'inclusivité est au cœur de la culture de V8, et nos valeurs incluent le respect mutuel. Ainsi, il est important que chacun puisse contribuer sans être confronté aux effets nuisibles des préjugés et de la discrimination.'
+description: "L'inclusivité est au cœur de la culture de V8, et nos valeurs incluent le respect mutuel. Ainsi, il est important que chacun puisse contribuer sans être confronté aux effets nuisibles des préjugés et de la discrimination."
 ---
 
 L'inclusivité est au cœur de la culture de V8, et nos valeurs incluent le respect mutuel. Ainsi, il est important que chacun puisse contribuer sans être confronté aux effets nuisibles des préjugés et de la discrimination. Cependant, les termes dans notre base de code, nos interfaces utilisateurs et notre documentation peuvent perpétuer cette discrimination. Ce document propose des directives visant à traiter la terminologie irrespectueuse dans le code et la documentation.

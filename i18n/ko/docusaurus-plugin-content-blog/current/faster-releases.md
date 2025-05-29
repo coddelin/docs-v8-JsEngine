@@ -1,7 +1,7 @@
 ---
 title: "더 빠른 릴리스"
 author: "잉바르 스테파니안 ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
   - "잉바르-스테파니안"
 date: 2021-03-04
 description: "V8의 릴리스 주기를 가속화"

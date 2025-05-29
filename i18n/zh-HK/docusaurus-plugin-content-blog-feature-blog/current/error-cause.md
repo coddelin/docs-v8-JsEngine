@@ -1,10 +1,10 @@
 ---
 title: "錯誤原因"
 author: "Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))"
-avatars:
+avatars: 
   - "victor-gomes"
 date: 2021-07-07
-tags:
+tags: 
   - ECMAScript
 description: "JavaScript 現在支援錯誤原因。"
 tweet: "1412774651558862850"

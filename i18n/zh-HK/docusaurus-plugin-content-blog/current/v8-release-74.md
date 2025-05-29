@@ -1,8 +1,8 @@
 ---
 title: "V8 發佈 v7.4"
 author: "Georg Neis"
-date: 2019-03-22 16:30:42
-tags:
+date: "2019-03-22 16:30:42"
+tags: 
   - 發佈
 description: "V8 v7.4 特性包括 WebAssembly 執行緒/原子操作、私有類欄位、性能和記憶體改進等等！"
 tweet: "1109094755936489472"

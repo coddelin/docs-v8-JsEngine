@@ -1,10 +1,10 @@
 ---
 title: "Вне Интернета: автономные бинарные файлы WebAssembly с использованием Emscripten"
 author: "Алон Закай"
-avatars:
+avatars: 
   - "alon-zakai"
 date: 2019-11-21
-tags:
+tags: 
   - WebAssembly
   - инструменты
 description: "Emscripten теперь поддерживает автономные файлы Wasm, которые не нуждаются в JavaScript."

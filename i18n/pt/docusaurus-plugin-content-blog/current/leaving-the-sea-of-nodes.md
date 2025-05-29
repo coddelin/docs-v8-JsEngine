@@ -1,14 +1,14 @@
 ---
- title: 'Terra à vista: deixando o Mar de Nós'
- author: 'Darius Mercadier'
- avatars:
+ title: "Terra à vista: deixando o Mar de Nós"
+ author: "Darius Mercadier"
+ avatars: 
    - darius-mercadier
  date: 2025-03-25
- tags:
+ tags: 
    - JavaScript
    - internos
  description: "Por que o V8 decidiu abandonar o Mar de Nós e voltar para CFG"
- tweet: ''
+ tweet: ""
 ---
 
 O compilador otimizador de última etapa do V8, o Turbofan, é conhecido como um dos poucos compiladores de produção em larga escala que utilizam [Mar de Nós](https://en.wikipedia.org/wiki/Sea_of_nodes) (SoN). No entanto, há quase três anos, começamos a nos livrar do Mar de Nós e a retornar para uma [Representação Intermediária](https://en.wikipedia.org/wiki/Intermediate_representation) (IR) [Gráfico de Fluxo de Controle](https://en.wikipedia.org/wiki/Control-flow_graph) (CFG) mais tradicional, que chamamos de Turboshaft. Até agora, todo o backend de JavaScript do Turbofan utiliza Turboshaft e o WebAssembly usa Turboshaft ao longo de todo o seu pipeline. Duas partes do Turbofan ainda usam algum Mar de Nós: o pipeline embutido, que estamos substituindo gradualmente pelo Turboshaft, e o frontend do pipeline de JavaScript, que estamos substituindo pelo Maglev, outro IR baseado em CFG. Este post no blog explica as razões que nos levaram a abandonar o Mar de Nós.

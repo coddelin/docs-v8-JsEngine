@@ -1,8 +1,8 @@
 ---
 title: "Una pasantía sobre la pereza: desvinculación perezosa de funciones desoptimizadas"
 author: "Juliana Franco ([@jupvfranco](https://twitter.com/jupvfranco)), Experta en Pereza"
-date: 2017-10-04 13:33:37
-tags:
+date: "2017-10-04 13:33:37"
+tags: 
   - memoria
   - internals
 description: "Esta inmersión técnica explica cómo V8 solía desvincular funciones desoptimizadas y cómo recientemente cambiamos esto para mejorar el rendimiento."

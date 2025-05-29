@@ -1,10 +1,10 @@
 ---
 title: "`globalThis`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2019-07-16
-tags:
+tags: 
   - ECMAScript
   - ES2020
   - Node.js 12

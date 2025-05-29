@@ -1,12 +1,12 @@
 ---
 title: "Coleta de lixo de alto desempenho para C++"
 author: "Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), e Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), especialistas em memória C++"
-avatars:
+avatars: 
   - "anton-bikineev"
   - "omer-katz"
   - "michael-lippautz"
 date: 2020-05-26
-tags:
+tags: 
   - internals
   - memória
   - cppgc

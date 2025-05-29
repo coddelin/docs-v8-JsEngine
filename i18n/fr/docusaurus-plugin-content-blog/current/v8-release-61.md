@@ -1,8 +1,8 @@
 ---
 title: "Publication de V8 v6.1"
-author: 'l'équipe V8'
-date: 2017-08-03 13:33:37
-tags:
+author: "l'équipe V8"
+date: "2017-08-03 13:33:37"
+tags: 
   - publication
 description: "V8 v6.1 arrive avec une taille de binaire réduite et inclut des améliorations de performance. De plus, asm.js est maintenant validé et compilé en WebAssembly."
 ---

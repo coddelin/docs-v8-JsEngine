@@ -1,10 +1,10 @@
 ---
 title: "Lazy deserialization"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2018-02-12 13:33:37
-tags:
+date: "2018-02-12 13:33:37"
+tags: 
   - internals
 description: "Lazy deserialization, available in V8 v6.4, reduces V8’s memory consumption by over 500 KB per browser tab on average."
 tweet: "962989179914383360"

@@ -1,10 +1,10 @@
 ---
 title: "Emscripten und der LLVM WebAssembly-Backend"
 author: "Alon Zakai"
-avatars:
+avatars: 
   - "alon-zakai"
-date: 2019-07-01 16:45:00
-tags:
+date: "2019-07-01 16:45:00"
+tags: 
   - WebAssembly
   - Werkzeuge
 description: "Emscripten wechselt zum LLVM WebAssembly-Backend, was zu deutlich kürzeren Linkzeiten und vielen weiteren Vorteilen führt."

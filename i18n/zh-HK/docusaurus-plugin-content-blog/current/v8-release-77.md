@@ -1,10 +1,10 @@
 ---
 title: "V8 發佈 v7.7"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), 發佈說明的懶惰撰寫者"
-avatars:
+avatars: 
   - "mathias-bynens"
-date: 2019-08-13 16:45:00
-tags:
+date: "2019-08-13 16:45:00"
+tags: 
   - release
 description: "V8 v7.7 提供懶惰式回饋分配、更快速的 WebAssembly 背景編譯、堆疊追蹤改進以及新的 Intl.NumberFormat 功能。"
 tweet: "1161287541611323397"

@@ -1,8 +1,8 @@
 ---
 title: "V8でのWebAssemblyの実験的サポート"
 author: "Seth Thompson, WebAssembly担当"
-date: 2016-03-15 13:33:37
-tags:
+date: "2016-03-15 13:33:37"
+tags: 
   - WebAssembly
 description: "本日より、V8とChromiumでWebAssemblyの実験的サポートがフラグの後ろで利用可能になりました。"
 ---

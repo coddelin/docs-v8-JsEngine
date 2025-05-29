@@ -1,10 +1,10 @@
 ---
 title: "優化哈希表：隱藏哈希碼"
 author: "[Sathya Gunasekaran](https://twitter.com/_gsathya)，哈希碼的守護者"
-avatars:
+avatars: 
   - "sathya-gunasekaran"
-date: 2018-01-29 13:33:37
-tags:
+date: "2018-01-29 13:33:37"
+tags: 
   - internals
 tweet: "958046113390411776"
 description: "多種 JavaScript 資料結構如 Map、Set、WeakSet 和 WeakMap 在底層使用了哈希表。本文闡述了 V8 v6.3 如何改進哈希表性能。"

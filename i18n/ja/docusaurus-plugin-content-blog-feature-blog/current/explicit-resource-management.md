@@ -1,10 +1,10 @@
 ---
 title: "JavaScriptの新たなスーパーパワー：明示的リソース管理"
 author: "Rezvan Mahdavi Hezaveh"
-avatars:
+avatars: 
   - "rezvan-mahdavi-hezaveh"
 date: 2025-05-09
-tags:
+tags: 
   - ECMAScript
 description: "明示的リソース管理提案により、開発者はリソースのライフサイクルを明示的に管理できるようになります。"
 tweet: ""

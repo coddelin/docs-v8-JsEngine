@@ -1,12 +1,12 @@
 ---
 title: "Jank Busters Part Two: Orinoco"
 author: "the jank busters: Ulan Degenbaev, Michael Lippautz, and Hannes Payer"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2016-04-12 13:33:37
-tags:
+date: "2016-04-12 13:33:37"
+tags: 
   - internals
   - memory
 description: "이 글은 V8에서 새로운 가비지 컬렉터를 기반으로한 세 가지 최적화를 소개합니다. 해당 코드는 Orinoco로 명명되었습니다."

@@ -1,10 +1,10 @@
 ---
 title: "Verbesserte Code-Caching"
 author: "Mythri Alle, Haupt-Code-Cacher"
-date: 2018-04-24 13:33:37
-avatars:
+date: "2018-04-24 13:33:37"
+avatars: 
   - "mythri-alle"
-tags:
+tags: 
   - internals
 tweet: "988728000677142528"
 description: "Ab Chrome 66 speichert V8 mehr (Byte-)Code, indem der Cache nach der Top-Level-Ausführung generiert wird."

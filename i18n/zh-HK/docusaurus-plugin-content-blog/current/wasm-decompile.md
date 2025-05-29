@@ -1,10 +1,10 @@
 ---
 title: "裡面的 `.wasm` 是什麼？介紹一下：`wasm-decompile`"
 author: "Wouter van Oortmerssen ([@wvo](https://twitter.com/wvo))"
-avatars:
+avatars: 
   - "wouter-van-oortmerssen"
 date: 2020-04-27
-tags:
+tags: 
   - WebAssembly
   - 工具
 description: "WABT 新增了一個反編譯工具，可以讓閱讀 Wasm 模組內容更容易一些。"

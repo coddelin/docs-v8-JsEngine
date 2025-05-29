@@ -1,8 +1,8 @@
 ---
 title: "Hinzufügen von BigInts zu V8"
 author: "Jakob Kummerow, Schiedsrichter der Präzision"
-date: 2018-05-02 13:33:37
-tags:
+date: "2018-05-02 13:33:37"
+tags: 
   - ECMAScript
 description: "V8 unterstützt jetzt BigInts, eine JavaScript-Sprachfunktion, die Ganzzahlen mit beliebiger Genauigkeit ermöglicht."
 tweet: "991705626391732224"

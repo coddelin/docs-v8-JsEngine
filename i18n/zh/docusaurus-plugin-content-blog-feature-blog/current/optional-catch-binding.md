@@ -1,10 +1,10 @@
 ---
 title: "可选的`catch`绑定"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-03-27
-tags:
+tags: 
   - ECMAScript
   - ES2019
 description: "在ES2019中，catch现在可以不带参数使用。"

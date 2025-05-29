@@ -1,10 +1,10 @@
 ---
 title: "점화를 점화 해석기로 시작하기"
 author: "로스 맥일로이, V8 점화 시동기"
-avatars:
+avatars: 
   - "ross-mcilroy"
-date: 2016-08-23 13:33:37
-tags:
+date: "2016-08-23 13:33:37"
+tags: 
   - internals
 description: "점화 해석기로 V8은 JavaScript 함수들을 간결한 바이트코드로 컴파일하며, 이는 동등한 기본 머신 코드의 크기 대비 50%에서 25% 정도입니다."
 ---

@@ -1,10 +1,10 @@
 ---
 title: "可选的链式操作"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 可选链的破除者"
-avatars:
+avatars: 
   - "maya-armyanova"
 date: 2019-08-27
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "可选的链式操作通过内置的空值检查实现了更易读且简洁的属性访问表达式。"

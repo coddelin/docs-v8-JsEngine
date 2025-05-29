@@ -1,7 +1,7 @@
 ---
 title: "Faster releases"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
   - "ingvar-stepanyan"
 date: 2021-03-04
 description: "Speeding up V8’s release cycle"

@@ -1,10 +1,10 @@
 ---
 title: "Importar atributos"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2024-01-31
-tags:
+tags: 
   - ECMAScript
 description: "Atributos de importación: la evolución de las declaraciones de importación"
 tweet: ""

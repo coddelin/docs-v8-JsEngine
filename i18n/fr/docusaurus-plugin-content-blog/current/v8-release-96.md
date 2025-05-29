@@ -1,10 +1,10 @@
 ---
 title: "Sortie de V8 version v9.6"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-10-13
-tags:
+tags: 
  - sortie
 description: "La sortie de V8 version v9.6 apporte la prise en charge des types de référence pour WebAssembly."
 tweet: "1448262079476076548"

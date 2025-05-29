@@ -1,10 +1,10 @@
 ---
 title: "번뜩이는 빠른 파싱, 1부: 스캐너 최적화"
 author: "툰 페르와스트 ([@tverwaes](https://twitter.com/tverwaes)), 스캔들스 옵티마이저"
-avatars:
+avatars: 
   - "toon-verwaest"
-date: 2019-03-25 13:33:37
-tags:
+date: "2019-03-25 13:33:37"
+tags: 
   - 내부 구조
   - 파싱
 tweet: "1110205101652787200"

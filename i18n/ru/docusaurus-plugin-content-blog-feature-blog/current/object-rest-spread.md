@@ -1,10 +1,10 @@
 ---
 title: "Объектные свойства rest и spread"
 author: "Матиас Биненс ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-06-06
-tags:
+tags: 
   - ECMAScript
   - ES2018
 description: "В этой статье объясняется, как работают объектные свойства rest и spread в JavaScript, а также рассматриваются элементы rest и spread для массивов."

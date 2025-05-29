@@ -1,10 +1,10 @@
 ---
 title: "Almacenamiento en caché de código"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), Ingeniero de Software"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-07-27 13:33:37
-tags:
+date: "2015-07-27 13:33:37"
+tags: 
   - internos
 description: "V8 ahora soporta almacenamiento en caché de (byte)código, es decir, guardar en caché el resultado del análisis y la compilación de JavaScript."
 ---

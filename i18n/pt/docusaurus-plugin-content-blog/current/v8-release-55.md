@@ -1,8 +1,8 @@
 ---
 title: "Lançamento do V8 v5.5"
 author: "a equipe do V8"
-date: 2016-10-24 13:33:37
-tags:
+date: "2016-10-24 13:33:37"
+tags: 
   - lançamento
 description: "O V8 v5.5 vem com menor consumo de memória e maior suporte a recursos da linguagem ECMAScript."
 ---

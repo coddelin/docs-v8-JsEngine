@@ -1,8 +1,8 @@
 ---
 title: "V8가 BlinkOn 6 컨퍼런스에서"
 author: "V8 팀"
-date: 2016-07-21 13:33:37
-tags:
+date: "2016-07-21 13:33:37"
+tags: 
   - 발표
 description: "BlinkOn 6에서 V8 팀의 발표 개요입니다."
 ---

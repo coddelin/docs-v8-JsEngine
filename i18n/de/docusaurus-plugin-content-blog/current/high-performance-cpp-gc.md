@@ -1,12 +1,12 @@
 ---
 title: "Hochleistungs-Müllsammlung für C++"
 author: "Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)) und Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), C++ Speicherflüsterer"
-avatars:
+avatars: 
   - "anton-bikineev"
   - "omer-katz"
   - "michael-lippautz"
 date: 2020-05-26
-tags:
+tags: 
   - Interna
   - Speicher
   - cppgc

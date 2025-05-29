@@ -1,12 +1,12 @@
 ---
-title: 'Méthode `at` pour l'indexation relative'
+title: "Méthode `at` pour l'indexation relative"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2021-07-13
-tags:
+tags: 
   - ECMAScript
-description: 'JavaScript dispose maintenant d'une méthode d'indexation relative pour les tableaux, TypedArrays et chaînes de caractères.'
+description: "JavaScript dispose maintenant d'une méthode d'indexation relative pour les tableaux, TypedArrays et chaînes de caractères."
 ---
 
 La nouvelle méthode `at` sur `Array.prototype`, les différents prototypes de TypedArray et `String.prototype` facilite et rend plus succincte l'accès à un élément proche de la fin de la collection.

@@ -1,10 +1,10 @@
 ---
 title: "Optional chaining"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), オプショナルチェーンの突破者"
-avatars:
+avatars: 
   - "maya-armyanova"
 date: 2019-08-27
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "オプショナルチェーンは組み込みのヌルチェックを伴うプロパティアクセスを読みやすく簡潔に記述することを可能にします。"

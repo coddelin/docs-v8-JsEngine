@@ -1,10 +1,10 @@
 ---
 title: "V8 быстрее и безопаснее, чем когда-либо!"
 author: "[Виктор Гомес](https://twitter.com/VictorBFG), эксперт по Глюхвейну"
-avatars:
+avatars: 
   - victor-gomes
 date: 2023-12-14
-tags:
+tags: 
   - JavaScript
   - WebAssembly
   - безопасность

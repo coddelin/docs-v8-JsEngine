@@ -1,10 +1,10 @@
 ---
 title: "Импорт утверждений"
 author: "Дэн Кларк ([@dandclark1](https://twitter.com/dandclark1)), уверенный импортер утверждений"
-avatars:
+avatars: 
   - "dan-clark"
 date: 2021-06-15
-tags:
+tags: 
   - ECMAScript
 description: "Импорт утверждений позволяет заявлениям импорта модулей включать дополнительную информацию вместе со спецификатором модуля"
 tweet: ""

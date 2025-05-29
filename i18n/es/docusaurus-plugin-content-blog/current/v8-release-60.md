@@ -1,8 +1,8 @@
 ---
 title: "V8 lanzamiento v6.0"
 author: "el equipo de V8"
-date: 2017-06-09 13:33:37
-tags:
+date: "2017-06-09 13:33:37"
+tags: 
   - lanzamiento
 description: "V8 v6.0 viene con varias mejoras de rendimiento e introduce soporte para `SharedArrayBuffer`s y propiedades de reposo/dispersión de objetos."
 ---

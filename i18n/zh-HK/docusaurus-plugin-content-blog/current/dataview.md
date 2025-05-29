@@ -1,10 +1,10 @@
 ---
 title: "提升 V8 中 `DataView` 性能"
-author: 'Théotime Grohens, <i lang="fr">Data-Vue 的學者</i>, 以及 Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), 專業性能伙伴'
-avatars:
+author: "Théotime Grohens, <i lang=\"fr\">Data-Vue 的學者</i>, 以及 Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), 專業性能伙伴"
+avatars: 
   - "benedikt-meurer"
-date: 2018-09-18 11:20:37
-tags:
+date: "2018-09-18 11:20:37"
+tags: 
   - ECMAScript
   - 基準測試
 description: "V8 v6.9 縮小了 `DataView` 與相應 `TypedArray` 代碼之間的性能差距，從而使 `DataView` 成為性能要求高的實際應用程式中的可用選擇。"

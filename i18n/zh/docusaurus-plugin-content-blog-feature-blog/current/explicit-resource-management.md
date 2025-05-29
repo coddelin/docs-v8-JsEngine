@@ -1,10 +1,10 @@
 ---
 title: "JavaScript 的新超能力：显式资源管理"
 author: "Rezvan Mahdavi Hezaveh"
-avatars:
+avatars: 
   - "rezvan-mahdavi-hezaveh"
 date: 2025-05-09
-tags:
+tags: 
   - ECMAScript
 description: "显式资源管理提案使开发者能够显式管理资源的生命周期。"
 tweet: ""

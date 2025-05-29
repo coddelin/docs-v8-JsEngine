@@ -1,10 +1,10 @@
 ---
 title: "V8에 ES2015 프록시를 최적화하기"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 프록시 최적화 담당"
-avatars:
+avatars: 
   - "maya-armyanova"
-date: 2017-10-05 13:33:37
-tags:
+date: "2017-10-05 13:33:37"
+tags: 
   - ECMAScript
   - 벤치마크
   - 내부 구조

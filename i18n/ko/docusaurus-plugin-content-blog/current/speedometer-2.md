@@ -1,8 +1,8 @@
 ---
 title: "크롬, Speedometer 2.0을 환영합니다!"
 author: "Blink 팀과 V8 팀"
-date: 2018-01-24 13:33:37
-tags:
+date: "2018-01-24 13:33:37"
+tags: 
   - 벤치마크
 description: "Speedometer 2.0을 기반으로 Blink와 V8에서 지금까지 이룬 성능 향상에 대한 개요입니다."
 tweet: "956232641736421377"

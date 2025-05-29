@@ -1,8 +1,8 @@
 ---
 title: "V8 发布 v5.5"
 author: "V8 团队"
-date: 2016-10-24 13:33:37
-tags:
+date: "2016-10-24 13:33:37"
+tags: 
   - 发布
 description: "V8 v5.5 带来了内存使用减少和对 ECMAScript 语言功能支持的增强。"
 ---

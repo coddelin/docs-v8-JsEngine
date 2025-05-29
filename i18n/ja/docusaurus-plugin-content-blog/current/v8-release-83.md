@@ -1,10 +1,10 @@
 ---
 title: "V8リリース v8.3"
 author: "[Victor Gomes](https://twitter.com/VictorBFG), 在宅勤務を安全に実施中"
-avatars:
+avatars: 
  - "victor-gomes"
 date: 2020-05-04
-tags:
+tags: 
  - リリース
 description: "V8 v8.3は、より高速なArrayBuffer、より大きなWasmメモリ、そして廃止されたAPIを特徴としています。"
 tweet: "1257333120115847171"

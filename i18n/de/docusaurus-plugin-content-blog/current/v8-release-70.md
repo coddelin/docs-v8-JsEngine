@@ -1,10 +1,10 @@
 ---
 title: "V8-Version v7.0"
 author: "Michael Hablich"
-avatars:
+avatars: 
   - michael-hablich
-date: 2018-10-15 17:17:00
-tags:
+date: "2018-10-15 17:17:00"
+tags: 
   - Veröffentlichung
 description: "V8 v7.0 beinhaltet WebAssembly-Threads, Symbol.prototype.description und eingebettete Built-Ins auf weiteren Plattformen!"
 tweet: "1051857446279532544"

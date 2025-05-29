@@ -1,10 +1,10 @@
 ---
 title: "Top-level `await`"
 author: "Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))"
-avatars:
+avatars: 
   - "myles-borins"
 date: 2019-10-08
-tags:
+tags: 
   - ECMAScript
   - Node.js 14
 description: "Top-level `await` is coming to JavaScript modules! You’ll soon be able to use `await` without needing to be in an async function."

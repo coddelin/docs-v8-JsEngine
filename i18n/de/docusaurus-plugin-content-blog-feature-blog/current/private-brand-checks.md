@@ -1,10 +1,10 @@
 ---
 title: "Private-Markenüberprüfungen, alias `#foo in obj`"
 author: "Marja Hölttä ([@marjakh](https://twitter.com/marjakh))"
-avatars:
+avatars: 
   - "marja-holtta"
 date: 2021-04-14
-tags:
+tags: 
   - ECMAScript
 description: "Private-Markenüberprüfungen ermöglichen es, das Vorhandensein eines privaten Feldes in einem Objekt zu testen."
 tweet: "1382327454975590401"

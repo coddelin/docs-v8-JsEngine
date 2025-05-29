@@ -1,8 +1,8 @@
 ---
 title: "V8-Version v6.3"
 author: "das V8-Team"
-date: 2017-10-25 13:33:37
-tags:
+date: "2017-10-25 13:33:37"
+tags: 
   - Veröffentlichung
 description: "V8 v6.3 enthält Leistungsverbesserungen, reduzierte Speichernutzung und Unterstützung neuer JavaScript-Sprachfunktionen."
 tweet: "923168001108643840"

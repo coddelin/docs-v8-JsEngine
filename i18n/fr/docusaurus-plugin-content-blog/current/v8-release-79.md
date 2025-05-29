@@ -1,10 +1,10 @@
 ---
 titre: "Sortie de V8 v7.9"
 auteur: "Santiago Aboy Solanes, extraordinaire compresseur de pointeurs"
-avatars:
+avatars: 
   - "santiago-aboy-solanes"
 date: 2019-11-20
-tags:
+tags: 
   - sortie
 description: "V8 v7.9 supprime la dépréciation pour les transitions Double ⇒ Tagged, gère les getters API dans les fonctions intrinsics, met en cache OSR et prend en charge Wasm pour plusieurs espaces de code."
 tweet: "1197187184304050176"

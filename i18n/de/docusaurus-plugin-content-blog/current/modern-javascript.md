@@ -1,8 +1,8 @@
 ---
 title: "ES2015, ES2016 und darüber hinaus"
 author: "das V8-Team, ECMAScript-Enthusiasten"
-date: 2016-04-29 13:33:37
-tags:
+date: "2016-04-29 13:33:37"
+tags: 
   - ECMAScript
 description: "V8 v5.2 unterstützt ES2015 und ES2016!"
 ---

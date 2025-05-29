@@ -1,10 +1,10 @@
 ---
 title: "適切に形成された`JSON.stringify`"
 author: "Mathias Bynens（[@mathias](https://twitter.com/mathias)）"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-09-11
-tags:
+tags: 
   - ECMAScript
   - ES2019
 description: "JSON.stringifyは現在、孤立したサロゲートペアにエスケープシーケンスを出力するため、その出力は有効なUnicode（UTF-8で表現可能）となっている。"

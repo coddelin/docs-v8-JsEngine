@@ -1,8 +1,8 @@
 ---
 title: "WebAssembly browser preview"
 author: "the V8 team"
-date: 2016-10-31 13:33:37
-tags:
+date: "2016-10-31 13:33:37"
+tags: 
   - WebAssembly
 description: "WebAssembly or Wasm is a new runtime and compilation target for the web, now available behind a flag in Chrome Canary!"
 ---

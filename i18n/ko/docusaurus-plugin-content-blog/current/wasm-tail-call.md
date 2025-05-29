@@ -2,7 +2,7 @@
 title: "WebAssembly 꼬리 호출"
 author: "Thibaud Michaud, Thomas Lively"
 date: 2023-04-06
-tags:
+tags: 
   - WebAssembly
 description: "이 문서는 WebAssembly 꼬리 호출 제안을 설명하고 일부 예제를 통해 이를 보여줍니다."
 tweet: "1644077795059044353"

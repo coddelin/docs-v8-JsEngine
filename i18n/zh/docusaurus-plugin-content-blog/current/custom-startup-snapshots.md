@@ -1,10 +1,10 @@
 ---
 title: "自定义启动快照"
 author: "杨国（[@hashseed](https://twitter.com/hashseed)），软件工程师和引擎预热供应商"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-09-25 13:33:37
-tags:
+date: "2015-09-25 13:33:37"
+tags: 
   - 内部结构
 description: "V8 嵌入者可以利用快照来跳过初始化 JavaScript 程序带来的启动时间。"
 ---

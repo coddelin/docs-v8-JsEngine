@@ -1,10 +1,10 @@
 ---
 title: "超级快速的`super`属性访问"
 author: "[Marja Hölttä](https://twitter.com/marjakh)，超级优化师"
-avatars:
+avatars: 
   - marja-holtta
 date: 2021-02-18
-tags:
+tags: 
   - JavaScript
 description: "在 V8 v9.0 中更快的 super 属性访问"
 tweet: "1362465295848333316"

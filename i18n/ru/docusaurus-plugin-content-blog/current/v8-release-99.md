@@ -1,10 +1,10 @@
 ---
 title: "Релиз V8 версии 9.9"
 author: "Ингвар Степанян ([@RReverser](https://twitter.com/RReverser)), на его 99%"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2022-01-31
-tags:
+tags: 
  - release
 description: "Релиз V8 версии 9.9 приносит новые API интернационализации."
 tweet: "1488190967727411210"

@@ -1,8 +1,8 @@
 ---
 title: "V8 Version v6.0"
 author: "das V8-Team"
-date: 2017-06-09 13:33:37
-tags:
+date: "2017-06-09 13:33:37"
+tags: 
   - Veröffentlichung
 description: "V8 v6.0 bringt mehrere Leistungsverbesserungen mit sich und führt Unterstützung für `SharedArrayBuffer` sowie Rest-/Spread-Eigenschaften für Objekte ein."
 ---

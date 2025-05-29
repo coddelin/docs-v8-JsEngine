@@ -1,10 +1,10 @@
 ---
 title: "遅延デシリアライズ"
 author: "Jakob Gruber（[@schuay](https://twitter.com/schuay)）"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2018-02-12 13:33:37
-tags:
+date: "2018-02-12 13:33:37"
+tags: 
   - 内部仕組み
 description: "V8 v6.4で利用可能な遅延デシリアライズにより、V8のメモリ消費を平均でブラウザタブあたり500 KB以上削減します。"
 tweet: "962989179914383360"

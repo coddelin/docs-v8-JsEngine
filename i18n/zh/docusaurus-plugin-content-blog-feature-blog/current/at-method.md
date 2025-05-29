@@ -1,10 +1,10 @@
 ---
 title: "用于相对索引的`at`方法"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2021-07-13
-tags:
+tags: 
   - ECMAScript
 description: "JavaScript现在为数组、TypedArrays 和字符串新增了相对索引方法。"
 ---

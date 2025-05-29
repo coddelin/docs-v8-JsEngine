@@ -1,10 +1,10 @@
 ---
 title: "임시로 Escape Analysis 비활성화"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), 샌드박스 Escape 분석 전문가"
-avatars:
+avatars: 
   - "mathias-bynens"
-date: 2017-09-22 13:33:37
-tags:
+date: "2017-09-22 13:33:37"
+tags: 
   - 보안
 description: "보안 취약점으로부터 사용자를 보호하기 위해 Chrome 61에서 V8의 Escape Analysis를 비활성화했습니다."
 tweet: "911339802884284416"

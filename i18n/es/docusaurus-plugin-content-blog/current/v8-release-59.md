@@ -1,8 +1,8 @@
 ---
 title: "Lanzamiento de V8 v5.9"
 author: "el equipo de V8"
-date: 2017-04-27 13:33:37
-tags:
+date: "2017-04-27 13:33:37"
+tags: 
   - lanzamiento
 description: "V8 v5.9 incluye el nuevo pipeline Ignition + TurboFan, y agrega soporte para WebAssembly TrapIf en todas las plataformas."
 ---

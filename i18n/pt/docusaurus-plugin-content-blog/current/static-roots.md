@@ -1,10 +1,10 @@
 ---
 title: "Raízes Estáticas: Objetos com Endereços Constantes em Tempo de Compilação"
 author: "Olivier Flückiger"
-avatars:
+avatars: 
   - olivier-flueckiger
 date: 2024-02-05
-tags:
+tags: 
   - JavaScript
 description: "Raízes Estáticas tornam os endereços de certos objetos JS constantes em tempo de compilação."
 tweet: ""

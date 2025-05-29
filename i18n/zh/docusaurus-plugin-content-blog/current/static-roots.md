@@ -1,10 +1,10 @@
 ---
 title: "静态根：具有编译时恒定地址的对象"
 author: "Olivier Flückiger"
-avatars:
+avatars: 
   - olivier-flueckiger
 date: 2024-02-05
-tags:
+tags: 
   - JavaScript
 description: "静态根使某些JS对象的地址成为编译时常量。"
 tweet: ""

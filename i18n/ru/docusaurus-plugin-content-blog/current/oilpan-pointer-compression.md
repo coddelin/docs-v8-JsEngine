@@ -1,11 +1,11 @@
 ---
 title: "Сжатие указателей в Oilpan"
 author: "Антон Бикинеев и Михаэль Липпаутц ([@mlippautz](https://twitter.com/mlippautz)), исследователи дизассемблирования"
-avatars:
+avatars: 
   - anton-bikineev
   - michael-lippautz
 date: 2022-11-28
-tags:
+tags: 
   - внутренняя структура
   - память
   - cppgc

@@ -1,10 +1,10 @@
 ---
 title: "V8-Version v9.2 veröffentlicht"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-07-16
-tags:
+tags: 
  - Veröffentlichung
 description: "Die V8-Version v9.2 bringt eine `at`-Methode für relatives Indexing und Verbesserungen bei der Zeigerkomprimierung."
 tweet: ""

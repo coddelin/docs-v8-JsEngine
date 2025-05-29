@@ -1,10 +1,10 @@
 ---
 title: "V8 リリース v9.0"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))、スタンディングインライン"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-03-17
-tags:
+tags: 
  - リリース
 description: "V8 リリース v9.0 は正規表現のマッチインデックスサポートとさまざまなパフォーマンス改善をもたらします。"
 tweet: "1372227274712494084"

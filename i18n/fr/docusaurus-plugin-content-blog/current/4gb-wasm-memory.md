@@ -1,12 +1,12 @@
 ---
-title: 'Jusqu'à 4 Go de mémoire dans WebAssembly'
+title: "Jusqu'à 4 Go de mémoire dans WebAssembly"
 author: "Andreas Haas, Jakob Kummerow, et Alon Zakai"
-avatars:
+avatars: 
   - "andreas-haas"
   - "jakob-kummerow"
   - "alon-zakai"
 date: 2020-05-14
-tags:
+tags: 
   - WebAssembly
   - JavaScript
   - tooling

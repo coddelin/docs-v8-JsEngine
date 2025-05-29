@@ -1,8 +1,8 @@
 ---
 title: "在 V8 中对 WebAssembly 的实验性支持"
 author: "Seth Thompson，WebAssembly 专员"
-date: 2016-03-15 13:33:37
-tags:
+date: "2016-03-15 13:33:37"
+tags: 
   - WebAssembly
 description: "从今天开始，在 V8 和 Chromium 中可以通过启用标志使用 WebAssembly 的实验性支持。"
 ---

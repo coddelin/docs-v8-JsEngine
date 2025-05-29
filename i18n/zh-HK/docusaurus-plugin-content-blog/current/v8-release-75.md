@@ -1,10 +1,10 @@
 ---
 title: "V8 發行 v7.5"
 author: "Dan Elphick，過時功能的剋星"
-avatars:
+avatars: 
   - "dan-elphick"
-date: 2019-05-16 15:00:00
-tags:
+date: "2019-05-16 15:00:00"
+tags: 
   - release
 description: "V8 v7.5 提供了 WebAssembly 編譯工件的隱式緩存、大量內存操作、JavaScript 的數字分隔符等眾多新功能！"
 tweet: "1129073370623086593"

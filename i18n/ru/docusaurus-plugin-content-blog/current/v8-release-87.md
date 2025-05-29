@@ -1,10 +1,10 @@
 ---
 title: "V8 релиз v8.7"
 author: "Ингвар Степанян ([RReverser](https://twitter.com/RReverser)), представитель V8"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2020-10-23
-tags:
+tags: 
  - релиз
 description: "Релиз V8 v8.7 включает новый API для нативных вызовов, Atomics.waitAsync, исправления ошибок и улучшения производительности."
 tweet: "1319654229863182338"

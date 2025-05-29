@@ -1,10 +1,10 @@
 ---
 title: "릴리스 블로그 게시물 중단"
 author: "Shu-yu Guo ([@shu_](https://twitter.com/_shu))"
-avatars:
+avatars: 
  - "shu-yu-guo"
 date: 2022-06-17
-tags:
+tags: 
  - release
 description: "V8는 Chrome 릴리스 일정과 기능 블로그 게시물을 위해 릴리스 블로그 게시물을 중단합니다."
 tweet: "1537857497825824768"

@@ -1,10 +1,10 @@
 ---
 title: "Tipos de elementos em V8"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
-date: 2017-09-12 13:33:37
-tags:
+date: "2017-09-12 13:33:37"
+tags: 
   - internals
   - presentations
 description: "Este mergulho técnico explica como o V8 otimiza operações em arrays por trás das cenas, e o que isso significa para desenvolvedores JavaScript."

@@ -1,10 +1,10 @@
 ---
 title: "有 `Math.random()`，然後有 `Math.random()`"
 author: "楊國 ([@hashseed](https://twitter.com/hashseed))，軟體工程師兼骰子設計師"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-12-17 13:33:37
-tags:
+date: "2015-12-17 13:33:37"
+tags: 
   - ECMAScript
   - internals
 description: "V8 的 Math.random 實現現在使用名為 xorshift128+ 的算法，相較於舊的 MWC1616 實現提升了隨機性。"

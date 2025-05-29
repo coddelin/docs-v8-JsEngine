@@ -1,12 +1,12 @@
 ---
 title: "Marcação concorrente no V8"
 author: "Ulan Degenbaev, Michael Lippautz, e Hannes Payer — libertadores da thread principal"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2018-06-11 13:33:37
-tags:
+date: "2018-06-11 13:33:37"
+tags: 
   - internos
   - memória
 description: "Este post descreve a técnica de coleta de lixo chamada marcação concorrente."

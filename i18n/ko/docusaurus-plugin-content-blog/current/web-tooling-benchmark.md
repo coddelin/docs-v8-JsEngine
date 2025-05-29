@@ -1,10 +1,10 @@
 ---
 title: "웹 툴링 벤치마크 발표"
 author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), 자바스크립트 성능 전문가"
-avatars:
+avatars: 
   - "benedikt-meurer"
-date: 2017-11-06 13:33:37
-tags:
+date: "2017-11-06 13:33:37"
+tags: 
   - 벤치마크
   - Node.js
 description: "최신 웹 툴링 벤치마크는 Babel, TypeScript 및 기타 실제 프로젝트의 V8 성능 병목 현상을 식별하고 수정하는 데 도움이 됩니다."

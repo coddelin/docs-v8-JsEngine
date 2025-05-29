@@ -1,12 +1,12 @@
 ---
 title: "`Object.hasOwn`"
 author: "Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))"
-avatars:
+avatars: 
   - "victor-gomes"
 date: 2021-07-01
-tags:
+tags: 
   - ECMAScript
-description: '`Object.hasOwn` 使得 `Object.prototype.hasOwnProperty` 更易访问。
+description: "'`Object.hasOwn` 使得 `Object.prototype.hasOwnProperty` 更易访问。"
 tweet: "1410577516943847424"
 ---
 

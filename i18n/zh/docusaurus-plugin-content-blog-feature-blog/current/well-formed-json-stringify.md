@@ -1,10 +1,10 @@
 ---
 title: "格式良好的 `JSON.stringify`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-09-11
-tags:
+tags: 
   - ECMAScript
   - ES2019
 description: "JSON.stringify 现在对独立代理对输出转义序列，使其输出为合法的 Unicode（且可表示为 UTF-8）。"

@@ -1,10 +1,10 @@
 ---
 title: "Lanzamiento de V8 v9.5"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-09-21
-tags:
+tags: 
  - lanzamiento
 description: "El lanzamiento de V8 v9.5 trae APIs de internacionalización actualizadas y soporte para manejo de excepciones WebAssembly."
 tweet: "1440296019623759872"

@@ -1,10 +1,10 @@
 ---
 title: "V8 release v9.3"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-08-09
-tags:
+tags: 
  - release
 description: "V8 release v9.3 brings support for Object.hasOwn and Error causes, improves compilation performance and disables untrusted codegen mitigations on Android."
 tweet: ""

@@ -1,12 +1,12 @@
 ---
 title: "C++用の高性能ガベージコレクション"
 author: "Anton Bikineev、Omer Katz（[@omerktz](https://twitter.com/omerktz)）、およびMichael Lippautz（[@mlippautz](https://twitter.com/mlippautz)）、C++メモリウィスパラー"
-avatars:
+avatars: 
   - "anton-bikineev"
   - "omer-katz"
   - "michael-lippautz"
 date: 2020-05-26
-tags:
+tags: 
   - internals
   - memory
   - cppgc

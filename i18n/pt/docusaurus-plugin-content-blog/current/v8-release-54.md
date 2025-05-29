@@ -1,8 +1,8 @@
 ---
 title: "Lançamento do V8 v5.4"
 author: "a equipe V8"
-date: 2016-09-09 13:33:37
-tags:
+date: "2016-09-09 13:33:37"
+tags: 
   - lançamento
 description: "O V8 v5.4 traz melhorias de desempenho e menor consumo de memória."
 ---

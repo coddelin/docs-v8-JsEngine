@@ -1,10 +1,10 @@
 ---
 title: "쓰레기 토크: 오리노코 가비지 컬렉터"
 author: "Peter ‘the garbo’ Marshall ([@hooraybuffer](https://twitter.com/hooraybuffer))"
-avatars:
+avatars: 
   - "peter-marshall"
-date: 2019-01-03 17:45:34
-tags:
+date: "2019-01-03 17:45:34"
+tags: 
   - 내부 구조
   - 메모리
   - 발표

@@ -1,10 +1,10 @@
 ---
 title: "Chrome 96でWebAssembly Dynamic Tieringを試す準備が整いました"
 author: "Andreas Haas — Tierisch fun"
-avatars:
+avatars: 
   - andreas-haas
 date: 2021-10-29
-tags:
+tags: 
   - WebAssembly
 description: "V8 v9.6およびChrome 96で、コマンドラインフラグまたはオリジントライアルを通じてWebAssembly Dynamic Tieringを試す準備が整いました"
 tweet: "1454158971674271760"

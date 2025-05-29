@@ -1,8 +1,8 @@
 ---
 title: "Ignition과 TurboFan 출시"
 author: "V8 팀"
-date: 2017-05-15 13:33:37
-tags:
+date: "2017-05-15 13:33:37"
+tags: 
   - internals
 description: "V8 v5.9는 Ignition 인터프리터와 TurboFan 최적화 컴파일러를 기반으로 한 완전히 새로운 JavaScript 실행 파이프라인을 제공합니다."
 ---

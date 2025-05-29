@@ -1,10 +1,10 @@
 ---
 title: "Sortie de V8 v7.0"
 author: "Michael Hablich"
-avatars:
+avatars: 
   - michael-hablich
-date: 2018-10-15 17:17:00
-tags:
+date: "2018-10-15 17:17:00"
+tags: 
   - sortie
 description: "V8 v7.0 inclut les threads WebAssembly, Symbol.prototype.description, et des built-ins intégrés sur davantage de plateformes !"
 tweet: "1051857446279532544"

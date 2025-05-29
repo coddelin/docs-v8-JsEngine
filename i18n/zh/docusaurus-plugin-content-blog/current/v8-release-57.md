@@ -1,8 +1,8 @@
 ---
 title: "V8版本 v5.7"
 author: "V8团队"
-date: 2017-02-06 13:33:37
-tags:
+date: "2017-02-06 13:33:37"
+tags: 
   - 发布
 description: "V8 v5.7默认启用WebAssembly，并包含性能改进及对ECMAScript语言功能的支持增加。"
 ---

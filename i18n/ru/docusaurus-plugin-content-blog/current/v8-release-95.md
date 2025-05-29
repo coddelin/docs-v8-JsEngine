@@ -1,10 +1,10 @@
 ---
 title: "V8 выпуск v9.5"
 author: "Ингвар Степанян ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-09-21
-tags:
+tags: 
  - выпуск
 description: "V8 выпуск v9.5 представляет обновленные API интернационализации и поддержку обработки исключений WebAssembly."
 tweet: "1440296019623759872"

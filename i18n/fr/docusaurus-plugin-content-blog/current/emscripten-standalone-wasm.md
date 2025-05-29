@@ -1,13 +1,13 @@
 ---
 title: "En dehors du web : binaires WebAssembly autonomes avec Emscripten"
 author: "Alon Zakai"
-avatars:
+avatars: 
   - "alon-zakai"
 date: 2019-11-21
-tags:
+tags: 
   - WebAssembly
   - outils
-description: 'Emscripten supporte désormais les fichiers Wasm autonomes, qui n'ont pas besoin de JavaScript.'
+description: "Emscripten supporte désormais les fichiers Wasm autonomes, qui n'ont pas besoin de JavaScript."
 tweet: "1197547645729988608"
 ---
 Emscripten s'est toujours concentré en priorité sur la compilation pour le web et autres environnements JavaScript comme Node.js. Mais à mesure que WebAssembly commence à être utilisé *sans* JavaScript, de nouveaux cas d'utilisation apparaissent, et nous avons travaillé sur la prise en charge de l'émission de fichiers [**Wasm autonomes**](https://github.com/emscripten-core/emscripten/wiki/WebAssembly-Standalone) à partir d'Emscripten, qui ne dépendent pas de l'environnement d'exécution JavaScript d'Emscripten ! Ce post explique pourquoi cela est intéressant.

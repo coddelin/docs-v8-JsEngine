@@ -3,7 +3,7 @@ title: "WebAssembly JSPI 即将进入原始试验"
 description: "我们将解释 JSPI 原始试验的开始"
 author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-03-06
-tags:
+tags: 
   - WebAssembly
 ---
 WebAssembly 的 JavaScript Promise 集成 (JSPI) API 正在随着 Chrome M123 版本进入原始试验阶段。这意味着您可以测试您和您的用户是否能够从这个新 API 中受益。

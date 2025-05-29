@@ -1,11 +1,11 @@
 ---
 title: "Zeiger-Komprimierung in Oilpan"
 author: "Anton Bikineev und Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), gehende Disassembler"
-avatars:
+avatars: 
   - anton-bikineev
   - michael-lippautz
 date: 2022-11-28
-tags:
+tags: 
   - internals
   - speicher
   - cppgc

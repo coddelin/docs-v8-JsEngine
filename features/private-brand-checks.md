@@ -1,10 +1,10 @@
 ---
 title: "Private brand checks a.k.a. `#foo in obj`"
 author: "Marja Hölttä ([@marjakh](https://twitter.com/marjakh))"
-avatars:
+avatars: 
   - "marja-holtta"
 date: 2021-04-14
-tags:
+tags: 
   - ECMAScript
 description: "Private brand checks allow testing for the existence of a private field in an object."
 tweet: "1382327454975590401"

@@ -1,10 +1,10 @@
 ---
 title: "V8版本发布v9.1"
 author: "Ingvar Stepanyan（[@RReverser](https://twitter.com/RReverser)），测试我的私人品牌"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-05-04
-tags:
+tags: 
  - 发布
 description: "V8版本发布v9.1带来了对私有品牌检查的支持、默认启用顶层await以及性能改进。"
 tweet: "1389613320953532417"

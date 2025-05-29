@@ -1,8 +1,8 @@
 ---
 title: "V8发布v6.2"
 author: "V8团队"
-date: 2017-09-11 13:33:37
-tags:
+date: "2017-09-11 13:33:37"
+tags: 
   - 发布
 description: "V8 v6.2包括性能改进、更多JavaScript语言特性、增加的最大字符串长度等内容。"
 ---

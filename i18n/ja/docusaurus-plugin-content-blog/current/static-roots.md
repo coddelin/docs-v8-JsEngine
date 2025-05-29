@@ -1,10 +1,10 @@
 ---
 title: "Static Roots: コンパイル時に定数アドレスを持つオブジェクト"
 author: "Olivier Flückiger"
-avatars:
+avatars: 
   - olivier-flueckiger
 date: 2024-02-05
-tags:
+tags: 
   - JavaScript
 description: "Static Rootsは、特定のJSオブジェクトのアドレスをコンパイル時の定数にします。"
 tweet: ""

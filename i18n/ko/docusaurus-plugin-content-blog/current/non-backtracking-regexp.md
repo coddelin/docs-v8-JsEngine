@@ -2,7 +2,7 @@
 title: "추가적인 비백트래킹 정규 표현식 엔진"
 author: "마틴 비들링마이어"
 date: 2021-01-11
-tags:
+tags: 
  - internals
  - RegExp
 description: "V8은 이제 추가적인 정규 표현식 엔진을 갖추고 있으며, 이는 재귀적 백트래킹의 여러 사례를 방지하는 역할을 합니다."

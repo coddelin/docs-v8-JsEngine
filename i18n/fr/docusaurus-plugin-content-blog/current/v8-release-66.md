@@ -1,10 +1,10 @@
 ---
 title: "Publication de V8 v6.6"
-author: 'l'équipe V8'
-date: 2018-03-27 13:33:37
-tags:
+author: "l'équipe V8"
+date: "2018-03-27 13:33:37"
+tags: 
   - version
-description: 'V8 v6.6 inclut des liaisons optionnelles dans catch, une extension du découpage des chaînes, plusieurs améliorations des performances de l'analyse/l'exécution/l'compilation, et bien plus encore !'
+description: "V8 v6.6 inclut des liaisons optionnelles dans catch, une extension du découpage des chaînes, plusieurs améliorations des performances de l'analyse/l'exécution/l'compilation, et bien plus encore !"
 tweet: "978534399938584576"
 ---
 Toutes les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](/docs/release-process). Chaque version est dérivée de la branche master de V8 juste avant une étape de bêta de Chrome. Aujourd'hui, nous sommes ravis d'annoncer notre nouvelle branche, [V8 version 6.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.6), qui est en bêta jusqu'à sa publication en coordination avec Chrome 66 Stable dans quelques semaines. V8 v6.6 est remplie de nouvelles fonctionnalités destinées aux développeurs. Ce post offre un aperçu des points forts en préparation au lancement.

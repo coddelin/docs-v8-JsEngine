@@ -1,10 +1,10 @@
 ---
-title: 'Lancement d'Ignition et TurboFan'
-author: 'l'équipe V8'
-date: 2017-05-15 13:33:37
-tags:
+title: "Lancement d'Ignition et TurboFan"
+author: "l'équipe V8"
+date: "2017-05-15 13:33:37"
+tags: 
   - internals
-description: 'V8 v5.9 introduit une toute nouvelle chaîne d'exécution JavaScript basée sur l'interpréteur Ignition et le compilateur d'optimisation TurboFan.'
+description: "V8 v5.9 introduit une toute nouvelle chaîne d'exécution JavaScript basée sur l'interpréteur Ignition et le compilateur d'optimisation TurboFan."
 ---
 Aujourd'hui, nous sommes ravis d'annoncer le lancement d'une nouvelle chaîne d'exécution JavaScript pour V8 v5.9, qui sera disponible sur la version stable de Chrome v59. Avec cette nouvelle chaîne, nous réalisons d'importantes améliorations en termes de performances et des économies significatives de mémoire sur des applications JavaScript réelles. Nous discuterons des chiffres en détail à la fin de cet article, mais d'abord, examinons cette chaîne d'exécution.
 

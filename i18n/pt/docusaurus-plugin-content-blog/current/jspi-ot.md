@@ -3,7 +3,7 @@ title: "WebAssembly JSPI está entrando em fase de teste de origem"
 description: "Explicamos o início do teste de origem para JSPI"
 author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-03-06
-tags:
+tags: 
   - WebAssembly
 ---
 A API de Integração de Promessas em JavaScript (JSPI) do WebAssembly está entrando em um teste de origem, com o lançamento do Chrome M123. Isso significa que você pode testar se você e seus usuários podem se beneficiar dessa nova API.

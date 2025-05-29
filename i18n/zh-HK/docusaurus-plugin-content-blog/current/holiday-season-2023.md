@@ -1,10 +1,10 @@
 ---
 title: "V8 比以往更快、更安全！"
 author: "[Victor Gomes](https://twitter.com/VictorBFG)，Glühwein 專家"
-avatars:
+avatars: 
   - victor-gomes
 date: 2023-12-14
-tags:
+tags: 
   - JavaScript
   - WebAssembly
   - 安全性

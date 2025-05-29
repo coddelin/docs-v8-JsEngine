@@ -1,12 +1,12 @@
 ---
 title: "優化 V8 記憶體使用"
 author: "V8 記憶體衛生工程師 Ulan Degenbaev、Michael Lippautz、Hannes Payer 和 Toon Verwaest"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2016-10-07 13:33:37
-tags:
+date: "2016-10-07 13:33:37"
+tags: 
   - memory
   - benchmarks
 description: "V8 團隊分析並顯著減少了若干被認為是現代網頁開發模式代表性網站的記憶體佔用量。"

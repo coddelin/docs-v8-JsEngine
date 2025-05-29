@@ -1,10 +1,10 @@
 ---
 title: "내장 빌트인"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2018-08-14 13:33:37
-tags:
+date: "2018-08-14 13:33:37"
+tags: 
   - 내부 구조
 description: "V8 v6.9은 내장 코드의 바이너리 .text 섹션에 포함하여 웹사이트당 평균 V8 힙 크기를 19% 줄였습니다."
 tweet: "1029382366693937162"

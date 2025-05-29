@@ -1,12 +1,12 @@
 ---
 title: "Oilpanライブラリ"
 author: "Anton Bikineev、Omer Katz（[@omerktz](https://twitter.com/omerktz)）、Michael Lippautz（[@mlippautz](https://twitter.com/mlippautz)）効率的で効果的なファイル移動者たち"
-avatars:
+avatars: 
   - anton-bikineev
   - omer-katz
   - michael-lippautz
 date: 2021-11-10
-tags:
+tags: 
   - internals
   - memory
   - cppgc

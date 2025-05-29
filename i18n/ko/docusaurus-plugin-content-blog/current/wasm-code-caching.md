@@ -1,10 +1,10 @@
 ---
 title: "WebAssembly 개발자를 위한 코드 캐싱"
-author: '[Bill Budge](https://twitter.com/billb), 캐싱에 'Ca-ching!'을 더하다'
-avatars:
+author: "[Bill Budge](https://twitter.com/billb), 캐싱에 'Ca-ching!'을 더하다"
+avatars: 
   - bill-budge
 date: 2019-06-17
-tags:
+tags: 
   - WebAssembly
   - internals
 description: "이 글은 Chrome의 WebAssembly 코드 캐싱 시스템과, 대형 WebAssembly 모듈을 사용하는 애플리케이션의 로딩 속도를 높이기 위해 이를 어떻게 활용할 수 있는지를 설명합니다."

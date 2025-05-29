@@ -1,11 +1,11 @@
 ---
 title: "Compressão de Ponteiros no V8"
 author: "Igor Sheludko e Santiago Aboy Solanes, *os* compressores de ponteiros"
-avatars:
+avatars: 
   - "igor-sheludko"
   - "santiago-aboy-solanes"
 date: 2020-03-30
-tags:
+tags: 
   - internos
   - memória
 description: "O V8 reduziu o tamanho do seu heap em até 43%! Saiba como em “Compressão de Ponteiros no V8”!"

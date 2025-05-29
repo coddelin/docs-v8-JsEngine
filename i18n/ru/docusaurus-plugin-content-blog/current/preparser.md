@@ -1,11 +1,11 @@
 ---
 title: "Молниеносно быстрое разбор, часть 2: ленивый разбор"
 author: "Тун Вервеест ([@tverwaes](https://twitter.com/tverwaes)) и Марья Хёльтта ([@marjakh](https://twitter.com/marjakh)), упрощенные разборщики"
-avatars:
+avatars: 
   - "toon-verwaest"
   - "marja-holtta"
-date: 2019-04-15 17:03:37
-tags:
+date: "2019-04-15 17:03:37"
+tags: 
   - internals
   - parsing
 tweet: "1117807107972243456"

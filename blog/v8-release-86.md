@@ -1,10 +1,10 @@
 ---
 title: "V8 release v8.6"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), a keyboard fuzzer"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2020-09-21
-tags:
+tags: 
  - release
 description: "V8 release v8.6 brings respectful code, performance improvements, and normative changes."
 tweet: "1308062287731789825"

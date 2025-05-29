@@ -1,8 +1,8 @@
 ---
 title: "Publication V8 version 5.6"
-author: 'l'équipe V8'
-date: 2016-12-02 13:33:37
-tags:
+author: "l'équipe V8"
+date: "2016-12-02 13:33:37"
+tags: 
   - publication
 description: "V8 v5.6 apporte une nouvelle chaîne de compilation, des améliorations de performance, et un soutien accru pour les fonctionnalités du langage ECMAScript."
 ---

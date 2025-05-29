@@ -1,10 +1,10 @@
 ---
 title: "Выпуск V8 v9.4"
 author: "Ингвар Степанян ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-09-06
-tags:
+tags: 
  - релиз
 description: "Выпуск V8 v9.4 добавляет статические блоки инициализации классов в JavaScript."
 tweet: "1434915404418277381"

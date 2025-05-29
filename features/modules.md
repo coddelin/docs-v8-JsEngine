@@ -1,11 +1,11 @@
 ---
 title: "JavaScript modules"
 author: "Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) and Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
 - "addy-osmani"
 - "mathias-bynens"
 date: 2018-06-18
-tags:
+tags: 
   - ECMAScript
   - ES2015
 description: "This article explains how to use JavaScript modules, how to deploy them responsibly, and how the Chrome team is working to make modules even better in the future."

@@ -1,8 +1,8 @@
 ---
 title: "V8의 미래 테스트를 도와주세요!"
 author: "Daniel Clifford ([@expatdanno](https://twitter.com/expatdanno)), Original Munich V8 Brewer"
-date: 2017-02-14 13:33:37
-tags:
+date: "2017-02-14 13:33:37"
+tags: 
   - internals
 description: "오늘 Chrome Canary에서 Ignition 및 TurboFan과 함께 V8의 새로운 컴파일러 파이프라인을 미리 경험하세요!"
 ---

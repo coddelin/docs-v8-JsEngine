@@ -1,10 +1,10 @@
 ---
 title: "Zündung des Ignition-Interpreters"
 author: "Ross McIlroy, V8 Ignition Jump Starter"
-avatars:
+avatars: 
   - "ross-mcilroy"
-date: 2016-08-23 13:33:37
-tags:
+date: "2016-08-23 13:33:37"
+tags: 
   - internals
 description: "Mit dem Ignition-Interpreter kompiliert V8 JavaScript-Funktionen in einen kompakten Bytecode, der nur 50 % bis 25 % der Größe des entsprechenden Baseline-Maschinencodes beträgt."
 ---

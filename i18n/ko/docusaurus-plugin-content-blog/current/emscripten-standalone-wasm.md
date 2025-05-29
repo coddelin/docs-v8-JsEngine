@@ -1,10 +1,10 @@
 ---
 title: "웹 외부: Emscripten을 사용한 독립형 WebAssembly 바이너리"
 author: "알론 자카이"
-avatars:
+avatars: 
   - "알론 자카이"
 date: 2019-11-21
-tags:
+tags: 
   - WebAssembly
   - 도구
 description: "Emscripten은 이제 JavaScript가 필요 없는 독립형 Wasm 파일을 지원합니다."

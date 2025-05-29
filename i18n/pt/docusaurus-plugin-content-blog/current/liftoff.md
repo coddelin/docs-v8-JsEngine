@@ -1,10 +1,10 @@
 ---
 title: "Decolagem: um novo compilador baseline para WebAssembly no V8"
 author: "Clemens Backes, maestro da compilação de WebAssembly"
-avatars:
+avatars: 
   - "clemens-backes"
-date: 2018-08-20 15:45:12
-tags:
+date: "2018-08-20 15:45:12"
+tags: 
   - WebAssembly
   - internals
 description: "Decolagem é um novo compilador baseline para WebAssembly, disponível no V8 v6.9."

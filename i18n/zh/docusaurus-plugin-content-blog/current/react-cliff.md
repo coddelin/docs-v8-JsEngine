@@ -1,11 +1,11 @@
 ---
 title: "React 中 V8 性能瓶颈的故事"
 author: "Benedikt Meurer（[@bmeurer](https://twitter.com/bmeurer)）和 Mathias Bynens（[@mathias](https://twitter.com/mathias)）"
-avatars:
+avatars: 
   - "benedikt-meurer"
   - "mathias-bynens"
-date: 2019-08-28 16:45:00
-tags:
+date: "2019-08-28 16:45:00"
+tags: 
   - 内部原理
   - 演示
 description: "本文描述了 V8 如何为各种 JavaScript 值选择最佳的内存表示形式，以及这些选择如何影响 Shape 机制——这有助于解释 React 核心中最近的一个 V8 性能瓶颈问题。"

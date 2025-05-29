@@ -1,8 +1,8 @@
 ---
 title: "V8 发布 v4.9"
 author: "V8团队"
-date: 2016-01-26 13:33:37
-tags:
+date: "2016-01-26 13:33:37"
+tags: 
   - 发布
 description: "V8 v4.9 带来了改进的 `Math.random` 实现，并增加了对多个新的 ES2015 语言功能的支持。"
 ---

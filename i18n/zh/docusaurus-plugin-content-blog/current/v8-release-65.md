@@ -1,8 +1,8 @@
 ---
 title: "V8 发布 v6.5"
 author: "V8 团队"
-date: 2018-02-01 13:33:37
-tags:
+date: "2018-02-01 13:33:37"
+tags: 
   - 发布
 description: "V8 v6.5 增加了对流式 WebAssembly 编译的支持，并引入了新的“非可信代码模式”。"
 tweet: "959174292406640640"

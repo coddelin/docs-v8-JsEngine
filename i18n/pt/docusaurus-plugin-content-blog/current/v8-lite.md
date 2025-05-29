@@ -1,12 +1,12 @@
 ---
 title: "Um V8 mais leve"
 author: "Mythri Alle, Dan Elphick, e [Ross McIlroy](https://twitter.com/rossmcilroy), observadores de peso do V8"
-avatars:
+avatars: 
   - "mythri-alle"
   - "dan-elphick"
   - "ross-mcilroy"
-date: 2019-09-12 12:44:37
-tags:
+date: "2019-09-12 12:44:37"
+tags: 
   - internos
   - memória
   - apresentações

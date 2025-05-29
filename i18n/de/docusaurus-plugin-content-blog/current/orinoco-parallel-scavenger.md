@@ -1,12 +1,12 @@
 ---
 title: "Orinoco: Müllentsorgung jüngerer Generation"
 author: "Ulan Degenbaev, Michael Lippautz und Hannes Payer, Freunde von [TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2017-11-29 13:33:37
-tags:
+date: "2017-11-29 13:33:37"
+tags: 
   - internals
   - speicher
 description: "Dieser Artikel führt den parallelen Scavenger ein, eine der neuesten Funktionen von Orinoco, V8s überwiegend nebenläufigem und parallel arbeitendem Müllsammler."

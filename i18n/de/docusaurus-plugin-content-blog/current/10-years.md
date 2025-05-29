@@ -1,10 +1,10 @@
 ---
 title: "Feiern von 10 Jahren V8"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), V8-Historiker"
-avatars:
+avatars: 
   - "mathias-bynens"
-date: 2018-09-11 19:00:00
-tags:
+date: "2018-09-11 19:00:00"
+tags: 
   - Benchmarks
 description: "Ein Überblick über die wichtigsten Meilensteine des V8-Projekts in den letzten 10 Jahren sowie die Jahre davor, als das Projekt noch geheim war."
 tweet: "1039559389324238850"

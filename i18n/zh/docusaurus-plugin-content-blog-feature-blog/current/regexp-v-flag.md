@@ -1,12 +1,12 @@
 ---
 title: "RegExp `v` 标记与集合符号及字符串属性"
 author: "Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mark-davis"
   - "markus-scherer"
   - "mathias-bynens"
 date: 2022-06-27
-tags:
+tags: 
   - ECMAScript
 description: "新的 RegExp `v` 标记启用了 `unicodeSets` 模式，支持扩展字符类，包括 Unicode 字符串属性、集合符号以及更先进的大小写不敏感匹配功能。"
 tweet: "1541419838513594368"

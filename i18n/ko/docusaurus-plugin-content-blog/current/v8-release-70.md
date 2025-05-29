@@ -1,10 +1,10 @@
 ---
 title: "V8 릴리스 v7.0"
 author: "Michael Hablich"
-avatars:
+avatars: 
   - michael-hablich
-date: 2018-10-15 17:17:00
-tags:
+date: "2018-10-15 17:17:00"
+tags: 
   - release
 description: "V8 v7.0에는 WebAssembly 스레드, Symbol.prototype.description, 더 많은 플랫폼에서의 내장 기능이 포함되었습니다!"
 tweet: "1051857446279532544"

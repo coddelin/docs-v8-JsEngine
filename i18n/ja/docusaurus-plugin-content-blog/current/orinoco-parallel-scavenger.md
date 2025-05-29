@@ -1,12 +1,12 @@
 ---
 title: "Orinoco: 若い世代のガベージコレクション"
 author: "Ulan Degenbaev, Michael Lippautz, and Hannes Payer, [TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)の友人"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2017-11-29 13:33:37
-tags:
+date: "2017-11-29 13:33:37"
+tags: 
   - 内部構造
   - メモリ
 description: "この記事では、Orinocoの最新機能の1つである並列スカベンジャーを紹介します。OrinocoはV8の主に並行して並列処理を行うガベージコレクタです。"

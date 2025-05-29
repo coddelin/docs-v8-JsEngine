@@ -1,12 +1,12 @@
 ---
 title: "Orinoco: young generation garbage collection"
 author: "Ulan Degenbaev, Michael Lippautz, and Hannes Payer, friends of [TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2017-11-29 13:33:37
-tags:
+date: "2017-11-29 13:33:37"
+tags: 
   - internals
   - memory
 description: "This article introduces the parallel Scavenger, one of the latest features of Orinoco, V8’s mostly concurrent and parallel garbage collector."

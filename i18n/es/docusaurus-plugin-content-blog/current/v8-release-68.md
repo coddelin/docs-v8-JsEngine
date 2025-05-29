@@ -1,8 +1,8 @@
 ---
 title: "Lanzamiento de V8 v6.8"
 author: "el equipo de V8"
-date: 2018-06-21 13:33:37
-tags:
+date: "2018-06-21 13:33:37"
+tags: 
   - lanzamiento
 description: "V8 v6.8 presenta un menor consumo de memoria y varias mejoras de rendimiento."
 tweet: "1009753739060826112"

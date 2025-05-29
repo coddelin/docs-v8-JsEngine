@@ -1,8 +1,8 @@
 ---
 title: "V8-Version v6.6"
 author: "das V8-Team"
-date: 2018-03-27 13:33:37
-tags:
+date: "2018-03-27 13:33:37"
+tags: 
   - Veröffentlichung
 description: "V8 v6.6 umfasst eine optionale Catch-Bindung, erweitertes String-Trimming, mehrere Verbesserungen bei der Parse-/Kompilierungs-/Laufzeitleistung und vieles mehr!"
 tweet: "978534399938584576"

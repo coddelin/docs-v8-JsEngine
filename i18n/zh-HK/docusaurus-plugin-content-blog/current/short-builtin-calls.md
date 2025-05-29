@@ -1,10 +1,10 @@
 ---
 title: "精簡內建函式呼叫"
 author: "[Toon Verwaest](https://twitter.com/tverwaes), 縮短距離"
-avatars:
+avatars: 
   - toon-verwaest
 date: 2021-05-06
-tags:
+tags: 
   - JavaScript
 description: "在 V8 v9.1 中，我們暫時在桌面端取消內建函式的嵌入，以避免由於遠距間接呼叫所帶來的效能問題。"
 tweet: "1394267917013897216"

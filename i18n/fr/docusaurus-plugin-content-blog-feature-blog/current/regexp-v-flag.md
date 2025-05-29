@@ -1,12 +1,12 @@
 ---
 title: "Indicateur `v` de RegExp avec la notation des ensembles et les propriétés des chaînes"
 author: "Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer, et Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mark-davis"
   - "markus-scherer"
   - "mathias-bynens"
 date: 2022-06-27
-tags:
+tags: 
   - ECMAScript
 description: "Le nouvel indicateur `v` de RegExp active le mode `unicodeSets`, offrant un support pour les classes de caractères étendues, y compris les propriétés Unicode des chaînes, la notation des ensembles et une correspondance insensible à la casse améliorée."
 tweet: "1541419838513594368"

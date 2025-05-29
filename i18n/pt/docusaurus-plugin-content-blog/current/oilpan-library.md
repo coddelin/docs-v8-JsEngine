@@ -1,12 +1,12 @@
 ---
 title: "Biblioteca Oilpan"
 author: "Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)) e Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), eficientes e eficazes na movimentação de arquivos"
-avatars:
+avatars: 
   - anton-bikineev
   - omer-katz
   - michael-lippautz
 date: 2021-11-10
-tags:
+tags: 
   - internals
   - memory
   - cppgc

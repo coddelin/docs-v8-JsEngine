@@ -1,8 +1,8 @@
 ---
 title: "V8-Version v4.5"
 author: "das V8-Team"
-date: 2015-07-17 13:33:37
-tags:
+date: "2015-07-17 13:33:37"
+tags: 
   - Version
 description: "V8 v4.5 bietet Leistungsverbesserungen und unterstützt mehrere ES2015-Funktionen."
 ---

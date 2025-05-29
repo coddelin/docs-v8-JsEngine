@@ -1,11 +1,11 @@
 ---
 title: "История о производительности V8 в React"
 author: "Бенедикт Меурер ([@bmeurer](https://twitter.com/bmeurer)) и Матиас Биненс ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "benedikt-meurer"
   - "mathias-bynens"
-date: 2019-08-28 16:45:00
-tags:
+date: "2019-08-28 16:45:00"
+tags: 
   - internals
   - presentations
 description: "В этой статье описано, как V8 выбирает оптимальные представления в памяти для различных значений JavaScript и как это влияет на механизм форм — что помогает объяснить недавнее падение производительности V8 в ядре React."

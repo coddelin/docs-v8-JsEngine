@@ -1,10 +1,10 @@
 ---
 title: "Релиз V8 версии v9.3"
 author: "Ингвар Степанян ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-08-09
-tags:
+tags: 
  - релиз
 description: "Релиз V8 версии v9.3 добавляет поддержку Object.hasOwn и причин ошибок (Error causes), улучшает производительность компиляции и отключает защиту от недоверенного генерации кода на Android."
 tweet: ""

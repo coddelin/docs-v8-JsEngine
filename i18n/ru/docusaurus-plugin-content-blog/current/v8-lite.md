@@ -1,12 +1,12 @@
 ---
 title: "Легкий V8"
 author: "Митри Алле, Дэн Элфик и [Росс МакИлрой](https://twitter.com/rossmcilroy), специалисты по оптимизации V8"
-avatars:
+avatars: 
   - "mythri-alle"
   - "dan-elphick"
   - "ross-mcilroy"
-date: 2019-09-12 12:44:37
-tags:
+date: "2019-09-12 12:44:37"
+tags: 
   - internals
   - memory
   - presentations

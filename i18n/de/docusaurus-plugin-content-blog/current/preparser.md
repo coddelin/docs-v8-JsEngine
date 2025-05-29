@@ -1,11 +1,11 @@
 ---
 title: "Blitzschnelles Parsen, Teil 2: Lazy Parsing"
 author: "Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)) und Marja Hölttä ([@marjakh](https://twitter.com/marjakh)), effizientere Parser"
-avatars:
+avatars: 
   - "toon-verwaest"
   - "marja-holtta"
-date: 2019-04-15 17:03:37
-tags:
+date: "2019-04-15 17:03:37"
+tags: 
   - internals
   - parsing
 tweet: "1117807107972243456"

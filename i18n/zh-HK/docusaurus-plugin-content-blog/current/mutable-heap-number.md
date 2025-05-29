@@ -1,10 +1,10 @@
 ---
 title: "為 V8 加速：使用可變堆數字"
 author: "[Victor Gomes](https://twitter.com/VictorBFG)，位移者"
-avatars:
+avatars: 
   - victor-gomes
 date: 2025-02-25
-tags:
+tags: 
   - JavaScript
   - 基準測試
   - 內部機制

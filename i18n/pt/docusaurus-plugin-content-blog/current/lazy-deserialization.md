@@ -1,10 +1,10 @@
 ---
 title: "Desserialização preguiçosa"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2018-02-12 13:33:37
-tags:
+date: "2018-02-12 13:33:37"
+tags: 
   - internals
 description: "Desserialização preguiçosa, disponível no V8 v6.4, reduz o consumo de memória do V8 em mais de 500 KB por aba do navegador em média."
 tweet: "962989179914383360"

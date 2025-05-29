@@ -1,11 +1,11 @@
 ---
 title: "무료로 가비지 컬렉션을 얻다"
 author: "Hannes Payer and Ross McIlroy, Idle Garbage Collectors"
-avatars:
+avatars: 
   - "hannes-payer"
   - "ross-mcilroy"
-date: 2015-08-07 13:33:37
-tags:
+date: "2015-08-07 13:33:37"
+tags: 
   - internals
   - memory
 description: "Chrome 41은 사용되지 않는 작은 유휴 시간 조각 안에서 고비용의 메모리 관리 작업을 숨겨서 끊김 현상을 줄입니다."

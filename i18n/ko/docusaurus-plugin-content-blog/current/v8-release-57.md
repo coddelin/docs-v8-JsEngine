@@ -1,8 +1,8 @@
 ---
 title: "V8 릴리스 v5.7"
 author: "V8 팀"
-date: 2017-02-06 13:33:37
-tags:
+date: "2017-02-06 13:33:37"
+tags: 
   - 릴리스
 description: "V8 v5.7은 기본적으로 WebAssembly를 활성화하고, 성능 향상과 ECMAScript 언어 기능 지원을 강화했습니다."
 ---

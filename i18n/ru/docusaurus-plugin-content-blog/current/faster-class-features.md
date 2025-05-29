@@ -1,10 +1,10 @@
 ---
 title: "Более быстрая инициализация экземпляров с новыми функциями классов"
 author: "[Joyee Cheung](https://twitter.com/JoyeeCheung), инициализатор экземпляров"
-avatars:
+avatars: 
   - "joyee-cheung"
 date: 2022-04-20
-tags:
+tags: 
   - internal
 description: "Инициализация экземпляров с новыми функциями классов стала быстрее начиная с V8 v9.7."
 tweet: "1517041137378373632"

@@ -1,10 +1,10 @@
 ---
 title: "Acceso súper rápido a propiedades `super`"
 author: "[Marja Hölttä](https://twitter.com/marjakh), optimizadora super"
-avatars:
+avatars: 
   - marja-holtta
 date: 2021-02-18
-tags:
+tags: 
   - JavaScript
 description: "Acceso más rápido a propiedades super en V8 v9.0"
 tweet: "1362465295848333316"

@@ -1,10 +1,10 @@
 ---
 title: "更快且功能更豐富的國際化 API"
 author: "[சத்யா குணசேகரன் (Sathya Gunasekaran)](https://twitter.com/_gsathya)"
-date: 2019-04-25 16:45:37
-avatars:
+date: "2019-04-25 16:45:37"
+avatars: 
   - "sathya-gunasekaran"
-tags:
+tags: 
   - ECMAScript
   - Intl
 description: "JavaScript 的國際化 API 正在擴展，其中 V8 的實現速度正在加快！"

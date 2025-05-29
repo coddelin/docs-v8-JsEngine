@@ -3,7 +3,7 @@ title: "Integridad del flujo de control en V8"
 description: "Esta publicación de blog discute los planes para implementar la integridad del flujo de control en V8."
 author: "Stephen Röttger"
 date: 2023-10-09
-tags:
+tags: 
  - seguridad
 ---
 La integridad del flujo de control (CFI) es una característica de seguridad que tiene como objetivo prevenir explotaciones que secuestren el flujo de control. La idea es que, incluso si un atacante logra corromper la memoria de un proceso, controles de integridad adicionales pueden evitar que ejecuten código arbitrario. En esta publicación de blog, queremos discutir nuestro trabajo para habilitar CFI en V8.

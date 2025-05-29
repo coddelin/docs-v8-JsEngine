@@ -1,10 +1,10 @@
 ---
 title: "クラスの静的初期化ブロック"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2021-03-30
-tags:
+tags: 
   - ECMAScript
 description: "JavaScript クラスに静的初期化専用の構文が登場しました。"
 tweet: "1376925666780798989"

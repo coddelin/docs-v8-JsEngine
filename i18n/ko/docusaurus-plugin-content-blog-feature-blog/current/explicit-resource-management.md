@@ -1,10 +1,10 @@
 ---
 title: "JavaScript의 새로운 초능력: 명시적 리소스 관리"
 author: "Rezvan Mahdavi Hezaveh"
-avatars:
+avatars: 
   - "rezvan-mahdavi-hezaveh"
 date: 2025-05-09
-tags:
+tags: 
   - ECMAScript
 description: "명시적 리소스 관리 제안은 개발자가 리소스의 수명주기를 명시적으로 관리할 수 있는 권한을 부여합니다."
 tweet: ""

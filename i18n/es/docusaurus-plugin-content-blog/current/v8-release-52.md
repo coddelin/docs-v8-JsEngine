@@ -1,8 +1,8 @@
 ---
 title: "Lanzamiento de V8 v5.2"
 author: "el equipo de V8"
-date: 2016-06-04 13:33:37
-tags:
+date: "2016-06-04 13:33:37"
+tags: 
   - lanzamiento
 description: "V8 v5.2 incluye soporte para características del lenguaje ES2016."
 ---

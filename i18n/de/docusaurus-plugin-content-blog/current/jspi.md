@@ -3,7 +3,7 @@ title: "Einführung in die JavaScript Promise Integration API für WebAssembly"
 description: "Dieses Dokument stellt JSPI vor und bietet einige einfache Beispiele, um Ihnen den Einstieg in die Nutzung zu erleichtern"
 author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-07-01
-tags:
+tags: 
   - WebAssembly
 ---
 Die JavaScript Promise Integration (JSPI) API ermöglicht es WebAssembly-Anwendungen, die für _synchronen_ Zugriff auf externe Funktionen geschrieben wurden, reibungslos in einer Umgebung zu arbeiten, in der diese Funktionen tatsächlich _asynchron_ sind.

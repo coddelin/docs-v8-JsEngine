@@ -1,10 +1,10 @@
 ---
 title: "V8リリース v7.1"
 author: "Stephan Herhut ([@herhut](https://twitter.com/herhut)), クローン作成者のクローン"
-avatars:
+avatars: 
   - stephan-herhut
-date: 2018-10-31 15:44:37
-tags:
+date: "2018-10-31 15:44:37"
+tags: 
   - リリース
 description: "V8 v7.1 では、埋め込みバイトコードハンドラー、改良されたTurboFanエスケープ分析、postMessage(wasmModule)、Intl.RelativeTimeFormat、そしてglobalThisが導入されています！"
 tweet: "1057645773465235458"

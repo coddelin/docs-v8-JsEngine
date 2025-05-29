@@ -1,10 +1,10 @@
 ---
 title: "Faster JavaScript calls"
 author: "[Victor Gomes](https://twitter.com/VictorBFG), the frame shredder"
-avatars:
+avatars: 
   - "victor-gomes"
 date: 2021-02-15
-tags:
+tags: 
   - internals
 description: "Faster JavaScript calls by removing the arguments adaptor frame"
 tweet: "1361337569057865735"

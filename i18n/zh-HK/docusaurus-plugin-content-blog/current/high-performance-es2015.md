@@ -1,10 +1,10 @@
 ---
 title: "高效能 ES2015 與後續進階"
 author: "Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer), ECMAScript 效能工程師"
-avatars:
+avatars: 
   - "benedikt-meurer"
-date: 2017-02-17 13:33:37
-tags:
+date: "2017-02-17 13:33:37"
+tags: 
   - ECMAScript
 description: "V8 對 ES2015+ 語言功能的效能表現如今已與其編譯後的 ES5 對應功能相當。"
 ---

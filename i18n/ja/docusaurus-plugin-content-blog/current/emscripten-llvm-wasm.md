@@ -1,10 +1,10 @@
 ---
 title: "EmscriptenとLLVM WebAssemblyバックエンド"
 author: "Alon Zakai"
-avatars:
+avatars: 
   - "alon-zakai"
-date: 2019-07-01 16:45:00
-tags:
+date: "2019-07-01 16:45:00"
+tags: 
   - WebAssembly
   - ツール
 description: "EmscriptenはLLVM WebAssemblyバックエンドに切り替え中で、大幅に高速なリンク時間や多くの利点が得られます。"

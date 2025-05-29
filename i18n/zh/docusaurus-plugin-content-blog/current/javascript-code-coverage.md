@@ -1,13 +1,13 @@
 ---
-title: ‘JavaScript代码覆盖率’
-author: ‘Jakob Gruber ([@schuay](https://twitter.com/schuay))’
-avatars:
+title: "‘JavaScript代码覆盖率’"
+author: "‘Jakob Gruber ([@schuay](https://twitter.com/schuay))’"
+avatars: 
   - ‘jakob-gruber’
-date: 2017-12-13 13:33:37
-tags:
+date: "2017-12-13 13:33:37"
+tags: 
   - 内部机制
-description: ‘V8现在原生支持JavaScript代码覆盖率。工具可以在不插桩代码的情况下访问V8的覆盖信息！’
-tweet: ‘940879905079873536’
+description: "‘V8现在原生支持JavaScript代码覆盖率。工具可以在不插桩代码的情况下访问V8的覆盖信息！’"
+tweet: "‘940879905079873536’"
 ---
 代码覆盖率提供了应用程序的某些部分是否已被执行的信息，甚至可以选择提供这些部分被执行的频率信息。它通常用于确定测试套件对特定代码库的覆盖程度。
 

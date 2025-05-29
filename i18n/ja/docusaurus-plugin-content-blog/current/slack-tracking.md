@@ -2,10 +2,10 @@
 title: "V8におけるスラック追跡"
 author: "Michael Stanton ([@alpencoder](https://twitter.com/alpencoder))、スラックの達人として知られる人物"
 description: "V8スラック追跡メカニズムの詳細な解説。"
-avatars:
+avatars: 
  - "michael-stanton"
-date: 2020-09-24 14:00:00
-tags:
+date: "2020-09-24 14:00:00"
+tags: 
  - internals
 ---
 スラック追跡は、新しいオブジェクトに実際に使用するサイズよりも**大きな初期サイズ**を与える方法であり、これにより迅速に新しいプロパティを追加できます。そして一定期間後、使われていないスペースをシステムに**魔法のように返却**します。すごいでしょ？

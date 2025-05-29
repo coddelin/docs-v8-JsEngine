@@ -1,11 +1,11 @@
 ---
 title: "번개처럼 빠른 파싱, 2부: 지연 파싱"
 author: "툰 베르와스트 ([@tverwaes](https://twitter.com/tverwaes))와 마르야 횔타 ([@marjakh](https://twitter.com/marjakh)), 더 얇은 파서"
-avatars:
+avatars: 
   - "toon-verwaest"
   - "marja-holtta"
-date: 2019-04-15 17:03:37
-tags:
+date: "2019-04-15 17:03:37"
+tags: 
   - internals
   - parsing
 tweet: "1117807107972243456"

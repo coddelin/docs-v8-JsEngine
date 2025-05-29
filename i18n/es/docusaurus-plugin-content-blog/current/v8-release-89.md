@@ -1,10 +1,10 @@
 ---
 title: "Lanzamiento de V8 v8.9"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), esperando una llamada"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-02-04
-tags:
+tags: 
  - lanzamiento
 description: "El lanzamiento de V8 v8.9 trae mejoras de rendimiento para llamadas con desajuste en el tamaño de los argumentos."
 tweet: "1357358418902802434"

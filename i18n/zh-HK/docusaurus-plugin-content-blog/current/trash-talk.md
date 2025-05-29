@@ -1,10 +1,10 @@
 ---
 title: "垃圾話：奧里諾科垃圾回收器"
 author: "Peter ‘垃圾處理者’ Marshall ([@hooraybuffer](https://twitter.com/hooraybuffer))"
-avatars:
+avatars: 
   - "peter-marshall"
-date: 2019-01-03 17:45:34
-tags:
+date: "2019-01-03 17:45:34"
+tags: 
   - 內部機制
   - 記憶體
   - 演講

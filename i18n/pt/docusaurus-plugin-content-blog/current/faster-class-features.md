@@ -1,10 +1,10 @@
 ---
 title: "Inicialização mais rápida de instâncias com novos recursos de classe"
 author: "[Joyee Cheung](https://twitter.com/JoyeeCheung), inicializador de instâncias"
-avatars:
+avatars: 
   - "joyee-cheung"
 date: 2022-04-20
-tags:
+tags: 
   - internals
 description: "As inicializações de instâncias com novos recursos de classe se tornaram mais rápidas desde o V8 v9.7."
 tweet: "1517041137378373632"

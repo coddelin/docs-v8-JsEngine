@@ -1,10 +1,10 @@
 ---
 title: "V8 リリース v8.1"
 author: "Dominik Inführ、謎の国際化男"
-avatars:
+avatars: 
   - "dominik-infuehr"
 date: 2020-02-25
-tags:
+tags: 
   - リリース
 description: "V8 v8.1 では、Intl.DisplayNames API による国際化サポートが改善されました。"
 ---

@@ -1,8 +1,8 @@
 ---
 title: "Lanzamiento de V8 v4.8"
 author: "el equipo de V8"
-date: 2015-11-25 13:33:37
-tags:
+date: "2015-11-25 13:33:37"
+tags: 
   - lanzamiento
 description: "V8 v4.8 añade soporte para varias características nuevas del lenguaje ES2015."
 ---

@@ -1,11 +1,11 @@
 ---
 title: "Mise en cache de code pour les développeurs JavaScript"
 author: "[Leszek Swirski](https://twitter.com/leszekswirski), casseur de cache"
-avatars:
+avatars: 
   - leszek-swirski
-date: 2019-04-08 13:33:37
+date: "2019-04-08 13:33:37"
 updated: 2020-06-16
-tags:
+tags: 
   - interne
 description: "La mise en cache du (byte)code réduit le temps de démarrage des sites web fréquemment visités en mettant en cache le résultat de l’analyse et de la compilation du JavaScript."
 tweet: "1115264282675953664"

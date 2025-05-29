@@ -1,10 +1,10 @@
 ---
 title: "Método `at` para indexação relativa"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2021-07-13
-tags:
+tags: 
   - ECMAScript
 description: "O JavaScript agora possui um método de indexação relativa para Arrays, TypedArrays e Strings."
 ---

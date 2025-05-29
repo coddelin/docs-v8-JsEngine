@@ -1,10 +1,10 @@
 ---
 title: "Plongée dans le TurboFan JIT"
 author: "Ben L. Titzer, Ingénieur logiciel et mécanicien TurboFan"
-avatars:
+avatars: 
   - "ben-titzer"
-date: 2015-07-13 13:33:37
-tags:
+date: "2015-07-13 13:33:37"
+tags: 
   - internals
 description: "Un plongeon approfondi dans la conception du nouveau compilateur TurboFan de V8."
 ---

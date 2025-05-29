@@ -1,10 +1,10 @@
 ---
 title: "Deserialización perezosa"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2018-02-12 13:33:37
-tags:
+date: "2018-02-12 13:33:37"
+tags: 
   - internals
 description: "La deserialización perezosa, disponible en V8 v6.4, reduce el consumo de memoria de V8 en más de 500 KB por pestaña del navegador en promedio."
 tweet: "962989179914383360"

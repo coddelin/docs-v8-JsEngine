@@ -1,10 +1,10 @@
 ---
 title: "수정된 `Function.prototype.toString`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-03-25
-tags:
+tags: 
   - ECMAScript
   - ES2019
 description: "Function.prototype.toString이 이제 공백과 주석을 포함한 소스 코드 텍스트의 정확한 조각을 반환합니다."

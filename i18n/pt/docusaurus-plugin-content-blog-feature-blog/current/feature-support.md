@@ -1,7 +1,7 @@
 ---
 title: "Suporte a recursos"
-permalink: /features/support/
-layout: layouts/base.njk
+permalink: "/features/support/"
+layout: "layouts/base.njk"
 description: "Este documento explica as listas de suporte a recursos das linguagens JavaScript e WebAssembly usadas no site do V8."
 ---
 # Suporte a recursos JavaScript/Wasm

@@ -1,10 +1,10 @@
 ---
 title: "Chamadas JavaScript mais rápidas"
 author: "[Victor Gomes](https://twitter.com/VictorBFG), o destruidor de quadros"
-avatars:
+avatars: 
   - "victor-gomes"
 date: 2021-02-15
-tags:
+tags: 
   - internals
 description: "Chamadas JavaScript mais rápidas removendo o adaptador de argumentos"
 tweet: "1361337569057865735"

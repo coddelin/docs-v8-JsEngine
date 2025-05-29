@@ -1,11 +1,11 @@
 ---
 title: "Improving V8 regular expressions"
 author: "Patrick Thier and Ana Peško, regular expressers of opinions about regular expressions"
-avatars:
+avatars: 
   - "patrick-thier"
   - "ana-pesko"
-date: 2019-10-04 15:24:16
-tags:
+date: "2019-10-04 15:24:16"
+tags: 
   - internals
   - RegExp
 description: "In this blog post we describe how we take advantage of the upsides of interpreting regular expressions and mitigate the downsides."

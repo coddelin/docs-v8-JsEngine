@@ -1,12 +1,12 @@
 ---
 title: "Jank Busters Part Two: Orinoco"
 author: "охотники за джанком: Улан Дегенбаев, Михаэль Липпаутц и Ханнес Пайер"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2016-04-12 13:33:37
-tags:
+date: "2016-04-12 13:33:37"
+tags: 
   - внутренности
   - память
 description: "В этой статье представлены три оптимизации, которые являются основой для нового средства сборки мусора в V8, кодовое название которого — Orinoco."

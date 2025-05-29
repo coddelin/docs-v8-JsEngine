@@ -1,8 +1,8 @@
 ---
 title: "退休 Octane"
 author: "V8 团队"
-date: 2017-04-12 13:33:37
-tags:
+date: "2017-04-12 13:33:37"
+tags: 
   - 基准测试
 description: "V8 团队认为现在是时候将 Octane 从推荐基准测试中退休了。"
 ---

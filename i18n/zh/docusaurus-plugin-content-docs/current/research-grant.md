@@ -1,7 +1,7 @@
 ---
-permalink: /grant/
-title: 研究资助
-layout: layouts/base.njk
+permalink: "/grant/"
+title: "研究资助"
+layout: "layouts/base.njk"
 description: "V8 研究资助支持基于 V8、JavaScript 和 WebAssembly 的编程语言及软件系统研究。"
 ---
 # V8 研究资助

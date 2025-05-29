@@ -1,10 +1,10 @@
 ---
 title: "Indicium: V8 運行時追蹤工具"
 author: "Zeynep Cankara ([@ZeynepCankara](https://twitter.com/ZeynepCankara))"
-avatars:
+avatars: 
   - "zeynep-cankara"
-date: 2020-10-01 11:56:00
-tags:
+date: "2020-10-01 11:56:00"
+tags: 
   - 工具
   - 系統分析器
 description: "Indicium: V8 系統分析器工具，用於分析 Map/IC 事件。"

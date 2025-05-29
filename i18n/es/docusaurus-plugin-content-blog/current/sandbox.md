@@ -2,10 +2,10 @@
 title: "El Sandbox de V8"
 description: "V8 presenta un sandbox ligero en el proceso para limitar el impacto de errores de corrupción de memoria"
 author: "Samuel Groß"
-avatars:
+avatars: 
   - samuel-gross
 date: 2024-04-04
-tags:
+tags: 
  - seguridad
 ---
 

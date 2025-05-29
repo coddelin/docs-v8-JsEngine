@@ -1,8 +1,8 @@
 ---
 title: "V8 versión v4.6"
 author: "el equipo de V8"
-date: 2015-08-28 13:33:37
-tags:
+date: "2015-08-28 13:33:37"
+tags: 
   - lanzamiento
 description: "V8 v4.6 viene con menos interrupciones y soporte para nuevas características del lenguaje ES2015."
 ---

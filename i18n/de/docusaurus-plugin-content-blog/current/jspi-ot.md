@@ -3,7 +3,7 @@ title: "WebAssembly JSPI geht in den Origin Trial"
 description: "Wir erklären den Beginn des Origin Trials für JSPI"
 author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-03-06
-tags:
+tags: 
   - WebAssembly
 ---
 Die JavaScript Promise Integration (JSPI) API von WebAssembly tritt mit der Chrome-Version M123 in einen Origin Trial ein. Das bedeutet, dass Sie testen können, ob Sie und Ihre Nutzer von dieser neuen API profitieren können.

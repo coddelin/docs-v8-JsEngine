@@ -1,10 +1,10 @@
 ---
 title: "V8リリース v7.2"
 author: "Andreas Haas、トラップの管理者"
-avatars:
+avatars: 
   - andreas-haas
-date: 2018-12-18 11:48:21
-tags:
+date: "2018-12-18 11:48:21"
+tags: 
   - release
 description: "V8 v7.2は、ハイスピードのJavaScript解析、高速なasync-await、ia32でのメモリ消費削減、パブリッククラスフィールド、その他多数の機能を特徴としています！"
 tweet: "1074978755934863361"

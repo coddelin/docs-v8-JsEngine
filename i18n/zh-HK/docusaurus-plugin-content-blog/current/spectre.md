@@ -1,11 +1,11 @@
 ---
 title: "一年與 Spectre：來自 V8 的觀點"
 author: "Ben L. Titzer 與 Jaroslav Sevcik"
-avatars:
+avatars: 
   - "ben-titzer"
   - "jaroslav-sevcik"
-date: 2019-04-23 14:15:22
-tags:
+date: "2019-04-23 14:15:22"
+tags: 
   - security
 tweet: "1120661732836499461"
 description: "V8 團隊詳細說明了他們對 2018 年頂級計算機安全問題之一 Spectre 的分析和緩解策略。"

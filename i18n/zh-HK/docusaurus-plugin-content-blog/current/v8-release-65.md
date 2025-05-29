@@ -1,8 +1,8 @@
 ---
 title: "V8 發佈 v6.5"
 author: "V8 團隊"
-date: 2018-02-01 13:33:37
-tags:
+date: "2018-02-01 13:33:37"
+tags: 
   - 發佈
 description: "V8 v6.5 增加了對 WebAssembly 流式編譯的支持，並引入了新的“非信任代碼模式”。"
 tweet: "959174292406640640"

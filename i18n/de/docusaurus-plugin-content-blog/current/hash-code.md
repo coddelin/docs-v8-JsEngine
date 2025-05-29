@@ -1,10 +1,10 @@
 ---
 title: "Optimierung von Hashtabellen: Verbergen des Hashcodes"
 author: "[Sathya Gunasekaran](https://twitter.com/_gsathya), Hüter der Hashcodes"
-avatars:
+avatars: 
   - "sathya-gunasekaran"
-date: 2018-01-29 13:33:37
-tags:
+date: "2018-01-29 13:33:37"
+tags: 
   - internals
 tweet: "958046113390411776"
 description: "Mehrere JavaScript-Datenstrukturen wie Map, Set, WeakSet und WeakMap verwenden unter der Haube Hashtabellen. Dieser Artikel erklärt, wie V8 v6.3 die Leistung von Hashtabellen verbessert."

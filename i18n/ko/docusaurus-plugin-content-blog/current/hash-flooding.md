@@ -1,10 +1,10 @@
 ---
 title: "Node.js에서의 해시 플러딩 취약점에 대해…"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed))"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2017-08-11 13:33:37
-tags:
+date: "2017-08-11 13:33:37"
+tags: 
   - security
 description: "Node.js는 해시 플러딩 취약점에 직면했습니다. 이 게시물에서는 해당 취약점의 배경과 V8에서의 해결 방법을 설명합니다."
 ---

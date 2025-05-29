@@ -1,7 +1,7 @@
 ---
 title: "Bonjour, monde!"
-author: 'l'équipe V8'
-date: 2015-07-10 13:33:37
+author: "l'équipe V8"
+date: "2015-07-10 13:33:37"
 description: "Le projet V8 a maintenant un blog!"
 ---
 Bienvenue sur le blog des développeurs de V8!

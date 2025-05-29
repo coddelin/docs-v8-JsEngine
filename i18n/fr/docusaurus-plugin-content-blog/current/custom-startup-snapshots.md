@@ -1,12 +1,12 @@
 ---
 title: "Snapshots personnalisés au démarrage"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), ingénieur logiciel et fournisseur de préchauffeurs pour moteurs"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-09-25 13:33:37
-tags:
+date: "2015-09-25 13:33:37"
+tags: 
   - internals
-description: 'Les intégrateurs de V8 peuvent utiliser des snapshots pour éviter le temps de démarrage associé à l'initialisation des programmes JavaScript.'
+description: "Les intégrateurs de V8 peuvent utiliser des snapshots pour éviter le temps de démarrage associé à l'initialisation des programmes JavaScript."
 ---
 La spécification JavaScript inclut de nombreuses fonctionnalités intégrées, allant des [fonctions mathématiques](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) à un [moteur d'expressions régulières complet](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions). Chaque contexte V8 nouvellement créé dispose de ces fonctions disponibles dès le départ. Pour que cela fonctionne, l'objet global (par exemple, l'objet window dans un navigateur) et toutes les fonctionnalités intégrées doivent être configurés et initialisés dans le tas de V8 au moment où le contexte est créé. Cela prend un certain temps si l'on part de zéro.
 

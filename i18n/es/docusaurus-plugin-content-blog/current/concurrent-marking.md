@@ -1,12 +1,12 @@
 ---
 title: "Marcado concurrente en V8"
 author: "Ulan Degenbaev, Michael Lippautz y Hannes Payer — liberadores del hilo principal"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2018-06-11 13:33:37
-tags:
+date: "2018-06-11 13:33:37"
+tags: 
   - internals
   - memory
 description: "Este artículo describe la técnica de recolección de basura llamada marcado concurrente."

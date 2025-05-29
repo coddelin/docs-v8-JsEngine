@@ -1,8 +1,8 @@
 ---
 title: "V8 发布 v5.6"
 author: "V8 团队"
-date: 2016-12-02 13:33:37
-tags:
+date: "2016-12-02 13:33:37"
+tags: 
   - 发布
 description: "V8 v5.6 带来了新的编译器管道、性能改进以及对 ECMAScript 语言特性的更广泛支持。"
 ---

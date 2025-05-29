@@ -1,13 +1,13 @@
 ---
 title: "Lanzamiento de V8 v8.5"
 author: "Zeynep Cankara, siguiendo algunos Mapas"
-avatars:
+avatars: 
  - "zeynep-cankara"
 date: 2020-07-21
-tags:
+tags: 
  - lanzamiento
 description: "El lanzamiento de V8 v8.5 incluye Promise.any, String#replaceAll, operadores de asignación lógica, soporte para WebAssembly multi-value y BigInt, y mejoras de rendimiento."
-tweet:
+tweet: 
 ---
 Cada seis semanas, creamos una nueva rama de V8 como parte de nuestro [proceso de lanzamiento](https://v8.dev/docs/release-process). Cada versión se deriva del maestro de Git de V8 inmediatamente antes de un hito de Chrome Beta. Hoy nos complace anunciar nuestra nueva rama, [V8 versión 8.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.5), que está en beta hasta su lanzamiento en coordinación con Chrome 85 Estable en varias semanas. V8 v8.5 está lleno de todo tipo de novedades orientadas a los desarrolladores. Este post ofrece un adelanto de algunos de los aspectos más destacados en anticipación al lanzamiento.
 

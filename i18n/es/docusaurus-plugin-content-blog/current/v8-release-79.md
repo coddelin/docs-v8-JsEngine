@@ -1,10 +1,10 @@
 ---
 title: "Lanzamiento de V8 v7.9"
 author: "Santiago Aboy Solanes, extraordinario compresor de punteros"
-avatars:
+avatars: 
   - "santiago-aboy-solanes"
 date: 2019-11-20
-tags:
+tags: 
   - lanzamiento
 description: "V8 v7.9 elimina la depreciación de transiciones Double ⇒ Tagged, manejo de getters de API en funciones integradas, almacenamiento en caché de OSR y soporte Wasm para múltiples espacios de código."
 tweet: "1197187184304050176"

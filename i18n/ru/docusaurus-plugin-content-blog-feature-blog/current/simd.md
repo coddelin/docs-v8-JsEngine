@@ -3,7 +3,7 @@ title: "Быстрые, параллельные приложения с WebAsse
 author: "Дипти Гандлури ([@dptig](https://twitter.com/dptig)), Томас Лайвли ([@tlively52](https://twitter.com/tlively52)), Ингвар Степанян ([@RReverser](https://twitter.com/RReverser))"
 date: 2020-01-30
 updated: 2022-11-06
-tags:
+tags: 
   - WebAssembly
 description: "Добавление векторных операций в WebAssembly"
 tweet: "1222944308183085058"

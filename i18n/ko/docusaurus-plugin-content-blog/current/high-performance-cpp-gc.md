@@ -1,12 +1,12 @@
 ---
 title: "C++를 위한 고성능 가비지 컬렉션"
 author: "Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), 그리고 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), C++ 메모리 전문가"
-avatars:
+avatars: 
   - "anton-bikineev"
   - "omer-katz"
   - "michael-lippautz"
 date: 2020-05-26
-tags:
+tags: 
   - internals
   - memory
   - cppgc

@@ -1,6 +1,6 @@
 ---
 title: "Intégration de `perf` de V8 sous Linux"
-description: 'Ce document explique comment analyser les performances du code JIT de V8 avec l'outil `perf` de Linux.'
+description: "Ce document explique comment analyser les performances du code JIT de V8 avec l'outil `perf` de Linux."
 ---
 V8 prend en charge l'outil `perf` de Linux en natif. Cela est activé via les options de ligne de commande `--perf-prof`.
 V8 génère des données de performance pendant l'exécution dans un fichier qui peut être utilisé pour analyser les performances du code JIT de V8 (y compris les noms des fonctions JS) avec l'outil `perf` de Linux.

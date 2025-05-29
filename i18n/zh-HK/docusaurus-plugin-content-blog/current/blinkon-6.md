@@ -1,8 +1,8 @@
 ---
 title: "V8 在 BlinkOn 6 會議"
 author: "V8 團隊"
-date: 2016-07-21 13:33:37
-tags:
+date: "2016-07-21 13:33:37"
+tags: 
   - 展示
 description: "V8 團隊在 BlinkOn 6 上的展示概覽。"
 ---

@@ -1,8 +1,8 @@
 ---
 title: "Domando la complejidad arquitectónica en V8 — el CodeStubAssembler"
 author: "[Daniel Clifford](https://twitter.com/expatdanno), ensamblador de CodeStubAssembler"
-date: 2017-11-16 13:33:37
-tags:
+date: "2017-11-16 13:33:37"
+tags: 
   - internals
 description: "V8 tiene su propia abstracción sobre el código ensamblador: el CodeStubAssembler. El CSA permite a V8 optimizar rápidamente y de forma confiable las funciones de JS a un nivel bajo, todo mientras admite múltiples plataformas."
 tweet: "931184976481177600"

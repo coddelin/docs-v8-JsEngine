@@ -1,10 +1,10 @@
 ---
 title: "Релиз V8 версии 9.2"
 author: "Ингвар Степанян ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-07-16
-tags:
+tags: 
  - релиз
 description: "Релиз V8 версии 9.2 добавляет метод `at` для относительной индексации и улучшения компрессии указателей."
 tweet: ""

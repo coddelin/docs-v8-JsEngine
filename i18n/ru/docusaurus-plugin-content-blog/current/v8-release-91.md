@@ -1,10 +1,10 @@
 ---
 title: "Выпуск V8 v9.1"
 author: "Ингвар Степанян ([@RReverser](https://twitter.com/RReverser)), тестирую мой личный бренд"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-05-04
-tags:
+tags: 
  - release
 description: "Выпуск V8 v9.1 включает поддержку проверок частных брендов, активацию await на верхнем уровне по умолчанию и улучшения производительности."
 tweet: "1389613320953532417"

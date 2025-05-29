@@ -1,10 +1,10 @@
 ---
 title: "垃圾话：Orinoco垃圾回收器"
 author: "Peter “垃圾” Marshall ([@hooraybuffer](https://twitter.com/hooraybuffer))"
-avatars:
+avatars: 
   - "peter-marshall"
-date: 2019-01-03 17:45:34
-tags:
+date: "2019-01-03 17:45:34"
+tags: 
   - 内部机制
   - 内存
   - 演讲

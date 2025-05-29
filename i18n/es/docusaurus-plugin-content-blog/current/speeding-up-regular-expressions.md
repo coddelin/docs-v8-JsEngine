@@ -1,10 +1,10 @@
 ---
 title: "Acelerando las expresiones regulares en V8"
 author: "Jakob Gruber, Ingeniero de Software Regular"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2017-01-10 13:33:37
-tags:
+date: "2017-01-10 13:33:37"
+tags: 
   - internals
   - RegExp
 description: "V8 recientemente migró las funciones integradas de RegExp de una implementación autohospedada en JavaScript a una que se conecta directamente a nuestra nueva arquitectura de generación de código basada en TurboFan."

@@ -2,7 +2,7 @@
 title: "WebAssembly Tail Calls"
 author: "Thibaud Michaud, Thomas Lively"
 date: 2023-04-06
-tags:
+tags: 
   - WebAssembly
 description: "Dieses Dokument erklärt den WebAssembly-Vorschlag für Tail Calls und demonstriert ihn mit einigen Beispielen."
 tweet: "1644077795059044353"

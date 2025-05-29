@@ -1,10 +1,10 @@
 ---
 title: "V8 發布 v7.2"
 author: "Andreas Haas, 陷阱處理者"
-avatars:
+avatars: 
   - andreas-haas
-date: 2018-12-18 11:48:21
-tags:
+date: "2018-12-18 11:48:21"
+tags: 
   - 發布
 description: "V8 v7.2 提供高速的 JavaScript 解析、更快的 async-await、降低 ia32 的內存消耗、公開類字段等多項功能！"
 tweet: "1074978755934863361"

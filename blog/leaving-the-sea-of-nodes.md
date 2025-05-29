@@ -1,14 +1,14 @@
 ---
- title: 'Land ahoy: leaving the Sea of Nodes'
- author: 'Darius Mercadier'
- avatars:
+ title: "Land ahoy: leaving the Sea of Nodes"
+ author: "Darius Mercadier"
+ avatars: 
    - darius-mercadier
  date: 2025-03-25
- tags:
+ tags: 
    - JavaScript
    - internals
  description: "Why V8 decided to move away from Sea of Nodes and go back to CFG instead"
- tweet: ''
+ tweet: ""
 ---
 
 V8’s end-tier optimizing compiler, Turbofan, is famously one of the few large-scale production compilers to use [Sea of Nodes](https://en.wikipedia.org/wiki/Sea_of_nodes) (SoN). However, since almost 3 years ago, we’ve started to get rid of Sea of Nodes and fall back to a more traditional [Control-Flow Graph](https://en.wikipedia.org/wiki/Control-flow_graph) (CFG) [Intermediate Representation](https://en.wikipedia.org/wiki/Intermediate_representation) (IR), which we named Turboshaft. By now, the whole JavaScript backend of Turbofan uses Turboshaft instead, and WebAssembly uses Turboshaft throughout its whole pipeline. Two parts of Turbofan still use some Sea of Nodes: the builtin pipeline, which we’re slowly replacing by Turboshaft, and the frontend of the JavaScript pipeline, which we’re replacing by Maglev, another CFG-based IR. This blog post explains the reasons that led us to move away from Sea of Nodes.

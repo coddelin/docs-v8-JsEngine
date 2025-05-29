@@ -1,10 +1,10 @@
 ---
 title: "Integrados incorporados"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2018-08-14 13:33:37
-tags:
+date: "2018-08-14 13:33:37"
+tags: 
   - internos
 description: "V8 v6.9 integra código incorporado en la sección .text del binario, reduciendo el tamaño mediano del montón de V8 por sitio web en un 19%."
 tweet: "1029382366693937162"

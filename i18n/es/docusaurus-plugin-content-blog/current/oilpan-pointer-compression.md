@@ -1,11 +1,11 @@
 ---
 title: "Compresión de punteros en Oilpan"
 author: "Anton Bikineev y Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), desensambladores caminantes"
-avatars:
+avatars: 
   - anton-bikineev
   - michael-lippautz
 date: 2022-11-28
-tags:
+tags: 
   - internalidades
   - memoria
   - cppgc

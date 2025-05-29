@@ -1,10 +1,10 @@
 ---
 title: "Blazingly fast parsing, part 1: optimizing the scanner"
 author: "Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)), scandalous optimizer"
-avatars:
+avatars: 
   - "toon-verwaest"
-date: 2019-03-25 13:33:37
-tags:
+date: "2019-03-25 13:33:37"
+tags: 
   - internals
   - parsing
 tweet: "1110205101652787200"

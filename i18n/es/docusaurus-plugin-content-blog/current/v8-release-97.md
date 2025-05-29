@@ -1,10 +1,10 @@
 ---
 title: "Lanzamiento de V8 v9.7"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-11-05
-tags:
+tags: 
  - lanzamiento
 description: "El lanzamiento de V8 v9.7 trae nuevos métodos de JavaScript para buscar hacia atrás en arrays."
 tweet: ""

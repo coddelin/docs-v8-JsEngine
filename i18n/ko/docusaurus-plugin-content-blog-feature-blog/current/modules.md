@@ -1,11 +1,11 @@
 ---
 title: "자바스크립트 모듈들"
 author: "애디 오스마니([@addyosmani](https://twitter.com/addyosmani))와 마티아스 비넨스([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
 - "addy-osmani"
 - "mathias-bynens"
 date: 2018-06-18
-tags:
+tags: 
   - ECMAScript
   - ES2015
 description: "이 글은 자바스크립트 모듈을 사용하는 방법, 이를 책임감 있게 배포하는 방법, 그리고 크롬 팀이 미래에 모듈을 더욱 개선하기 위해 노력하는 방식에 대해 설명합니다."

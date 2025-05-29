@@ -1,10 +1,10 @@
 ---
 title: "V8 リリース v8.6"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), キーボードファザー"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2020-09-21
-tags:
+tags: 
  - リリース
 description: "V8 リリース v8.6 は、尊重するコード、パフォーマンスの向上、規範的な変更をもたらします。"
 tweet: "1308062287731789825"

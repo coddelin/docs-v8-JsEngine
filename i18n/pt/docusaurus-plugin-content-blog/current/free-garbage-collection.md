@@ -1,11 +1,11 @@
 ---
 title: "Obtendo coleta de lixo gratuitamente"
 author: "Hannes Payer e Ross McIlroy, Idle Garbage Collectors"
-avatars:
+avatars: 
   - "hannes-payer"
   - "ross-mcilroy"
-date: 2015-08-07 13:33:37
-tags:
+date: "2015-08-07 13:33:37"
+tags: 
   - internals
   - memória
 description: "O Chrome 41 oculta operações caras de gerenciamento de memória dentro de pequenos períodos de tempo ocioso não utilizados, reduzindo o atraso."

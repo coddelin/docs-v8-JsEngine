@@ -1,10 +1,10 @@
 ---
 title: "脫離網頁：使用 Emscripten 的獨立 WebAssembly 二進位檔"
 author: "Alon Zakai"
-avatars:
+avatars: 
   - "alon-zakai"
 date: 2019-11-21
-tags:
+tags: 
   - WebAssembly
   - 工具
 description: "Emscripten 現在支援獨立的 Wasm 檔案，這些檔案不需要 JavaScript。"

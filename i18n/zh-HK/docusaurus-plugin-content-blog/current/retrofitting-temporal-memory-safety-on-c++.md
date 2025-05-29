@@ -1,12 +1,12 @@
 ---
 title: "在 C++ 上改裝時間記憶體安全性"
 author: "Anton Bikineev, Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), Hannes Payer ([@PayerHannes](https://twitter.com/PayerHannes))"
-avatars:
+avatars: 
   - anton-bikineev
   - michael-lippautz
   - hannes-payer
 date: 2022-06-14
-tags:
+tags: 
   - 內部構造
   - 記憶體
   - 安全性

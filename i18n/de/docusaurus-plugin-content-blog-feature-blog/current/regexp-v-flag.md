@@ -1,12 +1,12 @@
 ---
 title: "RegExp `v` Flag mit Mengennotation und Eigenschaften von Zeichenketten"
 author: "Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer und Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mark-davis"
   - "markus-scherer"
   - "mathias-bynens"
 date: 2022-06-27
-tags:
+tags: 
   - ECMAScript
 description: "Das neue RegExp `v`-Flag aktiviert den `unicodeSets`-Modus und ermöglicht die Unterstützung erweiterter Zeichenklassen, einschließlich Unicode-Eigenschaften von Zeichenketten, Mengennotation und verbesserter Groß-/Kleinschreibung-übergreifender Übereinstimmung."
 tweet: "1541419838513594368"

@@ -1,8 +1,8 @@
 ---
 title: "Vista previa del navegador WebAssembly"
 author: "el equipo de V8"
-date: 2016-10-31 13:33:37
-tags:
+date: "2016-10-31 13:33:37"
+tags: 
   - WebAssembly
 description: "WebAssembly o Wasm es un nuevo tiempo de ejecución y destino de compilación para la web, ¡ahora disponible detrás de una bandera en Chrome Canary!"
 ---

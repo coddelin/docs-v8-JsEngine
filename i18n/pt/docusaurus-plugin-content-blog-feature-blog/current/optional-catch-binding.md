@@ -1,10 +1,10 @@
 ---
 title: "Vínculo opcional de `catch`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-03-27
-tags:
+tags: 
   - ECMAScript
   - ES2019
 description: "No ES2019, `catch` agora pode ser usado sem um parâmetro."

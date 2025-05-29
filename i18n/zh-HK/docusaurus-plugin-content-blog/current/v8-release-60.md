@@ -1,8 +1,8 @@
 ---
 title: "V8 發佈 v6.0"
 author: "V8 團隊"
-date: 2017-06-09 13:33:37
-tags:
+date: "2017-06-09 13:33:37"
+tags: 
   - 發佈
 description: "V8 v6.0 帶來了多項性能改進，並引入了對 `SharedArrayBuffer` 和物件的剩餘/展開屬性的支援。"
 ---

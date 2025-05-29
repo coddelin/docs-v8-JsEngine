@@ -1,7 +1,7 @@
 ---
-permalink: /logo/
-title: Логотипы V8
-layout: layouts/base.njk
+permalink: "/logo/"
+title: "Логотипы V8"
+layout: "layouts/base.njk"
 description: "Скачайте официальные логотипы V8 здесь в векторном формате (SVG)."
 ---
 # Логотипы V8

@@ -1,8 +1,8 @@
 ---
 title: "WebAssemblyブラウザプレビュー"
 author: "V8チーム"
-date: 2016-10-31 13:33:37
-tags:
+date: "2016-10-31 13:33:37"
+tags: 
   - WebAssembly
 description: "WebAssembly（またはWasm）はウェブ向けの新しいランタイムおよびコンパイルターゲットであり、現在Chrome Canaryでフラグの背後で利用できます！"
 ---

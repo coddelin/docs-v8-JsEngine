@@ -1,11 +1,11 @@
 ---
 title: "`Intl.DisplayNames`"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu)) и Frank Yung-Fong Tang"
-avatars:
+avatars: 
   - "shu-yu-guo"
   - "frank-tang"
 date: 2020-02-13
-tags:
+tags: 
   - Intl
   - Node.js 14
 description: "API Intl.DisplayNames позволяет локализованно отображать название языков, регионов, скриптов и валют."

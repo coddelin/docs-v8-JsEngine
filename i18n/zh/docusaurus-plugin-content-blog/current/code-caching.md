@@ -1,10 +1,10 @@
 ---
 title: "代码缓存"
 author: "杨果 ([@hashseed](https://twitter.com/hashseed))，软件工程师"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-07-27 13:33:37
-tags:
+date: "2015-07-27 13:33:37"
+tags: 
   - 内部机制
 description: "V8 现在支持（字节）代码缓存，即缓存 JavaScript 解析和编译的结果。"
 ---

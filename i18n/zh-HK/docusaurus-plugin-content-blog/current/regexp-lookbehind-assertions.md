@@ -1,10 +1,10 @@
 ---
 title: "RegExp 後行斷言"
 author: "Yang Guo，正則表達式工程師"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2016-02-26 13:33:37
-tags:
+date: "2016-02-26 13:33:37"
+tags: 
   - ECMAScript
   - RegExp
 description: "JavaScript 正則表達式功能有了新進展：後行斷言。"

@@ -1,10 +1,10 @@
 ---
 title: "`String.prototype.matchAll`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2019-02-02
-tags:
+tags: 
   - ECMAScript
   - ES2020
   - io19

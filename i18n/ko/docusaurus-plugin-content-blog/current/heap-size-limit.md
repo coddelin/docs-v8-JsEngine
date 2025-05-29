@@ -1,12 +1,12 @@
 ---
 title: "크롬을 위한 한 걸음, V8을 위한 거대한 도약"
 author: "힙의 수호자들 울란 데겐바예프, 하네스 파이어, 미카엘 립파우츠, 그리고 DevTools 전사 알렉세이 코지야틴스키"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2017-02-09 13:33:37
-tags:
+date: "2017-02-09 13:33:37"
+tags: 
   - 메모리
 description: "V8이 최근 힙 크기에 대한 하드 제한을 증가시켰습니다."
 ---

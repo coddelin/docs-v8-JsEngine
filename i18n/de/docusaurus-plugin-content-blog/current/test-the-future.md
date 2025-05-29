@@ -1,8 +1,8 @@
 ---
 title: "Helfen Sie uns, die Zukunft von V8 zu testen!"
 author: "Daniel Clifford ([@expatdanno](https://twitter.com/expatdanno)), Originaler Münchner V8-Brauer"
-date: 2017-02-14 13:33:37
-tags:
+date: "2017-02-14 13:33:37"
+tags: 
   - internals
 description: "Testen Sie die neue Compiler-Pipeline von V8 mit Ignition und TurboFan in Chrome Canary schon heute!"
 ---

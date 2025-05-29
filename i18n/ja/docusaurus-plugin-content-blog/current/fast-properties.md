@@ -1,10 +1,10 @@
 ---
 title: "V8での高速なプロパティ"
 author: "Camillo Bruni（[@camillobruni](https://twitter.com/camillobruni)）、また[「Fast `for`-`in`](/blog/fast-for-in)」の著者でもあります"
-avatars:
+avatars: 
   - "camillo-bruni"
-date: 2017-08-30 13:33:37
-tags:
+date: "2017-08-30 13:33:37"
+tags: 
   - internals
 description: "この記事は、V8がJavaScriptのプロパティを舞台裏でどのように処理するかを技術的に掘り下げて説明します。"
 ---

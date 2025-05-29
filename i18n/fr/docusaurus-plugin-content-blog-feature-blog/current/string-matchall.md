@@ -1,14 +1,14 @@
 ---
 title: "`String.prototype.matchAll`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2019-02-02
-tags:
+tags: 
   - ECMAScript
   - ES2020
   - io19
-description: 'String.prototype.matchAll facilite l'itération sur tous les objets correspondants produits par une expression régulière donnée.'
+description: "String.prototype.matchAll facilite l'itération sur tous les objets correspondants produits par une expression régulière donnée."
 ---
 Il est courant d'appliquer à plusieurs reprises la même expression régulière sur une chaîne pour obtenir toutes les correspondances. Dans une certaine mesure, cela est déjà possible aujourd'hui en utilisant la méthode `String#match`.
 

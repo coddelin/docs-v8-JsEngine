@@ -1,11 +1,11 @@
 ---
 title: "Almacenamiento en caché de código para desarrolladores de JavaScript"
 author: "[Leszek Swirski](https://twitter.com/leszekswirski), destructor de caché"
-avatars:
+avatars: 
   - leszek-swirski
-date: 2019-04-08 13:33:37
+date: "2019-04-08 13:33:37"
 updated: 2020-06-16
-tags:
+tags: 
   - internals
 description: "El almacenamiento en caché de (byte)código reduce el tiempo de inicio de sitios web visitados frecuentemente almacenando en caché el resultado del análisis y la compilación de JavaScript."
 tweet: "1115264282675953664"

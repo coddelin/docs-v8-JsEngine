@@ -1,9 +1,9 @@
 ---
 title: "Accélération des instantanés de tas V8"
-description: 'Cet article sur les instantanés de tas V8 présente des problèmes de performance rencontrés par les ingénieurs de Bloomberg, et la façon dont nous les avons résolus pour rendre l'analyse mémoire JavaScript plus rapide que jamais.'
+description: "Cet article sur les instantanés de tas V8 présente des problèmes de performance rencontrés par les ingénieurs de Bloomberg, et la façon dont nous les avons résolus pour rendre l'analyse mémoire JavaScript plus rapide que jamais."
 author: "José Dapena Paz"
 date: 2023-07-27
-tags:
+tags: 
  - mémoire
  - outils
 ---

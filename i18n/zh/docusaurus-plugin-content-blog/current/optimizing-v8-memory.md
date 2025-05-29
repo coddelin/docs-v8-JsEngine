@@ -1,12 +1,12 @@
 ---
 title: "优化 V8 的内存消耗"
 author: "V8 内存管理工程师 Ulan Degenbaev、Michael Lippautz、Hannes Payer 和 Toon Verwaest"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2016-10-07 13:33:37
-tags:
+date: "2016-10-07 13:33:37"
+tags: 
   - 内存
   - 基准测试
 description: "V8 团队分析并显著减少了多个网站的内存占用，这些网站被认为是现代 Web 开发模式的代表。"

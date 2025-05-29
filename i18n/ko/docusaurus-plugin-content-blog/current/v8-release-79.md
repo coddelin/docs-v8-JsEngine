@@ -1,10 +1,10 @@
 ---
 title: "V8 릴리스 v7.9"
 author: "Santiago Aboy Solanes, 포인터 압축 전문가"
-avatars:
+avatars: 
   - "santiago-aboy-solanes"
 date: 2019-11-20
-tags:
+tags: 
   - release
 description: "V8 v7.9는 Double ⇒ Tagged 전환에 대한 폐기 제거, 내장 함수에서 API getter 처리, OSR 캐싱, 그리고 여러 코드 공간을 지원하는 Wasm 등 다양한 기능을 제공합니다."
 tweet: "1197187184304050176"

@@ -1,11 +1,11 @@
 ---
 title: "`Intl.NumberFormat`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)) 그리고 Shane F. Carr"
-avatars:
+avatars: 
   - "mathias-bynens"
   - "shane-carr"
 date: 2019-08-08
-tags:
+tags: 
   - Intl
   - io19
 description: "Intl.NumberFormat는 지역별 숫자 형식을 지원합니다."

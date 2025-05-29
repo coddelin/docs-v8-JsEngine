@@ -1,8 +1,8 @@
 ---
 title: "V8-Version v4.7"
 author: "das V8-Team"
-date: 2015-10-14 13:33:37
-tags:
+date: "2015-10-14 13:33:37"
+tags: 
   - Version
 description: "V8 v4.7 kommt mit reduziertem Speicherverbrauch und Unterstützung für neue ES2015 Sprachfunktionen."
 ---

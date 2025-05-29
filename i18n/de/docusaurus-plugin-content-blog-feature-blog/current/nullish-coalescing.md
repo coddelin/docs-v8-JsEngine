@@ -1,10 +1,10 @@
 ---
 title: "Nullish Coalescing"
 author: "Justin Ridgewell"
-avatars:
+avatars: 
   - "justin-ridgewell"
 date: 2019-09-17
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "Der JavaScript-Operator für nullish coalescing ermöglicht sicherere Standardausdrücke."

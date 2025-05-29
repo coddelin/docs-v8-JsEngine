@@ -1,11 +1,11 @@
 ---
 title: "Получение сборки мусора бесплатно"
 author: "Ханнес Пайер и Росс МакИлрой, Idle Garbage Collectors"
-avatars:
+avatars: 
   - "hannes-payer"
   - "ross-mcilroy"
-date: 2015-08-07 13:33:37
-tags:
+date: "2015-08-07 13:33:37"
+tags: 
   - internals
   - memory
 description: "Chrome 41 скрывает дорогостоящие операции управления памятью внутри небольших, иначе неиспользуемых промежутков времени простоя, снижая заикания."

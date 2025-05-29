@@ -1,8 +1,8 @@
 ---
 title: "V8 릴리즈 v6.0"
 author: "V8 팀"
-date: 2017-06-09 13:33:37
-tags:
+date: "2017-06-09 13:33:37"
+tags: 
   - release
 description: "V8 v6.0은 여러 성능 개선 사항과 함께 SharedArrayBuffer 및 객체 rest/spread 속성에 대한 지원을 도입합니다."
 ---

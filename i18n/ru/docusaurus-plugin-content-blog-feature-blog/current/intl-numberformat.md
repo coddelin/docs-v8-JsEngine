@@ -1,11 +1,11 @@
 ---
 title: "`Intl.NumberFormat`"
 author: "Маттиас Байненс ([@mathias](https://twitter.com/mathias)) и Шейн Ф. Карр"
-avatars:
+avatars: 
   - "mathias-bynens"
   - "shane-carr"
 date: 2019-08-08
-tags:
+tags: 
   - Intl
   - io19
 description: "Intl.NumberFormat позволяет форматировать числа в соответствии с локалью."

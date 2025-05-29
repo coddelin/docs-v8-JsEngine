@@ -2,7 +2,7 @@
 title: "Llamadas en cola WebAssembly"
 author: "Thibaud Michaud, Thomas Lively"
 date: 2023-04-06
-tags:
+tags: 
   - WebAssembly
 description: "Este documento explica la propuesta de llamadas en cola de WebAssembly y la demuestra con algunos ejemplos."
 tweet: "1644077795059044353"

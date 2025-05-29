@@ -1,10 +1,10 @@
 ---
 title: "提升 V8 中 `DataView` 性能"
-author: 'Théotime Grohens, <i lang="fr">低数据视图专家</i>，以及 Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer))，专业性能伙伴'
-avatars:
+author: "Théotime Grohens, <i lang=\"fr\">低数据视图专家</i>，以及 Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer))，专业性能伙伴"
+avatars: 
   - "benedikt-meurer"
-date: 2018-09-18 11:20:37
-tags:
+date: "2018-09-18 11:20:37"
+tags: 
   - ECMAScript
   - 基准测试
 description: "V8 v6.9 缩小了 `DataView` 和等效 TypedArray 代码之间的性能差距，有效使 `DataView` 在性能关键的真实应用中变得可用。"

@@ -1,10 +1,10 @@
 ---
-title: '"ECMAScript 사양 이해하기, 2부"의 추가 콘텐츠'
+title: "\"ECMAScript 사양 이해하기, 2부\"의 추가 콘텐츠"
 author: "[Marja Hölttä](https://twitter.com/marjakh), 추측적 사양 관찰자"
-avatars:
+avatars: 
   - marja-holtta
 date: 2020-03-02
-tags:
+tags: 
   - ECMAScript
 description: "ECMAScript 사양을 읽는 튜토리얼"
 tweet: ""

@@ -1,12 +1,12 @@
 ---
 title: "V8中的并发标记"
 author: "Ulan Degenbaev, Michael Lippautz 和 Hannes Payer — 主线程解放者"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2018-06-11 13:33:37
-tags:
+date: "2018-06-11 13:33:37"
+tags: 
   - 内部结构
   - 内存
 description: "这篇文章描述了一种叫做并发标记的垃圾回收技术。"

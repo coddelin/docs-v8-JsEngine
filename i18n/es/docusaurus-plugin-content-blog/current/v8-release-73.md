@@ -1,10 +1,10 @@
 ---
 title: "Lanzamiento de V8 v7.3"
 author: "Clemens Backes, encargado del compilador"
-avatars:
+avatars: 
   - clemens-backes
-date: 2019-02-07 11:30:42
-tags:
+date: "2019-02-07 11:30:42"
+tags: 
   - lanzamiento
 description: "¡V8 v7.3 incluye mejoras en el rendimiento de WebAssembly y async, rastros de stacks async, Object.fromEntries, String#matchAll, y mucho más!"
 tweet: "1093457099441561611"

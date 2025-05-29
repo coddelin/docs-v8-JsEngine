@@ -1,10 +1,10 @@
 ---
 title: "V8 릴리즈 v7.7"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), 릴리즈 노트의 게으른 작성자"
-avatars:
+avatars: 
   - "mathias-bynens"
-date: 2019-08-13 16:45:00
-tags:
+date: "2019-08-13 16:45:00"
+tags: 
   - release
 description: "V8 v7.7은 지연된 피드백 할당, 더 빠른 WebAssembly 백그라운드 컴파일, 스택 트레이스 개선 및 새로운 Intl.NumberFormat 기능을 제공한다."
 tweet: "1161287541611323397"

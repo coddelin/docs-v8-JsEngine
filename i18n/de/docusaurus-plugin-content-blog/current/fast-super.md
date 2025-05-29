@@ -1,10 +1,10 @@
 ---
 title: "Super schnelle `super`-Eigenschaftszugriffe"
 author: "[Marja Hölttä](https://twitter.com/marjakh), Super-Optimierer"
-avatars:
+avatars: 
   - marja-holtta
 date: 2021-02-18
-tags:
+tags: 
   - JavaScript
 description: "Schnellere `super`-Eigenschaftszugriffe in V8 v9.0"
 tweet: "1362465295848333316"

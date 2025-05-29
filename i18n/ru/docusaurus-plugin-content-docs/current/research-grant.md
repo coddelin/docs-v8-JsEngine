@@ -1,7 +1,7 @@
 ---
-permalink: /grant/
-title: Исследовательский грант
-layout: layouts/base.njk
+permalink: "/grant/"
+title: "Исследовательский грант"
+layout: "layouts/base.njk"
 description: "Грант на исследования V8 финансирует исследования языков программирования и системного программного обеспечения, основанных на V8, JavaScript и WebAssembly."
 ---
 # Исследовательский грант V8

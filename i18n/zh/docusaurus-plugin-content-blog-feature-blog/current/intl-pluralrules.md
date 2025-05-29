@@ -1,10 +1,10 @@
 ---
 title: "`Intl.PluralRules`"
 author: "Mathias Bynens（[@mathias](https://twitter.com/mathias)）"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-10-04
-tags:
+tags: 
   - Intl
 description: "处理复数是一个可能看起来很简单的问题，直到你发现每种语言都有自己的复数规则。Intl.PluralRules API 可以提供帮助！"
 tweet: "915542989493202944"

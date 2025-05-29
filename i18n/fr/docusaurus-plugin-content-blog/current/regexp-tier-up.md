@@ -1,14 +1,14 @@
 ---
 title: "Améliorer les expressions régulières V8"
-author: 'Patrick Thier et Ana Peško, exprimeurs réguliers d'opinions sur les expressions régulières'
-avatars:
+author: "Patrick Thier et Ana Peško, exprimeurs réguliers d'opinions sur les expressions régulières"
+avatars: 
   - "patrick-thier"
   - "ana-pesko"
-date: 2019-10-04 15:24:16
-tags:
+date: "2019-10-04 15:24:16"
+tags: 
   - internals
   - RegExp
-description: 'Dans cet article de blog, nous décrivons comment nous tirons parti des avantages de l'interprétation des expressions régulières tout en atténuant ses inconvénients.'
+description: "Dans cet article de blog, nous décrivons comment nous tirons parti des avantages de l'interprétation des expressions régulières tout en atténuant ses inconvénients."
 tweet: "1180131710568030208"
 ---
 Dans sa configuration par défaut, V8 compile les expressions régulières en code natif lors de leur première exécution. Dans le cadre de notre travail sur [V8 sans JIT](/blog/jitless), nous avons introduit un interpréteur pour les expressions régulières. L'interprétation des expressions régulières présente l'avantage d'utiliser moins de mémoire, mais cela entraîne une pénalité en termes de performances. Dans cet article de blog, nous décrivons comment nous tirons parti des avantages de l'interprétation des expressions régulières tout en atténuant ses inconvénients.

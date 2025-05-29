@@ -1,11 +1,11 @@
 ---
 title: "JavaScript 개발자를 위한 코드 캐싱"
 author: "[Leszek Swirski](https://twitter.com/leszekswirski), 캐시 스매셔"
-avatars:
+avatars: 
   - leszek-swirski
-date: 2019-04-08 13:33:37
+date: "2019-04-08 13:33:37"
 updated: 2020-06-16
-tags:
+tags: 
   - internals
 description: "(바이트)코드 캐싱은 JavaScript 파싱 + 컴파일 결과를 캐싱하여 자주 방문하는 웹사이트의 시작 시간을 줄입니다."
 tweet: "1115264282675953664"

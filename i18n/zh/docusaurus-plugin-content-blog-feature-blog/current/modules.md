@@ -1,11 +1,11 @@
 ---
 title: "JavaScript 模块"
 author: "Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
 - "addy-osmani"
 - "mathias-bynens"
 date: 2018-06-18
-tags:
+tags: 
   - ECMAScript
   - ES2015
 description: "本文解释了如何使用 JavaScript 模块、如何合理地部署它们，以及 Chrome 团队如何努力在未来使模块更加完善。"

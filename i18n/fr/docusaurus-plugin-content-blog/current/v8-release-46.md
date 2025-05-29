@@ -1,8 +1,8 @@
 ---
 title: "Version V8 v4.6"
 author: "l’équipe V8"
-date: 2015-08-28 13:33:37
-tags:
+date: "2015-08-28 13:33:37"
+tags: 
   - version
 description: "V8 v4.6 offre moins de saccades et prend en charge les nouvelles fonctionnalités linguistiques d’ES2015."
 ---

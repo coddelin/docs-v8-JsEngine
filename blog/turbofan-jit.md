@@ -1,10 +1,10 @@
 ---
 title: "Digging into the TurboFan JIT"
 author: "Ben L. Titzer, Software Engineer and TurboFan Mechanic"
-avatars:
+avatars: 
   - "ben-titzer"
-date: 2015-07-13 13:33:37
-tags:
+date: "2015-07-13 13:33:37"
+tags: 
   - internals
 description: "A deep-dive into the design of V8’s new TurboFan optimizing compiler."
 ---

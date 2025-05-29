@@ -1,8 +1,8 @@
 ---
 title: "V8 release v4.6"
 author: "the V8 team"
-date: 2015-08-28 13:33:37
-tags:
+date: "2015-08-28 13:33:37"
+tags: 
   - release
 description: "V8 v4.6 comes with reduced jank and support for new ES2015 language features."
 ---

@@ -1,10 +1,10 @@
 ---
 title: "커스텀 시작 스냅샷"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), 소프트웨어 엔지니어 겸 엔진 사전 예열 공급자"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-09-25 13:33:37
-tags:
+date: "2015-09-25 13:33:37"
+tags: 
   - 내부 구조
 description: "V8 임베더는 스냅샷을 활용하여 JavaScript 프로그램 초기화 시 소요되는 시작 시간을 줄일 수 있습니다."
 ---

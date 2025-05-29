@@ -1,14 +1,14 @@
 ---
 title: "BigInt : entiers à précision arbitraire en JavaScript"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-05-01
-tags:
+tags: 
   - ECMAScript
   - ES2020
   - io19
-description: 'Les BigInts sont un nouveau type primitif numérique en JavaScript qui peut représenter des entiers avec une précision arbitraire. Cet article examine quelques cas d'utilisation et explique les nouvelles fonctionnalités de Chrome 67 en comparant les BigInts aux Numbers en JavaScript.'
+description: "Les BigInts sont un nouveau type primitif numérique en JavaScript qui peut représenter des entiers avec une précision arbitraire. Cet article examine quelques cas d'utilisation et explique les nouvelles fonctionnalités de Chrome 67 en comparant les BigInts aux Numbers en JavaScript."
 tweet: "990991035630206977"
 ---
 Les `BigInt` sont un nouveau type primitif numérique en JavaScript qui peuvent représenter des entiers avec une précision arbitraire. Avec les `BigInt`, vous pouvez stocker et manipuler en toute sécurité de grands entiers même au-delà de la limite des entiers sûrs pour les `Number`. Cet article examine quelques cas d'utilisation et explique les nouvelles fonctionnalités de Chrome 67 en comparant les `BigInt` aux `Number` en JavaScript.

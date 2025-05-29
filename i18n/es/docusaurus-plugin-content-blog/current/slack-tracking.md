@@ -2,10 +2,10 @@
 title: "Seguimiento de holgura en V8"
 author: "Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), maestro reconocido de *holgura*"
 description: "Una mirada detallada al mecanismo de seguimiento de holgura de V8."
-avatars:
+avatars: 
  - "michael-stanton"
-date: 2020-09-24 14:00:00
-tags:
+date: "2020-09-24 14:00:00"
+tags: 
  - internals
 ---
 El seguimiento de holgura es una forma de dar a los nuevos objetos un tamaño inicial que es **mayor de lo que realmente podrían usar**, para que puedan agregar nuevas propiedades rápidamente. Y luego, después de algún tiempo, **devolver mágicamente ese espacio no utilizado al sistema**. ¿Genial, no?

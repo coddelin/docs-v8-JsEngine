@@ -1,10 +1,10 @@
 ---
 title: "動態 `import()`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-11-21
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "動態 import() 相較於靜態 import 解鎖了新功能。本文比較了兩者並概述了新功能。"

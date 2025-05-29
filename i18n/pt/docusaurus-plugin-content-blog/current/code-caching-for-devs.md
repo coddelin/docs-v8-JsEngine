@@ -1,11 +1,11 @@
 ---
 title: "Cache de código para desenvolvedores JavaScript"
 author: "[Leszek Swirski](https://twitter.com/leszekswirski), destruidor de cache"
-avatars:
+avatars: 
   - leszek-swirski
-date: 2019-04-08 13:33:37
+date: "2019-04-08 13:33:37"
 updated: 2020-06-16
-tags:
+tags: 
   - internos
 description: "O cache de (byte)código reduz o tempo de inicialização de websites frequentemente visitados ao armazenar o resultado da análise e compilação do JavaScript."
 tweet: "1115264282675953664"

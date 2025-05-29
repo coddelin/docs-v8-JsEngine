@@ -1,12 +1,12 @@
 ---
 title: "V8의 동시 마킹"
 author: "Ulan Degenbaev, Michael Lippautz, 그리고 Hannes Payer — 메인 스레드 해방자"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2018-06-11 13:33:37
-tags:
+date: "2018-06-11 13:33:37"
+tags: 
   - internals
   - memory
 description: "이 게시글은 동시 마킹이라는 가비지 컬렉션 기술을 설명합니다."

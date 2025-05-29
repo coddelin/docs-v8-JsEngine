@@ -1,10 +1,10 @@
 ---
 title: "V8 リリース v8.9"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 呼び出し待ち"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-02-04
-tags:
+tags: 
  - リリース
 description: "V8 リリース v8.9 は、引数数のミスマッチがある呼び出しの性能を向上します。"
 tweet: "1357358418902802434"

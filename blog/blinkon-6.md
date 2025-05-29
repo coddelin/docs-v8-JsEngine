@@ -1,8 +1,8 @@
 ---
 title: "V8 at the BlinkOn 6 conference"
 author: "the V8 team"
-date: 2016-07-21 13:33:37
-tags:
+date: "2016-07-21 13:33:37"
+tags: 
   - presentations
 description: "An overview of the V8 team’s presentations at BlinkOn 6."
 ---

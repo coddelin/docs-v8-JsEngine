@@ -1,10 +1,10 @@
 ---
 title: "Lançamento do V8 v9.6"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-10-13
-tags:
+tags: 
  - lançamento
 description: "O V8 v9.6 traz suporte para Tipos de Referência no WebAssembly."
 tweet: "1448262079476076548"

@@ -1,10 +1,10 @@
 ---
 title: "V8 發佈 v9.4"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-09-06
-tags:
+tags: 
  - release
 description: "V8 發佈 v9.4 為 JavaScript 帶來類別靜態初始化區塊。"
 tweet: "1434915404418277381"

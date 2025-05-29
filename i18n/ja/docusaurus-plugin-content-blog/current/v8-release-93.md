@@ -1,10 +1,10 @@
 ---
 title: "V8 リリース v9.3"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-08-09
-tags:
+tags: 
  - リリース
 description: "V8 リリース v9.3 は、Object.hasOwnとError causesのサポートを提供し、コンパイル性能を向上させ、Androidでの不信コード生成緩和策を無効化します。"
 tweet: ""

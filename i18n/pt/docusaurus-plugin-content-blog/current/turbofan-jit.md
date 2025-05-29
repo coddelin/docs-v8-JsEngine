@@ -1,10 +1,10 @@
 ---
 title: "Explorando o TurboFan JIT"
 author: "Ben L. Titzer, Engenheiro de Software e Mecânico TurboFan"
-avatars:
+avatars: 
   - "ben-titzer"
-date: 2015-07-13 13:33:37
-tags:
+date: "2015-07-13 13:33:37"
+tags: 
   - internals
 description: "Uma análise profunda do design do novo compilador otimizador TurboFan do V8."
 ---

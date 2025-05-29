@@ -1,12 +1,12 @@
 ---
-title: 'Assistants d'itérateurs'
+title: "Assistants d'itérateurs"
 author: "Rezvan Mahdavi Hezaveh"
-avatars:
+avatars: 
   - "rezvan-mahdavi-hezaveh"
 date: 2024-03-27
-tags:
+tags: 
   - ECMAScript
-description: 'Interfaces qui aident à l'utilisation générale et à la consommation des itérateurs.'
+description: "Interfaces qui aident à l'utilisation générale et à la consommation des itérateurs."
 tweet: ""
 ---
 

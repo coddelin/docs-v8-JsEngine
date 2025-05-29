@@ -1,12 +1,12 @@
 ---
 title: "Релиз V8 v8.3"
 author: "[Виктор Гомес](https://twitter.com/VictorBFG), безопасно работает из дома"
-avatars:
+avatars: 
  - "victor-gomes"
 date: 2020-05-04
-tags:
+tags: 
  - release
-description: 'V8 v8.3 включает более быстрые ArrayBuffer'ы, большие объемы памяти Wasm и устаревшие API.'
+description: "V8 v8.3 включает более быстрые ArrayBuffer'ы, большие объемы памяти Wasm и устаревшие API."
 tweet: "1257333120115847171"
 ---
 

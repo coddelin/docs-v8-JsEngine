@@ -1,10 +1,10 @@
 ---
 title: "延遲反序列化"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2018-02-12 13:33:37
-tags:
+date: "2018-02-12 13:33:37"
+tags: 
   - internals
 description: "延遲反序列化，已在 V8 v6.4 中提供，可平均減少每個瀏覽器標籤超過 500 KB 的 V8 記憶體使用量。"
 tweet: "962989179914383360"

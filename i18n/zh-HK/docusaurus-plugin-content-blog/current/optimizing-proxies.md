@@ -1,10 +1,10 @@
 ---
 title: "優化 V8 中的 ES2015 代理"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 代理優化專家"
-avatars:
+avatars: 
   - "maya-armyanova"
-date: 2017-10-05 13:33:37
-tags:
+date: "2017-10-05 13:33:37"
+tags: 
   - ECMAScript
   - 基準測試
   - 內部結構

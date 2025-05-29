@@ -1,10 +1,10 @@
 ---
 title: "Vorübergehende Deaktivierung der Escape-Analyse"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), Sandbox-Escape-Analytiker"
-avatars:
+avatars: 
   - "mathias-bynens"
-date: 2017-09-22 13:33:37
-tags:
+date: "2017-09-22 13:33:37"
+tags: 
   - sicherheit
 description: "Wir haben die Escape-Analyse von V8 in Chrome 61 deaktiviert, um Benutzer vor einer Sicherheitslücke zu schützen."
 tweet: "911339802884284416"

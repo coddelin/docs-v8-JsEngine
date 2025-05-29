@@ -1,8 +1,8 @@
 ---
 title: "V8-Version v6.4"
 author: "das V8-Team"
-date: 2017-12-19 13:33:37
-tags:
+date: "2017-12-19 13:33:37"
+tags: 
   - Veröffentlichung
 description: "V8 v6.4 bringt Leistungsverbesserungen, neue JavaScript-Sprachfunktionen und mehr."
 tweet: "943057597481082880"

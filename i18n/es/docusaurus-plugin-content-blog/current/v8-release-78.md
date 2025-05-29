@@ -1,10 +1,10 @@
 ---
 title: "Versión V8 v7.8"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), el hechicero perezoso"
-avatars:
+avatars: 
   - "ingvar-stepanyan"
 date: 2019-09-27
-tags:
+tags: 
   - lanzamiento
 description: "V8 v7.8 incorpora compilación en streaming durante la precarga, API C de WebAssembly, desestructuración de objetos más rápida y coincidencia de RegExp, además de tiempos de inicio mejorados."
 tweet: "1177600702861971459"

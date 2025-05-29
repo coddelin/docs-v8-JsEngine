@@ -1,10 +1,10 @@
 ---
 title: "Encendiendo el intérprete Ignition"
 author: "Ross McIlroy, V8 Ignition Jump Starter"
-avatars:
+avatars: 
   - "ross-mcilroy"
-date: 2016-08-23 13:33:37
-tags:
+date: "2016-08-23 13:33:37"
+tags: 
   - internals
 description: "Con el intérprete Ignition, V8 compila funciones JavaScript en un bytecode conciso, que es entre el 50% y el 25% del tamaño del código máquina base equivalente."
 ---

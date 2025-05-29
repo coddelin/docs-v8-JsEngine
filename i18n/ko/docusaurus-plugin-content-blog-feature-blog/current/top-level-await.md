@@ -1,10 +1,10 @@
 ---
 title: "최상위 `await`"
 author: "Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))"
-avatars:
+avatars: 
   - "myles-borins"
 date: 2019-10-08
-tags:
+tags: 
   - ECMAScript
   - Node.js 14
 description: "JavaScript 모듈에 최상위 `await`가 도입됩니다! 곧 비동기 함수에 있지 않아도 `await`를 사용할 수 있습니다."

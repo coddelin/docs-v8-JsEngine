@@ -1,10 +1,10 @@
 ---
 title: "V8版本 v9.9发布"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 达到99%的完成度"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2022-01-31
-tags:
+tags: 
  - 发布
 description: "V8版本 v9.9带来了新的国际化API。"
 tweet: "1488190967727411210"

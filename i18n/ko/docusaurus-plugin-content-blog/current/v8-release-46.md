@@ -1,8 +1,8 @@
 ---
 title: "V8 릴리스 v4.6"
 author: "V8 팀"
-date: 2015-08-28 13:33:37
-tags:
+date: "2015-08-28 13:33:37"
+tags: 
   - release
 description: "V8 v4.6은 지연 감소와 새로운 ES2015 언어 기능 지원을 제공합니다."
 ---

@@ -1,7 +1,7 @@
 ---
-title: 'Conditions d'utilisation'
-layout: layouts/base.njk
-description: 'Ce document décrit les conditions d'utilisation du site Web et du projet V8.'
+title: "Conditions d'utilisation"
+layout: "layouts/base.njk"
+description: "Ce document décrit les conditions d'utilisation du site Web et du projet V8."
 ---
 # Conditions d'utilisation
 

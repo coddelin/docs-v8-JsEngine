@@ -1,10 +1,10 @@
 ---
 title: "Exportación de nombres de espacios en módulos"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-12-18
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "Los módulos de JavaScript ahora admiten una nueva sintaxis para reexportar todas las propiedades dentro de un namespace."

@@ -1,10 +1,10 @@
 ---
 title: "Cache de código melhorado"
 author: "Mythri Alle, Chefe de Cache de Código"
-date: 2018-04-24 13:33:37
-avatars:
+date: "2018-04-24 13:33:37"
+avatars: 
   - "mythri-alle"
-tags:
+tags: 
   - internos
 tweet: "988728000677142528"
 description: "A partir do Chrome 66, o V8 armazena em cache mais (byte)código gerando o cache após a execução de alto nível."

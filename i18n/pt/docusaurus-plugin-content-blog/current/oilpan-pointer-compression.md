@@ -1,11 +1,11 @@
 ---
 title: "Compressão de ponteiros em Oilpan"
 author: "Anton Bikineev, e Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), analisadores de desmontagem em ação"
-avatars:
+avatars: 
   - anton-bikineev
   - michael-lippautz
 date: 2022-11-28
-tags:
+tags: 
   - internals
   - memória
   - cppgc

@@ -1,8 +1,8 @@
 ---
 title: "V8 release v6.7"
 author: "the V8 team"
-date: 2018-05-04 13:33:37
-tags:
+date: "2018-05-04 13:33:37"
+tags: 
   - release
 tweet: "992506342391742465"
 description: "V8 v6.7 adds more untrusted code mitigations and ships BigInt support."

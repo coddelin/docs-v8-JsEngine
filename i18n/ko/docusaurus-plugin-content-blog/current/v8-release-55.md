@@ -1,8 +1,8 @@
 ---
 title: "V8 릴리즈 v5.5"
 author: "V8 팀"
-date: 2016-10-24 13:33:37
-tags:
+date: "2016-10-24 13:33:37"
+tags: 
   - 릴리즈
 description: "V8 v5.5는 메모리 소비 감소와 ECMAScript 언어 기능 지원 증가를 제공합니다."
 ---

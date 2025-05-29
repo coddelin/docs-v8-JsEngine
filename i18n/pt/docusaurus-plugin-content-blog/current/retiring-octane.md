@@ -1,8 +1,8 @@
 ---
 title: "Aposentando Octane"
 author: "a equipe do V8"
-date: 2017-04-12 13:33:37
-tags:
+date: "2017-04-12 13:33:37"
+tags: 
   - benchmarks
 description: "A equipe do V8 acredita que é hora de aposentar Octane como um benchmark recomendado."
 ---

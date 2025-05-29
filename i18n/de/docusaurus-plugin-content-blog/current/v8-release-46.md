@@ -1,8 +1,8 @@
 ---
 title: "V8 Veröffentlichung v4.6"
 author: "das V8-Team"
-date: 2015-08-28 13:33:37
-tags:
+date: "2015-08-28 13:33:37"
+tags: 
   - Veröffentlichung
 description: "V8 v4.6 kommt mit reduzierten Rucklern und Unterstützung für neue ES2015-Sprachfunktionen."
 ---

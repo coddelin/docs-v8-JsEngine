@@ -1,10 +1,10 @@
 ---
 title: "Fora da web: binários autônomos WebAssembly usando Emscripten"
 author: "Alon Zakai"
-avatars:
+avatars: 
   - "alon-zakai"
 date: 2019-11-21
-tags:
+tags: 
   - WebAssembly
   - ferramentas
 description: "O Emscripten agora suporta arquivos Wasm autônomos, que não precisam de JavaScript."

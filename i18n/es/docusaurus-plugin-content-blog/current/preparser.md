@@ -1,11 +1,11 @@
 ---
 title: "Análisis increíblemente rápido, parte 2: análisis perezoso"
 author: "Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)) y Marja Hölttä ([@marjakh](https://twitter.com/marjakh)), parsers más ligeros"
-avatars:
+avatars: 
   - "toon-verwaest"
   - "marja-holtta"
-date: 2019-04-15 17:03:37
-tags:
+date: "2019-04-15 17:03:37"
+tags: 
   - internos
   - análisis
 tweet: "1117807107972243456"

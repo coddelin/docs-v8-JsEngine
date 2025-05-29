@@ -1,10 +1,10 @@
 ---
 title: "在 `Array` 和 TypedArray 中查找元素"
 author: "郭書宇 ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2021-10-27
-tags:
+tags: 
   - ECMAScript
 description: "JavaScript 方法用於在 Arrays 和 TypedArrays 中查找元素"
 tweet: "1453354998063149066"

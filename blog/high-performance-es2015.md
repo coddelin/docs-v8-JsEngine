@@ -1,10 +1,10 @@
 ---
 title: "High-performance ES2015 and beyond"
 author: "Benedikt Meurer [@bmeurer](https://twitter.com/bmeurer), ECMAScript Performance Engineer"
-avatars:
+avatars: 
   - "benedikt-meurer"
-date: 2017-02-17 13:33:37
-tags:
+date: "2017-02-17 13:33:37"
+tags: 
   - ECMAScript
 description: "V8’s performance of ES2015+ language features is now on par with their transpiled ES5 counterparts."
 ---

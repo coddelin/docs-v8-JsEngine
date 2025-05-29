@@ -1,10 +1,10 @@
 ---
 title: "V8 extras"
 author: "Domenic Denicola ([@domenic](https://twitter.com/domenic)), Streams Sorcerer"
-avatars:
+avatars: 
   - "domenic-denicola"
-date: 2016-02-04 13:33:37
-tags:
+date: "2016-02-04 13:33:37"
+tags: 
   - internals
 description: "V8 v4.8 includes “V8 extras”, a simple interface designed with the goal of allowing embedders to write high-performance, self-hosted APIs."
 ---

@@ -1,11 +1,11 @@
 ---
 title: "The story of a V8 performance cliff in React"
 author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) and Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "benedikt-meurer"
   - "mathias-bynens"
-date: 2019-08-28 16:45:00
-tags:
+date: "2019-08-28 16:45:00"
+tags: 
   - internals
   - presentations
 description: "This article describes how V8 chooses optimal in-memory representations for various JavaScript values, and how that impacts the shape machinery — all of which helps explain a recent V8 performance cliff in React core."

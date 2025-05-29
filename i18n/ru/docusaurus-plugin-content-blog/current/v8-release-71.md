@@ -1,10 +1,10 @@
 ---
 title: "Релиз V8 версии 7.1"
 author: "Штефан Херхут ([@herhut](https://twitter.com/herhut)), клонированный создатель клонов"
-avatars:
+avatars: 
   - stephan-herhut
-date: 2018-10-31 15:44:37
-tags:
+date: "2018-10-31 15:44:37"
+tags: 
   - релиз
 description: "V8 версии 7.1 добавляет встроенные обработчики байткода, улучшенный анализ выхода TurboFan, postMessage(wasmModule), Intl.RelativeTimeFormat и globalThis!"
 tweet: "1057645773465235458"

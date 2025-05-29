@@ -1,10 +1,10 @@
 ---
 title: "V8-Version v8.3"
 author: "[Victor Gomes](https://twitter.com/VictorBFG), sicher von zu Hause aus arbeitend"
-avatars:
+avatars: 
  - "victor-gomes"
 date: 2020-05-04
-tags:
+tags: 
  - release
 description: "V8 v8.3 bietet schnellere ArrayBuffers, größere Wasm-Speicher und veraltete APIs an."
 tweet: "1257333120115847171"

@@ -1,14 +1,14 @@
 ---
 title: "Sparkplug — 최적화를 하지 않는 JavaScript 컴파일러"
 author: "[Leszek Swirski](https://twitter.com/leszekswirski) — 어쩌면 가장 똑똑한 스파크는 아닐지 모르지만, 적어도 가장 빠른 스파크"
-avatars:
+avatars: 
   - leszek-swirski
 date: 2021-05-27
-tags:
+tags: 
   - JavaScript
-extra_links:
-  - href: https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap
-    rel: stylesheet
+extra_links: 
+  - href: "https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap"
+    rel: "stylesheet"
 description: "V8 v9.1에서 Sparkplug라는 새로운 최적화 없는 JavaScript 컴파일러로 V8 성능을 5–15% 향상시키고 있습니다."
 tweet: "1397945205198835719"
 ---

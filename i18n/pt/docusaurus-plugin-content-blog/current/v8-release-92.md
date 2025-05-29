@@ -1,10 +1,10 @@
 ---
 title: "Lançamento do V8 v9.2"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-07-16
-tags:
+tags: 
  - release
 description: "O lançamento do V8 v9.2 traz um método `at` para indexação relativa e melhorias na compressão de ponteiros."
 tweet: ""

@@ -1,12 +1,12 @@
 ---
-título: 'Chamadas internas curtas'
+título: "Chamadas internas curtas"
 autor: "[Toon Verwaest](https://twitter.com/tverwaes), The Big Short"
-avatares:
+avatares: 
   - toon-verwaest
 data: 2021-05-06
-tags:
+tags: 
   - JavaScript
-descrição: 'No V8 v9.1 desativamos temporariamente as funções internas incorporadas no desktop para evitar problemas de desempenho resultantes de chamadas indiretas distantes.'
+descrição: "No V8 v9.1 desativamos temporariamente as funções internas incorporadas no desktop para evitar problemas de desempenho resultantes de chamadas indiretas distantes."
 tweet: "1394267917013897216"
 ---
 

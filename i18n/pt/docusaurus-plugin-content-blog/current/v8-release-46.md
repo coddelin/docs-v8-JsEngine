@@ -1,8 +1,8 @@
 ---
 title: "Lançamento do V8 v4.6"
 author: "a equipe do V8"
-date: 2015-08-28 13:33:37
-tags:
+date: "2015-08-28 13:33:37"
+tags: 
   - lançamento
 description: "O V8 v4.6 vem com menos travamentos e suporte para novos recursos de linguagem ES2015."
 ---

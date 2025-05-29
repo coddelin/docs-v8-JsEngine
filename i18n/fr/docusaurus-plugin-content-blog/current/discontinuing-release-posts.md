@@ -1,10 +1,10 @@
 ---
 title: "Abandon des articles de blog sur les versions"
 author: "Shu-yu Guo ([@shu_](https://twitter.com/_shu))"
-avatars:
+avatars: 
  - "shu-yu-guo"
 date: 2022-06-17
-tags:
+tags: 
  - release
 description: "V8 abandonne les articles de blog sur les versions au profit du calendrier de sortie de Chrome et des articles sur les fonctionnalités."
 tweet: "1537857497825824768"

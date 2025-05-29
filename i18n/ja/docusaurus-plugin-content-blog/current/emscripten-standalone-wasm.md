@@ -1,10 +1,10 @@
 ---
 title: "ウェブ外: Emscriptenを使用した単独のWebAssemblyバイナリ"
 author: "Alon Zakai"
-avatars:
+avatars: 
   - "alon-zakai"
 date: 2019-11-21
-tags:
+tags: 
   - WebAssembly
   - tooling
 description: "Emscriptenは、JavaScriptを必要としない単独のWasmファイルをサポートします。"

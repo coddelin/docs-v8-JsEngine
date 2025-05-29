@@ -1,12 +1,12 @@
 ---
 title: "Трассировка от JS к DOM и обратно"
 author: "Улан Дегенбаев, Алексей Филиппов, Михаэль Липпаутц и Ханнес Паер — содружество DOM"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2018-03-01 13:33:37
-tags:
+date: "2018-03-01 13:33:37"
+tags: 
   - internals
   - memory
 description: "В инструментах разработчика Chrome теперь можно трассировать и создавать снимки C++ DOM объектов, а также отображать все достижимые DOM объекты из JavaScript с их ссылками."

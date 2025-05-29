@@ -1,7 +1,7 @@
 ---
 title: "機能サポート"
-permalink: /features/support/
-layout: layouts/base.njk
+permalink: "/features/support/"
+layout: "layouts/base.njk"
 description: "この文書では、V8ウェブサイトで使用されているJavaScriptおよびWebAssembly言語機能サポートリストについて説明します。"
 ---
 # JavaScript/Wasm機能サポート

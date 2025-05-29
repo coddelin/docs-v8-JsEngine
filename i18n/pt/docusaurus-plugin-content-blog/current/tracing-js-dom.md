@@ -1,12 +1,12 @@
 ---
 title: "Rastreamento do JS para o DOM e de volta novamente"
 author: "Ulan Degenbaev, Alexei Filippov, Michael Lippautz e Hannes Payer — a sociedade do DOM"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2018-03-01 13:33:37
-tags:
+date: "2018-03-01 13:33:37"
+tags: 
   - internals
   - memória
 description: "As DevTools do Chrome agora podem rastrear e fazer snapshot de objetos DOM C++ e exibir todos os objetos DOM alcançáveis a partir do JavaScript com suas referências."

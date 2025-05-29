@@ -1,11 +1,11 @@
 ---
 title: "La historia de un límite de rendimiento en V8 para React"
 author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) y Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "benedikt-meurer"
   - "mathias-bynens"
-date: 2019-08-28 16:45:00
-tags:
+date: "2019-08-28 16:45:00"
+tags: 
   - internals
   - presentaciones
 description: "Este artículo describe cómo V8 elige representaciones optimizadas en memoria para varios valores de JavaScript, y cómo eso impacta en la maquinaria de formas. Todo esto ayuda a explicar un reciente límite de rendimiento en V8 en el núcleo de React."

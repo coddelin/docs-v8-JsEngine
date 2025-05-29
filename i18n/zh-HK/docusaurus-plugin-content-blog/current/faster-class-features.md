@@ -1,10 +1,10 @@
 ---
 title: "更快初始化具有新類特性的實例"
 author: "[Joyee Cheung](https://twitter.com/JoyeeCheung)，實例初始化器"
-avatars:
+avatars: 
   - "joyee-cheung"
 date: 2022-04-20
-tags:
+tags: 
   - internals
 description: "自從 V8 v9.7 以來，具有新類特性的實例初始化速度變得更快。"
 tweet: "1517041137378373632"

@@ -1,10 +1,10 @@
 ---
 title: "V8の正規表現を高速化する"
 author: "Jakob Gruber、レギュラーソフトウェアエンジニア"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2017-01-10 13:33:37
-tags:
+date: "2017-01-10 13:33:37"
+tags: 
   - internals
   - RegExp
 description: "V8は最近、自己ホスト型JavaScript実装から、新しいコード生成アーキテクチャ（TurboFanベース）に直接接続する形の実装にRegExpの組み込み関数を移行しました。"

@@ -1,10 +1,10 @@
 ---
 title: "Public and private class fields"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-12-13
-tags:
+tags: 
   - ECMAScript
   - ES2022
   - io19

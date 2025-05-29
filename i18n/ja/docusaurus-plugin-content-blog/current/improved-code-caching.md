@@ -1,10 +1,10 @@
 ---
 title: "コードキャッシュの改善"
 author: "Mythri Alle, 主任コードキャッシャー"
-date: 2018-04-24 13:33:37
-avatars:
+date: "2018-04-24 13:33:37"
+avatars: 
   - "mythri-alle"
-tags:
+tags: 
   - internals
 tweet: "988728000677142528"
 description: "Chrome 66から、V8はトップレベルの実行後にキャッシュを作成することで、（バイト）コードをより多くキャッシュします。"

@@ -1,12 +1,12 @@
 ---
 title: "Initialisation plus rapide des instances avec les nouvelles fonctionnalités des classes"
-author: '[Joyee Cheung](https://twitter.com/JoyeeCheung), initialisateur d'instances'
-avatars:
+author: "[Joyee Cheung](https://twitter.com/JoyeeCheung), initialisateur d'instances"
+avatars: 
   - "joyee-cheung"
 date: 2022-04-20
-tags:
+tags: 
   - internes
-description: 'L'initialisation des instances avec les nouvelles fonctionnalités des classes est devenue plus rapide depuis V8 v9.7.'
+description: "L'initialisation des instances avec les nouvelles fonctionnalités des classes est devenue plus rapide depuis V8 v9.7."
 tweet: "1517041137378373632"
 ---
 

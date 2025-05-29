@@ -1,10 +1,10 @@
 ---
 title: "Lanzamiento de V8 v7.2"
 author: "Andreas Haas, manejador de trampas"
-avatars:
+avatars: 
   - andreas-haas
-date: 2018-12-18 11:48:21
-tags:
+date: "2018-12-18 11:48:21"
+tags: 
   - lanzamiento
 description: "V8 v7.2 cuenta con análisis de JavaScript a alta velocidad, `async-await` más rápido, reducción del consumo de memoria en ia32, campos públicos de clase y mucho más!"
 tweet: "1074978755934863361"

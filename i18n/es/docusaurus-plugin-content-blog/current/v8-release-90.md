@@ -1,10 +1,10 @@
 ---
 title: "Lanzamiento de V8 v9.0"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), en línea"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-03-17
-tags:
+tags: 
  - lanzamiento
 description: "El lanzamiento de V8 v9.0 trae soporte para índices de coincidencia en expresiones regulares y varias mejoras de rendimiento."
 tweet: "1372227274712494084"

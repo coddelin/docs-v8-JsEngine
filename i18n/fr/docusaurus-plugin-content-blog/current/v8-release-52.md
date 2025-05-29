@@ -1,8 +1,8 @@
 ---
 title: "Sortie de V8 version v5.2"
-author: 'l'équipe V8'
-date: 2016-06-04 13:33:37
-tags:
+author: "l'équipe V8"
+date: "2016-06-04 13:33:37"
+tags: 
   - sortie
 description: "V8 v5.2 inclut la prise en charge des fonctionnalités linguistiques ES2016."
 ---

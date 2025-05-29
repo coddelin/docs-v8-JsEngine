@@ -1,10 +1,10 @@
 ---
 title: "V8 发布 v8.7"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), V8 旗手"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2020-10-23
-tags:
+tags: 
  - 发布
 description: "V8 发布 v8.7，带来了新的原生调用 API、Atomics.waitAsync、错误修复以及性能改进。"
 tweet: "1319654229863182338"

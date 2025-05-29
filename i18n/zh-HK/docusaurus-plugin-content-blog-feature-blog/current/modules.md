@@ -1,11 +1,11 @@
 ---
 title: "JavaScript 模組"
 author: "Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
 - "addy-osmani"
 - "mathias-bynens"
 date: 2018-06-18
-tags:
+tags: 
   - ECMAScript
   - ES2015
 description: "本文說明如何使用 JavaScript 模組、如何負責任地部署它們，以及 Chrome 團隊如何努力在未來改進模組。"

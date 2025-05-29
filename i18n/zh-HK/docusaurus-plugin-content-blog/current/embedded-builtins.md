@@ -1,10 +1,10 @@
 ---
 title: "嵌入式內建函數"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2018-08-14 13:33:37
-tags:
+date: "2018-08-14 13:33:37"
+tags: 
   - internals
 description: "V8 v6.9 將內建程式碼嵌入到二進位檔的 .text 區段中，將每個網站的V8堆積大小中位數減少了19%。"
 tweet: "1029382366693937162"

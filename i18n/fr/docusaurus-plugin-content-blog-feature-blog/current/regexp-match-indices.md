@@ -1,10 +1,10 @@
 ---
 title: "Indices de correspondance RegExp"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), exprimant régulièrement de nouvelles fonctionnalités"
-avatars:
+avatars: 
   - "maya-armyanova"
 date: 2019-12-17
-tags:
+tags: 
   - ECMAScript
   - Node.js 16
 description: "Les indices de correspondance RegExp fournissent les indices `start` et `end` de chaque groupe de capture correspondant."

@@ -1,10 +1,10 @@
 ---
 title: "ハッシュテーブルの最適化：ハッシュコードを隠す"
 author: "[Sathya Gunasekaran](https://twitter.com/_gsathya)、ハッシュコードの管理者"
-avatars:
+avatars: 
   - "sathya-gunasekaran"
-date: 2018-01-29 13:33:37
-tags:
+date: "2018-01-29 13:33:37"
+tags: 
   - 内部構造
 tweet: "958046113390411776"
 description: "JavaScript のデータ構造である Map、Set、WeakSet、WeakMap などの多くは、内部的にハッシュテーブルを使用します。この記事では、V8 v6.3 がハッシュテーブルのパフォーマンスをどのように向上させたかを説明します。"

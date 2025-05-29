@@ -1,11 +1,11 @@
 ---
 title: "Parsing extremamente rápido, parte 2: análise preguiçosa"
 author: "Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)) e Marja Hölttä ([@marjakh](https://twitter.com/marjakh)), analisadores mais esparsos"
-avatars:
+avatars: 
   - "toon-verwaest"
   - "marja-holtta"
-date: 2019-04-15 17:03:37
-tags:
+date: "2019-04-15 17:03:37"
+tags: 
   - internals
   - parsing
 tweet: "1117807107972243456"

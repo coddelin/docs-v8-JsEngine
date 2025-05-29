@@ -1,12 +1,12 @@
 ---
 title: "Высокопроизводительный сборщик мусора для C++"
 author: "Антон Бикинеев, Омер Катц ([@omerktz](https://twitter.com/omerktz)), и Михаэль Липпаутц ([@mlippautz](https://twitter.com/mlippautz)), эксперты по памяти C++"
-avatars:
+avatars: 
   - "anton-bikineev"
   - "omer-katz"
   - "michael-lippautz"
 date: 2020-05-26
-tags:
+tags: 
   - internals
   - memory
   - cppgc

@@ -3,7 +3,7 @@ title: "Control-flow-Integrität in V8"
 description: "Dieser Blogbeitrag bespricht die Pläne zur Implementierung der Kontrollfluss-Integrität in V8."
 author: "Stephen Röttger"
 date: 2023-10-09
-tags:
+tags: 
  - Sicherheit
 ---
 Control-flow-Integrität (CFI) ist eine Sicherheitsfunktion, die darauf abzielt, Exploits daran zu hindern, den Kontrollfluss zu kapern. Die Idee ist, dass selbst wenn ein Angreifer es schafft, den Speicher eines Prozesses zu manipulieren, zusätzliche Integritätsprüfungen verhindern können, dass er beliebigen Code ausführt. In diesem Blogbeitrag möchten wir unsere Arbeit zur Aktivierung von CFI in V8 vorstellen.

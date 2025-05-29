@@ -1,12 +1,12 @@
 ---
 title: "高性能的 C++ 垃圾回收"
 author: "Anton Bikineev、Omer Katz（[@omerktz](https://twitter.com/omerktz)）及 Michael Lippautz（[@mlippautz](https://twitter.com/mlippautz)），C++ 記憶體專家"
-avatars:
+avatars: 
   - "anton-bikineev"
   - "omer-katz"
   - "michael-lippautz"
 date: 2020-05-26
-tags:
+tags: 
   - internals
   - memory
   - cppgc

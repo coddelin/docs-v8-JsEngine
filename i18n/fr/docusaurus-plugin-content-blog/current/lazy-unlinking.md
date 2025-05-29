@@ -1,8 +1,8 @@
 ---
 title: "Un stage sur la paresse : délier paresseusement les fonctions désoptimisées"
 author: "Juliana Franco ([@jupvfranco](https://twitter.com/jupvfranco)), Experte en Paresse"
-date: 2017-10-04 13:33:37
-tags:
+date: "2017-10-04 13:33:37"
+tags: 
   - mémoire
   - interne
 description: "Cette analyse technique approfondie explique comment V8 délait les fonctions désoptimisées auparavant et comment nous avons récemment changé cela pour améliorer les performances."

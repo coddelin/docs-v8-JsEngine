@@ -1,10 +1,10 @@
 ---
 title: "V8 릴리즈 v7.3"
 author: "크레멘스 배커스, 컴파일러 관리자"
-avatars:
+avatars: 
   - clemens-backes
-date: 2019-02-07 11:30:42
-tags:
+date: "2019-02-07 11:30:42"
+tags: 
   - release
 description: "V8 v7.3는 WebAssembly 및 비동기 성능 개선, 비동기 스택 추적, Object.fromEntries, String#matchAll 등을 포함하여 많은 새로운 기능을 제공합니다!"
 tweet: "1093457099441561611"

@@ -1,10 +1,10 @@
 ---
 title: "Optimizing hash tables: hiding the hash code"
 author: "[Sathya Gunasekaran](https://twitter.com/_gsathya), keeper of hash codes"
-avatars:
+avatars: 
   - "sathya-gunasekaran"
-date: 2018-01-29 13:33:37
-tags:
+date: "2018-01-29 13:33:37"
+tags: 
   - internals
 tweet: "958046113390411776"
 description: "Several JavaScript data structures such as Map, Set, WeakSet, and WeakMap use hash tables under the hood. This article explains how V8 v6.3 improves hash table performance."

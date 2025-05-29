@@ -1,10 +1,10 @@
 ---
 title: "V8 sem JIT"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2019-03-13 13:03:19
-tags:
+date: "2019-03-13 13:03:19"
+tags: 
   - internos
 description: "O V8 v7.4 suporta execução de JavaScript sem alocar memória executável em tempo de execução."
 tweet: "1105777150051999744"

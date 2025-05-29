@@ -1,12 +1,12 @@
 ---
 title: "V8 메모리 소비 최적화"
 author: "V8 메모리 정화 엔지니어들 울란 데겐바에브, 마이클 리파우츠, 하네스 파이어, 그리고 툰 베르바에스트"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2016-10-07 13:33:37
-tags:
+date: "2016-10-07 13:33:37"
+tags: 
   - 메모리
   - 벤치마크
 description: "V8 팀은 현대 웹 개발 패턴을 대표하는 여러 웹사이트를 분석하여 메모리 사용량을 크게 줄였습니다."

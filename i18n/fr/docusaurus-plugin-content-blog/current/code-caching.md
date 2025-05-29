@@ -1,12 +1,12 @@
 ---
 title: "Mise en cache de code"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), Ingénieur logiciel"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-07-27 13:33:37
-tags:
+date: "2015-07-27 13:33:37"
+tags: 
   - internals
-description: 'V8 prend désormais en charge la mise en cache du (byte)code, c'est-à-dire la mise en cache du résultat de l'analyse et de la compilation du code JavaScript.'
+description: "V8 prend désormais en charge la mise en cache du (byte)code, c'est-à-dire la mise en cache du résultat de l'analyse et de la compilation du code JavaScript."
 ---
 V8 utilise [la compilation juste-à-temps](https://en.wikipedia.org/wiki/Just-in-time_compilation) (JIT) pour exécuter le code JavaScript. Cela signifie que, juste avant d'exécuter un script, celui-ci doit être analysé et compilé — ce qui peut engendrer une surcharge considérable. Comme nous l'avons [annoncé récemment](https://blog.chromium.org/2015/03/new-javascript-techniques-for-rapid.html), la mise en cache de code est une technique qui réduit cette surcharge. Lorsqu'un script est compilé pour la première fois, des données de cache sont produites et stockées. La prochaine fois que V8 doit compiler le même script, même dans une instance différente de V8, il peut utiliser les données de cache pour recréer le résultat de compilation au lieu de compiler depuis le début. En conséquence, le script est exécuté beaucoup plus rapidement.
 

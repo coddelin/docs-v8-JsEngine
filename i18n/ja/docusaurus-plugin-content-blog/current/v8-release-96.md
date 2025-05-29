@@ -1,10 +1,10 @@
 ---
 title: "V8リリース v9.6"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-10-13
-tags:
+tags: 
  - release
 description: "V8リリース v9.6 では、WebAssemblyへの参照型のサポートが追加されました。"
 tweet: "1448262079476076548"

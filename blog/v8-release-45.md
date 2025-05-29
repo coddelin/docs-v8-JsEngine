@@ -1,8 +1,8 @@
 ---
 title: "V8 release v4.5"
 author: "the V8 team"
-date: 2015-07-17 13:33:37
-tags:
+date: "2015-07-17 13:33:37"
+tags: 
   - release
 description: "V8 v4.5 comes with performance improvements and adds support for several ES2015 features."
 ---

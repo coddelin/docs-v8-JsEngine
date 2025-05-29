@@ -1,10 +1,10 @@
 ---
 title: "V8 發佈 v8.3"
 author: "[Victor Gomes](https://twitter.com/VictorBFG)，在家安全辦公"
-avatars:
+avatars: 
  - "victor-gomes"
 date: 2020-05-04
-tags:
+tags: 
  - 發佈
 description: "V8 v8.3 提供更快的 ArrayBuffer、更大的 Wasm 記憶體以及已棄用的 API。"
 tweet: "1257333120115847171"

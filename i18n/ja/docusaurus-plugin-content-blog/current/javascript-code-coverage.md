@@ -1,10 +1,10 @@
 ---
 title: "JavaScriptコードカバレッジ"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2017-12-13 13:33:37
-tags:
+date: "2017-12-13 13:33:37"
+tags: 
   - internals
 description: "V8がJavaScriptコードカバレッジのネイティブサポートを提供。ツールはコードを計測することなくV8のカバレッジ情報にアクセス可能です！"
 tweet: "940879905079873536"

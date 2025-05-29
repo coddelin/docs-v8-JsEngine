@@ -1,11 +1,11 @@
 ---
 title: "V8에서의 포인터 압축"
 author: "Igor Sheludko와 Santiago Aboy Solanes, *포인터 압축 전문가들*"
-avatars:
+avatars: 
   - "igor-sheludko"
   - "santiago-aboy-solanes"
 date: 2020-03-30
-tags:
+tags: 
   - 내부 구조
   - 메모리
 description: "V8은 힙 크기를 최대 43%까지 줄였습니다! “V8에서의 포인터 압축”에서 그 방법을 알아보세요!"

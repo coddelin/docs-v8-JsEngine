@@ -1,11 +1,11 @@
 ---
 title: "極速解析，第2部分：延遲解析"
 author: "Toon Verwaest（[@tverwaes](https://twitter.com/tverwaes)）和 Marja Hölttä（[@marjakh](https://twitter.com/marjakh)），解析器專家"
-avatars:
+avatars: 
   - "toon-verwaest"
   - "marja-holtta"
-date: 2019-04-15 17:03:37
-tags:
+date: "2019-04-15 17:03:37"
+tags: 
   - internals
   - parsing
 tweet: "1117807107972243456"

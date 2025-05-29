@@ -1,8 +1,8 @@
 ---
 title: "V8-Version v6.9"
 author: "das V8-Team"
-date: 2018-08-07 13:33:37
-tags:
+date: "2018-08-07 13:33:37"
+tags: 
   - Veröffentlichung
 description: "V8 v6.9 bietet reduzierten Speicherverbrauch durch eingebettete Built-ins, schnelleren Start von WebAssembly durch Liftoff, bessere Leistung von DataView und WeakMap und vieles mehr!"
 tweet: "1026825606003150848"

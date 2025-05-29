@@ -1,8 +1,8 @@
 ---
 title: "スプレッド要素の高速化"
 author: "Hai Dang & Georg Neis"
-date: 2018-12-04 16:57:21
-tags:
+date: "2018-12-04 16:57:21"
+tags: 
   - ECMAScript
   - ベンチマーク
 description: "V8 v7.2 / Array.from(array) および [...spread] の配列、文字列、セット、マップに対するパフォーマンスを大幅に向上させました。"

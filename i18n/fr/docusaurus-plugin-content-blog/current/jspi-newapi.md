@@ -1,9 +1,9 @@
 ---
 title: "WebAssembly JSPI a une nouvelle API"
-description: 'Cet article détaille quelques modifications à venir de l'API JSPI (JavaScript Promise Integration).'
+description: "Cet article détaille quelques modifications à venir de l'API JSPI (JavaScript Promise Integration)."
 author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-06-04
-tags:
+tags: 
   - WebAssembly
 ---
 L'API JSPI (JavaScript Promise Integration) de WebAssembly a une nouvelle API, disponible dans la version M126 de Chrome. Nous parlons de ce qui a changé, comment l'utiliser avec Emscripten, et quelle est la feuille de route pour JSPI.

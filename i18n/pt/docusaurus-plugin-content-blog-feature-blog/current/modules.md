@@ -1,11 +1,11 @@
 ---
 title: "Módulos JavaScript"
 author: "Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) e Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
 - "addy-osmani"
 - "mathias-bynens"
 date: 2018-06-18
-tags:
+tags: 
   - ECMAScript
   - ES2015
 description: "Este artigo explica como usar módulos JavaScript, como implantá-los de forma responsável e como a equipe do Chrome está trabalhando para melhorar ainda mais os módulos no futuro."

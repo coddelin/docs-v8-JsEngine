@@ -1,10 +1,10 @@
 ---
 title: "V8-Version v7.2"
 author: "Andreas Haas, Verantwortlicher für Traps"
-avatars:
+avatars: 
   - andreas-haas
-date: 2018-12-18 11:48:21
-tags:
+date: "2018-12-18 11:48:21"
+tags: 
   - Veröffentlichung
 description: "V8 v7.2 bietet hochschnelles JavaScript-Parsing, schnellere Async-Await-Operationen, reduzierten Speicherverbrauch auf ia32, öffentliche Klassenfelder und vieles mehr!"
 tweet: "1074978755934863361"

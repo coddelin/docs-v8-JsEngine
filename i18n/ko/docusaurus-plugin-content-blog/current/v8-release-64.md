@@ -1,8 +1,8 @@
 ---
 title: "V8 릴리즈 v6.4"
 author: "V8 팀"
-date: 2017-12-19 13:33:37
-tags:
+date: "2017-12-19 13:33:37"
+tags: 
   - 릴리즈
 description: "V8 v6.4는 성능 향상, 새로운 JavaScript 언어 기능 등을 포함하고 있습니다."
 tweet: "943057597481082880"

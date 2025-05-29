@@ -1,10 +1,10 @@
 ---
 title: "V8 發佈 v9.5"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-09-21
-tags:
+tags: 
  - release
 description: "V8 發佈 v9.5 帶來更新的國際化 API 和 WebAssembly 異常處理支援。"
 tweet: "1440296019623759872"

@@ -1,10 +1,10 @@
 ---
 title: "Кэширование кода"
 author: "Ян Гуо ([@hashseed](https://twitter.com/hashseed)), инженер-программист"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-07-27 13:33:37
-tags:
+date: "2015-07-27 13:33:37"
+tags: 
   - internals
 description: "V8 теперь поддерживает кэширование (байтового) кода, то есть кэширование результата разбора и компиляции JavaScript."
 ---

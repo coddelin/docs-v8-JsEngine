@@ -1,6 +1,6 @@
 ---
 title: "서비스 약관"
-layout: layouts/base.njk
+layout: "layouts/base.njk"
 description: "이 문서는 V8 웹사이트 및 프로젝트에 대한 서비스 약관을 설명합니다."
 ---
 # 서비스 약관

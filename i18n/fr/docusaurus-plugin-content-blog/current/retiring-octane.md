@@ -1,10 +1,10 @@
 ---
-title: 'Retrait d'Octane'
-author: 'l'équipe V8'
-date: 2017-04-12 13:33:37
-tags:
+title: "Retrait d'Octane"
+author: "l'équipe V8"
+date: "2017-04-12 13:33:37"
+tags: 
   - benchmarks
-description: 'L'équipe V8 estime qu'il est temps de retirer Octane en tant que benchmark recommandé.'
+description: "L'équipe V8 estime qu'il est temps de retirer Octane en tant que benchmark recommandé."
 ---
 L'histoire des benchmarks JavaScript est une histoire d'évolution constante. Alors que le web est passé de simples documents à des applications dynamiques côté client, de nouveaux benchmarks JavaScript ont été créés pour mesurer des charges de travail devenues importantes pour de nouveaux cas d'utilisation. Ce changement constant a donné aux benchmarks individuels une durée de vie limitée. À mesure que les navigateurs web et les implémentations de machines virtuelles (VM) commencent à sur-optimiser pour des cas de test spécifiques, les benchmarks eux-mêmes cessent de devenir des proxies efficaces pour leurs cas d'utilisation d'origine. L'un des premiers benchmarks JavaScript, [SunSpider](https://webkit.org/perf/sunspider/sunspider.html), a fourni des incitations précoces à la livraison de compilateurs d'optimisation rapides. Cependant, à mesure que les ingénieurs des VM ont découvert les [limitations des microbenchmarks](https://blog.mozilla.org/nnethercote/2014/06/16/a-browser-benchmarking-manifesto/) et trouvé de nouvelles façons de [optimiser](https://benediktmeurer.de/2016/12/16/the-truth-about-traditional-javascript-benchmarks/#the-notorious-sunspider-examples) [autour](https://bugzilla.mozilla.org/show_bug.cgi?id=787601) des [limites](https://bugs.webkit.org/show_bug.cgi?id=63864) de SunSpider, la communauté des navigateurs web a [retiré](https://trac.webkit.org/changeset/187526/webkit) SunSpider en tant que benchmark recommandé.
 

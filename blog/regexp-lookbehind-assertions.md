@@ -1,10 +1,10 @@
 ---
 title: "RegExp lookbehind assertions"
 author: "Yang Guo, Regular Expression Engineer"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2016-02-26 13:33:37
-tags:
+date: "2016-02-26 13:33:37"
+tags: 
   - ECMAScript
   - RegExp
 description: "JavaScript regular expressions are getting some new functionality: lookbehind assertions."

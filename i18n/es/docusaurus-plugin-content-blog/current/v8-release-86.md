@@ -1,10 +1,10 @@
 ---
 title: "Lanzamiento de V8 v8.6"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), un fuzzer de teclado"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2020-09-21
-tags:
+tags: 
  - lanzamiento
 description: "El lanzamiento de V8 v8.6 trae código respetuoso, mejoras de rendimiento y cambios normativos."
 tweet: "1308062287731789825"

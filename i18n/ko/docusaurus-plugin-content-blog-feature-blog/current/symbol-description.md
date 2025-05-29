@@ -1,10 +1,10 @@
 ---
 title: "Symbol.prototype.description"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2019-06-25
-tags:
+tags: 
   - ECMAScript
   - ES2019
 description: "Symbol.prototype.description은 Symbol의 설명을 접근하는 데 있어 편리한 방법을 제공합니다."

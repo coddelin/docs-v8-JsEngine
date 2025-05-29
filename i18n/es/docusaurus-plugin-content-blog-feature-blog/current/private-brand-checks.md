@@ -1,10 +1,10 @@
 ---
 title: "Verificaciones de marca privada, también conocido como `#foo in obj`"
 author: "Marja Hölttä ([@marjakh](https://twitter.com/marjakh))"
-avatars:
+avatars: 
   - "marja-holtta"
 date: 2021-04-14
-tags:
+tags: 
   - ECMAScript
 description: "Las verificaciones de marca privada permiten comprobar la existencia de un campo privado en un objeto."
 tweet: "1382327454975590401"

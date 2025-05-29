@@ -1,10 +1,10 @@
 ---
 title: "Indicium: herramienta de trazado para el runtime de V8"
 author: "Zeynep Cankara ([@ZeynepCankara](https://twitter.com/ZeynepCankara))"
-avatars:
+avatars: 
   - "zeynep-cankara"
-date: 2020-10-01 11:56:00
-tags:
+date: "2020-10-01 11:56:00"
+tags: 
   - herramientas
   - analizador-de-sistemas
 description: "Indicium: herramienta de análisis de sistemas de V8 para analizar eventos de Map/IC."

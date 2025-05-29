@@ -1,8 +1,8 @@
 ---
 title: "Релиз V8 v5.9"
 author: "Команда V8"
-date: 2017-04-27 13:33:37
-tags:
+date: "2017-04-27 13:33:37"
+tags: 
   - релиз
 description: "V8 v5.9 включает новый конвейер Ignition + TurboFan и добавляет поддержку WebAssembly TrapIf на всех платформах."
 ---

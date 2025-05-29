@@ -1,10 +1,10 @@
 ---
 title: "`Promise.prototype.finally`"
 author: "Матиас Байненс ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-10-23
-tags:
+tags: 
   - ECMAScript
   - ES2018
 description: "Promise.prototype.finally позволяет зарегистрировать обратный вызов, который вызывается при завершении промиса (то есть при выполнении или отклонении)."

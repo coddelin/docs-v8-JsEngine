@@ -1,10 +1,10 @@
 ---
 title: "V8 發行版本 v7.8"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 懶惰的開發者"
-avatars:
+avatars: 
   - "ingvar-stepanyan"
 date: 2019-09-27
-tags:
+tags: 
   - release
 description: "V8 v7.8 提供了預載流式編譯功能、WebAssembly C API、更快的對象解構及正則匹配，以及改進的啟動速度。"
 tweet: "1177600702861971459"

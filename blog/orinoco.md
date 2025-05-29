@@ -1,12 +1,12 @@
 ---
 title: "Jank Busters Part Two: Orinoco"
 author: "the jank busters: Ulan Degenbaev, Michael Lippautz, and Hannes Payer"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2016-04-12 13:33:37
-tags:
+date: "2016-04-12 13:33:37"
+tags: 
   - internals
   - memory
 description: "This article introduces three optimizations that lay the groundwork for a new garbage collector in V8, codenamed Orinoco."

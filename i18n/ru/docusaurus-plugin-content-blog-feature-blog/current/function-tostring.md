@@ -1,10 +1,10 @@
 ---
 title: "Обновленный `Function.prototype.toString`"
 author: "Матиас Биненс ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-03-25
-tags:
+tags: 
   - ECMAScript
   - ES2019
 description: "Function.prototype.toString теперь возвращает точно такие же фрагменты текста исходного кода, включая пробелы и комментарии."

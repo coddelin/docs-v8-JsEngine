@@ -1,10 +1,10 @@
 ---
 title: "懒惰反序列化"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2018-02-12 13:33:37
-tags:
+date: "2018-02-12 13:33:37"
+tags: 
   - 内部
 description: "懒惰反序列化功能在 V8 v6.4 中可用，平均每个浏览器标签页减少 V8 的内存占用超过 500 KB。"
 tweet: "962989179914383360"

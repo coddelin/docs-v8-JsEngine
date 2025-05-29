@@ -1,8 +1,8 @@
 ---
 title: "V8にBigIntsを追加する"
 author: "Jakob Kummerow、精度の仲裁人"
-date: 2018-05-02 13:33:37
-tags:
+date: "2018-05-02 13:33:37"
+tags: 
   - ECMAScript
 description: "V8がBigIntsをサポートしました。これは、任意精度の整数を可能にするJavaScript言語機能です。"
 tweet: "991705626391732224"

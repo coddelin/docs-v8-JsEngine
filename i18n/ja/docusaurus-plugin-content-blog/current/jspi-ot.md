@@ -3,7 +3,7 @@ title: "WebAssembly JSPIがオリジントライアルに進む"
 description: "JSPIのオリジントライアル開始について説明します"
 author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-03-06
-tags:
+tags: 
   - WebAssembly
 ---
 WebAssemblyのJavaScriptプロミス統合(JSPI) APIがChromiumリリースM123でオリジントライアルに入ります。これにより、あなたやユーザーがこの新しいAPIから受けるメリットをテストできます。

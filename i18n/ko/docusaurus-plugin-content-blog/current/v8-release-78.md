@@ -1,10 +1,10 @@
 ---
 title: "V8 릴리즈 v7.8"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 게으른 소서러"
-avatars:
+avatars: 
   - "ingvar-stepanyan"
 date: 2019-09-27
-tags:
+tags: 
   - release
 description: "V8 v7.8는 프리로드에서의 스트리밍 컴파일, WebAssembly C API, 더 빠른 객체 비구조화 및 정규표현식 매칭, 그리고 향상된 시작 속도를 제공합니다."
 tweet: "1177600702861971459"

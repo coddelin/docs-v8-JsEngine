@@ -1,10 +1,10 @@
 ---
 title: "V8 リリース v9.7"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-11-05
-tags:
+tags: 
  - リリース
 description: "V8 リリース v9.7 では、配列内を逆方向に検索するための新しい JavaScript メソッドが追加されました。"
 tweet: ""

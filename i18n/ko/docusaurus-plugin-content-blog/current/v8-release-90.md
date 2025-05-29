@@ -1,10 +1,10 @@
 ---
 title: "V8 release v9.0"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 줄바꿈 포함"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-03-17
-tags:
+tags: 
  - 릴리스
 description: "V8 release v9.0은 정규 표현식 매칭 인덱스와 다양한 성능 개선 사항을 지원합니다."
 tweet: "1372227274712494084"

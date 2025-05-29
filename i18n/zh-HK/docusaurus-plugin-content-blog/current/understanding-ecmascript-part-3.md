@@ -1,10 +1,10 @@
 ---
 title: "瞭解 ECMAScript 規範，第 3 部分"
 author: "[Marja Hölttä](https://twitter.com/marjakh)，推測規範觀察者"
-avatars:
+avatars: 
   - marja-holtta
 date: 2020-04-01
-tags:
+tags: 
   - ECMAScript
   - 瞭解 ECMAScript
 description: "閱讀 ECMAScript 規範的教程"

@@ -1,11 +1,11 @@
 ---
 title: "JavaScript开发者的代码缓存"
 author: "[Leszek Swirski](https://twitter.com/leszekswirski)，缓存破坏者"
-avatars:
+avatars: 
   - leszek-swirski
-date: 2019-04-08 13:33:37
+date: "2019-04-08 13:33:37"
 updated: 2020-06-16
-tags:
+tags: 
   - 内部原理
 description: "(字节码)缓存通过缓存JavaScript解析和编译结果来减少经常访问的网站的启动时间。"
 tweet: "1115264282675953664"

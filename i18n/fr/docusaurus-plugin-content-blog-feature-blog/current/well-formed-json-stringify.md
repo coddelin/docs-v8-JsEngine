@@ -1,13 +1,13 @@
 ---
 title: "Un `JSON.stringify` bien formé"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-09-11
-tags:
+tags: 
   - ECMAScript
   - ES2019
-description: 'JSON.stringify génère désormais des séquences d'échappement pour les solitaires, rendant sa sortie en Unicode valide (et représentable en UTF-8).'
+description: "JSON.stringify génère désormais des séquences d'échappement pour les solitaires, rendant sa sortie en Unicode valide (et représentable en UTF-8)."
 ---
 `JSON.stringify` était précédemment spécifié pour retourner des chaînes Unicode mal formées si l'entrée contenait des solitaires :
 

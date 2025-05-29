@@ -1,10 +1,10 @@
 ---
 title: "V8 发布 v7.8"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))，懒惰的源代码术士"
-avatars:
+avatars: 
   - "ingvar-stepanyan"
 date: 2019-09-27
-tags:
+tags: 
   - 发布
 description: "V8 v7.8 的功能包括在预加载时的流式编译、WebAssembly C API、更快的对象解构和正则表达式匹配，以及改进的启动时间。"
 tweet: "1177600702861971459"

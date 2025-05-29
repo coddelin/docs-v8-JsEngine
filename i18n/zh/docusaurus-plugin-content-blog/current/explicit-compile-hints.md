@@ -1,13 +1,13 @@
 ---
- title: '给 V8 一个提醒：通过显式编译提示加速 JavaScript 启动'
- author: 'Marja Hölttä'
- avatars:
+ title: "给 V8 一个提醒：通过显式编译提示加速 JavaScript 启动"
+ author: "Marja Hölttä"
+ avatars: 
    - marja-holtta
  date: 2025-04-29
- tags:
+ tags: 
    - JavaScript
  description: "显式编译提示控制哪些 JavaScript 文件和函数被提前解析和编译"
- tweet: ''
+ tweet: ""
 ---
 
 快速运行 JavaScript 是响应式网络应用的关键。即使有 V8 的高级优化，在启动时解析和编译关键 JavaScript 仍然会导致性能瓶颈。知道在初始脚本编译期间应编译哪些 JavaScript 函数可以加速网页加载。

@@ -1,10 +1,10 @@
 ---
 title: "Objekt Rest- und Spread-Eigenschaften"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-06-06
-tags:
+tags: 
   - ECMAScript
   - ES2018
 description: "Dieser Artikel erklärt, wie Objekt-Rest- und Spread-Eigenschaften in JavaScript funktionieren, und geht noch einmal auf Array-Rest- und Spread-Elemente ein."

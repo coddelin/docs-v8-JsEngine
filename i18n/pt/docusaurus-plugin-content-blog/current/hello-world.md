@@ -1,7 +1,7 @@
 ---
 title: "Olá, mundo!"
 author: "a equipe do V8"
-date: 2015-07-10 13:33:37
+date: "2015-07-10 13:33:37"
 description: "O projeto V8 agora tem um blog!"
 ---
 Bem-vindo ao blog de desenvolvedores do V8!

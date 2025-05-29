@@ -1,8 +1,8 @@
 ---
 title: "启动 Ignition 和 TurboFan"
 author: "V8 团队"
-date: 2017-05-15 13:33:37
-tags:
+date: "2017-05-15 13:33:37"
+tags: 
   - 内部
 description: "V8 v5.9 引入了全新的 JavaScript 执行管线，基于 Ignition 解释器和 TurboFan 优化编译器构建而成。"
 ---

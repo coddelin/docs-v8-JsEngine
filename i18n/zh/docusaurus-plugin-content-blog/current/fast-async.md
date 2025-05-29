@@ -1,11 +1,11 @@
 ---
 title: "更快的异步函数和Promise"
 author: "Maya Armyanova（[@Zmayski](https://twitter.com/Zmayski)），永远等待的预测者，以及Benedikt Meurer（[@bmeurer](https://twitter.com/bmeurer)），专业性能承诺者"
-avatars:
+avatars: 
   - "maya-armyanova"
   - "benedikt-meurer"
-date: 2018-11-12 16:45:07
-tags:
+date: "2018-11-12 16:45:07"
+tags: 
   - ECMAScript
   - 基准测试
   - 演讲

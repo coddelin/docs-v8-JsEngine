@@ -2,10 +2,10 @@
 title: "V8サンドボックス"
 description: "V8は、メモリ破損バグの影響を制限する軽量なインプロセスサンドボックス機能を備えています"
 author: "サミュエル・グロース"
-avatars:
+avatars: 
   - samuel-gross
 date: 2024-04-04
-tags:
+tags: 
  - セキュリティ
 ---
 

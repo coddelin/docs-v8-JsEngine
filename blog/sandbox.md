@@ -2,10 +2,10 @@
 title: "The V8 Sandbox"
 description: "V8 features a lightweight, in-process sandbox to limit the impact of memory corruption bugs"
 author: "Samuel Groß"
-avatars:
+avatars: 
   - samuel-gross
 date: 2024-04-04
-tags:
+tags: 
  - security
 ---
 

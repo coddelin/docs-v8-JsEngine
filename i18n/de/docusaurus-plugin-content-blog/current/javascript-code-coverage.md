@@ -1,10 +1,10 @@
 ---
 title: "JavaScript-Codeabdeckung"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2017-12-13 13:33:37
-tags:
+date: "2017-12-13 13:33:37"
+tags: 
   - Interna
 description: "V8 unterstützt jetzt nativ die JavaScript-Codeabdeckung. Tools können jetzt auf die Abdeckungsinformationen von V8 zugreifen, ohne den Code zu instrumentieren!"
 tweet: "940879905079873536"

@@ -1,12 +1,12 @@
 ---
-title: 'Désactivation temporaire de l'analyse d'évasion'
-author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias)), analyste d'évasion de sandbox'
-avatars:
+title: "Désactivation temporaire de l'analyse d'évasion"
+author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), analyste d'évasion de sandbox"
+avatars: 
   - "mathias-bynens"
-date: 2017-09-22 13:33:37
-tags:
+date: "2017-09-22 13:33:37"
+tags: 
   - sécurité
-description: 'Nous avons désactivé l'analyse d'évasion de V8 dans Chrome 61 afin de protéger les utilisateurs contre une vulnérabilité de sécurité.'
+description: "Nous avons désactivé l'analyse d'évasion de V8 dans Chrome 61 afin de protéger les utilisateurs contre une vulnérabilité de sécurité."
 tweet: "911339802884284416"
 ---
 En JavaScript, un objet alloué _s'échappe_ s'il est accessible depuis l'extérieur de la fonction actuelle. Normalement, V8 alloue de nouveaux objets sur le tas JavaScript, mais en utilisant _l'analyse d'évasion_, un compilateur optimisant peut déterminer quand un objet peut être traité de manière spéciale parce que sa durée de vie est prouvée comme étant liée à l'activation de la fonction. Lorsque la référence à un objet nouvellement alloué n'échappe pas à la fonction qui le crée, les moteurs JavaScript n'ont pas besoin d'allouer explicitement cet objet sur le tas. Ils peuvent plutôt traiter efficacement les valeurs de l'objet comme des variables locales à la fonction. Cela permet à son tour toutes sortes d'optimisations comme stocker ces valeurs sur la pile ou dans des registres, ou dans certains cas, optimiser complètement les valeurs. Les objets qui s'échappent (plus précisément, les objets dont on ne peut pas prouver qu'ils ne s'échappent pas) doivent être alloués sur le tas.

@@ -1,6 +1,6 @@
 ---
 title: "Termos de serviço"
-layout: layouts/base.njk
+layout: "layouts/base.njk"
 description: "Este documento descreve os termos de serviço para o site e projeto do V8."
 ---
 # Termos de serviço

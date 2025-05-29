@@ -1,10 +1,10 @@
 ---
 title: "Prise en charge expérimentale de WebAssembly dans V8"
 author: "Seth Thompson, Responsable WebAssembly"
-date: 2016-03-15 13:33:37
-tags:
+date: "2016-03-15 13:33:37"
+tags: 
   - WebAssembly
-description: 'À partir d'aujourd'hui, la prise en charge expérimentale de WebAssembly est disponible dans V8 et Chromium derrière un drapeau.'
+description: "À partir d'aujourd'hui, la prise en charge expérimentale de WebAssembly est disponible dans V8 et Chromium derrière un drapeau."
 ---
 _Pour une vue d'ensemble complète de WebAssembly et une feuille de route pour une collaboration communautaire future, consultez [Une étape importante pour WebAssembly](https://hacks.mozilla.org/2016/03/a-webassembly-milestone/) sur le blog Mozilla Hacks._
 

@@ -1,11 +1,11 @@
 ---
 title: "Obtenir la collecte des déchets gratuitement"
 author: "Hannes Payer et Ross McIlroy, Collecteurs de déchets en idle"
-avatars:
+avatars: 
   - "hannes-payer"
   - "ross-mcilroy"
-date: 2015-08-07 13:33:37
-tags:
+date: "2015-08-07 13:33:37"
+tags: 
   - internes
   - mémoire
 description: "Chrome 41 cache les opérations coûteuses de gestion de la mémoire dans de petits morceaux de temps inactif autrement inutilisés, réduisant les saccades."

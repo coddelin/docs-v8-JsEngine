@@ -3,7 +3,7 @@ title: "La integración JSPI de WebAssembly entra en prueba de origen"
 description: "Explicamos el inicio de la prueba de origen para JSPI"
 author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-03-06
-tags:
+tags: 
   - WebAssembly
 ---
 La API de Integración de Promesas JavaScript (JSPI) de WebAssembly está entrando en una prueba de origen con la versión M123 de Chrome. Lo que significa esto es que puedes probar si tú y tus usuarios pueden beneficiarse de esta nueva API.

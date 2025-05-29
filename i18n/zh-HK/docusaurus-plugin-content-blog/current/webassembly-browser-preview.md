@@ -1,8 +1,8 @@
 ---
 title: "WebAssembly 瀏覽器預覽"
 author: "V8 團隊"
-date: 2016-10-31 13:33:37
-tags:
+date: "2016-10-31 13:33:37"
+tags: 
   - WebAssembly
 description: "WebAssembly 或 Wasm 是一種全新的 web 運行時和編譯目標，現已在 Chrome Canary 中啟用旗標！"
 ---

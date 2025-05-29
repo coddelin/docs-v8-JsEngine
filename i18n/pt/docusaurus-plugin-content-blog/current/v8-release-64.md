@@ -1,8 +1,8 @@
 ---
 title: "Lançamento do V8 v6.4"
 author: "a equipe do V8"
-date: 2017-12-19 13:33:37
-tags:
+date: "2017-12-19 13:33:37"
+tags: 
   - lançamento
 description: "O V8 v6.4 inclui melhorias de desempenho, novos recursos da linguagem JavaScript e muito mais."
 tweet: "943057597481082880"

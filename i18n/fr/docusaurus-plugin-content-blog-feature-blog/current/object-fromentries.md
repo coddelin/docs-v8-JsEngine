@@ -1,10 +1,10 @@
 ---
 title: "`Object.fromEntries`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), spécialiste en JavaScript"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2019-06-18
-tags:
+tags: 
   - ECMAScript
   - ES2019
   - io19

@@ -1,12 +1,12 @@
 ---
 title: "Recolección de basura de alto rendimiento para C++"
 author: "Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), y Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), expertos en memoria de C++"
-avatars:
+avatars: 
   - "anton-bikineev"
   - "omer-katz"
   - "michael-lippautz"
 date: 2020-05-26
-tags:
+tags: 
   - internos
   - memoria
   - cppgc

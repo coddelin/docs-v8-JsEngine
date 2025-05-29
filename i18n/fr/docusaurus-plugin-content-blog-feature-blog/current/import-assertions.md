@@ -1,12 +1,12 @@
 ---
-title: 'Assertions d'importation'
-author: 'Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), importateur assertif d'assertions d'importation'
-avatars:
+title: "Assertions d'importation"
+author: "Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), importateur assertif d'assertions d'importation"
+avatars: 
   - "dan-clark"
 date: 2021-06-15
-tags:
+tags: 
   - ECMAScript
-description: 'Les assertions d'importation permettent aux instructions d'importation de module d'inclure des informations supplémentaires en plus du spécificateur de module'
+description: "Les assertions d'importation permettent aux instructions d'importation de module d'inclure des informations supplémentaires en plus du spécificateur de module"
 tweet: ""
 ---
 

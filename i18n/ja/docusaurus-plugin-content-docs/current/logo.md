@@ -1,7 +1,7 @@
 ---
-permalink: /logo/
-title: V8ロゴ
-layout: layouts/base.njk
+permalink: "/logo/"
+title: "V8ロゴ"
+layout: "layouts/base.njk"
 description: "公式のV8ロゴをベクター形式（SVG）でダウンロードできます。"
 ---
 # V8ロゴ

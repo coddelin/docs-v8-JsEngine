@@ -1,11 +1,11 @@
 ---
 title: "Jank Busters Part One"
 author: "the jank busters: Jochen Eisinger, Michael Lippautz, and Hannes Payer"
-avatars:
+avatars: 
   - "michael-lippautz"
   - "hannes-payer"
-date: 2015-10-30 13:33:37
-tags:
+date: "2015-10-30 13:33:37"
+tags: 
   - memory
 description: "이 글은 Chrome 41과 Chrome 46 사이에 구현된 최적화에 대해 논의하며, 이는 가비지 수집 지연 시간을 상당히 줄여 사용자 경험을 개선합니다."
 ---

@@ -1,10 +1,10 @@
 ---
 title: "V8 发布 v8.6"
 author: "Ingvar Stepanyan（[@RReverser](https://twitter.com/RReverser)），一位键盘模糊测试者"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2020-09-21
-tags:
+tags: 
  - 发布
 description: "V8 发布 v8.6 带来了更尊重的代码、性能改进和规范更改。"
 tweet: "1308062287731789825"

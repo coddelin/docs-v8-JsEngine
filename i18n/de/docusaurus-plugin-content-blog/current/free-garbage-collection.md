@@ -1,11 +1,11 @@
 ---
 title: "Kostenlose Speicherbereinigung"
 author: "Hannes Payer und Ross McIlroy, Idle Garbage Collectors"
-avatars:
+avatars: 
   - "hannes-payer"
   - "ross-mcilroy"
-date: 2015-08-07 13:33:37
-tags:
+date: "2015-08-07 13:33:37"
+tags: 
   - internals
   - speicher
 description: "Chrome 41 versteckt aufwendige Speicherverwaltungsoperationen in kleinen, sonst ungenutzten Leerlaufzeiten, wodurch Ruckler reduziert werden."

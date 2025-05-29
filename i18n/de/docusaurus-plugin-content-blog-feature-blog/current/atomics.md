@@ -1,10 +1,10 @@
 ---
 title: "`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`"
 author: "[Marja Hölttä](https://twitter.com/marjakh), eine nicht blockierende Bloggerin"
-avatars:
+avatars: 
   - marja-holtta
 date: 2020-09-24
-tags:
+tags: 
   - ECMAScript
   - ES2020
   - Node.js 16

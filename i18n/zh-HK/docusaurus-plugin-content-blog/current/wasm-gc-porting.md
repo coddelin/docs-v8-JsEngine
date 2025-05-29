@@ -1,10 +1,10 @@
 ---
 title: "一種將支援垃圾回收的程式語言高效引入到 WebAssembly 的新方式"
 author: "Alon Zakai"
-avatars:
+avatars: 
   - "alon-zakai"
 date: 2023-11-01
-tags:
+tags: 
   - WebAssembly
 tweet: "1720161507324076395"
 ---

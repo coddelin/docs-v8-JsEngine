@@ -1,12 +1,12 @@
 ---
 title: "Vérifications des marques privées alias `#foo in obj`"
 author: "Marja Hölttä ([@marjakh](https://twitter.com/marjakh))"
-avatars:
+avatars: 
   - "marja-holtta"
 date: 2021-04-14
-tags:
+tags: 
   - ECMAScript
-description: 'Les vérifications des marques privées permettent de tester l'existence d'un champ privé dans un objet.'
+description: "Les vérifications des marques privées permettent de tester l'existence d'un champ privé dans un objet."
 tweet: "1382327454975590401"
 ---
 

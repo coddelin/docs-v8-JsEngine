@@ -1,10 +1,10 @@
 ---
 title: "V8 릴리스 v8.7"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), V8 담당자"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2020-10-23
-tags:
+tags: 
  - release
 description: "V8 릴리스 v8.7은 네이티브 호출을 위한 새로운 API, Atomics.waitAsync, 버그 수정 및 성능 개선을 제공합니다."
 tweet: "1319654229863182338"

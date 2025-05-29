@@ -3,7 +3,7 @@ title: "高速で並列処理が可能なWebAssembly SIMD"
 author: "ディープティ・ガンドルリ ([@dptig](https://twitter.com/dptig))、トーマス・ライブリー ([@tlively52](https://twitter.com/tlively52))、イングヴァル・ステパニャン ([@RReverser](https://twitter.com/RReverser))"
 date: 2020-01-30
 updated: 2022-11-06
-tags:
+tags: 
   - WebAssembly
 description: "WebAssemblyにベクトル操作を追加する"
 tweet: "1222944308183085058"

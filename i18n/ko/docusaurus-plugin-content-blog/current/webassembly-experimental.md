@@ -1,8 +1,8 @@
 ---
 title: "V8에서 WebAssembly의 실험적 지원"
 author: "Seth Thompson, WebAssembly 책임자"
-date: 2016-03-15 13:33:37
-tags:
+date: "2016-03-15 13:33:37"
+tags: 
   - WebAssembly
 description: "오늘부터 V8과 Chromium에서 플래그 뒤에 WebAssembly에 대한 실험적 지원이 제공됩니다."
 ---

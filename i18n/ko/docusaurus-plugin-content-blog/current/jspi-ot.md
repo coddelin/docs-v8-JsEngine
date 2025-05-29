@@ -3,7 +3,7 @@ title: "WebAssembly JSPI가 오리진 트라이얼을 시작합니다"
 description: "JSPI의 오리진 트라이얼 시작을 설명합니다"
 author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-03-06
-tags:
+tags: 
   - WebAssembly
 ---
 WebAssembly의 JavaScript Promise Integration(JSPI) API가 Chrome M123 릴리스와 함께 오리진 트라이얼에 진입합니다. 이를 통해 여러분과 사용자들이 이 새로운 API로부터 이점이 있는지 테스트할 수 있습니다.

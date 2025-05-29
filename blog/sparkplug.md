@@ -1,14 +1,14 @@
 ---
 title: "Sparkplug — a non-optimizing JavaScript compiler"
 author: "[Leszek Swirski](https://twitter.com/leszekswirski) — maybe not the brightest spark, but at least the fastest one"
-avatars:
+avatars: 
   - leszek-swirski
 date: 2021-05-27
-tags:
+tags: 
   - JavaScript
-extra_links:
-  - href: https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap
-    rel: stylesheet
+extra_links: 
+  - href: "https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap"
+    rel: "stylesheet"
 description: "In V8 v9.1 we’re improving V8 performance by 5–15% with Sparkplug: a new, non-optimizing JavaScript compiler."
 tweet: "1397945205198835719"
 ---

@@ -1,10 +1,10 @@
 ---
 title: "Lançamento do V8 v9.1"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), testando minha marca privada"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-05-04
-tags:
+tags: 
  - lançamento
 description: "O lançamento do V8 v9.1 traz suporte para verificação de marcas privadas, await no nível superior habilitado por padrão e melhorias de desempenho."
 tweet: "1389613320953532417"

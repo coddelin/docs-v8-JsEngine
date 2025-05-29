@@ -1,10 +1,10 @@
 ---
 title: "Kurze eingebaute Aufrufe"
 author: "[Toon Verwaest](https://twitter.com/tverwaes), Der große Short"
-avatars:
+avatars: 
   - toon-verwaest
 date: 2021-05-06
-tags:
+tags: 
   - JavaScript
 description: "In V8 v9.1 haben wir die eingebetteten Builtins vorübergehend auf Desktop deaktiviert, um Leistungsprobleme zu vermeiden, die durch weit entfernte indirekte Aufrufe verursacht werden."
 tweet: "1394267917013897216"

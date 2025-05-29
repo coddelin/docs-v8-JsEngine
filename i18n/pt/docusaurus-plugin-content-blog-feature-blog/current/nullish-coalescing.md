@@ -1,10 +1,10 @@
 ---
 title: "Coalescência nula"
 author: "Justin Ridgewell"
-avatars:
+avatars: 
   - "justin-ridgewell"
 date: 2019-09-17
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "O operador de coalescência nula do JavaScript permite expressões padrão mais seguras."

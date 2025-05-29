@@ -1,10 +1,10 @@
 ---
 title: "Lançamento V8 v9.9"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), em seus 99%"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2022-01-31
-tags:
+tags: 
  - lançamento
 description: "O lançamento do V8 v9.9 traz novas APIs de internacionalização."
 tweet: "1488190967727411210"

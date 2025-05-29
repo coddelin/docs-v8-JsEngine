@@ -3,7 +3,7 @@ title: "빠르고 병렬적인 애플리케이션과 WebAssembly SIMD"
 author: "Deepti Gandluri ([@dptig](https://twitter.com/dptig)), Thomas Lively ([@tlively52](https://twitter.com/tlively52)), Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 date: 2020-01-30
 updated: 2022-11-06
-tags:
+tags: 
   - WebAssembly
 description: "벡터 연산을 WebAssembly로 가져오기"
 tweet: "1222944308183085058"

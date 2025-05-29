@@ -1,10 +1,10 @@
 ---
 title: "启动 Ignition 解释器"
 author: "Ross McIlroy, V8 Ignition 初学者"
-avatars:
+avatars: 
   - "ross-mcilroy"
-date: 2016-08-23 13:33:37
-tags:
+date: "2016-08-23 13:33:37"
+tags: 
   - 内部结构
 description: "通过 Ignition 解释器，V8 将 JavaScript 函数编译为精简的字节码，其大小仅为相应基础机器代码的 50% 到 25%。"
 ---

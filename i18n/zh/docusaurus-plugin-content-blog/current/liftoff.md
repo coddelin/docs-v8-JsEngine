@@ -1,10 +1,10 @@
 ---
 title: "Liftoff：V8 中 WebAssembly 的新基线编译器"
 author: "Clemens Backes，WebAssembly 编译大师"
-avatars:
+avatars: 
   - "clemens-backes"
-date: 2018-08-20 15:45:12
-tags:
+date: "2018-08-20 15:45:12"
+tags: 
   - WebAssembly
   - 内部机制
 description: "Liftoff 是 WebAssembly 的新基线编译器，现已在 V8 v6.9 中使用。"

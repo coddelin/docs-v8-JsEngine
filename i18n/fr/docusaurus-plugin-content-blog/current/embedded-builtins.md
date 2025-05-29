@@ -1,10 +1,10 @@
 ---
 title: "Fonctions intégrées embarquées"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2018-08-14 13:33:37
-tags:
+date: "2018-08-14 13:33:37"
+tags: 
   - internes
 description: "V8 v6.9 intègre du code intégré dans la section .text du binaire, réduisant la taille médiane du tas V8 par site web de 19%."
 tweet: "1029382366693937162"

@@ -1,10 +1,10 @@
 ---
 title: "Chrome 96에서 WebAssembly Dynamic Tiering 사용해보기"
 author: "Andreas Haas — 즐거운 시간"
-avatars:
+avatars: 
   - andreas-haas
 date: 2021-10-29
-tags:
+tags: 
   - WebAssembly
 description: "Chrome 96과 V8 v9.6에서 WebAssembly Dynamic Tiering을 명령줄 플래그 또는 Origin Trial을 통해 사용해볼 수 있습니다."
 tweet: "1454158971674271760"

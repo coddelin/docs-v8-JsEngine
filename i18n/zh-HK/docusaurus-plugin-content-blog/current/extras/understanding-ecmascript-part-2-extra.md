@@ -1,10 +1,10 @@
 ---
 title: "額外內容：「理解 ECMAScript 規格，第二部分」"
 author: "[Marja Hölttä](https://twitter.com/marjakh)，投機規格觀察者"
-avatars:
+avatars: 
   - marja-holtta
 date: 2020-03-02
-tags:
+tags: 
   - ECMAScript
 description: "閱讀 ECMAScript 規格的教程"
 tweet: ""

@@ -1,10 +1,10 @@
 ---
 title: "Die Einführung des Web Tooling Benchmark"
 author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), JavaScript Performance Juggler"
-avatars:
+avatars: 
   - "benedikt-meurer"
-date: 2017-11-06 13:33:37
-tags:
+date: "2017-11-06 13:33:37"
+tags: 
   - Benchmarks
   - Node.js
 description: "Die brandneuen Web Tooling Benchmark hilft dabei, V8-Leistungsengpässe in Babel, TypeScript und anderen realen Projekten zu identifizieren und zu beheben."

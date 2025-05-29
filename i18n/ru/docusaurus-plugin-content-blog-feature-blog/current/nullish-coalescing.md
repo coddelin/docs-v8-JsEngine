@@ -1,10 +1,10 @@
 ---
 title: "Оператор объединения с null"
 author: "Джастин Риджвелл"
-avatars:
+avatars: 
   - "justin-ridgewell"
 date: 2019-09-17
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "Оператор объединения с null в JavaScript обеспечивает более безопасное использование выражений по умолчанию."

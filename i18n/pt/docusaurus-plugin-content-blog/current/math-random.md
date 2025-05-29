@@ -1,10 +1,10 @@
 ---
 title: "Existe `Math.random()`, e depois existe `Math.random()`"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), engenheiro de software e designer de dados"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-12-17 13:33:37
-tags:
+date: "2015-12-17 13:33:37"
+tags: 
   - ECMAScript
   - internals
 description: "A implementação de `Math.random` no V8 agora usa um algoritmo chamado xorshift128+, melhorando a aleatoriedade em comparação com a antiga implementação MWC1616."

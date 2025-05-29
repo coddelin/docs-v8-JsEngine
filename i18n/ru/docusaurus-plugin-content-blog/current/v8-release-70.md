@@ -1,10 +1,10 @@
 ---
 title: "Релиз V8 v7.0"
 author: "Майкл Хаблих"
-avatars:
+avatars: 
   - michael-hablich
-date: 2018-10-15 17:17:00
-tags:
+date: "2018-10-15 17:17:00"
+tags: 
   - релиз
 description: "V8 v7.0 включает потоки WebAssembly, Symbol.prototype.description и встроенные функции на большем количестве платформ!"
 tweet: "1051857446279532544"

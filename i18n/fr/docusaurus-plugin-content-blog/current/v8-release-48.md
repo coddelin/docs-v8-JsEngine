@@ -1,8 +1,8 @@
 ---
 title: "Version V8 v4.8"
-author: 'l'équipe V8'
-date: 2015-11-25 13:33:37
-tags:
+author: "l'équipe V8"
+date: "2015-11-25 13:33:37"
+tags: 
   - version
 description: "V8 v4.8 ajoute la prise en charge de plusieurs nouvelles fonctionnalités du langage ES2015."
 ---

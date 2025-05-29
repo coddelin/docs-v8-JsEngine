@@ -1,10 +1,10 @@
 ---
 title: "새로운 클래스 기능으로 인스턴스 초기화 속도 향상"
 author: "[Joyee Cheung](https://twitter.com/JoyeeCheung), 인스턴스 초기화자"
-avatars:
+avatars: 
   - "joyee-cheung"
 date: 2022-04-20
-tags:
+tags: 
   - 내부구조
 description: "V8 v9.7 이후 새로운 클래스 기능으로 인한 인스턴스 초기화 속도가 빨라졌습니다."
 tweet: "1517041137378373632"

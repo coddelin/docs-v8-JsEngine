@@ -1,10 +1,10 @@
 ---
 title: "V8版本9.3发布"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-08-09
-tags:
+tags: 
  - 发布
 description: "V8版本9.3支持Object.hasOwn和Error原因，提升编译性能，并在Android上禁用不可信代码生成缓解措施。"
 tweet: ""

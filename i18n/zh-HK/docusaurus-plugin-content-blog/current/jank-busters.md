@@ -1,11 +1,11 @@
 ---
 title: "卡頓克星第一部分"
 author: "卡頓克星: Jochen Eisinger、Michael Lippautz 和 Hannes Payer"
-avatars:
+avatars: 
   - "michael-lippautz"
   - "hannes-payer"
-date: 2015-10-30 13:33:37
-tags:
+date: "2015-10-30 13:33:37"
+tags: 
   - memory
 description: "這篇文章討論了在 Chrome 41 和 Chrome 46 之間實現的一些優化，這些優化顯著減少了垃圾回收滯後，從而提高了用戶體驗。"
 ---

@@ -1,8 +1,8 @@
 ---
 title: "Sortie de V8 v7.4"
 author: "Georg Neis"
-date: 2019-03-22 16:30:42
-tags:
+date: "2019-03-22 16:30:42"
+tags: 
   - sortie
 description: "V8 v7.4 introduit les threads/Atomics WebAssembly, les champs privés de classes, des améliorations de performance et de mémoire, et bien plus encore !"
 tweet: "1109094755936489472"

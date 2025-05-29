@@ -1,12 +1,12 @@
 ---
 title: "Флаг `v` в регулярных выражениях с использованием нотации множеств и свойств строк"
 author: "Марк Дэвис ([@mark_e_davis](https://twitter.com/mark_e_davis)), Маркус Шерер и Матиас Биненс ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mark-davis"
   - "markus-scherer"
   - "mathias-bynens"
 date: 2022-06-27
-tags:
+tags: 
   - ECMAScript
 description: "Новый флаг `v` в регулярных выражениях включает режим `unicodeSets`, обеспечивая поддержку расширенных символьных классов, включая свойства строк Unicode, нотацию множеств и улучшенное нечёткое сопоставление."
 tweet: "1541419838513594368"

@@ -1,10 +1,10 @@
 ---
 title: "`Promise.prototype.finally`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-10-23
-tags:
+tags: 
   - ECMAScript
   - ES2018
 description: "Promise.prototype.finally ermöglicht das Registrieren eines Rückrufs, der ausgeführt wird, wenn ein Versprechen abgeschlossen ist (d.h. entweder erfüllt oder abgelehnt)."

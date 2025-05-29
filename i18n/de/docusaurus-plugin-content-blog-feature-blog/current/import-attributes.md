@@ -1,10 +1,10 @@
 ---
 title: "Importattribute"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2024-01-31
-tags:
+tags: 
   - ECMAScript
 description: "Importattribute: die Entwicklung von Import Assertions"
 tweet: ""

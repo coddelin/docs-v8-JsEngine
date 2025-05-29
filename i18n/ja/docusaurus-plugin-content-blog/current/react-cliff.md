@@ -1,11 +1,11 @@
 ---
 title: "ReactにおけるV8の性能の崖についての物語"
 author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) と Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "benedikt-meurer"
   - "mathias-bynens"
-date: 2019-08-28 16:45:00
-tags:
+date: "2019-08-28 16:45:00"
+tags: 
   - internals
   - presentations
 description: "この記事では、V8がさまざまなJavaScript値に対して最適なメモリ内表現を選択する方法と、それがShapeの仕組みにどのように影響を与えるかについて説明しています。これらすべては、Reactコアにおける最近のV8の性能の崖を説明する助けとなります。"

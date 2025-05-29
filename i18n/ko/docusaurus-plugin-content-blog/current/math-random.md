@@ -1,10 +1,10 @@
 ---
 title: "`Math.random()`이 있고, 또 다른 `Math.random()`도 있다"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), 소프트웨어 엔지니어 겸 주사위 디자이너"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-12-17 13:33:37
-tags:
+date: "2015-12-17 13:33:37"
+tags: 
   - ECMAScript
   - internals
 description: "V8의 Math.random 구현이 이제 xorshift128+ 알고리즘을 사용하여, 이전 MWC1616 구현보다 무작위성을 개선했습니다."

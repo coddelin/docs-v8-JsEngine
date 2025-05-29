@@ -1,10 +1,10 @@
 ---
 title: "V8 릴리스 v9.2"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-07-16
-tags:
+tags: 
  - release
 description: "V8 릴리스 v9.2는 `at` 메서드와 포인터 압축 개선 사항을 제공합니다."
 tweet: ""

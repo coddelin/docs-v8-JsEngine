@@ -1,12 +1,12 @@
 ---
 title: "Concurrent marking in V8"
 author: "Ulan Degenbaev, Michael Lippautz, and Hannes Payer — main thread liberators"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2018-06-11 13:33:37
-tags:
+date: "2018-06-11 13:33:37"
+tags: 
   - internals
   - memory
 description: "This post describes the garbage collection technique called concurrent marking."

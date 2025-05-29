@@ -1,10 +1,10 @@
 ---
 title: "Mejor almacenamiento en caché del código"
 author: "Mythri Alle, Jefa del Almacenamiento en Caché de Código"
-date: 2018-04-24 13:33:37
-avatars:
+date: "2018-04-24 13:33:37"
+avatars: 
   - "mythri-alle"
-tags:
+tags: 
   - internals
 tweet: "988728000677142528"
 description: "A partir de Chrome 66, V8 almacena más (byte)código en caché al generar el caché después de la ejecución a nivel superior."

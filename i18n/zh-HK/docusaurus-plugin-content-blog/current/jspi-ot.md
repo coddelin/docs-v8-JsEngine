@@ -3,7 +3,7 @@ title: "WebAssembly JSPI 即將進入來源試驗"
 description: "我們將解釋 JSPI 起始來源試驗的意義"
 author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-03-06
-tags:
+tags: 
   - WebAssembly
 ---
 WebAssembly 的 JavaScript Promise Integration (JSPI) API 即將隨 Chrome M123 版本進入來源試驗。這意味著您可以測試您和您的用戶是否能從此新的 API 中受益。

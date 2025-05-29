@@ -1,7 +1,7 @@
 ---
 title: "Maglev - V8的最快优化即时编译器（JIT）"
 author: "[Toon Verwaest](https://twitter.com/tverwaes), [Leszek Swirski](https://twitter.com/leszekswirski), [Victor Gomes](https://twitter.com/VictorBFG), Olivier Flückiger, Darius Mercadier 和 Camillo Bruni —— 足够的厨师不会坏了一锅汤"
-avatars:
+avatars: 
   - toon-verwaest
   - leszek-swirski
   - victor-gomes
@@ -9,7 +9,7 @@ avatars:
   - darius-mercadier
   - camillo-bruni
 date: 2023-12-05
-tags:
+tags: 
   - JavaScript
 description: "V8最新的编译器Maglev在提升性能的同时降低了功耗"
 tweet: ""

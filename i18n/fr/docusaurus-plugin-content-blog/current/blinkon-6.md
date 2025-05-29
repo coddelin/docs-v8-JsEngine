@@ -1,10 +1,10 @@
 ---
 title: "V8 à la conférence BlinkOn 6"
-author: 'l'équipe V8'
-date: 2016-07-21 13:33:37
-tags:
+author: "l'équipe V8"
+date: "2016-07-21 13:33:37"
+tags: 
   - présentations
-description: 'Un aperçu des présentations de l'équipe V8 à BlinkOn 6.'
+description: "Un aperçu des présentations de l'équipe V8 à BlinkOn 6."
 ---
 BlinkOn est une réunion semestrielle des contributeurs de Blink, V8 et Chromium. BlinkOn 6 a eu lieu à Munich les 16 et 17 juin. L'équipe V8 a donné plusieurs présentations sur l'architecture, la conception, les initiatives de performance et l'implémentation des langages.
 

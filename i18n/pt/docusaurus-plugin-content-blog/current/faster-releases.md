@@ -1,7 +1,7 @@
 ---
 title: "Lançamentos mais rápidos"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
   - "ingvar-stepanyan"
 date: 2021-03-04
 description: "Acelerando o ciclo de lançamento do V8"

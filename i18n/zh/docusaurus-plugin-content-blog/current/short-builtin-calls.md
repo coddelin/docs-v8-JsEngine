@@ -1,10 +1,10 @@
 ---
 title: "内置调用短化"
 author: "[Toon Verwaest](https://twitter.com/tverwaes), 《大空头》"
-avatars:
+avatars: 
   - toon-verwaest
 date: 2021-05-06
-tags:
+tags: 
   - JavaScript
 description: "在 V8 v9.1 中，我们暂时在桌面端取消了嵌入式内置，以避免由远间接调用引起的性能问题。"
 tweet: "1394267917013897216"

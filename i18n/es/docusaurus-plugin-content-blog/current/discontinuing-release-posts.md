@@ -1,10 +1,10 @@
 ---
 title: "Interrumpir publicaciones de blog de lanzamientos"
 author: "Shu-yu Guo ([@shu_](https://twitter.com/_shu))"
-avatars:
+avatars: 
  - "shu-yu-guo"
 date: 2022-06-17
-tags:
+tags: 
  - lanzamiento
 description: "V8 dejará de publicar blogs de lanzamientos a favor del calendario de lanzamientos de Chrome y publicaciones de blogs sobre características."
 tweet: "1537857497825824768"

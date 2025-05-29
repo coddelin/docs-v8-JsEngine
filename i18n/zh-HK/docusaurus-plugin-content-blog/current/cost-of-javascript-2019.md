@@ -1,11 +1,11 @@
 ---
 title: "2019年JavaScript的成本"
 author: "Addy Osmani（[@addyosmani](https://twitter.com/addyosmani)），JavaScript清道夫，與Mathias Bynens（[@mathias](https://twitter.com/mathias)），主線程解放者"
-avatars:
+avatars: 
   - "addy-osmani"
   - "mathias-bynens"
 date: 2019-06-25
-tags:
+tags: 
   - internals
   - parsing
 description: "處理JavaScript的主要成本是下載和CPU執行時間。"

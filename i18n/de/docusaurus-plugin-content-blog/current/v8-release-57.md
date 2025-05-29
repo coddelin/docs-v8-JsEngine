@@ -1,8 +1,8 @@
 ---
 title: "V8-Version v5.7"
 author: "das V8-Team"
-date: 2017-02-06 13:33:37
-tags:
+date: "2017-02-06 13:33:37"
+tags: 
   - Veröffentlichung
 description: "V8 v5.7 aktiviert WebAssembly standardmäßig und enthält Leistungsverbesserungen sowie erweiterte Unterstützung für ECMAScript-Sprachfunktionen."
 ---

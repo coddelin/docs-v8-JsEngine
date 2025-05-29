@@ -1,10 +1,10 @@
 ---
 title: "V8における高速な`for`-`in`"
 author: "Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))"
-avatars:
+avatars: 
   - "camillo-bruni"
-date: 2017-03-01 13:33:37
-tags:
+date: "2017-03-01 13:33:37"
+tags: 
   - internals
 description: "V8がJavaScriptのfor-inを可能な限り高速化した技術的な詳細を説明します。"
 ---

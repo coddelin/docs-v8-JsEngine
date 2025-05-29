@@ -1,10 +1,10 @@
 ---
 title: "RegExp lookbehind assertions"
 author: "Yang Guo, 정규 표현식 엔지니어"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2016-02-26 13:33:37
-tags:
+date: "2016-02-26 13:33:37"
+tags: 
   - ECMAScript
   - RegExp
 description: "JavaScript 정규 표현식은 lookbehind 어설션과 같은 새로운 기능을 제공합니다."

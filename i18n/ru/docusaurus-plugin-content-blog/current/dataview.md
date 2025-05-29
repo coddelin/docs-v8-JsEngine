@@ -1,10 +1,10 @@
 ---
 title: "Улучшение производительности `DataView` в V8"
-author: 'Тэотим Гроенс, <i lang="fr">учёный Data-Vue</i>, и Бенедикт Мойрер ([@bmeurer](https://twitter.com/bmeurer)), профессиональный специалист по производительности'
-avatars:
+author: "Тэотим Гроенс, <i lang=\"fr\">учёный Data-Vue</i>, и Бенедикт Мойрер ([@bmeurer](https://twitter.com/bmeurer)), профессиональный специалист по производительности"
+avatars: 
   - "benedikt-meurer"
-date: 2018-09-18 11:20:37
-tags:
+date: "2018-09-18 11:20:37"
+tags: 
   - ECMAScript
   - тесты производительности
 description: "V8 v6.9 устраняет разрыв в производительности между DataView и эквивалентным кодом TypedArray, эффективно делая DataView пригодным для критически важных реальных приложений."

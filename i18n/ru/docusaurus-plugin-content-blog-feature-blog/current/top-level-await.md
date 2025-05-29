@@ -1,10 +1,10 @@
 ---
 title: "Высокоуровневый `await`"
 author: "Майлз Боринс ([@MylesBorins](https://twitter.com/MylesBorins))"
-avatars:
+avatars: 
   - "myles-borins"
 date: 2019-10-08
-tags:
+tags: 
   - ECMAScript
   - Node.js 14
 description: "Высокоуровневый `await` приходит в модули JavaScript! Очень скоро вы сможете использовать `await`, не находясь внутри асинхронной функции."

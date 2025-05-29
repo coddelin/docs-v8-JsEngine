@@ -1,8 +1,8 @@
 ---
 title: "Lanzamiento de V8 versión 6.6"
 author: "el equipo de V8"
-date: 2018-03-27 13:33:37
-tags:
+date: "2018-03-27 13:33:37"
+tags: 
   - lanzamiento
 description: "¡V8 v6.6 incluye enlace opcional en catch, recorte extendido de cadenas, varias mejoras de rendimiento en análisis/compilación/ejecución y mucho más!"
 tweet: "978534399938584576"

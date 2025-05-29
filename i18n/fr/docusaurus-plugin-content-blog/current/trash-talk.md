@@ -1,14 +1,14 @@
 ---
-title: 'Parlons déchets : le collecteur d'ordures Orinoco'
+title: "Parlons déchets : le collecteur d'ordures Orinoco"
 author: "Peter ‘le garbo’ Marshall ([@hooraybuffer](https://twitter.com/hooraybuffer))"
-avatars:
+avatars: 
   - "peter-marshall"
-date: 2019-01-03 17:45:34
-tags:
+date: "2019-01-03 17:45:34"
+tags: 
   - internes
   - mémoire
   - présentations
-description: 'Orinoco, le collecteur d'ordures de V8, est passé d'une implémentation séquentielle stop-the-world à un collecteur principalement parallèle et concurrent avec une solution de repli incrémentale.'
+description: "Orinoco, le collecteur d'ordures de V8, est passé d'une implémentation séquentielle stop-the-world à un collecteur principalement parallèle et concurrent avec une solution de repli incrémentale."
 tweet: "1080867305532416000"
 ---
 Au cours des dernières années, le collecteur d'ordures (GC) de V8 a beaucoup évolué. Le projet Orinoco a transformé un collecteur d'ordures séquentiel stop-the-world en un collecteur principalement parallèle et concurrent avec une solution de repli incrémentale.

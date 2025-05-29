@@ -1,10 +1,10 @@
 ---
 title: "新しいクラス機能を使用するインスタンスの初期化がより高速に"
 author: "[Joyee Cheung](https://twitter.com/JoyeeCheung), インスタンス初期化担当"
-avatars:
+avatars: 
   - "joyee-cheung"
 date: 2022-04-20
-tags:
+tags: 
   - 内部構造
 description: "V8 v9.7以降、新しいクラス機能を使用したインスタンスの初期化がより高速になりました。"
 tweet: "1517041137378373632"

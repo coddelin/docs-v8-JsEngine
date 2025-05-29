@@ -1,10 +1,10 @@
 ---
 title: "Exportações de namespace de módulo"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-12-18
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "Os módulos JavaScript agora suportam nova sintaxe para reexportar todas as propriedades dentro de um namespace"

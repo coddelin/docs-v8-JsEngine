@@ -1,6 +1,6 @@
 ---
 title: "V8 Torque functions intégrées"
-description: 'Ce document est destiné à introduire l'écriture des fonctions intégrées Torque, et s'adresse aux développeurs V8.'
+description: "Ce document est destiné à introduire l'écriture des fonctions intégrées Torque, et s'adresse aux développeurs V8."
 ---
 Ce document est destiné à introduire l'écriture des fonctions intégrées Torque, et s'adresse aux développeurs V8. Torque remplace CodeStubAssembler comme méthode recommandée pour implémenter de nouvelles fonctions intégrées. Voir [CodeStubAssembler functions intégrées](/docs/csa-builtins) pour la version CSA de ce guide.
 

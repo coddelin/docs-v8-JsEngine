@@ -1,10 +1,10 @@
 ---
 title: "Релиз V8 v9.7"
 author: "Ингвар Степанян ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-11-05
-tags:
+tags: 
  - релиз
 description: "Релиз V8 v9.7 добавляет новые методы JavaScript для поиска назад в массивах."
 tweet: ""

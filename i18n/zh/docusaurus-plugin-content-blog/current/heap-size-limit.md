@@ -1,12 +1,12 @@
 ---
 title: "Chrome的一小步，V8的一大堆"
 author: "堆的守护者Ulan Degenbaev, Hannes Payer, Michael Lippautz，以及DevTools战士Alexey Kozyatinskiy"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2017-02-09 13:33:37
-tags:
+date: "2017-02-09 13:33:37"
+tags: 
   - 内存
 description: "V8最近增加了其堆大小的硬限制。"
 ---

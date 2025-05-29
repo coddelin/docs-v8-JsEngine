@@ -1,10 +1,10 @@
 ---
 title: "APIs de internacionalização mais rápidas e com mais recursos"
 author: "[சத்யா குணசேகரன் (Sathya Gunasekaran)](https://twitter.com/_gsathya)"
-date: 2019-04-25 16:45:37
-avatars:
+date: "2019-04-25 16:45:37"
+avatars: 
   - "sathya-gunasekaran"
-tags:
+tags: 
   - ECMAScript
   - Intl
 description: "A API de Internacionalização de JavaScript está crescendo, e sua implementação no V8 está ficando mais rápida!"

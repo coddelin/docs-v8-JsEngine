@@ -1,10 +1,10 @@
 ---
 title: "Snapshots personalizados de inicialização"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), Engenheiro de Software e fornecedor de pré-aquecedor de motor"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-09-25 13:33:37
-tags:
+date: "2015-09-25 13:33:37"
+tags: 
   - internos
 description: "Embedders do V8 podem utilizar snapshots para pular o tempo de inicialização causado por inicializações de programas JavaScript."
 ---

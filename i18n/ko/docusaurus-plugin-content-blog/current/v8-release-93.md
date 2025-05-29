@@ -1,10 +1,10 @@
 ---
 title: "V8 릴리스 v9.3"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-08-09
-tags:
+tags: 
  - release
 description: "V8 릴리스 v9.3에는 Object.hasOwn 및 Error 원인 지원이 추가되었으며, 컴파일 성능이 향상되고 Android에서 신뢰할 수 없는 코드 생성을 방지하는 완화 기능이 비활성화되었습니다."
 tweet: ""

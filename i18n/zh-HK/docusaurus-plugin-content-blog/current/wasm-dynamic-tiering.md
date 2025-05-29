@@ -1,10 +1,10 @@
 ---
 title: "WebAssembly 動態分層可於 Chrome 96 試用"
 author: "Andreas Haas — 有趣的階層"
-avatars:
+avatars: 
   - andreas-haas
 date: 2021-10-29
-tags:
+tags: 
   - WebAssembly
 description: "WebAssembly 動態分層可於 V8 v9.6 和 Chrome 96 試用，可透過命令行標誌或來源試驗進行"
 tweet: "1454158971674271760"

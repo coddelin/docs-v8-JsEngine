@@ -1,11 +1,11 @@
 ---
 title: "Jank Busters Part One"
 author: "the jank busters: Jochen Eisinger, Michael Lippautz, and Hannes Payer"
-avatars:
+avatars: 
   - "michael-lippautz"
   - "hannes-payer"
-date: 2015-10-30 13:33:37
-tags:
+date: "2015-10-30 13:33:37"
+tags: 
   - memory
 description: "This article discusses optimizations that were implemented between Chrome 41 and Chrome 46 which significantly reduce garbage collection pauses, resulting in better user experience."
 ---

@@ -1,10 +1,10 @@
 ---
 title: "一种将垃圾回收编程语言高效引入WebAssembly的新方法"
 author: "阿隆·扎凯"
-avatars:
+avatars: 
   - "alon-zakai"
 date: 2023-11-01
-tags:
+tags: 
   - WebAssembly
 tweet: "1720161507324076395"
 ---

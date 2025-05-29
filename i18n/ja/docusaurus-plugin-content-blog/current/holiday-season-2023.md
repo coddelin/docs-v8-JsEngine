@@ -1,10 +1,10 @@
 ---
 title: "V8はこれまで以上に速く、安全です！"
 author: "[Victor Gomes](https://twitter.com/VictorBFG)、グリューワインの専門家"
-avatars:
+avatars: 
   - victor-gomes
 date: 2023-12-14
-tags:
+tags: 
   - JavaScript
   - WebAssembly
   - セキュリティ

@@ -1,10 +1,10 @@
 ---
 title: "Sortie de V8 v7.2"
 author: "Andreas Haas, responsable des pièges"
-avatars:
+avatars: 
   - andreas-haas
-date: 2018-12-18 11:48:21
-tags:
+date: "2018-12-18 11:48:21"
+tags: 
   - sortie
 description: "V8 v7.2 propose un parsing JavaScript ultra-rapide, une exécution plus rapide des fonctions async-await, une réduction de la consommation de mémoire sur ia32, des champs de classe publics, et bien plus encore !"
 tweet: "1074978755934863361"

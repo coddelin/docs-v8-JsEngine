@@ -1,10 +1,10 @@
 ---
 title: "Llamadas internas cortas"
 author: "[Toon Verwaest](https://twitter.com/tverwaes), The Big Short"
-avatars:
+avatars: 
   - toon-verwaest
 date: 2021-05-06
-tags:
+tags: 
   - JavaScript
 description: "En V8 v9.1 hemos deshabilitado temporalmente los builtins incrustados en el escritorio para evitar problemas de rendimiento debido a llamadas indirectas lejanas."
 tweet: "1394267917013897216"

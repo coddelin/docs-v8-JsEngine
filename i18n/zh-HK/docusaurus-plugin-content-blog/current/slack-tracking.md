@@ -2,10 +2,10 @@
 title: "V8 中的 Slack 追蹤"
 author: "Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), 著名的 *slack* 大師"
 description: "深入探討 V8 的 Slack 追蹤機制。"
-avatars:
+avatars: 
  - "michael-stanton"
-date: 2020-09-24 14:00:00
-tags:
+date: "2020-09-24 14:00:00"
+tags: 
  - internals
 ---
 Slack 追蹤是一種給新對象一個 **比實際使用更大的初始大小** 的方法，便於快速新增屬性。然後，經過一段時間後，將未使用的空間 **神奇地返回到系統**。很棒吧？

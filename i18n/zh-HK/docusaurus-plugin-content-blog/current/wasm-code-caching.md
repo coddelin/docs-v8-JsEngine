@@ -1,10 +1,10 @@
 ---
 title: "WebAssembly 開發人員的程式碼快取"
 author: "[比爾·巴奇 (Bill Budge)](https://twitter.com/billb)，在快取中放入 Ca-ching!"
-avatars:
+avatars: 
   - bill-budge
 date: 2019-06-17
-tags:
+tags: 
   - WebAssembly
   - internals
 description: "本文解釋了 Chrome 的 WebAssembly 程式碼快取，並說明開發人員如何利用它來加速載入大型 WebAssembly 模組的應用程式。"

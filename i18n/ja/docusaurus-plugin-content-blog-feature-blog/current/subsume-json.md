@@ -1,10 +1,10 @@
 ---
 title: "JSONをECMAScriptの部分集合として統合する（Subsume JSON a.k.a. JSON ⊂ ECMAScript）"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2019-08-14
-tags:
+tags: 
   - ES2019
 description: "JSONは現在、ECMAScriptの構文的部分集合になりました。"
 tweet: "1161649929904885762"

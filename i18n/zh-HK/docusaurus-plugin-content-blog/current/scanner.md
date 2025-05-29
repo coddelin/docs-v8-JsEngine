@@ -1,10 +1,10 @@
 ---
 title: "極速解析，第1部分：優化掃描器"
 author: "Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes))，令人震驚的優化者"
-avatars:
+avatars: 
   - "toon-verwaest"
-date: 2019-03-25 13:33:37
-tags:
+date: "2019-03-25 13:33:37"
+tags: 
   - internals
   - parsing
 tweet: "1110205101652787200"

@@ -1,10 +1,10 @@
 ---
 title: "V8リリース v9.5"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-09-21
-tags:
+tags: 
  - リリース
 description: "V8リリース v9.5では、更新された国際化APIとWebAssembly例外処理のサポートを提供します。"
 tweet: "1440296019623759872"

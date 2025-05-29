@@ -1,8 +1,8 @@
 ---
 title: "Cómo mide V8 el rendimiento en el mundo real"
 author: "el equipo de V8"
-date: 2016-12-21 13:33:37
-tags:
+date: "2016-12-21 13:33:37"
+tags: 
   - benchmarks
 description: "El equipo de V8 ha desarrollado una nueva metodología para medir y entender el rendimiento del JavaScript en el mundo real."
 ---

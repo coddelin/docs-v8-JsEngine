@@ -1,10 +1,10 @@
 ---
 title: "Есть `Math.random()`, а затем есть `Math.random()`"
 author: "Ян Гуо ([@hashseed](https://twitter.com/hashseed)), инженер-программист и дизайнер костей"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-12-17 13:33:37
-tags:
+date: "2015-12-17 13:33:37"
+tags: 
   - ECMAScript
   - internals
 description: "Реализация Math.random в V8 теперь использует алгоритм, называемый xorshift128+, улучшая случайность по сравнению со старой реализацией MWC1616."

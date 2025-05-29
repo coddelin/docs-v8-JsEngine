@@ -1,10 +1,10 @@
 ---
 title: "更快的JavaScript调用"
 author: "[Victor Gomes](https://twitter.com/VictorBFG)，框架破碎者"
-avatars:
+avatars: 
   - "victor-gomes"
 date: 2021-02-15
-tags:
+tags: 
   - 内部结构
 description: "通过移除参数适配帧实现更快的JavaScript调用"
 tweet: "1361337569057865735"

@@ -1,10 +1,10 @@
 ---
 title: "RegExp マッチングインデックス"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski))、新しい機能を定期的に表現する"
-avatars:
+avatars: 
   - "maya-armyanova"
 date: 2019-12-17
-tags:
+tags: 
   - ECMAScript
   - Node.js 16
 description: "RegExp マッチングインデックスは、各キャプチャグループの `start` と `end` のインデックスを提供します。"

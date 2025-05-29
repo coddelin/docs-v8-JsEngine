@@ -1,8 +1,8 @@
 ---
 title: "Retirando Octane"
 author: "el equipo de V8"
-date: 2017-04-12 13:33:37
-tags:
+date: "2017-04-12 13:33:37"
+tags: 
   - benchmarks
 description: "El equipo de V8 cree que es hora de retirar Octane como un benchmark recomendado."
 ---

@@ -1,10 +1,10 @@
 ---
 title: "Static Roots: 컴파일 시간에 고정된 주소를 가지는 객체"
 author: "Olivier Flückiger"
-avatars:
+avatars: 
   - olivier-flueckiger
 date: 2024-02-05
-tags:
+tags: 
   - JavaScript
 description: "Static Roots는 특정 JS 객체의 주소를 컴파일 시간에 고정된 주소로 만듭니다."
 tweet: ""

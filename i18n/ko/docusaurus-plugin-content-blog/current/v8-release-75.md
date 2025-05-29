@@ -1,10 +1,10 @@
 ---
 title: "V8 릴리스 v7.5"
 author: "Dan Elphick, 더 이상 사용되지 않는 기능의 악몽"
-avatars:
+avatars: 
   - "dan-elphick"
-date: 2019-05-16 15:00:00
-tags:
+date: "2019-05-16 15:00:00"
+tags: 
   - 릴리스
 description: "V8 v7.5는 WebAssembly 컴파일 아티팩트의 암시적 캐싱, 대량 메모리 작업, JavaScript의 숫자 구분자 등 많은 기능을 제공합니다!"
 tweet: "1129073370623086593"

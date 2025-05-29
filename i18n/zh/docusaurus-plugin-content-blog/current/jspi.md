@@ -3,7 +3,7 @@ title: "介绍 WebAssembly JavaScript Promise 集成 API"
 description: "本文介绍 JSPI 并提供一些简单的示例，帮助你开始使用它"
 author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-07-01
-tags:
+tags: 
   - WebAssembly
 ---
 JavaScript Promise 集成 (JSPI) API 允许以假定 _同步_ 访问外部功能编写的 WebAssembly 应用程序能够在实际功能为 _异步_ 的环境中流畅运行。

@@ -1,10 +1,10 @@
 ---
 title: "V8 est plus rapide et plus sûr que jamais !"
-author: '[Victor Gomes](https://twitter.com/VictorBFG), l'expert du Glühwein'
-avatars:
+author: "[Victor Gomes](https://twitter.com/VictorBFG), l'expert du Glühwein"
+avatars: 
   - victor-gomes
 date: 2023-12-14
-tags:
+tags: 
   - JavaScript
   - WebAssembly
   - sécurité

@@ -1,11 +1,11 @@
 ---
 title: "Obteniendo recolección de basura gratis"
 author: "Hannes Payer y Ross McIlroy, Recolectores de Basura Inactivos"
-avatars:
+avatars: 
   - "hannes-payer"
   - "ross-mcilroy"
-date: 2015-08-07 13:33:37
-tags:
+date: "2015-08-07 13:33:37"
+tags: 
   - internals
   - memory
 description: "Chrome 41 oculta operaciones costosas de gestión de memoria dentro de pequeños fragmentos de tiempo inactivo y no utilizados, reduciendo los bloqueos."

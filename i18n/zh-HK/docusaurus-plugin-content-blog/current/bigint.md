@@ -1,8 +1,8 @@
 ---
 title: "在 V8 中新增 BigInts"
 author: "Jakob Kummerow，精確之仲裁者"
-date: 2018-05-02 13:33:37
-tags:
+date: "2018-05-02 13:33:37"
+tags: 
   - ECMAScript
 description: "V8 現在支援 BigInts，一種能夠處理任意精度整數的 JavaScript 語言功能。"
 tweet: "991705626391732224"

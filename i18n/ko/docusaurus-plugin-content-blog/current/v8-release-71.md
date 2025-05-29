@@ -1,10 +1,10 @@
 ---
 title: "V8 릴리즈 v7.1"
 author: "Stephan Herhut ([@herhut](https://twitter.com/herhut)), 클론 클론에서 클론된 클론자"
-avatars:
+avatars: 
   - stephan-herhut
-date: 2018-10-31 15:44:37
-tags:
+date: "2018-10-31 15:44:37"
+tags: 
   - release
 description: "V8 v7.1은 임베디드 바이트코드 핸들러, 개선된 TurboFan 탈출 분석, postMessage(wasmModule), Intl.RelativeTimeFormat, 그리고 globalThis를 제공합니다!"
 tweet: "1057645773465235458"

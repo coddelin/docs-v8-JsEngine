@@ -1,11 +1,11 @@
 ---
 title: "Code caching for JavaScript developers"
 author: "[Leszek Swirski](https://twitter.com/leszekswirski), cache smasher"
-avatars:
+avatars: 
   - leszek-swirski
-date: 2019-04-08 13:33:37
+date: "2019-04-08 13:33:37"
 updated: 2020-06-16
-tags:
+tags: 
   - internals
 description: "(Byte)code caching reduces the start-up time of commonly visited websites by caching the result of JavaScript parsing + compilation."
 tweet: "1115264282675953664"

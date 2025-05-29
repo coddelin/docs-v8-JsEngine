@@ -1,10 +1,10 @@
 ---
 title: "Extras de V8"
 author: "Domenic Denicola ([@domenic](https://twitter.com/domenic)), Experto en Streams"
-avatars:
+avatars: 
   - "domenic-denicola"
-date: 2016-02-04 13:33:37
-tags:
+date: "2016-02-04 13:33:37"
+tags: 
   - internos
 description: "V8 v4.8 incluye “extras de V8”, una interfaz simple diseñada con el objetivo de permitir que los integradores escriban APIs autoalojadas de alto rendimiento."
 ---

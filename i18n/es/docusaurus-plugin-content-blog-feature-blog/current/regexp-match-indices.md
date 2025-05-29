@@ -1,10 +1,10 @@
 ---
 title: "Índices de coincidencia de RegExp"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), expresando nuevas características regularmente"
-avatars:
+avatars: 
   - "maya-armyanova"
 date: 2019-12-17
-tags:
+tags: 
   - ECMAScript
   - Node.js 16
 description: "Los índices de coincidencia de RegExp proporcionan los índices de `inicio` y `fin` de cada grupo de captura coincidente."

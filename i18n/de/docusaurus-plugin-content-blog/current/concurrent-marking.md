@@ -1,12 +1,12 @@
 ---
 title: "Gleichzeitiges Markieren in V8"
 author: "Ulan Degenbaev, Michael Lippautz und Hannes Payer — Befreier des Hauptthreads"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2018-06-11 13:33:37
-tags:
+date: "2018-06-11 13:33:37"
+tags: 
   - internals
   - memory
 description: "Dieser Beitrag beschreibt die Garbage-Collection-Technik namens gleichzeitiges Markieren."

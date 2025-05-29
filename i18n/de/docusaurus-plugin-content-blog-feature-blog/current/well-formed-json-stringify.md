@@ -1,10 +1,10 @@
 ---
 title: "Gut geformtes `JSON.stringify`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-09-11
-tags:
+tags: 
   - ECMAScript
   - ES2019
 description: "JSON.stringify gibt jetzt Escape-Sequenzen für einsame Surrogate aus, wodurch seine Ausgabe gültiges Unicode wird (und in UTF-8 darstellbar ist)."

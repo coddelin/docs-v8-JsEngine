@@ -1,12 +1,12 @@
 ---
 title: "Otimizando o consumo de memória do V8"
 author: "os Engenheiros de Saneamento de Memória do V8 Ulan Degenbaev, Michael Lippautz, Hannes Payer e Toon Verwaest"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2016-10-07 13:33:37
-tags:
+date: "2016-10-07 13:33:37"
+tags: 
   - memória
   - benchmarks
 description: "A equipe do V8 analisou e reduziu significativamente o consumo de memória de diversos websites que foram identificados como representativos dos padrões modernos de desenvolvimento web."

@@ -1,12 +1,12 @@
 ---
 title: "Nachrüstung zeitlicher Speichersicherheit in C++"
 author: "Anton Bikineev, Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), Hannes Payer ([@PayerHannes](https://twitter.com/PayerHannes))"
-avatars:
+avatars: 
   - anton-bikineev
   - michael-lippautz
   - hannes-payer
 date: 2022-06-14
-tags:
+tags: 
   - internals
   - speicher
   - sicherheit

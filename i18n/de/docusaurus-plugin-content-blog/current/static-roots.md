@@ -1,10 +1,10 @@
 ---
 title: "Statische Wurzeln: Objekte mit zur Kompilierungszeit konstanten Adressen"
 author: "Olivier Flückiger"
-avatars:
+avatars: 
   - olivier-flueckiger
 date: 2024-02-05
-tags:
+tags: 
   - JavaScript
 description: "Statische Wurzeln machen die Adressen bestimmter JS-Objekte zu einer zur Kompilierungszeit konstanten Größe."
 tweet: ""

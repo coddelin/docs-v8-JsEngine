@@ -1,8 +1,8 @@
 ---
 title: "Experimental support for WebAssembly in V8"
 author: "Seth Thompson, WebAssembly Wrangler"
-date: 2016-03-15 13:33:37
-tags:
+date: "2016-03-15 13:33:37"
+tags: 
   - WebAssembly
 description: "Starting today, experimental support for WebAssembly is available in V8 and Chromium behind a flag."
 ---

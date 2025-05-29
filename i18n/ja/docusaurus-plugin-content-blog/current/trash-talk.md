@@ -1,10 +1,10 @@
 ---
 title: "ゴミ話: オリノコガーベッジコレクター"
 author: "ピーター「ゴミ」マーシャル ([@hooraybuffer](https://twitter.com/hooraybuffer))"
-avatars:
+avatars: 
   - "peter-marshall"
-date: 2019-01-03 17:45:34
-tags:
+date: "2019-01-03 17:45:34"
+tags: 
   - 内部機構
   - メモリ
   - プレゼンテーション

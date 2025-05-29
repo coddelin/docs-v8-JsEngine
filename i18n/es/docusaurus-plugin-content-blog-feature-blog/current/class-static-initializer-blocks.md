@@ -1,10 +1,10 @@
 ---
 title: "Bloques de inicialización estática de clases"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2021-03-30
-tags:
+tags: 
   - ECMAScript
 description: "Las clases de JavaScript obtienen una sintaxis dedicada para la inicialización estática."
 tweet: "1376925666780798989"

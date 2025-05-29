@@ -1,10 +1,10 @@
 ---
 title: "Il y a `Math.random()`, et puis il y a `Math.random()`"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), ingénieur logiciel et concepteur de dés"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-12-17 13:33:37
-tags:
+date: "2015-12-17 13:33:37"
+tags: 
   - ECMAScript
   - internals
 description: "L’implémentation de V8 pour Math.random utilise désormais un algorithme appelé xorshift128+, améliorant la qualité de la distribution aléatoire par rapport à l’ancienne implémentation MWC1616."

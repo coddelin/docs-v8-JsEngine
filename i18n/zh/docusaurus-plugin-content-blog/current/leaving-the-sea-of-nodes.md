@@ -1,14 +1,14 @@
 ---
- title: '陆地在望：离开节点海洋'
- author: 'Darius Mercadier'
- avatars:
+ title: "陆地在望：离开节点海洋"
+ author: "Darius Mercadier"
+ avatars: 
    - darius-mercadier
  date: 2025-03-25
- tags:
+ tags: 
    - JavaScript
    - 内部结构
  description: "为何V8决定放弃节点海洋并回归控制流图"
- tweet: ''
+ tweet: ""
 ---
 
 V8的最终优化编译器Turbofan以使用[节点海洋](https://en.wikipedia.org/wiki/Sea_of_nodes) (SoN)而闻名，这是少数几个在生产环境中使用的大规模编译器之一。然而，从大约三年前开始，我们逐步放弃节点海洋，采用一种更传统的[控制流图](https://en.wikipedia.org/wiki/Control-flow_graph) (CFG) [中间表示](https://en.wikipedia.org/wiki/Intermediate_representation) (IR)，我们将其命名为Turboshaft。目前，Turbofan的整个JavaScript后端已经改用Turboshaft，而WebAssembly的整个管道也采用了Turboshaft。Turbofan的两个部分仍然使用一些节点海洋：一个是内置管道，我们正在慢慢被Turboshaft替换；另一个是JavaScript管道的前端，我们正在用另一个基于控制流图的IR（Maglev）代替。本文将阐述我们为何离开节点海洋的原因。

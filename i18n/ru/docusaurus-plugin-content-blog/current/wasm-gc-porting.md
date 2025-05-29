@@ -1,10 +1,10 @@
 ---
 title: "Новый способ эффективной интеграции языков программирования с автоматическим управлением памятью в WebAssembly"
 author: "Алон Закай"
-avatars:
+avatars: 
   - "alon-zakai"
 date: 2023-11-01
-tags:
+tags: 
   - WebAssembly
 tweet: "1720161507324076395"
 ---

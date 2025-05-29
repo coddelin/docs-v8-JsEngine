@@ -1,8 +1,8 @@
 ---
 title: "Lançamento V8 v6.6"
 author: "a equipe do V8"
-date: 2018-03-27 13:33:37
-tags:
+date: "2018-03-27 13:33:37"
+tags: 
   - lançamento
 description: "O V8 v6.6 inclui vinculação de captura opcional, extensão de aparagem de strings, várias melhorias de desempenho na análise/compilação/runtime, e muito mais!"
 tweet: "978534399938584576"

@@ -1,10 +1,10 @@
 ---
 title: "Desativando temporariamente a análise de escape"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), analista de escape de sandbox"
-avatars:
+avatars: 
   - "mathias-bynens"
-date: 2017-09-22 13:33:37
-tags:
+date: "2017-09-22 13:33:37"
+tags: 
   - segurança
 description: "Desativamos a análise de escape do V8 no Chrome 61 para proteger os usuários contra uma vulnerabilidade de segurança."
 tweet: "911339802884284416"

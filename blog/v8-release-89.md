@@ -1,10 +1,10 @@
 ---
 title: "V8 release v8.9"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), awaiting a call"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-02-04
-tags:
+tags: 
  - release
 description: "V8 release v8.9 brings performance improvements to calls with argument size mismatch."
 tweet: "1357358418902802434"

@@ -1,8 +1,8 @@
 ---
 title: "Beschleunigung von Spread-Elementen"
 author: "Hai Dang & Georg Neis"
-date: 2018-12-04 16:57:21
-tags:
+date: "2018-12-04 16:57:21"
+tags: 
   - ECMAScript
   - Benchmarks
 description: "V8 v7.2 / beschleunigt signifikant Array.from(array) sowie [...spread] für Arrays, Strings, Sets und Maps."

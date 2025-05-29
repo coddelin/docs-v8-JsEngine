@@ -2,10 +2,10 @@
 title: "Slack tracking in V8"
 author: "Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), renowned master of *slack*"
 description: "A detailed look into the V8 slack tracking mechanism."
-avatars:
+avatars: 
  - "michael-stanton"
-date: 2020-09-24 14:00:00
-tags:
+date: "2020-09-24 14:00:00"
+tags: 
  - internals
 ---
 Slack tracking is a way to give new objects an initial size that is **larger than what they may actually use**, so they can have new properties added quickly. And then, after some period of time, to **magically return that unused space to the system**. Neat, huh?

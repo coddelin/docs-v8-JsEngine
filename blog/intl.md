@@ -1,10 +1,10 @@
 ---
 title: "Faster and more feature-rich internationalization APIs"
 author: "[சத்யா குணசேகரன் (Sathya Gunasekaran)](https://twitter.com/_gsathya)"
-date: 2019-04-25 16:45:37
-avatars:
+date: "2019-04-25 16:45:37"
+avatars: 
   - "sathya-gunasekaran"
-tags:
+tags: 
   - ECMAScript
   - Intl
 description: "The JavaScript Internationalization API is growing, and its V8 implementation is getting faster!"

@@ -1,10 +1,10 @@
 ---
 title: "可変ヒープ数でV8をターボチャージ"
 author: "[Victor Gomes](https://twitter.com/VictorBFG)、ビットシフター"
-avatars:
+avatars: 
   - victor-gomes
 date: 2025-02-25
-tags:
+tags: 
   - JavaScript
   - ベンチマーク
   - 内部構造

@@ -1,10 +1,10 @@
 ---
 title: "반복자 도우미"
 author: "Rezvan Mahdavi Hezaveh"
-avatars:
+avatars: 
   - "rezvan-mahdavi-hezaveh"
 date: 2024-03-27
-tags:
+tags: 
   - ECMAScript
 description: "반복자를 일반적으로 사용하고 소비하는 데 도움을 주는 인터페이스."
 tweet: ""

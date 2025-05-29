@@ -1,8 +1,8 @@
 ---
 title: "Экспериментальная поддержка WebAssembly в V8"
 author: "Сет Томпсон, ведущий разработки WebAssembly"
-date: 2016-03-15 13:33:37
-tags:
+date: "2016-03-15 13:33:37"
+tags: 
   - WebAssembly
 description: "Начиная с сегодняшнего дня, экспериментальная поддержка WebAssembly доступна в V8 и Chromium за флагом."
 ---

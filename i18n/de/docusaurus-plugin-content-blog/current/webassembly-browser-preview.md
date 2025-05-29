@@ -1,8 +1,8 @@
 ---
 title: "WebAssembly-Browser-Vorschau"
 author: "das V8-Team"
-date: 2016-10-31 13:33:37
-tags:
+date: "2016-10-31 13:33:37"
+tags: 
   - WebAssembly
 description: "WebAssembly oder Wasm ist ein neues Laufzeit- und Kompilierungsziel für das Web, jetzt hinter einer Flagge in Chrome Canary verfügbar!"
 ---

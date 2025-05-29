@@ -1,10 +1,10 @@
 ---
 title: "BigInt: JavaScript에서 임의 정밀도를 가진 정수"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-05-01
-tags:
+tags: 
   - ECMAScript
   - ES2020
   - io19

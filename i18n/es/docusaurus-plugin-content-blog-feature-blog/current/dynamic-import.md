@@ -1,10 +1,10 @@
 ---
 title: "Importación dinámica `import()`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-11-21
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "La importación dinámica (`import()`) desbloquea nuevas capacidades en comparación con la importación estática. Este artículo compara ambas y ofrece una visión general de lo nuevo."

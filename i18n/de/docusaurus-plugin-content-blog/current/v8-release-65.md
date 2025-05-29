@@ -1,8 +1,8 @@
 ---
 title: "V8-Version v6.5"
 author: "das V8-Team"
-date: 2018-02-01 13:33:37
-tags:
+date: "2018-02-01 13:33:37"
+tags: 
   - Veröffentlichung
 description: "V8 v6.5 unterstützt die Streaming-WebAssembly-Kompilierung und umfasst einen neuen “Modus für unzuverlässigen Code”."
 tweet: "959174292406640640"

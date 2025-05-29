@@ -1,6 +1,6 @@
 ---
 title: "Déboguer les fonctions intégrées avec GDB"
-description: 'À partir de V8 v6.9, il est possible de créer des points d'arrêt dans GDB pour déboguer les fonctions intégrées CSA / ASM / Torque.'
+description: "À partir de V8 v6.9, il est possible de créer des points d'arrêt dans GDB pour déboguer les fonctions intégrées CSA / ASM / Torque."
 ---
 À partir de V8 v6.9, il est possible de créer des points d'arrêt dans GDB (et possiblement d'autres débogueurs) pour déboguer les fonctions intégrées CSA / ASM / Torque.
 

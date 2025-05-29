@@ -1,10 +1,10 @@
 ---
 title: "V8에서 빠른 속성"
 author: "Camillo Bruni ([@camillobruni](https://twitter.com/camillobruni)), [“빠른 `for`-`in`”](/blog/fast-for-in)의 저자"
-avatars:
+avatars: 
   - "camillo-bruni"
-date: 2017-08-30 13:33:37
-tags:
+date: "2017-08-30 13:33:37"
+tags: 
   - internals
 description: "이 기술적 심층 다이브는 V8이 JavaScript 속성을 내부적으로 처리하는 방법을 설명합니다."
 ---

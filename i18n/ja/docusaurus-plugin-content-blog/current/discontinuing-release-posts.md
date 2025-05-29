@@ -1,10 +1,10 @@
 ---
 title: "リリースブログ投稿を終了"
 author: "Shu-yu Guo ([@shu_](https://twitter.com/_shu))"
-avatars:
+avatars: 
  - "shu-yu-guo"
 date: 2022-06-17
-tags:
+tags: 
  - release
 description: "V8はChromeのリリーススケジュールや機能に関するブログ投稿を支持し、リリースブログ投稿を終了します。"
 tweet: "1537857497825824768"

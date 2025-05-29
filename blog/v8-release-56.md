@@ -1,8 +1,8 @@
 ---
 title: "V8 release v5.6"
 author: "the V8 team"
-date: 2016-12-02 13:33:37
-tags:
+date: "2016-12-02 13:33:37"
+tags: 
   - release
 description: "V8 v5.6 comes with a new compiler pipeline, performance improvements, and increased support for ECMAScript language features."
 ---

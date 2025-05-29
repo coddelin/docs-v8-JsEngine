@@ -1,10 +1,10 @@
 ---
 title: "V8 Veröffentlichung v7.9"
 author: "Santiago Aboy Solanes, Spezialist für Zeigerkompression"
-avatars:
+avatars: 
   - "santiago-aboy-solanes"
 date: 2019-11-20
-tags:
+tags: 
   - veröffentlichung
 description: "V8 v7.9 entfernt die Deprecation für Double ⇒ Tagged-Übergänge, ermöglicht das Handling von API-Gettern in Builtins, OSR-Caching und bietet Wasm-Unterstützung für mehrere Codebereiche."
 tweet: "1197187184304050176"

@@ -1,10 +1,10 @@
 ---
 title: "Anunciando el Benchmark de Herramientas Web"
 author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), Malabarista de Rendimiento de JavaScript"
-avatars:
+avatars: 
   - "benedikt-meurer"
-date: 2017-11-06 13:33:37
-tags:
+date: "2017-11-06 13:33:37"
+tags: 
   - benchmarks
   - Node.js
 description: "El nuevo Benchmark de Herramientas Web ayuda a identificar y corregir cuellos de botella de rendimiento en Babel, TypeScript y otros proyectos del mundo real."

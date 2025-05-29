@@ -1,13 +1,13 @@
 ---
 title: "Accélérer les expressions régulières V8"
 author: "Jakob Gruber, Ingénieur Logiciel Régulier"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2017-01-10 13:33:37
-tags:
+date: "2017-01-10 13:33:37"
+tags: 
   - internals
   - RegExp
-description: 'V8 a récemment migré les fonctions intégrées des expressions régulières d'une implémentation en JavaScript autonome à une implémentation qui s'intègre directement dans notre nouvelle architecture de génération de code basée sur TurboFan.'
+description: "V8 a récemment migré les fonctions intégrées des expressions régulières d'une implémentation en JavaScript autonome à une implémentation qui s'intègre directement dans notre nouvelle architecture de génération de code basée sur TurboFan."
 ---
 Cet article de blog traite de la récente migration des fonctions intégrées des expressions régulières dans V8, passant d'une implémentation en JavaScript autonome à une implémentation qui s'intègre directement dans notre nouvelle architecture de génération de code basée sur [TurboFan](/blog/v8-release-56).
 

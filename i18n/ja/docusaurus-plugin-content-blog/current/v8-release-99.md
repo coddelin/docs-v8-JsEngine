@@ -1,10 +1,10 @@
 ---
 title: "V8リリース v9.9"
 author: "イングヴァール・ステパニャン（[@RReverser](https://twitter.com/RReverser)） 彼の99%"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2022-01-31
-tags:
+tags: 
  - release
 description: "V8リリース v9.9は、新しい国際化APIを提供します。"
 tweet: "1488190967727411210"

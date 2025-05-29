@@ -2,10 +2,10 @@
 title: "Suivi de slack dans V8"
 author: "Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), maître renommé du *slack*"
 description: "Un regard détaillé sur le mécanisme de suivi de slack de V8."
-avatars:
+avatars: 
  - "michael-stanton"
-date: 2020-09-24 14:00:00
-tags:
+date: "2020-09-24 14:00:00"
+tags: 
  - internals
 ---
 Le suivi de slack est un moyen de donner aux nouveaux objets une taille initiale qui est **plus grande que ce qu'ils peuvent réellement utiliser**, afin qu'ils puissent avoir de nouvelles propriétés ajoutées rapidement. Et ensuite, après un certain temps, de **rendre magiquement cet espace inutilisé au système**. Sympa, non ?

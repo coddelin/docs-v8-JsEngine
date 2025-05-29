@@ -1,8 +1,8 @@
 ---
 title: "V8 ❤️ Node.js"
 author: "Franziska Hinkelmann, Node Monkey Patcher"
-date: 2016-12-15 13:33:37
-tags:
+date: "2016-12-15 13:33:37"
+tags: 
   - Node.js
 description: "이 블로그 게시물은 V8 및 Chrome DevTools에서 Node.js에 대한 지원을 개선하기 위한 최근의 노력들을 강조합니다."
 ---

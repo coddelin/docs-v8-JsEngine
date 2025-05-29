@@ -1,10 +1,10 @@
 ---
-title: 'Dompter la complexité de l'architecture dans V8 — le CodeStubAssembler'
+title: "Dompter la complexité de l'architecture dans V8 — le CodeStubAssembler"
 author: "[Daniel Clifford](https://twitter.com/expatdanno), assembleur CodeStubAssembler"
-date: 2017-11-16 13:33:37
-tags:
+date: "2017-11-16 13:33:37"
+tags: 
   - internes
-description: 'V8 possède sa propre abstraction au-dessus du code assembleur : le CodeStubAssembler. Le CSA permet à V8 d'optimiser rapidement et de manière fiable les fonctionnalités JS à un niveau bas, tout en prenant en charge plusieurs plateformes.'
+description: "V8 possède sa propre abstraction au-dessus du code assembleur : le CodeStubAssembler. Le CSA permet à V8 d'optimiser rapidement et de manière fiable les fonctionnalités JS à un niveau bas, tout en prenant en charge plusieurs plateformes."
 tweet: "931184976481177600"
 ---
 Dans cet article, nous souhaitons présenter le CodeStubAssembler (CSA), un composant de V8 qui s'est avéré être un outil très utile pour atteindre certains [grands](/blog/optimizing-proxies) [gains](https://twitter.com/v8js/status/918119002437750784) [de performance](https://twitter.com/_gsathya/status/900188695721984000) au cours des dernières versions de V8. Le CSA a également considérablement amélioré la capacité de l'équipe V8 à optimiser rapidement les fonctionnalités JavaScript à un niveau bas avec un haut degré de fiabilité, ce qui a amélioré la vitesse de développement de l'équipe.

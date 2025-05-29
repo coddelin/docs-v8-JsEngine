@@ -1,13 +1,13 @@
 ---
- title: 'Donner un aperçu à V8 : démarrage plus rapide de JavaScript avec des indices de compilation explicites'
- author: 'Marja Hölttä'
- avatars:
+ title: "Donner un aperçu à V8 : démarrage plus rapide de JavaScript avec des indices de compilation explicites"
+ author: "Marja Hölttä"
+ avatars: 
    - marja-holtta
  date: 2025-04-29
- tags:
+ tags: 
    - JavaScript
  description: "Les indices de compilation explicites contrôlent quels fichiers et fonctions JavaScript sont analysés et compilés rapidement"
- tweet: ''
+ tweet: ""
 ---
 
 Faire fonctionner JavaScript rapidement est essentiel pour une application web réactive. Même avec les optimisations avancées de V8, analyser et compiler le JavaScript critique lors du démarrage peut toujours être une source de ralentissements. Savoir quelles fonctions JavaScript compiler lors de la compilation initiale du script peut accélérer le chargement de la page web.

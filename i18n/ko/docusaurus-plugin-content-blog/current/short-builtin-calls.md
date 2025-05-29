@@ -1,10 +1,10 @@
 ---
 title: "짧은 내장 호출"
 author: "[툰 버웨스트](https://twitter.com/tverwaes), 더 빅 쇼트"
-avatars:
+avatars: 
   - toon-verwaest
 date: 2021-05-06
-tags:
+tags: 
   - JavaScript
 description: "V8 v9.1에서 성능 문제를 피하기 위해 데스크톱에서 내장 기능을 일시적으로 비활성화했습니다."
 tweet: "1394267917013897216"

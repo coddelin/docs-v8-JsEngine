@@ -1,10 +1,10 @@
 ---
 title: "V8中的快速屬性"
 author: "Camillo Bruni ([@camillobruni](https://twitter.com/camillobruni)), 也是 [“快速的 `for`-`in`”](/blog/fast-for-in) 的作者"
-avatars:
+avatars: 
   - "camillo-bruni"
-date: 2017-08-30 13:33:37
-tags:
+date: "2017-08-30 13:33:37"
+tags: 
   - internals
 description: "這篇技術深潛文章解釋了V8在幕後如何處理JavaScript屬性。"
 ---

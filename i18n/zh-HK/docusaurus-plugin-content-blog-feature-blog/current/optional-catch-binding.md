@@ -1,10 +1,10 @@
 ---
 title: "可選擇 `catch` 綁定"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-03-27
-tags:
+tags: 
   - ECMAScript
   - ES2019
 description: "在 ES2019，catch 現在可以在沒有參數的情況下使用。"

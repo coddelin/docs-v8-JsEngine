@@ -1,10 +1,10 @@
 ---
 title: "V8扩展功能"
 author: "Domenic Denicola ([@domenic](https://twitter.com/domenic)), 流处理大师"
-avatars:
+avatars: 
   - "domenic-denicola"
-date: 2016-02-04 13:33:37
-tags:
+date: "2016-02-04 13:33:37"
+tags: 
   - 内部结构
 description: "V8 v4.8包含“V8扩展功能”，一个旨在让嵌入者编写高性能、基于自身的API的简单接口。"
 ---

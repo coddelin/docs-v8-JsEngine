@@ -1,8 +1,8 @@
 ---
 title: "Publication de V8 version v6.5"
-author: 'l'équipe V8'
-date: 2018-02-01 13:33:37
-tags:
+author: "l'équipe V8"
+date: "2018-02-01 13:33:37"
+tags: 
   - publication
 description: "V8 v6.5 ajoute la prise en charge de la compilation WebAssembly en streaming et inclut un nouveau “mode code non fiable”."
 tweet: "959174292406640640"

@@ -1,8 +1,8 @@
 ---
 title: "Lançamento do V8 v6.1"
 author: "a equipe do V8"
-date: 2017-08-03 13:33:37
-tags:
+date: "2017-08-03 13:33:37"
+tags: 
   - lançamento
 description: "V8 v6.1 vem com um tamanho reduzido de binário e inclui melhorias de desempenho. Além disso, asm.js agora é validado e compilado para WebAssembly."
 ---

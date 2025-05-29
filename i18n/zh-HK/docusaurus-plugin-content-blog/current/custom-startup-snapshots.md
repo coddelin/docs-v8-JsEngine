@@ -1,10 +1,10 @@
 ---
 title: "自訂啟動快照"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), 軟體工程師和引擎預熱供應商"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-09-25 13:33:37
-tags:
+date: "2015-09-25 13:33:37"
+tags: 
   - internals
 description: "V8 嵌入者可以利用快照以跳過 JavaScript 程式初始化所需的啟動時間。"
 ---

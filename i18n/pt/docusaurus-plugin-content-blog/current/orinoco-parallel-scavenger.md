@@ -1,12 +1,12 @@
 ---
 title: "Orinoco: coleta de lixo da geração jovem"
 author: "Ulan Degenbaev, Michael Lippautz e Hannes Payer, amigos de [TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2017-11-29 13:33:37
-tags:
+date: "2017-11-29 13:33:37"
+tags: 
   - internos
   - memória
 description: "Este artigo apresenta o Scavenger paralelo, um dos últimos recursos do Orinoco, o coletor de lixo majoritariamente concorrente e paralelo do V8."

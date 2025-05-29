@@ -1,10 +1,10 @@
 ---
 title: "Lançamento do V8 v7.1"
 author: "Stephan Herhut ([@herhut](https://twitter.com/herhut)), clonador clonado de clones"
-avatars:
+avatars: 
   - stephan-herhut
-date: 2018-10-31 15:44:37
-tags:
+date: "2018-10-31 15:44:37"
+tags: 
   - lançamento
 description: "O V8 v7.1 apresenta manipuladores de bytecode embutidos, análise de escape TurboFan aprimorada, postMessage(wasmModule), Intl.RelativeTimeFormat e globalThis!"
 tweet: "1057645773465235458"

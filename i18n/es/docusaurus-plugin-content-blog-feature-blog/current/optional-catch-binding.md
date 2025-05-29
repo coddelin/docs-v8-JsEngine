@@ -1,10 +1,10 @@
 ---
 title: "Binding opcional en `catch`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-03-27
-tags:
+tags: 
   - ECMAScript
   - ES2019
 description: "En ES2019, ahora se puede usar `catch` sin un parámetro."

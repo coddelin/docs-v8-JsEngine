@@ -1,11 +1,11 @@
 ---
 title: "Стоимость JavaScript в 2019 году"
 author: "Эдди Османи ([@addyosmani](https://twitter.com/addyosmani)), уборщик JavaScript, и Маттиас Биненс ([@mathias](https://twitter.com/mathias)), освободитель главного потока"
-avatars:
+avatars: 
   - "addy-osmani"
   - "mathias-bynens"
 date: 2019-06-25
-tags:
+tags: 
   - internals
   - parsing
 description: "Основные затраты на обработку JavaScript — это загрузка и время выполнения на процессоре."

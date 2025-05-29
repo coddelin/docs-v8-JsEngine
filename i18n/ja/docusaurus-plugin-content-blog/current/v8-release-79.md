@@ -1,10 +1,10 @@
 ---
 title: "V8 リリース v7.9"
 author: "Santiago Aboy Solanes, ポインター圧縮のエキスパート"
-avatars:
+avatars: 
   - "santiago-aboy-solanes"
 date: 2019-11-20
-tags:
+tags: 
   - リリース
 description: "V8 v7.9 では、Double ⇒ Tagged への遷移の非推奨を削除、組み込みでの API ゲッター処理、OSR キャッシング、Wasm の複数コード領域のサポートなどの機能が追加されました。"
 tweet: "1197187184304050176"

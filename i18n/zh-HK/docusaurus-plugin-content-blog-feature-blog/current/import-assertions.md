@@ -1,10 +1,10 @@
 ---
 title: "匯入聲明"
 author: "Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), 匯入聲明的強勢進口商"
-avatars:
+avatars: 
   - "dan-clark"
 date: 2021-06-15
-tags:
+tags: 
   - ECMAScript
 description: "匯入聲明允許模組匯入語句在模組規範之外附加額外的信息"
 tweet: ""

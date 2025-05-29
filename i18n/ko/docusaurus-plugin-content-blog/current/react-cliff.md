@@ -1,11 +1,11 @@
 ---
 title: "React에서의 V8 성능 저하 이야기"
 author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) 및 Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "benedikt-meurer"
   - "mathias-bynens"
-date: 2019-08-28 16:45:00
-tags:
+date: "2019-08-28 16:45:00"
+tags: 
   - internals
   - presentations
 description: "이 글에서는 V8이 다양한 JavaScript 값을 메모리에 최적으로 표현하는 방법과 그로 인해 Shape 기계에 어떤 영향을 미치는지를 설명합니다. 이를 통해 최근 React 핵심에서 발생한 V8 성능 저하 현상을 이해할 수 있습니다."

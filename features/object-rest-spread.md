@@ -1,10 +1,10 @@
 ---
 title: "Object rest and spread properties"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-06-06
-tags:
+tags: 
   - ECMAScript
   - ES2018
 description: "This article explains how object rest and spread properties work in JavaScript, and revisits array rest and spread elements."

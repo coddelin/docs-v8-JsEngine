@@ -1,10 +1,10 @@
 ---
 title: "Verständnis der ECMAScript-Spezifikation, Teil 2"
 author: "[Marja Hölttä](https://twitter.com/marjakh), spekulativer Spezifikationsbeobachter"
-avatars:
+avatars: 
   - marja-holtta
 date: 2020-03-02
-tags:
+tags: 
   - ECMAScript
   - Verständnis von ECMAScript
 description: "Anleitung zum Lesen der ECMAScript-Spezifikation, Teil 2"

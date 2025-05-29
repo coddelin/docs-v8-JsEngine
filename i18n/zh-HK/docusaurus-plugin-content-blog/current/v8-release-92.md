@@ -1,10 +1,10 @@
 ---
 title: "V8 發行版本 v9.2"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-07-16
-tags:
+tags: 
  - release
 description: "V8 發行版本 v9.2 帶來了用于相對索引的 `at` 方法以及指針壓縮的改進。"
 tweet: ""

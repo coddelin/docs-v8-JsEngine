@@ -1,10 +1,10 @@
 ---
 title: "Мусорный разговор: сборщик мусора Orinoco"
 author: "Питер «мусорщик» Маршалл ([@hooraybuffer](https://twitter.com/hooraybuffer))"
-avatars:
+avatars: 
   - "peter-marshall"
-date: 2019-01-03 17:45:34
-tags:
+date: "2019-01-03 17:45:34"
+tags: 
   - внутренности
   - память
   - презентации

@@ -1,12 +1,12 @@
 ---
 title: "Oilpan 圖書館"
 author: "Anton Bikineev, Omer Katz ([@omerktz](https://twitter.com/omerktz)), 和 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), 高效能與有效的檔案搬運者"
-avatars:
+avatars: 
   - anton-bikineev
   - omer-katz
   - michael-lippautz
 date: 2021-11-10
-tags:
+tags: 
   - internals
   - memory
   - cppgc

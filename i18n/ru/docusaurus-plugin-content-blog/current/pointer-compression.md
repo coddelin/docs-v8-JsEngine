@@ -1,11 +1,11 @@
 ---
 title: "Сжатие указателей в V8"
 author: "Игорь Шелудько и Сантьяго Абой Соланес, *главные* сжиматели указателей"
-avatars:
+avatars: 
   - "igor-sheludko"
   - "santiago-aboy-solanes"
 date: 2020-03-30
-tags:
+tags: 
   - internals
   - memory
 description: "V8 сократил размер своей кучи до 43%! Узнайте, как это возможно, в статье «Сжатие указателей в V8»!"

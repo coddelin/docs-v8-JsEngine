@@ -2,10 +2,10 @@
 title: "V8中的Slack追踪"
 author: "Michael Stanton ([@alpencoder](https://twitter.com/alpencoder))，备受尊敬的*Slack*大师"
 description: "深入了解V8的Slack追踪机制。"
-avatars:
+avatars: 
  - "michael-stanton"
-date: 2020-09-24 14:00:00
-tags:
+date: "2020-09-24 14:00:00"
+tags: 
  - internals
 ---
 Slack追踪是一种为新对象分配**比它们实际需要更大的初始大小**的方法，以便快速添加新属性。然后，在一段时间后，**神奇地将未使用的空间归还给系统**。很酷吧？

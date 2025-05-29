@@ -1,10 +1,10 @@
 ---
 title: "V8 發佈 v9.7"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-11-05
-tags:
+tags: 
  - release
 description: "V8 發佈 v9.7，帶來了在陣列中向後查找的新的 JavaScript 方法。"
 tweet: ""

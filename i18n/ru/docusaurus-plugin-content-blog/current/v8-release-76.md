@@ -1,10 +1,10 @@
 ---
 title: "V8 выпуск v7.6"
 author: "Адам Кляйн"
-avatars:
+avatars: 
   - "adam-klein"
-date: 2019-06-19 16:45:00
-tags:
+date: "2019-06-19 16:45:00"
+tags: 
   - release
 description: "V8 v7.6 включает Promise.allSettled, более быструю JSON.parse, локализованные BigInt, ускоренные замороженные/запечатанные массивы и многое другое!"
 tweet: "1141356209179516930"

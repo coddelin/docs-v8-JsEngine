@@ -1,10 +1,10 @@
 ---
 title: "V8 release v7.7"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), lazy allocator of release notes"
-avatars:
+avatars: 
   - "mathias-bynens"
-date: 2019-08-13 16:45:00
-tags:
+date: "2019-08-13 16:45:00"
+tags: 
   - release
 description: "V8 v7.7 features lazy feedback allocation, faster WebAssembly background compilation, stack trace improvements, and new Intl.NumberFormat functionality."
 tweet: "1161287541611323397"

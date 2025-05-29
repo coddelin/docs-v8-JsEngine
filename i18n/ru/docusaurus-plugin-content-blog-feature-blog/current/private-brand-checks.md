@@ -1,10 +1,10 @@
 ---
 title: "Проверка наличия приватных свойств, например, `#foo in obj`"
 author: "Марья Хёльтта ([@marjakh](https://twitter.com/marjakh))"
-avatars:
+avatars: 
   - "marja-holtta"
 date: 2021-04-14
-tags:
+tags: 
   - ECMAScript
 description: "Проверка приватных свойств позволяет тестировать наличие приватного поля в объекте."
 tweet: "1382327454975590401"

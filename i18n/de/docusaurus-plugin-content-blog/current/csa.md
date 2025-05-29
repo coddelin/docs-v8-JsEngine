@@ -1,8 +1,8 @@
 ---
 title: "Beherrschung der Architekturkomplexität in V8 — der CodeStubAssembler"
 author: "[Daniel Clifford](https://twitter.com/expatdanno), CodeStubAssembler Assembler"
-date: 2017-11-16 13:33:37
-tags:
+date: "2017-11-16 13:33:37"
+tags: 
   - Interna
 description: "V8 hat eine eigene Abstraktion über Assemblersprache geschaffen: den CodeStubAssembler. Der CSA ermöglicht es V8, JavaScript-Funktionen auf niedriger Ebene schnell und zuverlässig zu optimieren und dabei mehrere Plattformen zu unterstützen."
 tweet: "931184976481177600"

@@ -1,8 +1,8 @@
 ---
 title: "Publication de V8 v5.7"
-author: 'l'équipe de V8'
-date: 2017-02-06 13:33:37
-tags:
+author: "l'équipe de V8"
+date: "2017-02-06 13:33:37"
+tags: 
   - publication
 description: "V8 v5.7 active WebAssembly par défaut, inclut des améliorations de performance et un support accru des fonctionnalités du langage ECMAScript."
 ---

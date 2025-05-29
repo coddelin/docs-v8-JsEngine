@@ -1,10 +1,10 @@
 ---
 title: "關於 Node.js 的 Hash flooding 漏洞問題…"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed))"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2017-08-11 13:33:37
-tags:
+date: "2017-08-11 13:33:37"
+tags: 
   - security
 description: "Node.js 曾受到 Hash flooding 漏洞的影響。本篇文章提供一些背景資料，並解釋 V8 中的解決方案。"
 ---

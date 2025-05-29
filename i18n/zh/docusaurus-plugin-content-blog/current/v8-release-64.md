@@ -1,8 +1,8 @@
 ---
 title: "V8 发布 v6.4"
 author: "V8 团队"
-date: 2017-12-19 13:33:37
-tags:
+date: "2017-12-19 13:33:37"
+tags: 
   - 发布
 description: "V8 v6.4 包括性能改进、新的 JavaScript 语言特性等。"
 tweet: "943057597481082880"

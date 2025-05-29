@@ -1,10 +1,10 @@
 ---
 title: "V8-Version v7.7"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), entspannter Verfasser von Release-Notes"
-avatars:
+avatars: 
   - "mathias-bynens"
-date: 2019-08-13 16:45:00
-tags:
+date: "2019-08-13 16:45:00"
+tags: 
   - freigabe
 description: "V8 v7.7 bietet eine verzögerte Feedback-Zuweisung, schnellere WebAssembly-Hintergrundkompilierung, Stacktrace-Verbesserungen und neue Intl.NumberFormat-Funktionalität."
 tweet: "1161287541611323397"

@@ -1,8 +1,8 @@
 ---
 title: "Lanzamiento de V8 versión v5.8"
 author: "el equipo de V8"
-date: 2017-03-20 13:33:37
-tags:
+date: "2017-03-20 13:33:37"
+tags: 
   - lanzamiento
 description: "V8 v5.8 permite el uso de tamaños de montón arbitrarios y mejora el rendimiento de inicio."
 ---

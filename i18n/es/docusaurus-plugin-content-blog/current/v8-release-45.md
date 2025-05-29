@@ -1,8 +1,8 @@
 ---
 title: "Lanzamiento de V8 v4.5"
 author: "el equipo de V8"
-date: 2015-07-17 13:33:37
-tags:
+date: "2015-07-17 13:33:37"
+tags: 
   - lanzamiento
 description: "V8 v4.5 llega con mejoras de rendimiento y añade soporte para varias características de ES2015."
 ---

@@ -1,10 +1,10 @@
 ---
 title: "V8 릴리스 v9.1"
 author: "인그바르 스테파냔 ([@RReverser](https://twitter.com/RReverser)), 나만의 브랜드를 테스트 중"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-05-04
-tags:
+tags: 
  - 릴리스
 description: "V8 릴리스 v9.1은 비공개 브랜드 검사 지원, 기본 활성화된 최상위 await 및 성능 개선을 제공합니다."
 tweet: "1389613320953532417"

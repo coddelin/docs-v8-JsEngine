@@ -1,8 +1,8 @@
 ---
 title: "Управление сложностью архитектуры в V8 — CodeStubAssembler"
 author: "[Даниэль Клиффорд](https://twitter.com/expatdanno), ассемблер CodeStubAssembler"
-date: 2017-11-16 13:33:37
-tags:
+date: "2017-11-16 13:33:37"
+tags: 
   - internals
 description: "V8 имеет свою собственную абстракцию поверх машинного кода: CodeStubAssembler. CSA позволяет V8 быстро и надежно оптимизировать функции JS на низком уровне, поддерживая при этом несколько платформ."
 tweet: "931184976481177600"

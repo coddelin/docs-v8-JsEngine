@@ -1,10 +1,10 @@
 ---
 title: "V8でのソートの整理"
 author: "Simon Zünd（[@nimODota](https://twitter.com/nimODota)）、一貫性のある比較関数"
-avatars:
+avatars: 
   - simon-zuend
-date: 2018-09-28 11:20:37
-tags:
+date: "2018-09-28 11:20:37"
+tags: 
   - ECMAScript
   - 内部構造
 description: "V8 v7.0 / Chrome 70以降、Array.prototype.sortは安定的です。"

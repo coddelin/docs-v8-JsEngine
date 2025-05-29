@@ -1,10 +1,10 @@
 ---
 title: "嵌入的内置函数"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2018-08-14 13:33:37
-tags:
+date: "2018-08-14 13:33:37"
+tags: 
   - 内部原理
 description: "V8 v6.9将内置代码嵌入到二进制文件的.text节中，将每个网站的V8堆大小中值减少了19%。"
 tweet: "1029382366693937162"

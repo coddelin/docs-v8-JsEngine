@@ -1,13 +1,13 @@
 ---
 title: "Amélioration des performances de `DataView` dans V8"
-author: 'Théotime Grohens, <i lang="fr">le savant de Data-Vue</i>, et Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), professionnel de la performance'
-avatars:
+author: "Théotime Grohens, <i lang=\"fr\">le savant de Data-Vue</i>, et Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), professionnel de la performance"
+avatars: 
   - "benedikt-meurer"
-date: 2018-09-18 11:20:37
-tags:
+date: "2018-09-18 11:20:37"
+tags: 
   - ECMAScript
   - benchmarks
-description: 'V8 v6.9 comble l'écart de performance entre DataView et le code équivalent TypedArray, rendant ainsi DataView utilisable pour des applications réelles critiques en termes de performance.'
+description: "V8 v6.9 comble l'écart de performance entre DataView et le code équivalent TypedArray, rendant ainsi DataView utilisable pour des applications réelles critiques en termes de performance."
 tweet: "1041981091727466496"
 ---
 [`DataView`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView) est l'une des deux manières possibles de réaliser des accès mémoire à bas niveau en JavaScript, l'autre étant [`TypedArray`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray). Jusqu'à présent, les `DataView` étaient beaucoup moins optimisés que les `TypedArray` dans V8, ce qui entraînait de moins bonnes performances dans des tâches comme les charges de travail intensives en graphismes ou lors du décodage/encodage de données binaires. Les raisons de cela étaient principalement des choix historiques, comme le fait que [asm.js](http://asmjs.org/) avait opté pour les `TypedArray` au lieu des `DataView`, incitant ainsi les moteurs à se concentrer sur les performances des `TypedArray`.

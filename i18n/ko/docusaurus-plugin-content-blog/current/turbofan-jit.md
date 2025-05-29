@@ -1,10 +1,10 @@
 ---
 title: "TurboFan JIT 분석하기"
 author: "Ben L. Titzer, 소프트웨어 엔지니어 및 TurboFan 메카닉"
-avatars:
+avatars: 
   - "ben-titzer"
-date: 2015-07-13 13:33:37
-tags:
+date: "2015-07-13 13:33:37"
+tags: 
   - internals
 description: "V8의 새로운 TurboFan 최적화 컴파일러 설계에 대한 심층 분석."
 ---

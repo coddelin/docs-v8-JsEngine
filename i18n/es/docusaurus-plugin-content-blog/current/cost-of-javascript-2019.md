@@ -1,11 +1,11 @@
 ---
 title: "El costo de JavaScript en 2019"
 author: "Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)), Encargado de JavaScript, y Mathias Bynens ([@mathias](https://twitter.com/mathias)), Liberador del Hilo Principal"
-avatars:
+avatars: 
   - "addy-osmani"
   - "mathias-bynens"
 date: 2019-06-25
-tags:
+tags: 
   - internals
   - parsing
 description: "Los costos dominantes de procesar JavaScript son el tiempo de descarga y ejecución en la CPU."

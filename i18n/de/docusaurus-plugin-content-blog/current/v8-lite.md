@@ -1,12 +1,12 @@
 ---
 title: "Ein leichteres V8"
 author: "Mythri Alle, Dan Elphick und [Ross McIlroy](https://twitter.com/rossmcilroy), V8-Gewichtsüberwacher"
-avatars:
+avatars: 
   - "mythri-alle"
   - "dan-elphick"
   - "ross-mcilroy"
-date: 2019-09-12 12:44:37
-tags:
+date: "2019-09-12 12:44:37"
+tags: 
   - internals
   - speicher
   - präsentationen

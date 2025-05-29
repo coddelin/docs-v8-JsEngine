@@ -2,7 +2,7 @@
 title: "追加のバックトラッキングしないRegExpエンジン"
 author: "Martin Bidlingmaier"
 date: 2021-01-11
-tags:
+tags: 
  - 内部機構
  - RegExp
 description: "V8には、フォールバックとして機能し、多くの破滅的なバックトラッキングを防ぐ追加のRegExpエンジンが導入されました。"

@@ -1,12 +1,12 @@
 ---
 title: "JavaScriptからDOMへ、そして再び戻るまでのトレース"
 author: "ウラン・デゲンバエフ、アレクセイ・フィリポフ、マイケル・リッパウツ、ハンネス・ペイヤー — DOMの仲間"
-avatars:
+avatars: 
   - "ウラン・デゲンバエフ"
   - "マイケル・リッパウツ"
   - "ハンネス・ペイヤー"
-date: 2018-03-01 13:33:37
-tags:
+date: "2018-03-01 13:33:37"
+tags: 
   - internals
   - memory
 description: "ChromeのDevToolsは、JavaScriptから参照されるC++ DOMオブジェクトをトレースし、スナップショットを取得して、JavaScriptから到達可能なすべてのDOMオブジェクトを参照付きで表示できるようになりました。"

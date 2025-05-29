@@ -1,10 +1,10 @@
 ---
 title: "脱离网络：使用 Emscripten 的独立 WebAssembly 二进制文件"
 author: "Alon Zakai"
-avatars:
+avatars: 
   - "alon-zakai"
 date: 2019-11-21
-tags:
+tags: 
   - WebAssembly
   - 工具
 description: "Emscripten 现在支持独立的 Wasm 文件，无需依赖 JavaScript。"

@@ -1,8 +1,8 @@
 ---
 title: "Experimentelle Unterstützung für WebAssembly in V8"
 author: "Seth Thompson, WebAssembly-Evangelist"
-date: 2016-03-15 13:33:37
-tags:
+date: "2016-03-15 13:33:37"
+tags: 
   - WebAssembly
 description: "Ab heute ist experimentelle Unterstützung für WebAssembly in V8 und Chromium hinter einem Flag verfügbar."
 ---

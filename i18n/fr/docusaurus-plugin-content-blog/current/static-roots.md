@@ -1,10 +1,10 @@
 ---
 title: "Racines Statiques : Objets avec des Adresses Constantes à la Compilation"
 author: "Olivier Flückiger"
-avatars:
+avatars: 
   - olivier-flueckiger
 date: 2024-02-05
-tags:
+tags: 
   - JavaScript
 description: "Les Racines Statiques rendent les adresses de certains objets JS constantes à la compilation."
 tweet: ""

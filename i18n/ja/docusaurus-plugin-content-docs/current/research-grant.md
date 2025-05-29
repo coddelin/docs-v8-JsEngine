@@ -1,7 +1,7 @@
 ---
-permalink: /grant/
-title: 研究助成金
-layout: layouts/base.njk
+permalink: "/grant/"
+title: "研究助成金"
+layout: "layouts/base.njk"
 description: "V8リサーチ助成金は、V8、JavaScript、およびWebAssemblyをベースとしたプログラミング言語およびソフトウェアシステムの研究に資金を提供します。"
 ---
 # V8リサーチ助成金

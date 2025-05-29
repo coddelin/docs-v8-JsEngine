@@ -1,10 +1,10 @@
 ---
 title: "Inicialización más rápida de instancias con nuevas características de clase"
 author: "[Joyee Cheung](https://twitter.com/JoyeeCheung), inicializador de instancias"
-avatars:
+avatars: 
   - "joyee-cheung"
 date: 2022-04-20
-tags:
+tags: 
   - internals
 description: "La inicialización de instancias con nuevas características de clase se ha vuelto más rápida desde V8 v9.7."
 tweet: "1517041137378373632"

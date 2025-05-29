@@ -1,10 +1,10 @@
 ---
 title: "動的`import()`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-11-21
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "動的import()は静的importと比べて新しい可能性を解放します。この記事では両者を比較し、新しい内容の概要を説明します。"

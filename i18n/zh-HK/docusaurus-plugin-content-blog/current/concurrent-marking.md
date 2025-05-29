@@ -1,12 +1,12 @@
 ---
 title: "V8中的並行標記"
 author: "Ulan Degenbaev、Michael Lippautz 和 Hannes Payer — 主執行緒解放者"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2018-06-11 13:33:37
-tags:
+date: "2018-06-11 13:33:37"
+tags: 
   - internals
   - memory
 description: "本文介紹了一種稱為並行標記的垃圾回收技術。"

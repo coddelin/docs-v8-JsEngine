@@ -1,11 +1,11 @@
 ---
 title: "V8におけるポインタ圧縮"
 author: "Igor SheludkoとSantiago Aboy Solanes、*ポインタ圧縮の達人*"
-avatars:
+avatars: 
   - "igor-sheludko"
   - "santiago-aboy-solanes"
 date: 2020-03-30
-tags:
+tags: 
   - 内部構造
   - メモリ
 description: "V8はヒープサイズを最大43%削減しました！「V8におけるポインタ圧縮」でその仕組みを学びましょう！"

@@ -1,8 +1,8 @@
 ---
 title: "V8发布版本6.0"
 author: "V8团队"
-date: 2017-06-09 13:33:37
-tags:
+date: "2017-06-09 13:33:37"
+tags: 
   - 发布
 description: "V8版本6.0带来了多个性能改进，并引入了对`SharedArrayBuffer`和对象剩余/展开属性的支持。"
 ---

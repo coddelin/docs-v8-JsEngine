@@ -1,10 +1,10 @@
 ---
 title: "Einblicke in den TurboFan JIT"
 author: "Ben L. Titzer, Software-Ingenieur und TurboFan-Mechaniker"
-avatars:
+avatars: 
   - "ben-titzer"
-date: 2015-07-13 13:33:37
-tags:
+date: "2015-07-13 13:33:37"
+tags: 
   - internals
 description: "Ein tiefgehender Blick auf das Design des neuen TurboFan-Optimierungskompilers von V8."
 ---

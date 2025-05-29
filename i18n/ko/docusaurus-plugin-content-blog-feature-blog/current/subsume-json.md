@@ -1,10 +1,10 @@
 ---
 title: "JSON ⊂ ECMAScript 제안"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2019-08-14
-tags:
+tags: 
   - ES2019
 description: "JSON이 이제 ECMAScript의 문법적 하위 집합이 되었습니다."
 tweet: "1161649929904885762"

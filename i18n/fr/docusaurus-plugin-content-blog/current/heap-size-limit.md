@@ -1,12 +1,12 @@
 ---
 title: "Un petit pas pour Chrome, un grand bond pour V8"
 author: "les gardiens du tas Ulan Degenbaev, Hannes Payer, Michael Lippautz, et le guerrier DevTools Alexey Kozyatinskiy"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2017-02-09 13:33:37
-tags:
+date: "2017-02-09 13:33:37"
+tags: 
   - mémoire
 description: "V8 a récemment augmenté sa limite stricte de taille de tas."
 ---

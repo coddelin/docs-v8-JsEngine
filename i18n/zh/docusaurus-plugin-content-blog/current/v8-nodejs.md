@@ -1,8 +1,8 @@
 ---
 title: "V8 ❤️ Node.js"
 author: "Franziska Hinkelmann, Node 猴子补丁开发者"
-date: 2016-12-15 13:33:37
-tags:
+date: "2016-12-15 13:33:37"
+tags: 
   - Node.js
 description: "本文重点介绍了最近为在 V8 和 Chrome DevTools 中更好支持 Node.js 所做的一些努力。"
 ---

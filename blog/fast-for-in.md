@@ -1,10 +1,10 @@
 ---
 title: "Fast `for`-`in` in V8"
 author: "Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))"
-avatars:
+avatars: 
   - "camillo-bruni"
-date: 2017-03-01 13:33:37
-tags:
+date: "2017-03-01 13:33:37"
+tags: 
   - internals
 description: "This technical deep-dive explains how V8 made JavaScript’s for-in as fast as possible."
 ---

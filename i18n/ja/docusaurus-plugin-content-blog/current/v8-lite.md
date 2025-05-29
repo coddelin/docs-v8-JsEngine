@@ -1,12 +1,12 @@
 ---
 title: "軽量化されたV8"
 author: "Mythri Alle, Dan Elphick, および [Ross McIlroy](https://twitter.com/rossmcilroy), V8軽量化チーム"
-avatars:
+avatars: 
   - "mythri-alle"
   - "dan-elphick"
   - "ross-mcilroy"
-date: 2019-09-12 12:44:37
-tags:
+date: "2019-09-12 12:44:37"
+tags: 
   - 内部構造
   - メモリ
   - プレゼンテーション

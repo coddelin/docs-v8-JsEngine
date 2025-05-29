@@ -1,10 +1,10 @@
 ---
 title: "V8 릴리즈 v8.6"
 author: "잉그바르 스테파냔 ([@RReverser](https://twitter.com/RReverser)), 키보드 퍼저"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2020-09-21
-tags:
+tags: 
  - 릴리즈
 description: "V8 릴리즈 v8.6은 존중하는 코드, 성능 개선, 및 규범적 변경사항을 제공합니다."
 tweet: "1308062287731789825"

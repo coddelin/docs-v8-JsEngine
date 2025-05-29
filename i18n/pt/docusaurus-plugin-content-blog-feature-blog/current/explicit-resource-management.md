@@ -1,10 +1,10 @@
 ---
 title: "O Novo Superpoder do JavaScript: Gerenciamento Explícito de Recursos"
 author: "Rezvan Mahdavi Hezaveh"
-avatars:
+avatars: 
   - "rezvan-mahdavi-hezaveh"
 date: 2025-05-09
-tags:
+tags: 
   - ECMAScript
 description: "A proposta de Gerenciamento Explícito de Recursos capacita os desenvolvedores a gerenciar explicitamente o ciclo de vida dos recursos."
 tweet: ""

@@ -1,10 +1,10 @@
 ---
 title: "Un analyseur ultra-rapide, partie 1 : optimisation du scanneur"
 author: "Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)), optimiseur scandaleux"
-avatars:
+avatars: 
   - "toon-verwaest"
-date: 2019-03-25 13:33:37
-tags:
+date: "2019-03-25 13:33:37"
+tags: 
   - internes
   - analyse
 tweet: "1110205101652787200"

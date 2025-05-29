@@ -1,8 +1,8 @@
 ---
 title: "Ruhestand von Octane"
 author: "das V8-Team"
-date: 2017-04-12 13:33:37
-tags:
+date: "2017-04-12 13:33:37"
+tags: 
   - Benchmarks
 description: "Das V8-Team glaubt, dass es an der Zeit ist, Octane als empfohlenen Benchmark in den Ruhestand zu versetzen."
 ---

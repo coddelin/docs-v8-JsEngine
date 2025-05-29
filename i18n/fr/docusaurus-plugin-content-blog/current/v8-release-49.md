@@ -1,8 +1,8 @@
 ---
 title: "Publication de V8 v4.9"
-author: 'l'équipe V8'
-date: 2016-01-26 13:33:37
-tags:
+author: "l'équipe V8"
+date: "2016-01-26 13:33:37"
+tags: 
   - publication
 description: "V8 v4.9 offre une meilleure implémentation de `Math.random` et ajoute la prise en charge de plusieurs nouvelles fonctionnalités du langage ES2015."
 ---

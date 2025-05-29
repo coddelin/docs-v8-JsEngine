@@ -1,7 +1,7 @@
 ---
 title: "Des versions plus rapides"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
   - "ingvar-stepanyan"
 date: 2021-03-04
 description: "Accélérer le cycle de publication de V8"

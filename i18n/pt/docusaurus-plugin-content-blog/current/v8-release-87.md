@@ -1,10 +1,10 @@
 ---
 title: "Lançamento do V8 v8.7"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), um porta-voz do V8"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2020-10-23
-tags:
+tags: 
  - lançamento
 description: "O lançamento do V8 v8.7 traz uma nova API para chamadas nativas, Atomics.waitAsync, correções de bugs e melhorias de desempenho."
 tweet: "1319654229863182338"

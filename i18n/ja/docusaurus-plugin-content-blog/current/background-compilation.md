@@ -1,10 +1,10 @@
 ---
 title: "バックグラウンドコンパイル"
 author: "[Ross McIlroy](https://twitter.com/rossmcilroy), メインスレッド擁護者"
-avatars:
+avatars: 
   - "ross-mcilroy"
-date: 2018-03-26 13:33:37
-tags:
+date: "2018-03-26 13:33:37"
+tags: 
   - 内部構造
 description: "Chrome 66から、V8がJavaScriptのソースコードをバックグラウンドスレッド上でコンパイルするようになり、典型的なウェブサイトでメインスレッドのコンパイル時間が5%から20%短縮されました。"
 tweet: "978319362837958657"

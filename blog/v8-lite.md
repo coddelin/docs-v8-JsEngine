@@ -1,12 +1,12 @@
 ---
 title: "A lighter V8"
 author: "Mythri Alle, Dan Elphick, and [Ross McIlroy](https://twitter.com/rossmcilroy), V8 weight-watchers"
-avatars:
+avatars: 
   - "mythri-alle"
   - "dan-elphick"
   - "ross-mcilroy"
-date: 2019-09-12 12:44:37
-tags:
+date: "2019-09-12 12:44:37"
+tags: 
   - internals
   - memory
   - presentations

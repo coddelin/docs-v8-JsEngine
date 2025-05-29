@@ -1,10 +1,10 @@
 ---
 title: "Version V8 v7.6"
 author: "Adam Klein"
-avatars:
+avatars: 
   - "adam-klein"
-date: 2019-06-19 16:45:00
-tags:
+date: "2019-06-19 16:45:00"
+tags: 
   - sortie
 description: "V8 v7.6 inclut Promise.allSettled, un JSON.parse plus rapide, des BigInts localisés, des tableaux congelés/sellés plus rapides, et bien plus encore !"
 tweet: "1141356209179516930"

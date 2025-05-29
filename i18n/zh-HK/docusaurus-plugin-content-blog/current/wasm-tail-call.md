@@ -2,7 +2,7 @@
 title: "WebAssembly 尾呼叫"
 author: "Thibaud Michaud, Thomas Lively"
 date: 2023-04-06
-tags:
+tags: 
   - WebAssembly
 description: "本文檔說明了 WebAssembly 尾呼叫提案，並通過一些範例進行演示。"
 tweet: "1644077795059044353"

@@ -1,10 +1,10 @@
 ---
 title: "`await` de nivel superior"
 author: "Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))"
-avatars:
+avatars: 
   - "myles-borins"
 date: 2019-10-08
-tags:
+tags: 
   - ECMAScript
   - Node.js 14
 description: "¡`await` de nivel superior está llegando a los módulos de JavaScript! Pronto podrás usar `await` sin necesidad de estar en una función async."

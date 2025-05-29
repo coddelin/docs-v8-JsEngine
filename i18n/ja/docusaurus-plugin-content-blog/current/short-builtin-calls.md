@@ -1,10 +1,10 @@
 ---
 title: "短い組み込み呼び出し"
 author: "[トゥーン・ヴァーワエスト](https://twitter.com/tverwaes)、The Big Short"
-avatars:
+avatars: 
   - トゥーン・ヴァーワエスト
 date: 2021-05-06
-tags:
+tags: 
   - JavaScript
 description: "V8 v9.1では、一時的にデスクトップで組み込み機能を非組み込み化して、間接呼び出し距離の問題によるパフォーマンス低下を回避しました。"
 tweet: "1394267917013897216"

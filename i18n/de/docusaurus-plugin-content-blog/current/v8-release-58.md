@@ -1,8 +1,8 @@
 ---
 title: "V8-Version v5.8 veröffentlicht"
 author: "das V8-Team"
-date: 2017-03-20 13:33:37
-tags:
+date: "2017-03-20 13:33:37"
+tags: 
   - Veröffentlichung
 description: "V8 v5.8 ermöglicht die Nutzung beliebiger Heap-Größen und verbessert die Startleistung."
 ---

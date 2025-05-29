@@ -1,10 +1,10 @@
 ---
 title: "埋め込み組み込み機能"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2018-08-14 13:33:37
-tags:
+date: "2018-08-14 13:33:37"
+tags: 
   - 内部構造
 description: "V8 v6.9では、組み込みコードをバイナリの.textセクションに埋め込むことで、ウェブサイトごとの中央値のV8ヒープサイズを19%削減しました。"
 tweet: "1029382366693937162"

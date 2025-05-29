@@ -1,11 +1,11 @@
 ---
 title: "Jank Busters 第一部分"
 author: "卡顿终结者：Jochen Eisinger，Michael Lippautz 和 Hannes Payer"
-avatars:
+avatars: 
   - "michael-lippautz"
   - "hannes-payer"
-date: 2015-10-30 13:33:37
-tags:
+date: "2015-10-30 13:33:37"
+tags: 
   - 内存
 description: "本文讨论了在 Chrome 41 和 Chrome 46 之间实施的一些优化，这些优化显著减少了垃圾回收的暂停时间，从而提高了用户体验。"
 ---

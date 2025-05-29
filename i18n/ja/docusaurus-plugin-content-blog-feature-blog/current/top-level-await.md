@@ -1,10 +1,10 @@
 ---
 title: "トップレベルの`await`"
 author: "Myles Borins ([@MylesBorins](https://twitter.com/MylesBorins))"
-avatars:
+avatars: 
   - "myles-borins"
 date: 2019-10-08
-tags:
+tags: 
   - ECMAScript
   - Node.js 14
 description: "トップレベルの`await`がJavaScriptモジュールに登場！間もなく非同期関数に入ることなく`await`を使用できるようになります。"

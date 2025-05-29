@@ -1,10 +1,10 @@
 ---
 title: "Ignitionインタープリタを起動"
 author: "Ross McIlroy, V8 Ignitionジャンプスターター"
-avatars:
+avatars: 
   - "ross-mcilroy"
-date: 2016-08-23 13:33:37
-tags:
+date: "2016-08-23 13:33:37"
+tags: 
   - internals
 description: "Ignitionインタープリタでは、V8がJavaScript関数を簡潔なバイトコードにコンパイルします。そのサイズは同等のベースラインマシンコードの約50%〜25%です。"
 ---

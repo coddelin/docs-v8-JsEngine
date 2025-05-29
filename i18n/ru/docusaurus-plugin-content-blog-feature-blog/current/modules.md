@@ -1,11 +1,11 @@
 ---
 title: "Модули JavaScript"
 author: "Эдди Османи ([@addyosmani](https://twitter.com/addyosmani)) и Матиас Биннс ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
 - "addy-osmani"
 - "mathias-bynens"
 date: 2018-06-18
-tags:
+tags: 
   - ECMAScript
   - ES2015
 description: "Эта статья объясняет, как использовать модули JavaScript, как их правильно развернуть и как команда Chrome работает над их улучшением в будущем."

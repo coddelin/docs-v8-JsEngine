@@ -1,11 +1,11 @@
 ---
 title: "Die Geschichte einer V8-Leistungsgrenze in React"
 author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) und Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "benedikt-meurer"
   - "mathias-bynens"
-date: 2019-08-28 16:45:00
-tags:
+date: "2019-08-28 16:45:00"
+tags: 
   - internals
   - presentations
 description: "Dieser Artikel beschreibt, wie V8 optimale Speicherrepräsentationen für verschiedene JavaScript-Werte auswählt und wie sich dies auf die Shape-Maschine auswirkt – all dies hilft, eine jüngste V8-Leistungsgrenze im React-Kern zu erklären."

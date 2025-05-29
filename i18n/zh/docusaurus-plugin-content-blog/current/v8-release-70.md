@@ -1,10 +1,10 @@
 ---
 title: "V8发布版本v7.0"
 author: "Michael Hablich"
-avatars:
+avatars: 
   - michael-hablich
-date: 2018-10-15 17:17:00
-tags:
+date: "2018-10-15 17:17:00"
+tags: 
   - 发布
 description: "V8 v7.0包括WebAssembly线程、Symbol.prototype.description以及更多平台上的嵌入式内置功能！"
 tweet: "1051857446279532544"

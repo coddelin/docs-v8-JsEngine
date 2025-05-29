@@ -1,10 +1,10 @@
 ---
-title: 'Zusätzlicher Inhalt für "Understanding the ECMAScript spec, Teil 2"'
+title: "Zusätzlicher Inhalt für \"Understanding the ECMAScript spec, Teil 2\""
 author: "[Marja Hölttä](https://twitter.com/marjakh), spekulative Spezifikationsbeobachterin"
-avatars:
+avatars: 
   - marja-holtta
 date: 2020-03-02
-tags:
+tags: 
   - ECMAScript
 description: "Tutorial zum Lesen der ECMAScript-Spezifikation"
 tweet: ""

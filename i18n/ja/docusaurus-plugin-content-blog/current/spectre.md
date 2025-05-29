@@ -1,11 +1,11 @@
 ---
 title: "Spectreから1年：V8チームの視点"
 author: "Ben L. TitzerとJaroslav Sevcik"
-avatars:
+avatars: 
   - "ben-titzer"
   - "jaroslav-sevcik"
-date: 2019-04-23 14:15:22
-tags:
+date: "2019-04-23 14:15:22"
+tags: 
   - セキュリティ
 tweet: "1120661732836499461"
 description: "V8チームが、2018年の主要なコンピュータセキュリティ問題の1つであるSpectreに対する分析と緩和戦略について詳述します。"

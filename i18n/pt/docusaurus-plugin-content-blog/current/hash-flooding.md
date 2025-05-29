@@ -1,10 +1,10 @@
 ---
 title: "Sobre aquela vulnerabilidade de inundação de hash no Node.js…"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed))"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2017-08-11 13:33:37
-tags:
+date: "2017-08-11 13:33:37"
+tags: 
   - segurança
 description: "Node.js sofreu de uma vulnerabilidade de inundação de hash. Este post fornece um pouco de contexto e explica a solução no V8."
 ---

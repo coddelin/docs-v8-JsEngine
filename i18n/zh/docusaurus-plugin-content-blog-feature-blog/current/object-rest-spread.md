@@ -1,10 +1,10 @@
 ---
 title: "对象的剩余和扩展属性"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-06-06
-tags:
+tags: 
   - ECMAScript
   - ES2018
 description: "本文解释了 JavaScript 中对象的剩余和扩展属性如何工作，并重新介绍了数组的剩余和扩展元素。"

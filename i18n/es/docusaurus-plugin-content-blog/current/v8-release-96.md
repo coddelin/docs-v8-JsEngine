@@ -1,10 +1,10 @@
 ---
 title: "Versión de V8 v9.6"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-10-13
-tags:
+tags: 
  - versión
 description: "La versión de V8 v9.6 trae soporte para Tipos de Referencia a WebAssembly."
 tweet: "1448262079476076548"

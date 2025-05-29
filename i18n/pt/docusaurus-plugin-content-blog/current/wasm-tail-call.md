@@ -2,7 +2,7 @@
 title: "Chamadas em cauda no WebAssembly"
 author: "Thibaud Michaud, Thomas Lively"
 date: 2023-04-06
-tags:
+tags: 
   - WebAssembly
 description: "Este documento explica a proposta de chamadas em cauda do WebAssembly e a demonstra com alguns exemplos."
 tweet: "1644077795059044353"

@@ -1,8 +1,8 @@
 ---
 title: "Lançamento do V8 v5.8"
 author: "a equipe do V8"
-date: 2017-03-20 13:33:37
-tags:
+date: "2017-03-20 13:33:37"
+tags: 
   - lançamento
 description: "O V8 v5.8 permite o uso de tamanhos de heap arbitrários e melhora o desempenho de inicialização."
 ---

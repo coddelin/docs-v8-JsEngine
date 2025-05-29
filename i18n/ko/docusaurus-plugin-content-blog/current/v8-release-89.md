@@ -1,10 +1,10 @@
 ---
 title: "V8 릴리스 v8.9"
 author: "인그바르 스테파냔 ([@RReverser](https://twitter.com/RReverser)), 대기 중인 호출"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-02-04
-tags:
+tags: 
  - release
 description: "V8 릴리스 v8.9는 인수 크기 불일치로 인한 호출 성능을 개선합니다."
 tweet: "1357358418902802434"

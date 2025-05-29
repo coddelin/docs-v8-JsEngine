@@ -1,10 +1,10 @@
 ---
 title: "V8 发布 v7.1"
 author: "Stephan Herhut ([@herhut](https://twitter.com/herhut))，克隆克隆者的克隆者"
-avatars:
+avatars: 
   - stephan-herhut
-date: 2018-10-31 15:44:37
-tags:
+date: "2018-10-31 15:44:37"
+tags: 
   - release
 description: "V8 v7.1 包含嵌入式字节码处理程序、改进的 TurboFan 逃逸分析、postMessage(wasmModule)、Intl.RelativeTimeFormat，以及 globalThis!"
 tweet: "1057645773465235458"

@@ -1,8 +1,8 @@
 ---
 title: "Lanzamiento de V8 v6.7"
 author: "el equipo de V8"
-date: 2018-05-04 13:33:37
-tags:
+date: "2018-05-04 13:33:37"
+tags: 
   - lanzamiento
 tweet: "992506342391742465"
 description: "V8 v6.7 añade más mitigaciones para código no confiable y soporta BigInt."

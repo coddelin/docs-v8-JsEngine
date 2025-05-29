@@ -1,10 +1,10 @@
 ---
 title: "Релиз V8 v7.8"
 author: "Ингвар Степанян ([@RReverser](https://twitter.com/RReverser)), ленивый разработчик"
-avatars:
+avatars: 
   - "ingvar-stepanyan"
 date: 2019-09-27
-tags:
+tags: 
   - релиз
 description: "V8 v7.8 включает потоковую компиляцию при предварительной загрузке, API WebAssembly C, более быструю деструктуризацию объектов и сопоставление RegExp, а также улучшенное время запуска."
 tweet: "1177600702861971459"

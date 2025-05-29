@@ -1,11 +1,11 @@
 ---
 title: "Pointer compression in Oilpan"
 author: "Anton Bikineev, and Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), walking disassemblers"
-avatars:
+avatars: 
   - anton-bikineev
   - michael-lippautz
 date: 2022-11-28
-tags:
+tags: 
   - internals
   - memory
   - cppgc

@@ -1,8 +1,8 @@
 ---
 title: "Retiring Octane"
 author: "the V8 team"
-date: 2017-04-12 13:33:37
-tags:
+date: "2017-04-12 13:33:37"
+tags: 
   - benchmarks
 description: "The V8 team believes that it is time to retire Octane as a recommended benchmark."
 ---

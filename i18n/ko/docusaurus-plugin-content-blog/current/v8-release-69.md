@@ -1,8 +1,8 @@
 ---
 title: "V8 릴리즈 v6.9"
 author: "V8 팀"
-date: 2018-08-07 13:33:37
-tags:
+date: "2018-08-07 13:33:37"
+tags: 
   - 릴리즈
 description: "V8 v6.9는 내장 빌트인 기능을 통해 메모리 사용량 감소, Liftoff을 통한 WebAssembly의 빠른 시작, 향상된 DataView 및 WeakMap 성능 등 다양한 기능을 제공합니다!"
 tweet: "1026825606003150848"

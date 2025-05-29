@@ -1,8 +1,8 @@
 ---
 title: "Lançamento do V8 v5.7"
 author: "A equipe V8"
-date: 2017-02-06 13:33:37
-tags:
+date: "2017-02-06 13:33:37"
+tags: 
   - lançamento
 description: "O V8 v5.7 habilita o WebAssembly por padrão e inclui melhorias de desempenho e aumento do suporte aos recursos de linguagem ECMAScript."
 ---

@@ -1,10 +1,10 @@
 ---
 title: "V8リリース v7.5"
 author: "Dan Elphick, 廃止された機能の恐怖"
-avatars:
+avatars: 
   - "dan-elphick"
-date: 2019-05-16 15:00:00
-tags:
+date: "2019-05-16 15:00:00"
+tags: 
   - リリース
 description: "V8 v7.5は、WebAssemblyコンパイルアーティファクトの暗黙的キャッシュ、大量メモリ操作、JavaScriptの数値セパレータなど、多くの機能を備えています！"
 tweet: "1129073370623086593"

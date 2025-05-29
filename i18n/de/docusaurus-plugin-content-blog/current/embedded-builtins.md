@@ -1,10 +1,10 @@
 ---
 title: "Eingebettete Builtins"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2018-08-14 13:33:37
-tags:
+date: "2018-08-14 13:33:37"
+tags: 
   - internals
 description: "V8 v6.9 bettet eingebauten Code in den .text-Bereich der Binärdatei ein, wodurch die mediane V8-Heap-Größe pro Website um 19 % reduziert wird."
 tweet: "1029382366693937162"

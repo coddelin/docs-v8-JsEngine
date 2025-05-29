@@ -1,10 +1,10 @@
 ---
 title: "Entendiendo la especificación de ECMAScript, parte 2"
 author: "[Marja Hölttä](https://twitter.com/marjakh), espectadora especulativa de especificaciones"
-avatars:
+avatars: 
   - marja-holtta
 date: 2020-03-02
-tags:
+tags: 
   - ECMAScript
   - Entendiendo ECMAScript
 description: "Tutorial para leer la especificación de ECMAScript, parte 2"

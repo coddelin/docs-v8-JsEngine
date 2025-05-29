@@ -1,11 +1,11 @@
 ---
 title: "Funciones asíncronas y promesas más rápidas"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), anticipadora siempre a la espera, y Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), prometedor profesional de rendimiento"
-avatars:
+avatars: 
   - "maya-armyanova"
   - "benedikt-meurer"
-date: 2018-11-12 16:45:07
-tags:
+date: "2018-11-12 16:45:07"
+tags: 
   - ECMAScript
   - benchmarks
   - presentations

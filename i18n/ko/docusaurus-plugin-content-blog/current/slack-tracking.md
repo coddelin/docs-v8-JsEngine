@@ -2,10 +2,10 @@
 title: "V8에서의 슬랙 추적"
 author: "Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), *슬랙*의 권위있는 대가"
 description: "V8의 슬랙 추적 메커니즘에 대한 자세한 분석."
-avatars:
+avatars: 
  - "michael-stanton"
-date: 2020-09-24 14:00:00
-tags:
+date: "2020-09-24 14:00:00"
+tags: 
  - 내부 구조
 ---
 슬랙 추적은 새로운 객체에 실제로 사용하는 것보다 **더 큰 초기 크기를 부여**하여 새로운 속성을 빠르게 추가할 수 있도록 합니다. 그런 다음 일정 시간이 지나면 **사용하지 않은 공간을 시스템으로 마법같이 반환**하는 방식입니다. 멋지지 않나요?

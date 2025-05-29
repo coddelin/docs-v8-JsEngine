@@ -1,8 +1,8 @@
 ---
 title: "An internship on laziness: lazy unlinking of deoptimized functions"
 author: "Juliana Franco ([@jupvfranco](https://twitter.com/jupvfranco)), Laziness Expert"
-date: 2017-10-04 13:33:37
-tags:
+date: "2017-10-04 13:33:37"
+tags: 
   - memory
   - internals
 description: "This technical deep-dive explains how V8 used to unlink deoptimized functions, and how we recently changed this to improve performance."

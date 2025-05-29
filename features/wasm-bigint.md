@@ -1,10 +1,10 @@
 ---
 title: "WebAssembly integration with JavaScript BigInt"
 author: "Alon Zakai"
-avatars:
+avatars: 
   - "alon-zakai"
 date: 2020-11-12
-tags:
+tags: 
   - WebAssembly
   - ECMAScript
 description: "BigInts make it easy to pass 64-bit integers between JavaScript and WebAssembly. This post explains what that means and why it’s useful, which includes making things simpler for developers, letting code run more quickly, and also speeding up build times."

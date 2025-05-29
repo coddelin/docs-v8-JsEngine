@@ -1,10 +1,10 @@
 ---
 title: "V8发布版本v9.7"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-11-05
-tags:
+tags: 
  - release
 description: "V8发布版本v9.7为数组提供了新的JavaScript方法用于从后向前搜索元素。"
 tweet: ""

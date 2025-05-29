@@ -1,10 +1,10 @@
 ---
 title: "Désérialisation paresseuse"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2018-02-12 13:33:37
-tags:
+date: "2018-02-12 13:33:37"
+tags: 
   - internes
 description: "La désérialisation paresseuse, disponible dans V8 v6.4, réduit en moyenne la consommation de mémoire de V8 de plus de 500 KB par onglet de navigateur."
 tweet: "962989179914383360"

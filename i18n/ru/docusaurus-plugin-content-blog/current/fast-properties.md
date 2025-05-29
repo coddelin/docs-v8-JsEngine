@@ -1,10 +1,10 @@
 ---
 title: "Быстрые свойства в V8"
 author: "Камилло Бруни ([@camillobruni](https://twitter.com/camillobruni)), также автор статьи [“Быстрый `for`-`in`”](/blog/fast-for-in)"
-avatars:
+avatars: 
   - "camillo-bruni"
-date: 2017-08-30 13:33:37
-tags:
+date: "2017-08-30 13:33:37"
+tags: 
   - internals
 description: "Этот технический разбор объясняет, как V8 обрабатывает свойства JavaScript за кулисами."
 ---

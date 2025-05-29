@@ -1,10 +1,10 @@
 ---
 title: "WebAssembly에 쓰레기 수집형 프로그래밍 언어를 효율적으로 도입하는 새로운 방법"
 author: "Alon Zakai"
-avatars:
+avatars: 
   - "alon-zakai"
 date: 2023-11-01
-tags:
+tags: 
   - WebAssembly
 tweet: "1720161507324076395"
 ---

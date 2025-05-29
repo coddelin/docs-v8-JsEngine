@@ -1,11 +1,11 @@
 ---
 title: "JavaScriptモジュール"
 author: "Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) と Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
 - "addy-osmani"
 - "mathias-bynens"
 date: 2018-06-18
-tags:
+tags: 
   - ECMAScript
   - ES2015
 description: "この記事では、JavaScriptモジュールの使い方、責任を持ってデプロイする方法、そしてChromeチームが将来モジュールをさらに良くするために取り組んでいることについて説明します。"

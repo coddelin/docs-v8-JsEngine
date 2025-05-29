@@ -1,10 +1,10 @@
 ---
 title: "Indicium: V8 runtime tracer tool"
 author: "Zeynep Cankara ([@ZeynepCankara](https://twitter.com/ZeynepCankara))"
-avatars:
+avatars: 
   - "zeynep-cankara"
-date: 2020-10-01 11:56:00
-tags:
+date: "2020-10-01 11:56:00"
+tags: 
   - tools
   - system-analyzer
 description: "Indicium: V8 system analyzer tool to analyze Map/IC events."

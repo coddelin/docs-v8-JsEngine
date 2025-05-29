@@ -1,10 +1,10 @@
 ---
 title: "正規表現の後読みアサーション"
 author: "Yang Guo, 正規表現エンジニア"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2016-02-26 13:33:37
-tags:
+date: "2016-02-26 13:33:37"
+tags: 
   - ECMAScript
   - 正規表現
 description: "JavaScriptの正規表現に新しい機能「後読みアサーション」が追加されます。"

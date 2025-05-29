@@ -1,10 +1,10 @@
 ---
 title: "Причины ошибок"
 author: "Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))"
-avatars:
+avatars: 
   - "victor-gomes"
 date: 2021-07-07
-tags:
+tags: 
   - ECMAScript
 description: "JavaScript теперь поддерживает причины ошибок."
 tweet: "1412774651558862850"

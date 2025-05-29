@@ -1,10 +1,10 @@
 ---
 title: "V8 發布 v8.4"
 author: "Camillo Bruni，享受一些新鮮的布林值"
-avatars:
+avatars: 
  - "camillo-bruni"
 date: 2020-06-30
-tags:
+tags: 
  - 發布
 description: "V8 v8.4 支援弱引用以及改良 WebAssembly 性能。"
 tweet: "1277983235641761795"

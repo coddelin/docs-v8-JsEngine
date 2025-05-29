@@ -1,10 +1,10 @@
 ---
 title: "关于 Node.js 中的哈希泛滥漏洞…"
 author: "杨国 ([@hashseed](https://twitter.com/hashseed))"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2017-08-11 13:33:37
-tags:
+date: "2017-08-11 13:33:37"
+tags: 
   - 安全
 description: "Node.js 曾受到一次哈希泛滥漏洞的影响。这篇文章提供了一些背景，并解释了 V8 的解决方案。"
 ---

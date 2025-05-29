@@ -1,10 +1,10 @@
 ---
 title: "Llamadas más rápidas en JavaScript"
 author: "[Victor Gomes](https://twitter.com/VictorBFG), el destructor de marcos"
-avatars:
+avatars: 
   - "victor-gomes"
 date: 2021-02-15
-tags:
+tags: 
   - internals
 description: "Llamadas más rápidas en JavaScript eliminando el marco adaptador de argumentos"
 tweet: "1361337569057865735"

@@ -1,10 +1,10 @@
 ---
 title: "Subsume JSON también conocido como JSON ⊂ ECMAScript"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2019-08-14
-tags:
+tags: 
   - ES2019
 description: "JSON ahora es un subconjunto sintáctico de ECMAScript."
 tweet: "1161649929904885762"

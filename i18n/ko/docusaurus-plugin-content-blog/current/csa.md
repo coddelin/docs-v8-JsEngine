@@ -1,8 +1,8 @@
 ---
 title: "V8에서 아키텍처 복잡성을 다루기 — CodeStubAssembler"
 author: "[Daniel Clifford](https://twitter.com/expatdanno), CodeStubAssembler 조립자"
-date: 2017-11-16 13:33:37
-tags:
+date: "2017-11-16 13:33:37"
+tags: 
   - 내부구조
 description: "V8에는 어셈블리 코드 위에 자체 추상화 계층인 CodeStubAssembler가 있습니다. CSA는 여러 플랫폼을 지원하면서 V8이 낮은 수준에서 JS 기능을 빠르고 안정적으로 최적화할 수 있도록 합니다."
 tweet: "931184976481177600"

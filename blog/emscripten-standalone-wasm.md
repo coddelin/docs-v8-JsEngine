@@ -1,10 +1,10 @@
 ---
 title: "Outside the web: standalone WebAssembly binaries using Emscripten"
 author: "Alon Zakai"
-avatars:
+avatars: 
   - "alon-zakai"
 date: 2019-11-21
-tags:
+tags: 
   - WebAssembly
   - tooling
 description: "Emscripten now supports standalone Wasm files, which do not need JavaScript."

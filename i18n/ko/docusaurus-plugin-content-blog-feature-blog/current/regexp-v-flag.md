@@ -1,12 +1,12 @@
 ---
 title: "RegExp `v` 플래그와 집합 표기법 및 문자열 속성"
 author: "Mark Davis ([@mark_e_davis](https://twitter.com/mark_e_davis)), Markus Scherer, 그리고 Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mark-davis"
   - "markus-scherer"
   - "mathias-bynens"
 date: 2022-06-27
-tags:
+tags: 
   - ECMAScript
 description: "새로운 RegExp `v` 플래그는 `unicodeSets` 모드를 활성화하여 확장된 문자 클래스, 유니코드 문자열 속성, 집합 표기법 및 향상된 대소문자 무시 매칭을 지원합니다."
 tweet: "1541419838513594368"

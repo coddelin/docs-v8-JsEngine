@@ -1,10 +1,10 @@
 ---
 title: "V8-Version v8.9"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), wartet auf einen Anruf"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-02-04
-tags:
+tags: 
  - veröffentlichung
 description: "V8-Version v8.9 bringt Leistungsverbesserungen für Aufrufe mit Argumentgrößenabweichungen."
 tweet: "1357358418902802434"

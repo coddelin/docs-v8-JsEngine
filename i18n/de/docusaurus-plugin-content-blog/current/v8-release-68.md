@@ -1,8 +1,8 @@
 ---
 title: "V8 Release v6.8"
 author: "Das V8-Team"
-date: 2018-06-21 13:33:37
-tags:
+date: "2018-06-21 13:33:37"
+tags: 
   - Veröffentlichung
 description: "V8 v6.8 bietet reduzierten Speicherverbrauch und mehrere Leistungsverbesserungen."
 tweet: "1009753739060826112"

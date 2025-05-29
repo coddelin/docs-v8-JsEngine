@@ -1,7 +1,7 @@
 ---
 title: "Более быстрые релизы"
 author: "Ингвар Степанян ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
   - "ingvar-stepanyan"
 date: 2021-03-04
 description: "Ускорение цикла релизов V8"

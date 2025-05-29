@@ -1,10 +1,10 @@
 ---
 title: "Organizando coisas no V8"
 author: "Simon Zünd ([@nimODota](https://twitter.com/nimODota)), comparador consistente"
-avatars:
+avatars: 
   - simon-zuend
-date: 2018-09-28 11:20:37
-tags:
+date: "2018-09-28 11:20:37"
+tags: 
   - ECMAScript
   - internos
 description: "A partir do V8 v7.0 / Chrome 70, Array.prototype.sort é estável."

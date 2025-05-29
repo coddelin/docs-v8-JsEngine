@@ -1,7 +1,7 @@
 ---
 title: "Documentação"
 description: "Documentação para o projeto V8."
-slug: /
+slug: "/"
 ---
 V8 é o mecanismo de JavaScript e WebAssembly de alto desempenho e código aberto do Google, escrito em C++. Ele é usado no Chrome e no Node.js, entre outros.
 

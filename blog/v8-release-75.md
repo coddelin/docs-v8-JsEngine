@@ -1,10 +1,10 @@
 ---
 title: "V8 release v7.5"
 author: "Dan Elphick, scourge of the deprecated"
-avatars:
+avatars: 
   - "dan-elphick"
-date: 2019-05-16 15:00:00
-tags:
+date: "2019-05-16 15:00:00"
+tags: 
   - release
 description: "V8 v7.5 features implicit caching of WebAssembly compilation artifacts, bulk memory operations, numeric separators in JavaScript, and much more!"
 tweet: "1129073370623086593"

@@ -1,11 +1,11 @@
 ---
 title: "2019년 JavaScript 비용"
 author: "Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)), JavaScript 정리자, Mathias Bynens ([@mathias](https://twitter.com/mathias)), 메인 스레드 해방자"
-avatars:
+avatars: 
   - "addy-osmani"
   - "mathias-bynens"
 date: 2019-06-25
-tags:
+tags: 
   - internals
   - parsing
 description: "JavaScript를 처리하는 데 주된 비용은 다운로드와 CPU 실행 시간입니다."

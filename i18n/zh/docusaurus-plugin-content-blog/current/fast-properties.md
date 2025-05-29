@@ -1,10 +1,10 @@
 ---
 title: "V8中的快速属性"
 author: "Camillo Bruni ([@camillobruni](https://twitter.com/camillobruni))，也是[“Fast `for`-`in`”](/blog/fast-for-in)的作者"
-avatars:
+avatars: 
   - "camillo-bruni"
-date: 2017-08-30 13:33:37
-tags:
+date: "2017-08-30 13:33:37"
+tags: 
   - internals
 description: "本文深入解析了V8在幕后如何处理JavaScript属性。"
 ---

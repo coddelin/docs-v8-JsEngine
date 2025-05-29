@@ -1,10 +1,10 @@
 ---
 title: "深入探讨TurboFan JIT"
 author: "Ben L. Titzer，软件工程师和TurboFan机械师"
-avatars:
+avatars: 
   - "ben-titzer"
-date: 2015-07-13 13:33:37
-tags:
+date: "2015-07-13 13:33:37"
+tags: 
   - 内部构造
 description: "深入了解V8新型TurboFan优化编译器的设计。"
 ---

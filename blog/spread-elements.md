@@ -1,8 +1,8 @@
 ---
 title: "Speeding up spread elements"
 author: "Hai Dang & Georg Neis"
-date: 2018-12-04 16:57:21
-tags:
+date: "2018-12-04 16:57:21"
+tags: 
   - ECMAScript
   - benchmarks
 description: "V8 v7.2 / significantly speeds up Array.from(array) as well as [...spread] for arrays, strings, sets, and maps."

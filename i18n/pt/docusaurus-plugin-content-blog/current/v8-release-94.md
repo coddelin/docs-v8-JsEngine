@@ -1,10 +1,10 @@
 ---
 title: "Lançamento do V8 v9.4"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-09-06
-tags:
+tags: 
  - lançamento
 description: "O lançamento do V8 v9.4 traz blocos de inicialização estática de classes para o JavaScript."
 tweet: "1434915404418277381"

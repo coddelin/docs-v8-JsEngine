@@ -1,10 +1,10 @@
 ---
 title: "Otimizando tabelas de hash: ocultando o código de hash"
 author: "[Sathya Gunasekaran](https://twitter.com/_gsathya), guardião dos códigos de hash"
-avatars:
+avatars: 
   - "sathya-gunasekaran"
-date: 2018-01-29 13:33:37
-tags:
+date: "2018-01-29 13:33:37"
+tags: 
   - internals
 tweet: "958046113390411776"
 description: "Várias estruturas de dados em JavaScript, como Map, Set, WeakSet e WeakMap, usam tabelas de hash internamente. Este artigo explica como o V8 v6.3 melhora o desempenho das tabelas de hash."

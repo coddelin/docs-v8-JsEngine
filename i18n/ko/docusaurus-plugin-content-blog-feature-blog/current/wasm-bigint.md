@@ -1,10 +1,10 @@
 ---
 title: "JavaScript BigInt와 WebAssembly 통합"
 author: "Alon Zakai"
-avatars:
+avatars: 
   - "alon-zakai"
 date: 2020-11-12
-tags:
+tags: 
   - WebAssembly
   - ECMAScript
 description: "BigInt는 JavaScript와 WebAssembly 간에 64비트 정수를 쉽게 전달할 수 있게 합니다. 이 포스트는 그것이 무엇을 의미하며, 왜 유용한지를 설명합니다. 여기에는 개발자를 위해 더 간단해지고, 코드 실행 속도가 빨라지며, 빌드 시간도 단축되는 이점들이 포함됩니다."

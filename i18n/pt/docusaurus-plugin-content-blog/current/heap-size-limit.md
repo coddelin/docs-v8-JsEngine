@@ -1,12 +1,12 @@
 ---
 title: "Um pequeno passo para o Chrome, um grande salto para o V8"
 author: "guardians of the heap Ulan Degenbaev, Hannes Payer, Michael Lippautz, e o guerreiro do DevTools Alexey Kozyatinskiy"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2017-02-09 13:33:37
-tags:
+date: "2017-02-09 13:33:37"
+tags: 
   - memória
 description: "O V8 recentemente aumentou seu limite rígido de tamanho de heap."
 ---

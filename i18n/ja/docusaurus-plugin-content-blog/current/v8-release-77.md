@@ -1,10 +1,10 @@
 ---
 title: "V8リリース v7.7"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))、リリースノートの怠けた作成者"
-avatars:
+avatars: 
   - "mathias-bynens"
-date: 2019-08-13 16:45:00
-tags:
+date: "2019-08-13 16:45:00"
+tags: 
   - リリース
 description: "V8 v7.7 は遅延フィードバック割り当て、WebAssemblyのバックグラウンドコンパイルの高速化、スタックトレースの改善、新しいIntl.NumberFormat機能を備えています。"
 tweet: "1161287541611323397"

@@ -1,12 +1,12 @@
 ---
 title: "ジャンク・バスターズ パート2: オリノコ"
 author: "ジャンク・バスターズ: ウラン・デゲンバイエフ、ミハエル・リップアウツ、ハンネス・ペイヤー"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2016-04-12 13:33:37
-tags:
+date: "2016-04-12 13:33:37"
+tags: 
   - internals
   - memory
 description: "この記事では、V8で使用される新しいガベージコレクタの基盤となる3つの最適化について説明します。このガベージコレクタは「オリノコ」というコードネームで呼ばれています。"

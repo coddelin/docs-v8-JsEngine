@@ -1,10 +1,10 @@
 ---
 title: "코드 캐싱"
 author: "양궈 ([@hashseed](https://twitter.com/hashseed)), 소프트웨어 엔지니어"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-07-27 13:33:37
-tags:
+date: "2015-07-27 13:33:37"
+tags: 
   - internals
 description: "V8는 이제 (바이트)코드 캐싱, 즉 JavaScript 파싱 및 컴파일의 결과를 캐싱하는 기능을 지원합니다."
 ---

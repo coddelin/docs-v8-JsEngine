@@ -1,8 +1,8 @@
 ---
 title: "Lanzamiento de Ignition y TurboFan"
 author: "el equipo de V8"
-date: 2017-05-15 13:33:37
-tags:
+date: "2017-05-15 13:33:37"
+tags: 
   - internos
 description: "V8 v5.9 viene con una nueva tubería de ejecución de JavaScript, basada en el intérprete Ignition y el compilador optimizador TurboFan."
 ---

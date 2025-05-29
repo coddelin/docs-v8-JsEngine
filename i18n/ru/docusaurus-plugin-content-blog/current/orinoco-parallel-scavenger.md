@@ -1,12 +1,12 @@
 ---
 title: "Orinoco: сборка мусора для молодого поколения"
 author: "Улан Дегенбаев, Михаэль Липпаутц и Ханнес Пайер, друзья [TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2017-11-29 13:33:37
-tags:
+date: "2017-11-29 13:33:37"
+tags: 
   - internals
   - memory
 description: "В этой статье представлен параллельный Scavenger, одна из последних функций Orinoco, преимущественно параллельного сборщика мусора V8."

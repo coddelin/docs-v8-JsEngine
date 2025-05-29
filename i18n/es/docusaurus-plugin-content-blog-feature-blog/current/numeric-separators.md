@@ -1,10 +1,10 @@
 ---
 title: "Separadores numéricos"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2019-05-28
-tags:
+tags: 
   - ECMAScript
   - ES2021
   - io19

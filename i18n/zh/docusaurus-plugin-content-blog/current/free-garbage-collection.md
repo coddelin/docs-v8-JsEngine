@@ -1,11 +1,11 @@
 ---
 title: "免费获得垃圾回收"
 author: "Hannes Payer和Ross McIlroy，Idle垃圾收集器"
-avatars:
+avatars: 
   - "hannes-payer"
   - "ross-mcilroy"
-date: 2015-08-07 13:33:37
-tags:
+date: "2015-08-07 13:33:37"
+tags: 
   - 内部结构
   - 内存
 description: "Chrome 41在小的闲置时间片段中隐藏了昂贵的内存管理操作，从而减少卡顿现象。"

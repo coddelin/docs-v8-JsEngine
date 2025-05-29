@@ -1,10 +1,10 @@
 ---
 title: "Optimisation des proxies ES2015 dans V8"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), Optimisatrice de proxies"
-avatars:
+avatars: 
   - "maya-armyanova"
-date: 2017-10-05 13:33:37
-tags:
+date: "2017-10-05 13:33:37"
+tags: 
   - ECMAScript
   - benchmarks
   - internals

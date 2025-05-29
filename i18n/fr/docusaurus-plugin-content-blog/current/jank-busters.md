@@ -1,13 +1,13 @@
 ---
 title: "Jank Busters Partie Un"
 author: "les jank busters : Jochen Eisinger, Michael Lippautz et Hannes Payer"
-avatars:
+avatars: 
   - "michael-lippautz"
   - "hannes-payer"
-date: 2015-10-30 13:33:37
-tags:
+date: "2015-10-30 13:33:37"
+tags: 
   - mémoire
-description: 'Cet article discute des optimisations mises en œuvre entre Chrome 41 et Chrome 46 qui réduisent significativement les pauses de la collecte des ordures, améliorant ainsi l'expérience utilisateur.'
+description: "Cet article discute des optimisations mises en œuvre entre Chrome 41 et Chrome 46 qui réduisent significativement les pauses de la collecte des ordures, améliorant ainsi l'expérience utilisateur."
 ---
 Le jank, ou en d'autres termes les saccades visibles, peut être remarqué lorsque Chrome n'arrive pas à rendre une image dans les 16,66 ms (perturbant le mouvement à 60 images par seconde). À ce jour, la plupart des travaux de collecte des ordures de V8 sont effectués sur le thread principal de rendu, cf. Figure 1, entraînant souvent du jank lorsque trop d'objets doivent être maintenus. Éliminer le jank a toujours été une priorité élevée pour l'équipe V8 ([1](https://blog.chromium.org/2011/11/game-changer-for-interactive.html), [2](https://www.youtube.com/watch?v=3vPOlGRH6zk), [3](/blog/free-garbage-collection)). Cet article discute de quelques optimisations mises en œuvre entre Chrome 41 et Chrome 46 qui réduisent significativement les pauses de la collecte des ordures, offrant une meilleure expérience utilisateur.
 

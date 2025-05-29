@@ -1,10 +1,10 @@
 ---
 title: "JavaScript 程式碼覆蓋率"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2017-12-13 13:33:37
-tags:
+date: "2017-12-13 13:33:37"
+tags: 
   - internals
 description: "V8 現在具備原生支援 JavaScript 程式碼覆蓋率。工具現在可以訪問 V8 的覆蓋率資訊而無需對程式碼進行插入處理！"
 tweet: "940879905079873536"

@@ -1,10 +1,10 @@
 ---
 title: "`Intl.PluralRules`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-10-04
-tags:
+tags: 
   - Intl
 description: "Работа с множественными числами — это одна из многих задач, которая может показаться простой, пока вы не осознаете, что в каждом языке свои правила множественного числа. API Intl.PluralRules может помочь!"
 tweet: "915542989493202944"

@@ -1,12 +1,12 @@
 ---
 title: "Модификация временной безопасности памяти в C++"
 author: "Антон Бикинеев, Михаэль Липпаутц ([@mlippautz](https://twitter.com/mlippautz)), Ханнес Пайер ([@PayerHannes](https://twitter.com/PayerHannes))"
-avatars:
+avatars: 
   - anton-bikineev
   - michael-lippautz
   - hannes-payer
 date: 2022-06-14
-tags:
+tags: 
   - internals
   - memory
   - security

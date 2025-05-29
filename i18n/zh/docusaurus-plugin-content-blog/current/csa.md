@@ -1,8 +1,8 @@
 ---
 title: "驯服 V8 架构复杂性——CodeStubAssembler"
 author: "[Daniel Clifford](https://twitter.com/expatdanno)，CodeStubAssembler 组装器"
-date: 2017-11-16 13:33:37
-tags:
+date: "2017-11-16 13:33:37"
+tags: 
   - 内部细节
 description: "V8 在汇编代码之上有自己的抽象层：CodeStubAssembler。CSA 允许 V8 在低层次上快速且可靠地优化 JavaScript 功能，同时支持多平台。"
 tweet: "931184976481177600"

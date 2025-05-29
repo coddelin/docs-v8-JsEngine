@@ -1,10 +1,10 @@
 ---
 title: "Понимание спецификации ECMAScript, часть 3"
 author: "[Марья Хёлтта](https://twitter.com/marjakh), наблюдатель за спекулятивными спецификациями"
-avatars:
+avatars: 
   - marja-holtta
 date: 2020-04-01
-tags:
+tags: 
   - ECMAScript
   - Понимание ECMAScript
 description: "Учебное пособие по чтению спецификации ECMAScript"

@@ -1,10 +1,10 @@
 ---
 title: "V8에서 정렬을 처리하기"
 author: "Simon Zünd ([@nimODota](https://twitter.com/nimODota)), 일관된 비교자"
-avatars:
+avatars: 
   - simon-zuend
-date: 2018-09-28 11:20:37
-tags:
+date: "2018-09-28 11:20:37"
+tags: 
   - ECMAScript
   - internals
 description: "V8 v7.0 / Chrome 70부터 Array.prototype.sort가 안정적으로 작동합니다."

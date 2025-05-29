@@ -1,8 +1,8 @@
 ---
 title: "Um estágio sobre preguiça: desvinculação preguiçosa de funções desotimizadas"
 author: "Juliana Franco ([@jupvfranco](https://twitter.com/jupvfranco)), Especialista em Preguiça"
-date: 2017-10-04 13:33:37
-tags:
+date: "2017-10-04 13:33:37"
+tags: 
   - memória
   - internos
 description: "Este mergulho técnico explica como o V8 costumava desvincular funções desotimizadas e como recentemente mudamos isso para melhorar o desempenho."

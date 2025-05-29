@@ -1,10 +1,10 @@
 ---
 title: "WebAssembly開発者のためのコードキャッシュ"
 author: "[ビル・バッジ](https://twitter.com/billb)、キャッシュにCa-ching！を加える"
-avatars:
+avatars: 
   - bill-budge
 date: 2019-06-17
-tags:
+tags: 
   - WebAssembly
   - 内部構造
 description: "この記事では、ChromeのWebAssemblyコードキャッシュについて説明し、これを利用して大規模なWebAssemblyモジュールを持つアプリケーションの読み込みを高速化する方法を開発者がどのように活用できるかを紹介します。"

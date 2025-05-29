@@ -1,10 +1,10 @@
 ---
 title: "Code-Caching"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), Software Engineer"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-07-27 13:33:37
-tags:
+date: "2015-07-27 13:33:37"
+tags: 
   - internals
 description: "V8 unterstützt jetzt das (Byte-)Code-Caching, d.h. das Zwischenspeichern des Ergebnisses der JavaScript-Analyse und -Kompilierung."
 ---

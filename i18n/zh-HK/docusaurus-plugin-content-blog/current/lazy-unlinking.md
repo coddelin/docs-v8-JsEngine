@@ -1,8 +1,8 @@
 ---
 title: "一個關於懶惰的實習：去優化函數的惰性取消連結"
 author: "Juliana Franco ([@jupvfranco](https://twitter.com/jupvfranco))，懶惰專家"
-date: 2017-10-04 13:33:37
-tags:
+date: "2017-10-04 13:33:37"
+tags: 
   - 記憶體
   - 內部機制
 description: "這篇技術深度解析文章解釋了 V8 從前如何取消連結去優化的函數，以及我們最近如何改進這個過程以提升性能。"

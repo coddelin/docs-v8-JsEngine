@@ -2,10 +2,10 @@
 title: "V8沙盒"
 description: "V8具有一个轻量级的进程内沙盒，以限制内存损坏漏洞的影响"
 author: "Samuel Groß"
-avatars:
+avatars: 
   - samuel-gross
 date: 2024-04-04
-tags:
+tags: 
  - 安全
 ---
 

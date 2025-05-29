@@ -1,10 +1,10 @@
 ---
 title: "그 `.wasm` 안에 무엇이 있을까? 소개: `wasm-decompile`"
 author: "Wouter van Oortmerssen ([@wvo](https://twitter.com/wvo))"
-avatars:
+avatars: 
   - "wouter-van-oortmerssen"
 date: 2020-04-27
-tags:
+tags: 
   - WebAssembly
   - 도구
 description: "WABT에 새로운 디컴파일 도구가 추가되어 Wasm 모듈 내용을 읽기가 더 쉬워졌습니다."

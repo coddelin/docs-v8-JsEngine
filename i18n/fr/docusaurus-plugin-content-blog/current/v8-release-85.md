@@ -1,13 +1,13 @@
 ---
 title: "Publication V8 v8.5"
 author: "Zeynep Cankara, suivant quelques cartes"
-avatars:
+avatars: 
  - "zeynep-cankara"
 date: 2020-07-21
-tags:
+tags: 
  - publication
-description: 'La version V8 v8.5 propose Promise.any, String#replaceAll, des opérateurs d'affectation logiques, la prise en charge du multi-valeur WebAssembly et du BigInt, ainsi que des améliorations de performances.'
-tweet:
+description: "La version V8 v8.5 propose Promise.any, String#replaceAll, des opérateurs d'affectation logiques, la prise en charge du multi-valeur WebAssembly et du BigInt, ainsi que des améliorations de performances."
+tweet: 
 ---
 Tous les six semaines, nous créons une nouvelle branche de V8 dans le cadre de notre [processus de publication](https://v8.dev/docs/release-process). Chaque version est issue du master Git de V8 juste avant une étape bêta de Chrome. Aujourd'hui, nous sommes ravis d'annoncer notre nouvelle branche, [V8 version 8.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.5), qui est en bêta jusqu'à sa publication en coordination avec Chrome 85 Stable dans quelques semaines. V8 v8.5 regorge de nombreuses nouveautés destinées aux développeurs. Ce post offre un aperçu de certains points forts en prévision de la publication.
 

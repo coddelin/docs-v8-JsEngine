@@ -1,10 +1,10 @@
 ---
 title: "代码缓存为WebAssembly开发者服务"
 author: "[比尔·巴奇](https://twitter.com/billb)，让缓存充满Ca-ching！"
-avatars:
+avatars: 
   - bill-budge
 date: 2019-06-17
-tags:
+tags: 
   - WebAssembly
   - 内部工作原理
 description: "本文介绍了Chrome的WebAssembly代码缓存机制，以及开发者如何利用该机制来加速加载具有大型WebAssembly模块的应用程序。"

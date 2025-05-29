@@ -1,8 +1,8 @@
 ---
 title: "Versión V8 v5.5"
 author: "el equipo de V8"
-date: 2016-10-24 13:33:37
-tags:
+date: "2016-10-24 13:33:37"
+tags: 
   - versión
 description: "V8 v5.5 llega con un menor consumo de memoria y un mayor soporte para las características del lenguaje ECMAScript."
 ---

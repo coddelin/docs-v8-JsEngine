@@ -1,10 +1,10 @@
 ---
 title: "Dinge in V8 sortieren"
 author: "Simon Zünd ([@nimODota](https://twitter.com/nimODota)), konsistenter Komparator"
-avatars:
+avatars: 
   - simon-zuend
-date: 2018-09-28 11:20:37
-tags:
+date: "2018-09-28 11:20:37"
+tags: 
   - ECMAScript
   - Interna
 description: "Ab V8 v7.0 / Chrome 70 ist Array.prototype.sort stabil."

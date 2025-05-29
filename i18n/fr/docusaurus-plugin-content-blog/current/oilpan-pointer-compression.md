@@ -1,15 +1,15 @@
 ---
 title: "Compression des pointeurs dans Oilpan"
 author: "Anton Bikineev et Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), désassembleurs ambulants"
-avatars:
+avatars: 
   - anton-bikineev
   - michael-lippautz
 date: 2022-11-28
-tags:
+tags: 
   - internals
   - mémoire
   - cppgc
-description: 'La compression des pointeurs dans Oilpan permet de compresser les pointeurs C++ et de réduire la taille de la mémoire dynamique jusqu'à 33%.'
+description: "La compression des pointeurs dans Oilpan permet de compresser les pointeurs C++ et de réduire la taille de la mémoire dynamique jusqu'à 33%."
 tweet: "1597274125780893697"
 ---
 

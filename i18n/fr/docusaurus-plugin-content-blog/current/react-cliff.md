@@ -1,11 +1,11 @@
 ---
-title: 'L'histoire d'une chute de performance V8 dans React'
+title: "L'histoire d'une chute de performance V8 dans React"
 author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) et Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "benedikt-meurer"
   - "mathias-bynens"
-date: 2019-08-28 16:45:00
-tags:
+date: "2019-08-28 16:45:00"
+tags: 
   - internals
   - presentations
 description: "Cet article décrit comment V8 choisit les représentations en mémoire optimales pour diverses valeurs JavaScript, et comment cela impacte les mécanismes de formes — tout cela aide à expliquer une récente chute de performance V8 dans le cœur de React."

@@ -1,10 +1,10 @@
 ---
 title: "Versión de lanzamiento de V8 v7.5"
 author: "Dan Elphick, azote de lo obsoleto"
-avatars:
+avatars: 
   - "dan-elphick"
-date: 2019-05-16 15:00:00
-tags:
+date: "2019-05-16 15:00:00"
+tags: 
   - lanzamiento
 description: "¡V8 v7.5 incluye caché implícita de artefactos de compilación WebAssembly, operaciones de memoria masiva, separadores numéricos en JavaScript y mucho más!"
 tweet: "1129073370623086593"

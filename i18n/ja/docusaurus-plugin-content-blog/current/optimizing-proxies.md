@@ -1,10 +1,10 @@
 ---
 title: "ES2015プロキシのV8における最適化"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), プロキシの最適化者"
-avatars:
+avatars: 
   - "maya-armyanova"
-date: 2017-10-05 13:33:37
-tags:
+date: "2017-10-05 13:33:37"
+tags: 
   - ECMAScript
   - ベンチマーク
   - 内部仕様

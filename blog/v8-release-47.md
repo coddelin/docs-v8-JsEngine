@@ -1,8 +1,8 @@
 ---
 title: "V8 release v4.7"
 author: "the V8 team"
-date: 2015-10-14 13:33:37
-tags:
+date: "2015-10-14 13:33:37"
+tags: 
   - release
 description: "V8 v4.7 comes with reduced memory consumption and support for new ES2015 language features."
 ---

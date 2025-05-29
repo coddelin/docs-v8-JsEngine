@@ -1,10 +1,10 @@
 ---
 title: "Оптимизация хеш-таблиц: скрытие хеш-кода"
 author: "[Сатья Гунасекеран](https://twitter.com/_gsathya), хранитель хеш-кодов"
-avatars:
+avatars: 
   - "sathya-gunasekaran"
-date: 2018-01-29 13:33:37
-tags:
+date: "2018-01-29 13:33:37"
+tags: 
   - internals
 tweet: "958046113390411776"
 description: "Несколько структур данных JavaScript, таких как Map, Set, WeakSet и WeakMap, используют хеш-таблицы под капотом. Эта статья объясняет, как V8 v6.3 улучшает производительность хеш-таблиц."

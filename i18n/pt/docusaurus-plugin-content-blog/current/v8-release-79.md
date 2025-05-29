@@ -1,10 +1,10 @@
 ---
 title: "Lançamento do V8 v7.9"
 author: "Santiago Aboy Solanes, especialista em compressão de ponteiros"
-avatars:
+avatars: 
   - "santiago-aboy-solanes"
 date: 2019-11-20
-tags:
+tags: 
   - lançamento
 description: "O V8 v7.9 apresenta a remoção da depreciação para transições de Double ⇒ Tagged, tratamento de getters de API em funções internas, cache de OSR e suporte do Wasm para múltiplos espaços de código."
 tweet: "1197187184304050176"

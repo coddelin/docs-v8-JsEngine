@@ -1,8 +1,8 @@
 ---
 title: "Acelerando elementos espalhados"
 author: "Hai Dang & Georg Neis"
-date: 2018-12-04 16:57:21
-tags:
+date: "2018-12-04 16:57:21"
+tags: 
   - ECMAScript
   - benchmarks
 description: "O V8 v7.2 acelera significativamente Array.from(array) assim como [...spread] para arrays, strings, conjuntos e mapas."

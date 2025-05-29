@@ -1,12 +1,12 @@
 ---
 title: "Tracer de JS au DOM et revenir"
 author: "Ulan Degenbaev, Alexei Filippov, Michael Lippautz et Hannes Payer — la communauté du DOM"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2018-03-01 13:33:37
-tags:
+date: "2018-03-01 13:33:37"
+tags: 
   - internals
   - memory
 description: "Les DevTools de Chrome peuvent désormais tracer et prendre un instantané des objets DOM C++ et afficher tous les objets DOM accessibles depuis JavaScript avec leurs références."

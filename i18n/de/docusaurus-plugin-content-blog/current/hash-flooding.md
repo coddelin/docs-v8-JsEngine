@@ -1,10 +1,10 @@
 ---
 title: "Über die Hash-Flooding-Sicherheitslücke in Node.js…"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed))"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2017-08-11 13:33:37
-tags:
+date: "2017-08-11 13:33:37"
+tags: 
   - sicherheit
 description: "Node.js litt unter einer Hash-Flooding-Sicherheitslücke. Dieser Beitrag liefert Hintergrundinformationen und erklärt die Lösung in V8."
 ---

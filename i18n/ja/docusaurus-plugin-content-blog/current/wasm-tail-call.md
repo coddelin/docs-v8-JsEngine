@@ -2,7 +2,7 @@
 title: "WebAssembly 尾部呼び出し"
 author: "Thibaud Michaud, Thomas Lively"
 date: 2023-04-06
-tags:
+tags: 
   - WebAssembly
 description: "このドキュメントは、WebAssembly の尾部呼び出し提案について説明し、いくつかの例を使用してそれを示しています。"
 tweet: "1644077795059044353"

@@ -1,10 +1,10 @@
 ---
-title: '`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`
+title: "'`Atomics.wait`, `Atomics.notify`, `Atomics.waitAsync`"
 author: "[Marja Hölttä](https://twitter.com/marjakh), 一个非阻塞的博主"
-avatars:
+avatars: 
   - marja-holtta
 date: 2020-09-24
-tags:
+tags: 
   - ECMAScript
   - ES2020
   - Node.js 16

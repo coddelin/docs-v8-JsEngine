@@ -1,10 +1,10 @@
 ---
 title: "モジュール名前空間エクスポート"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-12-18
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "JavaScriptモジュールは、名前空間内のすべてのプロパティを再エクスポートする新しい構文をサポートするようになりました。"

@@ -1,8 +1,8 @@
 ---
 title: "Lanzamiento de V8 v4.7"
 author: "el equipo de V8"
-date: 2015-10-14 13:33:37
-tags:
+date: "2015-10-14 13:33:37"
+tags: 
   - lanzamiento
 description: "V8 v4.7 viene con un menor consumo de memoria y soporte para nuevas características de lenguaje ES2015."
 ---

@@ -1,10 +1,10 @@
 ---
 title: "V8リリースv8.7"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), V8の旗手"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2020-10-23
-tags:
+tags: 
  - リリース
 description: "V8リリースv8.7はネイティブ呼び出し用の新しいAPI、Atomics.waitAsync、バグ修正、パフォーマンス改善をもたらします。"
 tweet: "1319654229863182338"

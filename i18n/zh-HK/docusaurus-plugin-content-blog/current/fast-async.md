@@ -1,11 +1,11 @@
 ---
 title: "更快的非同步函式與 Promise"
 author: "Maya Armyanova（[@Zmayski](https://twitter.com/Zmayski)），永遠處於等待狀態的預測者，以及 Benedikt Meurer（[@bmeurer](https://twitter.com/bmeurer)），專業性能承諾者"
-avatars:
+avatars: 
   - "maya-armyanova"
   - "benedikt-meurer"
-date: 2018-11-12 16:45:07
-tags:
+date: "2018-11-12 16:45:07"
+tags: 
   - ECMAScript
   - 基準測試
   - 簡報

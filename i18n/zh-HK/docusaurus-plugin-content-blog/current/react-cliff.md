@@ -1,11 +1,11 @@
 ---
 title: "在 React 中 V8 性能崖的故事"
 author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)) 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "benedikt-meurer"
   - "mathias-bynens"
-date: 2019-08-28 16:45:00
-tags:
+date: "2019-08-28 16:45:00"
+tags: 
   - internals
   - presentations
 description: "本文敘述 V8 如何為各種 JavaScript 值選擇最佳的內存表示方式，以及這如何影響形狀機制——這有助於解釋最近在 React 核心中出現的 V8 性能崖。"

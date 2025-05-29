@@ -1,8 +1,8 @@
 ---
 title: "退休 Octane"
 author: "V8 團隊"
-date: 2017-04-12 13:33:37
-tags:
+date: "2017-04-12 13:33:37"
+tags: 
   - 基準測試
 description: "V8 團隊認為是時候將 Octane 作為推薦基準測試退出歷史舞臺。"
 ---

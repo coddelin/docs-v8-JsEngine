@@ -1,10 +1,10 @@
 ---
 title: "Declarações de importação"
 author: "Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), importador assertivo de declarações de importação"
-avatars:
+avatars: 
   - "dan-clark"
 date: 2021-06-15
-tags:
+tags: 
   - ECMAScript
 description: "As declarações de importação permitem que instruções de importação de módulos incluam informações adicionais junto ao especificador do módulo"
 tweet: ""

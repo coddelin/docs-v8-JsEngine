@@ -1,11 +1,11 @@
 ---
 title: "Быстрее асинхронные функции и промисы"
 author: "Майя Армянова ([@Zmayski](https://twitter.com/Zmayski)), всегда-ожидающий предвосхититель, и Бенедикт Мойрер ([@bmeurer](https://twitter.com/bmeurer)), профессиональный гарантирующий производительность"
-avatars:
+avatars: 
   - "maya-armyanova"
   - "benedikt-meurer"
-date: 2018-11-12 16:45:07
-tags:
+date: "2018-11-12 16:45:07"
+tags: 
   - ECMAScript
   - тесты производительности
   - презентации

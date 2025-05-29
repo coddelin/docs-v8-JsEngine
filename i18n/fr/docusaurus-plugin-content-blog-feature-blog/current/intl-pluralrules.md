@@ -1,12 +1,12 @@
 ---
 title: "`Intl.PluralRules`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-10-04
-tags:
+tags: 
   - Intl
-description: 'La gestion des pluriels est l'un des nombreux problèmes qui peuvent sembler simples, jusqu'à ce que vous réalisiez que chaque langue a ses propres règles de pluralisation. L'API Intl.PluralRules peut vous aider !'
+description: "La gestion des pluriels est l'un des nombreux problèmes qui peuvent sembler simples, jusqu'à ce que vous réalisiez que chaque langue a ses propres règles de pluralisation. L'API Intl.PluralRules peut vous aider !"
 tweet: "915542989493202944"
 ---
 Iñtërnâtiônàlizætiøn est difficile. La gestion des pluriels est l'un des nombreux problèmes qui peuvent sembler simples, jusqu'à ce que vous réalisiez que chaque langue a ses propres règles de pluralisation.

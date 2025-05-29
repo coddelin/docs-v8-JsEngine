@@ -1,10 +1,10 @@
 ---
 title: "Необязательное связывание `catch`"
 author: "Матиас Байненс ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-03-27
-tags:
+tags: 
   - ECMAScript
   - ES2019
 description: "В ES2019 `catch` теперь может использоваться без параметра."

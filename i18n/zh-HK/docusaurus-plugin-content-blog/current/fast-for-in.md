@@ -1,10 +1,10 @@
 ---
 title: "快速的 `for`-`in` 在 V8"
 author: "Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))"
-avatars:
+avatars: 
   - "camillo-bruni"
-date: 2017-03-01 13:33:37
-tags:
+date: "2017-03-01 13:33:37"
+tags: 
   - internals
 description: "本文是一篇技術深入解析，說明了 V8 如何讓 JavaScript 的 for-in 儘可能快。"
 ---

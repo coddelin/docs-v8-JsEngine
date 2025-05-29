@@ -1,11 +1,11 @@
 ---
 title: "Ein Jahr mit Spectre: Eine V8-Perspektive"
 author: "Ben L. Titzer und Jaroslav Sevcik"
-avatars:
+avatars: 
   - "ben-titzer"
   - "jaroslav-sevcik"
-date: 2019-04-23 14:15:22
-tags:
+date: "2019-04-23 14:15:22"
+tags: 
   - sicherheit
 tweet: "1120661732836499461"
 description: "Das V8-Team beschreibt ihre Analyse- und Minderungstrategie für Spectre, eines der größten Computerschutzprobleme von 2018."

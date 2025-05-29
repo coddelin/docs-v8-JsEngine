@@ -1,12 +1,12 @@
 ---
 title: "Orinoco: 젊은 세대 가비지 컬렉션"
 author: "Ulan Degenbaev, Michael Lippautz, Hannes Payer, [TSAN](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)의 친구들"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2017-11-29 13:33:37
-tags:
+date: "2017-11-29 13:33:37"
+tags: 
   - internals
   - memory
 description: "이 글은 Orinoco의 최신 기능 중 하나인 병렬 Scavenger, V8의 거의 병렬 및 동시 가비지 컬렉터에 대해서 소개합니다."

@@ -1,10 +1,10 @@
 ---
 title: "Aserciones de importación"
 author: "Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), importador asertivo de aserciones de importación"
-avatars:
+avatars: 
   - "dan-clark"
 date: 2021-06-15
-tags:
+tags: 
   - ECMAScript
 description: "Las aserciones de importación permiten que las declaraciones de importación de módulos incluyan información adicional junto al especificador del módulo"
 tweet: ""

@@ -1,10 +1,10 @@
 ---
 title: "`Array.prototype.flat` 和 `Array.prototype.flatMap`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2019-06-11
-tags:
+tags: 
   - ECMAScript
   - ES2019
   - io19

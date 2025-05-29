@@ -2,10 +2,10 @@
 title: "V8 샌드박스"
 description: "V8는 메모리 손상 버그의 영향을 제한하기 위해 경량의 프로세스 내 샌드박스를 제공합니다"
 author: "사무엘 그로스"
-avatars:
+avatars: 
   - samuel-gross
 date: 2024-04-04
-tags:
+tags: 
  - security
 ---
 

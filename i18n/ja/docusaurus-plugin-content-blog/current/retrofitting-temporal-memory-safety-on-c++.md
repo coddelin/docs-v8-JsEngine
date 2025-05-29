@@ -1,12 +1,12 @@
 ---
 title: "C++における時間的メモリ安全性のレトロフィット"
 author: "Anton Bikineev, Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), Hannes Payer ([@PayerHannes](https://twitter.com/PayerHannes))"
-avatars:
+avatars: 
   - anton-bikineev
   - michael-lippautz
   - hannes-payer
 date: 2022-06-14
-tags:
+tags: 
   - 内部
   - メモリ
   - セキュリティ

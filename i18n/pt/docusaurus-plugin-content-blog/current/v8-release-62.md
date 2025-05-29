@@ -1,8 +1,8 @@
 ---
 title: "Lançamento do V8 v6.2"
 author: "a equipe V8"
-date: 2017-09-11 13:33:37
-tags:
+date: "2017-09-11 13:33:37"
+tags: 
   - lançamento
 description: "O V8 v6.2 inclui melhorias de desempenho, mais recursos para a linguagem JavaScript, um aumento no comprimento máximo de string e muito mais."
 ---

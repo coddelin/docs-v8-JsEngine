@@ -1,15 +1,15 @@
 ---
 title: "`Intl.ListFormat`"
 author: "Mathias Bynens ([[@mathias](https://twitter.com/mathias)) et Frank Yung-Fong Tang"
-avatars:
+avatars: 
   - "mathias-bynens"
   - "frank-tang"
 date: 2018-12-18
-tags:
+tags: 
   - Intl
   - Node.js 12
   - io19
-description: 'L'API Intl.ListFormat permet de formater localement des listes sans compromettre les performances.'
+description: "L'API Intl.ListFormat permet de formater localement des listes sans compromettre les performances."
 tweet: "1074966915557351424"
 ---
 Les applications web modernes utilisent souvent des listes composées de données dynamiques. Par exemple, une application de visualisation de photos peut afficher quelque chose comme :

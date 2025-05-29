@@ -1,10 +1,10 @@
 ---
 title: "将 JSON 嵌入 ECMAScript，也就是 JSON ⊂ ECMAScript"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2019-08-14
-tags:
+tags: 
   - ES2019
 description: "JSON 现在是 ECMAScript 的语法子集。"
 tweet: "1161649929904885762"

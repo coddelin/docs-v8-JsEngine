@@ -1,10 +1,10 @@
 ---
 title: "停止发布版本博客文章"
 author: "郭书瑜 ([@shu_](https://twitter.com/_shu))"
-avatars:
+avatars: 
  - "shu-yu-guo"
 date: 2022-06-17
-tags:
+tags: 
  - 版本发布
 description: "V8将停止版本博客文章，转而根据Chrome发布计划和功能博客文章发布更新信息。"
 tweet: "1537857497825824768"

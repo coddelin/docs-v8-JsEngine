@@ -1,10 +1,10 @@
 ---
 title: "Lançamento do V8 v7.5"
 author: "Dan Elphick, flagelo dos depreciados"
-avatars:
+avatars: 
   - "dan-elphick"
-date: 2019-05-16 15:00:00
-tags:
+date: "2019-05-16 15:00:00"
+tags: 
   - lançamento
 description: "O V8 v7.5 apresenta cache implícito de artefatos de compilação WebAssembly, operações de memória em massa, separadores numéricos em JavaScript e muito mais!"
 tweet: "1129073370623086593"

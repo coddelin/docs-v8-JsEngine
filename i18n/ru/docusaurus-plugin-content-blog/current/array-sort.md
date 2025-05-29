@@ -1,10 +1,10 @@
 ---
 title: "Упорядочивание в V8"
 author: "Саймон Цюнд ([@nimODota](https://twitter.com/nimODota)), согласованный компаратор"
-avatars:
+avatars: 
   - simon-zuend
-date: 2018-09-28 11:20:37
-tags:
+date: "2018-09-28 11:20:37"
+tags: 
   - ECMAScript
   - internals
 description: "Начиная с V8 v7.0 / Chrome 70, Array.prototype.sort работает стабильно."

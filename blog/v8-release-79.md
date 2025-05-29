@@ -1,10 +1,10 @@
 ---
 title: "V8 release v7.9"
 author: "Santiago Aboy Solanes, pointer compressor extraordinaire"
-avatars:
+avatars: 
   - "santiago-aboy-solanes"
 date: 2019-11-20
-tags:
+tags: 
   - release
 description: "V8 v7.9 features removed deprecation for Double ⇒ Tagged transitions, handling API getters in builtins, OSR caching, and Wasm support for multiple code spaces."
 tweet: "1197187184304050176"

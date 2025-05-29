@@ -1,10 +1,10 @@
 ---
 title: "`String.prototype.trimStart` y `String.prototype.trimEnd`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-03-26
-tags:
+tags: 
   - ECMAScript
   - ES2019
 description: "ES2019 introduce String.prototype.trimStart() y String.prototype.trimEnd()."

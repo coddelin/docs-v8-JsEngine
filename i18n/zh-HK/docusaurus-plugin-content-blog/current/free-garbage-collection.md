@@ -1,11 +1,11 @@
 ---
 title: "免費獲得垃圾回收"
 author: "Hannes Payer 和 Ross McIlroy，閒置垃圾回收器"
-avatars:
+avatars: 
   - "hannes-payer"
   - "ross-mcilroy"
-date: 2015-08-07 13:33:37
-tags:
+date: "2015-08-07 13:33:37"
+tags: 
   - internals
   - memory
 description: "Chrome 41 將昂貴的內存管理操作隱藏在閒置時間中的小型未使用片段，減少卡頓。"

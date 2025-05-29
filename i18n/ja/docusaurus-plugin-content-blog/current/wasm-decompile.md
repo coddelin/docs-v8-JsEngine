@@ -1,10 +1,10 @@
 ---
 title: "その `.wasm` に何が入っているのか？新機能: `wasm-decompile` を紹介"
 author: "Wouter van Oortmerssen ([@wvo](https://twitter.com/wvo))"
-avatars:
+avatars: 
   - "wouter-van-oortmerssen"
 date: 2020-04-27
-tags:
+tags: 
   - WebAssembly
   - ツール
 description: "WABT に新しい逆コンパイルツールが加わり、Wasm モジュールの内容を読みやすくします。"

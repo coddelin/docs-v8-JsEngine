@@ -1,6 +1,6 @@
 ---
 title: "Configurations officiellement prises en charge"
-description: 'Ce document explique quelles configurations de build sont maintenues par l'équipe V8.'
+description: "Ce document explique quelles configurations de build sont maintenues par l'équipe V8."
 ---
 V8 supporte une multitude de configurations de build différentes selon les systèmes d'exploitation, leurs versions, les ports d'architecture, les flags de compilation, et ainsi de suite.
 

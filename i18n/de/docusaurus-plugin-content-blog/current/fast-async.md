@@ -1,11 +1,11 @@
 ---
 title: "Schnellere asynchrone Funktionen und Versprechen"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), immer-wartende Antizipatorin, und Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), professioneller Leistungsversprecher"
-avatars:
+avatars: 
   - "maya-armyanova"
   - "benedikt-meurer"
-date: 2018-11-12 16:45:07
-tags:
+date: "2018-11-12 16:45:07"
+tags: 
   - ECMAScript
   - Benchmarks
   - Präsentationen

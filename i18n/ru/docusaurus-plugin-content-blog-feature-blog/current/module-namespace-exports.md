@@ -1,10 +1,10 @@
 ---
 title: "Экспорт пространства имен модулей"
 author: "Маттиас Байненс ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-12-18
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "Модули JavaScript теперь поддерживают новый синтаксис для повторного экспорта всех свойств внутри пространства имен."

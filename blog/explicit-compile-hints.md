@@ -1,13 +1,13 @@
 ---
- title: 'Giving V8 a Heads-Up: Faster JavaScript Startup with Explicit Compile Hints'
- author: 'Marja Hölttä'
- avatars:
+ title: "Giving V8 a Heads-Up: Faster JavaScript Startup with Explicit Compile Hints"
+ author: "Marja Hölttä"
+ avatars: 
    - marja-holtta
  date: 2025-04-29
- tags:
+ tags: 
    - JavaScript
  description: "Explicit compile hints control which JavaScript files and functions are parsed and compiled eagerly"
- tweet: ''
+ tweet: ""
 ---
 
 Getting JavaScript running fast is key for a responsive web app. Even with V8's advanced optimizations, parsing and compiling critical JavaScript during startup can still create performance bottlenecks. Knowing which JavaScript functions to compile during the initial script compilation can speed up web page loading.

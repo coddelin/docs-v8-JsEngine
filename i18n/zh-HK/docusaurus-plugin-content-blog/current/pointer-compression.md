@@ -1,11 +1,11 @@
 ---
 title: "V8 中的指針壓縮"
 author: "Igor Sheludko 和 Santiago Aboy Solanes, *指針壓縮者"
-avatars:
+avatars: 
   - "igor-sheludko"
   - "santiago-aboy-solanes"
 date: 2020-03-30
-tags:
+tags: 
   - internals
   - memory
 description: "V8 將其堆大小減少至最多 43%！了解詳細資訊，見“V8 中的指針壓縮”！"

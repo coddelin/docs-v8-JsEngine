@@ -1,10 +1,10 @@
 ---
 title: "BigInt: Ganzzahlen mit beliebiger Genauigkeit in JavaScript"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-05-01
-tags:
+tags: 
   - ECMAScript
   - ES2020
   - io19

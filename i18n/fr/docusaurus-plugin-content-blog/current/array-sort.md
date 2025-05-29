@@ -1,10 +1,10 @@
 ---
 title: "Classer les choses dans V8"
 author: "Simon Zünd ([@nimODota](https://twitter.com/nimODota)), comparateur cohérent"
-avatars:
+avatars: 
   - simon-zuend
-date: 2018-09-28 11:20:37
-tags:
+date: "2018-09-28 11:20:37"
+tags: 
   - ECMAScript
   - internals
 description: "À partir de V8 v7.0 / Chrome 70, Array.prototype.sort est stable."

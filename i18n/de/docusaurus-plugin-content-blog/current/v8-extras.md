@@ -1,10 +1,10 @@
 ---
 title: "V8-Extras"
 author: "Domenic Denicola ([@domenic](https://twitter.com/domenic)), Streams-Zauberer"
-avatars:
+avatars: 
   - "domenic-denicola"
-date: 2016-02-04 13:33:37
-tags:
+date: "2016-02-04 13:33:37"
+tags: 
   - internals
 description: "V8 v4.8 umfasst „V8-Extras“, eine einfache Schnittstelle, die es Embedding-Anwendungen ermöglicht, hochleistungsfähige, selbst gehostete APIs zu schreiben."
 ---

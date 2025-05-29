@@ -1,12 +1,12 @@
 ---
 title: "從 JavaScript 到 DOM 並回溯的追蹤"
 author: "Ulan Degenbaev、Alexei Filippov、Michael Lippautz 和 Hannes Payer —— DOM 的合作夥伴"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2018-03-01 13:33:37
-tags:
+date: "2018-03-01 13:33:37"
+tags: 
   - internals
   - memory
 description: "Chrome 的 DevTools 現在可以追蹤並快照 C++ DOM 物件，並顯示所有從 JavaScript 可達的 DOM 物件及其引用。"

@@ -1,11 +1,11 @@
 ---
 title: "Oilpanにおけるポインタ圧縮"
 author: "Anton Bikineev および Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz))、ウォーキング逆アセンブラ"
-avatars:
+avatars: 
   - anton-bikineev
   - michael-lippautz
 date: 2022-11-28
-tags:
+tags: 
   - internals
   - memory
   - cppgc

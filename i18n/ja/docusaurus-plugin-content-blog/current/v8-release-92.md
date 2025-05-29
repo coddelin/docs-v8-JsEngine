@@ -1,10 +1,10 @@
 ---
 title: "V8リリースv9.2"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-07-16
-tags:
+tags: 
  - リリース
 description: "V8リリースv9.2では、相対的なインデックス付けのための`at`メソッドとポインタ圧縮の改善が導入されています。"
 tweet: ""

@@ -1,10 +1,10 @@
 ---
 title: "`Intl.PluralRules`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-10-04
-tags:
+tags: 
   - Intl
 description: "복수형 처리는 언뜻 간단해 보이는 문제들 중 하나지만, 각 언어마다 고유한 복수형 규칙이 있다는 것을 깨닫게 되면 복잡해질 수 있습니다. Intl.PluralRules API가 이를 도와줄 수 있습니다!"
 tweet: "915542989493202944"

@@ -1,8 +1,8 @@
 ---
 title: "V8アーキテクチャの複雑さを飼いならす — CodeStubAssembler"
 author: "[ダニエル・クリフォード](https://twitter.com/expatdanno)、CodeStubAssembler アセンブラ"
-date: 2017-11-16 13:33:37
-tags:
+date: "2017-11-16 13:33:37"
+tags: 
   - 内部構造
 description: "V8にはアセンブリコード上の独自の抽象化であるCodeStubAssemblerがあります。CSAにより、V8は複数プラットフォームをサポートしながら、JS機能を低レベルで迅速かつ確実に最適化することが可能です。"
 tweet: "931184976481177600"

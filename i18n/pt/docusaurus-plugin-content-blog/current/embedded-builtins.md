@@ -1,10 +1,10 @@
 ---
 title: "Builtin embutidos"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2018-08-14 13:33:37
-tags:
+date: "2018-08-14 13:33:37"
+tags: 
   - internos
 description: "V8 v6.9 incorpora código embutido na seção .text do binário, reduzindo o tamanho mediano do heap do V8 por site em 19%."
 tweet: "1029382366693937162"

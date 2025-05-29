@@ -1,10 +1,10 @@
 ---
 title: "改進程式碼快取"
 author: "Mythri Alle, 首席程式碼快取專家"
-date: 2018-04-24 13:33:37
-avatars:
+date: "2018-04-24 13:33:37"
+avatars: 
   - "mythri-alle"
-tags:
+tags: 
   - internals
 tweet: "988728000677142528"
 description: "從Chrome 66開始，V8透過在頂層執行後生成快取，使更多的(字節)程式碼得以快取。"

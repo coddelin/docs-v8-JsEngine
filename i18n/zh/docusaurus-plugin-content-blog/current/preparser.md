@@ -1,11 +1,11 @@
 ---
 title: "极快的解析，第2部分：惰性解析"
 author: "Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)) 和 Marja Hölttä ([@marjakh](https://twitter.com/marjakh))，精简解析器"
-avatars:
+avatars: 
   - "toon-verwaest"
   - "marja-holtta"
-date: 2019-04-15 17:03:37
-tags:
+date: "2019-04-15 17:03:37"
+tags: 
   - 内部功能
   - 解析
 tweet: "1117807107972243456"

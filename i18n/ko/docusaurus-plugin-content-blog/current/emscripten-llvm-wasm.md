@@ -1,10 +1,10 @@
 ---
 title: "Emscripten과 LLVM WebAssembly 백엔드"
 author: "Alon Zakai"
-avatars:
+avatars: 
   - "alon-zakai"
-date: 2019-07-01 16:45:00
-tags:
+date: "2019-07-01 16:45:00"
+tags: 
   - WebAssembly
   - tooling
 description: "Emscripten이 LLVM WebAssembly 백엔드로 전환하여 링크 시간이 훨씬 더 빨라지고 많은 이점을 제공합니다."

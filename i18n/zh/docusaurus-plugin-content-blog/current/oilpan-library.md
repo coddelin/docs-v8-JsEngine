@@ -1,12 +1,12 @@
 ---
 title: "Oilpan库"
 author: "Anton Bikineev、Omer Katz（[@omerktz](https://twitter.com/omerktz)）和Michael Lippautz（[@mlippautz](https://twitter.com/mlippautz)），高效且有效的文件搬运者"
-avatars:
+avatars: 
   - anton-bikineev
   - omer-katz
   - michael-lippautz
 date: 2021-11-10
-tags:
+tags: 
   - 内部构造
   - 内存
   - cppgc

@@ -1,8 +1,8 @@
 ---
 title: "Lanzamiento de V8 v5.0"
 author: "el equipo de V8"
-date: 2016-03-15 13:33:37
-tags:
+date: "2016-03-15 13:33:37"
+tags: 
   - lanzamiento
 description: "V8 v5.0 viene con mejoras de rendimiento y agrega soporte para varias características nuevas del lenguaje ES2015."
 ---

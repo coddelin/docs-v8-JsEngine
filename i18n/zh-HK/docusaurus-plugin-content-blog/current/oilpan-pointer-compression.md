@@ -1,11 +1,11 @@
 ---
 title: "Oilpan 中的指標壓縮"
 author: "Anton Bikineev，以及 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz))，行走的反編譯器"
-avatars:
+avatars: 
   - anton-bikineev
   - michael-lippautz
 date: 2022-11-28
-tags:
+tags: 
   - internals
   - memory
   - cppgc

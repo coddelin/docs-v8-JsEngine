@@ -1,10 +1,10 @@
 ---
 title: "宣佈 Web 工具基準測試"
 author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), JavaScript 性能專家"
-avatars:
+avatars: 
   - "benedikt-meurer"
-date: 2017-11-06 13:33:37
-tags:
+date: "2017-11-06 13:33:37"
+tags: 
   - 基準測試
   - Node.js
 description: "全新 Web 工具基準測試幫助識別並解決 Babel、TypeScript 和其他實際項目中的 V8 性能瓶頸問題。"

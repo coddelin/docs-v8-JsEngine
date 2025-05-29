@@ -1,10 +1,10 @@
 ---
 title: "V8의 Elements 종류"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
-date: 2017-09-12 13:33:37
-tags:
+date: "2017-09-12 13:33:37"
+tags: 
   - internals
   - presentations
 description: "이 기술적 심층 분석은 V8이 배열 작업을 최적화하는 방법과 그것이 JavaScript 개발자들에게 어떤 의미를 가지는지 설명합니다."

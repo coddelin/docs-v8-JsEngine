@@ -1,10 +1,10 @@
 ---
 title: "V8 release v9.1"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), testing my private brand"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-05-04
-tags:
+tags: 
  - release
 description: "V8 release v9.1 brings support for private brand checks, top-level await enabled by default and performance improvements."
 tweet: "1389613320953532417"

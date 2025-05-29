@@ -1,6 +1,6 @@
 ---
 title: "Nutzungsbedingungen"
-layout: layouts/base.njk
+layout: "layouts/base.njk"
 description: "Dieses Dokument legt die Nutzungsbedingungen für die V8-Website und das Projekt fest."
 ---
 # Nutzungsbedingungen

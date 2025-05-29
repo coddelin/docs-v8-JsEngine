@@ -1,10 +1,10 @@
 ---
 title: "V8リリース v9.4"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-09-06
-tags:
+tags: 
  - リリース
 description: "V8リリースv9.4は、クラス静的初期化ブロックをJavaScriptに導入します。"
 tweet: "1434915404418277381"

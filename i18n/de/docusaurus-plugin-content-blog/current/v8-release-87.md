@@ -1,10 +1,10 @@
 ---
 title: "V8-Version v8.7-Veröffentlichung"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), ein V8-Fahnenträger"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2020-10-23
-tags:
+tags: 
  - Veröffentlichung
 description: "Die V8-Version v8.7 bringt neue APIs für native Aufrufe, Atomics.waitAsync, Fehlerbehebungen und Leistungsverbesserungen."
 tweet: "1319654229863182338"

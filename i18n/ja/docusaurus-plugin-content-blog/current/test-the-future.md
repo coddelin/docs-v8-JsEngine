@@ -1,8 +1,8 @@
 ---
 title: "V8の未来をテストするために助けてください！"
 author: "Daniel Clifford ([@expatdanno](https://twitter.com/expatdanno)), オリジナルミュンヘンV8醸造者"
-date: 2017-02-14 13:33:37
-tags:
+date: "2017-02-14 13:33:37"
+tags: 
   - internals
 description: "今日、Chrome CanaryでIgnitionとTurboFanを使用したV8の新しいコンパイラパイプラインをプレビューできます！"
 ---

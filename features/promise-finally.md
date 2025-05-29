@@ -1,10 +1,10 @@
 ---
 title: "`Promise.prototype.finally`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-10-23
-tags:
+tags: 
   - ECMAScript
   - ES2018
 description: "Promise.prototype.finally enables registering a callback to be invoked when a promise is settled (i.e. either fulfilled or rejected)."

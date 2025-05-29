@@ -2,10 +2,10 @@
 title: "Slack-Verfolgung in V8"
 author: "Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), renommierter Meister des *Slack*"
 description: "Eine detaillierte Betrachtung des Slack-Verfolgungsmechanismus in V8."
-avatars:
+avatars: 
  - "michael-stanton"
-date: 2020-09-24 14:00:00
-tags:
+date: "2020-09-24 14:00:00"
+tags: 
  - internals
 ---
 Slack-Verfolgung ist eine Möglichkeit, neuen Objekten eine anfängliche Größe zu geben, die **größer ist, als sie tatsächlich benötigen**, damit sie schnell neue Eigenschaften hinzufügen können. Und dann, nach einer gewissen Zeit, diesen ungenutzten Platz **magisch an das System zurückzugeben**. Cool, oder?

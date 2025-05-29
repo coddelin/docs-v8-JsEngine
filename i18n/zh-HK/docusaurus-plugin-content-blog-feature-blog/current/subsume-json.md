@@ -1,10 +1,10 @@
 ---
 title: "包括 JSON，即 JSON ⊂ ECMAScript"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2019-08-14
-tags:
+tags: 
   - ES2019
 description: "JSON 現在是 ECMAScript 的語法子集。"
 tweet: "1161649929904885762"

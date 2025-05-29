@@ -1,8 +1,8 @@
 ---
 title: "Lanzamiento de V8 v6.9"
 author: "El equipo de V8"
-date: 2018-08-07 13:33:37
-tags:
+date: "2018-08-07 13:33:37"
+tags: 
   - lanzamiento
 description: "¡V8 v6.9 incluye menor uso de memoria gracias a funciones incorporadas incrustadas, un inicio más rápido de WebAssembly con Liftoff, mejor rendimiento de DataView y WeakMap, y mucho más!"
 tweet: "1026825606003150848"

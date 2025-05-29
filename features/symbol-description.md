@@ -1,10 +1,10 @@
 ---
 title: "`Symbol.prototype.description`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2019-06-25
-tags:
+tags: 
   - ECMAScript
   - ES2019
 description: "Symbol.prototype.description provides an ergonomic way of accessing the description of a Symbol."

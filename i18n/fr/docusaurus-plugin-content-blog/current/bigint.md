@@ -1,8 +1,8 @@
 ---
 title: "Ajout de BigInts à V8"
 author: "Jakob Kummerow, arbitre de précision"
-date: 2018-05-02 13:33:37
-tags:
+date: "2018-05-02 13:33:37"
+tags: 
   - ECMAScript
 description: "V8 prend désormais en charge BigInts, une fonctionnalité du langage JavaScript permettant des entiers à précision arbitraire."
 tweet: "991705626391732224"

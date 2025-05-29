@@ -1,10 +1,10 @@
 ---
 title: "Понимание спецификации ECMAScript, часть 4"
 author: "[Марья Хёльтта](https://twitter.com/marjakh), зритель спекулятивной спецификации"
-avatars:
+avatars: 
   - marja-holtta
 date: 2020-05-19
-tags:
+tags: 
   - ECMAScript
   - Понимание ECMAScript
 description: "Учебник по чтению спецификации ECMAScript"

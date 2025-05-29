@@ -1,10 +1,10 @@
 ---
 title: "Публичные и приватные поля классов"
 author: "Матиас Биненс ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-12-13
-tags:
+tags: 
   - ECMAScript
   - ES2022
   - io19

@@ -1,10 +1,10 @@
 ---
 title: "V8 發布 v7.9"
 author: "Santiago Aboy Solanes，指針壓縮技術專家"
-avatars:
+avatars: 
   - "santiago-aboy-solanes"
 date: 2019-11-20
-tags:
+tags: 
   - release
 description: "V8 v7.9 功能移除了 Double ⇒ Tagged 過渡的棄用處理，內建函數中的 API getter處理、OSR 快取，和支持多代碼區的 Wasm。"
 tweet: "1197187184304050176"

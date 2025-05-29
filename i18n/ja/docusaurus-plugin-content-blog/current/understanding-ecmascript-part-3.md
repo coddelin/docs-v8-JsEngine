@@ -1,10 +1,10 @@
 ---
 title: "ECMAScript仕様を理解する, 第3部"
 author: "[Marja Hölttä](https://twitter.com/marjakh), 推測的仕様観察者"
-avatars:
+avatars: 
   - marja-holtta
 date: 2020-04-01
-tags:
+tags: 
   - ECMAScript
   - ECMAScriptを理解する
 description: "ECMAScript仕様の読み方に関するチュートリアル"

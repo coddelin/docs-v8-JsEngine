@@ -1,8 +1,8 @@
 ---
 title: "How V8 measures real-world performance"
 author: "the V8 team"
-date: 2016-12-21 13:33:37
-tags:
+date: "2016-12-21 13:33:37"
+tags: 
   - benchmarks
 description: "The V8 team has developed a new methodology to measure and understand real-world JavaScript performance."
 ---

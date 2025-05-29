@@ -1,8 +1,8 @@
 ---
 title: "BlinkOn 6会議でのV8"
 author: "V8チーム"
-date: 2016-07-21 13:33:37
-tags:
+date: "2016-07-21 13:33:37"
+tags: 
   - プレゼンテーション
 description: "BlinkOn 6でのV8チームのプレゼンテーション概要。"
 ---

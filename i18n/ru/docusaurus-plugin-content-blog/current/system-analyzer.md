@@ -1,10 +1,10 @@
 ---
 title: "Indicium: инструмент трассировки времени выполнения V8"
 author: "Зейнеп Джанкара ([@ZeynepCankara](https://twitter.com/ZeynepCankara))"
-avatars:
+avatars: 
   - "zeynep-cankara"
-date: 2020-10-01 11:56:00
-tags:
+date: "2020-10-01 11:56:00"
+tags: 
   - инструменты
   - системный анализатор
 description: "Indicium: инструмент анализа системы V8 для анализа событий Map/IC."

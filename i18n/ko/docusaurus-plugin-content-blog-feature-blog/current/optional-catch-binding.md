@@ -1,10 +1,10 @@
 ---
 title: "옵션 `catch` 바인딩"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-03-27
-tags:
+tags: 
   - ECMAScript
   - ES2019
 description: "ES2019에서, catch를 이제 매개변수 없이 사용할 수 있습니다."

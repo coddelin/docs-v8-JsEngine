@@ -1,10 +1,10 @@
 ---
 title: "RegExp match indices"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), regularly expressing new features"
-avatars:
+avatars: 
   - "maya-armyanova"
 date: 2019-12-17
-tags:
+tags: 
   - ECMAScript
   - Node.js 16
 description: "RegExp match indices provide `start` and `end` indices of each matched capture group."

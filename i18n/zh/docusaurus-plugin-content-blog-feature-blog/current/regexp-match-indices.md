@@ -1,10 +1,10 @@
 ---
 title: "正则表达式匹配索引"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski))，经常表达新特性"
-avatars:
+avatars: 
   - "maya-armyanova"
 date: 2019-12-17
-tags:
+tags: 
   - ECMAScript
   - Node.js 16
 description: "正则表达式匹配索引用于提供每个匹配捕获组的 `start` 和 `end` 索引位置。"

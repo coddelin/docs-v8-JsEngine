@@ -1,10 +1,10 @@
 ---
 title: "Cobertura de código JavaScript"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2017-12-13 13:33:37
-tags:
+date: "2017-12-13 13:33:37"
+tags: 
   - internals
 description: "Agora, o V8 tem suporte nativo para cobertura de código JavaScript. As ferramentas agora podem acessar as informações de cobertura do V8 sem instrumentar o código!"
 tweet: "940879905079873536"

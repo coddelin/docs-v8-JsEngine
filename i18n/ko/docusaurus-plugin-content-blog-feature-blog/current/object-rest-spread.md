@@ -1,10 +1,10 @@
 ---
 title: "객체 나머지 및 펼침 속성"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-06-06
-tags:
+tags: 
   - ECMAScript
   - ES2018
 description: "이 글에서는 JavaScript에서 객체 나머지 및 펼침 속성이 작동하는 방법을 설명하며, 배열 나머지 및 펼침 요소를 다시 살펴봅니다."

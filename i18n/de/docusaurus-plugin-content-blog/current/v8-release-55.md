@@ -1,8 +1,8 @@
 ---
 title: "V8-Version v5.5"
 author: "das V8-Team"
-date: 2016-10-24 13:33:37
-tags:
+date: "2016-10-24 13:33:37"
+tags: 
   - Veröffentlichung
 description: "V8 v5.5 bietet reduzierte Speicherauslastung und erweiterte Unterstützung für ECMAScript-Sprachfunktionen."
 ---

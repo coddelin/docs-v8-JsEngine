@@ -1,10 +1,10 @@
 ---
 title: "オブジェクトの残余プロパティとスプレッドプロパティ"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-06-06
-tags:
+tags: 
   - ECMAScript
   - ES2018
 description: "この記事では、JavaScriptでのオブジェクトの残余プロパティとスプレッドプロパティの動作方法について説明し、配列の残余要素とスプレッド要素についても再確認します。"

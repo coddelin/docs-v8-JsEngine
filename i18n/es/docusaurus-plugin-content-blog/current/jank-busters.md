@@ -1,11 +1,11 @@
 ---
 title: "Caza Jank Parte Uno"
 author: "los cazadores de jank: Jochen Eisinger, Michael Lippautz, y Hannes Payer"
-avatars:
+avatars: 
   - "michael-lippautz"
   - "hannes-payer"
-date: 2015-10-30 13:33:37
-tags:
+date: "2015-10-30 13:33:37"
+tags: 
   - memoria
 description: "Este artículo trata sobre optimizaciones implementadas entre Chrome 41 y Chrome 46 que reducen significativamente las pausas de la recolección de basura, resultando en una mejor experiencia para el usuario."
 ---

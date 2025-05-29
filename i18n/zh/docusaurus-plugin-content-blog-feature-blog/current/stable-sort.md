@@ -1,10 +1,10 @@
 ---
 title: "稳定的 `Array.prototype.sort`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2019-07-02
-tags:
+tags: 
   - ECMAScript
   - ES2019
   - io19

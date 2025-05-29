@@ -1,10 +1,10 @@
 ---
 title: "Релиз V8 версии v8.1"
 author: "Доминик Инфюэр, международный человек-загадка"
-avatars:
+avatars: 
   - "dominik-infuehr"
 date: 2020-02-25
-tags:
+tags: 
   - выпуск
 description: "V8 v8.1 включает улучшенную поддержку интернационализации благодаря новому API Intl.DisplayNames."
 ---

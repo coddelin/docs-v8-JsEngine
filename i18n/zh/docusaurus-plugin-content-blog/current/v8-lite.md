@@ -1,12 +1,12 @@
 ---
 title: "更轻量的 V8"
 author: "Mythri Alle、Dan Elphick 和 [Ross McIlroy](https://twitter.com/rossmcilroy)，V8 内存优化团队"
-avatars:
+avatars: 
   - "mythri-alle"
   - "dan-elphick"
   - "ross-mcilroy"
-date: 2019-09-12 12:44:37
-tags:
+date: "2019-09-12 12:44:37"
+tags: 
   - 内部结构
   - 内存
   - 演讲

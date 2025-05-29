@@ -1,10 +1,10 @@
 ---
 title: "import assertions"
 author: "Dan Clark ([@dandclark1](https://twitter.com/dandclark1)), import assertions를 강하게 주장하는 임포터"
-avatars:
+avatars: 
   - "dan-clark"
 date: 2021-06-15
-tags:
+tags: 
   - ECMAScript
 description: "import assertions를 통해 모듈 임포트 문에서 모듈 지정자와 함께 추가 정보를 포함할 수 있습니다"
 tweet: ""

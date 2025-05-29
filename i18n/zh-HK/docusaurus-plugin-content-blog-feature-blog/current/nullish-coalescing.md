@@ -1,10 +1,10 @@
 ---
 title: "Nullish coalescing"
 author: "Justin Ridgewell"
-avatars:
+avatars: 
   - "justin-ridgewell"
 date: 2019-09-17
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "JavaScript 的 Nullish 合併運算符使得默認表達式更安全。"

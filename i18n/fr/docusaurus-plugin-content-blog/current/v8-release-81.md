@@ -1,10 +1,10 @@
 ---
 title: "Publication de V8 version 8.1"
-author: 'Dominik Inführ, l'homme international de mystère'
-avatars:
+author: "Dominik Inführ, l'homme international de mystère"
+avatars: 
   - "dominik-infuehr"
 date: 2020-02-25
-tags:
+tags: 
   - sortie
 description: "V8 v8.1 offre un support international amélioré grâce à la nouvelle API Intl.DisplayNames."
 ---

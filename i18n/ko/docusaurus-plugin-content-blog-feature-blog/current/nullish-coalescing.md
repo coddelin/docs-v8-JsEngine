@@ -1,10 +1,10 @@
 ---
 title: "널 병합(nüllish coalescing)"
 author: "저스틴 리지웰(Justin Ridgewell)"
-avatars:
+avatars: 
   - "justin-ridgewell"
 date: 2019-09-17
-tags:
+tags: 
   - ECMAScript
   - ES2020
 description: "JavaScript의 널 병합 연산자는 보다 안전한 기본값 표현식을 가능하게 합니다."

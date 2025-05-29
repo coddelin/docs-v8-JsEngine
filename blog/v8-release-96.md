@@ -1,10 +1,10 @@
 ---
 title: "V8 release v9.6"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-10-13
-tags:
+tags: 
  - release
 description: "V8 release v9.6 brings support for Reference Types to WebAssembly."
 tweet: "1448262079476076548"

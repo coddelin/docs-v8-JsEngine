@@ -1,10 +1,10 @@
 ---
 title: "庆祝V8发布十周年"
 author: "Mathias Bynens（[@mathias](https://twitter.com/mathias)），V8历史学者"
-avatars:
+avatars: 
   - "mathias-bynens"
-date: 2018-09-11 19:00:00
-tags:
+date: "2018-09-11 19:00:00"
+tags: 
   - 基准测试
 description: "概述V8项目在过去10年中的主要里程碑，以及在项目仍处于保密阶段时的早期发展。"
 tweet: "1039559389324238850"

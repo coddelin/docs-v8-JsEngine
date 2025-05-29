@@ -1,10 +1,10 @@
 ---
 title: "Выпуск V8 v8.9"
 author: "Ингвар Степанян ([@RReverser](https://twitter.com/RReverser)), ожидает звонка"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-02-04
-tags:
+tags: 
  - выпуск
 description: "Выпуск V8 v8.9 приносит улучшения производительности вызовов с несоответствием размеров аргументов."
 tweet: "1357358418902802434"

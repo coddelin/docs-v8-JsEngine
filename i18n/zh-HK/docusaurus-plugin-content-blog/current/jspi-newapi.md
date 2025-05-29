@@ -3,7 +3,7 @@ title: "WebAssembly JSPI 引入了全新的 API"
 description: "本文詳述了即將對 JavaScript Promise Integration (JSPI) API 做出的一些變更。"
 author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-06-04
-tags:
+tags: 
   - WebAssembly
 ---
 WebAssembly 的 JavaScript Promise Integration (JSPI) API 引入了全新的 API，適用於 Chrome M126 版本。我們將討論這些變更內容、如何配合 Emscripten 使用，以及 JSPI 的發展路線圖。

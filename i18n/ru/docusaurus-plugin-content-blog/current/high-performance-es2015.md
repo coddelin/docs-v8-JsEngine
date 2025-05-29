@@ -1,10 +1,10 @@
 ---
 title: "Высокопроизводительные ES2015 и новее"
 author: "Бенедикт Мойрер [@bmeurer](https://twitter.com/bmeurer), инженер по производительности ECMAScript"
-avatars:
+avatars: 
   - "benedikt-meurer"
-date: 2017-02-17 13:33:37
-tags:
+date: "2017-02-17 13:33:37"
+tags: 
   - ECMAScript
 description: "Производительность V8 для языковых возможностей ES2015+ теперь сопоставима с их транспилированными эквивалентами на ES5."
 ---

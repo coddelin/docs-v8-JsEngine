@@ -1,10 +1,10 @@
 ---
 title: "Супербыстрый доступ к свойствам `super`"
 author: "[Марья Хётта](https://twitter.com/marjakh), супероптимизатор"
-avatars:
+avatars: 
   - marja-holtta
 date: 2021-02-18
-tags:
+tags: 
   - JavaScript
 description: "Быстрее доступ к свойствам `super` в V8 v9.0"
 tweet: "1362465295848333316"

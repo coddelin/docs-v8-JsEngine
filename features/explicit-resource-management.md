@@ -1,10 +1,10 @@
 ---
 title: "JavaScript's New Superpower: Explicit Resource Management"
 author: "Rezvan Mahdavi Hezaveh"
-avatars:
+avatars: 
   - "rezvan-mahdavi-hezaveh"
 date: 2025-05-09
-tags:
+tags: 
   - ECMAScript
 description: "The Explicit Resource Management proposal empowers developers to explicitly manage the lifecycle of resources."
 tweet: ""

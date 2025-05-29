@@ -1,8 +1,8 @@
 ---
 title: "V8 릴리즈 v7.4"
 author: "Georg Neis"
-date: 2019-03-22 16:30:42
-tags:
+date: "2019-03-22 16:30:42"
+tags: 
   - release
 description: "V8 v7.4는 WebAssembly 스레드/Atomics, 비공개 클래스 필드, 성능 및 메모리 개선 등 다양한 기능을 제공합니다!"
 tweet: "1109094755936489472"

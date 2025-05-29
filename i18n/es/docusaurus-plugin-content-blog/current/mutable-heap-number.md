@@ -1,10 +1,10 @@
 ---
 title: "Turboalimentando V8 con números mutables en el montón"
 author: "[Victor Gomes](https://twitter.com/VictorBFG), el cambiador de bits"
-avatars:
+avatars: 
   - victor-gomes
 date: 2025-02-25
-tags:
+tags: 
   - JavaScript
   - benchmarks
   - internals

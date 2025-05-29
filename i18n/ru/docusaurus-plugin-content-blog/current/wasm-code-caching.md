@@ -1,10 +1,10 @@
 ---
 title: "Кэширование кода для разработчиков WebAssembly"
 author: "[Билл Бадж](https://twitter.com/billb), делая кэширование более выгодным"
-avatars:
+avatars: 
   - bill-budge
 date: 2019-06-17
-tags:
+tags: 
   - WebAssembly
   - внутренности
 description: "Эта статья объясняет систему кэширования кода WebAssembly в Chrome и рассказывает, как разработчики могут использовать её для ускорения загрузки приложений с большими модулями WebAssembly."

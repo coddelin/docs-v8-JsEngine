@@ -1,10 +1,10 @@
 ---
 title: "`Intl.PluralRules`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-10-04
-tags:
+tags: 
   - Intl
 description: "Das korrekte Behandeln von Pluralen ist eines von vielen Problemen, die einfach erscheinen, bis man erkennt, dass jede Sprache ihre eigenen Pluralisierungsregeln hat. Die Intl.PluralRules API kann helfen!"
 tweet: "915542989493202944"

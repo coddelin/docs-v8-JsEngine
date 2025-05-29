@@ -1,10 +1,10 @@
 ---
 title: "Liftoff: новый базовый компилятор для WebAssembly в V8"
 author: "Клеменс Бакес, мастер компиляции WebAssembly"
-avatars:
+avatars: 
   - "clemens-backes"
-date: 2018-08-20 15:45:12
-tags:
+date: "2018-08-20 15:45:12"
+tags: 
   - WebAssembly
   - внутренности
 description: "Liftoff — новый базовый компилятор для WebAssembly, доступный в V8 v6.9."

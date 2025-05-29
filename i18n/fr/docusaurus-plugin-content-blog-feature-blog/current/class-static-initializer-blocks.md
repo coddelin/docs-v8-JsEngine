@@ -1,12 +1,12 @@
 ---
-title: 'Blocs d'initialisation statiques des classes'
+title: "Blocs d'initialisation statiques des classes"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
-avatars:
+avatars: 
   - "shu-yu-guo"
 date: 2021-03-30
-tags:
+tags: 
   - ECMAScript
-description: 'Les classes JavaScript bénéficient d'une syntaxe dédiée pour l'initialisation statique.'
+description: "Les classes JavaScript bénéficient d'une syntaxe dédiée pour l'initialisation statique."
 tweet: "1376925666780798989"
 ---
 La nouvelle syntaxe des blocs d'initialisation statiques des classes permet aux développeurs de regrouper le code qui doit s'exécuter une fois pour une définition de classe donnée dans un seul endroit. Considérons l'exemple suivant où un générateur de nombres pseudo-aléatoires utilise un bloc statique pour initialiser un pool d'entropie une fois, lorsque la définition de `class MyPRNG` est évaluée.

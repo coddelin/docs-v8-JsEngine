@@ -1,10 +1,10 @@
 ---
 title: "Релиз V8 v8.6"
 author: "Ингвар Степанян ([@RReverser](https://twitter.com/RReverser)), тестировщик клавиатуры"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2020-09-21
-tags:
+tags: 
  - релиз
 description: "Релиз V8 v8.6 включает уважительный код, улучшения производительности и нормативные изменения."
 tweet: "1308062287731789825"

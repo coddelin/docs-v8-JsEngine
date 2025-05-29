@@ -1,10 +1,10 @@
 ---
 title: "고성능 ES2015 및 이후"
 author: "베네딕트 뮤어러 [@bmeurer](https://twitter.com/bmeurer), ECMAScript 성능 엔지니어"
-avatars:
+avatars: 
   - "베네딕트-뮤어러"
-date: 2017-02-17 13:33:37
-tags:
+date: "2017-02-17 13:33:37"
+tags: 
   - ECMAScript
 description: "V8의 ES2015+ 언어 기능 성능은 이제 해당 기능의 변환된 ES5 버전과 동등합니다."
 ---

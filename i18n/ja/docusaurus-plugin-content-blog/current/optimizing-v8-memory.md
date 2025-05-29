@@ -1,12 +1,12 @@
 ---
 title: "V8のメモリ消費を最適化"
 author: "V8のメモリ管理エンジニア、Ulan Degenbaev、Michael Lippautz、Hannes Payer、そしてToon Verwaest"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2016-10-07 13:33:37
-tags:
+date: "2016-10-07 13:33:37"
+tags: 
   - メモリ
   - ベンチマーク
 description: "V8チームは、近代的なウェブ開発パターンの代表とされる複数のウェブサイトのメモリフットプリントを分析し、大幅に削減しました。"

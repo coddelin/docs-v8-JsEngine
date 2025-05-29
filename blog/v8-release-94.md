@@ -1,10 +1,10 @@
 ---
 title: "V8 release v9.4"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-09-06
-tags:
+tags: 
  - release
 description: "V8 release v9.4 brings class static initialization blocks to JavaScript."
 tweet: "1434915404418277381"

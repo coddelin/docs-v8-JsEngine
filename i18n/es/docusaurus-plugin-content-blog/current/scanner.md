@@ -1,10 +1,10 @@
 ---
 title: "Análisis extremadamente rápido, parte 1: optimizando el escáner"
 author: "Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)), optimizador escandaloso"
-avatars:
+avatars: 
   - "toon-verwaest"
-date: 2019-03-25 13:33:37
-tags:
+date: "2019-03-25 13:33:37"
+tags: 
   - internals
   - análisis
 tweet: "1110205101652787200"

@@ -1,11 +1,11 @@
 ---
 title: "Кэширование кода для разработчиков JavaScript"
 author: "[Лешек Свирски](https://twitter.com/leszekswirski), разрушитель кэша"
-avatars:
+avatars: 
   - leszek-swirski
-date: 2019-04-08 13:33:37
+date: "2019-04-08 13:33:37"
 updated: 2020-06-16
-tags:
+tags: 
   - internals
 description: "(Байт)кэширование кода сокращает время запуска часто посещаемых веб-сайтов путем кэширования результата анализа и компиляции JavaScript."
 tweet: "1115264282675953664"

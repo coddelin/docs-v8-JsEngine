@@ -1,8 +1,8 @@
 ---
 title: "V8 na conferência BlinkOn 6"
 author: "a equipe do V8"
-date: 2016-07-21 13:33:37
-tags:
+date: "2016-07-21 13:33:37"
+tags: 
   - apresentações
 description: "Uma visão geral das apresentações da equipe do V8 no BlinkOn 6."
 ---

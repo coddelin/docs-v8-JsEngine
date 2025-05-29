@@ -1,11 +1,11 @@
 ---
 title: "더 빠른 비동기 함수와 프로미스"
 author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 항상 대기하는 기대자, 그리고 Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), 전문 성능 약속자"
-avatars:
+avatars: 
   - "maya-armyanova"
   - "benedikt-meurer"
-date: 2018-11-12 16:45:07
-tags:
+date: "2018-11-12 16:45:07"
+tags: 
   - ECMAScript
   - benchmarks
   - presentations

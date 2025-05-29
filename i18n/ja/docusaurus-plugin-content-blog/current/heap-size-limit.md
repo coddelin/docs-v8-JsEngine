@@ -1,12 +1,12 @@
 ---
 title: "Chromeの小さな一歩、V8の巨大な飛躍"
 author: "ヒープの守護者 Ulan Degenbaev、Hannes Payer、Michael Lippautz、そしてDevToolsの戦士 Alexey Kozyatinskiy"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2017-02-09 13:33:37
-tags:
+date: "2017-02-09 13:33:37"
+tags: 
   - memory
 description: "最近V8ではヒープサイズのハードリミットを増加しました。"
 ---

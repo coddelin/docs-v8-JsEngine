@@ -1,10 +1,10 @@
 ---
 title: "Быстрее вызовы JavaScript"
 author: "[Виктор Гомес](https://twitter.com/VictorBFG), разрушитель кадров"
-avatars:
+avatars: 
   - "victor-gomes"
 date: 2021-02-15
-tags:
+tags: 
   - internals
 description: "Быстрее вызовы JavaScript путем удаления фрейма адаптера аргументов"
 tweet: "1361337569057865735"

@@ -1,10 +1,10 @@
 ---
 title: "加速 V8 正規表達式"
 author: "Jakob Gruber，一名正規軟體工程師"
-avatars:
+avatars: 
   - "jakob-gruber"
-date: 2017-01-10 13:33:37
-tags:
+date: "2017-01-10 13:33:37"
+tags: 
   - 内部
   - RegExp
 description: "V8 最近將 RegExp 的內建函數從一個自託管的 JavaScript 實現遷移到直接掛接到我們基於 TurboFan 的新代碼生成架構上。"

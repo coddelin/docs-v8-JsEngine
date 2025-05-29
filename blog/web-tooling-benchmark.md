@@ -1,10 +1,10 @@
 ---
 title: "Announcing the Web Tooling Benchmark"
 author: "Benedikt Meurer ([@bmeurer](https://twitter.com/bmeurer)), JavaScript Performance Juggler"
-avatars:
+avatars: 
   - "benedikt-meurer"
-date: 2017-11-06 13:33:37
-tags:
+date: "2017-11-06 13:33:37"
+tags: 
   - benchmarks
   - Node.js
 description: "The brand-new Web Tooling Benchmark helps identify and fix V8 performance bottlenecks in Babel, TypeScript, and other real-world projects."

@@ -1,10 +1,10 @@
 ---
 title: "Instantáneas personalizadas de inicio"
 author: "Yang Guo ([@hashseed](https://twitter.com/hashseed)), Ingeniero de software y proveedor de precalentadores de motores"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2015-09-25 13:33:37
-tags:
+date: "2015-09-25 13:33:37"
+tags: 
   - internos
 description: "Los integradores de V8 pueden utilizar instantáneas para evitar el tiempo de inicio generado por las inicializaciones de los programas de JavaScript."
 ---

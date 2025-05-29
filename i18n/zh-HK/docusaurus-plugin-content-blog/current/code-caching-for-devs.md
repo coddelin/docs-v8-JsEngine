@@ -1,11 +1,11 @@
 ---
 title: "JavaScript 開發者的程式碼快取"
 author: "[Leszek Swirski](https://twitter.com/leszekswirski)，快取擊碎者"
-avatars:
+avatars: 
   - leszek-swirski
-date: 2019-04-08 13:33:37
+date: "2019-04-08 13:33:37"
 updated: 2020-06-16
-tags:
+tags: 
   - internals
 description: "(位元碼)快取透過快取 JavaScript 解析及編譯的結果，減少常訪網站的啟動時間。"
 tweet: "1115264282675953664"

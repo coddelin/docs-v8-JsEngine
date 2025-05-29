@@ -1,11 +1,11 @@
 ---
 title: "改善 V8 正则表达式"
 author: "Patrick Thier 和 Ana Peško，对正则表达式发表意见的常规专家"
-avatars:
+avatars: 
   - "patrick-thier"
   - "ana-pesko"
-date: 2019-10-04 15:24:16
-tags:
+date: "2019-10-04 15:24:16"
+tags: 
   - internals
   - RegExp
 description: "在本文中，我们介绍了如何利用解释正则表达式的优势并缓解其缺点。"

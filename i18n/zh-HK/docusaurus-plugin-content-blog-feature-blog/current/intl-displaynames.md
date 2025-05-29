@@ -1,11 +1,11 @@
 ---
 title: "`Intl.DisplayNames`"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu)) 和 Frank Yung-Fong Tang"
-avatars:
+avatars: 
   - "shu-yu-guo"
   - "frank-tang"
 date: 2020-02-13
-tags:
+tags: 
   - Intl
   - Node.js 14
 description: "Intl.DisplayNames API 讓程式可以本地化顯示語言、地區、文字書寫系統和貨幣的名稱。"

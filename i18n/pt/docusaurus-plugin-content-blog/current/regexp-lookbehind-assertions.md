@@ -1,10 +1,10 @@
 ---
 title: "Afirmativas lookbehind do RegExp"
 author: "Yang Guo, Engenheiro de Expressões Regulares"
-avatars:
+avatars: 
   - "yang-guo"
-date: 2016-02-26 13:33:37
-tags:
+date: "2016-02-26 13:33:37"
+tags: 
   - ECMAScript
   - RegExp
 description: "Expressões regulares em JavaScript estão ganhando nova funcionalidade: afirmações lookbehind."

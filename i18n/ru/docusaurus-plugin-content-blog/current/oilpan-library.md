@@ -1,12 +1,12 @@
 ---
 title: "Библиотека Oilpan"
 author: "Антон Бикинеев, Омер Кац ([@omerktz](https://twitter.com/omerktz)), и Михаэль Липпаутц ([@mlippautz](https://twitter.com/mlippautz)), эффективные и действенные переместители файлов"
-avatars:
+avatars: 
   - anton-bikineev
   - omer-katz
   - michael-lippautz
 date: 2021-11-10
-tags:
+tags: 
   - internals
   - memory
   - cppgc

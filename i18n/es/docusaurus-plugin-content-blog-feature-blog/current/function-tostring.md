@@ -1,10 +1,10 @@
 ---
 title: "Revisión de `Function.prototype.toString`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-03-25
-tags:
+tags: 
   - ECMAScript
   - ES2019
 description: "Function.prototype.toString ahora devuelve fragmentos exactos del texto del código fuente, incluyendo espacios en blanco y comentarios."

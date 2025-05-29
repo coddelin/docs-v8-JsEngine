@@ -1,13 +1,13 @@
 ---
-title: 'L'enchaînement optionnel'
-author: 'Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), briseuse d'enchaînements optionnels'
-avatars:
+title: "L'enchaînement optionnel"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), briseuse d'enchaînements optionnels"
+avatars: 
   - "maya-armyanova"
 date: 2019-08-27
-tags:
+tags: 
   - ECMAScript
   - ES2020
-description: 'L'enchaînement optionnel permet une expression lisible et concise des accès aux propriétés avec une vérification intégrée des valeurs nulles.'
+description: "L'enchaînement optionnel permet une expression lisible et concise des accès aux propriétés avec une vérification intégrée des valeurs nulles."
 tweet: "1166360971914481669"
 ---
 Les longues chaînes d'accès aux propriétés en JavaScript peuvent être sujettes à des erreurs, car chacune d'entre elles peut s'évaluer à `null` ou `undefined` (aussi connues sous le nom de valeurs nulles). Vérifier l'existence des propriétés à chaque étape peut facilement se transformer en une structure profondément imbriquée avec des déclarations `if` ou une condition `if` longue répliquant la chaîne d'accès aux propriétés :

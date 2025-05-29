@@ -1,10 +1,10 @@
 ---
 title: "V8-Version v9.7"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-11-05
-tags:
+tags: 
  - release
 description: "Die V8-Version v9.7 bringt neue JavaScript-Methoden für die rückwärtsgerichtete Suche in Arrays."
 tweet: ""

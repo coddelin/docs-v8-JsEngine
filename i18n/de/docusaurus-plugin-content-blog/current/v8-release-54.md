@@ -1,8 +1,8 @@
 ---
 title: "V8-Version v5.4"
 author: "Das V8-Team"
-date: 2016-09-09 13:33:37
-tags:
+date: "2016-09-09 13:33:37"
+tags: 
   - Veröffentlichung
 description: "V8 v5.4 bietet Leistungsverbesserungen und reduzierten Speicherverbrauch."
 ---

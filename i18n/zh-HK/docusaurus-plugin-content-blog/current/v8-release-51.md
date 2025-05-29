@@ -1,8 +1,8 @@
 ---
 title: "V8 發行版本 v5.1"
 author: "V8 團隊"
-date: 2016-04-23 13:33:37
-tags:
+date: "2016-04-23 13:33:37"
+tags: 
   - 發行
 description: "V8 v5.1 提供性能改進、降低停滯和記憶體消耗，以及增加對 ECMAScript 語言功能的支援。"
 ---

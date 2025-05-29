@@ -1,10 +1,10 @@
 ---
 title: "Promise.prototype.finally"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2017-10-23
-tags:
+tags: 
   - ECMAScript
   - ES2018
 description: "Promise.prototype.finally permite registrar um callback para ser chamado quando uma promessa for resolvida (ou seja, concluída com sucesso ou rejeitada)."

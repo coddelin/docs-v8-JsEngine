@@ -1,8 +1,8 @@
 ---
 title: "V8リリースv6.9"
 author: "V8チーム"
-date: 2018-08-07 13:33:37
-tags:
+date: "2018-08-07 13:33:37"
+tags: 
   - リリース
 description: "V8 v6.9は、埋め込み組み込み関数によるメモリ使用量削減、LiftoffによるWebAssemblyの起動速度向上、DataViewとWeakMapのパフォーマンス改善など、多くの新機能を備えています！"
 tweet: "1026825606003150848"

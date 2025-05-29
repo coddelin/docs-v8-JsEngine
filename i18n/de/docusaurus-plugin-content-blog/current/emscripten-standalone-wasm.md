@@ -1,10 +1,10 @@
 ---
 title: "Außerhalb des Webs: eigenständige WebAssembly-Binärdateien mit Emscripten"
 author: "Alon Zakai"
-avatars:
+avatars: 
   - "alon-zakai"
 date: 2019-11-21
-tags:
+tags: 
   - WebAssembly
   - Tools
 description: "Emscripten unterstützt jetzt eigenständige Wasm-Dateien, die kein JavaScript benötigen."

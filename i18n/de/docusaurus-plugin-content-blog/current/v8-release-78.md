@@ -1,10 +1,10 @@
 ---
 title: "V8-Veröffentlichung v7.8"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), der faule Zauberer"
-avatars:
+avatars: 
   - "ingvar-stepanyan"
 date: 2019-09-27
-tags:
+tags: 
   - release
 description: "V8 v7.8 bietet Streaming-Kompilierung beim Preload, WebAssembly C API, schnellere Objekt-Destrukturierung und reguläre Ausdrucks-Matching sowie verbesserte Startzeiten."
 tweet: "1177600702861971459"

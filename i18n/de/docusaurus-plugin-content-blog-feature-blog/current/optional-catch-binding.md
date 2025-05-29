@@ -1,10 +1,10 @@
 ---
 title: "Optionale `catch`-Bindung"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
-avatars:
+avatars: 
   - "mathias-bynens"
 date: 2018-03-27
-tags:
+tags: 
   - ECMAScript
   - ES2019
 description: "In ES2019 kann `catch` jetzt ohne Parameter verwendet werden."

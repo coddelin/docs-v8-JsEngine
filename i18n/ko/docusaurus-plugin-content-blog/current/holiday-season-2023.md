@@ -1,10 +1,10 @@
 ---
 title: "V8는 더욱 빠르고 안전해졌습니다!"
 author: "[Victor Gomes](https://twitter.com/VictorBFG), 글뤼바인의 전문가"
-avatars:
+avatars: 
   - victor-gomes
 date: 2023-12-14
-tags:
+tags: 
   - JavaScript
   - WebAssembly
   - 보안

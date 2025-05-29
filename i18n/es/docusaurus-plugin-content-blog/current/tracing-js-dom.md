@@ -1,12 +1,12 @@
 ---
 title: "Trazando desde JS al DOM y de vuelta"
 author: "Ulan Degenbaev, Alexei Filippov, Michael Lippautz y Hannes Payer — la hermandad del DOM"
-avatars:
+avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
-date: 2018-03-01 13:33:37
-tags:
+date: "2018-03-01 13:33:37"
+tags: 
   - internals
   - memory
 description: "Las DevTools de Chrome ahora pueden trazar y capturar objetos DOM en C++ y mostrar todos los objetos DOM accesibles desde JavaScript junto con sus referencias."

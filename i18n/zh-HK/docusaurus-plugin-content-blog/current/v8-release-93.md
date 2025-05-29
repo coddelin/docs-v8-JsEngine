@@ -1,10 +1,10 @@
 ---
 title: "V8 發佈 v9.3"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
-avatars:
+avatars: 
  - "ingvar-stepanyan"
 date: 2021-08-09
-tags:
+tags: 
  - 發佈
 description: "V8 發佈 v9.3 帶來了 Object.hasOwn 和 Error cause 的支援，改進了編譯效能，並在 Android 上禁用了不受信任的程式碼生成緩解措施。"
 tweet: ""

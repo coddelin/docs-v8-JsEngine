@@ -1,8 +1,8 @@
 ---
 title: "V8 릴리스 v6.1"
 author: "V8 팀"
-date: 2017-08-03 13:33:37
-tags:
+date: "2017-08-03 13:33:37"
+tags: 
   - 릴리스
 description: "V8 v6.1은 이진 파일 크기 감소와 성능 향상을 제공합니다. 또한, asm.js는 이제 WebAssembly로 검증되고 컴파일됩니다."
 ---
