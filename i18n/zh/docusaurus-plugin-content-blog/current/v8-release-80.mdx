@@ -1,0 +1,137 @@
+---
+title: "V8 发布 v8.0"
+author: "Leszek Swirski，第八代 V8"
+avatars:
+  - "leszek-swirski"
+date: 2019-12-18
+tags:
+  - 发布
+description: "V8 v8.0 的特点包括可选链式调用，空值合并运算符，更快的高阶内置函数 —— 哦还有通过指针压缩减少了 40% 的内存使用，这不算什么大事。"
+tweet: "1207323849861279746"
+---
+import FullWidthImage from &apos;../src/components/release.tsx&apos;
+
+<!-- 是的，这是一个 SVG。请不要问我花了多长时间制作它。 -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable no-inline-html -->
+
+<FullWidthImage />
+
+<!-- markdownlint-restore -->
+
+它终于来了。每次 V8 发布，每六周我们都会根据[发布流程](/docs/release-process)创建一个新分支，总会有人问当 V8 达到版本 8 时会发生什么。我们会举办派对吗？我们会发布新的编译器吗？我们会跳过版本 8 和 9，直接保持为永恒的 V8 版本 X 吗？最终，在经过[超过十年](/blog/10-years)的努力，在我们第 100 篇博客文章中，我们很高兴地宣布我们的最新分支，[V8 ~~版本 8.0~~ V8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.0)，我们终于可以回答这个问题：
+
+<!--truncate-->
+这是错误修复和性能改进。
+
+这篇文章提供了部分亮点的预览，为几周后与 Chrome 80 稳定版的发布协同推出做准备。
+
+## 性能（大小和速度）
+
+### 指针压缩
+
+~~我们将所有 `void *` 改为 `pv`，减少了高达 66% 的源文件大小。~~
+
+V8 堆包含许多项目，例如浮点值、字符串字符、编译代码和带标签的值（表示到 V8 堆的指针或小整数）。在检查堆时，我们发现这些带标签的值占据了堆的大部分！
+
+带标签的值与系统指针一样大：在 32 位架构中是 32 位宽，在 64 位架构中是 64 位宽。因此，在比较 32 位版本和 64 位版本时，每个带标签值的堆内存使用加倍。
+
+幸运的是，我们有一个诀窍。高位可以从低位合成。然后，我们只需要将唯一的低位存储到堆中，从而节省宝贵的内存资源……平均节省 40% 的堆内存！
+
+![指针压缩平均节省 40% 的内存。](/_img/v8-release-80/pointer-compression-chart.svg)
+
+通常情况下，提高内存效率会以牺牲性能为代价。通常如此。我们自豪地宣布，我们在实际网站中看到了 V8 的性能提升以及其垃圾回收器中的改进！
+
+:::table-wrapper
+| || 桌面版 | 移动版 |
+|-------------|----------|---------|--------|
+| Facebook | V8-总计 | -8% | -6% |
+| ^^ | 垃圾回收 | -10% | -17% |
+| CNN | V8-总计 | -3% | -8% |
+| ^^ | 垃圾回收 | -14% | -20% |
+| Google 地图 | V8-总计 | -4% | -6% |
+| ^^ | 垃圾回收 | -7% | -12% |
+:::
+
+如果指针压缩引起了您的兴趣，请留意一篇包含更多细节的完整博客文章。
+
+### 优化高阶内置函数
+
+我们最近移除了 TurboFan 优化管道中的一个限制，该限制阻止了对高阶内置函数的激进优化。
+
+```js
+const charCodeAt = Function.prototype.call.bind(String.prototype.charCodeAt);
+
+charCodeAt(string, 8);
+```
+
+到目前为止，对 `charCodeAt` 的调用对 TurboFan 完全不透明，这导致了对用户定义函数的通用调用的生成。通过此更改，我们现在能够识别我们实际上是在调用内置的 `String.prototype.charCodeAt` 函数，因此能够触发 TurboFan 所有用于优化对内置函数调用的进一步优化，这带来了与以下情况相同的性能：
+
+```js
+string.charCodeAt(8);
+```
+
+此更改影响了一系列其他内置函数，如 `Function.prototype.apply`、`Reflect.apply` 以及许多高阶数组内置函数（例如 `Array.prototype.map`）。
+
+## JavaScript
+
+### 可选链式调用
+
+在编写属性访问链时，程序员经常需要检查中间值是否为 nullish（即 `null` 或 `undefined`）。没有错误检查的链可能会抛出异常，而显式错误检查的链则显得冗长并且会导致检查所有真值，而不仅仅是非 nullish 值。
+
+```js
+// 容易出错的版本，可能抛出异常。
+const nameLength = db.user.name.length;
+
+// 不易出错的版本，但更难阅读。
+let nameLength;
+if (db && db.user && db.user.name) nameLength = db.user.name.length;
+```
+
+[可选链式调用](https://v8.dev/features/optional-chaining) (`?.`) 允许程序员编写更简洁、健壮的属性访问链，这些链会检查中间值是否为 nullish。如果一个中间值是 nullish，则整个表达式的值为 `undefined`。
+
+```js
+// 仍会检查错误，但可读性更佳。
+const nameLength = db?.user?.name?.length;
+```
+
+除了静态的属性访问，还支持动态属性访问和调用。请参阅我们的[功能说明](https://v8.dev/features/optional-chaining)了解详情和更多示例。
+
+### 空值合并运算符
+
+[空值合并](https://v8.dev/features/nullish-coalescing)运算符`??`是一种新的短路二元运算符，用于处理默认值。目前，有时通过逻辑运算符`||`处理默认值，例如以下示例。
+
+```js
+function Component(props) {
+  const enable = props.enabled || true;
+  // …
+}
+```
+
+使用`||`计算默认值是不理想的，因为`a || b`在`a`为假值时会返回`b`。如果`props.enabled`被明确设置为`false`，`enable`依然会是`true`。
+
+使用空值合并运算符时，`a ?? b`在`a`为空值（`null`或`undefined`）时返回`b`，否则返回`a`。这符合预期的默认值行为，使用`??`重写示例修复了上述问题。
+
+```js
+function Component(props) {
+  const enable = props.enabled ?? true;
+  // …
+}
+```
+
+空值合并运算符和可选链运算符是互补的功能，可很好地协同工作。可以进一步改进示例以处理未传入`props`参数的情况。
+
+```js
+function Component(props) {
+  const enable = props?.enabled ?? true;
+  // …
+}
+```
+
+请参阅我们的[功能说明](https://v8.dev/features/nullish-coalescing)了解详情和更多示例。
+
+## V8 API
+
+请使用`git log branch-heads/7.9..branch-heads/8.0 include/v8.h`获取API更改列表。
+
+开发者可以通过[激活的V8代码库](/docs/source-code#using-git)使用`git checkout -b 8.0 -t branch-heads/8.0`实验V8 v8.0中的新功能。或者，您可以[订阅Chrome的Beta频道](https://www.google.com/chrome/browser/beta.html)，尽快亲自体验这些新功能。

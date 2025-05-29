@@ -1,0 +1,137 @@
+---
+title: "V8-Version v8.0"
+author: "Leszek Swirski, V8ter seines Namens"
+avatars:
+  - "leszek-swirski"
+date: 2019-12-18
+tags:
+  - Veröffentlichung
+description: "V8 v8.0 bietet optionale Verkettung, Nullish Coalescing, schnellere Higher-Order-Builtins — und 40% weniger Speicherverbrauch dank Zeigerkompression, kein großes Ding."
+tweet: "1207323849861279746"
+---
+import FullWidthImage from &apos;../src/components/release.tsx&apos;
+
+<!-- Ja, es ist ein SVG. Bitte fragt mich nicht, wie lange ich dafür gebraucht habe. -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable no-inline-html -->
+
+<FullWidthImage />
+
+<!-- markdownlint-restore -->
+
+Es ist endlich da. Bei jeder V8-Veröffentlichung, alle sechs Wochen, wenn wir im Rahmen unseres [Veröffentlichungsprozesses](/docs/release-process) verzweigen, taucht die Frage auf, was passieren wird, wenn V8 Version 8 erreicht. Werden wir eine Party feiern? Werden wir einen neuen Compiler ausliefern? Werden wir Versionen 8 und 9 überspringen und einfach für immer bei einer V8-Version X bleiben? Schließlich, nach [über 10 Jahren](/blog/10-years) Arbeit, zu unserem 100. Blogbeitrag, freuen wir uns, unseren neuesten Branch zu präsentieren: [V8 ~~Version 8.0~~ V8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.0), und wir können diese Frage endlich beantworten:
+
+<!--truncate-->
+Es sind Fehlerbehebungen und Performance-Verbesserungen.
+
+Dieser Beitrag bietet eine Vorschau auf einige der Highlights in Erwartung der Veröffentlichung in Zusammenarbeit mit Chrome 80 Stable in einigen Wochen.
+
+## Leistung (Größe & Geschwindigkeit)
+
+### Zeigerkompression
+
+~~Wir haben alle unsere `void *` in `pv` geändert, wodurch die Dateigröße der Quelldatei um bis zu 66% reduziert wurde.~~
+
+Der V8-Heap enthält eine Menge Elemente, zum Beispiel Gleitkommzahlen, Zeichenkettenzeichen, kompilierte Codes und markierte Werte (die Zeiger in den V8-Heap oder kleine Ganzzahlen repräsentieren). Bei der Untersuchung des Heap haben wir festgestellt, dass diese markierten Werte den Großteil des Heap ausmachen!
+
+Markierte Werte sind so groß wie der Systemzeiger: Sie sind 32 Bit breit für 32-Bit-Architekturen und 64 Bit in 64-Bit-Architekturen. Wenn man dann die 32-Bit-Version mit der 64-Bit-Version vergleicht, verwenden wir bei jedem markierten Wert doppelt so viel Heap-Speicher.
+
+Zum Glück haben wir einen Trick auf Lager. Die oberen Bits können aus den unteren Bits synthetisiert werden. Dann müssen wir nur die einzigartigen unteren Bits in den Heap speichern, wodurch wertvolle Ressourcenspeicher gespart werden... und wir sparen durchschnittlich 40% des Heap-Speichers!
+
+![Zeigerkompression spart durchschnittlich 40% Speicher.](/_img/v8-release-80/pointer-compression-chart.svg)
+
+Bei der Speicherverbesserung kommt es normalerweise zu Leistungseinbußen. Normalerweise. Wir sind stolz darauf, bekannt zu geben, dass wir bei Websites aus der Praxis Verbesserungen bei der Leistung feststellen konnten, die Zeit, die V8 benötigt, sowie bei seinem Garbage Collector!
+
+:::table-wrapper
+| || Desktop | Mobile |
+|-------------|----------|---------|--------|
+| Facebook | V8-Gesamt | -8% | -6% |
+| ^^ | GC | -10% | -17% |
+| CNN | V8-Gesamt | -3% | -8% |
+| ^^ | GC | -14% | -20% |
+| Google Maps | V8-Gesamt | -4% | -6% |
+| ^^ | GC | -7% | -12% |
+:::
+
+Wenn die Zeigerkompression Ihr Interesse geweckt hat, halten Sie Ausschau nach einem vollständigen Blogbeitrag mit weiteren Details.
+
+### Optimierung höherwertiger Builtins
+
+Wir haben kürzlich eine Einschränkung innerhalb der Optimierungspipeline von TurboFan entfernt, die aggressive Optimierungen höherwertiger Builtins verhinderte.
+
+```js
+const charCodeAt = Function.prototype.call.bind(String.prototype.charCodeAt);
+
+charCodeAt(string, 8);
+```
+
+Bis jetzt war der Aufruf von `charCodeAt` für TurboFan völlig undurchsichtig, was zur Generierung eines generischen Aufrufs einer benutzerdefinierten Funktion führte. Mit dieser Änderung können wir jetzt erkennen, dass wir tatsächlich die eingebaute Funktion `String.prototype.charCodeAt` aufrufen und können somit alle weiteren Optimierungen auslösen, die TurboFan bereit hat, um Aufrufe von Builtins zu verbessern, was zu derselben Leistung führt wie:
+
+```js
+string.charCodeAt(8);
+```
+
+Diese Änderung betrifft eine Reihe anderer Builtins wie `Function.prototype.apply`, `Reflect.apply` und viele höherwertige Array-Builtins (z.B. `Array.prototype.map`).
+
+## JavaScript
+
+### Optionale Verkettung
+
+Beim Schreiben von Verkettungen von Eigenschaftszugriffen müssen Programmierer oft prüfen, ob Zwischenwerte leer sind (d.h. `null` oder `undefined`). Eine Verkettung ohne Fehlerprüfung kann eine Ausnahme auslösen, und eine Verkettung mit expliziter Fehlerprüfung ist ausführlich und hat den unerwünschten Effekt, dass alle wahrhaftigen Werte geprüft werden, anstatt nur nicht-leere Werte.
+
+```js
+// Fehleranfällige Version, könnte eine Ausnahme auslösen.
+const nameLength = db.user.name.length;
+
+// Weniger fehleranfällig, aber schwerer zu lesen.
+let nameLength;
+if (db && db.user && db.user.name) nameLength = db.user.name.length;
+```
+
+[Optionale Verkettung](https://v8.dev/features/optional-chaining) (`?.`) erlaubt es Programmierern, kompaktere, robuste Verkettungen von Eigenschaftszugriffen zu schreiben, die prüfen, ob Zwischenwerte leer sind. Wenn ein Zwischenwert leer ist, wird der gesamte Ausdruck zu `undefined` ausgewertet.
+
+```js
+// Prüft immer noch auf Fehler und ist viel leserlicher.
+const nameLength = db?.user?.name?.length;
+```
+
+Zusätzlich zu statischen Eigenschaften werden auch dynamische Eigenschaften und Aufrufe unterstützt. Weitere Details und Beispiele finden Sie in unserem [Feature-Erklärer](https://v8.dev/features/optional-chaining).
+
+### Nullish-Zusammenführung
+
+Der [Nullish-Zusammenführungsoperator](https://v8.dev/features/nullish-coalescing) `??` ist ein neuer kurzschließender binärer Operator zur Bearbeitung von Standardwerten. Derzeit werden Standardwerte manchmal mit dem logischen Operator `||` behandelt, wie im folgenden Beispiel.
+
+```js
+function Component(props) {
+  const enable = props.enabled || true;
+  // …
+}
+```
+
+Die Verwendung von `||` ist für die Berechnung von Standardwerten unerwünscht, da `a || b` zu `b` auswertet, wenn `a` falsch ist. Wenn `props.enabled` ausdrücklich auf `false` gesetzt würde, wäre `enable` dennoch wahr.
+
+Mit dem Nullish-Zusammenführungsoperator wertet `a ?? b` zu `b` aus, wenn `a` Nullish (`null` oder `undefined`) ist, und ansonsten zu `a`. Dies ist das gewünschte Verhalten von Standardwerten, und die Umformulierung des Beispiels unter Verwendung von `??` behebt den oben genannten Fehler.
+
+```js
+function Component(props) {
+  const enable = props.enabled ?? true;
+  // …
+}
+```
+
+Der Nullish-Zusammenführungsoperator und die optionale Verkettung sind Begleitfunktionen und funktionieren gut zusammen. Das Beispiel kann weiter angepasst werden, um den Fall zu behandeln, wenn kein `props`-Argument übergeben wird.
+
+```js
+function Component(props) {
+  const enable = props?.enabled ?? true;
+  // …
+}
+```
+
+Weitere Details und Beispiele finden Sie in unserem [Feature-Erklärer](https://v8.dev/features/nullish-coalescing).
+
+## V8-API
+
+Bitte verwenden Sie `git log branch-heads/7.9..branch-heads/8.0 include/v8.h`, um eine Liste der API-Änderungen zu erhalten.
+
+Entwickler mit einem [aktiven V8-Checkout](/docs/source-code#using-git) können `git checkout -b 8.0 -t branch-heads/8.0` verwenden, um die neuen Funktionen in V8 v8.0 zu testen. Alternativ können Sie sich [für den Beta-Kanal von Chrome anmelden](https://www.google.com/chrome/browser/beta.html) und die neuen Funktionen bald selbst ausprobieren.

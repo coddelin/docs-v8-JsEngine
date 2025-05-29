@@ -1,0 +1,155 @@
+---
+title: &apos;Релиз V8 версии 8.5&apos;
+author: &apos;Зейнеп Чанкера, отслеживающий некоторые Карты&apos;
+avatars:
+ - &apos;zeynep-cankara&apos;
+date: 2020-07-21
+tags:
+ - релиз
+description: &apos;Релиз V8 версии 8.5 включает Promise.any, String#replaceAll, операторы логического присваивания, поддержку многозначного возвращаемого значения WebAssembly и BigInt, а также улучшения производительности.&apos;
+tweet:
+---
+Каждые шесть недель мы создаем новую ветку V8 в рамках нашего [процесса релиза](https://v8.dev/docs/release-process). Каждая версия отделяется от основной ветки Git V8 непосредственно перед этапом бета-релиза Chrome. Сегодня мы рады объявить о нашей новейшей ветке, [V8 версии 8.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.5), которая находится в стадии бета до своего релиза вместе с Chrome 85 Stable через несколько недель. V8 v8.5 наполнен множеством полезных функций для разработчиков. Этот пост предоставляет предварительный обзор некоторых ключевых моментов в ожидании релиза.
+
+<!--truncate-->
+## JavaScript
+
+### `Promise.any` и `AggregateError`
+
+`Promise.any` — это комбинатор обещаний, который разрешает результирующее обещание, как только одно из входных обещаний выполнено.
+
+```js
+const promises = [
+  fetch(&apos;/endpoint-a&apos;).then(() => &apos;a&apos;),
+  fetch(&apos;/endpoint-b&apos;).then(() => &apos;b&apos;),
+  fetch(&apos;/endpoint-c&apos;).then(() => &apos;c&apos;),
+];
+try {
+  const first = await Promise.any(promises);
+  // Любое из обещаний было выполнено.
+  console.log(first);
+  // → например, &apos;b&apos;
+} catch (error) {
+  // Все обещания были отклонены.
+  console.assert(error instanceof AggregateError);
+  // Логируем значения отклонений:
+  console.log(error.errors);
+}
+```
+
+Если все входящие обещания отклонены, результирующее обещание отклоняется с объектом `AggregateError`, содержащим свойство `errors`, которое содержит массив значений отклонений.
+
+Подробнее смотрите в [нашем объяснении](https://v8.dev/features/promise-combinators#promise.any).
+
+### `String.prototype.replaceAll`
+
+`String.prototype.replaceAll` предоставляет простой способ заменить все вхождения подстроки без создания глобального `RegExp`.
+
+```js
+const queryString = &apos;q=query+string+parameters&apos;;
+
+// Работает, но требует экранирования внутри регулярных выражений.
+queryString.replace(/\+/g, &apos; &apos;);
+// → &apos;q=query string parameters&apos;
+
+// Проще!
+queryString.replaceAll(&apos;+&apos;, &apos; &apos;);
+// → &apos;q=query string parameters&apos;
+```
+
+Подробнее смотрите в [нашем объяснении](https://v8.dev/features/string-replaceall).
+
+### Операторы логического присваивания
+
+Операторы логического присваивания — это новые составные операторы присваивания, которые объединяют логические операции `&&`, `||` или `??` с присваиванием.
+
+```js
+x &&= y;
+// Приблизительно эквивалентно x && (x = y)
+x ||= y;
+// Приблизительно эквивалентно x || (x = y)
+x ??= y;
+// Приблизительно эквивалентно x ?? (x = y)
+```
+
+Обратите внимание, что, в отличие от математических и битовых составных операторов присваивания, операторы логического присваивания выполняют присваивание только при определенных условиях.
+
+Прочитайте [наше объяснение](https://v8.dev/features/logical-assignment) для более детального ознакомления.
+
+## WebAssembly
+
+### Liftoff на всех платформах
+
+Начиная с V8 версии 6.9, [Liftoff](https://v8.dev/blog/liftoff) используется как базовый компилятор для WebAssembly на платформах Intel (а Chrome 69 включил его на десктопных системах). Так как мы опасались увеличения памяти (из-за большего объема кода, создаваемого базовым компилятором), мы до сих пор задерживали его для мобильных систем. После экспериментов в последние месяцы мы уверены, что увеличение памяти незначительное в большинстве случаев, поэтому мы наконец включили Liftoff по умолчанию на всех архитектурах, обеспечивая более быструю компиляцию, особенно на устройствах arm (32- и 64-бит). Chrome 85 следует этому и включает Liftoff.
+
+### Включена поддержка многозначных возвращаемых значений
+
+Поддержка WebAssembly для [многозначных блоков кода и возвращаемых значений функций](https://github.com/WebAssembly/multi-value) теперь доступна для общего использования. Это отражает недавнее слияние предложения в официальном стандарте WebAssembly и поддерживается всеми уровнями компиляции.
+
+Например, теперь это допустимая функция WebAssembly:
+
+```wasm
+(func $swap (param i32 i32) (result i32 i32)
+  (local.get 1) (local.get 0)
+)
+```
+
+Если функция экспортирована, её можно вызвать из JavaScript, и она возвращает массив:
+
+```js
+instance.exports.swap(1, 2);
+// → [2, 1]
+```
+
+Наоборот, если функция JavaScript возвращает массив (или любой итератор), её можно импортировать и вызвать как функцию с многозначным возвращаемым значением внутри модуля WebAssembly:
+
+```js
+new WebAssembly.Instance(module, {
+  imports: {
+    swap: (x, y) => [y, x],
+  },
+});
+```
+
+```wasm
+(func $main (result i32 i32)
+  i32.const 0
+  i32.const 1
+  call $swap
+)
+```
+
+Более важно, что теперь инструментальные цепочки могут использовать эту функцию для создания более компактного и быстрого кода внутри модуля WebAssembly.
+
+### Поддержка JS BigInts
+
+Поддержка WebAssembly для [преобразования значений WebAssembly I64 из и в JavaScript BigInts](https://github.com/WebAssembly/JS-BigInt-integration) была внедрена и доступна для общего использования согласно последним изменениям в официальном стандарте.
+
+Таким образом, функции WebAssembly с параметрами и значениями возвращения типа i64 могут быть вызываны из JavaScript без потерь точности:
+
+```wasm
+(module
+  (func $add (param $x i64) (param $y i64) (result i64)
+    local.get $x
+    local.get $y
+    i64.add)
+  (export "add" (func $add)))
+```
+
+Из JavaScript можно передавать только BigInts в качестве параметров I64:
+
+```js
+WebAssembly.instantiateStreaming(fetch(&apos;i64.wasm&apos;))
+  .then(({ module, instance }) => {
+    instance.exports.add(12n, 30n);
+    // → 42n
+    instance.exports.add(12, 30);
+    // → TypeError: parameters are not of type BigInt
+  });
+```
+
+## V8 API
+
+Пожалуйста, используйте `git log branch-heads/8.4..branch-heads/8.5 include/v8.h` для получения списка изменений API.
+
+Разработчики с активным репозиторием V8 могут использовать `git checkout -b 8.5 -t branch-heads/8.5` для экспериментов с новыми функциями в V8 v8.5. Альтернативно можно [подписаться на бета-канал Chrome](https://www.google.com/chrome/browser/beta.html) и вскоре самостоятельно попробовать новые функции.

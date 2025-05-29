@@ -1,0 +1,49 @@
+---
+title: &apos;RegExp 後行斷言&apos;
+author: &apos;Yang Guo，正則表達式工程師&apos;
+avatars:
+  - &apos;yang-guo&apos;
+date: 2016-02-26 13:33:37
+tags:
+  - ECMAScript
+  - RegExp
+description: &apos;JavaScript 正則表達式功能有了新進展：後行斷言。&apos;
+---
+自 ECMA-262 規範的第三版引入以來，正則表達式就自 1999 年起成為 JavaScript 的一部分。在功能性和表達能力上，JavaScript 的正則表達式實現與其他程式語言大致相當。
+
+<!--truncate-->
+JavaScript 的正則表達式中有一個經常被忽略但偶爾又非常有用的特性，那就是前行斷言。例如，為了匹配後面緊跟著百分號的數字序列，我們可以使用 `/\d+(?=%)/`。百分號本身不包含在匹配結果中。相反地，`/\d+(?!%)/` 則可以匹配後面不跟著百分號的數字序列：
+
+```js
+/\d+(?=%)/.exec(&apos;100% of US presidents have been male&apos;); // [&apos;100&apos;]
+/\d+(?!%)/.exec(&apos;that’s all 44 of them&apos;);                // [&apos;44&apos;]
+```
+
+與前行斷言相反的後行斷言在 JavaScript 中一直缺失，但在其他正則表達式實現中（例如 .NET 框架）是可用的。後行斷言的工作方式不是提前讀取，而是回讀以在斷言中進行匹配。可以使用 `/(?<=\$)\d+/` 匹配緊跟在美元符號後面的數字序列，其中美元符號不包含在匹配結果中。其否定形式，`/(?<!\$)\d+/`，則匹配跟在非美元符號後面的數字序列。
+
+```js
+/(?<=\$)\d+/.exec(&apos;Benjamin Franklin is on the $100 bill&apos;); // [&apos;100&apos;]
+/(?<!\$)\d+/.exec(&apos;it’s worth about €90&apos;);                  // [&apos;90&apos;]
+```
+
+一般來說，有兩種方法可以實現後行斷言。例如，Perl 要求後行模式必須有固定的長度。這意味著類似 `*` 或 `+` 這類的量詞不能使用。這樣正則表達式引擎就能以固定的長度向後移動，並以同樣方式從移動位置向前匹配後行。
+
+.NET 框架中的正則表達式引擎採取了另一種方法。不需要預先知道後行模式將匹配多少字元，而是向後匹配後行模式，同時仍然按照正常的讀取方向讀取字元。這意味著後行模式可以利用完整的正則表達式語法並匹配任意長度的模式。
+
+明顯地，第二種方式比第一種方式更強大。這也是 V8 團隊與 TC39 推動該功能的冠軍們一致認為 JavaScript 應採用更具表達能力的版本的原因，儘管其實現稍微更複雜。
+
+由於後行斷言是向後匹配的，因此存在一些微妙的行為，否則可能會令人感到驚訝。例如，帶量詞的捕獲組會捕捉最後一次匹配。通常情況是最右邊的匹配。但在後行斷言中，我們是從右到左匹配，因此捕獲的是最左邊的匹配：
+
+```js
+/h(?=(\w)+)/.exec(&apos;hodor&apos;);  // [&apos;h&apos;, &apos;r&apos;]
+/(?<=(\w)+)r/.exec(&apos;hodor&apos;); // [&apos;r&apos;, &apos;h&apos;]
+```
+
+捕獲組可以在捕獲後通過反向引用進行引用。通常，反向引用必須在捕獲組的右邊。否則，它會匹配空字串，因為尚未捕獲任何內容。然而，在後行斷言中，匹配方向是反轉的：
+
+```js
+/(?<=(o)d\1)r/.exec(&apos;hodor&apos;); // null
+/(?<=\1d(o))r/.exec(&apos;hodor&apos;); // [&apos;r&apos;, &apos;o&apos;]
+```
+
+後行斷言目前處於 TC39 規範流程的[早期階段](https://github.com/tc39/proposal-regexp-lookbehind)。然而，由於它們是正則表達式語法的一個明顯擴展，我們決定優先實現它們。您可以通過運行 V8 版本 4.9 或更高版本並使用 `--harmony`，或啟用 Chrome 中的實驗性 JavaScript 功能（從版本 49 開始使用 `about:flags`）來試驗後行斷言。

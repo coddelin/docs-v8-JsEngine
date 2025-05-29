@@ -1,0 +1,119 @@
+---
+title: &apos;`Object.fromEntries`&apos;
+author: &apos;Матиас Биненс ([@mathias](https://twitter.com/mathias)), шептун JavaScript&apos;
+avatars:
+  - &apos;mathias-bynens&apos;
+date: 2019-06-18
+tags:
+  - ECMAScript
+  - ES2019
+  - io19
+description: &apos;Object.fromEntries — это полезное дополнение к встроенной библиотеке JavaScript, которое дополняет Object.entries.&apos;
+tweet: &apos;1140993821897121796&apos;
+---
+`Object.fromEntries` — это полезное дополнение к встроенной библиотеке JavaScript. Перед тем как объяснить, что он делает, важно понять существующий API `Object.entries`.
+
+## `Object.entries`
+
+API `Object.entries` существует уже некоторое время.
+
+<feature-support chrome="54"
+                 firefox="47"
+                 safari="10.1"
+                 nodejs="7"
+                 babel="yes https://github.com/zloirock/core-js#ecmascript-object"></feature-support>
+
+Для каждой пары ключ-значение в объекте `Object.entries` предоставляет массив, где первый элемент — это ключ, а второй элемент — значение.
+
+`Object.entries` особенно полезен в сочетании с `for`-`of`, так как он позволяет элегантно проходить по всем парам ключ-значение в объекте:
+
+```js
+const object = { x: 42, y: 50 };
+const entries = Object.entries(object);
+// → [[&apos;x&apos;, 42], [&apos;y&apos;, 50]]
+
+for (const [key, value] of entries) {
+  console.log(`Значение ${key} равно ${value}.`);
+}
+// Результат:
+// Значение x равно 42.
+// Значение y равно 50.
+```
+
+К сожалению, нет простого способа преобразовать результат entries обратно в эквивалентный объект… до настоящего момента!
+
+## `Object.fromEntries`
+
+Новый API `Object.fromEntries` выполняет обратное преобразование от `Object.entries`. Это делает легким восстановление объекта на основе его пар:
+
+```js
+const object = { x: 42, y: 50 };
+const entries = Object.entries(object);
+// → [[&apos;x&apos;, 42], [&apos;y&apos;, 50]]
+
+const result = Object.fromEntries(entries);
+// → { x: 42, y: 50 }
+```
+
+Один из частых случаев использования заключается в преобразовании объектов. Теперь вы можете делать это, проходя по его парам и используя методы массивов, которые вам уже знакомы:
+
+```js
+const object = { x: 42, y: 50, abc: 9001 };
+const result = Object.fromEntries(
+  Object.entries(object)
+    .filter(([ key, value ]) => key.length === 1)
+    .map(([ key, value ]) => [ key, value * 2 ])
+);
+// → { x: 84, y: 100 }
+```
+
+В этом примере мы фильтруем объект, чтобы оставить только ключи длиной `1`, то есть только ключи `x` и `y`, исключая ключ `abc`. Затем мы преобразуем оставшиеся пары и возвращаем обновленные пары ключ-значение для каждой. В этом примере мы удваиваем каждое значение, умножая его на `2`. Конечный результат — новый объект, содержащий только свойства `x` и `y` с новыми значениями.
+
+<!--truncate-->
+## Объекты против карт
+
+JavaScript также поддерживает `Map`, которые зачастую являются более подходящей структурой данных, чем обычные объекты. Поэтому в коде, который полностью под вашим контролем, вы можете использовать карты вместо объектов. Однако у разработчика не всегда есть выбор представления. Иногда данные, с которыми вы работаете, поступают из внешнего API или из функции библиотеки, которая возвращает объект вместо карты.
+
+`Object.entries` упрощает преобразование объектов в карты:
+
+```js
+const object = { language: &apos;JavaScript&apos;, coolness: 9001 };
+
+// Преобразовать объект в карту:
+const map = new Map(Object.entries(object));
+```
+
+Обратное преобразование тоже полезно: даже если ваш код использует карты, вы сможете сериализовать свои данные, например, чтобы превратить их в JSON и отправить запрос API. Или, возможно, вам нужно передать данные в другую библиотеку, которая ожидает объект вместо карты. В этих случаях вам нужно создать объект на основе данных карты. `Object.fromEntries` делает это элементарным:
+
+```js
+// Преобразовать карту обратно в объект:
+const objectCopy = Object.fromEntries(map);
+// → { language: &apos;JavaScript&apos;, coolness: 9001 }
+```
+
+С помощью `Object.entries` и `Object.fromEntries` в языке вы легко можете преобразовывать между картами и объектами.
+
+### Предупреждение: будьте осторожны с потерей данных
+
+При преобразовании карт в обычные объекты, как в приведенном выше примере, есть неявное предположение, что каждый ключ преобразуется в строку уникальным образом. Если это предположение не выполняется, происходит потеря данных:
+
+```js
+const map = new Map([
+  [{}, &apos;a&apos;],
+  [{}, &apos;b&apos;],
+]);
+Object.fromEntries(map);
+// → { &apos;[object Object]&apos;: &apos;b&apos; }
+// Примечание: значение &apos;a&apos; не найдено, так как оба ключа
+// преобразуются в строку с одинаковым значением &apos;[object Object]&apos;.
+```
+
+Перед использованием `Object.fromEntries` или любого другого метода преобразования карты в объект убедитесь, что ключи карты дают уникальные результаты `toString`.
+
+## Поддержка `Object.fromEntries`
+
+<feature-support chrome="73 /blog/v8-release-73#object.fromentries"
+                 firefox="63"
+                 safari="12.1"
+                 nodejs="12 https://twitter.com/mathias/status/1120700101637353473"
+                 babel="yes https://github.com/zloirock/core-js#ecmascript-object"></feature-support>

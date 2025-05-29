@@ -1,0 +1,137 @@
+---
+title: "Version V8 release v8.0"
+author: "Leszek Swirski, huitième de son nom"
+avatars:
+  - "leszek-swirski"
+date: 2019-12-18
+tags:
+  - release
+description: "V8 v8.0 introduit le chaînage optionnel, la coalescence des valeurs nulles, des fonctions intégrées d'ordre supérieur plus rapides — et une réduction de 40 % de l'utilisation de la mémoire grâce à la compression des pointeurs, rien de bien méchant."
+tweet: "1207323849861279746"
+---
+import FullWidthImage from &apos;../src/components/release.tsx&apos;
+
+<!-- Oui, c&apos;est un SVG. Ne me demandez pas combien de temps j&apos;ai passé à le faire. -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable no-inline-html -->
+
+<FullWidthImage />
+
+<!-- markdownlint-restore -->
+
+C'est enfin là. À chaque sortie V8, toutes les six semaines lorsque nous bifurquons dans le cadre de notre [processus de publication](/docs/release-process), la question se pose de savoir ce qui se passera lorsque V8 atteindra la version 8. Aura-t-on une fête ? Fournirons-nous un nouveau compilateur ? Ignorerons-nous les versions 8 et 9 pour rester éternellement à une version V8 X ? Enfin, après [plus de 10 ans](/blog/10-years) de travail, dans notre 100e article de blog, nous sommes heureux d'annoncer notre nouvelle branche, [V8 ~~version 8.0~~ V8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.0), et nous pouvons enfin répondre à cette question :
+
+<!--truncate-->
+Ce sont des correctifs de bogues et des améliorations des performances.
+
+Cet article offre un aperçu de certains des points forts en prévision de la sortie en coordination avec Chrome 80 Stable dans plusieurs semaines.
+
+## Performance (taille & vitesse)
+
+### Compression des pointeurs
+
+~~Nous avons changé tous nos `void *` en `pv`, réduisant la taille des fichiers sources jusqu'à 66 %.~~
+
+Le tas V8 contient une multitude d'éléments, par exemple des valeurs à virgule flottante, des caractères de chaîne, du code compilé, et des valeurs étiquetées (qui représentent des pointeurs dans le tas V8 ou de petits entiers). À l'inspection du tas, nous avons découvert que ces valeurs étiquetées occupent la majorité du tas !
+
+Les valeurs étiquetées sont aussi grosses que le pointeur système : elles ont une largeur de 32 bits pour les architectures 32 bits, et de 64 bits pour les architectures 64 bits. Ensuite, en comparant la version 32 bits à celle de 64 bits, nous utilisons deux fois plus de mémoire de tas pour chaque valeur étiquetée.
+
+Heureusement pour nous, nous avons un tour dans notre manche. Les bits supérieurs peuvent être synthétisés à partir des bits inférieurs. Ensuite, nous n'avons besoin de stocker que les bits inférieurs uniques dans le tas, économisant ainsi de précieuses ressources mémoire... pour économiser en moyenne 40 % de la mémoire du tas !
+
+![La compression des pointeurs permet d'économiser en moyenne 40 % de mémoire.](/_img/v8-release-80/pointer-compression-chart.svg)
+
+En améliorant la mémoire, cela se fait généralement au prix des performances. Généralement. Nous sommes fiers d'annoncer que nous avons constaté des améliorations des performances sur de vrais sites Web dans le temps passé dans V8, et dans son collecteur de déchets !
+
+:::table-wrapper
+| || Bureau | Mobile |
+|-------------|----------|---------|--------|
+| Facebook | V8-Total | -8% | -6% |
+| ^^ | GC | -10% | -17% |
+| CNN | V8-Total | -3% | -8% |
+| ^^ | GC | -14% | -20% |
+| Google Maps | V8-Total | -4% | -6% |
+| ^^ | GC | -7% | -12% |
+:::
+
+Si la compression des pointeurs a éveillé votre intérêt, soyez à l’affût d’un article de blog complet avec plus de détails.
+
+### Optimisation des fonctions intégrées d'ordre supérieur
+
+Nous avons récemment supprimé une limitation dans le pipeline d'optimisation de TurboFan qui empêchait les optimisations agressives des fonctions intégrées d'ordre supérieur.
+
+```js
+const charCodeAt = Function.prototype.call.bind(String.prototype.charCodeAt);
+
+charCodeAt(string, 8);
+```
+
+Jusqu'à présent, l'appel à `charCodeAt` était complètement opaque pour TurboFan, ce qui a conduit à la génération d'un appel générique à une fonction définie par l'utilisateur. Avec ce changement, nous sommes maintenant capables de reconnaître que nous appelons réellement la fonction intégrée `String.prototype.charCodeAt` et sommes donc capables de déclencher toutes les optimisations ultérieures que TurboFan propose pour améliorer les appels aux fonctions intégrées, ce qui conduit aux mêmes performances que :
+
+```js
+string.charCodeAt(8);
+```
+
+Ce changement affecte une multitude d'autres fonctions intégrées comme `Function.prototype.apply`, `Reflect.apply`, et de nombreuses fonctions intégrées de tableau d'ordre supérieur (par ex. `Array.prototype.map`).
+
+## JavaScript
+
+### Chaînage optionnel
+
+Lorsque vous écrivez des chaînes d'accès aux propriétés, les programmeurs doivent souvent vérifier si des valeurs intermédiaires sont nulles (c'est-à-dire `null` ou `undefined`). Une chaîne sans vérification d'erreur peut déclencher une exception, et une chaîne avec une vérification explicite de l'erreur est verbeuse et a pour conséquence non souhaitée de vérifier toutes les valeurs véridiques au lieu de seulement les valeurs non nulles.
+
+```js
+// Version sujette aux erreurs, peut déclencher une exception.
+const nameLength = db.user.name.length;
+
+// Moins sujet aux erreurs, mais plus difficile à lire.
+let nameLength;
+if (db && db.user && db.user.name) nameLength = db.user.name.length;
+```
+
+[Le chaînage optionnel](https://v8.dev/features/optional-chaining) (`?.`) permet aux programmeurs d'écrire des chaînes d'accès aux propriétés concises et robustes qui vérifient si des valeurs intermédiaires sont nulles. Si une valeur intermédiaire est nulle, l'ensemble de l'expression est évalué à `undefined`.
+
+```js
+// Vérifie toujours les erreurs et est bien plus lisible.
+const nameLength = db?.user?.name?.length;
+```
+
+En plus des accès aux propriétés statiques, les accès aux propriétés dynamiques et les appels sont également pris en charge. Veuillez consulter notre [explication des fonctionnalités](https://v8.dev/features/optional-chaining) pour plus de détails et d'exemples.
+
+### Coalescence nullish
+
+L'opérateur de [coalescence nullish](https://v8.dev/features/nullish-coalescing) `??` est un nouveau opérateur binaire à court-circuit permettant de gérer les valeurs par défaut. Actuellement, les valeurs par défaut sont parfois gérées avec l'opérateur logique `||`, comme dans l'exemple suivant.
+
+```js
+function Component(props) {
+  const enable = props.enabled || true;
+  // …
+}
+```
+
+L'utilisation de `||` est indésirable pour le calcul des valeurs par défaut car `a || b` évalue à `b` lorsque `a` est falsy. Si `props.enabled` était explicitement défini sur `false`, `enable` serait toujours vrai.
+
+Avec l'opérateur de coalescence nullish, `a ?? b` évalue à `b` lorsque `a` est nullish (`null` ou `undefined`), et sinon évalue à `a`. C'est le comportement souhaité pour les valeurs par défaut, et réécrire l'exemple en utilisant `??` corrige le bug ci-dessus.
+
+```js
+function Component(props) {
+  const enable = props.enabled ?? true;
+  // …
+}
+```
+
+L'opérateur de coalescence nullish et le chaînage optionnel sont des fonctionnalités complémentaires qui fonctionnent bien ensemble. L'exemple peut être encore modifié pour gérer le cas où aucun argument `props` n'est passé.
+
+```js
+function Component(props) {
+  const enable = props?.enabled ?? true;
+  // …
+}
+```
+
+Veuillez consulter notre [explication des fonctionnalités](https://v8.dev/features/nullish-coalescing) pour plus de détails et d'exemples.
+
+## API de V8
+
+Veuillez utiliser `git log branch-heads/7.9..branch-heads/8.0 include/v8.h` pour obtenir une liste des changements de l'API.
+
+Les développeurs avec un [dépôt V8 actif](/docs/source-code#using-git) peuvent utiliser `git checkout -b 8.0 -t branch-heads/8.0` pour expérimenter les nouvelles fonctionnalités de V8 v8.0. Alternativement, vous pouvez [vous abonner au canal Beta de Chrome](https://www.google.com/chrome/browser/beta.html) et essayer les nouvelles fonctionnalités bientôt vous-même.

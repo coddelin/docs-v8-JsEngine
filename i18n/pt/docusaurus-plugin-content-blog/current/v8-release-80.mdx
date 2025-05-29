@@ -1,0 +1,137 @@
+---
+title: "Lançamento do V8 v8.0"
+author: "Leszek Swirski, o oitavo de seu nome"
+avatars:
+  - "leszek-swirski"
+date: 2019-12-18
+tags:
+  - lançamento
+description: "O V8 v8.0 apresenta encadeamento opcional, fusão nullish, funções de ordem superior mais rápidas — ah, e 40% menos uso de memória graças à compressão de ponteiros, sem grande problema."
+tweet: "1207323849861279746"
+---
+import FullWidthImage from &apos;../src/components/release.tsx&apos;
+
+<!-- Sim, é um SVG. Por favor, não me pergunte quanto tempo levei para criá-lo. -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable no-inline-html -->
+
+<FullWidthImage />
+
+<!-- markdownlint-restore -->
+
+Finalmente chegou. Em cada lançamento do V8, a cada seis semanas quando criamos um branch como parte do nosso [processo de lançamento](/docs/release-process), surge a pergunta sobre o que acontecerá quando o V8 atingir a versão 8. Teremos uma festa? Lançaremos um novo compilador? Pularemos as versões 8 e 9 e permaneceremos eternamente na versão X do V8? Finalmente, após [mais de 10 anos](/blog/10-years) de trabalho, em nosso 100º post no blog, temos o prazer de anunciar nosso mais novo branch, [V8 ~~versão 8.0~~ V8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.0), e finalmente podemos responder a essa pergunta:
+
+<!--truncate-->
+São correções de bugs e melhorias de desempenho.
+
+Este post fornece uma prévia de alguns dos destaques antecipando o lançamento em coordenação com a versão estável do Chrome 80 em algumas semanas.
+
+## Desempenho (tamanho e velocidade)
+
+### Compressão de ponteiros
+
+~~Alteramos todos os nossos `void *` para `pv`, reduzindo o tamanho dos arquivos fonte em até 66%.~~
+
+O heap do V8 contém uma grande quantidade de itens, por exemplo, valores de ponto flutuante, caracteres de string, código compilado e valores etiquetados (que representam ponteiros no heap do V8 ou pequenos inteiros). Ao inspecionar o heap, descobrimos que esses valores etiquetados ocupam a maior parte do heap!
+
+Os valores etiquetados têm o mesmo tamanho que o ponteiro do sistema: são 32 bits para arquiteturas de 32 bits e 64 bits para arquiteturas de 64 bits. Assim, ao comparar a versão de 32 bits com a de 64 bits, estamos usando o dobro da memória heap para cada valor etiquetado.
+
+Felizmente para nós, temos um truque na manga. Os bits superiores podem ser sintetizados a partir dos bits inferiores. Então, só precisamos armazenar os bits inferiores únicos no heap, economizando preciosos recursos de memória... para economizar uma média de 40% da memória do heap!
+
+![A compressão de ponteiros economiza uma média de 40% de memória.](/_img/v8-release-80/pointer-compression-chart.svg)
+
+Ao melhorar a memória, geralmente isso vem com o custo de desempenho. Geralmente. Estamos orgulhosos de anunciar que vimos melhorias no desempenho em sites reais no tempo gasto no V8 e em seu coletor de lixo!
+
+:::table-wrapper
+| || Desktop | Móvel |
+|-------------|----------|---------|--------|
+| Facebook | V8-Total | -8% | -6% |
+| ^^ | GC | -10% | -17% |
+| CNN | V8-Total | -3% | -8% |
+| ^^ | GC | -14% | -20% |
+| Google Maps | V8-Total | -4% | -6% |
+| ^^ | GC | -7% | -12% |
+:::
+
+Se a compressão de ponteiros despertou seu interesse, fique atento a um post completo no blog com mais detalhes.
+
+### Otimização de funções de ordem superior
+
+Recentemente removemos uma limitação dentro do pipeline de otimização do TurboFan que impedia otimizações agressivas de funções de ordem superior.
+
+```js
+const charCodeAt = Function.prototype.call.bind(String.prototype.charCodeAt);
+
+charCodeAt(string, 8);
+```
+
+Até agora, a chamada para `charCodeAt` era completamente opaca para o TurboFan, o que levava à geração de uma chamada genérica a uma função definida pelo usuário. Com essa mudança, agora somos capazes de reconhecer que estamos na verdade chamando a função interna `String.prototype.charCodeAt` e, portanto, podemos acionar todas as outras otimizações que o TurboFan possui para melhorar chamadas a funções internas, o que leva ao mesmo desempenho que:
+
+```js
+string.charCodeAt(8);
+```
+
+Essa mudança afeta uma série de outras funções internas, como `Function.prototype.apply`, `Reflect.apply` e muitas funções de ordem superior de arrays (ex.: `Array.prototype.map`).
+
+## JavaScript
+
+### Encadeamento opcional
+
+Ao escrever cadeias de acessos a propriedades, os programadores muitas vezes precisam verificar se os valores intermediários são nulos (isto é, `null` ou `undefined`). Uma cadeia sem verificação de erros pode lançar exceções, e uma cadeia com verificação explícita de erros é verbosa e tem a consequência indesejada de verificar todos os valores verdadeiros, em vez de apenas os valores não nulos.
+
+```js
+// Versão propensa a erros, pode lançar exceções.
+const nameLength = db.user.name.length;
+
+// Menos propensa a erros, mas mais difícil de ler.
+let nameLength;
+if (db && db.user && db.user.name) nameLength = db.user.name.length;
+```
+
+[O encadeamento opcional](https://v8.dev/features/optional-chaining) (`?.`) permite que programadores escrevam cadeias concisas e robustas de acessos a propriedades que verificam se os valores intermediários são nulos. Se um valor intermediário for nulo, toda a expressão avalia para `undefined`.
+
+```js
+// Ainda verifica erros e é muito mais legível.
+const nameLength = db?.user?.name?.length;
+```
+
+Além dos acessos a propriedades estáticas, também são suportados acessos a propriedades dinâmicas e chamadas. Por favor, consulte nosso [explicador de recursos](https://v8.dev/features/optional-chaining) para mais detalhes e exemplos.
+
+### Coalescência nula
+
+O operador de [coalescência nula](https://v8.dev/features/nullish-coalescing) `??` é um novo operador binário de curto-circuito para lidar com valores padrão. Atualmente, valores padrão às vezes são tratados com o operador lógico `||`, como no exemplo a seguir.
+
+```js
+function Component(props) {
+  const enable = props.enabled || true;
+  // …
+}
+```
+
+O uso de `||` é indesejável para calcular valores padrão porque `a || b` avalia para `b` quando `a` é um valor falsy. Se `props.enabled` for explicitamente definido como `false`, `enable` ainda será verdadeiro.
+
+Com o operador de coalescência nula, `a ?? b` avalia para `b` quando `a` é nulo ou indefinido (`null` ou `undefined`), e caso contrário avalia para `a`. Este é o comportamento desejado para valores padrão, e reescrever o exemplo usando `??` corrige o problema mencionado acima.
+
+```js
+function Component(props) {
+  const enable = props.enabled ?? true;
+  // …
+}
+```
+
+O operador de coalescência nula e o encadeamento opcional são recursos complementares e funcionam bem juntos. O exemplo pode ser ainda mais ajustado para lidar com o caso em que nenhum argumento `props` é passado.
+
+```js
+function Component(props) {
+  const enable = props?.enabled ?? true;
+  // …
+}
+```
+
+Por favor, consulte nosso [explicador de recursos](https://v8.dev/features/nullish-coalescing) para mais detalhes e exemplos.
+
+## API do V8
+
+Por favor, use `git log branch-heads/7.9..branch-heads/8.0 include/v8.h` para obter uma lista das alterações na API.
+
+Os desenvolvedores com um [checkout ativo do V8](/docs/source-code#using-git) podem usar `git checkout -b 8.0 -t branch-heads/8.0` para experimentar os novos recursos no V8 v8.0. Alternativamente, você pode [assinar o canal Beta do Chrome](https://www.google.com/chrome/browser/beta.html) e experimentar os novos recursos em breve.

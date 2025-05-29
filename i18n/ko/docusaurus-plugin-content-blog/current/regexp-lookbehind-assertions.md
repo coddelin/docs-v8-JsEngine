@@ -1,0 +1,49 @@
+---
+title: &apos;RegExp lookbehind assertions&apos;
+author: &apos;Yang Guo, 정규 표현식 엔지니어&apos;
+avatars:
+  - &apos;yang-guo&apos;
+date: 2016-02-26 13:33:37
+tags:
+  - ECMAScript
+  - RegExp
+description: &apos;JavaScript 정규 표현식은 lookbehind 어설션과 같은 새로운 기능을 제공합니다.&apos;
+---
+ECMA-262 사양의 세 번째 버전과 함께 도입된 정규 표현식은 1999년부터 JavaScript의 일부였습니다. 기능과 표현력에서 JavaScript의 정규 표현식 구현은 다른 프로그래밍 언어와 대략 비슷한 수준을 보입니다.
+
+<!--truncate-->
+JavaScript의 RegExp에서 종종 간과되지만 때로는 매우 유용한 기능 중 하나는 lookahead 어설션입니다. 예를 들어, % 기호가 뒤따르는 숫자 시퀀스를 일치시키기 위해 `/\d+(?=%)/`를 사용할 수 있습니다. % 기호 자체는 일치 결과의 일부가 아닙니다. 이의 부정을 나타내는 `/\d+(?!%)/`는 % 기호 뒤에 오지 않는 숫자 시퀀스를 일치시킵니다:
+
+```js
+/\d+(?=%)/.exec(&apos;100% of US presidents have been male&apos;); // [&apos;100&apos;]
+/\d+(?!%)/.exec(&apos;that’s all 44 of them&apos;);                // [&apos;44&apos;]
+```
+
+lookahead의 반대 개념인 lookbehind 어설션은 JavaScript에 없었지만 .NET 프레임워크와 같은 다른 정규 표현식 구현에는 존재합니다. 읽기를 앞으로 진행하는 대신, 정규 표현식 엔진은 어설션 내에서 일치 항목을 위해 뒤로 읽습니다. $ 기호 다음에 오는 숫자 시퀀스를 일치시키려면 `/(?<=\$)\d+/`를 사용할 수 있으며, 여기서 $ 기호는 일치 결과의 일부가 되지 않습니다. 이의 부정인 `/(?<!\$)\d+/`는 $ 기호를 제외한 다른 문자 뒤를 따르는 숫자 시퀀스를 일치시킵니다.
+
+```js
+/(?<=\$)\d+/.exec(&apos;Benjamin Franklin is on the $100 bill&apos;); // [&apos;100&apos;]
+/(?<!\$)\d+/.exec(&apos;it’s worth about €90&apos;);                  // [&apos;90&apos;]
+```
+
+일반적으로, lookbehind 어설션을 구현하는 방법에는 두 가지가 있습니다. 예를 들어, Perl은 lookbehind 패턴이 고정된 길이를 가지도록 요구합니다. 즉, `*` 또는 `+`과 같은 한정자를 사용할 수 없습니다. 이 방식에서는 정규 표현식 엔진이 고정된 길이만큼 뒤로 이동하여, 이동된 위치에서 lookahead와 동일한 방식으로 lookbehind를 일치시킵니다.
+
+.NET 프레임워크의 정규 표현식 엔진은 다른 접근 방식을 취합니다. lookbehind 패턴이 몇 개의 문자를 일치시킬지 알 필요 없이, 단순히 lookbehind 패턴을 역방향으로 일치시키며 정상적인 읽기 방향에 따라 문자를 읽습니다. 이 방식으로 lookbehind 패턴은 완전한 정규 표현식 구문을 활용할 수 있으며 임의의 길이 패턴을 일치시킬 수 있습니다.
+
+분명히 두 번째 옵션이 첫 번째 옵션보다 더 강력합니다. 그래서 V8 팀과 이 기능의 TC39 챔피언들은 JavaScript가 더 표현력이 강한 버전을 채택해야 한다고 합의했습니다. 비록 구현이 약간 더 복잡할지라도요.
+
+lookbehind 어설션은 역방향으로 일치하기 때문에, 그렇지 않으면 놀라울 수 있는 미묘한 동작이 있습니다. 예를 들어, 한정자가 있는 캡처 그룹은 마지막 일치를 캡처합니다. 일반적으로 이는 가장 오른쪽에 있는 일치 항목입니다. 그러나 lookbehind 어설션 내부에서는 오른쪽에서 왼쪽으로 일치하기 때문에 가장 왼쪽에 있는 일치 항목이 캡처됩니다:
+
+```js
+/h(?=(\w)+)/.exec(&apos;hodor&apos;);  // [&apos;h&apos;, &apos;r&apos;]
+/(?<=(\w)+)r/.exec(&apos;hodor&apos;); // [&apos;r&apos;, &apos;h&apos;]
+```
+
+캡처 그룹은 캡처된 후 백 참조를 통해 참조할 수 있습니다. 일반적으로 백 참조는 캡처 그룹의 오른쪽에 있어야 합니다. 그렇지 않으면 아직 캡처되지 않았으므로 빈 문자열과 일치합니다. 그러나 lookbehind 어설션 내에서는 일치 방향이 반대로 됩니다:
+
+```js
+/(?<=(o)d\1)r/.exec(&apos;hodor&apos;); // null
+/(?<=\1d(o))r/.exec(&apos;hodor&apos;); // [&apos;r&apos;, &apos;o&apos;]
+```
+
+lookbehind 어설션은 현재 TC39 사양 프로세스에서 [매우 초기 단계](https://github.com/tc39/proposal-regexp-lookbehind)에 있습니다. 그러나 RegExp 구문에 대한 명백한 확장이므로, 우리는 그것의 구현을 우선하기로 결정했습니다. V8 버전 4.9 이상에서 `--harmony`를 사용하거나 Chrome 49 버전 이후에서 실험적인 JavaScript 기능을 활성화(사용 `about:flags`)하여 lookbehind 어설션을 이미 실험해 볼 수 있습니다.

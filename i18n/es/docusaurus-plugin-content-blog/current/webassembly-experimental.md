@@ -1,0 +1,22 @@
+---
+title: &apos;Soporte experimental para WebAssembly en V8&apos;
+author: &apos;Seth Thompson, Responsable de WebAssembly&apos;
+date: 2016-03-15 13:33:37
+tags:
+  - WebAssembly
+description: &apos;A partir de hoy, el soporte experimental para WebAssembly está disponible en V8 y Chromium detrás de una bandera.&apos;
+---
+_Para una descripción completa de WebAssembly y una hoja de ruta para la colaboración comunitaria futura, vea [Un hito de WebAssembly](https://hacks.mozilla.org/2016/03/a-webassembly-milestone/) en el blog de Mozilla Hacks._
+
+Desde junio de 2015, colaboradores de Google, Mozilla, Microsoft, Apple y el [Grupo Comunitario de WebAssembly del W3C](https://www.w3.org/community/webassembly/participants) han estado trabajando arduamente [diseñando](https://github.com/WebAssembly/design), [especificando](https://github.com/WebAssembly/spec), e implementando ([1](https://www.chromestatus.com/features/5453022515691520), [2](https://platform-status.mozilla.org/#web-assembly), [3](https://github.com/Microsoft/ChakraCore/wiki/Roadmap), [4](https://webkit.org/status/#specification-webassembly)) WebAssembly, un nuevo tiempo de ejecución y objetivo de compilación para la web. [WebAssembly](https://webassembly.github.io/) es un bytecode de bajo nivel y portátil diseñado para codificarse en un formato binario compacto y ejecutarse a casi la velocidad nativa en una zona de pruebas segura para la memoria. Como una evolución de tecnologías existentes, WebAssembly está estrechamente integrado con la plataforma web, así como también es más rápido para descargar por la red y más rápido de instanciar que [asm.js](http://asmjs.org/), un subconjunto de JavaScript de bajo nivel.
+
+<!--truncate-->
+A partir de hoy, el soporte experimental para WebAssembly está disponible en V8 y Chromium detrás de una bandera. Para probarlo en V8, ejecute `d8` versión 5.1.117 o superior desde la línea de comandos con la bandera `--expose_wasm` o active la función Experimental WebAssembly en `chrome://flags#enable-webassembly` en Chrome Canary 51.0.2677.0 o superior. Después de reiniciar el navegador, un nuevo objeto `Wasm` estará disponible desde el contexto de JavaScript que expone una API capaz de instanciar y ejecutar módulos WebAssembly. **Gracias a los esfuerzos de colaboradores en Mozilla y Microsoft, dos implementaciones compatibles de WebAssembly también están funcionando detrás de una bandera en [Firefox Nightly](https://hacks.mozilla.org/2016/03/a-webassembly-milestone) y en una compilación interna de [Microsoft Edge](http://blogs.windows.com/msedgedev/2016/03/15/previewing-webassembly-experiments) (demostrado en captura de video).**
+
+El sitio web del proyecto WebAssembly tiene una [demo](https://webassembly.github.io/demo/) que muestra el uso del tiempo de ejecución en un juego 3D. En los navegadores que admiten WebAssembly, la página de demostración cargará e instanciará un módulo wasm que utiliza WebGL y otras API de la plataforma web para renderizar un juego interactivo. En otros navegadores, la página de demostración recurre a una versión asm.js del mismo juego.
+
+![[Demostración de WebAssembly](https://webassembly.github.io/demo/)](/_img/webassembly-experimental/tanks.jpg)
+
+En el trasfondo, la implementación de WebAssembly en V8 está diseñada para reutilizar gran parte de la infraestructura existente de la máquina virtual de JavaScript, específicamente el [compilador TurboFan](/blog/turbofan-jit). Un decodificador especializado de WebAssembly valida módulos al verificar tipos, índices de variables locales, referencias de funciones, valores de retorno y estructura de flujo de control en un solo paso. El decodificador produce un gráfico TurboFan que es procesado por varias pasadas de optimización y finalmente se convierte en código máquina por el mismo backend que genera código máquina para JavaScript y asm.js optimizados. En los próximos meses, el equipo se concentrará en mejorar el tiempo de inicio de la implementación de V8 a través de ajustes en el compilador, paralelismo y mejoras en la política de compilación.
+
+Dos próximos cambios también mejorarán significativamente la experiencia del desarrollador. Una representación textual estándar de WebAssembly permitirá a los desarrolladores ver el origen de un binario de WebAssembly como cualquier otro script o recurso web. Además, el actual objeto `Wasm` provisional será rediseñado para proporcionar un conjunto más poderoso y idiomático de métodos y propiedades para instanciar e inspeccionar módulos de WebAssembly desde JavaScript.

@@ -1,0 +1,184 @@
+---
+title: &apos;追加のバックトラッキングしないRegExpエンジン&apos;
+author: &apos;Martin Bidlingmaier&apos;
+date: 2021-01-11
+tags:
+ - 内部機構
+ - RegExp
+description: &apos;V8には、フォールバックとして機能し、多くの破滅的なバックトラッキングを防ぐ追加のRegExpエンジンが導入されました。&apos;
+tweet: &apos;1348635270762139650&apos;
+---
+v8.8以降、V8は既存の[Irregexpエンジン](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html)に加えて、新しい実験的なバックトラッキングしないRegExpエンジンを搭載しました。このエンジンは、対象文字列のサイズに対して線形時間で実行されることを保証します。実験的なエンジンは以下の機能フラグの背後で利用可能です。
+
+<!--truncate-->
+![`/(a*)*b/.exec(&apos;a&apos;.repeat(n))` の実行時間のプロット（n ≤ 100）](/_img/non-backtracking-regexp/runtime-plot.svg)
+
+新しいRegExpエンジンを設定する方法は以下の通りです：
+
+- `--enable-experimental-regexp_engine-on-excessive-backtracks` を使用すると、過剰なバックトラッキング発生時にバックトラッキングしないエンジンへフォールバックします。
+- `--regexp-backtracks-before-fallback N` （デフォルト値N = 50,000）は、「過剰」と見なされるバックトラック数を指定します。これを超えるとフォールバックが発動します。
+- `--enable-experimental-regexp-engine` は、正規表現における非標準の `l`（「線形」）フラグの認識を有効にします。例: `/(a*)*b/l`。このフラグを付けて構築された正規表現は、常に新しいエンジンで積極的に処理されます。Irregexpは全く関与しません。この新しいエンジンが`l`-RegExpのパターンを処理できない場合、構築時に例外がスローされます。この機能は、将来的に信頼できない入力に対して正規表現を実行するアプリを強化するために使用されることを期待しています。ただし、現在では実験的機能であり、Irregexpは一般的なパターンの多くにおいて、新しいエンジンよりもはるかに高速です。
+
+フォールバックメカニズムはすべてのパターンに適用されるわけではありません。機能発動にはRegExpが以下の条件を満たす必要があります：
+
+- バックリファレンスを含まないこと
+- 先読みや後読みを含まないこと
+- `/a{200,500}/` のような大きなまたは深くネストされた有限繰り返しを含まないこと
+- `u`（Unicode）または `i`（大文字小文字区別無し）フラグが設定されていないこと
+
+## 背景：破滅的なバックトラッキング
+
+V8でのRegExpマッチングはIrregexpエンジンによって処理されます。Irregexpは、専用のネイティブコード（または[バイトコード](/blog/regexp-tier-up)）にRegExpをJITコンパイルし、多くの場合、非常に高速に動作します。ただし、一部のパターンでは、Irregexpの実行時間が入力文字列のサイズに対して指数関数的に増加することがあります。上記の例 `/(a*)*b/.exec(&apos;a&apos;.repeat(100))` は、Irregexpで実行すると生涯内に終了しません。
+
+それでは、ここで何が起こっているのでしょうか？ Irregexpは*バックトラッキング* エンジンです。マッチングが続行する選択肢がある場合、Irregexpは最初の選択肢をすべて探索し、必要に応じてバックトラッキングして2番目の選択肢を探索します。たとえば、パターン `/abc|[az][by][0-9]/` を文字列 `&apos;ab3&apos;` と照合するシナリオを考えます。この場合、Irregexpは最初に `/abc/` を試し、2文字目で失敗します。その後、2文字バックトラックして2番目の選択肢 `/[az][by][0-9]/` を成功裏にマッチングします。`/(abc)*xyz/` のようなクォンタファイア付きパターンの場合、ボディマッチ後に再びボディをマッチングするか、残りのパターンを続けるかを選択する必要があります。
+
+`/(a*)*b/` を小さい文字列 `&apos;aaa&apos;` に照合するときに何が起こるのか理解してみましょう。このパターンは入れ子になったクォンタファイアを含むため、`&apos;a&apos;` の*シーケンスのシーケンス* をマッチし、その後に `&apos;b&apos;` をマッチングするよう要求しています。文字列には `&apos;b&apos;` が含まれていないため明らかにマッチングは失敗します。しかし、`/(a*)*/` はマッチし、それを指数関数的に多くの方法で行います：
+
+```js
+&apos;aaa&apos;           &apos;aa&apos;, &apos;a&apos;           &apos;aa&apos;, &apos;&apos;
+&apos;a&apos;, &apos;aa&apos;       &apos;a&apos;, &apos;a&apos;, &apos;a&apos;       &apos;a&apos;, &apos;a&apos;, &apos;&apos;
+…
+```
+
+一見すると、Irregexpは最終的な `/b/` のマッチング失敗が `/(a*)*/` の間違ったマッチング方法によるものではないと判断できません。そのため、すべてのバリエーションを試行する必要があります。この問題は「指数関数的」または「破滅的」バックトラッキングとして知られています。
+
+## オートマトンとバイトコードとしてのRegExps
+
+破滅的なバックトラッキングに耐性のある代替アルゴリズムを理解するためには、[オートマトン](https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton) を介した短い説明が必要です。すべての正規表現はオートマトンと等価です。たとえば、上記のRegExp `/(a*)*b/` は次のオートマトンに対応します：
+
+![`/(a*)*b/` に対応するオートマトン](/_img/non-backtracking-regexp/example-automaton.svg)
+
+このオートマトンはパターンにより一意に決まるものではないことに注意してください。上記は機械的な翻訳プロセスによるオートマトンであり、`/(a*)*/` に対してV8の新しいRegExpエンジン内部で使用されるものです。
+ラベルのない辺はε遷移です: これらは入力を消費しません。ε遷移はオートマトンのサイズをパターンのサイズとほぼ同じに保つために必要です。ε遷移を安易に取り除くと、遷移数が二次的に増加する可能性があります。
+また、ε遷移により以下の4つの基本状態を基に正規表現に対応するオートマトンを構築することができます:
+
+![正規表現バイトコード命令](/_img/non-backtracking-regexp/state-types.svg)
+
+ここでは状態から出る遷移だけを分類し、状態へ入る遷移は任意の形式が許されることにします。これらの状態のみから構築されたオートマトンは*バイトコードプログラム*として表現することができ、各状態は命令に対応します。例えば、2つのε遷移を持つ状態は`FORK`命令として表されます。
+
+## バックトラッキングアルゴリズム
+
+Irregexpが基づいているバックトラッキングアルゴリズムについて再考し、それをオートマトンの観点で記述します。パターンに対応するバイトコード配列`code`が与えられ、`input`がパターンに一致するかどうかを`test`したいとします。`code`が以下のような見た目をしていると仮定します:
+
+```js
+const code = [
+  {opcode: 'FORK', forkPc: 4},
+  {opcode: 'CONSUME', char: '1'},
+  {opcode: 'CONSUME', char: '2'},
+  {opcode: 'JMP', jmpPc: 6},
+  {opcode: 'CONSUME', char: 'a'},
+  {opcode: 'CONSUME', char: 'b'},
+  {opcode: 'ACCEPT'}
+];
+```
+
+このバイトコードは(スティッキーな)パターン`/12|ab/y`に対応します。`FORK`命令の`forkPc`フィールドは、代替状態/命令で続けることができるインデックス(「プログラムカウンタ」)を示しており、`jmpPc`も同様です。インデックスは0から始まります。バックトラッキングアルゴリズムは以下のようにJavaScriptで実装できます。
+
+```js
+let ip = 0; // 入力位置。
+let pc = 0; // プログラムカウンタ: 次の命令のインデックス。
+const stack = []; // バックトラックスタック。
+while (true) {
+  const inst = code[pc];
+  switch (inst.opcode) {
+    case 'CONSUME':
+      if (ip < input.length && input[ip] === inst.char) {
+        // 入力が期待通り: 続行。
+        ++ip;
+        ++pc;
+      } else if (stack.length > 0) {
+        // 誤った入力文字だが、バックトラック可能。
+        const back = stack.pop();
+        ip = back.ip;
+        pc = back.pc;
+      } else {
+        // 誤った文字でバックトラック不可。
+        return false;
+      }
+      break;
+    case 'FORK':
+      // 後でバックトラックするための代替を保存。
+      stack.push({ip: ip, pc: inst.forkPc});
+      ++pc;
+      break;
+    case 'JMP':
+      pc = inst.jmpPc;
+      break;
+    case 'ACCEPT':
+      return true;
+  }
+}
+```
+
+この実装は、バイトコードプログラムに文字を消費しないループが含まれている場合、つまりオートマトンにε遷移のみからなるループがある場合、無限ループに陥ります。この問題は、1文字の先読みを使用して解決できます。Irregexpはこの単純な実装よりもはるかに洗練されていますが、最終的には同じアルゴリズムに基づいています。
+
+## 非バックトラッキングアルゴリズム
+
+バックトラッキングアルゴリズムはオートマトンの*深さ優先探索*に対応します: 我々は常に`FORK`命令の第一代替を完全に探索し、必要に応じて第二代替にバックトラックします。その代替である非バックトラッキングアルゴリズムは、予想どおりオートマトンの*幅優先探索*に基づいています。ここではすべての代替を同時に、入力文字列の現在位置に対応して同時に進めます。このため、現在の状態のリストを維持し、入力文字ごとに対応する遷移を取ることで全状態を進めます。重要なのは、現在の状態のリストから重複を削除することです。
+
+JavaScriptでの単純な実装は次のようなものです:
+
+```js
+// 入力位置。
+let ip = 0;
+// 現在のpc値のリスト、または一致が見つかれば`'ACCEPT'`。ステートの
+// pc 0から始まり、ε遷移を辿ります。
+let pcs = followEpsilons([0]);
+
+while (true) {
+  // 一致が見つかれば終了し…
+  if (pcs === 'ACCEPT') return true;
+  // 入力文字列が尽きた場合も終了。
+  if (ip >= input.length) return false;
+
+  // 正しい文字を消費するpcsのみ続行。
+  pcs = pcs.filter(pc => code[pc].char === input[ip]);
+  // 残りのpcsを次の命令に進行。
+  pcs = pcs.map(pc => pc + 1);
+  // ε遷移を辿ります。
+  pcs = followEpsilons(pcs);
+
+  ++ip;
+}
+```
+
+ここで`followEpsilons`は、プログラムカウンタのリストを受け取り、`CONSUME`命令に到達可能なプログラムカウンタのリストを計算する関数です(つまり、`FORK`や`JMP`のみを実行することで)。返されるリストには重複が含まれてはなりません。`ACCEPT`命令に到達可能な場合、この関数は`'ACCEPT'`を返します。次のように実装できます:
+
+```js
+function followEpsilons(pcs) {
+  // 見たことがあるpcsの集合。
+  const visitedPcs = new Set();
+  const result = [];
+
+  while (pcs.length > 0) {
+    const pc = pcs.pop();
+
+    // 以前見たpcは無視可能。
+    if (visitedPcs.has(pc)) continue;
+    visitedPcs.add(pc);
+
+    const inst = code[pc];
+    switch (inst.opcode) {
+      case 'CONSUME':
+        result.push(pc);
+        break;
+      case &apos;FORK&apos;:
+        pcs.push(pc + 1, inst.forkPc);
+        break;
+      case &apos;JMP&apos;:
+        pcs.push(inst.jmpPc);
+        break;
+      case &apos;ACCEPT&apos;:
+        return &apos;ACCEPT&apos;;
+    }
+  }
+
+  return result;
+}
+```
+
+重複排除を`visitedPcs`セットを通して行っているので、`followEpsilons`では各プログラムカウンタが一度ずつだけ調査されることが保証されています。これにより、`result`リストには重複が含まれず、`followEpsilons`の実行時間が`code`配列、つまりパターンのサイズによって制限されることが保証されます。`followEpsilons`は最大で`input.length`回呼び出されるため、正規表現マッチングの総実行時間は`𝒪(pattern.length * input.length)`で制限されています。
+
+この非バックトラッキングアルゴリズムは、例えば単語境界や（サブ）マッチ境界の計算など、JavaScript正規表現のほとんどの機能をサポートするように拡張することができます。ただし、後方参照、先読みおよび後読みは、最悪ケースの複雑性を根本的に変更するような大規模な変更なしにはサポートすることができません。
+
+V8の新しい正規表現エンジンは、このアルゴリズムとそれを実装した[re2](https://github.com/google/re2)および[Rust regex](https://github.com/rust-lang/regex)ライブラリに基づいています。このアルゴリズムに関する詳細な議論は、Russ Coxによる素晴らしい[ブログ記事シリーズ](https://swtch.com/~rsc/regexp/)で読むことができます。彼はまた、re2ライブラリのオリジナル作成者でもあります。

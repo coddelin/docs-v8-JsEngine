@@ -1,0 +1,323 @@
+---
+title: &apos;V8에서 정렬을 처리하기&apos;
+author: &apos;Simon Zünd ([@nimODota](https://twitter.com/nimODota)), 일관된 비교자&apos;
+avatars:
+  - simon-zuend
+date: 2018-09-28 11:20:37
+tags:
+  - ECMAScript
+  - internals
+description: &apos;V8 v7.0 / Chrome 70부터 Array.prototype.sort가 안정적으로 작동합니다.&apos;
+tweet: &apos;1045656758700650502&apos;
+---
+`Array.prototype.sort`는 V8에서 셀프 호스팅 JavaScript로 구현된 마지막 내장 함수 중 하나였습니다. 이를 이식하는 과정에서 다양한 알고리즘과 구현 전략을 실험할 기회를 얻었고, 마침내 V8 v7.0 / Chrome 70에서 [안정적으로 작동하게 만들었습니다](https://mathiasbynens.be/demo/sort-stability).
+
+<!--truncate-->
+## 배경
+
+JavaScript에서 정렬은 어렵습니다. 이 블로그 포스트는 정렬 알고리즘과 JavaScript 언어 간의 상호작용에서 발생하는 몇 가지 특이점에 대해 살펴보고, V8을 안정적인 알고리즘으로 이동시키고 성능을 보다 예측 가능하게 만드는 여정을 설명합니다.
+
+다양한 정렬 알고리즘을 비교할 때 메모리 작업이나 비교 횟수의 점근적 성장(즉, “Big O” 표기법)을 제한하여 최악 및 평균 성능을 고려합니다. 동적 언어인 JavaScript에서는 비교 작업이 일반적으로 메모리 접근보다 훨씬 더 비쌉니다. 이는 정렬 중 두 값을 비교하는 과정에서 사용자 코드를 호출해야 하기 때문입니다.
+
+사용자가 제공한 비교 함수에 기반하여 숫자를 오름차순으로 정렬하는 간단한 예제를 살펴봅시다. _일관된_ 비교 함수는 제공된 두 값이 각각 더 작거나 같거나 더 큰 경우에 `-1`(또는 기타 음수 값), `0`, `1`(또는 기타 양수 값)을 반환합니다. 이 패턴을 따르지 않는 비교 함수는 _일관되지 않으며_, 배열을 수정하는 등 임의의 부작용을 초래할 수 있습니다.
+
+```js
+const array = [4, 2, 5, 3, 1];
+
+function compare(a, b) {
+  // 여기에 임의의 코드가 들어갈 수 있습니다, 예: `array.push(1);`.
+  return a - b;
+}
+
+// “전형적인” 정렬 호출.
+array.sort(compare);
+```
+
+다음 예제에서도 사용자 코드가 호출될 수 있습니다. “기본” 비교 함수는 두 값을 `toString`으로 호출하고 문자열 표현에서 사전식 비교를 수행합니다.
+
+```js
+const array = [4, 2, 5, 3, 1];
+
+array.push({
+  toString() {
+    // 여기에 임의의 코드가 들어갈 수 있습니다, 예: `array.push(1);`.
+    return &apos;42&apos;;
+  }
+});
+
+// 비교 함수 없이 정렬합니다.
+array.sort();
+```
+
+### 접근자와 프로토타입 체인 상호작용의 재미있는 요소들
+
+이제 사양을 벗어나 “구현 정의”된 동작 영역으로 들어갑니다. 사양에는 엔진이 객체/배열을 마음대로 정렬하거나 아예 정렬하지 않아도 되는 조건 목록이 포함되어 있습니다. 엔진은 몇 가지 기본 규칙을 따라야 하지만 그 외의 것은 거의 자유롭게 처리할 수 있습니다. 이는 엔진 개발자에게 다양한 구현을 실험할 자유를 제공하지만, 사용자는 사양에서 요구하지 않더라도 합리적인 동작을 기대하게 됩니다. 그러나 “합리적인 동작”을 정의하는 것이 항상 명확하지 않기 때문에 더 복잡해집니다.
+
+이 섹션에서는 여전히 `Array#sort`와 관련하여 엔진 동작이 크게 다른 몇 가지 측면을 보여줍니다. 이는 어려운 경계 사례이며, 위에서 언급했듯이 무엇이 “정확한 행동인지” 항상 명확하지 않습니다. 우리는 _강력히_ 이런 종류의 코드를 작성하지 않는 것을 권장합니다; 엔진은 이를 최적화하지 않을 것입니다.
+
+첫 번째 예제는 몇 가지 접근자(예: getter 및 setter)가 있는 배열 및 다양한 JavaScript 엔진에서의 “호출 로그”를 보여줍니다. 접근자는 생성된 정렬 순서가 구현에 종속적인 첫 번째 사례입니다:
+
+```js
+const array = [0, 1, 2];
+
+Object.defineProperty(array, &apos;0&apos;, {
+  get() { console.log(&apos;get 0&apos;); return 0; },
+  set(v) { console.log(&apos;set 0&apos;); }
+});
+
+Object.defineProperty(array, &apos;1&apos;, {
+  get() { console.log(&apos;get 1&apos;); return 1; },
+  set(v) { console.log(&apos;set 1&apos;); }
+});
+
+array.sort();
+```
+
+다양한 엔진에서 해당 코드 스니펫의 출력입니다. 이 경우 “옳다”거나 “틀리다”는 답이 없습니다 — 사양에서 이를 구현에게 맡깁니다!
+
+```
+// Chakra
+get 0
+get 1
+set 0
+set 1
+
+// JavaScriptCore
+get 0
+get 1
+get 0
+get 0
+get 1
+get 1
+set 0
+set 1
+
+// V8
+get 0
+get 0
+get 1
+get 1
+get 1
+get 0
+
+#### SpiderMonkey
+get 0
+get 1
+set 0
+set 1
+```
+
+다음 예제는 프로토타입 체인과의 상호작용을 보여줍니다. 간략히 하기 위해 호출 로그는 생략합니다.
+
+```js
+const object = {
+ 1: &apos;d1&apos;,
+ 2: &apos;c1&apos;,
+ 3: &apos;b1&apos;,
+ 4: undefined,
+ __proto__: {
+   length: 10000,
+   1: &apos;e2&apos;,
+   10: &apos;a2&apos;,
+   100: &apos;b2&apos;,
+   1000: &apos;c2&apos;,
+   2000: undefined,
+   8000: &apos;d2&apos;,
+   12000: &apos;XX&apos;,
+   __proto__: {
+     0: &apos;e3&apos;,
+     1: &apos;d3&apos;,
+     2: &apos;c3&apos;,
+     3: &apos;b3&apos;,
+     4: &apos;f3&apos;,
+     5: &apos;a3&apos;,
+     6: undefined,
+   },
+ },
+};
+Array.prototype.sort.call(object);
+```
+
+출력 결과는 정렬된 후 `object`를 보여줍니다. 다시 말하지만, 여기에 정답은 없습니다. 이 예는 인덱스된 프로퍼티와 프로토타입 체인 간의 상호작용이 얼마나 이상할 수 있는지를 보여줍니다:
+
+```js
+// Chakra
+[&apos;a2&apos;, &apos;a3&apos;, &apos;b1&apos;, &apos;b2&apos;, &apos;c1&apos;, &apos;c2&apos;, &apos;d1&apos;, &apos;d2&apos;, &apos;e3&apos;, undefined, undefined, undefined]
+
+// JavaScriptCore
+[&apos;a2&apos;, &apos;a2&apos;, &apos;a3&apos;, &apos;b1&apos;, &apos;b2&apos;, &apos;b2&apos;, &apos;c1&apos;, &apos;c2&apos;, &apos;d1&apos;, &apos;d2&apos;, &apos;e3&apos;, undefined]
+
+// V8
+[&apos;a2&apos;, &apos;a3&apos;, &apos;b1&apos;, &apos;b2&apos;, &apos;c1&apos;, &apos;c2&apos;, &apos;d1&apos;, &apos;d2&apos;, &apos;e3&apos;, undefined, undefined, undefined]
+
+// SpiderMonkey
+[&apos;a2&apos;, &apos;a3&apos;, &apos;b1&apos;, &apos;b2&apos;, &apos;c1&apos;, &apos;c2&apos;, &apos;d1&apos;, &apos;d2&apos;, &apos;e3&apos;, undefined, undefined, undefined]
+```
+
+### V8의 정렬 전후 작업
+
+:::note
+**참고:** 이 섹션은 2019년 6월 V8 v7.7에서의 `Array#sort` 전처리 및 후처리 변경 사항을 반영하도록 업데이트되었습니다.
+:::
+
+V8은 실제로 정렬하기 전에 하나의 전처리 단계와 정렬 후 하나의 후처리 단계를 가집니다. 기본적인 아이디어는 모든 `undefined`가 아닌 값을 임시 목록에 수집하고, 이 목록을 정렬한 후 정렬된 값을 실제 배열 또는 객체에 다시 기록하는 것입니다. 이를 통해 V8은 자체적으로 정렬 중 접근자나 프로토타입 체인과의 상호작용을 신경 쓰지 않아도 됩니다.
+
+사양에서는 `Array#sort`가 다음 세 가지 세그먼트로 개념적으로 분리된 정렬 순서를 생성해야 한다고 기대합니다:
+
+  1. 비교 함수에 따라 정렬된 모든 `undefined`가 아닌 값들.
+  1. 모든 `undefined` 값들.
+  1. 모든 홀 즉, 존재하지 않는 프로퍼티.
+
+실제 정렬 알고리즘은 첫 번째 세그먼트에만 적용될 필요가 있습니다. 이를 달성하기 위해 V8은 대략 다음과 같은 방식으로 작동하는 전처리 단계를 가집니다:
+
+  1. 배열 또는 정렬할 객체의 `“length”` 프로퍼티 값을 `length`로 설정합니다.
+  1. `numberOfUndefineds`를 0으로 설정합니다.
+  1. `[0, length)` 범위의 각 `value`에 대해:
+    a. `value`가 홀인 경우: 아무 작업도 하지 않음
+    b. `value`가 `undefined`인 경우: `numberOfUndefineds`를 1 증가시킴.
+    c. 그렇지 않은 경우, `value`를 임시 목록 `elements`에 추가.
+
+이 단계들이 실행된 후, 모든 `undefined`가 아닌 값들은 임시 목록 `elements`에 포함됩니다. `undefined` 값은 단순히 카운트만 되며, `elements`에 추가되지 않습니다. 앞서 언급한 것처럼 사양은 `undefined` 값을 끝으로 정렬해야 한다고 요구하지만, `undefined` 값은 사용자 제공 비교 함수에 실제로 전달되지 않으므로 `undefined`가 발생한 횟수만 카운트해도 됩니다.
+
+다음 단계는 실제로 `elements`를 정렬하는 것입니다. 자세한 설명은 [TimSort 섹션](/blog/array-sort#timsort)을 참조하십시오.
+
+정렬이 완료되면 정렬된 값을 원래 배열 또는 객체에 다시 기록해야 합니다. 후처리 단계는 다음 세 단계로 구성됩니다:
+
+  1. `[0, elements.length)` 범위의 `elements` 값을 원래 객체에 다시 기록합니다.
+  1. `[elements.length, elements.length + numberOfUndefineds)` 범위의 모든 값을 `undefined`로 설정합니다.
+  1. `[elements.length + numberOfUndefineds, length)` 범위의 모든 값을 삭제합니다.
+
+3단계는 원래 객체에 정렬 범위에서 홀이 포함된 경우에 필요합니다. `[elements.length + numberOfUndefineds, length)` 범위의 값은 이미 앞으로 이동되었으며, 3단계를 수행하지 않으면 중복 값이 발생할 수 있습니다.
+
+## 역사
+
+`Array.prototype.sort`와 `TypedArray.prototype.sort`는 동일한 JavaScript로 작성된 퀵소트 구현을 사용했습니다. 정렬 알고리즘 자체는 비교적 간단합니다: 기본적으로 길이가 짧은 배열(`length < 10`)의 경우 삽입 정렬(Insertion Sort)로 대체되는 퀵소트를 사용합니다. 퀵소트 재귀가 길이 10의 하위 배열에 도달했을 때도 삽입 정렬로 대체되었습니다. 삽입 정렬은 짧은 배열에 대해 더 효율적입니다. 퀵소트는 분할 후 두 번 재귀적으로 호출되기 때문입니다. 각 재귀 호출은 스택 프레임을 생성(및 폐기)하는 오버헤드를 가집니다.
+
+적합한 피벗 요소를 선택하는 것은 퀵소트에서 큰 영향을 미칩니다. V8은 두 가지 전략을 사용했습니다:
+
+- 피벗은 정렬된 하위 배열의 첫 번째, 마지막, 그리고 세 번째 요소(작은 배열의 경우 세 번째 요소는 중간 요소임)의 중간값으로 선택되었습니다.
+- 더 큰 배열의 경우 샘플이 채취되고 정렬된 후 위 계산에서 세 번째 요소로 사용되었습니다.
+
+퀵소트의 장점 중 하나는 제자리 정렬(in-place)이라는 것입니다. 메모리 오버헤드는 대형 배열 정렬 시 샘플을 위한 작은 배열을 할당하고, log(n) 스택 공간을 사용한 데서 발생합니다. 그러나 단점은 안정적인 알고리즘이 아니며, 최악의 경우 퀵소트가 𝒪(n²)로 성능이 저하될 가능성이 있다는 것입니다.
+
+### V8 Torque 도입
+
+V8 블로그의 열렬한 독자라면 [`CodeStubAssembler`](/blog/csa) 또는 줄여서 CSA에 대해 들어본 적이 있을 것입니다. CSA는 V8 구성 요소로, 우리에게 TurboFan 후속 처리를 사용하여 적절한 아키텍처를 위한 기계 코드로 변환되는 저수준 TurboFan IR을 C++로 직접 작성할 수 있게 합니다.
+
+CSA는 JavaScript 내장 기능을 위한 소위 '빠른 경로'를 작성하기 위해 많이 사용됩니다. 내장 기능의 빠른 경로 버전은 일반적으로 특정 불변성이 유지되는지 확인한 후(예: 프로토타입 체인에 요소가 없거나 접근자가 없는 경우 등) 더 빠르고 특정한 연산을 사용하여 내장 기능의 기능을 구현합니다. 이를 통해 보다 일반적인 버전보다 10배 이상 빠른 실행 시간이 가능해질 수 있습니다.
+
+CSA의 단점은 정말로 조립 언어로 간주될 수 있다는 점입니다. 제어 흐름은 명시적인 `labels`와 `gotos`를 사용하여 모델링되며, 이는 CSA에서 더 복잡한 알고리즘을 구현하기 어렵게 만들고 읽기 어렵고 오류가 발생하기 쉽습니다.
+
+[V8 Torque](/docs/torque)를 소개합니다. Torque는 현재 CSA만을 컴파일 대상로 사용하는 TypeScript 유사 문법의 도메인 특화 언어입니다. Torque는 CSA와 거의 동일한 수준의 제어를 제공하는 동시에 `while` 및 `for` 루프와 같은 고급 구문을 제공합니다. 또한 강력하게 타입이 지정되며, 미래에는 자동 경계 초과 검사와 같은 보안 검사 기능을 포함하여 V8 엔지니어들에게 더 강력한 보증을 제공할 예정입니다.
+
+V8 Torque로 다시 작성된 첫 번째 주요 내장 기능은 [`TypedArray#sort`](/blog/v8-release-68)와 [`Dataview` 작업](/blog/dataview)이었습니다. 두 번째로, Torque 개발자들이 어떤 언어 기능이 필요한지 피드백을 받고 내장 기능을 효율적으로 작성하도록 사용하는 관용구를 결정하는 데 추가적인 목적을 제공했습니다. 이 글을 작성할 당시, 몇 가지 `JSArray` 내장 기능에서 자체 호스팅 JavaScript 백업 구현이 Torque로 이동되었으며(예: `Array#unshift`), 다른 것들은 완전히 다시 작성되었습니다(예: `Array#splice` 및 `Array#reverse`).
+
+### `Array#sort`를 Torque로 이동
+
+초기 `Array#sort` Torque 버전은 JavaScript 구현을 거의 그대로 이식한 것이었습니다. 유일한 차이점은 더 큰 배열의 경우 샘플링 접근 방식을 사용하는 대신 피벗 계산을 위해 세 번째 요소를 무작위로 선택했다는 점입니다.
+
+이 방식은 합리적으로 잘 작동했지만, 여전히 퀵소트를 사용하기 때문에 `Array#sort`는 불안정한 상태로 남아 있었습니다. [안정적인 `Array#sort` 요청](https://bugs.chromium.org/p/v8/issues/detail?id=90)은 V8의 버그 트래커에서 가장 오래된 티켓 중 하나입니다. 다음 단계로 TimSort를 실험하면서 여러 이점이 있었습니다. 첫째, TimSort는 안정적이며 좋은 알고리즘적 보증을 제공한다는 점이 마음에 들었습니다(다음 섹션 참조). 둘째, Torque는 아직 진행 중인 작업이었으며, TimSort를 사용하는 `Array#sort`와 같은 더 복잡한 내장 기능을 구현함으로써 Torque 언어에 영향을 미치는 많은 실행 가능한 피드백을 생성했습니다.
+
+## Timsort
+
+Timsort는 2002년 Python을 위해 Tim Peters에 의해 최초로 개발된 적응형 안정적인 MergeSort 변형으로 가장 잘 묘사될 수 있습니다. 세부 사항은 다소 복잡하며 [Tim Peters 자신](https://github.com/python/cpython/blob/master/Objects/listsort.txt) 또는 [Wikipedia 페이지](https://en.wikipedia.org/wiki/Timsort)에서 가장 잘 설명되지만 기본 사항은 이해하기 쉽습니다. MergeSort가 보통 재귀적으로 작동하는 반면 Timsort는 반복적으로 작동합니다. 배열을 왼쪽에서 오른쪽으로 처리하고 소위 _런(runs)_을 찾습니다. 런은 이미 정렬된 시퀀스를 말합니다. 이는 '잘못된 방식'으로 정렬된 시퀀스도 포함되며, 이러한 시퀀스는 단순히 뒤집어서 런을 형성할 수 있습니다. 정렬 프로세스 시작 시 입력 길이에 따라 최소 런 길이가 결정됩니다. Timsort가 이 최소 런 길이의 자연 런을 찾을 수 없으면 삽입 정렬을 사용하여 런을 '인공적으로 부스트' 합니다.
+
+이 방식으로 발견된 런은 스택을 사용하여 추적되며 각 런의 시작 인덱스와 길이를 기록합니다. 스택의 런이 주기적으로 병합되어 최종적으로 하나의 정렬된 런만 남게 됩니다. Timsort는 런을 병합할 때 균형을 유지하려고 시도합니다. 한편으로는 데이터 캐시에 있을 가능성이 높은 런을 일찍 병합하려 하고, 다른 한편으로는 데이터의 패턴을 활용하기 위해 가능한 한 늦게 병합하려고 합니다. 이를 위해 Timsort는 두 가지 불변성을 유지합니다. `A`, `B`, `C`가 가장 상위 세 개의 런이라고 가정할 때:
+
+- `|C| > |B| + |A|`
+- `|B| > |A|`
+
+![`A`와 `B`를 병합하기 전후의 런 스택](/_img/array-sort/runs-stack.svg)
+
+이미지는 `|A| > |B|`인 경우로, `B`는 두 런 중 더 작은 런과 병합됩니다.
+
+Timsort는 연속적인 런만 병합한다는 점을 주의하십시오. 이는 안정성을 유지하기 위해 필요하며, 그렇지 않은 경우 동일한 요소가 런 간에 전송될 수 있습니다. 또한 첫 번째 불변성은 Fibonacci 수만큼 빠르게 런 길이가 증가하도록 보장하며, 최대 배열 길이를 알 때 런 스택 크기의 상한을 제공합니다.
+
+이미 정렬된 시퀀스는 병합할 필요가 없는 단일 런을 생성하므로 𝒪(n) 시간 내에 정렬된다는 것을 알 수 있습니다. 최악의 경우는 𝒪(n log n)입니다. 이러한 알고리즘적 특성 및 Timsort가 안정적이라는 점이 우리가 최종적으로 Timsort를 Quicksort 대신 선택한 몇 가지 이유입니다.
+
+### Torque에서 Timsort 구현
+
+빌트인 기능은 일반적으로 실행 시 다양한 변수에 따라 선택되는 코드 경로를 갖습니다. 가장 일반적인 버전은 `JSProxy`인지, 인터셉터가 있는지 또는 속성을 검색하거나 설정할 때 프로토타입 체인 조회가 필요한지에 관계없이 모든 종류의 객체를 처리할 수 있습니다.
+일반 경로는 일반적으로 모든 가능성을 고려해야 하므로 다소 느립니다. 하지만 정렬할 객체가 Smis만 포함하는 간단한 `JSArray`라는 것을 미리 알면 이러한 비용이 많이 드는 `[[Get]]` 및 `[[Set]]` 작업을 `FixedArray`에 대한 간단한 Load 및 Store 작업으로 대체할 수 있습니다. 주요 분기점은 [`ElementsKind`](/blog/elements-kinds)입니다.
+
+이제 빠른 경로를 구현하는 방법에 대한 문제가 나타납니다. 핵심 알고리즘은 동일하지만 요소 액세스 방식은 `ElementsKind`에 따라 변경됩니다. 이를 달성할 수 있는 한 가지 방법은 각 호출 사이트에서 올바른 "액세서"로 디스패치하는 것입니다. 각 "로드"/"스토어" 운영의 스위치를 상상해 보세요. 여기서 선택된 빠른 경로를 기반으로 다른 분기를 선택합니다.
+
+또 다른 솔루션(이것이 처음 시도된 접근 방식)은 빠른 경로마다 전체 빌트인을 복사하고 올바른 로드/스토어 액세스 메서드를 인라인으로 사용하는 것입니다. 이 접근 방식은 Timsort가 큰 빌트인이어서 각각의 빠른 경로에 대해 복사본을 만드는 데 총 106KB가 필요하게 되면서 실행이 불가능하다는 것이 밝혀졌습니다. 이는 단일 빌트인에 대해 너무 많은 공간을 차지합니다.
+
+최종 솔루션은 약간 다릅니다. 각 빠른 경로에 대한 각 로드/스토어 작업은 자체 "미니 빌트인"에 배치됩니다. 다음은 `FixedDoubleArray`의 "로드" 작업을 보여주는 코드 예시입니다.
+
+```torque
+Load<FastDoubleElements>(
+    context: Context, sortState: FixedArray, elements: HeapObject,
+    index: Smi): Object {
+  try {
+    const elems: FixedDoubleArray = UnsafeCast<FixedDoubleArray>(elements);
+    const value: float64 =
+        LoadDoubleWithHoleCheck(elems, index) otherwise Bailout;
+    return AllocateHeapNumberWithValue(value);
+  }
+  label Bailout {
+    // 사전 처리 단계에서 모든 요소의 시작 부분을 압축하여 모든 빈 공간을 제거했습니다.
+    // 빈 공간을 찾는 것은 cmp 함수 또는 ToString이 배열을 변경한다는 것을 의미합니다.
+    return Failure(sortState);
+  }
+}
+```
+
+비교해 보면, 가장 일반적인 "로드" 작업은 간단히 `GetProperty`를 호출하는 것입니다. 그러나 위 버전은 `Number`를 로드하고 변환하기 위해 효율적이고 빠른 기계 코드를 생성하는 반면, `GetProperty`는 프로토타입 체인 조회 또는 액세서 함수 호출을 포함할 수 있는 또 다른 빌트인을 호출합니다.
+
+```js
+builtin Load<ElementsAccessor : type>(
+    context: Context, sortState: FixedArray, elements: HeapObject,
+    index: Smi): Object {
+  return GetProperty(context, elements, index);
+}
+```
+
+빠른 경로는 단순히 함수 포인터 세트가 됩니다. 이는 모든 관련 함수 포인터를 미리 설정하면서 핵심 알고리즘 하나만 복사하면 된다는 것을 의미합니다. 이렇게 하면 필요한 코드 공간을 크게 줄일 수 있지만 각 액세스 사이트에서 간접적인 분기를 실행하는 비용이 발생합니다. 이는 최근 [임베디드 빌트인](/blog/embedded-builtins)을 사용하는 변경으로 인해 더욱 심화되었습니다.
+
+### 정렬 상태
+
+![](/_img/array-sort/sort-state.svg)
+
+위 그림은 "정렬 상태"를 나타냅니다. 이는 정렬 중 필요한 모든 것을 추적하는 `FixedArray`입니다. `Array#sort`가 호출될 때마다 이러한 정렬 상태가 할당됩니다. 항목 4에서 7은 빠른 경로로 구성된 함수 포인터 세트입니다.
+
+사용자 JavaScript 코드에서 반환될 때마다 "체크" 빌트인이 사용되어 현재 빠른 경로에서 계속할 수 있는지 확인합니다. 이를 위해 "초기 수신기 맵" 및 "초기 수신기 길이"를 사용합니다. 사용자 코드가 현재 객체를 수정한 경우, 우리는 단순히 정렬 실행을 포기하고 모든 포인터를 가장 일반적인 버전으로 재설정하고 정렬 프로세스를 다시 시작합니다. 슬롯 8의 "탈출 상태"는 이 재설정을 신호하는 데 사용됩니다.
+
+"비교" 항목은 두 가지 다른 빌트인을 가리킬 수 있습니다. 하나는 사용자가 제공한 비교 함수를 호출하는 반면 다른 하나는 두 인수에 대해 `toString`을 호출한 다음 사전순 비교를 수행하는 기본 비교를 구현합니다.
+
+나머지 필드(빠른 경로 ID를 제외하고)는 Timsort에 특화되어 있습니다. 위에서 설명한 실행 스택은 85 크기로 초기화되어 길이 2<sup>64</sup>의 배열을 정렬하는 데 충분합니다. 임시 배열은 실행 병합에 사용됩니다. 필요에 따라 크기가 증가하지만 입력 길이 `n`의 절반을 초과하지 않습니다.
+
+### 성능 상호작용
+
+JavaScript의 셀프 호스팅에서 Torque로 정렬 기능을 이동하면 성능 저하가 발생할 수 있습니다. `Array#sort`가 Torque로 작성되었기 때문에 이제는 정적으로 컴파일된 코드 조각이 되며, 특정 [`ElementsKind`](/blog/elements-kinds)에 대해 빠른 경로를 여전히 만들 수 있지만, 유형 피드백을 활용하는 고도로 최적화된 TurboFan 버전에 비해 그만큼 빠르지는 않습니다. 반면, 코드가 충분히 실행되지 않아 JIT 컴파일이 필요 없거나 호출 위치가 메가모픽인 경우에는 인터프리터나 느리고 일반적인 버전을 사용해야 합니다. 또한, JavaScript 셀프 호스트 버전을 구문 분석하고 컴파일하며 최적화할 가능성은 Torque 구현에서 필요하지 않은 오버헤드입니다.
+
+Torque 접근 방식은 정렬 성능의 최고치를 제공하지는 않지만 성능 급락을 방지합니다. 결과적으로 이전에 비해 훨씬 더 예측 가능한 정렬 성능을 제공합니다. Torque는 아직 변화 중이며, CSA를 포함해 TurboFan을 대상으로 하는 것도 목표로 하고 있어서 Torque로 작성된 코드의 JIT 컴파일이 가능해질 수도 있습니다.
+
+### 마이크로 벤치마크
+
+`Array#sort` 작업을 시작하기 전에, 재구현이 미치는 영향을 더 잘 이해하기 위해 다양한 마이크로 벤치마크를 추가했습니다. 첫 번째 차트는 사용자가 제공한 비교 함수를 사용하여 다양한 ElementsKind를 정렬하는 “일반적인” 사용 사례를 보여줍니다.
+
+이 경우 정렬만 거의 수행하기 때문에 JIT 컴파일러가 많은 작업을 수행할 수 있습니다. 이는 JavaScript 버전에서는 비교 함수를 인라인 처리할 수 있게 하고, Torque 경우에는 빌트인에서 JavaScript로의 호출 오버헤드가 있습니다. 그럼에도 불구하고 거의 모든 경우에서 더 나은 성능을 보였습니다.
+
+![](/_img/array-sort/micro-bench-basic.svg)
+
+다음 차트는 이미 완전히 정렬된 배열이나 한쪽 방식으로 정렬된 하위 시퀀스를 처리할 때 Timsort의 영향을 보여줍니다. 차트는 퀵소트를 기준으로 하여 Timsort의 속도 향상을 보여줍니다(배열이 두 개의 역순 정렬 시퀀스로 구성된 “DownDown”의 경우 최대 17배 속도 향상). 무작위 데이터의 경우를 제외하고는, Timsort가 다른 모든 경우에서 더 나은 성능을 보입니다. 이전 마이크로 벤치마크에서 퀵소트가 Timsort보다 뛰어났던 `PACKED_SMI_ELEMENTS`까지도 예외는 아닙니다.
+
+![](/_img/array-sort/micro-bench-presorted.svg)
+
+### 웹 도구 벤치마크
+
+[웹 도구 벤치마크](https://github.com/v8/web-tooling-benchmark)는 Babel 및 TypeScript와 같은 웹 개발자들이 주로 사용하는 도구들의 작업 집합입니다. 차트는 JavaScript 퀵소트를 기준으로 하여 Timsort의 속도 향상을 비교합니다. 거의 모든 벤치마크에서 동일한 성능을 유지하는 반면, chai는 예외입니다.
+
+![](/_img/array-sort/web-tooling-benchmark.svg)
+
+chai 벤치마크는 단일 비교 함수(문자열 거리 계산) 내에서 *1/3*의 시간을 소비합니다. 벤치마크는 chai 자체의 테스트 스위트입니다. 데이터의 특성상 Timsort는 이 경우 더 많은 비교 작업이 필요하며, 이로 인해 해당 특정 비교 함수 내에서 많은 시간을 소비하기 때문에 전체 실행 시간에 더 큰 영향을 미치게 됩니다.
+
+### 메모리 영향
+
+모바일 및 데스크톱 모두에서 약 50개의 사이트를 검색하며 V8 힙 스냅샷을 분석한 결과, 메모리 감소나 개선은 관찰되지 않았습니다. 한편으로는 이것이 놀랍습니다. 퀵소트에서 Timsort로 전환하면서 런 병합을 위한 임시 배열이 추가로 필요하게 되었고, 이는 샘플링에 사용되는 임시 배열보다 훨씬 커질 수 있기 때문입니다. 다른 한편으로는, 이러한 임시 배열은 매우 짧은 시간 동안만(즉, `sort` 호출 동안만) 존재하며 V8의 신규 공간에서 빠르게 할당 및 폐기될 수 있습니다.
+
+## 결론
+
+요약하자면, Torque에서 구현된 Timsort의 알고리즘적 특성과 예측 가능한 성능 동작에 대해 더 큰 만족감을 느낍니다. Timsort는 V8 v7.0 및 Chrome 70부터 사용할 수 있습니다. 즐거운 정렬 작업 되세요!

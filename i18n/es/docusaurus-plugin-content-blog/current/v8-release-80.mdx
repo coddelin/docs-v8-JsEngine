@@ -1,0 +1,137 @@
+---
+title: "Lanzamiento de V8 v8.0"
+author: "Leszek Swirski, V8vo de su nombre"
+avatars:
+  - "leszek-swirski"
+date: 2019-12-18
+tags:
+  - lanzamiento
+description: "V8 v8.0 incluye encadenamiento opcional, fusión nula, funciones integradas de orden superior más rápidas — ah, y un uso de memoria 40% menor gracias a la compresión de punteros, nada del otro mundo."
+tweet: "1207323849861279746"
+---
+import FullWidthImage from &apos;../src/components/release.tsx&apos;
+
+<!-- Sí, es un SVG. Por favor, no preguntes cuánto tiempo tardé en hacerlo. -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable no-inline-html -->
+
+<FullWidthImage />
+
+<!-- markdownlint-restore -->
+
+Finalmente está aquí. Cada lanzamiento de V8, cada seis semanas cuando ramificamos como parte de nuestro [proceso de lanzamiento](/docs/release-process), surge la pregunta sobre qué pasará cuando V8 llegue a la versión 8. ¿Tendremos una fiesta? ¿Lanzaremos un nuevo compilador? ¿Saltaremos las versiones 8 y 9 y nos quedaremos eternamente en una versión X de V8? Finalmente, después de [más de 10 años](/blog/10-years) de trabajo, en nuestro post número 100 del blog, nos complace anunciar nuestra rama más reciente, [V8 ~~versión 8.0~~ V8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.0), y finalmente podemos responder a esa pregunta:
+
+<!--truncate-->
+Es corrección de errores y mejoras de rendimiento.
+
+Este post ofrece un adelanto de algunos de los aspectos destacados en anticipación del lanzamiento en coordinación con Chrome 80 Stable en unas semanas.
+
+## Rendimiento (tamaño y velocidad)
+
+### Compresión de punteros
+
+~~Cambiamos todos nuestros `void *` a `pv`, reduciendo el tamaño del archivo fuente hasta en un 66%.~~
+
+El heap de V8 contiene una gran cantidad de elementos, por ejemplo valores de punto flotante, caracteres de cadenas, código compilado y valores etiquetados (que representan punteros al heap de V8 o pequeños enteros). Al inspeccionar el heap, descubrimos que estos valores etiquetados ocupan la mayor parte del mismo.
+
+Los valores etiquetados son del tamaño del puntero del sistema: tienen 32 bits de ancho para arquitecturas de 32 bits y 64 bits en arquitecturas de 64 bits. Luego, al comparar la versión de 32 bits con la de 64 bits, usamos el doble de memoria del heap para cada valor etiquetado.
+
+Por suerte para nosotros, tenemos un truco bajo la manga. Los bits superiores pueden sintetizarse a partir de los bits inferiores. Entonces, solo necesitamos almacenar los bits inferiores únicos en el heap, ahorrando valiosos recursos de memoria... ¡para ahorrar un promedio del 40% de la memoria del heap!
+
+![La compresión de punteros ahorra un promedio del 40% de memoria.](/_img/v8-release-80/pointer-compression-chart.svg)
+
+Cuando mejoramos la memoria, usualmente es a costa del rendimiento. Usualmente. Nos enorgullece anunciar que vimos mejoras en el rendimiento en sitios web reales en el tiempo que V8 emplea y en su recolector de basura.
+
+:::table-wrapper
+| || Escritorio | Móvil |
+|-------------|----------|---------|--------|
+| Facebook | V8-Total | -8% | -6% |
+| ^^ | GC | -10% | -17% |
+| CNN | V8-Total | -3% | -8% |
+| ^^ | GC | -14% | -20% |
+| Maps de Google | V8-Total | -4% | -6% |
+| ^^ | GC | -7% | -12% |
+:::
+
+Si la compresión de punteros te interesó, estate atento a una publicación completa en el blog con más detalles.
+
+### Optimización de funciones integradas de orden superior
+
+Recientemente eliminamos una limitación dentro de la canalización de optimización de TurboFan que impedía optimizaciones agresivas de funciones integradas de orden superior.
+
+```js
+const charCodeAt = Function.prototype.call.bind(String.prototype.charCodeAt);
+
+charCodeAt(string, 8);
+```
+
+Hasta ahora, la llamada a `charCodeAt` era completamente opaca para TurboFan, lo que llevaba a la generación de una llamada genérica a una función definida por el usuario. Con este cambio, ahora podemos reconocer que en realidad estamos llamando a la función integrada `String.prototype.charCodeAt`, y por ende podemos activar todas las optimizaciones adicionales que TurboFan tiene disponibles para mejorar las llamadas a funciones integradas, lo cual lleva al mismo rendimiento que:
+
+```js
+string.charCodeAt(8);
+```
+
+Este cambio afecta un montón de otras funciones integradas como `Function.prototype.apply`, `Reflect.apply` y muchas funciones integradas de orden superior para arreglos (como `Array.prototype.map`).
+
+## JavaScript
+
+### Encadenamiento opcional
+
+Al escribir cadenas de accesos a propiedades, los programadores a menudo necesitan verificar si los valores intermedios son nulos o indefinidos (es decir, `null` o `undefined`). Una cadena sin verificación de errores puede lanzar excepciones, y una cadena con verificación explícita de errores es más verbosa y tiene la consecuencia no deseada de verificar todos los valores verídicos en lugar de solo los no nulos o indefinidos.
+
+```js
+// Versión propensa a errores, podría lanzar excepciones.
+const nameLength = db.user.name.length;
+
+// Menos propensa a errores, pero más difícil de leer.
+let nameLength;
+if (db && db.user && db.user.name) nameLength = db.user.name.length;
+```
+
+[El encadenamiento opcional](https://v8.dev/features/optional-chaining) (`?.`) permite a los programadores escribir cadenas más concisas y robustas de accesos a propiedades que verifican si los valores intermedios son nulos o indefinidos. Si un valor intermedio es nulo o indefinido, toda la expresión se evalúa como `undefined`.
+
+```js
+// Todavía verifica errores y es mucho más legible.
+const nameLength = db?.user?.name?.length;
+```
+
+Además de los accesos a propiedades estáticas, también se admiten los accesos y llamadas a propiedades dinámicas. Por favor, consulta nuestra [explicación de características](https://v8.dev/features/optional-chaining) para obtener detalles y más ejemplos.
+
+### Operador de coalescencia nula
+
+El [operador de coalescencia nula](https://v8.dev/features/nullish-coalescing) `??` es un nuevo operador binario de cortocircuito para manejar valores predeterminados. Actualmente, los valores predeterminados a veces se manejan con el operador lógico `||`, como en el siguiente ejemplo.
+
+```js
+function Component(props) {
+  const enable = props.enabled || true;
+  // …
+}
+```
+
+El uso de `||` es indeseable para calcular valores predeterminados porque `a || b` evalúa a `b` cuando `a` es falsy. Si `props.enabled` estuviera configurado explícitamente como `false`, `enable` aún sería verdadero.
+
+Con el operador de coalescencia nula, `a ?? b` evalúa a `b` cuando `a` es nulo (`null` o `undefined`), y de lo contrario evalúa a `a`. Este es el comportamiento deseado para valores predeterminados, y reescribir el ejemplo usando `??` corrige el error anterior.
+
+```js
+function Component(props) {
+  const enable = props.enabled ?? true;
+  // …
+}
+```
+
+El operador de coalescencia nula y la cadena opcional son características complementarias y funcionan bien juntas. El ejemplo puede ser aún más modificado para manejar el caso en que no se haya pasado ningún argumento `props`.
+
+```js
+function Component(props) {
+  const enable = props?.enabled ?? true;
+  // …
+}
+```
+
+Por favor, consulta nuestra [explicación de características](https://v8.dev/features/nullish-coalescing) para obtener detalles y más ejemplos.
+
+## API de V8
+
+Por favor, usa `git log branch-heads/7.9..branch-heads/8.0 include/v8.h` para obtener una lista de los cambios en la API.
+
+Los desarrolladores con un [checkout activo de V8](/docs/source-code#using-git) pueden usar `git checkout -b 8.0 -t branch-heads/8.0` para experimentar con las nuevas características en V8 v8.0. Alternativamente, puedes [suscribirte al canal Beta de Chrome](https://www.google.com/chrome/browser/beta.html) y probar las nuevas características tú mismo pronto.

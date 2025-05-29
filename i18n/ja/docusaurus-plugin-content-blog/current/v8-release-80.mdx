@@ -1,0 +1,137 @@
+---
+title: "V8リリース v8.0"
+author: "Leszek Swirski, V8th of his name"
+avatars:
+  - "leszek-swirski"
+date: 2019-12-18
+tags:
+  - リリース
+description: "V8 v8.0は、オプショナルチェイニング、Nullish Coalescing、より高速な高階ビルトインを特徴としています。— さらに、ポインタ圧縮のおかげでメモリ使用量が40%削減されました、大したことですね。"
+tweet: "1207323849861279746"
+---
+import FullWidthImage from &apos;../src/components/release.tsx&apos;
+
+<!-- はい、これはSVGです。これを作るのにどれだけ時間を費やしたのかは聞かないでください。 -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable no-inline-html -->
+
+<FullWidthImage />
+
+<!-- markdownlint-restore -->
+
+ついに来ました。V8のリリースごとに、我々が[リリースプロセス](/docs/release-process)の一環として分岐するたびに、V8がバージョン8になるときに何が起こるのかという疑問が出てきます。パーティーをするのか？新しいコンパイラーを出荷するのか？バージョン8と9をスキップして、永遠にV8バージョンXのままにするのか？[10年以上](/blog/10-years)の努力の後、記念すべき100番目のブログ投稿で、最新の分岐である[V8 ~~version 8.0~~ V8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.0)を発表できることを嬉しく思います。そしてこの疑問にようやく答えることができます：
+
+<!--truncate-->
+バグ修正とパフォーマンスの向上です。
+
+この投稿では、数週間以内にChrome 80 Stableとの連携でリリースが期待される中、注目すべきハイライトの一部をプレビューします。
+
+## パフォーマンス（サイズとスピード）
+
+### ポインタ圧縮
+
+~~すべての`void *`を`pv`に変え、ソースファイルサイズを最大66%削減しました~~
+
+V8ヒープには、浮動小数点値、文字列の文字、コンパイル済みコード、タグ付き値（V8ヒープ内のポインタや小さな整数を表す）など、多くの項目が含まれています。ヒープを検査すると、これらのタグ付き値がヒープの大部分を占めていることがわかりました。
+
+タグ付き値はシステムポインタと同じくらい大きく、32ビットアーキテクチャでは32ビット幅で、64ビットアーキテクチャでは64ビット幅です。したがって、32ビット版と64ビット版を比較すると、タグ付き値ごとに2倍のヒープメモリを使用しています。
+
+幸いなことに、解決するための手法があります。上位ビットは下位ビットから生成できます。それにより、ヒープに保存するのはユニークな下位ビットだけで済み、貴重なメモリリソースを節約できます...結果としてヒープメモリの平均40%を節約できます！
+
+![ポインタ圧縮はメモリを平均40%節約します。](/_img/v8-release-80/pointer-compression-chart.svg)
+
+通常、メモリを改善すると、パフォーマンスにコストがかかるものですが、今回は違います。V8での処理時間やガベージコレクターのパフォーマンスにおいて、実際のウェブサイトで性能改善が見られたことを誇らしく思います！
+
+:::table-wrapper
+| || デスクトップ | モバイル |
+|-------------|----------|---------|--------|
+| Facebook | V8-合計 | -8% | -6% |
+| ^^ | GC | -10% | -17% |
+| CNN | V8-合計 | -3% | -8% |
+| ^^ | GC | -14% | -20% |
+| Google Maps | V8-合計 | -4% | -6% |
+| ^^ | GC | -7% | -12% |
+:::
+
+ポインタ圧縮に興味を持った方は、詳細を示した完全なブログ投稿をお見逃しなく。
+
+### 高階ビルトインの最適化
+
+最近、TurboFanの最適化パイプライン内の制限を取り除き、高階ビルトインの積極的な最適化を可能にしました。
+
+```js
+const charCodeAt = Function.prototype.call.bind(String.prototype.charCodeAt);
+
+charCodeAt(string, 8);
+```
+
+これまでは`charCodeAt`への呼び出しはTurboFanにとって完全に不透明で、一つのユーザー定義関数への一般的な呼び出しが生成される結果となっていました。この変更により、実際に`String.prototype.charCodeAt`というビルトイン関数を呼び出していることを認識し、それによりビルトイン呼び出しを向上するためにTurboFanが用意しているさらなる最適化をすべて引き起こすことができるようになりました。これにより、次のコードと同じパフォーマンスが得られます：
+
+```js
+string.charCodeAt(8);
+```
+
+この変更は、`Function.prototype.apply`や`Reflect.apply`、多くの高次配列ビルトイン（例えば`Array.prototype.map`）などの他のビルトインにも影響します。
+
+## JavaScript
+
+### オプショナルチェイニング
+
+プロパティアクセスのチェーンを書く際、プログラマは中間値がnullish（つまり`null`または`undefined`）でないかを確認する必要がよくあります。エラーチェックのないチェーンは例外を発生させる可能性があり、明示的エラーチェックを含むチェーンは冗長で、非nullish値だけでなくすべてのTruthy値を確認するという望ましくない結果があります。
+
+```js
+// エラーの発生しやすいバージョン、例外を発生させる可能性があります。
+const nameLength = db.user.name.length;
+
+// エラー発生の可能性は下がりますが、読みやすさが低下します。
+let nameLength;
+if (db && db.user && db.user.name) nameLength = db.user.name.length;
+```
+
+[Optional chaining](https://v8.dev/features/optional-chaining)（`?.`）を使用すると、中間値がnullishでないかを確認する堅牢で簡潔なプロパティアクセスチェーンを書くことができます。中間値がnullishである場合、式全体が`undefined`と評価されます。
+
+```js
+// エラーもチェックしつつ、はるかに読みやすいです。
+const nameLength = db?.user?.name?.length;
+```
+
+静的プロパティアクセスに加え、動的なプロパティアクセスや呼び出しもサポートされています。詳細および例については、[機能解説](https://v8.dev/features/optional-chaining)をご覧ください。
+
+### Nullish coalescing
+
+[Nullish coalescing](https://v8.dev/features/nullish-coalescing) 演算子 `??` は、新しい短絡型の二項演算子でデフォルト値を処理します。現在、デフォルト値の処理は時に論理演算子 `||` を使用して行われます。以下の例のようにです。
+
+```js
+function Component(props) {
+  const enable = props.enabled || true;
+  // …
+}
+```
+
+`||` を使用してデフォルト値を計算するのは望ましくありません。なぜなら、`a || b` は `a` が偽の場合に `b` を評価するからです。もし `props.enabled` が明示的に `false` に設定されていても、`enable` は true のままになります。
+
+Nullish coalescing 演算子では、`a ?? b` は `a` が nullish（`null` または `undefined`）の場合に `b` を評価し、それ以外の場合は `a` を評価します。これは望ましいデフォルト値の動作であり、この例を `??` を使用して書き直すと上記のバグが修正されます。
+
+```js
+function Component(props) {
+  const enable = props.enabled ?? true;
+  // …
+}
+```
+
+Nullish coalescing 演算子とオプショナルチェイニングは補完機能であり、共にうまく機能します。この例は、`props` 引数が渡されない場合を処理するようさらに修正することができます。
+
+```js
+function Component(props) {
+  const enable = props?.enabled ?? true;
+  // …
+}
+```
+
+詳細および例については、[機能解説](https://v8.dev/features/nullish-coalescing)をご覧ください。
+
+## V8 API
+
+`git log branch-heads/7.9..branch-heads/8.0 include/v8.h` を使用して、API変更のリストを取得してください。
+
+[アクティブなV8チェックアウト](/docs/source-code#using-git) を持つ開発者は、`git checkout -b 8.0 -t branch-heads/8.0` を使用して、V8 v8.0 の新機能を試すことができます。または、[ChromeのBetaチャンネル](https://www.google.com/chrome/browser/beta.html)を購読して、近日中に自分で新機能を試してみることも可能です。

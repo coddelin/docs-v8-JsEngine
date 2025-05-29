@@ -1,0 +1,82 @@
+---
+title: &apos;Релиз V8 версии v4.5&apos;
+author: &apos;Команда V8&apos;
+date: 2015-07-17 13:33:37
+tags:
+  - релиз
+description: &apos;V8 v4.5 включает улучшения производительности и добавляет поддержку нескольких функций ES2015.&apos;
+---
+Примерно каждые шесть недель мы создаем новую ветку V8 в рамках нашего [процесса релиза](https://v8.dev/docs/release-process). Каждая версия создается из основной ветки V8 в Git непосредственно перед созданием ветки Chrome для этапа Chrome Beta. Сегодня мы рады представить нашу новейшую ветвь, [V8 версии 4.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.5), которая будет находиться в бета-версии до выпуска совместно с Chrome 45 Stable. V8 v4.5 полна всевозможных радостей для разработчиков, поэтому мы хотели бы предоставить вам предварительный обзор некоторых основных моментов в преддверии выпуска через несколько недель.
+
+<!--truncate-->
+## Улучшенная поддержка ECMAScript 2015 (ES6)
+
+V8 v4.5 добавляет поддержку нескольких функций [ECMAScript 2015 (ES6)](https://www.ecma-international.org/ecma-262/6.0/).
+
+### Стрелочные функции
+
+С помощью [стрелочных функций](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) можно писать более лаконичный код.
+
+```js
+const data = [0, 1, 3];
+// Код без стрелочных функций
+const convertedData = data.map(function(value) { return value * 2; });
+console.log(convertedData);
+// Код со стрелочными функциями
+const convertedData = data.map(value => value * 2);
+console.log(convertedData);
+```
+
+Лексическое связывание &apos;this&apos; является еще одним важным преимуществом стрелочных функций. В результате использование обратных вызовов в методах становится значительно проще.
+
+```js
+class MyClass {
+  constructor() { this.a = &apos;Привет, &apos;; }
+  hello() { setInterval(() => console.log(this.a + &apos;мир!&apos;), 1000); }
+}
+const myInstance = new MyClass();
+myInstance.hello();
+```
+
+### Функции Array/TypedArray
+
+Все новые методы на [массивы и типизированные массивы](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Methods), которые указаны в ES2015, теперь поддерживаются в V8 v4.5. Они делают работу с массивами и типизированными массивами более удобной. Среди добавленных методов — `Array.from` и `Array.of`. Также были добавлены методы, которые зеркально отображают большинство методов `Array` на каждом типизированном массиве.
+
+### `Object.assign`
+
+[`Object.assign`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) позволяет разработчикам быстро объединять и клонировать объекты.
+
+```js
+const target = { a: &apos;Привет, &apos; };
+const source = { b: &apos;мир!&apos; };
+// Объединить объекты.
+Object.assign(target, source);
+console.log(target.a + target.b);
+```
+
+Эту функцию также можно использовать для добавления функциональности.
+
+## Больше возможностей языка JavaScript можно оптимизировать
+
+Много лет традиционный оптимизирующий компилятор V8, [Crankshaft](https://blog.chromium.org/2010/12/new-crankshaft-for-v8.html), великолепно справлялся с оптимизацией множества распространенных паттернов JavaScript. Однако он никогда не был способен поддерживать весь язык JavaScript, и использование некоторых функций языка в функции — таких как `try`/`catch` и `with` — мешало ее оптимизации. V8 приходилось возвращаться к своему более медленному базовому компилятору для этой функции.
+
+Одна из целей разработки нового оптимизирующего компилятора V8, [TurboFan](/blog/turbofan-jit), — это стать в конечном итоге способным оптимизировать весь JavaScript, включая функции ECMAScript 2015. В V8 v4.5 мы начали использовать TurboFan для оптимизации некоторых функций языка, которые не поддерживаются Crankshaft: `for`-`of`, `class`, `with` и вычисляемые имена свойств.
+
+Вот пример кода, который использует &apos;for-of&apos;, теперь может быть скомпилирован TurboFan:
+
+```js
+const sequence = [&apos;Первый&apos;, &apos;Второй&apos;, &apos;Третий&apos;];
+for (const value of sequence) {
+  // Этот блок теперь оптимизируемый.
+  const object = {a: &apos;Привет, &apos;, b: &apos;мир!&apos;, c: value};
+  console.log(object.a + object.b + object.c);
+}
+```
+
+Хотя изначально функции, использующие эти возможности языка, не достигнут такого же максимального уровня производительности, как остальной код, скомпилированный Crankshaft, TurboFan теперь может ускорить их значительно по сравнению с текущим базовым компилятором. Еще лучше, производительность продолжит быстро улучшаться по мере разработки дополнительных оптимизаций для TurboFan.
+
+## API V8
+
+Пожалуйста, ознакомьтесь с нашим [резюме изменений API](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit). Этот документ регулярно обновляется через несколько недель после каждого крупного релиза.
+
+Разработчики с [активным репозиторием V8](https://v8.dev/docs/source-code#using-git) могут использовать `git checkout -b 4.5 -t branch-heads/4.5`, чтобы попробовать новые функции в V8 v4.5. Кроме того, можно [подписаться на бета-канал Chrome](https://www.google.com/chrome/browser/beta.html) и попробовать новые функции самостоятельно в ближайшее время.
