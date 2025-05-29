@@ -53,7 +53,7 @@ LGTM: 必須ではない
 ### V8 Eng Review Owners
 
 LGTM: 必須ではない
-行き詰まった提案は<[v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com)>を介してV8 Eng Review Ownersにエスカレーションされることができます。そのようなエスカレーションの潜在的な使用ケース:
+行き詰まった提案は[v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com)を介してV8 Eng Review Ownersにエスカレーションされることができます。そのようなエスカレーションの潜在的な使用ケース:
 
 - LGTM提供者が応答しない場合
 - デザインに関するコンセンサスが得られない場合

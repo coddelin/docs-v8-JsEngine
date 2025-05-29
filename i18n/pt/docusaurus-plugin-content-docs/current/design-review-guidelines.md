@@ -53,7 +53,7 @@ Essa é alguém que simplesmente revisa e comenta sobre a proposta. Sua opinião
 ### Proprietários de Revisão de Engenharia do V8
 
 LGTM: Não obrigatório
-Propostas bloqueadas podem ser escaladas para os Proprietários de Revisão de Engenharia do V8 via <[v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com)>. Possíveis casos de uso para tal escalada:
+Propostas bloqueadas podem ser escaladas para os Proprietários de Revisão de Engenharia do V8 via [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com). Possíveis casos de uso para tal escalada:
 
 - um fornecedor de LGTM está não responsivo
 - nenhum consenso sobre o design pode ser alcançado

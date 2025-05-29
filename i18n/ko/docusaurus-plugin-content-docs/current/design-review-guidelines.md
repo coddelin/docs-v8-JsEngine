@@ -53,7 +53,7 @@ LGTM: 필요하지 않음
 ### V8 Eng Review Owners
 
 LGTM: 필요하지 않음
-막힌 제안은 <[v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com)>을 통해 V8 Eng Review Owners에 '상승'할 수 있습니다. 이러한 상승의 잠재적 사용 사례:
+막힌 제안은 [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com)을 통해 V8 Eng Review Owners에 '상승'할 수 있습니다. 이러한 상승의 잠재적 사용 사례:
 
 - LGTM 제공자가 응답하지 않는 경우
 - 디자인에 대해 합의에 도달할 수 없는 경우
