@@ -1,5 +1,5 @@
 ---
-title: '<i>Fast properties</i> in V8'
+title: 'Fast properties in V8'
 author: 'Camillo Bruni ([@camillobruni](https://twitter.com/camillobruni)), also author of [“Fast `for`-`in`”](/blog/fast-for-in)'
 avatars:
   - 'camillo-bruni'

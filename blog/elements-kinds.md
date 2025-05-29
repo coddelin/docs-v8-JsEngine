@@ -1,5 +1,5 @@
 ---
-title: '<i>Elements kinds</i> in V8'
+title: 'Elements kinds in V8'
 author: 'Mathias Bynens ([@mathias](https://twitter.com/mathias))'
 avatars:
   - 'mathias-bynens'

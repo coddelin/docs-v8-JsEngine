@@ -32,7 +32,7 @@ However enabling GDB JIT Compilation Interface allows GDB to produce more inform
 
 Frames still unknown to GDB correspond to native code without source information. See [known limitations](#known-limitations) for more details.
 
-GDB JIT Compilation Interface is specified in the GDB documentation: &lt;https://sourceware.org/gdb/current/onlinedocs/gdb/JIT-Interface.html>
+GDB JIT Compilation Interface is specified in the GDB documentation: https://sourceware.org/gdb/current/onlinedocs/gdb/JIT-Interface.html
 
 ## Prerequisites
 

@@ -5,7 +5,7 @@ description: 'This document outlines the terms of service for the V8 website and
 ---
 # Terms of service
 
-By using the official V8 website (the “Service”), you agree to be bound by our Google Terms of Services located at &lt;https://www.google.com/accounts/TOS> as well as these additional terms. Google may change these terms from time to time and post any modified terms at &lt;https://v8.dev/terms>. You understand and agree that if you use the Service after the date on which these terms have changed, Google treats your use as acceptance of the updated terms.
+By using the official V8 website (the “Service”), you agree to be bound by our Google Terms of Services located at https://www.google.com/accounts/TOS as well as these additional terms. Google may change these terms from time to time and post any modified terms at https://v8.dev/terms. You understand and agree that if you use the Service after the date on which these terms have changed, Google treats your use as acceptance of the updated terms.
 
 ## Code of conduct
 

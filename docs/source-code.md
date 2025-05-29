@@ -10,7 +10,7 @@ This document explains how to check out the V8 source code locally. If you just 
 
 ## Using Git
 
-V8’s Git repository is located at &lt;https://chromium.googlesource.com/v8/v8.git>, with an official mirror on GitHub: &lt;https://github.com/v8/v8>.
+V8’s Git repository is located at https://chromium.googlesource.com/v8/v8.git, with an official mirror on GitHub: https://github.com/v8/v8.
 
 Don’t just `git clone` either of these URLs! if you want to build V8 from your checkout, instead follow the instructions below to get everything set up correctly.
 
@@ -28,7 +28,7 @@ Don’t just `git clone` either of these URLs! if you want to build V8 from your
 
 1. For **push access**, you need to set up a `.netrc` file with your Git password:
 
-    1. Go to &lt;https://chromium.googlesource.com/new-password> and log in with your committer account (usually an `@chromium.org` account). Note: creating a new password doesn’t automatically revoke any previously created passwords. Please make sure you use the same email as the one set for `git config user.email`.
+    1. Go to https://chromium.googlesource.com/new-password and log in with your committer account (usually an `@chromium.org` account). Note: creating a new password doesn’t automatically revoke any previously created passwords. Please make sure you use the same email as the one set for `git config user.email`.
     1. Have a look at the big, grey box containing shell commands. Paste those lines into your shell.
 
 1. Now, get the V8 source code, including all branches and dependencies:
@@ -159,4 +159,4 @@ git cl try-results
 
 There are several different branches of V8; if you're unsure of which version to get, you most likely want the up-to-date stable version. Have a look at our [Release Process](/docs/release-process) for more information about the different branches used.
 
-You may want to follow the V8 version that Chrome is shipping on its stable (or beta) channels, see &lt;https://omahaproxy.appspot.com/>.
+You may want to follow the V8 version that Chrome is shipping on its stable (or beta) channels, see https://omahaproxy.appspot.com/.

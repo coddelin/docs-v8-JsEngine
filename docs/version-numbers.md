@@ -18,20 +18,20 @@ Embedders of V8 should generally use *the head of the branch corresponding to th
 
 To find out what version this is,
 
-1. Go to &lt;https://chromiumdash.appspot.com/releases>
+1. Go to https://chromiumdash.appspot.com/releases
 2. Find the latest stable Chrome version in the table
 3. Click on the (i) and check the `V8` column
 
 
 ### Finding the head of the corresponding branch
 
-V8’s version-related branches do not appear in the online repository at &lt;https://chromium.googlesource.com/v8/v8.git>; instead only tags appear. To find the head of that branch, go to the URL in this form:
+V8’s version-related branches do not appear in the online repository at https://chromium.googlesource.com/v8/v8.git; instead only tags appear. To find the head of that branch, go to the URL in this form:
 
 ```
 https://chromium.googlesource.com/v8/v8.git/+/branch-heads/<minor-version>
 ```
 
-Example: for the V8 minor version 12.1 found above, we go to &lt;https://chromium.googlesource.com/v8/v8.git/+/branch-heads/12.1>, finding a commit titled “Version 12.1.285.2.
+Example: for the V8 minor version 12.1 found above, we go to https://chromium.googlesource.com/v8/v8.git/+/branch-heads/12.1, finding a commit titled “Version 12.1.285.2.
 
 **Caution:** You should *not* simply find the numerically-greatest tag corresponding to the above minor V8 version, as sometimes those are not supported, e.g. they are tagged before deciding where to cut minor releases. Such versions do not receive backports or similar.
 
