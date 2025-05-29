@@ -380,7 +380,7 @@ Chrome 로딩 팀은 현재 웹 앱을 배포하기 위한 새로운 방식으�
 
 네이티브 번들 형식의 투명성은 다양한 최적화 기회를 제공합니다. 예를 들어, 브라우저가 이미 네이티브 번들의 일부를 로컬에 캐싱한 경우, 웹 서버와 이를 통신하여 누락된 부분만 다운로드할 수 있습니다.
 
-Chrome은 이미 제안서의 일부([`SignedExchanges`](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html))를 지원하고 있지만, 번들 형식 자체와 고도로 모듈화된 앱에의 응용은 아직 탐구 단계에 있습니다. 여러분의 피드백을 저장소 또는 loading-dev@chromium.org 이메일을 통해 환영합니다!
+Chrome은 이미 제안서의 일부([`SignedExchanges`](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html))를 지원하고 있지만, 번들 형식 자체와 고도로 모듈화된 앱에의 응용은 아직 탐구 단계에 있습니다. 여러분의 피드백을 저장소 또는 [loading-dev@chromium.org](mailto:loading-dev@chromium.org) 이메일을 통해 환영합니다!
 
 ### 레이어드 API
 

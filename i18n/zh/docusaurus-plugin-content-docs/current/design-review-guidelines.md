@@ -38,7 +38,7 @@ LGTM: 不适用
 ### IC 的技术负责人 (TL)
 
 LGTM: 必需
-此人是特定项目或组件的 TL。通常，这个人是您的功能将接触的主要组件的拥有者。如果不清楚谁是 TL，请通过 v8-eng-review-owners@googlegroups.com 询问 V8 工程评审所有者。TL 负责在需要时将更多人加入到需要 LGTM 的人员列表中。
+此人是特定项目或组件的 TL。通常，这个人是您的功能将接触的主要组件的拥有者。如果不清楚谁是 TL，请通过 [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com) 询问 V8 工程评审所有者。TL 负责在需要时将更多人加入到需要 LGTM 的人员列表中。
 
 ### LGTM 提供者
 
@@ -53,7 +53,7 @@ LGTM: 非必需
 ### V8 工程评审所有者
 
 LGTM: 非必需
-被卡住的提案可以通过 v8-eng-review-owners@googlegroups.com 升级到 V8 工程评审所有者。以下情况可能会导致此类升级：
+被卡住的提案可以通过 [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com) 升级到 V8 工程评审所有者。以下情况可能会导致此类升级：
 
 - LGTM 提供者未响应
 - 对设计无法达成共识
@@ -70,14 +70,14 @@ V8 工程评审所有者可以推翻非 LGTM 或 LGTM 的决定。
 1. IC 将他们认为需要提供 LGTM 的人添加到 LGTM 提供者列表中。TL 一定要在 LGTM 提供者的列表中。
 1. IC 结合反馈意见。
 1. TL 将更多人添加到 LGTM 提供者列表中。
-1. IC 将早期设计文档/解释文档/一页文档发送到 v8-dev+design@googlegroups.com。
+1. IC 将早期设计文档/解释文档/一页文档发送到 [v8-dev+design@googlegroups.com](mailto:v8-dev+design@googlegroups.com)。
 1. IC 收集 LGTMs，TL 协助其完成。
     1. LGTM 提供者审阅文档，添加评论，并在文档开头给出 LGTM 或非 LGTM。如果他们给出了非 LGTM，则有义务列出原因。
     1. 可选：LGTM 提供者可以将自己从 LGTM 提供者列表中移除，并/或推荐其他 LGTM 提供者
     1. IC 和 TL 致力于解决未解决的问题。
-    1. 如果收集到所有 LGTMs，发送邮件到 v8-dev@googlegroups.com（例如通过回复原始线程）并宣布实施。
+    1. 如果收集到所有 LGTMs，发送邮件到 [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com)（例如通过回复原始线程）并宣布实施。
 1. 可选：如果 IC 和 TL 被卡住并/或希望进行更广泛的讨论，可以将问题升级到 V8 工程评审所有者。
-    1. IC 发送邮件到 v8-eng-review-owners@googlegroups.com
+    1. IC 发送邮件到 [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com)
         1. 确保 TL 在邮件中抄送
         1. 邮件中包含设计文档的链接
     1. 每位 V8 工程评审所有者都有义务审阅文档，并可选择将自己添加到 LGTM 提供者列表中。
@@ -135,7 +135,7 @@ V8 工程评审所有者可以推翻非 LGTM 或 LGTM 的决定。
 
 - 通过邮件、Hangouts或文档中的评论/分配直接提醒他们，明确要求他们添加LGTM或非LGTM。
 - 让你的TL参与进来并寻求帮助。
-- 升级至v8-eng-review-owners@googlegroups.com。
+- 升级至v8[eng-review-owners@googlegroups.com](mailto:eng-review-owners@googlegroups.com)。
 
 ### 某人将我添加为文档的LGTM提供者，我该做什么？
 

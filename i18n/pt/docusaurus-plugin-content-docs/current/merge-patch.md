@@ -18,7 +18,7 @@ Um problema associado ao rastreador de problemas do V8 é **obrigatório** se um
 - O patch não altera APIs.
 - O patch não altera o comportamento presente antes do corte do branch (exceto se a alteração de comportamento corrigir um bug).
 
-Mais informações podem ser encontradas na [página relevante do Chromium](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/process/merge_request.md). Em caso de dúvida, envie um email para v8-dev@googlegroups.com.
+Mais informações podem ser encontradas na [página relevante do Chromium](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/process/merge_request.md). Em caso de dúvida, envie um email para [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com).
 
 ## O processo de mesclagem
 

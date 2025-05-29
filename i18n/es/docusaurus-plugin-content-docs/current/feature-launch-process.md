@@ -4,9 +4,9 @@ description: 'Este documento explica el proceso para implementar y distribuir ca
 ---
 En general, V8 sigue el [proceso de intención de Blink para estándares basados en consenso ya definidos](https://www.chromium.org/blink/launching-features/#process-existing-standard) para características del lenguaje JavaScript y WebAssembly. A continuación se detallan erratas específicas de V8. Por favor, siga el proceso de intención de Blink, salvo que las erratas indiquen lo contrario.
 
-Si tienes alguna pregunta sobre este tema para características de JavaScript, envía un correo a syg@chromium.org y v8-dev@googlegroups.com.
+Si tienes alguna pregunta sobre este tema para características de JavaScript, envía un correo a [syg@chromium.org](mailto:syg@chromium.org) y [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com).
 
-Para características de WebAssembly, envía un correo a gdeepti@chromium.org y v8-dev@googlegroups.com.
+Para características de WebAssembly, envía un correo a [gdeepti@chromium.org](mailto:gdeepti@chromium.org) y [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com).
 
 ## Erratas
 
@@ -76,7 +76,7 @@ Para pruebas de rendimiento, JavaScript ya subyace en la mayoría de los puntos 
 
 ### A quién CC
 
-**Cada** correo “intención de `$algo`” (por ejemplo, “intención de implementar”) debería incluir en CC a v8-users@googlegroups.com además de blink-dev@chromium.org. De esta manera, otros integradores de V8 también se mantienen informados.
+**Cada** correo “intención de `$algo`” (por ejemplo, “intención de implementar”) debería incluir en CC a [v8-users@googlegroups.com](mailto:v8-users@googlegroups.com) además de [blink-dev@chromium.org](mailto:blink-dev@chromium.org). De esta manera, otros integradores de V8 también se mantienen informados.
 
 ### Enlace al repositorio de la especificación
 

@@ -76,7 +76,7 @@ WebAssemblyの機能については、[WebAssembly Spec Test リポジトリ](ht
 
 ### CCする人
 
-**全ての** “intent to `$something`” のメール（例：“intent to implement”）は、 v8-users@googlegroups.com と blink-dev@chromium.org の両方をCCしてください。このようにして、他のV8エンベッダーも情報を共有することができます。
+**全ての** “intent to `$something`” のメール（例：“intent to implement”）は、 [v8-users@googlegroups.com](mailto:v8-users@googlegroups.com) と [blink-dev@chromium.org](mailto:blink-dev@chromium.org) の両方をCCしてください。このようにして、他のV8エンベッダーも情報を共有することができます。
 
 ### 仕様リポジトリへのリンク
 

@@ -26,7 +26,7 @@ Qualquer coisa que um colaborador leria ao trabalhar com o V8, incluindo:
 
 ## Como saber se uma terminologia específica é aceitável ou não?
 
-Aplique os princípios acima. Se tiver dúvidas, você pode entrar em contato com `v8-dev@googlegroups.com`.
+Aplique os princípios acima. Se tiver dúvidas, você pode entrar em contato com [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com).
 
 ## Quais são exemplos de terminologias a serem evitadas?
 

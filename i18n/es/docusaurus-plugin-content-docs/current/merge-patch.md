@@ -18,7 +18,7 @@ Un problema asociado en el rastreador de problemas de V8 es **obligatorio** si s
 - El parche no altera las APIs.
 - El parche no cambia el comportamiento presente antes del corte de la rama (excepto si el cambio de comportamiento corrige un error).
 
-Se puede encontrar más información en la [página relevante de Chromium](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/process/merge_request.md). En caso de duda, envía un correo electrónico a v8-dev@googlegroups.com.
+Se puede encontrar más información en la [página relevante de Chromium](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/process/merge_request.md). En caso de duda, envía un correo electrónico a [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com).
 
 ## El proceso de fusión
 

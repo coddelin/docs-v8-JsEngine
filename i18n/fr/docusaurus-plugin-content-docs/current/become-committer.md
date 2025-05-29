@@ -22,7 +22,7 @@ En résumé, contribuez avec 20 correctifs non triviaux et faites-les examiner p
 - compréhension de la base de code et du style de codage du projet, et
 - capacité à écrire du bon code (dernier point mais certainement pas le moindre)
 
-Un committer actuel vous désigne en envoyant un email à `v8-committers@chromium.org` contenant :
+Un committer actuel vous désigne en envoyant un email à [v8-committers@chromium.org](mailto:v8-committers@chromium.org) contenant :
 
 - votre prénom et nom de famille
 - votre adresse email dans Gerrit
@@ -31,7 +31,7 @@ Un committer actuel vous désigne en envoyant un email à `v8-committers@chromiu
 
 Deux autres committers doivent soutenir votre nomination. Si personne ne s'oppose dans les 5 jours ouvrables, vous êtes committer. Si quelqu'un s'oppose ou demande davantage d'informations, les committers discutent et parviennent généralement à un consensus (dans les 5 jours ouvrables). Si les problèmes ne peuvent pas être résolus, un vote est organisé parmi les committers actuels.
 
-Une fois que vous obtenez l'approbation des committers existants, des permissions supplémentaires de revue vous sont accordées. Vous serez également ajouté à la liste de diffusion `v8-committers@googlegroups.com`.
+Une fois que vous obtenez l'approbation des committers existants, des permissions supplémentaires de revue vous sont accordées. Vous serez également ajouté à la liste de diffusion [v8-committers@googlegroups.com](mailto:v8-committers@googlegroups.com).
 
 Dans le pire des cas, le processus peut durer jusqu'à deux semaines. Continuez à écrire des correctifs ! Même dans les cas rares où une nomination échoue, l'objection est généralement quelque chose de facile à résoudre, comme « plus de correctifs » ou « pas suffisamment de personnes connaissent le travail de cette personne ».
 
@@ -41,6 +41,6 @@ Vous n'avez pas vraiment besoin de faire beaucoup pour maintenir votre statut de
 
 Dans le cas malheureux où un committer continue d'ignorer la bonne citoyenneté (ou perturbe activement le projet), nous pourrions avoir besoin de révoquer le statut de cette personne. Le processus est le même que pour désigner un nouveau committer : quelqu'un suggère la révocation avec une bonne raison, deux personnes soutiennent la motion, et un vote peut être organisé si le consensus ne peut pas être atteint. J'espère que c'est suffisamment simple et que nous n'aurons jamais à le tester en pratique.
 
-De plus, par mesure de sécurité, si vous êtes inactif sur Gerrit (aucun upload, aucun commentaire et aucune revue) pendant plus d'un an, nous pourrions révoquer vos privilèges de committer. Une notification par email est envoyée environ 7 jours avant la suppression. Ceci n'est pas une punition, donc si vous souhaitez reprendre votre contribution après cela, contactez `v8-committers@googlegroups.com` pour demander sa restauration, et nous le ferons normalement.
+De plus, par mesure de sécurité, si vous êtes inactif sur Gerrit (aucun upload, aucun commentaire et aucune revue) pendant plus d'un an, nous pourrions révoquer vos privilèges de committer. Une notification par email est envoyée environ 7 jours avant la suppression. Ceci n'est pas une punition, donc si vous souhaitez reprendre votre contribution après cela, contactez [v8-committers@googlegroups.com](mailto:v8-committers@googlegroups.com) pour demander sa restauration, et nous le ferons normalement.
 
 (Ce document a été inspiré par [devenir-un-committer](https://dev.chromium.org/getting-involved/become-a-committer).)

@@ -53,7 +53,7 @@ LGTM: 필요하지 않음
 ### V8 Eng Review Owners
 
 LGTM: 필요하지 않음
-막힌 제안은 <v8-eng-review-owners@googlegroups.com>을 통해 V8 Eng Review Owners에 '상승'할 수 있습니다. 이러한 상승의 잠재적 사용 사례:
+막힌 제안은 <[v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com)>을 통해 V8 Eng Review Owners에 '상승'할 수 있습니다. 이러한 상승의 잠재적 사용 사례:
 
 - LGTM 제공자가 응답하지 않는 경우
 - 디자인에 대해 합의에 도달할 수 없는 경우
@@ -70,7 +70,7 @@ V8 Eng Review Owners는 LGTM을 제공하지 않은 사람 또는 LGTM을 제공
 1. IC는 LGTM을 제공해야 할 사람들을 LGTM 제공자 목록에 추가합니다. TL은 반드시 목록에 포함되어야 합니다.
 1. IC는 피드백을 반영합니다.
 1. TL이 LGTM 제공자 목록에 더 많은 사람을 추가합니다.
-1. IC는 초기 디자인 문서/설명/한 장짜리를 <v8-dev+design@googlegroups.com>에 보냅니다.
+1. IC는 초기 디자인 문서/설명/한 장짜리를 <[v8-dev+design@googlegroups.com](mailto:v8-dev+design@googlegroups.com)>에 보냅니다.
 1. IC가 LGTM을 수집합니다. TL이 돕습니다.
     1. LGTM 제공자는 문서를 검토하고 댓글을 추가하며 문서 시작 부분에서 LGTM 또는 LGTM이 아닌지를 제공합니다. LGTM이 아닌 경우, 이유를 반드시 나열해야 합니다.
     1. 선택사항: LGTM 제공자는 자신을 LGTM 제공자 목록에서 제거하거나 다른 LGTM 제공자를 제안할 수 있습니다.

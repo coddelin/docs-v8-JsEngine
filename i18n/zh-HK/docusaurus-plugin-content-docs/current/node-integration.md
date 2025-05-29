@@ -42,7 +42,7 @@ Fork [V8 的 Node.js 存儲庫](https://github.com/v8/node/)（點擊 fork 按�
 ```bash
 cd node
 git remote add v8 http://github.com/v8/node
-git remote add <your-user-name> git@github.com:<your-user-name>/node.git
+git remote add <your-user-name> [git@github.com](mailto:git@github.com):<your-user-name>/node.git
 git fetch v8
 git checkout v8/node-ci-<sync-date>
 export BRANCH_NAME=`date +"%Y-%m-%d"`_fix_name

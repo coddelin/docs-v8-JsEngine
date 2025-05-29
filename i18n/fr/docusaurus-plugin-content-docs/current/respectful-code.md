@@ -26,7 +26,7 @@ Tout ce qu'un contributeur pourrait lire en travaillant sur V8, y compris :
 
 ## Comment savoir si une terminologie particulière est acceptable ou non ?
 
-Appliquez les principes ci-dessus. Si vous avez des questions, vous pouvez contacter `v8-dev@googlegroups.com`.
+Appliquez les principes ci-dessus. Si vous avez des questions, vous pouvez contacter [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com).
 
 ## Quels sont des exemples de terminologie à éviter ?
 

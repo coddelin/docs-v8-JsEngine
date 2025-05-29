@@ -18,7 +18,7 @@ description: '本文檔說明如何將 V8 的補丁合併到發行分支。'
 - 補丁不修改 API。
 - 補丁不改變分支切割之前的行為（除非該行為改變是為了解決錯誤）。
 
-更多資訊請參見[相關的 Chromium 頁面](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/process/merge_request.md)。如果有疑問，請發送電子郵件至 v8-dev@googlegroups.com。
+更多資訊請參見[相關的 Chromium 頁面](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/process/merge_request.md)。如果有疑問，請發送電子郵件至 [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com)。
 
 ## 合併過程
 

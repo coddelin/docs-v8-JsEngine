@@ -18,7 +18,7 @@ description: '本文档介绍如何将 V8 补丁合并到发布分支。'
 - 补丁不修改 API。
 - 补丁不改变分支切割前存在的行为（除非改变行为是为了修复 bug）。
 
-更多信息请参考 [相关的 Chromium 页面](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/process/merge_request.md)。如有疑问，请发送邮件到 v8-dev@googlegroups.com。
+更多信息请参考 [相关的 Chromium 页面](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/process/merge_request.md)。如有疑问，请发送邮件到 [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com)。
 
 ## 合并流程
 

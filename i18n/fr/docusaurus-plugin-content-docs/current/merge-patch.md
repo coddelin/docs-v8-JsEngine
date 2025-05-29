@@ -18,7 +18,7 @@ Un problème associé dans le suivi des problèmes de V8 est **obligatoire** si 
 - Le correctif ne modifie pas les API.
 - Le correctif ne change pas le comportement présent avant la création de la branche (sauf si le changement de comportement corrige un bogue).
 
-Plus d'informations sont disponibles sur [la page pertinente de Chromium](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/process/merge_request.md). En cas de doute, envoyez un email à v8-dev@googlegroups.com.
+Plus d'informations sont disponibles sur [la page pertinente de Chromium](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/process/merge_request.md). En cas de doute, envoyez un email à [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com).
 
 ## Le processus de fusion
 

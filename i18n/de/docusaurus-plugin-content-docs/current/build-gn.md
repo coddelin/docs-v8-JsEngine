@@ -131,4 +131,4 @@ Sie können auch Ihre zuletzt erstellte Build (in `out.gn`) testen:
 tools/run-tests.py --gn
 ```
 
-**Build-Probleme? Melden Sie einen Fehler unter [v8.dev/bug](https://v8.dev/bug) oder fragen Sie um Hilfe unter v8-users@googlegroups.com.**
+**Build-Probleme? Melden Sie einen Fehler unter [v8.dev/bug](https://v8.dev/bug) oder fragen Sie um Hilfe unter [v8-users@googlegroups.com](mailto:v8-users@googlegroups.com).**

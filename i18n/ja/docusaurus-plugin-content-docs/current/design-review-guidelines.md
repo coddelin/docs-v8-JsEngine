@@ -38,7 +38,7 @@ LGTM: 該当なし
 ### ICの技術リード（TL）
 
 LGTM: 必須
-この人物は特定のプロジェクトやコンポーネントのTLです。おそらく、あなたの機能が触れる主なコンポーネントの所有者である人物です。TLが誰であるかが明確でない場合は、v8-eng-review-owners@googlegroups.com を介してV8 Eng Review Ownersに尋ねてください。適切であればTLは必要なLGTM提供者のリストにさらに多くの人物を追加する責任を持っています。
+この人物は特定のプロジェクトやコンポーネントのTLです。おそらく、あなたの機能が触れる主なコンポーネントの所有者である人物です。TLが誰であるかが明確でない場合は、[v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com) を介してV8 Eng Review Ownersに尋ねてください。適切であればTLは必要なLGTM提供者のリストにさらに多くの人物を追加する責任を持っています。
 
 ### LGTM提供者
 
@@ -53,7 +53,7 @@ LGTM: 必須ではない
 ### V8 Eng Review Owners
 
 LGTM: 必須ではない
-行き詰まった提案は<v8-eng-review-owners@googlegroups.com>を介してV8 Eng Review Ownersにエスカレーションされることができます。そのようなエスカレーションの潜在的な使用ケース:
+行き詰まった提案は<[v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com)>を介してV8 Eng Review Ownersにエスカレーションされることができます。そのようなエスカレーションの潜在的な使用ケース:
 
 - LGTM提供者が応答しない場合
 - デザインに関するコンセンサスが得られない場合
@@ -70,14 +70,14 @@ V8 Eng Review Ownersは非LGTMまたはLGTMを覆すことができます。
 1. ICは自身が考えるLGTM提供者のリストに人々を追加します。TLはLGTM提供者のリストに必須です。
 1. ICがフィードバックを取り入れる。
 1. TLがLGTM提供者のリストにさらに人々を追加する。
-1. ICが初期デザインドキュメント/説明資料/一枚の文書を<v8-dev+design@googlegroups.com>に送る。
+1. ICが初期デザインドキュメント/説明資料/一枚の文書を<[v8-dev+design@googlegroups.com](mailto:v8-dev+design@googlegroups.com)>に送る。
 1. ICがLGTMsを収集する。TLが手助けする。
     1. LGTM提供者が文書をレビューし、コメントを追加し、文書の冒頭にLGTMまたは非LGTMを示す。非LGTMを追加する場合は理由を列挙する。
     1. オプション: LGTM提供者は自分自身をLGTM提供者リストから外すことができる/他のLGTM提供者を提案できる
     1. ICとTLは未解決の問題を解決するために協力する。
-    1. すべてのLGTMが収集された場合、v8-dev@googlegroups.com にメールを送信し（例えば元スレッドをピンすることで）、実装を発表する。
+    1. すべてのLGTMが収集された場合、[v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com) にメールを送信し（例えば元スレッドをピンすることで）、実装を発表する。
 1. オプション: ICとTLが行き詰まり、または広範な議論を望む場合は、問題をV8 Eng Review Ownersにエスカレーションすることができる。
-    1. ICがv8-eng-review-owners@googlegroups.com にメールを送信する
+    1. ICがv8[eng-review-owners@googlegroups.com](mailto:eng-review-owners@googlegroups.com) にメールを送信する
         1. CCにTLを含む
         1. メール内のデザインドキュメントのリンク
     1. すべてのV8 Eng Review Ownersメンバーは文書をレビューする義務があり、任意でLGTM提供者リストに自分自身を追加できる。
@@ -119,7 +119,7 @@ LGTMプロバイダーのリストに追加すべきタイミングに関する�
 
 ### “私の”TLとは誰を指すのか？
 
-これはおそらく、あなたの機能が触れる主なコンポーネントのオーナーです。TLが明確でない場合、v8-eng-review-owners@googlegroups.com 経由でV8エンジニアリングレビューチームのオーナーに問い合わせてください。
+これはおそらく、あなたの機能が触れる主なコンポーネントのオーナーです。TLが明確でない場合、[v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com) 経由でV8エンジニアリングレビューチームのオーナーに問い合わせてください。
 
 ### 設計ドキュメントのテンプレートはどこにありますか？
 
@@ -135,7 +135,7 @@ LGTMs の状況を確認し、例えば LGTMプロバイダーに明確で合理
 
 - メール、Hangouts、ドキュメント内のコメント/タスク割り当てを通じて直接連絡し、明示的にLGTMまたは非LGTMを追加するよう依頼してください。
 - あなたのTLを巻き込んで助けを求めてください。
-- v8-eng-review-owners@googlegroups.com にエスカレートしてください。
+- [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com) にエスカレートしてください。
 
 ### 誰かが私をLGTMプロバイダーとしてドキュメントに追加した場合、どうすればいいのか？
 

@@ -16,7 +16,7 @@ Einige Besonderheiten:
 Wenn Sie eine Konfiguration haben, die ein Problem aufweist, aber nicht von einem der oben genannten Bots abgedeckt wird:
 
 - Sie können gerne eine CL einreichen, die Ihr Problem behebt. Das Team wird Sie mit einer Codeüberprüfung unterstützen.
-- Sie können v8-dev@googlegroups.com verwenden, um das Problem zu diskutieren.
+- Sie können [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com) verwenden, um das Problem zu diskutieren.
 - Wenn Sie der Meinung sind, dass wir diese Konfiguration unterstützen sollten (vielleicht eine Lücke in unserer Testmatrix?), reichen Sie bitte einen Fehler auf dem [V8 Issue Tracker](https://bugs.chromium.org/p/v8/issues/entry) ein und fragen Sie.
 
 Allerdings haben wir nicht die Kapazität, jede mögliche Konfiguration zu unterstützen.

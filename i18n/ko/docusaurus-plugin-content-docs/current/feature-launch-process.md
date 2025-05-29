@@ -4,9 +4,9 @@ description: '이 문서는 V8에서 JavaScript 또는 WebAssembly 언어 기능
 ---
 일반적으로 V8은 이미 정의된 합의 기반 표준에 대한 [Blink 의도 프로세스](https://www.chromium.org/blink/launching-features/#process-existing-standard)를 JavaScript 및 WebAssembly 언어 기능에 대해 따릅니다. V8 특정 사항은 아래에 설명되어 있습니다. 의도 프로세스를 따르되, 예외가 있는 경우 해당 사항에 따라 행동하십시오.
 
-JavaScript 기능에 대한 질문이 있으면 syg@chromium.org 및 v8-dev@googlegroups.com으로 이메일을 보내십시오.
+JavaScript 기능에 대한 질문이 있으면 [syg@chromium.org](mailto:syg@chromium.org) 및 v8-dev@googlegroups.com으로 이메일을 보내십시오.
 
-WebAssembly 기능에 대한 질문은 gdeepti@chromium.org 및 v8-dev@googlegroups.com으로 이메일을 보내십시오.
+WebAssembly 기능에 대한 질문은 [gdeepti@chromium.org](mailto:gdeepti@chromium.org) 및 v8-dev@googlegroups.com으로 이메일을 보내십시오.
 
 ## 예외사항
 

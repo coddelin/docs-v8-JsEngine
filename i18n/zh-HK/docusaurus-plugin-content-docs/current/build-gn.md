@@ -131,4 +131,4 @@ tools/run-tests.py --outdir out/foo
 tools/run-tests.py --gn
 ```
 
-**構建上遇到問題？請至 [v8.dev/bug](https://v8.dev/bug) 報告問題，或至 v8-users@googlegroups.com 尋求幫助。**
+**構建上遇到問題？請至 [v8.dev/bug](https://v8.dev/bug) 報告問題，或至 [v8-users@googlegroups.com](mailto:v8-users@googlegroups.com) 尋求幫助。**

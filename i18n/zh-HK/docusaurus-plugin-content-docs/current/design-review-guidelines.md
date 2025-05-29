@@ -38,7 +38,7 @@ LGTM: 不適用
 ### IC 的技術領導（TL）
 
 LGTM: 必須具有
-此人是特定項目或組件的 TL。很可能此人是您所涉及的主要組件的負責人。如果尚不清楚誰是 TL，請通過 v8-eng-review-owners@googlegroups.com 向 V8 Eng Review Owners 咨詢。TL 負責在適當情況下添加更多人到必需的 LGTM 提供者列表中。
+此人是特定項目或組件的 TL。很可能此人是您所涉及的主要組件的負責人。如果尚不清楚誰是 TL，請通過 [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com) 向 V8 Eng Review Owners 咨詢。TL 負責在適當情況下添加更多人到必需的 LGTM 提供者列表中。
 
 ### LGTM 提供者
 
@@ -53,7 +53,7 @@ LGTM: 非必需
 ### V8 Eng Review Owners
 
 LGTM: 非必需
-被卡住的提案可以通過v8-eng-review-owners@googlegroups.com 向 V8 Eng Review Owners 升級。此類升級的潛在用例：
+被卡住的提案可以通過v8[eng-review-owners@googlegroups.com](mailto:eng-review-owners@googlegroups.com) 向 V8 Eng Review Owners 升級。此類升級的潛在用例：
 
 - 一個 LGTM 提供者無回應
 - 設計無法達成共識
@@ -70,14 +70,14 @@ V8 Eng Review Owners 可以推翻非 LGTM 或 LGTM。
 1. IC 添加其認為應該提供 LGTM 的人到 LGTM 提供者列表中。TL 必須在 LGTM 提供者列表中。
 1. IC 合併反饋。
 1. TL 添加更多人到 LGTM 提供者列表中。
-1. IC 將早期設計文檔/解釋器/一頁文件發送至 v8-dev+design@googlegroups.com。
+1. IC 將早期設計文檔/解釋器/一頁文件發送至 [v8-dev+design@googlegroups.com](mailto:v8-dev+design@googlegroups.com)。
 1. IC 收集 LGTMs，TL 幫助他們。
     1. LGTM 提供者審查文檔，添加評論並在文檔開頭給出 LGTM 或不給 LGTM。如果添加不給 LGTM，他們有義務列出理由。
     1. 可選：LGTM 提供者可以將自己從 LGTM 提供者列表中移除和/或建議其他 LGTM 提供者
     1. IC 和 TL 工作以解決未解決的問題。
-    1. 如果收集到所有 LGTM，發送電子郵件到 v8-dev@googlegroups.com （例如通過點擊原始主題）並宣布實現。
+    1. 如果收集到所有 LGTM，發送電子郵件到 [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com) （例如通過點擊原始主題）並宣布實現。
 1. 可選：如果 IC 和 TL 被阻止和/或希望進行更廣泛的討論，他們可以將該問題升級到 V8 Eng Review Owners。
-    1. IC 發送郵件到 v8-eng-review-owners@googlegroups.com
+    1. IC 發送郵件到 [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com)
         1. CC TL
         1. 郵件中包含設計文檔的鏈接
     1. 每位 V8 Eng Review Owners 成員都有義務審查文檔，並可以選擇性地將自己添加到 LGTM 提供者列表中。
@@ -119,7 +119,7 @@ V8 Eng Review Owners 可以推翻非 LGTM 或 LGTM。
 
 ### 誰是“我的”TL？
 
-這可能是主元件的 OWNER，該元件是您的功能將會修改的部分。如果不清楚誰是 TL，請通過 v8-eng-review-owners@googlegroups.com 詢問 V8 Eng Review Owners。
+這可能是主元件的 OWNER，該元件是您的功能將會修改的部分。如果不清楚誰是 TL，請通過 [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com) 詢問 V8 Eng Review Owners。
 
 ### 我在哪裡可以找到設計文檔的範本？
 
@@ -135,7 +135,7 @@ V8 Eng Review Owners 可以推翻非 LGTM 或 LGTM。
 
 - 通過郵件、Hangouts 或文檔的評論/分配功能直接聯繫他們，並特別要求他們明確添加 LGTM 或非 LGTM。
 - 讓您的 TL 參與進來並尋求他們的幫助。
-- 升級至 v8-eng-review-owners@googlegroups.com。
+- 升級至 [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com)。
 
 ### 有人將我添加為文檔的 LGTM 提供者，我該怎麼辦？
 

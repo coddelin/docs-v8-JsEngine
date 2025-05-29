@@ -4,9 +4,9 @@ description: 'Этот документ объясняет процесс реа
 ---
 Как правило, V8 следует [процессу намерений Blink для уже определенных стандартов на основе консенсуса](https://www.chromium.org/blink/launching-features/#process-existing-standard) для языковых функций JavaScript и WebAssembly. Ошибки, специфичные для V8, изложены ниже. Пожалуйста, следуйте процессу намерений Blink, если только ошибки не указывают на иное.
 
-Если у вас есть вопросы по этой теме касательно функций JavaScript, пожалуйста, напишите на syg@chromium.org и v8-dev@googlegroups.com.
+Если у вас есть вопросы по этой теме касательно функций JavaScript, пожалуйста, напишите на [syg@chromium.org](mailto:syg@chromium.org) и [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com).
 
-Для функций WebAssembly, пожалуйста, напишите на gdeepti@chromium.org и v8-dev@googlegroups.com.
+Для функций WebAssembly, пожалуйста, напишите на [gdeepti@chromium.org](mailto:gdeepti@chromium.org) и [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com).
 
 ## Ошибки
 
@@ -76,7 +76,7 @@ description: 'Этот документ объясняет процесс реа
 
 ### Кого включить в копию (CC)
 
-**Каждое** электронное письмо с “намерением `$something`” (например, “намерение реализовать”) должно содержать копию на v8-users@googlegroups.com в дополнение к blink-dev@chromium.org. Это позволяет держать в курсе других участников разработки V8.
+**Каждое** электронное письмо с “намерением `$something`” (например, “намерение реализовать”) должно содержать копию на [v8-users@googlegroups.com](mailto:v8-users@googlegroups.com) в дополнение к [blink-dev@chromium.org](mailto:blink-dev@chromium.org). Это позволяет держать в курсе других участников разработки V8.
 
 ### Ссылка на репозиторий спецификаций
 

@@ -38,7 +38,7 @@ Essa pessoa é o criador do recurso e da documentação de design.
 ### O Líder Técnico (TL) do IC
 
 LGTM: Obrigatório
-Essa pessoa é o TL de um determinado projeto ou componente. Provavelmente, essa é a pessoa proprietária do componente principal que seu recurso irá tocar. Se não estiver claro quem é o TL, pergunte aos Proprietários de Revisão de Engenharia do V8 através do e-mail v8-eng-review-owners@googlegroups.com. Os TLs são responsáveis por incluir mais pessoas na lista de fornecedores de LGTM necessários, se apropriado.
+Essa pessoa é o TL de um determinado projeto ou componente. Provavelmente, essa é a pessoa proprietária do componente principal que seu recurso irá tocar. Se não estiver claro quem é o TL, pergunte aos Proprietários de Revisão de Engenharia do V8 através do e-mail [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com). Os TLs são responsáveis por incluir mais pessoas na lista de fornecedores de LGTM necessários, se apropriado.
 
 ### Fornecedor de LGTM
 
@@ -53,7 +53,7 @@ Essa é alguém que simplesmente revisa e comenta sobre a proposta. Sua opinião
 ### Proprietários de Revisão de Engenharia do V8
 
 LGTM: Não obrigatório
-Propostas bloqueadas podem ser escaladas para os Proprietários de Revisão de Engenharia do V8 via <v8-eng-review-owners@googlegroups.com>. Possíveis casos de uso para tal escalada:
+Propostas bloqueadas podem ser escaladas para os Proprietários de Revisão de Engenharia do V8 via <[v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com)>. Possíveis casos de uso para tal escalada:
 
 - um fornecedor de LGTM está não responsivo
 - nenhum consenso sobre o design pode ser alcançado
@@ -70,14 +70,14 @@ Os Proprietários de Revisão de Engenharia do V8 podem anular não-LGTMs ou LGT
 1. IC adiciona pessoas à lista de fornecedores de LGTM que o IC acredita que devem dar seu LGTM. O TL é obrigatório na lista de fornecedores de LGTM.
 1. IC incorpora feedback.
 1. TL adiciona mais pessoas à lista de fornecedores de LGTM.
-1. IC envia o documento de design inicial/explicador/uma página para <v8-dev+design@googlegroups.com>.
+1. IC envia o documento de design inicial/explicador/uma página para <[v8-dev+design@googlegroups.com](mailto:v8-dev+design@googlegroups.com)>.
 1. IC coleta os LGTMs. TL ajuda-o.
     1. O fornecedor de LGTM revisa o documento, adiciona comentários e dá um LGTM ou não LGTM no início do documento. Se eles adicionarem um não LGTM, estão obrigados a listar o(s) motivo(s).
     1. Opcionais: fornecedores de LGTM podem se remover da lista de fornecedores de LGTM e/ou sugerir outros fornecedores de LGTM
     1. IC e TL trabalham para resolver os problemas não resolvidos.
     1. Se todos os LGTM forem coletados, envie um e-mail para v8-dev@googlegroups.com (por exemplo, pingando o tópico original) e anuncie a implementação.
 1. Opcionais: Se IC e TL estiverem bloqueados e/ou quiserem ter uma discussão mais ampla, podem escalar o problema para os Proprietários de Revisão de Engenharia do V8.
-    1. IC envia um e-mail para v8-eng-review-owners@googlegroups.com
+    1. IC envia um e-mail para [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com)
         1. TL em CC
         1. Link para o documento de design no e-mail
     1. Cada membro dos Proprietários de Revisão de Engenharia do V8 é obrigado a revisar o documento e opcionalmente se adicionar à lista de fornecedores de LGTM.
@@ -119,7 +119,7 @@ Algumas diretrizes sobre quando as pessoas devem ser adicionadas à lista de pro
 
 ### Quem é “meu” TL?
 
-Provavelmente é a pessoa que é proprietária do componente principal que sua funcionalidade irá alterar. Caso não saiba quem é o TL, por favor, pergunte aos Proprietários de Revisão Técnica do V8 pelo v8-eng-review-owners@googlegroups.com.
+Provavelmente é a pessoa que é proprietária do componente principal que sua funcionalidade irá alterar. Caso não saiba quem é o TL, por favor, pergunte aos Proprietários de Revisão Técnica do V8 pelo [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com).
 
 ### Onde posso encontrar um modelo para documentos de design?
 
@@ -135,7 +135,7 @@ Neste caso, você pode seguir este caminho de escalonamento:
 
 - Entre em contato diretamente via e-mail, Hangouts ou comentário/designação no documento e peça explicitamente que eles adicionem um LGTM ou um não-LGTM.
 - Envolva seu TL e peça ajuda a ele.
-- Escale para v8-eng-review-owners@googlegroups.com.
+- Escale para [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com).
 
 ### Alguém me adicionou como provedor de LGTM em um documento, o que devo fazer?
 

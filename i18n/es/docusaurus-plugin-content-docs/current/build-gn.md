@@ -131,4 +131,4 @@ También puedes probar tu compilación recientemente hecha (en `out.gn`):
 tools/run-tests.py --gn
 ```
 
-**¿Problemas de compilación? Reporta un error en [v8.dev/bug](https://v8.dev/bug) o solicita ayuda en v8-users@googlegroups.com.**
+**¿Problemas de compilación? Reporta un error en [v8.dev/bug](https://v8.dev/bug) o solicita ayuda en [v8-users@googlegroups.com](mailto:v8-users@googlegroups.com).**

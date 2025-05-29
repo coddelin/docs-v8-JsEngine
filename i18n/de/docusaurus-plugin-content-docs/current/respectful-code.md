@@ -26,7 +26,7 @@ Alles, was ein Beitragsleistender während der Arbeit mit V8 lesen würde, einsc
 
 ## Wie weiß ich, ob bestimmte Terminologie akzeptabel ist oder nicht?
 
-Wenden Sie die oben genannten Prinzipien an. Wenn Sie Fragen haben, können Sie sich an `v8-dev@googlegroups.com` wenden.
+Wenden Sie die oben genannten Prinzipien an. Wenn Sie Fragen haben, können Sie sich an [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com) wenden.
 
 ## Was sind Beispiele für zu vermeidende Terminologie?
 

@@ -4,9 +4,9 @@ description: 'Dieses Dokument erklärt den Prozess der Implementierung und Ausli
 ---
 Im Allgemeinen folgt V8 dem [Blink Intent-Prozess für bereits definierte konsensbasierte Standards](https://www.chromium.org/blink/launching-features/#process-existing-standard) für JavaScript- und WebAssembly-Sprachfunktionen. V8-spezifische Ergänzungen sind unten aufgeführt. Bitte folgen Sie dem Blink Intent-Prozess, sofern die Ergänzungen nichts anderes vorsehen.
 
-Wenn Sie Fragen zu diesem Thema bezüglich JavaScript-Funktionen haben, senden Sie bitte eine E-Mail an syg@chromium.org und v8-dev@googlegroups.com.
+Wenn Sie Fragen zu diesem Thema bezüglich JavaScript-Funktionen haben, senden Sie bitte eine E-Mail an [syg@chromium.org](mailto:syg@chromium.org) und [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com).
 
-Für WebAssembly-Funktionen senden Sie bitte eine E-Mail an gdeepti@chromium.org und v8-dev@googlegroups.com.
+Für WebAssembly-Funktionen senden Sie bitte eine E-Mail an [gdeepti@chromium.org](mailto:gdeepti@chromium.org) und [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com).
 
 ## Ergänzungen
 
@@ -76,7 +76,7 @@ Für Leistungstests liegt JavaScript bereits den meisten bestehenden Leistungsbe
 
 ### Wen man in CC setzen sollte
 
-**Jede** „Absicht zu `$etwas`“-E-Mail (z. B. „Absicht zu implementieren“) sollte zusätzlich zu blink-dev@chromium.org auch v8-users@googlegroups.com in CC setzen. Auf diese Weise bleiben auch andere V8-Einbettungen auf dem Laufenden.
+**Jede** „Absicht zu `$etwas`“-E-Mail (z. B. „Absicht zu implementieren“) sollte zusätzlich zu [blink-dev@chromium.org](mailto:blink-dev@chromium.org) auch [v8-users@googlegroups.com](mailto:v8-users@googlegroups.com) in CC setzen. Auf diese Weise bleiben auch andere V8-Einbettungen auf dem Laufenden.
 
 ### Link zum Spezifikations-Repository
 

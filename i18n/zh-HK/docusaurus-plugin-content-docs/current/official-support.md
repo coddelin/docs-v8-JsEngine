@@ -16,7 +16,7 @@ V8 支援多種不同的構建配置，包括作業系統、版本、架構移�
 如果您遇到一個問題配置，但不在上述任何一個 Bot 的支援範圍內：
 
 - 您可以隨時提交修復該問題的 CL。團隊會在程式碼審查中支援您。
-- 您可以使用 v8-dev@googlegroups.com 討論這個問題。
+- 您可以使用 [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com) 討論這個問題。
 - 如果您認為我們應該支援此配置（可能是我們測試矩陣中的一個漏洞？），請提交一個 Bug 到 [V8 問題追蹤器](https://bugs.chromium.org/p/v8/issues/entry) 並提出請求。
 
 然而，我們沒有足夠的資源來支援每一種可能的配置。

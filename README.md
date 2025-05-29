@@ -102,3 +102,22 @@ Writing optimizable JavaScript
     Tracing V8
     Using Runtime Call Stats
 ```
+
+# 替换带有@符号的邮箱变为邮箱链接如: lijonh@gamil.com
+```js
+(?<!\[)(?<!mailto:)(?<!\()\b([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})\b(?!\]\()(?!(?:[^)]*?)\))
+替换为
+[$1](mailto:$1)
+```
+# 替换带有@符号的邮箱变为邮箱链接：如:`lijonh@gamil.com`
+```js
+`([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})`
+替换为
+[$1](mailto:$1)
+```
+# 
+```js
+`\[([^\]]+)\]\((mailto:[^\)]+|[^\)]+)\)`
+替换为
+[$1]($2)
+```

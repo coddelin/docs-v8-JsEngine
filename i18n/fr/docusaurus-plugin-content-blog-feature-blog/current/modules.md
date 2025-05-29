@@ -380,7 +380,7 @@ Les outils d'emballage existants tels que webpack, Rollup ou Parcel émettent ac
 
 La transparence du format natif des bundles ouvre diverses opportunités d'optimisation. Par exemple, si un navigateur a déjà une partie d'un bundle natif en cache localement, il pourrait en informer le serveur web et télécharger uniquement les parties manquantes.
 
-Chrome prend déjà en charge une partie de la proposition ([`SignedExchanges`](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html)), mais le format de bundling lui-même, ainsi que son application aux applications fortement modularisées, sont encore en phase exploratoire. Vos retours sont les bienvenus sur le dépôt ou par email à loading-dev@chromium.org!
+Chrome prend déjà en charge une partie de la proposition ([`SignedExchanges`](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html)), mais le format de bundling lui-même, ainsi que son application aux applications fortement modularisées, sont encore en phase exploratoire. Vos retours sont les bienvenus sur le dépôt ou par email à [loading-dev@chromium.org](mailto:loading-dev@chromium.org)!
 
 ### APIs stratifiées
 

@@ -4,9 +4,9 @@ description: '本文档解释了在 V8 中实现和发布 JavaScript 或 WebAsse
 ---
 通常情况下，V8 遵循 [Blink 的已定义共识标准的意向流程](https://www.chromium.org/blink/launching-features/#process-existing-standard)，用于 JavaScript 和 WebAssembly 语言特性。以下是 V8 的特定修订内容。请遵循 Blink 的意向流程，除非修订内容另有规定。
 
-如果您对此主题有任何关于 JavaScript 特性的问题，请发送邮件至 syg@chromium.org 和 v8-dev@googlegroups.com。
+如果您对此主题有任何关于 JavaScript 特性的问题，请发送邮件至 [syg@chromium.org](mailto:syg@chromium.org) 和 [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com)。
 
-对于 WebAssembly 特性，请发送邮件至 gdeepti@chromium.org 和 v8-dev@googlegroups.com。
+对于 WebAssembly 特性，请发送邮件至 [gdeepti@chromium.org](mailto:gdeepti@chromium.org) 和 [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com)。
 
 ## 修订内容
 
@@ -76,7 +76,7 @@ JavaScript 和 WebAssembly 特性的可调试性因特性而异。仅添加新�
 
 ### 抄送对象
 
-**每封**关于“意图 `$操作`”的邮件（例如“实施意图”）应该同时抄送 v8-users@googlegroups.com 和 blink-dev@chromium.org。这样可以确保其他 V8 嵌入者也能了解情况。
+**每封**关于“意图 `$操作`”的邮件（例如“实施意图”）应该同时抄送 [v8-users@googlegroups.com](mailto:v8-users@googlegroups.com) 和 [blink-dev@chromium.org](mailto:blink-dev@chromium.org)。这样可以确保其他 V8 嵌入者也能了解情况。
 
 ### 规范库链接
 

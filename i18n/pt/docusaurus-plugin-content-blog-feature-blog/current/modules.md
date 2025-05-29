@@ -380,7 +380,7 @@ Ferramentas de empacotamento existentes como webpack, Rollup ou Parcel atualment
 
 A transparência do formato de pacote nativo oferece diversas oportunidades de otimização. Por exemplo, se um navegador já tiver parte de um pacote nativo armazenado em cache localmente, poderá comunicar isso ao servidor da web e então baixar apenas as partes ausentes.
 
-O Chrome já suporta parte da proposta ([`SignedExchanges`](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html)), mas o formato de empacotamento em si, bem como sua aplicação em apps altamente modularizados, ainda estão em fase de exploração. Seu feedback é muito bem-vindo no repositório ou por e-mail para loading-dev@chromium.org!
+O Chrome já suporta parte da proposta ([`SignedExchanges`](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html)), mas o formato de empacotamento em si, bem como sua aplicação em apps altamente modularizados, ainda estão em fase de exploração. Seu feedback é muito bem-vindo no repositório ou por e-mail para [loading-dev@chromium.org](mailto:loading-dev@chromium.org)!
 
 ### APIs em Camadas
 

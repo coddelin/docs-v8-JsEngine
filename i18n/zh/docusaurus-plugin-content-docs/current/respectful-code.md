@@ -26,7 +26,7 @@ description: '包容性是V8文化的核心，我们的价值观包括彼此尊�
 
 ## 我如何知道特定术语是否合适？
 
-应用上述原则。如果有任何问题，你可以联系`v8-dev@googlegroups.com`。
+应用上述原则。如果有任何问题，你可以联系[v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com)。
 
 ## 应避免的术语有哪些示例？
 

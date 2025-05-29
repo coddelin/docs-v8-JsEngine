@@ -4,9 +4,9 @@ description: '此文件詳細說明在 V8 中實作及發佈 JavaScript 或 WebA
 ---
 一般而言，V8 遵循 [Blink Intent 已定義共識標準流程](https://www.chromium.org/blink/launching-features/#process-existing-standard)，以處理 JavaScript 和 WebAssembly 語言特性。以下是 V8 特有的附註。請遵循 Blink Intent 流程，除非附註另有規定。
 
-如果對於 JavaScript 特性有任何疑問，請發送電子郵件至 syg@chromium.org 和 v8-dev@googlegroups.com。
+如果對於 JavaScript 特性有任何疑問，請發送電子郵件至 [syg@chromium.org](mailto:syg@chromium.org) 和 [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com)。
 
-對於 WebAssembly 特性，請發送電子郵件至 gdeepti@chromium.org 和 v8-dev@googlegroups.com。
+對於 WebAssembly 特性，請發送電子郵件至 [gdeepti@chromium.org](mailto:gdeepti@chromium.org) 和 [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com)。
 
 ## 附註
 
@@ -76,7 +76,7 @@ JavaScript 和 WebAssembly 特性的可調試性因特性而異。僅添加新�
 
 ### CC 給誰
 
-**每封** “意圖 `某事`” 的郵件（例如“意圖實作”）都應 CC 至 v8-users@googlegroups.com，同時也 CC 至 blink-dev@chromium.org。這樣，其他 V8 的嵌入者也能保持同步。
+**每封** “意圖 `某事`” 的郵件（例如“意圖實作”）都應 CC 至 [v8-users@googlegroups.com](mailto:v8-users@googlegroups.com)，同時也 CC 至 [blink-dev@chromium.org](mailto:blink-dev@chromium.org)。這樣，其他 V8 的嵌入者也能保持同步。
 
 ### 規範庫的連結
 

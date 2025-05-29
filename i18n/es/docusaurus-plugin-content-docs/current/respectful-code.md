@@ -26,7 +26,7 @@ Cualquier cosa que un colaborador lea mientras trabaja en V8, incluyendo:
 
 ## ¿Cómo sé si una terminología particular es aceptable o no?
 
-Aplica los principios anteriores. Si tienes alguna duda, puedes contactar a `v8-dev@googlegroups.com`.
+Aplica los principios anteriores. Si tienes alguna duda, puedes contactar a [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com).
 
 ## ¿Cuáles son ejemplos de terminología a evitar?
 

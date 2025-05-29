@@ -131,4 +131,4 @@ Vous pouvez également tester votre construction la plus récente (dans `out.gn`
 tools/run-tests.py --gn
 ```
 
-**Problèmes de construction ? Déposez un rapport à [v8.dev/bug](https://v8.dev/bug) ou demandez de l'aide sur v8-users@googlegroups.com.**
+**Problèmes de construction ? Déposez un rapport à [v8.dev/bug](https://v8.dev/bug) ou demandez de l'aide sur [v8-users@googlegroups.com](mailto:v8-users@googlegroups.com).**

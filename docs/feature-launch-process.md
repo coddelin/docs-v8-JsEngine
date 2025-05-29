@@ -4,9 +4,9 @@ description: 'This document explains the process for implementing and shipping J
 ---
 In general, V8 follows the [Blink Intent process for already-defined consensus-based standards](https://www.chromium.org/blink/launching-features/#process-existing-standard) for JavaScript and WebAssembly language features. V8-specific errata are laid out below. Please follow the Blink Intent process, unless the errata tells you otherwise.
 
-If you have any questions on this topic for JavaScript features, please email syg@chromium.org and v8-dev@googlegroups.com.
+If you have any questions on this topic for JavaScript features, please email [syg@chromium.org](mailto:syg@chromium.org) and [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com).
 
-For WebAssembly features, please email gdeepti@chromium.org and v8-dev@googlegroups.com.
+For WebAssembly features, please email [gdeepti@chromium.org](mailto:gdeepti@chromium.org) and [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com).
 
 ## Errata
 
@@ -76,7 +76,7 @@ For performance tests, JavaScript already underlies most existing performance be
 
 ### Who to CC
 
-**Every** “intent to `$something`” email (e.g. “intent to implement”) should CC  v8-users@googlegroups.com in addition to  blink-dev@chromium.org. This way, other embedders of V8 are kept in the loop too.
+**Every** “intent to `$something`” email (e.g. “intent to implement”) should CC  [v8-users@googlegroups.com](mailto:v8-users@googlegroups.com) in addition to  [blink-dev@chromium.org](mailto:blink-dev@chromium.org). This way, other embedders of V8 are kept in the loop too.
 
 ### Link to the spec repo
 

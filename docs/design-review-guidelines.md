@@ -38,7 +38,7 @@ This person is the creator of the feature and the creator of the design document
 ### The Tech Lead (TL) of the IC
 
 LGTM: Must have
-This person is the TL of a given project or component. Likely this is the person that is an owner of the main component your feature is going to touch. If it is not clear who the TL is, please ask the V8 Eng Review Owners via v8-eng-review-owners@googlegroups.com. TLs are responsible to add more people to the list of required LGTMs if appropriate.
+This person is the TL of a given project or component. Likely this is the person that is an owner of the main component your feature is going to touch. If it is not clear who the TL is, please ask the V8 Eng Review Owners via [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com). TLs are responsible to add more people to the list of required LGTMs if appropriate.
 
 ### LGTM provider
 
@@ -53,7 +53,7 @@ This is somebody who is simply reviewing and comment on the proposal. Their inpu
 ### V8 Eng Review Owners
 
 LGTM: Not required
-Stuck proposals can be escalated to the V8 Eng Review Owners via  v8-eng-review-owners@googlegroups.com. Potential use cases of such an escalation:
+Stuck proposals can be escalated to the V8 Eng Review Owners via  [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com). Potential use cases of such an escalation:
 
 - an LGTM provider is non-responsive
 - no consensus on the design can be reached
@@ -70,14 +70,14 @@ The V8 Eng Review Owners can overrule non-LGTMs or LGTMs.
 1. IC adds people to the list of LGTM providers that the IC thinks should give their LGTM. The TL is a must have on the list of LGTM providers.
 1. IC incorporates feedback.
 1. TL adds more people to the list of LGTM providers.
-1. IC sends out the early design doc/explainer/one pager to  v8-dev+design@googlegroups.com.
+1. IC sends out the early design doc/explainer/one pager to  [v8-dev+design@googlegroups.com](mailto:v8-dev+design@googlegroups.com).
 1. IC collects the LGTMs. TL helps them.
     1. LGTM provider reviews document, add comments and gives either an LGTM or not LGTM at the beginning of the document. If they add a not LGTM, they are obligated to list the reason(s).
     1. Optional: LGTM providers can remove themselves from the list of LGTM providers and/or suggest other LGTM providers
     1. IC and TL work to resolve the unresolved issues.
     1. If all LGTM are gathered send an email to v8-dev@googlegroups.com (e.g. by pinging the original thread) and announce implementation.
 1. Optional: If IC and TL are blocked and/or want to have a broader discussion they can escalate the issue to the V8 Eng Review Owners.
-    1. IC sends a mail to v8-eng-review-owners@googlegroups.com
+    1. IC sends a mail to [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com)
         1. TL in CC
         1. Link to design doc in the mail
     1. Every V8 Eng Review Owners member is obligated to review the doc and optionally add themselves to the list of LGTM providers.
@@ -119,7 +119,7 @@ Some pointers when people should be added to the list of LGTM providers:
 
 ### Who is “my” TL?
 
-Likely this is the person that is an owner of the main component your feature is going to touch. If it is not clear who the TL is, please ask the V8 Eng Review Owners via v8-eng-review-owners@googlegroups.com.
+Likely this is the person that is an owner of the main component your feature is going to touch. If it is not clear who the TL is, please ask the V8 Eng Review Owners via [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com).
 
 ### Where can I find a template for design documents?
 
@@ -135,7 +135,7 @@ In this case you can follow this path of escalation:
 
 - Ping them directly via mail, Hangouts or comment/assignment in the doc and specifically ask them explicitly to add an LGTM or non-LGTM.
 - Get your TL involved and ask them for help.
-- Escalate to v8-eng-review-owners@googlegroups.com.
+- Escalate to [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com).
 
 ### Somebody added me as an LGTM provider to a doc, what should I do?
 

@@ -380,7 +380,7 @@ Existing bundling tools such as webpack, Rollup, or Parcel currently emit a sing
 
 The native bundle format’s transparency opens up various optimization opportunities. For example, if a browser already has part of a native bundle cached locally, it could communicate that to the web server and then only download the missing parts.
 
-Chrome already supports a part of the proposal ([`SignedExchanges`](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html)), but the bundling format itself as well as its application to highly-modularized apps are still in exploratory phase. Your feedback is highly welcome on the repository or via email to  loading-dev@chromium.org!
+Chrome already supports a part of the proposal ([`SignedExchanges`](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html)), but the bundling format itself as well as its application to highly-modularized apps are still in exploratory phase. Your feedback is highly welcome on the repository or via email to  [loading-dev@chromium.org](mailto:loading-dev@chromium.org)!
 
 ### Layered APIs
 
