@@ -33,42 +33,53 @@ const config: Config = {
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: "en",
-    locales: ["en"],
-    // defaultLocale: "zh-Hans",
-    // locales: ["zh-Hans","zh-HK","ja","ko","en","pt","es","fr","de","ru"],
-    // localeConfigs: {
-    // 	"en": {
-    // 		label: 'English',
-    // 	},
-    // 	"zh": {
-    // 		label: '简体中文',
-    // 	},
-    // 	"zh-HK": {
-    // 		label: '繁體中文',
-    // 	},
-    // 	"ja": {
-    // 		label: '日本語',
-    // 	},
-    // 	"ko": {
-    // 		label: '한국어（韩语）',
-    // 	},
-    // 	"de": {
-    // 		label: 'Deutsch（德语）',
-    // 	},
-    // 	"es": {
-    // 		label: 'Español（西班牙语）',
-    // 	},
-    // 	"fr": {
-    // 		label: 'Français（法语）',
-    // 	},
-    // 	"pt": {
-    // 		label: 'Português（葡萄牙）',
-    // 	},
-    // 	"ru": {
-    // 		label: 'Русский（俄语）',
-    // 	},
-    // },
+    // defaultLocale: "en",
+    // locales: ["en"],
+    defaultLocale: "zh-Hans",
+    locales: [
+      "zh-Hans",
+      "zh-HK",
+      "ja",
+      "ko",
+      "en",
+      "pt",
+      "es",
+      "fr",
+      "de",
+      "ru",
+    ],
+    localeConfigs: {
+      en: {
+        label: "English",
+      },
+      zh: {
+        label: "简体中文",
+      },
+      "zh-HK": {
+        label: "繁體中文",
+      },
+      ja: {
+        label: "日本語",
+      },
+      ko: {
+        label: "한국어（韩语）",
+      },
+      de: {
+        label: "Deutsch（德语）",
+      },
+      es: {
+        label: "Español（西班牙语）",
+      },
+      fr: {
+        label: "Français（法语）",
+      },
+      pt: {
+        label: "Português（葡萄牙）",
+      },
+      ru: {
+        label: "Русский（俄语）",
+      },
+    },
   },
 
   presets: [
@@ -80,7 +91,7 @@ const config: Config = {
           anonymizeIP: false,
         },
         docs: {
-          routeBasePath: '/', // Serve the docs at the site's root
+          routeBasePath: "/", // Serve the docs at the site's root
           sidebarPath: "./sidebars.ts",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -101,8 +112,8 @@ const config: Config = {
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",
-          blogSidebarTitle: 'All posts',
-          blogSidebarCount: 'ALL',
+          blogSidebarTitle: "All posts",
+          blogSidebarCount: "ALL",
         },
         theme: {
           customCss: "./src/css/custom.css",
@@ -168,9 +179,10 @@ const config: Config = {
           label: "条款",
           position: "left",
         },
-        {//多语言选择项
-          type: 'localeDropdown',
-          position: 'right',
+        {
+          //多语言选择项
+          type: "localeDropdown",
+          position: "right",
         },
         {
           href: "https://github.com/v8/v8.dev",
@@ -220,7 +232,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Translated by 林建有.`
+      copyright: `Copyright © ${new Date().getFullYear()} Translated by 林建有.`,
     },
     prism: {
       theme: prismThemes.github,
@@ -229,28 +241,33 @@ const config: Config = {
   } satisfies Preset.ThemeConfig,
   plugins: [
     [
-      '@docusaurus/plugin-content-blog',
+      "@docusaurus/plugin-content-blog",
       {
         /**
          * Required for any multi-instance plugin
          */
-        id: 'feature-blog',
+        id: "feature-blog",
         /**
          * URL route for the blog section of your site.
          * *DO NOT* include a trailing slash.
          */
-        routeBasePath: 'features',
+        routeBasePath: "features",
         /**
          * Path to data on filesystem relative to site dir.
          */
-        path: './features',
-        blogSidebarTitle: 'All posts',
-        blogSidebarCount: 'ALL',
+        path: "./features",
+        blogSidebarTitle: "All posts",
+        blogSidebarCount: "ALL",
       },
     ],
-    [require.resolve("docusaurus-lunr-search"),{
-      languages: ['en', 'de'] // language codes
-    }],
+    [
+      require.resolve("docusaurus-lunr-search"),
+      {
+        //需要安装的依赖    "docusaurus-lunr-search": "^3.5.0",     "@node-rs/jieba": "^2.0.1",
+        // "lunr-languages": "^1.14.0",
+        languages: ["en", "zh", "ja", "ko", "fr", "de", "es", "ru", "pt"], // language codes
+      },
+    ],
   ],
 
   // Enable Mermaid for diagrams
