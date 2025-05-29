@@ -119,7 +119,7 @@ Algumas diretrizes sobre quando as pessoas devem ser adicionadas à lista de pro
 
 ### Quem é “meu” TL?
 
-Provavelmente é a pessoa que é proprietária do componente principal que sua funcionalidade irá alterar. Caso não saiba quem é o TL, por favor, pergunte aos Proprietários de Revisão Técnica do V8 pelo &lt;v8-eng-review-owners@googlegroups.com>.
+Provavelmente é a pessoa que é proprietária do componente principal que sua funcionalidade irá alterar. Caso não saiba quem é o TL, por favor, pergunte aos Proprietários de Revisão Técnica do V8 pelo v8-eng-review-owners@googlegroups.com.
 
 ### Onde posso encontrar um modelo para documentos de design?
 
@@ -135,7 +135,7 @@ Neste caso, você pode seguir este caminho de escalonamento:
 
 - Entre em contato diretamente via e-mail, Hangouts ou comentário/designação no documento e peça explicitamente que eles adicionem um LGTM ou um não-LGTM.
 - Envolva seu TL e peça ajuda a ele.
-- Escale para &lt;v8-eng-review-owners@googlegroups.com>.
+- Escale para v8-eng-review-owners@googlegroups.com.
 
 ### Alguém me adicionou como provedor de LGTM em um documento, o que devo fazer?
 

@@ -76,7 +76,7 @@ JavaScript 和 WebAssembly 特性的可调试性因特性而异。仅添加新�
 
 ### 抄送对象
 
-**每封**关于“意图 `$操作`”的邮件（例如“实施意图”）应该同时抄送 &lt;v8-users@googlegroups.com> 和 &lt;blink-dev@chromium.org>。这样可以确保其他 V8 嵌入者也能了解情况。
+**每封**关于“意图 `$操作`”的邮件（例如“实施意图”）应该同时抄送 v8-users@googlegroups.com 和 blink-dev@chromium.org。这样可以确保其他 V8 嵌入者也能了解情况。
 
 ### 规范库链接
 

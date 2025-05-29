@@ -53,7 +53,7 @@ Esta es alguien que simplemente revisa y comenta sobre la propuesta. Sus comenta
 ### Responsables de Revisión Técnica de V8
 
 LGTM: No obligatorio
-Las propuestas atascadas pueden ser escaladas a los Responsables de Revisión Técnica de V8 a través de  &lt;v8-eng-review-owners@googlegroups.com>. Casos de uso potenciales para dicha escalada:
+Las propuestas atascadas pueden ser escaladas a los Responsables de Revisión Técnica de V8 a través de  v8-eng-review-owners@googlegroups.com. Casos de uso potenciales para dicha escalada:
 
 - un proveedor de LGTM no responde
 - no se puede alcanzar un consenso sobre el diseño
@@ -70,7 +70,7 @@ Los Responsables de Revisión Técnica de V8 pueden invalidar no-LGTMs o LGTMs.
 1. El CI agrega personas a la lista de proveedores de LGTM que el CI considera que deberían dar su LGTM. El LT es obligatorio en la lista de proveedores de LGTM.
 1. El CI incorpora comentarios.
 1. El LT agrega más personas a la lista de proveedores de LGTM.
-1. El CI envía el documento de diseño inicial/explicador/una página a  &lt;v8-dev+design@googlegroups.com>.
+1. El CI envía el documento de diseño inicial/explicador/una página a  v8-dev+design@googlegroups.com.
 1. El CI recopila los LGTMs. El LT les ayuda.
     1. El proveedor de LGTM revisa el documento, agrega comentarios y da un LGTM o no-LGTM al principio del documento. Si agregan un no-LGTM, están obligados a listar las razones.
     1. Opcional: los proveedores de LGTM pueden eliminarse de la lista de proveedores de LGTM y/o sugerir otros proveedores de LGTM
@@ -119,7 +119,7 @@ Algunos puntos a considerar sobre cuándo añadir personas a la lista de proveed
 
 ### ¿Quién es “mi” TL?
 
-Probablemente esta es la persona que es propietaria del componente principal que tu característica va a modificar. Si no está claro quién es el TL, por favor pregunta a los V8 Eng Review Owners a través de &lt;v8-eng-review-owners@googlegroups.com>.
+Probablemente esta es la persona que es propietaria del componente principal que tu característica va a modificar. Si no está claro quién es el TL, por favor pregunta a los V8 Eng Review Owners a través de v8-eng-review-owners@googlegroups.com.
 
 ### ¿Dónde puedo encontrar una plantilla para documentos de diseño?
 
@@ -135,7 +135,7 @@ En este caso puedes seguir este camino de escalamiento:
 
 - Contáctalos directamente por correo, Hangouts o comentario/asignación en el documento y pídeles específicamente que añadan explícitamente un LGTM o un no-LGTM.
 - Involucra a tu TL y pídele ayuda.
-- Escala el asunto a &lt;v8-eng-review-owners@googlegroups.com>.
+- Escala el asunto a v8-eng-review-owners@googlegroups.com.
 
 ### Alguien me añadió como un proveedor de LGTM a un documento, ¿qué debería hacer?
 

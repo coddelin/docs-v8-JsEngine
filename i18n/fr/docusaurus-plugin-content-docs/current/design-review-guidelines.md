@@ -53,7 +53,7 @@ C'est quelqu'un qui fait simplement la relecture et commente la proposition. Leu
 ### Propriétaires des Revues Techniques de V8
 
 LGTM : Non requis
-Les propositions bloquées peuvent être escaladées aux propriétaires des revues techniques de V8 via  &lt;v8-eng-review-owners@googlegroups.com>. Cas d'utilisation potentiels d'une telle escalade :
+Les propositions bloquées peuvent être escaladées aux propriétaires des revues techniques de V8 via  v8-eng-review-owners@googlegroups.com. Cas d'utilisation potentiels d'une telle escalade :
 
 - un fournisseur de LGTM ne répond pas
 - aucun consensus sur la conception ne peut être atteint
@@ -70,7 +70,7 @@ Les propriétaires des revues techniques de V8 peuvent passer outre les non-LGTM
 1. Le CI ajoute des personnes à la liste des fournisseurs de LGTM que le CI pense devoir fournir leur LGTM. Le TL est obligatoire sur la liste des fournisseurs de LGTM.
 1. Le CI intègre les retours.
 1. Le TL ajoute des personnes supplémentaires à la liste des fournisseurs de LGTM.
-1. Le CI envoie la documentation de conception/de présentation précoce/une page à  &lt;v8-dev+design@googlegroups.com>.
+1. Le CI envoie la documentation de conception/de présentation précoce/une page à  v8-dev+design@googlegroups.com.
 1. Le CI collecte les LGTMs. Le TL les aide.
     1. Le fournisseur de LGTM relit le document, ajoute des commentaires et donne soit un LGTM soit un non-LGTM au début du document. S'ils ajoutent un non-LGTM, ils sont obligés d'énumérer la ou les raison(s).
     1. Facultatif : les fournisseurs de LGTM peuvent se retirer de la liste des fournisseurs de LGTM et/ou suggérer d'autres fournisseurs de LGTM
@@ -119,7 +119,7 @@ Quelques conseils pour savoir quand des personnes doivent être ajoutées à la 
 
 ### Qui est « mon » TL ?
 
-Il est probable que ce soit la personne qui possède le composant principal que votre fonctionnalité va toucher. Si ce n'est pas clair qui est le TL, veuillez demander aux Propriétaires de la Revue Eng V8 via &lt;v8-eng-review-owners@googlegroups.com>.
+Il est probable que ce soit la personne qui possède le composant principal que votre fonctionnalité va toucher. Si ce n'est pas clair qui est le TL, veuillez demander aux Propriétaires de la Revue Eng V8 via v8-eng-review-owners@googlegroups.com.
 
 ### Où puis-je trouver un modèle pour les documents de conception ?
 
@@ -135,7 +135,7 @@ Dans ce cas, vous pouvez suivre ce chemin d'escalade :
 
 - Contactez-les directement par e-mail, Hangouts ou commentaire/attribution dans le document et demandez-leur spécifiquement d'ajouter un LGTM ou un non-LGTM.
 - Impliquez votre TL et demandez leur aide.
-- Faites remonter à &lt;v8-eng-review-owners@googlegroups.com>.
+- Faites remonter à v8-eng-review-owners@googlegroups.com.
 
 ### Quelqu'un m'a ajouté comme fournisseur LGTM à un document, que dois-je faire ?
 

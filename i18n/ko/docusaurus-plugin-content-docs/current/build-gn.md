@@ -131,4 +131,4 @@ tools/run-tests.py --outdir out/foo
 tools/run-tests.py --gn
 ```
 
-**빌드 문제 발생 시? [v8.dev/bug](/bug)에 버그를 보고하거나 &lt;v8-users@googlegroups.com>에서 도움을 요청하십시오.**
+**빌드 문제 발생 시? [v8.dev/bug](https://v8.dev/bug)에 버그를 보고하거나 v8-users@googlegroups.com에서 도움을 요청하십시오.**

@@ -76,7 +76,7 @@ Para testes de desempenho, o JavaScript já sustenta a maioria dos benchmarks de
 
 ### Quem CC
 
-**Todo** email de “intenção de `$algo`” (ex.: “intenção de implementar”) deve CC &lt;v8-users@googlegroups.com> além de &lt;blink-dev@chromium.org>. Dessa forma, outros incorporadores do V8 também são mantidos informados.
+**Todo** email de “intenção de `$algo`” (ex.: “intenção de implementar”) deve CC v8-users@googlegroups.com além de blink-dev@chromium.org. Dessa forma, outros incorporadores do V8 também são mantidos informados.
 
 ### Link para o repositório da especificação
 

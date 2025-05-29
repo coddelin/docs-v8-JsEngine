@@ -380,7 +380,7 @@ Las herramientas de empaquetado existentes como webpack, Rollup o Parcel actualm
 
 La transparencia del formato de paquete nativo abre diversas oportunidades de optimización. Por ejemplo, si un navegador ya tiene parte de un paquete nativo almacenado en caché localmente, podría comunicarlo al servidor web y descargar solo las partes faltantes.
 
-Chrome ya admite una parte de la propuesta ([`SignedExchanges`](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html)), pero el formato de empaquetado en sí mismo, así como su aplicación a aplicaciones altamente modularizadas, aún se encuentran en fase exploratoria. ¡Sus comentarios son muy bienvenidos en el repositorio o por correo electrónico a &lt;loading-dev@chromium.org>!
+Chrome ya admite una parte de la propuesta ([`SignedExchanges`](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html)), pero el formato de empaquetado en sí mismo, así como su aplicación a aplicaciones altamente modularizadas, aún se encuentran en fase exploratoria. ¡Sus comentarios son muy bienvenidos en el repositorio o por correo electrónico a loading-dev@chromium.org!
 
 ### APIs en capas
 

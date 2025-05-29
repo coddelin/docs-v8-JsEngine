@@ -380,7 +380,7 @@ webpack、Rollup、Parcelのような既存のバンドルツールは現在、�
 
 ネイティブバンドル形式の透明性は、さまざまな最適化の機会を提供します。たとえば、ブラウザがすでにネイティブバンドルの一部をローカルにキャッシュしている場合、それをウェブサーバーに通知し、不足している部分だけをダウンロードすることができます。
 
-Chromeは提案の一部（[`SignedExchanges`](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html)）をすでにサポートしていますが、バンドル形式そのものや高度にモジュール化されたアプリへの適用については、まだ探求段階にあります。リポジトリや電子メール &lt;loading-dev@chromium.org&gt; を通じてフィードバックをお寄せいただけると幸いです！
+Chromeは提案の一部（[`SignedExchanges`](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html)）をすでにサポートしていますが、バンドル形式そのものや高度にモジュール化されたアプリへの適用については、まだ探求段階にあります。リポジトリや電子メール loading-dev@chromium.org を通じてフィードバックをお寄せいただけると幸いです！
 
 ### レイヤードAPI
 

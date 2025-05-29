@@ -53,7 +53,7 @@ LGTM: 非必需
 ### V8 工程评审所有者
 
 LGTM: 非必需
-被卡住的提案可以通过 &lt;v8-eng-review-owners@googlegroups.com> 升级到 V8 工程评审所有者。以下情况可能会导致此类升级：
+被卡住的提案可以通过 v8-eng-review-owners@googlegroups.com 升级到 V8 工程评审所有者。以下情况可能会导致此类升级：
 
 - LGTM 提供者未响应
 - 对设计无法达成共识
@@ -70,7 +70,7 @@ V8 工程评审所有者可以推翻非 LGTM 或 LGTM 的决定。
 1. IC 将他们认为需要提供 LGTM 的人添加到 LGTM 提供者列表中。TL 一定要在 LGTM 提供者的列表中。
 1. IC 结合反馈意见。
 1. TL 将更多人添加到 LGTM 提供者列表中。
-1. IC 将早期设计文档/解释文档/一页文档发送到 &lt;v8-dev+design@googlegroups.com>。
+1. IC 将早期设计文档/解释文档/一页文档发送到 v8-dev+design@googlegroups.com。
 1. IC 收集 LGTMs，TL 协助其完成。
     1. LGTM 提供者审阅文档，添加评论，并在文档开头给出 LGTM 或非 LGTM。如果他们给出了非 LGTM，则有义务列出原因。
     1. 可选：LGTM 提供者可以将自己从 LGTM 提供者列表中移除，并/或推荐其他 LGTM 提供者
@@ -119,7 +119,7 @@ V8 工程评审所有者可以推翻非 LGTM 或 LGTM 的决定。
 
 ### 谁是“我的”TL？
 
-可能是主要组件的OWNER，该组件是你的功能将要涉及的。如果不清楚谁是TL，请通过&lt;v8-eng-review-owners@googlegroups.com>询问V8工程评审OWNER。
+可能是主要组件的OWNER，该组件是你的功能将要涉及的。如果不清楚谁是TL，请通过v8-eng-review-owners@googlegroups.com询问V8工程评审OWNER。
 
 ### 哪里可以找到设计文档的模板？
 
@@ -135,7 +135,7 @@ V8 工程评审所有者可以推翻非 LGTM 或 LGTM 的决定。
 
 - 通过邮件、Hangouts或文档中的评论/分配直接提醒他们，明确要求他们添加LGTM或非LGTM。
 - 让你的TL参与进来并寻求帮助。
-- 升级至&lt;v8-eng-review-owners@googlegroups.com>。
+- 升级至v8-eng-review-owners@googlegroups.com。
 
 ### 某人将我添加为文档的LGTM提供者，我该做什么？
 

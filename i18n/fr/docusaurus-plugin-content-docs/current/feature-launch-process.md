@@ -76,7 +76,7 @@ Pour les tests de performance, JavaScript sous-tend déjà la plupart des benchm
 
 ### Qui copier en CC
 
-**Chaque** email d’« intention de `$quelque chose` » (par exemple « intention de mettre en œuvre ») doit inclure en copie &lt;v8-users@googlegroups.com> en plus de &lt;blink-dev@chromium.org>. Ainsi, les autres intégrateurs de V8 sont également tenus informés.
+**Chaque** email d’« intention de `$quelque chose` » (par exemple « intention de mettre en œuvre ») doit inclure en copie v8-users@googlegroups.com en plus de blink-dev@chromium.org. Ainsi, les autres intégrateurs de V8 sont également tenus informés.
 
 ### Lien vers le dépôt de spécifications
 

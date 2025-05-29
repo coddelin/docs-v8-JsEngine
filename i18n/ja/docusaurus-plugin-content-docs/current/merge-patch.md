@@ -18,7 +18,7 @@ description: 'この文書は、リリースブランチへのV8パッチのマ�
 - パッチがAPIを変更しないこと。
 - パッチがブランチカット前の動作を変更しないこと（バグ修正のための動作変更を除く）。
 
-詳細については、[関連するChromiumページ](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/process/merge_request.md)をご覧ください。疑問がある場合は、&lt;v8-dev@googlegroups.com> にメールを送信してください。
+詳細については、[関連するChromiumページ](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/process/merge_request.md)をご覧ください。疑問がある場合は、v8-dev@googlegroups.com にメールを送信してください。
 
 ## マージプロセス
 

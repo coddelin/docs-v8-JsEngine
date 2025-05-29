@@ -18,7 +18,7 @@ description: '이 문서는 V8 패치를 릴리스 분기로 병합하는 방법
 - 패치가 API를 변경하지 않은 경우.
 - 패치가 분기 이전의 기존 동작을 변경하지 않은 경우 (버그 수정을 위한 동작 변경은 제외).
 
-추가 정보는 [Chromium 관련 페이지](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/process/merge_request.md)에서 확인할 수 있습니다. 의문이 있는 경우 &lt;v8-dev@googlegroups.com>으로 이메일을 보내세요.
+추가 정보는 [Chromium 관련 페이지](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/process/merge_request.md)에서 확인할 수 있습니다. 의문이 있는 경우 v8-dev@googlegroups.com으로 이메일을 보내세요.
 
 ## 병합 프로세스
 

@@ -18,7 +18,7 @@ Ein zugehöriges Problem im V8-Issue-Tracker ist **verpflichtend**, wenn ein Pat
 - Der Patch verändert keine APIs.
 - Der Patch ändert kein Verhalten, das vor dem Branch-Cut vorhanden war (es sei denn, die Verhaltensänderung behebt einen Fehler).
 
-Weitere Informationen finden Sie auf der [relevanten Chromium-Seite](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/process/merge_request.md). Im Zweifelsfall senden Sie eine E-Mail an &lt;v8-dev@googlegroups.com>.
+Weitere Informationen finden Sie auf der [relevanten Chromium-Seite](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/process/merge_request.md). Im Zweifelsfall senden Sie eine E-Mail an v8-dev@googlegroups.com.
 
 ## Der Zusammenführungsprozess
 

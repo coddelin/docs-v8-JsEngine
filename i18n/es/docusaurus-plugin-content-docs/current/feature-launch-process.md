@@ -76,7 +76,7 @@ Para pruebas de rendimiento, JavaScript ya subyace en la mayoría de los puntos 
 
 ### A quién CC
 
-**Cada** correo “intención de `$algo`” (por ejemplo, “intención de implementar”) debería incluir en CC a &lt;v8-users@googlegroups.com> además de &lt;blink-dev@chromium.org>. De esta manera, otros integradores de V8 también se mantienen informados.
+**Cada** correo “intención de `$algo`” (por ejemplo, “intención de implementar”) debería incluir en CC a v8-users@googlegroups.com además de blink-dev@chromium.org. De esta manera, otros integradores de V8 también se mantienen informados.
 
 ### Enlace al repositorio de la especificación
 

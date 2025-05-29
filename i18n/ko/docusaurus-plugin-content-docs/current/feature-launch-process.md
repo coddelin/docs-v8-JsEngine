@@ -76,7 +76,7 @@ WebAssembly 기능에 대해서는 [WebAssembly Spec Test repo](https://github.c
 
 ### CC할 대상
 
-**모든** “`intent to $something`” 이메일(예: “intent to implement”)에는 &lt;v8-users@googlegroups.com>를 추가적으로 CC하여야 하며 &lt;blink-dev@chromium.org>도 포함해야 합니다. 이렇게 하면 V8의 다른 임베더들도 정보를 공유받을 수 있습니다.
+**모든** “`intent to $something`” 이메일(예: “intent to implement”)에는 v8-users@googlegroups.com를 추가적으로 CC하여야 하며 blink-dev@chromium.org도 포함해야 합니다. 이렇게 하면 V8의 다른 임베더들도 정보를 공유받을 수 있습니다.
 
 ### 스펙 저장소 링크
 

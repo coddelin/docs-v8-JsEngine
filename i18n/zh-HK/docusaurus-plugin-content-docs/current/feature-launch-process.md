@@ -76,7 +76,7 @@ JavaScript 和 WebAssembly 特性的可調試性因特性而異。僅添加新�
 
 ### CC 給誰
 
-**每封** “意圖 `某事`” 的郵件（例如“意圖實作”）都應 CC 至 &lt;v8-users@googlegroups.com>，同時也 CC 至 &lt;blink-dev@chromium.org>。這樣，其他 V8 的嵌入者也能保持同步。
+**每封** “意圖 `某事`” 的郵件（例如“意圖實作”）都應 CC 至 v8-users@googlegroups.com，同時也 CC 至 blink-dev@chromium.org。這樣，其他 V8 的嵌入者也能保持同步。
 
 ### 規範庫的連結
 

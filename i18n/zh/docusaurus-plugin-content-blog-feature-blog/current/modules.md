@@ -380,7 +380,7 @@ Chrome加载团队目前正在探索[一种原生Web包装格式](https://github
 
 原生包格式的透明性为各种优化机会打开了大门。例如，如果浏览器已经在本地缓存了部分原生包，它可以将此信息传递给网络服务器，然后只下载缺失的部分。
 
-Chrome 已支持提案的一部分（[`SignedExchanges`](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html)），但打包格式的本身及其在高度模块化应用中的应用仍处于探索阶段。欢迎您通过仓库或电子邮件 &lt;loading-dev@chromium.org> 提供您的反馈！
+Chrome 已支持提案的一部分（[`SignedExchanges`](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html)），但打包格式的本身及其在高度模块化应用中的应用仍处于探索阶段。欢迎您通过仓库或电子邮件 loading-dev@chromium.org 提供您的反馈！
 
 ### 分层 API
 

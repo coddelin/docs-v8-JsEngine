@@ -380,7 +380,7 @@ Chrome 加載團隊目前正在探索[一種原生網頁封裝格式](https://gi
 
 原生捆包格式的透明性開啟了多種優化的機會。例如，若瀏覽器已經在本地緩存了部分原生捆包，它可以將此訊息傳達給網頁伺服器，然後僅下載缺少的部分。
 
-Chrome 已經支持了提案的一部分（[`SignedExchanges`](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html)），但捆包格式本身以及其應用於高度模組化的應用依然處於探索階段。我們非常歡迎您在倉庫上提供反饋，或者通過電子郵件 &lt;loading-dev@chromium.org> 聯繫我們！
+Chrome 已經支持了提案的一部分（[`SignedExchanges`](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html)），但捆包格式本身以及其應用於高度模組化的應用依然處於探索階段。我們非常歡迎您在倉庫上提供反饋，或者通過電子郵件 loading-dev@chromium.org 聯繫我們！
 
 ### 分層 API
 

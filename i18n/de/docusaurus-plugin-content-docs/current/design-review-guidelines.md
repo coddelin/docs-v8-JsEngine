@@ -53,7 +53,7 @@ Dies ist jemand, der das Dokument lediglich überprüft und kommentiert. Sein In
 ### V8 Eng Review Owners
 
 LGTM: Nicht erforderlich
-Festgefahrene Vorschläge können an die V8 Eng Review Owners über &lt;v8-eng-review-owners@googlegroups.com> eskaliert werden. Mögliche Anwendungsfälle einer solchen Eskalation:
+Festgefahrene Vorschläge können an die V8 Eng Review Owners über v8-eng-review-owners@googlegroups.com eskaliert werden. Mögliche Anwendungsfälle einer solchen Eskalation:
 
 - Ein LGTM-Geber reagiert nicht
 - Es kann kein Konsens zum Design erzielt werden
@@ -70,7 +70,7 @@ Die V8 Eng Review Owners können Nicht-LGTMs oder LGTMs außer Kraft setzen.
 1. IC fügt Personen zur Liste der LGTM-Geber hinzu, von denen sie denkt, dass sie ein LGTM geben sollten. Der TL muss unbedingt auf der Liste der LGTM-Geber stehen.
 1. IC integriert Feedback.
 1. TL fügt weitere Personen zur Liste der LGTM-Geber hinzu.
-1. IC schickt das frühe Design-Dokument/den Erklärer/die One-Pager-Version an &lt;v8-dev+design@googlegroups.com>.
+1. IC schickt das frühe Design-Dokument/den Erklärer/die One-Pager-Version an v8-dev+design@googlegroups.com.
 1. IC sammelt die LGTMs. Der TL hilft ihnen.
     1. LGTM-Geber überprüfen das Dokument, fügen Kommentare hinzu und geben entweder ein LGTM oder ein Nicht-LGTM am Anfang des Dokuments. Wenn sie ein Nicht-LGTM hinzufügen, sind sie verpflichtet, den/die Grund(e) dafür aufzulisten.
     1. Optional: LGTM-Geber können sich selbst von der Liste der LGTM-Geber entfernen und/oder andere LGTM-Geber vorschlagen.
@@ -119,7 +119,7 @@ Einige Hinweise, wann Personen zur Liste der LGTM-Anbieter hinzugefügt werden s
 
 ### Wer ist “mein” TL?
 
-Wahrscheinlich ist dies die Person, die Besitzer der Hauptkomponente ist, die Ihre Funktion berühren wird. Wenn nicht klar ist, wer der TL ist, fragen Sie bitte die V8 Eng Review Owners über &lt;v8-eng-review-owners@googlegroups.com>.
+Wahrscheinlich ist dies die Person, die Besitzer der Hauptkomponente ist, die Ihre Funktion berühren wird. Wenn nicht klar ist, wer der TL ist, fragen Sie bitte die V8 Eng Review Owners über v8-eng-review-owners@googlegroups.com.
 
 ### Wo finde ich eine Vorlage für Entwurfsdokumente?
 
@@ -135,7 +135,7 @@ In diesem Fall können Sie diesen Eskalationsweg gehen:
 
 - Kontaktieren Sie sie direkt per E-Mail, Hangouts oder Kommentar/Zuweisung im Dokument und bitten Sie sie ausdrücklich, ein LGTM oder kein LGTM hinzuzufügen.
 - Ziehen Sie Ihren TL hinzu und bitten Sie ihn um Hilfe.
-- Eskalieren Sie an &lt;v8-eng-review-owners@googlegroups.com>.
+- Eskalieren Sie an v8-eng-review-owners@googlegroups.com.
 
 ### Jemand hat mich als LGTM-Anbieter zu einem Dokument hinzugefügt, was soll ich tun?
 

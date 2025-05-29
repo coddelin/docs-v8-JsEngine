@@ -76,7 +76,7 @@ Für Leistungstests liegt JavaScript bereits den meisten bestehenden Leistungsbe
 
 ### Wen man in CC setzen sollte
 
-**Jede** „Absicht zu `$etwas`“-E-Mail (z. B. „Absicht zu implementieren“) sollte zusätzlich zu &lt;blink-dev@chromium.org> auch &lt;v8-users@googlegroups.com> in CC setzen. Auf diese Weise bleiben auch andere V8-Einbettungen auf dem Laufenden.
+**Jede** „Absicht zu `$etwas`“-E-Mail (z. B. „Absicht zu implementieren“) sollte zusätzlich zu blink-dev@chromium.org auch v8-users@googlegroups.com in CC setzen. Auf diese Weise bleiben auch andere V8-Einbettungen auf dem Laufenden.
 
 ### Link zum Spezifikations-Repository
 

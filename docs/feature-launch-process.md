@@ -76,7 +76,7 @@ For performance tests, JavaScript already underlies most existing performance be
 
 ### Who to CC
 
-**Every** “intent to `$something`” email (e.g. “intent to implement”) should CC  &lt;v8-users@googlegroups.com> in addition to  &lt;blink-dev@chromium.org>. This way, other embedders of V8 are kept in the loop too.
+**Every** “intent to `$something`” email (e.g. “intent to implement”) should CC  v8-users@googlegroups.com in addition to  blink-dev@chromium.org. This way, other embedders of V8 are kept in the loop too.
 
 ### Link to the spec repo
 

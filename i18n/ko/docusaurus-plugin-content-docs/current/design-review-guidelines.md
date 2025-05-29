@@ -119,7 +119,7 @@ V8 Eng Review Owners는 LGTM을 제공하지 않은 사람 또는 LGTM을 제공
 
 ### “내” TL은 누구인가요?
 
-아마도 당신의 기능이 영향을 줄 주요 컴포넌트의 OWNER 중 한 명일 가능성이 높습니다. TL이 누구인지 명확하지 않다면 &lt;v8-eng-review-owners@googlegroups.com>를 통해 V8 엔지니어링 리뷰 OWNER들에게 문의하세요.
+아마도 당신의 기능이 영향을 줄 주요 컴포넌트의 OWNER 중 한 명일 가능성이 높습니다. TL이 누구인지 명확하지 않다면 v8-eng-review-owners@googlegroups.com를 통해 V8 엔지니어링 리뷰 OWNER들에게 문의하세요.
 
 ### 디자인 문서에 대한 템플릿은 어디에서 찾을 수 있나요?
 
@@ -135,7 +135,7 @@ V8 Eng Review Owners는 LGTM을 제공하지 않은 사람 또는 LGTM을 제공
 
 - 이메일, 행아웃 또는 문서 내 댓글/지정을 통해 직접 연락하여 명시적으로 LGTM 또는 비-LGTM을 추가해달라고 요청하세요.
 - 당신의 TL에게 도움을 요청하세요.
-- &lt;v8-eng-review-owners@googlegroups.com>로 문제를 에스컬레이션하세요.
+- v8-eng-review-owners@googlegroups.com로 문제를 에스컬레이션하세요.
 
 ### 누군가가 나를 LGTM 제공자로 문서에 추가했어요. 내가 해야 할 일은?
 
