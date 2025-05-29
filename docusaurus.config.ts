@@ -80,7 +80,7 @@ const config: Config = {
       title: "V8 JavaScriptEngine",
       logo: {
         alt: "V8 JavaScriptEngine",
-        src: "img/logo.svg",
+        src: "_img/v8.svg",
       },
       items: [
         {
@@ -92,13 +92,27 @@ const config: Config = {
         {
           to: "/features",
           // sidebarId:"featureSidebar",
-          label: "JS/Wasm 特性",
+          label: "JS/Wasm功能",
           position: "left",
         },
         {
           to: "/blog",
           label: "博客",
           position: "left",
+        },
+        {
+          label: "标签",
+          position: "left",
+          items: [
+            {
+              to: "/features/tags",
+              label: "JS/Wasm功能标签",
+            },
+            {
+              to: "/blog/tags",
+              label: "博客标签",
+            },
+          ],
         },
         {
           to: "/research-grant",
@@ -121,7 +135,10 @@ const config: Config = {
           label: "条款",
           position: "left",
         },
-
+        {//多语言选择项
+          type: 'localeDropdown',
+          position: 'right',
+        },
         {
           href: "https://github.com/v8/v8.dev",
           label: "GitHub",
