@@ -20,7 +20,7 @@
     "description": "The label for category Embedding V8 in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Under the hood": {
-    "message": "引擎罩",
+    "message": "内部机制",
     "description": "The label for category Under the hood in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Writing optimizable JavaScript": {
