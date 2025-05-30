@@ -62,16 +62,16 @@ const what2 = 'late';
 const t = `Soy un ${ what1 + what2 }`;
 ```
 
-Aquí <code>`Soy un ${`</code> es `TemplateHead` y <code>}`</code> es un `TemplateTail`.
+Aquí <code>`Soy un ${`</code> es `TemplateHead` y <code>\}\`</code> es un `TemplateTail`.
 
 ```js
 if (0 == 1) {
 }`no muy útil`;
 ```
 
-Aquí `}` es un `RightBracePunctuator` y <code>`</code> es el inicio de un `NoSubstitutionTemplate`.
+Aquí `}` es un `RightBracePunctuator` y <code>\`</code> es el inicio de un `NoSubstitutionTemplate`.
 
-Aunque la interpretación de `/` y <code>}`</code> depende de su “contexto” — su posición en la estructura sintáctica del código — las gramáticas que describiremos a continuación siguen siendo libres de contexto.
+Aunque la interpretación de `/` y <code>\}\`</code> depende de su “contexto” — su posición en la estructura sintáctica del código — las gramáticas que describiremos a continuación siguen siendo libres de contexto.
 
 La gramática léxica utiliza varios símbolos meta para distinguir entre los contextos donde algunos elementos de entrada están permitidos y otros no. Por ejemplo, el símbolo meta `InputElementDiv` se utiliza en contextos donde `/` es una división y `/=` es una asignación de división. Las producciones de [`InputElementDiv`](https://tc39.es/ecma262/#prod-InputElementDiv) enumeran los posibles tokens que pueden ser producidos en este contexto:
 
