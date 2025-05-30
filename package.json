@@ -5,7 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start --port 3001",
-    "build": "docusaurus build > build.log 2>&1",
+    "build": "echo $(date \"+%Y-%m-%d %H:%M:%S\") && docusaurus build || echo $(date \"+%Y-%m-%d %H:%M:%S\")",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
