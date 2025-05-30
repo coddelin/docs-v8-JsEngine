@@ -83,9 +83,9 @@ La compresión genera un valor comprimido simplemente desplazándolo a la derech
 | C++                                             | Ensamblador x64 |
 | :---------------------------------------------- | :-------------- |
 | ```cpp                                          | ```asm         \
-| uint32_t Compress(void* ptr) {                 | mov rax, rdi   \
+| uint32_t Compress(void* ptr) \{                 | mov rax, rdi   \
 |   return ((uintptr_t)ptr) >> 1;                | shr rax        \
-| }                                              | ```            \
+| \}                                              | ```            \
 | ```                                             |                |
 :::
 
