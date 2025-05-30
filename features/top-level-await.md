@@ -12,7 +12,7 @@ tweet: "1181581262399643650"
 ---
 [顶层 `await`](https://github.com/tc39/proposal-top-level-await) 使开发者能够在异步函数之外使用 `await` 关键字。它像一个大的异步函数，使其他 `import` 它的模块在开始执行其主体之前会等待。
 
-<!--截断-->
+<!--truncate-->
 ## 旧行为
 
 当 `async`/`await` 首次引入时，尝试在异步函数外部使用 `await` 会导致 `SyntaxError` 错误。许多开发者使用立即调用的异步函数表达式来访问该功能。

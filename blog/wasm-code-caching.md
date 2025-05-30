@@ -12,7 +12,7 @@ tweet: "1140631433532334081"
 ---
 开发者中流传着这样一句话：最快的代码是不需要运行的代码。同样，最快的编译代码是不需要编译的代码。WebAssembly代码缓存是Chrome和V8中的一种新型优化，通过缓存编译器生成的原生代码来避免代码编译。我们之前已经[写过](/blog/code-caching)[关于](/blog/improved-code-caching)[如何](/blog/code-caching-for-devs)Chrome和V8缓存JavaScript代码的内容，以及利用这种优化的最佳实践。在这篇博客文章中，我们将描述Chrome的WebAssembly代码缓存的工作原理，并说明开发者如何利用它来加速加载具有大型WebAssembly模块的应用程序。
 
-<!--截断-->
+<!--truncate-->
 ## WebAssembly编译回顾
 
 WebAssembly是一种在Web上运行非JavaScript代码的方式。一个Web应用可以通过加载`.wasm`资源来使用WebAssembly，该资源包含来自其他语言（如C、C++或Rust等）的部分编译代码。WebAssembly编译器的任务是解码`.wasm`资源，验证其格式是否正确，然后将其编译成可在用户机器上执行的原生机器代码。

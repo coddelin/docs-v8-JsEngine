@@ -15,7 +15,7 @@ tweet: "978319362837958657"
 
 从版本41开始，Chrome通过V8的[`StreamedSource`](https://cs.chromium.org/chromium/src/v8/include/v8.h?q=StreamedSource&sq=package:chromium&l=1389)API支持在后台线程解析JavaScript源文件（[参考](https://blog.chromium.org/2015/03/new-javascript-techniques-for-rapid.html)）。这使得V8能够在Chrome从网络下载文件的第一部分时就开始解析JavaScript源代码，同时在Chrome通过网络流式传输文件时继续解析。由于V8在文件下载完成时几乎能够完成JavaScript解析，这提供了显著的加载时间改进。
 
-<!--截断-->
+<!--truncate-->
 然而，由于V8原始基线编译器的限制，V8仍然需要返回主线程以完成解析并将脚本编译为可以执行脚本代码的JIT机器码。随着切换到新的[Ignition + TurboFan流水线](/blog/launching-ignition-and-turbofan)，我们现在能够将字节码编译移到后台线程，从而解放Chrome的主线程以提供更顺畅、更响应迅速的网页浏览体验。
 
 ## 构建后台线程字节码编译器

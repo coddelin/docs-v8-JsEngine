@@ -1,0 +1,38 @@
+{
+  "link.title.Docs": {
+    "message": "文档",
+    "description": "The title of the footer links column with title=Docs in the footer"
+  },
+  "link.title.Community": {
+    "message": "社区",
+    "description": "The title of the footer links column with title=Community in the footer"
+  },
+  "link.title.More": {
+    "message": "更多",
+    "description": "The title of the footer links column with title=More in the footer"
+  },
+  "link.item.label.Build": {
+    "message": "构建",
+    "description": "The label of footer link with label=Build linking to /build"
+  },
+  "link.item.label.Privacy": {
+    "message": "隐私协议",
+    "description": "The label of footer link with label=Privacy linking to https://policies.google.com/privacy"
+  },
+  "link.item.label.𝕏": {
+    "message": "𝕏",
+    "description": "The label of footer link with label=𝕏 linking to https://x.com/v8js"
+  },
+  "link.item.label.Blog": {
+    "message": "博客",
+    "description": "The label of footer link with label=Blog linking to /blog"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/facebook/docusaurus"
+  },
+  "copyright": {
+    "message": "Copyright © 2025 Translated by 林建有.",
+    "description": "The footer copyright"
+  }
+}

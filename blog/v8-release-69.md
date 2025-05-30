@@ -12,7 +12,7 @@ tweet: "1026825606003150848"
 ## 通过嵌入的内置函数减少内存占用
 
 V8 带有一个广泛的内置函数库。这些函数包括内置对象的方法，如 `Array.prototype.sort` 和 `RegExp.prototype.exec`，还有各种内部功能。由于生成它们需要较长的时间，内置函数会在构建时被编译并序列化到一个[快照](/blog/custom-startup-snapshots)中，然后在运行时反序列化以创建初始的 JavaScript 堆状态。
-
+<!--truncate-->
 当前的内置函数在每个 Isolate（一个 Isolate 大致相当于 Chrome 中的一个浏览器标签页）中占用了 700 KB。这种做法效率较低，我们从去年开始着手减少这种开销。在 V8 v6.4 中，我们推出了[延迟反序列化](/blog/lazy-deserialization)，确保每个 Isolate 只为实际需要的内置函数付费（但每个 Isolate 仍有自己的副本）。
 
 [嵌入的内置函数](/blog/embedded-builtins)更进一步。嵌入的内置函数由所有 Isolate 共享，并嵌入到二进制文件中，而不是复制到 JavaScript 堆中。无论运行了多少个 Isolate，内置函数在内存中仅存在一次。这种特性尤其在默认启用[网站隔离](https://developers.google.com/web/updates/2018/07/site-isolation)后变得有用。使用嵌入的内置函数，我们在 x64 上浏览排名前一万的网站时观察到 V8 堆大小中位值下降了 _9%_。其中有 50% 的网站至少节省了 1.2 MB，30% 节省了至少 2.1 MB，10% 节省了 3.7 MB 或更多。

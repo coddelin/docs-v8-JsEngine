@@ -1,0 +1,38 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Building V8 from source": {
+    "message": "从源代码构建V8",
+    "description": "The label for category Building V8 from source in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Contributing": {
+    "message": "贡献",
+    "description": "The label for category Contributing in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Debugging": {
+    "message": "调试",
+    "description": "The label for category Debugging in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Embedding V8": {
+    "message": "集成V8",
+    "description": "The label for category Embedding V8 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Under the hood": {
+    "message": "引擎罩",
+    "description": "The label for category Under the hood in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Writing optimizable JavaScript": {
+    "message": "编写可优化的JavaScript",
+    "description": "The label for category Writing optimizable JavaScript in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.link.V8 Tools": {
+    "message": "V8工具",
+    "description": "The label for link V8 Tools in sidebar tutorialSidebar, linking to https://v8.dev/tools"
+  },
+  "sidebar.tutorialSidebar.link.Slack Tracking - what is it?": {
+    "message": "Slack跟踪 - 它是什么？",
+    "description": "The label for link Slack Tracking - what is it? in sidebar tutorialSidebar, linking to /blog/slack-tracking"
+  }
+}

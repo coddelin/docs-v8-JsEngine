@@ -11,7 +11,7 @@ description: "本文讨论了在 Chrome 41 和 Chrome 46 之间实施的一些�
 ---
 卡顿，也就是肉眼可见的卡顿，可以在 Chrome 未能在 16.66 毫秒内渲染一帧时被注意到（导致每秒 60 帧的运动中断）。截至今天，大多数 V8 的垃圾回收工作是在主渲染线程上执行的，参见图 1，这通常导致在需要维护过多对象时出现卡顿。消除卡顿一直是 V8 团队的优先任务之一（[1](https://blog.chromium.org/2011/11/game-changer-for-interactive.html)，[2](https://www.youtube.com/watch?v=3vPOlGRH6zk)，[3](/blog/free-garbage-collection)）。本文讨论了在 Chrome 41 和 Chrome 46 之间实施的一些优化，这些优化显著减少了垃圾回收的暂停时间，从而提高了用户体验。
 
-<!--截断-->
+<!--truncate-->
 ![图 1: 垃圾回收在主线程上执行](/_img/jank-busters/gc-main-thread.png)
 
 垃圾回收期间导致卡顿的一个主要来源是处理各种簿记数据结构。这些数据结构中的许多启用了与垃圾回收无关的优化。两个示例是所有 ArrayBuffer 的列表，以及每个 ArrayBuffer 的视图列表。这些列表允许高效实现 DetachArrayBuffer 操作，而不会对访问 ArrayBuffer 视图造成性能影响。然而，在网页创建了数百万个 ArrayBuffer 的情况下（例如基于 WebGL 的游戏），在垃圾回收期间更新这些列表会导致显著卡顿。在 Chrome 46 中，我们移除了这些列表，并改为在每次对 ArrayBuffer 的加载和存储之前插入检查，通过分散整个程序执行期间的簿记列表遍历成本来减少卡顿。尽管每次访问的检查理论上可能减慢大量使用 ArrayBuffer 的程序的吞吐量，但实际上 V8 的优化编译器通常可以移除冗余检查并将剩余检查提升到循环外，从而实现更顺畅的执行轮廓，几乎没有或没有整体性能损失。

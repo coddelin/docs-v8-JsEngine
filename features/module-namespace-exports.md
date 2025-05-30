@@ -20,7 +20,7 @@ import * as utils from './utils.mjs';
 ```js
 export * as utils from './utils.mjs';
 ```
-
+<!--truncate-->
 这等同于以下内容：
 
 ```js
