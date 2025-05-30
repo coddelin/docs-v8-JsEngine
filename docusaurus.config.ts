@@ -106,8 +106,9 @@ const config: Config = {
           },
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          routeBasePath:"blog",
-          path:"./blog",
+          // id: "blog",
+          routeBasePath: "blog",
+          path: "./blog",
           editUrl:
             "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
           // Useful options to enforce blogging best practices
@@ -252,10 +253,11 @@ const config: Config = {
     [
       "@docusaurus/plugin-content-blog",
       {
+        showReadingTime: true,
         /**
          * Required for any multi-instance plugin
          */
-        id: "feature-blog",
+        id: "features",
         /**
          * URL route for the blog section of your site.
          * *DO NOT* include a trailing slash.
@@ -265,7 +267,7 @@ const config: Config = {
          * Path to data on filesystem relative to site dir.
          */
         path: "./features",
-        onInlineAuthors:"ignore",
+        onInlineAuthors: "ignore",
         blogSidebarTitle: "All posts",
         blogSidebarCount: "ALL",
       },
@@ -276,7 +278,7 @@ const config: Config = {
         //需要安装的依赖    "docusaurus-lunr-search": "^3.5.0",     "@node-rs/jieba": "^2.0.1",
         // "lunr-languages": "^1.14.0",
         // 编译太慢了，就支持这两种先
-        languages: ["en", "zh","ja", "ko", "fr", "de", "es", "ru", "pt"], // language codes
+        languages: ["en", "zh", "ja", "ko", "fr", "de", "es", "ru", "pt"], // language codes
       },
     ],
   ],
