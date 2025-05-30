@@ -92,6 +92,6 @@ Il peut être utile de réfléchir à la symétrie avec d'autres opérateurs d'a
 
 <feature-support chrome="85"
                  firefox="79 https://bugzilla.mozilla.org/show_bug.cgi?id=1629106"
-                 safari="14 https://developer.apple.com/documentation/safari-release-notes/safari-14-beta-release-notes#Nouvelles-fonctionnalités:~:text=Ajouté%20support%20de%20l'opérateur%20d'affectation%20logique."
+                 safari="14 https://developer.apple.com/documentation/safari-release-notes/safari-14-beta-release-notes#New-Features:~:text=Added%20logical%20assignment%20operator%20support."
                  nodejs="16"
-                 babel="oui https://babeljs.io/docs/en/babel-plugin-proposal-logical-assignment-operators"></support-de-fonctionnalité>
+                 babel="yes https://babeljs.io/docs/en/babel-plugin-proposal-logical-assignment-operators"></feature-support>
