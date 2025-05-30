@@ -25,9 +25,9 @@ const config: Config = {
   organizationName: "coddelin", // Usually your GitHub org/user name.
   projectName: "v8.ScriptEngine", // Usually your repo name.
 
-  onBrokenLinks: "warn",
+  onBrokenLinks: "ignore",
   onBrokenMarkdownLinks: "warn",
-  onBrokenAnchors: "warn",
+  onBrokenAnchors: "ignore",
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -106,11 +106,13 @@ const config: Config = {
           },
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
+          routeBasePath:"blog",
+          path:"./blog",
           editUrl:
             "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
           // Useful options to enforce blogging best practices
           onInlineTags: "warn",
-          onInlineAuthors: "warn",
+          onInlineAuthors: "ignore",
           onUntruncatedBlogPosts: "warn",
           blogSidebarTitle: "All posts",
           blogSidebarCount: "ALL",
@@ -256,6 +258,7 @@ const config: Config = {
          * Path to data on filesystem relative to site dir.
          */
         path: "./features",
+        onInlineAuthors:"ignore",
         blogSidebarTitle: "All posts",
         blogSidebarCount: "ALL",
       },
