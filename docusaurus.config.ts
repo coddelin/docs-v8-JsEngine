@@ -38,7 +38,7 @@ const config: Config = {
     defaultLocale: "zh-Hans",
     locales: [
       "zh-Hans",
-      "zh-HK",
+      "zh-Hant",
       "ja",
       "ko",
       "en",
@@ -52,10 +52,10 @@ const config: Config = {
       en: {
         label: "English",
       },
-      zh: {
+      "zh-Hans": {
         label: "简体中文",
       },
-      "zh-HK": {
+      "zh-Hant": {
         label: "繁體中文",
       },
       ja: {
@@ -278,7 +278,7 @@ const config: Config = {
         //需要安装的依赖    "docusaurus-lunr-search": "^3.5.0",     "@node-rs/jieba": "^2.0.1",
         // "lunr-languages": "^1.14.0",
         // 编译太慢了，就支持这两种先
-        languages: ["en", "zh", "ja", "ko", "fr", "de", "es", "ru", "pt"], // language codes
+        languages: ["en", "zh-hans","zh-hant", "ja", "ko", "fr", "de", "es", "ru", "pt"], // language codes
       },
     ],
   ],
