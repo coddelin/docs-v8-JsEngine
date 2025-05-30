@@ -191,7 +191,7 @@ V8は、実際にソートを行う前に1つの前処理ステップと、ソ�
 
 ## 歴史
 
-`Array.prototype.sort`および`TypedArray.prototype.sort`は、JavaScriptで書かれたQuicksort実装を共有していました。ソートアルゴリズム自体は比較的簡単です: 基本はQuicksortで、短い配列（長さ<10）の場合はInsertion Sortにフォールバックしました。Quicksortの再帰がサブ配列の長さ10に達すると、Insertion Sortにフォールバックされました。小さい配列の場合、Insertion Sortは効率的です。その理由は、Quicksortが分割後に2回再帰的に呼び出されるためです。各再帰呼び出しにはスタックフレームの作成（および廃棄）のオーバーヘッドが伴います。
+`Array.prototype.sort`および`TypedArray.prototype.sort`は、JavaScriptで書かれたQuicksort実装を共有していました。ソートアルゴリズム自体は比較的簡単です: 基本はQuicksortで、短い配列（長さ&lt;10）の場合はInsertion Sortにフォールバックしました。Quicksortの再帰がサブ配列の長さ10に達すると、Insertion Sortにフォールバックされました。小さい配列の場合、Insertion Sortは効率的です。その理由は、Quicksortが分割後に2回再帰的に呼び出されるためです。各再帰呼び出しにはスタックフレームの作成（および廃棄）のオーバーヘッドが伴います。
 
 Quicksortではピボット要素の選択が非常に重要です。V8では次の2つの戦略が使用されます:
 
