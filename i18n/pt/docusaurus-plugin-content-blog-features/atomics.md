@@ -37,9 +37,9 @@ Ele notifica a quantidade dada de esperadores, em ordem FIFO, esperando na local
 
 Ao contrário de 'Atomics.wait', 'Atomics.waitAsync' sempre retorna imediatamente. O valor retornado é um dos seguintes:
 
-- '{ async: false, value: 'não-igual' }' (se a localização de memória não contiver o valor esperado)
-- '{ async: false, value: 'tempo-esgotado' }' (apenas para tempo limite imediato 0)
-- '{ async: true, value: promise }'
+- `{ async: false, value: 'não-igual' }` (se a localização de memória não contiver o valor esperado)
+- `{ async: false, value: 'tempo-esgotado' }` (apenas para tempo limite imediato 0)
+- `{ async: true, value: promise }`
 
 A promessa pode mais tarde ser resolvida com um valor string 'ok' (se 'Atomics.notify' foi chamado com a mesma localização de memória) ou 'tempo-esgotado' (se o tempo limite foi alcançado). A promessa nunca é rejeitada.
 

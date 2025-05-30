@@ -167,7 +167,7 @@ JSON ⊂ ECMAScript는 여기서 도움이 되지 않습니다. 이는 문자열
 위 코드 조각은 특별히 두 문자를 위한 후처리가 도입되지 않으면 크로스 사이트 스크립팅 취약점(XSS)을 제시합니다!
 
 :::note
-**참고:** 사용자가 제어하는 입력값에 대해 특수 문자 시퀀스를 이스케이프 하도록 후처리를 수행하는 것이 매우 중요합니다. 이 특정 경우에는 `<script>` 태그에 삽입하므로 [</script, <script, 그리고 <!-](https://mathiasbynens.be/notes/etago#recommendations)을 이스케이프해야 합니다.
+**참고:** 사용자가 제어하는 입력값에 대해 특수 문자 시퀀스를 이스케이프 하도록 후처리를 수행하는 것이 매우 중요합니다. 이 특정 경우에는 `<script>` 태그에 삽입하므로 [`</script`, `<script`, 그리고 `<!--`](https://mathiasbynens.be/notes/etago#recommendations)을 이스케이프해야 합니다.
 :::
 
 ## JSON ⊂ ECMAScript 지원
