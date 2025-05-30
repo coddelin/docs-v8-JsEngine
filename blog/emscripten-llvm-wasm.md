@@ -1,117 +1,117 @@
 ---
-title: "Emscripten and the LLVM WebAssembly backend"
+title: "Emscripten 和 LLVM WebAssembly 后端"
 author: "Alon Zakai"
 avatars: 
   - "alon-zakai"
 date: "2019-07-01 16:45:00"
 tags: 
   - WebAssembly
-  - tooling
-description: "Emscripten is switching to the LLVM WebAssembly backend, resulting in much faster link times️ and many other benefits."
+  - 工具
+description: "Emscripten 正在切换到 LLVM WebAssembly 后端，从而显著加快链接时间，并带来许多其他益处。"
 tweet: "1145704863377981445"
 ---
-WebAssembly is normally compiled from a source language, which means that developers need *tools* to use it. Because of that, the V8 team works on relevant open-source projects like [LLVM](http://llvm.org/), [Emscripten](https://emscripten.org/), [Binaryen](https://github.com/WebAssembly/binaryen/), and [WABT](https://github.com/WebAssembly/wabt). This post describes some of the work we’ve been doing on Emscripten and LLVM, which will soon allow Emscripten to switch to the [LLVM WebAssembly backend](https://github.com/llvm/llvm-project/tree/main/llvm/lib/Target/WebAssembly) by default — please test it and report any issues!
+通常，WebAssembly 是从源语言编译而来的，这意味着开发者需要使用工具才能应用它。因此，V8 团队致力于相关的开源项目，例如 [LLVM](http://llvm.org/)、[Emscripten](https://emscripten.org/)、[Binaryen](https://github.com/WebAssembly/binaryen/) 和 [WABT](https://github.com/WebAssembly/wabt)。本文介绍了我们在 Emscripten 和 LLVM 上的一些工作，这些工作将很快允许 Emscripten 默认切换到 [LLVM WebAssembly 后端](https://github.com/llvm/llvm-project/tree/main/llvm/lib/Target/WebAssembly) —— 请测试并报告任何问题！
 
 <!--truncate-->
-The LLVM WebAssembly backend has been an option in Emscripten for some time, as we have been working on the backend in parallel to its integration in Emscripten, and in collaboration with others in the open source WebAssembly tools community. It has now reached the point where the WebAssembly backend beats the old “[fastcomp](https://github.com/emscripten-core/emscripten-fastcomp/)” backend on most metrics, and therefore we would like to switch the default to it. This announcement is happening before that, to get as much testing as we can first.
+LLVM WebAssembly 后端在 Emscripten 中已经作为一种选项存在了一段时间，因为我们在后端与其在 Emscripten 中的集成工作是并行进行的，并与开源 WebAssembly 工具社区的其他人进行了合作。目前，它已达到能够在大多数指标上超越旧的 “[fastcomp](https://github.com/emscripten-core/emscripten-fastcomp/)” 后端的阶段，因此我们希望将其设为默认选项。在此之前发布这一公告，是为了尽可能多地进行测试。
 
-This is an important upgrade for several exciting reasons:
+这次升级的重要原因包括以下几点：
 
-- **Much faster linking**: the LLVM WebAssembly backend together with [`wasm-ld`](https://lld.llvm.org/WebAssembly.html) has full support for incremental compilation using WebAssembly object files. Fastcomp used LLVM IR in bitcode files, which meant that at link time all the IR would be compiled by LLVM. This was the main reason for slow link times. With WebAssembly object files on the other hand, `.o` files contain already-compiled WebAssembly (in a relocatable form that can be linked, much like native linking). As a result the link step can be much, much faster than with fastcomp — we’ll see a real-world measurement below with a 7× speedup!
-- **Faster and smaller code**: We’ve worked hard on the LLVM WebAssembly backend as well as on the Binaryen optimizer which Emscripten runs after it. The result is that the LLVM WebAssembly backend path now beats fastcomp on both speed and size on most benchmarks we track.
-- **Support all LLVM IR**: Fastcomp could handle the LLVM IR emitted by `clang`, but because of its architecture it often failed on other sources, specifically on “legalizing” the IR into types that fastcomp could handle. The LLVM WebAssembly backend on the other hand uses the common LLVM backend infrastructure, so it can handle everything.
-- **New WebAssembly features**: Fastcomp compiles to asm.js before running `asm2wasm`, which means that it is difficult to handle new WebAssembly features like tail calls, exceptions, SIMD, and so forth. The WebAssembly backend is the natural place to work on those, and we are in fact working on all of the features just mentioned!
-- **Faster general updates from upstream**: Related to the last point, using the upstream WebAssembly backend means we can use very latest LLVM upstream at all times, which means we can get new C++ language features in `clang`, new LLVM IR optimizations, etc. as soon as they land.
+- **链接速度更快**：LLVM WebAssembly 后端与 [`wasm-ld`](https://lld.llvm.org/WebAssembly.html) 一起完全支持使用 WebAssembly 对象文件进行增量编译。Fastcomp 使用的是位代码文件中的 LLVM IR，这意味着链接时所有 IR 都将由 LLVM 编译。这是链接时间缓慢的主要原因。而使用 WebAssembly 对象文件时，`.o` 文件中已包含经过编译的 WebAssembly（以可链接的形式，就像原生链接一样）。因此，链接步骤可以比 Fastcomp 快得多 —— 我们下面将看到一个实际案例的 7 倍加速！
+- **更快更小的代码**：我们在 LLVM WebAssembly 后端以及 Emscripten 后运行的 Binaryen 优化器上投入了大量工作。结果是 LLVM WebAssembly 后端路径在速度和体积方面现在都超过了 Fastcomp。
+- **支持所有 LLVM IR**：Fastcomp 可以处理由 `clang` 生成的 LLVM IR，但由于其架构，它经常在其他来源上失败，特别是在将 IR “合法化”为 Fastcomp 能处理的类型时。而 LLVM WebAssembly 后端则使用通用的 LLVM 后端基础架构，因此可以应对所有情况。
+- **新的 WebAssembly 功能**：Fastcomp 在运行 `asm2wasm` 之前会编译为 asm.js，这意味着很难处理诸如尾调用、异常、SIMD 等新的 WebAssembly 功能。WebAssembly 后端是处理这些功能的自然场所，事实上我们也正在处理所有刚提到的功能！
+- **更快的上游更新**：与上一个点相关，使用上游 WebAssembly 后端意味着我们始终可以使用最新的 LLVM 上游版本，这意味着我们可以立即获取 `clang` 中的新 C++ 语言功能、新的 LLVM IR 优化等。
 
-## Testing
+## 测试
 
-To test the WebAssembly backend, simply use the [latest `emsdk`](https://github.com/emscripten-core/emsdk) and do
+若要测试 WebAssembly 后端，只需使用 [最新的 `emsdk`](https://github.com/emscripten-core/emsdk) 并执行
 
 ```
 emsdk install latest-upstream
 emsdk activate latest-upstream
 ```
 
-“Upstream” here refers to the fact that the LLVM WebAssembly backend is in upstream LLVM, unlike fastcomp. In fact, since it’s in upstream, you don’t need to use the `emsdk` if you build plain LLVM+`clang` yourself! (To use such a build with Emscripten, just add the path to it in your `.emscripten` file.)
+这里的“上游”指的是 LLVM WebAssembly 后端位于上游 LLVM，与 Fastcomp 不同。事实上，由于它在上游，你不需要使用 `emsdk`，如果你自己构建了普通的 LLVM+`clang`！（要将这样的构建用于 Emscripten，只需在你的 `.emscripten` 文件中添加路径即可。）
 
-Currently using `emsdk [install|activate] latest` still uses fastcomp. There is also “latest-fastcomp” which does the same. When we switch the default backend, we will make “latest” do the same as “latest-upstream”, and at that time “latest-fastcomp” will be the only way to get fastcomp. Fastcomp remains an option while it is still useful; see more notes about this at the end.
+目前使用 `emsdk [install|activate] latest` 仍然使用 Fastcomp。此外还有“latest-fastcomp”，效果相同。等我们切换默认后端时，“latest” 将与“latest-upstream”相同，而届时“latest-fastcomp”将是获取 Fastcomp 的唯一方式。Fastcomp 作为一个选项仍然存在，只要它还有用；有关这方面的更多说明，请见文末。
 
-## History
+## 历史
 
-This will be the **third** backend in Emscripten, and the **second** migration. The first backend was written in JavaScript and parsed LLVM IR in text form. This was useful for experimentation back in 2010, but had obvious downsides, including that LLVM’s text format would change and compilation speed wasn’t as fast as we wanted. In 2013 a new backend was written in a fork of LLVM, nicknamed “fastcomp”. It was designed to emit [asm.js](https://en.wikipedia.org/wiki/Asm.js), which the earlier JS backend had been hacked to do (but didn’t do very well). As a result it was a big improvement in code quality and compile times.
+这将是Emscripten的**第三个**后端，也是**第二次**迁移。第一个后端是用JavaScript编写的，它以文本形式解析LLVM IR。这在2010年进行实验时非常有用，但也有明显的缺点，包括LLVM的文本格式会发生变化以及编译速度不如我们所希望的那么快。2013年，一个新的后端被写入LLVM的一个分支中，昵称为“fastcomp”。它的设计目的是生成[asm.js](https://en.wikipedia.org/wiki/Asm.js)，早期的JS后端曾被修改以支持asm.js（但效果不佳）。因此，代码质量和编译时间得到了很大的改进。
 
-It was also a relatively minor change in Emscripten. While Emscripten is a compiler, the original backend and fastcomp have always been a fairly small part of the project — far more code goes into system libraries, toolchain integration, language bindings, and so forth. So while switching the compiler backend is a dramatic change, it affects just one part of the overall project.
+这对于Emscripten来说也是一个相对较小的变化。尽管Emscripten是一个编译器，原始后端和fastcomp在项目中一直占比较小的部分——更多的代码集中在系统库、工具链集成、语言绑定等方面。因此，虽然切换编译器后端是一个巨大的变化，但它仅影响整个项目的一部分。
 
-## Benchmarks
+## 基准测试
 
-### Code size
+### 代码体积
 
-![Code size measurements (lower is better)](/_img/emscripten-llvm-wasm/size.svg)
+![代码体积测量（值越低越好）](/_img/emscripten-llvm-wasm/size.svg)
 
-(All sizes here are normalized to fastcomp.) As you can see, the WebAssembly backend’s sizes are almost always smaller! The difference is more noticeable on the smaller microbenchmarks on the left (names in lowercase), where new improvements in system libraries matter more. But there is a code size reduction even on most of the macrobenchmarks on the right (names in UPPERCASE), which are real-world codebases. The one regression on the macrobenchmarks is LZMA, where newer LLVM makes a different inlining decision that ends up unlucky.
+（这里的所有体积都以fastcomp进行归一化。）如你所见，WebAssembly后端的体积几乎总是更小！这种差异在左侧更小的微基准测试中更加明显（名称为小写），此时系统库的新改进更为重要。但即使在右侧的大多数宏基准测试中（名称为大写的），即真实世界的代码库中，也存在代码体积的减少。宏基准测试中唯一的回归是LZMA，其中更新的LLVM做出了一种不太幸运的内联决策。
 
-Overall, the macrobenchmarks shrink by an average of **3.7%**. Not bad for a compiler upgrade! We see similar things on real-world codebases that are not in the test suite, for example, [BananaBread](https://github.com/kripken/BananaBread/), a port of the [Cube 2 game engine](http://cubeengine.com/) to the Web, shrinks by over **6%**, and [Doom 3 shrinks by](http://www.continuation-labs.com/projects/d3wasm/) **15%**!
+总体而言，宏基准测试的体积平均缩小了**3.7%**。对于编译器升级来说，这已经很不错了！我们在测试套件之外的真实代码库中也看到了类似的结果，例如，[BananaBread](https://github.com/kripken/BananaBread/)，一个将[Cube 2游戏引擎](http://cubeengine.com/)移植到网络上的项目，体积减少了超过**6%**，[Doom 3](http://www.continuation-labs.com/projects/d3wasm/)则减少了**15%**！
 
-These size improvements (and the speed improvements we’ll discuss next) are due to several factors:
+这些体积改进（以及我们稍后会讨论的速度改进）归因于以下几个因素：
 
-- LLVM’s backend codegen is smart and can do things that simple backends like fastcomp can’t, like [GVN](https://en.wikipedia.org/wiki/Value_numbering).
-- Newer LLVM has better IR optimizations.
-- We’ve worked a lot on tuning the Binaryen optimizer on the WebAssembly backend’s output, as mentioned earlier.
+- LLVM的后端代码生成更智能，可以执行像[GVN](https://en.wikipedia.org/wiki/Value_numbering)这样的简单后端（如fastcomp）无法做到的事情。
+- 更新版本的LLVM具有更好的IR优化。
+- 我们在调试Binaryen优化器以适配WebAssembly后端的输出方面做了大量工作，如前所述。
 
-### Speed
+### 速度
 
-![Speed measurements (lower is better)](/_img/emscripten-llvm-wasm/speed.svg)
+![速度测量（值越低越好）](/_img/emscripten-llvm-wasm/speed.svg)
 
-(Measurements are on V8.) Among the microbenchmarks, speed is a mixed picture — which is not that surprising, since most of them are dominated by a single function or even loop, so any change to the code Emscripten emits can lead to a lucky or unlucky optimization choice by the VM. Overall, about an equal number of microbenchmarks stay the same as those that improve or those that regress. Looking at the more realistic macrobenchmarks, once more LZMA is an outlier, again because of an unlucky inlining decision as mentioned earlier, but otherwise every single macrobenchmark improves!
+（测量基于V8。）在微基准测试中，速度表现不一——这并不令人意外，因为大多数基准测试都由单个函数甚至循环主导，因此Emscripten生成代码的任何更改都可能导致VM进行幸运或不幸运的优化选择。总体而言，速度保持不变、提高或退化的微基准测试数量大致相等。观察更真实的宏基准测试，虽然LZMA再次是一个例外，仍然是因为前面提到的不幸内联决策，但其他所有宏基准测试的性能都有所提升！
 
-The average change on the macrobenchmarks is a speedup of **3.2%**.
+宏基准测试的整体平均变化是**3.2%**的加速。
 
-### Build time
+### 构建时间
 
-![Compile and link time measurements on BananaBread (lower is better)](/_img/emscripten-llvm-wasm/build.svg)
+![BananaBread的编译和链接时间测量（值越低越好）](/_img/emscripten-llvm-wasm/build.svg)
 
-Build time changes will vary by project, but here are some example numbers from BananaBread, which is a complete but compact game engine consisting of 112 files and 95,287 lines of code. On the left we have build times for the compile step, that is, compiling source files to object files, using the project’s default `-O3` (all times are normalized to fastcomp). As you can see, the compile step takes slightly longer with the WebAssembly backend, which makes sense because we are doing more work at this stage — instead of just compiling source to bitcode as fastcomp does, we also compile the bitcode to WebAssembly.
+构建时间的变化因项目而异，但这里是一些来自BananaBread的示例数据，这是一个完整但紧凑的游戏引擎，包含112个文件和95,287行代码。左侧是编译步骤的构建时间，即将源文件编译为目标文件，这里使用项目的默认`-O3`（所有时间都以fastcomp归一化）。如你所见，使用WebAssembly后端时，编译阶段会稍微长一点，这可以理解，因为在此阶段我们完成了更多的工作——而不仅仅像fastcomp那样将源文件快速编译为字节码，我们还将字节码编译为WebAssembly。
 
-Looking on the right, we have the numbers for the link step (also normalized to fastcomp), that is, producing the final executable, here with `-O0` which is suitable for an incremental build (for a fully-optimized one, you would probably use `-O3` as well, see below). It turns out that the slight increase during the compile step is worth it, because the link is **over 7× faster**! That’s the real advantage of incremental compilation: most of the link step is just a quick concatenation of object files. And if you change just one source file and rebuild then almost all you need is that fast link step, so you can see this speedup all the time during real-world development.
+看右侧，这是链接阶段的时间（也以fastcomp归一化），即生成最终可执行文件，这里选用`-O0`，适合增量构建（对于完全优化的构建，你可能会使用`-O3`，见下文）。事实证明，编译阶段的轻微增长是值得的，因为链接阶段**快了超过7倍**！这是增量编译的真正优势：链接阶段的大部分只是一种快速的目标文件拼接。如果你仅更改一个源文件并重新构建，那么你几乎只需要快速的链接阶段，因此在实际开发中，你可以一直看到这种速度提升。
 
-As mentioned above, build time changes will vary by project. In a smaller project than BananaBread the link time speedup may be smaller, while on a bigger project it may be larger. Another factor is optimizations: as mentioned above, the test linked with `-O0`, but for a release build you’ll want `-O3` probably, and in that case Emscripten will invoke the Binaryen optimizer on the final WebAssembly, run [meta-dce](https://hacks.mozilla.org/2018/01/shrinking-webassembly-and-javascript-code-sizes-in-emscripten/), and other useful things for code size and speed. That takes extra time, of course, and it’s worth it for a release build — on BananaBread it shrinks the WebAssembly from 2.65 to 1.84 MB, an improvement of over **30%** — but for a quick incremental build you can skip that with `-O0`.
+如上所述，构建时间的变化因项目而异。在比BananaBread更小的项目中，链接时间速度提升可能会更小，而在更大的项目中可能会更大。另一个因素是优化：如上所述，测试是在使用`-O0`标志下链接的，但对于发布版构建可能需要使用`-O3`，在这种情况下Emscripten将对最终的WebAssembly调用Binaryen优化器，运行[meta-dce](https://hacks.mozilla.org/2018/01/shrinking-webassembly-and-javascript-code-sizes-in-emscripten/)以及其他有助于代码大小和速度的功能。当然，这会额外耗费时间，但对于发布版构建是值得的——在BananaBread中，它将WebAssembly从2.65MB缩小到1.84MB，改进超过**30%**——但对于快速增量构建，你可以使用`-O0`跳过这些操作。
 
-## Known issues
+## 已知问题
 
-While the LLVM WebAssembly backend generally wins on both code size and speed, we have seen some exceptions:
+虽然LLVM WebAssembly后端通常在代码大小和速度上都有优势，但我们也发现了一些例外情况：
 
-- [Fasta](https://github.com/emscripten-core/emscripten/blob/incoming/tests/fasta.cpp) regresses without [nontrapping float to int conversions](https://github.com/WebAssembly/nontrapping-float-to-int-conversions), a new WebAssembly feature that was not in the WebAssembly MVP. The underlying issue is that in the MVP a float to int conversion will trap if it was out of the range of valid integers. The reasoning was that this is undefined behavior in C anyhow, and easy for VMs to implement. However, this turned out to be a poor match for how LLVM compiles float to int conversions, with the result that extra guards are needed, adding code size and overhead. The newer non-trapping operations avoid that, but may not be present in all browsers yet. You can use them by compiling source files with `-mnontrapping-fptoint`.
-- The LLVM WebAssembly backend is not just a different backend than fastcomp but also uses a much newer LLVM. Newer LLVM may make different inlining decisions, which (like all inlining decisions in the absence of profile-guided optimization) are heuristic-driven and may end up helping or hurting. A specific example we mentioned earlier is in the LZMA benchmark where newer LLVM ends up inling a function 5 times in a way that ends up just causing harm. If you encounter this in your own projects, you can selectively build certain source files with `-Os` to focus on code size, use `__attribute__((noinline))`, etc.
+- [Fasta](https://github.com/emscripten-core/emscripten/blob/incoming/tests/fasta.cpp)在没有[非捕获浮点转整数转换](https://github.com/WebAssembly/nontrapping-float-to-int-conversions)的情况下会出现退化，该功能是一个新的WebAssembly特性，未包含在WebAssembly MVP中。根本原因在于，在MVP中，如果浮点数转换为整数超出了有效整数范围，则会产生异常。其理由是，在C语言中这种行为本身是未定义的行为，并且容易由虚拟机实现。然而，这种方式与LLVM编译浮点数到整数的方式不太匹配，结果是需要额外的保护措施，增加了代码大小和开销。较新的非捕获操作解决了这个问题，但可能尚未在所有浏览器中支持。你可以通过编译源文件时使用`-mnontrapping-fptoint`来使用这些新操作。
+- LLVM WebAssembly后端不仅是一个与fastcomp不同的后端，还使用了一个较新的LLVM。较新的LLVM可能会做出不同的内联决策，这些决策（在没有配置文件引导优化的情况下）基于启发式方法可能会有利或不利。我们之前提到的一个具体例子是在LZMA基准测试中，较新的LLVM将一个函数内联了5次，从而导致负面影响。如果你在自己的项目中遇到类似问题，可以选择性地使用`-Os`构建某些源文件以专注于代码大小，或使用`__attribute__((noinline))`等方法。
 
-There may be more issues we are not aware of that should be optimized — please let us know if you find anything!
+可能还有更多我们尚未意识到需要优化的问题——如果你发现了任何问题，请告诉我们！
 
-## Other changes
+## 其他变化
 
-There are a small number of Emscripten features that are tied to fastcomp and/or to asm.js, which means that they can’t work out of the box with the WebAssembly backend, and so we have been working on alternatives.
+有少量Emscripten功能与fastcomp和/或asm.js相关联，这意味着它们无法直接在WebAssembly后端中使用。因此我们正在开发替代方案。
 
-### JavaScript output
+### JavaScript输出
 
-An option for non-WebAssembly output is still important in some cases — although all major browsers have had WebAssembly support for some time, there is still a long tail of old machines, old phones, etc. that don’t have WebAssembly support. Also, as WebAssembly adds new features some form of this issue will stay relevant. Compiling to JS is a way to guarantee you can reach everyone, even if the build isn’t as small or fast as WebAssembly would be. With fastcomp we simply used the asm.js output for this directly, but with the WebAssembly backend obviously something else is needed. We are using Binaryen’s [`wasm2js`](https://github.com/WebAssembly/binaryen#wasm2js) for that purpose, which as the name suggests compiles WebAssembly to JS.
+在某些情况下，非WebAssembly输出仍然重要——尽管所有主流浏览器已经支持WebAssembly有一段时间了，但仍然有一部分旧设备、旧手机等不支持WebAssembly。此外，随着WebAssembly增加新功能，这种问题将继续存在。编译到JS是一种保证兼容所有设备的方法，即使构建不会像WebAssembly那样小或快。使用fastcomp时，我们直接使用asm.js输出，但使用WebAssembly后端显然需要其他方法。我们正在使用Binaryen的[`wasm2js`](https://github.com/WebAssembly/binaryen#wasm2js)工具来实现该目的，顾名思义，它将WebAssembly编译为JS。
 
-This probably warrants a full blog post, but in brief, a key design decision here is that there is no point to supporting asm.js anymore. asm.js can run much faster than general JS, but it turns out that practically all browsers that support asm.js AOT optimizations also support WebAssembly anyhow (in fact, Chrome optimizes asm.js by converting it to WebAssembly internally!). So when we talk about a JS fallback option, it may as well not use asm.js; in fact it’s simpler, allows us to support more features in WebAssembly, and also results in significantly smaller JS as well! Therefore `wasm2js` does not target asm.js.
+这或许值得写一个完整的博客文章，但简而言之，一个关键的设计决策是没有必要再支持asm.js。asm.js可以运行得比普通JS快得多，但事实证明几乎所有支持asm.js AOT优化的浏览器都支持WebAssembly（实际上，Chrome通过将asm.js内部转换为WebAssembly进行优化！）。因此，当我们谈到JS回退选项时，也许不需要使用asm.js；实际上它更简单，使我们能够支持更多WebAssembly功能，并且显著减小JS的大小！因此，`wasm2js`并不以asm.js为目标。
 
-However, a side effect of that design is that if you test an asm.js build from fastcomp compared to a JS build with the WebAssembly backend then the asm.js may be much faster — if you test in a modern browser with asm.js AOT optimizations. That is probably the case for your own browser, but not the browsers that would actually need the non-WebAssembly option! For a proper comparison, you should use a browser without asm.js optimizations or with them disabled. If the `wasm2js` output is still slower, please let us know!
+然而，这种设计的一个副作用是，如果你在支持asm.js AOT优化的现代浏览器中测试fastcomp的asm.js构建与WebAssembly后端的JS构建相比，asm.js可能会快得多——这可能是你自己的浏览器的情况，但不是实际需要非WebAssembly选项的浏览器的情况！要进行适当的比较，你应该使用一个不支持asm.js优化的浏览器或禁用这些优化。如果`wasm2js`输出仍然较慢，请告诉我们！
 
-`wasm2js` is missing some less-used features like dynamic linking and pthreads, but most code should work already, and it’s been carefully fuzzed. To test the JS output, simply build with `-s WASM=0` to disable WebAssembly. `emcc` then runs `wasm2js` for you, and if this is an optimized build it runs various useful optimizations as well.
+`wasm2js`缺少一些使用较少的功能，例如动态链接和线程，但大多数代码应该可以正常工作，并且已经经过仔细模糊测试。要测试JS输出，只需使用`-s WASM=0`禁用WebAssembly进行构建。`emcc`会为你运行`wasm2js`，如果这是一个优化构建，它还会运行各种有用的优化。
 
-### Other things you may notice
+### 其他可能注意到的事情
 
-- The [Asyncify](https://github.com/emscripten-core/emscripten/wiki/Asyncify) and [Emterpreter](https://github.com/emscripten-core/emscripten/wiki/Emterpreter) options only work in fastcomp. A replacement [is](https://github.com/WebAssembly/binaryen/pull/2172) [being](https://github.com/WebAssembly/binaryen/pull/2173) [worked](https://github.com/emscripten-core/emscripten/pull/8808) [on](https://github.com/emscripten-core/emscripten/issues/8561). We expect this to eventually be an improvement on the previous options.
-- Pre-built libraries must be rebuilt: if you have some `library.bc` that was built with fastcomp, then you’ll need to rebuild it from source using newer Emscripten. This has always been the case when fastcomp upgraded LLVM to a new version which changed the bitcode format, and the change now (to WebAssembly object files instead of bitcode) has the same effect.
+- [Asyncify](https://github.com/emscripten-core/emscripten/wiki/Asyncify)和[Emterpreter](https://github.com/emscripten-core/emscripten/wiki/Emterpreter)选项仅在fastcomp中工作。替代方案正在[开发](https://github.com/WebAssembly/binaryen/pull/2172)[中](https://github.com/WebAssembly/binaryen/pull/2173)[](https://github.com/emscripten-core/emscripten/pull/8808)[](https://github.com/emscripten-core/emscripten/issues/8561)。我们预计它最终会比之前的选项有所改进。
+- 需要重新构建预编译库：如果您有使用fastcomp构建的某些`library.bc`，那么需要使用更新的Emscripten从源代码重新构建。这在过去fastcomp升级LLVM到一个改变了位代码格式的新版本时也是如此，而现在这种更改（从位代码改为WebAssembly目标文件）带来了相同的影响。
 
-## Conclusion
+## 结论
 
-Our main goal right now is to fix any bugs related to this change. Please test and file issues!
+我们目前的主要目标是修复与此更改相关的任何错误。请进行测试并提交问题！
 
-After things are stable, we’ll switch the default compiler backend to the upstream WebAssembly backend. Fastcomp will remain an option, as mentioned earlier.
+在一切稳定后，我们将把默认编译器后端切换为上游的WebAssembly后端。如前所述，fastcomp将仍是一个可选项。
 
-We would like to eventually remove fastcomp entirely. Doing so would remove a significant maintenance burden, allow us to focus more on new features in the WebAssembly backend, accelerate general improvements in Emscripten, and other good things. Please let us know how testing goes on your codebases so we can start to plan a timeline for fastcomp’s removal.
+我们希望最终完全去除fastcomp。这样可以减轻大量维护工作，使我们能够更加专注于WebAssembly后端的新功能开发，加快Emscripten的整体改进，以及其他许多好处。请告诉我们在您的代码库上的测试结果，以便我们开始为移除fastcomp规划时间表。
 
-### Thank you
+### 感谢
 
-Thanks to everyone involved in the development of the LLVM WebAssembly backend, `wasm-ld`, Binaryen, Emscripten, and the other things mentioned in this post! A partial list of those awesome people is: aardappel, aheejin, alexcrichton, dschuff, jfbastien, jgravelle, nwilson, sbc100, sunfish, tlively, yurydelendik.
+感谢所有参与LLVM WebAssembly后端、`wasm-ld`、Binaryen、Emscripten以及本文提到的其他内容开发的人！这些了不起的人的部分名单包括：aardappel、aheejin、alexcrichton、dschuff、jfbastien、jgravelle、nwilson、sbc100、sunfish、tlively、yurydelendik。

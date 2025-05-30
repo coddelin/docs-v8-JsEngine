@@ -1,69 +1,69 @@
 ---
-title: "Cross-compiling and debugging for ARM/Android"
-description: "This document explains how to cross-compile V8 for ARM/Android, and how to debug it."
+title: "交叉编译和调试ARM/Android"
+description: "本文档解释了如何为ARM/Android交叉编译V8，以及如何调试它。"
 ---
-First, make sure you can [build with GN](/docs/build-gn).
+首先，请确保您可以[使用GN构建](/docs/build-gn)。
 
-Then, add `android` to your `.gclient` configuration file.
-
-```python
-target_os = ['android']  # Add this to get Android stuff checked out.
-```
-
-The `target_os` field is a list, so if you're also building on unix it'll look like this:
+然后，在您的`.gclient`配置文件中添加`android`。
 
 ```python
-target_os = ['android', 'unix']  # Multiple target OSes.
+target_os = ['android']  # 添加此条以检出Android相关内容。
 ```
 
-Run `gclient sync`, and you’ll get a large checkout under `./third_party/android_tools`.
+`target_os`字段是一个列表，所以如果您也在构建Unix版本，它会看起来像这样：
 
-Enable developer mode on your phone or tablet, and turn on USB debugging, via instructions [here](https://developer.android.com/studio/run/device.html). Also, get the handy [`adb`](https://developer.android.com/studio/command-line/adb.html) tool on your path. It’s in your checkout at `./third_party/android_sdk/public/platform-tools`.
+```python
+target_os = ['android', 'unix']  # 多个目标操作系统。
+```
 
-## Using `gm`
+运行`gclient sync`，您将在`./third_party/android_tools`下获得一个大的检出。
 
-Use [the `tools/dev/gm.py` script](/docs/build-gn#gm) to automatically build V8 tests and run them on the device.
+在您的手机或平板电脑上启用开发者模式，并根据[此处](https://developer.android.com/studio/run/device.html)的说明开启USB调试。另外，在您的环境路径中加入[`adb`](https://developer.android.com/studio/command-line/adb.html)工具。您可以在`./third_party/android_sdk/public/platform-tools`中找到它。
+
+## 使用`gm`
+
+使用[工具目录下的`tools/dev/gm.py`脚本](/docs/build-gn#gm)自动构建V8测试并在设备上运行它们。
 
 ```bash
 alias gm=/path/to/v8/tools/dev/gm.py
 gm android_arm.release.check
 ```
 
-This command pushes the binaries and tests to the `/data/local/tmp/v8` directory on the device.
+此命令将二进制文件和测试文件推送到设备的`/data/local/tmp/v8`目录。
 
-## Manual build
+## 手动构建
 
-Use `v8gen.py` to generate an ARM release or debug build:
+使用`v8gen.py`生成一个ARM的release或debug构建：
 
 ```bash
 tools/dev/v8gen.py arm.release
 ```
 
-Then run `gn args out.gn/arm.release` and make sure you have the following keys:
+然后运行`gn args out.gn/arm.release`，并确保您拥有以下键值：
 
 ```python
-target_os = "android"      # These lines need to be changed manually
-target_cpu = "arm"         # as v8gen.py assumes a simulator build.
+target_os = "android"      # 这些行需要手动修改
+target_cpu = "arm"         # 因为v8gen.py假设是模拟器构建。
 v8_target_cpu = "arm"
 is_component_build = false
 ```
 
-The keys should be the same for debug builds. If you are building for an arm64 device like the Pixel C, which supports 32bit and 64bit binaries, the keys should look like this:
+调试版本的键值应相同。如果您正在为像Pixel C这样的arm64设备构建（支持32位和64位二进制文件），键值应如下所示：
 
 ```python
-target_os = "android"      # These lines need to be changed manually
-target_cpu = "arm64"       # as v8gen.py assumes a simulator build.
+target_os = "android"      # 这些行需要手动修改
+target_cpu = "arm64"       # 因为v8gen.py假设是模拟器构建。
 v8_target_cpu = "arm64"
 is_component_build = false
 ```
 
-Now build:
+现在开始构建：
 
 ```bash
 ninja -C out.gn/arm.release d8
 ```
 
-Use `adb` to copy the binary and snapshot files to the phone:
+使用`adb`将二进制文件和快照文件复制到手机：
 
 ```bash
 adb shell 'mkdir -p /data/local/tmp/v8/bin'
@@ -84,17 +84,17 @@ d8> 'w00t!'
 d8>
 ```
 
-## Debugging
+## 调试
 
 ### d8
 
-Remote debugging `d8` on an Android device is relatively simple. First start `gdbserver` on the Android device:
+在Android设备上远程调试`d8`相对简单。首先在Android设备上启动`gdbserver`：
 
 ```bash
 bullhead:/data/local/tmp/v8/bin $ gdbserver :5039 $D8 <arguments>
 ```
 
-Then connect to the server on your host device.
+然后在主机设备上连接到服务器。
 
 ```bash
 adb forward tcp:5039 tcp:5039
@@ -102,31 +102,31 @@ gdb $D8
 gdb> target remote :5039
 ```
 
-`gdb` and `gdbserver` need to be compatible with each other, if in doubt use the binaries from the [Android NDK](https://developer.android.com/ndk). Note that by default the `d8` binary is stripped (debugging info removed), `$OUT_DIR/exe.unstripped/d8` contains the unstripped binary though.
+`gdb`和`gdbserver`需要相互兼容。如果有疑问，请使用来自[Android NDK](https://developer.android.com/ndk)的二进制文件。注意，默认情况下`d8`二进制文件是剥离的（删除了调试信息），但`$OUT_DIR/exe.unstripped/d8`包含未剥离的二进制文件。
 
-### Logging
+### 日志记录
 
-By default, some of `d8`’s debugging output ends up in the Android system log, which can be dumped using [`logcat`](https://developer.android.com/studio/command-line/logcat). Unfortunately, sometimes part of a particular debugging output is split between system log and `adb`, and sometimes some part seems to be completely missing. To avoid these issues, it is recommended to add the following setting to the `gn args`:
+默认情况下，部分`d8`的调试输出会出现在Android系统日志中，可以使用[`logcat`](https://developer.android.com/studio/command-line/logcat)来转储日志。不幸的是，有时特定调试输出的一部分会分散在系统日志和`adb`之间，有时甚至完全丢失。为了避免这些问题，建议在`gn args`中添加以下设置：
 
 ```python
 v8_android_log_stdout = true
 ```
 
-### Floating-point issues
+### 浮点问题
 
-The `gn args` setting `arm_float_abi = "hard"`, which is used by the V8 Arm GC Stress bot, can result in completely nonsensical program behavior on hardware different from the one the GC stress bot is using (e.g. on Nexus 7).
+`gn args`设置中的`arm_float_abi = "hard"`会在不同于GC应力测试机器人所使用的硬件（例如在Nexus 7上）上导致完全无意义的程序行为。
 
-## Using Sourcery G++ Lite
+## 使用Sourcery G++ Lite
 
-The Sourcery G++ Lite cross compiler suite is a free version of Sourcery G++ from [CodeSourcery](http://www.codesourcery.com/). There is a page for the [GNU Toolchain for ARM Processors](http://www.codesourcery.com/sgpp/lite/arm). Determine the version you need for your host/target combination.
+Sourcery G++ Lite交叉编译器套件是CodeSourcery提供的免费版本Sourcery G++。可以在[ARM处理器的GNU工具链](http://www.codesourcery.com/sgpp/lite/arm)页面找到它。确定您的主机/目标组合所需的版本。
 
-The following instructions use [2009q1-203 for ARM GNU/Linux](http://www.codesourcery.com/sgpp/lite/arm/portal/release858), and if using a different version please change the URLs and `TOOL_PREFIX` below accordingly.
+以下说明使用了[2009q1-203 for ARM GNU/Linux](http://www.codesourcery.com/sgpp/lite/arm/portal/release858)，如果使用不同的版本，请相应更改以下URL和`TOOL_PREFIX`。
 
-### Installing on host and target
+### 在主机和目标设备上安装
 
-The simplest way of setting this up is to install the full Sourcery G++ Lite package on both the host and target at the same location. This will ensure that all the libraries required are available on both sides. If you want to use the default libraries on the host there is no need the install anything on the target.
+设置此工具的最简单方法是将完整的Sourcery G++ Lite包安装到主机和目标设备的相同位置。这将确保所需的所有库在两边都可用。如果您希望在主机上使用默认库，则无需在目标设备上安装任何内容。
 
-The following script installs in `/opt/codesourcery`:
+以下脚本安装在 `/opt/codesourcery`：
 
 ```bash
 #!/bin/sh
@@ -140,16 +140,16 @@ wget http://www.codesourcery.com/sgpp/lite/arm/portal/package4571/public/arm-non
 tar -xvf arm-2009q1-203-arm-none-linux-gnueabi-i686-pc-linux-gnu.tar.bz2
 ```
 
-## Profile
+## 配置文件
 
-- Compile a binary, push it to the device, keep a copy of it on the host:
+- 编译一个二进制文件，将其推送到设备，同时在主机上保留一份副本：
 
     ```bash
     adb shell cp /data/local/tmp/v8/bin/d8 /data/local/tmp/v8/bin/d8-version.under.test
     cp out.gn/arm.release/d8 ./d8-version.under.test
     ```
 
-- Get a profiling log and copy it to the host:
+- 获取性能分析日志并将其复制到主机：
 
     ```bash
     adb push benchmarks /data/local/tmp
@@ -158,13 +158,13 @@ tar -xvf arm-2009q1-203-arm-none-linux-gnueabi-i686-pc-linux-gnu.tar.bz2
     adb pull /data/local/tmp/benchmarks/v8.log ./
     ```
 
-- Open `v8.log` in your favorite editor and edit the first line to match the full path of the `d8-version.under.test` binary on your workstation (instead of the `/data/local/tmp/v8/bin/` path it had on the device)
+- 打开 `v8.log`，使用你喜欢的编辑器修改第一行以匹配工作站中 `d8-version.under.test` 二进制文件的完整路径（替代设备上的 `/data/local/tmp/v8/bin/` 路径）
 
-- Run the tick processor with the host’s `d8` and an appropriate `nm` binary:
+- 使用主机上的 `d8` 和合适的 `nm` 二进制文件运行 tick 处理器：
 
     ```bash
-    cp out/x64.release/d8 .  # only required once
-    cp out/x64.release/natives_blob.bin .  # only required once
-    cp out/x64.release/snapshot_blob.bin .  # only required once
+    cp out/x64.release/d8 .  # 只需执行一次
+    cp out/x64.release/natives_blob.bin .  # 只需执行一次
+    cp out/x64.release/snapshot_blob.bin .  # 只需执行一次
     tools/linux-tick-processor --nm=$(pwd)/third_party/android_ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-nm
     ```

@@ -1,30 +1,30 @@
 ---
-title: "WebAssembly - adding a new opcode"
-description: "This tutorial explains how to implement a new WebAssembly instruction in V8."
+title: "WebAssembly - 新增一个操作码"
+description: "本教程解释了如何在V8中实现一个新的WebAssembly指令。"
 ---
-[WebAssembly](https://webassembly.org/) (Wasm) is a binary instruction format for a stack-based virtual machine. This tutorial walks the reader through implementing a new WebAssembly instruction in V8.
+[WebAssembly](https://webassembly.org/) (Wasm) 是一种基于堆栈的虚拟机的二进制指令格式。本教程将指导读者如何在V8中实现一个新的WebAssembly指令。
 
-WebAssembly is implemented in V8 in three parts:
+WebAssembly在V8中的实现分为三个部分：
 
-- the interpreter
-- the baseline compiler (Liftoff)
-- the optimizing compiler (TurboFan)
+- 解释器
+- 基础编译器 (Liftoff)
+- 优化编译器 (TurboFan)
 
-The rest of this document focuses on the TurboFan pipeline, walking through how to add a new Wasm instruction and implement it in TurboFan.
+本文其余部分将重点讲解TurboFan管道，逐步说明如何添加一个新的Wasm指令并在TurboFan中实现它。
 
-At a high level, Wasm instructions are compiled into a TurboFan graph, and we rely on the TurboFan pipeline to compile the graph into (ultimately) machine code. For more on TurboFan, check out the [V8 docs](/docs/turbofan).
+从高层次来看，Wasm指令被编译为TurboFan图形，我们依赖TurboFan管道来将图形最终编译为机器代码。有关TurboFan的更多信息，请参阅 [V8文档](/docs/turbofan)。
 
-## Opcodes/Instructions
+## 操作码/指令
 
-Let’s define a new instruction that adds `1` to an [`int32`](https://webassembly.github.io/spec/core/syntax/types.html#syntax-valtype) (on the top of the stack).
+让我们定义一个新的指令，它将对堆栈顶部的[`int32`](https://webassembly.github.io/spec/core/syntax/types.html#syntax-valtype)加`1`。
 
 :::note
-**Note:** A list of instructions supported by all Wasm implementations can be found in the [spec](https://webassembly.github.io/spec/core/appendix/index-instructions.html).
+**注意:** 支持所有Wasm实现的指令列表可以在[规范](https://webassembly.github.io/spec/core/appendix/index-instructions.html)中找到。
 :::
 
-All Wasm instructions are defined in [`src/wasm/wasm-opcodes.h`](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-opcodes.h). The instructions are grouped roughly by what they do, e.g. control, memory, SIMD, atomic, etc.
+所有的Wasm指令都定义在[`src/wasm/wasm-opcodes.h`](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-opcodes.h)中。这些指令大致根据它们的功能进行分组，例如控制、内存、SIMD、原子等。
 
-Let’s add our new instruction, `I32Add1`, to the `FOREACH_SIMPLE_OPCODE` section:
+让我们将新的指令 `I32Add1` 添加到 `FOREACH_SIMPLE_OPCODE` 部分：
 
 ```diff
 diff --git a/src/wasm/wasm-opcodes.h b/src/wasm/wasm-opcodes.h
@@ -33,7 +33,7 @@ index 6970c667e7..867cbf451a 100644
 +++ b/src/wasm/wasm-opcodes.h
 @@ -96,6 +96,7 @@ bool IsJSCompatibleSignature(const FunctionSig* sig, bool hasBigIntFeature);
 
- // Expressions with signatures.
+ // 具有签名的表达式。
  #define FOREACH_SIMPLE_OPCODE(V)  \
 +  V(I32Add1, 0xee, i_i)           \
    V(I32Eqz, 0x45, i_i)            \
@@ -41,30 +41,30 @@ index 6970c667e7..867cbf451a 100644
    V(I32Ne, 0x47, i_ii)            \
 ```
 
-WebAssembly is a binary format, so `0xee` specifies the encoding of this instruction. In this tutorial we chose `0xee` as it is currently unused.
+WebAssembly是一种二进制格式，因此`0xee`指定了此指令的编码。在本教程中，我们选择`0xee`作为尚未使用的编码。
 
 :::note
-**Note:** Actually adding an instruction to the spec involves work beyond what is described here.
+**注意:** 将实际指令添加到规范中涉及超出本文范围的工作。
 :::
 
-We can run a simple unit test for opcodes with:
+我们可以运行一个简单的单元测试来测试操作码：
 
 ```
 $ tools/dev/gm.py x64.debug unittests/WasmOpcodesTest*
 ...
-[==========] Running 1 test from 1 test suite.
-[----------] Global test environment set-up.
-[----------] 1 test from WasmOpcodesTest
+[==========] 正在运行 1 个测试，来自 1 个测试套件。
+[----------] 设置全局测试环境。
+[----------] 来自 WasmOpcodesTest 的 1 个测试。
 [ RUN      ] WasmOpcodesTest.EveryOpcodeHasAName
-../../test/unittests/wasm/wasm-opcodes-unittest.cc:27: Failure
+../../test/unittests/wasm/wasm-opcodes-unittest.cc:27: 失败
 Value of: false
-  Actual: false
-Expected: true
-WasmOpcodes::OpcodeName(kExprI32Add1) == "unknown"; plazz halp in src/wasm/wasm-opcodes.cc
+  实际值: false
+预期值: true
+WasmOpcodes::OpcodeName(kExprI32Add1) == "unknown"; 请在 src/wasm/wasm-opcodes.cc 提供帮助
 [  FAILED  ] WasmOpcodesTest.EveryOpcodeHasAName
 ```
 
-This error indicates that we don’t have a name for our new instruction. Adding a name for the new opcode can be done in [`src/wasm/wasm-opcodes.cc`](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-opcodes.cc):
+此错误表明我们没有为新的指令提供名称。在 [`src/wasm/wasm-opcodes.cc`](https://cs.chromium.org/chromium/src/v8/src/wasm/wasm-opcodes.cc) 中可以为新的操作码添加名称：
 
 ```diff
 diff --git a/src/wasm/wasm-opcodes.cc b/src/wasm/wasm-opcodes.cc
@@ -72,30 +72,30 @@ index 5ed664441d..2d4e9554fe 100644
 --- a/src/wasm/wasm-opcodes.cc
 +++ b/src/wasm/wasm-opcodes.cc
 @@ -75,6 +75,7 @@ const char* WasmOpcodes::OpcodeName(WasmOpcode opcode) {
-     // clang-format off
+     // clang格式化关闭
 
-     // Standard opcodes
+     // 标准操作码
 +    CASE_I32_OP(Add1, "add1")
      CASE_INT_OP(Eqz, "eqz")
      CASE_ALL_OP(Eq, "eq")
      CASE_I64x2_OP(Eq, "eq")
 ```
 
-By adding our new instruction in `FOREACH_SIMPLE_OPCODE`, we are skipping a [fair amount of work](https://cs.chromium.org/chromium/src/v8/src/wasm/function-body-decoder-impl.h?l=1751-1756&rcl=686b68edf9f42c201c2b25bca9f4bef72ff41c0b) that is done in `src/wasm/function-body-decoder-impl.h`, which decodes Wasm opcodes and calls into the TurboFan graph generator. Thus, depending on what your opcode does, you might have more work to do. We skip this in the interest of brevity.
+通过在 `FOREACH_SIMPLE_OPCODE` 中添加我们的新指令，我们跳过了一些在 [`src/wasm/function-body-decoder-impl.h`](https://cs.chromium.org/chromium/src/v8/src/wasm/function-body-decoder-impl.h?l=1751-1756&rcl=686b68edf9f42c201c2b25bca9f4bef72ff41c0b) 中完成工作的复杂部分，该部分负责解码Wasm操作码并调用TurboFan图生成器。因此，根据您的操作码的功能，可能需要更多工作。为了简洁，我们在此处跳过这些内容。
 
-## Writing a test for the new opcode
+## 为新操作码编写测试
 
-Wasm tests can be found in [`test/cctest/wasm/`](https://cs.chromium.org/chromium/src/v8/test/cctest/wasm/). Let’s take a look at [`test/cctest/wasm/test-run-wasm.cc`](https://cs.chromium.org/chromium/src/v8/test/cctest/wasm/test-run-wasm.cc), where many “simple” opcodes are tested.
+Wasm测试位于 [`test/cctest/wasm/`](https://cs.chromium.org/chromium/src/v8/test/cctest/wasm/) 中。让我们看看[`test/cctest/wasm/test-run-wasm.cc`](https://cs.chromium.org/chromium/src/v8/test/cctest/wasm/test-run-wasm.cc)，其中测试了许多“简单”的操作码。
 
-There are many examples in this file that we can follow. The general setup is:
+此文件中有许多示例可供我们参考。一般的设置包括：
 
-- create a `WasmRunner`
-- set up globals to hold result (optional)
-- set up locals as parameters to instruction (optional)
-- build the wasm module
-- run it and compare with an expected output
+- 创建一个 `WasmRunner`
+- 设置全局变量以保存结果（可选）
+- 设置局部变量作为指令参数（可选）
+- 构建Wasm模块
+- 运行并与预期输出进行比较
 
-Here’s a simple test for our new opcode:
+以下是一个针对新操作码的简单测试：
 
 ```diff
 diff --git a/test/cctest/wasm/test-run-wasm.cc b/test/cctest/wasm/test-run-wasm.cc
@@ -120,26 +120,26 @@ index 26df61ceb8..b1ee6edd71 100644
    const int32_t kExpectedValue = 0x11223344;
 ```
 
-Run the test:
+运行测试：
 
 ```
 $ tools/dev/gm.py x64.debug 'cctest/test-run-wasm-simd/RunWasmTurbofan_I32Add1'
 ...
 === cctest/test-run-wasm/RunWasmTurbofan_Int32Add1 ===
 #
-# Fatal error in ../../src/compiler/wasm-compiler.cc, line 988
-# Unsupported opcode 0xee:i32.add1
+# 在 ../../src/compiler/wasm-compiler.cc, 第988行发生致命错误
+# 不支持的操作码 0xee:i32.add1
 ```
 
 :::note
-**Tip:** Finding the test name can be tricky, since the test definition is behind a macro. Use [Code Search](https://cs.chromium.org/) to click around to discover the macro definitions.
+**提示：** 找到测试名称可能很难，因为测试定义在宏后面。使用[代码搜索](https://cs.chromium.org/)进行点击以发现宏定义。
 :::
 
-This error indicates that the compiler does not know of our new instruction. That will change in the next section.
+此错误表明编译器不识别我们的新指令。下一节将解决这一问题。
 
-## Compiling Wasm into TurboFan
+## 将Wasm编译为TurboFan
 
-In the introduction, we mentioned that Wasm instructions are compiled into a TurboFan graph. `wasm-compiler.cc` is where this happens. Let’s take a look at an example opcode, [`I32Eqz`](https://cs.chromium.org/chromium/src/v8/src/compiler/wasm-compiler.cc?l=716&rcl=686b68edf9f42c201c2b25bca9f4bef72ff41c0b):
+在介绍中我们提到，Wasm指令会被编译为TurboFan图。`wasm-compiler.cc`是执行这一操作的地方。我们来看一个示例操作码，[`I32Eqz`](https://cs.chromium.org/chromium/src/v8/src/compiler/wasm-compiler.cc?l=716&rcl=686b68edf9f42c201c2b25bca9f4bef72ff41c0b)：
 
 ```cpp
   switch (opcode) {
@@ -148,11 +148,11 @@ In the introduction, we mentioned that Wasm instructions are compiled into a Tur
       return graph()->NewNode(op, input, mcgraph()->Int32Constant(0));
 ```
 
-This switches on the Wasm opcode `wasm::kExprI32Eqz`, and builds a TurboFan graph consisting of the operation `Word32Equal` with the inputs `input`, which is the argument to the Wasm instruction, and a constant `0`.
+这个代码通过Wasm操作码`wasm::kExprI32Eqz`进行切换，构建了一个TurboFan图，该图由操作`Word32Equal`以及输入`input`（即Wasm指令的参数）和一个常量`0`组成。
 
-The `Word32Equal` operator is provided by the underlying V8 abstract machine, which is architecture-independent. Later in the pipeline, this abstract machine operator will be translated into architecture-dependent assembly.
+`Word32Equal`操作符由底层的V8抽象机器提供，它与体系结构无关。在后续阶段，这个抽象操作符将被转换为与体系结构相关的汇编代码。
 
-For our new opcode, `I32Add1`, we need a graph that adds a constant 1 to the input, so we can resuse an existing machine operator, `Int32Add`, passing it the input, and a constant 1:
+对于我们新的操作码`I32Add1`，我们需要一个图来将输入加1，因此我们可以重用现有的机器操作符`Int32Add`，将输入和常量1传给它：
 
 ```diff
 diff --git a/src/compiler/wasm-compiler.cc b/src/compiler/wasm-compiler.cc
@@ -170,11 +170,11 @@ index f666bbb7c1..399293c03b 100644
        return graph()->NewNode(op, input, mcgraph()->Int32Constant(0));
 ```
 
-This is enough to get the test passing. However, not all instructions have an existing TurboFan machine operator. In that case we have to add this new operator to the machine. Let’s try that.
+这足以让测试通过。然而，并非所有指令都有现成的TurboFan机器操作符。在这种情况下，我们需要向机器添加该新操作符。接下来尝试操作。
 
-## TurboFan machine operators
+## TurboFan机器操作符
 
-We want to add the knowledge of `Int32Add1` to the TurboFan machine. So let’s pretend that it exists and use it first:
+我们需要将`Int32Add1`知识添加到TurboFan机器中。首先假定它存在并加以使用：
 
 ```diff
 diff --git a/src/compiler/wasm-compiler.cc b/src/compiler/wasm-compiler.cc
@@ -192,21 +192,21 @@ index f666bbb7c1..1d93601584 100644
        return graph()->NewNode(op, input, mcgraph()->Int32Constant(0));
 ```
 
-Trying to run the same test leads to a compilation failure that hints at where to make changes:
+尝试运行相同测试导致编译失败，并提示需要修改的位置：
 
 ```
-../../src/compiler/wasm-compiler.cc:717:34: error: no member named 'Int32Add1' in 'v8::internal::compiler::MachineOperatorBuilder'; did you mean 'Int32Add'?
+../../src/compiler/wasm-compiler.cc:717:34: 错误: ‘MachineOperatorBuilder’中没有名为‘Int32Add1’的成员；是否是指‘Int32Add’？
       return graph()->NewNode(m->Int32Add1(), input);
                                  ^~~~~~~~~
                                  Int32Add
 ```
 
-There are a couple of places that needs to be modified to add an operator:
+有几个地方需要修改以添加操作符：
 
 1. [`src/compiler/machine-operator.cc`](https://cs.chromium.org/chromium/src/v8/src/compiler/machine-operator.cc)
-1. header [`src/compiler/machine-operator.h`](https://cs.chromium.org/chromium/src/v8/src/compiler/machine-operator.h)
-1. list of opcodes that the machine understands [`src/compiler/opcodes.h`](https://cs.chromium.org/chromium/src/v8/src/compiler/opcodes.h)
-1. verifier [`src/compiler/verifier.cc`](https://cs.chromium.org/chromium/src/v8/src/compiler/verifier.cc)
+1. 头文件[`src/compiler/machine-operator.h`](https://cs.chromium.org/chromium/src/v8/src/compiler/machine-operator.h)
+1. 机器可理解的操作码列表[`src/compiler/opcodes.h`](https://cs.chromium.org/chromium/src/v8/src/compiler/opcodes.h)
+1. 验证器[`src/compiler/verifier.cc`](https://cs.chromium.org/chromium/src/v8/src/compiler/verifier.cc)
 
 ```diff
 diff --git a/src/compiler/machine-operator.cc b/src/compiler/machine-operator.cc
@@ -223,9 +223,9 @@ index 16e838c2aa..fdd6d951f0 100644
    V(Word32ReverseBytes, Operator::kNoProperties, 1, 0, 1)                     \
 ```
 
-```diff
-diff --git a/src/compiler/machine-operator.h b/src/compiler/machine-operator.h
-index a2b9fce0ee..f95e75a445 100644
+```差异
+差异 --git a/src/compiler/machine-operator.h b/src/compiler/machine-operator.h
+索引 a2b9fce0ee..f95e75a445 100644
 --- a/src/compiler/machine-operator.h
 +++ b/src/compiler/machine-operator.h
 @@ -265,6 +265,8 @@ class V8_EXPORT_PRIVATE MachineOperatorBuilder final
@@ -239,24 +239,24 @@ index a2b9fce0ee..f95e75a445 100644
    const Operator* Int32Sub();
 ```
 
-```diff
-diff --git a/src/compiler/opcodes.h b/src/compiler/opcodes.h
-index ce24a0bd3f..2c8c5ebaca 100644
+```差异
+差异 --git a/src/compiler/opcodes.h b/src/compiler/opcodes.h
+索引 ce24a0bd3f..2c8c5ebaca 100644
 --- a/src/compiler/opcodes.h
 +++ b/src/compiler/opcodes.h
 @@ -506,6 +506,7 @@
    V(Float64LessThanOrEqual)
 
- #define MACHINE_UNOP_32_LIST(V) \
+ #定义 MACHINE_UNOP_32_LIST(V) \
 +  V(Int32Add1)                  \
    V(Word32Clz)                  \
    V(Word32Ctz)                  \
    V(Int32AbsWithOverflow)       \
 ```
 
-```diff
-diff --git a/src/compiler/verifier.cc b/src/compiler/verifier.cc
-index 461aef0023..95251934ce 100644
+```差异
+差异 --git a/src/compiler/verifier.cc b/src/compiler/verifier.cc
+索引 461aef0023..95251934ce 100644
 --- a/src/compiler/verifier.cc
 +++ b/src/compiler/verifier.cc
 @@ -1861,6 +1861,7 @@ void Verifier::Visitor::Check(Node* node, const AllNodes& all) {
@@ -265,30 +265,30 @@ index 461aef0023..95251934ce 100644
      case IrOpcode::kStaticAssert:
 +    case IrOpcode::kInt32Add1:
 
- #define SIMD_MACHINE_OP_CASE(Name) case IrOpcode::k##Name:
+ #定义 SIMD_MACHINE_OP_CASE(名字) case IrOpcode::k##名字:
        MACHINE_SIMD_OP_LIST(SIMD_MACHINE_OP_CASE)
 ```
 
-Running the test again now gives us a different failure:
+再次运行测试，现在给出了不同的失败信息：
 
 ```
 === cctest/test-run-wasm/RunWasmTurbofan_Int32Add1 ===
 #
-# Fatal error in ../../src/compiler/backend/instruction-selector.cc, line 2072
-# Unexpected operator #289:Int32Add1 @ node #7
+# 在 ../../src/compiler/backend/instruction-selector.cc 文件中，第 2072 行发生致命错误
+# 意外的操作符 #289:Int32Add1 @ 节点 #7
 ```
 
-## Instruction selection
+## 指令选择
 
-So far we have been working at the TurboFan level, dealing with (a sea of) nodes in the TurboFan graph. However, at the assembly level, we have instructions and operands. Instruction selection is the process of translating this graph to instructions and operands.
+到目前为止，我们一直在 TurboFan 层级工作，处理 TurboFan 图中的（海量的）节点。然而，在汇编层，我们有指令和操作数。指令选择是将此图转换为指令和操作数的过程。
 
-The last test error indicated that we need something in [`src/compiler/backend/instruction-selector.cc`](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/instruction-selector.cc).  This is a big file with a giant switch statement over all the machine opcodes.  It calls into architecture specific instruction selection, using the visitor pattern to emit instructions for each type of node.
+最后的测试错误表明我们需要在[`src/compiler/backend/instruction-selector.cc`](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/instruction-selector.cc)中添加一些内容。这是一个大文件，其中包含所有机器操作码的巨大 switch 语句。 它使用访问者模式为每种类型的节点发出指令，调用架构特定的指令选择。
 
-Since we added a new TurboFan machine opcode, we need to add it here as well:
+由于我们添加了一个新的 TurboFan 机器操作码，因此我们也需要在这里添加它：
 
-```diff
-diff --git a/src/compiler/backend/instruction-selector.cc b/src/compiler/backend/instruction-selector.cc
-index 3152b2d41e..7375085649 100644
+```差异
+差异 --git a/src/compiler/backend/instruction-selector.cc b/src/compiler/backend/instruction-selector.cc
+索引 3152b2d41e..7375085649 100644
 --- a/src/compiler/backend/instruction-selector.cc
 +++ b/src/compiler/backend/instruction-selector.cc
 @@ -2067,6 +2067,8 @@ void InstructionSelector::VisitNode(Node* node) {
@@ -298,16 +298,15 @@ index 3152b2d41e..7375085649 100644
 +    case IrOpcode::kInt32Add1:
 +      return MarkAsWord32(node), VisitInt32Add1(node);
      default:
-       FATAL("Unexpected operator #%d:%s @ node #%d", node->opcode(),
+       FATAL("意外的操作符 #%d:%s @ 节点 #%d", node->opcode(),
              node->op()->mnemonic(), node->id());
 ```
 
-Instruction selection is architecture dependent, so we have to add it to the architecture specific instruction selector files too. For this codelab we only focus on the x64 architecture, so [`src/compiler/backend/x64/instruction-selector-x64.cc`](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/x64/instruction-selector-x64.cc)
-needs to be modified:
+指令选择是与架构相关的，因此我们也必须将其添加到架构特定的指令选择文件中。对于本教程，我们仅关注 x64 架构，所以需要修改 [`src/compiler/backend/x64/instruction-selector-x64.cc`](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/x64/instruction-selector-x64.cc)：
 
-```diff
-diff --git a/src/compiler/backend/x64/instruction-selector-x64.cc b/src/compiler/backend/x64/instruction-selector-x64.cc
-index 2324e119a6..4b55671243 100644
+```差异
+差异 --git a/src/compiler/backend/x64/instruction-selector-x64.cc b/src/compiler/backend/x64/instruction-selector-x64.cc
+索引 2324e119a6..4b55671243 100644
 --- a/src/compiler/backend/x64/instruction-selector-x64.cc
 +++ b/src/compiler/backend/x64/instruction-selector-x64.cc
 @@ -841,6 +841,11 @@ void InstructionSelector::VisitWord32ReverseBytes(Node* node) {
@@ -321,16 +320,16 @@ index 2324e119a6..4b55671243 100644
 +
 ```
 
-And we also need to add this new x64-specific opcode, `kX64Int32Add1` to [`src/compiler/backend/x64/instruction-codes-x64.h`](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/x64/instruction-codes-x64.h):
+我们还需要将此新的 x64 特定操作码 `kX64Int32Add1` 添加到 [`src/compiler/backend/x64/instruction-codes-x64.h`](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/x64/instruction-codes-x64.h) 中：
 
-```diff
-diff --git a/src/compiler/backend/x64/instruction-codes-x64.h b/src/compiler/backend/x64/instruction-codes-x64.h
-index 9b8be0e0b5..7f5faeb87b 100644
+```差异
+差异 --git a/src/compiler/backend/x64/instruction-codes-x64.h b/src/compiler/backend/x64/instruction-codes-x64.h
+索引 9b8be0e0b5..7f5faeb87b 100644
 --- a/src/compiler/backend/x64/instruction-codes-x64.h
 +++ b/src/compiler/backend/x64/instruction-codes-x64.h
 @@ -12,6 +12,7 @@ namespace compiler {
- // X64-specific opcodes that specify which assembly sequence to emit.
- // Most opcodes specify a single instruction.
+ // X64特定的操作码，指定要发出哪种汇编序列。
+ // 大多数操作码指定单条指令。
  #define TARGET_ARCH_OPCODE_LIST(V)        \
 +  V(X64Int32Add1)                         \
    V(X64Add)                               \
@@ -338,27 +337,27 @@ index 9b8be0e0b5..7f5faeb87b 100644
    V(X64And)                               \
 ```
 
-## Instruction scheduling and code generation
+## 指令调度和代码生成
 
-Running our test, we see new compilation errors:
+运行我们的测试，我们看到新的编译错误：
 
 ```
-../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: error: enumeration value 'kX64Int32Add1' not handled in switch [-Werror,-Wswitch]
+../../src/compiler/backend/x64/instruction-scheduler-x64.cc:15:11: 错误：枚举值'kX64Int32Add1'未在switch中处理 [-Werror,-Wswitch]
   switch (instr->arch_opcode()) {
           ^
-1 error generated.
+1 个错误已生成。
 ...
-../../src/compiler/backend/x64/code-generator-x64.cc:733:11: error: enumeration value 'kX64Int32Add1' not handled in switch [-Werror,-Wswitch]
+../../src/compiler/backend/x64/code-generator-x64.cc:733:11: 错误：枚举值'kX64Int32Add1'未在switch中处理 [-Werror,-Wswitch]
   switch (arch_opcode) {
           ^
-1 error generated.
+1 个错误已生成。
 ```
 
-[Instruction scheduling](https://en.wikipedia.org/wiki/Instruction_scheduling) takes care of dependencies that instructions may have to allow for more optimization (e.g. instruction reordering). Our new opcode has no data dependency, so we can add it simply to: [`src/compiler/backend/x64/instruction-scheduler-x64.cc`](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/x64/instruction-scheduler-x64.cc):
+[指令调度](https://en.wikipedia.org/wiki/Instruction_scheduling)负责处理指令之间可能存在的依赖关系，以便进行更多优化（例如指令重排序）。我们的新操作码没有数据依赖，所以我们可以简单地将其添加到：[src/compiler/backend/x64/instruction-scheduler-x64.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/x64/instruction-scheduler-x64.cc)：
 
 ```diff
 diff --git a/src/compiler/backend/x64/instruction-scheduler-x64.cc b/src/compiler/backend/x64/instruction-scheduler-x64.cc
-index 79eda7e78d..3667a84577 100644
+索引 79eda7e78d..3667a84577 100644
 --- a/src/compiler/backend/x64/instruction-scheduler-x64.cc
 +++ b/src/compiler/backend/x64/instruction-scheduler-x64.cc
 @@ -13,6 +13,7 @@ bool InstructionScheduler::SchedulerSupported() { return true; }
@@ -371,11 +370,11 @@ index 79eda7e78d..3667a84577 100644
      case kX64And:
 ```
 
-Code generation is where we translate our architecture specific opcodes into assembly. Let’s add a clause to [`src/compiler/backend/x64/code-generator-x64.cc`](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/x64/code-generator-x64.cc):
+代码生成是我们将架构特定操作码转换为汇编的地方。让我们为它添加一项条款：[src/compiler/backend/x64/code-generator-x64.cc](https://cs.chromium.org/chromium/src/v8/src/compiler/backend/x64/code-generator-x64.cc)：
 
 ```diff
 diff --git a/src/compiler/backend/x64/code-generator-x64.cc b/src/compiler/backend/x64/code-generator-x64.cc
-index 61c3a45a16..9c37ed7464 100644
+索引 61c3a45a16..9c37ed7464 100644
 --- a/src/compiler/backend/x64/code-generator-x64.cc
 +++ b/src/compiler/backend/x64/code-generator-x64.cc
 @@ -731,6 +731,9 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
@@ -390,22 +389,22 @@ index 61c3a45a16..9c37ed7464 100644
          Handle<Code> code = i.InputCode(0);
 ```
 
-For now we leave our code generation empty, and we can run the test to make sure everything compiles:
+目前我们暂时将代码生成留空，可以运行测试以确保一切编译无误：
 
 ```
 === cctest/test-run-wasm/RunWasmTurbofan_Int32Add1 ===
 #
-# Fatal error in ../../test/cctest/wasm/test-run-wasm.cc, line 37
-# Check failed: 11 == r.Call() (11 vs. 10).
+# 在 ../../test/cctest/wasm/test-run-wasm.cc 第 37 行发生致命错误
+# 检查失败：11 == r.Call() (11 vs. 10)。
 ```
 
-This failure is expected, since our new instruction is not implemented yet — it is essentially a no-op, so our actual value was unchanged (`10`).
+这个失败是预期的，因为我们的新指令尚未实现 —— 它实质上是一个无操作，因此实际值没有变化（`10`）。
 
-To implement our opcode, we can use the `add` assembly instruction:
+为了实现我们的操作码，可以使用 `add` 汇编指令：
 
 ```diff
 diff --git a/src/compiler/backend/x64/code-generator-x64.cc b/src/compiler/backend/x64/code-generator-x64.cc
-index 6c828d6bc4..260c8619f2 100644
+索引 6c828d6bc4..260c8619f2 100644
 --- a/src/compiler/backend/x64/code-generator-x64.cc
 +++ b/src/compiler/backend/x64/code-generator-x64.cc
 @@ -744,6 +744,11 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
@@ -422,16 +421,16 @@ index 6c828d6bc4..260c8619f2 100644
          Handle<Code> code = i.InputCode(0);
 ```
 
-And this makes the test pass:
+这样测试就通过了：
 
-Luckily for us `addl` is already implemented. If our new opcode required writing a new assembly instruction implementation, we would add it to [`src/compiler/backend/x64/assembler-x64.cc`](https://cs.chromium.org/chromium/src/v8/src/codegen/x64/assembler-x64.cc), where the assembly instruction is encoded into bytes and emitted.
+幸运的是，`addl` 已有实现。如果我们的新操作码需要编写新的汇编指令实现，我们可以将其添加到 [src/compiler/backend/x64/assembler-x64.cc](https://cs.chromium.org/chromium/src/v8/src/codegen/x64/assembler-x64.cc)，在那里汇编指令被编码成字节并发出。
 
 :::note
-**Tip:** To inspect the generated code, we can pass `--print-code` to `cctest`.
+**提示：** 要检查生成的代码，可以通过向 `cctest` 传递 `--print-code`。
 :::
 
-## Other architectures
+## 其他架构
 
-In this codelab we only implemented this new instruction for x64. The steps required for other architectures are similar: add TurboFan machine operators, use the platform-dependent files for instruction selection, scheduling, code generation, assembler.
+在这个代码实验中，我们仅为 x64 实现了这个新指令。对其他架构的实现步骤类似：添加 TurboFan 机器操作符，使用与平台相关的文件进行指令选择、调度、代码生成和汇编。
 
-Tip: if we compile what we have done so far on another target, e.g. arm64, we are likely to get errors in linking. To resolve those errors, add `UNIMPLEMENTED()` stubs.
+提示：如果我们将目前所做的内容编译到另一个目标上，例如 arm64，我们可能会在链接时遇到错误。要解决这些错误，请添加 `UNIMPLEMENTED()` 的存根。

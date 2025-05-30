@@ -1,148 +1,148 @@
 ---
-title: "Design review guidelines"
-description: "This document explains the V8 project’s design review guidelines."
+title: "设计评审指南"
+description: "本文档解释了 V8 项目的设计评审指南。"
 ---
-Please make sure to follow the following guidelines when applicable.
+请确保在适用时遵循以下指南。
 
-There are multiple drivers for the formalization of V8’s design reviews:
+V8 设计评审正式化有多个驱动因素：
 
-1. make it clear to Individual Contributors (ICs) who the decision makers are and highlight what the path forward in the case that projects are not proceeding due to technical disagreement
-1. create a forum to have straight-forward design discussions
-1. ensure V8 Technical Leads (TL) are aware of all significant changes and have the opportunity to give their input on the Tech Lead (TL) layer
-1. increase the involvement of all V8 contributors over the globe
+1. 让个人贡献者（IC）清楚决策者是谁，并在因技术分歧导致项目无法推进时明确前进的路径
+1. 创建一个直接的设计讨论论坛
+1. 确保 V8 技术负责人（TL）知晓所有重大变更，并有机会在技术负责人（TL）层面提供他们的意见
+1. 增强全球范围内所有 V8 贡献者的参与度
 
-## Summary
+## 概要
 
-![V8’s Design Review Guidelines at a glance](/_img/docs/design-review-guidelines/design-review-guidelines.svg)
+![V8 设计评审指南概览](/_img/docs/design-review-guidelines/design-review-guidelines.svg)
 
-Important:
+重要事项：
 
-1. assume good intentions
-1. be kind and civilized
-1. be pragmatic
+1. 假设他人出于善意
+1. 保持友善与文明
+1. 保持务实
 
-The proposed solution is based on the following assumption/pillars:
+建议的解决方案基于以下假设/支柱：
 
-1. The proposed workflow puts the individual contributor (IC) in charge. They are the one who facilitate the process.
-1. Their guiding TLs are tasked to help them navigate the territory and find the right LGTM providers.
-1. If a feature is uncontroversial, nearly no overhead should be created.
-1. If there is a lot of controversy, the feature can be 'escalated' to the V8 Eng Review Owners meeting where further steps are decided.
+1. 建议的工作流程让个人贡献者（IC）负责。他们是这一流程的推动者。
+1. 他们的指导 TL 负责帮助他们导航领域并找到合适的 LGTM 提供者。
+1. 如果某个功能没有争议，几乎不会产生额外的负担。
+1. 如果争议很多，该功能可以“升级”至 V8 工程评审所有者会议，在那里决定下一步行动。
 
-## Roles
+## 角色
 
-### Individual Contributor (IC)
+### 个人贡献者 (IC)
 
-LGTM: N/A
-This person is the creator of the feature and the creator of the design documentation.
+LGTM: 不适用
+此人是功能的创建者和设计文档的撰写者。
 
-### The Tech Lead (TL) of the IC
+### IC 的技术负责人 (TL)
 
-LGTM: Must have
-This person is the TL of a given project or component. Likely this is the person that is an owner of the main component your feature is going to touch. If it is not clear who the TL is, please ask the V8 Eng Review Owners via [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com). TLs are responsible to add more people to the list of required LGTMs if appropriate.
+LGTM: 必需
+此人是特定项目或组件的 TL。通常，这个人是您的功能将接触的主要组件的拥有者。如果不清楚谁是 TL，请通过 [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com) 询问 V8 工程评审所有者。TL 负责在需要时将更多人加入到需要 LGTM 的人员列表中。
 
-### LGTM provider
+### LGTM 提供者
 
-LGTM: Must have
-This is a person that is required to give LGTM. It might be an IC, or a TL(M).
+LGTM: 必需
+这是需要提供 LGTM 的人。可能是 IC，或者是 TL (M)。
 
-### “Random” reviewer of the document (RRotD)
+### 文档的“随机”审阅者 (RRotD)
 
-LGTM: Not required
-This is somebody who is simply reviewing and comment on the proposal. Their input should be considered, although their LGTM is not required.
+LGTM: 非必需
+这是只是审阅和评论提案的一方。他们的意见应被考虑，尽管他们的 LGTM 并非必需。
 
-### V8 Eng Review Owners
+### V8 工程评审所有者
 
-LGTM: Not required
-Stuck proposals can be escalated to the V8 Eng Review Owners via  [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com). Potential use cases of such an escalation:
+LGTM: 非必需
+被卡住的提案可以通过 [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com) 升级到 V8 工程评审所有者。以下情况可能会导致此类升级：
 
-- an LGTM provider is non-responsive
-- no consensus on the design can be reached
+- LGTM 提供者未响应
+- 对设计无法达成共识
 
-The V8 Eng Review Owners can overrule non-LGTMs or LGTMs.
+V8 工程评审所有者可以推翻非 LGTM 或 LGTM 的决定。
 
-## Detailed workflow
+## 详细工作流程
 
-![V8’s Design Review Guidelines at a glance](/_img/docs/design-review-guidelines/design-review-guidelines.svg)
+![V8 设计评审指南概览](/_img/docs/design-review-guidelines/design-review-guidelines.svg)
 
-1. Start: IC decides to work on a feature/gets a feature assigned to them
-1. IC sends out their early design doc/explainer/one pager to a few RRotDs
-    1. Prototypes are considered part of the "design doc"
-1. IC adds people to the list of LGTM providers that the IC thinks should give their LGTM. The TL is a must have on the list of LGTM providers.
-1. IC incorporates feedback.
-1. TL adds more people to the list of LGTM providers.
-1. IC sends out the early design doc/explainer/one pager to  [v8-dev+design@googlegroups.com](mailto:v8-dev+design@googlegroups.com).
-1. IC collects the LGTMs. TL helps them.
-    1. LGTM provider reviews document, add comments and gives either an LGTM or not LGTM at the beginning of the document. If they add a not LGTM, they are obligated to list the reason(s).
-    1. Optional: LGTM providers can remove themselves from the list of LGTM providers and/or suggest other LGTM providers
-    1. IC and TL work to resolve the unresolved issues.
-    1. If all LGTM are gathered send an email to v8-dev@googlegroups.com (e.g. by pinging the original thread) and announce implementation.
-1. Optional: If IC and TL are blocked and/or want to have a broader discussion they can escalate the issue to the V8 Eng Review Owners.
-    1. IC sends a mail to [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com)
-        1. TL in CC
-        1. Link to design doc in the mail
-    1. Every V8 Eng Review Owners member is obligated to review the doc and optionally add themselves to the list of LGTM providers.
-    1. Next steps to unblock the feature are decided.
-    1. If the blocker is not resolved afterwards or new, unresolvable blockers are discovered, goto 8.
-1. Optional: If "not LGTMs" are added after the feature was approved already, they should be treated like normal, unresolved issues.
-    1. IC and TL work to resolve the unresolved issues.
-1. End: IC proceeds with the feature.
+1. 开始：IC 决定开发一个功能/被分配一个功能
+1. IC 将早期设计文档/解释文档/一页文档发送给一些 RRotD
+    1. 原型被视为设计文档的一部分
+1. IC 将他们认为需要提供 LGTM 的人添加到 LGTM 提供者列表中。TL 一定要在 LGTM 提供者的列表中。
+1. IC 结合反馈意见。
+1. TL 将更多人添加到 LGTM 提供者列表中。
+1. IC 将早期设计文档/解释文档/一页文档发送到 [v8-dev+design@googlegroups.com](mailto:v8-dev+design@googlegroups.com)。
+1. IC 收集 LGTMs，TL 协助其完成。
+    1. LGTM 提供者审阅文档，添加评论，并在文档开头给出 LGTM 或非 LGTM。如果他们给出了非 LGTM，则有义务列出原因。
+    1. 可选：LGTM 提供者可以将自己从 LGTM 提供者列表中移除，并/或推荐其他 LGTM 提供者
+    1. IC 和 TL 致力于解决未解决的问题。
+    1. 如果收集到所有 LGTMs，发送邮件到 [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com)（例如通过回复原始线程）并宣布实施。
+1. 可选：如果 IC 和 TL 被卡住并/或希望进行更广泛的讨论，可以将问题升级到 V8 工程评审所有者。
+    1. IC 发送邮件到 [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com)
+        1. 确保 TL 在邮件中抄送
+        1. 邮件中包含设计文档的链接
+    1. 每位 V8 工程评审所有者都有义务审阅文档，并可选择将自己添加到 LGTM 提供者列表中。
+    1. 决定解锁功能的后续步骤。
+    1. 如果之后仍未解决阻碍或发现新的、无法解决的阻碍，则进入上一步骤。
+1. 可选：如果在功能已获批准后添加了“非 LGTMs”，它们应被视为正常的未解决问题。
+    1. IC 和 TL 致力于解决未解决的问题。
+1. 结束：IC 继续其功能开发。
 
-And always remember:
+始终记住：
 
-1. assume good intentions
-1. be kind and civilized
-1. be pragmatic
+1. 假设他人出于善意
+1. 保持友善与文明
+1. 保持务实
 
-## FAQ
+## 常见问题
 
-### How to decide if the feature is worthy to have a design document?
+### 如何决定某个功能是否值得编写设计文档？
 
-Some pointers when a design doc is appropriate:
+以下是一些设计文档适用的指引：
 
-- Touches at least two components
-- Needs reconciliation with non-V8 projects e.g. Debugger, Blink
-- Take longer than 1 week of effort to implement
-- Is a language feature
-- Platform specific code will be touched
-- User facing changes
-- Has special security consideration or security impact is not obvious
+- 涉及至少两个组件
+- 需要与非V8项目进行协调，例如调试器、Blink
+- 实现需要超过一周的时间
+- 是一项语言功能
+- 涉及平台相关的代码修改
+- 用户可见的更改
+- 有特殊的安全考虑或安全影响不明显
 
-When in doubt, ask the TL.
+如果不确定，请询问TL。
 
-### How to decide who to add to the list of LGTM providers?
+### 如何决定将谁添加到LGTM提供者列表中？
 
-Some pointers when people should be added to the list of LGTM providers:
+以下是一些指引，说明何时应将人员添加到LGTM提供者列表中：
 
-- OWNERs of the source files/directories you anticipate to touch
-- Main component expert of the components you anticipate to touch
-- Downstream consumers of your changes e.g. when you change an API
+- 预计会修改的源码文件/目录的OWNER
+- 预计会接触的主要组件的专家
+- 你的更改的下游消费者，例如当你更改一个API时
 
-### Who is “my” TL?
+### 谁是“我的”TL？
 
-Likely this is the person that is an owner of the main component your feature is going to touch. If it is not clear who the TL is, please ask the V8 Eng Review Owners via [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com).
+可能是主要组件的OWNER，该组件是你的功能将要涉及的。如果不清楚谁是TL，请通过v8-eng-review-owners@googlegroups.com询问V8工程评审OWNER。
 
-### Where can I find a template for design documents?
+### 哪里可以找到设计文档的模板？
 
-[Here](https://docs.google.com/document/d/1CWNKvxOYXGMHepW31hPwaFz9mOqffaXnuGqhMqcyFYo/template/preview).
+[这里](https://docs.google.com/document/d/1CWNKvxOYXGMHepW31hPwaFz9mOqffaXnuGqhMqcyFYo/template/preview)。
 
-### What if something big changes?
+### 如果发生重大变化怎么办？
 
-Make sure you still have the LGTMs e.g. by pinging the LGTM providers with a clear, reasonable deadline to veto.
+请确保你仍然获得了LGTM，例如通过提醒LGTM提供者并设定清晰、合理的反对截止时间。
 
-### LGTM providers don’t comment on my doc, what should I do?
+### LGTM提供者没有对我的文档发表评论，我该怎么办？
 
-In this case you can follow this path of escalation:
+在这种情况下，你可以按照以下升级路径处理：
 
-- Ping them directly via mail, Hangouts or comment/assignment in the doc and specifically ask them explicitly to add an LGTM or non-LGTM.
-- Get your TL involved and ask them for help.
-- Escalate to [v8-eng-review-owners@googlegroups.com](mailto:v8-eng-review-owners@googlegroups.com).
+- 通过邮件、Hangouts或文档中的评论/分配直接提醒他们，明确要求他们添加LGTM或非LGTM。
+- 让你的TL参与进来并寻求帮助。
+- 升级至v8[eng-review-owners@googlegroups.com](mailto:eng-review-owners@googlegroups.com)。
 
-### Somebody added me as an LGTM provider to a doc, what should I do?
+### 某人将我添加为文档的LGTM提供者，我该做什么？
 
-V8 is aiming to make decisions more transparent and escalation more straight-forward. If you think the design is good enough and should be done add an “LGTM” to the table cell next to your name.
+V8旨在让决策更透明，并使升级流程更直接。如果你认为设计足够好且应当执行，在表格中你的名字旁的单元格中添加“LGTM”。
 
-If you have blocking concerns or remarks, please add “Not LGTM, because \<reason>” into the table cell next to your name. Be prepared to get asked for another round of review.
+如果你有阻塞问题或意见，请在表格中你的名字旁的单元格中添加“非LGTM，因为\<原因>”。你可能需要准备进行新一轮的评审。
 
-### How does this work together with the Blink Intents process?
+### 这与Blink意向过程如何配合工作？
 
-The V8 Design Review Guidelines complement [V8’s Blink Intent+Errata process](/docs/feature-launch-process). If you are launching a new WebAssembly or JavaScript language feature, please follow V8’s Blink Intent+Errata process and the V8 Design Review Guidelines. It likely makes sense to have all the LGTMs gathered at the point in time you would send an Intent to Implement.
+V8设计评审指南补充了[V8的Blink意向+更正流程](/docs/feature-launch-process)。如果你正在推出一个新的WebAssembly或JavaScript语言功能，请遵循V8的Blink意向+更正流程以及V8设计评审指南。通常在发送实现意向之前收集所有LGTM是有意义的。

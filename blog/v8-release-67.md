@@ -1,25 +1,25 @@
 ---
-title: "V8 release v6.7"
-author: "the V8 team"
+title: "V8 发布 v6.7"
+author: "V8 团队"
 date: "2018-05-04 13:33:37"
 tags: 
-  - release
+  - 发布
 tweet: "992506342391742465"
-description: "V8 v6.7 adds more untrusted code mitigations and ships BigInt support."
+description: "V8 v6.7 添加了更多不受信任代码的防护并提供了 BigInt 支持。"
 ---
-Every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 6.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.7), which is in beta until its release in coordination with Chrome 67 Stable in several weeks. V8 v6.7 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
+每六周，我们都会基于我们的[发布流程](/docs/release-process)创建一个新的 V8 分支。每个版本分支都在 Chrome Beta 里程碑之前立即从 V8 的 Git 主分支中分出。今天我们很高兴地宣布我们的最新分支，[V8 版本 6.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.7)，该版本目前处于测试阶段，几周后将与 Chrome 67 稳定版同步发布。V8 v6.7 包含了各种面向开发者的实用功能。这篇文章提供了期待发布的一些亮点预览。
 
 <!--truncate-->
-## JavaScript language features
+## JavaScript 语言功能
 
-V8 v6.7 ships with BigInt support enabled by default. BigInts are a new numeric primitive in JavaScript that can represent integers with arbitrary precision. Read [our BigInt feature explainer](/features/bigint) for more info on how BigInts can be used in JavaScript, and check out [our write-up with more details about the V8 implementation](/blog/bigint).
+V8 v6.7 默认启用了 BigInt 支持。BigInt 是 JavaScript 中的新数字原始类型，可以表示任意精度的整数。阅读[我们的 BigInt 功能说明](/features/bigint)，了解 BigInt 在 JavaScript 中的用法，并查阅[我们关于 V8 实现详细信息的文章](/blog/bigint)。
 
-## Untrusted code mitigations
+## 不受信任代码的防护
 
-In V8 v6.7 we’ve landed [more mitigations for side-channel vulnerabilities](/docs/untrusted-code-mitigations) to prevent information leaks to untrusted JavaScript and WebAssembly code.
+在 V8 v6.7 中，我们实现了[更多针对侧信道漏洞的防护措施](/docs/untrusted-code-mitigations)，以防止信息泄漏到不受信任的 JavaScript 和 WebAssembly 代码。
 
 ## V8 API
 
-Please use `git log branch-heads/6.6..branch-heads/6.7 include/v8.h` to get a list of the API changes.
+请使用 `git log branch-heads/6.6..branch-heads/6.7 include/v8.h` 获取 API 更改的列表。
 
-Developers with an [active V8 checkout](/docs/source-code#using-git) can use `git checkout -b 6.7 -t branch-heads/6.7` to experiment with the new features in V8 v6.7. Alternatively you can [subscribe to Chrome’s Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+拥有[有效 V8 仓库检出版本](/docs/source-code#using-git)的开发者可以使用 `git checkout -b 6.7 -t branch-heads/6.7` 来试验 V8 v6.7 的新功能。或者你也可以[订阅 Chrome 的 Beta 频道](https://www.google.com/chrome/browser/beta.html)，并很快亲自尝试这些新功能。

@@ -9,37 +9,37 @@ tags:
   - ES2020
   - Node.js 12
   - io19
-description: "globalThis introduces a unified mechanism to access the global this in any JavaScript environment, regardless of the script goal."
+description: "globalThis 引入了一种统一的机制，可以在任何 JavaScript 环境中访问全局 this，无论脚本目标如何。"
 tweet: "1151140681374547969"
 ---
-If you’ve written JavaScript for use in a web browser before, you may have used `window` to access the global `this`. In Node.js, you may have used `global`. If you’ve written code that must work in either environment, you may have detected which of these is available, and then used that — but the list of identifiers to check grows with the number of environments and use cases you want to support. It gets out of hand quickly:
+如果你之前为网页浏览器编写过 JavaScript，你可能用过 `window` 来访问全局 `this`。在 Node.js 中，你可能使用过 `global`。如果你编写的代码需要同时在这两种环境下运行，你可能会检测这些对象哪个可用，然后使用它——但是随着你想支持的环境和用例数量的增加，需要检查的标识符列表会迅速膨胀，事情变得复杂起来：
 
 <!--truncate-->
 ```js
-// A naive attempt at getting the global `this`. Don’t use this!
+// 一种获取全局 `this` 的幼稚尝试。不要这样使用！
 const getGlobalThis = () => {
   if (typeof globalThis !== 'undefined') return globalThis;
   if (typeof self !== 'undefined') return self;
   if (typeof window !== 'undefined') return window;
   if (typeof global !== 'undefined') return global;
-  // Note: this might still return the wrong result!
+  // 注意：这可能仍然返回错误的结果！
   if (typeof this !== 'undefined') return this;
-  throw new Error('Unable to locate global `this`');
+  throw new Error('无法定位全局 `this`');
 };
 const theGlobalThis = getGlobalThis();
 ```
 
-For more details on why the above approach is insufficient (as well as an even more complicated technique), read [_a horrifying `globalThis` polyfill in universal JavaScript_](https://mathiasbynens.be/notes/globalthis).
+关于为什么上述方法是不足的（以及更复杂的技术），可以阅读 [_一个恐怖的 `globalThis` polyfill 在通用 JavaScript 中_](https://mathiasbynens.be/notes/globalthis)。
 
-[The `globalThis` proposal](https://github.com/tc39/proposal-global) introduces a *unified* mechanism to access the global `this` in any JavaScript environment (browser, Node.js, or something else?), regardless of the script goal (classic script or module?).
+[`globalThis` 提案](https://github.com/tc39/proposal-global) 引入了一种*统一的*机制，可以在任何 JavaScript 环境（浏览器、Node.js 或其他？）中访问全局 `this`，无论脚本目标是何（经典脚本还是模块？）。
 
 ```js
 const theGlobalThis = globalThis;
 ```
 
-Note that modern code might not need access to the global `this` at all. With JavaScript modules, you can declaratively `import` and `export` functionality instead of messing with global state. `globalThis` is still useful for polyfills and other libraries that need global access.
+注意，现代代码可能完全不需要访问全局 `this`。使用 JavaScript 模块，你可以声明式地 `import` 和 `export` 功能，而不是处理全局状态。`globalThis` 对于需要全局访问的 polyfill 和其他库仍然是有用的。
 
-## `globalThis` support
+## `globalThis` 支持
 
 <feature-support chrome="71 /blog/v8-release-71#javascript-language-features"
                  firefox="65"

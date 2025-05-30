@@ -1,46 +1,46 @@
 ---
-title: "Becoming a committer"
-description: "How does one become a V8 committer? This document explains."
+title: "成为提交者"
+description: "如何成为 V8 提交者？本文档进行了解释。"
 ---
-Technically, committers are people who have write access to the V8 repository. All patches need to be reviewed by at least two committers (including the author). Independently from this requirement, patches also need to be authored or reviewed by an OWNER.
+从技术上讲，提交者是有权写入 V8 仓库的人员。所有补丁需要至少两个提交者（包括作者）审核。除此要求外，补丁也需要由所有者编写或审核。
 
-This privilege is granted with some expectation of responsibility: committers are people who care about the V8 project and want to help meet its goals. Committers are not just people who can make changes, but people who have demonstrated their ability to collaborate with the team, get the most knowledgeable people to review code, contribute high-quality code, and follow through to fix issues (in code or tests).
+这一权限授予时伴有一定的责任预期：提交者是关心 V8 项目并希望帮助实现其目标的人。提交者不仅是可以进行更改的人，他们还是在团队协作、邀请最有知识的人员审核代码、贡献高质量代码，并跟进修复问题（代码或测试中）方面表现出能力的人。
 
-A committer is a contributor to the V8 project’s success and a citizen helping the projects succeed. See [Committer’s Responsibility](/docs/committer-responsibility).
+提交者是 V8 项目成功的贡献者，也是帮助项目成功的公民。请参阅[提交者的责任](/docs/committer-responsibility)。
 
-## How do I become a committer?
+## 我如何才能成为提交者？
 
-*Note to Googlers: There is a [slightly different approach for V8 team members](http://go/v8/setup_permissions.md).*
+*致 Google 员工的注意事项：V8 团队成员有[稍微不同的流程](http://go/v8/setup_permissions.md)。*
 
-If you haven't done so already, **you'll need to set up a Security Key on your account before you're added to the committer list.**
+如果尚未设置，**您需要在被添加到提交者名单之前设置帐户上的安全密钥。**
 
-In a nutshell, contribute 20 non-trivial patches and get at least three different people to review them (you'll need three people to support you). Then ask someone to nominate you. You're demonstrating your:
+简而言之，贡献 20 个非平凡的补丁并让至少三个人审核它们（您需要有三个人支持您）。然后请求某人提名您。您需要展示您的：
 
-- commitment to the project (20 good patches requires a lot of your valuable time),
-- ability to collaborate with the team,
-- understanding of how the team works (policies, processes for testing and code review, etc),
-- understanding of the projects' code base and coding style, and
-- ability to write good code (last but certainly not least)
+- 对项目的承诺（20 个优秀的补丁需要花费您大量的宝贵时间），
+- 团队协作能力，
+- 对团队工作方式的理解（政策、测试和代码审核流程等），
+- 对项目代码库和编码风格的理解，以及
+- 编写优秀代码的能力（最后但绝对重要）
 
-A current committer nominates you by sending email to [v8-committers@chromium.org](mailto:v8-committers@chromium.org) containing:
+现任提交者通过向 [v8-committers@chromium.org](mailto:v8-committers@chromium.org) 发送电子邮件提名您，其中包含：
 
-- your first and last name
-- your email address in Gerrit
-- an explanation of why you should be a committer,
-- embedded list of links to revisions (about top 10) containing your patches
+- 您的名字和姓氏
+- 您在 Gerrit 中的电子邮件地址
+- 为什么您应该成为提交者的解释，
+- 嵌入的包含您的补丁链接的修订列表（约前 10 个）
 
-Two other committers need to second your nomination. If no one objects in 5 working days, you're a committer.  If anyone objects or wants more information, the committers discuss and usually come to a consensus (within the 5 working days). If issues cannot be resolved, there's a vote among current committers.
+另外两个提交者需要支持您的提名。如果在 5 个工作日内没有人反对，您就成为提交者。如果有人反对或需要更多信息，提交者们会进行讨论并通常在 5 个工作日内达成共识。如果问题无法解决，将在现任提交者之间进行投票。
 
-Once you get approval from the existing committers, you are granted additional review permissions. You'll also be added to the mailing list [v8-committers@googlegroups.com](mailto:v8-committers@googlegroups.com).
+一旦获得现有提交者的批准，您将获得额外的审核权限。您还会被添加到邮件列表 [v8-committers@googlegroups.com](mailto:v8-committers@googlegroups.com)。
 
-In the worst case, the process can drag out for two weeks. Keep writing patches! Even in the rare cases where a nomination fails, the objection is usually something easy to address like “more patches” or “not enough people are familiar with this person’s work.”
+最糟糕的情况下，该过程可能会拖延两周。继续编写补丁！即使在罕见情况下提名失败，反对的理由通常是容易解决的问题，比如“更多补丁”或“没有足够的人熟悉此人的工作”。
 
-## Maintaining committer status
+## 维护提交者身份
 
-You don't really need to do much to maintain committer status: just keep being awesome and helping the V8 project!
+您其实不需要做太多来保持提交者身份：只需继续优秀并帮助 V8 项目！
 
-In the unhappy event that a committer continues to disregard good citizenship (or actively disrupts the project), we may need to revoke that person's status. The process is the same as for nominating a new committer: someone suggests the revocation with a good reason, two people second the motion, and a vote may be called if consensus cannot be reached. I hope that's simple enough, and that we never have to test it in practice.
+在不幸的情况下，如果提交者持续忽视良好行为规范（或积极破坏项目），我们可能需要撤销该人的身份。这一过程与提名新提交者相同：有人提出撤销建议并给出充分理由，两人支持该提议，如果无法达成共识，则可能会进行投票。我希望这是足够简单的，并且我们永远不会在实践中测试它。
 
-In addition, as a security measure, if you are inactive on Gerrit (no upload, no comment and no review) for more than a year, we may revoke your committer privileges. An email notification is sent about 7 days prior to the removal. This is not meant as a punishment, so if you wish to resume contributing after that, contact [v8-committers@googlegroups.com](mailto:v8-committers@googlegroups.com) to ask that it be restored, and we will normally do so.
+此外，作为一种安全措施，如果您在 Gerrit 上超过一年无活动（无上传、无评论和无审核），我们可能会撤销您的提交者权限。移除前会提前 7 天发送电子邮件通知。这不是惩罚，因此如果您希望在之后恢复贡献，可以联系 [v8-committers@googlegroups.com](mailto:v8-committers@googlegroups.com) 请求恢复，我们通常会这么做。
 
-(This document was inspired by [become-a-committer](https://dev.chromium.org/getting-involved/become-a-committer).)
+（本文档的灵感来源：[成为提交者](https://dev.chromium.org/getting-involved/become-a-committer)。）

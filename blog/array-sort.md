@@ -1,61 +1,61 @@
 ---
-title: "Getting things sorted in V8"
-author: "Simon Zünd ([@nimODota](https://twitter.com/nimODota)), consistent comparator"
+title: "在V8中实现排序"
+author: "Simon Zünd ([@nimODota](https://twitter.com/nimODota))，一致的比较器"
 avatars: 
   - simon-zuend
 date: "2018-09-28 11:20:37"
 tags: 
   - ECMAScript
-  - internals
-description: "Starting with V8 v7.0 / Chrome 70, Array.prototype.sort is stable."
+  - 内部机制
+description: "从V8 v7.0 / Chrome 70开始，Array.prototype.sort变为稳定排序算法。"
 tweet: "1045656758700650502"
 ---
-`Array.prototype.sort` was among the last builtins implemented in self-hosted JavaScript in V8. Porting it offered us the opportunity to experiment with different algorithms and implementation strategies and finally [make it stable](https://mathiasbynens.be/demo/sort-stability) in V8 v7.0 / Chrome 70.
+`Array.prototype.sort`是V8中最后几个用自托管JavaScript实现的内置函数之一。移植它为我们提供了实验不同算法和实现策略的机会，并最终在V8 v7.0 / Chrome 70中[让它变得稳定](https://mathiasbynens.be/demo/sort-stability)。
 
 <!--truncate-->
-## Background
+## 背景
 
-Sorting in JavaScript is hard. This blog post looks at some of the quirks in the interaction between a sorting algorithm and the JavaScript language, and describes our journey to move V8 to a stable algorithm and make performance more predictable.
+在JavaScript中排序是困难的。本文讲述了排序算法和JavaScript语言交互中的一些特殊情况，描述了我们将V8迁移至一个稳定算法并使性能更加可预测的过程。
 
-When comparing different sorting algorithms we look at their worst and average performance given as a bound on the asymptotic growth (i.e. “Big O” notation) of either memory operations or number of comparisons. Note that in dynamic languages, such as JavaScript, a comparison operation is usually a magnitude more expensive than a memory access. This is due to the fact that comparing two values while sorting usually involves calls to user code.
+比较不同的排序算法时，我们会关注它们的最坏和平均性能，这些性能通常用渐近增长界限（即“大O”记法）来描述内存操作或比较次数的增长情况。请注意，在动态语言（如JavaScript）中，比较操作通常比内存访问贵得多。这是因为排序过程中比较两个值通常需要调用用户代码。
 
-Let’s take a look at a simple example of sorting some numbers into ascending order based on a user-provided comparison function. A _consistent_ comparison function returns `-1` (or any other negative value), `0`, or `1` (or any other positive value) when the two provided values are either smaller, equal, or greater respectively. A comparison function that does not follow this pattern is _inconsistent_ and can have arbitrary side-effects, such as modifying the array it’s intended to sort.
+让我们看一个简单的例子，用户提供的比较函数将一些数字按升序排序。一个_一致的_比较函数会根据两个提供的值是否更小、更大或相等分别返回`-1`（或其他负值）、`0`或`1`（或其他正值）。未遵循这种模式的比较函数是_不一致的_，可能具有任意副作用，例如修改它意图排序的数组。
 
 ```js
 const array = [4, 2, 5, 3, 1];
 
 function compare(a, b) {
-  // Arbitrary code goes here, e.g. `array.push(1);`.
+  // 任意代码可在此处，例如 `array.push(1);`。
   return a - b;
 }
 
-// A “typical” sort call.
+// 一个“典型”的排序调用。
 array.sort(compare);
 ```
 
-Even in the next example, calls to user code may happen. The “default” comparison function calls `toString` on both values and does a lexicographical comparison on the string representations.
+即使在下一个例子中，也可能发生用户代码的调用。“默认”比较函数会调用两个值的`toString`，并对字符串表示进行字典序比较。
 
 ```js
 const array = [4, 2, 5, 3, 1];
 
 array.push({
   toString() {
-    // Arbitrary code goes here, e.g. `array.push(1);`.
+    // 任意代码可在此处，例如 `array.push(1);`。
     return '42';
   }
 });
 
-// Sort without a comparison function.
+// 未提供比较函数的排序。
 array.sort();
 ```
 
-### More fun with accessors and prototype-chain interactions
+### 使用访问器和原型链交互的更多情况
 
-This is the part where we leave the spec behind and venture into “implementation-defined” behavior land. The spec has a whole list of conditions that, when met, allow the engine to sort the object/array as it sees fit — or not at all. Engines still have to follow some ground rules but everything else is pretty much up in the air. On the one hand, this gives engine developers the freedom to experiment with different implementations. On the other hand, users expect some reasonable behavior even though the spec doesn’t require there to be any. This is further complicated by the fact that “reasonable behavior” is not always straightforward to determine.
+这是我们离开规范并进入“实现定义的”行为领域的部分。规范列出了一整套条件，在满足这些条件时，允许引擎随意排序对象/数组——或完全不排序。引擎仍然需要遵循一些基本规则，但其他部分基本上可以自由选择。一方面，这给了引擎开发者试验不同实现的自由。另一方面，用户希望某种合理的行为，即便规范并不要求一定有。这种情况复杂的是，“合理行为”往往不容易界定。
 
-This section shows that there are still some aspects of `Array#sort` where engine behavior differs greatly. These are hard edge cases, and as mentioned above it’s not always clear what “the right thing to do” actually is. We _highly_ recommend not writing code like this; engines won’t optimize for it.
+这一节展示了`Array#sort`仍然存在一些引擎行为差异的地方。这些是困难的边界情况，如上所述，“正确的做法”其实并不总是很明确。我们_强烈_建议不要编写这样的代码；引擎不会针对它进行优化。
 
-The first example shows an array with some accessors (i.e. getters and setters) and a “call log” in different JavaScript engines. Accessors are the first case where the resulting sort order is implementation-defined:
+第一个例子展示了带有一些访问器（例如getter和setter）以及“调用日志”的数组在不同JavaScript引擎中的表现。访问器是结果排序顺序实现定义的首个案例：
 
 ```js
 const array = [0, 1, 2];
@@ -73,7 +73,7 @@ Object.defineProperty(array, '1', {
 array.sort();
 ```
 
-Here’s the output of that snippet in various engines. Note that there are no “right” or “wrong” answers here — the spec leaves this up to the implementation!
+以下是该代码片段在各个引擎中的输出。请注意，这里没有“正确”或“错误”的答案——规范将此交由实现决定！
 
 ```
 // Chakra
@@ -107,7 +107,7 @@ set 0
 set 1
 ```
 
-The next example shows interactions with the prototype chain. For the sake of brevity we don’t show the call log.
+下一个例子展示了与原型链的交互。为了简洁，我们不展示调用日志。
 
 ```js
 const object = {
@@ -138,7 +138,7 @@ const object = {
 Array.prototype.sort.call(object);
 ```
 
-The output shows the `object` after it’s sorted. Again, there is no right answer here. This example just shows how weird the interaction between indexed properties and the prototype chain can get:
+输出显示了排序后的 `object`。同样，这里没有标准答案。这个例子只是展示了索引属性与原型链之间交互是多么奇怪：
 
 ```js
 // Chakra
@@ -154,97 +154,97 @@ The output shows the `object` after it’s sorted. Again, there is no right answ
 ['a2', 'a3', 'b1', 'b2', 'c1', 'c2', 'd1', 'd2', 'e3', undefined, undefined, undefined]
 ```
 
-### What V8 does before and after sorting
+### V8 在排序之前和之后做了什么
 
 :::note
-**Note:** This section was updated in June 2019 to reflect changes to `Array#sort` pre- and post-processing in V8 v7.7.
+**注意：** 本节在2019年6月更新，反映了 V8 v7.7 中 `Array#sort` 的预处理和后处理的变化。
 :::
 
-V8 has one pre-processing step before it actually sorts anything and also one post-processing step. The basic idea is to collect all non-`undefined` values into a temporary list, sort this temporary list and then write the sorted values back into the actual array or object. This frees V8 from caring about interacting with accessors or the prototype chain during the sorting itself.
+V8 在实际排序之前进行了一步预处理，并在排序完成后进行了一步后处理。基本思想是将所有非 `undefined` 值收集到一个临时列表中，对该临时列表进行排序，然后将排序后的值写回原始数组或对象。这使得 V8 在排序过程中无需担心与访问器或原型链的交互。
 
-The spec expects `Array#sort` to produce a sort-order that can conceptually be partitioned into three segments:
+规范期望 `Array#sort` 产生的排序可以概念上分为三个部分：
 
-  1. All non-`undefined` values sorted w.r.t. to the comparison function.
-  1. All `undefined`s.
-  1. All holes, i.e. non-existing properties.
+  1. 所有非 `undefined` 值根据比较函数排序。
+  1. 所有 `undefined` 值。
+  1. 所有空洞，即不存在的属性。
 
-The actual sorting algorithm only needs to be applied to the first segment. To achieve this, V8 has a pre-processing step works roughly as follows:
+实际的排序算法只需要应用于第一部分。为实现这一目标，V8 的预处理步骤大致如下：
 
-  1. Let `length` be the value of the `”length”` property of the array or object to sort.
-  1. Let `numberOfUndefineds` be 0.
-  1. For each `value` in the range of `[0, length)`:
-    a. If `value` is a hole: do nothing
-    b. If `value` is `undefined`: increment `numberOfUndefineds` by 1.
-    c. Otherwise add `value` to a temporary list `elements`.
+  1. 令 `length` 为数组或对象的 `”length”` 属性的值。
+  1. 令 `numberOfUndefineds` 为 0。
+  1. 对范围 `[0, length)` 中的每个 `value`：
+    a. 如果 `value` 是一个空洞：不执行任何操作
+    b. 如果 `value` 是 `undefined`：将 `numberOfUndefineds` 加 1。
+    c. 否则将 `value` 添加到临时列表 `elements`。
 
-After these steps are executed, all non-`undefined` values are contained in the temporary list `elements`. `undefined`s are simply counted, instead of added to `elements`. As mentioned above, the spec requires that `undefined`s must be sorted to the end. Except, `undefined` values are not actually passed to the user-provided comparison function, so we can get away with only counting the number of `undefined`s that occurred.
+执行完这些步骤后，所有非 `undefined` 值都包含在临时列表 `elements` 中。`undefined` 值只是被计数，而不是添加到 `elements`。如上所述，规范要求 `undefined` 值必须排序到末尾。此外，`undefined` 值并不会实际传递给用户提供的比较函数，所以我们可以只计算发生的 `undefined` 数量。
 
-The next step is to actually sort `elements`. See [the section about TimSort](/blog/array-sort#timsort) for a detailed description.
+下一步是实际对 `elements` 进行排序。详细描述请参阅 [关于 TimSort 的部分](/blog/array-sort#timsort)。
 
-After sorting is done, the sorted values have to be written back to the original array or object. The post-processing step consists of three phases that handle the conceptual segments:
+排序完成后，需要将排序后的值写回到原始数组或对象中。后处理步骤包括三个阶段，处理概念性的部分：
 
-  1. Write back all values from `elements` to the original object in the range of `[0, elements.length)`.
-  1. Set all values from `[elements.length, elements.length + numberOfUndefineds)` to `undefined`.
-  1. Delete all values in the range from `[elements.length + numberOfUndefineds, length)`.
+  1. 将 `elements` 的所有值写回到范围 `[0, elements.length)` 的原始对象中。
+  1. 将范围 `[elements.length, elements.length + numberOfUndefineds)` 中的所有值设置为 `undefined`。
+  1. 删除范围 `[elements.length + numberOfUndefineds, length)` 中的所有值。
 
-Step 3 is needed in case the original object contained holes in the sorting range. Values in the range of `[elements.length + numberOfUndefineds, length)` have already been moved to the front and not performing step 3 would result in duplicate values.
+步骤 3 是必要的，以防原始对象在排序范围内包含空洞。范围 `[elements.length + numberOfUndefineds, length)` 中的值已经被移到前面，不执行步骤 3 会导致重复值。
 
-## History
+## 历史
 
-`Array.prototype.sort` and `TypedArray.prototype.sort` relied on the same Quicksort implementation written in JavaScript. The sorting algorithm itself is rather straightforward: The basis is a Quicksort with an Insertion Sort fall-back for shorter arrays (length < 10). The Insertion Sort fall-back was also used when Quicksort recursion reached a sub-array length of 10. Insertion Sort is more efficient for smaller arrays. This is because Quicksort gets called recursively twice after partitioning. Each such recursive call had the overhead of creating (and discarding) a stack frame.
+`Array.prototype.sort` 和 `TypedArray.prototype.sort` 依赖于使用 JavaScript 编写的同一快速排序实现。排序算法本身相当简单：基础是快速排序，并为较短的数组（长度 < 10）提供插入排序回退。插入排序回退也用于当快速排序递归达到一个子数组长度为 10 时。插入排序对于较小数组更高效，因为快速排序在分区后会递归调用两次。每次这样的递归调用都有创建（和丢弃）堆栈帧的开销。
 
-Choosing a suitable pivot element has a big impact when it comes to Quicksort. V8 employed two strategies:
+选择合适的枢轴元素对快速排序来说影响很大。V8 采用了两种策略：
 
-- The pivot was chosen as the median of the first, last, and a third element of the sub-array that gets sorted. For smaller arrays that third element is simply the middle element.
-- For larger arrays a sample was taken, then sorted and the median of the sorted sample served as the third element in the above calculation.
+- 枢轴被选为子数组的首元素、尾元素以及第三个元素的中位数。对于较小的数组，该第三个元素只是中间元素。
+- 对于较大的数组，先取样本，然后对样本进行排序，排序后的样本中位数作为上述计算中的第三个元素。
 
-One of the advantages of Quicksort is that it sorts in-place. The memory overhead comes from allocating a small array for the sample when sorting large arrays, and log(n) stack space. The downside is that it’s not a stable algorithm and there’s a chance the algorithm hits the worst-case scenario where QuickSort degrades to 𝒪(n²).
+快速排序的优势之一是它可以就地排序。内存开销来自于在排序大数组时分配一个小型数组作为样本，以及 log(n) 的堆栈空间。缺点是它不是一个稳定的算法，并且有可能出现最坏情况，让快速排序退化为 𝒪(n²)。
 
-### Introducing V8 Torque
+### 引入 V8 Torque
 
-As an avid reader of the V8 blog you might have heard of [`CodeStubAssembler`](/blog/csa) or CSA for short. CSA is a V8 component that allows us to write low-level TurboFan IR directly in C++ that later gets translated to machine code for the appropriate architecture using TurboFan’s backend.
+作为 V8 博客的忠实读者，您可能已经听说过 [`CodeStubAssembler`](/blog/csa) 或简称 CSA。CSA 是 V8 的一个组件，它允许我们直接在 C++ 中编写低级 TurboFan IR，随后通过 TurboFan 的后端将其转换为适当架构的机器码。
 
-CSA is heavily utilized to write so-called “fast-paths” for JavaScript builtins. A fast-path version of a builtin usually checks whether certain invariants hold (e.g. no elements on the prototype chain, no accessors, etc) and then uses faster, more specific operations to implement the builtin functionality. This can result in execution times that are an order of magnitude faster than a more generic version.
+CSA 被广泛用于编写所谓的 JavaScript 内建函数的“快速路径”。内建函数的快速路径版本通常会检查某些不变量是否成立（例如，原型链上没有元素，没有访问器等），然后使用更快、更具体的操作来实现内建功能。这可以使执行时间比更通用的版本快一个数量级。
 
-The downside of CSA is that it really can be considered an assembly language. Control-flow is modeled using explicit `labels` and `gotos`, which makes implementing more complex algorithms in CSA hard to read and error-prone.
+CSA 的缺点在于它确实可以看作是一种汇编语言。使用显式的 `labels` 和 `gotos` 来建模控制流，这使得在 CSA 中实现更复杂的算法变得难以阅读且容易出错。
 
-Enter [V8 Torque](/docs/torque). Torque is a domain-specific language with TypeScript-like syntax that currently uses CSA as its sole compilation target. Torque allows nearly the same level of control as CSA does while at the same time offering higher-level constructs such as `while` and `for` loops. Additionally, it’s strongly typed and will in the future contain security checks such as automatic out-of-bound checks providing V8 engineers with stronger guarantees.
+引入了 [V8 Torque](/docs/torque)。Torque 是一种具有类似 TypeScript 语法的领域特定语言，目前唯一的编译目标是 CSA。Torque 提供的控制级别几乎与 CSA 相同，同时提供了更高级的构造如 `while` 和 `for` 循环。此外，它是强类型的，未来还将包含安全检查，例如自动边界检查，为 V8 工程师提供更强的保证。
 
-The first major builtins that were re-written in V8 Torque were [`TypedArray#sort`](/blog/v8-release-68) and [`Dataview` operations](/blog/dataview). Both served the additional purpose of providing feedback to the Torque developers on what languages features are needed and idioms should be used to write builtins efficiently. At the time of writing, several `JSArray` builtins had their self-hosted JavaScript fall-back implementations moved to Torque (e.g. `Array#unshift`) while others were completely re-written (e.g. `Array#splice` and `Array#reverse`).
+在 V8 Torque 中重新实现的第一个主要内建函数是 [`TypedArray#sort`](/blog/v8-release-68) 和 [`Dataview` 操作](/blog/dataview)。这两者的附加目的是向 Torque 开发者提供反馈，说明需要哪些语言特性以及应使用哪些惯用语法高效编写内建函数。在撰写本文时，几个 `JSArray` 内建函数的自托管 JavaScript 备选实现已经迁移到 Torque（例如 `Array#unshift`），而其他的一些则被完全重写（例如 `Array#splice` 和 `Array#reverse`）。
 
-### Moving `Array#sort` to Torque
+### 将 `Array#sort` 移至 Torque
 
-The initial `Array#sort` Torque version was more or less a straight up port of the JavaScript implementation. The only difference was that instead of using a sampling approach for larger arrays, the third element for the pivot calculation was chosen at random.
+最初的 `Array#sort` Torque 版本基本上是 JavaScript 实现的直接移植。唯一的区别是在较大数组中，没有使用采样方法，而是随机选择用于枢轴计算的第三个元素。
 
-This worked reasonably well, but as it still utilized Quicksort, `Array#sort` remained unstable. [The request for a stable `Array#sort`](https://bugs.chromium.org/p/v8/issues/detail?id=90) is among the oldest tickets in V8’s bug tracker. Experimenting with Timsort as a next step offered us multiple things. First, we like that it’s stable and offers some nice algorithmic guarantees (see next section). Second, Torque was still a work-in-progress and implementing a more complex builtin such as `Array#sort` with Timsort resulted in lots of actionable feedback influencing Torque as a language.
+这种方法效果尚可，但由于它仍然使用快速排序，`Array#sort` 依然是不稳定的。[对稳定的 `Array#sort` 的请求](https://bugs.chromium.org/p/v8/issues/detail?id=90) 是 V8 错误跟踪器中最古老的票据之一。下一步实验 Timsort 给了我们很多好处。首先，我们喜欢 Timsort 的稳定性以及它提供的一些漂亮的算法保证（见下一节）。其次，由于 Torque 仍在开发中，通过使用 Timsort 实现一个更加复杂的内建函数如 `Array#sort`，让我们获得了很多影响 Torque 作为语言的发展方向的可操作反馈。
 
 ## Timsort
 
-Timsort, initially developed by Tim Peters for Python in 2002, could best be described as an adaptive stable Mergesort variant. Even though the details are rather complex and are best described by [the man himself](https://github.com/python/cpython/blob/master/Objects/listsort.txt) or the [Wikipedia page](https://en.wikipedia.org/wiki/Timsort), the basics are easy to understand. While Mergesort usually works in recursive fashion, Timsort works iteratively. It processes an array from left to right and looks for so-called _runs_. A run is simply a sequence that is already sorted. This includes sequences that are sorted “the wrong way” as these sequences can simply be reversed to form a run. At the start of the sorting process a minimum run length is determined that depends on the length of the input. If Timsort can’t find natural runs of this minimum run length a run is “boosted artificially” using Insertion Sort.
+Timsort 最初由 Tim Peters 于 2002 年为 Python 开发，可以被描述为一种自适应的稳定的归并排序变体。尽管细节相当复杂，可以参考 [作者本人](https://github.com/python/cpython/blob/master/Objects/listsort.txt) 或 [维基百科页面](https://en.wikipedia.org/wiki/Timsort) 的描述，但基本概念很容易理解。虽然归并排序通常以递归方式工作，Timsort 是迭代式的。它从左到右处理数组，寻找所谓的 _run_。run 简单来说就是已经排序的序列。这包括“排序错误方向”的序列，因为这些序列只需反转即可形成一个 run。在排序过程开始时，根据输入的长度确定一个最小 run 长度。如果 Timsort 找不到这种最小 run 长度的自然 run，会用插入排序“人工提升”一个 run。
 
-Runs that are found this way are tracked using a stack that remembers a starting index and a length of each run. From time to time runs on the stack are merged together until only one sorted run remains. Timsort tries to maintain a balance when it comes to deciding which runs to merge. On the one hand you want to try and merge early as the data of those runs has a high chance of already being in the cache, on the other hand you want to merge as late as possible to take advantage of patterns in the data that might emerge. To accomplish this, Timsort maintains two invariants. Assuming `A`, `B`, and `C` are the three top-most runs:
+通过这种方式找到的 run 会使用一个栈进行跟踪，该栈记录每个 run 的起始索引和长度。栈中的 run 会不时合并，直到只剩下一个已排序的 run。Timsort 在决定合并哪些 run 时尝试保持平衡。一方面，你希望尽早合并，因为这些 run 的数据很可能已经在缓存中，另一方面，你希望尽可能晚地合并以利用数据中可能出现的模式。为了实现这一点，Timsort 保持了两个不变性。假设 `A`、`B` 和 `C` 是栈顶的三个 run：
 
 - `|C| > |B| + |A|`
 - `|B| > |A|`
 
-![Runs stack before and after merging `A` with `B`](/_img/array-sort/runs-stack.svg)
+![合并 `A` 与 `B` 前后的 run 栈示意图](/_img/array-sort/runs-stack.svg)
 
-The image shows the case where `|A| > |B|` so `B` is merged with the smaller of the two runs.
+图中显示了 `|A| > |B|` 的情况，因此 `B` 会与较小的 run 合并。
 
-Note that Timsort only merges consecutive runs, this is needed to maintain stability, otherwise equal elements would be transferred between runs. Also the first invariant makes sure that run lengths grow at least as fast as the Fibonacci numbers, giving an upper bound on the size of the run stack when we know the maximum array length.
+请注意，Timsort 只会合并连续的 run，这是为了保持稳定性，否则相等的元素会在 run 之间转移。此外，第一个不变性确保了 run 的长度至少以斐波那契数的速度增长，当我们知道最大数组长度时，即可给出 run 栈大小的上限。
 
-One can now see that already-sorted sequences are sorted in 𝒪(n) as such an array would result in a single run that does not need to get merged. The worst case is 𝒪(n log n). These algorithmic properties together with the stable nature of Timsort were a few of the reasons why we chose Timsort over Quicksort in the end.
+现在可以看到，已经排序的序列以 𝒪(n) 的复杂度进行排序，因为这样的数组会成为单个 run，且无需合并。最坏情况是 𝒪(n log n)。这些算法特性以及 Timsort 的稳定性是最终选择 Timsort 而非快速排序的原因之一。
 
-### Implementing Timsort in Torque
+### 在 Torque 中实现 Timsort
 
-Builtins usually have different code-paths that are chosen during runtime depending on various variables. The most generic version can handle any kind of object, regardless if its a `JSProxy`, has interceptors or needs to do prototype chain lookups when retrieving or setting properties.
-The generic path is rather slow in most cases, as it needs to account for all eventualities. But if we know upfront that the object to sort is a simple `JSArray` containing only Smis, all these expensive `[[Get]]` and `[[Set]]` operations can be replaced by simple Loads and Stores to a `FixedArray`. The main differentiator is the [`ElementsKind`](/blog/elements-kinds).
+内置函数通常具有不同的代码路径，这些路径会根据各种变量在运行时进行选择。最通用的版本可以处理任何类型的对象，无论它是 `JSProxy`，有拦截器，还是在获取或设置属性时需要进行原型链查找。
+通用路径在大多数情况下相对较慢，因为它需要考虑所有可能情况。但如果我们能提前知道要排序的对象是一个只包含 Smis 的简单 `JSArray`，那么所有这些昂贵的 `[[Get]]` 和 `[[Set]]` 操作都可以被替换为对 `FixedArray` 的简单加载和存储。主要的区分因素是 [`ElementsKind`](/blog/elements-kinds)。
 
-The problem now becomes how to implement a fast-path. The core algorithm stays the same for all but the way we access elements changes based on the `ElementsKind`. One way we could accomplish this is to dispatch to the correct “accessor” on each call-site. Imagine a switch for each “load”/”store” operation where we choose a different branch based on the chosen fast-path.
+现在的问题变成了如何实现快速路径。核心算法对所有情况都保持一致，只是我们访问元素的方式会根据 `ElementsKind` 发生变化。一种实现方式是在每个调用点派发到正确的“访问器”。可以设想，每次进行“加载”/“存储”操作时，通过选择的快速路径选择不同的分支。
 
-Another solution (and this was the first approach tried) is to just copy the whole builtin once for each fast-path and inline the correct load/store access method. This approach turned out to be infeasible for Timsort as it’s a big builtin and making a copy for each fast-path turned out to require 106 KB in total, which is way too much for a single builtin.
+另一个解决方案（这也是最初尝试的方法）是为每条快速路径复制整个内置函数，并内联正确的加载/存储访问方法。然而，这种方法对于 Timsort 来说不可行，因为它是一个大型内置函数，为每条快速路径制作一个副本总共需要 106 KB，这是单个内置函数所需的空间太大了。
 
-The final solution is slightly different. Each load/store operation for each fast-path is put into its own “mini-builtin”. See the code example which shows the “load” operation for `FixedDoubleArray`s.
+最终的解决方案略有不同。每条快速路径的每个加载/存储操作都被放到自己的“迷你内置函数”中。请参见显示 `FixedDoubleArray` 的“加载”操作的代码示例。
 
 ```torque
 Load<FastDoubleElements>(
@@ -257,15 +257,14 @@ Load<FastDoubleElements>(
     return AllocateHeapNumberWithValue(value);
   }
   label Bailout {
-    // The pre-processing step removed all holes by compacting all elements
-    // at the start of the array. Finding a hole means the cmp function or
-    // ToString changes the array.
+    // 预处理步骤通过将所有元素压缩到数组起始位置移除了所有空洞。
+    // 找到空洞意味着 cmp 函数或 ToString 改变了数组。
     return Failure(sortState);
   }
 }
 ```
 
-To compare, the most generic “load” operation is simply a call to `GetProperty`. But while the above version generates efficient and fast machine code to load and convert a `Number`, `GetProperty` is a call to another builtin that could potentially involve a prototype chain lookup or invoke an accessor function.
+相比之下，最通用的“加载”操作只是调用 `GetProperty`。然而，上述版本生成高效且快速的机器代码来加载和转换一个 `Number`，而 `GetProperty` 是对另一个内置函数的调用，这可能涉及原型链查找或调用访问器函数。
 
 ```js
 builtin Load<ElementsAccessor : type>(
@@ -275,50 +274,50 @@ builtin Load<ElementsAccessor : type>(
 }
 ```
 
-A fast-path then simply becomes a set of function pointers. This means we only need one copy of the core algorithm while setting up all relevant function pointers once upfront. While this greatly reduces the needed code space (down to 20k) it comes at the cost of an indirect branch at each access site. This is even exacerbated by the recent change to use [embedded builtins](/blog/embedded-builtins).
+快速路径然后简单地变成了一组函数指针。这意味着我们只需要核心算法的一份副本，同时在前期设置好所有相关的函数指针。虽然这大大减少了所需的代码空间（降到 20k），但代价是每个访问点会有间接分支。这因最近改用 [嵌入式内置函数](/blog/embedded-builtins) 而更加严重。
 
-### Sort state
+### 排序状态
 
 ![](/_img/array-sort/sort-state.svg)
 
-The picture above shows the “sort state”. It’s a `FixedArray` that keeps track of all the things needed while sorting. Each time `Array#sort` is called, such a sort state is allocated. Entry 4 to 7 are the set of function pointers discussed above that comprise a fast-path.
+上图显示了“排序状态”。这是一个 `FixedArray`，用于跟踪排序时需要的所有信息。每次调用 `Array#sort` 时，都会分配这样的排序状态。条目 4 到 7 是上述组成快速路径的一组函数指针。
 
-The “check” builtin is used every time we return from user JavaScript code, to check if we can continue on the current fast-path. It uses the “initial receiver map” and “initial receiver length” for this.  Should the user code have modified the current object, we simply abandon the sorting run, reset all pointers to their most generic version and restart the sorting process. The “bailout status” in slot 8 is used to signal this reset.
+每次从用户的 JavaScript 代码返回时，都会使用“检查”内置函数来检查是否可以继续当前快速路径。它使用“初始接收器映射”和“初始接收器长度”来实现此功能。如果用户代码修改了当前对象，我们就会放弃排序运行，将所有指针重置为它们的最通用版本，并重新开始排序过程。槽 8 中的“退出状态”用于表示此重置。
 
-The “compare” entry can point to two different builtins. One calls a user-provided comparison function while the other implements the default comparison that calls `toString` on both arguments and then does a lexicographical comparison.
+“比较”条目可以指向两个不同的内置函数。一个调用用户提供的比较函数，另一个实现默认比较，即对两个参数调用 `toString`，然后进行词典顺序比较。
 
-The rest of the fields (with the exception of the fast path ID) are Timsort-specific. The run stack (described above) is initialized with a size of 85 which is enough to sort arrays of length 2<sup>64</sup>. The temporary array is used for merging runs. It grows in size as needed but never exceeds `n/2` where `n` is the input length.
+其余字段（快速路径 ID 除外）是特定于 Timsort 的。运行堆栈（如上所述）被初始化为大小 85，这足以排序长度为 2<sup>64</sup> 的数组。临时数组用于合并运行。它根据需要增长，但永远不会超过输入长度的 `n/2`。
 
-### Performance trade-offs
+### 性能权衡
 
-Moving sorting from self-hosted JavaScript to Torque comes with performance trade-offs. As `Array#sort` is written in Torque, it’s now a statically compiled piece of code, meaning we still can build fast-paths for certain [`ElementsKind`s](/blog/elements-kinds) but it will never be as fast as a highly optimized TurboFan version that can utilize type feedback. On the other hand, in cases where the code doesn’t get hot enough to warrant JIT compilation or the call-site is megamorphic, we are stuck with the interpreter or a slow/generic version. The parsing, compiling and possible optimizing of the self-hosted JavaScript version is also an overhead that is not needed with the Torque implementation.
+将排序从自托管的JavaScript迁移到Torque会带来性能上的权衡。由于`Array#sort`是用Torque编写的，它现在是静态编译的代码，这意味着我们仍然可以针对某些[`ElementsKind`](/blog/elements-kinds)构建快速路径，但它永远不会像高度优化的TurboFan版本那样快，因为TurboFan可以利用类型反馈。另一方面，在代码不够热以至于无法进行JIT编译或者调用点是多态的情况下，我们只能使用解释器或缓慢/通用版本。此外，解析、编译以及可能优化自托管JavaScript版本也是一种开销，而在Torque实现中无需这种开销。
 
-While the Torque approach doesn’t result in the same peak performance for sorting, it does avoid performance cliffs. The result is a sorting performance that is much more predictable than it previously was. Keep in mind that Torque is very much in flux and in addition of targeting CSA it might target TurboFan in the future, allowing JIT compilation of code written in Torque.
+虽然Torque方法不会实现相同的排序性能峰值，但它避免了性能断崖。最终结果是排序性能比以前更加可预测。请记住，Torque仍在变化之中，除了针对CSA，它未来可能还会针对TurboFan，使得可以对Torque编写的代码进行JIT编译。
 
-### Microbenchmarks
+### 微基准测试
 
-Before we started with `Array#sort`, we added a lot of different micro-benchmarks to get a better understanding of the impact the re-implementation would have. The first chart shows the “normal” use case of sorting various ElementsKinds with a user-provided comparison function.
+在开始重新实现`Array#sort`之前，我们添加了许多不同的微基准测试，以更好地理解这一重新实现的影响。第一张图表显示了使用用户提供的比较函数排序各种ElementsKind的“正常”使用场景。
 
-Keep in mind that in these cases the JIT compiler can do a lot of work, since sorting is nearly all we do. This also allows the optimizing compiler to inline the comparison function in the JavaScript version, while we have the call overhead from the builtin to JavaScript in the Torque case. Still, we perform better in nearly all cases.
+请记住，在这些场景中，JIT编译器可以完成很多工作，因为排序几乎是我们全部的工作。这也使得优化编译器可以在JavaScript版本中内联比较函数，而Torque情形中则有从内建代码到JavaScript的调用开销。即便如此，我们在几乎所有情况下都有更好的表现。
 
 ![](/_img/array-sort/micro-bench-basic.svg)
 
-The next chart shows the impact of Timsort when processing arrays that are already sorted completely, or have sub-sequences that are already sorted one-way or another. The chart uses Quicksort as a baseline and shows the speedup of Timsort (up to 17× in the case of “DownDown” where the array consists of two reverse-sorted sequences). As can be seen, except in the case of random data, Timsort performs better in all other cases, even though we are sorting `PACKED_SMI_ELEMENTS`, where Quicksort outperformed Timsort in the microbenchmark above.
+接下来的图表显示了Timsort处理完全排序或已经按某种方式排序的子序列数组时的影响。图表以Quicksort为基准，并显示了Timsort的加速效果（例如在“DownDown”情况下，加速效果可达17倍，数组由两个逆序排序的序列组成）。如图所示，除了随机数据的情况外，Timsort在其他所有情况下表现更好，即使在上面的微基准测试中，Quicksort在排序`PACKED_SMI_ELEMENTS`时性能优于Timsort。
 
 ![](/_img/array-sort/micro-bench-presorted.svg)
 
-### Web Tooling Benchmark
+### 网站工具基准
 
-The [Web Tooling Benchmark](https://github.com/v8/web-tooling-benchmark) is a collection of workloads of tools usually used by web developers such as Babel and TypeScript. The chart uses JavaScript Quicksort as a baseline and compares the speedup of Timsort against it. In almost all benchmarks we retain the same performance with the exception of chai.
+[网站工具基准](https://github.com/v8/web-tooling-benchmark)是一组通常由网页开发人员使用的工具的工作负载集合，例如Babel和TypeScript。图表将JavaScript的Quicksort作为基准，并比较Timsort相对于它的加速效果。在几乎所有基准测试中，我们保持了相同的性能，除了chai的例外情况。
 
 ![](/_img/array-sort/web-tooling-benchmark.svg)
 
-The chai benchmark spends *a third* of its time inside a single comparison function (a string distance calculation). The benchmark is the test suite of chai itself. Due to the data, Timsort needs some more comparisons in this case, which has a bigger impact on the overall runtime, as such a big portion of time is spent inside that particular comparison function.
+chai基准测试中有*三分之一*的时间花在单一比较函数中（一个字符串距离计算）。该基准测试是chai测试套件本身。由于数据的关系，Timsort在这种情况下需要更多比较，这对总体运行时间产生了更大的影响，因为这么大的时间部分都花在该特定比较函数中。
 
-### Memory impact
+### 内存影响
 
-Analyzing V8 heap snapshots while browsing some 50 sites (both on mobile as well as on desktop) didn’t show any memory regressions or improvements. On the one hand, this is surprising: the switch from Quicksort to Timsort introduced the need for a temporary array for merging runs, which can grow much larger than the temporary arrays used for sampling. On the other hand, these temporary arrays are very short-lived (only for the duration of the `sort` call) and can be allocated and discarded rather quickly in V8’s new space.
+在浏览约50个网站（包括移动端和桌面端）时分析V8堆快照，没有显示任何内存性能下降或改善。一方面，这令人惊讶：从Quicksort转换为Timsort引入了合并运行所需的临时数组，其大小可能比用于采样的临时数组大得多。另一方面，这些临时数组的生命周期非常短（仅为`sort`调用期间），可以在V8的新空间中快速分配和丢弃。
 
-## Conclusion
+## 结论
 
-In summary we feel much better about the algorithmic properties and the predictable performance behavior of a Timsort implemented in Torque. Timsort is available starting with V8 v7.0 and Chrome 70. Happy sorting!
+总而言之，我们对基于Torque实现的Timsort的算法属性和可预测的性能行为感觉更加满意。Timsort自V8 v7.0和Chrome 70开始可用。祝大家排序愉快！

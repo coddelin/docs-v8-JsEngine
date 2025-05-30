@@ -1,49 +1,49 @@
 ---
-title: "RegExp lookbehind assertions"
-author: "Yang Guo, Regular Expression Engineer"
+title: "正则表达式后向断言"
+author: "杨国，正则表达式工程师"
 avatars: 
   - "yang-guo"
 date: "2016-02-26 13:33:37"
 tags: 
   - ECMAScript
-  - RegExp
-description: "JavaScript regular expressions are getting some new functionality: lookbehind assertions."
+  - 正则表达式
+description: "JavaScript 正则表达式新增了一些新功能：后向断言。"
 ---
-Introduced with the third edition of the ECMA-262 specification, regular expressions have been part of Javascript since 1999. In functionality and expressiveness, JavaScript’s implementation of regular expressions roughly mirrors that of other programming languages.
+正则表达式自 ECMA-262 规范第三版发布以来，就已经从 1999 年开始成为 JavaScript 的一部分。在功能和表达能力方面，JavaScript 对正则表达式的实现大致与其他编程语言相似。
 
 <!--truncate-->
-One feature in JavaScript’s RegExp that is often overlooked, but can be quite useful at times, is lookahead assertions. For example, to match a sequence of digits that is followed by a percent sign, we can use `/\d+(?=%)/`. The percent sign itself is not part of the match result. The negation thereof, `/\d+(?!%)/`, would match a sequence of digits not followed by a percent sign:
+JavaScript 的正则表达式中有一项常常被忽视却有时非常有用的功能，就是前向断言。例如，要匹配后面跟着百分号的一组数字，可以使用 `/\d+(?=%)/`。百分号本身不会作为匹配结果的一部分。其否定形式 `/\d+(?!%)/` 将会匹配后面不是百分号的一组数字：
 
 ```js
-/\d+(?=%)/.exec('100% of US presidents have been male'); // ['100']
-/\d+(?!%)/.exec('that’s all 44 of them');                // ['44']
+/\d+(?=%)/.exec('100% 的美国总统都是男性'); // ['100']
+/\d+(?!%)/.exec('那就是全部 44 人');               // ['44']
 ```
 
-The opposite of lookahead, lookbehind assertions, have been missing in JavaScript, but are available in other regular expression implementations, such as that of the .NET framework. Instead of reading ahead, the regular expression engine reads backwards for the match inside the assertion. A sequence of digits following a dollar sign can be matched by `/(?<=\$)\d+/`, where the dollar sign would not be part of the match result. The negation thereof, `/(?<!\$)\d+/`, matches a sequence of digits following anything but a dollar sign.
+JavaScript 中缺少与前向断言相对的后向断言，但它在其他正则表达式实现中是可用的，比如 .NET 框架的实现。后向断言不是向前读取，而是向后读取匹配结果。通过 `/(?<=\$)\d+/` 可以匹配以美元符号作为前缀的一组数字，其中美元符号不会作为匹配结果的一部分。其否定形式 `/(?<!\$)\d+/` 则匹配不是以美元符号作为前缀的一组数字。
 
 ```js
-/(?<=\$)\d+/.exec('Benjamin Franklin is on the $100 bill'); // ['100']
-/(?<!\$)\d+/.exec('it’s worth about €90');                  // ['90']
+/(?<=\$)\d+/.exec('本杰明·富兰克林出现在 $100 美钞上'); // ['100']
+/(?<!\$)\d+/.exec('它值大约 €90');                     // ['90']
 ```
 
-Generally, there are two ways to implement lookbehind assertions. Perl, for example, requires lookbehind patterns to have a fixed length. That means that quantifiers such as `*` or `+` are not allowed. This way, the regular expression engine can step back by that fixed length, and match the lookbehind the exact same way as it would match a lookahead, from the stepped back position.
+通常有两种方式实现后向断言。例如，Perl 要求后向断言的模式长度固定。这意味着像 `*` 或 `+` 的量词是不可用的。这种方式使正则表达式引擎能够通过固定长度向后移动，并以与前向断言相同的方式从后移位置开始匹配。
 
-The regular expression engine in the .NET framework takes a different approach. Instead of needing to know how many characters the lookbehind pattern will match, it simply matches the lookbehind pattern backwards, while reading characters against the normal read direction. This means that the lookbehind pattern can take advantage of the full regular expression syntax and match patterns of arbitrary length.
+.NET 框架的正则表达式引擎采用了不同的方法。它不需要知道后向模式会匹配多少字符，而是直接从后向前逆向匹配后向模式，同时按照正常的读取方向进行字符匹配。这意味着后向模式可以利用完整的正则表达式语法并匹配任意长度的模式。
 
-Clearly, the second option is more powerful than the first. That is why the V8 team, and the TC39 champions for this feature, have agreed that JavaScript should adopt the more expressive version, even though its implementation is slightly more complex.
+显然，第二种方式比第一种方式更强大。这也是为什么 V8 团队以及负责此项功能的 TC39 推动者一致认为 JavaScript 应该采用更具表达力的版本，尽管其实现略微复杂一些。
 
-Because lookbehind assertions match backwards, there are some subtle behaviors that would otherwise be considered surprising. For example, a capturing group with a quantifier captures the last match. Usually, that is the right-most match. But inside a lookbehind assertion, we match from right to left, therefore the left-most match is captured:
+由于后向断言是反向匹配的，因此会有一些微妙的行为，可能会令人感到惊讶。例如，带量词的捕获组会捕获最后一个匹配结果。通常，这个结果是最右边的匹配。但在后向断言中，由于匹配方向是从右到左，因此捕获的是最左边的匹配：
 
 ```js
-/h(?=(\w)+)/.exec('hodor');  // ['h', 'r']
-/(?<=(\w)+)r/.exec('hodor'); // ['r', 'h']
+/h(?=(\w)+)/.exec('霍多');  // ['h', 'r']
+/(?<=(\w)+)r/.exec('霍多'); // ['r', 'h']
 ```
 
-A capturing group can be referenced via back reference after it has been captured. Usually, the back reference has to be to the right of the capture group. Otherwise, it would match the empty string, as nothing has been captured yet. However, inside a lookbehind assertion, the match direction is reversed:
+捕获组可以通过反向引用在被捕获后进行引用。通常情况下，反向引用必须位于捕获组的右侧。否则，由于尚未完成捕获，它将匹配空字符串。然而，在后向断言中，匹配方向是反向的：
 
 ```js
-/(?<=(o)d\1)r/.exec('hodor'); // null
-/(?<=\1d(o))r/.exec('hodor'); // ['r', 'o']
+/(?<=(o)d\1)r/.exec('霍多'); // null
+/(?<=\1d(o))r/.exec('霍多'); // ['r', 'o']
 ```
 
-Lookbehind assertions are currently in a very [early stage](https://github.com/tc39/proposal-regexp-lookbehind) in the TC39 specification process. However, because they are such an obvious extension to the RegExp syntax, we decided to prioritize their implementation. You can already experiment with lookbehind assertions by running V8 version 4.9 or later with `--harmony`, or by enabling experimental JavaScript features (use `about:flags`) in Chrome from version 49 onwards.
+后向断言目前在 TC39 规范流程中处于非常[早期的阶段](https://github.com/tc39/proposal-regexp-lookbehind)。不过，由于它们显然是对正则表达式语法的扩展，我们决定优先实现它们。您可以通过运行 V8 版本 4.9 或更高版本并使用 `--harmony`，或者在 Chrome 49 及更高版本中启用实验性 JavaScript 功能（使用 `about:flags`）提前体验后向断言。

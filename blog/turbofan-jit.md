@@ -1,30 +1,30 @@
 ---
-title: "Digging into the TurboFan JIT"
-author: "Ben L. Titzer, Software Engineer and TurboFan Mechanic"
+title: "深入探讨TurboFan JIT"
+author: "Ben L. Titzer，软件工程师和TurboFan机械师"
 avatars: 
   - "ben-titzer"
 date: "2015-07-13 13:33:37"
 tags: 
-  - internals
-description: "A deep-dive into the design of V8’s new TurboFan optimizing compiler."
+  - 内部构造
+description: "深入了解V8新型TurboFan优化编译器的设计。"
 ---
-[Last week we announced](https://blog.chromium.org/2015/07/revving-up-javascript-performance-with.html) that we’ve turned on TurboFan for certain types of JavaScript. In this post we wanted to dig deeper into the design of TurboFan.
+[上周我们宣布](https://blog.chromium.org/2015/07/revving-up-javascript-performance-with.html)我们已经为某些类型的JavaScript启用了TurboFan。在这篇文章中，我们希望更深入地了解TurboFan的设计。
 
 <!--truncate-->
-Performance has always been at the core of V8’s strategy. TurboFan combines a cutting-edge intermediate representation with a multi-layered translation and optimization pipeline to generate better quality machine code than what was previously possible with the CrankShaft JIT. Optimizations in TurboFan are more numerous, more sophisticated, and more thoroughly applied than in CrankShaft, enabling fluid code motion, control flow optimizations, and precise numerical range analysis, all of which were more previously unattainable.
+性能一直是V8战略的核心。TurboFan结合了先进的中间表示和多层的翻译和优化管道，以生成比CrankShaft JIT之前可能实现的质量更好的机器代码。TurboFan中的优化数量更多、技术更复杂且应用更彻底，使得流畅的代码移动、控制流优化和精确的数值范围分析成为可能，而这些在以前是难以实现的。
 
-## A layered architecture
+## 分层的架构
 
-Compilers tend to become complex over time as new language features are supported, new optimizations are added, and new computer architectures are targeted. With TurboFan, we've taken lessons from many compilers and developed a layered architecture to allow the compiler to cope with these demands over time. A clearer separation between the source-level language (JavaScript), the VM's capabilities (V8), and the architecture's intricacies (from x86 to ARM to MIPS) allows for cleaner and more robust code. Layering allows those working on the compiler to reason locally when implementing optimizations and features, as well as write more effective unit tests. It also saves code. Each of the 7 target architectures supported by TurboFan requires fewer than 3,000 lines of platform-specific code, versus 13,000-16,000 in CrankShaft. This enabled engineers at ARM, Intel, MIPS, and IBM to contribute to TurboFan in a much more effective way. TurboFan is able to more easily support all of the coming features of ES6 because its flexible design separates the JavaScript frontend from the architecture-dependent backends.
+随着支持的新语言功能增加、新的优化被添加以及针对新计算机架构的目标，编译器往往会随着时间而变得复杂。借助TurboFan，我们借鉴了许多编译器的经验，并开发了一个分层架构，以使编译器能够随着时间的推移应对这些需求。源级语言（JavaScript）、VM的功能（V8）和架构的复杂性（从x86到ARM到MIPS）之间的更清晰的分离，带来了更干净、更健壮的代码。分层允许编译器开发人员在实现优化和功能时更局部地进行推理，同时编写更有效的单元测试。这也节省了代码。在TurboFan支持的七个目标架构中，每个架构需要的特定平台代码都少于3,000行，而CrankShaft则需要13,000-16,000。这使得ARM、Intel、MIPS和IBM的工程师能够更有效地为TurboFan做出贡献。由于其灵活的设计将JavaScript前端从依赖架构的后端分离开来，TurboFan能够更容易地支持即将推出的ES6所有功能。
 
-## More sophisticated optimizations
+## 更复杂的优化
 
-The TurboFan JIT implements more aggressive optimizations than CrankShaft through a number of advanced techniques. JavaScript enters the compiler pipeline in a mostly unoptimized form and is translated and optimized to progressively lower forms until machine code is generated. The centerpiece of the design is a more relaxed sea-of-nodes internal representation (IR) of the code which allows more effective reordering and optimization.
+TurboFan JIT通过多种高级技术实现了比CrankShaft更积极的优化。JavaScript以大致未优化的形式进入编译器管道，并逐渐被翻译和优化成更低层次的形式，直到生成机器代码。设计的核心是一个更宽松的节点海内部表示（IR），允许更有效的重新排序和优化。
 
-![Example TurboFan graph](/_img/turbofan-jit/example-graph.png)
+![TurboFan图示例](/_img/turbofan-jit/example-graph.png)
 
-Numerical range analysis helps TurboFan understand number-crunching code much better. The graph-based IR allows most optimizations to be expressed as simple local reductions which are easier to write and test independently. An optimization engine applies these local rules in a systematic and thorough way. Transitioning out of the graphical representation involves an innovative scheduling algorithm that makes use of the reordering freedom to move code out of loops and into less frequently executed paths. Finally, architecture-specific optimizations like complex instruction selection exploit features of each target platform for the best quality code.
+数值范围分析帮助TurboFan更好地理解数字处理代码。基于图的IR允许大多数优化表达为简单的局部归约，更容易独立编写和测试。一种优化引擎系统地、彻底地应用这些局部规则。从图形表示过渡到最终代码时，涉及一种创新的调度算法，利用重新排序自由将代码移出循环并转移到较少执行路径中。最后，架构特定的优化如复杂指令选择利用每个目标平台的特点以获得最佳质量代码。
 
-## Delivering a new level of performance
+## 提供新的性能水平
 
-We're [already seeing some great speedups](https://blog.chromium.org/2015/07/revving-up-javascript-performance-with.html) with TurboFan, but there's still a ton of work to do. Stay tuned as we enable more optimizations and turn TurboFan on for more types of code!
+我们已经[看到了一些显著的提速](https://blog.chromium.org/2015/07/revving-up-javascript-performance-with.html)效果，但仍有大量工作需要完成。敬请期待更多优化的启用以及TurboFan将在更多类型代码中启用！

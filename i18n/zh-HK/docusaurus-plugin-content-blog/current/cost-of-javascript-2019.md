@@ -49,7 +49,7 @@ JavaScript執行時間對於處理器速度較慢的手機很重要。由於CPU�
 
 ![JavaScript處理占頁面加載期間在V8中所花費時間的10–30%。](/_img/cost-of-javascript-2019/reddit-js-processing.svg)
 
-在移動端，普通手機（Moto G4）執行Reddit的JavaScript的時間比高端設備（Pixel 3）要長3–4倍，而在低端設備（<$100的Alcatel 1X）上則要長6倍以上：
+在移動端，普通手機（Moto G4）執行Reddit的JavaScript的時間比高端設備（Pixel 3）要長3–4倍，而在低端設備（&lt;$100的Alcatel 1X）上則要長6倍以上：
 
 ![不同設備類別（低端、中端和高端）執行Reddit JavaScript的成本](/_img/cost-of-javascript-2019/reddit-js-processing-devices.svg)
 

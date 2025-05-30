@@ -1,5 +1,5 @@
 ---
-title: "Well-formed `JSON.stringify`"
+title: "格式良好的 `JSON.stringify`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars: 
   - "mathias-bynens"
@@ -7,16 +7,16 @@ date: 2018-09-11
 tags: 
   - ECMAScript
   - ES2019
-description: "JSON.stringify now outputs escape sequences for lone surrogates, making its output valid Unicode (and representable in UTF-8)."
+description: "JSON.stringify 现在对独立代理对输出转义序列，使其输出为合法的 Unicode（且可表示为 UTF-8）。"
 ---
-`JSON.stringify` was previously specified to return ill-formed Unicode strings if the input contains any lone surrogates:
+`JSON.stringify` 之前被规范为在输入包含任何独立代理对时返回格式不良的 Unicode 字符串：
 
 ```js
 JSON.stringify('\uD800');
 // → '"�"'
 ```
 
-[The “well-formed `JSON.stringify`” proposal](https://github.com/tc39/proposal-well-formed-stringify) changes `JSON.stringify` so it outputs escape sequences for lone surrogates, making its output valid Unicode (and representable in UTF-8):
+[“格式良好的 `JSON.stringify`”提案](https://github.com/tc39/proposal-well-formed-stringify) 修改了 `JSON.stringify`，使其对独立代理对输出转义序列，从而使其输出为合法的 Unicode（且可表示为 UTF-8）：
 
 <!--truncate-->
 ```js
@@ -24,11 +24,11 @@ JSON.stringify('\uD800');
 // → '"\\ud800"'
 ```
 
-Note that `JSON.parse(stringified)` still produces the same results as before.
+请注意，`JSON.parse(stringified)` 仍然会产生与之前相同的结果。
 
-This feature is a small fix that was long overdue in JavaScript. It’s one less thing to worry about as a JavaScript developer. In combination with [_JSON ⊂ ECMAScript_](/features/subsume-json), it enables safely embedding JSON-stringified data as literals into JavaScript programs, and writing the generated code to disk in any Unicode-compatible encoding (e.g. UTF-8). This is super useful for [metaprogramming use cases](/features/subsume-json#embedding-json).
+这一特性是 JavaScript 中长期未解决的小问题的一种修复。这减少了 JavaScript 开发者需要担心的问题。结合 [_JSON ⊂ ECMAScript_](/features/subsume-json)，它可以安全地将 JSON 序列化数据作为文字嵌入到 JavaScript 程序中，并以任何 Unicode 兼容的编码（例如 UTF-8）将生成的代码写入磁盘。这对于[元编程的用例](/features/subsume-json#embedding-json)非常有用。
 
-## Feature support
+## 特性支持
 
 <feature-support chrome="72 /blog/v8-release-72#well-formed-json.stringify"
                  firefox="64"

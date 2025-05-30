@@ -1,42 +1,42 @@
 ---
-title: "Responsibilities of V8 committers and reviewers"
-description: "This document lists guidelines for V8 contributors."
+title: "V8提交者和评审者的职责"
+description: "本文档列出了V8贡献者的指南。"
 ---
-When you’re committing to the V8 repositories, ensure that you follow these guidelines (adapted from https://dev.chromium.org/developers/committers-responsibility):
+当您向V8代码库提交时，请确保遵循以下指南（改编自https://dev.chromium.org/developers/committers-responsibility）：
 
-1. Find the right reviewer for your changes and for patches you’re asked to review.
-1. Be available on IM and/or email before and after you land the change.
-1. Watch the [waterfall](https://ci.chromium.org/p/v8/g/main/console) until all bots turn green after your change.
-1. When landing a TBR change (To Be Reviewed), make sure to notify the people whose code you’re changing. Usually just send the review e-mail.
+1. 找到适合的评审者来审核您的更改，以及您被要求审核的补丁。
+1. 在提交更改之前和之后保持IM和/或电子邮件的可达性。
+1. 检查[流水线](https://ci.chromium.org/p/v8/g/main/console)，直到您的更改使所有机器人都变为绿色状态。
+1. 当提交一个TBR更改（待评审）时，请确保通知您更改代码的相关人员。通常只需发送评审电子邮件即可。
 
-In short, do the right thing for the project, not the easiest thing to get code committed, and above all: use your best judgement.
+简而言之，请为项目做正确的事情，而不是为了让代码被提交而选择最简单的方法，最重要的是：使用您的最佳判断能力。
 
-**Don’t be afraid to ask questions. There is always someone who will immediately read messages sent to the v8-committers mailing list who can help you.**
+**不要害怕提问，总有会立即查看发送到v8-committers邮件列表的人可以帮助您。**
 
-## Changes with multiple reviewers
+## 含有多个评审者的更改
 
-There are occasionally changes with a lot of reviewers on them, since sometimes several people might need to be in the loop for a change because of multiple areas of responsibility and expertise.
+有时会遇到需要多个评审者的更改，因为有些更改涉及多领域的责任和专业知识，因此需要多个人的关注。
 
-The problem is that without some guidelines, there’s no clear responsibility given in these reviews.
+问题在于，如果没有一些指导，就没有明确的责任分配给这些评审。
 
-If you’re the sole reviewer on a change, you know you have to do a good job. When there are three other people, you sometimes assume that somebody else must have looked carefully at some part of the review. Sometimes all the reviewers think this and the change isn’t reviewed properly.
+如果您是某个更改的唯一评审者，您知道自己必须认真完成评审工作。而当有三个其他人参与时，您有时可能会假设其他人已经仔细检查了评审的某些部分。有时所有评审者都会这样认为，导致更改未被正确评审。
 
-In other cases, some reviewers say “LGTM” for a patch, while others are still expecting changes. The author can get confused as to the status of the review, and some patches have been checked in where at least one reviewer expected further changes before committing.
+在其他情况下，一些评审者对补丁表示“LGTM”，而另一些人仍在等待进一步的更改。这会让作者对评审状态感到困惑，甚至有些补丁在未获得所有评审者认可之前被提交。
 
-At the same time, we want to encourage many people to participate in the review process and keep tabs on what’s going on.
+与此同时，我们希望鼓励更多人参与评审流程，关注正在发生的事情。
 
-So, here are some guidelines to help clarify the process:
+以下是一些指导进程的建议：
 
-1. When a patch author requests more than one reviewer, they should make clear in the review request email what they expect the responsibility of each reviewer to be. For example, you could write this in the email:
+1. 当补丁作者请求多个评审者时，他们应在评审请求电子邮件中明确表明每个评审者的职责。例如，您可以在电子邮件中写道：
 
     ```
-    - larry: bitmap changes
-    - sergey: process hacks
-    - everybody else: FYI
+    - larry: 位图更改
+    - sergey: 处理漏洞
+    - 其他人：仅供参考
     ```
 
-1. In this case, you might be on the review list because you’ve asked to be in the loop for multiprocess changes, but you wouldn’t be the primary reviewer and the author and other reviewers wouldn’t be expecting you to review all the diffs in detail.
-1. If you get a review that includes many other people, and the author didn’t do (1), please ask them what part you’re responsible for if you don’t want to review the whole thing in detail.
-1. The author should wait for approval from everybody on the reviewer list before checking in.
-1. People who are on a review without clear review responsibility (i.e. drive-by reviews) should be super responsive and not hold up the review. The patch author should feel free to ping them mercilessly if they are.
-1. If you’re an “FYI” person on a review and you didn’t actually review in detail (or at all), but don’t have a problem with the patch, note this. You could say something like “rubber stamp” or “ACK” instead of “LGTM”. This way the real reviewers know not to trust that you did their work for them, but the author of the patch knows they don’t have to wait for further feedback from you. Hopefully we can still keep everybody in the loop but have clear ownership and detailed reviews. It might even speed up some changes since you can quickly “ACK” changes you don’t care about, and the author knows they don’t have to wait for feedback from you.
+1. 在这种情况下，您可能因为希望了解多进程更改而在评审名单中，但您并非主要评审者，作者和其他评审者也不会期望您详细审核所有差异。
+1. 如果您收到包含许多其他人的评审请求，而作者未执行第(1)条，请询问他们您负责的部分，以免进行详细全面的评审。
+1. 作者应在所有评审列表中的人员批准后再提交。
+1. 参与评审但没有明确评审责任的人（即简单的顺手评审）应快速响应，不应延误评审。补丁作者若遇到响应迟缓的，可以毫不留情地追问。
+1. 如果您是某个评审的“仅供参考”人员，并且实际上没有详细评审（甚至根本没有评审），但对补丁没有异议，请标注出来。您可以使用诸如“橡皮图章”或“ACK”之类的词，而不是“LGTM”。这样，真正的评审者知道他们不能指望您完成他们的工作，而补丁的作者知道他们无需等待您的进一步反馈。希望我们仍然能让所有人参与其中，同时有明确的责任分配和详细评审。这甚至可能加速某些更改，因为您可以快速对不关心的更改“ACK”，作者知道他们无需等待您的反馈。

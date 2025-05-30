@@ -1,31 +1,31 @@
 ---
-title: "Fast `for`-`in` in V8"
+title: "V8 中快速的 `for`-`in`"
 author: "Camillo Bruni ([@camillobruni](http://twitter.com/camillobruni))"
 avatars: 
   - "camillo-bruni"
 date: "2017-03-01 13:33:37"
 tags: 
-  - internals
-description: "This technical deep-dive explains how V8 made JavaScript’s for-in as fast as possible."
+  - 内部机制
+description: "这篇技术深度解析解释了 V8 如何让 JavaScript 的 for-in 尽可能快。"
 ---
-`for`-`in` is a widely used language feature present in many frameworks. Despite its ubiquity, it is one of the more obscure language constructs from an implementation perspective. V8 went to great lengths to make this feature as fast as possible. Over the course of the past year, `for`-`in` became fully spec-compliant and up to 3 times faster, depending on the context.
+`for`-`in` 是一种被许多框架广泛使用的语言特性。尽管它十分常见，但从实现角度来看，它是一种较为晦涩的语言构造。V8 付出了巨大努力，使得这一特性尽可能快。在过去的一年里，`for`-`in` 变得完全符合规范，并在某些情况下速度提高了 3 倍。
 
 <!--truncate-->
-Many popular websites rely heavily on for-in and benefit from its optimization. For example, in early 2016 Facebook spent roughly 7% of its total JavaScript time during startup in the implementation of `for`-`in` itself. On Wikipedia this number was even higher at around 8%. By improving the performance of certain slow cases, Chrome 51 significantly improved the performance on these two websites:
+许多流行的网站在很大程度上依赖于 `for`-`in`，并从它的优化中受益。例如，在 2016 年初，Facebook 在启动过程中大约有 7% 的 JavaScript 时间花费在 `for`-`in` 的实现上。在 Wikipedia 上，这个数字甚至更高，接近 8%。通过改善某些慢速情况的性能，Chrome 51 显著提升了这两个网站的性能：
 
 ![](/_img/fast-for-in/wikipedia.png)
 
 ![](/_img/fast-for-in/facebook.png)
 
-Wikipedia and Facebook both improved their total script time by 4% due to various `for`-`in` improvements. Note that during the same period, the rest of V8 also got faster, which yielded a total scripting improvement of more than 4%.
+Wikipedia 和 Facebook 的总脚本时间由于各种 `for`-`in` 的改进提升了 4%。请注意，在同一时期，V8 的其他部分也变得更快，总的脚本性能改进超过了 4%。
 
-In the rest of this blog post we will explain how we managed to speed up this core language feature and fix a long-standing spec violation at the same time.
+在这篇博文的其余部分中，我们将解释如何在加速这一核心语言特性的同时修复一个长期存在的规范违反问题。
 
-## The spec
+## 规范
 
-_**TL;DR;** The for-in iteration semantics are fuzzy for performance reasons._
+_**TL;DR;** 为性能原因，for-in 的迭代语义是模糊的。_
 
-When we look at the [spec-text of `for`-`in`, it’s written in an unexpectedly fuzzy way](https://tc39.es/ecma262/#sec-for-in-and-for-of-statements), which is observable across different implementations. Let's look at an example when iterating over a [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) object with the proper traps set.
+当我们查看 [`for`-`in` 的规范文本](https://tc39.es/ecma262/#sec-for-in-and-for-of-statements)时，会发现它以一种意想不到的模糊方式书写，这在不同的实现中是可观察的。我们来看一个针对具有适当陷阱设置的 [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) 对象迭代的示例。
 
 ```js
 const proxy = new Proxy({ a: 1, b: 1},
@@ -45,7 +45,7 @@ const proxy = new Proxy({ a: 1, b: 1},
 });
 ```
 
-In V8/Chrome 56 you get the following output:
+在 V8/Chrome 56 中你会得到如下输出：
 
 ```
 ownKeys
@@ -56,7 +56,7 @@ getOwnPropertyDescriptor name=b
 b
 ```
 
-In contrast, you get a different order of statements for the same snippet in Firefox 51:
+相比之下，在 Firefox 51 中对同一代码片段的输出顺序不同：
 
 ```
 ownKeys
@@ -67,28 +67,28 @@ a
 b
 ```
 
-Both browsers respect the spec, but for once the spec does not enforce an explicit order of instructions. To understand these loop holes properly, let's have a look at the spec text:
+两个浏览器都尊重规范，但此次规范并未对指令的顺序做出明确的强制。为了更好地理解这些漏洞，我们来看看规范文本：
 
 > EnumerateObjectProperties ( O )
-> When the abstract operation EnumerateObjectProperties is called with argument O, the following steps are taken:
+> 当抽象操作 EnumerateObjectProperties 被传递参数 O 调用时，需执行以下步骤：
 >
-> 1. Assert: Type(O) is Object.
-> 2. Return an Iterator object (25.1.1.2) whose next method iterates over all the String-valued keys of enumerable properties of O. The iterator object is never directly accessible to ECMAScript code. The mechanics and order of enumerating the properties is not specified but must conform to the rules specified below.
+> 1. 断言：Type(O) 是对象。
+> 2. 返回一个迭代器对象（25.1.1.2），其 next 方法迭代 O 的所有可枚举属性的字符串值键。迭代器对象不会被 ECMAScript 代码直接访问。枚举属性的机制和顺序未经明确说明，但需符合以下规则。
 
-Now, usually spec instructions are precise in what exact steps are required. But in this case they refer to a simple list of prose, and even the order of execution is left to implementers. Typically, the reason for this is that such parts of the spec were written after the fact where JavaScript engines already had different implementations. The spec tries to tie the loose ends by providing the following instructions:
+通常情况下，规范指令会精确说明具体的操作步骤。但在这种情况下，它们仅包含了一段简单的叙述，即使是执行顺序也交由实现者决定。通常出现这种情况的原因是，规范的这些部分是在 JavaScript 引擎已经有不同实现后才写出的。规范试图通过以下指令捆绑松散的情况：
 
-1. The iterator's throw and return methods are null and are never invoked.
-1. The iterator's next method processes object properties to determine whether the property key should be returned as an iterator value.
-1. Returned property keys do not include keys that are Symbols.
-1. Properties of the target object may be deleted during enumeration.
-1. A property that is deleted before it is processed by the iterator's next method is ignored. If new properties are added to the target object during enumeration, the newly added properties are not guaranteed to be processed in the active enumeration.
-1. A property name will be returned by the iterator's next method at most once in any enumeration.
-1. Enumerating the properties of the target object includes enumerating properties of its prototype, and the prototype of the prototype, and so on, recursively; but a property of a prototype is not processed if it has the same name as a property that has already been processed by the iterator's next method.
-1. The values of `[[Enumerable]]` attributes are not considered when determining if a property of a prototype object has already been processed.
-1. The enumerable property names of prototype objects must be obtained by invoking EnumerateObjectProperties passing the prototype object as the argument.
-1. EnumerateObjectProperties must obtain the own property keys of the target object by calling its `[[OwnPropertyKeys]]` internal method.
+1. 迭代器的 throw 和 return 方法为 null 且永不会调用。
+1. 迭代器的 next 方法处理对象属性以确定属性键是否应作为迭代值返回。
+1. 返回的属性键不包括符号类型的键。
+1. 枚举期间目标对象的属性可能被删除。
+1. 在迭代器的 next 方法处理之前被删除的属性将被忽略。如在枚举期间新增属性，这些新增属性不保证在当前枚举中被处理。
+1. 任何枚举中，属性名称最多将被迭代器的 next 方法返回一次。
+1. 枚举目标对象的属性包括递归枚举其原型的属性及原型的原型的属性；但若原型的属性与迭代器已经处理过的属性同名，则原型的属性不会被处理。
+1. 在判断原型对象的属性是否已经被处理时，不会考虑`[[Enumerable]]`属性的值。
+1. 必须通过调用EnumerateObjectProperties并将原型对象作为参数，获得原型对象的可枚举属性名。
+1. EnumerateObjectProperties必须通过调用目标对象的`[[OwnPropertyKeys]]`内部方法来获取该对象自身的属性键。
 
-These steps sound tedious, however the specification also contains an example implementation which is explicit and much more readable:
+这些步骤听起来很繁琐，不过规范也包含了一个明确且更易读的示例实现：
 
 ```js
 function* EnumerateObjectProperties(obj) {
@@ -109,32 +109,32 @@ function* EnumerateObjectProperties(obj) {
 }
 ```
 
-Now that you've made it this far, you might have noticed from the previous example that V8 does not exactly follow the spec example implementation. As a start, the example for-in generator works incrementally, while V8 collects all keys upfront - mostly for performance reasons. This is perfectly fine, and in fact the spec text explicitly states that the order of operations A - J is not defined. Nevertheless, as you will find out later in this post, there are some corner cases where V8 did not fully respect the specification until 2016.
+既然已经看到这里，你可能已经注意到，上述示例中V8并没有严格遵循规范中的示例实现。首先，示例中的for-in生成器是增量式的，而V8是为了性能考虑，直接预先收集所有键。这是完全可以的，实际上规范文本明确表示，操作顺序A到J是未定义的。然而，正如本文稍后会提到的，直到2016年，V8在某些边界情况下并未完全遵循规范。
 
-## The enum cache
+## 枚举缓存
 
-The example implementation of the `for`-`in` generator follows an incremental pattern of collecting and yielding keys. In V8 the property keys are collected in a first step and only then used in the iteration phase. For V8 this makes a few things easier. To understand why, we need to have a look at the object model.
+`for`-`in`生成器的示例实现遵循了一种增量收集并生成键值的模式。在V8中，属性键值首先被收集，然后在迭代阶段被使用。这种方式让V8实现起来更简单。要理解原因，我们需要看看对象模型。
 
-A simple object such as `{a:'value a', b:'value b', c:'value c'}` can have various internal representations in V8 as we will show in a detailed follow-up post on properties. This means that depending on what type of properties we have — in-object, fast, or slow — the actual property names are stored in different places. This makes collecting enumerable keys a non-trivial undertaking.
+像`{a:'value a', b:'value b', c:'value c'}`这样的简单对象，在V8中可以有各种内部表示，如将在后续深入探讨属性的文章中所示。这意味着，根据属性的类型——是对象内的、快速的还是慢速的——实际的属性名会被存储在不同的地方。这使得收集可枚举键成为一项非平凡的任务。
 
-V8 keeps track of the object's structure by means of a hidden class or so-called Map. Objects with the same Map have the same structure. Additionally each Map has a shared data-structure, the descriptor array, which contains details about each property, such as where the properties are stored on the object, the property name, and details such as enumerability.
+V8通过隐藏类或所谓的Map来跟踪对象的结构。具有相同Map的对象具有相同的结构。此外，每个Map都有一个共享的数据结构，即描述符数组，包含每个属性的详细信息，如属性存储的位置、属性名以及枚举性等细节。
 
-Let’s for a moment assume that our JavaScript object has reached its final shape and no more properties will be added or removed. In this case we could use the descriptor array as a source for the keys. This works if there are only enumerable properties. To avoid the overhead of filtering out non-enumerable properties each time V8 uses a separate EnumCache accessible via the Map's descriptor array.
+假设JavaScript对象已经达到最终形状，并且不会再添加或移除任何属性。在这种情况下，我们可以将描述符数组作为键值的来源。这在只有可枚举属性的情况下有效。为了避免每次都要过滤掉不可枚举的属性，V8使用一个单独的EnumCache，作为通过Map的描述符数组访问的枚举键的缓存。
 
 ![](/_img/fast-for-in/enum-cache.png)
 
-Given that V8 expects that slow dictionary objects frequently change, (i.e. through addition and removal of properties), there is no descriptor array for slow objects with dictionary properties. Hence, V8 does not provide an EnumCache for slow properties. Similar assumptions hold for indexed properties, and as such they are excluded from the EnumCache as well.
+由于V8假设慢速字典对象经常发生变化（如通过添加和删除属性），所以对于具有字典属性的慢速对象没有描述符数组。因此，V8不会为慢速属性提供EnumCache。类似的假设也适用于索引属性，因此它们同样被排除在EnumCache之外。
 
-Let’s summarize the important facts:
+让我们总结一下重要的事实：
 
-- Maps are used to keep track of object shapes.
-- Descriptor arrays store information about properties (name, configurability, visibility).
-- Descriptor arrays can be shared between Maps.
-- Each descriptor array can have an EnumCache listing only the enumerable named keys, not indexed property names.
+- Map用于跟踪对象形状。
+- 描述符数组存储有关属性的信息（名称、可配置性、可见性）。
+- 描述符数组可以在不同的Map之间共享。
+- 每个描述符数组可以有一个EnumCache，仅列出可枚举的命名键，不包括索引属性名。
 
-## The mechanics of `for`-`in`
+## `for`-`in`的机制
 
-Now you know partially how Maps work and how the EnumCache relates to the descriptor array. V8 executes JavaScript via Ignition, a bytecode interpreter, and TurboFan, the optimizing compiler, which both deal with for-in in similar ways. For simplicity we will use a pseudo-C++ style to explain how for-in is implemented internally:
+现在你对Map如何工作以及EnumCache与描述符数组的关系有了部分了解。V8通过Ignition字节码解释器和TurboFan优化编译器来执行JavaScript，这两者以类似的方式处理for-in。为了简单起见，我们将使用一种伪C++样式来解释for-in在内部是如何实现的：
 
 ```js
 // For-In Prepare:
@@ -159,13 +159,13 @@ for (size_t i = 0; i < keys->length(); i++) {
 }
 ```
 
-For-in can be separated into three main steps:
+for-in可以分为三个主要步骤：
 
-1. Preparing the keys to iterate over,
-2. Getting the next key,
-3. Evaluating the `for`-`in` body.
+1. 准备要迭代的键，
+2. 获取下一个键，
+3. 执行`for`-`in`主体。
 
-The "prepare" step is the most complex out of these three and this is the place where the EnumCache comes into play. In the example above you can see that V8 directly uses the EnumCache if it exists and if there are no elements (integer indexed properties) on the object (and its prototype). For the case where there are indexed property names, V8 jumps to a runtime function implemented in C++ which prepends them to the existing enum cache, as illustrated by the following example:
+“准备”步骤是三者中最复杂的部分，这是EnumCache发挥作用的地方。在上面的例子中，如果存在EnumCache并且对象（及其原型）上没有元素（整数索引的属性），你可以看到V8直接使用EnumCache。如果存在索引属性名称，V8将跳转到一个用C++实现的运行时函数，该函数将这些索引属性添加到现有的enum cache中，如下例所示：
 
 ```cpp
 FixedArray* JSObject::GetCachedEnumKeysWithElements() {
@@ -174,7 +174,7 @@ FixedArray* JSObject::GetCachedEnumKeysWithElements() {
 }
 
 FixedArray* Map::GetCachedEnumKeys() {
-  // Get the enumerable property keys from a possibly shared enum cache
+  // 从可能共享的枚举缓存中获取可枚举属性的键
   FixedArray* keys_cache = descriptors()->enum_cache()->keys_cache();
   if (enum_length() == keys_cache->length()) return keys_cache;
   return keys_cache->CopyUpTo(enum_length());
@@ -184,28 +184,28 @@ FixedArray* FastElementsAccessor::PrependElementIndices(
       JSObject* object, FixedArray* property_keys) {
   Assert(object->HasFastElements());
   FixedArray* elements = object->elements();
-  int nof_indices = CountElements(elements)
+  int nof_indices = CountElements(elements);
   FixedArray* result = FixedArray::Allocate(property_keys->length() + nof_indices);
   int insertion_index = 0;
   for (int i = 0; i < elements->length(); i++) {
     if (!HasElement(elements, i)) continue;
     result[insertion_index++] = String::FromInt(i);
   }
-  // Insert property keys at the end.
+  // 将属性键插入到末尾。
   property_keys->CopyTo(result, nof_indices - 1);
   return result;
 }
 ```
 
-In the case where no existing EnumCache was found we jump again to C++ and follow the initially presented spec steps:
+如果没有找到现有的EnumCache，我们再次跳转到C++并遵循最初介绍的规范步骤：
 
 ```cpp
 FixedArray* JSObject::GetEnumKeys() {
-  // Get the receiver’s enum keys.
+  // 获取接收者的枚举键。
   FixedArray* keys = this->GetOwnEnumKeys();
-  // Walk up the prototype chain.
+  // 遍历原型链。
   for (JSObject* object : GetPrototypeIterator()) {
-     // Append non-duplicate keys to the list.
+     // 将非重复的键添加到列表中。
      keys = keys->UnionOfKeys(object->GetOwnEnumKeys());
   }
   return keys;
@@ -239,13 +239,13 @@ FixedArray* FixedArray::UnionOfKeys(FixedArray* other) {
 }
 ```
 
-This simplified C++ code corresponds to the implementation in V8 until early 2016 when we started to look at the UnionOfKeys method. If you look closely you notice that we used a naive algorithm to exclude duplicates from the list which might yield bad performance if we have many keys on the prototype chain. This is how we decided to pursue the optimizations in following section.
+这段简化的C++代码对应了V8中的实现，直到2016年初我们开始研究UnionOfKeys方法。如果你仔细观察，你会发现我们使用了一个天真的算法来从列表中排除重复项，这在原型链上有许多键的情况下可能导致性能问题。这就是我们决定进行以下部分的优化的原因。
 
-## Problems with `for`-`in`
+## `for`-`in`的问题
 
-As we already hinted in the previous section, the UnionOfKeys method has bad worst-case performance. It was based on the valid assumption that most objects have fast properties and thus will benefit from an EnumCache. The second assumption is that there are only few enumerable properties on the prototype chain limiting the time spent in finding duplicates. However, if the object has slow dictionary properties and many keys on the prototype chain, UnionOfKeys becomes a bottleneck as we have to collect the enumerable property names each time we enter for-in.
+正如我们在上一节中暗示的，UnionOfKeys方法在最坏情况下具有糟糕的性能。它基于一个合理的假设，即大多数对象具有快速属性，因此将从EnumCache中受益。第二个假设是原型链上的可枚举属性很少，从而限制了找到重复项所消耗的时间。然而，如果对象具有缓慢的字典属性并且原型链上有许多键，UnionOfKeys就会成为一个瓶颈，因为我们每次进入for-in时都需要收集可枚举属性的名称。
 
-Next to performance issues, there was another problem with the existing algorithm in that it’s not spec compliant. V8 got the following example wrong for many years:
+除了性能问题外，现有的算法还有一个问题，即它不符合规范。以下示例多年间在V8中运行的结果是错误的：
 
 ```js
 var o = {
@@ -257,44 +257,44 @@ Object.defineProperty(o, 'b', {});
 for (var k in o) console.log(k);
 ```
 
-Output:
+输出：
 
 ```
 a
 b
 ```
 
-Perhaps counterintuitively this should just print out `a` instead of `a` and `b`. If you recall the spec text at the beginning of this post, steps G and J imply that non-enumerable properties on the receiver shadow properties on the prototype chain.
+或许看起来反直觉，实际上这应该只打印出`a`，而不是`a`和`b`。如果你回想一下本文开头的规范文本，步骤G和J暗示接收者上的不可枚举属性会遮蔽原型链上的属性。
 
-To make things more complicated, ES6 introduced the [proxy](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy) object. This broke a lot of assumptions of the V8 code. To implement for-in in a spec-compliant manner, we have to trigger the following 5 out of a total of 13 different proxy traps.
+使事情更复杂的是，ES6引入了[proxy](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy)对象。这破坏了许多V8代码的假设。为了以符合规范的方式实现for-in，我们需要触发以下13种proxy陷阱中的5种：
 
 :::table-wrapper
-| Internal method       | Handler method             |
-| --------------------- | -------------------------- |
-| `[[GetPrototypeOf]]`  | `getPrototypeOf`           |
-| `[[GetOwnProperty]]`  | `getOwnPropertyDescriptor` |
-| `[[HasProperty]]`     | `has`                      |
-| `[[Get]]`             | `get`                      |
-| `[[OwnPropertyKeys]]` | `ownKeys`                  |
+| 内部方法            | 处理器方法                |
+| ------------------- | ------------------------ |
+| `[[GetPrototypeOf]]` | `getPrototypeOf`         |
+| `[[GetOwnProperty]]` | `getOwnPropertyDescriptor` |
+| `[[HasProperty]]`     | `has`                   |
+| `[[Get]]`             | `get`                   |
+| `[[OwnPropertyKeys]]` | `ownKeys`               |
 :::
 
-This required a duplicate version of the original GetEnumKeys code which tried to follow the spec example implementation more closely. ES6 Proxies and lack of handling shadowing properties were the core motivation for us to refactor how we extract all the keys for for-in in early 2016.
+这需要一个原始 GetEnumKeys 代码的副本版本，该代码试图更紧密地遵循规范示例实现。ES6 的代理以及处理属性遮罩的缺乏是我们在 2016 年初重新设计如何提取 for-in 的所有键的核心动机。
 
-## The `KeyAccumulator`
+## `KeyAccumulator`
 
-We introduced a separate helper class, the `KeyAccumulator`, which dealt with the complexities of collecting the keys for `for`-`in`. With growth of the ES6 spec, new features like `Object.keys` or `Reflect.ownKeys` required their own slightly modified version of collecting keys. By having a single configurable place we could improve the performance of `for`-`in` and avoid duplicated code.
+我们引入了一个单独的辅助类 `KeyAccumulator`，用于处理收集 `for`-`in` 的键的复杂性。随着 ES6 规范的不断发展，像 `Object.keys` 或 `Reflect.ownKeys` 这样的新功能需要其自己稍作修改的键收集版本。通过设置单一的可配置的位置，我们可以提高 `for`-`in` 的性能并避免代码重复。
 
-The `KeyAccumulator` consists of a fast part that only supports a limited set of actions but is able to complete them very efficiently. The slow accumulator supports all the complex cases, like ES6 Proxies.
+`KeyAccumulator` 包括一个仅支持有限操作但非常高效完成这些操作的快速部分。慢速累加器支持所有复杂情况，比如 ES6 的代理。
 
 ![](/_img/fast-for-in/keyaccumulator.png)
 
-In order to properly filter out shadowing properties we have to maintain a separate list of non-enumerable properties that we have seen so far. For performance reasons we only do this after we figure out that there are enumerable properties on the prototype chain of an object.
+为了正确过滤掉遮罩属性，我们必须维护一个单独的非枚举属性列表，这些属性是迄今为止我们已经看到的。出于性能原因，我们只在发现对象的原型链上存在枚举属性后才会执行此操作。
 
-## Performance improvements
+## 性能改进
 
-With the `KeyAccumulator` in place, a few more patterns became feasible to optimize. The first one was to avoid the nested loop of the original UnionOfKeys method which caused slow corner cases. In a second step we performed more detailed pre-checks to make use of existing EnumCaches and avoid unnecessary copy steps.
+有了 `KeyAccumulator`，一些模式就变得可以优化了。第一个是避免原始 UnionOfKeys 方法中的嵌套循环，这会导致缓慢的极端情况。第二步是执行更详细的预检查，以利用现有的 EnumCaches 并避免不必要的复制步骤。
 
-To illustrate that the spec-compliant implementation is faster, let’s have a look at the following four different objects:
+为了说明规范兼容的实现更快，我们来看以下四种不同的对象：
 
 ```js
 var fastProperties = {
@@ -327,47 +327,45 @@ var elements = {
 }
 ```
 
-- The `fastProperties` object has standard fast properties.
-- The `fastPropertiesWithPrototype` object has additional non-enumerable properties on the prototype chain by using the `Object.prototype`.
-- The `slowProperties` object has slow dictionary properties.
-- The `elements` object has only indexed properties.
+- `fastProperties` 对象有标准的快速属性。
+- `fastPropertiesWithPrototype` 对象通过使用 `Object.prototype` 在原型链上有额外的非枚举属性。
+- `slowProperties` 对象有慢速字典属性。
+- `elements` 对象只有索引属性。
 
-The following graph compares the original performance of running a `for`-`in` loop a million times in a tight loop without the help of our optimizing compiler.
+以下图表比较了在没有优化编译器帮助的情况下，在一个紧密的循环中运行一百万次 `for`-`in` 循环的原始性能。
 
 ![](/_img/fast-for-in/keyaccumulator-benchmark.png)
 
-As we've outlined in the introduction, these improvements became very visible on Wikipedia and Facebook in particular.
+如我们在引言中所述，这些改进在特别是维基百科和 Facebook 上变得非常明显。
 
 ![](/_img/fast-for-in/wikipedia.png)
 
 ![](/_img/fast-for-in/facebook.png)
 
-Besides the initial improvements available in Chrome 51, a second performance tweak yielded another significant improvement. The following graph shows our tracking data of the total time spent in scripting during startup on a Facebook page. The selected range around V8 revision 37937 corresponds to an additional 4% performance improvement!
+除了在 Chrome 51 中的初始改进外，第二次性能调整又带来了显著的改进。下图显示了我们在 Facebook 页面启动期间脚本总时间的跟踪数据。选定的范围大约在 V8 修订版 37937 周围，相当于额外的 4% 性能改进！
 
 ![](/_img/fast-for-in/fastkeyaccumulator.png)
 
-To underline the importance of improving `for`-`in` we can rely on the data from a tool we built back in 2016 that allows us to extract V8 measurements over a set of websites. The following table shows the relative time spent in V8 C++ entry points (runtime functions and builtins) for Chrome 49 over a set of roughly [25 representative real-world websites](/blog/real-world-performance).
+为了强调改进 `for`-`in` 的重要性，我们可以依赖一个工具的数据，该工具是我们在 2016 年构建的，它允许我们在一组网站上提取 V8 测量值。下表显示了 Chrome 49 在大约 [25 个代表性真实网站](/blog/real-world-performance) 上 V8 C++ 入口点（运行时函数和内置函数）中花费的相对时间。
 
 :::table-wrapper
-| Position | Name                                  | Total time |
-| :------: | ------------------------------------- | ---------- |
-| 1        | `CreateObjectLiteral`                 | 1.10%      |
-| 2        | `NewObject`                           | 0.90%      |
-| 3        | `KeyedGetProperty`                    | 0.70%      |
-| 4        | `GetProperty`                         | 0.60%      |
-| 5        | `ForInEnumerate`                      | 0.60%      |
-| 6        | `SetProperty`                         | 0.50%      |
-| 7        | `StringReplaceGlobalRegExpWithString` | 0.30%      |
-| 8        | `HandleApiCallConstruct`              | 0.30%      |
-| 9        | `RegExpExec`                          | 0.30%      |
-| 10       | `ObjectProtoToString`                 | 0.30%      |
-| 11       | `ArrayPush`                           | 0.20%      |
-| 12       | `NewClosure`                          | 0.20%      |
-| 13       | `NewClosure_Tenured`                  | 0.20%      |
-| 14       | `ObjectDefineProperty`                | 0.20%      |
-| 15       | `HasProperty`                         | 0.20%      |
-| 16       | `StringSplit`                         | 0.20%      |
-| 17       | `ForInFilter`                         | 0.10%      |
+| 排序 | 名称                                  | 总时间 |
+| :---: | ------------------------------------- | ------ |
+| 1     | `CreateObjectLiteral`                 | 1.10%  |
+| 2     | `NewObject`                           | 0.90%  |
+| 3     | `KeyedGetProperty`                    | 0.70%  |
+| 4     | `GetProperty`                         | 0.60%  |
+| 5     | `ForInEnumerate`                      | 0.60%  |
+| 6     | `SetProperty`                         | 0.50%  |
+| 7     | `StringReplaceGlobalRegExpWithString` | 0.30%  |
+| 8     | `HandleApiCallConstruct`              | 0.30%  |
+| 9     | `RegExpExec`                          | 0.30%  |
+| 10    | `ObjectProtoToString`                 | 0.30%  |
+| 11    | `ArrayPush`                           | 0.20%  |
+| 12    | `NewClosure`                          | 0.20%  |
+| 13    | `NewClosure_Tenured`                  | 0.20%  |
+| 14    | `ObjectDefineProperty`                | 0.20%  |
+| 15    | `HasProperty`                         | 0.20%  |
+| 16    | `StringSplit`                         | 0.20%  |
+| 17    | `ForInFilter`                         | 0.10%  |
 :::
-
-The most important `for`-`in` helpers are at position 5 and 17, accounting for an average of 0.7% percent of the total time spent in scripting on a website. In Chrome 57 `ForInEnumerate` has dropped to 0.2% of the total time and `ForInFilter` is below the measuring threshold due to a fast path written in assembler.

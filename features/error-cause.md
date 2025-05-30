@@ -1,25 +1,25 @@
 ---
-title: "Error causes"
+title: "错误原因"
 author: "Victor Gomes ([@VictorBFG](https://twitter.com/VictorBFG))"
 avatars: 
   - "victor-gomes"
 date: 2021-07-07
 tags: 
   - ECMAScript
-description: "JavaScript now supports error causes."
+description: "JavaScript 现在支持错误原因。"
 tweet: "1412774651558862850"
 ---
 
-Imagine you have a function that is calling two separate work loads `doSomeWork` and `doMoreWork`. Both functions can throw the same kind of errors, but you need to handle them in different ways.
+假设你有一个函数要调用两个独立的工作负载 `doSomeWork` 和 `doMoreWork`。这两个函数可能抛出同样类型的错误，但你需要以不同的方式处理它们。
 
-Catching the error and throwing it with additional contextual information is a common approach to this problem, for example:
+捕获错误并通过附加上下文信息将其抛出是解决此问题的一种常见方法，例如：
 
 ```js
 function doWork() {
   try {
     doSomeWork();
   } catch (err) {
-    throw new CustomError('Some work failed', err);
+    throw new CustomError('某些工作失败', err);
   }
   doMoreWork();
 }
@@ -27,26 +27,26 @@ function doWork() {
 try {
   doWork();
 } catch (err) {
-  // Is |err| coming from |doSomeWork| or |doMoreWork|?
+  // |err| 是来自 |doSomeWork| 还是 |doMoreWork|?
 }
 ```
 
-Unfortunately the above solution is laborious, since one needs to create its own `CustomError`. And, even worse, no developer tool is capable of providing helpful diagnosing messages to unexpected exceptions, since there is no consensus on how to properly represent these errors.
+不幸的是，上面的解决方案非常繁琐，因为需要创建自己的 `CustomError`。更糟糕的是，没有任何开发工具能够为意外的异常提供有帮助的诊断信息，因为没有关于如何正确表示这些错误的共识。
 
 <!--truncate-->
-What has been missing so far is a standard way to chain errors. JavaScript now supports error causes. An additional options parameter can be added to the `Error` constructor with a `cause` property, the value of which will be assigned to the error instances. Errors can then easily be chained.
+迄今为止缺少的是一种标准化的错误链式处理方式。JavaScript 现在支持错误原因。一个额外的选项参数可以添加到 `Error` 构造函数中，包含一个 `cause` 属性，其值将被分配给错误实例。错误可以很容易地进行链式处理。
 
 ```js
 function doWork() {
   try {
     doSomeWork();
   } catch (err) {
-    throw new Error('Some work failed', { cause: err });
+    throw new Error('某些工作失败', { cause: err });
   }
   try {
     doMoreWork();
   } catch (err) {
-    throw new Error('More work failed', { cause: err });
+    throw new Error('更多工作失败', { cause: err });
   }
 }
 
@@ -54,19 +54,19 @@ try {
   doWork();
 } catch (err) {
   switch(err.message) {
-    case 'Some work failed':
+    case '某些工作失败':
       handleSomeWorkFailure(err.cause);
       break;
-    case 'More work failed':
+    case '更多工作失败':
       handleMoreWorkFailure(err.cause);
       break;
   }
 }
 ```
 
-This feature is available in V8 v9.3.
+此功能在 V8 v9.3 中可用。
 
-## Error causes support
+## 错误原因支持
 
 <feature-support chrome="93 https://chromium-review.googlesource.com/c/v8/v8/+/2784681"
                  firefox="91 https://bugzilla.mozilla.org/show_bug.cgi?id=1679653"

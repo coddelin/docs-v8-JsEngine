@@ -1,40 +1,40 @@
 ---
-title: "WebAssembly Dynamic Tiering ready to try in Chrome 96"
+title: "WebAssembly动态分级已在Chrome 96中准备好试用"
 author: "Andreas Haas — Tierisch fun"
 avatars: 
   - andreas-haas
 date: 2021-10-29
 tags: 
   - WebAssembly
-description: "WebAssembly Dynamic Tiering ready to try in V8 v9.6 and Chrome 96, either through a commandline flag, or through an origin trial"
+description: "WebAssembly动态分级已可在V8 v9.6和Chrome 96中试用，可以通过命令行标志或源试验启用"
 tweet: "1454158971674271760"
 ---
 
-V8 has two compilers to compile WebAssembly code to machine code that can then be executed: the baseline compiler __Liftoff__ and the optimizing compiler __TurboFan__. Liftoff can generate code much faster than TurboFan, which allows fast startup time. TurboFan, on the other hand, can generate faster code, which allows high peak performance.
+V8拥有两个编译器，可以将WebAssembly代码编译为可执行的机器代码：基线编译器__Liftoff__ 和优化编译器 __TurboFan__。Liftoff生成代码的速度比TurboFan快得多，从而实现快速启动时间。而TurboFan可以生成更快的代码，从而实现高峰性能。
 
 <!--truncate-->
-In the current configuration of Chrome a WebAssembly module first gets compiled completely by Liftoff. After Liftoff compilation is finished, the whole module gets compiled again immediately in the background by TurboFan. With streaming compilation, TurboFan compilation can start earlier if Liftoff compiles WebAssembly code faster than the WebAssembly code is downloaded. The initial Liftoff compilation allows fast startup time, whereas the TurboFan compilation in the background provides high peak performance as soon as possible. More details about Liftoff, TurboFan, and the whole compilation process can be found in a [separate document](https://v8.dev/docs/wasm-compilation-pipeline).
+目前Chrome的配置中，一个WebAssembly模块首先完全由Liftoff编译完成。Liftoff编译完成后，整个模块会立即在后台由TurboFan重新编译一次。在流式编译的情况下，如果Liftoff编译WebAssembly代码的速度快于代码下载速度，TurboFan可以更早开始编译。初始的Liftoff编译实现快速启动时间，而在后台进行的TurboFan编译尽快提供高峰性能。有关Liftoff、TurboFan以及整个编译过程的详细信息可以在[单独的文档](https://v8.dev/docs/wasm-compilation-pipeline)中找到。
 
-Compiling the whole WebAssembly module with TurboFan provides the best possible performance once compilation is completed, but that comes at a cost:
+通过TurboFan对整个WebAssembly模块编译可以提供最佳性能，但这需要付出代价：
 
-- The CPU cores that execute TurboFan compilation in the background can block other tasks that would require the CPU, e.g. workers of the web application.
-- TurboFan compilation of unimportant functions may delay the TurboFan compilation of more important functions, which may delay the web application to reach full performance.
-- Some WebAssembly functions may never get executed, and spending resources on compiling these functions with TurboFan may not be worth it.
+- 执行后台TurboFan编译的CPU核心可能会阻塞其他需要CPU的任务，例如网络应用的工作线程。
+- 对不重要的函数执行TurboFan编译可能会延迟对更重要函数的编译，从而可能延迟网络应用达到完全性能的时间。
+- 某些WebAssembly函数可能永远不会被执行，对这些函数进行TurboFan编译可能不值得。
 
-## Dynamic tiering
+## 动态分级
 
-Dynamic tiering should alleviate these issues by compiling only those functions with TurboFan that actually get executed multiple times. Thereby dynamic tiering can change the performance of web applications in several ways: dynamic tiering can speed up startup time by reducing the load on CPUs and thereby allowing startup tasks other than WebAssembly compilation to use the CPU more. Dynamic tiering can also slow down performance by delaying TurboFan compilation for important functions. As V8 does not use on-stack-replacement for WebAssembly code, the execution can be stuck in a loop in Liftoff code, for example. Also code caching is affected, because Chrome only caches TurboFan code, and all functions that never qualify for TurboFan compilation get compiled with Liftoff at startup even when the compiled WebAssembly module already exists in cache.
+动态分级应该可以解决这些问题，仅对那些实际被多次执行的函数进行TurboFan编译。因此动态分级可以从多个方面改变网络应用的性能：动态分级可以通过减少CPU负载并允许启动任务（而不是只用于WebAssembly编译）使用更多CPU，从而加快启动时间。动态分级也可能通过延迟重要函数的TurboFan编译而降低性能。由于V8不对WebAssembly代码使用堆栈替换，执行可能路径于Liftoff代码中的循环。例如，这也会影响代码缓存，因为Chrome仅缓存TurboFan代码，而那些从未符合TurboFan编译资格的函数，即使已存在缓存的编译好的WebAssembly模块，也会在启动时由Liftoff编译。
 
-## How to try it out
+## 如何试用
 
-We encourage interested developers to experiment with the performance impact of dynamic tiering on their web applications. This will allow us to react and avoid potential performance regressions early. Dynamic tiering can be enabled locally by running Chrome with the command line flag `--enable-blink-features=WebAssemblyDynamicTiering`.
+我们鼓励感兴趣的开发者尝试动态分级对其网络应用性能的影响。这使我们能够在早期反应并避免潜在的性能退化。可以通过运行Chrome并添加命令行标志`--enable-blink-features=WebAssemblyDynamicTiering`来本地启用动态分级。
 
-V8 embedders who want to enable dynamic tiering can do so by setting the V8 flag `--wasm-dynamic-tiering`.
+希望启用动态分级的V8嵌入者可以通过设置V8标志`--wasm-dynamic-tiering`来实现。
 
-### Testing in the field with an Origin Trial
+### 使用源试验进行现场测试
 
-Running Chrome with a command line flag is something a developer can do, but it should not be expected from an end user. To experiment with your application in the field, it is possible to join what is called an [Origin Trial](https://github.com/GoogleChrome/OriginTrials/blob/gh-pages/developer-guide.md). Origin trials allow you to try out experimental features with end users through a special token that is tied to a domain. This special token enables WebAssembly dynamic tiering for the end user on specific pages that include the token. To obtain your own token to run an origin trial, [use the application form](https://developer.chrome.com/origintrials/#/view_trial/3716595592487501825).
+运行带有命令行标志的Chrome是一种开发者可以执行的操作，但不能期待普通用户执行此操作。为了在现场尝试应用程序，可以加入所谓的[源试验](https://github.com/GoogleChrome/OriginTrials/blob/gh-pages/developer-guide.md)。源试验允许开发者通过与域绑定的特殊令牌，在具有终端用户的实验性的功能上进行试验。这些特殊令牌能够为包括令牌的特定页面上的终端用户启用WebAssembly动态分级。要获取自己的令牌以运行源试验，请使用[申请表单](https://developer.chrome.com/origintrials/#/view_trial/3716595592487501825)。
 
-## Give us feedback
+## 给我们反馈
 
-We're looking for feedback from developers trying out this feature as it'll help to get the heuristics right on when TurboFan compilation is useful, and when TurboFan compilation does not pay off and can be avoided. The best way to send feedback is to [report issues](https://bugs.chromium.org/p/chromium/issues/detail?id=1260322).
+我们希望收到尝试这个功能的开发者的反馈，因为这将帮助我们优化何时TurboFan编译是有利的，以及货什么时候可以避免TurboFan编译。反馈的最佳方式是[报告问题](https://bugs.chromium.org/p/chromium/issues/detail?id=1260322)。

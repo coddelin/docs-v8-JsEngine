@@ -1,9 +1,9 @@
 ---
-title: "Built-in functions"
-description: "This document explains what “built-ins” are in V8."
+title: "内置函数"
+description: "此文档解释了V8中的“内置函数”。"
 ---
-Built-in functions in V8 come in different flavors w.r.t. implementation, depending on their functionality, performance requirements, and sometimes plain historical development.
+V8中的内置函数根据其功能、性能要求以及有时的历史开发进程，拥有不同的实现方式。
 
-Some are implemented in JavaScript directly, and are compiled into executable code at runtime just like any user JavaScript. Some of them resort to so-called _runtime functions_ for part of their functionality. Runtime functions are written in C++ and called from JavaScript through a `%`-prefix. Usually, these runtime functions are limited to V8 internal JavaScript code. For debugging purposes, they can also be called from normal JavaScript code, if V8 is run with the flag `--allow-natives-syntax`. Some runtime functions are directly embedded by the compiler into generated code. For a list, see `src/runtime/runtime.h`.
+有些直接用JavaScript实现，并在运行时像任何用户JavaScript一样编译成可执行代码。它们中的一部分会使用所谓的_运行时函数_来完成部分功能。运行时函数是用C++编写，并通过`%`前缀从JavaScript中调用。这些运行时函数通常仅限于V8内部JavaScript代码。为了调试目的，如果V8以`--allow-natives-syntax`标志运行，它们也可以从普通的JavaScript代码中调用。有些运行时函数由编译器直接嵌入到生成的代码中。有关列表，请参见`src/runtime/runtime.h`。
 
-Other functions are implemented as _built-ins_, which themselves can be implemented in a number of different ways. Some are implemented directly in platform-dependent assembly. Some are implemented in _CodeStubAssembler_, a platform-independent abstraction. Yet others are directly implemented in C++. Built-ins are sometimes also used to implement pieces of glue code, not necessarily entire functions. For a list, see `src/builtins/builtins.h`.
+其他函数作为_内置函数_实现，这些内置函数可以通过多种不同方式实现。有些直接用平台相关的汇编语言编写；有些使用_CodeStubAssembler_实现，它是一个平台独立的抽象；还有些直接用C++实现。内置函数有时也用于实现胶水代码片段，不一定是完整的函数。有关列表，请参见`src/builtins/builtins.h`。

@@ -1,46 +1,46 @@
 ---
-title: "V8 release v7.7"
-author: "Mathias Bynens ([@mathias](https://twitter.com/mathias)), lazy allocator of release notes"
+title: "V8 发布 v7.7"
+author: "Mathias Bynens（[@mathias](https://twitter.com/mathias)），发布说明的懒惰编写者"
 avatars: 
   - "mathias-bynens"
 date: "2019-08-13 16:45:00"
 tags: 
-  - release
-description: "V8 v7.7 features lazy feedback allocation, faster WebAssembly background compilation, stack trace improvements, and new Intl.NumberFormat functionality."
+  - 发布
+description: "V8 v7.7 包括延迟反馈分配、更快的 WebAssembly 后台编译、堆栈跟踪改进，以及新的 Intl.NumberFormat 功能。"
 tweet: "1161287541611323397"
 ---
-Every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 7.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.7), which is in beta until its release in coordination with Chrome 77 Stable in several weeks. V8 v7.7 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
+每六周，我们根据 [发布流程](/docs/release-process)创建一个新的 V8 分支。每个版本都是在 Chrome Beta 里程碑之前从 V8 的 Git 主分支派生出来的。今天我们很高兴地宣布我们的最新分支，[V8 版本 7.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.7)，该版本将在 beta 阶段持续到几周后与 Chrome 77 正式版同步发布。V8 v7.7充满了各种面向开发人员的新功能。本篇文章在正式发布之前预览了一些亮点。
 
 <!--truncate-->
-## Performance (size & speed)
+## 性能（大小和速度）
 
-### Lazy feedback allocation
+### 延迟反馈分配
 
-In order to optimize JavaScript, V8 collects feedback about the types of operands which are passed to various operations (e.g. `+` or `o.foo`). This feedback is used to optimize these operations by tailoring them to those specific types. This information is stored in “feedback vectors”, and while this information is very important to achieve faster execution times, we also pay a cost for the memory usage required to allocate these feedback vectors.
+为了优化 JavaScript，V8 收集了关于传递给各种操作（例如 `+` 或 `o.foo`）的操作数类型的反馈。此反馈用于通过针对这些特定类型定制操作来优化操作。这些信息存储在“反馈向量”中，这些信息对于实现更快的执行时间非常重要，但我们也要支付为这些反馈向量分配内存所需的成本。
 
-To reduce V8’s memory usage, we now allocate the feedback vectors lazily only after the function has executed a certain amount of bytecode. This avoids allocating feedback vectors for short-lived functions that don’t benefit from the feedback collected. Our lab experiments show that lazily allocating feedback vectors saves about 2–8% of V8 heap size.
+为了减少 V8 的内存使用，我们现在仅在函数执行了一定量的字节码后才延迟分配反馈向量。这避免了为短期函数分配反馈向量，这些函数不会从收集的反馈中受益。我们的实验室实验表明，延迟分配反馈向量可节省约 2-8% 的 V8 堆大小。
 
 ![](/_img/v8-release-77/lazy-feedback-allocation.svg)
 
-Our experiments from the wild show that this reduces V8’s heap size by 1–2% on desktop and 5–6% on mobile platforms for the users of Chrome. There are no performance regressions on desktop, and on mobile platforms we actually saw a performance improvement on low-end phones with limited memory. Please look out for a more detailed blog post on our recent work to save memory.
+来自实际使用中的实验表明，对于 Chrome 用户，这减少了 V8 的堆大小：桌面平台减少 1-2%，移动平台减少 5-6%。桌面平台没有性能回退，而在内存有限的低端手机上，我们实际上看到性能有所提升。请期待我们关于内存节省最近工作的更详细博客文章。
 
-### Scalable WebAssembly background compilation
+### 可扩展的 WebAssembly 后台编译
 
-Over the last milestones, we worked on scalability of background compilation of WebAssembly. The more cores your computer has, the more you benefit from this effort. The graphs below have been created on a 24-core Xeon machine, compiling [the Epic ZenGarden demo](https://s3.amazonaws.com/mozilla-games/ZenGarden/EpicZenGarden.html). Depending on the number of threads used, compilation takes less than half of the time compared to V8 v7.4.
+在过去的几个周期中，我们一直致力于 WebAssembly 后台编译的可扩展性。您的计算机核心数越多，您从此工作中受益越多。以下图表是在 24 核 Xeon 机器上创建的，编译 [Epic ZenGarden 演示](https://s3.amazonaws.com/mozilla-games/ZenGarden/EpicZenGarden.html)。根据使用的线程数量，与 V8 v7.4 相比，编译时间减少了一半以上。
 
 ![](/_img/v8-release-77/liftoff-compilation-speedup.svg)
 
 ![](/_img/v8-release-77/turbofan-compilation-speedup.svg)
 
-### Stack trace improvements
+### 堆栈跟踪改进
 
-Almost all errors thrown by V8 capture a stack trace when they are created. This stack trace can be accessed from JavaScript through the non-standard `error.stack` property. The first time a stack trace is retrieved via `error.stack`, V8 serializes the underlying structured stack trace into a string. This serialized stack trace is kept around to speed up future `error.stack` accesses.
+几乎所有由 V8 抛出的错误在创建时都会捕获堆栈跟踪。这个堆栈跟踪可以通过非标准的 `error.stack` 属性从 JavaScript 访问。首次通过 `error.stack` 检索堆栈跟踪时，V8 会将基础结构化堆栈跟踪序列化为字符串。这个序列化的堆栈跟踪会被保留，以加速未来对 `error.stack` 的访问。
 
-Over the last few versions we worked on some [internal refactorings to the stack trace logic](https://docs.google.com/document/d/1WIpwLgkIyeHqZBc9D3zDtWr7PL-m_cH6mfjvmoC6kSs/edit) ([tracking bug](https://bugs.chromium.org/p/v8/issues/detail?id=8742)), simplifying the code and improving stack trace serialization performance by up to 30%.
+在过去的几个版本中，我们对堆栈跟踪逻辑进行了一些 [内部重构](https://docs.google.com/document/d/1WIpwLgkIyeHqZBc9D3zDtWr7PL-m_cH6mfjvmoC6kSs/edit)（[跟踪问题](https://bugs.chromium.org/p/v8/issues/detail?id=8742)），简化了代码，并将堆栈跟踪序列化性能提高了多达 30%。
 
-## JavaScript language features
+## JavaScript 语言功能
 
-[The `Intl.NumberFormat` API](/features/intl-numberformat) for locale-aware number formatting gains new functionality in this release! It now supports compact notation, scientific notation, engineering notation, sign display, and units of measurement.
+[`Intl.NumberFormat` API](/features/intl-numberformat) 用于本地化数字格式化，在这个版本中获得了新的功能！它现在支持紧凑表示法、科学表示法、工程表示法、符号显示和测量单位。
 
 ```js
 const formatter = new Intl.NumberFormat('en', {
@@ -51,10 +51,10 @@ formatter.format(299792458);
 // → '299,792,458 m/s'
 ```
 
-Refer to [our feature explainer](/features/intl-numberformat) for more details.
+请参阅 [我们的功能说明](/features/intl-numberformat) 了解更多详情。
 
 ## V8 API
 
-Please use `git log branch-heads/7.6..branch-heads/7.7 include/v8.h` to get a list of the API changes.
+请使用 `git log branch-heads/7.6..branch-heads/7.7 include/v8.h` 获取 API 更改列表。
 
-Developers with an [active V8 checkout](/docs/source-code#using-git) can use `git checkout -b 7.7 -t branch-heads/7.7` to experiment with the new features in V8 v7.7. Alternatively you can [subscribe to Chrome’s Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+有 [活跃的 V8 检出](/docs/source-code#using-git) 的开发人员可以使用 `git checkout -b 7.7 -t branch-heads/7.7` 来试用 V8 v7.7 中的新功能。或者，您可以 [订阅 Chrome 的 Beta 频道](https://www.google.com/chrome/browser/beta.html)，很快亲自体验这些新功能。

@@ -1,5 +1,5 @@
 ---
-title: "Promise combinators"
+title: "Promise 组合器"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars: 
   - "mathias-bynens"
@@ -10,26 +10,26 @@ tags:
   - ES2021
   - io19
   - Node.js 16
-description: "There are four promise combinators in JavaScript: Promise.all, Promise.race, Promise.allSettled, and Promise.any."
+description: "JavaScript 中有四种 Promise 组合器：Promise.all、Promise.race、Promise.allSettled 和 Promise.any."
 tweet: "1138819493956710400"
 ---
-Since the introduction of promises in ES2015, JavaScript has supported exactly two promise combinators: the static methods `Promise.all` and `Promise.race`.
+自从 ES2015 引入 Promise 后，JavaScript 支持的 Promise 组合器只有两个：静态方法 `Promise.all` 和 `Promise.race`。
 
-Two new proposals are currently making their way through the standardization process: `Promise.allSettled`, and `Promise.any`. With those additions, there’ll be a total of four promise combinators in JavaScript, each enabling different use cases.
+目前有两个新提案正在进行标准化过程：`Promise.allSettled` 和 `Promise.any`。随着这些新增内容，JavaScript 中将总共有四种 Promise 组合器，每种都支持不同的使用场景。
 
 <!--truncate-->
-Here’s an overview of the four combinators:
+以下是这四种组合器的概述：
 
 
-| name                                        | description                                     | status                                                          |
-| ------------------------------------------- | ----------------------------------------------- | --------------------------------------------------------------- |
-| [`Promise.allSettled`](#promise.allsettled) | does not short-circuit                          | [added in ES2020 ✅](https://github.com/tc39/proposal-promise-allSettled) |
-| [`Promise.all`](#promise.all)               | short-circuits when an input value is rejected  | added in ES2015 ✅                                              |
-| [`Promise.race`](#promise.race)             | short-circuits when an input value is settled   | added in ES2015 ✅                                              |
-| [`Promise.any`](#promise.any)               | short-circuits when an input value is fulfilled | [added in ES2021 ✅](https://github.com/tc39/proposal-promise-any)        |
+| 名称                                       | 描述                                           | 状态                                                           |
+| ------------------------------------------- | ----------------------------------------------- | -------------------------------------------------------------- |
+| [`Promise.allSettled`](#promise.allsettled) | 不会短路                                       | [已添加于 ES2020 ✅](https://github.com/tc39/proposal-promise-allSettled) |
+| [`Promise.all`](#promise.all)               | 当输入值被拒绝时短路                          | 已添加于 ES2015 ✅                                              |
+| [`Promise.race`](#promise.race)             | 当输入值解决时短路                             | 已添加于 ES2015 ✅                                              |
+| [`Promise.any`](#promise.any)               | 当输入值被履行时短路                           | [已添加于 ES2021 ✅](https://github.com/tc39/proposal-promise-any)        |
 
 
-Let’s take a look at an example use case for each combinator.
+让我们来看看每种组合器的一个示例使用场景。
 
 ## `Promise.all`
 
@@ -39,9 +39,9 @@ Let’s take a look at an example use case for each combinator.
                  nodejs="0.12"
                  babel="yes https://github.com/zloirock/core-js#ecmascript-promise"></feature-support>
 
-`Promise.all` lets you know when either all input promises have fulfilled or when one of them rejects.
+`Promise.all` 可让你知道所有输入的 Promise 都已被履行，或者其中一个被拒绝时的情况。
 
-Imagine the user clicks a button and you want to load some stylesheets so you can render a completely new UI. This program kicks off an HTTP request for each stylesheet in parallel:
+假设用户点击了按钮，你想加载一些样式表以便呈现一个全新的 UI。这个程序并行启动了每个样式表的 HTTP 请求：
 
 ```js
 const promises = [
@@ -58,9 +58,9 @@ try {
 }
 ```
 
-You only want to start rendering the new UI once _all_ requests succeeded. If something goes wrong, you want to instead display an error message as soon as possible, without waiting for other any other work to finish.
+你只希望在所有请求都成功后开始渲染新的 UI。如果出现问题，你还希望尽快显示错误信息，而无需等待其他工作完成。
 
-In such a case, you could use `Promise.all`: you want to know when all promises are fulfilled, _or_ as soon as one of them rejects.
+在这种情况下，你可以使用 `Promise.all`：你希望知道所有 Promise 是否被履行，_或者_其中一个是否被拒绝。
 
 ## `Promise.race`
 
@@ -70,12 +70,12 @@ In such a case, you could use `Promise.all`: you want to know when all promises 
                  nodejs="0.12"
                  babel="yes https://github.com/zloirock/core-js#ecmascript-promise"></feature-support>
 
-`Promise.race` is useful if you want to run multiple promises, and either…
+`Promise.race` 很有用，当你希望运行多个 Promise，并且…
 
-1. do something with the first successful result that comes in (in case one of the promises fulfills), _or_
-1. do something as soon as one of the promises rejects.
+1. 对于第一个成功的结果采取某些行动（当其中一个 Promise 被履行时），_或者_
+2. 当其中一个 Promise 被拒绝时就采取行动。
 
-That is, if one of the promises rejects, you want to preserve that rejection to treat the error case separately. The following example does exactly that:
+也就是说，如果其中一个 Promise 被拒绝，你希望保留该拒绝以单独处理错误情况。以下示例正是这种情况：
 
 ```js
 try {
@@ -89,7 +89,7 @@ try {
 }
 ```
 
-We kick off a computationally expensive task that might take a long time, but we race it against a promise that rejects after 2 seconds. Depending on the first promise to fulfill or reject, we either render the computed result, or the error message, in two separate code paths.
+我们启动了一个可能耗时较长的计算任务，但将它与一个 2 秒后被拒绝的 Promise 竞争。根据第一个 Promise 的履行或拒绝，我们可以在两条单独的代码路径中分别渲染计算结果或错误信息。
 
 ## `Promise.allSettled`
 
@@ -99,9 +99,9 @@ We kick off a computationally expensive task that might take a long time, but we
                  nodejs="12.9.0 https://nodejs.org/en/blog/release/v12.9.0/"
                  babel="yes https://github.com/zloirock/core-js#ecmascript-promise"></feature-support>
 
-`Promise.allSettled` gives you a signal when all the input promises are _settled_, which means they’re either _fulfilled_ or _rejected_. This is useful in cases where you don’t care about the state of the promise, you just want to know when the work is done, regardless of whether it was successful.
+`Promise.allSettled` 可在所有输入的 Promise 均已解决（即被履行或被拒绝）时发出信号。在不关心 Promise 状态的情况下，这非常有用，你只希望知道工作已经完成，而不管是否成功。
 
-For example, you can kick off a series of independent API calls and use `Promise.allSettled` to make sure they’re all completed before doing something else, like removing a loading spinner:
+例如，你可以启动一系列独立的 API 调用，并使用 `Promise.allSettled` 来确保它们全部完成后再执行其他操作，比如移除加载指示器：
 
 ```js
 const promises = [
@@ -109,10 +109,10 @@ const promises = [
   fetch('/api-call-2'),
   fetch('/api-call-3'),
 ];
-// Imagine some of these requests fail, and some succeed.
+// 假设其中一些请求失败，另一些成功。
 
 await Promise.allSettled(promises);
-// All API calls have finished (either failed or succeeded).
+// 所有 API 调用都已完成（无论失败还是成功）。
 removeLoadingIndicator();
 ```
 
@@ -124,7 +124,7 @@ removeLoadingIndicator();
                  nodejs="16"
                  babel="yes https://github.com/zloirock/core-js#ecmascript-promise"></feature-support>
 
-`Promise.any` gives you a signal as soon as one of the promises fulfills. This is similar to `Promise.race`, except `any` doesn’t reject early when one of the promises rejects.
+`Promise.any` 可以在其中一个 promise 完成时立即给予信号。这类似于 `Promise.race`，但 `any` 不会在某个 promise 拒绝时提前失败。
 
 ```js
 const promises = [
@@ -134,13 +134,13 @@ const promises = [
 ];
 try {
   const first = await Promise.any(promises);
-  // Any of the promises was fulfilled.
+  // 任意一个 promise 被 fulfilled。
   console.log(first);
-  // → e.g. 'b'
+  // → 例如 'b'
 } catch (error) {
-  // All of the promises were rejected.
+  // 所有的 promise 都被拒绝。
   console.assert(error instanceof AggregateError);
-  // Log the rejection values:
+  // 记录拒绝的值：
   console.log(error.errors);
   // → [
   //     <TypeError: Failed to fetch /endpoint-a>,
@@ -150,10 +150,10 @@ try {
 }
 ```
 
-This code example checks which endpoint responds the fastest, and then logs it. Only if _all_ of the requests fail do we end up in the `catch` block, where we can then handle the errors.
+此代码示例检查哪个端点响应最快，并打印日志。只有当 _所有_ 请求都失败时，我们才会进入 `catch` 块，在那里可以处理错误。
 
-`Promise.any` rejections can represent multiple errors at once. To support this at the language-level, a new error type called `AggregateError` is introduced. In addition to its basic usage in the above example, `AggregateError` objects can also be programmatically constructed, just like the other error types:
+`Promise.any` 的拒绝可能同时代表多个错误。为了在语言层面支持这一点，引入了一种称为 `AggregateError` 的新错误类型。除了在上述示例中的基本使用，`AggregateError` 对象还可以像其他错误类型那样以编程方式构造：
 
 ```js
-const aggregateError = new AggregateError([errorA, errorB, errorC], 'Stuff went wrong!');
+const aggregateError = new AggregateError([errorA, errorB, errorC], '发生了一些错误！');
 ```

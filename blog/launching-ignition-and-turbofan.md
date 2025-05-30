@@ -1,56 +1,56 @@
 ---
-title: "Launching Ignition and TurboFan"
-author: "the V8 team"
+title: "启动 Ignition 和 TurboFan"
+author: "V8 团队"
 date: "2017-05-15 13:33:37"
 tags: 
-  - internals
-description: "V8 v5.9 comes with a brand-new JavaScript execution pipeline, built upon the Ignition interpreter and the TurboFan optimizing compiler."
+  - 内部
+description: "V8 v5.9 引入了全新的 JavaScript 执行管线，基于 Ignition 解释器和 TurboFan 优化编译器构建而成。"
 ---
-Today we are excited to announce the launch of a new JavaScript execution pipeline for V8 v5.9 that will reach Chrome Stable in v59. With the new pipeline, we achieve big performance improvements and significant memory savings on real-world JavaScript applications. We’ll discuss the numbers in more detail at the end of this post, but first let’s take a look at the pipeline itself.
+今天我们很高兴宣布 V8 v5.9 的新 JavaScript 执行管线即将推出，并将在 v59 稳定版的 Chrome 中上线。借助这一新管线，我们在现实世界的 JavaScript 应用中实现了显著的性能提升和内存节省。我们将在本文最后详细讨论相关数据，但首先让我们来看看这条管线。 
 
 <!--truncate-->
-The new pipeline is built upon [Ignition](/docs/ignition), V8’s interpreter, and [TurboFan](/docs/turbofan), V8’s newest optimizing compiler. These technologies [should](/blog/turbofan-jit) [be](/blog/ignition-interpreter) [familiar](/blog/test-the-future) to those of you who have followed the V8 blog over the last few years, but the switch to the new pipeline marks a big new milestone for both.
+新管线基于[V8的解释器 Ignition](/docs/ignition)和[V8最新的优化编译器 TurboFan](/docs/turbofan)构建。这些技术对于过去几年关注 V8 博客的读者来说[应该](/blog/turbofan-jit) [已经](/blog/ignition-interpreter) [非常熟悉](/blog/test-the-future)，但新管线的启用标志着两者迈出了重要的里程碑。
 
 <figure>
   <img src="/_img/v8-ignition.svg" width="256" height="256" alt="" loading="lazy"/>
-  <figcaption>Logo for Ignition, V8’s brand-new interpreter</figcaption>
+  <figcaption>Ignition 的标志，V8全新的解释器</figcaption>
 </figure>
 
 <figure>
   <img src="/_img/v8-turbofan.svg" width="256" height="256" alt="" loading="lazy"/>
-  <figcaption>Logo for TurboFan, V8’s brand-new optimizing compiler</figcaption>
+  <figcaption>TurboFan 的标志，V8全新的优化编译器</figcaption>
 </figure>
 
-For the first time, Ignition and TurboFan are used universally and exclusively for JavaScript execution in V8 v5.9. Furthermore, starting with v5.9, Full-codegen and Crankshaft, the technologies that [served V8 well since 2010](https://blog.chromium.org/2010/12/new-crankshaft-for-v8.html), are no longer used in V8 for JavaScript execution, since they no longer are able to keep pace with new JavaScript language features and the optimizations those features require. We plan to remove them completely very soon. That means that V8 will have an overall much simpler and more maintainable architecture going forward.
+首次，Ignition 和 TurboFan 在 V8 v5.9 中被普遍且独占地应用于 JavaScript 执行。此外，从 v5.9 开始，Full-codegen 和 Crankshaft，这些[自 2010 年以来支持 V8 的技术](https://blog.chromium.org/2010/12/new-crankshaft-for-v8.html)，将不再用于 JavaScript 的执行，因为它们已经无法跟上新的 JavaScript 语言特性及其要求的优化。我们计划很快将它们彻底移除。这意味着 V8 的架构未来将更加简单且易于维护。
 
-## A long journey
+## 一段漫长的旅程
 
-The combined Ignition and TurboFan pipeline has been in development for almost 3½ years. It represents the culmination of the collective insight that the V8 team has gleaned from measuring real-world JavaScript performance and carefully considering the shortcomings of Full-codegen and Crankshaft. It is a foundation with which we will be able to continue to optimize the entirety of the JavaScript language for years to come.
+结合 Ignition 和 TurboFan 的管线已开发了近三年半。它代表了 V8 团队从测量现实世界的 JavaScript 性能中汲取经验，并仔细审视 Full-codegen 和 Crankshaft 的不足的成果。它是我们未来几年能够继续优化整个 JavaScript 语言的基础。
 
-The TurboFan project originally started in late 2013 to address the shortcomings of Crankshaft. Crankshaft can only optimize a subset of the JavaScript language. For example, it was not designed to optimize JavaScript code using structured exception handling, i.e. code blocks demarcated by JavaScript’s try, catch, and finally keywords. It is difficult to add support for new language features in Crankshaft, since these features almost always require writing architecture-specific code for nine supported platforms. Furthermore, Crankshaft’s architecture is limited in the extent that it can generate optimal machine code. It can only squeeze so much performance out of JavaScript, despite requiring the V8 team to maintain more than ten thousand lines of code per chip architecture.
+TurboFan 项目最初于 2013 年末启动，用以解决 Crankshaft 的不足。Crankshaft 只能优化 JavaScript 语言的一部分功能。例如，它无法优化使用结构化异常处理的 JavaScript 代码，即通过 JavaScript 的 try、catch 和 finally 关键字标明的代码块。为 Crankshaft 添加对新语言功能的支持很困难，因为这些功能几乎总是需要为九个支持的平台编写特定架构的代码。此外，Crankshaft 的架构在生成最佳机器代码的能力方面也有限。尽管需要 V8 团队为每种芯片架构维护超过一万行代码，它在 JavaScript 的性能提升上仍然有限。
 
-TurboFan was designed from the beginning not only to optimize all of the language features found in the JavaScript standard at the time, ES5, but also all the future features planned for ES2015 and beyond. It introduces a layered compiler design that enables a clean separation between high-level and low-level compiler optimizations, making it easy to add new language features without modifying architecture-specific code. TurboFan adds an explicit instruction selection compilation phase that makes it possible to write far less architecture-specific code for each supported platform in the first place. With this new phase, architecture-specific code is written once and it rarely needs to be changed. These and other decisions lead to a more maintainable and extensible optimizing compiler for all of the architectures that V8 supports.
+TurboFan 从一开始就设计为不仅优化当时 JavaScript 标准中的所有语言功能（ES5），还优化计划出现在 ES2015 及未来版本中的所有功能。它采用分层的编译器设计，使高阶和低阶编译器优化能够清晰分离，从而无需修改特定架构的代码即可轻松添加新的语言功能。TurboFan 增加了一个显式指令选择编译阶段，使得初始支持的平台所需的架构专属代码大幅减少。通过这一新阶段，架构专属代码只需编写一次，并且很少需要修改。这些及其他决定使得 V8 所支持的所有架构都有了一个更易维护且可扩展的优化编译器。
 
-The original motivation behind V8’s Ignition interpreter was to reduce memory consumption on mobile devices. Before Ignition, the code generated by V8’s Full-codegen baseline compiler typically occupied almost one third of the overall JavaScript heap in Chrome. That left less space for a web application’s actual data. When Ignition was enabled for Chrome M53 on Android devices with limited RAM, the memory footprint required for baseline, non-optimized JavaScript code shrank by a factor of nine on ARM64-based mobile devices.
+V8 的 Ignition 解释器的初衷是减少移动设备上的内存消耗。在启用 Ignition 之前，V8 的 Full-codegen 基线编译器生成的代码通常占用 Chrome JavaScript 堆的三分之一。这使得留给网页应用实际数据的空间更少。当 Ignition 在有限内存的 ARM64 移动设备上启用用于 Android 的 Chrome M53 时，基线未优化 JavaScript 代码所需内存缩减了九倍。
 
-Later the V8 team took advantage of the fact that Ignition’s bytecode can be used to generate optimized machine code with TurboFan directly rather than having to re-compile from source code as Crankshaft did. Ignition’s bytecode provides a cleaner and less error-prone baseline execution model in V8, simplifying the deoptimization mechanism that is a key feature of V8’s [adaptive optimization](https://en.wikipedia.org/wiki/Adaptive_optimization). Finally, since generating bytecode is faster than generating Full-codegen’s baseline compiled code, activating Ignition generally improves script startup times and in turn, web page loads.
+后来，V8团队利用了Ignition字节码可以直接与TurboFan生成优化的机器码，而不需要像Crankshaft那样从源代码重新编译的事实。Ignition字节码为V8提供了一个更清晰且更少错误的基础执行模型，从而简化了V8的关键功能——[自适应优化](https://en.wikipedia.org/wiki/Adaptive_optimization)中的去优化机制。最后，由于生成字节码比生成Full-codegen的基础编译代码更快，启用Ignition通常能改善脚本启动时间，从而加速网页加载。
 
-By coupling the design of Ignition and TurboFan closely, there are even more benefits to the overall architecture. For example, rather than writing Ignition’s high-performance bytecode handlers in hand-coded assembly, the V8 team instead uses TurboFan’s [intermediate representation](https://en.wikipedia.org/wiki/Intermediate_representation) to express the handlers’ functionality and lets TurboFan do the optimization and final code generation for V8’s numerous supported platforms. This ensures Ignition performs well on all of V8’s supported chip architectures while simultaneously eliminating the burden of maintaining nine separate platform ports.
+通过将Ignition和TurboFan的设计紧密结合，整个架构还能带来更多优势。例如，与其用手写汇编代码开发Ignition的高性能字节码处理器，V8团队选择使用TurboFan的[中间表示](https://en.wikipedia.org/wiki/Intermediate_representation)来表达处理器的功能，并让TurboFan进行优化和最终代码生成，适配V8支持的众多平台。这确保了Ignition在V8支持的所有芯片架构上都能良好运行，同时免去了维护九个独立平台端口的负担。
 
-## Running the numbers
+## 数据分析
 
-History aside, now let’s take a look at the new pipeline’s real-world performance and memory consumption.
+撇开历史不谈，现在让我们看看新流水线的实际性能和内存消耗。
 
-The V8 team continually monitors the performance of real-world use cases using the [Telemetry - Catapult](https://catapult.gsrc.io/telemetry) framework. [Previously](/blog/real-world-performance) in this blog we’ve discussed why it’s so important to use the data from real-world tests to drive our performance optimization work and how we use [WebPageReplay](https://github.com/chromium/web-page-replay) together with Telemetry to do so. The switch to Ignition and TurboFan shows performance improvements in those real-world test cases. Specifically, the new pipeline results in significant speed-ups on user interaction story tests for well-known websites:
+V8团队通过使用[Telemetry - Catapult](https://catapult.gsrc.io/telemetry)框架持续监控真实用例的性能。我们之前在[博客](/blog/real-world-performance)中讨论过，为何使用真实世界测试数据来推动性能优化工作如此重要，以及我们如何结合[WebPageReplay](https://github.com/chromium/web-page-replay)和Telemetry实现这一目标。切换到Ignition和TurboFan后，这些真实测试用例中的性能都有所提升。具体来说，新流水线使用户交互测试中著名网站的运行速度显著加快：
 
-![Reduction in time spent in V8 for user interaction benchmarks](/_img/launching-ignition-and-turbofan/improvements-per-website.png)
+![V8在用户交互基准测试中耗时减少](/_img/launching-ignition-and-turbofan/improvements-per-website.png)
 
-Although Speedometer is a synthetic benchmark, we’ve previously uncovered that it does a better job of approximating the real-world workloads of modern JavaScript than other synthetic benchmarks. The switch to Ignition and TurboFan improves V8’s Speedometer score by 5%-10%, depending on platform and device.
+虽然Speedometer是一个合成基准测试，但我们之前发现它比其他合成基准测试更好地贴近了现代JavaScript的真实工作负载。切换到Ignition和TurboFan使V8的Speedometer分数提高了5%-10%，具体取决于平台和设备。
 
-The new pipeline also speeds up server-side JavaScript. [AcmeAir](https://github.com/acmeair/acmeair-nodejs), a benchmark for Node.js that simulates the server backend implementation of a fictitious airline, runs more than 10% faster using V8 v5.9.
+新流水线还加速了服务器端JavaScript。[AcmeAir](https://github.com/acmeair/acmeair-nodejs) 是一个Node.js的基准测试，它模拟了一个虚构航空公司的服务器后端实现，在使用V8 v5.9时运行速度提升了超过10%。
 
-![Improvements on Web and Node.js benchmarks](/_img/launching-ignition-and-turbofan/benchmark-scores.png)
+![Web及Node.js基准测试的提升](/_img/launching-ignition-and-turbofan/benchmark-scores.png)
 
-Ignition and TurboFan also reduce V8’s overall memory footprint. In Chrome M59, the new pipeline slims V8’s memory footprint on desktop and high-end mobile devices by 5-10%. This reduction is a result of bringing the Ignition memory savings that have been [previously covered](/blog/ignition-interpreter) in this blog to all devices and platforms supported by V8.
+Ignition和TurboFan还降低了V8的整体内存占用。在Chrome M59中，新流水线使V8在桌面和高端移动设备上的内存占用减少了5%-10%。这是将Ignition的内存节约效果扩展到V8支持的所有设备和平台的结果，[之前博客](/blog/ignition-interpreter)中已有详细介绍。
 
-These improvements are just the start. The new Ignition and TurboFan pipeline paves the way for further optimizations that will boost JavaScript performance and shrink V8’s footprint in both Chrome and in Node.js for years to come. We look forward to sharing those improvements with you as we roll them out to developers and users. Stay tuned.
+这些改进只是起点。新的Ignition和TurboFan流水线为进一步提升JavaScript性能及缩小V8在Chrome和Node.js中的占用铺平了道路，未来几年还将继续改进。随着我们向开发者和用户推出这些优化，请保持关注。

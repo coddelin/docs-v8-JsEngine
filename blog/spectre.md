@@ -1,47 +1,47 @@
 ---
-title: "A year with Spectre: a V8 perspective"
-author: "Ben L. Titzer and Jaroslav Sevcik"
+title: "与Spectre的一年：V8的视角"
+author: "Ben L. Titzer 与 Jaroslav Sevcik"
 avatars: 
   - "ben-titzer"
   - "jaroslav-sevcik"
 date: "2019-04-23 14:15:22"
 tags: 
-  - security
+  - 安全
 tweet: "1120661732836499461"
-description: "The V8 team details their analysis and mitigation strategy for Spectre, one of the top computer security issues of 2018."
+description: "V8团队详述他们对Spectre的分析及缓解策略，这是2018年最重要的计算机安全问题之一。"
 ---
-On January 3, 2018, Google Project Zero and others [disclosed](https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html) the first three of a new class of vulnerabilities that affect CPUs that perform speculative execution, dubbed [Spectre](https://spectreattack.com/spectre.pdf) and [Meltdown](https://meltdownattack.com/meltdown.pdf). Using the [speculative execution](https://en.wikipedia.org/wiki/Speculative_execution) mechanisms of CPUs, an attacker could temporarily bypass both implicit and explicit safety checks in code that prevent programs from reading unauthorized data in memory. While processor speculation was designed to be a microarchitectural detail, invisible at the architectural level, carefully crafted programs could read unauthorized information in speculation and disclose it through side channels such as the execution time of a program fragment.
+2018年1月3日，Google Project Zero及其他团队[披露](https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html)了一类新的CPU漏洞统称为[Spectre](https://spectreattack.com/spectre.pdf)与[Meltdown](https://meltdownattack.com/meltdown.pdf)。利用CPU的[预测执行](https://en.wikipedia.org/wiki/Speculative_execution)机制，攻击者可以暂时绕过代码中的隐式和显式安全检查，从而读取内存中未经授权的数据。尽管预测执行设计为微架构细节，原本应该在架构层面不可见，但精心构造的程序可以在预测过程中读取未经授权的信息，并通过诸如程序片段的执行时间这样的侧信道将其泄露。
 
 <!--truncate-->
-When it was shown that JavaScript could be used to mount Spectre attacks, the V8 team became involved in tackling the problem. We formed an emergency response team and worked closely with other teams at Google, our partners at other browser vendors, and our hardware partners. In concert with them, we proactively engaged in both offensive research (constructing proof-of-concept gadgets) and defensive research (mitigations for potential attacks).
+当证明JavaScript可以用来发起Spectre攻击时，V8团队参与到了解决这个问题的工作中。我们成立了一个紧急应对小组，并紧密与Google其他团队、其他浏览器厂商的合作伙伴以及硬件合作伙伴合作。与他们配合，我们积极开展了攻防研究（构造概念验证工具）以及防御研究（潜在攻击的缓解措施）。
 
-A Spectre attack consists of two parts:
+一次Spectre攻击由两个部分组成：
 
-1. _Leak of otherwise-inaccessible data into hidden CPU state._ All known Spectre attacks use speculation to leak bits of inaccessible data into CPU caches.
-1. _Extract the hidden state_ to recover the inaccessible data. For this, the attacker needs a clock of sufficient precision. (Surprisingly low-resolution clocks can be sufficient, especially with techniques such as edge thresholding.)
+1. _将原本无法访问的数据泄露到CPU的隐藏状态中。_ 所有已知的Spectre攻击均使用预测执行将无法访问的数据位泄露到CPU缓存中。
+2. _提取隐藏状态以恢复无法访问的数据。_ 为此，攻击者需要一个具有足够精度的时钟。（令人惊讶的是，分辨率较低的时钟也可以足够，特别是在使用边界阈值等技术的情况下。）
 
-In theory, it would be sufficient to defeat either of the two components of an attack. Since we do not know of any way to defeat any of the parts perfectly, we designed and deployed mitigations that greatly reduce the amount of information that is leaked into CPU caches _and_ mitigations that make it hard to recover the hidden state.
+理论上，只需破坏攻击的任一组成部分即可阻止攻击。由于我们尚不知道如何完美地破坏任何一个部分，我们设计和部署了缓解措施，大大减少泄露到CPU缓存中的信息量，并限制恢复隐藏状态的难度。
 
-## High-precision timers
+## 高精度计时器
 
-The tiny state changes that can survive speculative execution give rise to correspondingly tiny, almost impossibly tiny, timing differences — on the order of a billionth of a second. To directly detect individual such differences, an attacker program needs a high precision timer. CPUs offer such timers, but the Web Platform does not expose them. The Web Platform’s most precise timer, `performance.now()`, had a resolution of single-digit micro-seconds, which was originally thought unusable for this purpose. Yet two years ago, an academic research team specializing in micro-architectural attacks published [a paper](https://gruss.cc/files/fantastictimers.pdf) that studied the availability of timers in the web platform. They concluded that concurrent mutable shared memory and various resolution-recovery techniques could allow the construction of even higher resolution timers, down to nanosecond resolution. Such timers are precise enough to detect individual L1 cache hits and misses, which is usually how Spectre gadgets leak information.
+预测执行产生的细微状态变化会引发同样微小（几乎不可能察觉）的时间差异，量级为十亿分之一秒。为了直接检测单个这样的时间差异，攻击程序需要一个高精度的计时器。虽然CPU提供了这样的计时器，但Web平台并未暴露它们。Web平台最精确的计时器是`performance.now()`，其分辨率为单位数字的微秒，这原本被认为不能用于这一目的。然而，两年前，一个专攻微架构攻击的学术研究团队发表了一篇[论文](https://gruss.cc/files/fantastictimers.pdf)，研究了Web平台中计时器的可用性。他们得出结论，使用并发可变共享内存和各种分辨率恢复技术可以构建更高分辨率的计时器，精确到纳秒级。这种计时器足够精确，可以检测到L1缓存的单个命中和未命中，这通常是Spectre工具泄露信息的方式。
 
-## Timer mitigations
+## 计时器缓解措施
 
-To disrupt the ability to detect small timing differences, browser vendors took a multi-pronged approach. On all browsers, the resolution of `performance.now()` was reduced (in Chrome, from 5 microseconds to 100), and random uniform jitter was introduced to prevent resolution recovery. After consultation among all the vendors, together we decided to take the unprecedented step of immediately and retroactively disabling the `SharedArrayBuffer` API across all browsers in order to prevent the construction of a nanosecond timer that could be used for Spectre attacks.
+为了破坏检测小时间差异的能力，浏览器厂商采取了多管齐下的策略。在所有浏览器中，`performance.now()`的分辨率被降低（在Chrome中从5微秒降低到100微秒），并引入了随机均匀抖动以防止分辨率恢复。在所有厂商的协商下，我们共同决定采取前所未有的措施，即立即并追溯地在所有浏览器中禁用`SharedArrayBuffer` API，以防止用于Spectre攻击的纳秒计时器构建。
 
-## Amplification
+## 放大
 
-It became clear early on in our offensive research that timer mitigations alone would not be sufficient. One reason why is that an attacker may simply repeatedly execute their gadget so that the cumulative time difference is much larger than a single cache hit or miss. We were able to engineer reliable gadgets that use many cache lines at a time, up to the cache capacity, yielding timing differences as large as 600 microseconds. We later discovered arbitrary amplification techniques that are not limited by the cache capacity. Such amplification techniques rely on multiple attempts to read the secret data.
+在我们的攻防研究早期我们便清楚，仅靠计时器缓解措施可能不够。其中一个原因是攻击者可以简单地反复执行他们的工具，以使累计时间差异远大于单个缓存命中或未命中。我们能够设计出可靠的工具，利用多个缓存行（甚至达到缓存容量），产生多达600微秒的时间差异。后来我们发现了不受缓存容量限制的任意放大技术。这些放大技术依赖于多次尝试读取秘密数据。
 
-## JIT mitigations
+## JIT缓解措施
 
-To read inaccessible data using Spectre, the attacker tricks the CPU into speculatively executing code that reads normally inaccessible data and encodes it into the cache. The attack can be broken in two ways:
+为了使用Spectre读取不可访问的数据，攻击者欺骗CPU推测性地执行读取通常不可访问数据并将其编码到缓存中的代码。可以通过以下两种方式阻止攻击：
 
-1. Prevent speculative execution of code.
-1. Prevent speculative execution from reading inaccessible data.
+1. 阻止代码的推测性执行。
+1. 阻止推测性执行读取不可访问的数据。
 
-We have experimented with (1) by inserting the recommended speculation barrier instructions, such as Intel’s `LFENCE`, on every critical conditional branch, and by using [retpolines](https://support.google.com/faqs/answer/7625886) for indirect branches. Unfortunately, such heavy-handed mitigations greatly reduce performance (2–3× slowdown on the Octane benchmark). Instead, we chose approach (2), inserting mitigation sequences that prevent reading secret data due to mis-speculation. Let us illustrate the technique on the following code snippet:
+我们尝试了方法（1），在每个关键条件分支上插入推荐的推测屏障指令，例如Intel的`LFENCE`，以及使用[retpolines](https://support.google.com/faqs/answer/7625886)来处理间接分支。不幸的是，这种强制性的缓解措施会大幅降低性能（在Octane基准测试中慢了2-3倍）。因此，我们选择了方法（2），插入缓解序列以防止由于错误推测读取秘密数据。我们在下面的代码片段中说明这种技术：
 
 ```js
 if (condition) {
@@ -49,9 +49,9 @@ if (condition) {
 }
 ```
 
-For simplicity, let us assume condition is `0` or `1`. The code above is vulnerable if the CPU speculatively reads from `a[i]` when `i` is out-of-bounds, accessing normally inaccessible data. The important observation is that in such case, the speculation tries to read `a[i]` when `condition` is `0`. Our mitigation rewrites this program so that it behaves exactly like the original program but does not leak any speculatively loaded data.
+为简单起见，让我们假设condition是`0`或`1`。如果当`i`超出范围时CPU推测性地从`a[i]`读取，这段代码是漏洞所在，访问了通常不可访问的数据。重要的观察是，在这种情况下，当`condition`是`0`时，推测会尝试读取`a[i]`。我们的缓解措施将该程序重写，使其行为与原始程序完全相同，但不会泄漏任何推测性加载的数据。
 
-We reserve one CPU register which we call the poison to track whether code is executing in a mispredicted branch. The poison register is maintained across all branches and calls in generated code, so that any mispredicted branch causes the poison register to become `0`. Then we instrument all memory accesses so that they unconditionally mask the result of all loads with the current value of the poison register. This does not prevent the processor from predicting (or mispredicting) branches, but destroys the information of (potentially out-of-bounds) loaded values due to mispredicted branches. The instrumented code is shown below (assuming that `a` is a number array).
+我们保留了一个称为毒药寄存器的CPU寄存器，用于跟踪代码是否在错误预测的分支中执行。毒药寄存器在生成的代码中维护跨所有分支和调用，因此任何错误预测的分支都会导致毒药寄存器变为`0`。然后我们为所有的内存访问进行仪器化，使它们无条件地用当前毒药寄存器的值屏蔽所有加载的结果。这不会阻止处理器预测（或错误预测）分支，但会破坏由于错误预测分支导致的（可能超出范围的）加载值的信息。下面显示了经过仪器化的代码（假设`a`是一个数字数组）。
 
 ```js/0,3,4
 let poison = 1;
@@ -62,22 +62,22 @@ if (condition) {
 }
 ```
 
-The additional code does not have any effect on the normal (architecturally-defined) behavior of the program. It only affects micro-architectural state when running on speculating CPUs. If the program was instrumented at source level, advanced optimizations in modern compilers might remove such instrumentation. In V8, we prevent our compiler from removing the mitigations by inserting them in a very late phase of compilation.
+额外的代码对程序的正常（架构定义的）行为没有任何影响。它仅在运行于推测性CPU时影响微架构状态。如果程序在源级别被仪器化，现代编译器中的高级优化可能会移除这些仪器化。在V8中，我们通过在编译的非常晚阶段插入缓解措施来防止编译器移除这些缓解措施。
 
-We also use the poisoning technique to prevent leaks from misspeculated indirect branches in the interpreter’s bytecode dispatch loop and in the JavaScript function call sequence. In the interpreter, we set the poison to `0` if the bytecode handler (i.e. the machine code sequence that interprets a single bytecode) does not match the current bytecode. For JavaScript calls, we pass the target function as a parameter (in a register) and we set the poison to `0` at the beginning of each function if the incoming target function does not match the current function. With the poisoning mitigations in place, we see less than 20% slowdown on the Octane benchmark.
+我们还使用毒药技术来防止解释器的字节码分派循环和JavaScript函数调用序列中的错误推测间接分支泄漏。在解释器中，如果字节码处理程序（即解释单个字节码的机器代码序列）与当前字节码不匹配，我们将毒药设置为`0`。对于JavaScript调用，我们将目标函数作为参数（保存在寄存器中），并在每个函数的开头设置毒药为`0`，如果传入的目标函数与当前函数不匹配。通过采用毒药缓解措施，我们在Octane基准测试中看到的性能下降不到20%。
 
-The mitigations for WebAssembly are simpler, since the main safety check is to ensure memory accesses are within bounds. For 32-bit platforms, in addition to the normal bounds checks, we pad all memories to the next power of two and unconditionally mask off any upper bits of a user-supplied memory index. 64-bit platforms need no such mitigation, since the implementation uses virtual memory protection for bounds checks. We experimented with compiling switch/case statements to binary search code rather than using a potentially vulnerable indirect branch, but this is too expensive on some workloads. Indirect calls are protected with retpolines.
+对于WebAssembly的缓解措施更简单，因为主要的安全检查是确保内存访问在范围内。对于32位平台，除了常规的范围检查外，我们还将所有内存填充到下一个2的幂，并无条件地屏蔽用户提供的内存索引的任何高位。64位平台不需要这样的缓解措施，因为实现使用虚拟内存保护进行范围检查。我们尝试将switch/case语句编译为二进制搜索代码，而不是使用可能有漏洞的间接分支，但这在某些工作负载中代价过高。间接调用通过retpolines保护。
 
-## Software mitigations are an unsustainable path
+## 软件缓解措施是一条不可持续的路径
 
-Fortunately or unfortunately, our offensive research advanced much faster than our defensive research, and we quickly discovered that software mitigation of all possible leaks due to Spectre was infeasible. This was due to a variety of reasons. First, the engineering effort diverted to combating Spectre was disproportionate to its threat level. In V8 we face many other security threats that are much worse, from direct out-of-bound reads due to regular bugs (faster and more direct than Spectre), out-of-bound writes (impossible with Spectre, and worse) and potential remote code execution (impossible with Spectre and much, much worse). Second, the increasingly complicated mitigations that we designed and implemented carried significant complexity, which is technical debt and might actually increase the attack surface, and performance overheads. Third, testing and maintaining mitigations for microarchitectural leaks is even trickier than designing gadgets themselves, since it’s hard to be sure the mitigations continue working as designed. At least once, important mitigations were effectively undone by later compiler optimizations. Fourth, we found that effective mitigation of some variants of Spectre, particularly variant 4, to be simply infeasible in software, even after a heroic effort by our partners at Apple to combat the problem in their JIT compiler.
+幸运的是或不幸的是，我们的进攻性研究进展远快于防御性研究，我们迅速发现通过软件限制Spectre可能泄漏是不可行的。这出于各种原因。首先，为对抗Spectre而分散的工程努力与其威胁级别不成比例。在V8中，我们面临许多其他安全威胁，这些威胁比Spectre更严重，例如由于常规漏洞导致的直接越界读取（比Spectre更快、更直接）、越界写入（Spectre中不可能发生，并且更严重）以及潜在的远程代码执行（Spectre中不可能发生，并且更加严重）。其次，我们设计和实施的愈发复杂的缓解方案带来了显著的复杂性，这是技术债务，并可能实际上增加攻击面以及性能开销。第三，对微架构漏洞的缓解进行测试和维护甚至比设计工具本身更棘手，因为难以确信缓解措施按照设计持续有效。至少有一次，重要的缓解措施被后续的编译器优化有效抵消。第四，我们发现对某些Spectre变种（特别是变种4）进行有效的缓解在软件中根本不可行，即使我们的合作伙伴Apple在其JIT编译器中进行了英勇的努力以解决问题。
 
-## Site isolation
+## 站点隔离
 
-Our research reached the conclusion that, in principle, untrusted code can read a process’s entire address space using Spectre and side channels. Software mitigations reduce the effectiveness of many potential gadgets, but are not efficient or comprehensive. The only effective mitigation is to move sensitive data out of the process’s address space. Thankfully, Chrome already had an effort underway for many years to separate sites into different processes to reduce the attack surface due to conventional vulnerabilities. This investment paid off, and we productionized and deployed [site isolation](https://developers.google.com/web/updates/2018/07/site-isolation) for as many platforms as possible by May 2018. Thus Chrome’s security model no longer assumes language-enforced confidentiality within a renderer process.
+我们的研究得出结论，原则上，不可信代码可以使用Spectre及其侧信道读取进程的整个地址空间。软件缓解降低了许多潜在工具的效果，但并不高效或全面。唯一有效的缓解措施就是将敏感数据移出进程的地址空间。所幸，Chrome已经多年致力于通过将站点分离到不同进程中来减少因常规漏洞造成的攻击面。这项投资取得了回报，我们在2018年5月为尽可能多的平台生产化并部署了[站点隔离](https://developers.google.com/web/updates/2018/07/site-isolation)。因此，Chrome的安全模型不再假设在渲染器进程内通过编程语言强制的保密性。
 
-Spectre has been a long journey and has highlighted the best in collaboration across vendors in the industry and academia. So far, white hats appear to be ahead of black hats. We still know of no attacks in the wild, outside of the curious tinkerers and professional researchers developing proof of concept gadgets. New variants of these vulnerabilities continue to trickle out, and may continue to do so for some time. We continue to track these threats and take them seriously.
+Spectre是一段漫长的旅程，它凸显了产业和学术界跨供应商协作的最佳实践。至今为止，白帽似乎仍领先于黑帽。我们仍然没有发现实际攻击事件，除了一些好奇的探索者和专业研究人员开发概念验证工具。这些漏洞的新变种继续逐渐出现，并可能在一段时间内继续存在。我们会继续跟踪这些威胁，并认真对待。
 
-Like many with a background in programming languages and their implementations, the idea that safe languages enforce a proper abstraction boundary, not allowing well-typed programs to read arbitrary memory, has been a guarantee upon which our mental models have been built. It is a depressing conclusion that our models were wrong — this guarantee is not true on today’s hardware. Of course, we still believe that safe languages have great engineering benefits and will continue to be the basis for the future, but… on today’s hardware they leak a little.
+对于许多拥有编程语言及其实现背景的人来说，“安全语言强制执行正确的抽象边界，不允许类型正确的程序读取任意内存”的理念一直是我们心智模型的基础。得出我们的模型是错误的这一令人沮丧的结论——这个保证在当前硬件上并不成立。当然，我们仍然相信安全语言具有巨大的工程优势，并将继续成为未来的基础，但……在当今硬件上它们会泄漏一些信息。
 
-Interested readers can dig into more details in [our whitepaper](https://arxiv.org/pdf/1902.05178.pdf).
+感兴趣的读者可以在[我们的白皮书](https://arxiv.org/pdf/1902.05178.pdf)中了解更多细节。

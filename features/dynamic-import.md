@@ -1,5 +1,5 @@
 ---
-title: "Dynamic `import()`"
+title: "动态 `import()`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars: 
   - "mathias-bynens"
@@ -7,65 +7,65 @@ date: 2017-11-21
 tags: 
   - ECMAScript
   - ES2020
-description: "Dynamic import() unlocks new capabilities compared to static import. This article compares the two and gives an overview of what’s new."
+description: "动态导入(import())相比于静态导入解锁了新的功能。这篇文章对比了两者并概述了新功能。"
 tweet: "932914724060254208"
 ---
-[Dynamic `import()`](https://github.com/tc39/proposal-dynamic-import) introduces a new function-like form of `import` that unlocks new capabilities compared to static `import`. This article compares the two and gives an overview of what’s new.
+[动态 `import()`](https://github.com/tc39/proposal-dynamic-import) 引入了一种类似函数的新形式的 `import`，相比静态 `import` 解锁了新的功能。这篇文章对比了两者并概述了新功能。
 
 <!--truncate-->
-## Static `import` (recap)
+## 静态 `import` (回顾)
 
-Chrome 61 shipped with support for the ES2015 `import` statement within [modules](/features/modules).
+Chrome 61 支持 ES2015 的 `import` 语句，并集成在 [模块](/features/modules)中。
 
-Consider the following module, located at `./utils.mjs`:
+考虑以下模块，位于 `./utils.mjs`：
 
 ```js
-// Default export
+// 默认导出
 export default () => {
-  console.log('Hi from the default export!');
+  console.log('来自默认导出的问候！');
 };
 
-// Named export `doStuff`
+// 命名导出 `doStuff`
 export const doStuff = () => {
-  console.log('Doing stuff…');
+  console.log('正在执行任务…');
 };
 ```
 
-Here’s how to statically import and use the `./utils.mjs` module:
+以下是静态导入并使用 `./utils.mjs` 模块的方法：
 
 ```html
 <script type="module">
   import * as module from './utils.mjs';
   module.default();
-  // → logs 'Hi from the default export!'
+  // → 打印 '来自默认导出的问候！'
   module.doStuff();
-  // → logs 'Doing stuff…'
+  // → 打印 '正在执行任务…'
 </script>
 ```
 
 :::note
-**Note:** The previous example uses the `.mjs` extension to signal that it’s a module rather than a regular script. On the web, file extensions don’t really matter, as long as the files are served with the correct MIME type (e.g. `text/javascript` for JavaScript files) in the `Content-Type` HTTP header.
+**注意:** 上一个示例使用 `.mjs` 扩展名来表明这是一个模块而不是常规脚本。在 Web 上，只要文件使用正确的 MIME 类型（例如 JavaScript 文件对应 `Content-Type` 为 `text/javascript`），文件扩展名其实无关紧要。
 
-The `.mjs` extension is especially useful on other platforms such as [Node.js](https://nodejs.org/api/esm.html#esm_enabling) and [`d8`](/docs/d8), where there’s no concept of MIME types or other mandatory hooks such as `type="module"` to determine whether something is a module or a regular script. We’re using the same extension here for consistency across platforms and to clearly make the distinction between modules and regular scripts.
+`.mjs` 扩展名在其他平台上特别有用，例如 [Node.js](https://nodejs.org/api/esm.html#esm_enabling) 和 [`d8`](/docs/d8)，因为这些平台没有 MIME 类型的概念或者诸如 `type="module"` 的强制性钩子来区分模块与常规脚本。我们在这里使用相同的扩展名，以在不同平台上保持一致，并明显区分模块与常规脚本。
 :::
 
-This syntactic form for importing modules is a *static* declaration: it only accepts a string literal as the module specifier, and introduces bindings into the local scope via a pre-runtime “linking” process. The static `import` syntax can only be used at the top-level of the file.
+这种导入模块的语法形式是一种 *静态* 声明：它只接受字符串文字作为模块指定符，通过运行时之前的 “连接” 过程将绑定引入到本地作用域。静态 `import` 语法只能用于文件的顶级位置。
 
-Static `import` enables important use cases such as static analysis, bundling tools, and tree-shaking.
+静态 `import` 支持静态分析、打包工具以及消除未使用代码等重要场景。
 
-In some cases, it’s useful to:
+不过在一些情况下，我们希望：
 
-- import a module on-demand (or conditionally)
-- compute the module specifier at runtime
-- import a module from within a regular script (as opposed to a module)
+- 按需（或根据条件）导入模块
+- 在运行时计算模块指定符
+- 从普通脚本（而非模块）中导入模块
 
-None of those are possible with static `import`.
+这些场景静态 `import` 都无法支持。
 
-## Dynamic `import()` 🔥
+## 动态 `import()` 🔥
 
-[Dynamic `import()`](https://github.com/tc39/proposal-dynamic-import) introduces a new function-like form of `import` that caters to those use cases. `import(moduleSpecifier)` returns a promise for the module namespace object of the requested module, which is created after fetching, instantiating, and evaluating all of the module’s dependencies, as well as the module itself.
+[动态 `import()`](https://github.com/tc39/proposal-dynamic-import) 引入了一种类似函数的新形式的 `import`，用于支持上述场景。`import(moduleSpecifier)` 返回一个 Promise，该 Promise 提供请求模块的模块命名空间对象，它在完成模块及其所有依赖的获取、实例化和评估之后创建。
 
-Here’s how to dynamically import and use the `./utils.mjs` module:
+以下是动态导入并使用 `./utils.mjs` 模块的方法：
 
 ```html
 <script type="module">
@@ -73,14 +73,14 @@ Here’s how to dynamically import and use the `./utils.mjs` module:
   import(moduleSpecifier)
     .then((module) => {
       module.default();
-      // → logs 'Hi from the default export!'
+      // → 打印 '来自默认导出的问候！'
       module.doStuff();
-      // → logs 'Doing stuff…'
+      // → 打印 '正在执行任务…'
     });
 </script>
 ```
 
-Since `import()` returns a promise, it’s possible to use `async`/`await` instead of the `then`-based callback style:
+由于 `import()` 返回一个 Promise，我们可以使用 `async`/`await` 替代 `then` 回调方式：
 
 ```html
 <script type="module">
@@ -88,29 +88,29 @@ Since `import()` returns a promise, it’s possible to use `async`/`await` inste
     const moduleSpecifier = './utils.mjs';
     const module = await import(moduleSpecifier)
     module.default();
-    // → logs 'Hi from the default export!'
+    // → 打印 '来自默认导出的问候！'
     module.doStuff();
-    // → logs 'Doing stuff…'
+    // → 打印 '正在执行任务…'
   })();
 </script>
 ```
 
 :::note
-**Note:** Although `import()` _looks_ like a function call, it is specified as *syntax* that just happens to use parentheses (similar to [`super()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super)). That means that `import` doesn’t inherit from `Function.prototype` so you cannot `call` or `apply` it, and things like `const importAlias = import` don’t work — heck, `import` is not even an object! This doesn’t really matter in practice, though.
+**注意:** 尽管 `import()` *看起来像* 一个函数调用，它实际上是 *语法*，只是碰巧使用了括号（类似于 [`super()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super)）。这意味着 `import` 不继承于 `Function.prototype`，因此不能使用 `call` 或 `apply` 调用它，并且像 `const importAlias = import` 这样的写法也不工作——实际上，`import` 甚至不是一个对象！但这通常并不会影响实际使用。
 :::
 
-Here’s an example of how dynamic `import()` enables lazy-loading modules upon navigation in a small single-page application:
+下面是一个示例，展示如何通过动态 `import()` 在一个小型单页面应用中实现模块导航时的按需加载：
 
 ```html
 <!DOCTYPE html>
 <meta charset="utf-8">
-<title>My library</title>
+<title>我的图书馆</title>
 <nav>
-  <a href="books.html" data-entry-module="books">Books</a>
-  <a href="movies.html" data-entry-module="movies">Movies</a>
-  <a href="video-games.html" data-entry-module="video-games">Video Games</a>
+  <a href="books.html" data-entry-module="books">书籍</a>
+  <a href="movies.html" data-entry-module="movies">电影</a>
+  <a href="video-games.html" data-entry-module="video-games">电子游戏</a>
 </nav>
-<main>This is a placeholder for the content that will be loaded on-demand.</main>
+<main>这是一个占位符，用于加载按需内容。</main>
 <script>
   const main = document.querySelector('main');
   const links = document.querySelectorAll('nav > a');
@@ -119,7 +119,7 @@ Here’s an example of how dynamic `import()` enables lazy-loading modules upon 
       event.preventDefault();
       try {
         const module = await import(`/${link.dataset.entryModule}.mjs`);
-        // The module exports a function named `loadPageInto`.
+        // 模块导出了一个名为 `loadPageInto` 的函数。
         module.loadPageInto(main);
       } catch (error) {
         main.textContent = error.message;
@@ -129,17 +129,17 @@ Here’s an example of how dynamic `import()` enables lazy-loading modules upon 
 </script>
 ```
 
-The lazy-loading capabilities enabled by dynamic `import()` can be quite powerful when applied correctly. For demonstration purposes, [Addy](https://twitter.com/addyosmani) modified [an example Hacker News PWA](https://hnpwa-vanilla.firebaseapp.com/) that statically imported all its dependencies, including comments, on first load. [The updated version](https://dynamic-import.firebaseapp.com/) uses dynamic `import()` to lazily load the comments, avoiding the load, parse, and compile cost until the user really needs them.
+动态 `import()` 启用的懒加载能力在正确应用时非常强大。为了演示，[Addy](https://twitter.com/addyosmani) 修改了[一个示例 Hacker News PWA](https://hnpwa-vanilla.firebaseapp.com/)，它在首次加载时静态导入了所有依赖项，包括评论。[更新版本](https://dynamic-import.firebaseapp.com/) 使用动态 `import()` 来懒加载评论，避免了加载、解析和编译成本，直到用户真正需要它们。
 
 :::note
-**Note:** If your app imports scripts from another domain (either statically or dynamically), the scripts need to be returned with valid CORS headers (such as `Access-Control-Allow-Origin: *`). This is because unlike regular scripts, module scripts (and their imports) are fetched with CORS.
+**注意：** 如果您的应用从另一个域导入脚本（无论是静态的还是动态的），这些脚本需要带有有效的 CORS 头（例如 `Access-Control-Allow-Origin: *`）。这是因为与常规脚本不同，模块脚本（及其导入）是通过 CORS 获取的。
 :::
 
-## Recommendations
+## 建议
 
-Static `import` and dynamic `import()` are both useful. Each have their own, very distinct, use cases. Use static `import`s for initial paint dependencies, especially for above-the-fold content. In other cases, consider loading dependencies on-demand with dynamic `import()`.
+静态 `import` 和动态 `import()` 都很有用。它们各自有非常明确的使用场景。对于初始渲染依赖项，尤其是首屏内容，使用静态 `import`。在其他情况下，可以考虑使用动态 `import()` 按需加载依赖项。
 
-## Dynamic `import()` support
+## 动态 `import()` 支持
 
 <feature-support chrome="63"
                  firefox="67"

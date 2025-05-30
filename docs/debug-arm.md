@@ -1,86 +1,84 @@
 ---
-title: "Arm debugging with the simulator"
-description: "The Arm simulator and debugger can be very helpful when working with V8 code generation."
+title: "使用模拟器进行Arm调试"
+description: "Arm模拟器和调试器在处理V8代码生成时非常有帮助。"
 ---
-The simulator and debugger can be very helpful when working with V8 code generation.
+模拟器和调试器在处理V8代码生成时非常有帮助。
 
-- It is convenient as it allows you to test code generation without access to actual hardware.
-- No [cross](/docs/cross-compile-arm) or native compilation is needed.
-- The simulator fully supports the debugging of generated code.
+- 它很方便，因为无需接触真实硬件即可测试代码生成。
+- 不需要交叉编译或本机编译。
+- 模拟器完全支持生成代码的调试。
 
-Please note that this simulator is designed for V8 purposes. Only the features used by V8 are implemented, and you might encounter unimplemented features or instructions. In this case, feel free to implement them and submit the code!
+请注意，此模拟器专为V8设计。仅实现了V8使用的功能，您可能会遇到未实现的功能或指令。在这种情况下，请随意实现它们并提交代码！
 
-- [Compiling](#compiling)
-- [Starting the debugger](#start_debug)
-- [Debugging commands](#debug_commands)
+- [编译](#compiling)
+- [启动调试器](#start_debug)
+- [调试命令](#debug_commands)
     - [printobject](#po)
     - [trace](#trace)
     - [break](#break)
-- [Extra breakpoint features](#extra)
-    - [32-bit: `stop()`](#arm32_stop)
-    - [64-bit: `Debug()`](#arm64_debug)
+- [额外的断点功能](#extra)
+    - [32位: `stop()`](#arm32_stop)
+    - [64位: `Debug()`](#arm64_debug)
 
-## Compiling for Arm using the simulator
+## 使用模拟器进行Arm编译
 
-By default on an x86 host, compiling for Arm with [gm](/docs/build-gn#gm) will give you a simulator build:
-
-```bash
-gm arm64.debug # For a 64-bit build or...
-gm arm.debug   # ... for a 32-bit build.
-```
-
-You may also build the `optdebug` configuration as the `debug` may be a little slow, especially if you want to run the V8 test suite.
-
-## Starting the debugger
-
-You can start the debugger immediately from the command line after `n` instructions:
+默认情况下，在x86主机上使用[gm](/docs/build-gn#gm)进行Arm编译将生成模拟器构建：
 
 ```bash
-out/arm64.debug/d8 --stop_sim_at <n> # Or out/arm.debug/d8 for a 32-bit build.
+gm arm64.debug # 对于64位构建或...
+gm arm.debug   # ...对于32位构建。
 ```
 
-Alternatively, you can generate a breakpoint instruction in the generated code:
+您也可以选择构建`optdebug`配置，因为`debug`可能稍微慢一些，特别是在运行V8测试套件时。
 
-Natively, breakpoint instructions cause the program to halt with a `SIGTRAP` signal, allowing you to debug the issue with gdb. However, if running with a simulator, a breakpoint instruction in generated code will instead drop you into the simulator debugger.
+## 启动调试器
 
-You can generate a breakpoint in multiple ways by using `DebugBreak()` from [Torque](/docs/torque-builtins), from the [CodeStubAssembler](/docs/csa-builtins), as a node in a [TurboFan](/docs/turbofan) pass, or directly using an assembler.
+您可以在执行`n`指令后立即从命令行启动调试器：
 
-Here we focus on debugging low-level native code, so let's look at the assembler method:
+```bash
+out/arm64.debug/d8 --stop_sim_at <n> # 或者使用out/arm.debug/d8进行32位构建。
+```
+
+或者，您可以在生成的代码中生成一个断点指令：
+
+本地运行时，断点指令会导致程序以`SIGTRAP`信号暂停，从而可以使用gdb调试问题。然而，如果使用模拟器运行，生成代码中的断点指令会将您带入模拟器调试器。
+
+您可以通过多种方式使用`DebugBreak()`生成断点，包括从[Torque](/docs/torque-builtins)、[CodeStubAssembler](/docs/csa-builtins)、作为[TurboFan](/docs/turbofan)进程中的节点，或直接使用汇编器。
+
+这里我们重点介绍低级本地代码的调试，让我们来看看使用汇编器的方法：
 
 ```cpp
 TurboAssembler::DebugBreak();
 ```
 
-Let's say we have a jitted function called `add` compiled with [TurboFan](/docs/turbofan) and we'd like to break at the start. Given a `test.js` example:
+假设我们有一个通过[TurboFan](/docs/turbofan)编译的名为`add`的即时编译函数，并且我们想要在开始时中断。给定一个`test.js`示例：
 
 
 
 ```js
-// Our optimized function.
+// 我们的优化函数。
 function add(a, b) {
   return a + b;
 }
 
-// Typical cheat code enabled by --allow-natives-syntax.
+// 使用--allow-natives-syntax启用典型作弊代码。
 %PrepareFunctionForOptimization(add);
 
-// Give the optimizing compiler type feedback so it'll speculate `a` and `b` are
-// numbers.
+// 给优化编译器类型反馈，以便它会推测`a`和`b`是数字。
 add(1, 3);
 
-// And force it to optimize.
+// 强制优化。
 %OptimizeFunctionOnNextCall(add);
 add(5, 7);
 ```
 
-To do it, we can hook into TurboFan's [code generator](https://source.chromium.org/chromium/chromium/src/+/master:v8/src/compiler/backend/code-generator.cc?q=CodeGenerator::AssembleCode) and access the assembler to insert our breakpoint:
+为了实现这一点，我们可以钩入TurboFan的[代码生成器](https://source.chromium.org/chromium/chromium/src/+/master:v8/src/compiler/backend/code-generator.cc?q=CodeGenerator::AssembleCode)并访问汇编器插入断点：
 
 ```cpp
 void CodeGenerator::AssembleCode() {
   // ...
 
-  // Check if we're optimizing, then look-up the name of the current function and
-  // insert a breakpoint.
+  // 检查是否正在优化，然后查找当前函数的名称并插入一个断点。
   if (info->IsOptimizing()) {
     AllowHandleDereference allow_handle_dereference;
     if (info->shared_info()->PassesFilter("add")) {
@@ -92,24 +90,24 @@ void CodeGenerator::AssembleCode() {
 }
 ```
 
-And let's run it:
+让我们运行它：
 
 ```simulator
 $ d8 \
-    # Enable '%' cheat code JS functions.
+    # 启用'%'作弊代码JavaScript函数。
     --allow-natives-syntax \
-    # Disassemble our function.
+    # 反汇编我们的函数。
     --print-opt-code --print-opt-code-filter="add" --code-comments \
-    # Disable spectre mitigations for readability.
+    # 禁用Spectre缓解措施以提高可读性。
     --no-untrusted-code-mitigations \
     test.js
---- Raw source ---
+--- 原始源码 ---
 (a, b) {
   return a + b;
 }
 
 
---- Optimized code ---
+--- 优化代码 ---
 optimization_id = 0
 source_position = 12
 kind = OPTIMIZED_FUNCTION
@@ -118,107 +116,107 @@ stack_slots = 6
 compiler = turbofan
 address = 0x7f0900082ba1
 
-Instructions (size = 504)
-0x7f0900082be0     0  d45bd600       constant pool begin (num_const = 6)
-0x7f0900082be4     4  00000000       constant
-0x7f0900082be8     8  00000001       constant
-0x7f0900082bec     c  75626544       constant
-0x7f0900082bf0    10  65724267       constant
-0x7f0900082bf4    14  00006b61       constant
-0x7f0900082bf8    18  d45bd7e0       constant
-                  -- Prologue: check code start register --
-0x7f0900082bfc    1c  10ffff30       adr x16, #-0x1c (addr 0x7f0900082be0)
+指令 (size = 504)
+0x7f0900082be0     0  d45bd600       常量池开始 (num_const = 6)
+0x7f0900082be4     4  00000000       常量
+0x7f0900082be8     8  00000001       常量
+0x7f0900082bec     c  75626544       常量
+0x7f0900082bf0    10  65724267       常量
+0x7f0900082bf4    14  00006b61       常量
+0x7f0900082bf8    18  d45bd7e0       常量
+                  -- 序言: 检查代码起始寄存器 --
+0x7f0900082bfc    1c  10ffff30       adr x16, #-0x1c (地址 0x7f0900082be0)
 0x7f0900082c00    20  eb02021f       cmp x16, x2
-0x7f0900082c04    24  54000080       b.eq #+0x10 (addr 0x7f0900082c14)
-                  Abort message:
-                  Wrong value in code start register passed
+0x7f0900082c04    24  54000080       b.eq #+0x10 (地址 0x7f0900082c14)
+                  中止消息:
+                  代码起始寄存器传递的值错误
 0x7f0900082c08    28  d2800d01       movz x1, #0x68
-                  -- Inlined Trampoline to Abort --
-0x7f0900082c0c    2c  58000d70       ldr x16, pc+428 (addr 0x00007f0900082db8)    ;; off heap target
+                  -- 内联跳板到中止 --
+0x7f0900082c0c    2c  58000d70       ldr x16, pc+428 (地址 0x00007f0900082db8)    ;; 离堆目标
 0x7f0900082c10    30  d63f0200       blr x16
-                  -- Prologue: check for deoptimization --
-                  [ DecompressTaggedPointer
+                  -- 序幕：检查反优化 --
+                  [ 解压标签指针
 0x7f0900082c14    34  b85d0050       ldur w16, [x2, #-48]
 0x7f0900082c18    38  8b100350       add x16, x26, x16
                   ]
 0x7f0900082c1c    3c  b8407210       ldur w16, [x16, #7]
-0x7f0900082c20    40  36000070       tbz w16, #0, #+0xc (addr 0x7f0900082c2c)
-                  -- Inlined Trampoline to CompileLazyDeoptimizedCode --
-0x7f0900082c24    44  58000c31       ldr x17, pc+388 (addr 0x00007f0900082da8)    ;; off heap target
+0x7f0900082c20    40  36000070       tbz w16, #0, #+0xc (地址 0x7f0900082c2c)
+                  -- 内嵌跳板到 CompileLazyDeoptimizedCode --
+0x7f0900082c24    44  58000c31       ldr x17, pc+388 (地址 0x00007f0900082da8)    ;; 堆外目标
 0x7f0900082c28    48  d61f0220       br x17
-                  -- B0 start (construct frame) --
+                  -- B0 开始 (构建栈帧) --
 (...)
 
---- End code ---
-# Debugger hit 0: DebugBreak
-0x00007f0900082bfc 10ffff30            adr x16, #-0x1c (addr 0x7f0900082be0)
+--- 代码结束 ---
+# 调试器命中 0: DebugBreak
+0x00007f0900082bfc 10ffff30            adr x16, #-0x1c (地址 0x7f0900082be0)
 sim>
 ```
 
-We can see we've stopped at the start of the optimized function and the simulator gave us a prompt!
+我们可以看到，我们在优化函数开始处停止，并且模拟器给了我们一个提示！
 
-Note this is just an example and V8 changes quickly so the details may vary. But you should be able to do this anywhere where an assembler is available.
+注意，这只是一个示例，V8变化很快，因此细节可能会有所不同。但只要能访问汇编器，您应该能够做到这些。
 
-## Debugging commands
+## 调试命令
 
-### Common commands
+### 常用命令
 
-Enter `help` in the debugger prompt to get details on available commands. These include usual gdb-like commands, such as `stepi`, `cont`, `disasm`, etc. If the Simulator is run under gdb, the `gdb` debugger command will give control to gdb. You can then use `cont` from gdb to go back to the debugger.
+在调试器提示符中输入 `help` 可查看可用命令的详细信息。这些包括通常的类似 gdb 的命令，例如 `stepi`、`cont`、`disasm` 等。如果模拟器在 gdb 下运行，则 `gdb` 调试器命令将交给 gdb 控制。然后可以使用 gdb 的 `cont` 返回调试器。
 
-### Architecture specific commands
+### 特定架构命令
 
-Each target architecture implements its own simulator and debugger, so the experience and details will vary.
+每个目标架构实现其自己的模拟器和调试器，因此体验和细节会有所不同。
 
 - [printobject](#po)
 - [trace](#trace)
 - [break](#break)
 
-#### `printobject $register` (alias `po`)
+#### `printobject $register` (别名 `po`)
 
-Describe a JS object held in a register.
+描述寄存器中的 JS 对象。
 
-For example, let's say this time we're running [our example](#test.js) on a 32-bit Arm simulator build. We can examine incoming arguments passed in registers:
+例如，假设这次我们在 32 位 Arm 模拟器构建上运行 [我们的示例](#test.js)。我们可以检查寄存器中传递的入参：
 
 ```simulator
 $ ./out/arm.debug/d8 --allow-natives-syntax test.js
-Simulator hit stop, breaking at the next instruction:
+模拟器命中停止，即将在下一条指令处中断：
   0x26842e24  e24fc00c       sub ip, pc, #12
-sim> print r1
+sim> 打印 r1
 r1: 0x4b60ffb1 1264648113
-# The current function object is passed with r1.
-sim> printobject r1
+# 当前函数对象通过 r1 传递。
+sim> 打印对象 r1
 r1:
-0x4b60ffb1: [Function] in OldSpace
- - map: 0x485801f9 <Map(HOLEY_ELEMENTS)> [FastProperties]
- - prototype: 0x4b6010f1 <JSFunction (sfi = 0x42404e99)>
- - elements: 0x5b700661 <FixedArray[0]> [HOLEY_ELEMENTS]
- - function prototype:
- - initial_map:
- - shared_info: 0x4b60fe9d <SharedFunctionInfo add>
- - name: 0x5b701c5d <String[#3]: add>
- - formal_parameter_count: 2
- - kind: NormalFunction
- - context: 0x4b600c65 <NativeContext[261]>
- - code: 0x26842de1 <Code OPTIMIZED_FUNCTION>
- - source code: (a, b) {
-  return a + b;
+0x4b60ffb1: [Function] 在 OldSpace
+ - 映射: 0x485801f9 <Map(HOLEY_ELEMENTS)> [FastProperties]
+ - 原型: 0x4b6010f1 <JSFunction (sfi = 0x42404e99)>
+ - 元素: 0x5b700661 <FixedArray[0]> [HOLEY_ELEMENTS]
+ - 函数原型:
+ - 初始映射:
+ - 共享信息: 0x4b60fe9d <SharedFunctionInfo add>
+ - 名称: 0x5b701c5d <String[#3]: add>
+ - 形式参数数量: 2
+ - 类型: NormalFunction
+ - 上下文: 0x4b600c65 <NativeContext[261]>
+ - 代码: 0x26842de1 <Code OPTIMIZED_FUNCTION>
+ - 源代码: (a, b) {
+  返回 a + b;
 }
 (...)
 
-# Now print the current JS context passed in r7.
-sim> printobject r7
+# 现在打印通过 r7 传递的当前 JS 上下文。
+sim> 打印对象 r7
 r7:
-0x449c0c65: [NativeContext] in OldSpace
- - map: 0x561000b9 <Map>
- - length: 261
- - scope_info: 0x34081341 <ScopeInfo SCRIPT_SCOPE [5]>
- - previous: 0
- - native_context: 0x449c0c65 <NativeContext[261]>
+0x449c0c65: [NativeContext] 在 OldSpace
+ - 映射: 0x561000b9 <Map>
+ - 长度: 261
+ - 范围信息: 0x34081341 <ScopeInfo SCRIPT_SCOPE [5]>
+ - 前一个: 0
+ - 本地上下文: 0x449c0c65 <NativeContext[261]>
            0: 0x34081341 <ScopeInfo SCRIPT_SCOPE [5]>
            1: 0
            2: 0x449cdaf5 <JSObject>
            3: 0x58480c25 <JSGlobal Object>
-           4: 0x58485499 <Other heap object (EMBEDDER_DATA_ARRAY_TYPE)>
+           4: 0x58485499 <其他堆对象 (EMBEDDER_DATA_ARRAY_TYPE)>
            5: 0x561018a1 <Map(HOLEY_ELEMENTS)>
            6: 0x3408027d <undefined>
            7: 0x449c75c1 <JSFunction ArrayBuffer (sfi = 0x4be8ade1)>
@@ -228,148 +226,147 @@ r7:
 (...)
 ```
 
-#### `trace` (alias `t`)
+#### `trace` (别名 `t`)
 
-Enable or disable tracing executed instructions.
+启用或禁用跟踪执行的指令。
 
-When enabled, the simulator will print disassembled instructions as it is executing them. If you're running a 64-bit Arm build, the simulator is also able to trace changes to register values.
+启用后，模拟器将在执行指令时打印反汇编指令。如果您运行的是 64 位 Arm 构建，模拟器还能够跟踪寄存器值的变化。
 
-You may also enable this from the command-line with the `--trace-sim` flag to enable tracing from the start.
+您也可以使用命令行标志 `--trace-sim` 在启动时启用跟踪。
 
-With the same [example](#test.js):
+使用相同的 [示例](#test.js)：
 
 ```simulator
 $ out/arm64.debug/d8 --allow-natives-syntax \
-    # --debug-sim is required on 64-bit Arm to enable disassembly
-    # when tracing.
+    # 在 64 位 Arm 上需要 --debug-sim 以启用反汇编
+    # 当跟踪时。
     --debug-sim test.js
-# Debugger hit 0: DebugBreak
-0x00007f1e00082bfc  10ffff30            adr x16, #-0x1c (addr 0x7f1e00082be0)
-sim> trace
-0x00007f1e00082bfc  10ffff30            adr x16, #-0x1c (addr 0x7f1e00082be0)
-Enabling disassembly, registers and memory write tracing
+# 调试器命中 0: DebugBreak
+0x00007f1e00082bfc  10ffff30            adr x16, #-0x1c (地址 0x7f1e00082be0)
+sim> 跟踪
+0x00007f1e00082bfc  10ffff30            adr x16, #-0x1c (地址 0x7f1e00082be0)
+启用反汇编、寄存器和内存写入跟踪
 
-# Break on the return address stored in the lr register.
+# 在 lr 寄存器中存储的返回地址上设置断点。
 sim> break lr
-Set a breakpoint at 0x7f1f880abd28
-0x00007f1e00082bfc  10ffff30            adr x16, #-0x1c (addr 0x7f1e00082be0)
+在 0x7f1f880abd28 设置断点
+0x00007f1e00082bfc  10ffff30            adr x16, #-0x1c (地址 0x7f1e00082be0)
 
-# Continuing will trace the function's execution until we return, allowing
-# us to make sense of what is happening.
-sim> continue
+# 继续操作将跟踪函数的执行，直到返回，从而使我们弄明白发生了什么。
+sim> 继续
 #    x0: 0x00007f1e00082ba1
 #    x1: 0x00007f1e08250125
 #    x2: 0x00007f1e00082be0
 (...)
 
-# We first load the 'a' and 'b' arguments from the stack and check if they
-# are tagged numbers. This is indicated by the least significant bit being 0.
+# 我们首先从堆栈加载 'a' 和 'b' 参数并检查它们是否
+# 是标签数字。这可以通过最低有效位为 0 来标识。
 0x00007f1e00082c90  f9401fe2            ldr x2, [sp, #56]
 #    x2: 0x000000000000000a <- 0x00007f1f821f0278
-0x00007f1e00082c94  7200005f            tst w2, #0x1
+0x00007f1e00082c94  7200005f            测试 w2, #0x1
 # NZCV: N:0 Z:1 C:0 V:0
-0x00007f1e00082c98  54000ac1            b.ne #+0x158 (addr 0x7f1e00082df0)
-0x00007f1e00082c9c  f9401be3            ldr x3, [sp, #48]
+0x00007f1e00082c98  54000ac1            不等于跳转 #+0x158 (地址 0x7f1e00082df0)
+0x00007f1e00082c9c  f9401be3            加载 x3, [sp, #48]
 #    x3: 0x000000000000000e <- 0x00007f1f821f0270
-0x00007f1e00082ca0  7200007f            tst w3, #0x1
+0x00007f1e00082ca0  7200007f            测试 w3, #0x1
 # NZCV: N:0 Z:1 C:0 V:0
-0x00007f1e00082ca4  54000a81            b.ne #+0x150 (addr 0x7f1e00082df4)
+0x00007f1e00082ca4  54000a81            不等于跳转 #+0x150 (地址 0x7f1e00082df4)
 
-# Then we untag and add 'a' and 'b' together.
-0x00007f1e00082ca8  13017c44            asr w4, w2, #1
+# 然后我们解除标记并将 'a' 和 'b' 相加。
+0x00007f1e00082ca8  13017c44            算术右移 w4, w2, #1
 #    x4: 0x0000000000000005
-0x00007f1e00082cac  2b830484            adds w4, w4, w3, asr #1
+0x00007f1e00082cac  2b830484            相加 w4, w4, w3, 算术右移 #1
 # NZCV: N:0 Z:0 C:0 V:0
 #    x4: 0x000000000000000c
-# That's 5 + 7 == 12, all good!
+# 那是 5 + 7 == 12，一切正常！
 
-# Then we check for overflows and tag the result again.
-0x00007f1e00082cb0  54000a46            b.vs #+0x148 (addr 0x7f1e00082df8)
-0x00007f1e00082cb4  2b040082            adds w2, w4, w4
+# 然后我们检查溢出并重新标记结果。
+0x00007f1e00082cb0  54000a46            溢出跳转 #+0x148 (地址 0x7f1e00082df8)
+0x00007f1e00082cb4  2b040082            相加 w2, w4, w4
 # NZCV: N:0 Z:0 C:0 V:0
 #    x2: 0x0000000000000018
-0x00007f1e00082cb8  54000466            b.vs #+0x8c (addr 0x7f1e00082d44)
+0x00007f1e00082cb8  54000466            溢出跳转 #+0x8c (地址 0x7f1e00082d44)
 
 
-# And finally we place the result in x0.
-0x00007f1e00082cbc  aa0203e0            mov x0, x2
+# 最后我们将结果放置到 x0 中。
+0x00007f1e00082cbc  aa0203e0            移动 x0, x2
 #    x0: 0x0000000000000018
 (...)
 
-0x00007f1e00082cec  d65f03c0            ret
-Hit and disabled a breakpoint at 0x7f1f880abd28.
-0x00007f1f880abd28  f85e83b4            ldur x20, [fp, #-24]
+0x00007f1e00082cec  d65f03c0            返回
+触发并禁用了一个断点于地址 0x7f1f880abd28。
+0x00007f1f880abd28  f85e83b4            加载 x20, [fp, #-24]
 sim>
 ```
 
 #### `break $address`
 
-Inserts a breakpoint at the specified address.
+在指定地址插入断点。
 
-Note that on 32-bit Arm, you can have only one breakpoint and you'll need to disable write protection on code pages to insert it. The 64-bit Arm simulator does not have such restrictions.
+请注意在 32 位 Arm 上，你只能有一个断点并且需要禁用代码页的写保护以插入它。64 位 Arm 模拟器没有这些限制。
 
-With our [example](#test.js) again:
+再次使用我们的 [示例](#test.js)：
 
-```simulator
+```模拟器
 $ out/arm.debug/d8 --allow-natives-syntax \
-    # This is useful to know which address to break to.
+    # 这有助于了解需要断点的地址。
     --print-opt-code --print-opt-code-filter="add" \
     test.js
 (...)
 
-Simulator hit stop, breaking at the next instruction:
-  0x488c2e20  e24fc00c       sub ip, pc, #12
+模拟器触发停止，并在下一个指令处断点：
+  0x488c2e20  e24fc00c       减法 ip, pc, #12
 
-# Break on a known interesting address, where we start
-# loading 'a' and 'b'.
+# 在一个已知的有趣地址上断点，开始加载 'a' 和 'b'。
+#
 sim> break 0x488c2e9c
 sim> continue
-  0x488c2e9c  e59b200c       ldr r2, [fp, #+12]
+  0x488c2e9c  e59b200c       加载 r2, [fp, #+12]
 
-# We can look-ahead with 'disasm'.
+# 我们可以通过 'disasm' 预览一下。
 sim> disasm 10
-  0x488c2e9c  e59b200c       ldr r2, [fp, #+12]
-  0x488c2ea0  e3120001       tst r2, #1
-  0x488c2ea4  1a000037       bne +228 -> 0x488c2f88
-  0x488c2ea8  e59b3008       ldr r3, [fp, #+8]
-  0x488c2eac  e3130001       tst r3, #1
-  0x488c2eb0  1a000037       bne +228 -> 0x488c2f94
-  0x488c2eb4  e1a040c2       mov r4, r2, asr #1
-  0x488c2eb8  e09440c3       adds r4, r4, r3, asr #1
-  0x488c2ebc  6a000037       bvs +228 -> 0x488c2fa0
-  0x488c2ec0  e0942004       adds r2, r4, r4
+  0x488c2e9c  e59b200c       加载 r2, [fp, #+12]
+  0x488c2ea0  e3120001       测试 r2, #1
+  0x488c2ea4  1a000037       不等于跳转 +228 -> 0x488c2f88
+  0x488c2ea8  e59b3008       加载 r3, [fp, #+8]
+  0x488c2eac  e3130001       测试 r3, #1
+  0x488c2eb0  1a000037       不等于跳转 +228 -> 0x488c2f94
+  0x488c2eb4  e1a040c2       移动 r4, r2, 算术右移 #1
+  0x488c2eb8  e09440c3       相加 r4, r4, r3, 算术右移 #1
+  0x488c2ebc  6a000037       溢出跳转 +228 -> 0x488c2fa0
+  0x488c2ec0  e0942004       相加 r2, r4, r4
 
-# And try and break on the result of the first `adds` instructions.
+# 然后尝试断点在第一次 `adds` 指令的结果处。
 sim> break 0x488c2ebc
-setting breakpoint failed
+设置断点失败
 
-# Ah, we need to delete the breakpoint first.
+# 哦，我们需要先删除断点。
 sim> del
 sim> break 0x488c2ebc
 sim> cont
-  0x488c2ebc  6a000037       bvs +228 -> 0x488c2fa0
+  0x488c2ebc  6a000037       溢出跳转 +228 -> 0x488c2fa0
 
-sim> print r4
+sim> 打印 r4
 r4: 0x0000000c 12
-# That's 5 + 7 == 12, all good!
+# 那是 5 + 7 == 12，一切正常！
 ```
 
-### Generated breakpoint instuctions with a few additional features
+### 生成的断点指令以及一些附加功能
 
-Instead of `TurboAssembler::DebugBreak()`, you may use a lower-level instruction which has the same effect except with additional features.
+对比 `TurboAssembler::DebugBreak()`，你可以使用一个更底层的指令，具有相同效果并附加功能。
 
-- [32-bit: `stop()`](#arm32_stop)
-- [64-bit: `Debug()`](#arm64_debug)
+- [32 位: `stop()`](#arm32_stop)
+- [64 位: `Debug()`](#arm64_debug)
 
-#### `stop()` (32-bit Arm)
+#### `stop()` (32 位 Arm)
 
 ```cpp
 Assembler::stop(Condition cond = al, int32_t code = kDefaultStopCode);
 ```
 
-The first argument is the condition and the second is the stop code. If a code is specified, and is less than 256, the stop is said to be “watched”, and can be disabled/enabled; a counter also keeps track of how many times the Simulator hits this code.
+第一个参数是条件，第二个是停止代码。如果指定代码且小于 256，该停止被称为“受监视”，可以被禁用/启用；计数器也会记录模拟器命中此代码的次数。
 
-Imagine we are working on this V8 C++ code:
+假设我们正在处理以下 V8 C++ 代码：
 
 ```cpp
 __ stop(al, 123);
@@ -386,79 +383,79 @@ __ mov(r1, r1);
 __ mov(r1, r1);
 ```
 
-Here's a sample debugging session:
+以下是一个调试会话示例：
 
-We hit the first stop.
+我们命中了第一个停止。
 
-```simulator
-Simulator hit stop 123, breaking at the next instruction:
-  0xb53559e8  e1a00000       mov r0, r0
+```模拟器
+模拟器命中停止 123，并在下一个指令处中断：
+  0xb53559e8  e1a00000       移动 r0, r0
 ```
 
-We can see the following stop using `disasm`.
+我们可以通过 `disasm` 看到后续停止。
 
-```simulator
+```模拟器
 sim> disasm
-  0xb53559e8  e1a00000       mov r0, r0
-  0xb53559ec  e1a00000       mov r0, r0
-  0xb53559f0  e1a00000       mov r0, r0
-  0xb53559f4  e1a00000       mov r0, r0
-  0xb53559f8  e1a00000       mov r0, r0
-  0xb53559fc  ef800001       stop 1 - 0x1
-  0xb5355a00  e1a00000       mov r1, r1
-  0xb5355a04  e1a00000       mov r1, r1
-  0xb5355a08  e1a00000       mov r1, r1
+  0xb53559e8  e1a00000       移动 r0, r0
+  0xb53559ec  e1a00000       移动 r0, r0
+  0xb53559f0  e1a00000       移动 r0, r0
+  0xb53559f4  e1a00000       移动 r0, r0
+  0xb53559f8  e1a00000       移动 r0, r0
+  0xb53559fc  ef800001       停止 1 - 0x1
+  0xb5355a00  e1a00000       移动 r1, r1
+  0xb5355a04  e1a00000       移动 r1, r1
+  0xb5355a08  e1a00000       移动 r1, r1
 ```
 
-Information can be printed for all (watched) stops which were hit at least once.
+可以打印所有至少被命中一次的（受监视的）停止的信息。
 
-```simulator
+```模拟器
 sim> stop info all
-Stop information:
-stop 123 - 0x7b:      Enabled,      counter = 1
+停止信息：
+停止 123 - 0x7b:      已启用,      计数器 = 1
 sim> cont
-Simulator hit stop 1, breaking at the next instruction:
-  0xb5355a04  e1a00000       mov r1, r1
+模拟器命中停止 1，并在下一个指令处中断：
+  0xb5355a04  e1a00000       移动 r1, r1
 sim> stop info all
-Stop information:
-stop 1 - 0x1:         Enabled,      counter = 1
-stop 123 - 0x7b:      Enabled,      counter = 1
+停止信息：
+停止 1 - 0x1:         已启用,      计数器 = 1
+停止 123 - 0x7b:      已启用,      计数器 = 1
 ```
 
-Stops can be disabled or enabled. (Only available for watched stops.)
+停止可以被禁用或启用。（仅限受监视的停止）
 
-```simulator
+```模拟器
 sim> stop disable 1
 sim> cont
-Simulator hit stop 123, breaking at the next instruction:
+模拟器触发停止123，在下一条指令处中断：
   0xb5356808  e1a00000       mov r0, r0
-sim> cont
-Simulator hit stop 123, breaking at the next instruction:
+sim> 继续
+模拟器触发停止123，在下一条指令处中断：
   0xb5356c28  e1a00000       mov r0, r0
-sim> stop info all
-Stop information:
-stop 1 - 0x1:         Disabled,     counter = 2
-stop 123 - 0x7b:      Enabled,      counter = 3
-sim> stop enable 1
-sim> cont
-Simulator hit stop 1, breaking at the next instruction:
+sim> 停止信息 全部
+停止信息：
+停止1 - 0x1:         已禁用，     计数器 = 2
+停止123 - 0x7b:      已启用，      计数器 = 3
+sim> 启用停止 1
+sim> 继续
+模拟器触发停止1，在下一条指令处中断：
   0xb5356c44  e1a00000       mov r1, r1
-sim> stop disable all
-sim> con
+sim> 禁用停止 全部
+sim> 继续
 ```
 
-#### `Debug()` (64-bit Arm)
+#### `Debug()` (64位 Arm)
 
 ```cpp
-MacroAssembler::Debug(const char* message, uint32_t code, Instr params = BREAK);
+宏汇编器::Debug(const char* message, uint32_t code, Instr params = BREAK);
 ```
 
-This instruction is a breakpoint by default, but is also able to enable and disable tracing as if you had done it with the [`trace`](#trace) command in the debugger. You can also give it a message and a code as an identifier.
+该指令默认是一个断点，但也可以启用和禁用跟踪，就像在调试器中使用 [`trace`](#trace) 命令一样。您还可以为其指定一个消息和一个代码作为标识符。
 
-Imagine we are working on this V8 C++ code, taken from the native builtin that prepares the frame to call a JS function.
+假设我们正在处理这段V8 C++代码，该代码取自用于准备调用JS函数帧的原生内置功能。
 
 ```cpp
-int64_t bad_frame_pointer = -1L;  // Bad frame pointer, should fail if it is used.
+int64_t bad_frame_pointer = -1L;  // 错误的帧指针，如果使用它应该失败。
 __ Mov(x13, bad_frame_pointer);
 __ Mov(x12, StackFrame::TypeToMarker(type));
 __ Mov(x11, ExternalReference::Create(IsolateAddressId::kCEntryFPAddress,
@@ -468,13 +465,13 @@ __ Ldr(x10, MemOperand(x11));
 __ Push(x13, x12, xzr, x10);
 ```
 
-It might be useful to insert a breakpoint with `DebugBreak()` so we can examine the current state when we run this. But we can go further and trace this code if we use `Debug()` instead:
+可以使用 `DebugBreak()` 插入断点，这样我们可以在运行时检查当前状态。如果使用 `Debug()` ，我们还可以进一步跟踪这段代码：
 
 ```cpp
-// Start tracing and log disassembly and register values.
-__ Debug("start tracing", 42, TRACE_ENABLE | LOG_ALL);
+// 开始跟踪并记录反汇编和寄存器值。
+__ Debug("开始跟踪", 42, TRACE_ENABLE | LOG_ALL);
 
-int64_t bad_frame_pointer = -1L;  // Bad frame pointer, should fail if it is used.
+int64_t bad_frame_pointer = -1L;  // 错误的帧指针，如果使用它应该失败。
 __ Mov(x13, bad_frame_pointer);
 __ Mov(x12, StackFrame::TypeToMarker(type));
 __ Mov(x11, ExternalReference::Create(IsolateAddressId::kCEntryFPAddress,
@@ -483,16 +480,16 @@ __ Ldr(x10, MemOperand(x11));
 
 __ Push(x13, x12, xzr, x10);
 
-// Stop tracing.
-__ Debug("stop tracing", 42, TRACE_DISABLE);
+// 停止跟踪。
+__ Debug("停止跟踪", 42, TRACE_DISABLE);
 ```
 
-It allows us to trace register values for __just__ the snippet of code we're working on:
+这使我们可以仅仅跟踪我们正在处理的代码片段的寄存器值：
 
-```simulator
+```模拟器
 $ d8 --allow-natives-syntax --debug-sim test.js
 # NZCV: N:0 Z:0 C:0 V:0
-# FPCR: AHP:0 DN:0 FZ:0 RMode:0b00 (Round to Nearest)
+# FPCR: AHP:0 DN:0 FZ:0 RMode:0b00 (向最接近值舍入)
 #    x0: 0x00007fbf00000000
 #    x1: 0x00007fbf0804030d
 #    x2: 0x00007fbf082500e1

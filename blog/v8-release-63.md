@@ -1,53 +1,53 @@
 ---
-title: "V8 release v6.3"
-author: "the V8 team"
+title: "V8发布v6.3"
+author: "V8团队"
 date: "2017-10-25 13:33:37"
 tags: 
-  - release
-description: "V8 v6.3 includes performance improvements, reduced memory consumption, and support for new JavaScript language features."
+  - 发布
+description: "V8 v6.3包含性能改进、减少内存消耗以及对新的JavaScript语言特性的支持。"
 tweet: "923168001108643840"
 ---
-Every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 6.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.3), which is in beta until its release in coordination with Chrome 63 Stable in several weeks. V8 v6.3 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
+每隔六周，我们都会创建一个新的V8分支，作为我们[发布流程](/docs/release-process)的一部分。每个版本都在Chrome Beta里程碑之前从V8的Git主分支分离出来。今天，我们很高兴地宣布我们最新的分支，[V8版本6.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.3)，它将在未来几周与Chrome 63稳定版协调发布前处于测试阶段。V8 v6.3充满了各种面向开发者的亮点。此帖子提供了一些亮点的预览，以期待发布。
 
 <!--truncate-->
-## Speed
+## 速度
 
-[Jank Busters](/blog/jank-busters) III hit the shelves as part of the [Orinoco](/blog/orinoco) project. Concurrent marking ([70-80%](https://chromeperf.appspot.com/report?sid=612eec65c6f5c17528f9533349bad7b6f0020dba595d553b1ea6d7e7dcce9984) of marking is done on a non-blocking thread) is shipped.
+[Jank Busters](/blog/jank-busters) III作为[Orinoco](/blog/orinoco)项目的一部分已经发布。并行标记（[标记工作的70%-80%](https://chromeperf.appspot.com/report?sid=612eec65c6f5c17528f9533349bad7b6f0020dba595d553b1ea6d7e7dcce9984)在非阻塞线程上完成）已推出。
 
-The parser now does not [need to preparse a function a second time](https://docs.google.com/document/d/1TqpdGeLmURL2gc18s6PwNeyZOvayQJtJ16TCn0BEt48/edit#heading=h.un2pnqwbiw11). This translates to a [14% median improvement in parse time](https://docs.google.com/document/d/1TqpdGeLmURL2gc18s6PwNeyZOvayQJtJ16TCn0BEt48/edit#heading=h.dvuo4tqnsmml) on our internal startup Top25 benchmark.
+解析器现在不再[需要第二次预解析函数](https://docs.google.com/document/d/1TqpdGeLmURL2gc18s6PwNeyZOvayQJtJ16TCn0BEt48/edit#heading=h.un2pnqwbiw11)。这在我们的内部启动Top25基准上转换为[解析时间中值提升14%](https://docs.google.com/document/d/1TqpdGeLmURL2gc18s6PwNeyZOvayQJtJ16TCn0BEt48/edit#heading=h.dvuo4tqnsmml)。
 
-`string.js` has been completely ported to CodeStubAssembler. Thanks a lot to [@peterwmwong](https://twitter.com/peterwmwong) for [his awesome contributions](https://chromium-review.googlesource.com/q/peter.wm.wong)! As a developer this means that builtin string functions like `String#trim` are a lot faster starting with V8 v6.3.
+`string.js`已完全移植到CodeStubAssembler。感谢[@peterwmwong](https://twitter.com/peterwmwong)的[出色贡献](https://chromium-review.googlesource.com/q/peter.wm.wong)! 对于开发者来说，这意味着从V8 v6.3开始，内建字符串函数如`String#trim`会快得多。
 
-`Object.is()`’s performance is now roughly on-par with alternatives. In general, V8 v6.3 continues the path to better the ES2015+ performance. Beside other items we boosted the [speed of polymorphic access to symbols](https://bugs.chromium.org/p/v8/issues/detail?id=6367), [polymorphic inlining of constructor calls](https://bugs.chromium.org/p/v8/issues/detail?id=6885) and [(tagged) template literals](https://pasteboard.co/GLYc4gt.png).
+`Object.is()`的性能现在大致与替代方案相当。总体来讲，V8 v6.3继续走向改善ES2015+性能的道路。此外，我们提高了[符号的多态访问速度](https://bugs.chromium.org/p/v8/issues/detail?id=6367)、[构造函数调用的多态内联](https://bugs.chromium.org/p/v8/issues/detail?id=6885)以及[(标记的)模板字符串](https://pasteboard.co/GLYc4gt.png)。
 
-![V8’s performance over the past six releases](/_img/v8-release-63/ares6.svg)
+![V8过去六个版本的性能变化](/_img/v8-release-63/ares6.svg)
 
-Weak optimized function list is gone. More information can be found in [the dedicated blog post](/blog/lazy-unlinking).
+弱优化功能列表已移除。详细信息可在[专用博客文章](/blog/lazy-unlinking)中找到。
 
-The mentioned items are a non-exhaustive list of speed improvements. Lots of other performance-related work has happened.
+上述内容是速度改进的非详尽列表。还有很多其他与性能相关的工作已经完成。
 
-## Memory consumption
+## 内存消耗
 
-[Write barriers are switched over to using the CodeStubAssembler](https://chromium.googlesource.com/v8/v8/+/dbfdd4f9e9741df0a541afdd7516a34304102ee8). This saves around 100 KB of memory per isolate.
+[写屏障已改用CodeStubAssembler](https://chromium.googlesource.com/v8/v8/+/dbfdd4f9e9741df0a541afdd7516a34304102ee8)。每个隔离环境节省约100 KB的内存。
 
-## JavaScript language features
+## JavaScript语言特性
 
-V8 now supports the following stage 3 features: [dynamic module import via `import()`](/features/dynamic-import), [`Promise.prototype.finally()`](/features/promise-finally) and [async iterators/generators](https://github.com/tc39/proposal-async-iteration).
+V8现在支持以下第3阶段特性：[通过`import()`动态模块导入](/features/dynamic-import)、[`Promise.prototype.finally()`](/features/promise-finally)和[异步迭代器/生成器](https://github.com/tc39/proposal-async-iteration)。
 
-With [dynamic module import](/features/dynamic-import) it is very straightforward to import modules based on runtime conditions. This comes in handy when an application should lazy-load certain code modules.
+使用[动态模块导入](/features/dynamic-import)，根据运行时条件导入模块变得非常简单。这在应用程序需要延迟加载某些代码模块时非常方便。
 
-[`Promise.prototype.finally`](/features/promise-finally) introduces a way to easily clean up after a promise is settled.
+[`Promise.prototype.finally`](/features/promise-finally)提供了一种在Promise解决后轻松清理的方法。
 
-Iterating with async functions got more ergonomic with the introduction of [async iterators/generators](https://github.com/tc39/proposal-async-iteration).
+通过引入[异步迭代器/生成器](https://github.com/tc39/proposal-async-iteration)，使用异步函数进行迭代变得更为便捷。
 
-On the `Intl` side, [`Intl.PluralRules`](/features/intl-pluralrules) is now supported. This API enables performant internationalized pluralizations.
+在`Intl`方面，[`Intl.PluralRules`](/features/intl-pluralrules)现在已支持。此API支持高性能的国际化复数处理。
 
-## Inspector/Debugging
+## 观察器/调试
 
-In Chrome 63 [block coverage](https://docs.google.com/presentation/d/1IFqqlQwJ0of3NuMvcOk-x4P_fpi1vJjnjGrhQCaJkH4/edit#slide=id.g271d6301ff_0_44) is also supported in the DevTools UI. Please note that the inspector protocol already supports block coverage since V8 v6.2.
+在Chrome 63中，[代码块覆盖率](https://docs.google.com/presentation/d/1IFqqlQwJ0of3NuMvcOk-x4P_fpi1vJjnjGrhQCaJkH4/edit#slide=id.g271d6301ff_0_44)也在DevTools UI中获得支持。请注意，从V8 v6.2开始，观察器协议已经支持代码块覆盖率。
 
 ## V8 API
 
-Please check out our [summary of API changes](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit). This document is regularly updated a few weeks after each major release.
+请查看我们的[API更改摘要](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit)。该文档在每次主要版本发布后几周定期更新。
 
-Developers with an [active V8 checkout](/docs/source-code#using-git) can use git checkout -b 6.3 -t branch-heads/6.3 to experiment with the new features in V8 v6.3. Alternatively you can [subscribe to Chrome’s Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+拥有[活动的V8检出](/docs/source-code#using-git)的开发者可以使用git checkout -b 6.3 -t branch-heads/6.3来试验V8 v6.3中的新功能。或者，您可以[订阅Chrome测试版频道](https://www.google.com/chrome/browser/beta.html)，并很快自己尝试这些新功能。

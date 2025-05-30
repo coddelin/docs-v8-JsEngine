@@ -1,5 +1,5 @@
 ---
-title: "Numeric separators"
+title: "数字分隔符"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars: 
   - "mathias-bynens"
@@ -8,17 +8,17 @@ tags:
   - ECMAScript
   - ES2021
   - io19
-description: "JavaScript now supports underscores as separators in numeric literals, increasing readability and maintainability of source code."
+description: "JavaScript现在支持用下划线作为数字字面量的分隔符，从而提升源码的可读性和可维护性。"
 tweet: "1129073383931559936"
 ---
-Large numeric literals are difficult for the human eye to parse quickly, especially when there are lots of repeating digits:
+大型数字字面量对人眼来说难以快速解析，特别是当数字中有大量重复数字时：
 
 ```js
 1000000000000
    1019436871.42
 ```
 
-To improve readability, [a new JavaScript language feature](https://github.com/tc39/proposal-numeric-separator) enables underscores as separators in numeric literals. So, the above can now be rewritten to group the digits per thousand, for example:
+为了提高可读性，[一个新的JavaScript语言特性](https://github.com/tc39/proposal-numeric-separator)允许在数字字面量中使用下划线作为分隔符。因此，上述内容现在可以改写为按千分进行分组，例如：
 
 <!--truncate-->
 ```js
@@ -26,35 +26,35 @@ To improve readability, [a new JavaScript language feature](https://github.com/t
     1_019_436_871.42
 ```
 
-Now it’s easier to tell that the first number is a trillion, and the second number is in the order of 1 billion.
+现在更容易看出第一个数字是万亿，而第二个数字在10亿的范围内。
 
-Numeric separators help improve readability for all kinds of numeric literals:
+数字分隔符帮助提高各种类型数字字面量的可读性：
 
 ```js
-// A decimal integer literal with its digits grouped per thousand:
+// 一个使用千分分组的十进制整数字面量：
 1_000_000_000_000
-// A decimal literal with its digits grouped per thousand:
+// 一个使用千分分组的十进制字面量：
 1_000_000.220_720
-// A binary integer literal with its bits grouped per octet:
+// 一个使用八位分组的二进制整数字面量：
 0b01010110_00111000
-// A binary integer literal with its bits grouped per nibble:
+// 一个使用四位分组的二进制整数字面量：
 0b0101_0110_0011_1000
-// A hexadecimal integer literal with its digits grouped by byte:
+// 一个按字节分组的十六进制整数字面量：
 0x40_76_38_6A_73
-// A BigInt literal with its digits grouped per thousand:
+// 一个使用千分分组的BigInt字面量：
 4_642_473_943_484_686_707n
 ```
 
-They even work for octal integer literals (although [I can’t think of an example](https://github.com/tc39/proposal-numeric-separator/issues/44) where separators provide value for such literals):
+它们甚至可以用于八进制整数字面量（尽管[我想不出一个示例](https://github.com/tc39/proposal-numeric-separator/issues/44)能够展示分隔符对这种字面量有何意义）：
 
 ```js
-// A numeric separator in an octal integer literal: 🤷‍♀️
+// 一个八进制整数字面量中的数字分隔符：🤷‍♀️
 0o123_456
 ```
 
-Note that JavaScript also has a legacy syntax for octal literals without the explicit `0o` prefix. For example, `017 === 0o17`. This syntax is not supported in strict mode or within modules, and it should not be used in modern code. Accordingly, numeric separators are not supported for these literals. Use `0o17`-style literals instead.
+注意，JavaScript还有一种遗留的八进制字面量语法，不需要显式的`0o`前缀。例如，`017 === 0o17`。这种语法在严格模式下或模块中不被支持，不应该在现代代码中使用。因此，这类字面量不支持数字分隔符。应使用`0o17`风格的字面量。
 
-## Support for numeric separators
+## 数字分隔符的支持情况
 
 <feature-support chrome="75 /blog/v8-release-75#numeric-separators"
                  firefox="70 https://hacks.mozilla.org/2019/10/firefox-70-a-bountiful-release-for-all/"

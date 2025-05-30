@@ -1,92 +1,82 @@
 ---
-title: "Taming architecture complexity in V8 — the CodeStubAssembler"
-author: "[Daniel Clifford](https://twitter.com/expatdanno), CodeStubAssembler assembler"
+title: "驯服 V8 架构复杂性——CodeStubAssembler"
+author: "[Daniel Clifford](https://twitter.com/expatdanno)，CodeStubAssembler 组装器"
 date: "2017-11-16 13:33:37"
 tags: 
-  - internals
-description: "V8 has its own abstraction on top of assembly code: the CodeStubAssembler. The CSA allows V8 to quickly and reliably optimize JS features at a low level, all while supporting multiple platforms."
+  - 内部细节
+description: "V8 在汇编代码之上有自己的抽象层：CodeStubAssembler。CSA 允许 V8 在低层次上快速且可靠地优化 JavaScript 功能，同时支持多平台。"
 tweet: "931184976481177600"
 ---
-In this post we’d like to introduce the CodeStubAssembler (CSA), a component in V8 that has been a very useful tool in achieving some [big](/blog/optimizing-proxies) [performance](https://twitter.com/v8js/status/918119002437750784) [wins](https://twitter.com/_gsathya/status/900188695721984000) over the last several V8 releases. The CSA also significantly improved the V8 team’s ability to quickly optimize JavaScript features at a low-level with a high degree of reliability, which improved the team’s development velocity.
+在这篇文章中，我们想介绍 CodeStubAssembler（CSA），这是 V8 中的一个组件，它在最近几个 V8 版本的 [大幅度](/blog/optimizing-proxies) [性能](https://twitter.com/v8js/status/918119002437750784) [提升](https://twitter.com/_gsathya/status/900188695721984000) 中发挥了重要作用。CSA 还显著提高了 V8 团队在低层快速优化 JavaScript 功能的能力，同时保持高度可靠性，从而提升了团队的开发效率。
 
 <!--truncate-->
-## A brief history of builtins and hand-written assembly in V8
+## V8 中内建函数和手写汇编的简史
 
-To understand the CSA’s role in V8, it’s important to understand a little bit of the context and history that led to its development.
+为了理解 CSA 在 V8 中的作用，有必要了解一些促成其发展的上下文和历史背景。
 
-V8 squeezes performance out of JavaScript using a combination of techniques. For JavaScript code that runs a long time, V8’s [TurboFan](/docs/turbofan) optimizing compiler does a great job of speeding up the entire spectrum of ES2015+ functionality for peak performance. However, V8 also needs to execute short-running JavaScript efficiently for good baseline performance. This is especially the case for the so-called **builtin functions** on the pre-defined objects that are available to all JavaScript programs as defined by the [ECMAScript specification](https://tc39.es/ecma262/).
+V8 使用多种技术从 JavaScript 中榨取性能收益。对于运行时间较长的 JavaScript 代码，V8 的 [TurboFan](/docs/turbofan) 优化编译器在提升 ES2015+ 功能的峰值性能方面表现出色。然而，V8 还需要高效地执行短时间运行的 JavaScript，以确保良好的基础性能。尤其是所谓的 **内建函数**，它们是预定义对象上的函数，所有 JavaScript 程序都可以使用，正如 [ECMAScript 规范](https://tc39.es/ecma262/) 中所定义。
 
-Historically, many of these builtin functions were [self-hosted](https://en.wikipedia.org/wiki/Self-hosting), that is, they were authored by a V8 developer in JavaScript—albeit a special V8-internal dialect. To achieve good performance, these self-hosted builtins rely on the same mechanisms V8 uses to optimize user-supplied JavaScript. As with user-supplied code, the self-hosted builtins require a warm-up phase in which type feedback is gathered and they need to be compiled by the optimizing compiler.
+在历史上，许多这些内建函数是 [自托管](https://en.wikipedia.org/wiki/Self-hosting) 的，也就是说，它们是由 V8 开发人员用 JavaScript 编写的——尽管是 V8 的一种特殊内部方言。为了实现良好的性能，这些自托管的内建函数依赖于 V8 用于优化用户提供 JavaScript 的机制。与用户提供的代码一样，自托管的内建函数需要经历一个收集类型反馈的预热阶段，并需要优化编译器进行编译。
 
-Although this technique provides good builtin performance in some situations, it’s possible to do better. The exact semantics of the pre-defined functions on the `Array.prototype` are [specified in exquisite detail](https://tc39.es/ecma262/#sec-properties-of-the-array-prototype-object) in the spec. For important and common special cases, V8’s implementers know in advance exactly how these builtin functions should work by understanding the specification, and they use this knowledge to carefully craft custom, hand-tuned versions up front. These _optimized builtins_ handle common cases without warm-up or the need to invoke the optimizing compiler, since by construction baseline performance is already optimal upon first invocation.
+尽管这种技术在某些情况下提供了良好的内建性能，但仍有更好的选择。《规范》中 [详尽描述了](https://tc39.es/ecma262/#sec-properties-of-the-array-prototype-object) `Array.prototype` 上预定义函数的精准语义。对于重要且常见的特殊情况，V8 的实现者通过理解规范，提前知道这些内建函数应该如何工作，并利用这一知识小心翼翼地预先打造了经过手动调优的版本。这些优化的内建函数无需预热或调用优化编译器即可处理常见情况，因为从设计上来说，其基础性能在第一次调用时已经是最佳。
 
-To squeeze the best performance out of hand-written built-in JavaScript functions (and from other fast-path V8 code that are also somewhat confusingly called builtins), V8 developers traditionally wrote optimized builtins in assembly language. By using assembly, the hand-written builtin functions were especially fast by, among other things, avoiding expensive calls to V8’s C++ code via trampolines and by taking advantage of V8’s custom register-based [ABI](https://en.wikipedia.org/wiki/Application_binary_interface) that it uses internally to call JavaScript functions.
+为了从手写的 JavaScript 内建函数（以及其他被称为内建函数的快速路径 V8 代码）中榨取最佳性能，V8 开发人员传统上用汇编语言编写优化的内建函数。通过使用汇编，这些手写的内建函数尤其快速，因为它们避免了通过跳板调用 V8 C++ 代码的高开销调用，并利用了 V8 内部调用 JavaScript 函数时使用的自定义基于寄存器的 [ABI](https://en.wikipedia.org/wiki/Application_binary_interface)。
 
-Because of the advantages of hand-written assembly, V8 accumulated literally tens of thousands of lines of hand-written assembly code for builtins over the years… _per platform_. All of these hand-written assembly builtins were great for improving performance, but new language features are always being standardized, and maintaining and extending this hand-written assembly was laborious and error-prone.
+由于手写汇编的优势，V8 多年来在每个平台都累计了成千上万行的手写汇编代码用于内建函数…… _每个平台一套_。所有这些手写的汇编内建代码在提高性能方面表现优异，但新的语言特性总在不断被标准化，维护和扩展这些手写的汇编是一项繁重且容易出错的任务。
 
-## Enter the CodeStubAssembler
+## 引入 CodeStubAssembler
 
-V8 developers wrestled with a dilemma for many years: is it possible to create builtins that have the advantage of hand-written assembly without also being fragile and difficult to maintain?
+多年来，V8 开发者一直在解决一个难题：是否有可能创建既具备手写汇编优势又不会显得脆弱和难以维护的内建函数？
 
-With the advent of TurboFan the answer to this question is finally “yes”. TurboFan’s backend uses a cross-platform [intermediate representation](https://en.wikipedia.org/wiki/Intermediate_representation) (IR) for low-level machine operations. This low-level machine IR is input to an instruction selector, register allocator, instruction scheduler and code generator that produce very good code on all platforms. The backend also knows about many of the tricks that are used in V8’s hand-written assembly builtins—e.g. how to use and call a custom register-based ABI, how to support machine-level tail calls, and how to elide the construction of stack frames in leaf functions. That knowledge makes the TurboFan backend especially well-suited for generating fast code that integrates well with the rest of V8.
+随着TurboFan的出现，这个问题的答案终于是“是”。TurboFan的后端使用跨平台的[中间表示](https://en.wikipedia.org/wiki/Intermediate_representation) (IR)来实现底层机器操作。这个底层机器IR被输入到指令选择器、寄存器分配器、指令调度程序和代码生成器中，从而在所有平台上生成非常优秀的代码。后端还了解许多在V8手写汇编内建函数中使用的技巧，例如如何使用并调用基于寄存器的自定义ABI，如何支持机器级尾调用，以及如何在叶函数中省略构造堆栈帧。这种知识使TurboFan后端特别适合生成高速代码并完美地与V8的其他部分集成。
 
-This combination of functionality made a robust and maintainable alternative to hand-written assembly builtins feasible for the first time. The team built a new V8 component—dubbed the CodeStubAssembler or CSA—that defines a portable assembly language built on top of TurboFan’s backend. The CSA adds an API to generate TurboFan machine-level IR directly without having to write and parse JavaScript or apply TurboFan’s JavaScript-specific optimizations. Although this fast-path to code generation is something that only V8 developers can use to speed up the V8 engine internally, this efficient path for generating optimized assembly code in a cross-platform way directly benefits all developers’ JavaScript code in the builtins constructed with the CSA, including the performance-critical bytecode handlers for V8’s interpreter, [Ignition](/docs/ignition).
+这种功能的结合首次使得一种强大的、可维护的替代手写汇编内建函数的方法变得可行。团队构建了一个新的V8组件——命名为CodeStubAssembler或CSA，它定义了一种基于TurboFan后端的可移植汇编语言。CSA添加了一个API，可以直接生成TurboFan的机器级IR，而无需编写和解析JavaScript或应用TurboFan的JavaScript特定优化。尽管这种快速代码生成路径仅供V8开发人员内部加速V8引擎使用，但是这种跨平台生成优化汇编代码的高效路径，通过CSA构建的内建函数直接惠及所有开发人员的JavaScript代码，包括V8解释器[Ignition](/docs/ignition)的性能关键字节码处理器。
 
-![The CSA and JavaScript compilation pipelines](/_img/csa/csa.svg)
+![CSA和JavaScript编译过程](/_img/csa/csa.svg)
 
-The CSA interface includes operations that are very low-level and familiar to anybody who has ever written assembly code. For example, it includes functionality like “load this object pointer from a given address” and “multiply these two 32-bit numbers”. The CSA has type verification at the IR level to catch many correctness bugs at compile time rather than runtime. For example, it can ensure that a V8 developer doesn’t accidentally use an object pointer that is loaded from memory as the input for a 32-bit multiplication. This kind of type verification is simply not possible with hand-written assembly stubs.
+CSA界面包含非常底层的操作，对任何曾经编写过汇编代码的人来说都很熟悉。例如，它包括诸如“从指定地址加载这个对象指针”和“将这两个32位数字相乘”等功能。CSA在IR级别进行类型验证，可以在编译时而非运行时捕获许多正确性错误。例如，它可以确保V8开发人员不会意外地将从内存加载的对象指针作为32位乘法的输入。这种类型验证在手写汇编代码存根中是根本不可能实现的。
 
-## A CSA test-drive
+## CSA试用
 
-To get a better idea of what the CSA offers, let’s go through a quick example. We’ll add a new internal builtin to V8 that returns the string length from an object if it is a String. If the input object is not a String, the builtin will return `undefined`.
+为了更好地了解CSA的功能，让我们通过一个快速示例来了解它。我们将为V8添加一个新的内部内建函数，该函数从一个对象返回字符串长度（如果它是一个字符串）。如果输入对象不是字符串，该内建函数将返回`undefined`。
 
-First, we add a line to the `BUILTIN_LIST_BASE` macro in V8’s [`builtin-definitions.h`](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-definitions.h) file that declares the new builtin called `GetStringLength` and specifies that it has a single input parameter that is identified with the constant `kInputObject`:
+首先，我们在V8的[`builtin-definitions.h`](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-definitions.h)文件中的`BUILTIN_LIST_BASE`宏中添加一行代码，声明名为`GetStringLength`的新内建函数。并指定它有一个输入参数，该参数用常量`kInputObject`标识：
 
 ```cpp
 TFS(GetStringLength, kInputObject)
 ```
 
-The `TFS` macro declares the builtin as a **T**urbo**F**an builtin using standard Code**S**tub linkage, which simply means that it uses the CSA to generate its code and expects parameters to be passed via registers.
+`TFS`宏将内建函数声明为使用标准CodeStub链接的**T**urbo**F**an内建函数，这意味着它使用CSA生成其代码，并期望参数通过寄存器传递。
 
-We can then define the contents of the builtin in [`builtins-string-gen.cc`](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-string-gen.cc):
+然后，我们可以在[`builtins-string-gen.cc`](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-string-gen.cc)文件中定义内建函数的内容：
 
 ```cpp
 TF_BUILTIN(GetStringLength, CodeStubAssembler) {
   Label not_string(this);
 
-  // Fetch the incoming object using the constant we defined for
-  // the first parameter.
+  // 使用我们为第一个参数定义的常量获取传入的对象。
   Node* const maybe_string = Parameter(Descriptor::kInputObject);
 
-  // Check to see if input is a Smi (a special representation
-  // of small numbers). This needs to be done before the IsString
-  // check below, since IsString assumes its argument is an
-  // object pointer and not a Smi. If the argument is indeed a
-  // Smi, jump to the label |not_string|.
+  // 检查输入是否是Smi（一种小数字的特殊表示）。这需要在下面的IsString检查之前完成，因为IsString假定其参数是对象指针而不是Smi。如果参数确实是Smi，跳转到标签|not_string|。
   GotoIf(TaggedIsSmi(maybe_string), &not_string);
 
-  // Check to see if the input object is a string. If not, jump to
-  // the label |not_string|.
+  // 检查输入对象是否是字符串。如果不是，跳转到标签|not_string|。
   GotoIfNot(IsString(maybe_string), &not_string);
 
-  // Load the length of the string (having ended up in this code
-  // path because we verified it was string above) and return it
-  // using a CSA "macro" LoadStringLength.
+  // 加载字符串的长度（通过上面验证它是字符串后进入此代码路径）并通过CSA "宏" LoadStringLength返回它。
   Return(LoadStringLength(maybe_string));
 
-  // Define the location of label that is the target of the failed
-  // IsString check above.
+  // 定义标签的位置，这是上面IsString检查失败的目标。
   BIND(&not_string);
 
-  // Input object isn't a string. Return the JavaScript undefined
-  // constant.
+  // 输入对象不是字符串。返回JavaScript的undefined常量。
   Return(UndefinedConstant());
 }
 ```
 
-Note that in the example above, there are two types of instructions used. There are _primitive_ CSA instructions that translate directly into one or two assembly instructions like `GotoIf` and `Return`. There are a fixed set of pre-defined CSA primitive instructions roughly corresponding to the most commonly used assembly instructions you would find on one of V8’s supported chip architectures. Others instructions in the example are _macro_ instructions, like `LoadStringLength`, `TaggedIsSmi`, and `IsString`, that are convenience functions to output one or more primitive or macro instructions inline. Macro instructions are used to encapsulate commonly used V8 implementation idioms for easy reuse. They can be arbitrarily long and new macro instructions can be easily defined by V8 developers whenever needed.
+注意，在上面的示例中使用了两类指令。有_原始_的CSA指令，这些指令直接翻译成一到两条汇编指令，比如`GotoIf`和`Return`。CSA原始指令的集合是固定的，它大致与V8支持的芯片架构中最常用的汇编指令对应。示例中的其他指令是_宏_指令，比如`LoadStringLength`、`TaggedIsSmi`和`IsString`，它们是便利功能，用于内联输出一个或多个原始或宏指令。宏指令用于封装常用的V8实现习惯，以便于重复使用。它们可以是任意长的，V8开发人员可以随时轻松定义新的宏指令。
 
-After compiling V8 with the above changes, we can run `mksnapshot`, the tool that compiles builtins to prepare them for V8’s snapshot, with the `--print-code` command-line option. This options prints the generated assembly code for each builtin. If we `grep` for `GetStringLength` in the output, we get the following result on x64 (the code output is cleaned up a bit to make it more readable):
+在使用上述更改编译V8后，我们可以运行`mksnapshot`工具，该工具通过`--print-code`命令行选项编译内置函数以为V8的快照做准备。该选项会打印每个内置函数生成的汇编代码。如果我们在输出中用`grep`搜索`GetStringLength`，会在x64架构上得到以下结果（代码输出稍作整理以提高易读性）：
 
 ```asm
   test al,0x1
@@ -101,7 +91,7 @@ not_string:
   retl
 ```
 
-On 32-bit ARM platforms, the following code is generated by `mksnapshot`:
+在32位ARM平台上，`mksnapshot`生成以下代码：
 
 ```asm
   tst r0, #1
@@ -117,7 +107,7 @@ not_string:
   bx lr
 ```
 
-Even though our new builtin uses a non-standard (at least non-C++) calling convention, it’s possible to write test cases for it. The following code can be added to [`test-run-stubs.cc`](https://cs.chromium.org/chromium/src/v8/test/cctest/compiler/test-run-stubs.cc) to test the builtin on all platforms:
+即使我们的新内置函数使用非标准（至少是非C++）的调用约定，也可以为其编写测试用例。以下代码可以添加到[`test-run-stubs.cc`](https://cs.chromium.org/chromium/src/v8/test/cctest/compiler/test-run-stubs.cc)中，以在所有平台上测试此内置函数：
 
 ```cpp
 TEST(GetStringLength) {
@@ -126,7 +116,7 @@ TEST(GetStringLength) {
   Heap* heap = isolate->heap();
   Zone* zone = scope.main_zone();
 
-  // Test the case where input is a string
+  // 测试输入为字符串的情况
   StubTester tester(isolate, zone, Builtins::kGetStringLength);
   Handle<String> input_string(
       isolate->factory()->
@@ -134,25 +124,25 @@ TEST(GetStringLength) {
   Handle<Object> result1 = tester.Call(input_string);
   CHECK_EQ(11, Handle<Smi>::cast(result1)->value());
 
-  // Test the case where input is not a string (e.g. undefined)
+  // 测试输入不是字符串的情况（例如：undefined）
   Handle<Object> result2 =
       tester.Call(factory->undefined_value());
   CHECK(result2->IsUndefined(isolate));
 }
 ```
 
-For more details about using the CSA for different kinds of builtins and for further examples, see [this wiki page](/docs/csa-builtins).
+要了解有关使用CSA开发不同类型的内置函数的更多详细信息及进一步的示例，请参阅[此wiki页面](/docs/csa-builtins)。
 
-## A V8 developer velocity multiplier
+## V8开发效率的倍增器
 
-The CSA is more than just an universal assembly language that targets multiple platforms. It enables much quicker turnaround when implementing new features compared to hand-writing code for each architecture as we used to do. It does this by providing all of the benefits of hand-written assembly while protecting developers against its most treacherous pitfalls:
+CSA不仅仅是一个支持多平台的通用汇编语言。相比过去为每个平台手写代码，它在实现新功能时能够显著加快开发速度。它通过提供手写汇编代码的所有优点，同时保护开发人员避免其最棘手的问题，做到了以下几点：
 
-- With the CSA, developers can write builtin code with a cross-platform set of low-level primitives that translate directly to assembly instructions. The CSA’s instruction selector ensures that this code is optimal on all of the platforms that V8 targets without requiring V8 developers to be experts in each of those platform’s assembly languages.
-- The CSA’s interface has optional types to ensure that the values manipulated by the low-level generated assembly are of the type that the code author expects.
-- Register allocation between assembly instructions is done by the CSA automatically rather than explicitly by hand, including building stack frames and spilling values to the stack if a builtin uses more registers than available or makes call. This eliminates a whole class of subtle, hard-to-find bugs that plagued hand-written assembly builtins. By making the generated code less fragile the CSA drastically reduces the time required to write correct low-level builtins.
-- The CSA understands ABI calling conventions—both standard C++ and internal V8 register-based ones—making it possible to easily interoperate between CSA-generated code and other parts of V8.
-- Since CSA code is C++, it’s easy to encapsulate common code generation patterns in macros that can be easily reused in many builtins.
-- Because V8 uses the CSA to generate the bytecode handlers for Ignition, it is very easy to inline the functionality of CSA-based builtins directly into the handlers to improve the interpreter’s performance.
-- V8’s testing framework supports testing CSA functionality and CSA-generated builtins from C++ without having to write assembly adapters.
+- 使用CSA，开发人员可以使用一组跨平台的低级原语编写内置函数代码，这些原语直接转换为汇编指令。CSA的指令选择器确保这些代码在V8所支持的所有平台上都是最优的，而无需V8开发人员精通这些平台的汇编语言。
+- CSA的接口有可选的类型来确保低级生成的汇编操作的值类型符合代码作者的预期。
+- 指令之间的寄存器分配由CSA自动完成，而不是手动指定，包括构建栈帧和在寄存器不够用或者调用函数时将值溢出到栈上。这消除了一个困扰手写汇编内置函数的微妙且难以发现的bug类别。通过减少生成代码的脆弱性，CSA大幅降低了编写正确低级内置函数所需的时间。
+- CSA理解ABI调用约定——包括标准的C++和V8内部基于寄存器的调用约定——可以轻松地在CSA生成的代码与V8的其他部分之间进行互操作。
+- 由于CSA代码是C++，所以可以很容易地用宏封装通用的代码生成模式，并且可以在许多内置函数中轻松重用。
+- 因为V8使用CSA生成Ignition的字节码处理器，所以可以非常容易地将基于CSA的内置函数功能直接内联到处理器中以提高解释器性能。
+- V8的测试框架支持从C++测试CSA功能和CSA生成的内置函数，而无需编写汇编适配器。
 
-All in all, the CSA has been a game changer for V8 development. It has significantly improved the team’s ability to optimize V8. That means we are able to optimize more of the JavaScript language faster for V8’s embedders.
+总的来说，CSA已经成为V8开发的游戏规则改变者。它显著提高了团队优化V8的能力。这意味着我们能够更快地为V8的嵌入者优化更多的JavaScript语言功能。

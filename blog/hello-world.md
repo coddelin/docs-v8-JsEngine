@@ -1,12 +1,12 @@
 ---
-title: "Hello, world!"
-author: "the V8 team"
+title: "你好，世界！"
+author: "V8团队"
 date: "2015-07-10 13:33:37"
-description: "The V8 project now has a blog!"
+description: "V8项目现在有一个博客了！"
 ---
-Welcome to the V8 developer blog!
+欢迎来到V8开发者博客！
 
-Historically, the V8 team has published blog posts that appeal to the wider web development audience on the [Chromium blog](https://blog.chromium.org/). In order to deliver more in-depth posts especially targeted to the hardcore coder and virtual machine enthusiasts out there, we’ve spun off this V8-specific blog. Big-ticket items will continue to be posted to the Chromium blog, but we hope you’ll stay tuned here for even more posts about advanced compiler techniques, low-level performance optimizations, and all the technical bits that make V8 tick.
+过去，V8团队一直在[Chromium博客](https://blog.chromium.org/)上发布面向更广泛的网页开发者的博文。为了提供更多深入的文章，特别是面向那些对编程核心和虚拟机感兴趣的爱好者，我们设立了这个V8专属博客。重大内容仍然会发布在Chromium博客上，但我们希望您能继续关注这里的更多内容，包括高级编译器技术、底层性能优化，以及让V8运作起来的所有技术细节。
 
 <!--truncate-->
-Happy reading!
+祝阅读愉快！

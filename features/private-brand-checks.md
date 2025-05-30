@@ -1,16 +1,16 @@
 ---
-title: "Private brand checks a.k.a. `#foo in obj`"
+title: "私有品牌检查，也就是 `#foo in obj`"
 author: "Marja Hölttä ([@marjakh](https://twitter.com/marjakh))"
 avatars: 
   - "marja-holtta"
 date: 2021-04-14
 tags: 
   - ECMAScript
-description: "Private brand checks allow testing for the existence of a private field in an object."
+description: "私有品牌检查允许测试对象中是否存在私有字段。"
 tweet: "1382327454975590401"
 ---
 
-The [`in` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in) can be used for testing whether the given object (or any object in its prototype chain) has the given property:
+[`in` 操作符](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in) 可以用来测试给定对象（或它的原型链上的任意对象）中是否有给定的属性：
 
 ```javascript
 const o1 = {'foo': 0};
@@ -21,7 +21,7 @@ const o3 = Object.create(o1);
 console.log('foo' in o3); // true
 ```
 
-The private brand checks feature extends the `in` operator to support [private class fields](https://v8.dev/features/class-fields#private-class-fields):
+私有品牌检查功能扩展了 `in` 操作符，支持 [私有类字段](https://v8.dev/features/class-fields#private-class-fields)：
 
 ```javascript
 class A {
@@ -38,34 +38,34 @@ class B {
   #foo = 0;
 }
 
-A.test(new B()); // false; it's not the same #foo
+A.test(new B()); // false; 它不是同一个 #foo
 ```
 
-Since private names are only available inside the class which defines them, the test must also occur inside the class, for example in a method like `static test` above.
+由于私有名称仅在定义它们的类内部可用，所以测试也必须发生在类内部，例如在上面 `static test` 方法中。
 
-Subclass instances receive private fields from the parent class as own-properties:
+子类实例接收来自父类的私有字段作为自己的属性：
 
 ```javascript
 class SubA extends A {};
 A.test(new SubA()); // true
 ```
 
-But objects created with with `Object.create` (or that have the prototype set later via the `__proto__` setter or `Object.setPrototypeOf`) don't receive the private fields as own-properties. Because private field lookup only works on own-properties, the `in` operator does not find these inherited fields:
+但是通过 `Object.create` 创建的对象（或者通过 `__proto__` 设置器或 `Object.setPrototypeOf` 后来设置了原型的对象）没有作为自己的属性接收到私有字段。因为私有字段查找仅适用于自己的属性，所以 `in` 操作符找不到这些继承的字段：
 
 <!--truncate-->
 ```javascript
 const a = new A();
 const o = Object.create(a);
-A.test(o); // false, private field is inherited and not owned
+A.test(o); // false, 私有字段被继承而非拥有
 A.test(o.__proto__); // true
 
 const o2 = {};
 Object.setPrototypeOf(o2, a);
-A.test(o2); // false, private field is inherited and not owned
+A.test(o2); // false, 私有字段被继承而非拥有
 A.test(o2.__proto__); // true
 ```
 
-Accessing a non-existing private field throws an error - unlike for normal properties, where accessing a non-existent property returns `undefined` but doesn't throw. Before the private brand checks, the developers have been forced to use a `try`-`catch` for implementing fall-back behavior for cases where an object doesn't have the needed private field:
+访问不存在的私有字段会抛出错误——不同于普通属性，访问不存在的属性返回 `undefined` 并且不会抛出。在私有品牌检查出现之前，开发者不得不使用 `try`-`catch` 来为对象没有所需的私有字段的情况实现回退行为：
 
 ```javascript
 class D {
@@ -73,14 +73,14 @@ class D {
     try {
       obj.#foo;
     } catch {
-      // Fallback for the case obj didn't have #foo
+      // obj 没有 #foo 的回退处理
     }
   }
   #foo = 0;
 }
 ```
 
-Now the existence of the private field can be tested using a private brand check:
+现在可以通过私有品牌检查测试私有字段的存在性：
 
 ```javascript
 class E {
@@ -88,14 +88,14 @@ class E {
     if (#foo in obj) {
       obj.#foo;
     } else {
-      // Fallback for the case obj didn't have #foo
+      // obj 没有 #foo 的回退处理
     }
   }
   #foo = 0;
 }
 ```
 
-But beware - the existence of one private field does not guarantee that the object has all the private fields declared in a class! The following example shows a half-constructed object which has only one of the two private fields declared in its class:
+但请注意——一个私有字段的存在并不保证对象拥有类中声明的所有私有字段！以下示例展示了一个仅拥有其类声明的两个私有字段之一的半构建对象：
 
 ```javascript
 let halfConstructed;
@@ -118,7 +118,7 @@ try {
 halfConstructed.m();
 ```
 
-## Private brand check support
+## 私有品牌检查支持
 
 <feature-support chrome="91 https://bugs.chromium.org/p/v8/issues/detail?id=11374"
                  firefox="no"

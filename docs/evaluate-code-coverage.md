@@ -1,35 +1,35 @@
 ---
-title: "Evaluating code coverage"
-description: "This document explains what to do if you’re working on a change in V8 and you want to evaluate its code coverage."
+title: "评估代码覆盖率"
+description: "本文档解释了如果你在V8上进行更改并希望评估其代码覆盖率时应该怎么做。"
 ---
-You are working on a change. You want to evaluate code coverage for your new code.
+你正在进行一个更改。你希望评估新代码的代码覆盖率。
 
-V8 provides two tools for doing this: local, on your machine; and build infrastructure support.
+V8提供了两种工具来实现这一目标：在本地运行和使用构建基础设施支持。
 
-## Local
+## 本地
 
-Relative to the root of the v8 repo, use `./tools/gcov.sh` (tested on linux). This uses gnu’s code coverage tooling and some scripting to produce an HTML report, where you can drill down coverage info per directory, file, and then down to line of code.
+相对于v8仓库的根目录，使用`./tools/gcov.sh`（在Linux上经过测试）。该工具使用Gnu的代码覆盖工具和一些脚本生成一个HTML报告，你可以深入目录、文件，甚至是代码行，查看覆盖率信息。
 
-The script builds V8 under a separate `out` directory, using `gcov` settings. We use a separate directory to avoid clobbering your normal build settings. This separate directory is called `cov` — it is created immediately under the repo root. `gcov.sh` then runs the test suite, and produces the report. The path to the report is provided when the script completes.
+脚本会使用`gcov`设置在一个单独的`out`目录下构建V8。我们使用单独的目录以避免覆盖正常的构建设置。这个单独的目录被称为`cov`，它会直接在仓库根目录下创建。`gcov.sh`脚本随后运行测试套件，并生成报告。脚本运行完成后会提供报告的路径。
 
-If your change has architecture specific components, you can cumulatively collect coverage from architecture specific runs.
+如果你的更改包含与架构相关的组件，你可以累积收集来自特定架构运行的覆盖率。
 
 ```bash
 ./tools/gcov.sh x64 arm
 ```
 
-This rebuilds in-place for each architecture, clobbering the binaries from the previous run, but preserving and accumulating over the coverage results.
+这会为每个架构就地重新构建，会覆盖上次运行的二进制文件，但会保留并累计覆盖率结果。
 
-By default, the script collects from `Release` runs. If you want `Debug`, you may specify so:
+默认情况下，脚本从`Release`版本的运行中收集数据。如果你需要`Debug`版本的数据，可以指定：
 
 ```bash
 BUILD_TYPE=Debug ./tools/gcov.sh x64 arm arm64
 ```
 
-Running the script with no options will provide a summary of options as well.
+运行脚本而不带任何选项，也会提供选项的摘要说明。
 
-## Code coverage bot
+## 代码覆盖率机器人
 
-For each change that landed, we run a x64 coverage analysis — see the [coverage bot](https://ci.chromium.org/p/v8/builders/luci.v8.ci/V8%20Linux64%20-%20gcov%20coverage). We don't run bots for coverage for other architectures.
+对于每次提交到主分支的更改，我们都会运行x64覆盖率分析——请参阅[覆盖率机器人](https://ci.chromium.org/p/v8/builders/luci.v8.ci/V8%20Linux64%20-%20gcov%20coverage)。我们不会为其他架构运行覆盖率机器人。
 
-To get the report for a particular run, you want to list the build steps, find the “gsutil coverage report” one (towards the end), and open the “report” under it.
+要获取特定运行的报告，你需要列出构建步骤，找到其中的“gsutil覆盖率报告”步骤（靠后的位置），然后打开其下的“报告”。

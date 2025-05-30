@@ -1,65 +1,65 @@
 ---
-title: "Running benchmarks locally"
-description: "This document explains how to run classic benchmark suites in d8."
+title: "⟨在本地运行基准测试⟩"
+description: "⟨本文档解释如何在d8中运行经典的基准测试套件。⟩"
 ---
-We have a simple workflow for running the “classic” benchmarks of SunSpider, Kraken and Octane. You can run with different binaries and flag combinations, and results are averaged over multiple runs.
+我们提供了一个简单的工作流程，用于运行SunSpider、Kraken和Octane这些“经典”基准测试。您可以使用不同的二进制文件和标志组合运行测试，结果会取多次运行的平均值。
 
 ## CPU
 
-Build the `d8` shell following the instructions at [Building with GN](/docs/build-gn).
+按照[使用GN构建](/docs/build-gn)中的说明构建`d8` shell。
 
-Before you run benchmarks, make sure you set your CPU frequency scaling governor to performance.
+在运行基准测试之前，请确保将您的CPU频率调节器设置为性能模式。
 
 ```bash
 sudo tools/cpu.sh fast
 ```
 
-The commands `cpu.sh` understands are
+`cpu.sh`支持的命令有：
 
-- `fast`, performance (alias for `fast`)
-- `slow`, powersave (alias for `slow`)
-- `default`, ondemand (alias for `default`)
-- `dualcore` (disables all but two cores), dual (alias for `dualcore`)
-- `allcores` (re-enables all available cores), all (alias for `allcores`).
+- `fast`，性能（`fast`的别名）
+- `slow`，节能（`slow`的别名）
+- `default`，动态调整（`default`的别名）
+- `dualcore`（禁用除两个内核外的所有内核），双核（`dualcore`的别名）
+- `allcores`（重新启用所有可用内核），全核（`allcores`的别名）。
 
 ## CSuite
 
-`CSuite` is our simple benchmark runner:
+`CSuite`是我们的简单基准测试运行工具：
 
 ```bash
 test/benchmarks/csuite/csuite.py
     (sunspider | kraken | octane)
     (baseline | compare)
-    <path to d8 binary>
-    [-x "<optional extra d8 command-line flags>"]
+    <d8 二进制文件路径>
+    [-x "<可选的额外d8命令行标志>"]
 ```
 
-First run in `baseline` mode to create the baselines, then in `compare` mode to get results. `CSuite` defaults to doing 10 runs for Octane, 100 for SunSpider, and 80 for Kraken, but you can override these for quicker results with the `-r` option.
+首先以`baseline`模式运行以创建基准，然后以`compare`模式运行以获得结果。`CSuite`默认对Octane进行10次运行，对SunSpider进行100次运行，对Kraken进行80次运行，但您可以使用`-r`选项覆盖这些以加快结果生成。
 
-`CSuite` creates two subdirectories in the directory where you run from:
+`CSuite`会在您运行的目录中创建两个子目录：
 
-1. `./_benchmark_runner_data` — this is cached output from the N runs.
-1. `./_results` — it writes the results into file master here. You could save these
-  files with different names, and they’ll show up in compare mode.
+1. `./_benchmark_runner_data` —这是N次运行的缓存输出。
+1. `./_results` —它会将结果写入此处的主文件。您可以使用不同的名称保存这些
+  文件，它们将在对比模式中显示。
 
-In compare mode, you’ll naturally use a different binary or at least different flags.
+在对比模式下，您通常会使用不同的二进制文件或至少使用不同的标志。
 
-## Example usage
+## 使用示例
 
-Say you’ve built two versions of `d8`, and want to see what happens to SunSpider. First, create baselines:
+假设您构建了两个版本的`d8`，并希望查看SunSpider的变化。首先，创建基准：
 
 ```bash
 $ test/benchmarks/csuite/csuite.py sunspider baseline out.gn/master/d8
-Wrote ./_results/master.
-Run sunspider again with compare mode to see results.
+已写入 ./_results/master。
+再次以对比模式运行SunSpider以查看结果。
 ```
 
-As suggested, run again but this time in `compare` mode with a different binary:
+如建议，再次运行，但这次使用对比模式并使用不同的二进制文件：
 
 ```
 $ test/benchmarks/csuite/csuite.py sunspider compare out.gn/x64.release/d8
 
-                               benchmark:    score |   master |      % |
+                               基准测试:    分数 |   master |      % |
 ===================================================+==========+========+
                        3d-cube-sunspider:     13.9 S     13.4 S   -3.6 |
                       3d-morph-sunspider:      8.6 S      8.4 S   -2.3 |
@@ -91,26 +91,26 @@ $ test/benchmarks/csuite/csuite.py sunspider compare out.gn/x64.release/d8
 ---------------------------------------------------+----------+--------+
 ```
 
-The output of the previous run is cached in a subdirectory created in the current directory (`_benchmark_runner_data`). The aggregate results are also cached, in directory `_results`. These directories can be deleted after you’ve run the compare step.
+上一次运行的输出存储在当前目录中创建的子目录（`_benchmark_runner_data`）中。汇总结果也存储在目录`_results`中。在完成对比步骤后，可以删除这些目录。
 
-Another situation is when you have the same binary, but want to see the results of different flags. Feeling rather droll, you’d like to see how Octane performs without an optimizing compiler. First the baseline:
+另一种情况是，您使用相同的二进制文件，但希望查看不同标志的结果。您可能想看看没有优化编译器时，Octane的表现如何。首先是基准：
 
 ```bash
 $ test/benchmarks/csuite/csuite.py -r 1 octane baseline out.gn/x64.release/d8
 
-Normally, octane requires 10 runs to get stable results.
-Wrote /usr/local/google/home/mvstanton/src/v8/_results/master.
-Run octane again with compare mode to see results.
+通常情况下，octane 需要运行 10 次才能获得稳定的结果。
+已写入 /usr/local/google/home/mvstanton/src/v8/_results/master。
+再次运行 octane，使用对比模式查看结果。
 ```
 
-Note the warning that one run usually isn’t enough to be sure of many performance optimizations, however, our “change” should have a reproducible effect with only one run! Now let’s compare, passing the `--noopt` flag to turn off [TurboFan](/docs/turbofan):
+请注意，警告表明一次运行通常不足以确保许多性能优化的准确性，然而，我们的“更改”应该在仅运行一次时就具有可重复的效果！现在我们来进行对比，传递 `--noopt` 标志来关闭 [TurboFan](/docs/turbofan)：
 
 ```bash
 $ test/benchmarks/csuite/csuite.py -r 1 octane compare out.gn/x64.release/d8 \
   -x "--noopt"
 
-Normally, octane requires 10 runs to get stable results.
-                               benchmark:    score |   master |      % |
+通常情况下，octane 需要运行 10 次才能获得稳定的结果。
+                               基准测试:    分数 |   主分支 |      % |
 ===================================================+==========+========+
                                 Richards:    973.0 |  26770.0 |  -96.4 |
                                DeltaBlue:   1070.0 |  57245.0 |  -98.1 |
@@ -133,8 +133,8 @@ Normally, octane requires 10 runs to get stable results.
 ---------------------------------------------------+----------+--------+
 ```
 
-Neat to see that `CodeLoad` and `zlib` were relatively unharmed.
+有趣的是，`CodeLoad` 和 `zlib` 受到的影响相对较小。
 
-## Under the hood
+## 引擎内部
 
-`CSuite` is based on two scripts in the same directory, `benchmark.py` and `compare-baseline.py`. There are more options in those scripts. For example, you can record multiple baselines and do 3-, 4-, or 5-way comparisons. `CSuite` is optimized for quick use, and sacrifices some flexibility.
+`CSuite` 基于同一目录下的两个脚本：`benchmark.py` 和 `compare-baseline.py`。这些脚本中有更多选项。例如，你可以记录多个基线并进行 3、4 或 5 路比较。`CSuite` 优化了快速使用，但牺牲了一些灵活性。

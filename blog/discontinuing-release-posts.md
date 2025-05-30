@@ -1,57 +1,57 @@
 ---
-title: "Discontinuing release blog posts"
-author: "Shu-yu Guo ([@shu_](https://twitter.com/_shu))"
+title: "停止发布版本博客文章"
+author: "郭书瑜 ([@shu_](https://twitter.com/_shu))"
 avatars: 
  - "shu-yu-guo"
 date: 2022-06-17
 tags: 
- - release
-description: "V8 to discontinue release blog posts in favor of Chrome release schedule and feature blog posts."
+ - 版本发布
+description: "V8将停止版本博客文章，转而根据Chrome发布计划和功能博客文章发布更新信息。"
 tweet: "1537857497825824768"
 ---
 
-Historically, there has been a blog post for each new release branch of V8. You may have noticed there has not been a release blog post since v9.9. From v10.0 onward, we are discontinuing release blog posts for each new branch. But don’t worry, all the information you were used to getting via release blog posts are still available! Read on to see where to find that information going forward.
+过去，每个新的V8发布分支都会有一篇博客文章。你可能注意到自v9.9以来就没有发布过版本博客文章。从v10.0开始，我们将不再为每个新分支发布版本博客文章。但是不用担心，你依然可以获得以前通过版本博客文章获取的信息！继续阅读，了解未来在哪里找到这些信息。
 
 <!--truncate-->
-## Release schedule and current version
+## 发布计划和当前版本
 
-Were you reading the release blog posts to determine the most up-to-date release of V8?
+你是否通过阅读版本博客文章来确定V8的最新版本？
 
-V8 is on Chrome's release schedule. For the most current stable release of V8, please consult the [Chrome release roadmap](https://chromestatus.com/roadmap).
+V8采用Chrome的发布计划。欲了解当前V8的最新稳定版本，请查阅 [Chrome发布路线图](https://chromestatus.com/roadmap)。
 
-Every four weeks, we create a new branch of V8 as part of our [release process](https://v8.dev/docs/release-process). Each version is branched from V8’s Git main branch immediately before a Chrome Beta milestone. Such branches are in beta and become releases in coordination with the [Chrome release roadmap](https://chromestatus.com/roadmap).
+每隔四周，我们会创建一个新的V8分支，这是我们[发布流程](https://v8.dev/docs/release-process)的一部分。每个版本会从V8的Git主分支中分出，在Chrome Beta阶段前生成。这些分支处于测试阶段，并根据[Chrome发布路线图](https://chromestatus.com/roadmap)成为正式版本。
 
-To find a particular V8 branch for a Chrome version:
+要查找特定Chrome版本关联的V8分支：
 
-1. Take the Chrome version and divide by 10 to get the V8 version. For example, Chrome 102 is V8 10.2.
-1. For a version number X.Y, its branch can be found at the URL of the following form:
+1. 将Chrome版本除以10即可得出V8版本。例如，Chrome 102对应V8 10.2。
+1. 对于版本号X.Y，其分支可以通过以下形式的URL找到：
 
 ```
 https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/X.Y
 ```
 
-For example, the 10.2 branch can be found at https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/10.2.
+例如，10.2分支可以在https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/10.2找到。
 
-For more on version numbers and branches, please see [our detailed article](https://v8.dev/docs/version-numbers).
+有关版本号和分支的更多信息，请参阅[我们的详细文章](https://v8.dev/docs/version-numbers)。
 
-For a V8 version X.Y, developers with an active V8 checkout can use `git checkout -b X.Y -t branch-heads/X.Y` to experiment with the new features in that version.
+对于一个V8版本X.Y，拥有激活的V8代码库的开发者可以使用`git checkout -b X.Y -t branch-heads/X.Y`来尝试该版本的新功能。
 
-## New JavaScript or WebAssembly features
+## 新的JavaScript或WebAssembly功能
 
-Were you reading the release blog posts to find out what new JavaScript or WebAssembly features were implemented behind a flag or were turned on by default?
+你是否通过阅读版本博客文章以了解有哪些新的JavaScript或WebAssembly功能已经实现或默认启用？
 
-Please consult the [Chrome release roadmap](https://chromestatus.com/roadmap), which lists new features and their milestones for each release.
+请查阅 [Chrome发布路线图](https://chromestatus.com/roadmap)，该路线图列出了每个版本的新功能及其里程碑。
 
-Note that [the separate, deep-dive feature articles](/features) may be published before or after the feature has been implemented in V8.
+请注意，[独立的功能深度解析文章](/features)可能会在功能在V8中实现之前或之后发布。
 
-## Notable performance improvements
+## 显著的性能改进
 
-Were you reading the release blog posts to learn about notable performance improvements?
+你是否通过阅读版本博客文章了解显著的性能改进？
 
-Going forward, we will write independent blog posts for performance improvements that we wish to call out, as we have done so in the past for improvements like [Sparkplug](https://v8.dev/blog/sparkplug).
+未来，我们将单独撰写吸引注意的性能改进博客文章，就像过去为[火花塞（Sparkplug)](https://v8.dev/blog/sparkplug)这样的改进所做的那样。
 
-## API changes
+## API更改
 
-Were you reading the release blog posts to learn about API changes?
+你是否通过阅读版本博客文章了解API更改？
 
-To see the list of commits that modified the V8 API between an earlier version A.B and a later version X.Y, please use `git log branch-heads/A.B..branch-heads/X.Y include/v8\*.h` in an active V8 checkout.
+要查看从早期版本A.B到更新版本X.Y期间修改V8 API的提交列表，请在激活的V8代码库中使用`git log branch-heads/A.B..branch-heads/X.Y include/v8\*.h`。

@@ -1,21 +1,21 @@
 ---
-title: "Trash talk: the Orinoco garbage collector"
-author: "Peter ‘the garbo’ Marshall ([@hooraybuffer](https://twitter.com/hooraybuffer))"
+title: "垃圾话：Orinoco垃圾回收器"
+author: "Peter “垃圾” Marshall ([@hooraybuffer](https://twitter.com/hooraybuffer))"
 avatars: 
   - "peter-marshall"
 date: "2019-01-03 17:45:34"
 tags: 
-  - internals
-  - memory
-  - presentations
-description: "Orinoco, V8’s garbage collector, evolved from a sequential stop-the-world implementation into a mostly parallel and concurrent collector with incremental fallback."
+  - 内部机制
+  - 内存
+  - 演讲
+description: "Orinoco，V8的垃圾回收器，从一个顺序的全停式实现演变为一个大部分并行和并发的回收器，并具有增量回退功能。"
 tweet: "1080867305532416000"
 ---
-Over the past years the V8 garbage collector (GC) has changed a lot. The Orinoco project has taken a sequential, stop-the-world garbage collector and transformed it into a mostly parallel and concurrent collector with incremental fallback.
+在过去的几年里，V8垃圾回收器（GC）发生了很大的变化。Orinoco项目将一个顺序的、全停式的垃圾回收器转变成了一个大部分并行和并发的回收器，具备增量回退功能。
 
 <!--truncate-->
 :::note
-**Note:** If you prefer watching a presentation over reading articles, then enjoy the video below! If not, skip the video and read on.
+**注意：** 如果你更喜欢观看演讲而非阅读文章，请欣赏下面的视频！如果不是，可以跳过视频继续阅读。
 :::
 
 <figure>
@@ -24,123 +24,123 @@ Over the past years the V8 garbage collector (GC) has changed a lot. The Orinoco
   </div>
 </figure>
 
-Any garbage collector has a few essential tasks that it has to do periodically:
+任何垃圾回收器都有一些定期需要完成的基本任务：
 
-1. Identify live/dead objects
-1. Recycle/reuse the memory occupied by dead objects
-1. Compact/defragment memory (optional)
+1. 识别存活/死亡对象
+1. 回收/重用被死亡对象占用的内存
+1. 压缩/整理内存（可选）
 
-These tasks can be performed in sequence or can be arbitrarily interleaved. A straight-forward approach is to pause JavaScript execution and perform each of these tasks in sequence on the main thread. This can cause jank and latency issues on the main thread, which we’ve talked about in [previous](/blog/jank-busters) [blog posts](/blog/orinoco), as well as reduced program throughput.
+这些任务可以按顺序执行，也可以随意交错进行。一个直接的方法是暂停JavaScript的执行，然后在主线程上按顺序执行这些任务。这可能会导致主线程上的卡顿和延迟问题，我们已经在[之前的](/blog/jank-busters) [博客文章](/blog/orinoco)中讨论过，还会降低程序的整体吞吐量。
 
-## Major GC (Full Mark-Compact)
+## 主GC（全标记-汇集）
 
-The major GC collects garbage from the entire heap.
+主GC从整个堆中回收垃圾。
 
-![Major GC happens in three phases: marking, sweeping and compacting.](/_img/trash-talk/01.svg)
+![主GC分为三个阶段：标记、清除和压缩。](/_img/trash-talk/01.svg)
 
-### Marking
+### 标记
 
-Figuring out which objects can be collected is an essential part of garbage collection. Garbage collectors do this by using reachability as a proxy for ‘liveness’. This means that any object currently reachable within the runtime must be kept, and any unreachable objects may be collected.
+确定哪些对象可以被回收是垃圾回收的重要部分。垃圾回收器通过使用可达性作为“存活性”的代理来完成这项工作。这意味着任何当前在运行时可达的对象都必须保留，而任何不可达的对象都可以被回收。
 
-Marking is the process by which reachable objects are found. The GC starts at a set of known objects pointers, called the root set. This includes the execution stack and the global object. It then follows each pointer to a JavaScript object, and marks that object as reachable. The GC follows every pointer in that object, and continues this process recursively, until every object that is reachable in the runtime has been found and marked.
+标记过程是找到可达对象的过程。GC从一组已知的对象指针集开始，称为根集。这包括执行栈和全局对象。然后它跟踪每个指针到一个JavaScript对象，并将该对象标记为可达。GC继续遍历该对象中的每个指针，并递归执行此过程，直到找到并标记运行时所有可达的对象。
 
-### Sweeping
+### 清除
 
-Sweeping is a process where gaps in memory left by dead objects are added to a data structure called a free-list. Once marking has completed, the GC finds contiguous gaps left by unreachable objects and adds them to the appropriate free-list. Free-lists are separated by the size of the memory chunk for quick lookup. In the future when we want to allocate memory, we just look at the free-list and find an appropriately sized chunk of memory.
+清除是一个将死亡对象留下的内存空隙加入到一个叫做空闲列表的数据结构的过程。一旦标记完成，GC查找不可达对象留下的连续内存空隙，并将它们加入到适当的空闲列表中。空闲列表根据内存块的大小进行分隔以便快速查找。以后当我们需要分配内存时，只需查看空闲列表并找到合适大小的内存块即可。
 
-### Compaction
+### 压缩
 
-The major GC also chooses to evacuate/compact some pages, based on a fragmentation heuristic. You can think of compaction sort of like hard-disk defragmentation on an old PC. We copy surviving objects into other pages that are not currently being compacted (using the free-list for that page). This way, we can make use of the small and scattered gaps within the memory left behind by dead objects.
+主GC还会根据一个碎片化评估标准选择疏散/压缩某些页。你可以将压缩过程想象成旧电脑上的硬盘碎片整理。我们将存活下来的对象复制到没有正在被压缩的其它页面中（使用该页面的空闲列表）。这样，我们可以利用死亡对象留下来的内存中的小而分散的空隙。
 
-One potential weakness of a garbage collector which copies surviving objects is that when we allocate a lot of long-living objects, we pay a high cost to copy these objects. This is why we choose to compact only some highly fragmented pages, and just perform sweeping on others, which does not copy surviving objects.
+一个复制存活对象的垃圾回收器潜在的弱点是，当我们分配了大量长寿命对象时，复制这些对象的成本会很高。这就是为什么我们只选择压缩一些高度碎片化的页面，而对其他页面仅执行清除操作，这样不会复制存活对象。
 
-## Generational layout
+## 分代布局
 
-The heap in V8 is split into different regions called [generations](/blog/orinoco-parallel-scavenger). There is a young generation (split further into ‘nursery’ and ‘intermediate’ sub-generations), and an old generation. Objects are first allocated into the nursery. If they survive the next GC, they remain in the young generation but are considered ‘intermediate’. If they survive yet another GC, they are moved into the old generation.
+V8中的堆被划分为不同的区域，称为[分代](/blog/orinoco-parallel-scavenger)。堆中有一个青年代（进一步分为“新生代”和“中间代”子代），以及一个老年代。对象首先分配到新生代。如果它们在下一次GC中存活下来，它们继续留在青年代，但被视为“中间”状态。如果它们再一次存活GC，它们被移动到老年代。
 
-![The V8 heap is split into generations. Objects are moved through generations when they survive a GC.](/_img/trash-talk/02.svg)
+![V8堆被划分为分代。当对象在GC中存活时，它们会在分代间移动。](/_img/trash-talk/02.svg)
 
-In garbage collection there is an important term: “The Generational Hypothesis”. This basically states that most objects die young. In other words, most objects are allocated and then almost immediately become unreachable, from the perspective of the GC. This holds not only for V8 or JavaScript, but for most dynamic languages.
+在垃圾回收中，有一个重要的术语：“分代假说”。这基本上表明大多数对象很快就会死亡。换句话说，从GC的角度来看，大多数对象在分配后会立即变得不可达。这不仅适用于V8或JavaScript，也适用于大多数动态语言。
 
-V8’s generational heap layout is designed to exploit this fact about object lifetimes. The GC is a compacting/moving GC, which means that it copies objects which survive garbage collection. This seems counterintuitive: copying objects is expensive at GC time. But we know that only a very small percentage of objects actually survive a garbage collection, according to the generational hypothesis. By moving only the objects which survive, every other allocation becomes ‘implicit’ garbage. This means that we only pay a cost (for copying) proportional to the number of surviving objects, not the number of allocations.
+V8 的分代堆布局设计旨在利用对象生命周期的这一特点。GC 是一个压缩/移动 GC，这意味着它在垃圾回收时会复制存活的对象。这似乎违反直觉：在 GC 时复制对象是昂贵的。但根据分代假设，我们知道只有极少数的对象实际上会在垃圾回收后存活下来。通过仅移动存活的对象，其他所有分配的对象都变成了‘隐性的’垃圾。这意味着我们的成本（复制的开销）仅与存活对象的数量成正比，而不是与分配的对象数量成正比。
 
-## Minor GC (Scavenger)
+## Minor GC（清理器）
 
-There are two garbage collectors in V8. The [**Major GC (Mark-Compact)**](#major-gc) collects garbage from the whole heap. The **Minor GC (Scavenger)** collects garbage in the young generation. The major GC is effective at collecting garbage from the whole heap, but the generational hypothesis tells us that newly allocated objects are very likely to need garbage collection.
+V8 中有两个垃圾回收器。[**Major GC （标记-压缩）**](#major-gc) 回收整个堆中的垃圾。**Minor GC （清理器）** 回收年轻代中的垃圾。Major GC 在回收整个堆时非常有效，但分代假设告诉我们，新分配的对象很可能需要垃圾回收。
 
-In the Scavenger, which only collects within the young generation, surviving objects are always evacuated to a new page. V8 uses a ‘semi-space’ design for the young generation. This means that half of the total space is always empty, to allow for this evacuation step. During a scavenge, this initially-empty area is called ‘To-Space’. The area we copy from is called ‘From-Space’. In the worst case, every object could survive the scavenge and we would need to copy every object.
+在只在年轻代进行清理的清理器中，存活的对象总是被迁移到新页面。V8 对年轻代使用了‘半空间’设计。这意味着总会有一半空间是空的，用来进行迁移步骤。在清理过程中，这个最初为空的区域被称为‘To-Space’。我们复制到的区域被称为‘From-Space’。在最坏的情况下，每个对象都可能在清理中存活，我们需要复制每个对象。
 
-For scavenging, we have an additional set of roots which are the old-to-new references. These are pointers in old-space that refer to objects in the young generation. Rather than tracing the entire heap graph for every scavenge, we use [write barriers](https://www.memorymanagement.org/glossary/w.html#term-write-barrier) to maintain a list of old-to-new references. When combined with the stack and globals, we know every reference into the young generation, without the need to trace through the entire old generation.
+为了进行清理，我们还有一组额外的根，即由老年代指向新生代的引用。这些是老空间中指向年轻代对象的指针。与其在每次清理时追踪整个堆图，我们使用[写屏障](https://www.memorymanagement.org/glossary/w.html#term-write-barrier)来维护一组由老指向新的引用列表。当与堆栈和全局变量结合时，我们可以知道每个指向年轻代的引用，而无需追踪整个老年代。
 
-The evacuation step moves all surviving objects to a contiguous chunk of memory (within a page). This has the advantage of completing removing fragmentation - gaps left by dead objects. We then switch around the two spaces i.e. To-Space becomes From-Space and vice-versa. Once GC is completed, new allocations happen at the next free address in the From-Space.
+迁移步骤将所有存活对象移动到内存的连续块中（在某个页面内）。这完全消除了由死对象留下的碎片的优点。然后我们交换这两个空间，即 To-Space 变为 From-Space，反之亦然。一旦 GC 完成，新对象的分配将发生在 From-Space 中的下一个空闲地址。
 
-![The scavenger evacuates live objects to a fresh page.](/_img/trash-talk/03.svg)
+![清理器将存活的对象迁移到一个新页面。](/_img/trash-talk/03.svg)
 
-We quickly run out of space in the young generation with this strategy alone. Objects that survive a second GC are evacuated into the old generation, rather than To-Space.
+单靠这种策略，我们很快就会耗尽年轻代的空间。存活第二次 GC 的对象被迁移到老代，而不是 To-Space。
 
-The final step of scavenging is to update the pointers that reference the original objects, which have been moved. Every copied object leaves a forwarding-address which is used to update the original pointer to point to the new location.
+清理的最后一步是更新引用原始对象的指针，因为这些对象已经被迁移了。每个复制的对象都会留下一个转发地址，用于更新原始指针以指向新位置。
 
-![The scavenger evacuates ‘intermediate’ objects to the old generation, and ‘nursery’ objects to a fresh page.](/_img/trash-talk/04.svg)
+![清理器将‘中间’对象迁移到老代，将‘新生’对象迁移到一个新页面。](/_img/trash-talk/04.svg)
 
-In scavenging we actually do these three steps — marking, evacuating, and pointer-updating — all interleaved, rather than in distinct phases.
+在清理过程中，我们实际上将这三个步骤——标记、迁移和指针更新——交替进行，而不是分为独立的阶段。
 
 ## Orinoco
 
-Most of these algorithms and optimizations are common in garbage collection literature and can be found in many garbage collected languages. But state-of-the-art garbage collection has come a long way. One important metric for measuring the time spent in garbage collection is the amount of time that the main thread spends paused while GC is performed. For traditional ‘stop-the-world’ garbage collectors, this time can really add up, and this time spent doing GC directly detracts from the user experience in the form of janky pages and poor rendering and latency.
+这些算法和优化大多是垃圾回收文献中的常见内容，可以在许多具有垃圾回收功能的语言中找到。但最先进的垃圾回收已经走了很长的路。衡量垃圾回收所花费时间的一个重要指标是主线程在进行 GC 时暂停的时间。对于传统的‘全停式’垃圾回收器，这段时间可以累积起来，直接影响用户体验，表现为页面卡顿以及渲染和延迟表现不佳。
 
 <figure>
   <img src="/_img/v8-orinoco.svg" width="256" height="256" alt="" loading="lazy"/>
-  <figcaption>Logo for Orinoco, V8’s garbage collector</figcaption>
+  <figcaption>Orinoco 的 Logo，V8 的垃圾回收器</figcaption>
 </figure>
 
-Orinoco is the codename of the GC project to make use of the latest and greatest parallel, incremental and concurrent techniques for garbage collection, in order to free the main thread. There are some terms here that have a specific meaning in the GC context, and it’s worth defining them in detail.
+Orinoco 是一个 GC 项目的代号，它利用了最新和最先进的并行、增量和并发技术进行垃圾回收，目的是解放主线程。这里有些术语在 GC 环境中有特定意义，值得详细定义。
 
-### Parallel
+### 并行
 
-Parallel is where the main thread and helper threads do a roughly equal amount of work at the same time. This is still a ‘stop-the-world’ approach, but the total pause time is now divided by the number of threads participating (plus some overhead for synchronization). This is the easiest of the three techniques. The JavaScript heap is paused as there is no JavaScript running, so each helper thread just needs to make sure it synchronizes access to any objects that another helper might also want to access.
+并行是指主线程和辅助线程同时完成几乎相等的工作。这仍然是一种‘全停式’的方法，但总暂停时间现在被参与的线程数量（加上一些同步开销）分摊了。这是三种技术中最简单的一种。因为没有 JavaScript 正在运行，JavaScript 堆是暂停的，所以每个辅助线程只需要确保对另一个辅助线程可能也想访问的任何对象的访问进行同步。
 
-![The main thread and helper threads work on the same task at the same time.](/_img/trash-talk/05.svg)
+![主线程和辅助线程同时处理相同任务。](/_img/trash-talk/05.svg)
 
-### Incremental
+### 增量
 
-Incremental is where the main thread does a small amount of work intermittently. We don’t do an entire GC in an incremental pause, just a small slice of the total work required for the GC. This is more difficult, because JavaScript executes between each incremental work segment, meaning that the state of the heap has changed, which might invalidate previous work that was done incrementally. As you can see from the diagram, this does not reduce the amount of time spent on the main thread (in fact, it usually increases it slightly), it just spreads it out over time. This is still a good technique for solving one of our original problems: main thread latency. By allowing JavaScript to run intermittently, but also continue garbage collection tasks, the application can still respond to user input and make progress on animation.
+增量模式是指主线程间歇性地执行少量工作。我们不会在一次增量暂停中完成整个垃圾回收，而是完成垃圾回收所需总工作量的一小部分。这种方式更加复杂，因为每次增量工作结束后，JavaScript都会执行，导致堆的状态发生变化，这可能会使之前所做的增量工作失效。从图中可以看到，这并没有减少主线程花费的时间（实际上通常会略有增加），只是将这些时间分散到更长的时间段中。这仍然是一种用于解决最初问题的好技术：主线程延迟。通过允许JavaScript间歇性运行，同时继续执行垃圾回收任务，应用程序仍然可以响应用户输入并推动动画的进展。
 
-![Small chunks of the GC task are interleaved into the main thread execution.](/_img/trash-talk/06.svg)
+![垃圾回收任务的小块被交替插入到主线程的执行过程中。](/_img/trash-talk/06.svg)
 
-### Concurrent
+### 并发
 
-Concurrent is when the main thread executes JavaScript constantly, and helper threads do GC work totally in the background. This is the most difficult of the three techniques: anything on the JavaScript heap can change at any time, invalidating work we have done previously. On top of that, there are now read/write races to worry about as helper threads and the main thread simultaneously read or modify the same objects. The advantage here is that the main thread is totally free to execute JavaScript — although there is minor overhead due to some synchronization with helper threads.
+并发模式指主线程不断地执行JavaScript，而辅助线程完全在后台执行垃圾回收工作。这是三种技术中最难的一种：JavaScript堆中的任何对象都可能随时改变，从而使我们之前的工作失效。除此之外，还需要担心读写竞争，因为辅助线程和主线程可能同时读取或修改相同的对象。这种方式的优点是主线程完全自由地执行JavaScript——尽管由于与辅助线程的一些同步操作会有微小的开销。
 
-![GC tasks happen entirely in the background. The main thread is free to run JavaScript.](/_img/trash-talk/07.svg)
+![垃圾回收任务完全在后台运行，主线程可以自由运行JavaScript。](/_img/trash-talk/07.svg)
 
-## State of GC in V8
+## V8中的垃圾回收现状
 
-### Scavenging
+### 清除
 
-Today, V8 uses parallel scavenging to distribute work across helper threads during the young generation GC. Each thread receives a number of pointers, which it follows, eagerly evacuating any live objects into To-Space. The scavenging tasks have to synchronize via atomic read/write/compare-and-swap operations when trying to evacuate an object; another scavenging task may have found the same object via a different path and also try to move it. Whichever helper moved the object successfully then goes back and updates the pointer. It leaves a forwarding pointer so that other workers which reach the object can update other pointers as they find them. For fast synchronization-free allocation of surviving objects, the scavenging tasks use thread-local allocation buffers.
+目前，V8使用并行清除来在年轻代垃圾回收期间将工作分配到辅助线程上。每个线程都接收了若干指针，并按照指针逐步清除，将任何存活对象迅速迁移到To-Space。清除任务通过原子读写、比较和交换操作进行同步，因为可能有其他清除任务通过不同路径找到了相同的对象并试图迁移它。成功迁移对象的辅助线程随后会更新指针，并留下一个转发指针，以便其他线程在发现对象时可以更新其他指针。为了快速且无同步地分配存活对象，清除任务使用线程本地分配缓冲区。
 
-![Parallel scavenging distributes scavenging work across multiple helper threads and the main thread.](/_img/trash-talk/08.svg)
+![并行清除将清除工作分配到多个辅助线程和主线程上。](/_img/trash-talk/08.svg)
 
-### Major GC
+### 主垃圾回收
 
-Major GC in V8 starts with concurrent marking. As the heap approaches a dynamically computed limit, concurrent marking tasks are started. The helpers are each given a number of pointers to follow, and they mark each object they find as they follow all references from discovered objects. Concurrent marking happens entirely in the background while JavaScript is executing on the main thread. [Write barriers](https://dl.acm.org/citation.cfm?id=2025255) are used to keep track of new references between objects that JavaScript creates while the helpers are marking concurrently.
+V8中的主垃圾回收以并发标记开始。当堆接近动态计算的限制时，会启动并发标记任务。辅助线程分别收到若干指针，以跟随这些指针并标记所发现的所有对象及其引用。并发标记完全在后台执行，同时主线程上的JavaScript继续运行。使用[写屏障](https://dl.acm.org/citation.cfm?id=2025255)来跟踪在并发标记期间JavaScript创建的对象之间的新引用。
 
-![The major GC uses concurrent marking and sweeping, and parallel compaction and pointer updating.](/_img/trash-talk/09.svg)
+![主垃圾回收使用并发标记与清扫，以及并行压缩与指针更新。](/_img/trash-talk/09.svg)
 
-When the concurrent marking is finished, or we reach the dynamic allocation limit, the main thread performs a quick marking finalization step. The main thread pause begins during this phase. This represents the total pause time of the major GC. The main thread scans the roots once again, to ensure that all live objects are marked, and then along with a number of helpers, starts parallel compaction and pointer updating. Not all pages in old-space are eligible for compaction — those that aren’t will be swept using the free-lists mentioned earlier. The main thread starts concurrent sweeping tasks during the pause. These run concurrently to the parallel compaction tasks and to the main thread itself — they can continue even when JavaScript is running on the main thread.
+当并发标记完成或动态分配限制被达到时，主线程会执行一个快速的标记终结步骤。在这一阶段主线程暂停一次。这代表了主垃圾回收的总暂停时间。主线程再次扫描根，以确保所有存活对象都被标记；然后与若干辅助线程一起启动并行压缩和指针更新。在老年代空间中的并非所有页面都可以进行压缩——那些不适合的页面将使用前面提到的自由列表进行清扫。在暂停期间，主线程会启动并发清扫任务。这些任务同时与并行压缩任务和主线程自身体同时运行——它们甚至可以在主线程运行JavaScript时继续完成。
 
-## Idle-time GC
+## 空闲时间垃圾回收
 
-Users of JavaScript don’t have direct access to the garbage collector; it is totally implementation-defined. V8 does however provide a mechanism for the embedder to trigger garbage collection, even if the JavaScript program itself can’t. The GC can post ‘Idle Tasks’ which are optional work that would eventually be triggered anyway. Embedders like Chrome might have some notion of free or idle time. For example in Chrome, at 60 frames per second, the browser has approximately 16.6 ms to render each frame of an animation. If the animation work is completed early, Chrome can choose to run some of these idle tasks that the GC has created in the spare time before the next frame.
+JavaScript的用户不能直接访问垃圾回收器；垃圾回收器的实现是完全由实现定义决定的。但是，V8确实提供了一种机制，允许嵌入者触发垃圾回收，即使JavaScript程序本身不能。垃圾回收器可以发布‘空闲任务’，这些任务属于后续本应被触发的非强制性工作。例如，在Chrome中，如果动画每秒60帧，每帧的动画渲染时间大约为16.6毫秒。如果动画工作提前完成，Chrome可以选择在下一帧之前利用空闲时间运行垃圾回收器创建的一些空闲任务。
 
-![Idle GC makes use of free time on the main thread to perform GC work proactively.](/_img/trash-talk/10.svg)
+![空闲垃圾回收利用主线程的空闲时间主动执行垃圾回收工作。](/_img/trash-talk/10.svg)
 
-For more details, refer to [our in-depth publication on idle-time GC](https://queue.acm.org/detail.cfm?id=2977741).
+有关更多详情，请参考[我们关于空闲时间垃圾回收的深入报告](https://queue.acm.org/detail.cfm?id=2977741)。
 
-## Takeaways
+## 关键点
 
-The garbage collector in V8 has come a long way since its inception. Adding parallel, incremental and concurrent techniques to the existing GC was a multi-year effort, but has paid off, moving a lot of work to background tasks. It has drastically improved pause times, latency, and page load, making animation, scrolling, and user interaction much smoother. The [parallel Scavenger](/blog/orinoco-parallel-scavenger) has reduced the main thread young generation garbage collection total time by about 20%–50%, depending on the workload. [Idle-time GC](/blog/free-garbage-collection) can reduce Gmail’s JavaScript heap memory by 45% when it is idle. [Concurrent marking and sweeping](/blog/jank-busters) has reduced pause times in heavy WebGL games by up to 50%.
+V8 的垃圾回收器自其诞生以来已经取得了长足的进步。为现有的垃圾回收器添加并行、增量和并发技术是数年的努力，但已经收获了成果，将大量工作转移到了后台任务上。这大大改进了暂停时间、延迟和页面加载，使动画、滚动和用户交互更加流畅。[并行 Scavenger](/blog/orinoco-parallel-scavenger) 根据工作负载的不同，将主线程年轻代垃圾回收的总时间减少了大约 20%-50%。[空闲时间垃圾回收](/blog/free-garbage-collection) 在 Gmail 处于空闲状态时，可以将其 JavaScript 堆内存减少 45%。[并发标记和清理](/blog/jank-busters) 将 WebGL 重型游戏中的暂停时间减少了最多 50%。
 
-But the work here is not finished. Reducing garbage collection pause times is still important for giving users the best experience on the web, and we are looking into even more advanced techniques. On top of that, Blink (the renderer in Chrome) also has a garbage collector (called Oilpan), and we are doing work to improve [cooperation](https://dl.acm.org/citation.cfm?doid=3288538.3276521) between the two collectors and to port some of the new techniques from Orinoco to Oilpan.
+但这项工作还没有结束。减少垃圾回收的暂停时间对于为用户提供最佳的网页体验仍然很重要，我们正在研究更多高级的技术。除此之外，Blink（Chrome 的渲染器）也有一个垃圾回收器（称为 Oilpan），我们正在努力改进这两个回收器之间的[协作](https://dl.acm.org/citation.cfm?doid=3288538.3276521)，并将 Orinoco 中的一些新技术移植到 Oilpan。
 
-Most developers don’t need to think about the GC when developing JavaScript programs, but understanding some of the internals can help you to think about memory usage and helpful programming patterns. For example, with the generational structure of the V8 heap, short-lived objects are actually very cheap from the garbage collector’s perspective, as we only pay for objects that survive the collection. These sorts of patterns work well for many garbage-collected languages, not just JavaScript.
+大多数开发者在开发 JavaScript 程序时不需要专门考虑垃圾回收器，但了解一些内部机制可以帮助更好地考虑内存使用和有益的编程模式。例如，对于 V8 堆的分代结构，短生命周期对象实际上从垃圾回收器的角度来看是非常廉价的，因为我们仅需为那些存活过回收的对象付出代价。这类模式不仅适用于 JavaScript，还适用于许多使用垃圾回收的语言。

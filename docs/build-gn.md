@@ -1,93 +1,93 @@
 ---
-title: "Building V8 with GN"
-description: "This document explains how to use GN to build V8."
+title: "使用 GN 构建 V8"
+description: "本文档介绍如何使用 GN 构建 V8。"
 ---
-V8 is built with the help of [GN](https://gn.googlesource.com/gn/+/master/docs/). GN is a meta build system of sorts, as it generates build files for a number of other build systems. How you build therefore depends on what “back-end” build system and compiler you’re using.
-The instructions below assume that you already have a [checkout of V8](/docs/source-code) and that you have [installed the build dependencies](/docs/build).
+V8 是通过 [GN](https://gn.googlesource.com/gn/+/master/docs/) 构建的。GN 是一种元构建系统，它为多种其他构建系统生成构建文件。因此，如何构建取决于您使用的“后台”构建系统和编译器。
+以下说明假定您已经有一个 [V8 的代码库](/docs/source-code) 并且已[安装构建依赖项](/docs/build)。
 
-More information on GN can be found in [Chromium’s documentation](https://www.chromium.org/developers/gn-build-configuration) or [GN’s own docs](https://gn.googlesource.com/gn/+/master/docs/).
+有关 GN 的更多信息，请参见 [Chromium 的文档](https://www.chromium.org/developers/gn-build-configuration) 或 [GN 的文档](https://gn.googlesource.com/gn/+/master/docs/)。
 
-Building V8 from source involves three steps:
+从源码构建 V8 包含三个步骤：
 
-1. generating build files
-1. compiling
-1. running tests
+1. 生成构建文件
+2. 编译
+3. 运行测试
 
-There are two workflows for building V8:
+构建 V8 有两种工作流程：
 
-- the convenience workflow using a helper script called `gm` that nicely combines all three steps
-- the raw workflow, where you run separate commands on a lower level for each step manually
+- 使用一个名为 `gm` 的辅助脚本，它将上述三个步骤整合为一个方便的工作流程
+- 原始的工作流程，其中您需要手动运行每个步骤的单独命令
 
-## Building V8 using `gm` (the convenience workflow)
+## 使用 `gm` 构建 V8（方便的工作流程）
 
-`gm` is a convenience all-in-one script that generates build files, triggers the build and optionally also runs the tests. It can be found at `tools/dev/gm.py` in your V8 checkout. We recommend adding an alias to your shell configuration:
+`gm` 是一个便捷的多合一脚本，用于生成构建文件、触发构建并可选地运行测试。它位于您的 V8 代码库中的 `tools/dev/gm.py`。我们建议在您的 shell 配置中添加一个别名：
 
 ```bash
 alias gm=/path/to/v8/tools/dev/gm.py
 ```
 
-You can then use `gm` to build V8 for known configurations, such as `x64.release`:
+然后您可以使用 `gm` 为已知配置（例如 `x64.release`）构建 V8：
 
 ```bash
 gm x64.release
 ```
 
-To run the tests right after the build, run:
+在构建完成后立即运行测试：
 
 ```bash
 gm x64.release.check
 ```
 
-`gm` outputs all the commands it’s executing, making it easy to track and re-execute them if necessary.
+`gm` 输出它执行的所有命令，使追踪和重新执行它们变得简单。
 
-`gm` enables building the required binaries and running specific tests with a single command:
+`gm` 使得通过单个命令构建所需二进制文件并运行特定测试成为可能：
 
 ```bash
 gm x64.debug mjsunit/foo cctest/test-bar/*
 ```
 
-## Building V8: the raw, manual workflow
+## 构建 V8：原始手动工作流程
 
-### Step 1: generate build files
+### 第一步：生成构建文件
 
-There are several ways of generating the build files:
+有几种生成构建文件的方法：
 
-1. The raw, manual workflow involves using `gn` directly.
-1. A helper script named `v8gen` streamlines the process for common configurations.
+1. 使用 `gn` 直接进行原始手动工作流程。
+2. 一个名为 `v8gen` 的辅助脚本简化了常用配置的过程。
 
-#### Generating build files using `gn`
+#### 使用 `gn` 生成构建文件
 
-Generate build files for the directory `out/foo` using `gn`:
+使用 `gn` 为目录 `out/foo` 生成构建文件：
 
 ```bash
 gn args out/foo
 ```
 
-This opens an editor window for specifying the [`gn` arguments](https://gn.googlesource.com/gn/+/master/docs/reference.md). Alternatively, you can pass the arguments on the command line:
+这会打开一个编辑器窗口，用于指定 [`gn` 参数](https://gn.googlesource.com/gn/+/master/docs/reference.md)。或者，您可以在命令行中传递参数：
 
 ```bash
 gn gen out/foo --args='is_debug=false target_cpu="x64" v8_target_cpu="arm64" use_goma=true'
 ```
 
-This generates build files for compiling V8 with the arm64 simulator in release mode using `goma` for compilation.
+这会生成用于以 arm64 模拟器在 release 模式下使用 `goma` 编译的构建文件。
 
-For an overview of all available `gn` arguments, run:
+要查看所有可用的 `gn` 参数，请运行：
 
 ```bash
 gn args out/foo --list
 ```
 
-#### Generate build files using `v8gen`
+#### 使用 `v8gen` 生成构建文件
 
-The V8 repository includes a `v8gen` convenience script to more easily generate build files for common configurations. We recommend adding an alias to your shell configuration:
+V8 代码库包含一个名为 `v8gen` 的便捷脚本，可更轻松地为常用配置生成构建文件。我们建议在您的 shell 配置中添加一个别名：
 
 ```bash
 alias v8gen=/path/to/v8/tools/dev/v8gen.py
 ```
 
-Call `v8gen --help` for more information.
+调用 `v8gen --help` 以获取更多信息。
 
-List available configurations (or bots from a master):
+列出可用配置（或主机上的 bot）：
 
 ```bash
 v8gen list
@@ -97,38 +97,38 @@ v8gen list
 v8gen list -m client.v8
 ```
 
-Build like a particular bot from the `client.v8` waterfall in folder `foo`:
+在 `foo` 文件夹内生成 `client.v8` 瀑布流中的某个 bot 配置：
 
 ```bash
 v8gen -b 'V8 Linux64 - debug builder' -m client.v8 foo
 ```
 
-### Step 2: compile V8
+### 第二步：编译 V8
 
-To build all of V8 (assuming `gn` generated to the `x64.release` folder), run:
+要构建 V8 的全部内容（假定 `gn` 生成到 `x64.release` 文件夹），运行：
 
 ```bash
 ninja -C out/x64.release
 ```
 
-To build specific targets like `d8`, append them to the command:
+要构建特定目标（比如 `d8`），将目标附加到命令中：
 
 ```bash
 ninja -C out/x64.release d8
 ```
 
-### Step 3: run tests
+### 第三步：运行测试
 
-You can pass the output directory to the test driver. Other relevant flags are inferred from the build:
+您可以将输出目录传递给测试驱动程序。其他相关标志可以从构建推断：
 
 ```bash
 tools/run-tests.py --outdir out/foo
 ```
 
-You can also test your most recently compiled build (in `out.gn`):
+您也可以测试最近编译的构建（在 `out.gn`）：
 
 ```bash
 tools/run-tests.py --gn
 ```
 
-**Build issues? File a bug at [v8.dev/bug](https://v8.dev/bug) or ask for help on [v8-users@googlegroups.com](mailto:v8-users@googlegroups.com).**
+**构建问题？请通过 [v8.dev/bug](https://v8.dev/bug) 提交 bug 或在 [v8-users@googlegroups.com](mailto:v8-users@googlegroups.com) 上寻求帮助。**

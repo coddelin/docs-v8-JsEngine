@@ -1,22 +1,22 @@
 ---
-title: "Officially supported configurations"
-description: "This document explains which build configurations are maintained by the V8 team."
+title: "官方支持的配置"
+description: "本文档解释了哪些构建配置由 V8 团队维护。"
 ---
-V8 supports a multitude of different build configurations across operating systems, their versions, architecture ports, build flags and so on.
+V8 支持跨操作系统、版本、架构端口、构建标志等的多种不同构建配置。
 
-The rule of thumb: If we support it, we have a bot running on one of our [continuous integration consoles](https://ci.chromium.org/p/v8/g/main/console).
+经验法则：如果我们支持，那么我们会在一个 [持续集成控制台](https://ci.chromium.org/p/v8/g/main/console) 上运行一个机器人。
 
-Some nuances:
+一些细微差别：
 
-- Breakages on the most important builders will block code submission. A tree sheriff will usually revert the culprit.
-- Breakages on roughly the same [set of builders](https://chromium.googlesource.com/infra/infra/+/main/infra/services/lkgr_finder/config/v8_cfg.pyl) block our continuous roll into Chromium.
-- Some architecture ports are [handled externally](/docs/ports).
-- Some configurations are [experimental](https://ci.chromium.org/p/v8/g/experiments/console). Breakages are permitted and will be handled by the owners of the configuration.
+- 最重要的构建器发生问题会阻止代码提交。树警会通常撤销问题代码。
+- 大致相同的 [构建器集](https://chromium.googlesource.com/infra/infra/+/main/infra/services/lkgr_finder/config/v8_cfg.pyl) 出现问题会阻止我们持续向 Chromium 推送更新。
+- 某些架构端口是 [外部处理的](/docs/ports)。
+- 某些配置是 [实验性的](https://ci.chromium.org/p/v8/g/experiments/console)。发生问题是允许的，并且会由该配置的负责人处理。
 
-If you have a configuration that exhibits a problem, but is not covered by one of the bots above:
+如果您遇到问题的配置不受上述机器人覆盖：
 
-- Feel free to submit a CL that fixes your problem. The team will support you with a code review.
-- You can use [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com) to discuss the problem.
-- If you think we should support this configuration (maybe a hole in our test matrix?), please file a bug on the [V8 issue tracker](https://bugs.chromium.org/p/v8/issues/entry) and ask.
+- 欢迎提交一个修复您问题的 CL。团队将支持您的代码审查。
+- 您可以使用 [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com) 来讨论问题。
+- 如果您认为我们应该支持此配置（也许是我们的测试矩阵中存在漏洞？），请在 [V8 问题跟踪器](https://bugs.chromium.org/p/v8/issues/entry) 上提交问题并提出请求。
 
-However, we don’t have the bandwidth to support every possible configuration.
+然而，我们没有足够的精力支持所有可能的配置。

@@ -1,38 +1,38 @@
 ---
-title: "V8 release v4.6"
-author: "the V8 team"
+title: "V8版本发布v4.6"
+author: "V8团队"
 date: "2015-08-28 13:33:37"
 tags: 
-  - release
-description: "V8 v4.6 comes with reduced jank and support for new ES2015 language features."
+  - 发布
+description: "V8 v4.6带来了减少卡顿和支持新的ES2015语言特性。"
 ---
-Roughly every six weeks, we create a new branch of V8 as part of our [release process](https://v8.dev/docs/release-process). Each version is branched from V8’s Git master immediately before Chrome branches for a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 4.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.6), which will be in beta until it is released in coordination with Chrome 46 Stable. V8 4.6 is filled with all sorts of developer-facing goodies, so we’d like to give you a preview of some of the highlights in anticipation of the release in several weeks.
+大约每六周，我们会创建一个新的V8分支作为我们[发布流程](https://v8.dev/docs/release-process)的一部分。每个版本是在Chrome为Beta里程碑分支之前，直接从V8的Git主分支分支出来的。今天我们很高兴宣布我们的最新分支，[V8版本4.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.6)，它将在Chrome 46稳定版发布之前处于Beta版本阶段。V8 4.6包含各种面向开发者的实用功能，因此我们想提前向你介绍一些亮点，以期待未来几周的发布。
 
 <!--truncate-->
-## Improved ECMAScript 2015 (ES6) support
+## 改进的ECMAScript 2015 (ES6)支持
 
-V8 v4.6 adds support for several [ECMAScript 2015 (ES6)](https://www.ecma-international.org/ecma-262/6.0/) features.
+V8 v4.6新增了几个[ECMAScript 2015 (ES6)](https://www.ecma-international.org/ecma-262/6.0/)特性。
 
-### Spread operator
+### 扩展运算符
 
-The [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator) makes it much more convenient to work with arrays. For example it makes imperative code obsolete when you simply want to merge arrays.
+[扩展运算符](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator)使操作数组变得更加方便。例如，当你仅需要合并数组时，它使得命令式代码变得多余。
 
 ```js
-// Merging arrays
-// Code without spread operator
+// 合并数组
+// 不使用扩展运算符的代码
 const inner = [3, 4];
 const merged = [0, 1, 2].concat(inner, [5]);
 
-// Code with spread operator
+// 使用扩展运算符的代码
 const inner = [3, 4];
 const merged = [0, 1, 2, ...inner, 5];
 ```
 
-Another good use of the spread operator to replace `apply`:
+使用扩展运算符替换`apply`也是一个好方法：
 
 ```js
-// Function parameters stored in an array
-// Code without spread operator
+// 参数存储在数组中
+// 不使用扩展运算符的代码
 function myFunction(a, b, c) {
   console.log(a);
   console.log(b);
@@ -41,7 +41,7 @@ function myFunction(a, b, c) {
 const argsInArray = ['Hi ', 'Spread ', 'operator!'];
 myFunction.apply(null, argsInArray);
 
-// Code with spread operator
+// 使用扩展运算符的代码
 function myFunction (a,b,c) {
   console.log(a);
   console.log(b);
@@ -54,48 +54,48 @@ myFunction(...argsInArray);
 
 ### `new.target`
 
-[`new.target`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new.target) is one of ES6's features designed to improve working with classes. Under the hood it’s actually an implicit parameter to every function. If a function is called with the keyword new, then the parameter holds a reference to the called function. If new is not used the parameter is undefined.
+[`new.target`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new.target)是ES6的功能之一，旨在改善类的使用。在底层，它实际上是每个函数的一个隐式参数。如果函数是使用关键字new调用的，那么这个参数持有对调用函数的引用。如果没有使用new，则参数为undefined。
 
-In practice, this means that you can use new.target to figure out whether a function was called normally or constructor-called via the new keyword.
+实际上，这意味着你可以使用new.target来判断一个函数是正常调用还是通过new关键字构造调用。
 
 ```js
 function myFunction() {
   if (new.target === undefined) {
-    throw 'Try out calling it with new.';
+    throw '试试用new调用它。';
   }
-  console.log('Works!');
+  console.log('成功！');
 }
 
-// Breaks:
+// 错误：
 myFunction();
 
-// Works:
+// 正确：
 const a = new myFunction();
 ```
 
-When ES6 classes and inheritance are used, new.target inside the constructor of a super-class is bound to the derived constructor that was invoked with new. In particular, this gives super-classes access to the prototype of the derived class during construction.
+当使用ES6类和继承时，在超类的构造函数内部，new.target绑定到通过new调用的派生类构造函数。特别是，这使得超类在构造期间可以访问派生类的prototype。
 
-## Reduce the jank
+## 减少卡顿
 
-[Jank](https://en.wiktionary.org/wiki/jank#Noun) can be a pain, especially when playing a game. Often, it's even worse when the game features multiple players. [oortonline.gl](http://oortonline.gl/) is a WebGL benchmark that tests the limits of current browsers by rendering a complex 3D scene with particle effects and modern shader rendering. The V8 team set off in a quest to push the limits of Chrome’s performance in these environments. We’re not done yet, but the fruits of our efforts are already paying off. Chrome 46 shows incredible advances in oortonline.gl performance which you can see yourself below.
+[卡顿](https://en.wiktionary.org/wiki/jank#Noun)可能很难忍受，尤其是在玩游戏时。通常，当游戏有多个玩家时，情况会更糟。[oortonline.gl](http://oortonline.gl/)是一个WebGL基准测试工具，通过渲染一个复杂的3D场景，包含粒子效果和现代着色器渲染，测试当前浏览器的极限。V8团队开始了一项任务，旨在推动Chrome在这些环境下的性能极限。我们还没有完成，但努力已经产生了成果。Chrome 46在oortonline.gl性能方面显示出令人难以置信的进步，你可以亲自体验。
 
-Some of the optimizations include:
+一些优化包括：
 
-- [TypedArray performance improvements](https://code.google.com/p/v8/issues/detail?id=3996)
-    - TypedArrays are heavily used in rendering engines such as Turbulenz (the engine behind oortonline.gl). For example, engines often create typed arrays (such as Float32Array) in JavaScript and pass them to WebGL after applying transformations.
-    - The key point was optimizing the interaction between the embedder (Blink) and V8.
-- [Performance improvements when passing TypedArrays and other memory from V8 to Blink](https://code.google.com/p/chromium/issues/detail?id=515795)
-    - There’s no need to create additional handles (that are also tracked by V8) for typed arrays when they are passed to WebGL as part of a one-way communication.
-    - On hitting external (Blink) allocated memory limits we now start an incremental garbage collection instead of a full one.
-- [Idle garbage collection scheduling](/blog/free-garbage-collection)
-    - Garbage collection operations are scheduled during idle times on the main thread which unblocks the compositor and results in smoother rendering.
-- [Concurrent sweeping enabled for the whole old generation of the garbage collected heap](https://code.google.com/p/chromium/issues/detail?id=507211)
-    - Freeing of unused memory chunks is performed on additional threads concurrent to the main thread which significantly reduces the main garbage collection pause time.
+- [TypedArray性能改进](https://code.google.com/p/v8/issues/detail?id=3996)
+    - TypedArray在渲染引擎如Turbulenz（oortonline.gl背后的引擎）中被大量使用。例如，引擎通常会在JavaScript中创建TypedArray（如Float32Array），并在应用转换后将其传递给WebGL。
+    - 关键点是优化嵌入器（Blink）与V8之间的交互。
+- [在从V8传递TypedArray和其他内存到Blink时的性能改进](https://code.google.com/p/chromium/issues/detail?id=515795)
+    - 在作为单向通信的一部分传递给WebGL时，不需要为TypedArray创建额外的句柄（也由V8跟踪）。
+    - 在达到外部（Blink）分配的内存限制时，我们现在启动增量垃圾回收，而非全量回收。
+- [空闲垃圾回收调度](/blog/free-garbage-collection)
+    - 垃圾回收操作在主线程的空闲时间调度，这样解锁了合成器，使渲染更流畅。
+- [为垃圾收集堆的所有老年代启用了并发清除](https://code.google.com/p/chromium/issues/detail?id=507211)
+    - 未使用的内存块的释放在额外的线程上并发进行，与主线程并行操作，这显著减少了主垃圾收集暂停时间。
 
-The good thing is that all changes related to oortonline.gl are general improvements that potentially affect all users of applications that make heavy use of WebGL.
+好消息是，与 oortonline.gl 相关的所有更改都是一般改进，这可能会影响所有密集使用 WebGL 的应用程序用户。
 
 ## V8 API
 
-Please check out our [summary of API changes](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit). This document gets regularly updated a few weeks after each major release.
+请查看我们的[API 变更摘要](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit)。在每次重大版本发布后，该文档会在几周内定期更新。
 
-Developers with an [active V8 checkout](https://v8.dev/docs/source-code#using-git) can use `git checkout -b 4.6 -t branch-heads/4.6` to experiment with the new features in V8 v4.6. Alternatively you can [subscribe to Chrome's Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+拥有[活跃 V8 checkout](https://v8.dev/docs/source-code#using-git)的开发者可以使用 `git checkout -b 4.6 -t branch-heads/4.6` 来试验 V8 v4.6 的新功能。或者，您可以[订阅 Chrome 的 Beta 频道](https://www.google.com/chrome/browser/beta.html)，然后很快就能亲自尝试新功能。

@@ -1,46 +1,46 @@
 ---
-title: "V8 release v6.1"
-author: "the V8 team"
+title: "V8 发布 v6.1"
+author: "V8 团队"
 date: "2017-08-03 13:33:37"
 tags: 
-  - release
-description: "V8 v6.1 comes with a reduced binary size and includes performance improvements. In addition, asm.js is now validated and compiled to WebAssembly."
+  - 发布
+description: "V8 v6.1 带来了减少的二进制大小，并包括性能改进。此外，asm.js 现在经过验证并编译为 WebAssembly。"
 ---
-Every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 6.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.1), which is in beta until its release in coordination with Chrome 61 Stable in several weeks. V8 v6.1 is filled with all sorts of developer-facing goodies. We’d like to give you a preview of some of the highlights in anticipation of the release.
+每隔六周，我们都会按照我们的[发布流程](/docs/release-process)创建一个新的 V8 分支。每个版本都会在 Chrome Beta 版本里程碑之前直接从 V8 的 Git 主分支分支出来。今天，我们很高兴地宣布我们的最新分支，[V8 版本 6.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/6.1)，该版本将在几周内与 Chrome 61 稳定版协同发布。在此之前，它处于 Beta 阶段。V8 v6.1 为开发人员带来了各种各样的好东西。我们希望提前预览一些亮点，以迎接正式发布。
 
 <!--truncate-->
-## Performance improvements
+## 性能改进
 
-Visiting all the elements of the Maps and Sets — either via [iteration](http://exploringjs.com/es6/ch_iteration.html) or the [`Map.prototype.forEach`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/forEach) / [`Set.prototype.forEach`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/forEach) methods — became significantly faster, with a raw performance improvement of up to 11× since V8 version 6.0. Check the [dedicated blog post](https://benediktmeurer.de/2017/07/14/faster-collection-iterators/) for additional information.
+通过[迭代](http://exploringjs.com/es6/ch_iteration.html)或使用 [`Map.prototype.forEach`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/forEach) / [`Set.prototype.forEach`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/forEach) 方法访问 Map 和 Set 中的所有元素变得显著更快，从 V8 版本 6.0 开始，原始性能提升高达 11 倍。更多信息请查看[专门的博客文章](https://benediktmeurer.de/2017/07/14/faster-collection-iterators/)。
 
 ![](/_img/v8-release-61/iterating-collections.svg)
 
-In addition to that, work continued on the performance of other language features. For example, the [`Object.prototype.isPrototypeOf`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isPrototypeOf) method, which is important for constructor-less code using mostly object literals and `Object.create` instead of classes and constructor functions, is now always as fast and often faster than using [the `instanceof` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof).
+除此之外，其他语言功能的性能改进工作也在继续。例如，[`Object.prototype.isPrototypeOf`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isPrototypeOf) 方法对于主要使用对象字面量和 `Object.create` 而不是类和构造函数的无构造函数代码来说非常重要，该方法现在的速度始终与使用 [`instanceof` 操作符](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof) 相当甚至更快。
 
 ![](/_img/v8-release-61/checking-prototype.svg)
 
-Function calls and constructor invocations with variable number of arguments also got significantly faster. Calls made with [`Reflect.apply`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/apply) and [`Reflect.construct`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/construct) received an up to 17× performance boost in the latest version.
+使用可变数量的参数进行函数调用和构造函数调用也显著加快。通过[`Reflect.apply`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/apply)和[`Reflect.construct`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/construct)进行的调用在最新版本中获得了高达 17 倍的性能提升。
 
 ![](/_img/v8-release-61/call-construct.svg)
 
-`Array.prototype.forEach` is now inlined in TurboFan and optimized for all major non-holey [elements kinds](/blog/elements-kinds).
+`Array.prototype.forEach` 现在在 TurboFan 中内联，并针对所有主要非稀疏[元素类型](/blog/elements-kinds)进行了优化。
 
-## Binary size reduction
+## 二进制大小减少
 
-The V8 team has completely removed the deprecated the Crankshaft compiler, giving a significant reduction in binary size. Alongside the removal of the builtins generator, this reduces the deployed binary size of V8 by over 700 KB, depending on the exact platform.
+V8 团队已完全移除了废弃的 Crankshaft 编译器，从而显著减少了二进制大小。伴随着内置生成器的移除，这使得 V8 部署的二进制文件大小减少了超过 700 KB，具体取决于确切的平台。
 
-## asm.js is now validated and compiled to WebAssembly
+## asm.js 现在经过验证并编译为 WebAssembly
 
-If V8 encounters asm.js code it now tries to validate it. Valid asm.js code is then transpiled to WebAssembly. According to V8’s performance evaluations, this generally boosts throughput performance. Due to the added validation step, isolated regressions in startup performance might happen.
+如果 V8 遇到 asm.js 代码，它现在会尝试验证它。有效的 asm.js 代码会被转译为 WebAssembly。根据 V8 的性能评估，这通常会提高吞吐性能。由于增加了验证步骤，启动性能中可能会出现一些孤立的回退。
 
-Please note that this feature was switched on by default on the Chromium side only. If you are an embedder and want to leverage the asm.js validator, enable the flag `--validate-asm`.
+请注意，这一功能仅在 Chromium 端默认启用。如果您是嵌入者并希望利用 asm.js 验证器，请启用标志 `--validate-asm`。
 
 ## WebAssembly
 
-When debugging WebAssembly, it is now possible to display local variables in DevTools when a breakpoint in WebAssembly code is hit.
+调试 WebAssembly 时，当 WebAssembly 代码中断点被触发时，现在可以在 DevTools 中显示局部变量。
 
 ## V8 API
 
-Please check out our [summary of API changes](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit). This document is regularly updated a few weeks after each major release.
+请查看我们的[API 更改摘要](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit)。该文档会在每次主要版本发布的几周后定期更新。
 
-Developers with an [active V8 checkout](/docs/source-code#using-git) can use `git checkout -b 6.1 -t branch-heads/6.1` to experiment with the new features in V8 v6.1. Alternatively you can [subscribe to Chrome’s Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+拥有[活跃 V8 检出](https://docs/source-code#using-git)的开发人员可以使用 `git checkout -b 6.1 -t branch-heads/6.1` 来试验 V8 v6.1 中的新功能。或者，您也可以[订阅 Chrome 的 Beta 频道](https://www.google.com/chrome/browser/beta.html)，并尽快亲自尝试这些新功能。

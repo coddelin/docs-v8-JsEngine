@@ -1,5 +1,5 @@
 ---
-title: "Retrofitting temporal memory safety on C++"
+title: "为C++改造时间内存安全"
 author: "Anton Bikineev, Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), Hannes Payer ([@PayerHannes](https://twitter.com/PayerHannes))"
 avatars: 
   - anton-bikineev
@@ -7,112 +7,110 @@ avatars:
   - hannes-payer
 date: 2022-06-14
 tags: 
-  - internals
-  - memory
-  - security
-description: "Eliminating use-after-frees vulnerabilities in Chrome with heap scanning."
+  - 内部机制
+  - 内存
+  - 安全
+description: "通过堆扫描技术消除Chrome中的释放后使用漏洞。"
 ---
 :::note
-**Note:** This post was originally posted on the [Google Security Blog](https://security.googleblog.com/2022/05/retrofitting-temporal-memory-safety-on-c.html).
+**注意：** 本文最初发布在[Google安全博客](https://security.googleblog.com/2022/05/retrofitting-temporal-memory-safety-on-c.html)。
 :::
 
-[Memory safety in Chrome](https://security.googleblog.com/2021/09/an-update-on-memory-safety-in-chrome.html) is an ever-ongoing effort to protect our users. We are constantly experimenting with different technologies to stay ahead of malicious actors. In this spirit, this post is about our journey of using heap scanning technologies to improve memory safety of C++.
+[Chrome的内存安全](https://security.googleblog.com/2021/09/an-update-on-memory-safety-in-chrome.html)是一个持续不断的努力，以保护我们的用户。我们不断尝试使用不同的技术以超越恶意行为者。在这种精神下，这篇文章介绍了我们使用堆扫描技术来改进C++的内存安全的旅程。
 
 <!--truncate-->
-Let’s start at the beginning though. Throughout the lifetime of an application its state is generally represented in memory. Temporal memory safety refers to the problem of guaranteeing that memory is always accessed with the most up to date information of its structure, its type. C++ unfortunately does not provide such guarantees. While there is appetite for different languages than C++ with stronger memory safety guarantees, large codebases such as Chromium will use C++ for the foreseeable future.
+让我们从头开始。在应用程序的生命周期中，其状态通常以内存形式表示。时间内存安全指确保内存始终以其结构和类型的最新信息进行访问的问题。不幸的是，C++没有提供这样的保障。虽然我们对比C++内存安全性更强的语言有一些兴趣，但大型代码库如Chromium在可预见的未来仍将使用C++。
 
 ```cpp
 auto* foo = new Foo();
 delete foo;
-// The memory location pointed to by foo is not representing
-// a Foo object anymore, as the object has been deleted (freed).
+// 指向foo的内存位置已不再表示一个Foo对象，
+// 因为此对象已被删除（释放）。
 foo->Process();
 ```
 
-In the example above, `foo` is used after its memory has been returned to the underlying system. The out-of-date pointer is called a [dangling pointer](https://en.wikipedia.org/wiki/Dangling_pointer) and any access through it results in a use-after-free (UAF) access. In the best case such errors result in well-defined crashes, in the worst case they cause subtle breakage that can be exploited by malicious actors.
+在上述示例中，`foo`在其内存被归还给底层系统后仍被使用。过时的指针称为[悬空指针](https://en.wikipedia.org/wiki/Dangling_pointer)，通过它的任何访问都会导致释放后使用（UAF）的情况。在最好的情况下，此类错误会导致定义明确的崩溃，在最坏的情况下，它们会引发恶意行为者可以利用的微妙问题。
 
-UAFs are often hard to spot in larger codebases where ownership of objects is transferred between various components. The general problem is so widespread that to this date both industry and academia regularly come up with mitigation strategies. The examples are endless: C++ smart pointers of all kinds are used to better define and manage ownership on application level; static analysis in compilers is used to avoid compiling problematic code in the first place; where static analysis fails, dynamic tools such as [C++ sanitizers](https://github.com/google/sanitizers) can intercept accesses and catch problems on specific executions.
+在较大的代码库中，UAF通常很难发现，因为对象的所有权会在多个组件之间转移。这个一般性问题如此广泛，以至于至今业界和学术界仍在定期提出缓解策略。例子不胜枚举：使用各种类型的C++智能指针可以更好地在应用层定义和管理所有权；编译器中的静态分析会避免编译有问题的代码；在静态分析失败的情况下，动态工具如[C++ Sanitizers](https://github.com/google/sanitizers)可以拦截访问并在特定执行中捕获问题。
 
-Chrome’s use of C++ is sadly no different here and the majority of [high-severity security bugs are UAF issues](https://www.chromium.org/Home/chromium-security/memory-safety/). In order to catch issues before they reach production, all of the aforementioned techniques are used. In addition to regular tests, fuzzers ensure that there’s always new input to work with for dynamic tools. Chrome even goes further and employs a C++ garbage collector called [Oilpan](https://v8.dev/blog/oilpan-library) which deviates from regular C++ semantics but provides temporal memory safety where used. Where such deviation is unreasonable, a new kind of smart pointer called [MiraclePtr](https://security.googleblog.com/2021/09/an-update-on-memory-safety-in-chrome.html) was introduced recently to deterministically crash on accesses to dangling pointers when used. Oilpan, MiraclePtr, and smart-pointer-based solutions require significant adoptions of the application code.
+遗憾的是，Chrome使用C++也不例外，大多数[高严重性安全漏洞是UAF问题](https://www.chromium.org/Home/chromium-security/memory-safety/)。为了在问题到达生产环境之前捕获它们，我们使用了上述所有技术。除了常规测试以外，模糊测试还确保动态工具始终有新的输入可处理。Chrome甚至更进一步，采用了一种称为[Oilpan](https://v8.dev/blog/oilpan-library)的C++垃圾收集器，这种技术偏离了常规的C++语义，但提供了时间内存安全。在这种偏离不合理的情况下，最近引入了一种新型智能指针叫做[MiraclePtr](https://security.googleblog.com/2021/09/an-update-on-memory-safety-in-chrome.html)，可在使用时对悬空指针的访问进行确定性的崩溃。Oilpan、MiraclePtr和基于智能指针的解决方案需要应用代码的重大修改。
 
-Over the last decade, another approach has seen some success: memory quarantine. The basic idea is to put explicitly freed memory into quarantine and only make it available when a certain safety condition is reached. Microsoft has shipped versions of this mitigation in its browsers: [MemoryProtector](https://securityintelligence.com/understanding-ies-new-exploit-mitigations-the-memory-protector-and-the-isolated-heap/) in Internet Explorer in 2014 and its successor [MemGC](https://securityintelligence.com/memgc-use-after-free-exploit-mitigation-in-edge-and-ie-on-windows-10/) in (pre-Chromium) Edge in 2015. In the [Linux kernel](https://a13xp0p0v.github.io/2020/11/30/slab-quarantine.html) a probabilistic approach was used where memory was eventually just recycled. And this approach has seen attention in academia in recent years with the [MarkUs paper](https://www.cst.cam.ac.uk/blog/tmj32/addressing-temporal-memory-safety). The rest of this article summarizes our journey of experimenting with quarantines and heap scanning in Chrome.
+在过去十年中，另一种方法取得了一些成功：内存隔离。其基本思想是将显式释放的内存置于隔离区，仅在达到一定安全条件后才使其可用。Microsoft已经在其浏览器中实现了此缓解措施的不同版本：[MemoryProtector](https://securityintelligence.com/understanding-ies-new-exploit-mitigations-the-memory-protector-and-the-isolated-heap/)在2014年的Internet Explorer中推出，其后继者[MemGC](https://securityintelligence.com/memgc-use-after-free-exploit-mitigation-in-edge-and-ie-on-windows-10/)在2015年的（非Chromium）Edge中推出。在[Linux内核](https://a13xp0p0v.github.io/2020/11/30/slab-quarantine.html)中采用了一种概率方法，其中内存最终只是被回收。近年来，这种方法在学术界也受到关注，例如[MarkUs论文](https://www.cst.cam.ac.uk/blog/tmj32/addressing-temporal-memory-safety)。本文的其余部分总结了我们在Chrome中试验隔离区和堆扫描的旅程。
 
-(At this point, one may ask where memory tagging fits into this picture – keep on reading!)
+（在这一点上，有人可能会问内存标记在这个场景中适合什么位置——继续阅读！）
 
-## Quarantining and heap scanning, the basics
+## 隔离与堆扫描的基本知识
 
-The main idea behind assuring temporal safety with quarantining and heap scanning is to avoid reusing memory until it has been proven that there are no more (dangling) pointers referring to it. To avoid changing C++ user code or its semantics, the memory allocator providing `new` and `delete` is intercepted.
+通过隔离和堆扫描来确保时间安全的主要思想是避免重复使用内存，直到证明没有任何（悬空的）指针引用它。为了避免改变 C++ 用户代码或其语义，会拦截提供 `new` 和 `delete` 的内存分配器。
 
-![Figure 1: quarantine basics](/_img/retrofitting-temporal-memory-safety-on-c++/basics.svg)
+![图 1：隔离的基本知识](/_img/retrofitting-temporal-memory-safety-on-c++/basics.svg)
 
-Upon invoking `delete`, the memory is actually put in a quarantine, where it is unavailable for being reused for subsequent `new` calls by the application. At some point a heap scan is triggered which scans the whole heap, much like a garbage collector, to find references to quarantined memory blocks. Blocks that have no incoming references from the regular application memory are transferred back to the allocator where they can be reused for subsequent allocations.
+调用 `delete` 时，内存实际上被放入隔离区，在这个区域无法被应用程序的后续 `new` 调用重新使用。在某个时刻会触发堆扫描，类似垃圾回收器的行为，扫描整个堆以查找引用隔离内存块的内容。那些没有来自常规应用程序内存的输入引用的块将被转回分配器，可以用于后续的分配。
 
-There are various hardening options which come with a performance cost:
+有各种增强选项，但会带来性能成本：
 
-- Overwrite the quarantined memory with special values (e.g. zero);
-- Stop all application threads when the scan is running or scan the heap concurrently;
-- Intercept memory writes (e.g. by page protection) to catch pointer updates;
-- Scan memory word by word for possible pointers (conservative handling) or provide descriptors for objects (precise handling);
-- Segregation of application memory in safe and unsafe partitions to opt-out certain objects which are either performance sensitive or can be statically proven as being safe to skip;
-- Scan the execution stack in addition to just scanning heap memory;
+- 用特殊值（例如零）覆盖隔离内存；
+- 在扫描运行时停止所有应用程序线程或并发扫描堆；
+- 拦截内存写入（例如通过页面保护）以捕获指针更新；
+- 按字扫描内存以查找可能的指针（保守处理）或为对象提供描述符（精确处理）；
+- 将应用程序内存隔离为安全和不安全分区，以选择排除某些对性能敏感或能被静态证明为安全跳过的对象；
+- 除了扫描堆内存外，也扫描执行堆栈；
 
-We call the collection of different versions of these algorithms *StarScan* [stɑː skæn], or *\*Scan* for short.
+我们将这些算法的不同版本称为 *StarScan* [stɑː skæn]，或简记为 *\*Scan*。
 
-## Reality check
+## 现实情况检验
 
-We apply \*Scan to the unmanaged parts of the renderer process and use [Speedometer2](https://browserbench.org/Speedometer2.0/) to evaluate the performance impact.
+我们将 \*Scan 应用于渲染进程的非托管部分，并使用 [Speedometer2](https://browserbench.org/Speedometer2.0/) 来评估性能影响。
 
-We have experimented with different versions of \*Scan. To minimize performance overhead as much as possible though, we evaluate a configuration that uses a separate thread to scan the heap and avoids clearing of quarantined memory eagerly on `delete` but rather clears quarantined memory when running \*Scan. We opt in all memory allocated with `new` and don’t discriminate between allocation sites and types for simplicity in the first implementation.
+我们对 \*Scan 的不同版本进行了实验。为了尽可能最小化性能开销，我们测试了一种配置，该配置使用单独的线程扫描堆，避免在 `delete` 时急切清除隔离内存，而是在运行 \*Scan 时清除隔离内存。我们选择使用 `new` 分配的所有内存，初始实现中未区分分配地点和类型以保持简单。
 
-![Figure 2: Scanning in separate thread](/_img/retrofitting-temporal-memory-safety-on-c++/separate-thread.svg)
+![图 2：在独立线程中扫描](/_img/retrofitting-temporal-memory-safety-on-c++/separate-thread.svg)
 
-Note that the proposed version of \*Scan is not complete. Concretely, a malicious actor may exploit a race condition with the scanning thread by moving a dangling pointer from an unscanned to an already scanned memory region. Fixing this race condition requires keeping track of writes into blocks of already scanned memory, by e.g. using memory protection mechanisms to intercept those accesses, or stopping all application threads in safepoints from mutating the object graph altogether. Either way, solving this issue comes at a performance cost and exhibits an interesting performance and security trade-off. Note that this kind of attack is not generic and does not work for all UAF. Problems such as depicted in the introduction would not be prone to such attacks as the dangling pointer is not copied around.
+注意，所提出的 \*Scan 版本并不完整。具体来说，恶意行为者可能通过将一个悬空指针从未扫描区域移动到已扫描内存区域，从而利用扫描线程中的竞争条件。修复这个竞争条件需要跟踪已扫描内存块中的写入，例如使用内存保护机制拦截这些访问，或在安全点完全停止应用程序线程以防止对象图的修改。无论哪种方式，解决这个问题都会带来性能成本，并表现出一个有趣的性能与安全权衡。注意，这种攻击并不通用，并非对所有 UAF 都有效。引言中所述的问题不会容易受到这种攻击的影响，因为悬空指针没有被复制。
 
-Since the security benefits really depend on the granularity of such safepoints and we want to experiment with the fastest possible version, we disabled safepoints altogether.
+由于安全效益确实取决于这种安全点的粒度，并且我们希望实验最快版本，我们完全禁用安全点。
 
-Running our basic version on Speedometer2 regresses the total score by 8%. Bummer…
+运行我们的基础版本在 Speedometer2 上将总分减少了 8%。令人遗憾……
 
-Where does all this overhead come from? Unsurprisingly, heap scanning is memory bound and quite expensive as the entire user memory must be walked and examined for references by the scanning thread.
+这些性能开销从何而来？不出意料，堆扫描对内存要求很高且成本昂贵，因为扫描线程必须遍历和检查整个用户内存的引用。
 
-To reduce the regression we implemented various optimizations that improve the raw scanning speed. Naturally, the fastest way to scan memory is to not scan it at all and so we partitioned the heap into two classes: memory that can contain pointers and memory that we can statically prove to not contain pointers, e.g. strings. We avoid scanning memory that cannot contain any pointers. Note that such memory is still part of the quarantine, it is just not scanned.
+为了减少退化，我们实施了各种优化以提高原始扫描速度。自然，扫描内存最快的方法就是根本不扫描。因此我们将堆分为两类：可以包含指针的内存和我们可以静态证明不包含指针的内存，例如字符串。我们避免扫描任何不可能包含指针的内存。注意，这些内存仍在隔离区中，只是不被扫描。
 
-We extended this mechanism to also cover allocations that serve as backing memory for other allocators, e.g., zone memory that is managed by V8 for the optimizing JavaScript compiler. Such zones are always discarded at once (c.f. region-based memory management) and temporal safety is established through other means in V8.
+我们将此机制扩展到涵盖作为其他分配器（例如 Zone 内存，由 V8 为优化 JavaScript 编译器管理）支持内存的分配。这样的 Zone 总是一次性丢弃（参见基于区域的内存管理），并且通过 V8 中的其他方法确保时间安全。
 
-On top, we applied several micro optimizations to speed up and eliminate computations: we use helper tables for pointer filtering; rely on SIMD for the memory-bound scanning loop; and minimize the number of fetches and lock-prefixed instructions.
+此外，我们应用了几种微小优化来加速并消除计算：我们使用帮助表进行指针过滤；利用 SIMD 快速处理内存绑定的扫描循环；并最小化提取和带锁前缀指令的数量。
 
-We also improve upon the initial scheduling algorithm that just starts a heap scan when reaching a certain limit by adjusting how much time we spent in scanning compared to actually executing the application code (c.f. mutator utilization in [garbage collection literature](https://dl.acm.org/doi/10.1145/604131.604155)).
+我们还通过调整扫描所花费的时间与实际执行应用代码所花费的时间（参见垃圾收集文献中的变异体利用率）来改进最初的调度算法，该算法仅在达到某个限制时开始堆扫描。
 
-In the end, the algorithm is still memory bound and scanning remains a noticeably expensive procedure. The optimizations helped to reduce the Speedometer2 regression from 8% down to 2%.
+最终，该算法仍然受到内存的限制，而且扫描仍然是显著昂贵的程序。然而优化帮助将 Speedometer2 的回归从 8% 降低到 2%。
 
-While we improved raw scanning time, the fact that memory sits in a quarantine increases the overall working set of a process. To further quantify this overhead, we use a selected set of [Chrome’s real-world browsing benchmarks](https://chromium.googlesource.com/catapult/) to measure memory consumption. \*Scan in the renderer process regresses memory consumption by about 12%. It’s this increase of the working set that leads to more memory being paged in which is noticeable on application fast paths.
+尽管我们改进了原始扫描时间，但内存处于隔离状态的事实增加了进程的整体工作集。为了进一步量化这种开销，我们使用了一组选定的 Chrome 的真实浏览基准测试来衡量内存消耗。\*Scan 在渲染器进程中的应用导致内存消耗增加约 12%。是这种工作集的增加导致了更多内存被分页，这在应用程序快速路径上是显著的。
 
-## Hardware memory tagging to the rescue
+## 硬件内存标记的援助
 
-MTE (Memory Tagging Extension) is a new extension on the ARM v8.5A architecture that helps with detecting errors in software memory use. These errors can be spatial errors (e.g. out-of-bounds accesses) or temporal errors (use-after-free). The extension works as follows. Every 16 bytes of memory are assigned a 4-bit tag. Pointers are also assigned a 4-bit tag. The allocator is responsible for returning a pointer with the same tag as the allocated memory. The load and store instructions verify that the pointer and memory tags match. In case the tags of the memory location and the pointer do not match a hardware exception is raised.
+MTE（内存标记扩展）是 ARM v8.5A 架构上的一项新扩展，用于帮助检测软件内存使用中的错误。这些错误可能是空间错误（例如越界访问）或时间错误（使用已释放的内存）。该扩展的工作原理如下：每 16 字节的内存都会分配一个 4 位标记。指针也会分配一个 4 位标记。内存分配器负责返回一个与分配的内存具有相同标记的指针。加载和存储指令验证指针与内存标记是否匹配。如果内存位置和指针的标记不匹配，则会引发硬件异常。
 
-MTE doesn’t offer a deterministic protection against use-after-free. Since the number of tag bits is finite there is a chance that the tag of the memory and the pointer match due to overflow. With 4 bits, only 16 reallocations are enough to have the tags match. A malicious actor may exploit the tag bit overflow to get a use-after-free by just waiting until the tag of a dangling pointer matches (again) the memory it is pointing to.
+MTE 对使用已释放内存不会提供确定性的保护。由于标记位数有限，内存和指针的标记可能由于溢出而匹配。有 4 位标记时，仅需 16 次重新分配就可能导致标记匹配。恶意攻击者可能利用标记位溢出来实现使用已释放的内存，只需等待悬空指针的标记再次与所指向内存的标记匹配。
 
-\*Scan can be used to fix this problematic corner case. On each `delete` call the tag for the underlying memory block gets incremented by the MTE mechanism. Most of the time the block will be available for reallocation as the tag can be incremented within the 4-bit range. Stale pointers would refer to the old tag and thus reliably crash on dereference. Upon overflowing the tag, the object is then put into quarantine and processed by \*Scan. Once the scan verifies that there are no more dangling pointers to this block of memory, it is returned back to the allocator. This reduces the number of scans and their accompanying cost by ~16x.
+\*Scan 可用于解决这一问题的极端情况。每次调用 `delete` 时，底层内存块的标记会通过 MTE 机制递增。大部分时间里，这些块可以在 4 位标记范围内递增来进行重新分配。过时的指针会引用旧标记，因此在解引用时可靠地崩溃。当标记溢出时，对象会被放入隔离区并由 \*Scan 处理。一旦扫描验证该内存块没有更多悬空指针，它会被返回到分配器。这减少了扫描次数及其伴随的开销约 16 倍。
 
-The following picture depicts this mechanism. The pointer to `foo` initially has a tag of `0x0E` which allows it to be incremented once again for allocating `bar`. Upon invoking `delete` for `bar` the tag overflows and the memory is actually put into quarantine of \*Scan.
+以下图片展示了这一机制。指向 `foo` 的指针最初拥有标记 `0x0E`，这使得它可以递增一次以分配 `bar`。调用 `delete` 删除 `bar` 时标记溢出，内存实际上被放入 \*Scan 的隔离区。
 
-![Figure 3: MTE](/_img/retrofitting-temporal-memory-safety-on-c++/mte.svg)
+![图 3：MTE](/_img/retrofitting-temporal-memory-safety-on-c++/mte.svg)
 
-We got our hands on some actual hardware supporting MTE and redid the experiments in the renderer process. The results are promising as the regression on Speedometer was within noise and we only regressed memory footprint by around 1% on Chrome’s real-world browsing stories.
+我们拿到了一些支持 MTE 的实际硬件，并在渲染器进程中重新进行了实验。结果令人鼓舞，因为 Speedometer 的回归处于噪声范围内，而 Chrome 的真实浏览故事的内存占用仅回归了约 1%。
 
-Is this some actual [free lunch](https://en.wikipedia.org/wiki/No_free_lunch_theorem)? Turns out that MTE comes with some cost which has already been paid for. Specifically, PartitionAlloc, which is Chrome’s underlying allocator, already performs the tag management operations for all MTE-enabled devices by default. Also, for security reasons, memory should really be zeroed eagerly. To quantify these costs, we ran experiments on an early hardware prototype that supports MTE in several configurations:
+这是否是传说中的[免费午餐](https://en.wikipedia.org/wiki/No_free_lunch_theorem)？事实证明 MTE 有一些成本，但已经支付了这些成本。具体而言，PartitionAlloc——即 Chrome 的底层分配器——默认会为所有支持 MTE 的设备执行标记管理操作。此外，从安全角度看，内存应该实际被尽快清零。为了量化这些成本，我们在支持 MTE 的早期硬件原型上运行了几种配置的实验：
 
- A. MTE disabled and without zeroing memory;
- B. MTE disabled but with zeroing memory;
- C. MTE enabled without \*Scan;
- D. MTE enabled with \*Scan;
+ A. 禁用 MTE 且不清零内存；
+ B. 禁用 MTE 但清零内存；
+ C. 启用 MTE，但不使用 \*Scan；
+ D. 启用 MTE，使用 \*Scan；
 
-(We are also aware that there’s synchronous and asynchronous MTE which also affects determinism and performance. For the sake of this experiment we kept using the asynchronous mode.)
+（我们也知道存在同步和异步 MTE，这也会影响确定性和性能。为了进行这次实验，我们持续使用异步模式。）
 
-![Figure 4: MTE regression](/_img/retrofitting-temporal-memory-safety-on-c++/mte-regression.svg)
+![图 4：MTE 回归](/_img/retrofitting-temporal-memory-safety-on-c++/mte-regression.svg)
 
-The results show that MTE and memory zeroing come with some cost which is around 2% on Speedometer2. Note that neither PartitionAlloc, nor hardware has been optimized for these scenarios yet. The experiment also shows that adding \*Scan on top of MTE comes without measurable cost.
+实验结果表明，MTE 和内存清零带来了一些成本，大约是 Speedometer2 的 2%。需要注意的是，PartitionAlloc 和硬件尚未针对这些场景进行优化。实验还显示，在 MTE 的基础上添加 \*Scan 不会产生可测量的成本。
 
-## Conclusions
-
-C++ allows for writing high-performance applications but this comes at a price, security. Hardware memory tagging may fix some security pitfalls of C++, while still allowing high performance. We are looking forward to see a more broad adoption of hardware memory tagging in the future and suggest using \*Scan on top of hardware memory tagging to fix temporal memory safety for C++. Both the used MTE hardware and the implementation of \*Scan are prototypes and we expect that there is still room for performance optimizations.
+## 结论

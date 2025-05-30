@@ -1,18 +1,18 @@
 ---
-title: "What to do if your CL broke the Node.js integration build"
-description: "This document explains what to do if your CL broke the Node.js integration build."
+title: "如果您的 CL 导致 Node.js 集成构建失败，该怎么做"
+description: "本文档解释了如果您的 CL 导致 Node.js 集成构建失败，该怎么做。"
 ---
-[Node.js](https://github.com/nodejs/node) uses V8 stable or beta. For additional integration, the V8 team builds Node with V8's [main branch](https://chromium.googlesource.com/v8/v8/+/refs/heads/main), i.e., with a V8 version from today. We provide an integration bot for [Linux](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Linux64), while [Windows](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Win64) and [Mac](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Mac64) are in the works.
+[Node.js](https://github.com/nodejs/node) 使用 V8 的稳定版或测试版。为了额外的集成，V8 团队使用 V8 的[主分支](https://chromium.googlesource.com/v8/v8/+/refs/heads/main)构建 Node，也就是使用今天的 V8 版本。我们为[Linux](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Linux64)提供了集成机器人，而[Windows](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Win64)和[Mac](https://ci.chromium.org/p/node-ci/builders/ci/Node-CI%20Mac64)仍在开发中。
 
-If the [`node_ci_linux64_rel`](https://ci.chromium.org/p/node-ci/builders/try/node_ci_linux64_rel) bot fails on the V8 commit queue, there is either a legitimate problem with your CL (fix it) or [Node](https://github.com/v8/node/) must be modified. If the Node tests failed, search for “Not OK” in the log files. **This document describes how to reproduce the problem locally and how to make changes to [V8’s Node fork](https://github.com/v8/node/) if your V8 CL causes the build to fail.**
+如果 V8 提交队列中的[`node_ci_linux64_rel`](https://ci.chromium.org/p/node-ci/builders/try/node_ci_linux64_rel)机器人失败，要么您的 CL 确实存在问题（需要修复），要么需要修改[Node](https://github.com/v8/node/)。如果 Node 测试失败，在日志文件中搜索“Not OK”。**本文档描述了如何在本地复现问题以及如何对[V8 的 Node 分支](https://github.com/v8/node/)进行修改，如果您的 V8 CL 导致构建失败的话。**
 
-## Source
+## 源代码
 
-Follow the [instructions](https://chromium.googlesource.com/v8/node-ci) at the node-ci repository to check out source.
+按照 node-ci 仓库中的[说明](https://chromium.googlesource.com/v8/node-ci)检出源代码。
 
-## Test changes to V8
+## 测试对 V8 的修改
 
-V8 is set up as a DEPS dependency of node-ci. You may want to apply changes to V8 for testing or to reproduce failures. To do so, add your main V8 checkout as remote:
+V8 被设置为 node-ci 的一个 DEPS 依赖项。您可能需要为测试或重现故障对 V8 进行更改。为此，请将您的主要 V8 检出添加为远程：
 
 ```bash
 cd v8
@@ -22,50 +22,50 @@ git checkout v8/<your-branch>
 cd ..
 ```
 
-Remember to run gclient hooks before compiling.
+记得在编译之前运行 gclient hooks。
 
 ```bash
 gclient runhooks
 JOBS=`nproc` make test
 ```
 
-## Make changes to Node.js
+## 修改 Node.js
 
-Node.js is also set up as a `DEPS` dependency of node-ci. You may want to apply changes to Node.js to fix breakages that V8 changes may cause. V8 tests against a [fork of Node.js](https://github.com/v8/node). You need a GitHub account to make changes to that fork.
+Node.js 也被设置为 node-ci 的 `DEPS` 依赖项。您可能需要修改 Node.js，以修复 V8 更改可能导致的中断。V8 对[Node.js 的一个分支](https://github.com/v8/node)进行测试。您需要一个 GitHub 账号来修改该分支。
 
-### Get the Node sources
+### 获取 Node 源代码
 
-Fork [V8’s Node.js repository on GitHub](https://github.com/v8/node/) (click the fork button) unless you already did previously.
+Fork [V8 的 Node.js GitHub 仓库](https://github.com/v8/node/)（点击 fork 按钮），除非您之前已经 Fork 过。
 
-Add your both your fork and V8’s fork as remotes to the existing checkout:
+将您的分支和 V8 的分支都作为远程添加到现有检出中：
 
 ```bash
 cd node
 git remote add v8 http://github.com/v8/node
-git remote add <your-user-name> git@github.com:<your-user-name>/node.git
+git remote add <your-user-name> [git@github.com](mailto:git@github.com):<your-user-name>/node.git
 git fetch v8
 git checkout v8/node-ci-<sync-date>
 export BRANCH_NAME=`date +"%Y-%m-%d"`_fix_name
 git checkout -b $BRANCH_NAME
 ```
 
-> **Note** `<sync-date>` is the date we sync’ed with upstream Node.js. Choose the latest date.
+> **注意** `<sync-date>` 是我们与上游 Node.js 同步的日期。选择最新的日期。
 
-Make your changes to the Node.js checkout, and commit them. Then push the changes to GitHub:
+对 Node.js 检出进行修改，并提交更改。然后将更改推送到 GitHub：
 
 ```bash
 git push <your-user-name> $BRANCH_NAME
 ```
 
-And create a pull request against the branch `node-ci-<sync-date>`.
+并在 `node-ci-<sync-date>` 分支上创建一个拉取请求。
 
 
-Once the pull request has been merged to V8’s fork of Node.js, you need to update node-ci’s `DEPS` file, and create a CL.
+一旦拉取请求被合并到 V8 的 Node.js 分支，您需要更新 node-ci 的 `DEPS` 文件，并创建一个 CL。
 
 ```bash
 git checkout -b update-deps
 gclient setdep --var=node_revision=<merged-commit-hash>
 git add DEPS
-git commit -m 'Update Node'
+git commit -m '更新 Node'
 git cl upload
 ```

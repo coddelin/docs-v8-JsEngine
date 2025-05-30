@@ -1,37 +1,37 @@
 ---
-title: "V8 release v5.1"
-author: "the V8 team"
+title: "V8 发布 v5.1"
+author: "V8 团队"
 date: "2016-04-23 13:33:37"
 tags: 
-  - release
-description: "V8 v5.1 comes with performance improvements, reduced jank and memory consumption, and increased support for ECMAScript language features."
+  - 发布
+description: "V8 v5.1 带来了性能改进、降低卡顿和内存消耗，以及对 ECMAScript 语言功能的支持增强。"
 ---
-The first step in the V8 [release process](/docs/release-process) is a new branch from the Git master immediately before Chromium branches for a Chrome Beta milestone (roughly every six weeks). Our newest release branch is [V8 v5.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.1), which will remain in beta until we release a stable build in conjunction with Chrome 51 Stable. Here’s a highlight of the new developer-facing features in this version of V8.
+V8 [发布流程](/docs/release-process) 的第一步是在 Chromium 分支出 Chrome Beta 里程碑之前（大约每六周一次）从 Git 主分支创建一个新分支。我们最新的发布分支是 [V8 v5.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.1)，它将在 beta 版中保持一段时间，直到与 Chrome 51 稳定版一起发布一个稳定版本。以下是这个 V8 版本中的新开发者功能亮点。
 
 <!--truncate-->
-## Improved ECMAScript support
+## 改进的 ECMAScript 支持
 
-V8 v5.1 contains a number of changes towards compliance with the ES2017 draft spec.
+V8 v5.1 包含了一些针对符合 ES2017 草案规范的改动。
 
 ### `Symbol.species`
 
-Array methods like `Array.prototype.map` construct instances of the subclass as its output, with the option to customize this by changing [`Symbol.species`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/species). Analogous changes are made to other built-in classes.
+诸如 `Array.prototype.map` 的数组方法会使用子类实例作为其输出，可以选择通过更改 [`Symbol.species`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/species) 来定制此行为。类似的改动也应用于其他内置类。
 
-### `instanceof` customization
+### `instanceof` 定制
 
-Constructors can implement their own [`Symbol.hasInstance`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol#Other_symbols) method, which overrides the default behavior.
+构造函数可以实现自己的 [`Symbol.hasInstance`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol#Other_symbols) 方法，以覆盖默认行为。
 
-### Iterator closing
+### 迭代器关闭
 
-Iterators created as part of a [`for`-`of`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of) loop (or other built-in iteration, such as the [spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator) operator) are now checked for a close method which is called if the loop terminates early. This can be used for clean-up duty after the iteration has finished.
+在 [`for`-`of`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of) 循环（或其他内置迭代，如 [扩展](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator)操作符）中创建的迭代器现在会检查关闭方法，当循环提前终止时将调用该方法。这可以在迭代完成后用于清理。
 
-### RegExp subclassing `exec` method
+### RegExp 子类化 `exec` 方法
 
-RegExp subclasses can overwrite the `exec` method to change just the core matching algorithm, with the guarantee that this is called by higher-level functions like `String.prototype.replace`.
+RegExp 子类可以覆盖 `exec` 方法，以更改核心匹配算法，并保证它被高层函数如 `String.prototype.replace` 调用。
 
-### Function name inference
+### 函数名称推断
 
-Function names inferred for function expressions are now typically made available in the [`name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name) property of functions, following the ES2015 formalization of these rules. This may change existing stack traces and provide different names from previous V8 versions. It also gives useful names to properties and methods with computed property names:
+现在为函数表达式推断的函数名称通常会在函数的 [`name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name) 属性中提供，遵循 ES2015 正式化的规则。这可能会改变现有的堆栈跟踪，并提供与之前 V8 版本不同的名称。这还为具有计算属性名的属性和方法提供了有用的名称：
 
 ```js
 class Container {
@@ -46,38 +46,38 @@ console.log(c[Symbol.iterator].name);
 
 ### `Array.prototype.values`
 
-Analogous to other collection types, the [`values`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/values) method on `Array` returns an iterator over the contents of the array.
+类似于其他集合类型，`Array` 上的 [`values`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/values) 方法返回一个数组内容的迭代器。
 
-## Performance improvements
+## 性能改进
 
-V8 v5.1 also brings a few notable performance improvements to the following JavaScript features:
+V8 v5.1 还针对以下 JavaScript 功能带来了显著的性能改进：
 
-- Executing loops like `for`-`in`
+- 执行如 `for`-`in` 的循环
 - `Object.assign`
-- Promise and RegExp instantiation
-- Calling `Object.prototype.hasOwnProperty`
-- `Math.floor`, `Math.round`, and `Math.ceil`
+- Promise 和 RegExp 实例化
+- 调用 `Object.prototype.hasOwnProperty`
+- `Math.floor`, `Math.round` 和 `Math.ceil`
 - `Array.prototype.push`
 - `Object.keys`
-- `Array.prototype.join` & `Array.prototype.toString`
-- Flattening repeat strings e.g. `'.'.repeat(1000)`
+- `Array.prototype.join` 和 `Array.prototype.toString`
+- 展平重复字符串，例如 `'.'.repeat(1000)`
 
 ## WebAssembly (Wasm)
 
-V8 v5.1 has a preliminary support for [WebAssembly](/blog/webassembly-experimental). You can enable it via the flag `--expose_wasm` in `d8`. Alternatively you can try out the [Wasm demos](https://webassembly.github.io/demo/) with Chrome 51 (Beta Channel).
+V8 v5.1 初步支持 [WebAssembly](/blog/webassembly-experimental)。你可以在 `d8` 中通过 `--expose_wasm` 标志启用它。或者你可以使用 Chrome 51（Beta 频道）试用 [Wasm 演示](https://webassembly.github.io/demo/)。
 
-## Memory
+## 内存
 
-V8 implemented more slices of [Orinoco](/blog/orinoco):
+V8 实现了更多的 [Orinoco](/blog/orinoco) 片段：
 
-- Parallel young generation evacuation
-- Scalable remembered sets
-- Black allocation
+- 并行年轻代撤离
+- 可扩展记忆集合
+- 黑色分配
 
-The impact is reduced jank and memory consumption in times of need.
+这样减少了卡顿并在需要时降低内存消耗。
 
 ## V8 API
 
-Please check out our [summary of API changes](https://bit.ly/v8-api-changes). This document gets regularly updated a few weeks after each major release.
+请查看我们的 [API更改总结](https://bit.ly/v8-api-changes)。此文档在每次主要发布几周后会定期更新。
 
-Developers with an [active V8 checkout](https://v8.dev/docs/source-code#using-git) can use `git checkout -b 5.1 -t branch-heads/5.1` to experiment with the new features in V8 v5.1. Alternatively you can [subscribe to Chrome's Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+拥有 [活动的 V8 检出](https://v8.dev/docs/source-code#using-git) 的开发者可以使用 `git checkout -b 5.1 -t branch-heads/5.1` 来尝试 V8 v5.1 的新功能。或者，你也可以 [订阅 Chrome 的 Beta 频道](https://www.google.com/chrome/browser/beta.html)，尽快亲自试用这些新功能。

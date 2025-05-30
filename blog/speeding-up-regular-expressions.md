@@ -1,50 +1,50 @@
 ---
-title: "Speeding up V8 regular expressions"
-author: "Jakob Gruber, Regular Software Engineer"
+title: "加快 V8 正则表达式速度"
+author: "Jakob Gruber，常规软件工程师"
 avatars: 
   - "jakob-gruber"
 date: "2017-01-10 13:33:37"
 tags: 
-  - internals
-  - RegExp
-description: "V8 recently migrated RegExp’s built-in functions from a self-hosted JavaScript implementation to one that hooks straight into our new code generation architecture based on TurboFan."
+  - 内部结构
+  - 正则表达式
+description: "V8 最近将正则表达式的内置函数从自托管的 JavaScript 实现过渡为直接连接到我们基于 TurboFan 的新代码生成架构的实现。"
 ---
-This blog post covers V8’s recent migration of RegExp’s built-in functions from a self-hosted JavaScript implementation to one that hooks straight into our new code generation architecture based on [TurboFan](/blog/v8-release-56).
+这篇博文讲述了 V8 最近将正则表达式的内置函数从自托管的 JavaScript 实现过渡为直接连接到我们基于 [TurboFan](/blog/v8-release-56) 的新代码生成架构的实现。
 
 <!--truncate-->
-V8’s RegExp implementation is built on top of [Irregexp](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html), which is widely considered to be one of the fastest RegExp engines. While the engine itself encapsulates the low-level logic to perform pattern matching against strings, functions on the RegExp prototype such as [`RegExp.prototype.exec`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec) do the additional work required to expose its functionality to the user.
+V8 的正则表达式实现基于 [Irregexp](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html)，这通常被认为是最快的正则表达式引擎之一。虽然该引擎本身封装了用于对字符串执行模式匹配的低级逻辑，但正则表达式原型上的函数（例如 [`RegExp.prototype.exec`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec)）完成了将其功能暴露给用户所需的额外工作。
 
-Historically, various components of V8 have been implemented in JavaScript. Until recently, `regexp.js` has been one of them, hosting the implementation of the RegExp constructor, all of its properties as well as its prototype’s properties.
+从历史上看，V8 的许多组件都是用 JavaScript 实现的。直到最近，`regexp.js` 还是其中之一，承载着正则表达式构造函数的实现、所有属性以及其原型属性。
 
-Unfortunately this approach has disadvantages, including unpredictable performance and expensive transitions to the C++ runtime for low-level functionality. The recent addition of built-in subclassing in ES6 (allowing JavaScript developers to provide their own customized RegExp implementation) has resulted in a further RegExp performance penalty, even if the RegExp built-in is not subclassed. These regressions could not be fully addressed in the self-hosted JavaScript implementation.
+不幸的是，这种方法有缺点，包括不可预测的性能和向 C++ 运行时的昂贵转换以执行低级功能。ES6 最近引入了内置子类化（允许 JavaScript 开发者提供自己的定制正则表达式实现），即使在正则表达式内置未被子类化的情况下，仍然导致了进一步的正则表达式性能损失。这些性能退化在自托管的 JavaScript 实现中无法完全解决。
 
-We therefore decided to migrate the RegExp implementation away from JavaScript.  However, preserving performance turned out to be more difficult than expected. An initial migration to a full C++ implementation was significantly slower, reaching only around 70% of the original implementation’s performance.  After some investigation, we found several causes:
+因此，我们决定将正则表达式的实现从 JavaScript 中迁移出去。然而，保持性能比预期更难。一种初步迁移到完整的 C++ 实现的方案明显更慢，仅达到原实现性能的约 70%。经过一些调查，我们发现了几个原因：
 
-- [`RegExp.prototype.exec`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec) contains a couple of extremely performance-sensitive areas, most notably including the transition to the underlying RegExp engine, and construction of the RegExp result with its associated substring calls. For these, the JavaScript implementation relied on highly optimized pieces of code called “stubs”, written either in native assembly language or by hooking directly into the optimizing compiler pipeline. It is not possible to access these stubs from C++, and their runtime equivalents are significantly slower.
-- Accesses to properties such as RegExp’s `lastIndex` can be expensive, possibly requiring lookups by name and traversal of the prototype chain. V8’s optimizing compiler can often automatically replace such accesses with more efficient operations, while these cases would need to be handled explicitly in C++.
-- In C++, references to JavaScript objects must be wrapped in so-called `Handle`s in order to cooperate with garbage collection. Handle management produces further overhead in comparison to the plain JavaScript implementation.
+- [`RegExp.prototype.exec`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec) 包含几个对性能极为敏感的区域，尤其是正则表达式引擎的切换点，以及伴随子字符串调用构造正则表达式结果的过程。对于这些区域，JavaScript 实现依赖从原生汇编语言或直接挂钩到优化编译器管线编写的高效代码（称为“stub”）。无法从 C++ 访问这些 stub，它们的运行时等价物显著更慢。
+- 对正则表达式属性（例如 `lastIndex`）的访问可能很昂贵，可能需要按名字查找和遍历原型链。V8 的优化编译器通常可以自动将这些访问替换为更高效的操作，而这些情况在 C++ 中需要显式处理。
+- 在 C++ 中，对 JavaScript 对象的引用必须用所谓的 `Handle` 包装，以与垃圾回收协作。相比于简单的 JavaScript 实现，Handle 管理会产生额外的开销。
 
-Our new design for the RegExp migration is based on the [CodeStubAssembler](/blog/csa), a mechanism that allows V8 developers to write platform-independent code which will later be translated into fast, platform-specific code by the same backend that is also used for the new optimizing compiler TurboFan. Using the CodeStubAssembler allows us to address all shortcomings of the initial C++ implementation. Stubs (such as the entry-point into the RegExp engine) can easily be called from the CodeStubAssembler. While fast property accesses still need to be explicitly implemented on so-called fast paths, such accesses are extremely efficient in the CodeStubAssembler. Handles simply do not exist outside of C++. And since the implementation now operates at a very low level, we can take further shortcuts such as skipping expensive result construction when it is not needed.
+我们为正则表达式迁移设计的新方案基于 [CodeStubAssembler](/blog/csa)，这是一种允许 V8 开发者编写平台无关代码的机制，这些代码后来将通过与新优化编译器 TurboFan 使用相同的后端翻译为快速的特定平台代码。使用 CodeStubAssembler 使我们可以解决初始 C++ 实现的所有缺点。可以轻松从 CodeStubAssembler 调用 stub（例如正则表达式引擎的入口点）。尽管快速属性访问仍然需要显式地通过所谓的快速路径实现，但在 CodeStubAssembler 中这样的访问非常高效。Handle 在 C++ 之外根本不存在。而且由于实现现在在非常低的层级操作，我们可以采取进一步的捷径，例如在不需要时跳过昂贵的结果构造。
 
-Results have been very positive. Our score on [a substantial RegExp workload](https://github.com/chromium/octane/blob/master/regexp.js) has improved by 15%, more than regaining our recent subclassing-related performance losses. Microbenchmarks (Figure 1) show improvements across the board, from 7% for [`RegExp.prototype.exec`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec), up to 102% for [`RegExp.prototype[@@split]`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/@@split).
+结果非常积极。我们在[一个重要的正则表达式工作负载](https://github.com/chromium/octane/blob/master/regexp.js)上的得分提高了15%，不仅弥补了我们最近与子类相关的性能损失，还实现了更多的提升。微基准测试（图1）显示性能全面提高，从 [`RegExp.prototype.exec`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec) 提高7%，到 [`RegExp.prototype[@@split]`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/@@split) 提高102%。
 
-![Figure 1: RegExp speedup broken down by function](/_img/speeding-up-regular-expressions/perf.png)
+![图1：按功能划分的正则表达式加速](/_img/speeding-up-regular-expressions/perf.png)
 
-So how can you, as a JavaScript developer, ensure that your RegExps are fast? If you are not interested in hooking into RegExp internals, make sure that neither the RegExp instance, nor its prototype is modified in order to get the best performance:
+那么作为JavaScript开发者，你如何确保正则表达式的运行速度很快呢？如果你不打算深入正则表达式的内部，请确保既没有修改正则表达式实例，也没有修改其原型，以获得最佳性能:
 
 ```js
 const re = /./g;
-re.exec('');  // Fast path.
-re.new_property = 'slow';
-RegExp.prototype.new_property = 'also slow';
-re.exec('');  // Slow path.
+re.exec('');  // 快速路径。
+re.new_property = '慢';
+RegExp.prototype.new_property = '也很慢';
+re.exec('');  // 慢速路径。
 ```
 
-And while RegExp subclassing may be quite useful at times, be aware that subclassed RegExp instances require more generic handling and thus take the slow path:
+尽管有时候子类化正则表达式可能非常有用，但请注意，子类化的正则表达式实例需要更通用的处理，因此会走慢速路径:
 
 ```js
 class SlowRegExp extends RegExp {}
-new SlowRegExp(".", "g").exec('');  // Slow path.
+new SlowRegExp(".", "g").exec('');  // 慢速路径。
 ```
 
-The full RegExp migration will be available in V8 v5.7.
+完整的正则表达式迁移将会在V8 v5.7中可用。

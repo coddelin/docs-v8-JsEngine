@@ -1,51 +1,51 @@
 ---
-title: "V8 release v8.4"
-author: "Camillo Bruni, enjoying some fresh booleans"
+title: "V8发布版本v8.4"
+author: "Camillo Bruni, 享受一些新鲜的布尔值"
 avatars: 
  - "camillo-bruni"
 date: 2020-06-30
 tags: 
- - release
-description: "V8 v8.4 features weak references and improved WebAssembly performance."
+ - 发布
+description: "V8 v8.4具有弱引用和改进的WebAssembly性能。"
 tweet: "1277983235641761795"
 ---
-Every six weeks, we create a new branch of V8 as part of our [release process](https://v8.dev/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 8.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.4), which is in beta until its release in coordination with Chrome 84 Stable in several weeks. V8 v8.4 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
+每六周，我们会创建一个新的V8分支，作为我们的[发布流程](https://v8.dev/docs/release-process)的一部分。每个版本都是在Chrome Beta里程碑之前直接从V8的Git主分支分支出来的。今天，我们很高兴宣布我们的最新分支，[V8版本8.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.4)，它将与Chrome 84 Stable协调发布，在接下来的几周内处于Beta阶段。V8 v8.4充满了各种面向开发者的好东西。这篇文章将提供一些主要亮点的预览，为发布做准备。
 
 <!--truncate-->
 ## WebAssembly
 
-### Improved start-up time
+### 改进的启动时间
 
-WebAssembly’s baseline compiler ([Liftoff](https://v8.dev/blog/liftoff)) now supports [atomic instructions](https://github.com/WebAssembly/threads) and [bulk memory operations](https://github.com/WebAssembly/bulk-memory-operations). This means that even if you use these pretty recent spec additions, you get blazingly fast start-up times.
+WebAssembly的基础编译器([Liftoff](https://v8.dev/blog/liftoff))现在支持[原子指令](https://github.com/WebAssembly/threads)和[批量内存操作](https://github.com/WebAssembly/bulk-memory-operations)。这意味着即使您使用这些较新的规范添加，也可以获得非常快的启动时间。
 
-### Better debugging
+### 更好的调试
 
-In an ongoing effort to improve the debugging experience in WebAssembly, we are now able to inspect any WebAssembly frame that is live whenever you pause execution or reach a breakpoint.
-This was realized by re-using [Liftoff](https://v8.dev/blog/liftoff) for debugging. In the past, all code that had breakpoints or was stepped through needed to execute in the WebAssembly interpreter, which slowed down execution substantially (often around 100×). With Liftoff, you only lose about one third of your performance, but you can step through all code and inspect it at any time.
+在持续改善WebAssembly调试体验的过程中，我们现在能够在您暂停执行或到达断点时检查任何活动的WebAssembly帧。
+这通过重新使用[Liftoff](https://v8.dev/blog/liftoff)来进行调试实现的。在过去，所有具有断点或经过的代码都需要在WebAssembly解释器中执行，这会显著降低执行速度（通常是100倍左右）。使用Liftoff，您只会丧失大约三分之一的性能，但您可以随时通过所有代码并检查它。
 
-### SIMD Origin Trial
+### SIMD原始试验
 
-The SIMD proposal enables WebAssembly to take advantage of commonly available hardware vector instructions to accelerate compute intensive workloads. V8 has [support](https://v8.dev/features/simd) for the [WebAssembly SIMD proposal](https://github.com/WebAssembly/simd). To enable this in Chrome, use the flag `chrome://flags/#enable-webassembly-simd` or sign up for an [origin trial](https://developers.chrome.com/origintrials/#/view_trial/-4708513410415853567). [Origin trials](https://github.com/GoogleChrome/OriginTrials/blob/gh-pages/developer-guide.md) allow developers to experiment with a feature before it is standardized, and provide valuable feedback. Once an origin has opted into the trial users are opted into the feature for the duration of the trial period without having to update Chrome flags.
+SIMD提案允许WebAssembly利用常用的硬件向量指令来加速计算密集型工作负载。V8已经[支持](https://v8.dev/features/simd)了[WebAssembly SIMD提案](https://github.com/WebAssembly/simd)。要在Chrome中启用该功能，可以使用标志`chrome://flags/#enable-webassembly-simd`或注册[原始试验](https://developers.chrome.com/origintrials/#/view_trial/-4708513410415853567)。[原始试验](https://github.com/GoogleChrome/OriginTrials/blob/gh-pages/developer-guide.md)允许开发者在标准化之前试验某个功能，并提供有价值的反馈。一旦一个来源选择进入试验，用户将在试验期间启用该功能，而无需更新Chrome标志。
 
 ## JavaScript
 
-### Weak references and finalizers
+### 弱引用和终结器
 
 :::note
-**Warning!** Weak references and finalizers are advanced features! They depend on garbage collection behavior. Garbage collection is non-deterministic and may not occur at all.
+**警告！** 弱引用和终结器是高级功能！它们依赖于垃圾回收行为。垃圾回收是非确定性的，可能根本不会发生。
 :::
 
-JavaScript is a garbage collected language, which means memory occupied by objects that are no longer reachable by the program may be automatically reclaimed when the garbage collector runs. With the exception of references in `WeakMap` and `WeakSet`, all references in JavaScript are strong and prevent the referenced object from being garbage collected. For instance,
+JavaScript是一种支持垃圾回收的语言，这意味着当垃圾回收器运行时，程序不再可到达的对象所占用的内存可能会被自动回收。除了`WeakMap`和`WeakSet`中的引用外，JavaScript中的所有引用都是强引用并防止被引用的对象被垃圾回收。例如：
 
 ```js
 const globalRef = {
   callback() { console.log('foo'); }
 };
-// As long as globalRef is reachable through the global scope,
-// neither it nor the function in its callback property will be collected.
+// 只要globalRef可以通过全局作用域访问，
+// 它以及其callback属性中的函数都不会被回收。
 ```
 
-JavaScript programmers can now hold on to objects weakly via the `WeakRef` feature. Objects that are referenced by weak references do not prevent their being garbage collected if they are not also strongly referenced.
+JavaScript程序员现在可以通过`WeakRef`功能弱引用对象。通过弱引用的对象如果没有被强引用，也不会阻止其被垃圾回收。
 
 ```js
 const globalWeakRef = new WeakRef({
@@ -54,21 +54,20 @@ const globalWeakRef = new WeakRef({
 
 (async function() {
   globalWeakRef.deref().callback();
-  // Logs “foo” to console. globalWeakRef is guaranteed to be alive
-  // for the first turn of the event loop after it was created.
+  // 打印“foo”到控制台。globalWeakRef在其创建后会保证在事件循环的第一轮中存活。
 
   await new Promise((resolve, reject) => {
     setTimeout(() => { resolve('foo'); }, 42);
   });
-  // Wait for a turn of the event loop.
+  // 等待事件循环的一轮。
 
   globalWeakRef.deref()?.callback();
-  // The object inside globalWeakRef may be garbage collected
-  // after the first turn since it is not otherwise reachable.
+  // globalWeakRef中的对象可能在第一轮事件循环之后被垃圾回收，
+  // 因为它不再可以访问。
 })();
 ```
 
-The companion feature to `WeakRef`s is `FinalizationRegistry`, which lets programmers register callbacks to be invoked after an object is garbage collected. For example, the program below may log `42` to the console after the unreachable object in the IIFE is collected.
+与`WeakRef`功能配套的是`FinalizationRegistry`，它使程序员可以注册在对象被垃圾回收之后调用的回调。例如，下面的程序可能会在IIFE中不可达的对象被回收后打印`42`到控制台。
 
 ```js
 const registry = new FinalizationRegistry((heldValue) => {
@@ -78,35 +77,35 @@ const registry = new FinalizationRegistry((heldValue) => {
 (function () {
   const garbage = {};
   registry.register(garbage, 42);
-  // The second argument is the “held” value which gets passed
-  // to the finalizer when the first argument is garbage collected.
+  // 第二个参数是“被持有”的值，当第一个参数被垃圾回收时，
+  // 它将被传递给终结器。
 })();
 ```
 
-Finalizers are scheduled to run on the event loop and never interrupt synchronous JavaScript execution.
+终结者将在事件循环中运行，并且永远不会中断同步执行的 JavaScript。
 
-These are advanced and powerful features, and with any luck, your program won’t need them. Please see our [explainer](https://v8.dev/features/weak-references) to learn more about them!
+这些是高级且强大的功能，如果幸运的话，您的程序可能用不到它们。请阅读我们的[说明文档](https://v8.dev/features/weak-references)以了解更多信息！
 
-### Private methods and accessors
+### 私有方法和访问器
 
-Private fields, which shipped in v7.4, are rounded out with support for private methods and accessors. Syntactically, the names of private methods and accessors start with `#`, just like private fields. The following is a brief taste of the syntax.
+私有字段在 v7.4 中发布，现在增加了对私有方法和访问器的支持。在语法上，私有方法和访问器的名称以 `#` 开始，就像私有字段一样。以下是语法的简要示例。
 
 ```js
 class Component {
   #privateMethod() {
-    console.log("I'm only callable inside Component!");
+    console.log("我只能在 Component 内部调用！");
   }
   get #privateAccessor() { return 42; }
   set #privateAccessor(x) { }
 }
 ```
 
-Private methods and accessors have the same scoping rules and semantics as private fields. Please see our [explainer](https://v8.dev/features/class-fields) to learn more.
+私有方法和访问器拥有与私有字段相同的作用域规则和语义。请查看我们的[说明文档](https://v8.dev/features/class-fields)以了解更多信息。
 
-Thanks to [Igalia](https://twitter.com/igalia) for contributing the implementation!
+感谢 [Igalia](https://twitter.com/igalia) 对此功能的贡献！
 
 ## V8 API
 
-Please use `git log branch-heads/8.3..branch-heads/8.4 include/v8.h` to get a list of the API changes.
+请使用 `git log branch-heads/8.3..branch-heads/8.4 include/v8.h` 获取 API 更改的列表。
 
-Developers with an active V8 checkout can use `git checkout -b 8.4 -t branch-heads/8.4` to experiment with the new features in V8 v8.4. Alternatively you can [subscribe to Chrome’s Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+拥有有效 V8 检出的开发者可以使用 `git checkout -b 8.4 -t branch-heads/8.4` 来试验 V8 v8.4 中的新功能。或者您可以[订阅 Chrome 的 Beta 频道](https://www.google.com/chrome/browser/beta.html)，并立即试用这些新功能。

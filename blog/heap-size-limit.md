@@ -1,24 +1,24 @@
 ---
-title: "One small step for Chrome, one giant heap for V8"
-author: "guardians of the heap Ulan Degenbaev, Hannes Payer, Michael Lippautz, and DevTools warrior Alexey Kozyatinskiy"
+title: "Chrome的一小步，V8的一大堆"
+author: "堆的守护者Ulan Degenbaev, Hannes Payer, Michael Lippautz，以及DevTools战士Alexey Kozyatinskiy"
 avatars: 
   - "ulan-degenbaev"
   - "michael-lippautz"
   - "hannes-payer"
 date: "2017-02-09 13:33:37"
 tags: 
-  - memory
-description: "V8 recently increased its hard limit on heap size."
+  - 内存
+description: "V8最近增加了其堆大小的硬限制。"
 ---
-V8 has a hard limit on its heap size. This serves as a safeguard against applications with memory leaks. When an application reaches this hard limit, V8 does a series of last resort garbage collections. If the garbage collections do not help to free memory V8 stops execution and reports an out-of-memory failure. Without the hard limit a memory leaking application could use up all system memory hurting the performance of other applications.
+V8对其堆大小有一个硬限制。这充当了防止应用程序内存泄漏的保护措施。当应用程序达到这一硬限制时，V8会执行一系列最后的垃圾回收措施。如果垃圾回收未能释放内存，V8会停止执行并报告内存不足故障。如果没有这一硬限制，内存泄漏的应用程序可能会占用所有系统内存，从而影响其他应用程序的性能。
 
 <!--truncate-->
-Ironically, this safeguard mechanism makes investigation of memory leaks harder for JavaScript developers. The application can run out of memory before the developer manages to inspect the heap in DevTools. Moreover the DevTools process itself can run out memory because it uses an ordinary V8 instance. For example, taking a heap snapshot of [this demo](https://ulan.github.io/misc/heap-snapshot-demo.html) aborts execution due to out-of-memory on the current stable Chrome.
+具有讽刺意味的是，这一保护机制使得JavaScript开发者更难调查内存泄漏问题。应用程序可以在开发者通过DevTools检查堆之前耗尽内存。此外，DevTools进程本身可能会耗尽内存，因为它使用普通的V8实例。例如，在当前稳定版Chrome中，对[这个演示](https://ulan.github.io/misc/heap-snapshot-demo.html)进行堆快照会由于内存不足而中止执行。
 
-Historically the V8 heap limit was conveniently set to fit the signed 32-bit integer range with some margin. Over time this convenience lead to sloppy code in V8 that mixed types of different bit widths, effectively breaking the ability to increase the limit. Recently we cleaned up the garbage collector code, enabling the use of larger heap sizes. DevTools already makes use of this feature and taking a heap snapshot in the previously mentioned demo works as expected in the latest Chrome Canary.
+历史上，V8的堆限制被设置得很方便，可以适应带有一定余量的32位整数范围。随着时间推移，这种方便导致了V8中不严谨的代码，这些代码混淆了不同位宽的类型，从而实际上破坏了增加限制的能力。最近我们清理了垃圾回收器代码，使使用更大的堆大小成为可能。DevTools已经利用了这一功能，并且在前述演示中进行堆快照在最新的Chrome Canary中可以正常工作。
 
-We also added a feature in DevTools to pause the application when it is close to running out of memory. This feature is useful to investigate bugs that cause the application to allocate a lot of memory in a short period of time. When running [this demo](https://ulan.github.io/misc/oom.html) with the latest Chrome Canary, DevTools pauses the application before the out-of-memory failure and increases the heap limit, giving the user a chance to inspect the heap, evaluate expressions on the console to free memory and then resume execution for further debugging.
+我们还在DevTools中添加了一个功能，可以在应用程序接近内存耗尽时暂停应用程序。这个功能对调查导致应用程序短时间内分配大量内存的bug很有用。在使用最新的Chrome Canary运行[这个演示](https://ulan.github.io/misc/oom.html)时，DevTools会在内存耗尽故障发生之前暂停应用程序，并增加堆限制，给用户机会检查堆，评估控制台上的表达式以释放内存，然后继续执行以进行进一步调试。
 
 ![](/_img/heap-size-limit/debugger.png)
 
-V8 embedders can increase the heap limit using the [`set_max_old_generation_size_in_bytes`](https://codesearch.chromium.org/chromium/src/v8/include/v8-isolate.h?q=set_max_old_generation_size_in_bytes) function of the `ResourceConstraints` API. But watch out, some phases in the garbage collector have a linear dependency on the heap size. Garbage collection pauses may increase with larger heaps.
+V8嵌入者可以使用`ResourceConstraints` API中的[`set_max_old_generation_size_in_bytes`](https://codesearch.chromium.org/chromium/src/v8/include/v8-isolate.h?q=set_max_old_generation_size_in_bytes)函数增加堆限制。但是要注意，垃圾回收器的一些阶段对堆大小有线性依赖关系。随着堆的增大，垃圾回收暂停可能会增加。

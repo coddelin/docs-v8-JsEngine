@@ -1,135 +1,135 @@
 ---
-title: "Pointer compression in Oilpan"
-author: "Anton Bikineev, and Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz)), walking disassemblers"
+title: "Oilpan中的指针压缩"
+author: "Anton Bikineev 和 Michael Lippautz ([@mlippautz](https://twitter.com/mlippautz))，行走的反汇编程序"
 avatars: 
   - anton-bikineev
   - michael-lippautz
 date: 2022-11-28
 tags: 
-  - internals
-  - memory
+  - 内部构造
+  - 内存
   - cppgc
-description: "Pointer compression in Oilpan allows for compressing C++ pointers and reducing the heap size by up to 33%."
+description: "Oilpan中的指针压缩允许压缩C++指针，并最多减少33%的堆大小。"
 tweet: "1597274125780893697"
 ---
 
-> It is absolutely idiotic to have 64-bit pointers when I compile a program that uses less than 4 gigabytes of RAM. When such pointer values appear inside a struct, they not only waste half the memory, they effectively throw away half of the cache.
+> 当我编译一个使用少于4GB RAM的程序时，却用64位指针，这绝对是愚蠢的。当这样的指针值出现在结构中时，既浪费了一半的内存，也实质上丢掉了一半的缓存。
 >
 > – [Donald Knuth (2008)](https://cs.stanford.edu/~knuth/news08.html)
 
 <!--truncate-->
 
-Truer words have (almost) never been spoken.  We also see CPU vendors not actually shipping [64-bit CPUs](https://en.wikipedia.org/wiki/64-bit_computing#Limits_of_processors) and Android OEMs [opting for only 39-bit of address space](https://www.kernel.org/doc/Documentation/arm64/memory.txt) to speed up page table walks in the Kernel.  V8 running in Chrome also [isolates sites into separate processes](https://www.chromium.org/Home/chromium-security/site-isolation/), which further limits the requirements of actual address space needed for a single tab.  None of this is completely new though, which is why we launched [pointer compression for V8 in 2020](https://v8.dev/blog/pointer-compression) and saw great improvements in memory across the web.  With the [Oilpan library](https://v8.dev/blog/oilpan-library) we have another building block of the web under control.  [Oilpan](https://source.chromium.org/chromium/chromium/src/+/main:v8/include/cppgc/README.md) is a traced-based garbage collector for C++ which is among other things used to host the Document Object Model in Blink and thus an interesting target for optimizing memory.
+几乎从未有过比这更真实的话语。我们也看到CPU厂商实际上并未真正发运[64位CPU](https://en.wikipedia.org/wiki/64-bit_computing#Limits_of_processors)，而Android设备厂商则选择了仅提供[39位的地址空间](https://www.kernel.org/doc/Documentation/arm64/memory.txt)，以加速内核中的页面表遍历。V8在Chrome中运行时还将[站点隔离到不同的进程中](https://www.chromium.org/Home/chromium-security/site-isolation/)，进一步限制了单个标签页实际需要的地址空间需求。这些都并非完全崭新的话题，因此我们在2020年推出了[V8的指针压缩](https://v8.dev/blog/pointer-compression)，并在Web的内存利用方面看到了显著改善。使用[Oilpan库](https://v8.dev/blog/oilpan-library)让我们能够控制另一个Web构建模块。[Oilpan](https://source.chromium.org/chromium/chromium/src/+/main:v8/include/cppgc/README.md)是一个用于C++的基于追踪的垃圾收集器，它用于支持Blink中的文档对象模型，因此是优化内存的一个有趣目标。
 
-## Background
+## 背景
 
-Pointer compression is a mechanism to reduce the size of pointers on 64-bit platforms.  Pointers in Oilpan are encapsulated in a smart pointer called [`Member`](https://source.chromium.org/chromium/chromium/src/+/main:v8/include/cppgc/member.h). In an uncompressed heap layout, `Member` references directly point to heap objects, i.e., 8 bytes of memory are used per reference. In such a scenario, the heap may be spread out over the whole address space as each pointer contains all the relevant information to refer to an object.
+指针压缩是一种在64位平台上减少指针大小的机制。Oilpan中的指针封装在一个称为[`Member`](https://source.chromium.org/chromium/chromium/src/+/main:v8/include/cppgc/member.h)的智能指针中。在未压缩堆布局中，`Member`引用直接指向堆对象，即每个引用使用了8字节的内存。在这种情况下，堆可能散布于整个地址空间，因为每个指针都包含了引用对象的所有相关信息。
 
-![Uncompressed heap layout](/_img/oilpan-pointer-compression/uncompressed-layout.svg)
+![未压缩堆布局](/_img/oilpan-pointer-compression/uncompressed-layout.svg)
 
-With a compressed heap layout, `Member` references are only offsets into a heap cage, which is a contiguous region of memory.  The combination of a base pointer (base) that points to the beginning of the heap cage and a Member forms a full pointer, very similar to how [segmented addressing](https://en.wikipedia.org/wiki/Memory_segmentation#Segmentation_without_paging) works.  The size of a heap cage is limited by the available bits for the offset. E.g., a 4GB heap cage requires 32-bit offsets.
+在压缩堆布局中，`Member`引用仅仅是堆笼中的偏移量，堆笼是一个连续的内存区域。通过指向堆笼开始位置的基指针（base）和成员引用的结合构成了一个完整指针，这类似于[分段寻址](https://en.wikipedia.org/wiki/Memory_segmentation#Segmentation_without_paging)的工作方式。堆笼的大小受偏移量可用的位数限制。例如，一个4GB大小的堆笼需要32位偏移量。
 
-![Compressed heap layout](/_img/oilpan-pointer-compression/compressed-layout.svg)
+![压缩堆布局](/_img/oilpan-pointer-compression/compressed-layout.svg)
 
-Conveniently, Oilpan heaps are already contained in such a 4GB heap cage on 64-bit platforms, to allow referring to garbage collection metadata by just aligning any valid heap pointer down to the closest 4GB boundary.
+令人欣慰的是，64位平台上的Oilpan堆已经包含在这样一个4GB堆笼中，以便通过将任意有效堆指针向下对齐到最近的4GB边界来引用垃圾收集器元数据。
 
-Oilpan also supports multiple heaps in the same process to, e.g., support web workers with their own C++ heaps in Blink.  The problem arising from this setup is how to map heaps to possibly many heap cages.  Since heaps are bound to native threads in Blink, the solution at hand here is to refer to heap cages via a thread-local base pointer.  Depending on how V8 and its embedders are compiled, the thread local storage (TLS) model can be restricted to speed up how the base is loaded from memory.  Ultimately, the most generic TLS mode is required though to support Android, as on this platform the renderer (and thus V8) are loaded via `dlopen`.  It is such restrictions that make the use of TLS infeasible from a performance perspective[^1].  In order to provide best performance, Oilpan, similar to V8, allocates all heaps into a single heap cage when using pointer compression.  While this does restrict overall memory available, we believe that this is currently acceptable given that pointer compression already aims at reducing memory.  If a single 4GB heap cage proves to be too restrictive, the current compression scheme allows to increase the heap cage size to 16GB without sacrificing performance.
+Oilpan还支持在同一进程中创建多个堆，例如，支持Blink中具有自己C++堆的Web工作线程。这种设置带来的问题是如何映射多个堆到可能存在的多个堆笼。由于堆绑定到Blink中的原生线程，这里使用的解决方案是通过线程本地基指针引用堆笼。根据V8及其嵌入器的编译方式，线程本地存储（TLS）模型可以进行限制，以加速从内存加载基指针的速度。然而，为支持Android，最终需要使用最通用的TLS模式，因为在这个平台上渲染器（以及V8）是通过`dlopen`加载的。这些限制使得从性能角度来看，TLS的使用变得不可行[^1]。为了提供最佳性能，Oilpan和V8类似，当使用指针压缩时会将所有堆分配到单个堆笼中。虽然这限制了总体可用内存，但我们认为这是可以接受的，因为指针压缩本身已经旨在减少内存。如果单个4GB堆笼证明过于限制，当前的压缩方案允许将堆笼大小扩展到16GB，而不会影响性能。
 
-## Implementation in Oilpan
+## Oilpan中的实现
 
-### Requirements
+### 要求
 
-So far, we talked about a trivial encoding scheme where the full pointer is formed by adding a base to an offset that is stored in a Member pointer.  The actually implemented scheme is unfortunately not as simple though, as Oilpan requires that Member can be assigned one of the following:
+到目前为止，我们讨论了一种简单的编码方案，其中完整的指针通过将基址与存储在成员指针中的偏移量相加来形成。不幸的是，实际实现的方案并不是那么简单，因为Oilpan要求Member可以被赋值为以下之一：
 
-1. A valid heap pointer to an object;
-2. The C++ `nullptr` (or similar);
-3. A sentinel value which must be known at compile time.  The sentinel value can e.g. be used to signal deleted values in hash tables that also support `nullptr` as entries.
+1. 指向对象的有效堆指针；
+2. C++ `nullptr`（或类似的）；
+3. 需在编译时已知的哨兵值。例如，该哨兵值可用于在哈希表中标记被删除的值，同时支持`nullptr`作为条目。
 
-The problematic part around `nullptr` and a sentinel is the lack of explicit types to catch these on the caller side:
+`nullptr` 和哨兵值相关的棘手部分在于调用方无法通过显式类型来捕获这些：
 
 ```cpp
 void* ptr = member.get();
 if (ptr == nullptr) { /* ... * }
 ```
 
-Since there’s no explicit type to store a possibly compressed `nullptr` value, an actual decompression is required to compare against the constant.
+由于没有显式类型来存储可能被压缩的`nullptr`值，因此需要实际解压缩才能与常量进行比较。
 
-Having this usage in mind, we were looking for a scheme that transparently handles case 1.-3. Since the compression and decompression sequence will be inlined everywhere Member is used, the following properties are also desirable:
+考虑到这种用法，我们寻找了一种可以透明处理情况1到3的方案。由于压缩和解压缩序列会在任何使用Member的地方内联，以下属性也是期望的：
 
-- Fast and compact instruction sequence to minimize icache misses.
-- Branchless instruction sequence to avoid using up branch predictors.
+- 快速和紧凑的指令序列以最大程度减少指令缓存未命中。
+- 无分支的指令序列以避免耗尽分支预测器。
 
-Since it is expected that reads significantly outnumber writes, we allow for an asymmetric scheme where fast decompression is preferred.
+由于预期读操作远多于写操作，我们允许一种非对称方案，在这种方案中优先考虑快速解压缩。
 
-### Compression and decompression
+### 压缩和解压缩
 
-For brevity, this description only covers the final compression scheme used. See our [design doc](https://docs.google.com/document/d/1neGN8Jq-1JLrWK3cvwRIfrSjLgE0Srjv-uq7Ze38Iao) for more information on how we got there and the alternatives considered.
+为简洁起见，此描述仅涵盖所用的最终压缩方案。有关我们如何得出此方案以及考虑的替代方案的更多信息，请参阅我们的[设计文档](https://docs.google.com/document/d/1neGN8Jq-1JLrWK3cvwRIfrSjLgE0Srjv-uq7Ze38Iao)。
 
-The main idea for the scheme that is implemented as of today is to separate regular heap pointers from `nullptr` and sentinel by relying on alignment of the heap cage.  Essentially, the heap cage is allocated with alignment such that the least significant bit of the upper halfword is always set.  We denote the upper and lower half (32 bits each) as U<sub>31</sub>...U<sub>0</sub> and L<sub>31</sub>...L<sub>0</sub>, respectively.
+如今实现的方案的主要思想是通过利用堆笼的对齐性，将常规堆指针与`nullptr`和哨兵值分开。本质上，堆笼以这样的对齐方式分配，使得高半字的最低有效位始终被设置。我们分别用U<sub>31</sub>...U<sub>0</sub>和L<sub>31</sub>...L<sub>0</sub>表示高半（每部分32位）。
 
 :::table-wrapper
 <!-- markdownlint-disable no-inline-html -->
-|              | upper half                               | lower half                                 |
+|              | 高半字                                  | 低半字                                  |
 | ------------ | ---------------------------------------: | -----------------------------------------: |
-| heap pointer | <tt>U<sub>31</sub>...U<sub>1</sub>1</tt> | <tt>L<sub>31</sub>...L<sub>3</sub>000</tt> |
+| 堆指针         | <tt>U<sub>31</sub>...U<sub>1</sub>1</tt> | <tt>L<sub>31</sub>...L<sub>3</sub>000</tt> |
 | `nullptr`    | <tt>0...0</tt>                           | <tt>0...000</tt>                           |
-| sentinel     | <tt>0...0</tt>                           | <tt>0...010</tt>                           |
+| 哨兵值         | <tt>0...0</tt>                           | <tt>0...010</tt>                           |
 <!-- markdownlint-enable no-inline-html -->
 :::
 
-Compression generates a compressed value by merely right-shifting by one and truncating away the upper half of the value.  In this way, the alignment bit (which now becomes the most significant bit of the compressed value) signals a valid heap pointer.
+压缩通过简单地右移一位并截断值的高半部分来生成压缩值。通过这种方式，对齐位（现在成为压缩值的最高有效位）表示有效的堆指针。
 
 :::table-wrapper
-| C++                                             | x64 assembly  |
-| :---------------------------------------------- | :------------ |
-| ```cpp                                          | ```asm        \
+| C++                                             | x64 汇编    |
+| :---------------------------------------------- | :---------- |
+| ```cpp                                          | ```asm      \
 | uint32_t Compress(void* ptr) \{                  | mov rax, rdi  \
 |   return ((uintptr_t)ptr) >> 1;                 | shr rax       \
 | \}                                               | ```           \
 | ```                                             |               |
 :::
 
-The encoding for compressed values is thus as follows:
+压缩值的编码如下：
 
 :::table-wrapper
 <!-- markdownlint-disable no-inline-html -->
-|              | compressed value                           |
-| ------------ | -----------------------------------------: |
-| heap pointer | <tt>1L<sub>31</sub>...L<sub>2</sub>00</tt> |
+|              | 压缩值                                 |
+| ------------ | -------------------------------------: |
+| 堆指针         | <tt>1L<sub>31</sub>...L<sub>2</sub>00</tt> |
 | `nullptr`    | <tt>0...00</tt>                            |
-| sentinel     | <tt>0...01</tt>                            |
+| 哨兵值         | <tt>0...01</tt>                            |
 <!-- markdownlint-enable no-inline-html -->
 :::
 
-Note that this allows for figuring out whether a compressed value represents a heap pointer, `nullptr`, or the sentinel value, which is important to avoid useless decompressions in user code (see below).
+请注意，这种方式可以判断压缩值表示的是堆指针、`nullptr`还是哨兵值，这对于避免用户代码中的无用解压缩非常重要（见下文）。
 
-The idea for decompression then is to rely on a specifically crafted base pointer, in which the least significant 32 bits are set to 1.
+接下来解压缩的想法是，依赖于一个特定设计的基址指针，其中低32位设置为1。
 
 :::table-wrapper
 <!-- markdownlint-disable no-inline-html -->
-|              | upper half                               | lower half     |
-| ------------ | ---------------------------------------: | -------------: |
-| base         | <tt>U<sub>31</sub>...U<sub>1</sub>1</tt> | <tt>1...1</tt> |
+|              | 高半字                                  | 低半字        |
+| ------------ | --------------------------------------: | -------------: |
+| 基地址        | <tt>U<sub>31</sub>...U<sub>1</sub>1</tt> | <tt>1...1</tt> |
 <!-- markdownlint-enable no-inline-html -->
 :::
 
 
-The decompression operation first sign extends the compressed value and then left-shifts to undo the compression operation for the sign bit. The resulting intermediate value is encoded as follows
+解压缩操作首先对压缩值进行符号扩展，然后左移以还原符号位的压缩操作。生成的中间值编码如下：
 
 :::table-wrapper
 <!-- markdownlint-disable no-inline-html -->
-|              | upper half     | lower half                                 |
-| ------------ | -------------: | -----------------------------------------: |
-| heap pointer | <tt>1...1</tt> | <tt>L<sub>31</sub>...L<sub>3</sub>000</tt> |
+|              | 高半字     | 低半字                                  |
+| ------------ | ----------: | ----------------------------------------: |
+| 堆指针         | <tt>1...1</tt> | <tt>L<sub>31</sub>...L<sub>3</sub>000</tt> |
 | `nullptr`    | <tt>0...0</tt> | <tt>0...000</tt>                           |
 | sentinel     | <tt>0...0</tt> | <tt>0...010</tt>                           |
 <!-- markdownlint-enable no-inline-html -->
 :::
 
-Finally, the decompressed pointer is just the result of a bitwise and between this intermediate value and the base pointer.
+最终，解压后的指针只是该中间值与基指针之间的按位与操作结果。
 
 :::table-wrapper
-| C++                                                    | x64 assembly       |
+| C++                                                    | x64 汇编          |
 | :----------------------------------------------------- | :----------------- |
 | ```cpp                                                 | ```asm             \
 | void* Decompress(uint32_t compressed) \{                | movsxd rax, edi    \
@@ -140,60 +140,60 @@ Finally, the decompressed pointer is just the result of a bitwise and between th
 | ```                                                    |                    |
 :::
 
-The resulting scheme handles cases 1.-3. transparently via a branchless asymmetric scheme.  Compression uses 3 bytes, not counting the initial register move as the call would anyways be inlined.  Decompression uses 13 bytes, counting the initial sign-extending register move.
+生成的方案通过无分支的非对称方案透明地处理了情况 1.-3。压缩使用了3字节，不包含初始寄存器移动，因为调用会被内联。解压使用了13字节，包括初始的符号扩展寄存器移动。
 
-## Selected details
+## 选定的细节
 
-The previous section explained the compression scheme used.  A compact compression scheme is necessary to achieve high performance.  The compression scheme from above still resulted in observable regressions in Speedometer.  The following paragraphs explain a few more tidbits needed to improve performance of Oilpan to an acceptable level.
+上一节解释了所采用的压缩方案。为了实现高性能，需要一种紧凑的压缩方案。上述压缩方案在 Speedometer 中仍会产生可观察的回归。接下来的段落解释了一些需要改进 Oilpan 性能到接受水平的细节。
 
-### Optimizing cage base load
+### 优化笼基加载
 
-Technically, in C++ terms, the global base pointer can’t be a constant, because it is initialized at runtime after `main()`, whenever the embedder initializes Oilpan.  Having this global variable mutable would inhibit the important const propagation optimization, e.g. the compiler cannot prove that a random call doesn’t modify the base and would have to load it twice:
+从技术上讲，根据 C++ 的术语，全局基指针不能是常量，因为它是在 `main()` 之后，在嵌入器初始化 Oilpan 时的运行时初始化的。让这个全局变量可变会阻碍重要的常量传播优化，例如编译器无法证明一个随机调用不会修改基指针并且需要加载两次:
 
 :::table-wrapper
 <!-- markdownlint-disable no-inline-html -->
-| C++                        | x64 assembly                    |
-| :------------------------- | :------------------------------ |
-| ```cpp                     | ```asm                          \
-| void foo(GCed*);           | baz(Member&lt;GCed>):              \
-| void bar(GCed*);           |   movsxd rbx, edi               \
-|                            |   add rbx, rbx                  \
-| void baz(Member&lt;GCed> m) \{ |   mov rdi, qword ptr            \
-|   foo(m.get());            |       [rip + base]              \
-|   bar(m.get());            |   and rdi, rbx                  \
-| }                          |   call foo(GCed*)               \
-| ```                        |   and rbx, qword ptr            \
-|                            |       [rip + base] # extra load \
-|                            |   mov rdi, rbx                  \
-|                            |   jmp bar(GCed*)                \
-|                            | ```                             |
+| C++                        | x64 汇编                      |
+| :------------------------- | :---------------------------- |
+| ```cpp                     | ```asm                        \
+| void foo(GCed*);           | baz(Member&lt;GCed>):            \
+| void bar(GCed*);           |   movsxd rbx, edi             \
+|                            |   add rbx, rbx                \
+| void baz(Member&lt;GCed> m) \{ |   mov rdi, qword ptr          \
+|   foo(m.get());            |       [rip + base]            \
+|   bar(m.get());            |   and rdi, rbx                \
+| }                          |   call foo(GCed*)             \
+| ```                        |   and rbx, qword ptr          \
+|                            |       [rip + base] # 额外加载 \
+|                            |   mov rdi, rbx                \
+|                            |   jmp bar(GCed*)              \
+|                            | ```                           |
 <!-- markdownlint-enable no-inline-html -->
 :::
 
-With some additional attributes we taught clang to treat the global base as constant and thereby indeed perform only a single load within a context.
+通过一些额外的属性，我们教会了 clang 将全局基指针视为常量，从而实际上在一个上下文中仅进行一次加载。
 
-### Avoiding decompression at all
+### 完全避免解压
 
-The fastest instruction sequence is a nop! With that in mind, for many pointer operations redundant compressions and decompressions can easily be avoided. Trivially, we do not need to decompress a Member to check if it is nullptr. We do not need to decompress and compress when constructing or assigning a Member from another Member. Comparison of pointers is preserved by compression, so we can avoid transformations for them as well. The Member abstraction nicely serves us as a bottleneck here.
+最快的指令序列就是一个无操作指令！考虑到这一点，对于许多指针操作，冗余的压缩和解压可以轻松避免。显而易见，对于检查 Member 是否为 nullptr，我们不需要解压。在从一个 Member 构建或分配到另一个 Member 时，我们不需要解压和压缩。指针的比较通过压缩得以保留，因此我们还可以避免对它们的转换。Member 抽象在这里很好地充当了瓶颈。
 
-Hashing can be sped up with compressed pointers. Decompression for hash calculation is redundant, because the fixed base does not increase the hash entropy. Instead, a simpler hashing function for 32-bit integers can be used. Blink has many hash tables that use Member as a key; the 32-bit hashing resulted in faster collections!
+使用压缩指针可以加速哈希计算。用于哈希计算的解压是冗余的，因为固定的基指针不会增加哈希熵。相反，可以使用一个更简单的32位整数哈希函数。Blink 中有许多使用 Member 作为键的哈希表；32位哈希使集合速度更快！
 
-### Helping clang where it fails to optimize
+### 帮助 clang 优化失败的地方
 
-When looking into the generated code we found another interesting place where the compiler did not perform enough optimizations:
+在观察生成的代码时，我们发现了另一个有趣的地方，编译器没有执行足够的优化:
 
 :::table-wrapper
-| C++                               | x64 assembly               |
-| :-------------------------------- | :------------------------- |
-| ```cpp                            | ```asm                     \
-| extern const uint64_t base;       | Assign(unsigned int):      \
+| C++                               | x64 汇编                |
+| :-------------------------------- | :----------------------- |
+| ```cpp                            | ```asm                  \
+| extern const uint64_t base;       | Assign(unsigned int):    \
 | extern std::atomic_bool enabled;  |   mov dword ptr [rdi], esi \
-|                                   |   mov rdi, qword ptr       \
-| void Assign(uint32_t ptr) \{       |       [rip + base]         \
+|                                   |   mov rdi, qword ptr     \
+| void Assign(uint32_t ptr) \{       |       [rip + base]       \
 |   ptr_ = ptr                      |   mov al, byte ptr         \
 |   WriteBarrier(Decompress(ptr));  |       [rip + enabled]      \
 | }                                 |   test al, 1               \
-|                                   |   jne .LBB4_2 # very rare  \
+|                                   |   jne .LBB4_2 # 很少见     \
 | void WriteBarrier(void* ptr) \{    |   ret                      \
 |   if (LIKELY(                     | .LBB4_2:                   \
 |       !enabled.load(relaxed)))    |   movsxd rax, esi          \
@@ -203,47 +203,47 @@ When looking into the generated code we found another interesting place where th
 | ```                               | ```                        |
 :::
 
-The generated code performs the base load in the hot basic block, even though the variable is not used in it and could be trivially sunk into the basic block below, where the call to `SlowPath()` is made and the decompressed pointer is actually used.  The compiler conservatively decided not to reorder the non-atomic load with the atomic-relaxed load, even though it would be perfectly legal with respect to the language rules.  We manually moved the decompression below the atomic read to make the assignment with the write-barrier as efficient as possible.
+生成的代码在热的基本块中执行了基本加载，即使变量在其中未被使用并且可以轻松下沉到下面的基本块中，在那里调用了 `SlowPath()` 并实际使用了解压后的指针。编译器保守地决定不将非原子加载与原子放松加载重新排序，即使从语言规则上讲是完全合法的。我们手动将解压操作移到了原子读取之后，以使写屏障的赋值尽可能高效。
 
 
-### Improving structure packing in Blink
+### 改进 Blink 中的数据结构紧凑性
 
-It is hard to estimate the effect of halving Oilpan’s pointer size.  In essence it should improve memory utilization for “packed” data-structures, such as containers of such pointers. Local measurements showed an improvement of about 16% of Oilpan memory.  However, investigation showed that for some types we have not reduced their actual size but only increased internal padding between fields.
+很难估计将 Oilpan 指针大小减半的效果。本质上，它应该会改善“紧凑”数据结构（如此类指针的容器）的内存利用率。本地测量显示 Oilpan 内存减少了大约 16%。然而，调查显示，对于某些类型，我们并没有减少它们的实际大小，而只是增加了字段之间的内部填充。
 
-To minimize such padding, we wrote a clang plugin that automatically identified such garbage-collected classes for which reordering of the fields would reduce the overall class size.  Since there have been many of these cases across the Blink codebase, we applied the reordering to the most used ones, see the [design doc](https://docs.google.com/document/d/1bE5gZOCg7ipDUOCylsz4_shz1YMYG5-Ycm0911kBKFA).
+为了最大限度地减少这种填充，我们编写了一个 clang 插件，该插件会自动识别此类垃圾回收类，重新排序字段可减少整个类大小。由于 Blink 代码库中存在许多此类情况，我们对最常使用的类进行了重新排序，详见 [设计文档](https://docs.google.com/document/d/1bE5gZOCg7ipDUOCylsz4_shz1YMYG5-Ycm0911kBKFA)。
 
-### Failed attempt: limiting heap cage size
+### 失败的尝试：限制堆笼大小
 
-Not every optimization did work out well though.  In an attempt to optimize compression even further, we limited the heap cage to 2GB.  We made sure that the most significant bit of the lower halfword of the cage base is 1 which allowed us to avoid the shift completely.  Compression would become a simple truncation and decompression would be a simple load and a bitwise and.
+并非所有优化都取得了成功。在尝试进一步优化压缩的过程中，我们将堆笼限制为 2GB。我们确保笼基址的低半字中的最高有效位为 1，这使我们可以完全避免移位。压缩变成了简单的截断，解压变成了简单的加载和按位与操作。
 
-Given that Oilpan memory in the Blink renderer takes on average less than 10MB, we assumed it would be safe to proceed with the faster scheme and restrict the cage size.  Unfortunately, after shipping the optimization we started receiving out-of-memory errors on some rare workloads.  We decided to revert this optimization.
+考虑到 Blink 渲染器中的 Oilpan 内存平均使用不到 10MB，我们认为可以安全地采用更快的方案并限制笼大小。不幸的是，在发布优化后，我们在某些罕见的工作负载中开始收到内存不足的错误报告。最终我们决定撤销此优化。
 
-## Results and future
+## 结果与未来
 
-Pointer compression in Oilpan was enabled by default in **Chrome 106**.  We have seen great memory improvements across the board:
+Oilpan 中的指针压缩在 **Chrome 106** 中默认启用。我们在各方面看到了显著的内存改进：
 
 
 <!-- markdownlint-disable no-inline-html -->
-| Blink memory | P50                                                 | P99                                               |
+| Blink 内存 | P50                                                 | P99                                               |
 | -----------: | :-------------------------------------------------: | :-----------------------------------------------: |
 | Windows      | **<span style={{color:'green'}}>-21% (-1.37MB)</span>** | **<span style={{color:'green'}}>-33% (-59MB)</span>** |
 | Android      | **<span style={{color:'green'}}>-6% (-0.1MB)</span>**   | **<span style={{color:'green'}}>-8% (-3.9MB)</span>** |
 <!-- markdownlint-enable no-inline-html -->
 
 
-The numbers reported represent the 50th and 99th percentile for Blink memory allocated with Oilpan across the fleet[^2].  The reported data shows the delta between Chrome 105 and 106 stable versions.  The absolute numbers in MB give an indication on the lower bound that users can expect to see.  The real improvements are generally a bit higher due to indirect effects on Chrome’s overall memory consumption.  The larger relative improvement suggests that packing of data is better in such cases which is an indicator that more memory is used in collections (e.g. vectors) that have good packing.  The improved padding of structures landed in Chrome 108 and showed another 4% improvement on Blink memory on average.
+报告的数字表示通过 Oilpan 分配的 Blink 内存在整个用户场景中的第 50 和第 99 百分位。报告的数据显示了 Chrome 105 和 106 稳定版本之间的差异。以 MB 表示的绝对数字提供了用户可以期待看到的下限。由于对 Chrome 整体内存消耗的间接影响，真正的改进通常略高于所述数字。更大的相对改进表明此类情况中数据的紧凑性更好，这是内存更多被用在具有良好紧凑性的集合（例如 vector）中的标志。改进的数据结构填充已在 Chrome 108 中发布，并平均显示 Blink 内存的额外 4% 改进。
 
-Because Oilpan is ubiquitous in Blink, the performance cost can be estimated on [Speedometer2](https://browserbench.org/Speedometer2.1/).  The [initial prototype](https://chromium-review.googlesource.com/c/v8/v8/+/2739979) based on a thread-local version showed a regression of 15%.  With all the aforementioned optimizations we did not observe a notable regression.
+由于 Oilpan 在 Blink 中普遍存在，其性能成本可以通过 [Speedometer2](https://browserbench.org/Speedometer2.1/) 进行估算。基于线程局部版本的 [初始原型](https://chromium-review.googlesource.com/c/v8/v8/+/2739979) 显示了 15% 的回归。通过上述所有优化，我们未观察到显著的回归。
 
-### Conservative stack scanning
+### 保守的栈扫描
 
-In Oilpan the stack is conservatively scanned to find pointers to the heap. With compressed pointers this means we have to treat every halfword as a potential pointer. Moreover, during compression the compiler may decide to spill an intermediate value onto the stack, which means that the scanner must consider all possible intermediate values (in our compression scheme the only possible intermediate value is a truncated, but not yet shifted value). Scanning intermediates increased the number of false positives (i.e. halfwords that look like compressed pointers) which reduced the memory improvement by roughly 3% (the estimated memory improvement would otherwise be 24%).
+在 Oilpan 中，栈会通过保守扫描来找到指向堆的指针。在压缩指针的情况下，这意味着我们必须将每个半字作为潜在指针处理。此外，在压缩过程中，编译器可能决定将中间值溢出到栈中，这意味着扫描工具必须考虑所有可能的中间值（在我们的压缩方案中唯一可能的中间值是被截断但尚未移位的值）。扫描中间值会增加误报的数量（即看起来像压缩指针的半字），从而将内存优化减少了大约3%（否则预计内存优化为24%）。
 
-### Other compression
+### 其他压缩方式
 
-We’ve seen great improvements by applying compression to V8 JavaScript and Oilpan in the past. We think the paradigm can be applied to other smart pointers in Chrome (e.g., `base::scoped_refptr`) that already point into other heap cages.  Initial experiments [showed](https://docs.google.com/document/d/1Rlr7FT3kulR8O-YadgiZkdmAgiSq0OaB8dOFNqf4cD8/edit) promising results.
+过去我们在 V8 JavaScript 和 Oilpan 上应用压缩时获得了显著的改进。我们认为这种模式可以应用到 Chrome 的其他智能指针（例如 `base::scoped_refptr`），这些指针已经指向其他堆区域。初步实验[显示](https://docs.google.com/document/d/1Rlr7FT3kulR8O-YadgiZkdmAgiSq0OaB8dOFNqf4cD8/edit)出了令人鼓舞的结果。
 
-Investigations also showed that a large portion of memory is actually held via vtables.  In the same spirit, we’ve thus [enabled](https://docs.google.com/document/d/1rt6IOEBevCkiVjiARUy8Ib1c5EAxDtW0wdFoTiijy1U/edit?usp=sharing) the relative-vtable-ABI on Android64, which compacts virtual tables, letting us save more memory and improve the startup at the same time.
+研究还表明，大部分内存实际上是通过 vtable 持有的。因此，我们已经在 Android64 上[启用了](https://docs.google.com/document/d/1rt6IOEBevCkiVjiARUy8Ib1c5EAxDtW0wdFoTiijy1U/edit?usp=sharing)相对 vtable ABI，这会压缩虚拟表，使我们能够节省更多内存，同时改善启动性能。
 
-[^1]: Interested readers can refer to Blink’s [`ThreadStorage::Current()`](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/platform/heap/thread_state_storage.cc;drc=603337a74bf04efd536b251a7f2b4eb44fe153a9;l=19) to see the result of compiling down TLS access with different modes.
-[^2]: The numbers are gathered through Chrome’s User Metrics Analysis framework.
+[^1]: 感兴趣的读者可以参考 Blink 的 [`ThreadStorage::Current()`](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/platform/heap/thread_state_storage.cc;drc=603337a74bf04efd536b251a7f2b4eb44fe153a9;l=19)，查看用不同模式编译 TLS 访问的结果。
+[^2]: 数据是通过 Chrome 的用户指标分析框架收集的。

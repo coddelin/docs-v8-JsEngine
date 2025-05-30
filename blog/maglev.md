@@ -1,6 +1,6 @@
 ---
-title: "Maglev - V8’s Fastest Optimizing JIT"
-author: "[Toon Verwaest](https://twitter.com/tverwaes), [Leszek Swirski](https://twitter.com/leszekswirski), [Victor Gomes](https://twitter.com/VictorBFG), Olivier Flückiger, Darius Mercadier, and Camillo Bruni — not enough cooks to spoil the broth"
+title: "Maglev - V8的最快优化即时编译器（JIT）"
+author: "[Toon Verwaest](https://twitter.com/tverwaes), [Leszek Swirski](https://twitter.com/leszekswirski), [Victor Gomes](https://twitter.com/VictorBFG), Olivier Flückiger, Darius Mercadier 和 Camillo Bruni —— 足够的厨师不会坏了一锅汤"
 avatars: 
   - toon-verwaest
   - leszek-swirski
@@ -11,142 +11,142 @@ avatars:
 date: 2023-12-05
 tags: 
   - JavaScript
-description: "V8's newest compiler, Maglev, improves performance while reducing power consumption"
+description: "V8最新的编译器Maglev在提升性能的同时降低了功耗"
 tweet: ""
 ---
 
-In Chrome M117 we introduced a new optimizing compiler: Maglev. Maglev sits between our existing Sparkplug and TurboFan compilers, and fills the role of a fast optimizing compiler that generates good enough code, fast enough.
+在Chrome M117中，我们引入了一个新的优化编译器：Maglev。Maglev位于现有的Sparkplug和TurboFan编译器之间，扮演快速生成足够优质代码优化编译器的角色。
 
 
-# Background
+# 背景
 
-Until 2021 V8 had two main execution tiers: Ignition, the interpreter; and [TurboFan](/docs/turbofan), V8’s optimizing compiler focused on peak performance. All JavaScript code is first compiled to ignition bytecode, and executed by interpreting it. During execution V8 tracks how the program behaves, including tracking object shapes and types. Both the runtime execution metadata and bytecode are fed into the optimizing compiler to generate high-performance, often speculative, machine code that runs significantly faster than the interpreter can.
+直到2021年，V8有两个主要的执行层级：Ignition（解释器）和[TurboFan](/docs/turbofan)（V8的优化编译器，专注于峰值性能）。所有的JavaScript代码都首先被编译为Ignition字节码，并通过解释执行。在执行期间，V8记录程序的行为，包括跟踪对象的形状和类型。执行过程中收集的元数据和字节码会被传递到优化编译器，以生成高性能的、通常基于推测的机器代码，这种机器代码运行速度明显快于解释器。
 
 <!--truncate-->
-These improvements are clearly visible on benchmarks like [JetStream](https://browserbench.org/JetStream2.1/), a collection of traditional pure JavaScript benchmarks measuring startup, latency, and peak performance. TurboFan helps V8 run the suite 4.35x as fast! JetStream has a reduced emphasis on steady state performance compared to past benchmarks (like the [retired Octane benchmark](/blog/retiring-octane)), but due to the simplicity of many line items, the optimized code is still where most time is spent.
+这些改进在像[JetStream](https://browserbench.org/JetStream2.1/)这样的基准测试中非常显著。JetStream是一个传统的纯JavaScript基准测试集合，用于测量启动性能、延迟和峰值性能。TurboFan使V8在运行整个测试套件时快了4.35倍！与过去的某些基准测试（如[已退休的Octane基准测试](/blog/retiring-octane)）相比，JetStream对程序的稳定状态性能要求较低，但由于许多测试项目相对简单，优化后的代码仍然占用了大部分时间。
 
-[Speedometer](https://browserbench.org/Speedometer2.1/) is a different kind of benchmark suite than JetStream. It’s designed to measure a web app’s responsiveness by timing simulated user interactions. Instead of smaller static standalone JavaScript apps, the suite consists of full web pages, most of which are built using popular frameworks. Like during most web page loads, Speedometer line items spend much less time running tight JavaScript loops and much more executing a lot of code that interacts with the rest of the browser.
+[Speedometer](https://browserbench.org/Speedometer2.1/)是另一种类型的基准测试套件。它设计用于通过模拟用户交互的计时来衡量Web应用程序的响应性。测试套件并非由小型的静态独立JavaScript应用程序组成，而是完整的网页，大多数是使用流行的框架构建的。与大多数加载网页时类似，Speedometer中的测试项目运行紧密JavaScript循环的时间少得多，而是包括大量与浏览器其他部分交互的代码。
 
-TurboFan still has a lot of impact on Speedometer: it runs over 1.5x as fast! But the impact is clearly much more muted than on JetStream. Part of this difference results from the fact that full pages [just spend less time in pure JavaScript](/blog/real-world-performance#making-a-real-difference). But in part it’s due to the benchmark spending a lot of time in functions that don’t get hot enough to be optimized by TurboFan.
+TurboFan在Speedometer中仍然有很大的影响：运行速度提升了1.5倍以上！但其影响显然比在JetStream中的表现黯然失色。这种差异部分是因为完整网页[花费在纯JavaScript上的时间更少](/blog/real-world-performance#making-a-real-difference)。同时，也部分是因为基准测试中的许多函数没有热到足以让TurboFan进行优化。
 
-![Web performance benchmarks comparing unoptimized and optimized execution](/_img/maglev/I-IT.svg)
+![未优化和已优化执行的Web性能基准测试对比](/_img/maglev/I-IT.svg)
 
 ::: note
-All the benchmark scores in this post were measured with Chrome 117.0.5897.3 on a 13” M2 Macbook Air.
+本文中的所有基准测试分数均使用Chrome 117.0.5897.3在13英寸的M2 Macbook Air上测得。
 :::
 
-Since the difference in execution speed and compile time between Ignition and TurboFan is so large, in 2021 we introduced a new baseline JIT called [Sparkplug](/blog/sparkplug). It’s designed to compile bytecode to equivalent machine code almost instantaneously. 
+由于Ignition和TurboFan在执行速度和编译时间上的差距太大，2021年我们引入了一种新的基础即时编译器[JIT]，即[Sparkplug](/blog/sparkplug)。它的设计目标是将字节码几乎即时编译为等效的机器代码。
 
-On JetStream, Sparkplug improves performance quite a bit compared to Ignition (+45%). Even when TurboFan is also in the picture we still see a solid improvement in performance (+8%). On Speedometer we see a 41% improvement over Ignition, bringing it close to TurboFan performance, and a 22% improvement over Ignition + TurboFan! Since Sparkplug is so fast, we can easily deploy it very broadly and get a consistent speedup. If code doesn’t rely solely on easily optimized, long-running, tight JavaScript loops, it’s a great addition.
+在JetStream中，Sparkplug的性能较Ignition显著提高（+45%）。即使在有TurboFan的情况下，性能也得到了显著提升（+8%）。在Speedometer中，我们在Ignition的基础上看到了一次提升41%，几乎接近TurboFan的性能，并在Ignition + TurboFan的基础上又提升了22%! 由于Sparkplug的极快速度，我们可以非常广泛地部署它，从而获得一致的加速。如果代码不完全依赖于易于优化的长时间运行的紧密JavaScript循环，Sparkplug是一个极好的补充。
 
-![Web performance benchmarks with added Sparkplug](/_img/maglev/I-IS-IT-IST.svg)
+![添加了Sparkplug后的Web性能基准测试](/_img/maglev/I-IS-IT-IST.svg)
 
-The simplicity of Sparkplug imposes a relatively low upper limit on the speedup it can provide though. This is clearly demonstrated by the large gap between Ignition + Sparkplug and Ignition + TurboFan.
+不过，Sparkplug的简单性决定了它在速度提升上存在较低的上限。这一点通过Ignition + Sparkplug和Ignition + TurboFan之间的巨大差距得到了清晰的证明。
 
-This is where Maglev comes in, our new optimizing JIT that generates code that’s much faster than Sparkplug code, but is generated much faster than TurboFan can.
-
-
-# Maglev: A Simple SSA-Based JIT compiler
-
-When we started this project we saw two paths forward to cover the gap between Sparkplug and TurboFan: either try to generate better code using the single-pass approach taken by Sparkplug, or build a JIT with an intermediate representation (IR). Since we felt that not having an IR at all during compilation would likely severely restrict the compiler, we decided to go with a somewhat traditional static single-assignment (SSA) based approach, using a CFG (control flow graph) rather than TurboFan's more flexible but cache unfriendly sea-of-nodes representation.
-
-The compiler itself is designed to be fast and easy to work on. It has a minimal set of passes and a simple, single IR that encodes specialized JavaScript semantics.
+这正是Maglev登场的地方，作为我们新的优化JIT，它生成的代码比Sparkplug快得多，但生成速度也大大快于TurboFan。
 
 
-## Prepass
+# Maglev：一个简单的基于SSA的即时编译器
 
-First Maglev does a prepass over the bytecode to find branch targets, including loops, and assignments to variables in loop. This pass also collects liveness information, encoding which values in which variables are still needed across which expressions. This information can reduce the amount of state that needs to be tracked by the compiler later.
+当我们开始这个项目时，我们看到了两条弥补 Sparkplug 和 TurboFan 之间差距的路径：要么尝试通过 Sparkplug 采用的单遍方法生成更好的代码，要么构建一个具有中间表示 (IR) 的即时编译器 (JIT)。因为我们觉得在编译期间完全没有 IR 可能会严重限制编译器，所以我们决定采用一种稍微传统的基于静态单赋值 (SSA) 的方法，并使用控制流图 (CFG)，而不是 TurboFan 使用的更灵活但对缓存不友好的节点海表示法。
+
+编译器本身被设计为快速且易于维护。它具有最小化的编译阶段集合和一个简单的单一 IR，用于编码专门的 JavaScript 语义。
+
+
+## 预处理阶段
+
+首先，Maglev 会对字节码进行预处理，找到分支目标，包括循环以及在循环中对变量的赋值。此阶段还会收集活跃性信息，编码在哪些表达式中哪些变量的值仍然需要。这些信息可以减少编译器稍后需要跟踪的状态数量。
 
 
 ## SSA
 
-![A printout of the Maglev SSA graph on the command line](/_img/maglev/graph.svg)
+![Maglev SSA 图在命令行上的打印输出](/_img/maglev/graph.svg)
 
-Maglev does an abstract interpretation of the frame state, creating SSA nodes representing the results of expression evaluation. Variable assignments are emulated by storing those SSA nodes in the respective abstract interpreter register. In the case of branches and switches, all paths are evaluated.
+Maglev 对帧状态进行抽象解释，创建代表表达式计算结果的 SSA 节点。通过在相应的抽象解释器寄存器中存储这些 SSA 节点来模拟变量赋值。在分支和开关情况下，所有路径都会被评估。
 
-When multiple paths merge, values in abstract interpreter registers are merged by inserting so-called Phi nodes: value nodes that know which value to pick depending on which path was taken at runtime.
+当多条路径合并时，通过插入所谓的 Phi 节点来合并抽象解释器寄存器中的值：Phi 节点根据运行时采取的路径知道应该选择哪个值。
 
-Loops can merge variable values “back in time”, with the data flowing backwards from the loop end to the loop header, in the case when variables are assigned in the loop body. That’s where the data from the prepass comes in handy: since we already know which variables are assigned inside loops, we can pre-create loop phis before we even start processing the loop body. At the end of the loop we can populate the phi input with the correct SSA node. This allows the SSA graph generation to be a single forward pass, without needing to "fix up" loop variables, while also minimizing the amount of Phi nodes that need to be allocated.
-
-
-## Known Node Information
-
-To be as fast as possible, Maglev does as much as possible at once. Instead of building a generic JavaScript graph and then lowering that during later optimization phases, which is a theoretically clean but computationally expensive approach, Maglev does as much as possible immediately during graph building.
-
-During graph building Maglev will look at runtime feedback metadata collected during unoptimized execution, and generate specialized SSA nodes for the types observed. If Maglev sees `o.x` and knows from the runtime feedback that `o` always has one specific shape, it will generate an SSA node to check at runtime that `o` still has the expected shape, followed by a cheap `LoadField` node which does a simple access by offset.
-
-Additionally, Maglev will make a side node that it now knows the shape of `o`, making it unnecessary to check the shape again later. If Maglev later encounters an operation on `o` that doesn't have feedback for some reason, this kind of information learned during compilation can be used as a second source of feedback.
-
-Runtime information can come in various forms. Some information needs to be checked at runtime, like the shape check previously described. Other information can be used without runtime checks by registering dependencies to the runtime. Globals that are de-facto constant (not changed between initialization and when their value is seen by Maglev) fall into this category: Maglev does not need to generate code to dynamically load and check their identity. Maglev can load the value at compile time and embed it directly into the machine code; if the runtime ever mutates that global, it'll also take care to invalidate and deoptimize that machine code.
-
-Some forms of information are “unstable”. Such information can only be used to the extent that the compiler knows for sure that it can’t change. For example, if we just allocated an object, we know it’s a new object and we can skip expensive write barriers entirely. Once there has been another potential allocation, the garbage collector could have moved the object, and we now need to emit such checks. Others are "stable": if we have never seen any object transition away from having a certain shape, then we can register a dependency on this event (any object transitioning away from that particular shape) and don’t need to recheck the shape of the object, even after a call to an unknown function with unknown side effects.
+在变量在循环体内被赋值的情况下，循环可以“回溯”，从循环结束的数据流到循环头部。这时预处理阶段的数据会派上用场：因为我们已经知道哪些变量在循环中被赋值，所以我们可以在开始处理循环体之前预创建循环 Phi 节点。在循环结束时，我们可以用正确的 SSA 节点填充 Phi 输入。这允许 SSA 图的生成只需一次前向处理，而无需“修正”循环变量，并且也最小化了需要分配的 Phi 节点数量。
 
 
-## Deoptimization
+## 已知节点信息
 
-Given that Maglev can use speculative information that it checks at runtime, Maglev code needs to be able to deoptimize. To make this work, Maglev attaches abstract interpreter frame state to nodes that can deoptimize. This state maps interpreter registers to SSA values. This state turns into metadata during code generation, providing a mapping from optimized state to unoptimized state. The deoptimizer interprets this data, reading values from the interpreter frame and machine registers and putting them into the required places for interpretation. This builds on the same deoptimization mechanism as used by TurboFan, allowing us to share most of the logic and take advantage of the testing of the existing system.
+为了尽可能快，Maglev 尽可能一次性完成所有工作。与其构建一个通用的 JavaScript 图并在后续优化阶段降低此图——这是一个理论上干净但计算成本高的方法——Maglev 在图构建时尽可能多地直接完成工作。
 
+在图构建期间，Maglev 将查看在非优化执行期间收集的运行时反馈元数据，并针对观察到的类型生成专门的 SSA 节点。如果 Maglev 看到 `o.x` 并知道从运行时反馈中 `o` 始终具有一种特定的形状，它将在运行时生成一个节点以检查 `o` 是否仍然具有预期形状，然后是一个廉价的 `LoadField` 节点，该节点通过偏移执行简单的访问。
 
-## Representation Selection
+此外，Maglev 会生成一个旁节点记录已经知道 `o` 的形状，这样就无需稍后再次检查形状。如果 Maglev 稍后遇到一个对 `o` 的操作，因某种原因没有获得反馈，那么在编译期间学习到的此类信息可以用作第二来源的反馈。
 
-JavaScript numbers represent, according to [the spec](https://tc39.es/ecma262/#sec-ecmascript-language-types-number-type), a 64-bit floating point value. This doesn't mean that the engine has to always store them as 64-bit floats though, especially since In practice many numbers are small integers (e.g. array indices). V8 tries to encode numbers as 31-bit tagged integers (internally called “Small Integers” or "Smi"), both to save memory (32bit due to [pointer compression](/blog/pointer-compression)), and for performance (integer operations are faster than float operations).
+运行时信息可以以多种形式出现。有些信息需要在运行时检查，例如之前描述的形状检查。其他信息可以在没有运行时检查的情况下使用，只需将依赖关系注册到运行时即可。事实上常量（从初始化到其值被 Maglev 看到时未被更改）的全局变量属于这类：Maglev 无需生成代码来动态加载和检查它们的标识。Maglev 可以在编译时加载值，并将其直接嵌入到机器代码中；如果运行时对该全局变量进行突变，它也会负责使该机器代码失效并进行去优化。
 
-To make numerics-heavy JavaScript code fast, it’s important that optimal representations are chosen for value nodes. Unlike the interpreter and Sparkplug, the optimizing compiler can unbox values once it knows their type, operating on raw numbers rather than JavaScript values representing numbers, and rebox values only if strictly necessary. Floats can directly be passed in floating point registers instead of allocating a heap object that contains the float.
-
-Maglev learns about the representation of SSA nodes mainly by looking at runtime feedback of e.g., binary operations, and propagating that information forwards through the Known Node Info mechanism. When SSA values with specific representations flow into Phis, a correct representation that supports all the inputs needs to be chosen. Loop phis are again tricky, since inputs from within the loop are seen after a representation should be chosen for the phi — the same "back in time" problem as for graph building. This is why Maglev has a separate phase after graph building to do representation selection on loop phis.
-
-
-## Register Allocation
-
-After graph building and representation selection, Maglev mostly knows what kind of code it wants to generate, and is "done" from a classical optimization point of view. To be able to generate code though, we need to choose where SSA values actually live when executing machine code; when they're in machine registers, and when they're saved on the stack. This is done through register allocation.
-
-Each Maglev node has input and output requirements, including requirements on temporaries needed. The register allocator does a single forward walk over the graph, maintaining an abstract machine register state not too dissimilar from the abstract interpretation state maintained during graph building, and will satisfy those requirements, replacing the requirements on the node with actual locations. Those locations can then be used by code generation.
-
-First, a prepass runs over the graph to find linear live ranges of nodes, so that we can free up registers once an SSA node isn’t needed anymore. This prepass also keeps track of the chain of uses. Knowing how far in the future a value is needed can be useful to decide which values to prioritize, and which to drop, when we run out of registers.
-
-After the prepass, the register allocation runs. Register assignment follows some simple, local rules: If a value is already in a register, that register is used if possible. Nodes keep track of what registers they are stored into during the graph walk. If the node doesn’t yet have a register, but a register is free, it’s picked. The node gets updated to indicate it’s in the register, and the abstract register state is updated to know it contains the node. If there’s no free register, but a register is required, another value is pushed out of the register. Ideally, we have a node that’s already in a different register, and can drop this "for free"; otherwise we pick a value that won’t be needed for a long time, and spill it onto the stack.
-
-On branch merges, the abstract register states from the incoming branches are merged. We try to keep as many values in registers as possible. This can mean we need to introduce register-to-register moves, or may need to unspill values from the stack, using moves called “gap moves”. If a branch merge has a phi node, register allocation will assign output registers to the phis. Maglev prefers to output phis to the same registers as its inputs, to minimize moves.
-
-If more SSA values are live than we have registers, we’ll need to spill some values on the stack, and unspill them later. In the spirit of Maglev, we keep it simple: if a value needs to be spilled, it is retroactively told to immediately spill on definition (right after the value is created), and code generation will handle emitting the spill code. The definition is guaranteed to ‘dominate’ all uses of the value (to reach the use we must have passed through the definition and therefore the spill code). This also means that a spilled value will have exactly one spill slot for the entire duration of the code; values with overlapping lifetimes will thus have non-overlapping assigned spill slots.
-
-Due to representation selection, some values in the Maglev frame will be tagged pointers, pointers that V8’s GC understands and needs to consider; and some will be untagged, values that the GC should not look at. TurboFan handles this by precisely keeping track of which stack slots contain tagged values, and which contain untagged values, which changes during execution as slots are reused for different values. For Maglev we decided to keep things simpler, to reduce the memory required for tracking this: we split the stack frame into a tagged and an untagged region, and only store this split point.
+某些形式的信息是“不稳定”的。这样的信息只能在编译器确定其不会变化时使用。例如，在我们刚刚分配一个对象时，我们知道它是一个新对象，可以完全跳过昂贵的写屏障。一旦进行了另一次可能的分配，垃圾回收器可能已经移动了该对象，因此我们现在需要发出此类检查。其他是“稳定的”：如果我们从未见到任何对象从具有某个形状转换出去，那么我们可以注册对此事件的依赖（任何对象从该特定形状转换出去的事件），即使调用了具有未知副作用的未知函数，也不需要重新检查该对象的形状。
 
 
-## Code Generation
+## 去优化
 
-Once we know what expressions we want to generate code for, and where we want to put their outputs and inputs, Maglev is ready to generate code.
-
-Maglev nodes directly know how to generate assembly code using a “macro assembler”. For example, a `CheckMap` node knows how to emit assembler instructions that compare the shape (internally called the “map”) of an input object with a known value, and to deoptimize the code if the object had a wrong shape.
-
-One slightly tricky bit of code handles gap moves: The requested moves created by the register allocator know that a value lives somewhere and needs to go elsewhere. If there’s a sequence of such moves though, a preceding move could clobber the input needed by a subsequent move. The Parallel Move Resolver computes how to safely perform the moves so that all values end up in the right place.
+鉴于Maglev可以使用在运行时检查的推测信息，Maglev代码需要能够反优化。为了实现这一点，Maglev为可能反优化的节点附加了抽象解释器帧状态。这种状态将解释器寄存器映射到SSA值。这种状态在代码生成期间转换为元数据，提供从优化状态到非优化状态的映射。反优化器解释这些数据，从解释器帧和机器寄存器中读取值，并将它们放置到解释所需的位置。这建立在与TurboFan使用相同的反优化机制上，使我们能够共享大部分逻辑并利用现有系统的测试成果。
 
 
-# Results
+## 表示选择
 
-So the compiler we just presented is both clearly much more complex than Sparkplug, and much simpler than TurboFan. How does it fare?
+根据[规范](https://tc39.es/ecma262/#sec-ecmascript-language-types-number-type)，JavaScript数字表示为64位浮点值。但这并不意味着引擎必须始终将它们存储为64位浮点值，尤其是在实践中许多数字是小整数（例如数组索引）。V8尝试将数字编码为31位标记整数（内部称为"小整数"或"Smi"），这样可以节省内存（由于[指针压缩](/blog/pointer-compression)为32位），并提高性能（整数操作比浮点操作更快）。
 
-In terms of compilation speed we’ve managed to build a JIT that’s roughly 10x slower than Sparkplug, and 10x faster than TurboFan.
+为了提高数值密集型JavaScript代码的速度，选择值节点的最佳表示非常重要。与解释器和Sparkplug不同，一旦优化编译器知道它们的类型，就可以对值进行解封箱，直接操作原始数字，而不是表示数字的JavaScript值，只有在严格必要时才进行再次封箱。浮点数可以直接保存在浮点寄存器中，而不需要分配包含浮点数的堆对象。
 
-![Compile time comparison of the compilation tiers, for all functions compiled in JetStream](/_img/maglev/compile-time.svg)
+Maglev主要通过查看运行时反馈（例如二元操作），并通过已知节点信息机制向前传播这些信息来了解SSA节点的表示。当具有特定表示的SSA值流入Phi节点时，需要选择支持所有输入的正确表示。循环Phi节点再次比较棘手，因为来自循环内部的输入是在应该为Phi选择表示之后看到的——这是与构建图表相同的“逆时间”问题。这就是为什么Maglev在构建图表之后有一个独立阶段来对循环Phi节点进行表示选择。
 
-This allows us to deploy Maglev much earlier than we’d want to deploy TurboFan. If the feedback it relied upon ended up not being very stable yet, there’s no huge cost to deoptimizing and recompiling later. It also allows us to use TurboFan a little later: we’re running much faster than we’d run with Sparkplug.
 
-Slotting in Maglev between Sparkplug and TurboFan results in noticeable benchmark improvements:
+## 寄存器分配
 
-![Web performance benchmarks with Maglev](/_img/maglev/I-IS-IT-IST-ISTM.svg)
+在图表构建和表示选择之后，Maglev大致知道它想生成什么样的代码，并从经典优化的角度来看可以说“完成”了。但为了能够生成代码，我们需要选择SSA值在执行机器代码时的实际位置；它们是在机器寄存器中，还是保存在堆栈上。这是通过寄存器分配来完成的。
 
-We have also validated Maglev on real-world data, and see good improvements on [Core Web Vitals](https://web.dev/vitals/).
+每个Maglev节点都有输入和输出需求，包括所需的临时需求。寄存器分配器会对图表进行单次前向遍历，维护一个抽象机器寄存器状态，该状态与图表构建期间维护的抽象解释状态非常相似，并将满足这些需求，将节点的需求替换为实际位置。这些位置然后可以用于代码生成。
 
-Since Maglev compiles much faster, and since we can now afford to wait longer before we compile functions with TurboFan, this results in a secondary benefit that’s not as visible on the surface. The benchmarks focus on main-thread latency, but Maglev also significantly reduces V8’s overall resource consumption by using less off-thread CPU time. The energy consumption of a process can be measured easily on an M1- or M2-based Macbook using `taskinfo`.
+首先，对图表运行一个预处理步骤，找到节点的线性使用范围，以便我们可以在不需要SSA节点时释放寄存器。此预处理步骤还跟踪使用链。了解值在未来将需要多久可以帮助我们决定优先处理哪些值以及在寄存器不足时丢弃哪些值。
+
+在预处理之后，寄存器分配运行。寄存器分配遵循一些简单的局部规则：如果一个值已经在寄存器中，那么尽可能使用该寄存器。如果在图表遍历过程中可以将节点存储的寄存器保持不变。如果节点尚未分配寄存器并且有空闲寄存器，则选择一个空闲寄存器。节点会更新以指示它在寄存器中，抽象寄存器状态会更新以记录它包含该节点。如果没有空闲寄存器，但需要一个寄存器，则会将另一个值从寄存器中推出。理想情况下，我们有一个已分配到其他寄存器的节点，可以“免费”丢弃；否则，我们会选择一个很长时间不会需要的值，将其转移到堆栈上。
+
+在分支合并时，来自传入分支的抽象寄存器状态会合并。我们尽量让尽可能多的值保留在寄存器中。这可能意味着我们需要引入寄存器到寄存器的移动，或者可能需要从堆栈取消转移值，使用称为“遗漏移动”的操作。如果分支合并处有一个Phi节点，寄存器分配会为这些Phi节点分配输出寄存器。Maglev倾向于将Phi节点输出分配到与其输入相同的寄存器，以尽量减少移动。
+
+如果活跃的SSA值多于我们拥有的寄存器数量，我们需要将一些值存储到栈中，并在之后将它们取回。本着Maglev的精神，我们保持简单：如果一个值需要被存储，就会被告知立即在定义时进行存储（在值创建之后立即存储），代码生成将负责发出存储指令。定义保证“支配”值的所有使用（要达到使用点，我们必须通过定义点，因此也通过存储指令）。这也意味着一个存储的值在代码的整个执行期间将只有一个存储槽；具有重叠生命周期的值因此会被分配到不重叠的存储槽。
+
+由于表示选择的原因，Maglev帧中的一些值将是已标记指针，V8的GC能够理解并需要考虑的指针；而一些值将是未标记的，GC不需要查看的值。TurboFan通过精确追踪哪些栈槽包含已标记值，哪些包含未标记值来处理这一变化，这些会因栈槽被不同值重复使用而发生变化。对于Maglev，我们决定保持更简单，以降低所需的跟踪内存：我们将栈帧分为已标记区域和未标记区域，并仅存储这个分界点。
+
+
+## 代码生成
+
+一旦我们知道想为哪些表达式生成代码，以及希望将其输出和输入放在哪些位置，Maglev就可以开始生成代码。
+
+Maglev节点直接知道如何使用“宏汇编器”生成汇编代码。例如，一个`CheckMap`节点知道如何发出汇编指令来比较输入对象的形状（内部称为映射）与一个已知的值，并在对象的形状错误时使代码失效。
+
+一个稍显复杂的代码片段处理间隙移动：注册分配器创建的请求移动指令知道某个值存在的位置并需要移动到别处。然而，如果有一系列这样的移动，则可能会发生前面的移动覆盖后续移动所需的输入。并行移动解析器计算如何安全执行这些移动以确保所有值最终到达正确的位置。
+
+
+# 结果
+
+所以我们刚才介绍的编译器显然比Sparkplug复杂得多，同时比TurboFan简单得多。这效果如何呢?
+
+在编译速度方面，我们成功地构建了一个比Sparkplug慢约10倍、但比TurboFan快10倍的即时编译器。
+
+![JetStream中所有函数的编译时间比较](/_img/maglev/compile-time.svg)
+
+这使我们能够比我们希望部署TurboFan的时间更早地部署Maglev。如果它依赖的反馈结果最终尚未非常稳定，之后进行失效处理并重新编译不会带来巨大成本。它还使我们能够稍晚一些使用TurboFan：我们运行速度远比使用Sparkplug时更快。
+
+在Sparkplug和TurboFan之间引入Maglev带来了显著的基准测试性能提升：
+
+![Maglev的Web性能基准测试](/_img/maglev/I-IS-IT-IST-ISTM.svg)
+
+我们还在现实数据中验证了Maglev，并在[核心网络指标](https://web.dev/vitals/)上看到了显著的改善。
+
+由于Maglev编译速度更快，并且我们现在可以等待更长时间再用TurboFan编译函数，这带来了一个不太明显但重要的额外好处。基准测试集中于主线程延迟，但Maglev还通过使用更少的线程外CPU时间显著减少了V8的整体资源消耗。可以使用`taskinfo`在基于M1或M2的Macbook上轻松测量进程的能源消耗。
 
 :::table-wrapper
-| Benchmark   | Energy Consumption |
+| 基准测试   | 能源消耗         |
 | :---------: | :----------------: |
 | JetStream   | -3.5%              |
 | Speedometer | -10%               |
 :::
 
-Maglev isn’t complete by any means. We've still got plenty more work to do, more ideas to try out, and more low-hanging fruit to pick — as Maglev gets more complete, we’ll expect to see higher scores, and more reduction in energy consumption.
+Maglev还远未完成。我们仍有许多工作要做，还有许多想法要尝试和待做的优化——随着Maglev变得更加完善，我们预计会看到更高的分数以及更多能源消耗的减少。
 
-Maglev is now available for desktop Chrome now, and will be rolled out to mobile devices soon.
+Maglev现在已可在桌面版Chrome中使用，并将在不久后推出移动设备版本。

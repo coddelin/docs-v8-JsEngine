@@ -1,17 +1,17 @@
 ---
-title: "V8 at the BlinkOn 6 conference"
-author: "the V8 team"
+title: "在 BlinkOn 6 会议上的 V8"
+author: "V8 团队"
 date: "2016-07-21 13:33:37"
 tags: 
-  - presentations
-description: "An overview of the V8 team’s presentations at BlinkOn 6."
+  - 演讲
+description: "V8 团队在 BlinkOn 6 上的演讲概述。"
 ---
-BlinkOn is a biannual meeting of Blink, V8, and Chromium contributors. BlinkOn 6 was held in Munich on June 16 and June 17. The V8 team gave a number of presentations on architecture, design, performance initiatives, and language implementation.
+BlinkOn 是 Blink、V8 和 Chromium 贡献者的半年一次会议。BlinkOn 6 于 6 月 16 日和 6 月 17 日在慕尼黑举行。V8 团队进行了多场关于架构、设计、性能计划及语言实现的演讲。
 
 <!--truncate-->
-The V8 BlinkOn talks are embedded below.
+以下是 V8 在 BlinkOn 的演讲。
 
-## Real-world JavaScript performance
+## 实际 JavaScript 性能
 
 <figure>
   <div class="video video-16:9">
@@ -19,12 +19,12 @@ The V8 BlinkOn talks are embedded below.
   </div>
 </figure>
 
-- Length: 31:41
-- [Slides](https://docs.google.com/presentation/d/14WZkWbkvtmZDEIBYP5H1GrbC9H-W3nJSg3nvpHwfG5U/edit)
+- 长度: 31:41
+- [幻灯片](https://docs.google.com/presentation/d/14WZkWbkvtmZDEIBYP5H1GrbC9H-W3nJSg3nvpHwfG5U/edit)
 
-Outlines the history of how V8 measures JavaScript performance, the different eras of benchmarking, and a new technique to measure page loads across real-world, popular websites with detailed breakdowns of time per V8 component.
+概述了 V8 测量 JavaScript 性能的历史，不同的基准测试阶段，以及一种可以通过详细分解每个 V8 组件时间来测量真实世界流行网站页面加载的新技术。
 
-## Ignition: an interpreter for V8
+## Ignition：V8 的解释器
 
 <figure>
   <div class="video video-16:9">
@@ -32,12 +32,12 @@ Outlines the history of how V8 measures JavaScript performance, the different er
   </div>
 </figure>
 
-- Length: 36:39
-- [Slides](https://docs.google.com/presentation/d/1OqjVqRhtwlKeKfvMdX6HaCIu9wpZsrzqpIVIwQSuiXQ/edit)
+- 长度: 36:39
+- [幻灯片](https://docs.google.com/presentation/d/1OqjVqRhtwlKeKfvMdX6HaCIu9wpZsrzqpIVIwQSuiXQ/edit)
 
-Introduces V8’s new Ignition interpreter, explaining the architecture of the engine as a whole, and how Ignition affects memory usage and startup performance.
+介绍了 V8 的新 Ignition 解释器，解释了整个引擎的架构，以及 Ignition 如何影响内存使用和启动性能。
 
-## How we measure and optimize for RAIL in V8’s GC
+## 我们如何在 V8 的垃圾回收中测量和优化 RAIL
 
 <figure>
   <div class="video video-16:9">
@@ -45,12 +45,12 @@ Introduces V8’s new Ignition interpreter, explaining the architecture of the e
   </div>
 </figure>
 
-- Length: 27:11
-- [Slides](https://docs.google.com/presentation/d/15EQ603eZWAnrf4i6QjPP7S3KF3NaL3aAaKhNUEatVzY/edit)
+- 长度: 27:11
+- [幻灯片](https://docs.google.com/presentation/d/15EQ603eZWAnrf4i6QjPP7S3KF3NaL3aAaKhNUEatVzY/edit)
 
-Explains how V8 uses the Response, Animation, Idle, Loading (RAIL) metrics to target low-latency garbage collection and the recent optimizations we’ve made to reduce jank on mobile.
+解释了 V8 如何利用响应(Response)、动画(Animation)、空闲(Idle)、加载(Loading) (RAIL) 指标来实现低延迟垃圾回收，以及我们最近减少移动端卡顿的优化措施。
 
-## ECMAScript 2015 and beyond
+## ECMAScript 2015及未来
 
 <figure>
   <div class="video video-16:9">
@@ -58,12 +58,12 @@ Explains how V8 uses the Response, Animation, Idle, Loading (RAIL) metrics to ta
   </div>
 </figure>
 
-- Length: 28:52
-- [Slides](https://docs.google.com/presentation/d/1o1wld5z0BM8RTqXASGYD3Rvov8PzrxySghmrGTYTgw0/edit)
+- 长度: 28:52
+- [幻灯片](https://docs.google.com/presentation/d/1o1wld5z0BM8RTqXASGYD3Rvov8PzrxySghmrGTYTgw0/edit)
 
-Provides an update on the implementation of new language features in V8, how those features integrate with the web platform, and the standards process which continues to evolve the ECMAScript language.
+提供了关于 V8 中新语言特性实现的更新，这些特性如何与 Web 平台集成，以及不断发展的 ECMAScript 标准化过程。
 
-## Tracing wrappers from V8 to Blink (lightning talk)
+## 从 V8 到 Blink 的追踪包装 (闪电演讲)
 
 <figure>
   <div class="video video-16:9">
@@ -71,7 +71,7 @@ Provides an update on the implementation of new language features in V8, how tho
   </div>
 </figure>
 
-- Length: 2:31
-- [Slides](https://docs.google.com/presentation/d/1I6leiRm0ysSTqy7QWh33Gfp7_y4ngygyM2tDAqdF0fI/edit)
+- 长度: 2:31
+- [幻灯片](https://docs.google.com/presentation/d/1I6leiRm0ysSTqy7QWh33Gfp7_y4ngygyM2tDAqdF0fI/edit)
 
-Highlights tracing wrappers between V8 and Blink objects and how they help prevent memory leaks and reduce latency.
+重点讲解了 V8 和 Blink 对象之间的追踪包装，以及它们如何帮助防止内存泄漏和减少延迟。

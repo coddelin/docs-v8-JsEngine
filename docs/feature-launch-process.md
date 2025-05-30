@@ -1,83 +1,83 @@
 ---
-title: "Implementing and shipping JavaScript/WebAssembly language features"
-description: "This document explains the process for implementing and shipping JavaScript or WebAssembly language features in V8."
+title: "实现和发布 JavaScript/WebAssembly 语言特性"
+description: "本文档解释了在 V8 中实现和发布 JavaScript 或 WebAssembly 语言特性的过程。"
 ---
-In general, V8 follows the [Blink Intent process for already-defined consensus-based standards](https://www.chromium.org/blink/launching-features/#process-existing-standard) for JavaScript and WebAssembly language features. V8-specific errata are laid out below. Please follow the Blink Intent process, unless the errata tells you otherwise.
+通常情况下，V8 遵循 [Blink 的已定义共识标准的意向流程](https://www.chromium.org/blink/launching-features/#process-existing-standard)，用于 JavaScript 和 WebAssembly 语言特性。以下是 V8 的特定修订内容。请遵循 Blink 的意向流程，除非修订内容另有规定。
 
-If you have any questions on this topic for JavaScript features, please email [syg@chromium.org](mailto:syg@chromium.org) and [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com).
+如果您对此主题有任何关于 JavaScript 特性的问题，请发送邮件至 [syg@chromium.org](mailto:syg@chromium.org) 和 [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com)。
 
-For WebAssembly features, please email [gdeepti@chromium.org](mailto:gdeepti@chromium.org) and [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com).
+对于 WebAssembly 特性，请发送邮件至 [gdeepti@chromium.org](mailto:gdeepti@chromium.org) 和 [v8-dev@googlegroups.com](mailto:v8-dev@googlegroups.com)。
 
-## Errata
+## 修订内容
 
-### JavaScript features usually wait until Stage 3+
+### JavaScript 特性通常会等到第 3 阶段及以上
 
-As a rule of thumb, V8 waits to implement JavaScript feature proposals until they advance to [Stage 3 or later in TC39](https://tc39.es/process-document/). TC39 has its own consensus process, and Stage 3 or later signals explicit consensus among TC39 delegates, including all browser vendors, that a feature proposal is ready to implement. This external consensus process means Stage 3+ features do not need to send Intent emails other than Intent to Ship.
+一般来说，V8 会等待 JavaScript 特性提案推进至 [TC39 的第 3 阶段或更高阶段](https://tc39.es/process-document/)再实施。TC39 有自己的共识流程，第 3 阶段或以上标志着 TC39 代表（包括所有浏览器厂商）已对某个特性提案形成明确共识，即该特性提案已准备好实施。此外部共识流程意味着第 3 阶段及以上的特性无需发送除“意向发布”外的意向邮件。
 
-### TAG review
+### TAG 审查
 
-For smaller JavaScript or WebAssembly features, a TAG review is not required, as TC39 and the Wasm CG already provide significant technical oversight. If the feature is large or cross-cutting (e.g., requires changes to other Web Platform APIs or modifications to Chromium), TAG review is recommended.
+小型 JavaScript 或 WebAssembly 特性不需要 TAG 审查，因为 TC39 和 Wasm CG 已提供了重要的技术监督。若特性较大或具有跨领域影响（例如需要更改其他 Web 平台 API 或修改 Chromium），则推荐进行 TAG 审查。
 
-### Both V8 and blink flags are required
+### 需要同时使用 V8 和 Blink 的标志
 
-When implementing a feature, both a V8 flag and a blink `base::Feature` are required.
+在实现特性时，需要同时使用 V8 标志和 Blink 的 `base::Feature`。
 
-Blink features are required so that Chrome can turn off features without distributing new binaries in emergency situations. This is usually implemented in [`gin/gin_features.h`](https://source.chromium.org/chromium/chromium/src/+/main:gin/gin_features.h), [`gin/gin_features.cc`](https://source.chromium.org/chromium/chromium/src/+/main:gin/gin_features.cc), and [`gin/v8_initializer.cc`](https://source.chromium.org/chromium/chromium/src/+/main:gin/v8_initializer.cc),
+Blink 特性标志是必须的，这样 Chrome 在紧急情况下可以关闭某些特性而无需分发新的二进制文件。这通常在 [`gin/gin_features.h`](https://source.chromium.org/chromium/chromium/src/+/main:gin/gin_features.h)、[`gin/gin_features.cc`](https://source.chromium.org/chromium/chromium/src/+/main:gin/gin_features.cc) 和 [`gin/v8_initializer.cc`](https://source.chromium.org/chromium/chromium/src/+/main:gin/v8_initializer.cc) 中实现。
 
-### Fuzzing is required to ship
+### 模糊测试是发布的必要条件
 
-JavaScript and WebAssembly features must be fuzzed for a minimum period of 4 weeks, or one (1) release milestone, with all fuzz bugs fixed, before they can be shipped.
+在正式发布之前，JavaScript 和 WebAssembly 特性必须经过最少 4 周或一个（1）版本周期的模糊测试，并且修复所有模糊测试发现的错误。
 
-For code-complete JavaScript features, start fuzzing by moving the feature flag to the `JAVASCRIPT_STAGED_FEATURES_BASE` macro in [`src/flags/flag-definitions.h`](https://source.chromium.org/chromium/chromium/src/+/master:v8/src/flags/flag-definitions.h).
+对于完成代码开发的 JavaScript 特性，通过将特性标志移至 [`src/flags/flag-definitions.h`](https://source.chromium.org/chromium/chromium/src/+/master:v8/src/flags/flag-definitions.h) 中的 `JAVASCRIPT_STAGED_FEATURES_BASE` 宏来启动模糊测试。
 
-For WebAssembly, see the [WebAssembly shipping checklist](/docs/wasm-shipping-checklist).
+至于 WebAssembly，请参阅 [WebAssembly 发布清单](/docs/wasm-shipping-checklist)。
 
-### [Chromestatus](https://chromestatus.com/) and review gates
+### [Chromestatus](https://chromestatus.com/) 和审核门
 
-The blink intent process includes a series of review gates that must be approved on the feature's entry in [Chromestatus](https://chromestatus.com/) before an Intent to Ship is sent out seeking API OWNER approvals.
+Blink 的意向流程包含一系列审核门，必须在 [Chromestatus](https://chromestatus.com/) 中某特性的条目上获取批准后，才能发送“意向发布”邮件以寻求 API OWNER 批准。
 
-These gates are tailored towards web APIs, and some gates may not be applicable to JavaScript and WebAssembly features. The following is broad guidance. The specifics differ from feature to feature; do not apply guidance blindly!
+这些审核门是针对 Web API 定制的，部分门可能不适用于 JavaScript 和 WebAssembly 特性。以下是一般性指导。具体细节因特性而异，请勿盲目应用指导！
 
-#### Privacy
+#### 隐私
 
-Most JavaScript and WebAssembly features do not affect privacy. Rarely, features may add new fingerprinting vectors that reveal information about a user's operating system or hardware.
+大多数 JavaScript 和 WebAssembly 特性对隐私没有影响。少数情况下，特性可能会添加新的指纹识别向量，从而揭示用户操作系统或硬件的相关信息。
 
-#### Security
+#### 安全
 
-While JavaScript and WebAssembly are common attack vectors in security exploits, most new features do not add additional attack surface. [Fuzzing](#fuzzing) is required, and mitigates some of the risk.
+虽然 JavaScript 和 WebAssembly 是安全漏洞攻击的常见媒介，但大多数新特性不会增加额外的攻击面。[模糊测试](#fuzzing) 是必须的，可以减轻部分风险。
 
-Features that affect known popular attack vectors, such as `ArrayBuffer`s in JavaScript, and features that might enable side-channel attacks, need extra scrutiny and must be reviewed.
+影响已知流行攻击媒介（例如 JavaScript 中的 `ArrayBuffer`）的特性，以及可能启用侧信道攻击的特性，需要特别审查并获得审批。
 
-#### Enterprise
+#### 企业
 
-Throughout their standardization process in TC39 and the Wasm CG, JavaScript and WebAssembly features already undergo heavy backwards compatibility scrutiny. It is exceedingly rare for features to be willfuly backwards incompatible.
+在 TC39 和 Wasm CG 的标准化过程中，JavaScript 和 WebAssembly 特性已经经过严格的向后兼容性审查。特性有意向后向不兼容的情况极为罕见。
 
-For JavaScript, recently shipped features can also be disabled via `chrome://flags/#disable-javascript-harmony-shipping`.
+对于 JavaScript，可以通过 `chrome://flags/#disable-javascript-harmony-shipping` 禁用最近发布的特性。
 
-#### Debuggability
+#### 可调试性
 
-JavaScript and WebAssembly features' debuggability differs significantly from feature to feature. JavaScript features that only add new built-in methods do not need additional debugger support, while WebAssembly features that add new capabilities may need significant additional debugger support.
+JavaScript 和 WebAssembly 特性的可调试性因特性而异。仅添加新内置方法的 JavaScript 特性不需要额外的调试器支持，而增加新功能的 WebAssembly 特性可能需要显著的额外调试器支持。
 
-For more details, see the [JavaScript feature debugging checklist](https://docs.google.com/document/d/1_DBgJ9eowJJwZYtY6HdiyrizzWzwXVkG5Kt8s3TccYE/edit#heading=h.u5lyedo73aa9) and the [WebAssembly feature debugging checklist](https://goo.gle/devtools-wasm-checklist).
+详细信息请参阅 [JavaScript 特性调试清单](https://docs.google.com/document/d/1_DBgJ9eowJJwZYtY6HdiyrizzWzwXVkG5Kt8s3TccYE/edit#heading=h.u5lyedo73aa9) 和 [WebAssembly 特性调试清单](https://goo.gle/devtools-wasm-checklist)。
 
-When in doubt, this gate is applicable.
+如果有疑问，则适用此门槛。
 
-#### Testing
+#### 测试
 
-Instead of WPT, Test262 tests are sufficient for JavaScript features, and WebAssembly spec tests are sufficient for WebAssembly features.
+对于 JavaScript 特性来说，Test262 测试已经足够；对于 WebAssembly 特性来说，WebAssembly 规范测试已经足够。
 
-Adding Web Platform Tests (WPT) is not required, as JavaScript and WebAssembly language features have their own interoperable test repositories that are run by multiple implementations. Feel free to add some though, if you think it is beneficial.
+不要求添加 Web 平台测试（WPT），因为 JavaScript 和 WebAssembly 语言特性本身已经拥有多个实现运行的互操作测试库。不过，如果你认为添加会有益的话，可以随意添加。
 
-For JavaScript features, explicit correctness tests in [Test262](https://github.com/tc39/test262) are required. Note that tests in the [staging directory](https://github.com/tc39/test262/blob/main/CONTRIBUTING.md#staging) suffice.
+对于 JavaScript 特性，要求在 [Test262](https://github.com/tc39/test262) 中提供明确的正确性测试。需要注意的是，[staging 目录](https://github.com/tc39/test262/blob/main/CONTRIBUTING.md#staging)中的测试也是足够的。
 
-For WebAssembly features, explicit correctness tests in the [WebAssembly Spec Test repo](https://github.com/WebAssembly/spec/tree/master/test) are required.
+对于 WebAssembly 特性，要求在 [WebAssembly 规范测试库](https://github.com/WebAssembly/spec/tree/master/test) 中提供明确的正确性测试。
 
-For performance tests, JavaScript already underlies most existing performance benchmarks, like Speedometer.
+对于性能测试，JavaScript 已经是绝大多数现有性能基准（例如 Speedometer）的底层。
 
-### Who to CC
+### 抄送对象
 
-**Every** “intent to `$something`” email (e.g. “intent to implement”) should CC  [v8-users@googlegroups.com](mailto:v8-users@googlegroups.com) in addition to  [blink-dev@chromium.org](mailto:blink-dev@chromium.org). This way, other embedders of V8 are kept in the loop too.
+**每封**关于“意图 `$操作`”的邮件（例如“实施意图”）应该同时抄送 [v8-users@googlegroups.com](mailto:v8-users@googlegroups.com) 和 [blink-dev@chromium.org](mailto:blink-dev@chromium.org)。这样可以确保其他 V8 嵌入者也能了解情况。
 
-### Link to the spec repo
+### 规范库链接
 
-The Blink Intent process requires an explainer. Instead of writing a new doc, feel free to link to respective spec repository instead (e.g. [`import.meta`](https://github.com/tc39/proposal-import-meta)).
+Blink 意图流程要求提供说明文件。可以直接链接到相关的规范库，而无需编写新的文档（例如 [`import.meta`](https://github.com/tc39/proposal-import-meta)）。

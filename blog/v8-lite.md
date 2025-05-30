@@ -1,109 +1,109 @@
 ---
-title: "A lighter V8"
-author: "Mythri Alle, Dan Elphick, and [Ross McIlroy](https://twitter.com/rossmcilroy), V8 weight-watchers"
+title: "更轻量的 V8"
+author: "Mythri Alle、Dan Elphick 和 [Ross McIlroy](https://twitter.com/rossmcilroy)，V8 内存优化团队"
 avatars: 
   - "mythri-alle"
   - "dan-elphick"
   - "ross-mcilroy"
 date: "2019-09-12 12:44:37"
 tags: 
-  - internals
-  - memory
-  - presentations
-description: "The V8 Lite project dramatically reduced the memory overhead of V8 on typical websites, this is how we did it."
+  - 内部结构
+  - 内存
+  - 演讲
+description: "V8 Lite 项目显著减少了 V8 在典型网站上的内存开销，以下是我们实现的方式。"
 tweet: "1172155403343298561"
 ---
-In late 2018 we started a project called V8 Lite, aimed at dramatically reducing V8’s memory usage. Initially this project was envisioned as a separate *Lite mode* of V8 specifically aimed at low-memory mobile devices or embedder use-cases that care more about reduced memory usage than throughput execution speed. However, in the process of this work, we realized that many of the memory optimizations we had made for this *Lite mode* could be brought over to regular V8 thereby benefiting all users of V8.
+2018 年末，我们启动了一个名为 V8 Lite 的项目，旨在显著减少 V8 的内存使用量。起初，这个项目被设想为 V8 的一种独立的 *轻量模式*，专门针对低内存移动设备或更注重内存使用而非吞吐执行速度的嵌入场景。然而，在进行这项工作时，我们发现许多针对这个 *轻量模式* 的内存优化可以迁移到常规 V8，从而让所有 V8 的用户受益。
 
 <!--truncate-->
-In this post we highlight some of the key optimizations we developed and the memory savings they provided in real-world workloads.
+在本文中，我们重点介绍了一些关键优化以及它们在实际工作负载中提供的内存节约。
 
-:::note
-**Note:** If you prefer watching a presentation over reading articles, then enjoy the video below! If not, skip the video and read on.
-:::
+::note
+**注意:** 如果你更喜欢观看演讲而非阅读文章，那么请欣赏下面的视频！如果不是，请跳过视频继续阅读。
+::
 
 <figure>
   <div class="video video-16:9">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/56ogP8-eRqA" allow="picture-in-picture" allowfullscreen loading="lazy"></iframe>
   </div>
-  <figcaption><a href="https://www.youtube.com/watch?v=56ogP8-eRqA">“V8 Lite  ⁠— slimming down JavaScript memory”</a> as presented by Ross McIlroy at BlinkOn 10.</figcaption>
+  <figcaption><a href="https://www.youtube.com/watch?v=56ogP8-eRqA">“V8 Lite  ⁠— JavaScript 内存优化”</a> 演讲由 Ross McIlroy 在 BlinkOn 10 上呈现。</figcaption>
 </figure>
 
-## Lite mode
+## 轻量模式
 
-In order to optimize V8’s memory usage, we first needed to understand how memory is used by V8 and what object types contribute a large proportion of V8’s heap size. We used V8’s [memory visualization](/blog/optimizing-v8-memory#memory-visualization) tools to trace heap composition across a number of typical web pages.
+为了优化 V8 的内存使用，我们首先需要了解 V8 的内存使用情况以及哪些对象类型占据了 V8 堆的很大比例。我们使用 V8 的 [内存可视化工具](/blog/optimizing-v8-memory#memory-visualization) 来追踪一些典型网页的堆组成。
 
 <figure>
   <img src="/_img/v8-lite/memory-categorization.svg" width="950" height="440" alt="" loading="lazy"/>
-  <figcaption>Percentage of V8’s heap used by different object types when loading Times of India.</figcaption>
+  <figcaption>Times of India 加载时不同对象类型在 V8 堆中占用的百分比。</figcaption>
 </figure>
 
-In doing so, we determined that a significant portion of V8’s heap was dedicated to objects that aren’t essential to JavaScript execution, but are used to optimize JavaScript execution and handle exceptional situations. Examples include: optimized code; type feedback used to determine how to optimize the code; redundant metadata for bindings between C++ and JavaScript objects; metadata only required during exceptional circumstances such as stack trace symbolization; and bytecode for functions that are only executed a few times during page loading.
+通过这样做，我们发现 V8 堆的很大一部分是用于不必需的对象，这些对象虽然不是 JavaScript 执行所必需的，但被用来优化 JavaScript 执行和处理异常情况。例如：优化代码；用于确定如何优化代码的类型反馈；用于 C++ 和 JavaScript 对象间绑定的冗余元数据；仅在异常情况下才需要的元数据，例如堆栈追踪符号化；以及加载页面期间仅执行了几次的函数字节码。
 
-As a result of this, we started work on a *Lite mode* of V8 that trades off speed of JavaScript execution against improved memory savings by vastly reducing the allocation of these optional objects.
+因此，我们开始开发 V8 的一种 *轻量模式*，通过大幅减少这些可选对象的分配来在 JavaScript 执行速度和内存节约之间进行权衡。
 
 ![](/_img/v8-lite/v8-lite.png)
 
-A number of the *Lite mode* changes could be made by configuring existing V8 settings, for example, disabling V8’s TurboFan optimizing compiler. However, others required more involved changes to V8.
+很多 *轻量模式* 的变化可以通过配置现有的 V8 设置来实现，例如禁用 V8 的 TurboFan 优化编译器。然而，其他变化则需要对 V8 进行更复杂的改动。
 
-In particular, we decided that since *Lite mode* doesn’t optimize code, we could avoid collection of type feedback required by the optimizing compiler. When executing code in the Ignition interpreter, V8 collects feedback about the types of operands which are passed to various operations (e.g., `+` or `o.foo`), in order to tailor later optimization to those types. This information is stored in *feedback vectors* which contribute a significant portion of V8’s heap memory usage. *Lite mode* could avoid allocating these feedback vectors, however the interpreter and parts of V8’s inline-cache infrastructure expected feedback vectors to be available, and so required considerable refactoring to be able to support this feedback-free execution.
+特别是，我们决定，由于 *轻量模式* 不对代码进行优化，因此可以避免收集优化编译器所需的类型反馈。执行代码时，Ignition 解释器会收集关于传递给各种操作（例如 `+` 或 `o.foo`）的操作数类型的反馈，以便随后根据这些类型进行优化调整。这些信息存储在 *反馈向量* 中，这些向量占用了 V8 堆内存使用的一大部分。*轻量模式* 可以避免分配这些反馈向量，但解释器和 V8 的部分内联缓存基础结构需要反馈向量的可用，因此需要进行大量重构以支持这种无反馈的执行。
 
-*Lite mode* launched in V8 v7.3 and provides a 22% reduction in typical web page heap size compared to V8 v7.1 by disabling code optimization, not allocating feedback vectors and performed aging of seldom executed bytecode (described below). This is a nice result for those applications that explicitly want to trade off performance for better memory usage. However in the process of doing this work we realized that we could achieve most of the memory savings of *Lite mode* with none of the performance impact by making V8 lazier.
+*轻量模式* 于 V8 v7.3 中推出，与 V8 v7.1 相比，通过禁用代码优化、不分配反馈向量以及不常执行的字节码老化（下文描述）实现了网页堆大小的 22% 减少。这对于那些明确希望在性能和更好的内存使用之间进行权衡的应用来说是个不错的结果。然而，在进行这项工作时，我们意识到，通过使 V8 更加延迟化，我们可以在没有性能影响的情况下实现 *轻量模式* 的大部分内存节约。
 
-## Lazy feedback allocation
+## 延迟反馈分配
 
-Disabling feedback vector allocation entirely not only prevents optimization of code by V8’s TurboFan compiler, but also prevents V8 from performing [inline caching](https://mathiasbynens.be/notes/shapes-ics#ics) of common operations, such as object property loads in the Ignition interpreter. As such, doing so caused a significant regression to V8’s execution time, reducing page-load-time by 12% and increasing the CPU time used by V8 by 120% on typical interactive web page scenarios.
+完全禁用反馈向量分配不仅会阻止V8的TurboFan编译器对代码进行优化，还会阻止V8在Ignition解释器中对常见操作（如对象属性加载）执行[内联缓存](https://mathiasbynens.be/notes/shapes-ics#ics)。因此，这样做会显著降低V8的执行时间性能，使页面加载时间延长12%，并在典型的交互式网页场景中使V8的CPU使用时间增加120%。
 
-To bring most of these savings to regular V8 without these regressions, we instead moved to an approach where we lazily allocate feedback vectors after the function has executed a certain amount of bytecode (currently 1KB). Since most functions aren’t executed very often, we avoid feedback vector allocation in most cases, but quickly allocate them where needed to avoid performance regressions and still allow code to be optimized.
+为了在不引发这些性能下降的情况下将大部分增益带到常规V8中，我们转而采用了一种方法，即在函数执行了一定数量的字节码（目前为1KB）后懒惰地分配反馈向量。由于大多数函数不会被频繁执行，我们在大部分情况下避免了反馈向量分配，但在需要时迅速分配以避免性能下降并仍然允许代码优化。
 
-One additional complication with this approach is related to the fact that feedback vectors form a tree, with the feedback vectors for inner functions being held as entries in their outer function’s feedback vector. This is necessary so that newly created function closures receive the same feedback vector array as all other closures created for the same function. With lazy allocation of feedback vectors we can’t form this tree using feedback vectors, since there is no guarantee that an outer function will have allocated its feedback vector by the time an inner function does so. To address this, we created a new `ClosureFeedbackCellArray` to maintain this tree, then swap out a function’s `ClosureFeedbackCellArray` with a full `FeedbackVector` when it becomes hot.
+此方法的一个额外复杂性与反馈向量形成树形结构有关，内部函数的反馈向量作为对应项存储在其外部函数的反馈向量中。这是必要的，以便新创建的函数闭包接收到与同一函数创建的所有其他闭包相同的反馈向量数组。由于反馈向量的懒惰分配，我们无法用反馈向量形成这个树，因为无法保证外部函数在内部函数分配其反馈向量之前就已分配了反馈向量。为了解决这个问题，我们创建了一个新的`ClosureFeedbackCellArray`来维护这个树，然后在函数变得热（频繁被调用）时用完整的`FeedbackVector`替换函数的`ClosureFeedbackCellArray`。
 
-![Feedback vector trees before and after lazy feedback allocation.](/_img/v8-lite/lazy-feedback.svg)
+![懒惰反馈分配前后的反馈向量树示意图.](/_img/v8-lite/lazy-feedback.svg)
 
-Our lab experiments and in-the-field telemetry showed no performance regressions for lazy feedback on desktop, and on mobile platforms we actually saw a performance improvement on low-end devices due to a reduction in garbage collection. As such, we have enabled lazy feedback allocation in all builds of V8, including *Lite mode* where the slight regression in memory compared to our original no-feedback allocation approach is more than compensated by the improvement in real world performance.
+我们的实验室实验和实际数据统计结果显示，桌面端的懒惰反馈分配并未引发性能下降，而在移动平台上，由于垃圾回收的减少，我们实际上看到低端设备的性能有所提升。因此，我们在所有V8构建中启用了懒惰反馈分配，包括*Lite模式*，在该模式下，与我们最初的无反馈分配方法相比，尽管略微增加内存开销，但实际性能提升更为显著。
 
-## Lazy source positions
+## 懒惰源代码位置
 
-When compiling bytecode from JavaScript, source position tables are generated that tie bytecode sequences to character positions within the JavaScript source code. However, this information is only needed when symbolizing exceptions or performing developer tasks such as debugging, and so is rarely used.
+在从JavaScript编译字节码时，生成了将字节码序列与JavaScript源代码中的字符位置关联的源代码位置表。然而，只有在符号化异常或执行开发者任务（如调试）时，这些信息才会用到，因此很少被使用。
 
-To avoid this waste, we now compile bytecode without collecting source positions (assuming no debugger or profiler is attached). The source positions are only collected when a stack trace is actually generated, for instance when calling `Error.stack` or printing an exception’s stack trace to the console. This does have some cost, as generating source positions requires the function to be reparsed and compiled, however most websites don’t symbolize stack traces in production and therefore don’t see any observable performance impact.
+为了避免这种浪费，我们在编译字节码时不再收集源代码位置（假设无调试器或分析器附加）。只有在实际生成堆栈跟踪时（例如调用`Error.stack`或将异常的堆栈跟踪打印到控制台）才会收集源代码位置。这确实会有一些成本，因为生成源代码位置需要重新解析和编译函数，但由于大多数网站在生产环境中不会符号化堆栈跟踪，因此不会看到任何可观察到的性能影响。
 
-One issue we had to address with this work was to require repeatable bytecode generation, which had not previously been guaranteed. If V8 generates different bytecode when collecting source positions compared to the original code, then the source positions do not line up and stack traces could point to the wrong position in the source code.
+我们在这项工作中需要解决的一个问题是要求字节码生成具有可重复性，而之前并没有保证这一点。如果V8在收集源代码位置时生成的字节码与原始代码不同，那么源代码位置不匹配，堆栈跟踪可能会指向源代码中的错误位置。
 
-In certain circumstances V8 could generate different bytecode depending on whether a function was [eagerly or lazily compiled](/blog/preparser#skipping-inner-functions), due to some parser information being lost between the initial eager parse of a function, and later lazy compilation. These mismatches were mostly benign, for example losing track of the fact that a variable is immutable and therefore not being able to optimize it as such. However some of the mismatches uncovered by this work did have the potential to cause incorrect code execution in certain circumstances. As a result, we fixed these mismatches and added checks and a stress mode to ensure that eager and lazy compilation of a function always produce consistent outputs, giving us greater confidence in the correctness and consistency of V8’s parser and preparser.
+在某些情况下，根据函数是[立即编译还是懒惰编译](/blog/preparser#skipping-inner-functions)，V8可能生成不同的字节码，因为函数的最初立即解析与其后期的懒惰编译之间丢失了一些解析器信息。这些不匹配大多是无害的，例如丢失了某变量是不可变的事实，因此无法对其进行优化。然而，这项工作揭示的一些不匹配在某些情况下可能会导致代码错误执行。因此，我们修复了这些不匹配，并添加了检查和压力模式以确保函数的立即编译和懒惰编译始终生成一致的输出，从而增强了我们对V8解析器和前解析器正确性和一致性的信心。
 
-## Bytecode flushing
+## 字节码清理
 
-Bytecode compiled from JavaScript source takes up a significant chunk of V8 heap space, typically around 15%, including related metadata. There are many functions which are only executed during initialization, or rarely used after having been compiled.
+从JavaScript源代码编译的字节码占用了V8堆空间的很大一部分，通常约为15%，包括相关的元数据。有许多函数仅在初始化期间执行，或者在编译后很少使用。
 
-As a result, we added support for flushing compiled bytecode from functions during garbage collection if they haven’t been executed recently. In order to do this, we keep track of the *age* of a function’s bytecode, incrementing the *age* every [major (mark-compact)](/blog/trash-talk#major-gc) garbage collection, and resetting it to zero when the function is executed. Any bytecode which crosses an aging threshold is eligible to be collected by the next garbage collection. If it is collected and then later executed again, it gets recompiled.
+因此，我们增加了在垃圾回收过程中从函数中清理编译字节码的支持，如果这些函数最近没有被执行的话。为此，我们跟踪函数字节码的*年龄*，每进行一次[主要（标记压缩）](/blog/trash-talk#major-gc)垃圾回收时增加*年龄*，并在函数被执行时将其重置为零。任何超过老化阈值的字节码都可以在下次垃圾回收时被收集。如果它被清理了但随后再次被执行，它将重新编译。
 
-There were technical challenges to ensure that bytecode is only ever flushed when it is no longer necessary. For instance, if function `A` calls another long-running function `B`, function `A` could be aged while it is still on the stack. We don’t want to flush the bytecode for function `A` even if it reaches its aging threshold because we need to return to it when the long-running function `B` returns. As such, we treat bytecode as weakly held from a function when it reaches its aging threshold, but strongly held by any references to it on the stack or elsewhere. We only flush the code when there are no strong links remaining.
+为确保字节码仅在不再需要时才被清除，我们遇到了一些技术挑战。例如，如果函数`A`调用了另一个长时间运行的函数`B`，函数`A`可能会在仍在调用栈上时进入老化状态。即使函数`A`达到其老化阈值，我们也不希望清除它的字节码，因为在长时间运行的函数`B`返回时，我们需要回到函数`A`。因此，当字节码达到老化阈值时，我们将其视为弱引用，但如果栈或其他地方仍有强引用，则将其视为强引用。只有在没有强链接时，我们才会清除代码。
 
-In addition to flushing bytecode, we also flush feedback vectors associated with these flushed functions. However we can’t flush feedback vectors during the same GC cycle as the bytecode because they aren’t retained by the same object - bytecode is held by a native-context independent `SharedFunctionInfo`, whereas the feedback vector is retained by the native-context dependent `JSFunction`. As a result we flush feedback vectors on the subsequent GC cycle.
+除了清除字节码外，我们还清除与这些已清除函数相关的反馈向量。然而，我们无法在与字节码相同的垃圾回收周期内清除反馈向量，因为它们并不是由同一个对象保存的——字节码由原生上下文独立的`SharedFunctionInfo`保存，而反馈向量则由原生上下文相关的`JSFunction`保存。因此，我们会在后续的垃圾回收周期中清除反馈向量。
 
-![The object layout for an aged function after two GC cycles.](/_img/v8-lite/bytecode-flushing.svg)
+![经过两次垃圾回收周期后，已老化函数的对象布局。](/_img/v8-lite/bytecode-flushing.svg)
 
-## Additional optimizations
+## 额外优化
 
-In addition to these larger projects, we also uncovered and addressed a couple of inefficiencies.
+除了这些较大的项目外，我们还发现并解决了几个效率问题。
 
-The first was to reduce the size of `FunctionTemplateInfo` objects. These objects store internal metadata about [`FunctionTemplate`s](/docs/embed#templates), which are used to enable embedders, such as Chrome, to provide C++ callback implementations of functions that can be called by JavaScript code. Chrome introduces a lot of FunctionTemplates in order to implement DOM Web APIs, and therefore `FunctionTemplateInfo` objects contributed to V8’s heap size. After analysing the typical usage of FunctionTemplates, we found that of the eleven fields on a `FunctionTemplateInfo` object, only three were typically set to a non-default value. We therefore split the `FunctionTemplateInfo` object such that the rare fields are stored in a side-table which is only allocated on demand if required.
+第一个优化是减少`FunctionTemplateInfo`对象的大小。这些对象存储有关[`FunctionTemplate`](/docs/embed#templates)的内部元数据，用于使嵌入者（如Chrome）能够提供可由JavaScript代码调用的函数的C++回调实现。Chrome引入了大量的`FunctionTemplate`以实现DOM Web API，因此`FunctionTemplateInfo`对象占用了V8的堆大小。通过分析`FunctionTemplate`的典型使用情况，我们发现，在`FunctionTemplateInfo`对象的十一字段中，只有三个通常设置了非默认值。因此，我们将`FunctionTemplateInfo`对象拆分开来，使稀有字段存储在一个侧表中，只在需要时按需分配。
 
-The second optimization is related to how we deoptimize from TurboFan optimized code. Since TurboFan performs speculative optimizations, it might need to fall back to the interpreter (deoptimize) if certain conditions no longer hold. Each deopt point has an id which enables the runtime to determine where in the bytecode it should return execution to in the interpreter. Previously this id was calculated by having the optimized code jump to a particular offset within a large jump table, which loaded the correct id into a register and then jumped into the runtime to perform the deoptimization. This had the advantage of requiring only a single jump instruction in the optimized code for each deopt point. However the deoptimize jump table was pre-allocated and had to be large enough to support the whole deoptimization id range. We instead modified TurboFan such that deopt points in optimized code load the deopt id directly before calling into the runtime. This enabled us to remove this large jump table entirely, at the expense of a slight increase in optimized code size.
+第二个优化与我们如何从TurboFan优化的代码中回退有关。由于TurboFan执行推测性优化，如果某些条件不再满足，它可能需要回退到解释器（反优化）。每个反优化点都有一个ID，允许运行时确定应返回解释器执行的位置。在之前，通过让优化代码跳转到一个大型跳转表中的特定偏移量，从而将正确的ID加载到寄存器中，然后跳入运行时执行反优化。这种方法的优点是，对于每个反优化点，只需在优化代码中加入单个跳转指令。然而，反优化跳转表是预先分配的，必须足够大以支持整个反优化ID范围。我们改进了TurboFan，使优化代码中的反优化点在调用运行时之前直接加载反优化ID。这使我们能够完全移除这个大型跳转表，但代价是优化代码大小略有增加。
 
-## Results
+## 成果
 
-We have released the optimizations described above over the last seven releases of V8. Typically they landed first in *Lite mode*, and then were later brought to the default configuration of V8.
+过去的七次V8版本发布中，我们推出了上述优化。这些优化通常首先在*精简模式*中启用，随后被引入到V8的默认配置中。
 
-![Average V8 heap size for a set of typical web pages on an AndroidGo device.](/_img/v8-lite/savings-by-release.svg)
+![在AndroidGo设备上的一组典型网页的V8平均堆大小。](/_img/v8-lite/savings-by-release.svg)
 
-![Per-page breakdown of memory savings of V8 v7.8 (Chrome 78) compared to v7.1 (Chrome 71).](/_img/v8-lite/breakdown-by-page.svg)
+![Chrome 78 (V8 v7.8) 相比 Chrome 71 (V8 v7.1) 的每页内存节约细分。](/_img/v8-lite/breakdown-by-page.svg)
 
-Over this time, we have reduced the V8 heap size by an average of 18% across a range of typical websites, which corresponds to an average decrease of 1.5 MB for low-end AndroidGo mobile devices. This has been possible without any significant impact on JavaScript performance either on benchmarks or as measured on real world webpage interactions.
+在此期间，我们将V8堆大小平均降低了18%，覆盖了范围广泛的典型网站，这相当于为低端AndroidGo移动设备平均减少了1.5 MB。这些优化并未显著影响JavaScript性能，包括基准测试和实际网页交互。
 
-*Lite mode* can provide further memory savings at some cost to JavaScript execution throughput by disabling function optimization. On average *Lite mode* provides 22% memory savings, with some pages seeing up to 32% reductions. This corresponds to a 1.8 MB reduction in V8 heap size on an AndroidGo device.
+*精简模式*通过禁用函数优化可以进一步节省内存，但会稍微影响JavaScript执行性能。平均而言，*精简模式*可以节省22%的内存，一些网页甚至可达到32%的减少。这相当于在AndroidGo设备上减少V8堆大小1.8 MB。
 
-![Breakdown of memory savings of V8 v7.8 (Chrome 78) compared to v7.1 (Chrome 71).](/_img/v8-lite/breakdown-by-optimization.svg)
+![Chrome 78 (V8 v7.8) 相比 Chrome 71 (V8 v7.1) 的内存节约细分。](/_img/v8-lite/breakdown-by-optimization.svg)
 
-When split by the impact of each individual optimization, it is clear that different pages derive a different proportion of their benefit from each of these optimizations. Going forward, we will continue to identify potential optimizations which can further reduce V8’s memory usage while still remaining blazingly fast at JavaScript execution.
+当按每个独立优化的影响进行划分时，可以清楚地看到不同网页从每种优化中获得的收益比例不同。展望未来，我们将继续识别潜在的优化，进一步减少V8的内存使用，同时保持JavaScript执行的高速表现。

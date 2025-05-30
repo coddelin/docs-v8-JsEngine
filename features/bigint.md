@@ -1,5 +1,5 @@
 ---
-title: "BigInt: arbitrary-precision integers in JavaScript"
+title: "BigInt: JavaScript 中任意精度的整数"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars: 
   - "mathias-bynens"
@@ -8,29 +8,29 @@ tags:
   - ECMAScript
   - ES2020
   - io19
-description: "BigInts are a new numeric primitive in JavaScript that can represent integers with arbitrary precision. This article walks through some use cases and explains the new functionality in Chrome 67 by comparing BigInts to Numbers in JavaScript."
+description: "BigInt 是 JavaScript 中的一个新型数字原始值，可表示任意精度的整数。本文通过对比 JavaScript 中的 BigInt 和 Number，逐步介绍 BigInt 的一些使用场景，并说明 Chrome 67 中的新功能。"
 tweet: "990991035630206977"
 ---
-`BigInt`s are a new numeric primitive in JavaScript that can represent integers with arbitrary precision. With `BigInt`s, you can safely store and operate on large integers even beyond the safe integer limit for `Number`s. This article walks through some use cases and explains the new functionality in Chrome 67 by comparing `BigInt`s to `Number`s in JavaScript.
+`BigInt` 是 JavaScript 中的一种新型数字原始值，可以表示任意精度的整数。通过 `BigInt`，您可以安全地存储并操作即使超出 `Number` 安全整数限制的大整数。本文通过对比 JavaScript 中的 `BigInt` 和 `Number`，逐步介绍它的一些使用场景，并说明 Chrome 67 中的新功能。
 
 <!--truncate-->
-## Use cases
+## 使用场景
 
-Arbitrary-precision integers unlock lots of new use cases for JavaScript.
+任意精度的整数为 JavaScript 解锁了许多新场景。
 
-`BigInt`s make it possible to correctly perform integer arithmetic without overflowing. That by itself enables countless new possibilities. Mathematical operations on large numbers are commonly used in financial technology, for example.
+`BigInt` 能够正确地执行整数运算而不会溢出。这本身就开启了无数新可能。例如，在金融科技中，大数的数学运算是常见的应用场景。
 
-[Large integer IDs](https://developer.twitter.com/en/docs/basics/twitter-ids) and [high-accuracy timestamps](https://github.com/nodejs/node/pull/20220) cannot safely be represented as `Number`s in JavaScript. This [often](https://github.com/stedolan/jq/issues/1399) leads to [real-world bugs](https://github.com/nodejs/node/issues/12115), and causes JavaScript developers to represent them as strings instead. With `BigInt`, this data can now be represented as numeric values.
+[大整数 ID](https://developer.twitter.com/en/docs/basics/twitter-ids) 和 [高精度时间戳](https://github.com/nodejs/node/pull/20220) 无法在 JavaScript 中安全地表示为 `Number`。这[经常](https://github.com/stedolan/jq/issues/1399)导致[现实中的 bug](https://github.com/nodejs/node/issues/12115)，迫使 JavaScript 开发者用字符串来表示这些数据。有了 `BigInt`，现在可以将这些数据表示为数值。
 
-`BigInt` could form the basis of an eventual `BigDecimal` implementation. This would be useful to represent sums of money with decimal precision, and to accurately operate on them (a.k.a. the `0.10 + 0.20 !== 0.30` problem).
+`BigInt` 可以为未来的 `BigDecimal` 实现奠定基础。这将有助于以小数精度表示金额并准确操作这些金额（即所谓的 `0.10 + 0.20 !== 0.30` 问题）。
 
-Previously, JavaScript applications with any of these use cases had to resort to userland libraries that emulate `BigInt`-like functionality. When `BigInt` becomes widely available, such applications can drop these run-time dependencies in favor of native `BigInt`s. This helps reduce load time, parse time, and compile time, and on top of all that offers significant run-time performance improvements.
+以前，拥有这些使用场景的 JavaScript 应用必须依赖用户空间的库来模拟类似 `BigInt` 的功能。当 `BigInt` 广泛可用后，这些应用可以用原生的 `BigInt` 替代这些运行时依赖。这有助于减少加载时间、解析时间和编译时间，此外还提供显著的运行时性能提升。
 
-![The native `BigInt` implementation in Chrome performs better than popular userland libraries.](/_img/bigint/performance.svg)
+![Chrome 中原生的 `BigInt` 实现性能优于流行的用户空间库。](/_img/bigint/performance.svg)
 
-## The status quo: `Number`
+## 当前状况：`Number`
 
-`Number`s in JavaScript are represented as [double-precision floats](https://en.wikipedia.org/wiki/Floating-point_arithmetic). This means they have limited precision. The `Number.MAX_SAFE_INTEGER` constant gives the greatest possible integer that can safely be incremented. Its value is `2**53-1`.
+JavaScript 中的 `Number` 是以 [双精度浮点数](https://en.wikipedia.org/wiki/Floating-point_arithmetic) 表示的。这意味着它们具有有限的精度。`Number.MAX_SAFE_INTEGER` 常量表示可以安全递增的最大整数。它的值是 `2**53-1`。
 
 ```js
 const max = Number.MAX_SAFE_INTEGER;
@@ -38,57 +38,57 @@ const max = Number.MAX_SAFE_INTEGER;
 ```
 
 :::note
-**Note:** For readability, I’m grouping the digits in this large number per thousand, using underscores as separators. [The numeric literal separators proposal](/features/numeric-separators) enables exactly that for common JavaScript numeric literals.
+**注意：** 为了便于阅读，我使用下划线作为分隔符，将这个大数字的每千位进行分组。[数字文字分隔符提案](/features/numeric-separators) 使得普通 JavaScript 数字字面量也能实现这一功能。
 :::
 
-Incrementing it once gives the expected result:
+递增一次会给出预期结果：
 
 ```js
 max + 1;
 // → 9_007_199_254_740_992 ✅
 ```
 
-But if we increment it a second time, the result is no longer exactly representable as a JavaScript `Number`:
+但如果再次递增，结果将不再能准确表示为 JavaScript 的 `Number`：
 
 ```js
 max + 2;
 // → 9_007_199_254_740_992 ❌
 ```
 
-Note how `max + 1` produces the same result as `max + 2`. Whenever we get this particular value in JavaScript, there is no way to tell whether it’s accurate or not. Any calculation on integers outside the safe integer range (i.e. from `Number.MIN_SAFE_INTEGER` to `Number.MAX_SAFE_INTEGER`) potentially loses precision. For this reason, we can only rely on numeric integer values within the safe range.
+注意，`max + 1` 的结果与 `max + 2` 相同。每当我们在 JavaScript 中获得这个特定数值时，无法判断它是否准确。任何超出安全整数范围的整数运算（即从 `Number.MIN_SAFE_INTEGER` 到 `Number.MAX_SAFE_INTEGER` 之间）都有可能丢失精度。因此，我们只能依赖安全范围内的数字整数值。
 
-## The new hotness: `BigInt`
+## 新亮点：`BigInt`
 
-`BigInt`s are a new numeric primitive in JavaScript that can represent integers with [arbitrary precision](https://en.wikipedia.org/wiki/Arbitrary-precision_arithmetic). With `BigInt`s, you can safely store and operate on large integers even beyond the safe integer limit for `Number`s.
+`BigInt` 是 JavaScript 中的一种新型数字原始值，可以表示具有 [任意精度](https://en.wikipedia.org/wiki/Arbitrary-precision_arithmetic) 的整数。有了 `BigInt`，您可以安全地存储并操作即使超出 `Number` 安全整数限制的大整数。
 
-To create a `BigInt`, add the `n` suffix to any integer literal. For example, `123` becomes `123n`. The global `BigInt(number)` function can be used to convert a `Number` into a `BigInt`. In other words, `BigInt(123) === 123n`. Let’s use these two techniques to solve the problem we were having earlier:
+要创建一个 `BigInt`，只需在任意整数字面量后添加 `n` 后缀。例如，`123` 变为 `123n`。全局函数 `BigInt(number)` 可用于将一个 `Number` 转换为 `BigInt`。换句话说，`BigInt(123) === 123n`。让我们使用这两种技术来解决之前的问题：
 
 ```js
 BigInt(Number.MAX_SAFE_INTEGER) + 2n;
 // → 9_007_199_254_740_993n ✅
 ```
 
-Here’s another example, where we’re multiplying two `Number`s:
+这是另一个例子，我们正在将两个 `Number` 相乘：
 
 ```js
 1234567890123456789 * 123;
 // → 151851850485185200000 ❌
 ```
 
-Looking at the least significant digits, `9` and `3`, we know that the result of the multiplication should end in `7` (because `9 * 3 === 27`). However, the result ends in a bunch of zeroes. That can’t be right! Let’s try again with `BigInt`s instead:
+观察最低有效位的数字 `9` 和 `3`，我们知道乘法的结果应以 `7` 结尾（因为 `9 * 3 === 27`）。然而，结果以一串零结尾。这显然不对！让我们改用 `BigInt` 再试一次：
 
 ```js
 1234567890123456789n * 123n;
 // → 151851850485185185047n ✅
 ```
 
-This time we get the correct result.
+这次我们得到了正确的结果。
 
-The safe integer limits for `Number`s don’t apply to `BigInt`s. Therefore, with `BigInt` we can perform correct integer arithmetic without having to worry about losing precision.
+`Number`的安全整数限制不适用于`BigInt`。因此，使用`BigInt`我们可以执行正确的整数运算，而不用担心精度丢失。
 
-### A new primitive
+### 一个新的原始值类型
 
-`BigInt`s are a new primitive in the JavaScript language. As such, they get their own type that can be detected using the `typeof` operator:
+`BigInt`是JavaScript语言中的一种新原始值类型。因此，它有自己的类型，可以使用`typeof`运算符检测：
 
 ```js
 typeof 123;
@@ -97,7 +97,7 @@ typeof 123n;
 // → 'bigint'
 ```
 
-Because `BigInt`s are a separate type, a `BigInt` is never strictly equal to a `Number`, e.g. `42n !== 42`. To compare a `BigInt` to a `Number`, convert one of them into the other’s type before doing the comparison or use abstract equality (`==`):
+由于`BigInt`是一个独立的类型，因此`BigInt`严格来说永远不会等于`Number`，例如`42n !== 42`。要比较`BigInt`与`Number`，可以将其中一个转换为另一个的类型后再进行比较，或者使用抽象相等`==`：
 
 ```js
 42n === BigInt(42);
@@ -106,7 +106,7 @@ Because `BigInt`s are a separate type, a `BigInt` is never strictly equal to a `
 // → true
 ```
 
-When coerced into a boolean (which happens when using `if`, `&&`, `||`, or `Boolean(int)`, for example), `BigInt`s follow the same logic as `Number`s.
+在转换为布尔值时（例如使用`if`、`&&`、`||`或`Boolean(int)`），`BigInt`与`Number`遵循相同的逻辑。
 
 ```js
 if (0n) {
@@ -114,12 +114,12 @@ if (0n) {
 } else {
   console.log('else');
 }
-// → logs 'else', because `0n` is falsy.
+// → 输出 'else'，因为`0n`为假值。
 ```
 
-### Operators
+### 运算符
 
-`BigInt`s support the most common operators. Binary `+`, `-`, `*`, and `**` all work as expected. `/` and `%` work, and round towards zero as needed. Bitwise operations `|`, `&`, `<<`, `>>`, and `^` perform bitwise arithmetic assuming a [two’s complement representation](https://en.wikipedia.org/wiki/Two%27s_complement) for negative values, just like they do for `Number`s.
+`BigInt`支持最常见的运算符。二元`+`、`-`、`*`和`**`均如预期工作。`/`和`%`也可用，必要时向零舍入。位运算`|`、`&`、`<<`、`>>`和`^`进行位算术，假设使用[二的补码表示法](https://en.wikipedia.org/wiki/Two%27s_complement)处理负值，就像`Number`一样。
 
 ```js
 (7 + 6 - 5) * 4 ** 3 / 2 % 3;
@@ -128,18 +128,18 @@ if (0n) {
 // → 1n
 ```
 
-Unary `-` can be used to denote a negative `BigInt` value, e.g. `-42n`. Unary `+` is _not_ supported because it would break asm.js code which expects `+x` to always produce either a `Number` or an exception.
+一元`-`可用于表示负的`BigInt`值，例如`-42n`。但不支持一元`+`，因为这会破坏asm.js代码，它期望`+x`要么生成一个`Number`要么抛出异常。
 
-One gotcha is that it’s not allowed to mix operations between `BigInt`s and `Number`s. This is a good thing, because any implicit coercion could lose information. Consider this example:
+一个需要注意的是，不允许在`BigInt`和`Number`之间混合操作。这是一个好事，因为任何隐式强制转换都可能丢失信息。以下示例展示了这种情况：
 
 ```js
 BigInt(Number.MAX_SAFE_INTEGER) + 2.5;
 // → ?? 🤔
 ```
 
-What should the result be? There is no good answer here. `BigInt`s can’t represent fractions, and `Number`s can’t represent `BigInt`s beyond the safe integer limit. For that reason, mixing operations between `BigInt`s and `Number`s results in a `TypeError` exception.
+结果应该是什么？没有好的答案。`BigInt`无法表示分数，而`Number`无法表示超出安全整数限制的`BigInt`。因此，在`BigInt`和`Number`之间混合操作会导致`TypeError`异常。
 
-The only exception to this rule are comparison operators such as `===` (as discussed earlier), `<`, and `>=` – because they return booleans, there is no risk of precision loss.
+唯一的例外是比较运算符，例如`===`（如前所述），`<`和`>=`——因为它们返回布尔值，没有精度丢失的风险。
 
 ```js
 1 + 1n;
@@ -148,15 +148,15 @@ The only exception to this rule are comparison operators such as `===` (as discu
 // → true
 ```
 
-Because `BigInt`s and `Number`s generally don’t mix, please avoid overloading or magically “upgrading” your existing code to use `BigInt`s instead of `Number`s. Decide which of these two domains to operate in, and then stick to it. For _new_ APIs that operate on potentially large integers, `BigInt` is the best choice. `Number`s still make sense for integer values that are known to be in the safe integer range.
+由于`BigInt`和`Number`通常不能混合使用，请避免重载或魔法般“升级”现有代码以使用`BigInt`代替`Number`。选择其中一个领域进行操作，然后保持一致。对于操作潜在大整数的新API，`BigInt`是最佳选择。而对于已知在安全整数范围内的整数值，`Number`仍然是合理的选择。
 
-Another thing to note is that [the `>>>` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Unsigned_right_shift), which performs an unsigned right shift, does not make sense for `BigInt`s since they’re always signed. For this reason, `>>>` does not work for `BigInt`s.
+另一个需要注意的是，[`>>>`运算符](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Unsigned_right_shift)，执行无符号右移，对于始终有符号的`BigInt`来说没有意义。因此，`>>>`不适用于`BigInt`。
 
 ### API
 
-Several new `BigInt`-specific APIs are available.
+有一些新的`BigInt`特定API可用。
 
-The global `BigInt` constructor is similar to the `Number` constructor: it converts its argument into a `BigInt` (as mentioned earlier). If the conversion fails, it throws a `SyntaxError` or `RangeError` exception.
+全局`BigInt`构造函数类似于`Number`构造函数：它将其参数转换为`BigInt`（如前所述）。如果转换失败，则抛出`SyntaxError`或`RangeError`异常。
 
 ```js
 BigInt(123);
@@ -167,14 +167,14 @@ BigInt('1.5');
 // → SyntaxError
 ```
 
-The first of those examples passes a numeric literal to `BigInt()`. This is a bad practice, since `Number`s suffer from precision loss, and so we might already lose precision before the `BigInt` conversion happens:
+第一个示例中将数值字面量传递给`BigInt()`。这是一个糟糕的做法，因为`Number`存在精度丢失，可能在转换为`BigInt`之前就已经丢失了精度：
 
 ```js
 BigInt(123456789123456789);
 // → 123456789123456784n ❌
 ```
 
-For this reason, we recommend either sticking to the `BigInt` literal notation (with the `n` suffix), or passing a string (not a `Number`!) to `BigInt()` instead:
+因此，我们建议要么使用`BigInt`字面量表示法（带有`n`后缀），要么传递一个字符串（而不是`Number`！）给`BigInt()`：
 
 ```js
 123456789123456789n;
@@ -183,22 +183,22 @@ BigInt('123456789123456789');
 // → 123456789123456789n ✅
 ```
 
-Two library functions enable wrapping `BigInt` values as either signed or unsigned integers, limited to a specific number of bits. `BigInt.asIntN(width, value)` wraps a `BigInt` value to a `width`-digit binary signed integer, and `BigInt.asUintN(width, value)` wraps a `BigInt` value to a `width`-digit binary unsigned integer. If you’re doing 64-bit arithmetic for example, you can use these APIs to stay within the appropriate range:
+有两个库函数可以将`BigInt`值封装为、有符号或无符号整数，限制为特定位数。`BigInt.asIntN(width, value)`将一个`BigInt`值封装为`width`位二进制有符号整数，`BigInt.asUintN(width, value)`将其封装为`width`位二进制无符号整数。例如，如果进行64位算术运算，可以使用这些API保持在适当范围内：
 
 ```js
-// Highest possible BigInt value that can be represented as a
-// signed 64-bit integer.
+// 能够表示为64位有符号整数的最大BigInt值。
 const max = 2n ** (64n - 1n) - 1n;
 BigInt.asIntN(64, max);
-→ 9223372036854775807n
+// → 9223372036854775807n
 BigInt.asIntN(64, max + 1n);
 // → -9223372036854775808n
-//   ^ negative because of overflow
+//   ^ 因为溢出变为负数
 ```
 
-Note how overflow occurs as soon as we pass a `BigInt` value exceeding the 64-bit integer range (i.e. 63 bits for the absolute numeric value + 1 bit for the sign).
 
-`BigInt`s make it possible to accurately represent 64-bit signed and unsigned integers, which are commonly used in other programming languages. Two new typed array flavors, `BigInt64Array` and `BigUint64Array`, make it easier to efficiently represent and operate on lists of such values:
+注意，当我们传递一个超出64位整数范围（即绝对数值为63位+1位符号位）的 `BigInt` 值时，溢出会立即发生。
+
+`BigInt` 可以准确表示常用于其他编程语言中的64位有符号和无符号整数。两种新的类型数组形式，`BigInt64Array` 和 `BigUint64Array`，使得高效表示和操作此类值的列表变得更容易：
 
 ```js
 const view = new BigInt64Array(4);
@@ -212,11 +212,10 @@ view[0];
 // → 42n
 ```
 
-The `BigInt64Array` flavor ensures that its values remain within the signed 64-bit limit.
+`BigInt64Array` 类型确保其值保持在有符号64位限制内。
 
 ```js
-// Highest possible BigInt value that can be represented as a
-// signed 64-bit integer.
+// 可以表示为有符号64位整数的最高可能的 BigInt 值。
 const max = 2n ** (64n - 1n) - 1n;
 view[0] = max;
 view[0];
@@ -224,20 +223,20 @@ view[0];
 view[0] = max + 1n;
 view[0];
 // → -9_223_372_036_854_775_808n
-//   ^ negative because of overflow
+//   ^ 因为溢出而变为负数
 ```
 
-The `BigUint64Array` flavor does the same using the unsigned 64-bit limit instead.
+`BigUint64Array` 类型则使用无符号64位限制来做相同操作。
 
-## Polyfilling and transpiling BigInts
+## Polyfill 和转换 BigInt
 
-At the time of writing, `BigInt`s are only supported in Chrome. Other browsers are actively working on implementing them. But what if you want to use `BigInt` functionality *today* without sacrificing browser compatibility? I’m glad you asked! The answer is… interesting, to say the least.
+在撰写本文时，`BigInt` 仅在 Chrome 中支持。其他浏览器正在积极实现该功能。但是如果你希望 *今天* 使用 `BigInt` 功能而不牺牲浏览器兼容性，该怎么办？我很高兴你问了！答案可以说是…相当有趣。
 
-Unlike most other modern JavaScript features, `BigInt`s cannot reasonably be transpiled down to ES5.
+与其他现代 JavaScript 特性不同，`BigInt` 不可能合理地转换为 ES5。
 
-The `BigInt` proposal [changes the behavior of operators](#operators) (like `+`, `>=`, etc.) to work on `BigInt`s. These changes are impossible to polyfill directly, and they are also making it infeasible (in most cases) to transpile `BigInt` code to fallback code using Babel or similar tools. The reason is that such a transpilation would have to replace *every single operator* in the program with a call to some function that performs type checks on its inputs, which would incur an unacceptable run-time performance penalty. In addition, it would greatly increase the file size of any transpiled bundle, negatively impacting download, parse, and compile times.
+`BigInt` 提案 [改变了运算符的行为](#operators)（比如 `+`, `>=` 等），以支持 `BigInt`。这些改变无法直接 Polyfill，也使得在大多数情况下使用 Babel 或类似工具将 `BigInt` 代码转换为回退代码变得不可行。原因是这样的转换必须替换程序中的 *每一个运算符* 为调用某个函数以对输入执行类型检查，这会导致无法接受的运行时性能损失。此外，它会极大地增加任何转换后的代码包的文件大小，负面影响下载、解析和编译时间。
 
-A more feasible and future-proof solution is to write your code using [the JSBI library](https://github.com/GoogleChromeLabs/jsbi#why) for now. JSBI is a JavaScript port of the `BigInt` implementation in V8 and Chrome — by design, it behaves exactly like the native `BigInt` functionality. The difference is that instead of relying on syntax, it exposes [an API](https://github.com/GoogleChromeLabs/jsbi#how):
+一个更可行且具有前瞻性的解决方案是暂时使用 [JSBI 库](https://github.com/GoogleChromeLabs/jsbi#why) 编写代码。JSBI 是 `BigInt` 在 V8 和 Chrome 中实现的 JavaScript 移植版 — 它在设计上完全像原生 `BigInt` 功能一样工作。不同之处在于，它不是依赖语法，而是暴露 [API](https://github.com/GoogleChromeLabs/jsbi#how)：
 
 ```js
 import JSBI from './jsbi.mjs';
@@ -249,7 +248,7 @@ console.log(result.toString());
 // → '9007199254740993'
 ```
 
-Once `BigInt`s are natively supported in all browsers you care about, you can [use `babel-plugin-transform-jsbi-to-bigint` to transpile your code to native `BigInt` code](https://github.com/GoogleChromeLabs/babel-plugin-transform-jsbi-to-bigint) and drop the JSBI dependency. For example, the above example transpiles to:
+一旦所有你关心的浏览器原生支持了 `BigInt`，你可以 [使用 `babel-plugin-transform-jsbi-to-bigint` 将代码转换为原生的 `BigInt` 代码](https://github.com/GoogleChromeLabs/babel-plugin-transform-jsbi-to-bigint)，然后移除 JSBI 依赖。例如，上述代码可以被转换为：
 
 ```js
 const max = BigInt(Number.MAX_SAFE_INTEGER);
@@ -259,11 +258,11 @@ console.log(result);
 // → '9007199254740993'
 ```
 
-## Further reading
+## 拓展阅读
 
-If you’re interested in how `BigInt`s work behind the scenes (e.g. how they are represented in memory, and how operations on them are performed), [read our V8 blog post with implementation details](/blog/bigint).
+如果你对 `BigInt` 在幕后如何工作（例如，它们在内存中的表示方式，以及如何执行操作）感兴趣，[阅读我们关于实现细节的 V8 博客文章](/blog/bigint)。
 
-## `BigInt` support
+## `BigInt` 支持
 
 <feature-support chrome="67 /blog/bigint"
                  firefox="68 https://wingolog.org/archives/2019/05/23/bigint-shipping-in-firefox"

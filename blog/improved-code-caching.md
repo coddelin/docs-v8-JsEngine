@@ -1,49 +1,49 @@
 ---
-title: "Improved code caching"
-author: "Mythri Alle, Chief Code Cacher"
+title: "改进的代码缓存"
+author: "Mythri Alle，首席代码缓存官"
 date: "2018-04-24 13:33:37"
 avatars: 
   - "mythri-alle"
 tags: 
   - internals
 tweet: "988728000677142528"
-description: "Starting with Chrome 66, V8 caches more (byte)code by generating the cache after top-level execution."
+description: "从 Chrome 66 开始，V8通过在顶层执行后生成缓存，缓存了更多的（字节）代码。"
 ---
-V8 uses [code caching](/blog/code-caching) to cache the generated code for frequently-used scripts. Starting with Chrome 66, we are caching more code by generating the cache after top-level execution. This leads to a 20–40% reduction in parse and compilation time during the initial load.
+V8 使用 [代码缓存](/blog/code-caching) 为频繁使用的脚本缓存生成的代码。从 Chrome 66 开始，我们通过在顶层执行后生成缓存，缓存了更多代码。这使初次加载时的解析和编译时间减少了 20–40%。
 
 <!--truncate-->
-## Background
+## 背景
 
-V8 uses two kinds of code caching to cache generated code to be reused later. The first is the in-memory cache that is available within each instance of V8. The code generated after the initial compile is stored into this cache, keyed on the source string. This is available for reuse within the same instance of V8. The other kind of code caching serializes the generated code and stores it on disk for future use. This cache is not specific to a particular instance of V8 and can be used across different instances of V8. This blog post focuses on this second kind of code caching as used in Chrome. (Other embedders also use this kind of code caching; it’s not limited to Chrome. However, this blog post only focuses on the usage in Chrome.)
+V8 使用两种代码缓存方式来缓存生成的代码，以供以后重复使用。第一种是内存缓存，每个 V8 实例内都可用。初次编译后生成的代码会存储到这个缓存中，并以源字符串为键。这个缓存可以在同一个 V8 实例内重复使用。另一种代码缓存会将生成的代码序列化并存储到磁盘上以供将来使用。这种缓存并不限于某个特定的 V8 实例，可以跨不同的 V8 实例使用。本博文重点介绍 Chrome 中使用的第二种代码缓存方式。（其他嵌入式应用也使用这种代码缓存方式，并不限于 Chrome。然而，这篇博文仅关注 Chrome 中的使用情况。）
 
-Chrome stores the serialized generated code onto the disk cache and keys it with the URL of the script resource. When loading a script, Chrome checks the disk cache. If the script is already cached, Chrome passes the serialized data to V8 as a part of compile request. V8 then deserializes this data instead of parsing and compiling the script. There are also additional checks involved to ensure that the code is still usable (for example: a version mismatch makes the cached data unusable).
+Chrome 将序列化的生成代码存储到磁盘缓存中，并以脚本资源的 URL 为键。当加载脚本时，Chrome 会检查磁盘缓存。如果脚本已被缓存，Chrome 会在编译请求中向 V8 传递序列化数据。随后，V8 反序列化这些数据，而不是解析和编译脚本。同时还会进行额外检查以确保代码仍然可用（例如：版本不匹配会导致缓存数据无法使用）。
 
-Real-world data shows that the code cache hit rates (for scripts that could be cached) is high (~86%). Though the cache hit rates are high for these scripts, the amount of code we cache per script is not very high. Our analysis showed that increasing the amount of code that is cached would reduce the time spent in parsing and compiling JavaScript code by around 40%.
+现实数据表明，对于可以缓存的脚本，代码缓存命中率很高（约 86%）。虽然这些脚本的缓存命中率很高，但我们为每个脚本缓存的代码量并不是很高。我们的分析表明，增加缓存代码量可以将 JavaScript 代码解析和编译所需的时间减少约 40%。
 
-## Increasing the amount of code that is cached
+## 增加缓存代码量
 
-In the previous approach, code caching was coupled with the requests to compile the script.
+之前的方法中，代码缓存与请求编译脚本的操作耦合在一起。
 
-Embedders could request that V8 serialize the code it generated during its top-level compilation of a new JavaScript source file. V8 returned the serialized code after compiling the script. When Chrome requests the same script again, V8 fetches the serialized code from the cache and deserializes it. V8 completely avoids recompiling functions that are already in the cache. These scenarios are shown in the following figure:
+嵌入式应用可以请求 V8 序列化其对新 JavaScript 源文件执行顶层编译时生成的代码。V8 在编译脚本后返回序列化代码。当 Chrome 再次请求相同的脚本时，V8 会从缓存中提取序列化代码并反序列化它。对于已经在缓存中的函数，V8 可以完全避免重新编译。以下图示展示了这些场景：
 
 ![](/_img/improved-code-caching/warm-hot-run-1.png)
 
-V8 only compiles the functions that are expected to be immediately executed (IIFEs) during the top-level compile and marks other functions for lazy compilation. This helps improve page load times by avoiding compiling functions that are not required, however it means that the serialized data only contains the code for the functions that are eagerly compiled.
+V8 在顶层编译时仅编译预计会立即执行的函数（IIFE），并将其他函数标记为懒编译。这通过避免编译不需要的函数来提高页面加载时间，但这意味着序列化数据仅包含那些被积极编译的函数的代码。
 
-Prior to Chrome 59, we had to generate the code cache before any execution has started. The earlier baseline compiler of V8 (Full-codegen) generates specialized code for the execution context. Full-codegen used code patching to fast-path operations for the specific execution context. Such code cannot be serialized easily by removing the context specific data to be used in other execution contexts.
+在 Chrome 59 之前，我们必须在开始执行之前生成代码缓存。V8 之前的基线编译器（Full-codegen）为执行上下文生成专用代码。Full-codegen 使用代码修补操作对特定执行上下文的操作进行快速处理。这样的代码无法轻易通过去除上下文特定的数据来序列化，以供其他执行上下文使用。
 
-With [the launch of Ignition](/blog/launching-ignition-and-turbofan) in Chrome 59, this restriction is no longer necessary. Ignition uses [data-driven inline caches](https://www.youtube.com/watch?v=u7zRSm8jzvA) to fast-path operations in the current execution context. The context-dependent data is stored in feedback vectors and is separate from the generated code. This has opened the possibility of generating code caches even after the execution of the script. As we execute the script, more functions (that were marked for lazy compile) are compiled, allowing us to cache more code.
+随着 [Ignition 的推出](/blog/launching-ignition-and-turbofan)，自 Chrome 59 起这种限制不再存在。Ignition 使用 [数据驱动内联缓存](https://www.youtube.com/watch?v=u7zRSm8jzvA) 对当前执行上下文的操作进行快速处理。上下文相关的数据存储在反馈向量中，与生成的代码分离。这使得即使在脚本执行之后也能够生成代码缓存成为可能。随着脚本的执行，更多函数（此前标记为懒编译）被编译，这让我们能够缓存更多代码。
 
-V8 exposes a new API, `ScriptCompiler::CreateCodeCache`, to request code caches independent of the compile requests. Requesting code caches along with compile requests is deprecated and would not work in V8 v6.6 onwards. Since version 66, Chrome uses this API to request the code cache after the top-level execute. The following figure shows the new scenario of requesting the code cache. The code cache is requested after the top level execute and hence contains the code for functions that were compiled later during the execution of the script. In the later runs (shown as hot runs in the following figure), it avoids compilation of functions during top level execute.
+V8公开了一个新的API，`ScriptCompiler::CreateCodeCache`，用于请求独立于编译请求的代码缓存。随着编译请求一起请求代码缓存的方式已被弃用，并且在V8 v6.6之后将无法使用。从66版本开始，Chrome使用此API在顶级执行后请求代码缓存。下图显示了请求代码缓存的新场景。代码缓存在顶级执行之后请求，因此包含了脚本执行期间后续编译的函数代码。在后续运行（如下图所示的热点运行）中，它避免了在顶级执行期间对函数的编译。
 
 ![](/_img/improved-code-caching/warm-hot-run-2.png)
 
-## Results
+## 结果
 
-The performance of this feature is measured using our internal [real-world benchmarks](https://cs.chromium.org/chromium/src/tools/perf/page_sets/v8_top_25.py?q=v8.top&sq=package:chromium&l=1). The following graph shows the reduction in the parse and compile time over the earlier caching scheme. There is a reduction of around 20–40% in both parse and compilation time on most of the pages.
+此功能的性能使用我们内部的[真实世界基准](https://cs.chromium.org/chromium/src/tools/perf/page_sets/v8_top_25.py?q=v8.top&sq=package:chromium&l=1)进行了测量。下图显示了与早期缓存方案相比解析和编译时间的减少。在大多数页面上解析和编译时间减少了大约20–40%。
 
 ![](/_img/improved-code-caching/parse.png)
 
 ![](/_img/improved-code-caching/compile.png)
 
-Data from the wild shows similar results with a 20–40% reduction in the time spent in compiling JavaScript code both on desktop and mobile. On Android, this optimization also translates to a 1–2% reduction in the top-level page-load metrics like the time a webpage takes to become interactive. We also monitored the memory and disk usage of Chrome and did not see any noticeable regressions.
+来自实际使用的数据也显示了类似的结果，在桌面和移动设备上减少了JavaScript代码编译时间约20–40%。在Android上，这项优化还带来了像网页变为可交互状态所需时间的顶级页面加载指标减少1–2%的效果。我们还监控了Chrome的内存和磁盘使用情况，并未发现任何明显的回归。

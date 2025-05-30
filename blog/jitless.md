@@ -1,48 +1,48 @@
 ---
-title: "JIT-less V8"
+title: "无即时编译的 V8"
 author: "Jakob Gruber ([@schuay](https://twitter.com/schuay))"
 avatars: 
   - "jakob-gruber"
 date: "2019-03-13 13:03:19"
 tags: 
-  - internals
-description: "V8 v7.4 supports JavaScript execution without allocating executable memory at runtime."
+  - 内部结构
+description: "V8 v7.4 支持在运行时不分配可执行内存的情况下执行 JavaScript。"
 tweet: "1105777150051999744"
 ---
-V8 v7.4 now supports JavaScript execution without allocating executable memory at runtime.
+V8 v7.4 现在支持在运行时不分配可执行内存的情况下执行 JavaScript。
 
-In its default configuration, V8 relies heavily on the ability to allocate and modify executable memory at runtime. For example, the [TurboFan optimizing compiler](/blog/turbofan-jit) creates native code for hot JavaScript (JS) functions just-in-time, and most JS regular expressions are compiled down to native code by the [irregexp engine](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html). Creating executable memory at runtime is part of what makes V8 fast.
+在默认配置中，V8 强烈依赖运行时分配和修改可执行内存的能力。例如，[TurboFan 优化编译器](/blog/turbofan-jit)会即时为热点 JavaScript (JS) 函数生成本机代码，而大多数 JS 正则表达式是通过 [irregexp 引擎](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html) 编译成本机代码的。在运行时创建可执行内存是使 V8 快速的重要原因之一。
 
 <!--truncate-->
-But in some situations it can be desirable to run V8 without allocating executable memory:
+但在某些情况下，在不分配可执行内存的情况下运行 V8 是有利的：
 
-1. Some platforms (e.g. iOS, smart TVs, game consoles) prohibit write access to executable memory for non-privileged applications, and it has thus been impossible to use V8 there so far; and
-1. disallowing writes to executable memory reduces the attack surface of the application for exploits.
+1. 一些平台（例如 iOS、智能电视、游戏机）禁止非特权应用程序写入可执行内存，因此目前无法在这些平台上使用 V8；并且
+1. 禁止写入可执行内存可以减少应用程序被攻击的风险面。
 
-V8’s new JIT-less mode is intended to address these points. When V8 is started with the `--jitless` flag, V8 runs without any runtime allocation of executable memory.
+V8 的新无即时编译模式旨在解决这些问题。当 V8 使用 `--jitless` 标志启动时，它将在没有任何运行时分配可执行内存的情况下运行。
 
-How does it work? Essentially, V8 switches into an interpreter-only mode based on our existing technology: all JS user code runs through the [Ignition interpreter](/blog/ignition-interpreter), and regular expression pattern matching is likewise interpreted. WebAssembly is currently unsupported, but interpretation is also in the realm of possibility. V8’s builtins are still compiled to native code, but are no longer part of the managed JS heap, thanks to our recent efforts to [embed them into the V8 binary](/blog/embedded-builtins).
+它是如何工作的呢？本质上，V8 切换到基于现有技术的仅解释器模式：所有的 JS 用户代码都通过 [Ignition 解释器](/blog/ignition-interpreter) 运行，正则表达式模式匹配同样被解释执行。目前 WebAssembly 尚不支持，但解释的可能性仍然存在。V8 的内建功能仍被编译为本机代码，但由于我们最近的努力将其 [嵌入到 V8 二进制文件中](/blog/embedded-builtins)，它们不再是托管的 JS 堆的一部分。
 
-Ultimately, these changes allowed us to create V8’s heap without requiring executable permissions for any of its memory regions.
+最终，这些变化让我们得以创建一个不需要任何内存区域拥有可执行权限的 V8 堆。
 
-## Results
+## 结果
 
-Since JIT-less mode disables the optimizing compiler, it comes with a performance penalty. We looked at a variety of benchmarks to better understand how V8’s performance characteristics change. [Speedometer 2.0](/blog/speedometer-2) is intended to represent a typical web application; the [Web Tooling Benchmark](/blog/web-tooling-benchmark) includes a set of common JS developer tools; and we also include a benchmark that simulates a [browsing workflow on the Living Room YouTube app](https://chromeperf.appspot.com/report?sid=518c637ffa0961f965afe51d06979375467b12b87e72061598763e5a36876306). All measurements were made locally on an x64 Linux desktop over 5 runs.
+由于无即时编译模式禁用了优化编译器，因此它会带来性能损失。我们查看了各种基准测试以更好地理解 V8 的性能特征变化。[Speedometer 2.0](/blog/speedometer-2) 旨在代表典型的 Web 应用程序；[Web Tooling Benchmark](/blog/web-tooling-benchmark) 包含了一组常见的 JS 开发工具；我们还包括一个模拟 [客厅 YouTube 应用的浏览工作流程](https://chromeperf.appspot.com/report?sid=518c637ffa0961f965afe51d06979375467b12b87e72061598763e5a36876306) 的基准测试。所有测量均在 x64 Linux 桌面上本地完成，并运行了 5 次。
 
-![JIT-less vs. default V8. Scores are normalized to 100 for V8’s default configuration.](/_img/jitless/benchmarks.svg)
+![无即时编译与默认 V8 的性能对比。得分归一化为 V8 默认配置的 100。](/_img/jitless/benchmarks.svg)
 
-Speedometer 2.0 is around 40% slower in JIT-less mode. Roughly half of the regression can be attributed to the disabled optimizing compiler. The other half is caused by the regular expression interpreter, which was originally intended as a debugging aid, and will see performance improvements in the future.
+在无即时编译模式下，Speedometer 2.0 的性能约降低了 40%。大约一半的回归归因于禁用了优化编译器。另一半则是由于正则表达式解释器，原本是作为调试工具设计的，并将在未来看到性能改进。
 
-The Web Tooling Benchmark tends to spend more time in TurboFan-optimized code and thus shows a larger regression of 80% when JIT-less mode is enabled.
+Web Tooling Benchmark 更倾向于在 TurboFan 优化代码中花费更多时间，因此在启用无即时编译模式时显示了 80% 的更大回归。
 
-Finally, we measured a simulated browsing session on the Living Room YouTube app which includes both video playback and menu navigation. Here, JIT-less mode is roughly on-par and only shows a 6% slowdown in JS execution compared to a standard V8 configuration. This benchmark demonstrates how peak optimized code performance is not always correlated to [real-world performance](/blog/real-world-performance), and in many situations embedders can maintain reasonable performance even in JIT-less mode.
+最后，我们测量了在客厅 YouTube 应用中的模拟浏览会话，包括视频播放和菜单导航。在这里，无即时编译模式表现大致相当，仅表现出比标准 V8 配置慢 6% 的 JS 执行速度减缓。该基准测试显示，代码的峰值优化性能并不总是与[实际使用性能](/blog/real-world-performance)相关联，并且在许多情况下，嵌入者即使在无即时编译模式下也能保持合理的性能。
 
-Memory consumption only changed slightly, with a median of 1.7% decrease of V8’s heap size for loading a representative set of websites.
+内存消耗仅略有变化，对于加载一组具有代表性的网站，V8 堆大小的中位数减少了 1.7%。
 
-We encourage embedders on restricted platforms or with special security requirements to consider V8’s new JIT-less mode, available now in V8 v7.4. As always, questions and feedback are welcome at the [v8-users](https://groups.google.com/forum/#!forum/v8-users) discussion group.
+我们鼓励在受限平台或具有特殊安全需求的嵌入者考虑 V8 的新无即时编译模式，该模式现已在 V8 v7.4 中提供。与往常一样，欢迎在 [v8-users](https://groups.google.com/forum/#!forum/v8-users) 讨论组中提出问题和反馈。
 
-## FAQ
+## 常见问题
 
-*What’s the difference between `--jitless` and `--no-opt`?*
+*`--jitless` 与 `--no-opt` 有何区别？*
 
-`--no-opt` disables the TurboFan optimizing compiler. `--jitless` disables all runtime allocation of executable memory.
+`--no-opt` 禁用 TurboFan 优化编译器。而 `--jitless` 则禁用了运行时对可执行内存的任何分配。

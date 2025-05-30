@@ -1,21 +1,21 @@
 ---
-title: "V8 release v4.8"
-author: "the V8 team"
+title: "V8 发布 v4.8"
+author: "V8 团队"
 date: "2015-11-25 13:33:37"
 tags: 
-  - release
-description: "V8 v4.8 adds support for several new ES2015 language features."
+  - 发布
+description: "V8 v4.8 增加了对几个新的 ES2015 语言特性的支持。"
 ---
-Roughly every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before Chrome branches for a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 4.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.8), which will be in beta until it is released in coordination with Chrome 48 Stable. V8 4.8 contains a handful of developer-facing features, so we’d like to give you a preview of some of the highlights in anticipation of the release in several weeks.
+大约每六周，我们会按照我们的[发布流程](/docs/release-process)创建一个新的 V8 分支。每个版本都直接从 V8 的 Git 主分支分支出来，时间点正好是 Chrome 分支用于 Chrome Beta 里程碑之前。今天我们很高兴地宣布我们的最新分支 [V8 版本 4.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.8)，该版本将在与 Chrome 48 稳定版同步发布之前处于测试阶段。V8 4.8 包含一些面向开发者的功能，下面我们将为即将发布的几个星期内的亮点功能做一个预览。
 
 <!--truncate-->
-## Improved ECMAScript 2015 (ES6) support
+## 改进的 ECMAScript 2015 (ES6) 支持
 
-This release of V8 provides support for two [well-known symbols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol#Well-known_symbols), built-in symbols from the ES2015 spec that allow developers to leverage several low-level language constructs which were previously hidden.
+此次发布的 V8 提供了对两个[知名符号](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol#Well-known_symbols)的支持，它们是 ES2015 规范中内置的符号，可以让开发者利用一些之前隐藏的底层语言结构。
 
 ### `@@isConcatSpreadable`
 
-The name for a boolean-valued property that if `true` indicates an object should be flattened to its array elements by `Array.prototype.concat`.
+一个布尔值属性的名称，如果为 `true`，表示对象在 `Array.prototype.concat` 中应该被展开为它的数组元素。
 
 ```js
 (function() {
@@ -30,14 +30,14 @@ The name for a boolean-valued property that if `true` indicates an object should
   second[0] = 2;
   second[1] = 3;
   const all = first.concat(second);
-  // Outputs [1, 2, 3]
+  // 输出 [1, 2, 3]
   console.log(all);
 }());
 ```
 
 ### `@@toPrimitive`
 
-The name for a method to invoke on an object for implicit conversions to primitive values.
+一个方法名称，用于在对象进行隐式转换为原始值时调用。
 
 ```js
 (function(){
@@ -65,10 +65,10 @@ The name for a method to invoke on an object for implicit conversions to primiti
 
 ### `ToLength`
 
-The ES2015 spec adjusts the abstract operation for type conversion to convert an argument to an integer suitable for use as the length of an array-like object. (While not directly observable, this change might be indirectly visible when dealing with array-like objects with negative length.)
+ES2015 规范调整了类型转换的抽象操作，将参数转换为适用于作为类似数组对象长度的整数。（虽然无法直接观察到该变化，但在处理具有负长度的类似数组对象时可能会间接可见。）
 
 ## V8 API
 
-Please check out our [summary of API changes](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit). This document gets regularly updated a few weeks after each major release.
+请查看我们的[API 更改摘要](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit)。该文档在每次主要版本发布后的几周内会定期更新。
 
-Developers with an [active V8 checkout](https://v8.dev/docs/source-code#using-git) can use `git checkout -b 4.8 -t branch-heads/4.8` to experiment with the new features in V8 v4.8. Alternatively you can [subscribe to Chrome's Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+拥有[活跃 V8 检出](https://v8.dev/docs/source-code#using-git)的开发者可以使用 `git checkout -b 4.8 -t branch-heads/4.8` 来试验 V8 v4.8 中的新功能。或者，您也可以[订阅 Chrome 的 Beta 通道](https://www.google.com/chrome/browser/beta.html)，很快自己尝试新功能。

@@ -1,5 +1,5 @@
 ---
-title: "Weak references and finalizers"
+title: "弱引用和终结器"
 author: "Sathya Gunasekaran ([@_gsathya](https://twitter.com/_gsathya)), Mathias Bynens ([@mathias](https://twitter.com/mathias)), Shu-yu Guo ([@_shu](https://twitter.com/_shu)), and Leszek Swirski ([@leszekswirski](https://twitter.com/leszekswirski))"
 avatars: 
 - "sathya-gunasekaran"
@@ -13,18 +13,17 @@ tags:
   - ES2021
   - io19
   - Node.js 14
-description: "Weak references and finalizers are coming to JavaScript! This article explains the new functionality."
+description: "弱引用和终结器即将在 JavaScript 中实现！本文解释了这一新功能。"
 tweet: "1148603966848151553"
 ---
-Generally, references to objects are _strongly held_ in JavaScript, meaning that as long you have a reference to the object, it won’t be garbage-collected.
+一般来说，JavaScript 中对象的引用是_强引用_，这意味着只要你有对对象的引用，它就不会被垃圾回收。
 
 ```js
 const ref = { x: 42, y: 51 };
-// As long as you have access to `ref` (or any other reference to the
-// same object), the object won’t be garbage-collected.
+// 只要你可以访问到 `ref`（或其他对同一对象的引用），这个对象就不会被垃圾回收。
 ```
 
-Currently, `WeakMap`s and `WeakSet`s are the only way to kind-of-weakly reference an object in JavaScript: adding an object as a key to a `WeakMap` or `WeakSet` doesn’t prevent it from being garbage-collected.
+目前，`WeakMap` 和 `WeakSet` 是在 JavaScript 中以某种方式弱引用对象的唯一方式：将一个对象作为键添加到 `WeakMap` 或 `WeakSet` 中不会阻止它被垃圾回收。
 
 ```js
 const wm = new WeakMap();
@@ -35,9 +34,7 @@ const wm = new WeakMap();
   wm.get(ref);
   // → metaData
 }
-// We no longer have a reference to `ref` in this block scope, so it
-// can be garbage-collected now, even though it’s a key in `wm` to
-// which we still have access.
+// 我们在这个代码块作用域中不再拥有对 `ref` 的引用，因此它现在可以被垃圾回收，尽管它是 `wm` 中的一个键，而我们仍然可以访问到 `wm`。
 
 <!--truncate-->
 const ws = new WeakSet();
@@ -47,20 +44,18 @@ const ws = new WeakSet();
   ws.has(ref);
   // → true
 }
-// We no longer have a reference to `ref` in this block scope, so it
-// can be garbage-collected now, even though it’s a key in `ws` to
-// which we still have access.
+// 我们在这个代码块作用域中不再拥有对 `ref` 的引用，因此它现在可以被垃圾回收，尽管它是 `ws` 中的一个键，而我们仍然可以访问到 `ws`。
 ```
 
 :::note
-**Note:** You can think of `WeakMap.prototype.set(ref, metaData)` as adding a property with the value `metaData` to the object `ref`: as long as you have a reference to the object, you can get the metadata. Once you no longer have a reference to the object, it can be garbage-collected, even if you still have a reference to the `WeakMap` to which it was added. Similarly, you can think of a `WeakSet` as a special case of `WeakMap` where all the values are booleans.
+**注意：** 你可以将 `WeakMap.prototype.set(ref, metaData)` 看作是在对象 `ref` 上添加了一个值为 `metaData` 的属性：只要你有对这个对象的引用，你就可以获取到元数据。一旦你不再拥有对该对象的引用，即使你仍然拥有对添加对象的 `WeakMap` 的引用，它也可以被垃圾回收。同样，你可以将 `WeakSet` 视为 `WeakMap` 的一种特殊情况，所有的值都是布尔值。
 
-A JavaScript `WeakMap` is not really _weak_: it actually refers _strongly_ to its contents as long as the key is alive. The `WeakMap` only refers weakly to its contents once the key is garbage-collected. A more accurate name for this kind of relationship is [_ephemeron_](https://en.wikipedia.org/wiki/Ephemeron).
+一个 JavaScript `WeakMap` 并不是真正的_弱引用_：只要键还存在，它实际上是_强引用_其内容的。一旦键被垃圾回收，`WeakMap` 才会弱引用其内容。这种关系的更准确名称是 [_ephemeron_](https://en.wikipedia.org/wiki/Ephemeron)。
 :::
 
-`WeakRef` is a more advanced API that provides _actual_ weak references, enabling a window into the lifetime of an object. Let’s walk through an example together.
+`WeakRef` 是一个更高级的 API，它提供了_真正的_弱引用，使我们能够观察对象的生命周期。让我们一起通过一个例子来了解它。
 
-For the example, suppose we’re working on a chat web application that uses web sockets to communicate with a server. Imagine a `MovingAvg` class that, for performance diagnostic purposes, keeps a set of events from a web socket in order to compute a simple moving average of the latency.
+在这个例子中，假设我们正在开发一个使用 WebSocket 与服务器通信的聊天网页应用程序。假设有一个 `MovingAvg` 类，它为性能诊断目的保留了一组来自 WebSocket 的事件，以计算简单移动平均的延迟。
 
 ```js
 class MovingAvg {
@@ -72,13 +67,13 @@ class MovingAvg {
   }
 
   compute(n) {
-    // Compute the simple moving average for the last n events.
+    // 计算最近 n 个事件的简单移动平均值。
     // …
   }
 }
 ```
 
-It is used by a `MovingAvgComponent` class that lets you control when to start and stop monitoring the simple moving average of the latency.
+它被一个 `MovingAvgComponent` 类使用，该类可以控制何时开始和停止观察延迟的简单移动平均值。
 
 ```js
 class MovingAvgComponent {
@@ -91,32 +86,32 @@ class MovingAvgComponent {
   }
 
   stop() {
-    // Allow the garbage collector to reclaim memory.
+    // 允许垃圾回收器回收内存。
     this.movingAvg = null;
   }
 
   render() {
-    // Do rendering.
+    // 做一些渲染。
     // …
   }
 }
 ```
 
-We know that keeping all the server messages inside an instance `MovingAvg` uses a lot of memory, so we take care to null out `this.movingAvg` when monitoring is stopped to let the garbage collector reclaim memory.
+我们知道，在 `MovingAvg` 实例中保留所有的服务器消息会占用大量内存，因此在监视停止时，我们会将 `this.movingAvg` 置为 null，以便垃圾回收器回收内存。
 
-However, after checking in the memory panel in DevTools, we found out that memory was not being reclaimed at all! The seasoned web developer may have already spotted the bug: event listeners are strong references and must be explicitly removed.
+然而，在 DevTools 的内存面板中检查后，我们发现内存根本没有被回收！经验丰富的网页开发人员可能已经发现了问题所在：事件监听器是强引用，必须显式移除它们。
 
-Let’s make this explicit with reachability diagrams. After calling `start()`, our object graph looks like the following, where a solid arrow means a strong reference. Everything reachable via solid arrows from the `MovingAvgComponent` instance is not garbage-collectible.
+让我们通过可达性图来使这个问题更加清晰。在调用 `start()` 之后，我们的对象图如下图所示，实心箭头表示强引用。从 `MovingAvgComponent` 实例通过实心箭头可达的所有内容都不会被垃圾回收。
 
 ![](/_img/weakrefs/after-start.svg)
 
-After calling `stop()`, we’ve removed the strong reference from the `MovingAvgComponent` instance to the `MovingAvg` instance, but not via the socket’s listener.
+在调用 `stop()` 之后，我们从 `MovingAvgComponent` 实例到 `MovingAvg` 实例的强引用被移除了，但没有移除通过 WebSocket 的监听器的引用。
 
 ![](/_img/weakrefs/after-stop.svg)
 
-Thus, the listener in `MovingAvg` instances, by referencing `this`, keeps the whole instance alive as long as the event listener isn't removed.
+因此，`MovingAvg` 实例中的监听器通过引用 `this`，只要事件监听器未移除，就会使整个实例保持存活。
 
-Until now, the solution is to manually unregister the event listener via a `dispose` method.
+到目前为止，解决方案是通过一个 `dispose` 方法手动取消注册事件监听器。
 
 ```js
 class MovingAvg {
@@ -135,9 +130,9 @@ class MovingAvg {
 }
 ```
 
-The downside to this approach is that it is manual memory management. `MovingAvgComponent`, and all other users of the `MovingAvg` class, must remember to call `dispose` or suffer memory leaks. What’s worse, manual memory management is cascading: users of `MovingAvgComponent` must remember to call `stop` or suffer memory leaks, so on and so forth. The application behavior doesn’t depend on the event listener of this diagnostic class, and the listener is expensive in terms of memory use but not in computation. What we really want is for the listener’s lifetime to be logically tied to the `MovingAvg` instance, so that `MovingAvg` could be used like any other JavaScript object whose memory is automatically reclaimed by the garbage collector.
+这种方法的缺点是需要手动管理内存。`MovingAvgComponent` 和所有其他使用 `MovingAvg` 类的用户必须记得调用 `dispose`，否则会导致内存泄漏。更糟糕的是，手动内存管理是级联的：`MovingAvgComponent` 的用户必须记得调用 `stop`，否则会发生内存泄漏，以此类推。应用程序的行为并不依赖这个诊断类的事件监听器，并且监听器在内存使用方面成本较高，但不是在计算方面。我们真正需要的是让监听器的生命周期在逻辑上与 `MovingAvg` 实例绑定，这样 `MovingAvg` 可以像其他 JavaScript 对象一样使用，由垃圾收集器自动回收内存。
 
-`WeakRef`s make it possible to solve the dilemma by creating a _weak reference_ to the actual event listener, and then wrapping that `WeakRef` in an outer event listener. This way, the garbage collector can clean up the actual event listener and the memory that it holds alive, like the `MovingAvg` instance and its `events` array.
+`WeakRef` 使得通过创建指向实际事件监听器的_弱引用_，并将该 `WeakRef` 包裹在外层事件监听器中，解决这个难题成为可能。通过这种方式，垃圾收集器可以清理实际事件监听器及其保持活跃的内存，例如 `MovingAvg` 实例及其 `events` 数组。
 
 ```js
 function addWeakListener(socket, listener) {
@@ -156,34 +151,34 @@ class MovingAvg {
 ```
 
 :::note
-**Note:** `WeakRef`s to functions must be treated with caution. JavaScript functions are [closures](https://en.wikipedia.org/wiki/Closure_(computer_programming)) and strongly reference the outer environments which contain the values of free variables referenced inside the functions. These outer environments may contain variables that _other_ closures reference as well. That is, when dealing with closures, their memory is often strongly referenced by other closures in subtle ways. This is the reason `addWeakListener` is a separate function and `wrapper` is not local to the `MovingAvg` constructor. In V8, if `wrapper` were local to the `MovingAvg` constructor and shared the lexical scope with the listener that is wrapped in the `WeakRef`, the `MovingAvg` instance and all its properties become reachable via the shared environment from the wrapper listener, causing the instance to be uncollectible. Keep this in mind when writing code.
+**注意：** 对函数的 `WeakRef` 必须谨慎处理。JavaScript 函数是[闭包](https://en.wikipedia.org/wiki/Closure_(computer_programming))，并强引用外部环境，这些外部环境包含函数内引用的自由变量的值。这些外部环境可能包含 _其他_ 闭包也引用的变量。也就是说，当处理闭包时，它们的内存通常会以微妙的方式被其他闭包强引用。这就是为什么 `addWeakListener` 是一个独立函数，而 `wrapper` 不是本地的 `MovingAvg` 构造函数。在 V8 中，如果 `wrapper` 是本地的 `MovingAvg` 构造函数并与被 `WeakRef` 包裹的监听器共享词法作用域，则 `MovingAvg` 实例及其所有属性会通过共享环境从包裹监听器变得可达，从而导致实例不可回收。在编写代码时需牢记这一点。
 :::
 
-We first make the event listener and assign it to `this.listener`, so that it is strongly referenced by the `MovingAvg` instance. In other words, as long as the `MovingAvg` instance is alive, so is the event listener.
+我们首先创建事件监听器并将其分配给 `this.listener`，使其被 `MovingAvg` 实例强引用。换句话说，只要 `MovingAvg` 实例存活，事件监听器也会存活。
 
-Then, in `addWeakListener`, we create a `WeakRef` whose _target_ is the actual event listener. Inside `wrapper`, we `deref` it. Because `WeakRef`s do not prevent garbage collection of their targets if the targets do not have other strong references, we must manually dereference them to get the target. If the target has been garbage-collected in the meantime, `deref` returns `undefined`. Otherwise, the original target is returned, which is the `listener` function we then call using [optional chaining](/features/optional-chaining).
+然后，在 `addWeakListener` 中，我们创建一个 `WeakRef`，其_目标_是实际的事件监听器。在 `wrapper` 中，我们对其进行解引用。因为如果目标没有其他强引用，`WeakRef` 不会阻止其目标被垃圾回收，所以我们必须手动解引用以获取目标。如果目标在此期间被垃圾回收，`deref` 返回 `undefined`。否则，返回原始目标，即我们随后使用[可选链](/features/optional-chaining)调用的 `listener` 函数。
 
-Since the event listener is wrapped in a `WeakRef`, the _only_ strong reference to it is the `listener` property on the `MovingAvg` instance. That is, we’ve successfully tied the lifetime of the event listener to the lifetime of the `MovingAvg` instance.
+由于事件监听器被封装在 `WeakRef` 中，对它的_唯一_强引用是 `MovingAvg` 实例上的 `listener` 属性。也就是说，我们成功地将事件监听器的生命周期绑定到 `MovingAvg` 实例的生命周期。
 
-Returning to reachability diagrams, our object graph looks like the following after calling `start()` with the `WeakRef` implementation, where a dotted arrow means a weak reference.
+回到可达性图，调用带有 `WeakRef` 实现的 `start()` 后，我们的对象图如下，虚线箭头表示弱引用。
 
 ![](/_img/weakrefs/weak-after-start.svg)
 
-After calling `stop()`, we’ve removed the only strong reference to the listener:
+调用 `stop()` 后，我们移除了对监听器的唯一强引用：
 
 ![](/_img/weakrefs/weak-after-stop.svg)
 
-Eventually, after a garbage collection occurs, the `MovingAvg` instance and the listener will be collected:
+最终，在垃圾收集发生后，`MovingAvg` 实例和监听器都会被收集：
 
 ![](/_img/weakrefs/weak-after-gc.svg)
 
-But there’s still a problem here: we’ve added a level of indirection to `listener` by wrapping it a `WeakRef`, but the wrapper in `addWeakListener` is still leaking for the same reason that `listener` was leaking originally. Granted, this is a smaller leak since only the wrapper is leaking instead of the whole `MovingAvg` instance, but it is still a leak. The solution to this is the companion feature to `WeakRef`, `FinalizationRegistry`. With the new `FinalizationRegistry` API, we can register a callback to run when the garbage collector zaps a register object. Such callbacks are known as _finalizers_.
+但这里仍然有一个问题：我们通过将监听器包裹在一个 `WeakRef` 中为 `listener` 添加了一个间接层，但 `addWeakListener` 中的包裹器仍然因为最初 `listener` 泄漏的原因而泄漏。当然，这个泄漏较小，因为只有包裹器泄漏，而不是整个 `MovingAvg` 实例，但它仍是一个泄漏。解决这一问题的方法是 `WeakRef` 的配套功能 `FinalizationRegistry`。通过新的 `FinalizationRegistry` API，我们可以注册一个回调函数，在垃圾收集器清除注册对象时运行。这样的回调函数称为_终结器_。
 
 :::note
-**Note:** The finalization callback does not run immediately after garbage-collecting the event listener, so don't use it for important logic or metrics. The timing of garbage collection and finalization callbacks is unspecified. In fact, an engine that never garbage-collects would be fully compliant. However, it's safe to assume that engines _will_ garbage collect, and finalization callbacks will be called at some later time, unless the environment is discarded (such as the tab closing, or the worker terminating). Keep this uncertainty in mind when writing code.
+**注意：** 垃圾回收事件侦听器后，终结回调不会立即运行，因此不要将其用于重要的逻辑或指标。垃圾回收和终结回调的时间是未指定的。事实上，一个从不进行垃圾回收的引擎也会完全符合规范。然而，可以安全地假设引擎将会执行垃圾回收，并且终结回调会在稍后时间调用，除非环境被丢弃（例如关闭标签页或终止工作线程）。编写代码时请记住这种不确定性。
 :::
 
-We can register a callback with a `FinalizationRegistry` to remove `wrapper` from the socket when the inner event listener is garbage-collected. Our final implementation looks like this:
+我们可以使用 `FinalizationRegistry` 注册一个回调，当内部事件侦听器被垃圾回收时，将 `wrapper` 从 socket 中移除。我们的最终实现如下所示：
 
 ```js
 const gListenersRegistry = new FinalizationRegistry(({ socket, wrapper }) => {
@@ -206,29 +201,29 @@ class MovingAvg {
 }
 ```
 
-:::note
-**Note:** `gListenersRegistry` is a global variable to ensure the finalizers are executed. A `FinalizationRegistry` is not kept alive by objects that are registered on it. If a registry is itself garbage-collected, its finalizer may not run.
+:::注意
+**注意：** `gListenersRegistry` 是一个全局变量以确保终结回调能够执行。`FinalizationRegistry` 不会因其注册的对象而保持存活。如果注册表本身被垃圾回收，其终结回调可能不会执行。
 :::
 
-We make an event listener and assign it to `this.listener` so that it is strongly referenced by the `MovingAvg` instance (1). We then wrap the event listener that does the work in a `WeakRef` to make it garbage-collectible, and to not leak its reference to the `MovingAvg` instance via `this` (2). We make a wrapper that `deref` the `WeakRef` to check if it is still alive, then call it if so (3). We register the inner listener on the `FinalizationRegistry`, passing a _holding value_ `{ socket, wrapper }` to the registration (4). We then add the returned wrapper as an event listener on `socket` (5). Sometime after the `MovingAvg` instance and the inner listener are garbage-collected, the finalizer may run, with the holding value passed to it. Inside the finalizer, we remove the wrapper as well, making all memory associated with the use of a `MovingAvg` instance garbage-collectible (6).
+我们创建了一个事件侦听器并将其赋值给 `this.listener`，以便它受到 `MovingAvg` 实例的强引用（1）。然后，我们将完成工作的事件侦听器用 `WeakRef` 包装，使其能够被垃圾回收，并防止其通过 `this` 泄漏对 `MovingAvg` 实例的引用（2）。我们创建了一个 `wrapper` 来解引用 `WeakRef` 并检查它是否仍然活着，如果是，则调用它（3）。我们在 `FinalizationRegistry` 上注册内部侦听器，并传递一个包含值 `{ socket, wrapper }` 的注册项（4）。然后，我们将返回的 `wrapper` 添加为 `socket` 上的事件侦听器（5）。在 `MovingAvg` 实例和内部侦听器垃圾回收后的一段时间内，终结回调可能会运行，并将包含值传递给它。最终回调内部我们移除 `wrapper`，使得与 `MovingAvg` 实例使用相关的所有内存都能够被垃圾回收（6）。
 
-With all this, our original implementation of `MovingAvgComponent` neither leaks memory nor requires any manual disposal.
+通过所有这些处理，我们最初实现的 `MovingAvgComponent` 既不会泄露内存，也不需要任何手动清理。
 
-## Don’t overdo it
+## 不要过度使用
 
-After hearing about these new capabilities, it might be tempting to `WeakRef` All The Things™. However, that’s probably not a good idea. Some things are explicitly _not_ good use cases for `WeakRef`s and finalizers.
+听到这些新功能后，可能会很诱惑地想用 `WeakRef` 对所有东西都应用™。然而，这可能不是一个好主意。有些东西明确地 _不_ 是 `WeakRef` 和终结回调的良好用例。
 
-In general, avoid writing code that depends on the garbage collector cleaning up a `WeakRef` or calling a finalizer at any predictable time — [it can’t be done](https://github.com/tc39/proposal-weakrefs#a-note-of-caution)! Moreover, whether an object is garbage-collectible at all may depend on implementation details, such as the representation of closures, that are both subtle and may differ across JavaScript engines and even between different versions of the same engine. Specifically, finalizer callbacks:
+通常，避免编写依赖于垃圾回收器在任何可预测时间清理 `WeakRef` 或调用终结回调的代码——[这是不可能做到的](https://github.com/tc39/proposal-weakrefs#a-note-of-caution)。此外，对象是否能够被垃圾回收可能取决于实现细节，例如闭包的表示，这些既微妙又可能因 JavaScript 引擎以及同一引擎的不同版本而有所不同。具体来说，终结回调可能：
 
-- Might not happen immediately after garbage collection.
-- Might not happen in the same order as actual garbage collection.
-- Might not happen at all, e.g. if the browser window is closed.
+- 不会在垃圾回收后立即发生。
+- 不一定按照实际垃圾回收的顺序发生。
+- 可能完全不会发生，例如浏览器窗口关闭时。
 
-So, don’t place important logic in the code path of a finalizer. They're useful to perform clean-up in response to garbage-collection, but you can't reliably use them to, say, record meaningful metrics about memory usage. For that use case, see [`performance.measureUserAgentSpecificMemory`](https://web.dev/monitor-total-page-memory-usage/).
+因此，不要在终结回调的代码路径中放置重要的逻辑。它们对响应垃圾回收中的清理很有用，但无法可靠地用于，例如，记录内存使用的有意义的指标。对于此类用例，请参考 [`performance.measureUserAgentSpecificMemory`](https://web.dev/monitor-total-page-memory-usage/)。
 
-`WeakRef`s and finalizers can help you save memory, and work best when used sparingly as a means of progressive enhancement. Since they’re power-user features, we expect most usage to happen within frameworks or libraries.
+`WeakRef` 和终结回调可以帮助减少内存使用，并且在作为渐进增强的手段时使用效果最佳。由于它们是高级功能，我们预计大多数使用将会发生在框架或库中。
 
-## `WeakRef` support
+## `WeakRef` 支持
 
 <feature-support chrome="74 https://v8.dev/blog/v8-release-84#weak-references-and-finalizers"
                  firefox="79 https://bugzilla.mozilla.org/show_bug.cgi?id=1561074"

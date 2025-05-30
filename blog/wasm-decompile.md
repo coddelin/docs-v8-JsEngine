@@ -1,25 +1,25 @@
 ---
-title: "What’s in that `.wasm`? Introducing: `wasm-decompile`"
+title: "那个 `.wasm` 文件里有什么？介绍：`wasm-decompile`"
 author: "Wouter van Oortmerssen ([@wvo](https://twitter.com/wvo))"
 avatars: 
   - "wouter-van-oortmerssen"
 date: 2020-04-27
 tags: 
   - WebAssembly
-  - tooling
-description: "WABT gains a new decompilation tool that can make it easier to read the contents of Wasm modules."
+  - 工具
+description: "WABT 增加了一种新的反编译工具，可以更容易地阅读 Wasm 模块的内容。"
 tweet: "1254829913561014272"
 ---
-We have a growing number of compilers and other tools that generate or manipulate `.wasm` files, and sometimes you might want to have a look inside. Maybe you’re a developer of such a tool, or more directly, you’re a programmer targeting Wasm, and wondering what the generated code looks like, for performance or other reasons.
+我们拥有越来越多的编译器和其他工具来生成或操作 `.wasm` 文件，有时候您可能会想看看里面的内容。也许您是该类工具的开发者，或者更直接地说，您是针对 Wasm 的程序员，想知道生成的代码是什么样子，出于性能或其他原因。
 
 <!--truncate-->
-Problem is, Wasm is rather low-level, much like actual assembly code. In particular, unlike, say, the JVM, all data structures have been compiled down to load/store operations, rather than conveniently named classes and fields. Compilers like LLVM can do an impressive amount of transformations that make the generated code look nothing like the code that went in.
+问题是，Wasm 是相当低级的，非常像实际的汇编代码。特别是，与例如 JVM 不同的是，所有的数据结构都已编译成了加载/存储操作，而不是方便命名的类和字段。像 LLVM 这样的编译器可以进行大量令人印象深刻的转换，使生成的代码看起来完全不像输入的代码。
 
-## Disassemble or.. decompile?
+## 反汇编还是...反编译？
 
-You could use tools like `wasm2wat` (part of the [WABT](https://github.com/WebAssembly/wabt) toolkit), to transform a `.wasm` into Wasm’s standard text format, `.wat`, which is a very faithful but not particularly readable representation.
+您可以使用像 `wasm2wat` 这样的工具（属于 [WABT](https://github.com/WebAssembly/wabt) 工具包的一部分）将 `.wasm` 转换为 Wasm 的标准文本格式 `.wat`，这是一种非常忠实但并不特别容易阅读的表示。
 
-For example, a simple C function like a dot product:
+例如，一个简单的 C 函数，比如点积：
 
 ```c
 typedef struct { float x, y, z; } vec3;
@@ -31,7 +31,7 @@ float dot(const vec3 *a, const vec3 *b) {
 }
 ```
 
-We use `clang dot.c -c -target wasm32 -O2` followed by `wasm2wat -f dot.o` to turn it into this `.wat`:
+我们使用 `clang dot.c -c -target wasm32 -O2` 然后用 `wasm2wat -f dot.o` 将其转换为以下 `.wat`：
 
 ```wasm
 (func $dot (type 0) (param i32 i32) (result f32)
@@ -54,9 +54,9 @@ We use `clang dot.c -c -target wasm32 -O2` followed by `wasm2wat -f dot.o` to tu
         (local.get 1))))))
 ```
 
-That is a tiny bit of code, but already not great to read for many reasons. Besides the lack of an expression based syntax and general verbosity, having to understand data structures as memory loads is not easy. Now imagine looking at the output of a large program, and things will get incomprehensible fast.
+这是一段非常短的代码，但由于许多原因已经不太容易阅读。除了缺乏基于表达式的语法和总体上的冗长，必须将数据结构理解为内存加载并不容易。现在想象一下查看一个大型程序的输出，很快就会变得难以理解。
 
-Instead of `wasm2wat`, run `wasm-decompile dot.o`, and you get:
+而不是使用 `wasm2wat`，运行 `wasm-decompile dot.o`，您会得到：
 
 ```c
 function dot(a:{ a:float, b:float, c:float },
@@ -65,56 +65,55 @@ function dot(a:{ a:float, b:float, c:float },
 }
 ```
 
-This looks a lot more familiar. Besides an expression based syntax that mimics programming languages you may be familiar with, the decompiler looks at all loads and stores in a function, and tries to infer their structure. It then annotates each variable that is used as a pointer with an "inline" struct declaration. It does not create named struct declarations since it doesn’t necessarily know which uses of 3 floats represent the same concept.
+这看起来更加熟悉了。除了基于表达式的语法模仿您可能熟悉的编程语言，反编译器会查看函数中的所有加载和存储，并尝试推断它们的结构。然后为所有作为指针使用的变量添加一个“内联”结构声明。它不会创建命名结构声明，因为它不一定知道三个浮点数的使用是否表示相同的概念。
 
-## Decompile to what?
+## 反编译成什么？
 
-`wasm-decompile` produces output that tries to look like a "very average programming language" while still staying close to the Wasm it represents.
+`wasm-decompile` 生成的输出试图看起来像一个“非常普通的编程语言”，同时仍然接近它所表现的 Wasm。
 
-Its #1 goal is readability: help guide readers understand what is in a `.wasm` with as easy to follow code as possible. Its #2 goal is to still represent Wasm as 1:1 as possible, to not lose its utility as a disassembler. Obviously these two goals are not always unifiable.
+其首要目标是可读性：帮助引导读者以尽可能容易理解的代码来了解 `.wasm` 的内容。其次的目标是仍尽可能一对一地表示 Wasm，以保持其作为反汇编的实用性。显然，这两个目标并不总是可以统一的。
 
-This output is not meant to be an actual programming language and there is currently no way to compile it back into Wasm.
+这种输出并不是实际的编程语言，目前没有办法将其编译回 Wasm。
 
-### Loads and stores
+### 加载和存储
 
-As demonstrated above, `wasm-decompile` looks at all loads and stores over a particular pointer. If they form a continuous set of accesses, it will output one of these "inline" struct declarations.
+如上所示，`wasm-decompile` 会查看特定指针上的所有加载和存储。如果它们构成连续的访问集，它将输出其中一个“内联”结构声明。
 
-If not all "fields" are accessed, it can’t tell for sure whether this is meant to be a struct, or some other form of unrelated memory access. In that case it falls back to simpler types like `float_ptr` (if the types are the same), or, in the worst case, will output an array access like `o[2]:int`, which says: `o` points to `int` values, and we’re accessing the third one.
+如果并未访问所有“字段”，它无法确定这是一个结构还是其他形式的无关内存访问。在这种情况下，它会退回到更简单的类型，例如 `float_ptr`（如果类型相同），或在最坏的情况下输出一个数组访问，如 `o[2]:int`，意思是：`o` 指向 `int` 值，我们正在访问第三个值。
 
-That last case happens more often than you’d think, since Wasm locals function more like registers than variables, so optimized code may share the same pointer for unrelated objects.
+这种情况比你想象的发生得多，因为 Wasm 的局部变量更像寄存器而不是变量，因此优化代码可能会为无关对象共享同一指针。
 
-The decompiler tries to be smart about indexing, and detects patterns like `(base + (index << 2))[0]:int` that result from regular C array indexing operations like `base[index]` where `base` points to a 4-byte type. These are very common in code since Wasm has only constant offsets on loads and stores. `wasm-decompile` output transforms them back into `base[index]:int`.
+反编译器试图聪明地处理索引，检测诸如 `(base + (index << 2))[0]:int` 的模式，这些模式源自常规的 C 数组索引操作，例如 `base[index]`，其中 `base` 指向一个 4 字节类型。这些模式在代码中非常常见，因为 Wasm 在加载和存储时只有常量偏移。`wasm-decompile` 的输出会将它们转回 `base[index]:int`。
 
-Additionally it knows when absolute addresses refer to the data section.
+此外，它知道绝对地址什么时候引用数据段。
 
-### Control flow
+### 控制流程
 
-Most familiar is Wasm’s if-then construct, which translates to a familiar `if (cond) { A } else { B }` syntax, with the addition that in Wasm it can actually return a value, so it can also represent the ternary `cond ? A : B` syntax available in some languages.
+最常见的是Wasm的条件语句构造，它翻译成一个熟悉的`if (cond) { A } else { B }`语法，并且在Wasm中，它实际上可以返回一个值，因此它也可以表示某些语言中可用的三元操作符语法`cond ? A : B`。
 
-The rest of Wasm’s control flow is based on the `block` and `loop` blocks, and the `br`, `br_if` and `br_table` jumps. The decompiler stays decently close to these constructs rather than trying to infer the while/for/switch constructs they may have come from, since this tends to work better with optimized output. For example, a typical loop in the `wasm-decompile` output may look like:
+Wasm的其他控制流程基于`block`和`loop`块，以及`br`、`br_if`和`br_table`跳转。反编译器通常靠近这些构造，而不是试图推断它们可能来自的while/for/switch构造，因为这与优化后的输出效果更好。例如，一个典型的循环在`wasm-decompile`输出中可能看起来如下：
 
 ```c
 loop A {
-  // body of the loop here.
+  // 循环的具体内容。
   if (cond) continue A;
 }
 ```
 
-Here, `A` is a label that allows multiple of these to be nested. Having an `if` and `continue` to control the loop may look slightly foreign compared to a while loop, but it corresponds directly to Wasm’s `br_if`.
+这里，`A`是一个标签，允许多个这样的标签嵌套。通过`if`和`continue`控制循环可能相比于while循环看起来有些陌生，但它完全对应于Wasm的`br_if`。
 
-Blocks are similar, but instead of branching backwards, they branch forwards:
+块类似，但不是向后跳转，而是向前跳转：
 
 ```c
 block {
   if (cond) break;
-  // body goes here.
+  // 代码内容在这里。
 }
 ```
 
-This actually implements an if-then. Future versions of the decompiler may translate these into actual if-thens when possible.
+这实际上是实现了一个条件语句。未来版本的反编译器可能会在可能的情况下将其翻译为实际的if-then语句。
 
-Wasm’s most surprising control construct is `br_table`, which implements something like a `switch`, except using nested `block`s, which tends to be hard to read. The decompiler flattens these to make them slightly
-easier to follow, for example:
+Wasm最令人惊讶的控制构造是`br_table`，它实现了一些类似于`switch`的功能，但使用嵌套的`block`，往往很难读懂。反编译器通过展平这些使它们稍微更易于理解，例如：
 
 ```c
 br_table[A, B, C, ..D](a);
@@ -127,28 +126,29 @@ return 2;
 label D:
 ```
 
-This is similar to `switch` on `a`, with `D` being the default case.
+这类似于对`a`使用`switch`，其中`D`是默认情况。
 
-### Other fun features
+### 其他有趣的特性
 
-The decompiler:
+反编译器：
 
-- Can pull names from debug or linking information, or generate names itself. When using existing names, it has special code to simplify C++ name mangled symbols.
-- Already supports the multi-value proposal, which makes turning things into expressions and statements a bit harder. Additional variables are used when multiple values are returned.
-- It can even generate names from the _contents_ of data sections.
-- Outputs nice declarations for all Wasm section types, not just code. For example, it tries to make data sections readable by outputting them as text when possible.
-- Supports operator precedence (common to most C-style languages) to reduce the `()` on common expressions.
+- 可以从调试或链接信息中提取名称，或自行生成名称。使用现有名称时，它具有特殊代码简化C++名称符号的处理。
+- 已经支持多值提案，这使得将内容转化为表达式或语句稍微复杂一些。当返回多个值时，会使用额外的变量。
+- 它甚至可以从数据段的_内容_中生成名称。
+- 为所有Wasm段类型输出优雅的声明，而不仅仅是代码。例如，当可能时，它试图通过将数据段作为文本输出使其可读。
+- 支持操作符优先级（常见于大多数C风格语言），以减少常见表达式中的`()`。
 
-### Limitations
+### 局限性
 
-Decompiling Wasm is fundamentally harder than, say, JVM bytecode.
+反编译Wasm从根本上讲比反编译JVM字节码更难。
 
-The latter is un-optimized, so relatively faithful to the structure of the original code, and even though names may be missing, refers to unique classes rather than just memory locations.
+后者是未经优化的，因此相对忠实于原始代码的结构，尽管名称可能丢失，它引用的是唯一的类，而不仅仅是内存位置。
 
-In contrast, most `.wasm` output has been heavily optimized by LLVM and thus has often lost most of its original structure. The output code is very unlike what a programmer would write. That makes a decompiler for Wasm a bigger challenge to make useful, but that doesn’t mean we shouldn’t try!
+相比之下，大多数`.wasm`输出已经经过LLVM的强力优化，因此往往失去了原始结构。输出代码非常不像程序员编写的代码。这使得Wasm的反编译器更难成为有用的工具，但这并不意味着我们不应该尝试！
 
-## More
+## 更多内容
 
-The best way to see more is of course to decompile your own Wasm project!
+看到更多内容的最佳方式当然是反编译您自己的Wasm项目！
 
-Additionally, a more in-depth guide to `wasm-decompile` is [here](https://github.com/WebAssembly/wabt/blob/master/docs/decompiler.md). Its implementation is in the source files starting with `decompiler` [here](https://github.com/WebAssembly/wabt/tree/master/src) (feel free to contribute a PR to make it better!). Some test cases that show further examples of differences between `.wat` and the decompiler are [here](https://github.com/WebAssembly/wabt/tree/master/test/decompile).
+另外，有一份关于`wasm-decompile`的更深入指南见[这里](https://github.com/WebAssembly/wabt/blob/master/docs/decompiler.md)。它的实现可以在[这里](https://github.com/WebAssembly/wabt/tree/master/src)中的以`decompiler`开头的源文件中找到（欢迎提交PR使其更好！）。一些测试用例展示了`.wat`与反编译器之间差异的更多示例见[这里](https://github.com/WebAssembly/wabt/tree/master/test/decompile)。
+

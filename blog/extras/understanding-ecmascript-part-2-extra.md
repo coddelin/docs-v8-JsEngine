@@ -1,32 +1,32 @@
 ---
-title: "Extra content for \"Understanding the ECMAScript spec, part 2\""
-author: "[Marja Hölttä](https://twitter.com/marjakh), speculative specification spectator"
+title: "“理解ECMAScript规范，第二部分”的额外内容"
+author: "[Marja Hölttä](https://twitter.com/marjakh)，推测的规范观察者"
 avatars: 
   - marja-holtta
 date: 2020-03-02
 tags: 
   - ECMAScript
-description: "Tutorial on reading the ECMAScript specification"
+description: "关于阅读ECMAScript规范的教程"
 tweet: ""
 ---
 
-### Why is `o2.foo` an `AssignmentExpression`?
+### 为什么`o2.foo`是一个`AssignmentExpression`?
 
-`o2.foo` doesn’t look like an `AssignmentExpression` since there’s no assignment. Why is it an `AssignmentExpression`?
+`o2.foo`看起来不像一个`AssignmentExpression`，因为没有赋值。为什么它是一个`AssignmentExpression`？
 
-The spec actually allows an `AssignmentExpression` both as an argument and as the right hand side of an assignment. For example:
+规范实际上允许`AssignmentExpression`既可以作为参数，也可以作为赋值的右侧。例如：
 
 ```js
 function simple(a) {
-  console.log('The argument was ' + a);
+  console.log('参数是 ' + a);
 }
 simple(x = 1);
-// → Logs “The argument was 1”.
+// → 输出“参数是 1”。
 x;
 // → 1
 ```
 
-…and…
+…以及…
 
 ```js
 x = y = 5;
@@ -34,19 +34,19 @@ x; // 5
 y; // 5
 ```
 
-`o2.foo` is an `AssignmentExpression` which doesn't assign anything. This follows from the following grammar productions, each one taking the "simplest" case until the last one:
+`o2.foo`是一个`AssignmentExpression`，但它实际上没有进行赋值。这源于以下语法规则，每一个规则都处理到“最简单”的情况直到最后一个：
 
-An `AssignmentExpresssion` doesn't need to have an assignment, it can also be just a `ConditionalExpression`:
+`AssignmentExpression`不需要包含赋值，它也可以只是一个`ConditionalExpression`：
 
 > **[`AssignmentExpression : ConditionalExpression`](https://tc39.es/ecma262/#sec-assignment-operators)**
 
-(There are other productions too, here we show only the relevant one.)
+（还有其他规则，这里我们只展示相关的规则。）
 
-A `ConditionalExpression` doesn't need to have a conditional (`a == b ? c : d`), it can also be just a `ShortcircuitExpression`:
+`ConditionalExpression`不需要包含条件（`a == b ? c : d`），它也可以只是一个`ShortcircuitExpression`：
 
 > **[`ConditionalExpression : ShortCircuitExpression`](https://tc39.es/ecma262/#sec-conditional-operator)**
 
-And so on:
+等等：
 
 > [`ShortCircuitExpression : LogicalORExpression`](https://tc39.es/ecma262/#prod-ShortCircuitExpression)
 >
@@ -65,7 +65,7 @@ And so on:
 > [`RelationalExpression : ShiftExpression`](https://tc39.es/ecma262/#prod-RelationalExpression)
 
 <!--truncate-->
-Almost there…
+快要到终点了…
 
 > [`ShiftExpression : AdditiveExpression`](https://tc39.es/ecma262/#prod-ShiftExpression)
 >
@@ -75,28 +75,28 @@ Almost there…
 >
 > [`ExponentialExpression : UnaryExpression`](https://tc39.es/ecma262/#prod-ExponentiationExpression)
 
-Don’t despair! Just a couple of more productions…
+不要灰心！就剩几个规则了…
 
 > [`UnaryExpression : UpdateExpression`](https://tc39.es/ecma262/#prod-UnaryExpression)
 >
 > [`UpdateExpression : LeftHandSideExpression`](https://tc39.es/ecma262/#prod-UpdateExpression)
 
-Then we hit the productions for `LeftHandSideExpression`:
+然后我们进入`LeftHandSideExpression`的规则：
 
 > [`LeftHandSideExpression :`](https://tc39.es/ecma262/#prod-LeftHandSideExpression)
 > `NewExpression`
 > `CallExpression`
 > `OptionalExpression`
 
-It’s not clear which production might apply to `o2.foo`. We just need to know (or find out) that a `NewExpression` doesn’t actually have to have the `new` keyword.
+目前还不清楚哪条规则适用于`o2.foo`。我们只需要知道（或者查证）`NewExpression`实际上不一定需要包含`new`关键字。
 
 > [`NewExpression : MemberExpression`](https://tc39.es/ecma262/#prod-NewExpression)
 
-`MemberExpression` sounds like something we were looking for, so now we take the production
+`MemberExpression`听起来是我们在寻找的东西，所以现在我们取规则
 
 > [`MemberExpression : MemberExpression . IdentifierName`](https://tc39.es/ecma262/#prod-MemberExpression)
 
-So, `o2.foo` is a `MemberExpression` if `o2` is a valid `MemberExpression`. Luckily it's much easier to see:
+所以，如果`o2`是一个有效的`MemberExpression`，那么`o2.foo`就是一个`MemberExpression`。幸运的是，这更容易理解：
 
 > [`MemberExpression : PrimaryExpression`](https://tc39.es/ecma262/#prod-MemberExpression)
 >
@@ -104,4 +104,4 @@ So, `o2.foo` is a `MemberExpression` if `o2` is a valid `MemberExpression`. Luck
 >
 > [`IdentifierReference : Identifier`](https://tc39.es/ecma262/#prod-IdentifierReference)
 
-`o2` is surely an `Identifier` so we're good. `o2` is a `MemberExpression`, so `o2.foo` is also a `MemberExpression`. A `MemberExpression` is a valid `AssignmentExpression`, so `o2.foo` is an `AssignmentExpression` too.
+`o2`显然是一个`Identifier`，所以没问题。`o2`是一个`MemberExpression`，所以`o2.foo`也是一个`MemberExpression`。一个`MemberExpression`是一个有效的`AssignmentExpression`，所以`o2.foo`也是一个`AssignmentExpression`。

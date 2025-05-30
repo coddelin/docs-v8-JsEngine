@@ -1,37 +1,37 @@
 ---
-title: "V8 release v8.7"
-author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), a V8 flag bearer"
+title: "V8 发布 v8.7"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), V8 旗手"
 avatars: 
  - "ingvar-stepanyan"
 date: 2020-10-23
 tags: 
- - release
-description: "V8 release v8.7 brings new API for native calls, Atomics.waitAsync, bug fixes and performance improvements."
+ - 发布
+description: "V8 发布 v8.7，带来了新的原生调用 API、Atomics.waitAsync、错误修复以及性能改进。"
 tweet: "1319654229863182338"
 ---
-Every six weeks, we create a new branch of V8 as part of our [release process](https://v8.dev/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 8.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.7), which is in beta until its release in coordination with Chrome 87 Stable in several weeks. V8 v8.7 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
+每六周，我们会创建一个新的 V8 分支，作为我们[发布流程](https://v8.dev/docs/release-process)的一部分。每个版本都会在 Chrome Beta 的里程碑之前立即从 V8 的 Git 主分支创建分支。今天，我们很高兴宣布我们的最新分支，[V8 版本 8.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.7)，它将在几周内作为 Chrome 87 稳定版进行协调发布前的 Beta 测试。V8 v8.7 包含各种面向开发者的新功能。本文章将对发布前的一些亮点进行预览。
 
 <!--truncate-->
 ## JavaScript
 
-### Unsafe fast JS calls
+### 不安全的快速 JS 调用
 
-V8 v8.7 comes with an enhanced API for doing native calls from JavaScript.
+V8 v8.7 带来了增强的 API，用于从 JavaScript 进行原生调用。
 
-The feature is still experimental and can be enabled through the `--turbo-fast-api-calls` flag in V8 or the corresponding `--enable-unsafe-fast-js-calls` flag in Chrome. It is designed to improve performance of some native graphics APIs in Chrome, but can also be used by other embedders. It provides new means for developers to create instances of `v8::FunctionTemplate`, as is documented in this [header file](https://source.chromium.org/chromium/chromium/src/+/master:v8/include/v8-fast-api-calls.h). Functions created using the original API will remain unaffected.
+该功能仍处于实验阶段，可以通过 V8 中的 `--turbo-fast-api-calls` 标志或 Chrome 中的 `--enable-unsafe-fast-js-calls` 标志启用。它设计用于提升 Chrome 中某些原生图形 API 的性能，同时也可以供其他嵌入者使用。它为开发者提供了创建 `v8::FunctionTemplate` 实例的新方式，详见此[头文件](https://source.chromium.org/chromium/chromium/src/+/master:v8/include/v8-fast-api-calls.h)。使用原始 API 创建的函数将不受影响。
 
-For more information and a list of available features, please see [this explainer](https://docs.google.com/document/d/1nK6oW11arlRb7AA76lJqrBIygqjgdc92aXUPYecc9dU/edit?usp=sharing).
+关于更多信息和可用功能的列表，请查阅[此说明文档](https://docs.google.com/document/d/1nK6oW11arlRb7AA76lJqrBIygqjgdc92aXUPYecc9dU/edit?usp=sharing)。
 
 ### `Atomics.waitAsync`
 
-[`Atomics.waitAsync`](https://github.com/tc39/proposal-atomics-wait-async/blob/master/PROPOSAL.md) is now available in V8 v8.7.
+[`Atomics.waitAsync`](https://github.com/tc39/proposal-atomics-wait-async/blob/master/PROPOSAL.md) 现已在 V8 v8.7 中可用。
 
-[`Atomics.wait`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/wait) and [`Atomics.notify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/notify) are low-level synchronization primitives useful for implementing mutexes and other means of synchronization. However, since `Atomics.wait` is blocking, it’s not possible to call it on the main thread (trying to do so will throw a TypeError). The non-blocking version, [`Atomics.waitAsync`](https://github.com/tc39/proposal-atomics-wait-async/blob/master/PROPOSAL.md), is usable also on the main thread.
+[`Atomics.wait`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/wait) 和 [`Atomics.notify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/notify) 是底层同步原语，可用于实现互斥锁和其他同步方式。然而，由于 `Atomics.wait` 是阻塞的，因此无法在主线程上调用（尝试这样做会抛出 TypeError）。非阻塞版本 [`Atomics.waitAsync`](https://github.com/tc39/proposal-atomics-wait-async/blob/master/PROPOSAL.md) 也可以在主线程上使用。
 
-Check out [our explainer on `Atomics` APIs](https://v8.dev/features/atomics) for more details.
+查看[我们关于 `Atomics` API 的说明](https://v8.dev/features/atomics)以了解更多详情。
 
 ## V8 API
 
-Please use `git log branch-heads/8.6..branch-heads/8.7 include/v8.h` to get a list of the API changes.
+请使用 `git log branch-heads/8.6..branch-heads/8.7 include/v8.h` 查看 API 更改的列表。
 
-Developers with an active V8 checkout can use `git checkout -b 8.7 -t branch-heads/8.7` to experiment with the new features in V8 v8.7. Alternatively you can [subscribe to Chrome’s Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+拥有活跃 V8 检出的开发者可以使用 `git checkout -b 8.7 -t branch-heads/8.7` 来实验 V8 v8.7 中的新功能。或者您可以[订阅 Chrome 的 Beta 频道](https://www.google.com/chrome/browser/beta.html)，并且即将亲自尝试新功能。

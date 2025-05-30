@@ -1,5 +1,5 @@
 ---
-title: "Object rest and spread properties"
+title: "对象的剩余和扩展属性"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars: 
   - "mathias-bynens"
@@ -7,24 +7,24 @@ date: 2017-06-06
 tags: 
   - ECMAScript
   - ES2018
-description: "This article explains how object rest and spread properties work in JavaScript, and revisits array rest and spread elements."
+description: "本文解释了 JavaScript 中对象的剩余和扩展属性如何工作，并重新介绍了数组的剩余和扩展元素。"
 tweet: "890269994688315394"
 ---
-Before discussing _object rest and spread properties_, let’s take a trip down memory lane and remind ourselves of a very similar feature.
+在讨论_对象的剩余和扩展属性_之前，让我们回忆一下一个非常相似的功能。
 
-## ES2015 array rest and spread elements
+## ES2015 数组的剩余和扩展元素
 
-Good ol’ ECMAScript 2015 introduced _rest elements_ for array destructuring assignment and _spread elements_ for array literals.
+经典的 ECMAScript 2015 引入了用于数组解构赋值的_剩余元素_和数组字面量的_扩展元素_。
 
 ```js
-// Rest elements for array destructuring assignment:
+// 数组解构赋值的剩余元素:
 const primes = [2, 3, 5, 7, 11];
 const [first, second, ...rest] = primes;
 console.log(first); // 2
 console.log(second); // 3
 console.log(rest); // [5, 7, 11]
 
-// Spread elements for array literals:
+// 数组字面量的扩展元素:
 const primesCopy = [first, second, ...rest];
 console.log(primesCopy); // [2, 3, 5, 7, 11]
 ```
@@ -35,12 +35,12 @@ console.log(primesCopy); // [2, 3, 5, 7, 11]
                  nodejs="6"
                  babel="yes"></feature-support>
 
-## ES2018: object rest and spread properties 🆕
+## ES2018: 对象的剩余和扩展属性 🆕
 
-So what’s new, then? Well, [a proposal](https://github.com/tc39/proposal-object-rest-spread) enables rest and spread properties for object literals, too.
+那么有哪些新特性呢？[一个提案](https://github.com/tc39/proposal-object-rest-spread)使对象字面量也支持剩余和扩展属性。
 
 ```js
-// Rest properties for object destructuring assignment:
+// 对象解构赋值的剩余属性:
 const person = {
     firstName: 'Sebastian',
     lastName: 'Markbåge',
@@ -53,41 +53,41 @@ console.log(lastName); // Markbåge
 console.log(rest); // { country: 'USA', state: 'CA' }
 
 <!--truncate-->
-// Spread properties for object literals:
+// 对象字面量的扩展属性:
 const personCopy = { firstName, lastName, ...rest };
 console.log(personCopy);
 // { firstName: 'Sebastian', lastName: 'Markbåge', country: 'USA', state: 'CA' }
 ```
 
-Spread properties offer a more elegant alternative to [`Object.assign()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) in many situations:
+扩展属性在许多情况下提供了更加优雅的替代方式，替代 [`Object.assign()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)：
 
 ```js
-// Shallow-clone an object:
+// 浅克隆一个对象:
 const data = { x: 42, y: 27, label: 'Treasure' };
-// The old way:
+// 旧方法:
 const clone1 = Object.assign({}, data);
-// The new way:
+// 新方法:
 const clone2 = { ...data };
-// Either results in:
+// 两者结果一致:
 // { x: 42, y: 27, label: 'Treasure' }
 
-// Merge two objects:
+// 合并两个对象:
 const defaultSettings = { logWarnings: false, logErrors: false };
 const userSettings = { logErrors: true };
-// The old way:
+// 旧方法:
 const settings1 = Object.assign({}, defaultSettings, userSettings);
-// The new way:
+// 新方法:
 const settings2 = { ...defaultSettings, ...userSettings };
-// Either results in:
+// 两者结果一致:
 // { logWarnings: false, logErrors: true }
 ```
 
-However, there are some subtle differences in how spreading handles setters:
+然而，关于扩展处理 setters 的方式存在一些微妙的差异:
 
-1. `Object.assign()` triggers setters; spread doesn’t.
-1. You can stop `Object.assign()` from creating own properties via inherited read-only properties, but not the spread operator.
+1. `Object.assign()`会触发 setters；而扩展不会。
+1. 你可以阻止 `Object.assign()`通过继承的只读属性创建自己的属性，但扩展操作符无法做到。
 
-[Axel Rauschmayer’s write-up](http://2ality.com/2016/10/rest-spread-properties.html#spread-defines-properties-objectassign-sets-them) explains these gotchas in more detail.
+[Axel Rauschmayer 的文章](http://2ality.com/2016/10/rest-spread-properties.html#spread-defines-properties-objectassign-sets-them)详细解释了这些问题。
 
 <feature-support chrome="60"
                  firefox="55"

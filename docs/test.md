@@ -1,109 +1,109 @@
 ---
-title: "Testing"
-description: "This document explains the testing framework that is part of the V8 repository."
+title: "测试"
+description: "本文档介绍了V8代码库中的测试框架。"
 ---
-V8 includes a test framework that allows you to test the engine. The framework lets you run both our own test suites that are included with the source code and others, such as [the Test262 test suite](https://github.com/tc39/test262).
+V8 包含一个测试框架，允许您对引擎进行测试。该框架支持运行我们源代码中包含的测试套件及其他套件，例如 [Test262测试套件](https://github.com/tc39/test262)。
 
-## Running the V8 tests
+## 运行 V8 测试
 
-[Using `gm`](/docs/build-gn#gm), you can simply append `.check` to any build target to have tests run for it, e.g.
+[使用 `gm`](/docs/build-gn#gm)，您只需在构建目标后附加 `.check` 来运行测试，例如：
 
 ```bash
 gm x64.release.check
-gm x64.optdebug.check  # recommended: reasonably fast, with DCHECKs.
+gm x64.optdebug.check  # 推荐: 速度较快，并启用DCHECK。
 gm ia32.check
 gm release.check
-gm check  # builds and tests all default platforms
+gm check  # 构建并测试所有默认平台
 ```
 
-`gm` automatically builds any required targets before running the tests. You can also limit the tests to be run:
+`gm` 在运行测试前会自动构建所需的目标。您还可以限制要运行的测试：
 
 ```bash
 gm x64.release test262
 gm x64.debug mjsunit/regress/regress-123
 ```
 
-If you have already built V8, you can run the tests manually:
+如果您已经构建了 V8，可以手动运行测试：
 
 ```bash
 tools/run-tests.py --outdir=out/ia32.release
 ```
 
-Again, you can specify which tests to run:
+同样，您可以指定要运行的测试：
 
 ```bash
 tools/run-tests.py --outdir=ia32.release cctest/test-heap/SymbolTable/* mjsunit/delete-in-eval
 ```
 
-Run the script with `--help` to find out about its other options.
+使用 `--help` 参数运行脚本，了解更多选项。
 
-## Running more tests
+## 运行更多测试
 
-The default set of tests to be run does not include all available tests. You can specify additional test suites on the command line of either `gm` or `run-tests.py`:
+默认要运行的测试集并不包括所有可用的测试。您可以在 `gm` 或 `run-tests.py` 命令行中指定额外的测试套件：
 
-- `benchmarks` (just for correctness; does not produce benchmark results!)
+- `benchmarks` (仅用于正确性；不会生成基准测试结果！)
 - `mozilla`
 - `test262`
 - `webkit`
 
-## Running microbenchmarks
+## 运行微基准测试
 
-Under `test/js-perf-test` we have microbenchmarks to track feature performance. There is a special runner for these: `tools/run_perf.py`. Run them like:
+在 `test/js-perf-test` 下，我们有跟踪功能性能的微基准测试。用于这些测试有一个特殊的运行程序：`tools/run_perf.py`。运行方式如下：
 
 ```bash
 tools/run_perf.py --arch x64 --binary-override-path out/x64.release/d8 test/js-perf-test/JSTests.json
 ```
 
-If you don’t want to run all the `JSTests`, you can provide a `filter` argument:
+如果您不希望运行所有 `JSTests`，可提供 `filter` 参数：
 
 ```bash
 tools/run_perf.py --arch x64 --binary-override-path out/x64.release/d8 --filter JSTests/TypedArrays test/js-perf-test/JSTests.json
 ```
 
-## Updating the inspector test expectations
+## 更新调试器测试预期结果
 
-After updating your test, you might need to regenerate the expectations file for it. You can achieve this by running:
+更新测试后，可能需要重新生成其预期结果文件。可以通过运行以下命令实现：
 
 ```bash
 tools/run-tests.py --regenerate-expected-files --outdir=ia32.release inspector/debugger/set-instrumentation-breakpoint
 ```
 
-This can also be useful if you want to find out how the output of your test changed. First regenerate the expected file using the command above, then check the diff with:
+如果您想查看测试输出的变化，此命令同样有用。首先使用上述命令重新生成预期结果文件，然后通过以下命令检查差异：
 
 ```bash
 git diff
 ```
 
-## Updating the bytecode expectations (rebaselining)
+## 更新字节码预期结果 (重新基准化)
 
-Sometimes the bytecode expectations may change resulting in `cctest` failures. To update the golden files, build `test/cctest/generate-bytecode-expectations` by running:
+有时字节码预期结果可能会更改，导致 `cctest` 失败。要更新黄金文件，可以通过运行以下命令构建 `test/cctest/generate-bytecode-expectations`：
 
 ```bash
 gm x64.release generate-bytecode-expectations
 ```
 
-…and then updating the default set of inputs by passing the `--rebaseline` flag to the generated binary:
+…然后通过将 `--rebaseline` 参数传递给生成的二进制文件来更新默认输入集：
 
 ```bash
 out/x64.release/generate-bytecode-expectations --rebaseline
 ```
 
-The updated goldens are now available in `test/cctest/interpreter/bytecode_expectations/`.
+更新后的黄金文件现在位于 `test/cctest/interpreter/bytecode_expectations/`。
 
-## Adding a new bytecode expectations test
+## 添加一个新的字节码预期测试
 
-1. Add a new test case to `cctest/interpreter/test-bytecode-generator.cc` and specify a golden file with the same test name.
+1. 在 `cctest/interpreter/test-bytecode-generator.cc` 中添加一个新的测试用例，并指定一个与测试同名的黄金文件。
 
-1. Build `generate-bytecode-expectations`:
+1. 构建 `generate-bytecode-expectations`：
 
     ```bash
     gm x64.release generate-bytecode-expectations
     ```
 
-1. Run
+1. 运行
 
     ```bash
     out/x64.release/generate-bytecode-expectations --raw-js testcase.js --output=test/cctest/interpreter/bytecode-expectations/testname.golden
     ```
 
-    where `testcase.js` contains the JavaScript test case that was added to `test-bytecode-generator.cc` and `testname` is the name of the test defined in `test-bytecode-generator.cc`.
+    其中 `testcase.js` 包含了添加到 `test-bytecode-generator.cc` 的 JavaScript 测试用例，而 `testname` 是在 `test-bytecode-generator.cc` 中定义的测试名称。

@@ -1,5 +1,5 @@
 ---
-title: "`String.prototype.trimStart` and `String.prototype.trimEnd`"
+title: "`String.prototype.trimStart` 和 `String.prototype.trimEnd`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars: 
   - "mathias-bynens"
@@ -7,9 +7,9 @@ date: 2018-03-26
 tags: 
   - ECMAScript
   - ES2019
-description: "ES2019 introduces String.prototype.trimStart() and String.prototype.trimEnd()."
+description: "ES2019 引入了 String.prototype.trimStart() 和 String.prototype.trimEnd。"
 ---
-ES2019 introduces [`String.prototype.trimStart()` and `String.prototype.trimEnd()`](https://github.com/tc39/proposal-string-left-right-trim):
+ES2019 引入了 [`String.prototype.trimStart()` 和 `String.prototype.trimEnd()`](https://github.com/tc39/proposal-string-left-right-trim)：
 
 ```js
 const string = '  hello world  ';
@@ -21,7 +21,7 @@ string.trim(); // ES5
 // → 'hello world'
 ```
 
-This functionality was previously available through the non-standard `trimLeft()` and `trimRight()` methods, which remain as aliases of the new methods for backward compatibility.
+此功能之前通过非标准的 `trimLeft()` 和 `trimRight()` 方法可以使用，这些方法作为新方法的别名保留，以确保向后兼容。
 
 ```js
 const string = '  hello world  ';
@@ -38,7 +38,7 @@ string.trim(); // ES5
 ```
 
 <!--truncate-->
-## `String.prototype.trim{Start,End}` support
+## `String.prototype.trim{Start,End}` 浏览器支持
 
 <feature-support chrome="66 /blog/v8-release-66#string-trimming"
                  firefox="61"

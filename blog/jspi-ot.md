@@ -1,41 +1,41 @@
 ---
-title: "WebAssembly JSPI is going to origin trial"
-description: "We explain the start of the origin trial for JSPI"
+title: "WebAssembly JSPI 即将进入原始试验"
+description: "我们将解释 JSPI 原始试验的开始"
 author: "Francis McCabe, Thibaud Michaud, Ilya Rezvov, Brendan Dahl"
 date: 2024-03-06
 tags: 
   - WebAssembly
 ---
-WebAssembly’s JavaScript Promise Integration (JSPI) API is entering an origin trial, with Chrome release M123. What that means is that you can test whether you and your users can benefit from this new API.
+WebAssembly 的 JavaScript Promise 集成 (JSPI) API 正在随着 Chrome M123 版本进入原始试验阶段。这意味着您可以测试您和您的用户是否能够从这个新 API 中受益。
 
-JSPI is an API that allows so-called sequential code – that has been compiled to WebAssembly – to access Web APIs that are _asynchronous_. Many Web APIs are crafted in terms of JavaScript `Promise`s: instead of immediately performing the requested operation they return a `Promise` to do so. When the action is finally performed, the browser’s task runner invokes any callbacks with the Promise. JSPI hooks into this architecture to allow a WebAssembly application to be suspended when the `Promise` is returned and resumed when the `Promise` is resolved.
+JSPI 是一个 API，允许所谓的顺序代码（已编译为 WebAssembly）访问 _异步_ 的 Web API。许多 Web API 是以 JavaScript 的 `Promise` 表达的：它们不是立即执行请求的操作，而是返回一个 `Promise` 来执行。当操作最终执行时，浏览器的任务运行器会用 Promise 调用任何回调。JSPI 接入这个架构，使 WebAssembly 应用程序在返回 `Promise` 时暂停，并在 `Promise` 被解析时恢复运行。
 
 <!--truncate-->
-You can find out more about JSPI and how to use it [here](https://v8.dev/blog/jspi) and the specification itself is [here](https://github.com/WebAssembly/js-promise-integration).
+您可以在[这里](https://v8.dev/blog/jspi)找到有关 JSPI 的更多信息以及使用方法，规范本身在[这里](https://github.com/WebAssembly/js-promise-integration)。
 
-## Requirements
+## 要求
 
-Apart from registering for an origin trial, you will also need to generate the appropriate WebAssembly and JavaScript. If you are using Emscripten, then this is straightforward. You should ensure that you are using at least version 3.1.47.
+除了注册原始试验，您还需要生成适当的 WebAssembly 和 JavaScript。如果您正在使用 Emscripten，这将非常简单。您需要确保使用最低版本为 3.1.47。
 
-## Registering for the origin trial
+## 注册原始试验
 
-JSPI is still pre-release; it is going through a standardization process and will not be fully released until we get to phase 4 of that process. To use it today, you can set a flag in the Chrome browser; or, you can apply for an origin trial token that will allow your users to access it without having to set the flag themselves.
+JSPI 仍处于预发布阶段；它正在经历标准化过程，直到完成该过程的第 4 阶段之前，不会完全发布。要在今天使用它，您可以在 Chrome 浏览器中设置一个标志；或者，您可以申请一个原始试验令牌，使您的用户无需自己设置标志即可访问它。
 
-To register you can go [here](https://developer.chrome.com/origintrials/#/register_trial/1603844417297317889), make sure to follow the registration signup process. To find out more about origin trials in general, [this](https://developer.chrome.com/docs/web-platform/origin-trials) is a good starting place.
+要注册，您可以点击[这里](https://developer.chrome.com/origintrials/#/register_trial/1603844417297317889)，务必按照注册流程完成注册。要了解更多关于原始试验的一般信息，[此处](https://developer.chrome.com/docs/web-platform/origin-trials)是一个很好的起点。
 
-## Some potential caveats
+## 一些潜在的注意事项
 
-There have been some [discussions](https://github.com/WebAssembly/js-promise-integration/issues) in the WebAssembly community about some aspects of the JSPI API. As a result, there are some changes indicated, which will take time to fully work their way through the system. We anticipate that these changes will be *soft launched*: we will share the changes as they become available, however, the existing API will be maintained until at least the end of the origin trial.
+WebAssembly 社区对 JSPI API 的某些方面进行了[讨论](https://github.com/WebAssembly/js-promise-integration/issues)。因此，有一些变更已被指出，这些变更需要时间才能完全通过系统实施。我们预计这些更改将以*软启动*方式推出：我们将在更改可用时分享它们，但现有 API 将至少维护到原始试验结束。
 
-In addition, there are some known issues that are unlikely to be fully addressed during the origin trial period:
+此外，还存在某些在原始试验期间可能无法完全解决的已知问题：
 
-For applications that intensively create spawned-off computations, the performance of a wrapped sequence (i.e., using JSPI to access an asynchronous API) may suffer. This is because the resources used when creating the wrapped call are not cached between calls; we rely on garbage collection to clear up the stacks that are created.
-We currently allocate a fixed size stack for each wrapped call. This stack is necessarily large in order to accommodate complex applications. However, it also means that an application that has a large number of simple wrapped calls _in flight_ may experience memory pressure.
+对于密集创建派生计算的应用程序，包装的序列（即使用 JSPI 访问异步 API）的性能可能会受到影响。这是因为在创建包装调用时使用的资源在调用之间不会被缓存；我们依赖垃圾回收来清除创建的堆栈。
+我们当前为每个包装调用分配了一个固定大小的堆栈。为了适应复杂的应用程序，这个堆栈是必要的大。但这也意味着在大量简单的包装调用“正在进行”时，应用程序可能会遇到内存压力。
 
-Neither of these issues are likely to impede experimentation with JSPI; we expect them to be addressed before JSPI is officially released.
+这些问题都不太可能阻碍对 JSPI 的实验；我们预计它们将在 JSPI 正式发布之前被解决。
 
-## Feedback
+## 反馈
 
-Since JSPI is a standards-track effort, we prefer that any issues and feedback be shared [here](https://github.com/WebAssembly/js-promise-integration/issues). However, bug reports can be raised at the standard Chrome bug reporting [site](https://issues.chromium.org/new). If you suspect a problem with code generation, use [this](https://github.com/emscripten-core/emscripten/issues) to report an issue.
+由于 JSPI 是一个标准化跟踪中的工作，我们更倾向于在[这里](https://github.com/WebAssembly/js-promise-integration/issues)分享任何问题和反馈。不过，也可以在标准 Chrome 错误报告[网站](https://issues.chromium.org/new)提交错误报告。如果您怀疑代码生成有问题，可以使用[此处](https://github.com/emscripten-core/emscripten/issues)报告问题。
 
-Finally, we would like to hear about any benefits that you uncovered. Use the [issue tracker](https://github.com/WebAssembly/js-promise-integration/issues) to share your experience.
+最后，我们希望听到您发现的任何好处。请使用[问题追踪器](https://github.com/WebAssembly/js-promise-integration/issues)分享您的经验。

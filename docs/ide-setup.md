@@ -1,30 +1,30 @@
 ---
-title: "GUI and IDE setup"
-description: "This document contains GUI and IDE-specific tips for working on the V8 code base."
+title: "GUI 和 IDE 设置"
+description: "本文档包含有关在 V8 代码库上工作的 GUI 和 IDE 特定提示。"
 ---
-The V8 source code can be browsed online with [Chromium Code Search](https://cs.chromium.org/chromium/src/v8/).
+可以使用 [Chromium 代码搜索](https://cs.chromium.org/chromium/src/v8/) 在线浏览 V8 源代码。
 
-This project’s Git repository may be accessed using many other client programs and plug-ins. See your client’s documentation for more information.
+可以使用许多其他客户端程序和插件访问此项目的 Git 仓库。有关更多信息，请参阅您的客户端文档。
 
-## Visual Studio Code and clangd
+## Visual Studio Code 和 clangd
 
-For instructions how to set up VSCode for V8, see this [document](https://docs.google.com/document/d/1BpdCFecUGuJU5wN6xFkHQJEykyVSlGN8B9o3Kz2Oes8/). This is currently (2021) the recommended setup.
+有关如何设置 VSCode 以适应 V8 的说明，请参阅此 [文档](https://docs.google.com/document/d/1BpdCFecUGuJU5wN6xFkHQJEykyVSlGN8B9o3Kz2Oes8/)。这是当前（2021年）推荐的设置。
 
 ## Eclipse
 
-For instructions how to set up Eclipse for V8, see this [document](https://docs.google.com/document/d/1q3JkYNJhib3ni9QvNKIY_uarVxeVDiDi6teE5MbVIGQ/). Note: as of 2020, indexing V8 with Eclipse does not work well.
+有关如何设置 Eclipse 以适应 V8 的说明，请参阅此 [文档](https://docs.google.com/document/d/1q3JkYNJhib3ni9QvNKIY_uarVxeVDiDi6teE5MbVIGQ/)。注意：截至 2020 年，使用 Eclipse 索引 V8 的效果不佳。
 
-## Visual Studio Code and cquery
+## Visual Studio Code 和 cquery
 
-VSCode and cquery provide good code navigation capabilities. It offers “go to definition” as well as “find all references” for C++ symbols and works quite well. This section describes how to get a basic setup on a *nix system.
+VSCode 和 cquery 提供了良好的代码导航功能。它支持“跳转到定义”和“查找所有引用”等功能，并且运行效果相当不错。本节描述了如何在 *nix 系统上进行基本设置。
 
-### Install VSCode
+### 安装 VSCode
 
-Install VSCode in your preferred way. The rest of this guide assumes that you can run VSCode from the command line via the command `code`.
+以您喜欢的方式安装 VSCode。本指南的其余部分假设您可以通过命令行运行 VSCode，命令为 `code`。
 
-### Install cquery
+### 安装 cquery
 
-Clone cquery from [cquery](https://github.com/cquery-project/cquery) in a directory of your choice. We use `CQUERY_DIR="$HOME/cquery"` in this guide.
+从 [cquery](https://github.com/cquery-project/cquery) 克隆 cquery 到您选择的目录。本指南使用 `CQUERY_DIR="$HOME/cquery"`。
 
 ```bash
 git clone https://github.com/cquery-project/cquery "$CQUERY_DIR"
@@ -36,22 +36,22 @@ cmake .. -DCMAKE_BUILD_TYPE=release -DCMAKE_INSTALL_PREFIX=release -DCMAKE_EXPOR
 make install -j8
 ```
 
-If anything goes wrong, be sure to check out [cquery’s getting started guide](https://github.com/cquery-project/cquery/wiki).
+如果出现问题，请查看 [cquery 的入门指南](https://github.com/cquery-project/cquery/wiki)。
 
-You can use `git pull && git submodule update` to update cquery at a later time (don't forget to rebuild via `cmake .. -DCMAKE_BUILD_TYPE=release -DCMAKE_INSTALL_PREFIX=release -DCMAKE_EXPORT_COMPILE_COMMANDS=YES && make install -j8`).
+您可以稍后通过 `git pull && git submodule update` 更新 cquery（别忘了通过 `cmake .. -DCMAKE_BUILD_TYPE=release -DCMAKE_INSTALL_PREFIX=release -DCMAKE_EXPORT_COMPILE_COMMANDS=YES && make install -j8` 重新构建）。
 
-### Install and configure cquery-plugin for VSCode
+### 安装和配置 cquery 插件用于 VSCode
 
-Install the cquery extension from the marketplace in VSCode. Open VSCode in your V8 checkout:
+从 VSCode 的市场安装 cquery 扩展。在您的 V8 检出目录中打开 VSCode:
 
 ```bash
 cd v8
 code .
 ```
 
-Go to settings in VSCode, for example, via the shortcut <kbd>Ctrl</kbd> + <kbd>,</kbd>.
+在 VSCode 设置中，例如，可以使用快捷键 <kbd>Ctrl</kbd> + <kbd>,</kbd>。
 
-Add the following to your workspace configuration, replacing `YOURUSERNAME` and `YOURV8CHECKOUTDIR` appropriately.
+将以下配置添加到您的工作区配置中，适当地替换 `YOURUSERNAME` 和 `YOURV8CHECKOUTDIR`。
 
 ```json
 "settings": {
@@ -62,34 +62,34 @@ Add the following to your workspace configuration, replacing `YOURUSERNAME` and 
 }
 ```
 
-### Provide `compile_commands.json` to cquery
+### 为 cquery 提供 `compile_commands.json`
 
-The last step is to generate a compile_commands.json to cquery. This file will contain the specific compiler command lines used to build V8 to cquery. Run the following command in the V8 checkout:
+最后一步是生成一个 compile_commands.json 文件给 cquery。该文件将包含构建 V8 使用的特定编译器命令行。运行以下命令，在 V8 的检出目录中:
 
 ```bash
 ninja -C out.gn/x64.release -t compdb cxx cc > compile_commands.json
 ```
 
-This needs to be re-executed from time to time to teach cquery about new source files. In particular, you should always re-run the command after a `BUILD.gn` was changed.
+需要不定时重新执行该命令，以让 cquery 了解新的源文件。特别是在 `BUILD.gn` 文件变更后，务必重新运行此命令。
 
-### Other useful settings
+### 其他有用的设置
 
-The auto-closing of parenthesis in Visual Studio Code does not work that well. It can be disabled with
+Visual Studio Code 中括号的自动闭合功能效果不太好。可以通过以下方式禁用:
 
 ```json
 "editor.autoClosingBrackets": false
 ```
 
-in the user settings.
+在用户设置中。
 
-The following exclusion masks help avoid unwanted results when using search (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd>):
+以下排除掩码可以帮助避免在使用搜索时（<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd>）出现不必要的结果:
 
 ```js
 "files.exclude": {
-  "**/.vscode": true,  // this is a default value
+  "**/.vscode": true,  // 这是默认值
 },
 "search.exclude": {
-  "**/out*": true,     // this is a default value
-  "**/build*": true    // this is a default value
+  "**/out*": true,     // 这是默认值
+  "**/build*": true    // 这是默认值
 },
 ```

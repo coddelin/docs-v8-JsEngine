@@ -1,5 +1,5 @@
 ---
-title: "`String.prototype.replaceAll`"
+title: "String.prototype.replaceAll"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars: 
   - "mathias-bynens"
@@ -8,10 +8,10 @@ tags:
   - ECMAScript
   - ES2021
   - Node.js 16
-description: "JavaScript now has first-class support for global substring replacement through the new `String.prototype.replaceAll` API."
+description: "JavaScript 现在通过新的 `String.prototype.replaceAll` API 提供了对全局子字符串替换的一流支持。"
 tweet: "1193917549060280320"
 ---
-If you’ve ever dealt with strings in JavaScript, chances are you came across the `String#replace` method. `String.prototype.replace(searchValue, replacement)` returns a string with some matches replaced, based on the parameters you specify:
+如果你曾经处理过 JavaScript 中的字符串，很可能遇到过 `String#replace` 方法。`String.prototype.replace(searchValue, replacement)` 根据你指定的参数返回一个替换了一些匹配项的字符串：
 
 <!--truncate-->
 ```js
@@ -22,7 +22,7 @@ If you’ve ever dealt with strings in JavaScript, chances are you came across t
 // → '🥭🍋🍊🍓'
 ```
 
-A common use case is replacing _all_ instances of a given substring. However, `String#replace` doesn’t directly address this use case. When `searchValue` is a string, only the first occurrence of the substring gets replaced:
+一个常见的用例是替换所有给定子字符串的实例。然而，`String#replace` 并未直接处理这种用例。当 `searchValue` 是一个字符串时，只替换子字符串的第一个匹配项：
 
 ```js
 'aabbcc'.replace('b', '_');
@@ -32,7 +32,7 @@ A common use case is replacing _all_ instances of a given substring. However, `S
 // → '🥭🍏🍋🍋🍊🍊🍓🍓'
 ```
 
-To work around this, developers often turn the search string into a regular expression with the global (`g`) flag. This way, `String#replace` does replace _all_ matches:
+为了解决这个问题，开发者通常将搜索字符串转换为带有全局(`g`)标志的正则表达式。通过这种方式，`String#replace` 能够替换所有匹配项：
 
 ```js
 'aabbcc'.replace(/b/g, '_');
@@ -42,32 +42,32 @@ To work around this, developers often turn the search string into a regular expr
 // → '🥭🥭🍋🍋🍊🍊🍓🍓'
 ```
 
-As a developer, it’s annoying to have to do this string-to-regexp conversion if all you really want is a global substring replacement. More importantly, this conversion is error-prone, and a common source of bugs! Consider the following example:
+作为开发者，如果你的需求只是一场全局子字符串替换，进行这样的字符串到正则表达式的转换是非常令人沮丧的。更重要的是，这种转换容易出错，是导致常见 bug 的原因！请看以下例子：
 
 ```js
 const queryString = 'q=query+string+parameters';
 
 queryString.replace('+', ' ');
 // → 'q=query string+parameters' ❌
-// Only the first occurrence gets replaced.
+// 只有第一个匹配项被替换。
 
 queryString.replace(/+/, ' ');
 // → SyntaxError: invalid regular expression ❌
-// As it turns out, `+` is a special character within regexp patterns.
+// 原来，`+` 是正则表达式模式中的特殊字符。
 
 queryString.replace(/\+/, ' ');
 // → 'q=query string+parameters' ❌
-// Escaping special regexp characters makes the regexp valid, but
-// this still only replaces the first occurrence of `+` in the string.
+// 转义正则表达式中的特殊字符使其变为有效，
+// 但这仍然只替换字符串中第一个出现的 `+`。
 
 queryString.replace(/\+/g, ' ');
 // → 'q=query string parameters' ✅
-// Escaping special regexp characters AND using the `g` flag makes it work.
+// 转义正则表达式中的特殊字符并添加 `g` 标志才会起作用。
 ```
 
-Turning a string literal like `'+'` into a global regular expression is not just a matter of removing the `'` quotes, wrapping it into `/` slashes, and appending the `g` flag — we must escape any characters that have a special meaning in regular expressions. This is easy to forget, and hard to get right, since JavaScript doesn’t offer a built-in mechanism to escape regular expression patterns.
+将类似 `+` 的字符串文字转换为全局正则表达式不仅仅是去掉 `quotes` 引号，将其包裹在 `/` 斜杠中并添加 `g` 标志——必须转义在正则表达式中有特殊意义的字符。这很容易被遗忘，也很难正确操作，因为 JavaScript 没有内置的机制来转义正则表达式模式。
 
-An alternate workaround is to combine `String#split` with `Array#join`:
+另一种方法是结合使用 `String#split` 和 `Array#join`：
 
 ```js
 const queryString = 'q=query+string+parameters';
@@ -75,13 +75,13 @@ queryString.split('+').join(' ');
 // → 'q=query string parameters'
 ```
 
-This approach avoids any escaping but comes with the overhead of splitting the string into an array of parts only to glue it back together.
+这种方法避免了转义，但会产生将字符串拆分为部分数组并再拼接回一起的开销。
 
-Clearly, none of these workarounds are ideal. Wouldn’t it be nice if a basic operation such as global substring replacement would be straightforward in JavaScript?
+显然，这些解决方法都不理想。如果在 JavaScript 中，像全局子字符串替换这样一个基本操作能够变得直接就好了。
 
 ## `String.prototype.replaceAll`
 
-The new `String#replaceAll` method solves these problems and provides a straightforward mechanism to perform global substring replacement:
+新的 `String#replaceAll` 方法解决了这些问题，并提供了一个直接的机制来执行全局子字符串替换：
 
 ```js
 'aabbcc'.replaceAll('b', '_');
@@ -95,30 +95,30 @@ queryString.replaceAll('+', ' ');
 // → 'q=query string parameters'
 ```
 
-For consistency with the pre-existing APIs in the language, `String.prototype.replaceAll(searchValue, replacement)` behaves exactly like `String.prototype.replace(searchValue, replacement)`, with the following two exceptions:
+为了与语言中的现有 API 保持一致，`String.prototype.replaceAll(searchValue, replacement)` 的行为与 `String.prototype.replace(searchValue, replacement)` 完全相同，仅有以下两处例外：
 
-1. If `searchValue` is a string, then `String#replace` only replaces the first occurrence of the substring, while `String#replaceAll` replaces _all_ occurrences.
-1. If `searchValue` is a non-global RegExp, then `String#replace` replaces only a single match, similar to how it behaves for strings. `String#replaceAll` on the other hand throws an exception in this case, since this is probably a mistake: if you really want to “replace all” matches, you’d use a global regular expression; if you only want to replace a single match, you can use `String#replace`.
+1. 如果 `searchValue` 是字符串，`String#replace` 只替换子字符串的第一个匹配项，而 `String#replaceAll` 替换 _所有_ 匹配项。
+1. 如果 `searchValue` 是非全局的正则表达式，`String#replace` 会像处理字符串一样仅替换一个匹配项。然而在这种情况下，`String#replaceAll` 会抛出异常，因为这可能是一个错误：如果你确实想“替换所有”匹配项，应使用全局正则表达式；如果只想替换一个匹配项，可以使用 `String#replace`。
 
-The important piece of new functionality lies in that first item. `String.prototype.replaceAll` enriches JavaScript with first-class support for global substring replacement, without the need for regular expressions or other workarounds.
+新的功能重点在第一个例项里。`String.prototype.replaceAll` 为 JavaScript 提供了无需依赖正则表达式或其他解决方法的全局子字符串替换的优雅支持。
 
-## A note on special replacement patterns
+## 关于特殊替换模式的注意事项
 
-Worth calling out: both `replace` and `replaceAll` support [special replacement patterns](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#specifying_a_string_as_the_replacement). Although these are most useful in combination with regular expressions, some of them (`$$`, `$&`, ``$` ``, and `$'`) also take effect when performing simple string replacement, which can be surprising:
+值得注意的是：`replace` 和 `replaceAll` 都支持[特殊替换模式](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace#specifying_a_string_as_the_replacement)。虽然这些模式在结合正则表达式使用时最为有用，但其中的一些模式（`$$`, `$&`, ``$` ``, 和 `$'`）在执行简单字符串替换时也会生效，这可能会令人感到意外：
 
 ```js
 'xyz'.replaceAll('y', '$$');
-// → 'x$z' (not 'x$$z')
+// → 'x$z'（不是 'x$$z'）
 ```
 
-In case your replacement string contains one of these patterns, and you want to use them as-is, you can opt-out of the magical substitution behavior by using a replacer function that returns the string instead:
+如果您的替换字符串包含这些模式之一，并且您希望按原样使用它们，可以通过使用一个返回该字符串的替换函数来避免神奇的替换行为：
 
 ```js
 'xyz'.replaceAll('y', () => '$$');
 // → 'x$$z'
 ```
 
-## `String.prototype.replaceAll` support
+## `String.prototype.replaceAll` 支持情况
 
 <feature-support chrome="85 https://bugs.chromium.org/p/v8/issues/detail?id=9801"
                  firefox="77 https://bugzilla.mozilla.org/show_bug.cgi?id=1608168#c8"

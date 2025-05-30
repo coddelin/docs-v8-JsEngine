@@ -1,59 +1,57 @@
 ---
-title: "Terms of service"
+title: "服务条款"
 layout: "layouts/base.njk"
-description: "This document outlines the terms of service for the V8 website and project."
+description: "本文档概述了V8网站和项目的服务条款。"
 ---
-# Terms of service
+# 服务条款
 
-By using the official V8 website (the “Service”), you agree to be bound by our Google Terms of Services located at https://www.google.com/accounts/TOS as well as these additional terms. Google may change these terms from time to time and post any modified terms at https://v8.dev/terms. You understand and agree that if you use the Service after the date on which these terms have changed, Google treats your use as acceptance of the updated terms.
+使用官方V8网站（下称“服务”）即表示您同意遵守Google的服务条款，该条款位于https://www.google.com/accounts/TOS，并接受这些附加条款。Google可能会不定期更改这些条款，并在https://v8.dev/terms发布任何修改后的条款。您理解并同意，如果您在条款更改后使用服务，Google将视您使用服务的行为为接受更新后的条款。
 
-## Code of conduct
+## 行为准则
 
-As part of the Chromium team, the V8 team is committed to preserving and fostering a diverse, welcoming community. To this end, the [Chromium Code of Conduct](https://chromium.googlesource.com/chromium/src/+/main/CODE_OF_CONDUCT.md) applies to our website, repositories, organizations, mailing lists, and any other Chromium-supported communication groups, as well as any private communication initiated in the context of these spaces.
+作为Chromium团队的一部分，V8团队致力于维护和促进一个多样性和包容性的社区。为此，[Chromium行为准则](https://chromium.googlesource.com/chromium/src/+/main/CODE_OF_CONDUCT.md)适用于我们的官方网站、存储库、组织、邮件列表及任何其他由Chromium支持的交流群组，以及在这些空间背景下发起的任何私人交流。
 
-## Site policies
+## 网站政策
 
-We are pleased to license much of the documentation on the official V8 website under terms that explicitly encourage people to take, modify, reuse, re-purpose, and remix our work as they see fit.
+我们很高兴将官方V8网站上的大部分文档在明确鼓励用户根据需要获取、修改、重新使用、重新定位和混合我们工作成果的条款下进行授权。
 
-Many pages on the V8 website contain the following notice:
+V8网站的许多页面包含以下提示：
 
-> Except as otherwise noted, any code samples from the V8 project are licensed under [V8’s BSD-style license](https://chromium.googlesource.com/v8/v8.git/+/main/LICENSE). Other content on this page is licensed under [the Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/).
+> 除非另有说明，V8项目中的所有代码样本均根据[V8的BSD风格许可协议](https://chromium.googlesource.com/v8/v8.git/+/main/LICENSE)授权许可。本页面上的其他内容均根据[创作共用署名3.0许可协议](https://creativecommons.org/licenses/by/3.0/)授权许可。
 
-When you see a page with this notice you are free to use [nearly everything](#restrictions) on the page in your own creations. For example, you could quote the text in a book, cut-and-paste sections to your blog, record it as an audiobook for the visually impaired, or even translate it into Swahili. Really. That’s what open content licenses are all about. We just ask that you give us attribution when you reuse our work.
-In addition, you are free to use the computer source code that appears in the content (such as in examples) in the code of your own projects. This applies to any source code from the V8 project as well, as long as [its license](https://chromium.googlesource.com/v8/v8.git/+/main/LICENSE) is respected.
+当您看到带有此提示的页面时，您可以在自己的创作中自由使用页面上的[几乎所有内容](#restrictions)。例如，您可以在书中引用文本、将部分内容复制粘贴到博客上、为视障人士录制有声书，甚至将其翻译成斯瓦希里语。真的。这就是开放内容许可的意义所在。我们只要求您在重用我们的作品时提供署名。
+此外，您还可以在自己的项目代码中自由使用出现在内容中的计算机源代码（例如示例中的代码）。这一条款也适用于来自V8项目的任何源代码，只要[其许可证](https://chromium.googlesource.com/v8/v8.git/+/main/LICENSE)得到遵守。
 
-### What is _not_ licensed?
+### 什么内容 _不_ 授权？
 
-We say “nearly everything” as there are a few simple conditions that apply.
+我们提到“几乎所有内容”，是因为还有一些简单的条件适用。
 
-Google’s trademarks and other brand features are not included in this license. Please see [our standard guidelines for third-party use of Google brand features](https://www.google.com/permissions/guidelines.html) for information about this usage.
+Google的商标和其他品牌特征不包括在此许可中。有关这些使用的信息，请参阅[我们关于第三方使用Google品牌特征的标准指南](https://www.google.com/permissions/guidelines.html)。
 
-In some cases, a page may include content consisting of images, audio, or video material, or a link to content on a different webpage (such as videos or slide decks). This content is not covered by the license, unless specifically noted.
+在某些情况下，页面可能包含由图片、音频或视频材料构成的内容，或链接到另一个网页上的内容（例如视频或演示文稿）。这些内容则不在许可证范围内，除非特别注明。
 
-### Attribution
+### 署名
 
-Proper attribution is required when you reuse or create modified versions of content that appears on a page made available under the terms of the Creative Commons Attribution license. The complete requirements for attribution can be found in [section 4 of the Creative Commons legal code](https://creativecommons.org/licenses/by/3.0/legalcode).
+当您重用或创建内容的修改版本时，若该内容依据创作共用署名许可条款发布，则需要适当提供署名。关于署名的完整要求可在[创作共用法律代码的第4节](https://creativecommons.org/licenses/by/3.0/legalcode)找到。
 
-In practice we ask that you provide attribution to the V8 project to the best of the ability of the medium in which you are producing the work.
+实际上，我们要求您根据所创作作品的媒介尽可能地向V8项目提供署名。
 
-There are several typical ways in which this might apply:
+以下是一些典型的应用场景：
 
-#### Exact reproductions
+#### 精确复制
 
-If your online work exactly reproduces text or images from this site, in whole or in part, please include a paragraph at the bottom of your page that reads:
+如果您的在线作品完全复用了本站的文本或图像，无论是全部还是部分，请在您的页面底部加入以下段落：
 
-> Portions of this page are reproduced from work created and [shared by the V8 project](/terms#site-policies) and used according to terms described in [the Creative Commons 3.0 Attribution License](https://creativecommons.org/licenses/by/3.0/).
+> 本页面部分内容来自由V8项目创建并[分享的作品](/terms#site-policies)，并根据[创作共用署名3.0许可协议](https://creativecommons.org/licenses/by/3.0/)中所述条款使用。
 
-Also, please link back to the original source page so that readers can refer to it for more information.
+另外，请链接到原始来源页面，以便读者可以参考更多信息。
 
-#### Modified versions
+#### 修改版本
 
-If your online work shows modified text or images based on the content from this site, please include a paragraph at the bottom of your page that reads:
+如果您的在线作品基于本站内容显示修改后的文本或图像，请在您的页面底部加入以下段落：
 
-> Portions of this page are modifications based on work created and [shared by the V8 project](/terms#site-policies) and used according to terms described in [the Creative Commons 3.0 Attribution License](https://creativecommons.org/licenses/by/3.0/).
+> 本页面部分内容基于由V8项目创建并[分享的作品](/terms#site-policies)进行修改，并根据[创作共用署名3.0许可协议](https://creativecommons.org/licenses/by/3.0/)中所述条款使用。
 
-Again, please link back to the original source page so that readers can refer to it for more information. This is even more important when the content has been modified.
+同样，请链接到原始来源页面，以便读者可以参考更多信息。当内容已被修改时，这尤为重要。
 
-#### Other media
-
-If you produce non-hypertext works, such as books, audio, or video, we ask that you make a best effort to include a spoken or written attribution in the spirit of the messages above.
+#### 其他媒介

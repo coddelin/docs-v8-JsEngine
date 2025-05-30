@@ -8,19 +8,19 @@ tags:
   - Intl
   - Node.js 12
   - io19
-description: "Intl.RelativeTimeFormat enables localized formatting of relative times without sacrificing performance."
+description: "Intl.RelativeTimeFormat 使相对时间的本地化格式化成为可能，同时不牺牲性能。"
 tweet: "1054387117571354624"
 ---
-Modern web applications often use phrases like “yesterday”, “42 seconds ago”, or “in 3 months” instead of full dates and timestamps. Such _relative time-formatted values_ have become so common that several popular libraries implement utility functions that format them in a localized manner. (Examples include [Moment.js](https://momentjs.com/), [Globalize](https://github.com/globalizejs/globalize), and [date-fns](https://date-fns.org/docs/).)
+现代 Web 应用程序通常使用诸如“昨天”、“42 秒前”或“3 个月后”的短语代替完整的日期和时间戳。这种 _相对时间格式化值_ 已经变得如此普遍，以至于许多流行的库都实现了以本地化方式格式化它们的工具函数。（例如 [Moment.js](https://momentjs.com/)、[Globalize](https://github.com/globalizejs/globalize)、和 [date-fns](https://date-fns.org/docs/)。）
 
 <!--truncate-->
-One problem with implementing a localized relative time formatter is that you need a list of customary words or phrases (such as “yesterday” or “last quarter”) for each language you want to support. [The Unicode CLDR](http://cldr.unicode.org/) provides this data, but to use it in JavaScript, it has to be embedded and shipped alongside the other library code. This unfortunately increases the bundle size for such libraries, which negatively impacts load times, parse/compile cost, and memory consumption.
+实现本地化相对时间格式化器的一个问题是，你需要为你想支持的每种语言准备自定义的单词或短语列表（例如“昨天”或“上个季度”）。[Unicode CLDR](http://cldr.unicode.org/) 提供了这些数据，但要在 JavaScript 中使用它，必须将其嵌入并与其他库代码一起发布。不幸的是，这会增加这些库的包大小，对加载时间、解析/编译成本和内存消耗造成负面影响。
 
-The brand new `Intl.RelativeTimeFormat` API shifts that burden to the JavaScript engine, which can ship the locale data and make it directly available to JavaScript developers. `Intl.RelativeTimeFormat` enables localized formatting of relative times without sacrificing performance.
+全新的 `Intl.RelativeTimeFormat` API 将这个负担转移到 JavaScript 引擎，由引擎提供区域设置数据，并直接向 JavaScript 开发者开放。`Intl.RelativeTimeFormat` 使相对时间的本地化格式化成为可能，同时不牺牲性能。
 
-## Usage examples
+## 使用示例
 
-The following example shows how to create a relative time formatter using the English language.
+以下示例展示了如何使用英语创建一个相对时间格式化器。
 
 ```js
 const rtf = new Intl.RelativeTimeFormat('en');
@@ -50,9 +50,9 @@ rtf.format(-42, 'year');
 // → '42 years ago'
 ```
 
-Note that the argument passed to the `Intl.RelativeTimeFormat` constructor can be either a string holding [a BCP 47 language tag](https://tools.ietf.org/html/rfc5646) or [an array of such language tags](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation).
+请注意，传递给 `Intl.RelativeTimeFormat` 构造函数的参数可以是一个包含 [BCP 47 语言标签](https://tools.ietf.org/html/rfc5646) 的字符串，或者 [一组这样的语言标签](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl#语言标识和协商)。
 
-Here’s an example of using a different language (Spanish):
+以下是使用不同语言（西班牙语）的示例：
 
 ```js
 const rtf = new Intl.RelativeTimeFormat('es');
@@ -82,19 +82,18 @@ rtf.format(-42, 'year');
 // → 'hace 42 años'
 ```
 
-Additionally, the `Intl.RelativeTimeFormat` constructor accepts an optional `options` argument, which gives fine-grained control over the output. To illustrate the flexibility, let’s look at some more English output based on the default settings:
+此外，`Intl.RelativeTimeFormat` 构造函数接受一个可选的 `options` 参数，它可以对输出进行细粒度控制。为了说明其灵活性，让我们查看一些基于默认设置的英语输出示例：
 
 ```js
-// Create a relative time formatter for the English language, using the
-// default settings (just like before). In this example, the default
-// values are explicitly passed in.
+// 使用默认设置（与之前一样）为英语创建一个相对时间格式化器。
+// 在这个示例中，默认值被显式传递进去。
 const rtf = new Intl.RelativeTimeFormat('en', {
-  localeMatcher: 'best fit', // other values: 'lookup'
-  style: 'long', // other values: 'short' or 'narrow'
-  numeric: 'always', // other values: 'auto'
+  localeMatcher: 'best fit', // 其他值：'lookup'
+  style: 'long', // 其他值：'short' 或 'narrow'
+  numeric: 'always', // 其他值：'auto'
 });
 
-// Now, let’s try some special cases!
+// 现在，让我们尝试一些特殊情况！
 
 rtf.format(-1, 'day');
 // → '1 day ago'
@@ -115,13 +114,13 @@ rtf.format(1, 'week');
 // → 'in 1 week'
 ```
 
-You may have noticed that the above formatter produced the string `'1 day ago'` instead of `'yesterday'`, and the slightly awkward `'in 0 weeks'` instead of `'this week'`. This happens because by default, the formatter uses the numeric value in the output.
+你可能注意到，上面的格式化器产生了 `'1 day ago'` 而不是 `'yesterday'`，以及略显尴尬的 `'in 0 weeks'` 而不是 `'this week'`。这是因为默认情况下，格式化器在输出中使用数值值。
 
-To change this behavior, set the `numeric` option to `'auto'` (instead of the implicit default of `'always'`):
+要改变此行为，请将 `numeric` 选项设置为 `'auto'`（而不是隐含的默认值 `'always'`）：
 
 ```js
-// Create a relative time formatter for the English language that does
-// not always have to use numeric value in the output.
+// 创建一个为英语语言的相对时间格式化器，
+// 不一定需要始终在输出中使用数值值。
 const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 
 rtf.format(-1, 'day');
@@ -143,35 +142,35 @@ rtf.format(1, 'week');
 // → 'next week'
 ```
 
-Analogous to other `Intl` classes, `Intl.RelativeTimeFormat` has a `formatToParts` method in addition to the `format` method. Although `format` covers the most common use case, `formatToParts` can be helpful if you need access to the individual parts of the generated output:
+与其他 `Intl` 类类似，`Intl.RelativeTimeFormat` 除了 `format` 方法外，还有一个 `formatToParts` 方法。虽然 `format` 涵盖了最常见的使用场景，但如果需要访问生成输出的各个部分，`formatToParts` 会非常有用：
 
 ```js
-// Create a relative time formatter for the English language that does
-// not always have to use numeric value in the output.
+// 创建一个用于英文语言的相对时间格式化器，
+// 输出中并不总是需要使用数值。
 const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 
 rtf.format(-1, 'day');
-// → 'yesterday'
+// → '昨天'
 
 rtf.formatToParts(-1, 'day');
-// → [{ type: 'literal', value: 'yesterday' }]
+// → [{ type: 'literal', value: '昨天' }]
 
 rtf.format(3, 'week');
-// → 'in 3 weeks'
+// → '3周后'
 
 rtf.formatToParts(3, 'week');
-// → [{ type: 'literal', value: 'in ' },
+// → [{ type: 'literal', value: '3周后' },
 //    { type: 'integer', value: '3', unit: 'week' },
-//    { type: 'literal', value: ' weeks' }]
+//    { type: 'literal', value: '周' }]
 ```
 
-For more information about the remaining options and their behavior, see [the API docs in the proposal repository](https://github.com/tc39/proposal-intl-relative-time#api).
+有关剩余选项及其行为的更多信息，请参阅 [提案库中的 API 文档](https://github.com/tc39/proposal-intl-relative-time#api)。
 
-## Conclusion
+## 结论
 
-`Intl.RelativeTimeFormat` is available by default in V8 v7.1 and Chrome 71. As this API becomes more widely available, you’ll find libraries such as [Moment.js](https://momentjs.com/), [Globalize](https://github.com/globalizejs/globalize), and [date-fns](https://date-fns.org/docs/) dropping their dependency on hardcoded CLDR databases in favor of the native relative time formatting functionality, thereby improving load-time performance, parse- and compile-time performance, run-time performance, and memory usage.
+`Intl.RelativeTimeFormat` 在 V8 v7.1 和 Chrome 71 中默认可用。随着此 API 的广泛应用，你会发现像 [Moment.js](https://momentjs.com/)、[Globalize](https://github.com/globalizejs/globalize) 和 [date-fns](https://date-fns.org/docs/) 等库逐渐摆脱对硬编码 CLDR 数据库的依赖，转而使用原生相对时间格式化功能，从而提升加载时间性能、解析和编译时间性能、运行时性能和内存使用效率。
 
-## `Intl.RelativeTimeFormat` support
+## `Intl.RelativeTimeFormat` 支持
 
 <feature-support chrome="71 /blog/v8-release-71#javascript-language-features"
                  firefox="65"

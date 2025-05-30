@@ -1,62 +1,62 @@
 ---
- title: "Land ahoy: leaving the Sea of Nodes"
+ title: "陆地在望：离开节点海洋"
  author: "Darius Mercadier"
  avatars: 
    - darius-mercadier
  date: 2025-03-25
  tags: 
    - JavaScript
-   - internals
- description: "Why V8 decided to move away from Sea of Nodes and go back to CFG instead"
+   - 内部结构
+ description: "为何V8决定放弃节点海洋并回归控制流图"
  tweet: ""
 ---
 
-V8’s end-tier optimizing compiler, Turbofan, is famously one of the few large-scale production compilers to use [Sea of Nodes](https://en.wikipedia.org/wiki/Sea_of_nodes) (SoN). However, since almost 3 years ago, we’ve started to get rid of Sea of Nodes and fall back to a more traditional [Control-Flow Graph](https://en.wikipedia.org/wiki/Control-flow_graph) (CFG) [Intermediate Representation](https://en.wikipedia.org/wiki/Intermediate_representation) (IR), which we named Turboshaft. By now, the whole JavaScript backend of Turbofan uses Turboshaft instead, and WebAssembly uses Turboshaft throughout its whole pipeline. Two parts of Turbofan still use some Sea of Nodes: the builtin pipeline, which we’re slowly replacing by Turboshaft, and the frontend of the JavaScript pipeline, which we’re replacing by Maglev, another CFG-based IR. This blog post explains the reasons that led us to move away from Sea of Nodes.
+V8的最终优化编译器Turbofan以使用[节点海洋](https://en.wikipedia.org/wiki/Sea_of_nodes) (SoN)而闻名，这是少数几个在生产环境中使用的大规模编译器之一。然而，从大约三年前开始，我们逐步放弃节点海洋，采用一种更传统的[控制流图](https://en.wikipedia.org/wiki/Control-flow_graph) (CFG) [中间表示](https://en.wikipedia.org/wiki/Intermediate_representation) (IR)，我们将其命名为Turboshaft。目前，Turbofan的整个JavaScript后端已经改用Turboshaft，而WebAssembly的整个管道也采用了Turboshaft。Turbofan的两个部分仍然使用一些节点海洋：一个是内置管道，我们正在慢慢被Turboshaft替换；另一个是JavaScript管道的前端，我们正在用另一个基于控制流图的IR（Maglev）代替。本文将阐述我们为何离开节点海洋的原因。
 
 <!--truncate-->
-# The birth of Turbofan and Sea of Nodes
+# Turbofan与节点海洋的诞生
 
-12 years ago, in 2013, V8 had a single optimizing compiler: [Crankshaft](https://blog.chromium.org/2010/12/new-crankshaft-for-v8.html). It was using a Control-Flow Graph based Intermediate Representation. The initial version of Crankshaft provided significant performance improvements despite still being quite limited in what it supported. Over the next few years, the team kept improving it to generate even faster code in ever more situations. However, technical debt was starting to stack up and a number of issues were arising with Crankshaft:
+12年前，也就是2013年，V8只有一个优化编译器：[Crankshaft](https://blog.chromium.org/2010/12/new-crankshaft-for-v8.html)。它采用了基于控制流图的中间表示。Crankshaft的初始版本提供了显著的性能提升，尽管在支持的功能上仍然相当有限。在接下来的几年中，团队持续改进它，以便在越来越多的场景中生成更快的代码。然而，技术债务开始积累，Crankshaft出现了一些问题:
 
-1. It contained too much hand-written assembly code. Every time a new operator was added to the IR, its translation to assembly had to be manually written for the four architectures officially supported by V8 (x64, ia32, arm, arm64).
+1. 它包含了太多手写的汇编代码。每次向IR添加新的操作符，都必须手动为V8官方支持的四种架构（x64、ia32、arm、arm64）编写对应的汇编翻译。
 
-2. It struggled with optimizing [asm.js](https://en.wikipedia.org/wiki/Asm.js), which was back then seen as an important step towards high-performance JavaScript.
+2. 它难以优化[asm.js](https://en.wikipedia.org/wiki/Asm.js)，而asm.js当时被认为是迈向高性能JavaScript的重要一步。
 
-3. It didn’t allow introducing control flow in lowerings. Put otherwise, control flow was created at graph building time, and was then final. This was a major limitation, given that a common thing to do when writing compilers is to start with high-level operations, and then lower them to low-level operations, often by introducing additional control flow. Consider for instance a high-level operation `JSAdd(x,y)`, it could make sense to later lower it to something like `if (x is String and y is String) { StringAdd(x, y) } else { … }`. Well, that wasn’t possible in Crankshaft.
+3. 它不允许在低级转换中引入控制流。换句话说，控制流是在图构建时创建的，并且是最终版。这是一个主要限制，因为编写编译器时通常会从高级操作开始，然后通过引入额外的控制流逐步降低到低级操作。例如，高级操作`JSAdd(x,y)`可能需要被转换为类似于`if (x 是 String 且 y 是 String) { StringAdd(x, y } else { … }`的结构。但在Crankshaft中，这并不可能。
 
-4. Try-catches were not supported, and supporting them was very challenging: multiple engineers had spent months trying to support them, without success.
+4. 它不支持try-catch，并且支持它非常困难：多名工程师花费了数个月时间尝试支持它，但未能成功。
 
-5. It suffered from many performance cliffs and bailouts. Using a specific feature or instruction, or running into a specific edge case of a feature, could cause performance to drop by a factor 100\. This made it hard for JavaScript developers to write efficient code and to anticipate the performance of their applications.
+5. 它存在许多性能瓶颈与回退。使用某个特定功能或指令，或者在某个功能的特定边缘案例中运行，可能导致性能下降100倍。这使得JavaScript开发者难以编写高效代码并预测应用的性能。
 
-6. It contained many *deoptimization loops*: Crankshaft would optimize a function using some speculative assumptions, then the function would get deoptimized when those assumptions didn’t hold, but too often, Crankshaft would reoptimize the function with the same assumptions, leading to endless optimization-deoptimization loops.
+6. 它包含许多*反优化循环*: Crankshaft会基于某些推测假设优化某个函数，然后当这些假设不成立时函数会被反优化，但太频繁地，Crankshaft会基于相同假设重新优化函数，导致无休止的优化-反优化循环。
 
-Individually, each of these issues could have probably been overcome. However, combined all together, they seemed like too much. So, the decision was made to replace Crankshaft with a new compiler written from scratch: [Turbofan](https://v8.dev/docs/turbofan). And, rather than using a traditional CFG IR, Turbofan would use a supposedly more powerful IR: Sea of Nodes. At the time, this IR had already been used for more than 10 years in C2, the JIT compiler of the Java HotSpot Virtual Machine.
+单独来看，每个问题都有可能被解决。然而，结合在一起，这些问题显得过于繁重。因此，我们决定用一个全新的编译器替换Crankshaft：[Turbofan](https://v8.dev/docs/turbofan)。并且，与其使用传统的CFG IR，Turbofan使用了一种据称更强大的IR：节点海洋。当时，这种IR已在Java HotSpot虚拟机的JIT编译器C2中被使用了超过10年。
 
-# But what is Sea of Nodes, really?
+# 那么什么是节点海洋呢？
 
-First, a small reminder about control-flow graph (CFG): a CFG is a representation of a program as a graph where nodes of the graph represent [basic blocks](https://en.wikipedia.org/wiki/Basic_block) of the program (that is, sequence of instructions without incoming or outgoing branches or jumps), and edges represent the control flow of the program. Here is a simple example:
+首先，简单回顾一下控制流图（CFG）：CFG是程序的图表示形式，其中图中的节点代表程序中的[基本块](https://en.wikipedia.org/wiki/Basic_block)（即没有分支或跳转的指令序列），而边则表示程序的控制流。以下是一个简单示例：
 
-![Simple CFG graph](/_img/leaving-the-sea-of-nodes/CFG-example-1.svg)
+![简单的CFG图](/_img/leaving-the-sea-of-nodes/CFG-example-1.svg)
 
-Instructions within a basic block are implicitly ordered: the first instruction should be executed before the second one, and the second one before the third, etc. In the small example above, it feels very natural: `v1 == 0` can’t be computed before `x % 2` has been computed anyways. However, consider
+基本块中的指令是隐式有序的：第一条指令应在第二条指令之前执行，而第二条指令应在第三条指令之前执行，依此类推。在上面的小例子中，这种顺序很自然：`v1 == 0` 无法在 `x % 2` 被计算之前计算出来。然而，请考虑以下情况。
 
-![CFG graph with arithmetic operations that could be reordered](/_img/leaving-the-sea-of-nodes/CFG-example-2.svg)
+![带有可重新排序的算术操作的CFG图](/_img/leaving-the-sea-of-nodes/CFG-example-2.svg)
 
-Here, the CFG seemingly imposes that `a * 2` be computed before `b * 2`, even though we could very well compute them the other way around.
-That’s where Sea of Nodes comes in: Sea of Nodes does not represent basic blocks, but rather only true dependencies between the instructions. Nodes in Sea of Nodes are single instructions (rather than basic blocks), and edges represent value uses (meaning: an edge from `a` to `b` represents the fact that `a` uses `b`). So, here is how this last example would be represented with Sea of Nodes:
+在这里，控制流图(CFG)似乎规定必须先计算 `a * 2`，然后再计算 `b * 2`，尽管实际上我们可以反过来计算它们。
+这就是Sea of Nodes的用武之地：Sea of Nodes不表示基本块，而是仅表示指令之间的真实依赖关系。Sea of Nodes中的节点是单个指令（而不是基本块），边表示值的使用（即：从 `a` 到 `b` 的边表示 `a` 使用了 `b`）。因此，以下是这个最后的例子如何用Sea of Nodes表示：
 
-![Simple Sea of Nodes graph with arithmetic operations](/_img/leaving-the-sea-of-nodes/Sea-of-Nodes-arith.svg)
+![带有算术操作的简单Sea of Nodes图](/_img/leaving-the-sea-of-nodes/Sea-of-Nodes-arith.svg)
 
-Eventually, the compiler will need to generate assembly and thus will sequentially schedule these two multiplications, but until then, there is no more dependency between them.
+最终，编译器需要生成汇编代码，因此必须按顺序安排这两个乘法，但在此之前，它们之间不再有任何依赖关系。
 
-Now let’s add control flow in the mix. Control nodes (e.g. `branch`, `goto`, `return`) typically don’t have value dependencies between each other that would force a particular schedule, even though they definitely have to be scheduled in a particular order. Thus, in order to represent control-flow, we need a new kind of edge, *control edges*, which impose some ordering on nodes that don’t have value dependency:
+现在让我们在这里加入控制流。控制节点（例如 `branch`、`goto`、`return`）之间通常没有强制特定执行顺序的值依赖关系，尽管它们绝对需要按特定顺序进行安排。因此，为了表示控制流，我们需要一种新的边类型，*控制边*，它对没有值依赖的节点施加某种顺序：
 
-![Sea of Nodes graph with control flow](/_img/leaving-the-sea-of-nodes/Sea-of-Nodes-control.svg)
+![带有控制流的Sea of Nodes图](/_img/leaving-the-sea-of-nodes/Sea-of-Nodes-control.svg)
 
-In this example, without control edges, nothing would prevent the `return`s from being executed before the `branch`, which would obviously be wrong.
-The crucial thing here is that the control edges only impose an order of the operations that have such incoming or outgoing edges, but not on other operations such as the arithmetic operations. This is the main difference between Sea of Nodes and Control flow graphs.
+在这个例子中，如果没有控制边，`return` 可以在 `branch` 之前执行，这显然是错误的。
+这里的关键是控制边只对具有这些输入或输出边的操作强制排序，而对其他操作（例如算术操作）则不会强制排序。这是Sea of Nodes和控制流图之间的主要区别。
 
-Let’s now add effectful operations (eg, loads and stores from and to memory) in the mix. Similarly to control nodes, effectful operations often have no value dependencies, but still cannot run in a random order. For instance, `a[0] += 42; x = a[0]` and `x = a[0]; a[0] += 42` are not equivalent. So, we need a way to impose an order (= a schedule) on effectful operations. We could reuse the control chain for this purpose, but this would be stricter than required. For instance, consider this small snippet:
+现在让我们在这里加入有副作用的操作（例如从内存加载和存储）。类似于控制节点，有副作用的操作通常没有值依赖，但仍不能以随机顺序运行。例如，`a[0] += 42; x = a[0]` 和 `x = a[0]; a[0] += 42` 是不等价的。因此，我们需要一种方法对有副作用的操作施加顺序（= 一种调度）。我们可以为此重用控制链，但这会过于严格。例如，请考虑以下小代码片段：
 
 ```javascript
 let v = a[2];
@@ -65,34 +65,34 @@ if (c) {
 }
 ```
 
-By putting `a[2]` (which reads memory) on the control chain, we would force it to happen before the branch on `c`, even though, in practice, this load could easily happen after the branch if its result is only used inside the body of the then-branch. Having lots of nodes in the program on the control chain would defeat the goal of Sea of Nodes, since we would basically end up with a CFG-like IR where only pure operations float around.
+通过将 `a[2]`（它读取内存）放到控制链，我们将强制它发生在 `c` 的分支之前，尽管实际上，如果其结果仅在then分支体内使用，这个加载很容易在分支之后发生。将程序中的大量节点放入控制链会使Sea of Nodes的目标失效，因为我们最终将基本陷入一个只漂浮纯操作的类似控制流图的中间表示。
 
-So, to enjoy more freedom and actually benefit from Sea of Nodes, Turbofan has another kind of edge, *effect edges*, which impose some ordering on nodes that have side effects. Let’s ignore control flow for now and look at a small example:
+因此，为了获得更多自由并真正受益于Sea of Nodes，Turbofan有另一种边类型，*效果边*，它对带有副作用的节点施加某些顺序。现在让我们暂时忽略控制流，看看一个小例子：
 
-![Sea of Nodes graph with effectful operations](/_img/leaving-the-sea-of-nodes/Sea-of-Nodes-effects.svg)
+![带有副作用操作的Sea of Nodes图](/_img/leaving-the-sea-of-nodes/Sea-of-Nodes-effects.svg)
 
-In this example, `arr[0] = 42` and `let x = arr[a]` have no value dependency (ie, the former is not an input of the latter, and vice versa) . However, because `a` could be `0`,  `arr[0] = 42` should be executed before `x = arr[a]` in order for the latter to always load the correct value from the array.
-*Note that while Turbofan has a single effect chain (which splits on branches, and merges back when the control flow merges) which is used for all effectful operations, it’s possible to have multiple effect chains, where operations that have no dependencies could be on different effect chains, thus relaxing how they can be scheduled (see [Chapter 10 of SeaOfNodes/Simple](https://github.com/SeaOfNodes/Simple/blob/main/chapter10/README.md) for more details). However, as we’ll explain later, maintaining a single effect chain is already very error prone, so we did not attempt in Turbofan to have multiple ones.*
+在这个例子中，`arr[0] = 42` 和 `let x = arr[a]` 没有值依赖关系（即，前者不是后者的输入，反之亦然）。然而，因为 `a` 可能是 `0`，`arr[0] = 42` 应在 `x = arr[a]` 之前执行，以确保后者总是从数组中加载正确的值。
+*注意，虽然Turbofan只有一条效果链（在分支时分裂，在控制流合并时合并），它用于所有有副作用的操作，但可以有多个效果链，其中没有依赖关系的操作可以位于不同的效果链上，从而放松它们的调度方式（详见 [SeaOfNodes/Simple的第10章](https://github.com/SeaOfNodes/Simple/blob/main/chapter10/README.md)）。然而，正如我们稍后会解释的那样，维护单一效果链已经非常容易出错，因此我们在Turbofan中没有尝试使用多个效果链。*
 
-And, of course, most real programs will contain both control flow and effectful operations.
+当然，大多数实际程序都会包含控制流和有副作用的操作。
 
-![Sea of Nodes graph with control flow and effectful operations](/_img/leaving-the-sea-of-nodes/Sea-of-Nodes-control-and-effects.svg)
+![带有控制流和副作用操作的Sea of Nodes图](/_img/leaving-the-sea-of-nodes/Sea-of-Nodes-control-and-effects.svg)
 
-Note that `store` and `load` need control inputs, since they could be protected by various checks (such as type checks or bound checks).
-This example is a good showcase of the power of Sea of Nodes compared to CFG: `y = x * c` is only used in the `else` branch thus will freely float to after the `branch` rather than being computed before as was written in the original JavaScript code. This is similar for `arr[0]`, which is only used in the `else` branch, and *could* thus float after the `branch` (although, in practice, Turbofan will not move down `arr[0]`, for reasons that I’ll explain later).
-For comparison, here is what the corresponding CFG would look like:
+注意，`store` 和 `load` 需要控制输入，因为它们可能会受到各种检查（例如类型检查或边界检查）保护。
+这个例子很好地展示了与控制流图（CFG）相比，节点海洋（Sea of Nodes）的强大功能：`y = x * c` 仅在 `else` 分支中使用，因此可以自由移动到 `branch` 之后，而不是像原JavaScript代码中那样提前计算。同样地，对于 `arr[0]`，它仅在 `else` 分支中使用，因此也*可以*在 `branch` 之后移动（尽管在实际操作中，Turbofan不会下移 `arr[0]`，原因我稍后会解释）。
+以下是对应CFG的样子以供比较：
 
-![CFG graph with control flow and effectful operations](/_img/leaving-the-sea-of-nodes/CFG-control-and-effects.svg)
+![带有控制流和有副作用操作的CFG图](/_img/leaving-the-sea-of-nodes/CFG-control-and-effects.svg)
 
-Already, we start seeing the main issue with SoN: it’s much further away from both the input (source code) and the output (assembly) of the compiler than CFG is, which makes it less intuitive to understand. Additionally, having effect and control dependencies always explicit makes it hard to quickly reason about the graph, and to write lowerings (since lowerings always have to explicitly maintain the control and effect chain, which are implicit in a CFG).
+我们已经开始看到使用SoN的主要问题：它比起CFG离编译器的输入（源代码）和输出（汇编代码）要远得多，这使得它不直观。此外，总是显式表达副作用和控制依赖使得快速理解图和编写低降操作变得困难（因为低降操作必须始终显式维护控制和副作用链，而在CFG中这些是隐式的）。
 
-# And the troubles begin…
+# 问题随之而来…
 
-After more than a decade of dealing with Sea of Nodes, we think that it has more downsides than upsides, at least as far as JavaScript and WebAssembly are concerned.  We’ll go into details in a few of the issues below.
+经过十多年的节点海洋的使用体验，我们认为它的缺点多于优点，至少在JavaScript和WebAssembly方面是这样。我们将在下面讨论一些具体问题。
 
-## Manually/visually inspecting and understanding a Sea of Nodes graph is hard
+## 手动/视觉检查和理解节点海洋图非常困难
 
-We’ve already seen that on small programs CFG is easier to read, as it is closer to the original source code, which is what developers (including Compiler Engineers\!) are used to write. For the unconvinced readers, let me offer a slightly larger example, so that you understand the issue better. Consider the following JavaScript function, which concatenates an array of strings:
+我们已经看到在小型程序中，CFG更容易阅读，因为它更接近原始源代码，这是开发者（包括编译器工程师！）习惯编写的格式。对于仍然未被说服的读者，我将提供一个稍大的例子，以便你更好地理解问题。考虑以下用于拼接字符串数组的JavaScript函数：
 
 ```javascript
 function concat(arr) {
@@ -104,54 +104,54 @@ function concat(arr) {
 }
 ```
 
-Here is the corresponding Sea of Node graph, in the middle of the Turbofan compilation pipeline (which means that some lowerings have already happened):
+这是Turbofan编译管道中间的对应节点海洋图（这意味着某些低降操作已经完成）：
 
-![Sea of Nodes graph for a simple array concatenation function](/_img/leaving-the-sea-of-nodes/Sea-of-Nodes-array-concat.png)
+![一个简单数组拼接函数的节点海洋图](/_img/leaving-the-sea-of-nodes/Sea-of-Nodes-array-concat.png)
 
-Already, this starts looking like a messy soup of nodes. And, as a compiler engineer, a big part of my job is looking at Turbofan graphs to either understand bugs, or to find optimization opportunities. Well, it’s not easy to do when the graph looks like this. After all, the input of a compiler is the source code, which is CFG-like (instructions all have a fixed position in a given block), and the output of the compiler is assembly, which is also CFG-like (instructions also all have a fixed position in a given block). Having a CFG-like IR thus makes it easier for compiler engineers to match elements or the IR to either the source or the generated assembly.
+看上去已经像是一团乱糟糟的节点了。作为一个编译器工程师，我的工作很大一部分是观察Turbofan图，以理解错误或寻找优化机会。然而，当图看起来像这样时，做这些事情并不容易。毕竟，编译器的输入是类似于CFG的源代码（指令在一个块中都有固定的位置），编译器的输出是类似于CFG的汇编代码（指令同样在一个块中都有固定的位置）。因此，具有类似CFG的中间表示（IR）可以让编译器工程师更容易将IR的元素匹配到源代码或生成的汇编代码。
 
-For comparison, here is the corresponding CFG graph (which we have available because we’ve already started the process of replacing sea of nodes with CFG):
+作为比较，这里是对应的CFG图（我们可以提供这个是因为已经开始用CFG替代节点海洋的过程）：
 
-![CFG graph for the same simple array concatenation function](/_img/leaving-the-sea-of-nodes/CFG-array-concat.png)
+![同一个简单数组拼接函数的CFG图](/_img/leaving-the-sea-of-nodes/CFG-array-concat.png)
 
-Among other things, with the CFG, it’s clear where the loop is, it’s clear what the exit condition of the loop is, and it’s easy to find some instructions in the CFG based on where we expect them to be: for instance `arr.length` can be found in the loop header (it’s `v22 = [v0 + 12]`), the string concatenation can be found towards the end of the loop (`v47 StringConcat(...)`).
-Arguably, value use-chains are harder to follow in the CFG version, but I would argue that more often than not, it’s better to clearly see the control-flow structure of the graph rather than a soup of value nodes.
+在其他事情之外，使用CFG可以很清楚地看出循环在哪里，循环的退出条件是什么，并且可以很容易地基于预期找到CFG中的一些指令的位置：例如 `arr.length` 可以在循环的头部找到（它是 `v22 = [v0 + 12]`），字符串拼接可以在循环的末尾找到（`v47 StringConcat(...)`）。
+可以说，值的使用链在CFG版本中更加难以追踪，但我认为，在大多数情况下，清楚地看到图的控制流结构要比一堆值节点的混乱更有意义。
 
-## Too many nodes are on the effect chain and/or have a control input
+## 太多的节点在副作用链上和/或有控制输入
 
-In order to benefit from Sea of Nodes, most nodes in the graph should float freely around, without control or effect chain. Unfortunately, that’s not really the case in the typical JavaScript graph, because almost all generic JS operations can have arbitrary side effects. They should be rare in Turbofan though, since we have [feedback](https://www.youtube.com/watch?v=u7zRSm8jzvA) that should allow to lower them to more specific operations.
+为了从节点海洋中获益，大多数图中的节点应能自由浮动，不受控制或副作用链的束缚。不幸的是，这在典型的JavaScript图中并不普遍，因为几乎所有通用JS操作都可能有任意的副作用。不过，它们在Turbofan中应该较少出现，因为我们有[反馈](https://www.youtube.com/watch?v=u7zRSm8jzvA)，这应该可以将其降低到更具体的操作。
 
-Still, every memory operation needs both an effect input (since a Load should not float past Stores and vise-versa) and a control input (since there might be a type-check or bound-check before the operation). And even some pure operations like division need control inputs because they might have special cases that are protected by checks.
+然而，每个内存操作都需要一个副作用输入（因为Load不应越过Store，反之亦然）和一个控制输入（因为操作之前可能有类型检查或边界检查）。甚至一些纯操作如除法也需要控制输入，因为它们可能有特殊情况保护检查。
 
-Let’s have a look at a concrete example, and start from the following JavaScript function:
+让我们看一个具体的例子，从以下JavaScript函数开始：
 
 ```javascript
 function foo(a, b) {
-  // assuming that `a.str` and `b.str` are strings
+  // 假设 `a.str` 和 `b.str` 是字符串
   return a.str + b.str;
 }
 ```
 
-Here is the corresponding Turbofan graph. To make things clearer, I’ve highlighted part of the effect chain with dashed red lines, and annotated a few nodes with numbers so that I can discuss them below.
+以下是对应的Turbofan图。为了更清楚，我用虚线红色线条标出了一部分副作用链，并用数字注释了几个节点，以便后续讨论。
 
-![Sea of Nodes graph for a simple string concatenation function](/_img/leaving-the-sea-of-nodes/Sea-of-Nodes-string-add.png)
+![一个简单字符串拼接函数的节点海洋图](/_img/leaving-the-sea-of-nodes/Sea-of-Nodes-string-add.png)
 
-The first observation is that almost all nodes are on the effect chain. Let’s go over a few of them, and see if they really need to be:
+第一个观察是几乎所有节点都在副作用链上。让我们看看其中的几个节点，并判断它们是否真的需要这样做：
 
-- `1` (`CheckedTaggedToTaggedPointer`): this checks that the 1st input of the function is a pointer and not a “small integer” (see [Pointer Compression in V8](https://v8.dev/blog/pointer-compression)). On its own, it wouldn’t really *need* an effect input, but in practice, it still needs to be on the effect chain, because it guards the following nodes.
-- `2` (`CheckMaps`): now that we know that the 1st input is a pointer, this node loads its “map” (see [Maps (Hidden Classes) in V8](https://v8.dev/docs/hidden-classes)), and checks that it matches what the feedback recorded for this object.
-- `3` (`LoadField`): now that we know that the 1st object is a pointer with the right map, we can load its `.str` field.
-- `4`, `5` and `6` are a repeat for the second input.
-- `7` (`CheckString`): now that we’ve loaded `a.str`, this node checks that it’s indeed a string.
-- `8`: repeat for the second input.
-- `9`: checks that the combined length of `a.str` and `b.str` is less than the maximum size of a String in V8.
-- `10` (`StringConcat`): finally concatenates the 2 strings.
+- `1` (`CheckedTaggedToTaggedPointer`): 这检查了函数的第一个输入是指针，而不是“小整数”（参见[V8中的指针压缩](https://v8.dev/blog/pointer-compression)）。单独使用时，它实际上不需要一个效果输入，但在实际中，它仍然需要在效果链上，因为它对后续节点进行保护。
+- `2` (`CheckMaps`): 现在我们知道第一个输入是指针，这个节点加载其“地图”（参见[V8中的地图（隐藏类）](https://v8.dev/docs/hidden-classes)），并检查它是否与反馈记录的此对象相匹配。
+- `3` (`LoadField`): 现在我们知道第一个对象是具有正确地图的指针，我们可以加载它的 `.str` 字段。
+- `4`、`5` 和 `6` 对第二个输入重复上述过程。
+- `7` (`CheckString`): 在我们加载 `a.str` 后，这个节点检查它是否确实是字符串。
+- `8`: 对第二个输入重复。
+- `9`: 检查 `a.str` 和 `b.str` 的总长度是否小于V8中字符串的最大大小。
+- `10` (`StringConcat`): 最后将两个字符串连接起来。
 
-This graph is very typical of Turbofan graphs for JavaScript programs: checking maps, loading values, checking the maps of the loaded values, and so on, and eventually doing a few calculations on those values. And like in this example, in a lot of cases, most instructions end up being on the effect or control chain, which imposes a strict order on the operations, and completely defeats the purpose of Sea of Nodes.
+这个图表是Turbofan处理JavaScript程序的图表的典型例子：检查地图，加载值，检查加载值的地图，等等，最终对这些值进行一些计算。就像这个例子一样，在很多情况下，大多数指令最终都会在效果或控制链上，这对操作顺序施加了严格的限制，并完全违背了节点海洋的目的。
 
-## Memory operations do not float easily
+## 内存操作不易浮动
 
-Let’s consider the following JavaScript program:
+让我们考虑以下JavaScript程序：
 
 ```javascript
 let x = arr[0];
@@ -163,23 +163,23 @@ if (c) {
 }
 ```
 
-Given that `x` and `y` are each only used in a single side of the `if`\-`else`, we may hope that SoN would allow them to freely float down to inside the “then” and the “else” branches. However, in practice, making this happen in SoN would not be easier than in a CFG. Let’s have a look at the SoN graph to understand why:
+鉴于 `x` 和 `y` 分别仅用于 `if`-`else`的单个分支，我们可能希望节点海洋允许它们自由浮动到“then”和“else”分支内。然而，在实际中，使这种情况发生在节点海洋中并不比在CFG中更容易。让我们看一下节点海洋图表以理解原因：
 
-![Sea of Nodes graph where the effect chain mirrors the control chain, leading to effectful operations not floating as freely as one may hope](/_img/leaving-the-sea-of-nodes/Sea-of-Nodes-mirror-control-effect.svg)
+![节点海洋图，其中效果链反映了控制链，导致效果操作不像预期那样自由浮动](/_img/leaving-the-sea-of-nodes/Sea-of-Nodes-mirror-control-effect.svg)
 
-When we build the SoN graph, we create the effect chain as we go along, and thus the second `Load` ends up being right after the first one, after which the effect chain has to split to reach both `return`s (if you’re wondering why `return`s are even on the effect chain, it’s because there could be operations with side-effects before, such as `Store`s, which have to be executed before returning from the function). Given that the second `Load` is a predecessor to both `return`s, it has to be scheduled before the `branch`, and SoN thus doesn’t allow any of the two `Load`s to float down freely.
-In order to move the `Load`s down the “then” and “else” branches, we would have to compute that there are no side effects in between them, and that there are no side effects in between the second `Load` and the `return`s, then we could split the effect chain at the beginning instead of after the second `Load`. Doing this analysis on a SoN graph or on a CFG is extremely similar.
+当我们构建节点海洋图时，我们在创建过程中建立效果链，因此第二个 `Load` 最终紧接在第一个之后，然后效果链不得不分裂以到达两个 `return`（如果你想知道为什么 `return` 会在效果链上，那是因为在返回函数之前可能存在带有副作用的操作，比如 `Store`，需要在返回之前执行）。鉴于第二个 `Load` 是两个 `return` 的前置节点，它必须在 `branch` 之前被调度，因此节点海洋不允许任何一个 `Load` 自由向下浮动。
+为了将 `Load` 向下移动到“then”和“else”分支，我们需要计算它们之间没有副作用，并且第二个 `Load` 与 `return`之间没有副作用，然后我们可以在开始处而不是在第二个 `Load`之后分裂效果链。在节点海洋图或CFG上进行这种分析非常相似。
 
-Now that we’ve mentioned that a lot of nodes end up on the effect chain, and that effectful nodes often don’t freely float very far, it’s a good time to realize that in a way, **SoN is just CFG where pure nodes are floating**. Indeed, in practice, the control nodes and control chain always mirror the structure of the equivalent CFG. And, when both destinations of a branch have side effects (which is frequent in JavaScript), the effect chain splits and merges exactly where the control chain does (as is the case in the example above: the control chain splits on the `branch`, and the effect chain mirrors this by splitting on the `Load`; and if the program would continue after the `if`\-`else`, both chains would merge around the same place). Effectful nodes thus typically end up being constrained to be scheduled in between two control nodes, a.k.a., in a basic block. And within this basic block, the effect chain will constrain effectful nodes to be in the same order as they were in the source code. In the end, only pure nodes actually float freely.
+既然我们提到很多节点最终会出现在效果链上，并且带有副作用的节点通常不会自由浮动太远，现在是时候意识到，从某种意义上说，**节点海洋只是CFG，其中纯节点是浮动的**。实际上，控制节点和控制链总是反映等效CFG的结构。而当一个分支的两个目标都有副作用时（在JavaScript中很常见），效果链正好在控制链分裂和合并的地方分裂和合并（就像上面例子中的情况：控制链在 `branch` 分裂，效果链通过在 `Load` 分裂来反映这一点；如果程序会在 `if`-`else`之后继续运行，两个链会在同一个地方左右合并）。因此，带有副作用的节点通常会被约束至需要在两个控制节点之间调度，也就是基本块中。在这个基本块中，效果链会约束带有副作用的节点保持与源代码中的顺序一致。最终，只有纯节点能够真正自由浮动。
 
-One way to get more floating nodes is to use multiple effect chains, as mentioned earlier, but this comes at a price: first, managing a single effect chain is already hard; managing multiple ones will be much harder. Second, in a dynamic language like JavaScript, we end up with a lot of memory accesses that could alias, which means that the multiple effect chains would have to all merge very often, thus negating part of the advantages of having multiple effect chains.
+一种获得更多浮动节点的方法是使用多个效果链，如前所述，但这样做需要付出代价：首先，管理单个效果链已经很困难；管理多个链会更加困难。其次，在JavaScript这样的动态语言中，我们会遇到很多可能别名的内存访问，这意味着多个效果链必须经常合并，从而抵消使用多个效果链的一些优势。
 
-## Managing the effect and control chains manually is hard
+## 手动管理效果和控制链很难
 
-As mentioned in the previous section, while the effect and control chain are somewhat distinct, in practice, the effect chain typically has the same “shape” as the control chain: if the destinations of a branch contain effectful operations (and it’s often the case), then the effect chain will split on the branch and merge back when the control flow merges back.
-Because we’re dealing with JavaScript, a lot of nodes have side effects, and we have a lot of branches (typically branching on the type of some objects), which leads to having to keep track of both the effect and control chain in parallel, whereas with a CFG, we would only have to keep track of the control chain.
+如上一节所述，尽管效果链和控制链在某种程度上是不同的，但在实际中，效果链通常与控制链具有相同的“形状”：如果一个分支的目标包含带有副作用的操作（这种情况很常见），那么效果链将在分支处分裂，并在控制流合并时合并回来。
+因为我们使用的是JavaScript，所以许多节点都有副作用，并且有许多分支（通常根据某些对象的类型进行分支），这导致我们不得不同时跟踪效应链和控制链，而在控制流图（CFG）中，我们只需跟踪控制链。
 
-History has shown that managing both the effect and control chains manually is error prone, hard to read and hard to maintain. Take this sample of code from the [JSNativeContextSpecialization](https://source.chromium.org/chromium/chromium/src/+/main:v8/src/compiler/js-native-context-specialization.cc;l=1482;drc=22629fc9a7e45cf5e4c691db371f69f176318f11) phase:
+历史证明手动管理效应链和控制链容易出错，难以阅读且难以维护。以下是[JSNativeContextSpecialization](https://source.chromium.org/chromium/chromium/src/+/main:v8/src/compiler/js-native-context-specialization.cc;l=1482;drc=22629fc9a7e45cf5e4c691db371f69f176318f11)阶段的代码示例：
 
 ```cpp
 JSNativeContextSpecialization::ReduceNamedAccess(...) {
@@ -198,59 +198,59 @@ JSNativeContextSpecialization::ReduceNamedAccess(...) {
 }
 ```
 
-Because of the various branches and cases that have to be handled here, we end up managing 3 different effect chains. It’s easy to get it wrong and use one effect chain instead of the other. So easy that we indeed [got it wrong initially](https://crbug.com/41470351), and only [realized our mistake](https://crrev.com/c/1749902) after a few months:
+由于这里有各种分支和情况需要处理，我们最终管理了3个不同的效应链。很容易搞错并使用了错误的效应链。这种错误很容易发生，以至于我们[最初确实搞错了](https://crbug.com/41470351)，并且几个月后才[意识到我们的错误](https://crrev.com/c/1749902)：
 
 ![](/_img/leaving-the-sea-of-nodes/Sea-of-Nodes-effects-fix.png)
 
-For this issue, I would place the blame on both Turbofan and Sea of Nodes, rather than only on the latter. Better helpers in Turbofan could have simplified managing the effect and control chains, but this would not have been an issue in a CFG.
+对于这个问题，我将归咎于Turbofan和Sea of Nodes，而不仅仅是后者。在Turbofan中更好的工具可以简化效应链和控制链的管理，但在控制流图中这根本不会成为问题。
 
-## The scheduler is too complex
+## 调度器过于复杂
 
-Eventually, all instructions must be scheduled in order to generate assembly code. The theory to schedule instructions is simple enough: each instruction should be scheduled after its value, control and effect inputs (ignoring loops).
+最终，所有指令都必须被调度以生成汇编代码。调度指令的理论足够简单：每条指令应在其值、控制和效应输入之后调度（忽略循环）。
 
-Let’s have a look at an interesting example:
+让我们来看一个有趣的例子：
 
-![Sea of Nodes graph for a simple switch-case](/_img/leaving-the-sea-of-nodes/Sea-of-Nodes-switch-case.svg)
+![简单switch-case的Sea of Nodes图](/_img/leaving-the-sea-of-nodes/Sea-of-Nodes-switch-case.svg)
 
-You’ll notice that while the source JavaScript program has two identical divisions, the Sea of Node graph only has one. In reality, Sea of Nodes would start with two divisions, but since this is a pure operation (assuming double inputs), redundancy elimination would easily deduplicate them into one.
-Then when reaching the scheduling phase, we would have to find a place to schedule this division. Clearly, it cannot go after `case 1` or `case 2`, since it’s used in the other one. Instead, it would have to be scheduled before the `switch`. The downside is that, now, `a / b` will be computed even when `c` is `3`, where it doesn’t really need to be computed. This is a real issue that can lead to many deduplicated instructions floating to the common dominator of their users, slowing down many paths that don’t need them.
-There is a fix though: Turbofan’s scheduler will try to identify these cases and duplicate the instructions so that they are only computed on the paths that need them. The downside is that this makes the scheduler more complex, requiring additional logic to figure out which nodes could and should be duplicated, and how to duplicate them.
-So, basically, we started with 2 divisions, then “optimized” to a single division, and then optimized further to 2 divisions again. And this doesn’t happen just for division: a lot of other operations will go through similar cycles.
+你会注意到，虽然源JavaScript程序有两个相同的除法，Sea of Nodes图中只有一个。实际上，Sea of Nodes一开始会有两个除法，但由于这是一个纯操作（假设输入为双精度数），冗余消除会轻松地将它们合并为一个。
+然后，在进入调度阶段时，我们必须为这个除法找到一个调度位置。显然，它不能安排在`case 1`或`case 2`之后，因为它在其他分支中被使用。因此，它必须在`switch`之前调度。缺点是，现在即使`c`是`3`时，也会计算`a / b`，而实际上并不需要计算。这是一个实际问题，会导致许多被去重的指令漂浮到其使用者的公共支配节点上，从而拖慢许多不需要它们的路径。
+不过，有一个修复方法：Turbofan的调度器会尝试识别这些情况并复制指令，以便它们仅在需要的路径上被计算。缺点是，这使得调度器更加复杂，需要额外的逻辑来确定哪些节点可以且应该复制，以及如何复制它们。
+基本上，我们一开始有2个除法，然后“优化”为一个除法，随后又进一步优化回2个除法。这种情况不仅发生在除法上，许多其他操作也会经历类似的循环。
 
-## Finding a good order to visit the graph is difficult
+## 查找图的良好访问顺序很困难
 
-All passes of a compiler need to visit the graph, be it to lower nodes, to apply local optimizations, or to run analysis over the whole graph. In a CFG, the order in which to visit nodes is usually straightforward: start from the first block (assuming a single-entry function), and iterate through each node of the block, and then move on to the successors and so on. In a [peephole optimization](https://en.wikipedia.org/wiki/Peephole_optimization) phase (such as [strength reduction](https://en.wikipedia.org/wiki/Strength_reduction)), a nice property of processing the graph in this order is that inputs are always optimized before a node is processed, and visiting each node exactly once is thus enough to apply most peephole optimizations. Consider for instance the following sequence of reductions:
+编译器的所有阶段都需要访问图，无论是降低节点、应用局部优化，还是对整个图运行分析。在控制流图（CFG）中，访问节点的顺序通常很直接：从第一个块开始（假设是单入口函数），迭代块中的每个节点，然后依次移动到后继块，依此类推。在[窥孔优化](https://en.wikipedia.org/wiki/Peephole_optimization)阶段（例如[强度削减](https://en.wikipedia.org/wiki/Strength_reduction)），以这种顺序处理图的一个很好的特性是，输入总是在处理某个节点之前被优化，因此只需一次访问每个节点即可应用大多数窥孔优化。比如，考虑以下缩减序列：
 
 ![](/_img/leaving-the-sea-of-nodes/CFG-peepholes.svg)
 
-In total, it took three steps to optimize the whole sequence, and each step did useful work. After which, dead code elimination would remove `v1` and `v2`, resulting in one less instruction than in the initial sequence.
+总共只需三步即可优化整个序列，而且每一步都做了有用的工作。在此之后，死代码消除会移除`v1`和`v2`，使初始序列减少了一条指令。
 
-With Sea of Nodes, it’s not possible to process pure instructions from start to end, since they aren’t on any control or effect chain, and thus there is no pointer to pure roots or anything like that. Instead, the usual way to process a Sea of Nodes graph for peephole optimizations is to start from the end (e.g., `return` instructions), and go up the value, effect and control inputs. This has the nice property that we won’t visit any unused instruction, but the upsides stop about there, because for peephole optimization, this is about the worst visitation order you could get. On the example above, here are the steps we would take:
+使用节点海洋方法时，不可能从头到尾处理纯指令，因为它们不在任何控制或效果链上，因此没有指向纯根或类似内容的指针。相反，处理节点海洋图进行窥眼优化的常见方法是从尽头开始（例如，`return`指令），然后向上处理值、效果和控制输入。这有一个好的特点，即我们不会访问任何未使用的指令，但优点到此为止，因为对于窥眼优化，这是你可能遇到的最糟糕的访问顺序。在上面的例子中，我们将执行以下步骤：
 
-- Start by visiting `v3`, but can’t lower it at this point, then move on to its inputs
-    - Visit `v1`, lower it to `a << 3`, then move on to its uses, in case the lowering of `v1` enables them to be optimized.
-        - Visit `v3` again, but can’t lower it yet (this time, we wouldn’t visit its inputs again though)
-    - Visit `v2`, lower it to `b << 3`, then move on to its uses, in case this lowering enables them to be optimized.
-        - Visit `v3` again, lower it to `(a & b) << 3`.
+- 首先访问`v3`，但此时无法降低它，然后转向访问它的输入
+    - 访问`v1`，将其降低到`a << 3`，然后转向访问它的用途，以防`v1`的降低使它们可以被优化。
+        - 再次访问`v3`，但此时仍然无法降低它（这次我们不会再次访问它的输入）
+    - 访问`v2`，将其降低到`b << 3`，然后转向访问它的用途，以防此降低使它们可以被优化。
+        - 再次访问`v3`，将其降低到`(a & b) << 3`。
 
-So, in total, `v3` was visited 3 times but only lowered once.
+所以，总的来说，`v3`被访问了3次但只降低了一次。
 
-We measured this effect on typical JavaScript programs a while ago, and realized that, on average, nodes are changed only once every 20 visits\!
+我们之前在典型的JavaScript程序上测量了这一效果，并发现平均来说，节点每访问20次才会改变一次！
 
-Another consequence of the difficulty to find a good visitation order of the graph is that **state tracking is hard and expensive.** A lot of optimizations require tracking some state along the graph, like Load Elimination or Escape Analysis. However, this is hard to do with Sea of Nodes, because at a given point, it’s hard to know if a given state needs to be kept alive or not, because it’s hard to figure out if unprocessed nodes would need this state to be processed.
-As a consequence of this, Turbofan’s Load Elimination phase has a bailout on large graphs to avoid taking too long to finish and consuming too much memory. By comparison, we wrote a [new Load elimination phase for our new CFG compiler](https://docs.google.com/document/d/1AEl4dATNLu8GlLyUBQFXJoCxoAT5BeG7RCWxoEtIBJE/edit?usp=sharing), which we’ve benchmarked to be up to 190 times faster (it has better worst-case complexity, so this kind of speedup is easy to achieve on large graphs), while using way less memory.
+图形的访问顺序难以确定的另一个后果是**状态跟踪既困难又昂贵。**许多优化需要沿着图形跟踪某些状态，比如负载消除或逃逸分析。然而，用节点海洋这样做很难，因为在给定点上，很难知道某个状态是否需要继续保留，因为很难确定未处理的节点是否需要此状态进行处理。
+因此，Turbofan的负载消除阶段在处理大型图形时会中途退出，以避免耗时过长并消耗过多内存。相比之下，我们为新的控制流图编译器写了一个[新的负载消除阶段](https://docs.google.com/document/d/1AEl4dATNLu8GlLyUBQFXJoCxoAT5BeG7RCWxoEtIBJE/edit?usp=sharing)，经过基准测试速度提高了最多190倍（它有更好的最坏情况下复杂度，因此在大型图形上容易实现这种速度提升），同时使用了更少的内存。
 
-## Cache unfriendliness
+## 缓存不友好
 
-Almost all phases in Turbofan mutate the graph in-place. Given that nodes are fairly large in memory (mostly because each node has pointers to both its inputs and its uses), we try to reuse nodes as much as possible. However, inevitably, when we lower nodes to sequences of multiple nodes, we have to introduce new nodes, which will necessarily not be allocated close to the original node in memory. As a result, the deeper we go through the Turbofan pipeline and the more phases we run, the less cache friendly the graph is. Here is an illustration of this phenomenon:
+Turbofan中的几乎所有阶段都会原地修改图。由于节点在内存中相当大（主要因为每个节点都有指向其输入和用途的指针），我们尽量重复使用节点。然而不可避免地，当我们将节点降低为多个节点的序列时，我们不得不引入新的节点，这些新的节点肯定不会在内存中与原始节点紧密分配。结果是，我们在Turbofan的管道中越深入，运行的阶段越多，图形的缓存友好性越差。以下是这一现象的一个示例：
 
 ![](/_img/leaving-the-sea-of-nodes/Sea-of-Nodes-cache-unfriendliness.svg)
 
-It’s hard to estimate the exact impact of this cache unfriendliness on memory. Still, now that we have our new CFG compiler, we can compare the number of cache misses between the two: Sea of Nodes suffers on average from about 3 times more L1 dcache misses compared to our new CFG IR, and up to 7 times more in some phases. We estimate that this costs up to 5% of compile time, although this number is a bit handwavy. Still, keep in mind that in a JIT compiler, compiling fast is essential.
+很难估计这种缓存不友好对内存的确切影响。不过，现在我们有了新的控制流图编译器，可以比较两者之间的缓存未命中次数：节点海洋平均遭受了约3倍于我们新的控制流图IR的L1数据缓存未命中，在某些阶段甚至高达7倍。我们估计这对编译时间最多造成5%的影响，不过这只是粗略估算。尽管如此，请记住，在即时编译器中，快速编译是至关重要的。
 
-## Control-flow dependent typing is limited
+## 与控制流相关的类型处理有限
 
-Let’s consider the following JavaScript function:
+让我们考虑以下JavaScript函数：
 
 ```javascript
 function foo(x) {
@@ -261,40 +261,40 @@ function foo(x) {
 }
 ```
 
-If so far we’ve only seen small integers for `x` and for the result of `x+1` (where “small integers” are 31-bit integers, cf. [Value tagging in V8](https://v8.dev/blog/pointer-compression#value-tagging-in-v8)), then we’ll speculate that this will remain the case. If we ever see `x` being larger than a 31-bit integer, then we will deoptimize. Similarly, if `x+1` produces a result that is larger than 31 bits, we will also deoptimize. This means that we need to check whether `x+1` is less or more than the maximum value that fits in 31 bits. Let’s have a look at corresponding the CFG and SoN graphs:
+如果到目前为止我们只看到`x`和`x+1`的结果为小整数（“小整数”是31位整数，参见[V8中的值标记](https://v8.dev/blog/pointer-compression#value-tagging-in-v8)），那么我们会推测这种情况将保持不变。如果我们发现`x`大于31位整数，那么我们会去优化。同样，如果`x+1`生成的结果大于31位，那么我们也会去优化。这个意味着我们需要检查`x+1`是否小于或大于31位的最大值。让我们看看对应的控制流图和节点海洋图：
 
 ![](/_img/leaving-the-sea-of-nodes/CFG-vs-SoN-control-flow-typing.svg)
 
 
-(assuming a `CheckedAdd` operation that adds its inputs and deoptimizes if the result overflows 31-bits)
-With a CFG, it’s easy to realize that when `CheckedAdd(v1, 1)` is executed, `v1` is guaranteed to be less than `42`, and that there is therefore no need to check for 31-bit overflow. We would thus easily replace the `CheckedAdd` by a regular `Add`, which would execute faster, and would not require a deoptimization state (which is otherwise required to know how to resume execution after deoptimizing).
-However, with a SoN graph, `CheckedAdd`, being a pure operation, will flow freely in the graph, and there is thus no way to remove the check until we’ve computed a schedule and decided that we will compute it after the branch (and at this point, we are back to a CFG, so this is not a SoN optimization anymore).
+（假设有一个`CheckedAdd`操作，它对其输入进行相加并在结果溢出31位时去优化）
+使用控制流图时，很容易发现当执行`CheckedAdd(v1, 1)`时，`v1`肯定小于`42`，因此无需检查是否溢出31位。因此，我们很容易将`CheckedAdd`替换为普通的`Add`，这将执行得更快，并且不需要去优化状态（否则它需要此状态来知道去优化后如何恢复执行）。
+然而，使用节点海洋图时，`CheckedAdd`作为一个纯操作，将自由在图中流动，因此无法移除检查，直到我们计算出了调度并决定将在分支之后计算它（并且此时，我们回到了控制流图，这就不再是节点海洋的优化了）。
 
-Such checked operations are frequent in V8 due to this 31-bit small integer optimization, and the ability to replace checked operations by unchecked operations can have a significant impact on quality of the code generated by Turbofan. So, Turbofan’s SoN [puts a control-input on `CheckedAdd`](https://source.chromium.org/chromium/chromium/src/+/main:v8/src/compiler/simplified-operator.cc;l=966;drc=0a1fae9e77c6d8e85d8197b4f4396815ec9194b9), which can enable this optimization, but also means introducing a scheduling constraint on a pure node, a.k.a., going back to a CFG.
+在 V8 中，由于这种 31 位小整数优化，受检操作非常频繁，而能够将受检操作替换为非受检操作对 Turbofan 生成代码的质量产生重大影响。因此，Turbofan 的 SoN [为 `CheckedAdd` 添加了控制输入](https://source.chromium.org/chromium/chromium/src/+/main:v8/src/compiler/simplified-operator.cc;l=966;drc=0a1fae9e77c6d8e85d8197b4f4396815ec9194b9)，这可以启用此优化，但也意味着在纯节点上引入调度约束，也就是回到 CFG。
 
-## And many other issues…
+## 以及许多其他问题……
 
-**Propagating deadness is hard.** Frequently, during some lowering, we realize that the current node is actually unreachable. In a CFG, we could just cut the current basic block here, and the following blocks would automatically become obviously unreachable since they would have no predecessors anymore. In Sea of Nodes, it’s harder, because one has to patch both the control and effect chain. So, when a node on the effect chain is dead, we have to walk forward the effect chain until the next merge, killing everything along the way, and carefully handling nodes that are on the control chain.
+**传播死节点很难。** 经常在某些降级过程中，我们意识到当前节点实际上是不可到达的。在 CFG 中，我们可以切断当前基本块，接下来的块由于没有前驱会自动变得显然不可达。在 Sea of Nodes 中，这更困难，因为需要同时修补控制链和效果链。因此，当效果链中的一个节点已死亡时，我们需要沿着效果链向前走到下一个合并点，沿途杀死所有节点，并仔细处理控制链上的节点。
 
-**It’s hard to introduce new control flow.**  Because control flow nodes have to be on the control chain, it’s not possible to introduce new control flow during regular lowerings. So, if there is a pure node in the graph, such as `Int32Max`, which returns the maximum of 2 integers, and which we would eventually like to lower to `if (x > y) { x } else { y }`, this is not easily doable in Sea of Nodes, because we would need a way to figure out where on the control chain to plug this subgraph. One way to implement this would be to put `Int32Max` on the control chain from the beginning, but this feels wasteful: the node is pure and should be allowed to move around freely. So, the canonical Sea of Nodes way to solve this, used both in Turbofan, and also by Cliff Click (Sea of Nodes’ inventor), as mentioned in this [Coffee Compiler Club](https://youtu.be/Vu372dnk2Ak?t=3037) chat, is to delay this kind of lowerings until we have a schedule (and thus a CFG). As a result, we have a phase around the middle of the pipeline that computes a schedule and lowers the graph, where a lot of random optimizations are packed together because they all require a schedule. By comparison, with a CFG, we would be free to do these optimizations earlier or later in the pipeline.
-Also, remember from the introduction that one of the issues of Crankshaft (Turbofan’s predecessor) was that it was virtually impossible to introduce control flow after having built the graph. Turbofan is a slight improvement over this, since lowering of nodes on the control chain can introduce new control flow, but this is still limited.
+**引入新的控制流很难。** 由于控制流节点必须在控制链上，无法在常规降级过程中引入新的控制流。所以，如果图中有一个纯节点，例如 `Int32Max`，返回两个整数的最大值，最终我们可能希望降级为 `if (x > y) { x } else { y }`，在 Sea of Nodes 中这并不容易做到，因为我们需要找到如何在控制链上插入该子图的位置。一种方法是从一开始就将 `Int32Max` 放在控制链上，但这显得浪费：节点是纯的，应该允许自由移动。因此，解决此问题的 Sea of Nodes 规范方法——在 Turbofan 和 Sea of Nodes 的发明者 Cliff Click 的 [Coffee Compiler Club](https://youtu.be/Vu372dnk2Ak?t=3037) 聊天中提到的方法——是推迟这种降级直到我们有了一个调度（即一个 CFG）。因此，在管道中间有一个阶段会计算调度并降级图，其中许多随机优化打包在一起，因为它们都需要调度。相比之下，使用 CFG，我们可以更早或更晚在管道中进行这些优化。
+此外，回想一下引言中提到的 Crankshaft（Turbofan 的前身）的一个问题是，在构建图后几乎不可能引入控制流。Turbofan 在这一点上略有改善，因为控制链上的节点的降级可以引入新的控制流，但这仍然受到限制。
 
-**It’s hard to figure out what is inside of a loop.** Because a lot of nodes are floating outside of the control chain, it’s hard to figure out what is inside each loop. As a result, basic optimizations such as loop peeling and loop unrolling are hard to implement.
+**确定循环内部内容很难。** 因为许多节点浮动在控制链之外，很难确定每个循环内的内容。因此，诸如循环剥离和循环展开等基本优化很难实现。
 
-**Compiling is slow.** This is a direct consequence of multiple issues that I’ve already mentioned: it’s hard to find a good visitation order for nodes, which leads to many useless revisitation, state tracking is expensive, memory usage is bad, cache locality is bad… This might not be a big deal for an ahead of time compiler, but in a JIT compiler, compiling slowly means that we keep executing slow unoptimized code until the optimized code is ready, while taking away resources from other tasks (eg, other compilation jobs, or the Garbage Collector). One consequence of this is that we are forced to think very carefully about the compile time \- speedup tradeoff of new optimizations, often erring towards the side of optimizing less to keep optimizing fast.
+**编译速度慢。** 这是我之前提到的多个问题的直接后果：找到节点的良好访问顺序很困难，这导致许多无用的重复访问，状态跟踪成本昂贵，内存使用不好，缓存局部性差……这可能对提前编译器没什么大问题，但在 JIT 编译器中，编译速度慢意味着我们在优化代码准备好之前持续执行缓慢的非优化代码，同时占用其他任务的资源（例如，其他编译工作或垃圾回收器）。其结果之一是我们不得不非常仔细地权衡编译时间 \- 新优化的加速权衡，通常倾向于减少优化以保持编译速度。
 
-**Sea of Nodes destroys any prior scheduling, by construction.** JavaScript source code is typically not manually optimized with CPU microarchitecture in mind. However, WebAssembly code can be, either at the source level (C++ for instance), or by an [ahead-of-time (AOT)](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) compilation toolchain (like [Binaryen/Emscripten](https://github.com/WebAssembly/binaryen)). As a result, a WebAssembly code could be scheduled in a way that should be good on most architectures (for instance, reducing the need for [spilling](https://en.wikipedia.org/wiki/Register_allocation#Components_of_register_allocation), assuming 16 registers). However, SoN always discards the initial schedule, and needs to rely on its own scheduler only, which, because of the time constraints of JIT compilation, can easily be worse than what an AOT compiler (or a C++ developer carefully thinking about the scheduling of their code) could do. We have seen cases where WebAssembly was suffering from this. And, unfortunately, using a CFG compiler for WebAssembly and a SoN compiler for JavaScript in Turbofan was not an option either, since using the same compiler for both enables inlining across both languages.
+**Sea of Nodes 根据其设计破坏了任何之前的调度。** JavaScript 源代码通常不会手动针对 CPU 微架构进行优化。然而，WebAssembly 代码可以在源级别（例如 C++）或通过一个 [提前编译（AOT）](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) 编译工具链（如 [Binaryen/Emscripten](https://github.com/WebAssembly/binaryen)）进行优化。因此，WebAssembly 代码可以以一种在大多数架构上都应该表现不错的方式进行调度（例如，减少 [溢出](https://en.wikipedia.org/wiki/Register_allocation#Components_of_register_allocation) 的需求，假设有 16 个寄存器）。然而，SoN 总是丢弃初始调度，并且只能依赖其自己的调度程序，这由于 JIT 编译的时间限制，可能很容易比 AOT 编译器（或一个仔细考虑代码调度的 C++ 开发者）做得更差。我们曾见过 WebAssembly 因此而受到影响。不幸的是，在 Turbofan 中为 WebAssembly 使用 CFG 编译器，而为 JavaScript 使用 SoN 编译器也不是一个选择，因为为两者使用同一个编译器可以跨语言进行内联。
 
 
-# Sea of Nodes: elegant but impractical for JavaScript
+# Sea of Nodes: 优雅但对于 JavaScript 不实用
 
-So, to recapitulate, here are the main problems we have with Sea of Nodes and Turbofan:
+所以，总结一下，我们在 Sea of Nodes 和 Turbofan 中遇到的主要问题如下：
 
-1. It’s **too complex**. Effect and control chains are hard to understand, leading to many subtle bugs. Graphs are hard to read and analyze, making new optimizations hard to implement and refine.
+1. 它**太复杂了**。效果和控制链条难以理解，导致许多微妙的错误。图形难以阅读和分析，从而使得新优化难以实现和改进。
 
-2. It’s **too limited**. Too many nodes are on the effect and control chain (because we’re compiling JavaScript code), thus not providing many benefits over a traditional CFG. Additionally, because it’s hard to introduce new control-flow in lowerings, even basic optimizations end up being hard to implement.
+2. 它**太有限了**。由于我们正在编译JavaScript代码，效果和控制链条上的节点太多，因此与传统的控制流图相比并没有提供太多优势。此外，由于在降低阶段中很难引入新的控制流，甚至基本的优化都变得难以实现。
 
-3. Compiling is **too slow**. State-tracking is expensive, because it’s hard to find a good order in which to visit graphs. Cache locality is bad. And reaching fixpoints during reduction phases takes too long.
+3. 编译**太慢了**。状态跟踪很昂贵，因为很难找到一个良好的顺序来访问图形。缓存局部性很差。而在减少阶段中达到固定点所需的时间太长。
 
-So, after ten years of dealing with Turbofan and battling Sea of Nodes, we’ve finally decided to get rid of it, and instead go back to a more traditional CFG IR. Our experience with our new IR has been extremely positive so far, and we are very happy to have gone back to a CFG: compile time got divided by 2 compared to SoN, the code of the compiler is a lot simpler and shorter, investigating bugs is usually much easier, etc.
-Still, this post is already quite long, so I’ll stop here. Stay tuned for an upcoming blog post that will explain the design of our new CFG IR, Turboshaft.
+因此，在经过十年与Turbofan和Sea of Nodes的斗争后，我们终于决定放弃它，而回到更传统的控制流图中间表示（CFG IR）。到目前为止，我们对新IR的体验非常积极，我们很高兴回到了CFG：相比Sea of Nodes，编译时间缩短了一半，编译器的代码大大简化和缩短，调试错误通常也更容易等等。
+不过，这篇文章已经相当长了，所以我就写到这里。敬请期待即将发布的一篇博客文章，其中将解释我们新CFG IR——Turboshaft的设计。

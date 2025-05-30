@@ -1,126 +1,122 @@
 ---
-title: "CodeStubAssembler builtins"
-description: "This document is intended as an introduction to writing CodeStubAssembler builtins, and is targeted towards V8 developers."
+title: "CodeStubAssembler 内建函数"
+description: "本文档旨在为编写 CodeStubAssembler 内建函数提供入门指导，目标读者为 V8 开发者。"
 ---
-This document is intended as an introduction to writing CodeStubAssembler builtins, and is targeted towards V8 developers.
+本文档旨在为编写 CodeStubAssembler 内建函数提供入门指导，目标读者为 V8 开发者。
 
 :::note
-**Note:** [Torque](/docs/torque) replaces CodeStubAssembler as the recommended way to implement new builtins. See [Torque builtins](/docs/torque-builtins) for the Torque version of this guide.
+**注意：** [Torque](/docs/torque) 已取代 CodeStubAssembler，成为实现新内建函数的推荐方式。请参阅 [Torque 内建函数](/docs/torque-builtins)了解本指南的 Torque 版本。
 :::
 
-## Builtins
+## 内建函数
 
-In V8, builtins can be seen as chunks of code that are executable by the VM at runtime. A common use case is to implement the functions of builtin objects (such as RegExp or Promise), but builtins can also be used to provide other internal functionality (e.g. as part of the IC system).
+在 V8 中，内建函数可以看作是运行时虚拟机可执行的代码块。一个常见的用例是实现内置对象（如 RegExp 或 Promise）的功能，但内建函数也可用于提供其他内部功能（例如作为 IC 系统的一部分）。
 
-V8’s builtins can be implemented using a number of different methods (each with different trade-offs):
+V8 的内建函数可以通过多种不同的方法实现（每种方法有不同的权衡）：
 
-- **Platform-dependent assembly language**: can be highly efficient, but need manual ports to all platforms and are difficult to maintain.
-- **C++**: very similar in style to runtime functions and have access to V8’s powerful runtime functionality, but usually not suited to performance-sensitive areas.
-- **JavaScript**: concise and readable code, access to fast intrinsics, but frequent usage of slow runtime calls, subject to unpredictable performance through type pollution, and subtle issues around (complicated and non-obvious) JS semantics.
-- **CodeStubAssembler**: provides efficient low-level functionality that is very close to assembly language while remaining platform-independent and preserving readability.
+- **平台相关的汇编语言**：可以非常高效，但需要手动移植到所有平台且难以维护。
+- **C++**：在风格上非常类似于运行时函数，可以访问 V8 的强大运行时功能，但通常不适合性能敏感区域。
+- **JavaScript**：代码简洁且可读性强，可访问快速内建函数，但频繁使用较慢的运行时调用，容易因类型污染导致性能不可预测，还存在与（复杂且难以察觉的）JS 语义相关的微妙问题。
+- **CodeStubAssembler**：提供非常接近汇编语言但仍保持平台独立性和可读性的高效低级功能。
 
-The remaining document focuses on the latter and give a brief tutorial for developing a simple CodeStubAssembler (CSA) builtin exposed to JavaScript.
+本文档的其余部分将重点介绍最后一种方法，并为开发一个暴露给 JavaScript 的简单 CodeStubAssembler (CSA) 内建函数提供简要的教程。
 
 ## CodeStubAssembler
 
-V8’s CodeStubAssembler is a custom, platform-agnostic assembler that provides low-level primitives as a thin abstraction over assembly, but also offers an extensive library of higher-level functionality.
+V8 的 CodeStubAssembler 是一个定制的、与平台无关的汇编器，它提供基于汇编的低级原语，同时还提供广泛的高级功能库。
 
 ```cpp
-// Low-level:
-// Loads the pointer-sized data at addr into value.
+// 低级操作：
+// 将 addr 中指针大小的数据加载到 value 中。
 Node* addr = /* ... */;
 Node* value = Load(MachineType::IntPtr(), addr);
 
-// And high-level:
-// Performs the JS operation ToString(object).
-// ToString semantics are specified at https://tc39.es/ecma262/#sec-tostring.
+// 高级操作：
+// 执行 JS 操作 ToString(object)。
+// ToString 语义详见 https://tc39.es/ecma262/#sec-tostring。
 Node* object = /* ... */;
 Node* string = ToString(context, object);
 ```
 
-CSA builtins run through part of the TurboFan compilation pipeline (including block scheduling and register allocation, but notably not through optimization passes) which then emits the final executable code.
+CSA 内建函数会通过部分 TurboFan 编译流水线（包括块调度和寄存器分配，但特别不包括优化阶段），随后生成最终的可执行代码。
 
-## Writing a CodeStubAssembler builtin
+## 编写一个 CodeStubAssembler 内建函数
 
-In this section, we will write a simple CSA builtin that takes a single argument, and returns whether it represents the number `42`. The builtin is exposed to JS by installing it on the `Math` object (because we can).
+在本部分中，我们将编写一个简单的 CSA 内建函数，该函数接收一个参数，返回其是否表示数字 `42`。通过将其安装到 `Math` 对象上（因为我们可以这样做）使其暴露给 JS。
 
-This example demonstrates:
+本示例展示了以下内容：
 
-- Creating a CSA builtin with JavaScript linkage, which can be called like a JS function.
-- Using CSA to implement simple logic: Smi and heap-number handling, conditionals, and calls to TFS builtins.
-- Using CSA Variables.
-- Installation of the CSA builtin on the `Math` object.
+- 创建具有 JavaScript 链接的 CSA 内建函数，可像 JS 函数一样调用。
+- 使用 CSA 实现简单逻辑：处理 Smi 和堆数字、条件语句，以及调用 TFS 内建函数。
+- 使用 CSA 变量。
+- 将 CSA 内建函数安装到 `Math` 对象上。
 
-In case you’d like to follow along locally, the following code is based off revision [7a8d20a7](https://chromium.googlesource.com/v8/v8/+/7a8d20a79f9d5ce6fe589477b09327f3e90bf0e0).
+如果您想在本地跟随练习，以下代码基于修订版本 [7a8d20a7](https://chromium.googlesource.com/v8/v8/+/7a8d20a79f9d5ce6fe589477b09327f3e90bf0e0)。
 
-## Declaring `MathIs42`
+## 声明 `MathIs42`
 
-Builtins are declared in the `BUILTIN_LIST_BASE` macro in [`src/builtins/builtins-definitions.h`](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-definitions.h?q=builtins-definitions.h+package:%5Echromium$&l=1). To create a new CSA builtin with JS linkage and one parameter named `X`:
+内建函数在 [`src/builtins/builtins-definitions.h`](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-definitions.h?q=builtins-definitions.h+package:%5Echromium$&l=1) 文件中的 `BUILTIN_LIST_BASE` 宏中声明。要创建一个带有 JS 链接和一个名为 `X` 参数的新 CSA 内建函数：
 
 ```cpp
 #define BUILTIN_LIST_BASE(CPP, API, TFJ, TFC, TFS, TFH, ASM, DBG)              \
-  // […snip…]
+  // […省略…]
   TFJ(MathIs42, 1, kX)                                                         \
-  // […snip…]
+  // […省略…]
 ```
 
-Note that `BUILTIN_LIST_BASE` takes several different macros that denote different builtin kinds (see inline documentation for more details). CSA builtins specifically are split into:
+请注意，`BUILTIN_LIST_BASE` 接受几个不同的宏，以表示不同类型的内建函数（详见内联文档）。专门用于 CSA 的内建函数分为以下几类：
 
-- **TFJ**: JavaScript linkage.
-- **TFS**: Stub linkage.
-- **TFC**: Stub linkage builtin requiring a custom interface descriptor (e.g. if arguments are untagged or need to be passed in specific registers).
-- **TFH**: Specialized stub linkage builtin used for IC handlers.
+- **TFJ**：JavaScript 链接。
+- **TFS**：存根链接。
+- **TFC**：需要自定义接口描述符的存根链接内建函数（例如，如果参数是非标记的或需要被传递到特定的寄存器中）。
+- **TFH**：用于 IC 处理器的特殊存根链接内建函数。
 
-## Defining `MathIs42`
+## 定义 `MathIs42`
 
-Builtin definitions are located in `src/builtins/builtins-*-gen.cc` files, roughly organized by topic. Since we will be writing a `Math` builtin, we’ll put our definition into [`src/builtins/builtins-math-gen.cc`](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-math-gen.cc?q=builtins-math-gen.cc+package:%5Echromium$&l=1).
+内建函数定义位于 `src/builtins/builtins-*-gen.cc` 文件中，大致按主题组织。由于我们将编写一个 `Math` 内建函数，因此我们会将定义放入 [`src/builtins/builtins-math-gen.cc`](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-math-gen.cc?q=builtins-math-gen.cc+package:%5Echromium$&l=1)。
 
 ```cpp
-// TF_BUILTIN is a convenience macro that creates a new subclass of the given
-// assembler behind the scenes.
+// TF_BUILTIN 是一个方便的宏，用于在后台为给定的汇编器创建一个新子类。
 TF_BUILTIN(MathIs42, MathBuiltinsAssembler) {
-  // Load the current function context (an implicit argument for every stub)
-  // and the X argument. Note that we can refer to parameters by the names
-  // defined in the builtin declaration.
+  // 加载当前函数上下文（每个存根都会隐式传递一个参数）
+  // 和 X 参数。注意我们可以通过内置声明中定义的参数名称来引用参数。
+  //
   Node* const context = Parameter(Descriptor::kContext);
   Node* const x = Parameter(Descriptor::kX);
 
-  // At this point, x can be basically anything - a Smi, a HeapNumber,
-  // undefined, or any other arbitrary JS object. Let’s call the ToNumber
-  // builtin to convert x to a number we can use.
-  // CallBuiltin can be used to conveniently call any CSA builtin.
+  // 此时，x 可以是任何东西——如 Smi、HeapNumber、undefined 或任意其他的 JS 对象。
+  // 让我们调用 ToNumber 的内置函数以将 x 转换为一个可用的数字。
+  // CallBuiltin 可用于方便地调用任何 CSA 内置。
   Node* const number = CallBuiltin(Builtins::kToNumber, context, x);
 
-  // Create a CSA variable to store the resulting value. The type of the
-  // variable is kTagged since we will only be storing tagged pointers in it.
+  // 创建一个 CSA 变量来存储结果值。该变量的类型是 kTagged ，
+  // 因为我们只会存储标记指针。
   VARIABLE(var_result, MachineRepresentation::kTagged);
 
-  // We need to define a couple of labels which will be used as jump targets.
+  // 我们需要定义一些标签来作为跳转目标。
   Label if_issmi(this), if_isheapnumber(this), out(this);
 
-  // ToNumber always returns a number. We need to distinguish between Smis
-  // and heap numbers - here, we check whether number is a Smi and conditionally
-  // jump to the corresponding labels.
+  // ToNumber 总是返回一个数字。我们需要区分 Smi 和堆数字——
+  // 在这里，我们检查 number 是否是一个 Smi 并有条件地跳转到相应的标签。
   Branch(TaggedIsSmi(number), &if_issmi, &if_isheapnumber);
 
-  // Binding a label begins generating code for it.
+  // 绑定标签开始生成代码。
   BIND(&if_issmi);
   {
-    // SelectBooleanConstant returns the JS true/false values depending on
-    // whether the passed condition is true/false. The result is bound to our
-    // var_result variable, and we then unconditionally jump to the out label.
+    // SelectBooleanConstant 返回 JS 的 true/false 值，
+    // 具体取决于传递的条件是真还是假。结果绑定到我们的
+    // var_result 变量中，然后我们无条件跳转到 out 标签。
     var_result.Bind(SelectBooleanConstant(SmiEqual(number, SmiConstant(42))));
     Goto(&out);
   }
 
   BIND(&if_isheapnumber);
   {
-    // ToNumber can only return either a Smi or a heap number. Just to make sure
-    // we add an assertion here that verifies number is actually a heap number.
+    // ToNumber 只能返回 Smi 或堆数字。为了确认这一点，
+    // 我们在这里添加了一个断言，验证 number 确实是堆数字。
     CSA_ASSERT(this, IsHeapNumber(number));
-    // Heap numbers wrap a floating point value. We need to explicitly extract
-    // this value, perform a floating point comparison, and again bind
-    // var_result based on the outcome.
+    // 堆数字包含浮点值。我们需要显式提取该值，进行浮点比较，
+    // 并根据结果再次绑定 var_result。
     Node* const value = LoadHeapNumberValue(number);
     Node* const is_42 = Float64Equal(value, Float64Constant(42));
     var_result.Bind(SelectBooleanConstant(is_42));
@@ -136,19 +132,19 @@ TF_BUILTIN(MathIs42, MathBuiltinsAssembler) {
 }
 ```
 
-## Attaching `Math.Is42`
+## 将 `Math.Is42` 绑定到对象
 
-Builtin objects such as `Math` are set up mostly in [`src/bootstrapper.cc`](https://cs.chromium.org/chromium/src/v8/src/bootstrapper.cc?q=src/bootstrapper.cc+package:%5Echromium$&l=1) (with some setup occurring in `.js` files). Attaching our new builtin is simple:
+像 `Math` 这样的内置对象大部分是在 [`src/bootstrapper.cc`](https://cs.chromium.org/chromium/src/v8/src/bootstrapper.cc?q=src/bootstrapper.cc+package:%5Echromium$&l=1) 中设置的（部分设置在 `.js` 文件中完成）。绑定我们新的内置函数非常简单：
 
 ```cpp
-// Existing code to set up Math, included here for clarity.
+// 用于设置 Math 的现有代码，这里用于说明。
 Handle<JSObject> math = factory->NewJSObject(cons, TENURED);
 JSObject::AddProperty(global, name, math, DONT_ENUM);
-// […snip…]
+// […省略…]
 SimpleInstallFunction(math, "is42", Builtins::kMathIs42, 1, true);
 ```
 
-Now that `Is42` is attached, it can be called from JS:
+现在 `Is42` 已经绑定到对象，可以在 JS 中调用它了：
 
 ```bash
 $ out/debug/d8
@@ -162,26 +158,28 @@ d8> Math.is42({ valueOf: () => 42 });
 true
 ```
 
-## Defining and calling a builtin with stub linkage
+## 用存根链接定义和调用内置函数
 
-CSA builtins can also be created with stub linkage (instead of JS linkage as we used above in `MathIs42`). Such builtins can be useful to extract commonly-used code into a separate code object that can be used by multiple callers, while the code is only produced once. Let’s extract the code that handles heap numbers into a separate builtin called `MathIsHeapNumber42`, and call it from `MathIs42`.
+CSA 内置函数也可以通过存根链接创建（而不是我们在 `MathIs42` 中使用的 JS 链接）。
+这样的内置函数可用于将常用代码提取到单独的代码对象中，多个调用者可以使用同一个代码，这样代码只需生成一次。
+让我们提取处理堆数字的代码到一个名为 `MathIsHeapNumber42` 的独立内置函数中，并从 `MathIs42` 中调用它。
 
-Defining and using TFS stubs is easy; declaration are again placed in [`src/builtins/builtins-definitions.h`](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-definitions.h?q=builtins-definitions.h+package:%5Echromium$&l=1):
+定义和使用 TFS 存根很简单；声明同样放在 [`src/builtins/builtins-definitions.h`](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-definitions.h?q=builtins-definitions.h+package:%5Echromium$&l=1)：
 
 ```cpp
 #define BUILTIN_LIST_BASE(CPP, API, TFJ, TFC, TFS, TFH, ASM, DBG)              \
-  // […snip…]
+  // […省略…]
   TFS(MathIsHeapNumber42, kX)                                                  \
   TFJ(MathIs42, 1, kX)                                                         \
-  // […snip…]
+  // […省略…]
 ```
 
-Note that currently, order within `BUILTIN_LIST_BASE` does matter. Since `MathIs42` calls `MathIsHeapNumber42`, the former needs to be listed after the latter (this requirement should be lifted at some point).
+注意，目前，在 `BUILTIN_LIST_BASE` 中的顺序确实很重要。由于 `MathIs42` 调用了 `MathIsHeapNumber42`，前者需要列在后者后面（此限制应该会在某些时候解除）。
 
-The definition is also straightforward. In [`src/builtins/builtins-math-gen.cc`](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-math-gen.cc?q=builtins-math-gen.cc+package:%5Echromium$&l=1):
+定义也非常简单。在 [`src/builtins/builtins-math-gen.cc`](https://cs.chromium.org/chromium/src/v8/src/builtins/builtins-math-gen.cc?q=builtins-math-gen.cc+package:%5Echromium$&l=1)：
 
 ```cpp
-// Defining a TFS builtin works exactly the same way as TFJ builtins.
+// 定义 TFS 内置函数与定义 TFJ 内置函数完全相同。
 TF_BUILTIN(MathIsHeapNumber42, MathBuiltinsAssembler) {
   Node* const x = Parameter(Descriptor::kX);
   CSA_ASSERT(this, IsHeapNumber(x));
@@ -191,28 +189,28 @@ TF_BUILTIN(MathIsHeapNumber42, MathBuiltinsAssembler) {
 }
 ```
 
-Finally, let’s call our new builtin from `MathIs42`:
+最后，让我们从 `MathIs42` 中调用新的内置函数：
 
 ```cpp
 TF_BUILTIN(MathIs42, MathBuiltinsAssembler) {
-  // […snip…]
+  // […省略…]
   BIND(&if_isheapnumber);
   {
-    // Instead of handling heap numbers inline, we now call into our new TFS stub.
+    // 现在我们调用新的 TFS stub，而不是内联处理堆数字。
     var_result.Bind(CallBuiltin(Builtins::kMathIsHeapNumber42, context, number));
     Goto(&out);
   }
-  // […snip…]
+  // […省略…]
 }
 ```
 
-Why should you care about TFS builtins at all? Why not leave the code inline (or extracted into a helper method for better readability)?
+为什么你应该关心 TFS 内建函数？为什么不将代码内联（或提取成一个辅助方法以提高可读性）？
 
-An important reason is code space: builtins are generated at compile-time and included in the V8 snapshot, thus unconditionally taking up (significant) space in every created isolate. Extracting large chunks of commonly used code to TFS builtins can quickly lead to space savings in the 10s to 100s of KBs.
+一个重要原因是代码空间：内建函数在编译时生成并包含在 V8 快照中，因此在每个创建的 isolate 中无条件地占用（显著）空间。从常用代码中提取出大块的内容至 TFS 内建函数可以迅速节省 10 到 100 KB 的空间。
 
-## Testing stub-linkage builtins
+## 测试 Stub-Linkage 内建函数
 
-Even though our new builtin uses a non-standard (at least non-C++) calling convention, it’s possible to write test cases for it. The following code can be added to [`test/cctest/compiler/test-run-stubs.cc`](https://cs.chromium.org/chromium/src/v8/test/cctest/compiler/test-run-stubs.cc?l=1&rcl=4cab16db27808cf66ab883e7904f1891f9fd0717) to test the builtin on all platforms:
+尽管我们新的内建函数使用非标准（至少非 C++）调用约定，但仍然可以为其编写测试用例。以下代码可以添加到 [`test/cctest/compiler/test-run-stubs.cc`](https://cs.chromium.org/chromium/src/v8/test/cctest/compiler/test-run-stubs.cc?l=1&rcl=4cab16db27808cf66ab883e7904f1891f9fd0717) 中，以在所有平台上测试该内建函数：
 
 ```cpp
 TEST(MathIsHeapNumber42) {

@@ -1,82 +1,82 @@
 ---
-title: "V8 release v4.5"
-author: "the V8 team"
+title: "V8发布v4.5"
+author: "V8团队"
 date: "2015-07-17 13:33:37"
 tags: 
-  - release
-description: "V8 v4.5 comes with performance improvements and adds support for several ES2015 features."
+  - 发布
+description: "V8 v4.5带来了性能提升，并增加了对多个ES2015特性的支持。"
 ---
-Roughly every six weeks, we create a new branch of V8 as part of our [release process](https://v8.dev/docs/release-process). Each version is branched from V8’s Git master immediately before Chrome branches for a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 4.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.5), which will be in beta until it is released in coordination with Chrome 45 Stable. V8 v4.5 is filled with all sorts of developer-facing goodies, so we’d like to give you a preview of some of the highlights in anticipation of the release in several weeks.
+大约每六周，我们会根据[发布流程](https://v8.dev/docs/release-process)创建一个新的V8分支。每个版本都是在Chrome为Chrome Beta里程碑分支之前从V8的Git主分支派生出来的。今天，我们很高兴地宣布最新的分支，[V8版本4.5](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.5)，这个版本将在Beta阶段，直到和Chrome 45稳定版同步发布。V8 v4.5包含了各种面向开发者的精彩内容，因此在几周后的发布之前，我们希望预览一些亮点。
 
 <!--truncate-->
-## Improved ECMAScript 2015 (ES6) support
+## 改进的ECMAScript 2015 (ES6)支持
 
-V8 v4.5 adds support for several [ECMAScript 2015 (ES6)](https://www.ecma-international.org/ecma-262/6.0/) features.
+V8 v4.5增加了对几个[ECMAScript 2015 (ES6)](https://www.ecma-international.org/ecma-262/6.0/)特性的支持。
 
-### Arrow functions
+### 箭头函数
 
-With the help of [Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) it is possible to write more streamlined code.
+通过[箭头函数](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，可以编写更简洁的代码。
 
 ```js
 const data = [0, 1, 3];
-// Code without Arrow Functions
+// 没有使用箭头函数的代码
 const convertedData = data.map(function(value) { return value * 2; });
 console.log(convertedData);
-// Code with Arrow Functions
+// 使用箭头函数的代码
 const convertedData = data.map(value => value * 2);
 console.log(convertedData);
 ```
 
-The lexical binding of 'this' is another major benefit of arrow functions. As a result, using callbacks in methods gets much easier.
+“this”的词法绑定是箭头函数的另一个主要优势。因此，在方法中使用回调变得更加简单。
 
 ```js
 class MyClass {
-  constructor() { this.a = 'Hello, '; }
-  hello() { setInterval(() => console.log(this.a + 'World!'), 1000); }
+  constructor() { this.a = '你好，'; }
+  hello() { setInterval(() => console.log(this.a + '世界！'), 1000); }
 }
 const myInstance = new MyClass();
 myInstance.hello();
 ```
 
-### Array/TypedArray functions
+### 数组/TypedArray函数
 
-All of the new methods on [Arrays and TypedArrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Methods) that are specified in ES2015 are now supported in V8 v4.5. They make working with Arrays and TypedArrays more convenient. Among the methods added are `Array.from` and `Array.of`. Methods which mirror most `Array` methods on each kind of TypedArray were added as well.
+在V8 v4.5中，[ES2015](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array#Methods)规范中定义的所有新方法都得到了支持，它们使操作数组和TypedArrays更加方便。新增的方法包括`Array.from`和`Array.of`，还添加了许多在各种TypedArray类型上镜像`Array`方法的功能。
 
 ### `Object.assign`
 
-[`Object.assign`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) enables developers to quickly merge and clone objects.
+[`Object.assign`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)让开发者可以快速合并和克隆对象。
 
 ```js
-const target = { a: 'Hello, ' };
-const source = { b: 'world!' };
-// Merge the objects.
+const target = { a: '你好，' };
+const source = { b: '世界！' };
+// 合并对象。
 Object.assign(target, source);
 console.log(target.a + target.b);
 ```
 
-This feature can also be used to mix in functionality.
+此功能也可以用于混合功能。
 
-## More JavaScript language features are “optimizable”
+## 更多JavaScript语言特性是“可优化的”
 
-For many years, V8’s traditional optimizing compiler, [Crankshaft](https://blog.chromium.org/2010/12/new-crankshaft-for-v8.html), has done a great job of optimizing many common JavaScript patterns. However, it never had the capability to support the entire JavaScript language, and using certain language features in a function — such as `try`/`catch` and `with` — would prevent it from being optimized. V8 would have to fall back to its slower, baseline compiler for that function.
+多年来，V8的传统优化编译器[Crankshaft](https://blog.chromium.org/2010/12/new-crankshaft-for-v8.html)一直擅长优化许多常见的JavaScript模式。然而，它从未能够支持完整的JavaScript语言，在函数中使用某些语言特性（如`try`/`catch`和`with`）会阻止其被优化。V8不得不退回到较慢的基线编译器来处理该函数。
 
-One of the design goals of V8’s new optimizing compiler, [TurboFan](/blog/turbofan-jit), is to be able to eventually optimize all of JavaScript, including ECMAScript 2015 features. In V8 v4.5, we’ve started using TurboFan to optimize some of the language features that are not supported by Crankshaft: `for`-`of`, `class`, `with`, and computed property names.
+V8的新优化编译器[TurboFan](/blog/turbofan-jit)的设计目标之一是最终能够优化全部JavaScript，包括ECMAScript 2015特性。在V8 v4.5中，我们开始使用TurboFan优化一些Crankshaft不支持的语言特性，例如`for`-`of`、`class`、`with`和计算属性名称。
 
-Here is an example of code that uses 'for-of', which can now be compiled by TurboFan:
+以下是使用`for-of`的代码示例，它现在可以由TurboFan编译：
 
 ```js
-const sequence = ['First', 'Second', 'Third'];
+const sequence = ['第一', '第二', '第三'];
 for (const value of sequence) {
-  // This scope is now optimizable.
-  const object = {a: 'Hello, ', b: 'world!', c: value};
+  // 此作用域现已可优化。
+  const object = {a: '你好，', b: '世界！', c: value};
   console.log(object.a + object.b + object.c);
 }
 ```
 
-Although initially functions that use these language features won't reach the same peak performance as other code compiled by Crankshaft, TurboFan can now speed them up well beyond our current baseline compiler. Even better, performance will continue to improve quickly as we develop more optimizations for TurboFan.
+尽管初期使用这些语言特性的函数不会像Crankshaft编译的其他代码达到同样的最佳性能，但TurboFan现在可以将其速度提升至远超当前的基线编译器。更好的是，随着我们开发更多TurboFan优化，性能将继续快速提高。
 
 ## V8 API
 
-Please check out our [summary of API changes](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit). This document gets regularly updated a few weeks after each major release.
+请查看我们的[API变更摘要](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit)。此文档将在每次主要发布后的几周内定期更新。
 
-Developers with an [active V8 checkout](https://v8.dev/docs/source-code#using-git) can use `git checkout -b 4.5 -t branch-heads/4.5` to experiment with the new features in V8 v4.5. Alternatively you can [subscribe to Chrome's Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+拥有[活动V8检出](https://v8.dev/docs/source-code#using-git)的开发者可以使用`git checkout -b 4.5 -t branch-heads/4.5`来尝试V8 v4.5中的新特性。或者你可以[订阅Chrome的Beta频道](https://www.google.com/chrome/browser/beta.html)，并很快自己尝试这些新功能。

@@ -1,19 +1,19 @@
 ---
-title: "WebAssembly tail calls"
+title: "WebAssembly尾调用"
 author: "Thibaud Michaud, Thomas Lively"
 date: 2023-04-06
 tags: 
   - WebAssembly
-description: "This document explains the WebAssembly tail calls proposal and demonstrates it with some examples."
+description: "本文详细介绍了WebAssembly尾调用提案，并通过一些示例进行演示。"
 tweet: "1644077795059044353"
 ---
-We are shipping WebAssembly tail calls in V8 v11.2! In this post we give a brief overview of this proposal, demonstrate an interesting use case for C++ coroutines with Emscripten, and show how V8 handles tail calls internally.
+我们在V8 v11.2中推出了WebAssembly尾调用！在本文中，我们将简要介绍该提案，展示一个关于使用Emscripten的C++协程的有趣用例，并说明V8如何在内部处理尾调用。
 
-## What is Tail Call Optimization?
+## 什么是尾调用优化？
 
-A call is said to be in tail position if it is the last instruction executed before returning from the current function. Compilers can optimize such calls by discarding the caller frame and replacing the call with a jump.
+如果一个调用是当前函数在返回之前执行的最后一个指令，就称其处于尾部位置。编译器可以通过丢弃调用帧并将调用替换为跳转来优化此类调用。
 
-This is especially useful for recursive functions. For instance, take this C function that sums the elements of a linked list:
+这对递归函数尤其有用。例如，考虑以下用C语言编写的函数，该函数对链表中的元素求和：
 
 ```c
 int sum(List* list, int acc) {
@@ -22,7 +22,7 @@ int sum(List* list, int acc) {
 }
 ```
 
-With a regular call, this consumes 𝒪(n) stack space: each element of the list adds a new frame on the call stack. With a long enough list, this could very quickly overflow the stack. By replacing the call with a jump, tail call optimization effectively turns this recursive function into a loop which uses 𝒪(1) stack space:
+使用常规调用，这会消耗𝒪(n)的堆栈空间：链表中的每个元素都会在调用堆栈中添加一个新的框架。如果列表足够长，这很快会导致堆栈溢出。通过将调用替换为跳转，尾调用优化实际上将此递归函数转化为一个使用𝒪(1)堆栈空间的循环：
 
 <!--truncate-->
 ```c
@@ -35,13 +35,13 @@ int sum(List* list, int acc) {
 }
 ```
 
-This optimization is particularly important for functional languages. They rely heavily on recursive functions, and pure ones like Haskell don’t even provide loop control structures. Any kind of custom iteration typically uses recursion one way or another. Without tail call optimization, this would very quickly run into a stack overflow for any non-trivial program.
+这种优化对函数式语言尤为重要。这些语言严重依赖递归函数，而像Haskell这样的纯函数式语言甚至不提供循环控制结构。任何自定义迭代通常都会以某种方式依赖递归。没有尾调用优化，任何非简单的程序很快都会遇到堆栈溢出。
 
-### The WebAssembly tail call proposal
+### WebAssembly尾调用提案
 
-There are two ways to call a function in Wasm MVP: `call` and `call_indirect`.  The WebAssembly tail call proposal adds their tail call counterparts: `return_call` and `return_call_indirect`. This means that it is the responsibility of the toolchain to actually perform tail call optimization and emit the appropriate call kind, which gives it more control over performance and stack space usage.
+在Wasm MVP中调用函数有两种方式：`call`和`call_indirect`。WebAssembly尾调用提案为它们添加了尾调用对应项：`return_call`和`return_call_indirect`。这意味着工具链实际执行尾调用优化并发出适当的调用类型，从而更好地控制性能和堆栈空间的使用。
 
-Let’s look at a recursive Fibonacci function. The Wasm bytecode is included here in the text format for completeness, but you can find it in C++ in the next section:
+让我们看看一个递归的Fibonacci函数。此处以文本格式包含Wasm字节码以完整展示，但您可以在下一节中找到C++的实现：
 
 ```wasm/4
 (func $fib_rec (param $n i32) (param $a i32) (param $b i32) (result i32)
@@ -62,13 +62,13 @@ Let’s look at a recursive Fibonacci function. The Wasm bytecode is included he
 )
 ```
 
-At any given time there is only one `fib_rec` frame, which unwinds itself before performing the next recursive call. When we reach the base case, `fib_rec` returns the result `a` directly to `fib`.
+任何时候都只有一个`fib_rec`帧，它在执行下一次递归调用前会释放自身。当达到基准情况时，`fib_rec`会直接将结果`a`返回给`fib`。
 
-One observable consequence of tail calls is (besides a reduced risk of stack overflow) that tail callers do not appear in stack traces. Neither do they appear in the stack property of a caught exception, nor in the DevTools stack trace. By the time an exception is thrown, or execution pauses, the tail caller frames are gone and there is no way for V8 to recover them.
+尾调用的一个可观察到的结果是（除了降低堆栈溢出风险）尾调用者不会出现在堆栈跟踪中。它们既不会出现在捕获的异常的堆栈属性中，也不会出现在DevTools的堆栈跟踪中。当异常被抛出或执行暂停时，尾调用者帧已经消失，V8没有办法恢复它们。
 
-## Using tail calls with Emscripten
+## 在Emscripten中使用尾调用
 
-Functional languages often depend on tail calls, but it’s possible to use them as a C or C++ programmer as well. Emscripten (and Clang, which Emscripten uses) supports the musttail attribute that tells the compiler that a call must be compiled into a tail call. As an example, consider this recursive implementation of a Fibonacci function that calculates the `n`th Fibonacci number mod 2^32 (because the integers overflow for large `n`):
+函数式语言经常依赖尾调用，但C或C++程序员也可以使用尾调用。Emscripten（以及Emscripten使用的Clang）支持musttail属性，该属性告诉编译器调用必须被编译为尾调用。例如，以下递归实现的Fibonacci函数计算第`n`个Fibonacci数模2^32（因为大`n`时整数会溢出）：
 
 ```c
 #include <stdio.h>
@@ -93,9 +93,9 @@ int main() {
 }
 ```
 
-After compiling with `emcc test.c -o test.js`, running this program in Node.js gives a stack overflow error. We can fix this by adding `__attribute__((__musttail__))` to the return in `fib_rec` and adding `-mtail-call` to the compilation arguments. Now the produced Wasm modules contains the new tail call instructions, so we have to pass `--experimental-wasm-return_call` to Node.js, but the stack no longer overflows.
+使用`emcc test.c -o test.js`编译后，在Node.js中运行该程序会出现堆栈溢出错误。通过在`fib_rec`的返回值中添加`__attribute__((__musttail__))`并在编译参数中添加`-mtail-call`可以修复此问题。现在生成的Wasm模块包含新尾调用指令，因此我们需要向Node.js传递`--experimental-wasm-return_call`，但堆栈不会再溢出。
 
-Here’s an example using mutual recursion as well:
+以下是一个互相递归的示例：
 
 ```c
 #include <stdio.h>
@@ -106,18 +106,18 @@ bool is_even(unsigned n);
 
 bool is_odd(unsigned n) {
   if (n == 0) {
-    return false;
+    返回 false;
   }
   __attribute__((__musttail__))
-  return is_even(n - 1);
+  返回 is_even(n - 1);
 }
 
 bool is_even(unsigned n) {
-  if (n == 0) {
-    return true;
+  如果 (n == 0) {
+    返回 true;
   }
   __attribute__((__musttail__))
-  return is_odd(n - 1);
+  返回 is_odd(n - 1);
 }
 
 int main() {
@@ -125,40 +125,40 @@ int main() {
 }
 ```
 
-Note that both of these examples are simple enough that if we compile with `-O2`, the compiler can precompute the answer and avoid exhausting the stack even without tail calls, but this wouldn’t be the case with more complex code. In real-world code, the musttail attribute can be helpful for writing high-performance interpreter loops as described in [this blog post](https://blog.reverberate.org/2021/04/21/musttail-efficient-interpreters.html) by Josh Haberman.
+需要注意的是，这两个示例都非常简单，以至于如果我们使用 `-O2` 编译，即使没有尾调用，编译器也可以预先计算答案并避免耗尽堆栈，但对于更复杂的代码则不会如此。在实际代码中，musttail 属性对于编写高性能解释器循环非常有用，正如 Josh Haberman 在 [这篇博文](https://blog.reverberate.org/2021/04/21/musttail-efficient-interpreters.html) 中所描述的。
 
-Besides the `musttail` attribute, C++ depends on tail calls for one other feature: C++20 coroutines. The relationship between tail calls and C++20 coroutines is covered in extreme depth in [this blog post](https://lewissbaker.github.io/2020/05/11/understanding_symmetric_transfer) by Lewis Baker, but to summarize, it is possible to use coroutines in a pattern that would subtly cause stack overflow even though the source code doesn’t make it look like there is a problem. To fix this problem, the C++ committee added a requirement that compilers implement “symmetric transfer” to avoid the stack overflow, which in practice means using tail calls under the covers.
+除了 `musttail` 属性外，C++还依赖尾调用实现另一个功能：C++20 协程。有关尾调用和 C++20 协程之间关系的详细分析可以参见 Lewis Baker 的 [这篇博文](https://lewissbaker.github.io/2020/05/11/understanding_symmetric_transfer)，但简而言之，可以使用一种模式调用协程，这种模式可能会微妙地导致堆栈溢出，即使代码看起来不会有问题。为了修复该问题，C++委员会要求编译器实现“对称传输”以避免堆栈溢出，而实际上这意味着在底层使用尾调用。
 
-When WebAssembly tail calls are enabled, Clang implements symmetric transfer as described in that blog post, but when tail calls are not enabled, Clang silently compiles the code without symmetric transfer, which could lead to stack overflows and is technically not a correct implementation of C++20!
+当启用 WebAssembly 的尾调用时，Clang 按照该博文中描述的方式实现了对称传输，但当尾调用未启用时，Clang 会默默地编译代码，而不实现对称传输，这可能导致堆栈溢出，并且技术上也不是正确的 C++20 实现！
 
-To see the difference in action, use Emscripten to compile the last example from the blog post linked above and observe that it only avoids overflowing the stack if tail calls are enabled. Note that due to a recently-fixed bug, this only works correctly in Emscripten 3.1.35 or later.
+为了查看实际效果，请使用 Emscripten 编译上面博文中的最后一个示例，并观察只有启用尾调用时才可以避免堆栈溢出。请注意，由于最近修复的漏洞，这种功能仅在 Emscripten 3.1.35 或更高版本中正确运行。
 
-## Tail calls in V8
+## V8 中的尾调用
 
-As we saw earlier, it is not the engine’s responsibility to detect calls in tail position. This should be done upstream by the toolchain. So the only thing left to do for TurboFan (V8’s optimizing compiler) is to emit an appropriate sequence of instructions based on the call kind and the target function signature.  For our fibonacci example from earlier, the stack would look like this:
+正如我们之前所看到的，判定调用是否位于尾部位置不是引擎的责任。这应该由工具链在上游完成。因此，TurboFan（V8 的优化编译器）唯一需要做的事情就是根据调用类型和目标函数签名发出适当的指令序列。对于前面提到的斐波那契示例，堆栈将如下所示：
 
-![Simple tail call in TurboFan](/_img/wasm-tail-calls/tail-calls.svg)
+![TurboFan 中的简单尾调用](/_img/wasm-tail-calls/tail-calls.svg)
 
-On the left we are inside `fib_rec` (green), called by `fib` (blue) and about to recursively tail call `fib_rec`. First we unwind the current frame by resetting the frame and stack pointer. The frame pointer just restores its previous value by reading it from the “Caller FP” slot. The stack pointer moves to the top of the parent frame, plus enough space for any potential stack parameters and stack return values for the callee (0 in this case, everything is passed by registers). Parameters are moved into their expected registers according to `fib_rec`’s linkage (not shown in the diagram). And finally we start running `fib_rec`, which starts by creating a new frame.
+左侧是我们在 `fib_rec`（绿色）内部，由 `fib`（蓝色）调用并即将递归尾调用 `fib_rec`。首先，通过重置帧指针和堆栈指针来展开当前帧。帧指针通过从“调用者 FP”槽中读取其先前值恢复。堆栈指针移动到父帧顶部，加上调用者的任何可能的堆栈参数空间及堆栈返回值空间（在此示例中为 0，一切都通过寄存器传递）。参数根据 `fib_rec` 的链接被移动到预期寄存器中（未在图中显示）。最后，我们开始运行 `fib_rec`，其首先创建新帧。
 
-`fib_rec` unwinds and rewinds itself like this until `n == 0`, at which point it returns `a` by register to `fib`.
+`fib_rec` 像这样不断展开和重新展开，直到 `n == 0`，此时它通过寄存器将 `a` 返回给 `fib`。
 
-This is a simple case where all parameters and return values fit into registers, and the callee has the same signature as the caller. In the general case, we might need to do complex stack manipulations:
+这是一个简单的案例，所有参数和返回值都适合寄存器，并且调用者的签名与被调用者的签名相同。在一般情况下，我们可能需要进行复杂的堆栈操作：
 
-- Read outgoing parameters from the old frame
-- Move parameters into the new frame
-- Adjust the frame size by moving the return address up or down, depending on the number of stack parameters in the callee
+- 从旧帧读取传出的参数
+- 将参数移动到新帧
+- 通过上移或下移返回地址来调整帧大小，这取决于被调用者中的堆栈参数数量
 
-All these reads and writes can conflict with each other, because we are reusing the same stack space. This is a crucial difference with a non-tail call, which would simply push all the stack parameters and the return address on top of the stack.
+所有这些读写操作可能会互相冲突，因为我们重复使用相同的堆栈空间。这是与非尾调用的关键区别，后者只是将所有堆栈参数和返回地址推入堆栈顶部。
 
-![Complex tail call in TurboFan](/_img/wasm-tail-calls/tail-calls-complex.svg)
+![TurboFan 中的复杂尾调用](/_img/wasm-tail-calls/tail-calls-complex.svg)
 
-TurboFan handles these stack and register manipulations with the “gap resolver”, a component which takes a list of moves that should semantically be executed in parallel, and generates the appropriate sequence of moves to resolve potential interferences between the move’s sources and destinations. If the conflicts are acyclic, this is just a matter of reordering the moves such that all sources are read before they are overwritten. For cyclic conflicts (e.g. if we swap two stack parameters), this can involve moving one of the sources to a temporary register or a temporary stack slot to break the cycle.
+TurboFan 通过“间隙解析器”组件来处理这些堆栈和寄存器操作，该组件接收一组应该语义上并行执行的移动操作，并生成适当的操作序列以解决移动源和目标之间可能的冲突。如果冲突是非循环的，这只是重新排列移动操作以确保所有源在被覆盖之前已被读取的问题。对于循环冲突（例如交换两个堆栈参数），这可能需要将其中一个源移动到临时寄存器或临时堆栈槽中，以打破循环。
 
-Tail calls are also supported in Liftoff, our baseline compiler. In fact, they must be supported, or the baseline code might run out of stack space. However they are not optimized in this tier: Liftoff pushes the parameters, return address, and frame pointer to complete the frame as if this was a regular call, and then shifts everything downwards to discard the caller frame:
+尾调用也支持在Liftoff中使用，这是我们的基线编译器。实际上，它们必须得到支持，否则基线代码可能会耗尽堆栈空间。然而，这一层中没有进行优化：Liftoff将参数、返回地址和帧指针推入以完成帧，就像这是一种常规调用一样，然后向下移动所有内容以丢弃调用者帧：
 
-![Tail calls in Liftoff](/_img/wasm-tail-calls/tail-calls-liftoff.svg)
+![Liftoff中的尾调用](/_img/wasm-tail-calls/tail-calls-liftoff.svg)
 
-Before jumping to the target function, we also pop the caller FP into the FP register to restore its previous value, and to let the target function push it again in the prologue.
+在跳转到目标函数之前，我们还会将调用者的FP弹入FP寄存器，以恢复其先前值，并使目标函数可以在序言中再次推入。
 
-This strategy doesn’t require that we analyze and resolve move conflicts, which makes compilation faster. The generated code is slower, but eventually [tiers up](/blog/wasm-dynamic-tiering) to TurboFan if the function is hot enough.
+这种策略不需要我们分析和解决移动冲突，从而加快了编译速度。生成的代码较慢，但如果函数足够热，最终会[升级](/blog/wasm-dynamic-tiering)到TurboFan。

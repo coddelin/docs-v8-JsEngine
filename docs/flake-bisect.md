@@ -1,72 +1,70 @@
 ---
-title: "Flake bisect"
-description: "This document explains how to bisect flaky tests."
+title: "测试分支"
+description: "本文档解释如何处理有波动的测试。"
 ---
-Flaky tests are reported in a separate step on the bots ([example build](https://ci.chromium.org/ui/p/v8/builders/ci/V8%20Linux64%20TSAN/38630/overview)).
+有波动的测试会在机器人上的单独步骤中报告（[示例构建](https://ci.chromium.org/ui/p/v8/builders/ci/V8%20Linux64%20TSAN/38630/overview)）。
 
-Each test log provides a pre-filled command line for triggering an automated flake bisect, like:
+每个测试日志提供一个预填充的命令行，用于触发自动分支测试，例如：
 
 ```
-Trigger flake bisect on command line:
+在命令行上触发分支测试：
 bb add v8/try.triggered/v8_flako -p 'to_revision="deadbeef"' -p 'test_name="MyTest"' ...
 ```
 
-Before triggering flake bisects for the first time, users must log in with a google.com account:
+在首次触发分支测试之前，用户必须使用 google.com 帐户登录：
 
 ```bash
 bb auth-login
 ```
 
-Then execute the provided command, which returns a build URL running flake bisect ([example](https://ci.chromium.org/ui/p/v8/builders/try.triggered/v8_flako/b8836020260675019825/overview)).
+然后执行提供的命令，该命令会返回一个运行分支测试的构建 URL（[示例](https://ci.chromium.org/ui/p/v8/builders/try.triggered/v8_flako/b8836020260675019825/overview)）。
 
-If you’re in luck, bisection points you to a suspect. If not, you might want to read further…
+如果幸运的话，分支分析会指向一个嫌疑人。如果不幸，可以继续阅读...
 
-## Detailed description
+## 详细描述
 
-For technical details, see also the implementation [tracker bug](https://crbug.com/711249). The flake bisect approach has the same intentions as [findit](https://sites.google.com/chromium.org/cat/findit), but uses a different implementation.
+有关技术细节，请参阅实现跟踪 [问题](https://crbug.com/711249)。分支测试方法与 [findit](https://sites.google.com/chromium.org/cat/findit) 的意图相同，但实现方式不同。
 
-### How does it work?
+### 它是如何工作的？
 
-A bisect job has 3 phases: calibration, backwards and inwards bisection. During calibration, testing is repeated doubling the total timeout (or the number of repetitions) until enough flakes are detected in one run. Then, backwards bisection doubles the git range until a revision without flakes is found. At last, we bisect into the range of the good revision and the oldest bad one. Note, bisection doesn't produce new build products, it is purely based on builds previously created on V8's continuous infrastructure.
+分支任务分为三个阶段：校准、向后分析和向内分析。在校准阶段，测试会重复进行，并将总超时（或重复次数）加倍，直到在一次运行中发现足够的波动。然后，向后分析会加倍 git 范围，直到找到没有波动的修订版本。最后，我们分析出好版本和最旧的坏版本之间的范围。请注意，分支测试不会生成新的构建产品，仅基于 V8 的持续基础设施此前生成的构建。
 
-### Bisection fails when…
+### 分支失败的情况…
 
-- No confidence can be reached during calibration. This is typical for one-in-a-million flakes or flaky behavior only visible when other tests run in parallel (e.g. memory hungry tests).
-- The culprit is too old. Bisection bails out after a certain number of steps, or if older builds are not available anymore on the isolate server.
-- The overall bisect job times out. In this case it might be possible to restart it with an older known bad revision.
+- 无法在校准期间获得足够信心。这通常发生在几乎不可能出现的波动或者仅在其他测试并行运行时可见的波动（例如内存占用测试）。
+- 罪魁祸首太过陈旧。分支在某些步骤之后或不再可用的旧构建的情况下放弃。
+- 整体分支任务超时。在这种情况下可能可以通过使用一个较旧的已知坏修订版本重新启动。
 
-## Properties for customizing flake bisect
+## 定制分支测试的属性
 
-- `extra_args`: Extra arguments passed to V8’s `run-tests.py` script.
-- repetitions: Initial number of test repetitions (passed to `run-tests.py`'s `--random-seed-stress-count` option; unused if `total_timeout_sec` is used).
-- `timeout_sec`: Timeout parameter passed to `run-tests.py`.
-- `to_revision`: Revision known to be bad. This is where bisection will start.
-- `total_timeout_sec`: Initial total timeout for one entire bisect step. During calibration, this time is doubled several times if needed. Set to 0 to disable and use the `repetitions` property instead.
-- `variant`: Name of the testing variant passed to `run-tests.py`.
+- `extra_args`：传递给 V8 的 `run-tests.py` 脚本的额外参数。
+- repetitions：初始测试重复次数（传递给 `run-tests.py` 的 `--random-seed-stress-count` 选项；如果使用 `total_timeout_sec` 则不使用）。
+- `timeout_sec`：传递给 `run-tests.py` 的超时参数。
+- `to_revision`：已知为坏的修订版本。这是分支测试将开始的位置。
+- `total_timeout_sec`：单个分支步骤的初始总超时。在校准期间，如果需要，这个时间会加倍几次。设置为 0 以禁用并改用 `repetitions` 属性。
+- `variant`：传递给 `run-tests.py` 的测试变种的名称。
 
-## Properties you won’t need to change
+## 不需要更改的属性
 
-- `bisect_buildername`: Master name of the builder that produced the builds for bisection.
-- `bisect_mastername`: Name of the builder that produced the builds for bisection.
-- `build_config`: Build config passed to V8’s `run-tests.py` script (there the parameter name is `--mode`, example: `Release` or `Debug`).
-- `isolated_name`: Name of the isolated file (e.g. `bot_default`, `mjsunit`).
-- `swarming_dimensions`: Swarming dimensions classifying the type of bot the tests should run on. Passed as list of strings, each in the format `name:value`.
-- `test_name`: Fully qualified test name passed to run-tests.py. E.g. `mjsunit/foobar`.
+- `bisect_buildername`：生成分支测试构建的构建器的主名称。
+- `bisect_mastername`：生成分支测试构建的构建器名称。
+- `build_config`：传递给 V8 的 `run-tests.py` 脚本的构建配置（此处的参数名称为 `--mode`，示例：`Release` 或 `Debug`）。
+- `isolated_name`：独立文件的名称（例如 `bot_default`，`mjsunit`）。
+- `swarming_dimensions`：分类测试运行机器类型的群组维度。作为字符串列表传递，每个字符串格式为 `name:value`。
+- `test_name`：传递给 run-tests.py 的完全限定测试名称。例如 `mjsunit/foobar`。
 
-## Tips and tricks
+## 提示和技巧
 
-### Bisecting a hanging test (e.g. dead lock)
+### 分析一个挂起的测试（例如死锁）
 
-If a failing run times out, while a pass is running very fast, it is useful to tweak the timeout_sec parameter, so that bisection is not delayed waiting for the hanging runs to time out. E.g. if the pass is usually reached in &lt;1 second, set the timeout to something small, e.g. 5 seconds.
+如果失败的运行超时，而成功的运行非常快，可以调整 timeout_sec 参数，使分支分析不因等待挂起的运行超时而延迟。例如，如果成功通常在不到 1 秒内完成，则将超时设置为较短时间，例如 5 秒。
 
-### Getting more confidence on a suspect
+### 对嫌疑人的更多信心
 
-In some runs, confidence is very low. E.g. calibration is satisfied if four flakes are seen in one run. During bisection, every run with one or more flakes is counted as bad. In such cases it might be useful to restart the bisect job setting to_revision to the culprit and using a higher number of repetitions or total timeout than the original job and confirm that the same conclusion is reached again.
+在某些运行中，信心非常低。例如，如果在一次运行中检测到四次波动，则校准就满足。分支分析中，每次运行中出现一个或多个波动，就会被视为坏。在这些情况下，可以重新启动分支任务，设置 revision 为嫌疑人，同时使用比原始任务更高的重复次数或总超时，并确认再次得出相同的结论。
 
-### Working around timeout issues
+### 解决超时问题
 
-In case the overall timeout option causes builds to hang, it’s best to estimate a fitting number of repetitions and set `total_timeout_sec` to `0`.
+如果总体超时选项导致构建挂起，最好估算合适的重复次数，并设置 `total_timeout_sec` 为 `0`。
 
-### Test behavior depending on random seed
-
-Rarely, a code path is only triggered with a particular random seed. In this case it might be beneficial to fix it using `extra_args`, e.g. `"extra_args": ["--random-seed=123"]`. Otherwise, the stress runner uses different random seeds throughout. Note though that a particular random seed might reproduce a problem in one revision, but not in another.
+### 测试行为取决于随机种子

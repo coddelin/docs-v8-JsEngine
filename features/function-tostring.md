@@ -1,5 +1,5 @@
 ---
-title: "Revised `Function.prototype.toString`"
+title: "修订 `Function.prototype.toString`"
 author: "Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars: 
   - "mathias-bynens"
@@ -7,29 +7,28 @@ date: 2018-03-25
 tags: 
   - ECMAScript
   - ES2019
-description: "Function.prototype.toString now returns exact slices of source code text, including whitespace and comments."
+description: "Function.prototype.toString 现在会返回源码文本的精确部分，包括空格和注释。"
 ---
-[`Function.prototype.toString()`](https://tc39.es/Function-prototype-toString-revision/) now returns exact slices of source code text, including whitespace and comments. Here’s an example comparing the old and the new behavior:
+[`Function.prototype.toString()`](https://tc39.es/Function-prototype-toString-revision/) 现在会返回源码文本的精确部分，包括空格和注释。以下是旧行为与新行为的对比示例：
 
 <!--truncate-->
 ```js
-// Note the comment between the `function` keyword
-// and the function name, as well as the space following
-// the function name.
-function /* a comment */ foo () {}
+// 注意 `function` 关键字与函数名称之间的注释
+// 以及函数名称后的空格。
+function /* 注释 */ foo () {}
 
-// Previously, in V8:
+// 之前，在 V8 中：
 foo.toString();
 // → 'function foo() {}'
-//             ^ no comment
-//                ^ no space
+//             ^ 无注释
+//                ^ 无空格
 
-// Now:
+// 现在：
 foo.toString();
-// → 'function /* comment */ foo () {}'
+// → 'function /* 注释 */ foo () {}'
 ```
 
-## Feature support
+## 特性支持
 
 <feature-support chrome="66 /blog/v8-release-66#function-tostring"
                  firefox="yes"

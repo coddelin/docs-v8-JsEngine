@@ -1,17 +1,17 @@
 ---
-title: "V8 release v8.0"
-author: "Leszek Swirski, V8th of his name"
+title: "V8 发布 v8.0"
+author: "Leszek Swirski，第八代 V8"
 avatars: 
   - "leszek-swirski"
 date: 2019-12-18
 tags: 
-  - release
-description: "V8 v8.0 features optional chaining, nullish coalescing, faster higher-order builtins — oh and 40% less memory use thanks to pointer compression, no big deal."
+  - 发布
+description: "V8 v8.0 的特点包括可选链式调用，空值合并运算符，更快的高阶内置函数 —— 哦还有通过指针压缩减少了 40% 的内存使用，这不算什么大事。"
 tweet: "1207323849861279746"
 ---
 import FullWidthImage from '../src/components/release.tsx'
 
-<!-- Yes, it's an SVG. Please don't ask me how long I spent making it. -->
+<!-- 是的，这是一个 SVG。请不要问我花了多长时间制作它。 -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable no-inline-html -->
 
@@ -19,45 +19,45 @@ import FullWidthImage from '../src/components/release.tsx'
 
 <!-- markdownlint-restore -->
 
-It’s finally here. Every V8 release, every six weeks when we branch as part of our [release process](/docs/release-process), the question comes up about what will happen when V8 hits version 8. Will we have a party? Will we ship a new compiler? Will we skip versions 8 and 9 and just stay at an eternal V8 version X? Finally, after [over 10 years](/blog/10-years) of work, on our 100th blog post, we’re pleased to announce our newest branch, [V8 ~~version 8.0~~ V8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.0), and we can finally answer that question:
+它终于来了。每次 V8 发布，每六周我们都会根据[发布流程](/docs/release-process)创建一个新分支，总会有人问当 V8 达到版本 8 时会发生什么。我们会举办派对吗？我们会发布新的编译器吗？我们会跳过版本 8 和 9，直接保持为永恒的 V8 版本 X 吗？最终，在经过[超过十年](/blog/10-years)的努力，在我们第 100 篇博客文章中，我们很高兴地宣布我们的最新分支，[V8 ~~版本 8.0~~ V8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.0)，我们终于可以回答这个问题：
 
 <!--truncate-->
-It’s bug fixes and performance improvements.
+这是错误修复和性能改进。
 
-This post provides a preview of some of the highlights in anticipation of the release in coordination with Chrome 80 Stable in several weeks.
+这篇文章提供了部分亮点的预览，为几周后与 Chrome 80 稳定版的发布协同推出做准备。
 
-## Performance (size & speed)
+## 性能（大小和速度）
 
-### Pointer compression
+### 指针压缩
 
-~~We changed all our `void *` to `pv`, reducing source file size by up to 66%.~~
+~~我们将所有 `void *` 改为 `pv`，减少了高达 66% 的源文件大小。~~
 
-The V8 heap contains a whole slew of items, for example floating point values, string characters, compiled code, and tagged values (which represent pointers into the V8 heap or small integers). Upon inspection of the heap, we discovered that these tagged values occupy the majority of the heap!
+V8 堆包含许多项目，例如浮点值、字符串字符、编译代码和带标签的值（表示到 V8 堆的指针或小整数）。在检查堆时，我们发现这些带标签的值占据了堆的大部分！
 
-Tagged values are as big as the system pointer: they are 32 bits wide for 32-bit architectures, and 64 bits in 64-bit architectures. Then, when comparing the 32-bit version with the 64-bit one, we are using twice as much heap memory for every tagged value.
+带标签的值与系统指针一样大：在 32 位架构中是 32 位宽，在 64 位架构中是 64 位宽。因此，在比较 32 位版本和 64 位版本时，每个带标签值的堆内存使用加倍。
 
-Luckily for us, we have a trick up our sleeve. The top bits can be synthesized from the lower bits. Then, we only need to store the unique lower bits into the heap saving precious memory resources... to save an average of 40% of the heap memory!
+幸运的是，我们有一个诀窍。高位可以从低位合成。然后，我们只需要将唯一的低位存储到堆中，从而节省宝贵的内存资源……平均节省 40% 的堆内存！
 
-![Pointer compression saves an average of 40% of memory.](/_img/v8-release-80/pointer-compression-chart.svg)
+![指针压缩平均节省 40% 的内存。](/_img/v8-release-80/pointer-compression-chart.svg)
 
-When improving memory, usually it comes at the cost of performance. Usually. We are proud to announce that we saw improvements in performance on real websites in the time spent in V8, and in its garbage collector!
+通常情况下，提高内存效率会以牺牲性能为代价。通常如此。我们自豪地宣布，我们在实际网站中看到了 V8 的性能提升以及其垃圾回收器中的改进！
 
 :::table-wrapper
-| || Desktop | Mobile |
+| || 桌面版 | 移动版 |
 |-------------|----------|---------|--------|
-| Facebook | V8-Total | -8% | -6% |
-| ^^ | GC | -10% | -17% |
-| CNN | V8-Total | -3% | -8% |
-| ^^ | GC | -14% | -20% |
-| Google Maps | V8-Total | -4% | -6% |
-| ^^ | GC | -7% | -12% |
+| Facebook | V8-总计 | -8% | -6% |
+| ^^ | 垃圾回收 | -10% | -17% |
+| CNN | V8-总计 | -3% | -8% |
+| ^^ | 垃圾回收 | -14% | -20% |
+| Google 地图 | V8-总计 | -4% | -6% |
+| ^^ | 垃圾回收 | -7% | -12% |
 :::
 
-If pointer compression piqued your interest, be on the lookout for a full blog post with more details.
+如果指针压缩引起了您的兴趣，请留意一篇包含更多细节的完整博客文章。
 
-### Optimizing higher-order builtins
+### 优化高阶内置函数
 
-We recently removed a limitation within TurboFan’s optimization pipeline that prevented aggressive optimizations of higher-order builtins.
+我们最近移除了 TurboFan 优化管道中的一个限制，该限制阻止了对高阶内置函数的激进优化。
 
 ```js
 const charCodeAt = Function.prototype.call.bind(String.prototype.charCodeAt);
@@ -65,41 +65,41 @@ const charCodeAt = Function.prototype.call.bind(String.prototype.charCodeAt);
 charCodeAt(string, 8);
 ```
 
-So far, the call to `charCodeAt` was completely opaque to TurboFan, which led to the generation of a generic call to a user-defined function. With this change, we are now able to recognize that we are actually calling the built-in `String.prototype.charCodeAt` function and are thus able to trigger all the further optimizations that TurboFan has in stock to improve calls to builtins, which leads to the same performance as:
+到目前为止，对 `charCodeAt` 的调用对 TurboFan 完全不透明，这导致了对用户定义函数的通用调用的生成。通过此更改，我们现在能够识别我们实际上是在调用内置的 `String.prototype.charCodeAt` 函数，因此能够触发 TurboFan 所有用于优化对内置函数调用的进一步优化，这带来了与以下情况相同的性能：
 
 ```js
 string.charCodeAt(8);
 ```
 
-This change affects a bunch of other builtins like `Function.prototype.apply`, `Reflect.apply`, and many higher-order array builtins (e.g. `Array.prototype.map`).
+此更改影响了一系列其他内置函数，如 `Function.prototype.apply`、`Reflect.apply` 以及许多高阶数组内置函数（例如 `Array.prototype.map`）。
 
 ## JavaScript
 
-### Optional chaining
+### 可选链式调用
 
-When writing chains of property accesses, programmers often need to check if intermediate values are nullish (that is, `null` or `undefined`). A chain without error checking may throw, and a chain with explicit error checking is verbose and has the unwanted consequence of checking for all truthy values instead of only non-nullish values.
+在编写属性访问链时，程序员经常需要检查中间值是否为 nullish（即 `null` 或 `undefined`）。没有错误检查的链可能会抛出异常，而显式错误检查的链则显得冗长并且会导致检查所有真值，而不仅仅是非 nullish 值。
 
 ```js
-// Error prone-version, could throw.
+// 容易出错的版本，可能抛出异常。
 const nameLength = db.user.name.length;
 
-// Less error-prone, but harder to read.
+// 不易出错的版本，但更难阅读。
 let nameLength;
 if (db && db.user && db.user.name) nameLength = db.user.name.length;
 ```
 
-[Optional chaining](https://v8.dev/features/optional-chaining) (`?.`) lets programmers write terser, robust chains of property accesses that check if intermediate values are nullish. If an intermediate value is nullish, the entire expression evaluates to `undefined`.
+[可选链式调用](https://v8.dev/features/optional-chaining) (`?.`) 允许程序员编写更简洁、健壮的属性访问链，这些链会检查中间值是否为 nullish。如果一个中间值是 nullish，则整个表达式的值为 `undefined`。
 
 ```js
-// Still checks for errors and is much more readable.
+// 仍会检查错误，但可读性更佳。
 const nameLength = db?.user?.name?.length;
 ```
 
-In addition to static property accesses, dynamic property accesses and calls are also supported. Please see our [feature explainer](https://v8.dev/features/optional-chaining) for details and more examples.
+除了静态的属性访问，还支持动态属性访问和调用。请参阅我们的[功能说明](https://v8.dev/features/optional-chaining)了解详情和更多示例。
 
-### Nullish coalescing
+### 空值合并运算符
 
-The [nullish coalescing](https://v8.dev/features/nullish-coalescing) operator `??` is a new short-circuiting binary operator for handling default values. Currently, default values are sometimes handled with the logical `||` operator, such as in the following example.
+[空值合并](https://v8.dev/features/nullish-coalescing)运算符`??`是一种新的短路二元运算符，用于处理默认值。目前，有时通过逻辑运算符`||`处理默认值，例如以下示例。
 
 ```js
 function Component(props) {
@@ -108,9 +108,9 @@ function Component(props) {
 }
 ```
 
-Use of `||` is undesirable for computing default values because `a || b` evaluates to `b` when `a` is falsy. If `props.enabled` were explicitly set to `false`, `enable` would still be true.
+使用`||`计算默认值是不理想的，因为`a || b`在`a`为假值时会返回`b`。如果`props.enabled`被明确设置为`false`，`enable`依然会是`true`。
 
-With the nullish coalescing operator, `a ?? b` evaluates to `b` when `a` is nullish (`null` or `undefined`), and otherwise evaluates to `a`. This is the desired default value behavior, and rewriting the example using `??` fixes the bug above.
+使用空值合并运算符时，`a ?? b`在`a`为空值（`null`或`undefined`）时返回`b`，否则返回`a`。这符合预期的默认值行为，使用`??`重写示例修复了上述问题。
 
 ```js
 function Component(props) {
@@ -119,7 +119,7 @@ function Component(props) {
 }
 ```
 
-The nullish coalescing operator and optional chaining are companion features and work well together. The example may be further amended to handle the case when no `props` argument is passed in.
+空值合并运算符和可选链运算符是互补的功能，可很好地协同工作。可以进一步改进示例以处理未传入`props`参数的情况。
 
 ```js
 function Component(props) {
@@ -128,10 +128,10 @@ function Component(props) {
 }
 ```
 
-Please see our [feature explainer](https://v8.dev/features/nullish-coalescing) for details and more examples.
+请参阅我们的[功能说明](https://v8.dev/features/nullish-coalescing)了解详情和更多示例。
 
 ## V8 API
 
-Please use `git log branch-heads/7.9..branch-heads/8.0 include/v8.h` to get a list of the API changes.
+请使用`git log branch-heads/7.9..branch-heads/8.0 include/v8.h`获取API更改列表。
 
-Developers with an [active V8 checkout](/docs/source-code#using-git) can use `git checkout -b 8.0 -t branch-heads/8.0` to experiment with the new features in V8 v8.0. Alternatively you can [subscribe to Chrome’s Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+开发者可以通过[激活的V8代码库](/docs/source-code#using-git)使用`git checkout -b 8.0 -t branch-heads/8.0`实验V8 v8.0中的新功能。或者，您可以[订阅Chrome的Beta频道](https://www.google.com/chrome/browser/beta.html)，尽快亲自体验这些新功能。

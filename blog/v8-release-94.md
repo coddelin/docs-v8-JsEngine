@@ -1,34 +1,34 @@
 ---
-title: "V8 release v9.4"
+title: "V8 发布 v9.4"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars: 
  - "ingvar-stepanyan"
 date: 2021-09-06
 tags: 
- - release
-description: "V8 release v9.4 brings class static initialization blocks to JavaScript."
+ - 发布
+description: "V8 发布 v9.4 为 JavaScript 带来了类静态初始化块功能。"
 tweet: "1434915404418277381"
 ---
-Every six weeks, we create a new branch of V8 as part of our [release process](https://v8.dev/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 9.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.4), which is in beta until its release in coordination with Chrome 94 Stable in several weeks. V8 v9.4 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
+每六周，我们按照我们的[发布流程](https://v8.dev/docs/release-process)创建一个新的 V8 分支。每个版本都在 Chrome Beta 版本里程碑之前从 V8 的 Git 主分支分支而来。今天我们很高兴地宣布我们的最新分支，[V8 版本 9.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.4)，它目前处于 beta 阶段，直到几周后与 Chrome 94 稳定版一起发布。V8 v9.4 包含了各种面向开发者的精彩内容。这篇文章提供了发布前一些亮点的预览。
 
 <!--truncate-->
 ## JavaScript
 
-### Class static initialization blocks
+### 类静态初始化块
 
-Classes get the ability to group code that should run once per class evaluation via static initialization blocks.
+类通过静态初始化块可以实现每次类被评估时运行一次的代码分组功能。
 
 ```javascript
 class C {
-  // This block will run when the class itself is evaluated
-  static { console.log("C's static block"); }
+  // 该块将在类本身被评估时运行
+  static { console.log("C 的静态初始化块"); }
 }
 ```
 
-Starting in v9.4, class static initialization blocks will be available without a need for the `--harmony-class-static-blocks` flag. For all the detailed semantics around the scoping of these blocks, please see [our explainer](https://v8.dev/features/class-static-initializer-blocks).
+从 v9.4 开始，类静态初始化块可以直接使用，无需设置 `--harmony-class-static-blocks` 标志。有关这些块作用域的详细语义，请参阅[我们的说明文档](https://v8.dev/features/class-static-initializer-blocks)。
 
 ## V8 API
 
-Please use `git log branch-heads/9.3..branch-heads/9.4 include/v8.h` to get a list of the API changes.
+请使用 `git log branch-heads/9.3..branch-heads/9.4 include/v8.h` 获取 API 更改列表。
 
-Developers with an active V8 checkout can use `git checkout -b 9.4 -t branch-heads/9.4` to experiment with the new features in V8 v9.4. Alternatively you can [subscribe to Chrome’s Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+活跃的 V8 检出用户可以使用 `git checkout -b 9.4 -t branch-heads/9.4` 来试验 V8 v9.4 中的新功能。或者，您可以[订阅 Chrome 的 Beta 频道](https://www.google.com/chrome/browser/beta.html)，并很快自行尝试这些新功能。

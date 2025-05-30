@@ -1,35 +1,35 @@
 ---
-title: "V8 release v7.0"
+title: "V8发布版本v7.0"
 author: "Michael Hablich"
 avatars: 
   - michael-hablich
 date: "2018-10-15 17:17:00"
 tags: 
-  - release
-description: "V8 v7.0 includes WebAssembly threads, Symbol.prototype.description, and embedded built-ins on more platforms!"
+  - 发布
+description: "V8 v7.0包括WebAssembly线程、Symbol.prototype.description以及更多平台上的嵌入式内置功能！"
 tweet: "1051857446279532544"
 ---
-Every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 7.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.0), which is in beta until its release in coordination with Chrome 70 Stable in several weeks. V8 v7.0 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
+每六周，我们会根据[发布流程](/docs/release-process)创建一个新的V8分支。每个版本都会在Chrome Beta的一个里程碑之前，从V8的Git主分支分支而出。今天我们很高兴地宣布我们的最新分支，[V8版本7.0](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.0)，它将在几周内与Chrome 70稳定版协调发布之前进入Beta版。V8 v7.0充满了对开发者有吸引力的各种内容。本文旨在提供发布前的一些亮点预览。
 
 <!--truncate-->
-## Embedded built-ins
+## 嵌入式内置功能
 
-[Embedded builtins](/blog/embedded-builtins) save memory by sharing generated code across multiple V8 Isolates. Starting with V8 v6.9, we enabled embedded builtins on x64. V8 v7.0 brings these memory savings to all remaining platforms except ia32.
+[嵌入式内置功能](/blog/embedded-builtins)通过在多个V8隔离体之间共享生成的代码来节省内存。从V8 v6.9开始，我们在x64平台上启用了嵌入式内置功能。V8 v7.0将这些内存节省带到了除ia32以外的所有剩余平台。
 
-## A preview of WebAssembly Threads
+## WebAssembly线程预览
 
-WebAssembly (Wasm) enables compilation of code written in C++ and other languages to run on the web. One very useful feature of native applications is the ability to use threads — a primitive for parallel computation. Most C and C++ developers would be familiar with pthreads, which is a standardized API for application thread management.
+WebAssembly（Wasm）支持将用C++和其他语言编写的代码编译后在 web 上运行。原生应用的一个非常实用的功能是使用线程--一种用于并行计算的原语。大多数C和C++开发者会熟悉pthreads，这是一种标准化的应用线程管理API。
 
-The [WebAssembly Community Group](https://www.w3.org/community/webassembly/) has been working on bringing threads to the web to enable real multi-threaded applications. As part of this effort, V8 has implemented necessary support for threads in the WebAssembly engine. To use this feature in Chrome, you can enable it via `chrome://flags/#enable-webassembly-threads`, or your site can sign up for an [Origin Trial](https://github.com/GoogleChrome/OriginTrials). Origin Trials allow developers to experiment with new web features before they are fully standardized, and that helps us gather real-world feedback which is critical to validate and improve new features.
+[WebAssembly社区组](https://www.w3.org/community/webassembly/)一直在努力将线程引入web，以启用真正的多线程应用程序。作为这项工作的一部分，V8已经在WebAssembly引擎中实现了线程的必要支持。要在Chrome中使用这个功能，可以通过`chrome://flags/#enable-webassembly-threads`启用，或者你的网站可以参加[Origin试用](https://github.com/GoogleChrome/OriginTrials)。Origin试用允许开发者在新Web特性完全标准化之前进行试验，这有助于我们收集真实世界的反馈，这对新特性的验证和改进至关重要。
 
-## JavaScript language features
+## JavaScript语言特性
 
-[A `description` property](https://tc39.es/proposal-Symbol-description/) is being added to `Symbol.prototype`. This provides a more ergonomic way of accessing the description of a `Symbol`. Previously, the description could be only be accessed indirectly through `Symbol.prototype.toString()`. Thanks to Igalia for contributing this implementation!
+[一个`description`属性](https://tc39.es/proposal-Symbol-description/)正在被添加到`Symbol.prototype`。这提供了一种更符合人体工程学的方式来访问`Symbol`的描述。以前，描述只能通过`Symbol.prototype.toString()`间接访问。感谢Igalia贡献了这个实现！
 
-`Array.prototype.sort` is now stable in V8 v7.0. Previously, V8 used an unstable QuickSort for arrays with more than 10 elements. Now, we use the stable TimSort algorithm. See [our blog post](/blog/array-sort) for more details.
+`Array.prototype.sort`在V8 v7.0中现在是稳定的。以前，V8对元素超过10个的数组使用的是不稳定的快速排序（QuickSort）。现在，我们使用了稳定的TimSort算法。查看[我们的博文](/blog/array-sort)了解更多细节。
 
 ## V8 API
 
-Please use `git log branch-heads/6.9..branch-heads/7.0 include/v8.h` to get a list of the API changes.
+请使用`git log branch-heads/6.9..branch-heads/7.0 include/v8.h`查看API更改列表。
 
-Developers with an [active V8 checkout](/docs/source-code#using-git) can use `git checkout -b 7.0 -t branch-heads/7.0` to experiment with the new features in V8 v7.0. Alternatively you can [subscribe to Chrome’s Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+拥有[活动的V8检出](/docs/source-code#using-git)的开发者可以使用`git checkout -b 7.0 -t branch-heads/7.0`来试验V8 v7.0中的新功能。或者，你可以[订阅Chrome的Beta频道](https://www.google.com/chrome/browser/beta.html)，很快就能亲自尝试这些新功能了。

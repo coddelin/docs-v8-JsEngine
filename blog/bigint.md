@@ -1,41 +1,41 @@
 ---
-title: "Adding BigInts to V8"
-author: "Jakob Kummerow, arbitrator of precision"
+title: "向V8添加BigInts"
+author: "Jakob Kummerow，精度仲裁者"
 date: "2018-05-02 13:33:37"
 tags: 
   - ECMAScript
-description: "V8 now supports BigInts, a JavaScript language feature enabling arbitrary-precision integers."
+description: "V8现在支持BigInts，这是一项JavaScript语言功能，可以实现任意精度整数。"
 tweet: "991705626391732224"
 ---
-Over the past couple of months, we have implemented support for [BigInts](/features/bigint) in V8, as currently specified by [this proposal](https://github.com/tc39/proposal-bigint), to be included in a future version of ECMAScript. The following post tells the story of our adventures.
+过去几个月里，我们在V8中实现了对[BigInts](/features/bigint)的支持，该功能目前由[此提案](https://github.com/tc39/proposal-bigint)规范，计划在未来版本的ECMAScript中加入。以下是我们的冒险故事。
 
 <!--truncate-->
-## TL;DR
+## 简而言之
 
-As a JavaScript programmer, you now[^1] have integers with arbitrary[^2] precision in your toolbox:
+作为JavaScript程序员，现在[^1]你的工具箱中有了具有任意[^2]精度的整数：
 
 ```js
 const a = 2172141653n;
 const b = 15346349309n;
 a * b;
-// → 33334444555566667777n     // Yay!
+// → 33334444555566667777n     // 太棒了！
 Number(a) * Number(b);
-// → 33334444555566670000      // Boo!
+// → 33334444555566670000      // 不好！
 const such_many = 2n ** 222n;
 // → 6739986666787659948666753771754907668409286105635143120275902562304n
 ```
 
-For details about the new functionality and how it could be used, refer to [our in-depth article on BigInt](/features/bigint). We are looking forward to seeing the awesome things you’ll build with them!
+关于新功能的详细信息以及如何使用，请参阅[我们关于BigInt的深入文章](/features/bigint)。我们期待看到你用它们构建的精彩内容！
 
-[^1]: _Now_ if you run Chrome Beta, Dev, or Canary, or a [preview Node.js version](https://github.com/v8/node/tree/vee-eight-lkgr), otherwise _soon_ (Chrome 67, Node.js tip-of-tree probably around the same time).
+[^1]: 如果你运行Chrome Beta、Dev或Canary，或[Node.js预览版本](https://github.com/v8/node/tree/vee-eight-lkgr)，你就可以使用；否则很快就可以使用（Chrome 67、Node.js顶端版本大约同时推出）。
 
-[^2]: Arbitrary up to an implementation-defined limit. Sorry, we haven’t yet figured out how to squeeze an infinite amount of data into your computer’s finite amount of memory.
+[^2]: 任意精度受实现限制。抱歉，我们还没能找到一种方法将无限数据压缩到你的计算机有限的内存中。
 
-## Representing BigInts in memory
+## BigInt在内存中的表示
 
-Typically, computers store integers in their CPU’s registers (which nowadays are usually 32 or 64 bits wide), or in register-sized chunks of memory. This leads to the minimum and maximum values you might be familiar with. For example, a 32-bit signed integer can hold values from -2,147,483,648 to 2,147,483,647. The idea of BigInts, however, is to not be restricted by such limits.
+通常，计算机将整数存储在CPU寄存器中（现代寄存器通常是32位或64位宽），或以寄存器大小的块存储在内存中。这就导致了你可能熟悉的最小和最大值。例如，32位有符号整数可以存储的值范围是-2,147,483,648到2,147,483,647。然而，BigInts的理念是不受这些限制约束。
 
-So how can one store a BigInt with a hundred, or a thousand, or a million bits? It can’t fit in a register, so we allocate an object in memory. We make it large enough to hold all the BigInt’s bits, in a series of chunks, which we call “digits” — because this is conceptually very similar to how one can write bigger numbers than “9” by using more digits, like in “10”; except where the decimal system uses digits from 0 to 9, our BigInts use digits from 0 to 4294967295 (i.e. `2**32-1`). That’s the value range of a 32-bit CPU register[^3], without a sign bit; we store the sign bit separately. In pseudo-code, a `BigInt` object with `3*32 = 96` bits looks like this:
+那么如何存储一个具有一百位、一千位或者一百万位的BigInt呢？它无法装入寄存器，因此我们在内存中分配一个对象。我们使其足够大以容纳所有BigInt的位，通过一系列块，这些块我们称为“数字”——因为这在概念上非常类似于使用更多数字表示大于“9”的数字，比如“10”；但不同的是，十进制系统使用从0到9的数字，而我们的BigInts使用从0到4294967295（即`2**32-1`）的数字。这是没有符号位时32位CPU寄存器的值范围[^3]；我们将符号位单独存储。用伪代码表示，一个具有`3*32 = 96`位的`BigInt`对象如下所示：
 
 ```js
 {
@@ -46,11 +46,11 @@ So how can one store a BigInt with a hundred, or a thousand, or a million bits? 
 }
 ```
 
-[^3]: On 64-bit machines, we use 64-bit digits, i.e. from 0 to 18446744073709551615 (i.e. `2n**64n-1n`).
+[^3]: 在64位机器上，我们使用64位数字，即从0到18446744073709551615（即`2n**64n-1n`）。
 
-## Back to school, and back to Knuth
+## 重回课堂，重回Knuth
 
-Working with integers kept in CPU registers is really easy: to e.g. multiply two of them, there’s a machine instruction which software can use to tell the CPU “multiply the contents of these two registers!”, and the CPU will do it. For BigInt arithmetic, we have to come up with our own solution. Thankfully this particular task is something that quite literally every child at some point learns how to solve: remember what you did back in school when you had to multiply 345 \* 678 and weren’t allowed to use a calculator?
+在CPU寄存器中存储整数非常容易：比如说要乘积两个寄存器中的整数，有一个机器指令，软件可以用它告诉CPU“将这两个寄存器的内容相乘！”，CPU会完成它。对于BigInt算术，我们必须想出自己的解决方案。幸运的是，这项任务完全是每个孩子在某个时候都会学会如何解决的问题：还记得在学校时，当你不得使用计算器计算345 * 678时是如何操作的吗？
 
 ```
 345 * 678
@@ -68,36 +68,36 @@ Working with integers kept in CPU registers is really easy: to e.g. multiply two
    233910
 ```
 
-That’s exactly how V8 multiplies BigInts: one digit at a time, adding up the intermediate results. The algorithm works just as well for `0` to `9` as it does for a BigInt’s much bigger digits.
+这正是V8如何计算BigInts乘积的方式：一位一位地计算，加上中间结果。该算法对于`0`到`9`以及BigInt的更大数字都一样有效。
 
-Donald Knuth published a specific implementation of multiplication and division of large numbers made up of smaller chunks in Volume 2 of his classic _The Art of Computer Programming_, all the way back in 1969. V8’s implementation follows this book, which shows that this a pretty timeless piece of computer science.
+Donald Knuth在他的经典著作《计算机程序设计艺术》第2卷中，就如何对由更小块组成的大数字进行乘法和除法进行了具体说明，这本书出版于1969年。V8的实现遵循了这本书，这表明这是一个非常持久的计算机科学研究。
 
-## “Less desugaring” == more sweets?
+## “减少语法糖化” = 更多甜蜜？
 
-Perhaps surprisingly, we had to spend quite a bit of effort on getting seemingly simple unary operations, like `-x`, to work. So far, `-x` did exactly the same as `x * (-1)`, so to simplify things, V8 applied precisely this replacement as early as possible when processing JavaScript, namely in the parser. This approach is called “desugaring”, because it treats an expression like `-x` as “syntactic sugar” for `x * (-1)`. Other components (the interpreter, the compiler, the entire runtime system) didn’t even need to know what a unary operation is, because they only ever saw the multiplication, which of course they must support anyway.
+出乎意料地，我们不得不花费大量精力来使看似简单的一元操作，比如`-x`，能够正常工作。到目前为止，`-x`的工作方式与`x * (-1)`完全一样，因此为了简化操作，V8尽早在处理JavaScript时应用了这种替换，主要是在解析器中。这种方法被称为“语法糖化”，因为它将像`-x`这样的表达式视为`x * (-1)`的“语法糖”。其他组件（解释器、编译器、整个运行时系统）甚至不需要知道什么是一元操作，因为它们只看到乘法，当然它们必须支持乘法。
 
-With BigInts, however, this implementation suddenly becomes invalid, because multiplying a BigInt with a Number (like `-1`) must throw a `TypeError`[^4]. The parser would have to desugar `-x` to `x * (-1n)` if `x` is a BigInt — but the parser has no way of knowing what `x` will evaluate to. So we had to stop relying on this early desugaring, and instead add proper support for unary operations on both Numbers and BigInts everywhere.
+然而，对于 BigInts，这种实现突然变得无效了，因为将一个 BigInt 与一个 Number（例如 `-1`）相乘必须抛出一个 `TypeError` 错误[^4]。如果 `x` 是一个 BigInt，解析器需要将 `-x` 转换为 `x * (-1n)` ——但解析器无法知道 `x` 的具体值。所以我们不得不停止依赖这种早期的转换，而是为 Numbers 和 BigInts 的一元运算提供适当的支持。
 
-[^4]: Mixing `BigInt` and `Number` operand types is generally not allowed. That’s somewhat unusual for JavaScript, but there is [an explanation](/features/bigint#operators) for this decision.
+[^4]: 混合使用 `BigInt` 和 `Number` 操作数类型通常是不允许的。这对 JavaScript 来说有些不寻常，但这种决定有[一个解释](/features/bigint#operators)。
 
-## A bit of fun with bitwise ops
+## 有趣的按位操作
 
-Most computer systems in use today store signed integers using a neat trick called “two’s complement”, which has the nice properties that the first bit indicates the sign, and adding 1 to the bit pattern always increments the number by 1, taking care of the sign bit automatically. For example, for 8-bit integers:
+如今大多数计算机系统使用一种称为“两补码”的技巧来存储有符号整数，这种方式的优点是第一个位指示符号，并且将 1 加到二进制位模式总是相当于数字加 1，并自动处理符号位。例如，对于 8 位整数：
 
-- `10000000` is -128, the lowest representable number,
-- `10000001` is -127,
-- `11111111` is -1,
-- `00000000` is 0,
-- `00000001` is 1,
-- `01111111` is 127, the highest representable number.
+- `10000000` 表示 -128，是最低的可表示数，
+- `10000001` 表示 -127，
+- `11111111` 表示 -1，
+- `00000000` 表示 0，
+- `00000001` 表示 1，
+- `01111111` 表示 127，是最高的可表示数。
 
-This encoding is so common that many programmers expect it and rely on it, and the BigInt specification reflects this fact by prescribing that BigInts must act as if they used two’s complement representation. As described above, V8’s BigInts don’t!
+这种编码方式非常普遍，许多程序员都期望并依赖它。BigInt 规范也反映了这一事实，规定 BigInts 必须表现得像使用两补码表示一样。然而如上所述，V8 的 BigInts 并没有这样做！
 
-To perform bitwise operations according to spec, our BigInts therefore must pretend to be using two’s complement under the hood. For positive values, it doesn’t make a difference, but negative numbers must do extra work to accomplish this. That has the somewhat surprising effect that `a & b`, if `a` and `b` are both negative BigInts, actually performs _four_ steps (as opposed to just one if they were both positive): both inputs are converted to fake-two’s-complement format, then the actual operation is done, then the result is converted back to our real representation. Why the back-and-forth, you might ask? Because all the non-bitwise operations are much easier that way.
+因此，为了根据规范执行按位操作，我们的 BigInts 必须假装在底层使用了两补码表示。对于正值，这没有区别，但负数必须执行额外的操作才能实现这一点。这产生了一个有些令人惊讶的效果：如果 `a` 和 `b` 都是负的 BigInts，那么 `a & b` 实际上执行了四个步骤（而正数只需要一步）：两个输入都被转换为伪两补码格式，然后执行实际操作，最后把结果转换回我们的真实表示方式。你可能会问为什么要来回转换？因为所有非按位操作这样做会更简单。
 
-## Two new types of TypedArrays
+## 两种新的 TypedArrays 类型
 
-The BigInt proposal includes two new TypedArray flavors: `BigInt64Array` and `BigUint64Array`. We can have TypedArrays with 64-bit wide integer elements now that BigInts provide a natural way to read and write all the bits in those elements, whereas if one tried to use Numbers for that, some bits might get lost. That’s why the new arrays aren’t quite like the existing 8/16/32-bit integer TypedArrays: accessing their elements is always done with BigInts; trying to use Numbers throws an exception.
+BigInt 提案包括两种新的 TypedArray 类型：`BigInt64Array` 和 `BigUint64Array`。现在我们可以拥有元素宽度为 64 位的整数 TypedArrays，因为 BigInts 提供了一种自然方式来读取和写入这些元素中的所有位，而如果尝试使用 Numbers，某些位可能会丢失。这就是为什么新数组与现有的 8/16/32 位整数 TypedArrays 不太一样：访问它们的元素始终使用 BigInts，尝试使用 Numbers 会抛出异常。
 
 ```js
 > const big_array = new BigInt64Array(1);
@@ -105,17 +105,17 @@ The BigInt proposal includes two new TypedArray flavors: `BigInt64Array` and `Bi
 > big_array[0]
 123n
 > big_array[0] = 456;
-TypeError: Cannot convert 456 to a BigInt
+TypeError: 无法将 456 转换为 BigInt
 > big_array[0] = BigInt(456);  // OK
 ```
 
-Just like JavaScript code working with these types of arrays looks and works a bit different from traditional TypedArray code, we had to generalize our TypedArray implementation to behave differently for the two newcomers.
+就像处理这些类型的数组的 JavaScript 代码看起来与传统 TypedArray 代码有点不同一样，我们不得不泛化我们的 TypedArray 实现以适应这两个新类型的不同行为。
 
-## Optimization considerations
+## 优化考虑
 
-For now, we are shipping a baseline implementation of BigInts. It is functionally complete and should provide solid performance (a little bit faster than existing userland libraries), but it is not particularly optimized. The reason is that, in line with our aim to prioritize real-world applications over artificial benchmarks, we first want to see how you will use BigInts, so that we can then optimize precisely the cases you care about!
+目前，我们提供了 BigInts 的一个基础实现。它在功能上是完整的并且应该提供稳健的性能（比现有的用户层库稍快一点），但并没有特别针对性能优化。原因是，与我们优先考虑实际应用而非人工基准测试的目标一致，我们首先想观察你们如何使用 BigInts，然后再精确优化你们关心的用例！
 
-For example, if we see that relatively small BigInts (up to 64 bits) are an important use case, we could make those more memory-efficient by using a special representation for them:
+例如，如果我们发现相对较小的 BigInts（最多 64 位）是一个重要的用例，我们可以通过为它们使用一种特殊表示方式来让这些数值更内存高效：
 
 ```js
 {
@@ -124,8 +124,8 @@ For example, if we see that relatively small BigInts (up to 64 bits) are an impo
 }
 ```
 
-One of the details that remain to be seen is whether we should do this for “int64” value ranges, “uint64” ranges, or both — keeping in mind having to support fewer fast paths means that we can ship them sooner, and also that every additional fast path ironically makes everything else a bit slower, because affected operations always have to check whether it is applicable.
+是否应该针对“int64”值范围、“uint64”值范围或两者进行此种优化仍然有待验证——请记住，支持更少的快速路径意味着我们可以更快地发布它们，但每增加一种快速路径反而会使其他所有操作稍微慢一点，因为受影响的操作总是必须检查它是否适用。
 
-Another story is support for BigInts in the optimizing compiler. For computationally heavy applications operating on 64-bit values and running on 64-bit hardware, keeping those values in registers would be much more efficient than allocating them as objects on the heap as we currently do. We have plans for how we would implement such support, but it is another case where we would first like to find out whether that is really what you, our users, care about the most; or whether we should spend our time on something else instead.
+另一个故事是优化编译器对 BigInts 的支持。对于在 64 位硬件上运行并操作 64 位值的计算密集型应用程序，将这些值保存在寄存器中将比当前在堆上分配为对象更高效。我们已经制定了支持此功能的实施计划，但这又是一个我们想先了解用户是否真的最关心这个需求的场景；或者我们是否应该把时间花在其他事情上。
 
-Please send us feedback on what you’re using BigInts for, and any issues you encounter! You can reach us at our bug tracker [crbug.com/v8/new](https://crbug.com/v8/new), via mail to [v8-users@googlegroups.com](mailto:v8-users@googlegroups.com), or [@v8js](https://twitter.com/v8js) on Twitter.
+请向我们反馈您正在如何使用 BigInts 以及您遇到的任何问题！您可以通过我们的错误追踪器联系[crbug.com/v8/new](https://crbug.com/v8/new)，通过邮件发送到[v8-users@googlegroups.com](mailto:v8-users@googlegroups.com)，或通过 Twitter 联系[@v8js](https://twitter.com/v8js)。

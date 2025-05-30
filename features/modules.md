@@ -1,6 +1,6 @@
 ---
-title: "JavaScript modules"
-author: "Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) and Mathias Bynens ([@mathias](https://twitter.com/mathias))"
+title: "JavaScript 模块"
+author: "Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) 和 Mathias Bynens ([@mathias](https://twitter.com/mathias))"
 avatars: 
 - "addy-osmani"
 - "mathias-bynens"
@@ -8,10 +8,10 @@ date: 2018-06-18
 tags: 
   - ECMAScript
   - ES2015
-description: "This article explains how to use JavaScript modules, how to deploy them responsibly, and how the Chrome team is working to make modules even better in the future."
+description: "本文解释了如何使用 JavaScript 模块、如何合理地部署它们，以及 Chrome 团队如何努力在未来使模块更加完善。"
 tweet: "1008725884575109120"
 ---
-JavaScript modules are now [supported in all major browsers](https://caniuse.com/#feat=es6-module)!
+JavaScript 模块现在已经在[所有主流浏览器中支持](https://caniuse.com/#feat=es6-module)！
 
 <feature-support chrome="61"
                  firefox="60"
@@ -19,14 +19,14 @@ JavaScript modules are now [supported in all major browsers](https://caniuse.com
                  nodejs="13.2.0 https://nodejs.org/en/blog/release/v13.2.0/#notable-changes"
                  babel="yes"></feature-support>
 
-This article explains how to use JS modules, how to deploy them responsibly, and how the Chrome team is working to make modules even better in the future.
+本文解释了如何使用 JS 模块、如何合理地部署它们，以及 Chrome 团队如何努力在未来使模块更加完善。
 
-## What are JS modules?
+## 什么是 JS 模块？
 
-JS modules (also known as “ES modules” or “ECMAScript modules”) are a major new feature, or rather a collection of new features. You may have used a userland JavaScript module system in the past. Maybe you used [CommonJS like in Node.js](https://nodejs.org/docs/latest-v10.x/api/modules.html), or maybe [AMD](https://github.com/amdjs/amdjs-api/blob/master/AMD.md), or maybe something else. All of these module systems have one thing in common: they allow you to import and export stuff.
+JS 模块（也称为“ES 模块”或“ECMAScript 模块”）是一个重要的新功能，或者说是一组新功能集合。你可能以前使用过用户级的 JavaScript 模块系统。可能使用过[类似 Node.js 的 CommonJS](https://nodejs.org/docs/latest-v10.x/api/modules.html)，或者[AMD](https://github.com/amdjs/amdjs-api/blob/master/AMD.md)，或者其他什么。这些模块系统都有一个共同点：它们允许你导入和导出内容。
 
 <!--truncate-->
-JavaScript now has standardized syntax for exactly that. Within a module, you can use the `export` keyword to export just about anything. You can export a `const`, a `function`, or any other variable binding or declaration. Just prefix the variable statement or declaration with `export` and you’re all set:
+JavaScript 现在针对这一点有了标准化的语法。在一个模块中，你可以使用 `export` 关键字导出几乎任何内容。你可以导出 `const`、`function` 或其他变量绑定或声明。只需在变量语句或声明前加上 `export` 即可：
 
 ```js
 // 📁 lib.mjs
@@ -36,18 +36,18 @@ export function shout(string) {
 }
 ```
 
-You can then use the `import` keyword to import the module from another module. Here, we’re importing the `repeat` and `shout` functionality from the `lib` module, and using it in our `main` module:
+然后你可以使用 `import` 关键字从另一个模块中导入这个模块。在这里，我们从 `lib` 模块中导入 `repeat` 和 `shout` 功能，并在我们的 `main` 模块中使用它们：
 
 ```js
 // 📁 main.mjs
 import {repeat, shout} from './lib.mjs';
 repeat('hello');
 // → 'hello hello'
-shout('Modules in action');
-// → 'MODULES IN ACTION!'
+shout('模块正在运行');
+// → '模块正在运行！'
 ```
 
-You could also export a _default_ value from a module:
+你还可以从模块导出一个默认值：
 
 ```js
 // 📁 lib.mjs
@@ -56,7 +56,7 @@ export default function(string) {
 }
 ```
 
-Such `default` exports can be imported using any name:
+这样的 `default` 导出可以使用任何名称导入：
 
 ```js
 // 📁 main.mjs
@@ -64,124 +64,124 @@ import shout from './lib.mjs';
 //     ^^^^^
 ```
 
-Modules are a little different from classic scripts:
+模块与经典脚本略有不同：
 
-- Modules have [strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode) enabled by default.
+- 模块默认启用了[严格模式](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode)。
 
-- HTML-style comment syntax is not supported in modules, although it works in classic scripts.
+- 模块不支持 HTML 风格的注释语法，尽管它在经典脚本中有效。
 
     ```js
-    // Don’t use HTML-style comment syntax in JavaScript!
-    const x = 42; <!-- TODO: Rename x to y.
-    // Use a regular single-line comment instead:
-    const x = 42; // TODO: Rename x to y.
+    // 不要在 JavaScript 中使用 HTML 风格的注释语法！
+    const x = 42; <!-- TODO: 重命名 x 为 y。
+    // 改用普通的单行注释：
+    const x = 42; // TODO: 重命名 x 为 y。
     ```
 
-- Modules have a lexical top-level scope. This means that for example, running `var foo = 42;` within a module does *not* create a global variable named `foo`, accessible through `window.foo` in a browser, although that would be the case in a classic script.
+- 模块具有词法上的顶级作用域。这意味着，例如，在模块中运行 `var foo = 42;` *不会* 创建一个名为 `foo` 的全局变量，无法通过浏览器中的 `window.foo` 访问，而在经典脚本中则会这样。
 
-- Similarly, the `this` within modules does not refer to the global `this`, and instead is `undefined`. (Use [`globalThis`](/features/globalthis) if you need access to the global `this`.)
+- 同样地，模块中的 `this` 不指向全局 `this`，而是 `undefined`。（如果需要访问全局 `this`，请使用 [`globalThis`](/features/globalthis)）。
 
-- The new static `import` and `export` syntax is only available within modules — it doesn’t work in classic scripts.
+- 新的静态 `import` 和 `export` 语法仅在模块中可用——在经典脚本中不起作用。
 
-- [Top-level `await`](/features/top-level-await) is available in modules, but not in classic scripts. Relatedly, `await` cannot be used as a variable name anywhere in a module, although variables in classic scripts _can_ be named `await` outside of async functions.
+- [顶级 `await`](/features/top-level-await) 可在模块中使用，但在经典脚本中无法使用。此外，`await` 不能作为模块中的变量名称，尽管在经典脚本中，变量可以在异步函数外部命名为 `await`。
 
-Because of these differences, *the same JavaScript code might behave differently when treated as a module vs. a classic script*. As such, the JavaScript runtime needs to know which scripts are modules.
+由于这些差异，*相同的 JavaScript 代码在作为模块或经典脚本处理时可能表现不同*。因此，JavaScript 运行时需要知道哪些脚本是模块。
 
-## Using JS modules in the browser
+## 在浏览器中使用 JS 模块
 
-On the web, you can tell browsers to treat a `<script>` element as a module by setting the `type` attribute to `module`.
+在 Web 中，你可以通过设置 `<script>` 元素的 `type` 属性为 `module` 来告诉浏览器将其作为模块处理。
 
 ```html
 <script type="module" src="main.mjs"></script>
 <script nomodule src="fallback.js"></script>
 ```
 
-Browsers that understand `type="module"` ignore scripts with a `nomodule` attribute. This means you can serve a module-based payload to module-supporting browsers while providing a fallback to other browsers. The ability to make this distinction is amazing, if only for performance! Think about it: only modern browsers support modules. If a browser understands your module code, it also supports [features that were around before modules](https://codepen.io/samthor/pen/MmvdOM), such as arrow functions or `async`-`await`. You don’t have to transpile those features in your module bundle anymore! You can [serve smaller and largely untranspiled module-based payloads to modern browsers](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/). Only legacy browsers get the `nomodule` payload.
+支持`type="module"`的浏览器会忽略带有`nomodule`属性的脚本。这意味着您可以向支持模块的浏览器提供基于模块的内容，同时为其他浏览器提供回退选项。能够进行这种区分非常棒，哪怕仅仅是为了性能！想一想：只有现代浏览器支持模块。如果一个浏览器理解您的模块代码，它也支持[早于模块出现的功能](https://codepen.io/samthor/pen/MmvdOM)，比如箭头函数或`async`-`await`。您不再需要在模块包中对这些功能进行转换了！您可以[向现代浏览器提供更小且基本未转换的基于模块的内容负载](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/)。只有旧版浏览器会接收到`nomodule`的内容负载。
 
-Since [modules are deferred by default](#defer), you may want to load the `nomodule` script in a deferred fashion as well:
+由于[模块默认是延迟的](#defer)，您可能也希望以延迟方式加载`nomodule`脚本：
 
 ```html
 <script type="module" src="main.mjs"></script>
 <script nomodule defer src="fallback.js"></script>
 ```
 
-### Browser-specific differences between modules and classic scripts
+### 浏览器中模块与经典脚本的特定差异
 
-As you now know, modules are different from classic scripts. On top of the platform-agnostic differences we’ve outlined above, there are some differences that are specific to browsers.
+如您所知，模块不同于经典脚本。除了我们上面概述的与平台无关的区别之外，还有一些浏览器特有的差异。
 
-For example, modules are evaluated only once, while classic scripts are evaluated however many times you add them to the DOM.
+例如，模块只会被评估一次，而经典脚本会每次添加到DOM时都会被评估。
 
 ```html
 <script src="classic.js"></script>
 <script src="classic.js"></script>
-<!-- classic.js executes multiple times. -->
+<!-- classic.js 会被多次执行。 -->
 
 <script type="module" src="module.mjs"></script>
 <script type="module" src="module.mjs"></script>
 <script type="module">import './module.mjs';</script>
-<!-- module.mjs executes only once. -->
+<!-- module.mjs 只会被执行一次。 -->
 ```
 
-Also, module scripts and their dependencies are fetched with CORS. This means that any cross-origin module scripts must be served with the proper headers, such as `Access-Control-Allow-Origin: *`. This is not true for classic scripts.
+另外，模块脚本及其依赖通过 CORS 获取。这意味着任何跨域的模块脚本都必须带有适当的响应头，例如`Access-Control-Allow-Origin: *`。而经典脚本则不受此限制。
 
-Another difference relates to the `async` attribute, which causes the script to download without blocking the HTML parser (like `defer`) except it also executes the script as soon as possible, with no guaranteed order, and without waiting for HTML parsing to finish. The `async` attribute does not work for inline classic scripts, but it does work for inline `<script type="module">`.
+另一个差异与`async`属性有关，`async`属性会使脚本下载时不阻塞HTML解析（类似于`defer`），但它还会在可能的情况下立即执行脚本，没有执行顺序的保证，并且不会等待HTML解析完成。`async`属性对内联的经典脚本不起作用，但对内联的`<script type="module">`起作用。
 
-### A note on file extensions
+### 关于文件扩展名的说明
 
-You may have noticed we’re using the `.mjs` file extension for modules. On the Web, the file extension doesn’t really matter, as long as the file is served with [the JavaScript MIME type `text/javascript`](https://html.spec.whatwg.org/multipage/scripting.html#scriptingLanguages:javascript-mime-type). The browser knows it’s a module because of the `type` attribute on the script element.
+您可能已经注意到我们使用了`.mjs`文件扩展名来表示模块。在Web上，只要文件以[JavaScript MIME类型`text/javascript`](https://html.spec.whatwg.org/multipage/scripting.html#scriptingLanguages:javascript-mime-type)提供，文件扩展名并不重要。浏览器通过脚本元素上的`type`属性知道它是模块。
 
-Still, we recommend using the `.mjs` extension for modules, for two reasons:
+尽管如此，我们还是推荐为模块使用`.mjs`扩展名，原因有两个：
 
-1. During development, the `.mjs` extension makes it crystal clear to you and anyone else looking at your project that the file is a module as opposed to a classic script. (It’s not always possible to tell just by looking at the code.) As mentioned before, modules are treated differently than classic scripts, so the difference is hugely important!
-1. It ensures that your file is parsed as a module by runtimes such as [Node.js](https://nodejs.org/api/esm.html#enabling) and [`d8`](/docs/d8), and build tools such as [Babel](https://babeljs.io/docs/en/options#sourcetype). While these environments and tools each have proprietary ways via configuration to interpret files with other extensions as modules, the `.mjs` extension is the cross-compatible way to ensure that files are treated as modules.
+1. 在开发过程中，`.mjs`扩展名可以非常清楚地向您和任何查看您项目的人表明该文件是模块而不是经典脚本。（仅通过查看代码并不总是能确定。）如前所述，模块和经典脚本被区别对待，因此这种差别非常重要！
+1. 它确保您的文件可以被[Node.js](https://nodejs.org/api/esm.html#enabling)和[`d8`](/docs/d8)等运行时环境，或[译码工具如Babel](https://babeljs.io/docs/en/options#sourcetype)解析为模块。虽然这些环境和工具能通过配置将其他扩展名的文件解释为模块，但`.mjs`扩展名是确保文件被作为模块处理的跨环境方法。
 
 :::note
-**Note:** To deploy `.mjs` on the web, your web server needs to be configured to serve files with this extension using the appropriate `Content-Type: text/javascript` header, as mentioned above. Additionally, you may want to configure your editor to treat `.mjs` files as `.js` files to get syntax highlighting. Most modern editors already do this by default.
+**注意：** 在Web上部署`.mjs`时，您的Web服务器需要被配置为使用正确的`Content-Type: text/javascript`头提供此扩展名的文件，如上所述。此外，您可能希望将编辑器配置为将`.mjs`文件视为`.js`文件，以获得语法高亮功能。大多数现代编辑器默认已经这样做。
 :::
 
-### Module specifiers
+### 模块说明符
 
-When `import`ing modules, the string that specifies the location of the module is called the “module specifier” or the “import specifier”. In our earlier example, the module specifier is `'./lib.mjs'`:
+当`import`模块时，指定模块位置的字符串称为“模块说明符”或“导入说明符”。在我们之前的例子中，模块说明符是`'./lib.mjs'`：
 
 ```js
 import {shout} from './lib.mjs';
 //                  ^^^^^^^^^^^
 ```
 
-Some restrictions apply to module specifiers in browsers. So-called “bare” module specifiers are currently not supported. This restriction is [specified](https://html.spec.whatwg.org/multipage/webappapis.html#resolve-a-module-specifier) so that in the future, browsers can allow custom module loaders to give special meaning to bare module specifiers like the following:
+模块说明符在浏览器中有限制。所谓的“裸”模块说明符目前尚不支持。该限制已[规范化](https://html.spec.whatwg.org/multipage/webappapis.html#resolve-a-module-specifier)，以便未来浏览器可以允许自定义模块加载器为裸模块说明符赋予特殊含义，例如以下情况：
 
 ```js
-// Not supported (yet):
+// 尚未支持：
 import {shout} from 'jquery';
 import {shout} from 'lib.mjs';
 import {shout} from 'modules/lib.mjs';
 ```
 
-On the other hand, the following examples are all supported:
+另一方面，以下示例都受支持：
 
 ```js
-// Supported:
+// 支持：
 import {shout} from './lib.mjs';
 import {shout} from '../lib.mjs';
 import {shout} from '/modules/lib.mjs';
 import {shout} from 'https://simple.example/modules/lib.mjs';
 ```
 
-For now, module specifiers must be full URLs, or relative URLs starting with `/`, `./`, or `../`.
+目前，模块说明符必须是完整的URL，或以`/`、`./`或`../`开头的相对URL。
 
-### Modules are deferred by default
+### 模块默认是延迟的
 
-Classic `<script>`s block the HTML parser by default. You can work around it by adding [the `defer` attribute](https://html.spec.whatwg.org/multipage/scripting.html#attr-script-defer), which ensures that the script download happens in parallel with HTML parsing.
+经典`<script>`默认会阻塞HTML解析。您可以通过添加[`defer`属性](https://html.spec.whatwg.org/multipage/scripting.html#attr-script-defer)来避免这种情况，该属性确保脚本下载与HTML解析并行进行。
 
 ![](/_img/modules/async-defer.svg)
 
-Module scripts are deferred by default. As such, there is no need to add `defer` to your `<script type="module">` tags! Not only does the download for the main module happen in parallel with HTML parsing, the same goes for all the dependency modules!
+模块脚本默认是被延迟执行的。因此，不需要在`<script type="module">`标签中添加`defer`属性！不仅主模块的下载和HTML解析是并行进行，所有依赖模块的下载也是如此！
 
-## Other module features
+## 其他模块特性
 
-### Dynamic `import()`
+### 动态`import()`
 
-So far we’ve only used static `import`. With static `import`, your entire module graph needs to be downloaded and executed before your main code can run. Sometimes, you don’t want to load a module up-front, but rather on-demand, only when you need it — when the user clicks a link or a button, for example. This improves the initial load-time performance. [Dynamic `import()`](/features/dynamic-import) makes this possible!
+目前为止，我们只使用了静态`import`。通过静态`import`，需要在主代码运行之前下载并执行整个模块图。有时你可能不希望提前加载模块，而是根据需要按需加载，例如用户点击某个链接或按钮时。这可以提升初始加载性能。[动态`import()`](/features/dynamic-import)可以实现这一目标！
 
 ```html
 <script type="module">
@@ -196,17 +196,17 @@ So far we’ve only used static `import`. With static `import`, your entire modu
 </script>
 ```
 
-Unlike static `import`, dynamic `import()` can be used from within regular scripts. It’s an easy way to incrementally start using modules in your existing code base. For more details, see [our article on dynamic `import()`](/features/dynamic-import).
+与静态`import`不同，动态`import()`可以在常规脚本中使用。这是一种在现有代码库中开始渐进式使用模块的简单方法。有关更多详细信息，请参阅[我们关于动态`import()`的文章](/features/dynamic-import)。
 
 :::note
-**Note:** [webpack has its own version of `import()`](https://web.dev/use-long-term-caching/) that cleverly splits the imported module into its own chunk, separate from the main bundle.
+**注意:** [webpack有自己的`import()`版本](https://web.dev/use-long-term-caching/)，它可以巧妙地将导入的模块拆分到单独的代码块中，与主包分离。
 :::
 
 ### `import.meta`
 
-Another new module-related feature is `import.meta`, which gives you metadata about the current module. The exact metadata you get is not specified as part of ECMAScript; it depends on the host environment. In a browser, you might get different metadata than in Node.js, for example.
+另一个与模块相关的新特性是`import.meta`，它提供有关当前模块的元数据。这些元数据的具体内容没有在ECMAScript中指定，取决于宿主环境。例如，在浏览器中可能获得与Node.js中不同的元数据。
 
-Here’s an example of `import.meta` on the web. By default, images are loaded relative to the current URL in HTML documents. `import.meta.url` makes it possible to load an image relative to the current module instead.
+以下是在网络中使用`import.meta`的示例。HTML文档中图片默认是相对于当前URL加载的，而通过`import.meta.url`可以实现相对于当前模块加载图片。
 
 ```js
 function loadThumbnail(relativePath) {
@@ -220,16 +220,16 @@ const thumbnail = loadThumbnail('../img/thumbnail.png');
 container.append(thumbnail);
 ```
 
-## Performance recommendations
+## 性能推荐
 
-### Keep bundling
+### 保持模块打包
 
-With modules, it becomes possible to develop websites without using bundlers such as webpack, Rollup, or Parcel. It’s fine to use native JS modules directly in the following scenarios:
+通过模块，可以在不使用像webpack、Rollup或Parcel这样的打包工具的情况下开发网站。在以下情况下，可以直接使用原生JS模块：
 
-- during local development
-- in production for small web apps with less than 100 modules in total and with a relatively shallow dependency tree (i.e. a maximum depth less than 5)
+- 本地开发期间
+- 用于小型Web应用程序，总模块数量少于100且依赖树较浅（最大深度小于5）
 
-However, as we learned during [our bottleneck analysis of Chrome’s loading pipeline when loading a modularized library composed of ~300 modules](https://docs.google.com/document/d/1ovo4PurT_1K4WFwN2MYmmgbLcr7v6DRQN67ESVA-wq0/pub), the loading performance of bundled applications is better than unbundled ones.
+然而，根据我们在[加载一个由约300个模块组成的模块化库时对Chrome加载管道的瓶颈分析](https://docs.google.com/document/d/1ovo4PurT_1K4WFwN2MYmmgbLcr7v6DRQN67ESVA-wq0/pub)中学到的经验，打包后的应用程序的加载性能优于未打包的应用程序。
 
 <figure>
   <a href="https://docs.google.com/document/d/1ovo4PurT_1K4WFwN2MYmmgbLcr7v6DRQN67ESVA-wq0/pub">
@@ -237,25 +237,25 @@ However, as we learned during [our bottleneck analysis of Chrome’s loading pip
   </a>
 </figure>
 
-One reason for this is that the static `import`/`export` syntax is statically analyzable, and it can thus help bundler tools optimize your code by eliminating unused exports. Static `import` and `export` are more than just syntax; they are a critical tooling feature!
+造成这种情况的一个原因是静态`import`/`export`语法是可以静态分析的，因此可以帮助打包工具优化你的代码，通过消除未使用的导出进行优化。静态`import`和`export`不仅仅是语法，它们还是关键的工具功能！
 
-*Our general recommendation is to continue using bundlers before deploying modules to production.* In a way, bundling is a similar optimization to minifying your code: it results in a performance benefit, because you end up shipping less code. Bundling has the same effect! Keep bundling.
+*我们的一般建议是在将模块部署到生产环境之前继续使用打包工具。*从某种意义上说，打包是一种类似于代码压缩的优化：它能带来性能上的好处，因为最终会传输更少的代码。打包也有相同的效果！继续保持模块打包。
 
-As always, [the DevTools Code Coverage feature](https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage) can help you identify if you are pushing unnecessary code to users. We also recommend the use of [code splitting](https://developers.google.com/web/fundamentals/performance/webpack/use-long-term-caching#lazy-loading) to split bundles and to defer loading of non-First-Meaningful-Paint critical scripts.
+和往常一样，[DevTools代码覆盖率功能](https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage)可以帮助你识别是否向用户推送了不必要的代码。我们还推荐使用[代码分割](https://developers.google.com/web/fundamentals/performance/webpack/use-long-term-caching#lazy-loading)，以分割代码包并延迟加载非第一次有意义绘制的关键脚本。
 
-#### Trade-offs of bundling vs. shipping unbundled modules
+#### 模块打包与未打包模块的权衡
 
-As usual in web development, everything is a trade-off. Shipping unbundled modules might decrease initial load performance (cold cache), but could actually improve load performance for subsequent visits (warm cache) compared to shipping a single bundle without code splitting. For a 200 KB code base, changing a single fine-grained module and having that be the only fetch from the server for subsequent visits is way better than having to re-fetch the whole bundle.
+和Web开发中的通常情况一样，一切都是权衡。未打包模块可能会降低初始加载性能（冷缓存），但相比于未进行代码分割直接传送的单个包而言，未打包模块可能会改善后续访问（热缓存）的加载性能。对于一个200 KB的代码库，只修改一个细粒度模块，并在后续访问时仅从服务器获取该模块，比重新获取整个代码包要好得多。
 
-If you’re more concerned with the experience of visitors with warm caches than first-visit performance and have a site with less than a few hundred fine-grained modules, you could experiment with shipping unbundled modules, measure the performance impact for both cold and warm loads, and then make a data-driven decision!
+如果你更关注热缓存访问者的体验，而不是第一次访问性能，并且网站的细粒度模块数量少于几百个，可以尝试传送未打包的模块，测量冷加载和热加载性能的影响，然后基于数据做出决策！
 
-Browser engineers are working hard on improving the performance of modules out-of-the-box. Over time, we expect shipping unbundled modules to become feasible in more situations.
+浏览器工程师正在努力改进模块的性能，以便开箱即用。随着时间的推移，我们期望在更多情况下可以直接使用未打包的模块。
 
-### Use fine-grained modules
+### 使用细粒度模块
 
-Get into the habit of writing your code using small, fine-grained modules. During development, it’s generally better to have just a few exports per module than it is to manually combine lots of exports into a single file.
+养成使用小型、细粒度模块编写代码的习惯。在开发过程中，与其手动将多个导出组合到一个文件中，不如让每个模块只包含少量导出。
 
-Consider a module named `./util.mjs` that exports three functions named `drop`, `pluck`, and `zip`:
+考虑一个名为`./util.mjs`的模块，它导出了三个函数，分别是`drop`、`pluck`和`zip`：
 
 ```js
 export function drop() { /* … */ }
@@ -263,37 +263,37 @@ export function pluck() { /* … */ }
 export function zip() { /* … */ }
 ```
 
-If your code base only really needs the `pluck` functionality, you’d probably import it as follows:
+如果你的代码库只需要`pluck`功能，你可能会像下面这样导入它：
 
 ```js
 import {pluck} from './util.mjs';
 ```
 
-In this case, (without a build-time bundling step) the browser still ends up having to download, parse, and compile the entire `./util.mjs` module even though it only really needs that one export. That’s wasteful!
+在这种情况下，（没有构建时的打包步骤）浏览器仍需要下载、解析和编译整个`./util.mjs`模块，即使它只需要一个导出。这是很浪费的！
 
-If `pluck` doesn’t share any code with `drop` and `zip`, it’d be better to move it to its own fine-grained module, e.g. `./pluck.mjs`.
+如果`pluck`没有与`drop`和`zip`共享任何代码，那么最好将其移动到单独的细粒度模块中，例如`./pluck.mjs`。
 
 ```js
 export function pluck() { /* … */ }
 ```
 
-We can then import `pluck` without the overhead of dealing with `drop` and `zip`:
+我们可以在不处理`drop`和`zip`的额外开销情况下导入`pluck`：
 
 ```js
 import {pluck} from './pluck.mjs';
 ```
 
 :::note
-**Note:** You could use a `default` export instead of a named export here, depending on your personal preference.
+**注意：** 根据个人偏好，你可以在这里使用`default`导出代替命名导出。
 :::
 
-Not only does this keep your source code nice and simple, it also reduces the need for dead-code elimination as performed by bundlers. If one of the modules in your source tree is unused, then it never gets imported, and so the browser never downloads it. The modules that _do_ get used can be individually [code-cached](/blog/code-caching-for-devs) by the browser. (The infrastructure to make this happen already landed in V8, and [work is underway](https://bugs.chromium.org/p/chromium/issues/detail?id=841466) to enable it in Chrome as well.)
+这不仅使你的源代码保持简洁，还减少了由打包工具执行的无用代码删除的需求。如果你的源树中的某个模块未被使用，那么它永远不会被导入，因此浏览器也不会下载它。实际上被使用的模块可以单独通过浏览器[代码缓存](/blog/code-caching-for-devs)。（使这一切成真的基础设施已经在V8中实现，[相关工作正在进行](https://bugs.chromium.org/p/chromium/issues/detail?id=841466)，以在Chrome中启用它。）
 
-Using small, fine-grained modules helps prepare your code base for the future where [a native bundling solution](#web-packaging) might be available.
+使用小型、细粒度模块有助于为将来可能出现的[原生打包解决方案](#web-packaging)做好准备。
 
-### Preload modules
+### 预加载模块
 
-You can optimize the delivery of your modules further by using [`<link rel="modulepreload">`](https://developers.google.com/web/updates/2017/12/modulepreload). This way, browsers can preload and even preparse and precompile modules and their dependencies.
+你可以通过使用[`<link rel="modulepreload">`](https://developers.google.com/web/updates/2017/12/modulepreload)进一步优化模块的交付方式。这样，浏览器可以预加载甚至预解析和预编译模块及其依赖项。
 
 ```html
 <link rel="modulepreload" href="lib.mjs">
@@ -302,94 +302,94 @@ You can optimize the delivery of your modules further by using [`<link rel="modu
 <script nomodule src="fallback.js"></script>
 ```
 
-This is especially important for larger dependency trees. Without `rel="modulepreload"`, the browser needs to perform multiple HTTP requests to figure out the full dependency tree. However, if you declare the full list of dependent module scripts with `rel="modulepreload"`, the browser doesn’t have to discover these dependencies progressively.
+对于较大的依赖树来说，这尤其重要。如果没有`rel="modulepreload"`，浏览器需要执行多个HTTP请求以确定完整的依赖树。然而，如果你用`rel="modulepreload"`声明了所有依赖模块脚本的完整列表，浏览器就不需要逐步发现这些依赖项。
 
-### Use HTTP/2
+### 使用HTTP/2
 
-Using HTTP/2 where possible is always good performance advice, if only for [its multiplexing support](https://web.dev/performance-http2/#request-and-response-multiplexing). With HTTP/2 multiplexing, multiple request and response messages can be in flight at the same time, which is beneficial for loading module trees.
+在可能的情况下使用HTTP/2总是好的性能建议，尤其是因为[它的多路复用支持](https://web.dev/performance-http2/#request-and-response-multiplexing)。通过HTTP/2多路复用，多个请求和响应消息可以同时进行，对于加载模块树是有益的。
 
-The Chrome team investigated if another HTTP/2 feature, specifically [HTTP/2 server push](https://web.dev/performance-http2/#server-push), could be a practical solution for deploying highly-modularized apps. Unfortunately, [HTTP/2 server push is tricky to get right](https://jakearchibald.com/2017/h2-push-tougher-than-i-thought/), and web servers’ and browsers’ implementations are not currently optimized towards highly-modularized web app use cases. It’s hard to only push the resources that the user doesn’t already have cached, for example, and solving that by communicating the entire cache state of an origin to the server is a privacy risk.
+Chrome团队调查了是否可以通过另一个HTTP/2特性，特别是[HTTP/2服务器推送](https://web.dev/performance-http2/#server-push)，来部署高度模块化的应用程序。不幸的是，[HTTP/2服务器推送很难正确实现](https://jakearchibald.com/2017/h2-push-tougher-than-i-thought/)，而网络服务器和浏览器的实现目前并未针对高度模块化的网络应用使用场景进行优化。例如，很难只推送用户尚未缓存的资源，而通过将一个来源的完整缓存状态传递给服务器来解决这个问题则会带来隐私风险。
 
-So by all means, go ahead and use HTTP/2! Just keep in mind that HTTP/2 server push is (unfortunately) not a silver bullet.
+因此，请继续使用HTTP/2！但请记住，HTTP/2服务器推送（不幸地）并不是万能的解决方案。
 
-## Web adoption of JS modules
+## JS模块在网络上的采用情况
 
-JS modules are slowly gaining adoption on the web. [Our usage counters](https://www.chromestatus.com/metrics/feature/timeline/popularity/2062) show that 0.08% of all page loads currently use `<script type="module">`. Note that this number excludes other entry points such as dynamic `import()` or [worklets](https://drafts.css-houdini.org/worklets/).
+JS模块正在逐步被网络采用。[我们的使用计数器](https://www.chromestatus.com/metrics/feature/timeline/popularity/2062)显示，目前有0.08%的页面加载使用了`<script type="module">`。请注意，这个数字不包括其他入口点，例如动态`import()`或[worklets](https://drafts.css-houdini.org/worklets/)。
 
-## What’s next for JS modules?
+## JS模块的发展方向
 
-The Chrome team is working on improving the development-time experience with JS modules in various ways. Let’s discuss some of them.
+Chrome团队正在以多种方式改进JS模块的开发时体验。让我们讨论其中一些。
 
-### Faster and deterministic module resolution algorithm
+### 更快且确定性的模块解析算法
 
-We proposed a change to the module resolution algorithm that addressed a deficiency in speed and determinism. The new algorithm is now live in both [the HTML specification](https://github.com/whatwg/html/pull/2991) and [the ECMAScript specification](https://github.com/tc39/ecma262/pull/1006), and is implemented in [Chrome 63](http://crbug.com/763597). Expect this improvement to land in more browsers soon!
+我们提出了一项针对模块解析算法的改进，解决了速度和确定性方面的不足。新的算法现已在[HTML规范](https://github.com/whatwg/html/pull/2991)和[ECMAScript规范](https://github.com/tc39/ecma262/pull/1006)中上线，并在[Chrome 63](http://crbug.com/763597)中实现。预计此改进将很快在更多浏览器中上线！
 
-The new algorithm is much more efficient and faster. The computational complexity of the old algorithm was quadratic, i.e. 𝒪(n²), in the size of the dependency graph, and so was Chrome’s implementation at the time. The new algorithm is linear, i.e. 𝒪(n).
+新的算法效率更高、速度更快。旧算法的计算复杂度为依赖图大小的二次方，即𝒪(n²)，Chrome当时的实现也是如此。而新算法的复杂度为线性，即𝒪(n)。
 
-Moreover, the new algorithm reports resolution errors in a deterministic way. Given a graph containing multiple errors, different runs of the old algorithm could report different errors as being responsible for the resolution failure. This made debugging unnecessarily difficult. The new algorithm is guaranteed to report the same error every time.
+此外，新的算法以确定性的方式报告解析错误。针对包含多个错误的图，旧算法的不同运行可能报告不同错误是导致解析失败的原因，这使得调试变得不必要地复杂。而新的算法保证每次都报告相同的错误。
 
-### Worklets and web workers
+### Worklets和Web Workers
 
-Chrome now implements [worklets](https://drafts.css-houdini.org/worklets/), which allow web developers to customize hard-coded logic in the “low-level parts” of web browsers. With worklets, web developers can feed an JS module into the rendering pipeline or the audio processing pipeline (and possibly more pipelines in the future!).
+Chrome现已实现[Worklets](https://drafts.css-houdini.org/worklets/)，它允许Web开发人员定制浏览器“底层部分”中的硬编码逻辑。通过Worklets，Web开发人员可以将JS模块注入渲染管道或音频处理管道（未来可能还有更多管道）。
 
-Chrome 65 supports [`PaintWorklet`](https://developers.google.com/web/updates/2018/01/paintapi) (a.k.a. the CSS Paint API) to control how a DOM element is painted.
+Chrome 65支持[`PaintWorklet`](https://developers.google.com/web/updates/2018/01/paintapi)（即CSS Paint API）来控制DOM元素的绘制方式。
 
 ```js
 const result = await css.paintWorklet.addModule('paint-worklet.mjs');
 ```
 
-Chrome 66 supports [`AudioWorklet`](https://developers.google.com/web/updates/2017/12/audio-worklet), which allows you to control audio processing with your own code. The same Chrome version started an [OriginTrial for `AnimationWorklet`](https://groups.google.com/a/chromium.org/d/msg/blink-dev/AZ-PYPMS7EA/DEqbe2u5BQAJ), which enables creating scroll-linked and other high-performance procedural animations.
+Chrome 66支持[`AudioWorklet`](https://developers.google.com/web/updates/2017/12/audio-worklet)，允许使用自己的代码控制音频处理。同一版本的Chrome还启动了[`AnimationWorklet`](https://groups.google.com/a/chromium.org/d/msg/blink-dev/AZ-PYPMS7EA/DEqbe2u5BQAJ)的[OriginTrial](https://groups.google.com/a/chromium.org/d/msg/blink-dev/AZ-PYPMS7EA/DEqbe2u5BQAJ)，它支持创建滚动关联的或其他高性能过程动画。
 
-Finally, [`LayoutWorklet`](https://drafts.css-houdini.org/css-layout-api/) (a.k.a. the CSS Layout API) is now implemented in Chrome 67.
+最后，[`LayoutWorklet`](https://drafts.css-houdini.org/css-layout-api/)（即CSS Layout API）已在Chrome 67中实现。
 
-We’re [working](https://bugs.chromium.org/p/chromium/issues/detail?id=680046) on adding support for using JS modules with dedicated web workers in Chrome. You can already try this feature with `chrome://flags/#enable-experimental-web-platform-features` enabled.
+我们在[努力](https://bugs.chromium.org/p/chromium/issues/detail?id=680046)为Chrome的专用Web Workers添加JS模块支持。您可以启用`chrome://flags/#enable-experimental-web-platform-features`进行尝试。
 
 ```js
 const worker = new Worker('worker.mjs', { type: 'module' });
 ```
 
-JS module support for shared workers and service workers is coming soon:
+对共享Workers和服务Workers的JS模块支持即将推出：
 
 ```js
 const worker = new SharedWorker('worker.mjs', { type: 'module' });
 const registration = await navigator.serviceWorker.register('worker.mjs', { type: 'module' });
 ```
 
-### Import maps
+### Import Maps
 
-In Node.js/npm, it’s common to import JS modules by their “package name”. For example:
+在Node.js/npm中，通常通过“包名称”导入JS模块。例如：
 
 ```js
 import moment from 'moment';
 import {pluck} from 'lodash-es';
 ```
 
-Currently, [per the HTML spec](https://html.spec.whatwg.org/multipage/webappapis.html#resolve-a-module-specifier), such “bare import specifiers” throw an exception. [Our import maps proposal](https://github.com/domenic/import-maps) allows such code to work on the web, including in production apps. An import map is a JSON resource that helps the browser convert bare import specifiers into full URLs.
+目前，根据[HTML规范](https://html.spec.whatwg.org/multipage/webappapis.html#resolve-a-module-specifier)，这种“裸导入符号”会抛出异常。[我们的Import Maps提案](https://github.com/domenic/import-maps)允许此类代码在Web上使用，包括生产应用中。Import Map是一种JSON资源，帮助浏览器将裸导入符号转换为完整的URL。
 
-Import maps are still in the proposal stage. Although we’ve thought a lot about how they address various use cases, we’re still engaging with the community, and haven’t yet written up a full specification. Feedback is welcome!
+Import Maps仍处于提案阶段。虽然我们已考虑到它如何解决各种用例，但我们还在与社区进行交流，并尚未完成完整规范文档。欢迎提供反馈！
 
-### Web packaging: native bundles
+### Web包装：原生Bundle
 
-The Chrome loading team is currently exploring [a native web packaging format](https://github.com/WICG/webpackage) as a new way to distribute web apps. The core features of web packaging are:
+Chrome加载团队目前正在探索[一种原生Web包装格式](https://github.com/WICG/webpackage)，作为分发Web应用的新方式。Web包装的核心功能包括：
 
-[Signed HTTP Exchanges](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html) that allow a browser to trust that a single HTTP request/response pair was generated by the origin it claims; [Bundled HTTP Exchanges](https://tools.ietf.org/html/draft-yasskin-wpack-bundled-exchanges-00), that is, a collection of exchanges, each of which could be signed or unsigned, with some metadata describing how to interpret the bundle as a whole.
+[已签名的HTTP交换](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html)，允许浏览器信任单个HTTP请求/响应对是由其声明的来源生成的；[捆绑的HTTP交换](https://tools.ietf.org/html/draft-yasskin-wpack-bundled-exchanges-00)，即一组交换，每个交换可以是签名或未签名的，并带有一些描述如何解释整个捆绑内容的元数据。
 
-Combined, such a web packaging format would enable *multiple same-origin resources* to be *securely embedded* in a *single* HTTP `GET` response.
+结合起来，这种Web包装格式将使*多个同源资源*能够*安全嵌入*到*单个*HTTP `GET`响应中。
 
-Existing bundling tools such as webpack, Rollup, or Parcel currently emit a single JavaScript bundle, in which the semantics of the original separate modules and assets are lost. With native bundles, browsers could unbundle the resources back to their original form. In simplified terms, you can imagine a Bundled HTTP Exchange as a bundle of resources that can be accessed in any order via a table of contents (manifest), and where the contained resources can be efficiently stored and labeled according to their relative importance, all while maintaining the notion of individual files. Because of this, native bundles could improve the debugging experience. When viewing assets in the DevTools, browsers could pinpoint the original module without the need for complex source-maps.
+现有捆绑工具如webpack、Rollup或Parcel目前输出单个JavaScript捆绑包，其中原始独立模块和资源的语义丢失。通过原生Bundle，浏览器可以将资源还原为其原始形式。简单来说，您可以将捆绑的HTTP交换视为一个资源包，可以通过目录（清单）以任何顺序访问，其中包含的资源可以根据其相对重要性高效存储和标记，同时仍保留单个文件的概念。正因如此，原生Bundle可改善调试体验。在DevTools中查看资源时，浏览器可以直接定位到原始模块，而无需复杂的源映射。
 
-The native bundle format’s transparency opens up various optimization opportunities. For example, if a browser already has part of a native bundle cached locally, it could communicate that to the web server and then only download the missing parts.
+原生包格式的透明性为各种优化机会打开了大门。例如，如果浏览器已经在本地缓存了部分原生包，它可以将此信息传递给网络服务器，然后只下载缺失的部分。
 
-Chrome already supports a part of the proposal ([`SignedExchanges`](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html)), but the bundling format itself as well as its application to highly-modularized apps are still in exploratory phase. Your feedback is highly welcome on the repository or via email to  [loading-dev@chromium.org](mailto:loading-dev@chromium.org)!
+Chrome 已支持提案的一部分（[`SignedExchanges`](https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html)），但打包格式的本身及其在高度模块化应用中的应用仍处于探索阶段。欢迎您通过仓库或电子邮件 [loading-dev@chromium.org](mailto:loading-dev@chromium.org) 提供您的反馈！
 
-### Layered APIs
+### 分层 API
 
-Shipping new features and web APIs incurs an ongoing maintenance and runtime cost — every new feature pollutes the browser namespace, increases startup costs, and represents a new surface to introduce bugs throughout the codebase. [Layered APIs](https://github.com/drufball/layered-apis) are an effort to implement and ship higher-level APIs with web browsers in a more scalable way. JS modules are a key enabling technology for layered APIs:
+发布新功能和网络 API 会带来持续的维护和运行成本——每个新功能都会污染浏览器的命名空间、增加启动成本，并成为在代码库中引入漏洞的新表面。[分层 API](https://github.com/drufball/layered-apis) 是一种以更可扩展的方式在网络浏览器中实现和发布高级 API 的努力。JS 模块是分层 API 的关键技术支持：
 
-- Since modules are explicitly imported, requiring layered APIs to be exposed via modules ensures that developers only pay for the layered APIs they use.
-- Because module loading is configurable, layered APIs can have a built-in mechanism for automatically loading polyfills in browsers that don’t support layered APIs.
+- 由于模块是明确导入的，要求通过模块暴露分层 API 确保开发者只需为他们使用的分层 API 付费。
+- 由于模块加载是可配置的，分层 API 可以在不支持分层 API 的浏览器中自动加载 polyfill 的内置机制。
 
-The details of how modules and layered APIs work together [are still being worked out](https://github.com/drufball/layered-apis/issues), but the current proposal looks something like this:
+模块和分层 API 如何协作的细节[仍在制定中](https://github.com/drufball/layered-apis/issues)，但目前的提案看起来像这样：
 
 ```html
 <script
@@ -398,16 +398,16 @@ The details of how modules and layered APIs work together [are still being worke
 ></script>
 ```
 
-The `<script>` element loads the `virtual-scroller` API either from the browser’s built-in set of layered APIs (`std:virtual-scroller`) or from a fallback URL pointing to a polyfill. This API can do anything JS modules can do in web browsers. One example would be defining [a custom `<virtual-scroller>` element](https://www.chromestatus.com/feature/5673195159945216), so that the following HTML is progressively enhanced as desired:
+`<script>`元素从浏览器的内置分层 API 集（`std:virtual-scroller`）或指向 polyfill 的后备 URL 加载 `virtual-scroller` API。此 API 可以在网络浏览器中执行 JS 模块可以执行的任何操作。例如，可以定义[自定义 `<virtual-scroller>` 元素](https://www.chromestatus.com/feature/5673195159945216)，使以下 HTML 按需实现渐进增强：
 
 ```html
 <virtual-scroller>
-  <!-- Content goes here. -->
+  <!-- 内容放置在这里。 -->
 </virtual-scroller>
 ```
 
-## Credits
+## 致谢
 
-Thanks to Domenic Denicola, Georg Neis, Hiroki Nakagawa, Hiroshige Hayashizaki, Jakob Gruber, Kouhei Ueno, Kunihiko Sakamoto, and Yang Guo for making JavaScript modules fast!
+感谢 Domenic Denicola、Georg Neis、Hiroki Nakagawa、Hiroshige Hayashizaki、Jakob Gruber、Kouhei Ueno、Kunihiko Sakamoto 和 Yang Guo，为使 JavaScript 模块运行速度更快而作出的贡献！
 
-Also, kudos to Eric Bidelman, Jake Archibald, Jason Miller, Jeffrey Posnick, Philip Walton, Rob Dodson, Sam Dutton, Sam Thorogood, and Thomas Steiner for reading a draft version of this guide and giving their feedback.
+另外，还要感谢 Eric Bidelman、Jake Archibald、Jason Miller、Jeffrey Posnick、Philip Walton、Rob Dodson、Sam Dutton、Sam Thorogood 和 Thomas Steiner 阅读本指南的草稿并提供反馈。

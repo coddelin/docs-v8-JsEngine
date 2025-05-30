@@ -1,6 +1,6 @@
 ---
-title: "Up to 4GB of memory in WebAssembly"
-author: "Andreas Haas, Jakob Kummerow, and Alon Zakai"
+title: "WebAssembly 支持高达 4GB 的内存"
+author: "Andreas Haas、Jakob Kummerow 和 Alon Zakai"
 avatars: 
   - "andreas-haas"
   - "jakob-kummerow"
@@ -9,85 +9,85 @@ date: 2020-05-14
 tags: 
   - WebAssembly
   - JavaScript
-  - tooling
+  - 工具链
 tweet: "1260944314441633793"
 ---
 
-## Introduction
+## 引言
 
-Thanks to recent work in Chrome and Emscripten, you can now use up to 4GB of memory in WebAssembly applications. That’s up from the previous limit of 2GB. It might seem odd that there was ever a limit - after all, no work was needed to allow people to use 512MB or 1GB of memory! - but it turns out that there are some special things happening in the jump from 2GB to 4GB, both in the browser and in the toolchain, which we’ll describe in this post.
+得益于 Chrome 和 Emscripten 的近期工作，现在您可以在 WebAssembly 应用程序中使用高达 4GB 的内存。这比之前 2GB 的限制有了很大的提升。或许您会觉得奇怪为什么会有这种限制——毕竟人们无需特殊工作就可以使用 512MB 或 1GB 的内存！——但事实证明，从 2GB 跳到 4GB 不仅浏览器端需要一些特殊处理，工具链端也有挑战，这些内容将在本文中详细介绍。
 
 <!--truncate-->
-## 32 bits
+## 32 位
 
-Some background before we get into more details: the new 4GB limit is the largest amount of memory possible with 32-bit pointers, which is what WebAssembly currently supports, known as “wasm32” in LLVM and elsewhere. There is work towards a “wasm64” ([“memory64”](https://github.com/WebAssembly/memory64/blob/master/proposals/memory64/Overview.md) in the wasm spec) in which pointers can be 64-bit and we would be able to make use of over 16 million terabytes of memory (!), but until then, 4GB is the most we can possibly hope to be able to access.
+在详细探讨之前，我们来了解一下背景：新的 4GB 限制是 32 位指针（WebAssembly 当前支持）能支持的最大内存量，其在 LLVM 和其他地方被称为“wasm32”。目前也有关于“wasm64”（在 wasm 规范中称为 [“memory64”](https://github.com/WebAssembly/memory64/blob/master/proposals/memory64/Overview.md)）的工作，允许使用 64 位指针，这样我们就可以使用超过 16 百万 TB 的内存（！），但在此之前，4GB 是我们在现有条件下能访问的最大可能内存。
 
-It seems like we should always have been able to access 4GB, since that’s what 32-bit pointers allow. Why then have we been limited to half that, just 2GB? There are multiple reasons, on both the browser and the toolchain side. Let’s start with the browser.
+表面上看，我们似乎从一开始就应该能够访问 4GB，因为这是 32 位指针的能力。但为何我们一直被限制在一半，也就是仅仅 2GB？这涉及浏览器端和工具链端的多种原因。我们先从浏览器端说起。
 
-## Chrome/V8 work
+## Chrome/V8 的工作
 
-In principle the changes in V8 sound simple: Just make sure that all code generated for WebAssembly functions, as well as all memory management code, uses unsigned 32-bit integers for memory indices and lengths, and we should be done. However, in practice, there's more to it than that! As WebAssembly memory can be exported to JavaScript as an ArrayBuffer, we also had to change the implementation of JavaScript ArrayBuffers, TypedArrays, and all Web APIs that use ArrayBuffers and TypedArrays, like Web Audio, WebGPU, and WebUSB.
+从原理上讲，对 V8 的改动听起来很简单：只需确保为 WebAssembly 函数生成的所有代码以及所有内存管理代码使用无符号 32 位整数来表示内存索引和长度，就可以完成。然而，实际上并不简单！由于 WebAssembly 内存可以作为 ArrayBuffer 导出到 JavaScript，我们还必须更改 JavaScript ArrayBuffers、TypedArrays 及所有使用它们的 Web API 的实现，如 Web Audio、WebGPU 和 WebUSB。
 
-The first issue we had to solve was that V8 used [Smis](https://v8.dev/blog/pointer-compression#value-tagging-in-v8) (i.e. 31 bit signed integers) for TypedArray indices and lengths, so the maximum size was actually 2<sup>30</sup>-1, or about 1GB. Additionally, it turns out that switching everything to 32-bit integers would not be enough, because the length of a 4GB memory actually does not fit into a 32-bit integer. To illustrate: in decimal, there are 100 numbers with two digits (0 through 99), but "100" itself is a three-digit number. Analogously, 4GB can be addressed with 32-bit addresses, but 4GB itself is a 33-bit number. We could have settled for a slightly lower limit, but as we had to touch all the TypedArray code anyway, we wanted to prepare it for even bigger future limits while we were at it. So we changed all code that deals with TypedArray indices or lengths to use 64-bit wide integer types, or JavaScript Numbers where interfacing with JavaScript is required. As an added benefit, this means that supporting even larger memories for wasm64 should be relatively straightforward now!
+我们首先需要解决的问题是，V8 对 TypedArray 的索引和长度使用 [Smi](https://v8.dev/blog/pointer-compression#value-tagging-in-v8)（即 31 位有符号整数），因此最大大小实际上是 2<sup>30</sup>-1，约为 1GB。此外，我们发现仅将索引和长度改为 32 位整数还不够，因为 4GB 的长度实际上无法表示为 32 位整数。例如，在十进制中，100 个两位数（0 到 99）可以表示两位数字，但“100”本身是三位数。类似地，4GB 的地址可以用 32 位地址表示，但 4GB 本身是一个 33 位的数字。我们本可以将限制稍微调低一些，但既然我们需要修改所有 TypedArray 代码，我们就想顺便为未来可能的更大限制做好准备。因此，我们更改了所有处理 TypedArray 索引或长度的代码，使其使用 64 位宽整数类型或在与 JavaScript 交互时使用 JavaScript 的 Number 类型。一个额外的好处是，这使得支持更大的 wasm64 内存变得相对简单！
 
-A second challenge was dealing with JavaScript's special-casing for Array elements, compared to regular named properties, which is reflected in our implementation of objects. (This is a rather technical issue to do with the JavaScript spec, so don’t worry if you don’t follow all the details.) Consider this example:
+第二个挑战是处理 JavaScript 针对数组元素和普通命名属性的特殊情况，这体现在我们实现对象的方式上。（这是与 JavaScript 规范相关比较技术性的问题，所以如果您不能完全理解细节也无妨。）例如，考虑以下示例：
 
 ```js
 console.log(array[5_000_000_000]);
 ```
 
-If `array` is a plain JavaScript object or Array, then `array[5_000_000_000]` would be handled as a string-based property lookup. The runtime would look for a string-named property “5000000000”. If no such property can be found, it would walk up the prototype chain and look for that property, or eventually return `undefined` at the end of the chain. However, if `array` itself, or an object on its prototype chain, is a TypedArray, then the runtime must look for an indexed element at the index 5,000,000,000, or immediately return `undefined` if this index is out of bounds.
+如果 `array` 是一个普通的 JavaScript 对象或数组，那么 `array[5_000_000_000]` 将作为字符串形式的属性查找处理。运行时会查找一个名称为“5000000000”的字符串属性。如果没有找到，将沿着原型链向上查找，最终在原型链末端返回 `undefined`。然而，如果 `array` 本身或其原型链中的某个对象是 TypedArray，那么运行时必须在索引 5,000,000,000 查找一个索引元素，或者如果该索引超出范围立即返回 `undefined`。
 
-In other words, the rules for TypedArrays are quite different from normal Arrays, and the difference mostly manifests for huge indices. So as long as we only allowed smaller TypedArrays, our implementation could be relatively simple; in particular, looking at the property key just once was enough to decide whether the "indexed" or the "named" lookup path should be taken. To allow larger TypedArrays, we now have to make this distinction repeatedly as we walk up the prototype chain, which requires careful caching to avoid slowing down existing JavaScript code through repeated work and overhead.
+换句话说，TypedArray 的规则与普通数组完全不同，并且这种差异主要在处理巨大索引时表现出来。因此，在我们只允许较小 TypedArray 时，实施方案可以相对简单；特别是，只需检查一次属性键即可决定采用“索引”还是“命名”查找路径。为了支持更大的 TypedArray，我们现在必须在穿越原型链的每一步中重复进行这种区分，这需要精心的缓存，以避免通过重复工作和开销降低现有 JavaScript 代码的性能。
 
-## Toolchain work
+## 工具链的工作
 
-On the toolchain side we had to do work as well, most of it on the JavaScript support code, not the compiled code in WebAssembly. The main issue was that Emscripten has always written memory accesses in this form:
+在工具链方面我们也需要做一些工作，大部分工作是针对JavaScript支持代码，而不是WebAssembly中的编译代码。主要问题是Emscripten总是以以下形式编写内存访问：
 
 ```js
 HEAP32[(ptr + offset) >> 2]
 ```
 
-That reads 32 bits (4 bytes) as a signed integer from address `ptr + offset`. How this works is that `HEAP32` is an Int32Array, which means that each index in the array has 4 bytes. So we need to divide the byte address (`ptr + offset`) by 4 to get the index, which is what the `>> 2` does.
+这会从地址 `ptr + offset` 读取32位（4字节）的有符号整数。这种工作方式是因为 `HEAP32` 是一个Int32Array，这意味着数组中的每个索引有4字节。因此，我们需要将字节地址(`ptr + offset`)除以4以获得索引，这就是 `>> 2` 的作用。
 
-The problem is that `>>` is a *signed* operation! If the address is at the 2GB mark or higher, it will overflow the input into a negative number:
+问题在于 `>>` 是一个*有符号*操作！如果地址达到2GB或更高值，它会导致输入溢出为负数：
 
 ```js
-// Just below 2GB is ok, this prints 536870911
+// 刚好低于2GB可以，这输出536870911
 console.log((2 * 1024 * 1024 * 1024 - 4) >> 2);
-// 2GB overflows and we get -536870912 :(
+// 2GB溢出，我们得到-536870912 :(
 console.log((2 * 1024 * 1024 * 1024) >> 2);
 ```
 
-The solution is to do an *unsigned* shift, `>>>`:
+解决办法是进行*无符号*移位，`>>>`：
 
 ```js
-// This gives us 536870912, as we want!
+// 这给了我们536870912，正是我们想要的！
 console.log((2 * 1024 * 1024 * 1024) >>> 2);
 ```
 
-Emscripten knows at compile time whether you may use 2GB or more memory (depending on the flags you use; see later for details). If your flags make 2GB+ addresses possible then the compiler will automatically rewrite all memory accesses to use `>>>` instead of `>>`, which includes not just `HEAP32` etc. accesses as in the examples above but also operations like `.subarray()` and `.copyWithin()`. In other words, the compiler will switch to use unsigned pointers instead of signed ones.
+Emscripten在编译时会知道你是否可能使用2GB或更多内存（取决于你使用的标志；稍后会详细介绍）。如果你的标志允许2GB以上的地址，那么编译器会自动重写所有内存访问以使用 `>>>` 而非 `>>`，这不仅包括如上述示例中的 `HEAP32` 等访问，还包括像 `.subarray()` 和 `.copyWithin()` 这样的操作。换句话说，编译器会切换为使用无符号指针，而不是有符号指针。
 
-This transformation increases code size a little bit - one extra character in each shift - which is why we don’t do it if you aren’t using 2GB+ addresses. While the difference is typically less than 1%, it’s just unnecessary, and easy to avoid - and lots of small optimizations add up!
+这种转换会略微增加代码大小——每次移位多了一个额外字符——这就是为什么如果你不使用2GB以上地址时我们不这样做。虽然差异通常不到1%，但这是不必要的，并且容易避免——许多小的优化可以累积起来！
 
-Other rare issues can arise in JavaScript support code. While normal memory accesses are handled automatically as described earlier, doing something like manually comparing a signed pointer to an unsigned one will (on address 2GB and above) return false. To find such issues we’ve audited Emscripten’s JavaScript and also run the test suite in a special mode where everything is placed at address 2GB or higher. (Note that if you write your own JavaScript support code you may have things to fix there as well, if you do manual things with pointers aside from normal memory accesses.)
+在JavaScript支持代码中也可能会出现其他罕见问题。虽然正常的内存访问会如前所述被自动处理，但是如果手动将有符号指针与无符号指针进行比较（在地址2GB及以上），将返回false。为了发现此类问题，我们审计了Emscripten的JavaScript代码，并在特殊模式下运行测试套件，其中所有内容都放置在地址2GB或更高处。（注意，如果你自己编写JavaScript支持代码，并使用了指针进行手动操作而不是正常的内存访问，你可能也需要修复这些问题。）
 
-## Trying it out
+## 尝试使用
 
-To test this, [get the latest Emscripten release](https://emscripten.org/docs/getting_started/downloads.html), or at least version 1.39.15. Then build with flags such as
+要测试这一点，[获取最新的Emscripten版本](https://emscripten.org/docs/getting_started/downloads.html)（至少需要版本1.39.15）。然后使用类似以下的标志进行构建：
 
 ```
 emcc -s ALLOW_MEMORY_GROWTH -s MAXIMUM_MEMORY=4GB
 ```
 
-Those enable memory growth, and allow the program to allocate all the way up to 4GB of memory. Note that by default you will only be able to allocate up to 2GB - you must explicitly opt in to using 2-4GB (this allows us to emit more compact code otherwise, by emitting `>>` instead of `>>>` as mentioned above).
+这些选项启用了内存增长，并允许程序分配最高可达4GB的内存。注意，默认情况下你只能分配最高2GB的内存——如果你想使用2-4GB，你必须明确选择加入（这使我们可以发出更紧凑的代码，否则可以使用 `>>` 而不是 `>>>`，正如上文所述）。
 
-Make sure to test on Chrome M83 (currently in Beta) or later. Please file issues if you find anything wrong!
+确保在Chrome M83（当前为Beta版本）或更高版本上测试。如果发现任何问题，请提交问题反馈！
 
-## Conclusion
+## 总结
 
-Support for up to 4GB memory is another step in making the web as capable as native platforms, allowing 32-bit programs to be able to use just as much memory as they would normally. By itself this doesn’t enable a completely new class of application, but it does enable higher-end experiences, such as a very large level in a game or manipulating large content in a graphical editor.
+支持高达4GB的内存是让网络功能与原生平台同样强大的又一步，它允许32位程序像往常一样使用相同数量的内存。仅凭这一点并不能启用一个全新的应用类别，但它确实支持更高端的体验，例如游戏中的一个非常大的关卡或在图形编辑器中处理大内容。
 
-As mentioned earlier, support for 64-bit memory is also planned, which will allow accessing even more than 4GB. However, wasm64 will have the same downside as 64-bit does on native platforms, that pointers take twice as much memory. That’s why 4GB support in wasm32 is so important: We can access twice as much memory as before while code size remains as compact as wasm has always been!
+正如前面提到的，也计划支持64位内存，这将允许访问更大于4GB的内存。然而，wasm64将与原生平台上的64位一样有一个缺点，那就是指针需要占用两倍的内存。这就是为什么在wasm32中支持4GB如此重要：我们可以比以前访问多两倍的内存，同时代码大小仍然保持像wasm一样紧凑！
 
-As always, test your code on multiple browsers, and also remember that 2-4GB is a lot of memory! If you need that much you should use it, but don’t do so unnecessarily since there just won’t be enough free memory on many users’ machines. We recommend that you start with an initial memory that is as small as possible, and grow if necessary; and if you allow growth, gracefully handle the case of a `malloc()` failure.
+一如既往，请在多个浏览器上测试你的代码，并记住，2-4GB是非常多的内存！如果你需要那么多，那就充分利用，但不要不必要地这样做，因为很多用户的机器上可能没有足够的可用内存。我们建议从尽可能小的初始内存开始，并在需要时增长；如果允许增长，则优雅地处理 `malloc()` 失败的情况。

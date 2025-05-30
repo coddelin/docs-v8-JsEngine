@@ -1,63 +1,63 @@
 ---
-title: "Runtime Call Stats"
-description: "This document explains how to use Runtime Call Stats to get detailed V8-internal metrics."
+title: "运行时调用统计"
+description: "本文档解释了如何使用运行时调用统计获取详细的V8内部指标。"
 ---
-[The DevTools Performance panel](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/) gives insights into your web app’s runtime performance by visualizing various Chrome-internal metrics. However, certain low-level V8 metrics aren’t currently exposed in DevTools. This article guides you through the most robust way of gathering detailed V8-internal metrics, known as Runtime Call Stats or RCS, through `chrome://tracing`.
+[开发者工具性能面板](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/)通过可视化各种Chrome内部指标，提供对您的Web应用运行时性能的深入洞察。然而，某些低级别的V8指标目前并未在开发者工具中展示。本文将指导您通过`chrome://tracing`以最强大的方式收集详细的V8内部指标，称为运行时调用统计或RCS。
 
-Tracing records the behavior of the entire browser, including other tabs, windows, and extensions, so it works best when done in a clean user profile, with extensions disabled, and with no other browser tabs open:
+跟踪记录整个浏览器的行为，包括其他标签页、窗口和扩展程序，因此最好在干净的用户配置文件中运行，禁用扩展程序，并关闭其他浏览器标签页：
 
 ```bash
-# Start a new Chrome browser session with a clean user profile and extensions disabled
+# 使用干净的用户配置文件并禁用扩展程序启动一个新的Chrome浏览器会话
 google-chrome --user-data-dir="$(mktemp -d)" --disable-extensions
 ```
 
-Type the URL of the page you want to measure in the first tab, but do not load the page yet.
+在第一个标签页中输入您想要测量页面的URL，但不要加载页面。
 
 ![](/_img/rcs/01.png)
 
-Add a second tab and open `chrome://tracing`. Tip: you can just enter `chrome:tracing`, without the slashes.
+添加第二个标签页并打开`chrome://tracing`。提示：您可以直接输入`chrome:tracing`，无需斜杠。
 
 ![](/_img/rcs/02.png)
 
-Click on the “Record” button to prepare recording a trace. First choose “Web developer” and then select “Edit categories”.
+点击“记录”按钮准备记录跟踪。首先选择“Web开发者”，然后选择“编辑类别”。
 
 ![](/_img/rcs/03.png)
 
-Select `v8.runtime_stats` from the list. Depending on how detailed your investigation is, you may select other categories as well.
+从列表中选择`v8.runtime_stats`。根据您的调查细致程度，您可以选择其他类别。
 
 ![](/_img/rcs/04.png)
 
-Press “Record” and switch back to the first tab and load the page. The fastest way is to use <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>1</kbd> to directly jump to the first tab and then press <kbd>Enter</kbd> to accept the entered URL.
+按下“记录”并切换回第一个标签页加载页面。最快的方法是使用<kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>1</kbd>直接跳转到第一个标签页，然后按<kbd>Enter</kbd>确认输入的URL。
 
 ![](/_img/rcs/05.png)
 
-Wait until your page has completed loading or the buffer is full, then “Stop” the recording.
+等待页面加载完成或缓冲区已满，然后“停止”记录。
 
 ![](/_img/rcs/06.png)
 
-Look for a “Renderer” section that contains the web page title from the recorded tab. The easiest way to do this is by clicking “Processes”, then clicking “None” to uncheck all entries, and then selecting only the renderer you’re interested in.
+查找一个包含记录标签页网页标题的“渲染器”部分。最简单的方法是点击“进程”，然后点击“无”以取消选中所有条目，然后只选择您感兴趣的渲染器。
 
 ![](/_img/rcs/07.png)
 
-Select the trace events/slices by pressing <kbd>Shift</kbd> and dragging. Make sure you cover _all_ the sections, including `CrRendererMain` and any `ThreadPoolForegroundWorker`s. A table with all the selected slices appears at the bottom.
+通过按住<kbd>Shift</kbd>并拖动选择跟踪事件/切片。确保覆盖_所有_部分，包括`CrRendererMain`和任何`ThreadPoolForegroundWorker`。底部会出现一个包含所有选中切片的表格。
 
 ![](/_img/rcs/08.png)
 
-Scroll to the top right of the table and click on the link next to “Runtime call stats table”.
+滚动到表格的右上角，并点击“运行时调用统计表”旁的链接。
 
 ![](/_img/rcs/09.png)
 
-In the view that appears, scroll to the bottom to see a detailed table of where V8 spends its time.
+在出现的视图中，滚动到底部查看详细的V8时间分配表。
 
 ![](/_img/rcs/10.png)
 
-By flipping open a category you can further drill down into the data.
+通过展开类别，您可以进一步深入查看数据。
 
 ![](/_img/rcs/11.png)
 
-## Command-line interface
+## 命令行界面
 
-Run [`d8`](/docs/d8) with `--runtime-call-stats` to get RCS metrics from the command-line:
+运行[`d8`](/docs/d8)并使用`--runtime-call-stats`从命令行获取RCS指标：
 
 ```bash
 d8 --runtime-call-stats foo.js

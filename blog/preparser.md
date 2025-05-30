@@ -1,34 +1,34 @@
 ---
-title: "Blazingly fast parsing, part 2: lazy parsing"
-author: "Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)) and Marja Hölttä ([@marjakh](https://twitter.com/marjakh)), sparser parsers"
+title: "极快的解析，第2部分：惰性解析"
+author: "Toon Verwaest ([@tverwaes](https://twitter.com/tverwaes)) 和 Marja Hölttä ([@marjakh](https://twitter.com/marjakh))，精简解析器"
 avatars: 
   - "toon-verwaest"
   - "marja-holtta"
 date: "2019-04-15 17:03:37"
 tags: 
-  - internals
-  - parsing
+  - 内部功能
+  - 解析
 tweet: "1117807107972243456"
-description: "This is the second part of our article series explaining how V8 parses JavaScript as fast as possible."
+description: "这是我们系列文章的第二部分，解释了 V8 如何以尽可能快的速度解析 JavaScript。"
 ---
-This is the second part of our series explaining how V8 parses JavaScript as fast as possible. The first part explained how we made V8’s [scanner](/blog/scanner) fast.
+这是我们系列文章的第二部分，解释了 V8 如何以尽可能快的速度解析 JavaScript。第一部分解释了我们如何让 V8 的[扫描器](/blog/scanner)变得快速。
 
-Parsing is the step where source code is turned into an intermediate representation to be consumed by a compiler (in V8, the bytecode compiler [Ignition](/blog/ignition-interpreter)). Parsing and compiling happens on the critical path of web page startup, and not all functions shipped to the browser are immediately needed during startup. Even though developers can delay such code with async and deferred scripts, that’s not always feasible. Additionally, many web pages ship code that’s only used by certain features which may not be accessed by a user at all during any individual run of the page.
+解析是将源代码转换为中间表示以供编译器（在 V8 中是字节码编译器 [Ignition](/blog/ignition-interpreter)）使用的步骤。解析和编译发生在网页启动的关键路径上，而并非所有传递给浏览器的函数都会在启动过程中立即需要。尽管开发人员可以通过异步和延迟脚本推迟这类代码，但这并不总是可行的。此外，许多网页会传递仅用于某些特性的代码，而这些特性在单次运行页面时用户可能根本不会访问。
 
 <!--truncate-->
-Eagerly compiling code unnecessarily has real resource costs:
+不必要地急切编译代码会产生实际的资源成本：
 
-- CPU cycles are used to create the code, delaying the availability of code that’s actually needed for startup.
-- Code objects take up memory, at least until [bytecode flushing](/blog/v8-release-74#bytecode-flushing) decides that the code isn’t currently needed and allows it to be garbage-collected.
-- Code compiled by the time the top-level script finishes executing ends up being cached on disk, taking up disk space.
+- CPU 周期用于生成代码，从而延迟了启动时实际需要的代码的可用性。
+- 代码对象会占用内存，直到[字节码清理](/blog/v8-release-74#bytecode-flushing)决定当前不需要该代码并允许其被垃圾回收为止。
+- 在顶层脚本执行结束时编译的代码将被缓存到磁盘，占用磁盘空间。
 
-For these reasons, all major browsers implement _lazy parsing_. Instead of generating an abstract syntax tree (AST) for each function and then compiling it to bytecode, the parser can decide to “pre-parse” functions it encounters instead of fully parsing them. It does so by switching to [the preparser](https://cs.chromium.org/chromium/src/v8/src/parsing/preparser.h?l=921&rcl=e3b2feb3aade83c02e4bd2fa46965a69215cd821), a copy of the parser that does the bare minimum needed to be able to otherwise skip over the function. The preparser verifies that the functions it skips are syntactically valid, and produces all the information needed for the outer functions to be compiled correctly. When a preparsed function is later called, it is fully parsed and compiled on-demand.
+出于这些原因，所有主流浏览器都实现了_惰性解析_。解析器可以选择“预解析”所遇到的函数，而不是为每个函数生成抽象语法树 (AST) 并将其编译为字节码。它通过切换到[预解析器](https://cs.chromium.org/chromium/src/v8/src/parsing/preparser.h?l=921&rcl=e3b2feb3aade83c02e4bd2fa46965a69215cd821)来实现，预解析器是解析器的一个副本，执行解析函数所需的最低限度工作，以便跳过该函数。预解析器验证它跳过的函数语法是否有效，并生成外部函数正确编译所需的所有信息。当预解析的函数稍后被调用时，将按需对其进行完全解析和编译。
 
-## Variable allocation
+## 变量分配
 
-The main thing that complicates pre-parsing is variable allocation.
+使预解析复杂化的主要原因是变量分配。
 
-For performance reasons, function activations are managed on the machine stack. E.g., if a function `g` calls a function `f` with arguments `1` and `2`:
+出于性能原因，函数激活通过机器堆栈管理。例如，如果函数 `g` 使用参数 `1` 和 `2` 调用函数 `f`：
 
 ```js
 function f(a, b) {
@@ -38,21 +38,21 @@ function f(a, b) {
 
 function g() {
   return f(1, 2);
-  // The return instruction pointer of `f` now points here
-  // (because when `f` `return`s, it returns here).
+  // `f` 的返回指令指针现在指向这里
+  // （因为 `f` `return` 时会返回到这里）。
 }
 ```
 
-First the receiver (i.e. the `this` value for `f`, which is `globalThis` since it’s a sloppy function call) is pushed on the stack, followed by the called function `f`. Then arguments `1` and `2` are pushed on the stack. At that point the function `f` is called. To execute the call, we first save the state of `g` on the stack: the “return instruction pointer” (`rip`; what code we need to return to) of `f` as well as the “frame pointer” (`fp`; what the stack should look like on return). Then we enter `f`, which allocates space for the local variable `c`, as well as any temporary space it may need. This ensures that any data used by the function disappears when the function activation goes out of scope: it’s simply popped from the stack.
+首先，接收者（即 `f` 的 `this` 值，因为这是松散函数调用，所以是 `globalThis`）会被推送到堆栈，然后是被调用的函数 `f`。接着参数 `1` 和 `2` 被推送到堆栈。在此时调用函数 `f`。为了执行调用，我们首先将 `g` 的状态保存在堆栈上：`f` 的“返回指令指针”（`rip`; 我们需要返回的代码位置）以及“帧指针”（`fp`; 返回时堆栈应该的样子）。然后进入 `f`，它为局部变量 `c` 分配空间，并分配所需的临时空间。这确保了当函数激活超出作用域时，函数使用的任何数据都会消失：它会从堆栈中被弹出。
 
-![Stack layout of a call to function `f` with arguments `a`, `b`, and local variable `c` allocated on the stack.](/_img/preparser/stack-1.svg)
+![调用函数 `f` 的堆栈布局，参数 `a`、`b` 和局部变量 `c` 都分配在堆栈上。](/_img/preparser/stack-1.svg)
 
-The problem with this setup is that functions can reference variables declared in outer functions. Inner functions can outlive the activation in which they were created:
+这种设置的问题在于函数可以引用外部函数中声明的变量。内部函数可以在创建它们的激活结束后继续存在：
 
 ```js
-function make_f(d) { // ← declaration of `d`
+function make_f(d) { // ← `d` 的声明
   return function inner(a, b) {
-    const c = a + b + d; // ← reference to `d`
+    const c = a + b + d; // ← 引用了 `d`
     return c;
   };
 }
@@ -64,21 +64,21 @@ function g() {
 }
 ```
 
-In the above example, the reference from `inner` to the local variable `d` declared in `make_f` is evaluated after `make_f` has returned. To implement this, VMs for languages with lexical closures allocate variables referenced from inner functions on the heap, in a structure called a “context”.
+在上面的示例中，`inner` 对 `make_f` 中声明的局部变量 `d` 的引用是在 `make_f` 返回后计算的。为了实现这一点，具有词法闭包的语言的虚拟机会在堆上分配内部函数引用的变量，并存储在一个称为“上下文”的结构中。
 
-![Stack layout of a call to `make_f` with the argument copied to a context allocated on the heap for later use by `inner` that captures `d`.](/_img/preparser/stack-2.svg)
+![调用 `make_f` 的堆栈布局，将参数复制到堆上分配的上下文中供稍后捕获 `d` 的 `inner` 使用。](/_img/preparser/stack-2.svg)
 
-This means that for each variable declared in a function, we need to know whether an inner function references the variable, so we can decide whether to allocate the variable on the stack or in a heap-allocated context. When we evaluate a function literal, we allocate a closure that points both to the code for the function, as well as the current context: the object that contains the variable values it may need access to.
+这意味着对于函数中声明的每个变量，我们需要知道是否有内部函数引用了该变量，以便决定是将该变量分配到栈上还是分配到堆上的上下文中。当我们计算一个函数字面量时，我们分配一个闭包，这个闭包同时指向函数的代码以及当前上下文：即包含变量值的对象，这些变量可能需要访问。
 
-Long story short, we do need to track at least variable references in the preparser.
+长话短说，我们确实需要在预解析器中至少追踪变量引用。
 
-If we’d only track references though, we would overestimate what variables are referenced. A variable declared in an outer function could be shadowed by a redeclaration in an inner function, making a reference from that inner function target the inner declaration, not the outer declaration. If we’d unconditionally allocate the outer variable in the context, performance would suffer. Hence for variable allocation to properly work with preparsing, we need to make sure that preparsed functions properly keep track of variable references as well as declarations.
+然而如果我们仅仅追踪引用的话，会高估哪些变量被引用了。在一个外部函数中声明的变量可能会被一个内部函数中的重新声明所遮蔽，使得内部函数的引用指向内部声明而非外部声明。如果我们无条件地将外部变量分配到上下文中，性能会受到影响。因此，为了使变量分配在预解析时正常工作，我们需要确保预解析的函数不仅能正确追踪变量引用，还能追踪变量声明。
 
-Top-level code is an exception to this rule. The top-level of a script is always heap-allocated, since variables are visible across scripts. An easy way to get close to a well-working architecture is to simply run the preparser without variable tracking to fast-parse top-level functions; and to use the full parser for inner functions, but skip compiling them. This is more costly than preparsing since we unnecessarily build up an entire AST, but it gets us up and running. This is exactly what V8 did up to V8 v6.3 / Chrome 63.
+顶级代码是规则的一个例外。脚本的顶级总是分配到堆上，因为变量在脚本之间是可见的。一种接近完美架构的简单方法是运行预解析器，而不进行变量追踪，以快速解析顶级函数；对内部函数使用完整解析器，但跳过对它们的编译。这比预解析成本更高，因为我们不必要地构建了整个AST（抽象语法树），但它使我们能够快速运行。这恰恰是V8在V8 v6.3 / Chrome 63之前所采用的方法。
 
-## Teaching the preparser about variables
+## 教预解析器判断变量
 
-Tracking variable declarations and references in the preparser is complicated because in JavaScript it isn’t always clear from the start what the meaning of a partial expression is. E.g., suppose we have a function `f` with a parameter `d`, which has an inner function `g` with an expression that looks like it might reference `d`.
+在预解析器中追踪变量声明和引用是复杂的，因为在JavaScript中，从一开始并不总能明确部分表达式的意义。例如，假设我们有一个带参数`d`的函数`f`，其中有一个内部函数`g`，其表达式看起来可能引用了`d`。
 
 ```js
 function f(d) {
@@ -86,7 +86,7 @@ function f(d) {
     const a = ({ d }
 ```
 
-It could indeed end up referencing `d`, because the tokens we saw are part of a destructuring assignment expression.
+它确实可能最终引用了`d`，因为我们看到的这些标记是解构赋值表达式的一部分。
 
 ```js
 function f(d) {
@@ -98,7 +98,7 @@ function f(d) {
 }
 ```
 
-It could also end up being an arrow function with a destructuring parameter `d`, in which case the `d` in `f` isn’t referenced by `g`.
+它也可能最终是一个带解构参数`d`的箭头函数，在这种情况下，`f`中的`d`并不是被`g`引用的。
 
 ```js
 function f(d) {
@@ -110,77 +110,77 @@ function f(d) {
 }
 ```
 
-Initially our preparser was implemented as a standalone copy of the parser without too much sharing, which caused the two parsers to diverge over time. By rewriting the parser and preparser to be based on a `ParserBase` implementing the [curiously recurring template pattern](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern), we managed to maximize sharing while keeping the performance benefits of separate copies. This greatly simplified adding full variable tracking to the preparser, since a large part of the implementation can be shared between the parser and the preparser.
+最初我们的预解析器作为解析器的独立拷贝实现，彼此之间没有太多共享，这导致两者随着时间的推移逐渐分化。通过将解析器和预解析器重写为基于`ParserBase`的实现，该`ParserBase`采用了[Curiously Recurring Template Pattern（奇怪地递归模板模式）](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern)，我们设法最大化了共享，同时保持了单独拷贝的性能优势。这大大简化了为预解析器添加完整变量追踪功能，因为实现的大部分可以在解析器和预解析器之间共享。
 
-Actually it was incorrect to ignore variable declarations and references even for top-level functions. The ECMAScript spec requires various types of variable conflicts to be detected upon first parse of the script. E.g., if a variable is twice declared as a lexical variable in the same scope, that is considered an [early `SyntaxError`](https://tc39.es/ecma262/#early-error). Since our preparser simply skipped over variable declarations, it would incorrectly allow the code during preparse. At the time we considered that the performance win warranted the spec violation. Now that the preparser tracks variables properly, however, we eradicated this entire class of variable resolution-related spec violations at no significant performance cost.
+实际上，即使对于顶级函数，忽略变量声明和引用也是不正确的。ECMAScript规范要求在首次解析脚本时检测各种类型的变量冲突。例如，如果变量在同一作用域中被两次声明为词法变量，那会被认为是[早期`SyntaxError`（语法错误）](https://tc39.es/ecma262/#early-error)。由于我们的预解析器简单地忽略了变量声明，它会错误地允许这些代码在预解析时存在。那时我们认为性能的提升值得违反规范。但是现在预解析器能够正确追踪变量，我们已经在没有显著性能成本的情况下完全消除了这一类与变量解析相关的规范违规行为。
 
-## Skipping inner functions
+## 跳过内部函数
 
-As mentioned earlier, when a preparsed function is called for the first time, we parse it fully and compile the resulting AST to bytecode.
+如前所述，当一个预解析的函数首次被调用时，我们会完整解析它并将生成的AST编译为字节码。
 
 ```js
-// This is the top-level scope.
+// 这是顶级作用域。
 function outer() {
-  // preparsed
+  // 预解析
   function inner() {
-    // preparsed
+    // 预解析
   }
 }
 
-outer(); // Fully parses and compiles `outer`, but not `inner`.
+outer(); // 完全解析并编译`outer`，但不解析`inner`。
 ```
 
-The function directly points to the outer context which contains the values of variable declarations that need to be available to inner functions. To allow lazy compilation of functions (and to support the debugger), the context points to a metadata object called [`ScopeInfo`](https://cs.chromium.org/chromium/src/v8/src/objects/scope-info.h?rcl=ce2242080787636827dd629ed5ee4e11a4368b9e&l=36). `ScopeInfo` objects describe what variables are listed in a context. This means that while compiling inner functions, we can compute where variables live in the context chain.
+函数直接指向包含变量声明值的外部上下文，这些值需要对内部函数可用。为了支持懒编译函数（以及调试器），上下文指向一个名为[`ScopeInfo`](https://cs.chromium.org/chromium/src/v8/src/objects/scope-info.h?rcl=ce2242080787636827dd629ed5ee4e11a4368b9e&l=36)的元数据对象。`ScopeInfo`对象描述了上下文中列出的变量。这意味着在编译内部函数时，我们可以计算变量在上下文链中存储的位置。
 
-To compute whether or not the lazy compiled function itself needs a context, though, we need to perform scope resolution again: We need to know whether functions nested in the lazy-compiled function reference the variables declared by the lazy function. We can figure this out by re-preparsing those functions. This is exactly what V8 did up to V8 v6.3 / Chrome 63. This is not ideal performance-wise though, as it makes the relation between source size and parse cost nonlinear: we would preparse functions as many times as they are nested. In addition to natural nesting of dynamic programs, JavaScript packers commonly wrap code in “[immediately-invoked function expressions](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression)” (IIFEs), making most JavaScript programs have multiple nesting layers.
+为了计算延迟编译的函数本身是否需要上下文，我们需要再次进行作用域解析：我们需要知道嵌套在延迟编译函数中的函数是否引用了由延迟函数声明的变量。我们可以通过重新预解析这些函数来得出结论。这正是 V8 在 V8 v6.3 / Chrome 63 之前所做的。然而，这在性能方面并不理想，因为这使得源代码大小与解析成本之间的关系变得非线性：我们会多次预解析嵌套的函数。除了动态程序的自然嵌套外，JavaScript 打包器通常将代码包装在“立即调用的函数表达式”（IIFEs）中，使得大多数 JavaScript 程序具有多个嵌套层。
 
-![Each reparse adds at least the cost of parsing the function.](/_img/preparser/parse-complexity-before.svg)
+![每次重新解析至少增加了解析功能的成本。](/_img/preparser/parse-complexity-before.svg)
 
-To avoid the nonlinear performance overhead, we perform full scope resolution even during preparsing. We store enough metadata so we can later simply _skip_ inner functions, rather than having to re-preparse them. One way would be to store variable names referenced by inner functions. This is expensive to store and requires us to still duplicate work: we have already performed variable resolution during preparse.
+为了避免非线性的性能开销，我们甚至在预解析期间执行完整的作用域解析。我们存储足够的元数据，以便稍后可以简单地跳过内部函数，而不必重新预解析它们。一种方法是存储内部函数引用的变量名。这种方法存储起来成本较高，并且仍然需要重复工作：我们在预解析期间已经执行了变量解析。
 
-Instead, we serialize where variables are allocated as a dense array of flags per variable. When we lazy-parse a function, variables are recreated in the same order as the preparser saw them, and we can simply apply the metadata to the variables. Now that the function is compiled, the variable allocation metadata is not needed anymore and can be garbage-collected. Since we only need this metadata for functions that actually contain inner functions, a large fraction of all functions does not even need this metadata, significantly reducing the memory overhead.
+相反，我们将变量分配的地方序列化为每个变量的密集标志数组。当我们延迟解析一个函数时，变量会按照预解析器看到的顺序重新创建，我们可以直接将元数据应用于这些变量。现在函数已编译，变量分配的元数据不再需要，可以被垃圾回收。由于我们只需要这些元数据来处理实际包含内部函数的函数，所以大量的函数根本不需要这些元数据，从而显著减少了内存开销。
 
-![By keeping track of metadata for preparsed functions we can completely skip inner functions.](/_img/preparser/parse-complexity-after.svg)
+![通过为预解析的函数跟踪元数据，我们可以完全跳过内部函数。](/_img/preparser/parse-complexity-after.svg)
 
-The performance impact of skipping inner functions is, just like the overhead of re-preparsing inner functions, nonlinear. There are sites that hoist all their functions to the top-level scope. Since their nesting level is always 0, the overhead is always 0. Many modern sites, however, do actually deeply nest functions. On those sites we saw significant improvements when this feature launched in V8 v6.3 / Chrome 63. The main advantage is that now it doesn’t matter anymore how deeply nested the code is: any function is at most preparsed once, and fully parsed once[^1].
+跳过内部函数的性能影响，与重新预解析内部函数的开销类似，是非线性的。有些网站将所有函数提升到顶层作用域。由于它们的嵌套等级始终为 0，开销也始终为 0。然而，许多现代网站确实会深度嵌套函数。在这些网站上，当此功能在 V8 v6.3 / Chrome 63 中推出时，我们看到了显著的改进。主要优势在于，现在无论代码嵌套得多深都无关紧要：任何函数最多只进行一次预解析，然后进行一次完整解析[^1]。
 
-![Main thread and off-the-main-thread parse time, before and after launching the “skipping inner functions” optimization.](/_img/preparser/skipping-inner-functions.svg)
+![主线程和脱离主线程的解析时间，在启动“跳过内部函数”优化前后对比。](/_img/preparser/skipping-inner-functions.svg)
 
-[^1]: For memory reasons, V8 [flushes bytecode](/blog/v8-release-74#bytecode-flushing) when it’s unused for a while. If the code ends up being needed again later on, we reparse and compile it again. Since we allow the variable metadata to die during compilation, that causes a reparse of inner functions upon lazy recompilation. At that point we recreate the metadata for its inner functions though, so we don’t need to re-preparse inner functions of its inner functions again.
+[^1]: 出于内存原因，V8 在一段时间未使用后会[刷新字节码](/blog/v8-release-74#bytecode-flushing)。如果之后再次需要代码，我们会重新解析并编译。由于我们允许变量元数据在编译时被移除，这会在延迟重新编译时重新解析内部函数。但在这个阶段我们会为其内部函数重新创建元数据，因此无需再次重新预解析内部函数的内部函数。
 
-## Possibly-Invoked Function Expressions
+## 可能调用的函数表达式
 
-As mentioned earlier, packers often combine multiple modules in a single file by wrapping module code in a closure that they immediately call. This provides isolation for the modules, allowing them to run as if they are the only code in the script. These functions are essentially nested scripts; the functions are immediately called upon script execution. Packers commonly ship _immediately-invoked function expressions_ (IIFEs; pronounced “iffies”) as parenthesized functions: `(function(){…})()`.
+如前所述，打包器通常通过将模块代码包装在一个闭包中并立即调用来将多个模块合并到一个文件中。这为模块提供了隔离，使它们能够像脚本中唯一的代码一样运行。这些函数本质上是嵌套脚本；在脚本执行时，这些函数会立即被调用。打包器通常将_立即调用的函数表达式_（IIFEs；发音为“iffies”）作为括号包裹的函数提供：`(function(){…})()`。
 
-Since these functions are immediately needed during script execution, it’s not ideal to preparse such functions. During top-level execution of the script we immediately need the function to be compiled, and we fully parse and compile the function. This means that the faster parse we did earlier to try to speed up startup is guaranteed to be an unnecessary additional cost to startup.
+由于这些函数在脚本执行期间立即需要，所以预解析这样的函数并不理想。在脚本的顶层执行期间，我们会立即需要编译函数，并对该函数进行完整的解析和编译。这意味着我们之前为了加速启动而进行的快速解析显然只是给启动增加了额外的成本。
 
-Why don’t you simply compile called functions, you might ask? While it’s typically straight-forward for a developer to notice when a function is called, this is not the case for the parser. The parser needs to decide — before it even starts parsing a function! — whether it wants to eagerly compile the function or defer compilation. Ambiguities in the syntax make it difficult to simply fast-scan to the end of the function, and the cost quickly resembles the cost of regular preparsing.
+你可能会问，为什么不简单地编译调用的函数呢？虽然对开发人员来说通常很容易注意到什么时候调用了一个函数，但对于解析器来说却不是这样。解析器需要在开始解析函数之前决定是急切编译函数还是推迟编译。语法中的歧义使得简单地快速扫描到函数末尾变得困难，其成本很快就类似于常规预解析的成本。
 
-For this reason V8 has two simple patterns it recognizes as _possibly-invoked function expressions_ (PIFEs; pronounced “piffies”), upon which it eagerly parses and compiles a function:
+出于这个原因，V8 识别了两个简单的模式作为_可能调用的函数表达式_（PIFEs；发音为“piffies”），以决定是否急切解析并编译函数：
 
-- If a function is a parenthesized function expression, i.e. `(function(){…})`, we assume it will be called. We make this assumption as soon as we see the start of this pattern, i.e. `(function`.
-- Since V8 v5.7 / Chrome 57 we also detect the pattern `!function(){…}(),function(){…}(),function(){…}()` generated by [UglifyJS](https://github.com/mishoo/UglifyJS2). This detection kicks in as soon as we see `!function`, or `,function` if it immediately follows a PIFE.
+- 如果一个函数是括号包裹的函数表达式，例如：`(function(){…})`，我们假设它会被调用。当我们看到这种模式的开头，即`(function`时，我们就会做出这个假设。
+- 自 V8 v5.7 / Chrome 57 起，我们还检测到了由 [UglifyJS](https://github.com/mishoo/UglifyJS2) 生成的 `!function(){…}(),function(){…}(),function(){…}()` 模式。检测会在我们看到 `!function` 或紧接着 PIFE 的 `,function` 后立即启动。
 
-Since V8 eagerly compiles PIFEs, they can be used as [profile-directed feedback](https://en.wikipedia.org/wiki/Profile-guided_optimization)[^2], informing the browser which functions are needed for startup.
+由于 V8 急切编译了 PIFE，它们可以用作 [基于配置文件的反馈](https://en.wikipedia.org/wiki/Profile-guided_optimization)[^2]，告知浏览器启动需要哪些函数。
 
-At a time when V8 still reparsed inner functions, some developers had noticed the impact of JS parsing on startup was pretty high. The package [`optimize-js`](https://github.com/nolanlawson/optimize-js) turns functions into PIFEs based on static heuristics. At the time the package was created, this had a huge impact on load performance on V8. We’ve replicated these results by running the benchmarks provided by `optimize-js` on V8 v6.1, only looking at minified scripts.
+在 V8 仍然会重新解析内部函数的时期，一些开发者注意到 JavaScript 解析对启动速度的影响非常大。包 [`optimize-js`](https://github.com/nolanlawson/optimize-js) 基于静态启发式方法将函数转换为 PIFE。当该包被创建时，这对 V8 的加载性能影响非常大。通过运行 `optimize-js` 提供的基准测试，并仅查看经过最小化的脚本，我们在 V8 v6.1 上复制了这些结果。
 
-![Eagerly parsing and compiling PIFEs results in slightly faster cold and warm startup (first and second page load, measuring total parse + compile + execute times). The benefit is much smaller on V8 v7.5 than it used to be on V8 v6.1 though, due to significant improvements to the parser.](/_img/preparser/eager-parse-compile-pife.svg)
+![主动解析和编译 PIFE 会带来稍快的冷启动和温启动（第一次和第二次页面加载，测量总的解析+编译+执行时间）。不过，与 V8 v6.1 相比，在 V8 v7.5 上这种好处要小得多，这归功于解析器的重大改进。](/_img/preparser/eager-parse-compile-pife.svg)
 
-Nevertheless, now that we don’t reparse inner functions anymore and since the parser has gotten much faster, the performance improvement obtained through `optimize-js` is much reduced. The default configuration for v7.5 is in fact already much faster than the optimized version running on v6.1 was. Even on v7.5 it can still makes sense to use PIFEs sparingly for code that is needed during startup: we avoid preparse since we learn early that the function will be needed.
+然而，现在我们不再重新解析内部函数，并且因为解析器已经变得更快，通过 `optimize-js` 获得的性能提升已经大幅减少。事实上，v7.5 的默认配置已经比运行在 v6.1 上的优化版本快得多。即使在 v7.5 上，对于启动过程中需要的代码，有限地使用 PIFE 仍然是有意义的：我们避免了预解析，因为我们很早就知道函数将会被需要。
 
-The `optimize-js` benchmark results don’t exactly reflect the real world. The scripts are loaded synchronously, and the entire parse + compile time is counted towards load time. In a real-world setting, you would likely load scripts using `<script>` tags. That allows Chrome’s preloader to discover the script _before_ it’s evaluated, and to download, parse, and compile the script without blocking the main thread. Everything that we decide to eagerly compile is automatically compiled off the main thread and should only minimally count towards startup. Running with off-the-main-thread script compilation magnifies the impact of using PIFEs.
+`optimize-js` 的基准测试结果并不完全反映实际情况。脚本是同步加载的，整个解析+编译时间都被计入加载时间。在实际场景中，你可能会使用 `<script>` 标签加载脚本。这使得 Chrome 的预加载器可以在脚本被评估之前发现它，并且可以下载、解析和编译脚本，而不会阻塞主线程。我们决定主动编译的一切内容都会自动在主线程之外编译，并且对启动时间的影响应该是最小的。使用主线程外的脚本编译运行会放大使用 PIFE 的影响。
 
-There is still a cost though, especially a memory cost, so it’s not a good idea to eagerly compile everything:
+尽管如此，仍然会有成本，特别是内存成本，所以主动编译所有内容并不是个好主意：
 
-![Eagerly compiling *all* JavaScript comes at a significant memory cost.](/_img/preparser/eager-compilation-overhead.svg)
+![主动编译*所有* JavaScript 会带来显著的内存成本。](/_img/preparser/eager-compilation-overhead.svg)
 
-While adding parentheses around functions you need during startup is a good idea (e.g., based on profiling startup), using a package like `optimize-js` that applies simple static heuristics is not a great idea. It for example assumes that a function will be called during startup if it’s an argument to a function call. If such a function implements an entire module that’s only needed much later, however, you end up compiling too much. Over-eagerly compilation is bad for performance: V8 without lazy compilation significantly regresses load time. Additionally, some of the benefits of `optimize-js` come from issues with UglifyJS and other minifiers which remove parentheses from PIFEs that aren’t IIFEs, removing useful hints that could have been applied to e.g., [Universal Module Definition](https://github.com/umdjs/umd)-style modules. This is likely an issue that minifiers should fix to get the maximum performance on browsers that eagerly compile PIFEs.
+虽然在启动时为需要的函数添加括号是个好主意（例如，基于启动性能剖析），但是使用像 `optimize-js` 这样基于简单静态启发式方法的包不是个好主意。例如，它假设一个函数是启动过程中会被调用的，只要它是函数调用的参数。然而，如果这样的函数实现了一个很晚才需要的模块，你最终会编译过多内容。过于积极的编译会导致性能下降：没有惰性编译的 V8 会显著延长加载时间。此外，`optimize-js` 的一些好处源于 UglifyJS 和其他代码压缩工具带来的问题，这些工具从 PIFE（非 IIFE）中移除了括号，从而去除了对例如 [通用模块定义](https://github.com/umdjs/umd)-风格模块的有用提示。这可能是代码压缩工具应该解决的问题，以便在主动编译 PIFE 的浏览器上获得最大性能。
 
-[^2]: PIFEs can also be thought of as profile-informed function expressions.
+[^2]: PIFE 也可以被视为基于剖析的函数表达式。
 
-## Conclusions
+## 结论
 
-Lazy parsing speeds up startup and reduces memory overhead of applications that ship more code than they need. Being able to properly track variable declarations and references in the preparser is necessary to be able to preparse both correctly (per the spec) and quickly. Allocating variables in the preparser also allows us to serialize variable allocation information for later use in the parser so we can avoid having to re-preparse inner functions altogether, avoiding non-linear parse behavior of deeply nested functions.
+惰性解析加快了启动速度并减少了发送超出需要代码的应用程序的内存开销。在预解析器中能够正确跟踪变量声明和引用是能够快速和正确（依据规范）地预解析的必要条件。在预解析器中分配变量还使我们可以序列化变量分配信息以供解析器后续使用，从而能够彻底避免重新预解析内部函数，避免深度嵌套函数的非线性解析行为。
 
-PIFEs that can be recognized by the parser avoid initial preparse overhead for code that’s needed immediately during startup. Careful profile-guided use of PIFEs, or use by packers, can provide a useful cold startup speed bump. Nevertheless, needlessly wrapping functions in parentheses to trigger this heuristic should be avoided since it causes more code to be eagerly compiled, resulting in worse startup performance and increased memory usage.
+能够被解析器识别的 PIFE 避免了启动过程中立即需要的代码的初始预解析开销。小心地基于剖析引导使用 PIFE，或者通过打包工具使用 PIFE，可以为冷启动提供有用的性能提升。然而，不必要地将函数包装在括号中以触发这一启发式方法应该避免，因为这会导致更多代码被主动编译，从而导致更差的启动性能和更高的内存使用。

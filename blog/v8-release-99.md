@@ -1,24 +1,24 @@
 ---
-title: "V8 release v9.9"
-author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), at his 99%"
+title: "V8版本 v9.9发布"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), 达到99%的完成度"
 avatars: 
  - "ingvar-stepanyan"
 date: 2022-01-31
 tags: 
- - release
-description: "V8 release v9.9 brings new internationalization APIs."
+ - 发布
+description: "V8版本 v9.9带来了新的国际化API。"
 tweet: "1488190967727411210"
 ---
-Every four weeks, we create a new branch of V8 as part of our [release process](https://v8.dev/docs/release-process). Each version is branched from V8’s Git main immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 9.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.9), which is in beta until its release in coordination with Chrome 99 Stable in several weeks. V8 v9.9 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
+每隔四周，我们会创建一个新的V8分支，作为我们[发布流程](https://v8.dev/docs/release-process)的一部分。每个版本都在Chrome Beta里程碑之前从V8的Git主分支创建分支。今天，我们很高兴宣布我们的最新分支，[V8版本9.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.9)，目前处于Beta阶段，并将在几周后与Chrome 99 Stable协调发布。V8 v9.9充满了各种面向开发者的功能。本文预览了这次发布的一些亮点。
 
 <!--truncate-->
 ## JavaScript
 
-### Intl.Locale extensions
+### Intl.Locale扩展
 
-In v7.4 we launched the [`Intl.Locale` API](https://v8.dev/blog/v8-release-74#intl.locale). With v9.9, we added seven new properties to the `Intl.Locale` object: `calendars`, `collations`, `hourCycles`, `numberingSystems`, `timeZones`, `textInfo`, and `weekInfo`.
+在v7.4版本中，我们推出了[`Intl.Locale` API](https://v8.dev/blog/v8-release-74#intl.locale)。在v9.9中，我们为`Intl.Locale`对象添加了七个新属性：`calendars`、`collations`、`hourCycles`、`numberingSystems`、`timeZones`、`textInfo`和`weekInfo`。
 
-The `calendars`, `collations`, `hourCycles`, `numberingSystems`, and `timeZones` property of `Intl.Locale` return an array of preferred identifiers of those in common use, designed to be use with other `Intl` API:
+`Intl.Locale`的`calendars`、`collations`、`hourCycles`、`numberingSystems`和`timeZones`属性返回这些属性的优先标识符数组，设计用于与其他`Intl` API搭配使用：
 
 ```js
 const arabicEgyptLocale = new Intl.Locale('ar-EG')
@@ -35,7 +35,7 @@ arabicEgyptLocale.timeZones
 // ['Africa/Cairo']
 ```
 
-The `textInfo` property of `Intl.Locale` returns an object to specify the information related to text. Currently it only has one property, `direction`, to indicate default directionality for text in the locale. It is designed to be used for [HTML `dir` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir) and [CSS `direction` property](https://developer.mozilla.org/en-US/docs/Web/CSS/direction). It indicates the ordering of characters - `ltr` (left-to-right) or `rtl` (right-to-left):
+`Intl.Locale`的`textInfo`属性返回一个对象，指定与文本相关的信息。目前它只有一个属性`direction`，用于指示语言环境中的文本默认方向性。设计用于[HTML `dir`属性](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir)和[CSS `direction`属性](https://developer.mozilla.org/en-US/docs/Web/CSS/direction)。它表示字符的排序方式 - `ltr`（从左到右）或`rtl`（从右到左）：
 
 ```js
 arabicEgyptLocale.textInfo
@@ -46,19 +46,18 @@ chineseTaiwanLocale.textInfo
 // { direction: 'ltr' }
 ```
 
-The `weekInfo` property of `Intl.Locale` returns an object to specify the information related to week. The `firstDay` property in the return object is a number, ranging from 1 to 7, indicating which day of the week is considered the first day, for calendar purposes. 1 specifies Monday, 2 - Tuesday, 3 - Wednesday, 4 - Thursday, 5 - Friday, 6 - Saturday, and 7 - Sunday. The `minimalDays` property in the return object is the minimum days required in the first week of a month or year, for calendar purposes. The `weekend` property in the return object is an array of integers, usually with two elements, encoded the same as `firstDay`. It indicates which days of the week are considered as part of the 'weekend', for calendar purposes. Notice that the number of days in the weekend are different in each locale and may not be contiguous.
+`Intl.Locale`的`weekInfo`属性返回一个对象，用于指定与星期相关的信息。返回对象中的`firstDay`属性是一个数字，范围为1到7，用于表示定义星期开始的那个星期几：1代表星期一，2代表星期二，以此类推。`minimalDays`属性表示定义一个月或一年的第一周所需的最少天数。`weekend`属性是一个整数数组，通常包含两个元素，与`firstDay`编码一致。它表示为了日历目的，哪些日期被认为是“周末”。注意每个语言环境中的“周末”天数可能不同，并且可能不是连续的。
 
 ```js
 arabicEgyptLocale.weekInfo
 // {firstDay: 6, weekend: [5, 6], minimalDays: 1}
-// First day of the week is Saturday. Weekend is Friday and Saturday.
-// The first week of a month or a year is a week which has at least 1
-// day in that month or year.
+// 一星期的第一天为星期六。周末是星期五和星期六。
+// 一个月或者一年的第一周至少有一天属于该月或该年。
 ```
 
-### Intl Enumeration
+### Intl枚举
 
-In v9.9, we added a new function [`Intl.supportedValuesOf(code)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/supportedValuesOf) that returns the array of supported identifiers in v8 for the Intl APIs. The supported `code` values are `calendar`, `collation`, `currency`,`numberingSystem`, `timeZone`, and `unit`. The information in this new method is designed to allow web developers to easily discover which value is supported by the implementation.
+在v9.9中，我们新增了一个函数[`Intl.supportedValuesOf(code)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/supportedValuesOf)，它返回一个数组，包含v8对于Intl API支持的标识符。支持的`code`值包括`calendar`、`collation`、`currency`、`numberingSystem`、`timeZone`和`unit`。此新方法中的信息旨在让Web开发人员轻松了解实现支持哪些值。
 
 ```js
 Intl.supportedValuesOf('calendar')
@@ -82,6 +81,4 @@ Intl.supportedValuesOf('unit')
 
 ## V8 API
 
-Please use `git log branch-heads/9.8..branch-heads/9.9 include/v8\*.h` to get a list of the API changes.
-
-Developers with an active V8 checkout can use `git checkout -b 9.9 -t branch-heads/9.9` to experiment with the new features in V8 v9.9. Alternatively you can [subscribe to Chrome’s Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+请使用`git log branch-heads/9.8..branch-heads/9.9 include/v8\*.h`获取API更改列表。

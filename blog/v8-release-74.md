@@ -1,108 +1,108 @@
 ---
-title: "V8 release v7.4"
+title: "V8发布版本v7.4"
 author: "Georg Neis"
 date: "2019-03-22 16:30:42"
 tags: 
-  - release
-description: "V8 v7.4 features WebAssembly threads/Atomics, private class fields, performance and memory improvements, and much more!"
+  - 发布
+description: "V8 v7.4支持WebAssembly线程/原子操作、类的私有字段、性能与内存改进，以及更多功能！"
 tweet: "1109094755936489472"
 ---
-Every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 7.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.4), which is in beta until its release in coordination with Chrome 74 Stable in several weeks. V8 v7.4 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
+每六周我们会创建一个新的V8分支，作为我们[发布流程](/docs/release-process)的一部分。每个版本都会在Chrome测试版的一个里程碑前，从V8的Git主分支中分支出来。今天，我们很高兴地宣布我们的最新分支，[V8版本7.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.4)，它将处于测试阶段，直到几周后与Chrome 74稳定版同步发布。V8 v7.4充满了各种面向开发者的亮点功能。本文将概述一些即将发布的亮点功能。
 
 <!--truncate-->
-## JIT-less V8
+## 无JIT模式的V8
 
-V8 now supports *JavaScript* execution without allocating executable memory at runtime. In-depth information on this feature can be found in the [dedicated blog post](/blog/jitless).
+V8现在支持在运行时不分配可执行内存的情况下执行*JavaScript*。关于此功能的详细信息，可以参考[专门的博客文章](/blog/jitless)。
 
-## WebAssembly Threads/Atomics shipped
+## WebAssembly线程/原子操作已推出
 
-WebAssembly Threads/Atomics are now enabled on non-Android operating systems. This concludes the [origin trial/preview we enabled in V8 v7.0](/blog/v8-release-70#a-preview-of-webassembly-threads). A Web Fundamentals article explains [how to use WebAssembly Atomics with Emscripten](https://developers.google.com/web/updates/2018/10/wasm-threads).
+WebAssembly线程/原子操作现在已在非Android操作系统上启用。这标志着我们在V8 v7.0中开始的[试用阶段/预览](/blog/v8-release-70#a-preview-of-webassembly-threads)的结束。一篇Web Fundamentals文章解释了[如何使用带有Emscripten的WebAssembly原子操作](https://developers.google.com/web/updates/2018/10/wasm-threads)。
 
-This unlocks the usage of multiple cores on a user’s machine via WebAssembly, enabling new, computation-heavy use cases on the web.
+这解锁了通过WebAssembly在用户机器上的多核使用，从而在网页上启用新的计算密集型用例。
 
-## Performance
+## 性能
 
-### Faster calls with arguments mismatch
+### 参数数量不一致的调用速度更快
 
-In JavaScript it’s perfectly valid to call functions with too few or too many parameters (i.e. pass fewer or more than the declared formal parameters). The former is called _under-application_, the latter is called _over-application_. In case of under-application, the remaining formal parameters get assigned `undefined`, while in case of over-application, the superfluous parameters are ignored.
+在JavaScript中，用参数太少或太多的方式调用函数（即，传递的参数少于或多于声明的形式参数）是完全合法的。前者称为_参数不足_，后者称为_参数过多_。在参数不足情况下，剩余的形式参数会被分配为`undefined`，而在参数过多情况下，多余的参数会被忽略。
 
-However, JavaScript functions can still get to the actual parameters by means of the [`arguments` object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments), by using [rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters), or even by using the non-standard [`Function.prototype.arguments` property](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/arguments) on [sloppy mode](https://developer.mozilla.org/en-US/docs/Glossary/Sloppy_mode) functions. As a result, JavaScript engines must provide a way to get to the actual parameters. In V8 this is done via a technique called _arguments adaption_, which provides the actual parameters in case of under- or over-application. Unfortunately, arguments adaption comes at a performance cost, and is needed commonly in modern front-end and middleware frameworks (i.e. lots of APIs with optional parameters or variable argument lists).
+然而，JavaScript函数仍可以通过[`arguments`对象](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments)、使用[剩余参数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)，甚至通过非标准的[`Function.prototype.arguments`属性](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/arguments)在[宽松模式](https://developer.mozilla.org/en-US/docs/Glossary/Sloppy_mode)中访问实际参数。因此，JavaScript引擎必须提供一种获取实际参数的方法。在V8中，这通过一种称为_参数适配_的技术来实现，它会在参数不足或过多的情况下提供实际参数。不幸的是，参数适配会带来性能损失，而且在现代前端和中间件框架中经常需要（例如，有许多带有可选参数或可变参数列表的API）。
 
-There are scenarios where the engine knows that arguments adaption is not necessary since the actual parameters cannot be observed, namely when the callee is a strict mode function, and uses neither `arguments` nor rest parameters. In these cases, V8 now completely skips arguments adaption, reducing call overhead by up to **60%**.
+在某些场景下，引擎知道不需要参数适配，因为实际参数无法被观察到，比如当被调用函数是严格模式函数，且不使用`arguments`或剩余参数。在这些情况下，V8现在完全跳过参数适配，将调用开销减少了**60%**。
 
-![Performance impact of skipping arguments adaption, as measured through [a micro-benchmark](https://gist.github.com/bmeurer/4916fc2b983acc9ee1d33f5ee1ada1d3#file-bench-call-overhead-js).](/_img/v8-release-74/argument-mismatch-performance.svg)
+![跳过参数适配的性能影响，通过[一个微基准测试](https://gist.github.com/bmeurer/4916fc2b983acc9ee1d33f5ee1ada1d3#file-bench-call-overhead-js)测量。](/_img/v8-release-74/argument-mismatch-performance.svg)
 
-The graph shows that there’s no overhead anymore, even in case of an arguments mismatch (assuming that the callee cannot observe the actual arguments). For more details, see the [design document](https://bit.ly/v8-faster-calls-with-arguments-mismatch).
+图表显示，即使在参数不匹配的情况下，只要被调用者无法观察到实际参数，也没有任何额外开销。详细信息参见[设计文档](https://bit.ly/v8-faster-calls-with-arguments-mismatch)。
 
-### Improved native accessor performance
+### 改进的原生访问器性能
 
-The Angular team [discovered](https://mhevery.github.io/perf-tests/DOM-megamorphic.html) that calling into native accessors (i.e. DOM property accessors) directly via their respective `get` functions was significantly slower in Chrome than the [monomorphic](https://en.wikipedia.org/wiki/Inline_caching#Monomorphic_inline_caching) or even the [megamorphic](https://en.wikipedia.org/wiki/Inline_caching#Megamorphic_inline_caching) property access. This was due to taking the slow-path in V8 for calling into DOM accessors via [`Function#call()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call), instead of the fast-path that was already there for property accesses.
+Angular团队[发现](https://mhevery.github.io/perf-tests/DOM-megamorphic.html)，通过调用原生访问器（即DOM属性访问器）的`get`函数访问DOM属性，在Chrome中显著慢于[单态](https://en.wikipedia.org/wiki/Inline_caching#Monomorphic_inline_caching)或[多态](https://en.wikipedia.org/wiki/Inline_caching#Megamorphic_inline_caching)属性访问。这是因为在通过[`Function#call()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call)调用DOM访问器时，V8采用了慢路径，而在直接属性访问时已存在快路径。
 
 ![](/_img/v8-release-74/native-accessor-performance.svg)
 
-We managed to improve the performance of calling into native accessors, making it significantly faster than the megamorphic property access. For more background, see [V8 issue #8820](https://bugs.chromium.org/p/v8/issues/detail?id=8820).
+我们成功改善了调用本地访问器的性能，使之比多态属性访问速度显著提升。更多背景信息请参阅[V8问题 #8820](https://bugs.chromium.org/p/v8/issues/detail?id=8820)。
 
-### Parser performance
+### 解析器性能
 
-In Chrome, large enough scripts are “streaming”-parsed on worker threads while they are being downloaded. In this release we identified and fixed a performance issue with custom UTF-8 decoding used by the source stream, leading to an average 8% faster streaming parse.
+在Chrome中，足够大的脚本会在下载时由工作线程进行“流式”解析。在此版本中，我们识别并修复了自定义UTF-8解码在源码流中引发的性能问题，从而使流式解析平均提升了8%的速度。
 
-We found an additional issue in V8’s preparser, which most commonly runs on a worker thread: property names were unnecessarily deduplicated. Removing this deduplication improved the streaming parser by another 10.5%. This also improves main-thread parse time of scripts that aren’t streamed, like small scripts and inline scripts.
+我们在V8的预解析器中发现了另一个问题，该解析器通常运行在工作线程上：属性名称被不必要地去重。去除这种去重优化使流式解析器的性能又提高了10.5%。这也改善了非流式脚本（如小型脚本和内联脚本）在主线程上的解析时间。
 
-![Each drop in the above chart represents one of the performance improvements in the streaming parser.](/_img/v8-release-74/parser-performance.jpg)
+![上图中的每一次下降表示流解析器性能的一次改进。](/_img/v8-release-74/parser-performance.jpg)
 
-## Memory
+## 内存
 
-### Bytecode flushing
+### 字节码刷新
 
-Bytecode compiled from JavaScript source takes up a significant chunk of V8 heap space, typically around 15%, including related meta-data. There are many functions which are only executed during initialization, or rarely used after having been compiled.
+从JavaScript源代码编译的字节码占据了V8堆空间的相当大一部分，通常约占15%，包括相关的元数据。有许多函数仅在初始化期间执行，或者在编译后很少使用。
 
-In order to reduce V8’s memory overhead, we have implemented support for flushing compiled bytecode from functions during garbage collection if they haven’t been executed recently. In order to enable this, we keep track of the age of a function’s bytecode, incrementing the age during garbage collections, and resetting it to zero when the function is executed. Any bytecode which crosses an aging threshold is eligible to be collected by the next garbage collection, and the function resets to lazily recompile its bytecode if it is ever executed again in the future.
+为了减少V8的内存开销，我们实现了一种机制，在垃圾回收期间刷新未最近执行的函数的已编译字节码。为此，我们记录每个函数字节码的年龄，在垃圾回收期间递增年龄，并在函数执行时将其重置为零。任何超过一定年龄阈值的字节码将在下一次垃圾回收期间被收集，并且函数在将来再次执行时会重新延迟编译其字节码。
 
-Our experiments with bytecode flushing show that it provides significant memory savings for users of Chrome, reducing the amount of memory in V8’s heap by between 5–15% while not regressing performance or significantly increasing the amount of CPU time spent compiling JavaScript code.
+我们的字节码刷新实验表明，对于Chrome用户来说，此机制显著节省了内存，使V8堆中的内存减少了5–15%之间，同时不会影响性能或显著增加编译JavaScript代码所需的CPU时间。
 
 ![](/_img/v8-release-74/bytecode-flushing.svg)
 
-### Bytecode dead basic block elimination
+### 字节码无效基本块消除
 
-The Ignition bytecode compiler attempts to avoid generating code that it knows to be dead, e.g. code after a `return` or `break` statement:
+Ignition字节码编译器会尽量避免生成已知无效的代码，例如在`return`或`break`语句之后的代码：
 
 ```js
 return;
-deadCall(); // skipped
+deadCall(); // 跳过
 ```
 
-However, previously this was done opportunistically for terminating statements in a statement list, so it did not take into account other optimizations, such as shortcutting conditions that are known to be true:
+然而，以前这一操作仅在语句列表的终止语句中进行，无法考虑其他优化，例如已知条件为真的短路优化：
 
 ```js
 if (2.2) return;
-deadCall(); // not skipped
+deadCall(); // 未跳过
 ```
 
-We tried to resolve this in V8 v7.3, but still on a per-statement level, which wouldn’t work when the control flow became more involved, e.g.
+我们尝试在V8 v7.3中解决这一问题，但仍基于每个语句的层级，这在控制流更复杂时不起作用，例如：
 
 ```js
 do {
   if (2.2) return;
   break;
 } while (true);
-deadCall(); // not skipped
+deadCall(); // 未跳过
 ```
 
-The `deadCall()` above would be at the start of a new basic block, which on a per-statement level is reachable as a target for `break` statements in the loop.
+上述代码中的`deadCall()`位于一个新基本块的开始处，在语句层级上作为循环中`break`语句的目标是可达的。
 
-In V8 v7.4, we allow entire basic blocks to become dead, if no `Jump` bytecode (Ignition’s main control flow primitive) refers to them. In the above example, the `break` is not emitted, which means the loop has no `break` statements. So, the basic block starting with `deadCall()` has no referring jumps, and thus is also considered dead. While we don’t expect this to have a large impact on user code, it is particularly useful for simplifying various desugarings, such as generators, `for-of` and `try-catch`, and in particular removes a class of bugs where basic blocks could “resurrect” complex statements part-way through their implementation.
+在V8 v7.4中，如果没有字节码跳转（Ignition的主要控制流原语）指向基本块，我们允许整个基本块变为无效。在上述示例中，`break`不会被发出，这意味着循环中没有`break`语句。因此，以`deadCall()`开始的基本块没有引用跳转，因此也被视为无效。尽管我们预计这对用户代码的影响不大，但对于简化各种反糖化（如生成器、`for-of`和`try-catch`）很有帮助，并特别消除了某些基本块可能“复活”到实现过程中的复杂语句的错误类别。
 
-## JavaScript language features
+## JavaScript语言特性
 
-### Private class fields
+### 私有类字段
 
-V8 v7.2 added support for the public class fields syntax. Class fields simplify class syntax by avoiding the need for constructor functions just to define instance properties. Starting in V8 v7.4, you can mark a field as private by prepending it with a `#` prefix.
+V8 v7.2增加了对公共类字段语法的支持。类字段通过避免仅为定义实例属性而编写构造函数来简化类语法。从V8 v7.4开始，您可以通过在字段前添加`#`前缀标记它为私有。
 
 ```js
 class IncreasingCounter {
   #count = 0;
   get value() {
-    console.log('Getting the current value!');
+    console.log('获取当前值!');
     return this.#count;
   }
   increment() {
@@ -111,21 +111,21 @@ class IncreasingCounter {
 }
 ```
 
-Unlike public fields, private fields are not accessible outside of the class body:
+与公共字段不同，私有字段不能在类体外部访问：
 
 ```js
 const counter = new IncreasingCounter();
 counter.#count;
-// → SyntaxError
+// → 语法错误 (SyntaxError)
 counter.#count = 42;
-// → SyntaxError
+// → 语法错误 (SyntaxError)
 ```
 
-For more information, read our [explainer on public and private class fields](/features/class-fields).
+有关更多信息，请阅读我们的[公共和私有类字段介绍](/features/class-fields)。
 
 ### `Intl.Locale`
 
-JavaScript applications generally use strings such as `'en-US'` or `'de-CH'` to identify locales. `Intl.Locale` offers a more powerful mechanism to deal with locales, and enables easily extracting locale-specific preferences such as the language, the calendar, the numbering system, the hour cycle, and so on.
+JavaScript应用程序通常使用诸如`'en-US'`或`'de-CH'`的字符串来标识区域设置。`Intl.Locale`提供了一种更加强大的机制来处理区域设置，并能轻松提取区域设置的特定偏好，如语言、日历、数字系统、小时制等。
 
 ```js
 const locale = new Intl.Locale('es-419-u-hc-h12', {
@@ -143,9 +143,9 @@ locale.toString();
 // → 'es-419-u-ca-gregory-hc-h12'
 ```
 
-### Hashbang grammar
+### Hashbang 语法
 
-JavaScript programs can now start with `#!`, a so-called [hashbang](https://github.com/tc39/proposal-hashbang). The rest of the line following the hashbang is treated as a single-line comment. This matches de facto usage in command-line JavaScript hosts, such as Node.js. The following is now a syntactically valid JavaScript program:
+JavaScript 现在可以以 `#!` 开头，这是一种所谓的 [hashbang](https://github.com/tc39/proposal-hashbang)。后续的整行内容会被视为单行注释。这与命令行 JavaScript 主机的实际用法一致，例如 Node.js。以下示例现在是语法上有效的 JavaScript 程序：
 
 ```js
 #!/usr/bin/env node
@@ -154,6 +154,6 @@ console.log(42);
 
 ## V8 API
 
-Please use `git log branch-heads/7.3..branch-heads/7.4 include/v8.h` to get a list of the API changes.
+请使用 `git log branch-heads/7.3..branch-heads/7.4 include/v8.h` 查看 API 更改列表。
 
-Developers with an [active V8 checkout](/docs/source-code#using-git) can use `git checkout -b 7.4 -t branch-heads/7.4` to experiment with the new features in V8 v7.4. Alternatively you can [subscribe to Chrome’s Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+开发者可以通过一个 [有效的 V8 检出目录](/docs/source-code#using-git) 使用 `git checkout -b 7.4 -t branch-heads/7.4` 来试验 V8 v7.4 的新功能。或者，您可以 [订阅 Chrome 的 Beta 频道](https://www.google.com/chrome/browser/beta.html)，并尽快亲自体验这些新功能。

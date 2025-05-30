@@ -1,22 +1,22 @@
 ---
-title: "V8 release v8.1"
-author: "Dominik Inführ, international(ization) man of mystery"
+title: "V8 发布 v8.1"
+author: "Dominik Inführ，国际化的神秘人物"
 avatars: 
   - "dominik-infuehr"
 date: 2020-02-25
 tags: 
-  - release
-description: "V8 v8.1 features improved internationalization support through the new Intl.DisplayNames API."
+  - 发布
+description: "V8 v8.1 通过新的 Intl.DisplayNames API 提供了改进的国际化支持功能。"
 ---
 
-Every six weeks, we create a new branch of V8 as part of our [release process](https://v8.dev/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 8.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.1), which is in beta until its release in coordination with Chrome 81 Stable in several weeks. V8 v8.1 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
+每六周，我们根据[发布流程](https://v8.dev/docs/release-process)创建一个新的 V8 分支。每个版本都基于 V8 的 Git 主分支，在 Chrome Beta 里程碑之前立即分支出来。今天我们很高兴宣布我们的最新分支，[V8 版本 8.1](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/8.1)，该版本处于测试阶段，直到数周后与 Chrome 81 稳定版协调发布。V8 v8.1 包含各种开发者相关的好东西。这篇文章预览了一些亮点，以期待该版本的发布。
 
 <!--truncate-->
 ## JavaScript
 
 ### `Intl.DisplayNames`
 
-The new `Intl.DisplayNames` API lets programmers display translated names of languages, regions, scripts, and currencies with ease.
+新的 `Intl.DisplayNames` API 让程序员可以轻松显示语言、地区、脚本和货币的翻译名称。
 
 ```js
 const zhLanguageNames = new Intl.DisplayNames(['zh-Hant'], { type: 'language' });
@@ -34,10 +34,10 @@ deCurrencyNames.of('JPY');
 // → 'Japanischer Yen'
 ```
 
-Shift the burden of translation data maintenance to the runtime today! See [our feature explainer](https://v8.dev/features/intl-displaynames) for details on the full API and more examples.
+今天将翻译数据维护的负担转移到运行时吧！查看[我们的功能说明](https://v8.dev/features/intl-displaynames)了解完整的 API 和更多示例。
 
 ## V8 API
 
-Please use `git log branch-heads/8.0..branch-heads/8.1 include/v8.h` to get a list of the API changes.
+请使用 `git log branch-heads/8.0..branch-heads/8.1 include/v8.h` 获取 API 更改的列表。
 
-Developers with an [active V8 checkout](/docs/source-code#using-git) can use `git checkout -b 8.1 -t branch-heads/8.1` to experiment with the new features in V8 v8.1. Alternatively you can [subscribe to Chrome’s Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+拥有[活跃的 V8 检出](/docs/source-code#using-git)的开发人员可以使用 `git checkout -b 8.1 -t branch-heads/8.1` 来实验 V8 v8.1 中的新功能。或者您可以[订阅 Chrome 的测试渠道](https://www.google.com/chrome/browser/beta.html)，并很快自行尝试新功能。

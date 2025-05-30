@@ -1,5 +1,5 @@
 ---
-title: "WebAssembly integration with JavaScript BigInt"
+title: "WebAssembly 与 JavaScript BigInt 的集成"
 author: "Alon Zakai"
 avatars: 
   - "alon-zakai"
@@ -7,28 +7,28 @@ date: 2020-11-12
 tags: 
   - WebAssembly
   - ECMAScript
-description: "BigInts make it easy to pass 64-bit integers between JavaScript and WebAssembly. This post explains what that means and why it’s useful, which includes making things simpler for developers, letting code run more quickly, and also speeding up build times."
+description: "BigInt 使在 JavaScript 和 WebAssembly 之间传递 64 位整数变得简单。本文解释了这意味着什么以及为什么有用，包括让开发者更容易、让代码运行更快，以及加速构建时间。"
 tweet: "1331966281571037186"
 ---
-The [JS-BigInt-Integration](https://github.com/WebAssembly/JS-BigInt-integration) feature makes it easy to pass 64-bit integers between JavaScript and WebAssembly. This post explains what that means and why it’s useful, which includes making things simpler for developers, letting code run more quickly, and also speeding up build times.
+JS-BigInt-Integration 特性使在 JavaScript 和 WebAssembly 之间传递 64 位整数变得简单。本文解释了这意味着什么以及为什么有用，包括让开发者更容易、让代码运行更快，以及加速构建时间。
 
 <!--truncate-->
-## 64-bit integers
+## 64 位整数
 
-JavaScript Numbers are doubles, that is, 64-bit floating-point values. Such a value can contain any 32-bit integer with full precision, but not all 64-bit ones. WebAssembly, on the other hand, has full support for 64-bit integers, the `i64` type. A problem occurs when connecting the two: If a Wasm function returns an i64, for example, then the VM throws an exception if you call it from JavaScript, something like this:
+JavaScript 的 Numbers 是双精度类型，即 64 位浮点值。这样的值可以完全精准地包含任何 32 位整数，但不能完全包含所有的 64 位整数。而 WebAssembly 则完全支持 64 位整数，即 `i64` 类型。当将两者连接在一起时会出现问题：比如当一个 Wasm 函数返回一个 i64 类型时，如果从 JavaScript 调用它，虚拟机会抛出类似这样的异常：
 
 ```
 TypeError: Wasm function signature contains illegal type
 ```
 
-As the error says, `i64` is not a legal type for JavaScript.
+如错误所说，`i64` 对 JavaScript 来说并不是合法类型。
 
-Historically, the best solution for this was “legalization” of the Wasm. Legalization means to convert Wasm imports and exports to use valid types for JavaScript. In practice, that did two things:
+从历史上看，解决此问题的最佳方法是对 Wasm 进行“合法化”。合法化的意思是，将 Wasm 的导入和导出转换为对 JavaScript 来说合法的类型。实际上，这涉及到两方面：
 
-1. Replace a 64-bit integer parameter with two 32-bit ones, representing the low and high bits, respectively.
-2. Replace a 64-bit integer return value with a 32-bit one representing the low bits, and use a 32-bit value on the side for the high bits.
+1. 将 64 位整数参数替换为两个 32 位参数，分别表示低位和高位。
+2. 将 64 位整数返回值替换为表示低位的一个 32 位值，另一个 32 位值用于表示高位。
 
-For example, consider this Wasm module:
+例如，考虑以下 Wasm 模块：
 
 ```wasm
 (module
@@ -36,23 +36,23 @@ For example, consider this Wasm module:
     ..))
 ```
 
-Legalization would turn that into this:
+合法化会将其转换为：
 
 ```wasm
 (module
   (func $send_i64 (param $x_low i32) (param $x_high i32)
-    (local $x i64) ;; the real value the rest of the code will use
-    ;; code to combine $x_low and $x_high into $x
+    (local $x i64) ;; 其余代码将使用的实际值
+    ;; 将 $x_low 和 $x_high 合并为 $x 的代码
     ..))
 ```
 
-Legalization is done on the tools side, before it reaches the VM that runs it. For example, the [Binaryen](https://github.com/WebAssembly/binaryen) toolchain library has a pass called [LegalizeJSInterface](https://github.com/WebAssembly/binaryen/blob/fd7e53fe0ae99bd27179cb35d537e4ce5ec1fe11/src/passes/LegalizeJSInterface.cpp) that does that transformation, which is run automatically in [Emscripten](https://emscripten.org/) when it is needed.
+合法化是在运行虚拟机之前完成的工具处理。例如，Binaryen 工具链库中有一个叫合法化 JavaScript 接口的处理模块，当需要时，Emscripten 会自动运行它。
 
-## Downsides of legalization
+## 合法化的缺点
 
-Legalization works well enough for many things, but it does have downsides, like the extra work to combine or split up 32-bit pieces into 64-bit values. While it’s rare that that happens on a hot path, when it does the slowdown can be noticeable - we’ll see some numbers later.
+合法化对很多情况下工作得还不错，但也存在一些缺点，比如将 32 位片段合并或拆分为 64 位值所需的额外工作。虽然这种情况很少发生在关键路径上，但一旦发生，性能下降可能很明显——后续我们会看到一些具体数据。
 
-Another annoyance is that legalization is noticeable by users, since it changes the interface between JavaScript and Wasm. Here is an example:
+另一个令人烦恼的问题是，合法化会对用户产生影响，因为它改变了 JavaScript 和 Wasm 之间的接口。比如：
 
 ```c
 // example.c
@@ -71,66 +71,66 @@ int main() {
 
 mergeInto(LibraryManager.library, {
   send_i64_to_js: function(value) {
-    console.log("JS received: 0x" + value.toString(16));
+    console.log("JavaScript 接收：0x" + value.toString(16));
   }
 });
 ```
 
-This is a tiny C program that calls a [JavaScript library](https://emscripten.org/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.html#implement-c-in-javascript) function (that is, we define an extern C function in C, and implement it in JavaScript, as a simple and low-level way to call between Wasm and JavaScript). All this program does is send an `i64` out to JavaScript, where we attempt to print it.
+这是一个简单的 C 程序，它调用了一个 JavaScript 库函数（即在 C 中定义一个 extern C 函数，并在 JavaScript 中实现它，作为在 Wasm 和 JavaScript 之间进行调用的一种简单且底层的方式）。该程序所做的仅仅是将一个 `i64` 传递到 JavaScript 中，我们尝试在那边打印出来。
 
-We can build that with
+我们可以用以下命令来构建它：
 
 ```
 emcc example.c --js-library example.js -o out.js
 ```
 
-When we run it, we don’t get what we expect:
+运行时，我们并没有得到预期的结果：
 
 ```
 node out.js
-JS received: 0x12345678
+JavaScript 接收：0x12345678
 ```
 
-We sent `0xABCD12345678` but we only received `0x12345678` 😔. What happens here is that legalization turns that `i64` into two `i32`s, and our code just received the low 32 bits, and ignored another parameter that was sent. To handle things properly, we’d need to do something like this:
+我们发送的是 `0xABCD12345678`，但只接收到 `0x12345678` 😔。这里发生的事情是，合法化将 `i64` 转为了两个 `i32`，而我们的代码只接收了低 32 位，忽略了发送的另一个参数。若要正确处理，我们需要像这样处理：
 
 ```javascript
-  // The i64 is split into two 32-bit parameters, “low” and “high”.
+  // 这个 i64 被分解为两个32位的参数，“低位”和“高位”。
   send_i64_to_js: function(low, high) {
-    console.log("JS received: 0x" + high.toString(16) + low.toString(16));
+    console.log("JavaScript 接收：0x" + high.toString(16) + low.toString(16));
   }
 ```
 
-Running this now, we get
+现在运行，我们得到：
 
 ```
-JS received: 0xabcd12345678
+JavaScript 接收：0xabcd12345678
 ```
 
-As you can see, it’s possible to live with legalization. But it can be kind of annoying!
+正如你所看到的，合法化是可以使用的。但它确实有点烦人！
 
-## The solution: JavaScript BigInts
+## 解决方案：JavaScript BigInts
 
-JavaScript has [BigInt](/features/bigint) values now, which represent integers of arbitrary size, so they can represent 64-bit integers properly. It is natural to want to use those to represent `i64`s from Wasm. That’s exactly what the JS-BigInt-Integration feature does!
+JavaScript 现在有了 [BigInt](/features/bigint) 值，可以表示任意大小的整数，因此可以正确表示 64 位整数。自然地，人们希望使用这些值来表示 Wasm 的 `i64` 类型。这正是 JS-BigInt-Integration 功能的作用！
 
-Emscripten has support for Wasm BigInt integration, which we can use to compile the original example (without any hacks for legalization), by just adding `-s WASM_BIGINT`:
+Emscripten 支持 Wasm BigInt 集成，我们可以通过添加 `-s WASM_BIGINT` 来编译原始示例（无需进行合法化的任何技巧）：
 
 ```
 emcc example.c --js-library example.js -o out.js -s WASM_BIGINT
 ```
 
-We can then run it (note that we need to pass Node.js a flag to enable BigInt integration currently):
+然后我们可以运行它（请注意，目前我们需要为 Node.js 传递一个参数以启用 BigInt 集成）：
 
 ```
 node --experimental-wasm-bigint a.out.js
-JS received: 0xabcd12345678
+JS 收到: 0xabcd12345678
 ```
 
-Perfect, exactly what we wanted!
+完美，正是我们想要的！
 
-And not only is this simpler, but it’s faster. As mentioned earlier, in practice it’s rare that `i64` conversions happen on a hot path, but when it does the slowdown can be noticeable. If we turn the above example into a benchmark, running many calls of `send_i64_to_js`, then the BigInt version is 18% faster.
+不仅如此，这种方法更加简单，而且更快。如前所述，在实际操作中，`i64` 的转换很少发生在热点路径上，但如果确实发生，减速可能非常明显。如果我们将上述示例转化为基准测试，并多次调用 `send_i64_to_js`，那么使用 BigInt 的版本会快 18%。
 
-Another benefit from BigInt integration is that the toolchain can avoid legalization. If Emscripten does not need to legalize then it may not have any work to do on the Wasm that LLVM emits, which speeds up build times. You can get that speedup if you build with `-s WASM_BIGINT` and do not provide any other flags that require changes to be made. For example, `-O0 -s WASM_BIGINT` works (but optimized builds [run the Binaryen optimizer](https://emscripten.org/docs/optimizing/Optimizing-Code.html#link-times) which is important for size).
+BigInt 集成的另一个好处是工具链可以避免合法化。如果 Emscripten 不需要进行合法化，那么它可能不需要对 LLVM 生成的 Wasm 进行任何处理，从而加速构建时间。如果你使用 `-s WASM_BIGINT` 构建且不提供要求进行更改的其他标志，则可以得到这种速度提升。例如，`-O0 -s WASM_BIGINT` 是可以的（但是优化后的构建会[运行 Binaryen 优化器](https://emscripten.org/docs/optimizing/Optimizing-Code.html#link-times)，这对代码体积优化很重要）。
 
-## Conclusion
+## 结论
 
-WebAssembly BigInt integration has been implemented in [multiple browsers](https://webassembly.org/roadmap/), including Chrome 85 (released 2020-08-25) so you can try it out today!
+WebAssembly BigInt 集成已经在[多个浏览器](https://webassembly.org/roadmap/)中实现，包括 Chrome 85（发布于 2020-08-25），您今天就可以试用它！

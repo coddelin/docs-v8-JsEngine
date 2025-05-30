@@ -1,58 +1,58 @@
 ---
-title: "V8 release v7.6"
+title: "V8 发布版本 v7.6"
 author: "Adam Klein"
 avatars: 
   - "adam-klein"
 date: "2019-06-19 16:45:00"
 tags: 
   - release
-description: "V8 v7.6 features Promise.allSettled, faster JSON.parse, localized BigInts, speedier frozen/sealed arrays, and much more!"
+description: "V8 v7.6 的功能包括 Promise.allSettled、更快的 JSON.parse、本地化的 BigInts、更快的冻结/密封数组等等！"
 tweet: "1141356209179516930"
 ---
-Every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 7.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.6), which is in beta until its release in coordination with Chrome 76 Stable in several weeks. V8 v7.6 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
+每六周，我们会根据 [发布流程](/docs/release-process) 创建一个 V8 的新分支。每个版本都会在 Chrome Beta 里程碑之前从 V8 的 Git 主分支分出。今天，我们很高兴地宣布我们的最新分支 [V8 版本 7.6](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.6)，该版本将处于 Beta 阶段，直到几周后与 Chrome 76 Stable 协同发布。V8 v7.6 充满了各种面向开发者的精彩功能。本文旨在为即将发布的版本提供一些亮点预览。
 
 <!--truncate-->
-## Performance (size & speed)
+## 性能（大小和速度）
 
-### `JSON.parse` improvements
+### `JSON.parse` 的改进
 
-In modern JavaScript applications, JSON is commonly used as a format to communicate structured data. By speeding up JSON parsing, we can reduce the latency of this communication. In V8 v7.6, we’ve overhauled our JSON parser to be much faster at scanning and parsing JSON. This results in up to 2.7× faster parsing of data served by popular web pages.
+在现代 JavaScript 应用程序中，JSON 通常用作传递结构化数据的格式。通过加速 JSON 解析，我们可以减少这种通信的延迟。在 V8 v7.6 中，我们对 JSON 解析器进行了全面改造，使其在扫描和解析 JSON 时快得多。这使得从流行网页提供的数据的解析速度提升了多达 2.7 倍。
 
-![Chart showing improved performance of `JSON.parse` on a variety of websites](/_img/v8-release-76/json-parsing.svg)
+![图表展示了在不同网站上改进的 `JSON.parse` 性能](/_img/v8-release-76/json-parsing.svg)
 
-Up to V8 v7.5, the JSON parser was a recursive parser that would use native stack space relative to the nesting depth of the incoming JSON data. This meant we could run out of stack for very deeply nested JSON data. V8 v7.6 switches to an iterative parser that manages its own stack, which is limited only by available memory.
+在 V8 v7.5 及之前版本中，JSON 解析器是一个递归解析器，它会使用与接收到的 JSON 数据嵌套深度对应的原生堆栈空间。这意味着对于非常深度嵌套的 JSON 数据，我们可能会耗尽堆栈空间。V8 v7.6 切换到一个管理其自身堆栈的迭代解析器，其限制仅为可用内存。
 
-The new JSON parser is also more memory-efficient. By buffering properties before we create the final object we can now decide how to allocate the result in an optimal way. For objects with named properties we allocate objects with the exact amount of space needed for the named properties in the incoming JSON data (up to 128 named properties). In case JSON objects contain indexed property names, we allocate an elements backing store that uses the minimal amount of space; either a flat array or a dictionary. JSON arrays are now parsed to an array that exactly fits the number of elements in the input data.
+新的 JSON 解析器在内存使用上也更加高效。在我们创建最终对象之前先缓冲属性，现在我们可以以优化的方式分配结果。对于具有命名属性的对象，我们根据输入 JSON 数据的命名属性（最多 128 个命名属性）精确分配所需的空间。如果 JSON 对象包含索引属性名称，我们分配一个使用最小空间的存储支持；这可以是一个平坦数组或一个字典。JSON 数组现在解析为一个与输入数据中的元素数量完全匹配的数组。
 
-### Frozen/sealed array improvements
+### 冻结/密封数组的改进
 
-Performance of calls on frozen or sealed arrays (and array-like objects) received numerous improvements. V8 v7.6 boosts the following JavaScript coding patterns, where `frozen` is a frozen or sealed array or array-like object:
+对冻结或密封数组（以及类数组对象）上的调用性能进行了诸多改进。V8 v7.6 提高了以下 JavaScript 编码模式的性能，其中 `frozen` 是一个冻结或密封的数组或类数组对象：
 
 - `frozen.indexOf(v)`
 - `frozen.includes(v)`
-- spread calls such as `fn(...frozen)`
-- spread calls with a nested array spread such as `fn(...[...frozen])`
-- apply calls with array spread such as `fn.apply(this, [...frozen])`
+- 如 `fn(...frozen)` 的扩展调用
+- 如 `fn(...[...frozen])` 的嵌套扩展数组调用
+- 如 `fn.apply(this, [...frozen])` 的使用数组扩展的 apply 调用
 
-The chart below shows the improvements.
+下图展示了性能提升。
 
-![Chart showing performance boost on a variety of array operations](/_img/v8-release-76/frozen-sealed-elements.svg)
+![图表展示了各种数组操作的性能提升](/_img/v8-release-76/frozen-sealed-elements.svg)
 
-[See the “fast frozen & sealed elements in V8” design doc](https://bit.ly/fast-frozen-sealed-elements-in-v8) for more details.
+[查看“V8 中的快速冻结和密封元素”设计文档](https://bit.ly/fast-frozen-sealed-elements-in-v8)以了解更多详细信息。
 
-### Unicode string handling
+### Unicode 字符串处理
 
-An optimization when [converting strings to Unicode](https://chromium.googlesource.com/v8/v8/+/734c1456d942a03d79aab4b3b0e57afbc803ceea) resulted in a significant speed-up for calls such as `String#localeCompare`, `String#normalize`, and some of the `Intl` APIs. For example, this change resulted in around 2× the raw throughput of `String#localeCompare` for one-byte strings.
+当 [将字符串转换为 Unicode](https://chromium.googlesource.com/v8/v8/+/734c1456d942a03d79aab4b3b0e57afbc803ceea) 时的一项优化使诸如 `String#localeCompare`、`String#normalize` 和一些 `Intl` API 的调用显著加快。例如，此更改使得一字节字符串的 `String#localeCompare` 原始吞吐量提高了约 2 倍。
 
-## JavaScript language features
+## JavaScript 语言特性
 
 ### `Promise.allSettled`
 
-[`Promise.allSettled(promises)`](/features/promise-combinators#promise.allsettled) provides a signal when all the input promises are _settled_, which means they’re either _fulfilled_ or _rejected_. This is useful in cases where you don’t care about the state of the promise, you just want to know when the work is done, regardless of whether it was successful. [Our explainer on promise combinators](/features/promise-combinators) has more details and includes an example.
+[`Promise.allSettled(promises)`](/features/promise-combinators#promise.allsettled) 提供了一种信号，当所有输入的 promise 都 _settled_ 时触发，这意味着它们要么 _fulfilled_ 要么 _rejected_。在不关心 promise 状态，只想知道工作完成的情况下（无论是否成功），这很有用。[我们关于 promise 组合器的介绍](/features/promise-combinators) 提供了更多详细信息并包含一个示例。
 
-### Improved `BigInt` support
+### 改进的 `BigInt` 支持
 
-[`BigInt`](/features/bigint) now has better API support in the language. You can now format a `BigInt` in a locale-aware manner by using the `toLocaleString` method. This works just like it does for regular numbers:
+[`BigInt`](/features/bigint) 在语言中的 API 支持已得到改进。现在可以使用 `toLocaleString` 方法以区域感知的方式格式化 `BigInt`，其工作方式与普通数字相同：
 
 ```js
 12345678901234567890n.toLocaleString('en'); // 🐌
@@ -61,7 +61,7 @@ An optimization when [converting strings to Unicode](https://chromium.googlesour
 // → '12.345.678.901.234.567.890'
 ```
 
-If you plan on formatting multiple numbers or `BigInt`s using the same locale, it’s more efficient to use the `Intl.NumberFormat` API, which now supports `BigInt`s in its `format` and `formatToParts` methods. This way, you can create a single re-usable formatter instance.
+如果您计划使用相同区域设置格式化多个数字或 `BigInt`，使用支持 `BigInt` 的 `Intl.NumberFormat` API 更加高效。通过此方法，您可以创建一个可重复使用的格式化实例。
 
 ```js
 const nf = new Intl.NumberFormat('fr');
@@ -75,25 +75,25 @@ nf.formatToParts(123456n); // 🚀
 // → ]
 ```
 
-### `Intl.DateTimeFormat` improvements
+### `Intl.DateTimeFormat` 改进
 
-Apps commonly display date intervals or date ranges to show the span of an event, such as a hotel reservation, the billing period of a service, or a music festival. The `Intl.DateTimeFormat` API now supports `formatRange` and `formatRangeToParts` methods to conveniently format date ranges in a locale-specific manner.
+应用程序通常显示日期间隔或日期范围，以显示事件的持续时间，例如酒店预订、服务的账单周期或音乐节的时间范围。现在，`Intl.DateTimeFormat` API 支持 `formatRange` 和 `formatRangeToParts` 方法，可以方便地以特定语言环境格式化日期范围。
 
 ```js
 const start = new Date('2019-05-07T09:20:00');
-// → 'May 7, 2019'
+// → '2019年5月7日'
 const end = new Date('2019-05-09T16:00:00');
-// → 'May 9, 2019'
+// → '2019年5月9日'
 const fmt = new Intl.DateTimeFormat('en', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
 });
 const output = fmt.formatRange(start, end);
-// → 'May 7 – 9, 2019'
+// → '2019年5月7日 – 9日'
 const parts = fmt.formatRangeToParts(start, end);
 // → [
-// →   { 'type': 'month',   'value': 'May',  'source': 'shared' },
+// →   { 'type': 'month',   'value': '5月',  'source': 'shared' },
 // →   { 'type': 'literal', 'value': ' ',    'source': 'shared' },
 // →   { 'type': 'day',     'value': '7',    'source': 'startRange' },
 // →   { 'type': 'literal', 'value': ' – ',  'source': 'shared' },
@@ -103,7 +103,7 @@ const parts = fmt.formatRangeToParts(start, end);
 // → ]
 ```
 
-Additionally, the `format`, `formatToParts`, and `formatRangeToParts` methods now support the new `timeStyle` and `dateStyle` options:
+此外，`format`、`formatToParts` 和 `formatRangeToParts` 方法现在支持新的 `timeStyle` 和 `dateStyle` 选项：
 
 ```js
 const dtf = new Intl.DateTimeFormat('de', {
@@ -114,12 +114,12 @@ dtf.format(Date.now());
 // → '19.06.19, 13:33:37'
 ```
 
-## Native stack walking
+## 原生堆栈遍历
 
-While V8 can walk its own call stack (e.g. when debugging or profiling in the DevTools), the Windows operating system was unable to walk a call stack that contains code generated by TurboFan when running on the x64 architecture. This could cause _broken stacks_ when using native debuggers or ETW sampling to analyze processes that use V8. A recent change enables V8 to [register the necessary metadata](https://chromium.googlesource.com/v8/v8/+/3cda21de77d098a612eadf44d504b188a599c5f0) for Windows to be able to walk these stacks on x64, and in v7.6 this is enabled by default.
+虽然 V8 可以遍历其自身的调用堆栈（例如在 DevTools 中调试或分析时），但 Windows 操作系统无法遍历在 x64 架构上运行时 TurboFan 生成的代码包含的调用堆栈。这可能会导致在使用原生调试器或 ETW 采样分析使用 V8 的进程时出现 _堆栈损坏_。最近的更改使得 V8 能够[注册必要的元数据](https://chromium.googlesource.com/v8/v8/+/3cda21de77d098a612eadf44d504b188a599c5f0)，使得 Windows 能够在 x64 上遍历这些堆栈，并且在 v7.6 中默认启用。
 
 ## V8 API
 
-Please use `git log branch-heads/7.5..branch-heads/7.6 include/v8.h` to get a list of the API changes.
+请使用 `git log branch-heads/7.5..branch-heads/7.6 include/v8.h` 获取 API 更改列表。
 
-Developers with an [active V8 checkout](/docs/source-code#using-git) can use `git checkout -b 7.6 -t branch-heads/7.6` to experiment with the new features in V8 v7.6. Alternatively you can [subscribe to Chrome’s Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+拥有[活动 V8 检出](/docs/source-code#using-git)的开发者可以使用 `git checkout -b 7.6 -t branch-heads/7.6` 来试验 V8 v7.6 的新功能。或者，您可以[订阅 Chrome 的 Beta 频道](https://www.google.com/chrome/browser/beta.html)，并很快尝试这些新功能。

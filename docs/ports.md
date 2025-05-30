@@ -1,29 +1,29 @@
 ---
-title: "Handling of ports"
-description: "This document describes how architecture-specific V8 ports should be handled."
+title: "端口处理"
+description: "本文档描述了架构特定的 V8 端口应如何处理。"
 ---
-This document describes how ports should be handled.
+本文档描述了端口应如何处理。
 
 ## ARM
 
-For straight-forward ARM ports, do them yourself. If there are difficulties or questions, contact the ARM team in the CL by adding [v8-arm-ports@googlegroups.com](mailto:v8-arm-ports@googlegroups.com) to the reviewer or CC list. For questions you can email the group ([mailto link](mailto:v8-arm-ports@googlegroups.com)).
+对于简单的 ARM 端口，请自行处理。如果有困难或问题，请通过在代码库中将 [v8-arm-ports@googlegroups.com](mailto:v8-arm-ports@googlegroups.com) 添加到审阅者或抄送列表中联系 ARM 团队。对于问题，可以通过电子邮件联系该组（[邮件链接](mailto:v8-arm-ports@googlegroups.com)）。
 
-## MIPS (not officially supported)
+## MIPS（未正式支持）
 
-The Mips team will do the port. Contact/CC the MIPS team in the CL if needed by adding [v8-mips-ports@googlegroups.com](mailto:v8-mips-ports@googlegroups.com) to the reviewer or CC list. For questions you can email the group ([mailto link](mailto:v8-mips-ports@googlegroups.com)).
+MIPS 团队将进行端口处理。如有需要，请通过在代码库中将 [v8-mips-ports@googlegroups.com](mailto:v8-mips-ports@googlegroups.com) 添加到审阅者或抄送列表中联系 MIPS 团队。对于问题，可以通过电子邮件联系该组（[邮件链接](mailto:v8-mips-ports@googlegroups.com)）。
 
-## PPC (not officially supported)
+## PPC（未正式支持）
 
-The PPC team will do the port. Contact/CC the PPC team in the CL if needed by adding [v8-ppc-ports@googlegroups.com](mailto:v8-ppc-ports@googlegroups.com) to the reviewer or CC list. For questions you can email the group ([mailto link](mailto:v8-ppc-ports@googlegroups.com)).
+PPC 团队将进行端口处理。如有需要，请通过在代码库中将 [v8-ppc-ports@googlegroups.com](mailto:v8-ppc-ports@googlegroups.com) 添加到审阅者或抄送列表中联系 PPC 团队。对于问题，可以通过电子邮件联系该组（[邮件链接](mailto:v8-ppc-ports@googlegroups.com)）。
 
-## s390 (not officially supported)
+## s390（未正式支持）
 
-The s390 team will do the port. Contact/CC the s390 team in the CL if needed by adding [v8-s390-ports@googlegroups.com](mailto:v8-s390-ports@googlegroups.com) to the reviewer or CC list. For questions you can email the group ([mailto link](mailto:v8-s390-ports@googlegroups.com)).
+s390 团队将进行端口处理。如有需要，请通过在代码库中将 [v8-s390-ports@googlegroups.com](mailto:v8-s390-ports@googlegroups.com) 添加到审阅者或抄送列表中联系 s390 团队。对于问题，可以通过电子邮件联系该组（[邮件链接](mailto:v8-s390-ports@googlegroups.com)）。
 
-## RISC-V (not officially supported)
+## RISC-V（未正式支持）
 
-The Risc-V team will do the port. Contact/CC the Risc-V team in the CL if needed by adding [v8-risc-v-ports@chromium.org](mailto:v8-risc-v-ports@chromium.org) to the reviewer or CC list. For questions you can email the group ([mailto link](mailto:v8-risc-v-ports@chromium.org)).
+RISC-V 团队将进行端口处理。如有需要，请通过在代码库中将 [v8-risc-v-ports@chromium.org](mailto:v8-risc-v-ports@chromium.org) 添加到审阅者或抄送列表中联系 RISC-V 团队。对于问题，可以通过电子邮件联系该组（[邮件链接](mailto:v8-risc-v-ports@chromium.org)）。
 
-## Loong64 (not officially supported)
+## Loong64（未正式支持）
 
-The Loong64 team will do the port. Contact/CC the team in the CL if needed by adding [v8-loongarch64-ports@chromium.org](mailto:v8-loongarch64-ports@chromium.org) to the reviewer or CC list. For questions you can email the group ([mailto link](mailto:v8-loongarch64-ports@chromium.org)).
+Loong64 团队将进行端口处理。如有需要，请通过在代码库中将 [v8-loongarch64-ports@chromium.org](mailto:v8-loongarch64-ports@chromium.org) 添加到审阅者或抄送列表中联系该团队。对于问题，可以通过电子邮件联系该组（[邮件链接](mailto:v8-loongarch64-ports@chromium.org)）。

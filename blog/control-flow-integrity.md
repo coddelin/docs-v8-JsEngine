@@ -1,104 +1,104 @@
 ---
-title: "Control-flow Integrity in V8"
-description: "This blog post discusses the plans to implement control-flow integrity in V8."
+title: "V8中的控制流完整性"
+description: "这篇博客讨论了在V8中实施控制流完整性的计划。"
 author: "Stephen Röttger"
 date: 2023-10-09
 tags: 
- - security
+ - 安全性
 ---
-Control-flow integrity (CFI) is a security feature aiming to prevent exploits from hijacking control-flow. The idea is that even if an attacker manages to corrupt the memory of a process, additional integrity checks can prevent them from executing arbitrary code. In this blog post, we want to discuss our work to enable CFI in V8.
+控制流完整性（CFI）是一项旨在防止利用漏洞劫持控制流的安全功能。其理念即使攻击者成功破坏了一个进程的内存，通过额外的完整性检查也可以阻止他们执行任意代码。在这篇博客中，我们将讨论在V8中启用CFI的相关工作。
 
 <!--truncate-->
-# Background
+# 背景
 
-The popularity of Chrome makes it a valuable target for 0-day attacks and most in-the-wild exploits we’ve seen target V8 to gain initial code execution. V8 exploits typically follow a similar pattern: an initial bug leads to memory corruption but often the initial corruption is limited and the attacker has to find a way to arbitrarily read/write in the whole address space. This allows them to hijack the control-flow and run shellcode that executes the next step of the exploit chain that will try to break out of the Chrome sandbox.
-
-
-To prevent the attacker from turning memory corruption into shellcode execution, we’re implementing control-flow integrity in V8. This is especially challenging in the presence of a JIT compiler. If you turn data into machine code at runtime, you now need to ensure that corrupted data can’t turn into malicious code. Fortunately, modern hardware features provide us with the building blocks to design a JIT compiler that is robust even while processing corrupted memory.
+Chrome的流行使其成为零日攻击的宝贵目标，我们看到的大多数野外攻击都针对V8以获得初始代码执行权限。V8的攻击通常遵循类似的模式：一个初始错误导致内存损坏，但通常最初的损坏是有限的，攻击者必须找到一种方法在整个地址空间中任意读取/写入。这使得他们能够劫持控制流并运行执行下一步攻击链的shellcode，这些攻击链试图突破Chrome沙盒。
 
 
-Following, we’ll look at the problem divided into three separate parts:
-
-- **Forward-Edge CFI** verifies the integrity of indirect control-flow transfers such as function pointer or vtable calls.
-- **Backward-Edge CFI** needs to ensure that return addresses read from the stack are valid.
-- **JIT Memory Integrity** validates all data that is written to executable memory at runtime.
-
-# Forward-Edge CFI
-
-There are two hardware features that we want to use to protect indirect calls and jumps: landing pads and pointer authentication.
+为了防止攻击者将内存损坏转变为shellcode执行，我们正在V8中实施控制流完整性。在存在JIT编译器的情况下，这尤其具有挑战性。如果在运行时将数据转换为机器代码，那么就需要确保损坏的数据不会转化为恶意代码。幸运的是，现代硬件功能为我们提供了设计一种JIT编译器的基础结构，即使在处理损坏的内存时也具有稳健性。
 
 
-## Landing Pads
+接下来，我们将把问题分成三个独立部分进行探讨：
 
-Landing pads are special instructions that can be used to mark valid branch targets. If enabled, indirect branches can only jump to a landing pad instruction, anything else will raise an exception.  
-On ARM64 for example, landing pads are available with the Branch Target Identification (BTI) feature introduced in Armv8.5-A. BTI support is [already enabled](https://bugs.chromium.org/p/chromium/issues/detail?id=1145581) in V8.  
-On x64, landing pads were introduced with the Indirect Branch Tracking (IBT) part of the Control Flow Enforcement Technology (CET) feature.
+- **前向边CFI** 验证间接控制流传输的完整性，例如函数指针或虚表调用。
+- **后向边CFI** 需要确保从堆栈中读取的返回地址是有效的。
+- **JIT内存完整性** 验证所有在运行时写入可执行内存的数据。
 
+# 前向边CFI
 
-However, adding landing pads on all potential targets for indirect branches only provides us with coarse-grained control-flow integrity and still gives attackers lots of freedom. We can further tighten the restrictions by adding function signature checks (the argument and return types at the call site must match the called function) as well as through dynamically removing unneeded landing pad instructions at runtime.
-These features are part of the recent [FineIBT proposal](https://arxiv.org/abs/2303.16353) and we hope that it can get OS adoption.
-
-## Pointer Authentication
-
-Armv8.3-A introduced pointer authentication (PAC) which can be used to embed a signature in the upper unused bits of a pointer. Since the signature is verified before the pointer is used, attackers won’t be able to provide arbitrary forged pointers to indirect branches.
-
-# Backward-Edge CFI
-
-To protect return addresses, we also want to make use of two separate hardware features: shadow stacks and PAC.
-
-## Shadow Stacks
-
-With Intel CET’s shadow stacks and the guarded control stack (GCS) in [Armv9.4-A](https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/arm-a-profile-architecture-2022), we can have a separate stack just for return addresses that has hardware protections against malicious writes. These features provide some pretty strong protections against return address overwrites, but we will need to deal with cases where we legitimately modify the return stack such as during optimization / deoptimization and exception handling.
-
-## Pointer Authentication (PAC-RET)
-
-Similar to indirect branches, pointer authentication can be used to sign return addresses before they get pushed to the stack. This is [already enabled](https://bugs.chromium.org/p/chromium/issues/detail?id=919548) in V8 on ARM64 CPUs.
+我们希望使用两个硬件功能来保护间接调用和跳转：着陆点和指针认证。
 
 
-A side effect of using hardware support for Forward-edge and Backward-edge CFI is that it will allow us to keep the performance impact to a minimum.
+## 着陆点
 
-# JIT Memory Integrity
-
-A unique challenge to CFI in JIT compilers is that we need to write machine code to executable memory at runtime. We need to protect the memory in a way that the JIT compiler is allowed to write to it but the attacker’s memory write primitive can’t. A naive approach would be to change the page permissions temporarily to add / remove write access. But this is inherently racy since we need to assume that the attacker can trigger an arbitrary write concurrently from a second thread.
-
-
-## Per-thread Memory Permissions
-
-On modern CPUs, we can have different views of the memory permissions that only apply to the current thread and can be changed quickly in userland.  
-On x64 CPUs, this can be achieved with memory protection keys (pkeys) and ARM announced the [permission overlay extensions](https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/arm-a-profile-architecture-2022) in Armv8.9-A.  
-This allows us to fine-grained toggle the write access to executable memory, for example by tagging it with a separate pkey.
+着陆点是可以用来标记有效分支目标的特殊指令。如果启用，间接分支只能跳转到着陆点指令，其他任何地方都会引发异常。  
+例如在ARM64上，着陆点在Armv8.5-A引入的分支目标识别（BTI）功能中可用。BTI支持[已经在V8中启用](https://bugs.chromium.org/p/chromium/issues/detail?id=1145581)。  
+在x64上，着陆点通过控制流强制技术（CET）功能的一部分间接分支跟踪（IBT）引入。
 
 
-The JIT pages are now not attacker writable anymore but the JIT compiler still needs to write generated code into it. In V8, the generated code lives in [AssemblerBuffers](https://source.chromium.org/chromium/chromium/src/+/main:v8/src/codegen/assembler.h;l=255;drc=064b9a7903b793734b6c03a86ee53a2dc85f0f80) on the heap which can be corrupted by the attacker instead. We could protect the AssemblerBuffers too in the same fashion, but this just shifts the problem. For example, we’d then also need to protect the memory where the pointer to the AssemblerBuffer lives.  
-In fact, any code that enables write access to such protected memory constitutes CFI attack surface and needs to be coded very defensively. E.g. any write to a pointer that comes from unprotected memory is game over, since the attacker can use it to corrupt executable memory. Thus, our design goal is to have as few of these critical sections as possible and keep the code inside short and self-contained.
+然而，在间接分支的所有潜在目标上添加着陆点仅提供了粗粒度的控制流完整性，仍然给攻击者留下了很多自由。我们可以通过添加函数签名检查（调用点的参数和返回类型必须与被调用函数匹配）以及在运行时动态移除不必要的着陆点指令来进一步收紧限制。
+这些功能是最近的[FineIBT提案](https://arxiv.org/abs/2303.16353)的一部分，我们希望它能够得到操作系统的采用。
 
-## Control-Flow Validation
+## 指针认证
 
-If we don’t want to protect all compiler data, we can assume it to be untrusted from the point of view of CFI instead. Before writing anything to executable memory, we need to validate that it doesn’t lead to arbitrary control-flow. That includes for example that the written code doesn’t perform any syscall instructions or that it doesn’t jump into arbitrary code. Of course, we also need to check that it doesn’t change the pkey permissions of the current thread. Note that we don’t try to prevent the code from corrupting arbitrary memory since if the code is corrupted we can assume the attacker already has this capability.  
-To perform such validation safely, we will also need to keep required metadata in protected memory as well as protect local variables on the stack.  
-We ran some preliminary tests to assess the impact of such validation on performance. Fortunately, the validation is not occurring in performance-critical code paths, and we did not observe any regressions in the jetstream or speedometer benchmarks.
+Armv8.3-A引入了指针认证（PAC），可以将签名嵌入到指针的未使用高位中。由于在使用指针之前会验证签名，攻击者无法提供任意伪造的指针给间接分支使用。
 
-# Evaluation
+# 后向边CFI
 
-Offensive security research is an essential part of any mitigation design and we’re continuously trying to find new ways to bypass our protections. Here are some examples of attacks that we think will be possible and ideas to address them.
+为了保护返回地址，我们还希望利用两个独立的硬件功能：影子堆栈和PAC。
 
-## Corrupted Syscall Arguments
+## 影子堆栈
 
-As mentioned before, we assume that an attacker can trigger a memory write primitive concurrently to other running threads. If another thread performs a syscall, some of the arguments could then be attacker-controlled if they’re read from memory. Chrome runs with a restrictive syscall filter but there’s still a few syscalls that could be used to bypass the CFI protections.
+通过Intel CET的影子堆栈和在[Armv9.4-A](https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/arm-a-profile-architecture-2022)中的保护控制堆栈（GCS），我们可以拥有一个专门用于返回地址的堆栈，并且具有针对恶意写入的硬件保护。这些功能针对返回地址覆盖提供了一些非常强的保护，但我们需要处理某些情况下合法修改返回堆栈的问题，例如优化/反优化期间和异常处理。
+
+## 指针认证（PAC-RET）
+
+类似于间接分支，指针认证可以用于在返回地址被推入堆栈之前对其进行签名。这[已经在ARM64 CPU上启用](https://bugs.chromium.org/p/chromium/issues/detail?id=919548)。
 
 
-Sigaction for example is a syscall to register signal handlers. During our research we found that a sigaction call in Chrome is reachable in a CFI-compliant way. Since the arguments are passed in memory, an attacker could trigger this code path and point the signal handler function to arbitrary code. Luckily, we can address this easily: either block the path to the sigaction call or block it with a syscall filter after initialization.
+使用前向边和后向边CFI的硬件支持的一个副作用是可以让我们将性能影响保持在最低水平。
+
+# JIT内存完整性
+
+JIT编译器面临的一个独特挑战是我们需要在运行时将机器代码写入可执行内存。我们需要以一种方式保护内存，使得JIT编译器可以写入内存，而攻击者的内存写入不能做到这一点。一个简单的方法是临时更改页面权限以添加/移除写入权限。但这本质上是有竞争条件的，因为我们需要假设攻击者可以从第二个线程同时触发任意写入。
 
 
-Other interesting examples are the memory management syscalls. For example, if a thread calls munmap on a corrupted pointer, the attacker could unmap read-only pages and a consecutive mmap call can reuse this address, effectively adding write permissions to the page.
-Some OSes already provide protections against this attack with memory sealing: Apple platforms provide the [VM\_FLAGS\_PERMANENT](https://github.com/apple-oss-distributions/xnu/blob/1031c584a5e37aff177559b9f69dbd3c8c3fd30a/osfmk/mach/vm_statistics.h#L274) flag and OpenBSD has an [mimmutable](https://man.openbsd.org/mimmutable.2) syscall.
+## 每线程内存权限
 
-## Signal Frame Corruption
+在现代CPU上，我们可以对内存权限有不同的视图，这些权限仅适用于当前线程，并且可以在用户空间中快速改变。
+在x64 CPU上，可以通过内存保护键（pkeys）来实现这一目标，ARM也在Armv8.9-A中宣布了[权限覆盖扩展](https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/arm-a-profile-architecture-2022)。
+这使得我们可以通过使用单独的pkey标记，精细地切换可执行内存的写入权限。
 
-When the kernel executes a signal handler, it will save the current CPU state on the userland stack. A second thread could corrupt the saved state which will then get restored by the kernel.
-Protecting against this in user space seems difficult if the signal frame data is untrusted. At that point one would have to always exit or overwrite the signal frame with a known save state to return to.
-A more promising approach would be to protect the signal stack using per-thread memory permissions. For example, a pkey-tagged sigaltstack would protect against malicious overwrites, but it would require the kernel to temporarily allow write permissions when saving the CPU state onto it.
+
+现在JIT页面不再可被攻击者写入，但JIT编译器仍然需要向其写入生成的代码。在V8中，生成的代码存储在堆上的[AssemblerBuffers](https://source.chromium.org/chromium/chromium/src/+/main:v8/src/codegen/assembler.h;l=255;drc=064b9a7903b793734b6c03a86ee53a2dc85f0f80)中，而这些可以被攻击者破坏。我们也可以以相同的方式保护AssemblerBuffers，但这只是转移了问题。例如，我们还需要保护存储AssemblerBuffer指针的内存。
+事实上，任何启用对受保护内存执行写入的代码都构成CFI攻击面，并需要以非常防御性的方式编写。例如，任何对来自未受保护内存的指针的写入操作都会导致完全失控，因为攻击者可以利用它来破坏可执行内存。因此，我们的设计目标是尽可能减少这些关键部分的数量，并将其内部的代码保持简短且自包含。
+
+## 控制流验证
+
+如果我们不想保护所有编译器数据，则可以从CFI的角度假定其为不受信任的。在向可执行内存写入任何内容之前，我们需要验证它不会导致任意控制流。这包括例如确保写入的代码不执行任何系统调用指令或不会跳转到任意代码。当然，我们还需要检查它不会更改当前线程的pkey权限。需要注意的是，我们并不试图防止代码破坏任意内存，因为如果代码被破坏，我们可以假定攻击者已经具备这个能力。
+为了安全地执行这样的验证，我们还需要在受保护的内存中保留所需的元数据，并保护堆栈上的局部变量。
+我们进行了一些初步测试以评估这种验证对性能的影响。幸运的是，验证并未发生在性能关键的代码路径中，我们在JetStream或Speedometer基准测试中没有观察到任何回归。
+
+# 评估
+
+攻击性安全研究是任何缓解设计的重要组成部分，我们正在不断尝试找到绕过我们保护的新方法。以下是一些我们认为可能发生的攻击以及应对它们的想法。
+
+## 被破坏的系统调用参数
+
+如之前所述，我们假定攻击者可以同时触发一个内存写入原语和其他运行线程。如果另一个线程执行系统调用，那么如果参数是从内存中读取的，这些参数可能会被攻击者控制。虽然Chrome运行时使用了一个严格的系统调用过滤器，但仍有一些系统调用可能被用来绕过CFI保护。
+
+
+例如，Sigaction是一个用于注册信号处理程序的系统调用。在我们的研究中，我们发现Chrome中的一个sigaction调用可以用一种符合CFI的方式被访问。由于参数在内存中传递，攻击者可以触发这一代码路径并将信号处理函数指向任意代码。幸运的是，我们可以轻松解决这一问题：要么阻止对sigaction调用的路径，要么在初始化后通过系统调用过滤器阻止它。
+
+
+另一些有趣的示例是内存管理系统调用。例如，如果一个线程调用munmap对一个被破坏的指针操作，则攻击者可以取消映射只读页面，而后续的mmap调用可以重新使用该地址，从而实际上向页面添加了写入权限。
+一些操作系统已经通过内存密封提供了针对该攻击的保护：苹果平台提供了[VM\_FLAGS\_PERMANENT](https://github.com/apple-oss-distributions/xnu/blob/1031c584a5e37aff177559b9f69dbd3c8c3fd30a/osfmk/mach/vm_statistics.h#L274)标志，OpenBSD则有一个[mimmutable](https://man.openbsd.org/mimmutable.2)系统调用。
+
+## 信号框架破坏
+
+当内核执行信号处理程序时，它会将当前CPU状态保存在用户空间堆栈上。第二个线程可能会破坏保存的状态，而这会被内核恢复。
+如果信号框架数据不受信任，那么在用户空间保护它似乎很困难。在此情况下，需要始终退出或用已知的安全状态覆盖信号框架以返回。
+一个更有前景的方法是使用每线程的内存权限来保护信号栈。例如，一个使用 pkey 标记的 sigaltstack 可以防止恶意覆写，但这需要内核在将 CPU 状态保存到其上时暂时允许写权限。
 
 # v8CTF
 
-These were just a few examples of potential attacks that we’re working on addressing and we also want to learn more from the security community. If this interests you, try your hand at the recently launched [v8CTF](https://security.googleblog.com/2023/10/expanding-our-exploit-reward-program-to.html)! Exploit V8 and gain a bounty, exploits targeting n-day vulnerabilities are explicitly in scope!
+这些只是我们正在解决的一些潜在攻击的例子，我们也希望从安全社区中学习更多。如果您对此感兴趣，试试最近推出的 [v8CTF](https://security.googleblog.com/2023/10/expanding-our-exploit-reward-program-to.html)！攻破 V8 并赢取奖金，明确将针对 n-day 漏洞的利用列为范围！

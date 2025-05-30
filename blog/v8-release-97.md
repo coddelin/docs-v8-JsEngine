@@ -1,36 +1,36 @@
 ---
-title: "V8 release v9.7"
+title: "V8发布版本v9.7"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars: 
  - "ingvar-stepanyan"
 date: 2021-11-05
 tags: 
  - release
-description: "V8 release v9.7 brings new JavaScript methods for searching backwards in arrays."
+description: "V8发布版本v9.7为数组提供了新的JavaScript方法用于从后向前搜索元素。"
 tweet: ""
 ---
-Every four weeks, we create a new branch of V8 as part of our [release process](https://v8.dev/docs/release-process). Each version is branched from V8’s Git main immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 9.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.7), which is in beta until its release in coordination with Chrome 97 Stable in several weeks. V8 v9.7 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
+每四周，我们都会根据[发布流程](https://v8.dev/docs/release-process)创建一个新的V8分支。每个版本都是在Chrome Beta里程碑之前从V8的Git主分支创建的分支。今天我们很高兴宣布我们最新的分支，[V8版本9.7](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.7)，目前处于测试版状态，并将在几周后与Chrome 97稳定版同步发布。V8 v9.7包含了各种面向开发者的功能亮点。这篇文章提供了即将发布的一些重点预览。
 
 <!--truncate-->
 ## JavaScript
 
-### `findLast` and `findLastIndex` array methods
+### `findLast` 和 `findLastIndex` 数组方法
 
-The `findLast` and `findLastIndex` methods on `Array`s and `TypedArray`s find elements that match a predicate from the end of an array.
+`Array`和`TypedArray`上的`findLast`以及`findLastIndex`方法可以从数组末尾找到符合条件的元素。
 
-For example:
+例如：
 
 ```js
 [1,2,3,4].findLast((el) => el % 2 === 0)
-// → 4 (last even element)
+// → 4（最后一个偶数元素）
 ```
 
-These methods are available without a flag starting in v9.7.
+这些方法从v9.7开始无需启用标志即可使用。
 
-For more details, please see our [feature explainer](https://v8.dev/features/finding-in-arrays#finding-elements-from-the-end).
+有关更多详情，请查看我们的[功能解释](https://v8.dev/features/finding-in-arrays#finding-elements-from-the-end)。
 
 ## V8 API
 
-Please use `git log branch-heads/9.6..branch-heads/9.7 include/v8\*.h` to get a list of the API changes.
+请使用`git log branch-heads/9.6..branch-heads/9.7 include/v8\*.h`获取API更改列表。
 
-Developers with an active V8 checkout can use `git checkout -b 9.7 -t branch-heads/9.7` to experiment with the new features in V8 v9.7. Alternatively you can [subscribe to Chrome’s Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+拥有活动V8检出的开发者可以使用`git checkout -b 9.7 -t branch-heads/9.7`尝试V8 v9.7中的新功能。或者您可以[订阅Chrome Beta频道](https://www.google.com/chrome/browser/beta.html)，并尽快亲自尝试新功能。

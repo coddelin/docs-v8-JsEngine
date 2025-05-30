@@ -1,29 +1,29 @@
 ---
-title: "Optional chaining"
-author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), breaker of optional chains"
+title: "可选的链式操作"
+author: "Maya Armyanova ([@Zmayski](https://twitter.com/Zmayski)), 可选链的破除者"
 avatars: 
   - "maya-armyanova"
 date: 2019-08-27
 tags: 
   - ECMAScript
   - ES2020
-description: "Optional chaining enables readable and concise expression of property accesses with built-in nullish checking."
+description: "可选的链式操作通过内置的空值检查实现了更易读且简洁的属性访问表达式。"
 tweet: "1166360971914481669"
 ---
-Long chains of property accesses in JavaScript can be error-prone, as any of them might evaluate to `null` or `undefined` (also known as “nullish” values). Checking for property existence on each step easily turns into a deeply-nested structure of `if`-statements or a long `if`-condition replicating the property access chain:
+在 JavaScript 中长链式的属性访问可能容易出错，因为它们中的任何一个都可能会计算为 `null` 或 `undefined`（也称为“空值”）。在每一步检查属性的存在性容易演变为深度嵌套的 `if` 语句结构，或者带有长链属性访问的 `if` 条件语句。
 
 <!--truncate-->
 ```js
-// Error prone-version, could throw.
+// 错误易发生的版本，可能抛出异常。
 const nameLength = db.user.name.length;
 
-// Less error-prone, but harder to read.
+// 较少发生错误，但阅读困难。
 let nameLength;
 if (db && db.user && db.user.name)
   nameLength = db.user.name.length;
 ```
 
-The above can also be expressed using the ternary operator, which doesn’t exactly help readability:
+上面代码也可以使用三元运算符表达，但这并不能帮助提升可读性：
 
 ```js
 const nameLength =
@@ -36,103 +36,101 @@ const nameLength =
     : undefined);
 ```
 
-## Introducing the optional chaining operator
+## 引入可选链式操作符
 
-Surely you don’t want to write code like that, so having some alternative is desirable. Some other languages offer an elegant solution to this problem with using a feature called “optional chaining”. According to [a recent spec proposal](https://github.com/tc39/proposal-optional-chaining), “an optional chain is a chain of one or more property accesses and function calls, the first of which begins with the token `?.`”.
+显然你不希望写这样的代码，因此有一个替代方案是理想的。一些其他语言提供了一种优雅的解决方案，通过使用称为“可选链式操作”的功能。根据[最近的规范提案](https://github.com/tc39/proposal-optional-chaining)，“一个可选链是一系列一个或多个属性访问和函数调用，其中第一个以 `?.` 作为开头的标记。”
 
-Using the new optional chaining operator, we can rewrite the above example as follows:
+使用新的可选链式操作符，我们可以将上面的示例重写如下：
 
 ```js
-// Still checks for errors and is much more readable.
+// 仍然检查错误，但更易阅读。
 const nameLength = db?.user?.name?.length;
 ```
 
-What happens when `db`, `user`, or `name` is `undefined` or `null`? With the optional chaining operator, JavaScript initializes `nameLength` to `undefined` instead of throwing an error.
+当 `db`、`user` 或 `name` 为 `undefined` 或 `null` 时会发生什么？使用可选链式操作符，JavaScript 将初始化 `nameLength` 为 `undefined` 而不是抛出错误。
 
-Notice that this behavior is also more robust than our check for `if (db && db.user && db.user.name)`. For instance, what if `name` was always guaranteed to be a string? We could change `name?.length` to `name.length`. Then, if `name` were an empty string, we would still get the correct `0` length. That is because the empty string is a falsy value: it behaves like `false` in an `if` clause. The optional chaining operator fixes this common source of bugs.
+请注意，这种行为比我们的 `if (db && db.user && db.user.name)` 检查更加健壮。例如，如果 `name` 总是保证为字符串，我们可以将 `name?.length` 更改为 `name.length`。然后，如果 `name` 是一个空字符串，我们仍然可以获得正确的长度 `0`。这是因为空字符串是一个假值：在 `if` 子句中它的行为类似于 `false`。可选链式操作符修复了这种常见的错误来源。
 
-## Additional syntax forms: calls and dynamic properties
+## 更多语法形式：调用和动态属性
 
-There’s also a version of the operator for calling optional methods:
+还存在一个用于调用可选方法的操作符版本：
 
 ```js
-// Extends the interface with an optional method, which is present
-// only for admin users.
+// 扩展接口，添加一个可选方法，只有管理员用户具有。
 const adminOption = db?.user?.validateAdminAndGetPrefs?.().option;
 ```
 
-The syntax can feel unexpected, as the `?.()` is the actual operator, which applies to the expression _before_ it.
+语法可能会让人感到意外，因为 `?.()` 是实际的操作符，它适用于 _之前的_ 表达式。
 
-There’s a third usage of the operator, namely the optional dynamic property access, which is done via `?.[]`. It either returns the value referenced by the argument in the brackets, or `undefined` if there’s no object to get the value from. Here’s a possible use case, following the example from above:
+操作符还有第三种用法，即可选的动态属性访问，通过 `?.[]` 实现。它要么返回括号中参数引用的值，要么返回 `undefined` 如果没有对象来获取该值。以下是一个示例，遵循之前的例子：
 
 ```js
-// Extends the capabilities of the static property access
-// with a dynamically generated property name.
-const optionName = 'optional setting';
+// 通过动态生成的属性名扩展静态属性访问的能力。
+const optionName = '可选设置';
 const optionLength = db?.user?.preferences?.[optionName].length;
 ```
 
-This last form is also available for optionally indexing arrays, e.g.:
+最后一种形式也可以用于可选地索引数组，例如：
 
 ```js
-// If the `usersArray` is `null` or `undefined`,
-// then `userName` gracefully evaluates to `undefined`.
+// 如果 `usersArray` 是 `null` 或 `undefined`，
+// 那么 `userName` 将优雅地计算为 `undefined`。
 const userIndex = 42;
 const userName = usersArray?.[userIndex].name;
 ```
 
-The optional chaining operator can be combined with the [nullish coalescing `??` operator](/features/nullish-coalescing) when a non-`undefined` default value is needed. This enables safe deep property access with a specified default value, addressing a common use case that previously required userland libraries such as [lodash’s `_.get`](https://lodash.dev/docs/4.17.15#get):
+可选链式操作符可以与[空值合并操作符 `??`](/features/nullish-coalescing) 结合使用，当需要一个非 `undefined` 的默认值时。这种组合实现了带指定默认值的安全深层属性访问，解决了以前需要用户端库如[lodash 的 `_.get`](https://lodash.dev/docs/4.17.15#get) 的常见用例：
 
 ```js
 const object = { id: 123, names: { first: 'Alice', last: 'Smith' }};
 
-{ // With lodash:
+{ // 使用 lodash:
   const firstName = _.get(object, 'names.first');
   // → 'Alice'
 
-  const middleName = _.get(object, 'names.middle', '(no middle name)');
-  // → '(no middle name)'
+  const middleName = _.get(object, 'names.middle', '(无中间名)');
+  // → '(无中间名)'
 }
 
-{ // With optional chaining and nullish coalescing:
-  const firstName = object?.names?.first ?? '(no first name)';
+{ // 使用可选链式操作和空值合并:
+  const firstName = object?.names?.first ?? '(无名字)';
   // → 'Alice'
 
-  const middleName = object?.names?.middle ?? '(no middle name)';
-  // → '(no middle name)'
+  const middleName = object?.names?.middle ?? '(无中间名)';
+  // → '(无中间名)'
 }
 ```
 
-## Properties of the optional chaining operator
+## 可选链式操作符的特性
 
-The optional chaining operator has a few interesting properties: _short-circuiting_, _stacking_, and _optional deletion_. Let’s walk through each of these with an example.
+可选链式操作符具有几个有趣的特性：短路、叠加和可选删除。让我们通过示例逐一了解这些特性。
 
-_Short-circuiting_ means not evaluating the rest of the expression if an optional chaining operator returns early:
+短路操作意味着如果可选链式操作符提早返回，其余表达式不再被评估：
 
 ```js
-// `age` is incremented only if `db` and `user` are defined.
+// 仅当 `db` 和 `user` 被定义时，`age` 才会递增。
 db?.user?.grow(++age);
 ```
 
-_Stacking_ means that more than one optional chaining operator can be applied on a sequence of property accesses:
+_堆叠_ 意味着在一系列属性访问中可以应用多个可选链操作符：
 
 ```js
-// An optional chain may be followed by another optional chain.
+// 一个可选链后可以接另一个可选链。
 const firstNameLength = db.users?.[42]?.names.first.length;
 ```
 
-Still, be considerate about using more than one optional chaining operator in a single chain. If a value is guaranteed to not be nullish, then using `?.` to access properties on it is discouraged. In the example above, `db` is considered to always be defined, but `db.users` and `db.users[42]` may not be. If there’s such a user in the database, then `names.first.length` is assumed to always be defined.
+不过，请谨慎在单一链中使用多个可选链操作符。如果一个值被保证不会是 null 或 undefined，那么不建议在其上使用 `?.` 来访问属性。在上面的例子中，`db` 被认为总是被定义的，但 `db.users` 和 `db.users[42]` 可能未定义。如果数据库中确实有这样的用户，那么假设 `names.first.length` 总是被定义。
 
-_Optional deletion_ means that the `delete` operator can be combined with an optional chain:
+_可选删除_ 意味着 `delete` 操作符可以与一个可选链组合使用：
 
 ```js
-// `db.user` is deleted only if `db` is defined.
+// 仅当 `db` 被定义时，`db.user` 才会被删除。
 delete db?.user;
 ```
 
-More details can be found in [the _Semantics_ section of the proposal](https://github.com/tc39/proposal-optional-chaining#semantics).
+更多细节可以在[提案的 _语义_ 部分](https://github.com/tc39/proposal-optional-chaining#semantics)找到。
 
-## Support for optional chaining
+## 可选链的支持
 
 <feature-support chrome="80 https://bugs.chromium.org/p/v8/issues/detail?id=9553"
                  firefox="74 https://bugzilla.mozilla.org/show_bug.cgi?id=1566143"

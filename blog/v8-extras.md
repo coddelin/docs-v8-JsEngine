@@ -1,23 +1,23 @@
 ---
-title: "V8 extras"
-author: "Domenic Denicola ([@domenic](https://twitter.com/domenic)), Streams Sorcerer"
+title: "V8扩展功能"
+author: "Domenic Denicola ([@domenic](https://twitter.com/domenic)), 流处理大师"
 avatars: 
   - "domenic-denicola"
 date: "2016-02-04 13:33:37"
 tags: 
-  - internals
-description: "V8 v4.8 includes “V8 extras”, a simple interface designed with the goal of allowing embedders to write high-performance, self-hosted APIs."
+  - 内部结构
+description: "V8 v4.8包含“V8扩展功能”，一个旨在让嵌入者编写高性能、基于自身的API的简单接口。"
 ---
-V8 implements a large subset of the JavaScript language’s built-in objects and functions in JavaScript itself. For example, you can see our [promises implementation](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js) is written in JavaScript. Such built-ins are called _self-hosted_. These implementations are included in our [startup snapshot](/blog/custom-startup-snapshots) so that new contexts can be quickly created without needing to setup and initialize the self-hosted built-ins at runtime.
+V8在JavaScript本身中实现了JavaScript语言内置对象和函数的大部分子集。例如，您可以看到我们的[Promise实现](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js)是用JavaScript编写的。这类内置对象称为_基于自身的_。这些实现包含在我们[启动快照](/blog/custom-startup-snapshots)中，因此可以快速创建新上下文，而无需在运行时设置和初始化基于自身的内置对象。
 
 <!--truncate-->
-Embedders of V8, such as Chromium, sometimes desire to write APIs in JavaScript too. This works especially well for platform features that are self-contained, like [streams](https://streams.spec.whatwg.org/), or for features that are part of a “layered platform” of higher-level capabilities built on top of pre-existing lower-level ones. Although it’s always possible to run extra code at startup time to bootstrap embedder APIs (as is done in Node.js, for example), ideally embedders should be able to get the same speed benefits for their self-hosted APIs that V8 does.
+V8的嵌入者（如Chromium）有时也希望用JavaScript编写API。这对自包含的平台功能（比如[流](https://streams.spec.whatwg.org/)）或者作为基于已有低级功能构建的高级功能的“分层平台”的一部分描写的功能特别有效。虽然始终可以通过启动时运行额外代码来启动嵌入者API（例如，在Node.js中这样做），但理想情况下，嵌入者也应该能够获得与V8相同的速度优势用于他们的基于自身的API。
 
-V8 extras are a new feature of V8, as of our [v4.8 release](/blog/v8-release-48), designed with the goal of allowing embedders to write high-performance, self-hosted APIs via a simple interface. Extras are embedder-provided JavaScript files which are compiled directly into the V8 snapshot. They also have access to a few helper utilities that make it easier to write secure APIs in JavaScript.
+V8扩展功能是V8的新功能，从我们的[v4.8版本发布](/blog/v8-release-48)开始，旨在通过简单的接口让嵌入者编写高性能、基于自身的API。扩展功能是嵌入者提供的JavaScript文件，这些文件直接编译到V8快照中。它们也可以使用一些辅助工具，这些工具使得用JavaScript编写安全的API更加容易。
 
-## An example
+## 一个示例
 
-A V8 extra file is simply a JavaScript file with a certain structure:
+一个V8扩展文件只是一个具有特定结构的JavaScript文件：
 
 ```js
 (function(global, binding, v8) {
@@ -48,30 +48,30 @@ A V8 extra file is simply a JavaScript file with a certain structure:
 });
 ```
 
-There are a few things to notice here:
+这里有一些需要注意的事项：
 
-- The `global` object is not present in the scope chain, so any access to it (such as that for `Object`) has to be done explicitly through the provided `global` argument.
-- The `binding` object is a place to store values for or retrieve values from the embedder. A C++ API `v8::Context::GetExtrasBindingObject()` provides access to the `binding` object from the embedder’s side. In our toy example, we let the embedder perform norm computation; in a real example you might delegate to the embedder for something trickier like URL resolution. We also add the `Vec2` constructor to the `binding` object, so that embedder code can create `Vec2` instances without going through the potentially-mutable `global` object.
-- The `v8` object provides a small number of APIs to allow you to write secure code. Here we create private symbols to store our internal state in a way that cannot be manipulated from the outside. (Private symbols are a V8-internal concept and do not make sense in standard JavaScript code.) V8’s built-ins often use “%-function calls” for these sort of things, but V8 extras cannot use %-functions since they are an internal implementation detail of V8 and not suitable for embedders to depend on.
+- `global`对象不在范围链中，因此对它的任何访问（例如对`Object`的访问）都必须通过提供的`global`参数显式完成。
+- `binding`对象是一个存储值或者从嵌入者处检索值的地方。一个C++ API `v8::Context::GetExtrasBindingObject()`提供了从嵌入者一端访问`binding`对象的能力。在我们的示例中，我们让嵌入者执行向量计算；在真正的示例中，您可能将更复杂的任务（例如URL解析）委托给嵌入者。我们还将`Vec2`构造函数添加到`binding`对象中，以便嵌入者代码可以创建`Vec2`实例而无需通过可能会被修改的`global`对象。
+- `v8`对象提供了一小部分API，使您可以编写安全的代码。这里我们创建私有符号，以一种无法从外部操作的方式存储我们的内部状态。（私有符号是一个V8内部概念，在标准JavaScript代码中没有意义。）V8的内置对象通常使用“%-函数调用”来处理此类事情，但V8扩展功能不能使用%-函数，因为它们是V8的内部实现细节，并不适合嵌入者依赖。
 
-You might be curious about where these objects come from. All three of them are initialized in [V8’s bootstrapper](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/bootstrapper.cc), which installs some basic properties but mostly leaves the initialization to V8’s self-hosted JavaScript. For example, almost every .js file in V8 installs something on `global`; see e.g. [promise.js](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js&sq=package:chromium&l=439) or [uri.js](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/uri.js&sq=package:chromium&l=371). And we install APIs onto the `v8` object in [a number of places](https://code.google.com/p/chromium/codesearch#search/&q=extrasUtils&sq=package:chromium&type=cs). (The `binding` object is empty until manipulated by an extra or embedder, so the only relevant code in V8 itself is when the bootstrapper creates it.)
+您可能会好奇这些对象来自哪里。它们的初始化均发生在[V8的引导程序](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/bootstrapper.cc)中，该引导程序安装了一些基本属性，但大部分初始化都由V8的基于自身的JavaScript完成。例如，V8中的几乎每个.js文件都会在`global`上安装一些东西；例如，请参阅[promise.js](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/promise.js&sq=package:chromium&l=439)或[uri.js](https://code.google.com/p/chromium/codesearch#chromium/src/v8/src/js/uri.js&sq=package:chromium&l=371)。我们还在[许多地方](https://code.google.com/p/chromium/codesearch#search/&q=extrasUtils&sq=package:chromium&type=cs)将API安装到`v8`对象中。（`binding`对象直到被嵌入者或额外文件操作时才会被初始化，因此V8本身中唯一重要的代码是引导程序创建它时的代码。）
 
-Finally, to tell V8 that we’ll be compiling in an extra, we add a line to our project’s gypfile:
+最后，为了告诉V8我们将编译扩展，我们需要在项目的gyp文件中添加一行：
 
 ```js
 'v8_extra_library_files': ['./Vec2.js']
 ```
 
-(You can see a real-world example of this [in V8’s gypfile](https://code.google.com/p/chromium/codesearch#chromium/src/v8/build/standalone.gypi&sq=package:chromium&type=cs&l=170).)
+（你可以在[V8的gyp文件](https://code.google.com/p/chromium/codesearch#chromium/src/v8/build/standalone.gypi&sq=package:chromium&type=cs&l=170)中看到一个实际的例子。）
 
-## V8 extras in practice
+## V8扩展的实际应用
 
-V8 extras provide a new and lightweight way for embedders to implement features. JavaScript code can more easily manipulate JavaScript built-ins like arrays, maps, or promises; it can call other JavaScript functions without ceremony; and it can deal with exceptions in an idiomatic way. Unlike C++ implementations, features implemented in JavaScript via V8 extras can benefit from inlining, and calling them does not incur any boundary-crossing costs. These benefits are especially pronounced when compared to a traditional bindings system like Chromium’s Web IDL bindings.
+V8扩展为嵌入者提供了一种全新且轻量的实现功能的方法。JavaScript代码可以更轻松地操作JavaScript内建对象，比如数组、映射或Promise；它可以无需复杂的过程调用其他JavaScript函数；并且它可以用惯用的方式处理异常。与C++实现不同，通过V8扩展用JavaScript实现的功能可以受益于内联化，调用它们时不会产生跨边界的成本。与传统的绑定系统（如Chromium的Web IDL绑定）相比，这些优势尤为明显。
 
-V8 extras were introduced and refined over the last year, and Chromium is currently using them to [implement streams](https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/streams/ReadableStream.js). Chromium is also considering V8 extras for implementing [scroll customization](https://codereview.chromium.org/1333323003) and [efficient geometry APIs](https://groups.google.com/a/chromium.org/d/msg/blink-dev/V_bJNtOg0oM/VKbbYs-aAgAJ).
+V8扩展在过去的一年中被引入和改进，Chromium目前使用它们来[实现流](https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/streams/ReadableStream.js)。Chromium还在考虑使用V8扩展来实现[滚动自定义](https://codereview.chromium.org/1333323003)和[高效的几何API](https://groups.google.com/a/chromium.org/d/msg/blink-dev/V_bJNtOg0oM/VKbbYs-aAgAJ)。
 
-V8 extras are still a work in progress, and the interface has some rough edges and disadvantages we hope to address over time. The primary area with room for improvement is the debugging story: errors are not easy to track down, and runtime debugging is most often done with print statements. In the future, we hope to integrate V8 extras into Chromium’s developer tools and tracing framework, both for Chromium itself and for any embedders that speak the same protocol.
+V8扩展仍在改进中，其接口还有一些缺陷和不足，希望随着时间的推移能够得到解决。主要的改进空间是调试功能：错误难以追踪，运行时调试通常是通过打印语句完成的。未来，我们希望将V8扩展集成到Chromium的开发者工具和跟踪框架中，无论是对于Chromium本身，还是对于使用相同协议的任何嵌入者。
 
-Another cause for caution when using V8 extras is the extra developer effort required to write secure and robust code. V8 extras code operates directly on the snapshot, just like the code for V8’s self-hosted built-ins. It accesses the same objects as userland JavaScript, with no binding layer or separate context to prevent such access. For example, something as seemingly-simple as `global.Object.prototype.hasOwnProperty.call(obj, 5)` has six potential ways in which it could fail due to user code modifying the built-ins (count them!). Embedders like Chromium need to be robust against any user code, no matter its behavior, and so in such environments more care is necessary when writing extras than when writing traditional C++-implemented features.
+在使用V8扩展时另一个需要注意的问题是开发者需要付出额外的努力来编写安全且健壮的代码。V8扩展代码直接在快照之上运行，就像V8自托管内建对象的代码一样。它访问与用户层JavaScript相同的对象，没有绑定层或独立的上下文来阻止这种访问。例如，看似简单的`global.Object.prototype.hasOwnProperty.call(obj, 5)`由于用户代码修改内建对象，可能会导致六种可能的失败（算一下！）。像Chromium这样的嵌入者必须对任何用户代码无论其行为如何都具备鲁棒性，因此在编写扩展时比在编写传统C++实现的功能时需要更加小心。
 
-If you’d like to learn more about V8 extras, check out our [design document](https://docs.google.com/document/d/1AT5-T0aHGp7Lt29vPWFr2-qG8r3l9CByyvKwEuA8Ec0/edit#heading=h.32abkvzeioyz) which goes into much more detail. We look forward to improving V8 extras, and adding more features that allow developers and embedders to write expressive, high-performance additions to the V8 runtime.
+如果你想了解更多关于V8扩展的信息，请查看我们的[设计文档](https://docs.google.com/document/d/1AT5-T0aHGp7Lt29vPWFr2-qG8r3l9CByyvKwEuA8Ec0/edit#heading=h.32abkvzeioyz)，其中有更为详细的说明。我们期待改进V8扩展，并添加更多功能，使开发人员和嵌入者能够为V8运行时编写富有表现力的高性能扩展功能。

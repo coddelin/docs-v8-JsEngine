@@ -1,22 +1,22 @@
 ---
 permalink: "/grant/"
-title: "Research Grant"
+title: "研究资助"
 layout: "layouts/base.njk"
-description: "The V8 Research Grant funds programming languages and software systems research based on V8, JavaScript, and WebAssembly."
+description: "V8 研究资助支持基于 V8、JavaScript 和 WebAssembly 的编程语言及软件系统研究。"
 ---
-# V8 Research Grant
+# V8 研究资助
 
-The V8 Research Grant funds programming languages and software systems research based on V8, JavaScript, and WebAssembly to foster collaboration between V8 and academia.
+V8 研究资助支持基于 V8、JavaScript 和 WebAssembly 的编程语言及软件系统的研究，以促进 V8 与学术界的合作。
 
-The V8 Research Grant is an unrestricted gift of up to 40,000 USD. As an unrestricted gift the grant does not stipulate intellectual property rights.
+V8 研究资助是最高可达 40,000 美元的非限制性赠款。作为非限制性赠款，本资助不规定知识产权权利。
 
-To qualify for this grant, the applicant:
+申请此资助的资格要求如下：
 
-- must be a leader of a research group at an accredited university anywhere in the world,
-- must nominate one or more outstanding Ph.D. students to work on the proposed project,
-- must have a V8 team member as a sponsor who initiates together with the applicant the application process,
-- must propose an advancement of V8, JavaScript or WebAssembly which either results in landing code in production V8 or a publication at a top-tier journal or conference.
+- 必须是全球任何地方的经认证大学研究团队的负责人，
+- 必须推荐一名或多名优秀的博士生参与拟议的项目，
+- 必须有一名 V8 团队成员作为发起人，与申请人共同启动申请过程，
+- 必须提出一个关于 V8、JavaScript 或 WebAssembly 的改进，且这个改进要么能在生产环境的 V8 中实现代码落地，要么能够在顶级期刊或会议上发表文章。
 
-We expect applications to grow organically out of the research community together with V8 team members at Google. V8 Research Grants will be given to the researchers and projects that we believe have the highest relevance to the ongoing language specification and runtime implementation work in V8.
+我们预期申请将会在研究社区与谷歌 V8 团队成员的合作中自然产生。V8 研究资助将颁发给我们认为对 V8 当前的语言规范和运行时实现工作最相关的研究人员和项目。
 
-The V8 Research Grant is committed to the principles of equality, diversity and inclusivity. We strongly encourage applications and nominations from those from BAME and other minority backgrounds, LGBTQI+ backgrounds, people with disabilities and those who identify as female, in order to help address the current under-representation of groups in academia and computer science.
+V8 研究资助承诺遵守平等、多样性和包容性原则。我们强烈鼓励来自 BAME（黑人、亚裔和少数民族）及其他少数族裔背景、LGBTQI+ 社群背景、残障人士以及女性的申请和提名，以帮助解决学术界和计算机科学领域目前存在的群体代表性不足问题。

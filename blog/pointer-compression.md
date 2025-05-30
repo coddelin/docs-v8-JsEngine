@@ -1,375 +1,375 @@
 ---
-title: "Pointer Compression in V8"
-author: "Igor Sheludko and Santiago Aboy Solanes, *the* pointer compressors"
+title: "V8中的指针压缩"
+author: "Igor Sheludko 和 Santiago Aboy Solanes，*指针压缩专家*"
 avatars: 
   - "igor-sheludko"
   - "santiago-aboy-solanes"
 date: 2020-03-30
 tags: 
-  - internals
-  - memory
-description: "V8 reduced its heap size up to 43%! Learn how in “Pointer Compression in V8”!"
+  - 内部结构
+  - 内存
+description: "V8减少了高达43%的堆大小！在“V8中的指针压缩”中了解具体方法！"
 tweet: "1244653541379182596"
 ---
-There is a constant battle between memory and performance. As users, we would like things to be fast as well as consume as little memory as possible. Unfortunately, usually improving performance comes at a cost of memory consumption (and vice versa).
+在内存和性能之间总是存在不断的斗争。作为用户，我们希望既能快速又尽量少地使用内存。不幸的是，通常提升性能会带来内存消耗的代价（反之亦然）。
 
 <!--truncate-->
-Back in 2014 Chrome switched from being a 32-bit process to a 64-bit process. This gave Chrome better [security, stability and performance](https://blog.chromium.org/2014/08/64-bits-of-awesome-64-bit-windows_26.html), but it came at a memory cost since each pointer now occupies eight bytes instead of four. We took on the challenge to reduce this overhead in V8 to try and get back as many wasted 4 bytes as possible.
+早在2014年，Chrome就从一个32位进程切换为一个64位进程。这为Chrome带来了更好的[安全性、稳定性和性能](https://blog.chromium.org/2014/08/64-bits-of-awesome-64-bit-windows_26.html)，但也因此付出了内存代价，因为每个指针现在占用8个字节，而不是4个字节。我们在V8中接受了减少这一开销的挑战，试图尽可能多地收回这些浪费的4个字节。
 
-Before diving into the implementation, we need to know where we are standing to correctly assess the situation. To measure our memory and performance we use a set of [web pages](https://v8.dev/blog/optimizing-v8-memory) that reflect popular real-world websites. The data showed that V8 contributes up to 60% of Chrome’s [renderer process](https://www.chromium.org/developers/design-documents/multi-process-architecture) memory consumption on desktop, with an average of 40%.
+在深入实施之前，我们需要知道我们当前所处的情况，以便正确评估问题。为了度量我们的内存和性能，我们使用了一组[网页](https://v8.dev/blog/optimizing-v8-memory)，这些网页反映了流行的真实网站。数据显示，V8在桌面端贡献了Chrome的[渲染器进程](https://www.chromium.org/developers/design-documents/multi-process-architecture)内存消耗的最高达60%，平均为40%。
 
-![V8 memory consumption percentage in Chrome’s renderer memory](/_img/pointer-compression/memory-chrome.svg)
+![V8在Chrome渲染器的内存中的消耗比例](/_img/pointer-compression/memory-chrome.svg)
 
-Pointer Compression is one of several ongoing efforts in V8 to reduce memory consumption. The idea is very simple: instead of storing 64-bit pointers we can store 32-bit offsets from some “base” address. With such a simple idea, how much can we gain from such a compression in V8?
+指针压缩是V8中减少内存消耗的几项持续努力之一。这个想法非常简单：与其存储64位指针，我们可以存储32位偏移量，从某个“基地址”开始。有了这样一个简单的想法，那么在V8中我们能从这样的压缩中获得多少收益呢？
 
-The V8 heap contains a whole slew of items, such as floating point values, string characters, interpreter bytecode, and tagged values (see next section for details). Upon inspection of the heap, we discovered that on real-world websites these tagged values occupy around 70% of the V8 heap!
+V8堆包含许多项目，例如浮点值、字符串字符、解释器字节码和标记值（详见下一节）。检查堆后，我们发现，在真实网站中，这些标记值占据了V8堆的大约70%！
 
-Let’s take a closer look at what tagged values are.
+让我们更仔细地看看标记值是什么。
 
-## Value tagging in V8
+## V8中的值标记
 
-JavaScript values in V8 are represented as objects and allocated on the V8 heap, no matter if they are objects, arrays, numbers or strings. This allows us to represent any value as a pointer to an object.
+V8中的JavaScript值被表示为对象并分配在V8堆上，无论它们是对象、数组、数字还是字符串。这使我们能够将任何值表示为指向对象的指针。
 
-Many JavaScript programs perform calculations on integer values, such as incrementing an index in a loop. To avoid us having to allocate a new number object each time an integer is incremented, V8 uses the well-known [pointer tagging](https://en.wikipedia.org/wiki/Tagged_pointer) technique to store additional or alternative data in V8 heap pointers.
+许多JavaScript程序在整数值上进行计算，例如在循环中递增索引。为了避免每次整数递增时都必须分配一个新的数字对象，V8使用了一种众所周知的[指针标记](https://en.wikipedia.org/wiki/Tagged_pointer)技术，在V8堆中指针中存储额外或替代的数据。
 
-The tag bits serve a dual purpose: they signal either strong/weak pointers to objects located in V8 heap, or a small integer. Hence, the value of an integer can be stored directly in the tagged value, without having to allocate additional storage for it.
+标记位发挥双重作用：它们表示强/弱指针指向位于V8堆中的对象，或者表示一个小整数。因此，整数的值可以直接存储在标记值中，而不需要为其分配额外的存储空间。
 
-V8 always allocates objects in the heap at word-aligned addresses, which allows it to use the 2 (or 3, depending on the machine word size) least significant bits for tagging. On 32-bit architectures, V8 uses the least significant bit to distinguish Smis from heap object pointers. For heap pointers, it uses the second least significant bit to distinguish strong references from weak ones:
+V8总是在堆上为对象分配字对齐地址，这使其能够使用2个（或3个，取决于机器字大小）最低有效位进行标记。在32位架构上，V8使用最低有效位区分Smis和堆对象指针。对于堆指针，它使用第二低位区分强引用和弱引用：
 
 <pre>
-                        |----- 32 bits -----|
-Pointer:                |_____address_____<b>w1</b>|
+                        |----- 32 位 -----|
+Pointer:                |_____地址_____<b>w1</b>|
 Smi:                    |___int31_value____<b>0</b>|
 </pre>
 
-where *w* is a bit used for distinguishing strong pointers from the weak ones.
+其中 *w* 是用于区分强指针和弱指针的位。
 
-Note that a Smi value can only carry a 31-bit payload, including the sign bit. In the case of pointers, we have 30 bits that can be used as a heap object address payload. Due to word alignment, the allocation granularity is 4 bytes, which gives us 4 GB of addressable space.
+请注意，Smi值只能携带一个31位的负载（包括符号位）。对于指针，我们有30位可以用作堆对象地址负载。由于字对齐，分配的粒度为4字节，这为我们提供了4GB的可寻址空间。
 
-On 64-bit architectures V8 values look like this:
+在64位架构上，V8的值看起来如下所示：
 
 <pre>
-            |----- 32 bits -----|----- 32 bits -----|
-Pointer:    |________________address______________<b>w1</b>|
+            |----- 32 位 -----|----- 32 位 -----|
+Pointer:    |________________地址______________<b>w1</b>|
 Smi:        |____int32_value____|000000000000000000<b>0</b>|
 </pre>
 
-You may notice that unlike 32-bit architectures, on 64-bit architectures V8 can use 32 bits for the Smi value payload. The implications of 32-bit Smis on pointer compression are discussed in the following sections.
+您可能注意到，与32位架构不同，在64位架构上，V8可以使用32位作为Smi值的负载。在接下来的部分中将讨论32位Smis对指针压缩的影响。
 
-## Compressed tagged values and new heap layout
+## 压缩标记值和新堆布局
 
-With Pointer Compression, our goal is to somehow fit both kinds of tagged values into 32 bits on 64-bit architectures. We can fit pointers into 32 bits by:
+通过指针压缩，我们的目标是在64位架构上以某种方式将两种标记值都压缩到32位中。我们可以通过下列方式把指针压缩到32位：
 
-- making sure all V8 objects are allocated within a 4-GB memory range
-- representing pointers as offsets within this range
+- 确保所有V8对象都在一个4GB的内存范围内分配
+- 将指针表示为此范围内的偏移量
 
-Having such a hard limit is unfortunate, but V8 in Chrome already has a 2-GB or 4-GB limit on the size of the V8 heap (depending on how powerful the underlying device is), even on 64-bit architectures. Other V8 embedders, such as Node.js, may require bigger heaps. If we impose a maximum of 4 GB, it would mean that these embedders cannot use Pointer Compression.
+有一个这样的硬限制确实不幸，但即使在64位架构上，Chrome中的V8已经对V8堆的大小有2GB或4GB的限制（取决于底层设备的性能）。其他V8嵌入器，例如Node.js，可能需要更大的堆。如果我们强制最大限制为4GB，这将意味着这些嵌入器无法使用指针压缩。
 
-The question is now how to update the heap layout to ensure that 32-bit pointers uniquely identify V8 objects.
+现在的问题是如何更新堆布局以确保32位指针唯一标识V8对象。
 
-### Trivial heap layout
+### 简单的堆布局
 
-The trivial compression scheme would be to allocate objects in the first 4 GB of address space.
+一种简单的压缩方案是将对象分配到地址空间的第一个4GB。
 
-![Trivial heap layout](/_img/pointer-compression/heap-layout-0.svg)
+![简单的堆布局](/_img/pointer-compression/heap-layout-0.svg)
 
-Unfortunately, this is not an option for V8 since Chrome’s renderer process may need to create multiple V8 instances in the same renderer process, for example for Web/Service Workers. Otherwise, with this scheme all these V8 instances compete for the same 4-GB address space and thus there is a 4-GB memory limit imposed on all V8 instances together.
+不幸的是，这对于V8来说是不现实的，因为Chrome的渲染进程可能需要在同一个渲染进程中创建多个V8实例，例如用于Web/服务工作者。否则，这种方案会导致所有这些V8实例争夺相同的4GB地址空间，从而对所有V8实例整体施加一个4GB的内存限制。
 
-### Heap layout, v1
+### 堆布局，版本1
 
-If we arrange V8’s heap in a contiguous 4-GB region of address space somewhere else, then an **unsigned** 32-bit offset from the base uniquely identifies the pointer.
+如果我们将V8的堆安排在地址空间中的某个连续4GB区域，则从基地址起的**无符号**32位偏移量可以唯一标识指针。
 
 <figure>
   <img src="/_img/pointer-compression/heap-layout-1.svg" width="827" height="323" alt="" loading="lazy"/>
-  <figcaption>Heap layout, base aligned to start</figcaption>
+  <figcaption>堆布局，基地址对齐到开始</figcaption>
 </figure>
 
-If we also ensure that the base is 4-GB-aligned then the upper 32 bits are the same for all pointers:
+如果我们还确保基地址是4GB对齐的，那么对于所有指针，上位32位是相同的：
 
 ```
-            |----- 32 bits -----|----- 32 bits -----|
-Pointer:    |________base_______|______offset_____w1|
+            |----- 32位 -----|----- 32位 -----|
+指针:      |________基地址______|______偏移______w1|
 ```
 
-We can also make Smis compressible by limiting the Smi payload to 31 bits and placing it to the lower 32 bits. Basically, making them similar to Smis on 32-bit architectures.
+我们还可以通过限制Smi的有效负载为31位并将其放置到低32位，使Smi可压缩。基本上，使它们类似于32位架构上的Smi。
 
 ```
-         |----- 32 bits -----|----- 32 bits -----|
-Smi:     |sssssssssssssssssss|____int31_value___0|
+         |----- 32位 -----|----- 32位 -----|
+Smi:     |sssssssssssssssssss|____int31值____0|
 ```
 
-where *s* is the sign value of the Smi payload. If we have a sign-extended representation, we are able to compress and decompress Smis with just a one-bit arithmetic shift of the 64-bit word.
+其中*s*是Smi有效负载的符号值。如果我们有一个符号扩展表示，那么我们能够通过对64位字进行一次一位的算术移位来压缩和解压Smi。
 
-Now, we can see that the upper half-word of both pointers and Smis is fully defined by the lower half-word. Then, we can store just the latter in memory, reducing the memory required for storing tagged value by half:
+现在，我们可以看到，指针和Smi的上半字是由下半字完全定义的。然后，我们只需要在内存中存储后者，从而将存储标记值所需的内存减少一半：
 
 ```
-                    |----- 32 bits -----|----- 32 bits -----|
-Compressed pointer:                     |______offset_____w1|
-Compressed Smi:                         |____int31_value___0|
+                    |----- 32位 -----|----- 32位 -----|
+压缩指针:                              |______偏移______w1|
+压缩Smi:                                |____int31值____0|
 ```
 
-Given that the base is 4-GB-aligned, the compression is just a truncation:
+鉴于基地址是4GB对齐的，压缩仅仅是一个截断操作：
 
 ```cpp
-uint64_t uncompressed_tagged;
-uint32_t compressed_tagged = uint32_t(uncompressed_tagged);
+uint64_t 未压缩标记;
+uint32_t 压缩标记 = uint32_t(未压缩标记);
 ```
 
-The decompression code, however, is a bit more complicated. We need to distinguish between sign-extending the Smi and zero-extending the pointer, as well as whether or not to add in the base.
+然而，解压缩代码稍微复杂一点。我们需要区分Smi的符号扩展和指针的零扩展，以及是否需要加上基地址。
 
 ```cpp
-uint32_t compressed_tagged;
+uint32_t 压缩标记;
 
-uint64_t uncompressed_tagged;
-if (compressed_tagged & 1) {
-  // pointer case
-  uncompressed_tagged = base + uint64_t(compressed_tagged);
+uint64_t 未压缩标记;
+if (压缩标记 & 1) {
+  // 指针情况
+  未压缩标记 = 基地址 + uint64_t(压缩标记);
 } else {
-  // Smi case
-  uncompressed_tagged = int64_t(compressed_tagged);
+  // Smi情况
+  未压缩标记 = int64_t(压缩标记);
 }
 ```
 
-Let’s try to change the compression scheme to simplify the decompression code.
+让我们尝试更改压缩方案以简化解压缩代码。
 
-### Heap layout, v2
+### 堆布局，版本2
 
-If instead of having the base at the beginning of the 4 GB we put the base in the _middle_, we can treat the compressed value as a **signed** 32-bit offset from the base. Note that the whole reservation is not 4-GB-aligned anymore but the base is.
+如果我们将基地址放在4GB的**中间**而不是开始处，我们可以将压缩值视为从基地址起的**有符号**32位偏移量。请注意，整个预留区域不再是4GB对齐的，但基地址仍然是。
 
-![Heap layout, base aligned to the middle](/_img/pointer-compression/heap-layout-2.svg)
+![堆布局，基地址对齐到中间](/_img/pointer-compression/heap-layout-2.svg)
 
-In this new layout, the compression code stays the same.
+在这种新的布局中，压缩代码保持不变。
 
-The decompression code, however, becomes nicer. Sign-extension is now common for both Smi and pointer cases and the only branch is on whether to add the base in the pointer case.
+然而，解压缩代码变得更简洁。对于Smi和指针情况，符号扩展现在是通用的，唯一的分支仅在指针情况下是否添加基地址。
 
 ```cpp
-int32_t compressed_tagged;
+int32_t 压缩标记;
 
-// Common code for both pointer and Smi cases
-int64_t uncompressed_tagged = int64_t(compressed_tagged);
-if (uncompressed_tagged & 1) {
-  // pointer case
-  uncompressed_tagged += base;
+// 指针和Smi情况的通用代码
+int64_t 未压缩标记 = int64_t(压缩标记);
+if (未压缩标记 & 1) {
+  // 指针情况
+  未压缩标记 += 基地址;
 }
 ```
 
-The performance of branches in code depends on the branch prediction unit in the CPU. We thought that if we were to implement the decompression in a branchless way, we could get better performance. With a small amount of bit magic, we can write a branchless version of the code above:
+代码中的分支性能取决于CPU中的分支预测单元。我们认为如果采用无分支方式实现解压缩，可以获得更好的性能。通过少量位运算，我们可以编写上述代码的无分支版本：
 
 ```cpp
-int32_t compressed_tagged;
+int32_t 压缩标记;
 
-// Same code for both pointer and Smi cases
-int64_t sign_extended_tagged = int64_t(compressed_tagged);
-int64_t selector_mask = -(sign_extended_tagged & 1);
-// Mask is 0 in case of Smi or all 1s in case of pointer
-int64_t uncompressed_tagged =
-    sign_extended_tagged + (base & selector_mask);
+// 指针和Smi情况的相同代码
+int64_t 符号扩展标记 = int64_t(压缩标记);
+int64_t 选择器掩码 = -(符号扩展标记 & 1);
+// 掩码在Smi情况下为0，在指针情况下为全1
+int64_t 未压缩标记 =
+    符号扩展标记 + (基地址 & 选择器掩码);
 ```
 
-Then, we decided to start with the branchless implementation.
+然后，我们决定从无分支实现开始。
 
-## Performance evolution
+## 性能演变
 
-### Initial performance
+### 初始性能
 
-We measured performance on [Octane](https://v8.dev/blog/retiring-octane#the-genesis-of-octane) — a peak-performance benchmark we have used in the past. Although we are no longer focusing on improving peak performance in our day-to-day work, we also don’t want to regress peak performance, particularly for something as performance-sensitive as _all pointers_. Octane continues to be a good benchmark for this task.
+我们在[Octane](https://v8.dev/blog/retiring-octane#the-genesis-of-octane)——一个我们过去使用的峰值性能基准上测量了性能。尽管我们在日常工作中不再专注于提高峰值性能，但我们也不希望在峰值性能上出现回退，特别是像_所有指针_这样性能敏感的内容。Octane仍然是这个任务的良好基准。
 
-This graph shows Octane’s score on x64 architecture while we were optimizing and polishing the Pointer Compression implementation. In the graph, higher is better. The red line is the existing full-sized-pointer x64 build, while the green line is the pointer compressed version.
+此图显示了我们优化和完善指针压缩实现时，Octane在x64架构上的得分。在图中，分数越高越好。红线表示现有的全尺寸指针x64版本，绿线表示指针压缩版本。
 
-![First round of Octane’s improvements](/_img/pointer-compression/perf-octane-1.svg)
+![Octane改进的第一轮](/_img/pointer-compression/perf-octane-1.svg)
 
-With the first working implementation, we had a ~35% regression gap.
+在第一轮有效的实现中，我们有约35%的回归差距。
 
-#### Bump (1), +7%
+#### 提升(1)，+7%
 
-First we validated our “branchless is faster” hypothesis, by comparing the branchless decompression with the branchful one. It turned out that our hypothesis was wrong, and the branchful version was 7% faster on x64. That was quite a significant difference!
+首先，我们验证了“无分支更快”的假设，通过比较无分支解压与有分支解压的性能。结果表明我们的假设是错误的，有分支版本在x64上快了7%。这是一个相当显著的差异！
 
-Let’s take a look at the x64 assembly.
-
-:::table-wrapper
-<!-- markdownlint-disable no-space-in-code -->
-| Decompression | Branchless              | Branchful                    |
-|---------------|-------------------------|------------------------------|
-| Code          | ```asm                  | ```asm                       \
-|               | movsxlq r11,[…]         | movsxlq r11,[…]              \
-|               | movl r10,r11            | testb r11,0x1                \
-|               | andl r10,0x1            | jz done                      \
-|               | negq r10                | addq r11,r13                 \
-|               | andq r10,r13            | done:                        \
-|               | addq r11,r10            |                              | \
-|               | ```                     | ```                          |
-| Summary       | 20 bytes                | 13 bytes                     |
-| ^^            | 6 instructions executed | 3 or 4 instructions executed |
-| ^^            | no branches             | 1 branch                     |
-| ^^            | 1 additional register   |                              |
-<!-- markdownlint-enable no-space-in-code -->
-:::
-
-**r13** here is a dedicated register used for the base value. Notice how the branchless code is both bigger, and requires more registers.
-
-On Arm64, we observed the same - the branchful version was clearly faster on powerful CPUs (although the code size was the same for both cases).
+让我们看看x64汇编代码。
 
 :::table-wrapper
 <!-- markdownlint-disable no-space-in-code -->
-| Decompression | Branchless              | Branchful                    |
-|---------------|-------------------------|------------------------------|
-| Code          | ```asm                  | ```asm                       \
-|               | ldur w6, […]            | ldur w6, […]                 \
-|               | sbfx x16, x6, #0, #1    | sxtw x6, w6                  \
-|               | and x16, x16, x26       | tbz w6, #0, #done            \
-|               | add x6, x16, w6, sxtw   | add x6, x26, x6              \
-|               |                         | done:                        \
-|               | ```                     | ```                          |
-| Summary       | 16 bytes                | 16 bytes                     |
-| ^^            | 4 instructions executed | 3 or 4 instructions executed |
-| ^^            | no branches             | 1 branch                     |
-| ^^            | 1 additional register   |                              |
+| 解压方式      | 无分支                 | 有分支                    |
+|---------------|-------------------------|----------------------------|
+| 代码          | ```asm                  | ```asm                     \
+|               | movsxlq r11,[…]         | movsxlq r11,[…]            \
+|               | movl r10,r11            | testb r11,0x1              \
+|               | andl r10,0x1            | jz done                    \
+|               | negq r10                | addq r11,r13               \
+|               | andq r10,r13            | done:                      \
+|               | addq r11,r10            |                            | \
+|               | ```                     | ```                        |
+| 总结          | 20字节                  | 13字节                     |
+| ^^            | 执行6条指令             | 执行3或4条指令             |
+| ^^            | 无分支                  | 一个分支                   |
+| ^^            | 额外使用1个寄存器       |                            |
 <!-- markdownlint-enable no-space-in-code -->
 :::
 
-On low-end Arm64 devices we observed almost no performance difference in either direction.
+这里的**r13**是一个专用寄存器，用于存储基值。注意无分支代码既更大，也需要更多寄存器。
 
-Our takeaway is: branch predictors in modern CPUs are very good, and code size (particularly execution path length) affected performance more.
+在Arm64上，我们观察到同样的现象——有分支版本在功能强大的CPU上明显更快（虽然两种情况的代码大小相同）。
 
-#### Bump (2), +2%
+:::table-wrapper
+<!-- markdownlint-disable no-space-in-code -->
+| 解压方式      | 无分支                 | 有分支                    |
+|---------------|-------------------------|----------------------------|
+| 代码          | ```asm                  | ```asm                     \
+|               | ldur w6, […]            | ldur w6, […]               \
+|               | sbfx x16, x6, #0, #1    | sxtw x6, w6                \
+|               | and x16, x16, x26       | tbz w6, #0, #done          \
+|               | add x6, x16, w6, sxtw   | add x6, x26, x6            \
+|               |                         | done:                      \
+|               | ```                     | ```                        |
+| 总结          | 16字节                  | 16字节                     |
+| ^^            | 执行4条指令             | 执行3或4条指令             |
+| ^^            | 无分支                  | 一个分支                   |
+| ^^            | 额外使用1个寄存器       |                            |
+<!-- markdownlint-enable no-space-in-code -->
+:::
 
-[TurboFan](https://v8.dev/docs/turbofan) is V8’s optimizing compiler, built around a concept called “Sea of Nodes”. In short, each operation is represented as a node in a graph (See a more detailed version [in this blog post](https://v8.dev/blog/turbofan-jit)). These nodes have various dependencies, including both data-flow and control-flow.
+在低端Arm64设备上，我们几乎没有观察到性能差异。
 
-There are two operations that are crucial for Pointer Compression: Loads and Stores, since they connect the V8 heap with the rest of the pipeline. If we were to decompress every time we loaded a compressed value from the heap, and compress it before we store it, then the pipeline could just keep working as it otherwise did in full-pointer mode. Thus we added new explicit value operations in the node graph - Decompress and Compress.
+我们的结论是：现代CPU中的分支预测功能非常好，而代码大小（特别是执行路径长度）对性能的影响更大。
 
-There are cases where the decompression is not actually necessary. For example, if a compressed value is loaded from somewhere only to be then stored to a new location.
+#### 提升(2)，+2%
 
-In order to optimize unnecessary operations, we implemented a new “Decompression Elimination” phase in TurboFan. Its job is to eliminate decompressions directly followed by compressions. Since these nodes might not be directly next to each other it also tries to propagate decompressions through the graph, with the hope of encountering a compress down the line and eliminating them both. This gave us a 2% improvement of Octane’ score.
+[TurboFan](https://v8.dev/docs/turbofan)是V8的优化编译器，基于一种叫“节点海”的概念构建。简单来说，每个操作都在图中表示为一个节点（详见[此博客文章](https://v8.dev/blog/turbofan-jit)）。这些节点具有多种依赖关系，包括数据流和控制流。
 
-#### Bump (3), +2%
+对指针压缩至关重要的两个操作是“加载”和“存储”，因为它们连接了V8堆和其他管道。如果我们每次从堆加载压缩值时解压，并在存储前压缩它，那么管道就可以像在全指针模式下工作一样继续运行。因此，我们在节点图中添加了新的显式值操作——解压和压缩。
 
-While we were looking at the generated code, we noticed that the decompression of a value that had just been loaded produced code that was a bit too verbose:
+在某些情况下，解压实际上是不必要的。例如，如果从某处加载一个压缩值，然后立即存储到一个新位置。
+
+为了优化不必要的操作，我们在TurboFan中实现了一个新的“解压消除”阶段。其工作是消除直接跟随压缩的解压。由于这些节点可能并不紧挨在一起，它还尝试在图中传播解压，希望能遇到后续的压缩并同时消除它们。这为我们带来了Octane得分2%的提升。
+
+#### 提升(3)，+2%
+
+在查看生成的代码时，我们注意到刚加载的值的解压操作生成的代码有些冗长：
 
 ```asm
-movl rax, <mem>   // load
-movlsxlq rax, rax // sign extend
+movl rax, <mem>   // 加载
+movlsxlq rax, rax // 符号扩展
 ```
 
-Once we fixed that to sign extend the value loaded from memory directly:
+当我们修正它以直接从内存加载的值进行符号扩展后：
 
 ```asm
 movlsxlq rax, <mem>
 ```
 
-so got yet another 2% improvement.
+因此，又提升了2%的性能。
 
-#### Bump (4), +11%
+#### 提升（4），+11%
 
-TurboFan optimization phases work by using pattern matching on the graph: once a sub-graph matches a certain pattern it is replaced with a semantically equivalent (but better) sub-graph or instruction.
+TurboFan 的优化阶段通过在图上使用模式匹配工作：一旦子图匹配某种模式，就会被替换为语义上等价（但更优）的子图或指令。
 
-Unsuccessful attempts to find a match are not an explicit failure. The presence of explicit Decompress/Compress operations in the graph caused previously successful pattern matching attempts to no longer succeed, resulting in optimizations silently failing.
+未能找到匹配项并不是显式的失败。图中显式的解压缩/压缩操作导致先前成功的模式匹配尝试不再成功，从而导致优化静默失败。
 
-One example of a “broken” optimization was [allocation preternuring](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43823.pdf). Once we updated the pattern matching to be aware of the new compression/decompression nodes we got another 11% improvement.
+一个“被损坏”的优化的例子是[内存分配预分类](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43823.pdf)。一旦我们更新了模式匹配以适应新的压缩/解压缩节点，又带来了11%的性能提升。
 
-### Further improvements
+### 进一步的改进
 
-![Second round of Octane’s improvements](/_img/pointer-compression/perf-octane-2.svg)
+![第二轮 Octane 的改进](/_img/pointer-compression/perf-octane-2.svg)
 
-#### Bump (5), +0.5%
+#### 提升（5），+0.5%
 
-While implementing the Decompression Elimination in TurboFan we learned a lot. The explicit Decompression/Compression node approach had the following properties:
+在 TurboFan 中实现解压缩消除时，我们学到了很多。显式解压缩/压缩节点方法有以下特点：
 
-Pros:
+优点：
 
-- Explicitness of such operations allowed us to optimize unnecessary decompressions by doing canonical pattern matching of sub-graphs.
+- 此类操作的显式性使我们能够通过对子图的规范模式匹配来优化不必要的解压缩操作。
 
-But, as we continued the implementation, we discovered cons:
+然而，在继续实现过程中，我们发现了缺点：
 
-- A combinatorial explosion of possible conversion operations because of new internal value representations became unmanageable. We could now have compressed pointer, compressed Smi, and compressed any (compressed values which we could be either pointer or Smi), in addition to the existing set of representations (tagged Smi, tagged pointer, tagged any, word8, word16, word32, word64, float32, float64, simd128).
-- Some existing optimizations based on graph pattern-matching silently didn’t fire, which caused regressions here and there. Although we found and fixed some of them, the complexity of TurboFan continued to increase.
-- The register allocator was increasingly unhappy about the amount of nodes in the graph, and quite often generated bad code.
-- The larger node graphs slowed the TurboFan optimization phases, and increased memory consumption during compilation.
+- 由于新的内部值表示导致可能的转换操作组合爆炸，变得不可管理。我们现在可以有压缩指针、压缩 Smi 以及任何压缩值（压缩值可能是指针或 Smi），再加上现有的一组表示（标记 Smi、标记指针、标记任何、word8、word16、word32、word64、float32、float64、simd128）。
+- 一些基于图模式匹配的现有优化悄然失效，导致这里和那里出现了性能下降。尽管我们找到了并修复了一些问题，但 TurboFan 的复杂性持续增加。
+- 寄存器分配器对图中节点的数量越来越不满意，经常生成低质量的代码。
+- 较大的节点图减慢了 TurboFan 的优化阶段，并增加了编译期间的内存消耗。
 
-We decided to take a step back and think of a simpler way of supporting Pointer Compression in TurboFan.  The new approach is to drop the Compressed Pointer / Smi / Any representations, and make all explicit Compression / Decompression nodes implicit within Stores and Loads with the assumption that we always decompress before loading and compress before storing.
+我们决定后退一步，思考一种更简单的方法来支持 TurboFan 中的指针压缩。新的方法是删除压缩指针/Smi/任何表示，并使所有显式的压缩/解压缩节点隐含在存储和加载中，假设我们始终在加载之前解压缩，在存储之前压缩。
 
-We also added a new phase in TurboFan that would replace the “Decompression Elimination” one. This new phase would recognize when we don’t actually need to compress or decompress and update the Loads and Stores accordingly. Such an approach significantly reduced the complexity of Pointer Compression support in TurboFan and improved the quality of generated code.
+我们还在 TurboFan 中添加了一个新阶段，以取代“解压缩消除”阶段。这个新阶段将识别我们何时实际上不需要压缩或解压缩，并相应地更新加载和存储操作。这种方法显著减少了 TurboFan 中指针压缩支持的复杂性，并提高了生成代码的质量。
 
-The new implementation was as effective as the initial version and gave another 0.5% improvement.
+新实现与初始版本一样高效，并带来了额外的0.5%提升。
 
-#### Bump (6), +2.5%
+#### 提升（6），+2.5%
 
-We were getting close to performance parity, but the gap was still there. We had to come up with fresher ideas. One of them was: what if we ensure that any code that deals with Smi values never “looks” at the upper 32 bits?
+我们逐渐接近性能平衡，但差距依然存在。我们不得不想出更新的想法。其中之一是：如果确保任何处理 Smi 值的代码从不“查看”高32位会如何？
 
-Let’s remember the decompression implementation:
+让我们回顾解压缩实现：
 
 ```cpp
-// Old decompression implementation
+// 旧的解压缩实现
 int64_t uncompressed_tagged = int64_t(compressed_tagged);
 if (uncompressed_tagged & 1) {
-  // pointer case
+  // 指针情况
   uncompressed_tagged += base;
 }
 ```
 
-If the upper 32 bits of a Smi are ignored, we can assume them to be undefined. Then, we can avoid the special casing between the pointer and Smi cases and unconditionally add the base when decompressing, even for Smis! We call this approach “Smi-corrupting”.
+如果忽略 Smi 的高32位，我们可以假设它们是未定义的。然后，我们可以避免在指针和 Smi 情况之间的特殊处理，并在解压缩时无条件地添加 base，即使是 Smi！我们称这种方法为“Smi 冲突”。
 
 ```cpp
-// New decompression implementation
+// 新的解压缩实现
 int64_t uncompressed_tagged = base + int64_t(compressed_tagged);
 ```
 
-Also, since we don’t care about sign extending the Smi anymore, this change allows us to return to heap layout v1. This is the one with the base pointing to the beginning of the 4GB reservation.
+另外，由于我们不再关心符号扩展 Smi，这一改变允许我们回归到堆布局 v1。这是指针基地址指向4GB保留区开头的版本。
 
 <figure>
   <img src="/_img/pointer-compression/heap-layout-1.svg" width="827" height="323" alt="" loading="lazy"/>
-  <figcaption>Heap layout, base aligned to start</figcaption>
+  <figcaption>堆布局，基地址对齐到起点</figcaption>
 </figure>
 
-In terms of the decompression code, it changes a sign-extension operation to a zero-extension, which is just as cheap. However, this simplifies things on the runtime (C++) side. For example, the address space region reservation code (see the [Some implementation details](#some-implementation-details) section).
+在解压缩代码方面，它将符号扩展操作更改为零扩展，这同样廉价。然而，这简化了运行时（C++）方面的操作，例如地址空间区域保留代码（参见[某些实现细节](#some-implementation-details)部分）。
 
-Here’s the assembly code for comparison:
+以下为汇编代码的对比：
 
 :::table-wrapper
 <!-- markdownlint-disable no-space-in-code -->
-| Decompression | Branchful                    | Smi-corrupting               |
-|---------------|------------------------------|------------------------------|
-| Code          | ```asm                       | ```asm                       \
-|               | movsxlq r11,[…]              | movl r11,[rax+0x13]          \
-|               | testb r11,0x1                | addq r11,r13                 \
-|               | jz done                      |                              | \
-|               | addq r11,r13                 |                              | \
-|               | done:                        |                              | \
-|               | ```                          | ```                          |
-| Summary       | 13 bytes                     | 7 bytes                      |
-| ^^            | 3 or 4 instructions executed | 2 instructions executed      |
-| ^^            | 1 branch                     | no branches                  |
+| 解压 | 有分支 | 修改 Smi |
+|-------|--------------|--------------|
+| 代码 | ```asm | ```asm \
+| | movsxlq r11,[…] | movl r11,[rax+0x13] \
+| | testb r11,0x1 | addq r11,r13 \
+| | jz done | | \
+| | addq r11,r13 | | \
+| | done: | | \
+| | ``` | ``` |
+| 概要 | 13 字节 | 7 字节 |
+| ^^ | 执行 3 或 4 条指令 | 执行 2 条指令 |
+| ^^ | 1 条分支 | 无分支 |
 <!-- markdownlint-enable no-space-in-code -->
 :::
 
-So, we adapted all the Smi-using code pieces in V8 to the new compression scheme, which gave us another 2.5% improvement.
+因此，我们将 V8 中所有使用 Smi 的代码片段适配为新的压缩方案，这带来了额外 2.5% 的改进。
 
-### Remaining gap
+### 剩余差距
 
-The remaining performance gap is explained by two optimizations for 64-bit builds that we had to disable due to fundamental incompatibility with Pointer Compression.
+剩余的性能差距可以通过我们因与指针压缩的基本不兼容性而必须禁用的 64 位构建优化来解释。
 
-![Final round of Octane’s improvements](/_img/pointer-compression/perf-octane-3.svg)
+![Octane 最后一轮的性能改进](/_img/pointer-compression/perf-octane-3.svg)
 
-#### 32-bit Smi optimization (7), -1%
+#### 32 位 Smi 优化 (7), -1%
 
-Let’s recall how Smis look like in full pointer mode on 64-bit architectures.
+让我们回顾一下，在 64 位架构中的完整指针模式下，Smi 的表现方式。
 
 ```
-        |----- 32 bits -----|----- 32 bits -----|
+        |----- 32 位 -----|----- 32 位 -----|
 Smi:    |____int32_value____|0000000000000000000|
 ```
 
-32-bit Smi has the following benefits:
+32 位 Smi 具有以下优点：
 
-- it can represent a bigger range of integers without the need to box them into number objects; and
-- such a shape provides direct access to the 32-bit value when reading/writing.
+- 可以表示更大范围的整数，无需将其装箱为数字对象；并且
+- 这种形状在读/写时可以直接访问 32 位值。
 
-This optimization can’t be done with Pointer Compression, because there’s no space in the 32-bit compressed pointer due to having the bit which distinguishes pointers from Smis. If we disable 32-bit smis in the full-pointer 64-bit version we see a 1% regression of the Octane score.
+由于 32 位压缩指针中没有区分指针和 Smi 的位，无法通过指针压缩实现此优化。如果我们在 64 位完整指针版本中禁用 32 位 Smi，我们会看到 Octane 分数下降 1%。
 
-#### Double field unboxing (8), -3%
+#### 双字段解除装箱 (8), -3%
 
-This optimization tries to store floating point values directly in the object’s fields under certain assumptions. This has the objective of reducing the amount of number object allocations even more than Smis do alone.
+此优化尝试在特定假设下将浮点值直接存储在对象的字段中。其目的是比单独使用 Smi 更大程度地减少数字对象分配的数量。
 
-Imagine the following JavaScript code:
+设想以下 JavaScript 代码：
 
 ```js
 function Point(x, y) {
@@ -379,63 +379,63 @@ function Point(x, y) {
 const p = new Point(3.1, 5.3);
 ```
 
-Generally speaking, if we look at how the object p looks like in memory, we’ll see something like this:
+通常来说，如果我们查看对象 p 在内存中的样子，我们会看到如下内容：
 
-![Object `p` in memory](/_img/pointer-compression/heap-point-1.svg)
+![内存中的对象 `p`](/_img/pointer-compression/heap-point-1.svg)
 
-You can read more about hidden classes and properties and elements backing stores in [this article](https://v8.dev/blog/fast-properties).
+你可以在[本文](https://v8.dev/blog/fast-properties)中阅读有关隐藏类和属性及元素支持存储的更多内容。
 
-On 64-bit architectures, double values are the same size as pointers. So, if we assume that Point’s fields always contain number values, we can store them directly in the object fields.
+在 64 位架构中，双精度值与指针大小相同。因此，如果我们假设 Point 的字段始终包含数字值，我们可以直接将它们存储在对象字段中。
 
-![](/_img/pointer-compression/heap-point-2.svg)
+![优化后内存中的对象 `p`](/_img/pointer-compression/heap-point-2.svg)
 
-If the assumption breaks for some field, say after executing this line:
+如果此假设在某些字段上被打破，例如在执行以下代码后：
 
 ```js
 const q = new Point(2, 'ab');
 ```
 
-then number values for the y property must be stored boxed instead. Additionally, if there is speculatively-optimized code somewhere that relies on this assumption it must no longer be used and must be thrown away (deoptimized). The reason for such a “field type” generalization is to minimize the number of shapes of objects created from the same constructor function, which in turn is necessary for more stable performance.
+那么 y 属性的数字值就必须改为进行装箱存储。此外，如果某些地方有利用此假设进行推测性优化的代码，这些代码必须停止使用并丢弃（取消优化）。进行这种“字段类型”泛化的原因是为了尽量减少从同一个构造函数创建的对象形状的数量，而这反过来对实现更加稳定的性能是必要的。
 
-![Objects `p` and `q` in memory](/_img/pointer-compression/heap-point-3.svg)
+![内存中的对象 `p` 和 `q`](/_img/pointer-compression/heap-point-3.svg)
 
-If applied, double field unboxing gives the following benefits:
+如果应用此优化，双字段解除装箱带来的好处如下：
 
-- provides direct access to the floating point data through the object pointer, avoiding the additional dereference via number object; and
-- allows us to generate smaller and faster optimized code for tight loops doing a lot of double field accesses (for example in number-crunching applications)
+- 通过对象指针直接访问浮点数据，避免经由数字对象的额外解引用；并且
+- 能够为进行许多双字段访问的紧凑循环（例如数值运算应用）生成更小且更快的优化代码。
 
-With Pointer Compression enabled, the double values simply do not fit into the compressed fields anymore. However, in the future we may adapt this optimization for Pointer Compression.
+启用指针压缩后，双精度值不再适合压缩字段。然而未来我们可能会为指针压缩适配此优化。
 
-Note that number-crunching code which requires high throughput could be rewritten in an optimizable way even without this double field unboxing optimization (in a way compatible with Pointer Compression), by storing data in Float64 TypedArrays, or even by using [Wasm](https://webassembly.github.io/spec/core/).
+请注意，即使没有此双字段解除装箱优化（兼容指针压缩的方式），需要高吞吐量的数值计算代码也可以通过将数据存储在 Float64 类型数组中，甚至使用 [Wasm](https://webassembly.github.io/spec/core/) 来以可优化的方式重写。
 
-#### More improvements (9), 1%
+#### 更多改进 (9), 1%
 
-Finally, a bit of fine-tuning of the decompression elimination optimization in TurboFan gave another 1% performance improvement.
+最后，对 TurboFan 中解压消除优化的微调带来了额外 1% 的性能提升。
 
-## Some implementation details
+## 一些实现细节
 
-In order to simplify integration of Pointer Compression into existing code, we decided to decompress values on every load and compress them on every store. Thus changing only the storage format of tagged values while keeping the execution format unchanged.
+为了简化指针压缩与现有代码的集成，我们决定在每次加载时解压值，在每次存储时压缩值。因此，仅改变了标记值的存储格式，而执行格式保持不变。
 
-### Native code side
+### 原生代码部分
 
-In order to be able to generate efficient code when decompression is required the base value must always be available. Luckily V8 already had a dedicated register always pointing to a “roots table” containing references to JavaScript and V8-internal objects which must be always available (for example, undefined, null, true, false and many more). This register is called “root register” and it is used for generating smaller and [shareable builtins code](https://v8.dev/blog/embedded-builtins).
+为了能够在需要解压时生成高效的代码，基值必须始终可用。幸运的是，V8已经有一个专用寄存器始终指向一个“根表”，其中包含必须始终可用的 JavaScript 和 V8 内部对象的引用（例如 undefined、null、true、false 等）。这个寄存器称为“根寄存器”，它用于生成更小的和共享的 [内置代码](https://v8.dev/blog/embedded-builtins)。
 
-So, we put the roots table into the V8 heap reservation area and thus the root register became usable for both purposes - as a root pointer and as a base value for decompression.
+因此，我们将根表放入 V8 堆的保留区域，这样，根寄存器便可以同时用于两个目的——作为根指针和解压的基值。
 
-### C++ side
+### C++ 部分
 
-V8 runtime accesses objects in V8 heap through C++ classes providing a convenient view on the data stored in the heap. Note that V8 objects are rather [POD](https://en.wikipedia.org/wiki/Passive_data_structure)-like structures than C++ objects. The helper “view” classes contain just one uintptr_t field with a respective tagged value. Since the view classes are word-sized we can pass them around by value with zero overhead (many thanks to modern C++ compilers).
+V8 运行时通过 C++ 类访问 V8 堆中的对象，这些类提供了对堆中存储数据的便捷视图。请注意，V8 对象更像是 [POD](https://en.wikipedia.org/wiki/Passive_data_structure) 结构，而不是 C++ 对象。这些辅助“视图”类仅包含一个 uintptr_t 字段，代表相应的标记值。由于视图类是字大小的，我们可以将它们通过值传递而零开销（多亏了现代 C++ 编译器）。
 
-Here is an pseudo example of a helper class:
+以下是一个辅助类的伪示例：
 
 ```cpp
-// Hidden class
+// 隐藏类
 class Map {
  public:
   …
   inline DescriptorArray instance_descriptors() const;
   …
-  // The actual tagged pointer value stored in the Map view object.
+  // 实际存储在 Map 视图对象中的标记指针值。
   const uintptr_t ptr_;
 };
 
@@ -448,11 +448,11 @@ DescriptorArray Map::instance_descriptors() const {
 }
 ```
 
-In order to minimize the number of changes required for a first run of the pointer compressed version we integrated the computation of the base value required for decompression into getters.
+为了最小化指针压缩版本第一次运行所需的更改数量，我们将解压所需的基值计算集成到了 getter 中。
 
 ```cpp
 inline uintptr_t GetBaseForPointerCompression(uintptr_t address) {
-  // Round address down to 4 GB
+  // 将地址向下舍入到 4 GB
   const uintptr_t kBaseAlignment = 1 << 32;
   return address & -kBaseAlignment;
 }
@@ -469,9 +469,9 @@ DescriptorArray Map::instance_descriptors() const {
 }
 ```
 
-Performance measurements confirmed that the computation of base in every load hurts performance. The reason is that C++ compilers don’t know that the result of GetBaseForPointerCompression() call is the same for any address from the V8 heap and thus the compiler is not able to merge computations of base values. Given that the code consists of several instructions and a 64-bit constant this results in a significant code bloat.
+性能测量确认了：在每次加载时计算基值会损害性能。原因是 C++ 编译器不知道 GetBaseForPointerCompression() 的调用结果对于 V8 堆中的任何地址都是相同的，因此编译器无法合并基值计算。鉴于代码由多个指令和一个 64 位常量组成，这导致了显著的代码膨胀。
 
-In order to address this issue we reused V8 instance pointer as a base for decompression (remember the V8 instance data in the heap layout). This pointer is usually available in runtime functions, so we simplified the getters code by requiring an V8 instance pointer and it recovered the regressions:
+为了解决这个问题，我们重用了 V8 实例指针作为解压的基值（记住堆布局中的 V8 实例数据）。这个指针通常在运行时函数中可用，因此我们通过要求一个 V8 实例指针来简化 getter 代码，并恢复了性能回归：
 
 ```cpp
 DescriptorArray Map::instance_descriptors(const Isolate* isolate) const {
@@ -480,33 +480,33 @@ DescriptorArray Map::instance_descriptors(const Isolate* isolate) const {
 
   uint32_t compressed_da = *reinterpret_cast<uint32_t*>(field_address);
 
-  // No rounding is needed since the Isolate pointer is already the base.
+  // 不需要舍入，因为 Isolate 指针已经是基值。
   uintptr_t base = reinterpret_cast<uintptr_t>(isolate);
   uintptr_t da = DecompressTagged(base, compressed_value);
   return DescriptorArray(da);
 }
 ```
 
-## Results
+## 结果
 
-Let’s take a look at Pointer Compression’s final numbers! For these results, we use the same browsing tests that we introduced at the beginning of this blog post. As a reminder, they are browsing user stories that we found were representative of usage of real-world websites.
+让我们来看看指针压缩的最终数据！对于这些结果，我们使用了在本文开头介绍的浏览测试。提醒一下，这些是我们发现能代表真实网站使用情况的浏览用户行为。
 
-In them, we observed that Pointer Compression reduces **V8 heap size up to 43%**! In turn, it reduces **Chrome’s renderer process memory up to 20%** on Desktop.
+在这些测试中，我们观察到指针压缩最多减少了 **43% 的 V8 堆大小**！从而在桌面上最多减少了 **20% 的 Chrome 渲染器进程内存**。
 
-![Memory savings when browsing in Windows 10](/_img/pointer-compression/v8-heap-memory.svg)
+![浏览时的内存节省（Windows 10）](/_img/pointer-compression/v8-heap-memory.svg)
 
-Another important thing to notice is that not every website improves the same amount. For example, V8 heap memory used to be bigger on Facebook than New York Times, but with Pointer Compression it is actually the reverse. This difference can be explained by the fact that some websites have more Tagged values than others.
+另一个需要注意的重要点是，并不是每个网站都能有相同的改进。例如，V8 堆内存在 Facebook 上过去比纽约时报更大，但使用指针压缩后实际上情况反转了。这差异可以用某些网站拥有更多标记值来解释。
 
-In addition to these memory improvements we have also seen real-world performance improvements. On real websites we utilize less CPU and garbage collector time!
+除了这些内存改进，我们还看到了实际网站上的性能改进。我们在真实网站上使用较少的 CPU 和垃圾回收时间！
 
-![Improvements in CPU and garbage collection time](/_img/pointer-compression/performance-improvements.svg)
+![CPU 和垃圾回收时间的改进](/_img/pointer-compression/performance-improvements.svg)
 
-## Conclusion
+## 结论
 
-The journey to get here was no bed of roses but it was worth our while. [300+ commits](https://github.com/v8/v8/search?o=desc&q=repo%3Av8%2Fv8+%22%5Bptr-compr%5D%22&s=committer-date&type=Commits) later, V8 with Pointer Compression uses as much memory as if we were running a 32-bit application, while having the performance of a 64-bit one.
+到达这里的旅程并非轻松顺利，但这一切都值得。[300多次提交](https://github.com/v8/v8/search?o=desc&q=repo%3Av8%2Fv8+%22%5Bptr-compr%5D%22&s=committer-date&type=Commits)之后，启用了指针压缩的V8所使用的内存与运行32位应用程序时所需的内存一样少，但性能却达到了64位应用程序的水平。
 
-We are always looking forward to improving things, and have the following related tasks in our pipeline:
+我们始终致力于改进，并且在我们的计划中还有以下相关任务：
 
-- Improve quality of generated assembly code. We know that in some cases we can generate less code which should improve performance.
-- Address related performance regressions, including a mechanism which allows unboxing double fields again in a pointer-compression-friendly way.
-- Explore the idea of supporting bigger heaps, in the 8 to 16 GB range.
+- 提高生成汇编代码的质量。我们知道在某些情况下可以生成更少的代码，这将提高性能。
+- 解决相关的性能回退问题，包括提供一种机制，用指针压缩友好的方式重新支持解包双字段。
+- 探索支持更大堆内存的可能性，范围在8到16 GB之间。

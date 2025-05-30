@@ -1,24 +1,24 @@
 ---
-title: "V8 release v7.8"
-author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser)), the lazy sourcerer"
+title: "V8 发布 v7.8"
+author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))，懒惰的源代码术士"
 avatars: 
   - "ingvar-stepanyan"
 date: 2019-09-27
 tags: 
-  - release
-description: "V8 v7.8 features streaming compilation on preload, WebAssembly C API, faster object destructuring and RegExp matching, and improved startup times."
+  - 发布
+description: "V8 v7.8 的功能包括在预加载时的流式编译、WebAssembly C API、更快的对象解构和正则表达式匹配，以及改进的启动时间。"
 tweet: "1177600702861971459"
 ---
-Every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 7.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.8), which is in beta until its release in coordination with Chrome 78 Stable in several weeks. V8 v7.8 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
+每六周，我们会根据我们的[发布流程](/docs/release-process)创建一个新的 V8 分支。每个版本都是在 Chrome Beta 里程碑之前，从 V8 的 Git 主分支直接分离而来的。今天，我们很高兴宣布最新的分支[V8 版本 7.8](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.8)，该版本将处于 Beta 阶段，直到几周后与 Chrome 78 Stable 协同发布。V8 v7.8 包含各种面向开发者的改进。本文将预览一些亮点，以期待该版本发布。
 
 <!--truncate-->
-## JavaScript performance (size & speed)
+## JavaScript 性能（尺寸和速度）
 
-### Script streaming on preload
+### 在预加载时的脚本流式编译
 
-You might remember [our script streaming work from V8 v7.5](/blog/v8-release-75#script-streaming-directly-from-network), where we improved our background compilation to read data directly from the network. In Chrome 78, we are enabling script streaming during preload.
+您可能还记得[我们之前在 V8 v7.5 的脚本流式处理工作](/blog/v8-release-75#script-streaming-directly-from-network)，当时我们改进了背景编译以直接从网络读取数据。在 Chrome 78 中，我们将启用预加载期间的脚本流式处理。
 
-Previously, script streaming started when a `<script>` tag was encountered during HTML parsing, and the parsing would either pause until compilation finished (for normal scripts) or the script would execute once it finished compiling (for async scripts). This means that for normal, synchronous scripts like this:
+之前，脚本流式处理是在 HTML 解析过程中遇到 `<script>` 标签时开始的，解析会因编译完成而暂停（对于普通脚本），或者脚本会在编译完成后开始执行（对于异步脚本）。这意味着对于这样的普通同步脚本：
 
 ```html
 <!DOCTYPE html>
@@ -29,52 +29,52 @@ Previously, script streaming started when a `<script>` tag was encountered durin
 ...
 ```
 
-…the pipeline would previously look roughly like this:
+…处理流程以前大致是这样的：
 
 <figure>
   <img src="/_img/v8-release-78/script-streaming-0.svg" width="458" height="130" alt="" loading="lazy"/>
 </figure>
 
-Since synchronous scripts can use `document.write()`, we have to pause parsing the HTML when we see the `<script>` tag. Since compilation starts when the `<script>` tag is encountered, there’s a big gap between parsing the HTML and actually running the script, during which we can’t continue loading the page.
+由于同步脚本可以使用 `document.write()`，我们必须在看到 `<script>` 标签时暂停 HTML 的解析。因为编译是在遇到 `<script>` 标签时开始的，所以在解析 HTML 和实际运行脚本之间有一个很大的时间间隙，在此期间页面无法继续加载。
 
-However, we _also_ encounter the `<script>` tag in an earlier stage, where we scan the HTML looking for resources to preload, so the pipeline was really more like this:
+然而，我们在一个更早的阶段（扫描 HTML 时）就会遇到 `<script>` 标记，找到需要预加载的资源，所以实际流程更像是这样的：
 
 <figure>
   <img src="/_img/v8-release-78/script-streaming-1.svg" width="600" height="130" alt="" loading="lazy"/>
 </figure>
 
-It’s a reasonably safe assumption that if we preload a JavaScript file, we’ll want to execute it eventually. So, since Chrome 76, we’ve been experimenting with preload streaming, where loading the script also starts compiling it.
+如果我们预加载一个 JavaScript 文件，我们最终会执行它，这是一个相对安全的假设。所以，自从 Chrome 76 开始，我们就一直在尝试预加载流处理，其中加载脚本也会开始编译它。
 
 <figure>
   <img src="/_img/v8-release-78/script-streaming-2.svg" width="495" height="130" alt="" loading="lazy"/>
 </figure>
 
-Even better, since we can start compiling before the script finishes loading, the pipeline with preload streaming actually looks more like this:
+更好的是，由于我们可以在脚本尚未加载完时开始编译，带有预加载流处理的处理流程实际上看起来更像是这样的：
 
 <figure>
   <img src="/_img/v8-release-78/script-streaming-3.svg" width="480" height="217" alt="" loading="lazy"/>
 </figure>
 
-This means that in some cases we can reduce perceptible compilation time (the gap between `<script>`-tag-seen and script-starting-to-execute) down to zero. In our experiments, this perceptible compilation time dropped, on average, by 5–20%.
+这意味着在某些情况下，我们可以将可感知的编译时间（从看到 `<script>` 标签到脚本开始执行的时间间隔）减少到零。在我们的实验中，这种可感知的编译时间平均下降了 5-20%。
 
-The best news is that thanks to our experimentation infrastructure, we’ve been able to not only enable this by default in Chrome 78, but also turn it on it for users of Chrome 76 onwards.
+最好的消息是，由于我们的试验基础设施，我们不仅能够在 Chrome 78 中默认启用这一功能，还可以在 Chrome 76 及以后的版本中为用户启用这一功能。
 
-### Faster object destructuring
+### 更快的对象解构
 
-Object destructuring of the form…
+对象解构的形式是这样的…
 
 ```js
 const {x, y} = object;
 ```
 
-…is almost equivalent to the desugared form...
+…几乎等同于解糖后的形式…
 
 ```js
 const x = object.x;
 const y = object.y;
 ```
 
-…except that it also needs to throw a special error for `object` being `undefined` or `null`...
+…除了它还需要在 `object` 为 `undefined` 或 `null` 时抛出特殊错误…
 
 ```
 $ v8 -e 'const object = undefined; const {x, y} = object;'
@@ -83,7 +83,7 @@ const object = undefined; const {x, y} = object;
                                  ^
 ```
 
-…rather than the normal error you’d get when trying to dereference undefined:
+…而不是尝试引用 undefined 时会得到的普通错误：
 
 ```
 $ v8 -e 'const object = undefined; object.x'
@@ -92,38 +92,38 @@ const object = undefined; object.x
                                  ^
 ```
 
-This extra check made destructuring slower than simple variable assignment, as [reported to us via Twitter](https://twitter.com/mkubilayk/status/1166360933087752197).
+这个额外的检查使得解构比简单的变量赋值慢，如[通过 Twitter 向我们报告](https://twitter.com/mkubilayk/status/1166360933087752197)。
 
-As of V8 v7.8, object destructuring is **as fast** as the equivalent desugared variable assignment (in fact, we generate the same bytecode for both). Now, instead of explicit `undefined`/`null` checks, we rely on an exception being thrown when loading `object.x`, and we intercept the exception if it’s the result of destructuring.
+从 V8 v7.8 开始，对象解构的速度与等效的解糖后的变量赋值一样快（事实上，我们为两者生成了相同的字节码）。现在，与显式 `undefined`/`null` 检查不同，我们依赖在加载 `object.x` 时抛出的异常，并在解构时拦截该异常。
 
-### Lazy source positions
+### 懒惰的源码位置
 
-When compiling bytecode from JavaScript, source position tables are generated that tie bytecode sequences to character positions within the source code. However, this information is only used when symbolizing exceptions or performing developer tasks such as debugging and profiling and so this is largely wasted memory.
+在从JavaScript编译字节码时，会生成源码位置表，将字节码序列与源代码中的字符位置联系起来。然而，这些信息仅在符号化异常或进行调试与性能分析等开发者任务时使用，因此大部分情况下是浪费的内存。
 
-To avoid this, we now compile bytecode without collecting source positions (assuming no debugger or profiler is attached). The source positions are only collected when a stack trace is actually generated, for instance when calling `Error.stack` or printing an exception’s stack trace to the console. This does have some cost, as generating source positions requires the function to be reparsed and compiled, however most websites don’t symbolize stack traces in production and therefore don’t see any observable performance impact. In our lab testing we saw between 1-2.5% reductions in V8’s memory usage.
+为避免这种情况，我们现在在编译字节码时不再收集源码位置（假设没有附加调试器或性能分析器）。只有在实际生成堆栈跟踪时（例如调用`Error.stack`或将异常的堆栈跟踪打印到控制台时），才会收集源码位置。这确实会产生一些开销，因为生成源码位置需要对函数重新解析和编译，但大多数网站在生产环境中不会符号化堆栈跟踪，因此不会看到任何显著的性能影响。在我们的实验室测试中，V8的内存使用量减少了1-2.5%。
 
-![Memory savings from lazy source positions on an AndroidGo device](/_img/v8-release-78/memory-savings.svg)
+![在AndroidGo设备上，延迟加载源码位置带来的内存节省](/_img/v8-release-78/memory-savings.svg)
 
-### Faster RegExp match failures
+### 更快的正则表达式匹配失败
 
-Generally, a RegExp attempts to find a match by iterating forward through the input string and checking for a match starting from each position. Once that position gets close enough to the end of the string that no match is possible, V8 now (in most cases) stops trying to find possible beginnings of new matches, and instead quickly returns a failure. This optimization applies to both compiled and interpreted regular expressions, and yields a speedup on workloads where failure to find a match is common, and the minimum length of any successful match is relatively large compared to the average input string length.
+通常，正则表达式通过在输入字符串中向前迭代并从每个位置检查是否匹配来尝试找到匹配。一旦当前位置接近字符串末尾且不可能有匹配时，V8现在（在大多数情况下）会停止尝试寻找新的匹配起点，而是快速返回匹配失败的结果。此优化适用于已编译和解释的正则表达式，并在匹配失败常见且任何成功匹配的最小长度相对于平均输入字符串长度较大的工作负载中提升了速度。
 
-On the UniPoker test in JetStream 2, which inspired this work, V8 v7.8 brings a 20% improvement to the average-of-all-iterations subscore.
+在JetStream 2中的UniPoker测试中（该工作受到其启发），V8 v7.8使所有迭代的平均得分提高了20%。
 
 ## WebAssembly
 
 ### WebAssembly C/C++ API
 
-As of v7.8, V8’s implementation of the [Wasm C/C++ API](https://github.com/WebAssembly/wasm-c-api) graduates from experimental status to being officially supported. It allows you to use a special build of V8 as a WebAssembly execution engine in your C/C++ applications. No JavaScript involved! For more details and instructions, see [the documentation](https://docs.google.com/document/d/1oFPHyNb_eXg6NzrE6xJDNPdJrHMZvx0LqsD6wpbd9vY/edit).
+从v7.8开始，V8对[Wasm C/C++ API](https://github.com/WebAssembly/wasm-c-api)的实现从实验阶段升级为正式支持。它允许您在C/C++应用程序中使用V8的特殊构建作为WebAssembly执行引擎，而无需涉及JavaScript！有关更多详细信息和说明，请参阅[文档](https://docs.google.com/document/d/1oFPHyNb_eXg6NzrE6xJDNPdJrHMZvx0LqsD6wpbd9vY/edit)。
 
-### Improved startup time
+### 改善启动时间
 
-Calling a JavaScript function from WebAssembly or a WebAssembly function from JavaScript involves executing some wrapper code, responsible for translating the function's arguments from one representation to the other.  Generating these wrappers can be quite expensive: in the [Epic ZenGarden demo](https://s3.amazonaws.com/mozilla-games/ZenGarden/EpicZenGarden.html), compiling wrappers takes about 20% of the module startup time (compilation + instantiation) on an 18-core Xeon machine.
+从WebAssembly调用JavaScript函数或从JavaScript调用WebAssembly函数涉及执行一些包装代码，这些代码负责将函数的参数从一种表示形式转换为另一种。生成这些包装代码可能相当耗时：在[Epic ZenGarden演示](https://s3.amazonaws.com/mozilla-games/ZenGarden/EpicZenGarden.html)中，生成包装代码占模块启动时间（编译 + 实例化）的约20%（在一台18核的Xeon机器上）。
 
-For this release, we improved the situation by making better use of background threads on multi-core machines. We relied on recent efforts to [scale function compilation](/blog/v8-release-77#wasm-compilation), and integrated wrapper compilation into this new asynchronous pipeline. Wrapper compilation now accounts for about 8% of the Epic ZenGarden demo startup time on the same machine.
+在此次发布中，我们通过在多核机器上更好地利用后台线程来改善了这种情况。我们利用了最近在[缩放函数编译](/blog/v8-release-77#wasm-compilation)方面的努力，并将包装代码的编译集成到这一新的异步管道中。现在，包装代码的编译仅占Epic ZenGarden演示启动时间约8%（同样的机器上）。
 
 ## V8 API
 
-Please use `git log branch-heads/7.7..branch-heads/7.8 include/v8.h` to get a list of the API changes.
+请使用`git log branch-heads/7.7..branch-heads/7.8 include/v8.h`获取API更改的列表。
 
-Developers with an [active V8 checkout](/docs/source-code#using-git) can use `git checkout -b 7.8 -t branch-heads/7.8` to experiment with the new features in V8 v7.8. Alternatively you can [subscribe to Chrome’s Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+拥有[有效V8检出](/docs/source-code#using-git)的开发人员可以使用`git checkout -b 7.8 -t branch-heads/7.8`来尝试V8 v7.8中的新功能。或者，您可以[订阅Chrome的Beta频道](https://www.google.com/chrome/browser/beta.html)，并很快亲自尝试新功能。

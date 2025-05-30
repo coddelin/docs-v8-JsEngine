@@ -1,21 +1,21 @@
 ---
-title: "V8 release v4.9"
-author: "the V8 team"
+title: "V8 发布 v4.9"
+author: "V8团队"
 date: "2016-01-26 13:33:37"
 tags: 
-  - release
-description: "V8 v4.9 comes with an improved `Math.random` implementation and adds support for several new ES2015 language features."
+  - 发布
+description: "V8 v4.9 带来了改进的 `Math.random` 实现，并增加了对多个新的 ES2015 语言功能的支持。"
 ---
-Roughly every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before Chrome branches for a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 4.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.9), which will be in beta until it is released in coordination with Chrome 49 Stable. V8 4.9 is filled with all sorts of developer-facing goodies, so we’d like to give you a preview of some of the highlights in anticipation of the release in several weeks.
+大约每六周，我们会创建一个新的 V8 分支，作为 [发布流程](/docs/release-process) 的一部分。每个版本都会在 Chrome 为 Chrome Beta 里程碑分支之前立即从 V8 的 Git 主分支派生。今天我们很高兴地宣布我们的最新分支，[V8 版本 4.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/4.9)，该分支将在与 Chrome 49 稳定版同步发布之前处于 Beta 阶段。V8 4.9 充满了各种面向开发者的功能，因此在未来几周发布之前，我们希望为您预览一些亮点。
 
 <!--truncate-->
-## 91% ECMAScript 2015 (ES6) support
+## 91% ECMAScript 2015 (ES6) 支持
 
-In V8 release 4.9 we shipped more JavaScript ES2015 features than in any other previous release, bringing us to 91% completion as measured by the [Kangax compatibility table](https://kangax.github.io/compat-table/es6/) (as of January 26). V8 now supports destructuring, default parameters, Proxy objects, and the Reflect API. Release 4.9 also makes block level constructs such as `class` and `let` available outside of strict mode and adds support for the sticky flag on regular expressions and customizable `Object.prototype.toString` output.
+在 V8 v4.9 发布中，我们发布了比任何以前版本更多的 JavaScript ES2015 功能，根据 [Kangax 兼容性表](https://kangax.github.io/compat-table/es6/) (截至 1 月 26 日)，完成率达到了 91%。V8 现在支持解构赋值、默认参数、Proxy 对象和 Reflect API。版本 4.9 还使得诸如 `class` 和 `let` 等块级结构能够在非严格模式下使用，并增加了对正则表达式粘性标志和可自定义的 `Object.prototype.toString` 输出的支持。
 
-### Destructuring
+### 解构赋值
 
-Variable declarations, parameters, and assignments now support [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) of objects and arrays via patterns. For example:
+变量声明、参数和赋值现在支持通过模式对对象和数组进行 [解构](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)。例如：
 
 ```js
 const o = {a: [1, 2, 3], b: {p: 4}, c: {q: 5}};
@@ -25,27 +25,27 @@ function f({a, b}) { return [a, b]; }
 f({a: 4});                                      // [4, undefined]
 ```
 
-Array patterns can contain rest patterns that are assigned the remainder of the array:
+数组模式可以包含剩余模式，这些模式会被分配剩余的数组元素：
 
 ```js
 const [x, y, ...r] = [1, 2, 3, 4];              // x=1, y=2, r=[3,4]
 ```
 
-Furthermore, pattern elements can be given default values, which are used in case the respective property has no match:
+此外，模式元素可以设置默认值，用于在相应属性没有匹配时使用：
 
 ```js
 const {a: x, b: y = x} = {a: 4};                // x=4, y=4
-// or…
+// 或…
 const [x, y = 0, z = 0] = [1, 2];               // x=1, y=2, z=0
 ```
 
-Destructuring can be used to make accessing data from objects and arrays more compact.
+解构赋值可以用于使从对象和数组中访问数据更紧凑。
 
-### Proxies & Reflect
+### Proxy和Reflect
 
-After years of development, V8 now ships with a complete implementation of [proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), up-to-date with the ES2015 spec. Proxies are a powerful mechanism for virtualizing objects and functions through a set of developer-provided hooks to customize property accesses. In addition to object virtualization, proxies can be used to implement interception, add validation for property setting, simplify debugging and profiling, and unlock advanced abstractions like [membranes](http://tvcutsem.github.io/js-membranes/).
+经过多年的开发，V8 现在具备与 ES2015 规范一致的完整 [Proxy](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy) 实现。Proxy 是一种强大的机制，用于通过开发者提供的一组钩子自定义属性访问来虚拟化对象和函数。除了对象虚拟化之外，Proxy 还可以用于实现拦截、为属性设置添加验证、简化调试和分析，以及解锁高级抽象如 [membranes](http://tvcutsem.github.io/js-membranes/)。
 
-To proxy an object, you must create a handler placeholder object that defines various traps and apply it to the target object which the proxy virtualizes:
+要代理一个对象，需要创建一个处理器占位对象来定义各种陷阱，并将其应用于 Proxy 要虚拟化的目标对象：
 
 ```js
 const target = {};
@@ -60,31 +60,31 @@ foo.bar;
 // → 'Hello, bar!'
 ```
 
-The Proxy object is accompanied by the Reflect module, which defines suitable defaults for all proxy traps:
+Proxy 对象带有 Reflect 模块，该模块为所有代理陷阱定义了合适的默认行为：
 
 ```js
 const debugMe = new Proxy({}, {
   get(target, name, receiver) {
-    console.log(`Debug: get called for field: ${name}`);
+    console.log(`调试: get调用字段: ${name}`);
     return Reflect.get(target, name, receiver);
   },
   set(target, name, value, receiver) {
-    console.log(`Debug: set called for field: ${name}, and value: ${value}`);
+    console.log(`调试: set调用字段: ${name}, 并设置值: ${value}`);
     return Reflect.set(target, name, value, receiver);
   }
 });
 
 debugMe.name = 'John Doe';
-// Debug: set called for field: name, and value: John Doe
+// 调试: set调用字段: name, 并设置值: John Doe
 const title = `Mr. ${debugMe.name}`; // → 'Mr. John Doe'
-// Debug: get called for field: name
+// 调试: get调用字段: name
 ```
 
-For more information on the usage of Proxies and the Reflect API, see the examples section of the [MDN Proxy page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy#Examples).
+有关 Proxy 和 Reflect API 用法的更多信息，请参阅 [MDN Proxy 页面](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy#Examples) 的示例部分。
 
-### Default parameters
+### 默认参数
 
-In ES5 and below, optional parameters in function definitions required boilerplate code to check whether parameters were undefined:
+在 ES5 及以下版本中，函数定义中的可选参数需要使用样板代码来检查参数是否未定义：
 
 ```js
 function sublist(list, start, end) {
@@ -94,7 +94,7 @@ function sublist(list, start, end) {
 }
 ```
 
-ES2015 now allows function parameters to have [default values](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters), providing for clearer and more succinct function definitions:
+ES2015 现在允许函数参数具有 [默认值](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Default_parameters)，提供了更清晰和更简洁的函数定义：
 
 ```js
 function sublist(list, start = 0, end = list.length) { … }
@@ -102,23 +102,23 @@ sublist([1, 2, 3], 1);
 // sublist([1, 2, 3], 1, 3)
 ```
 
-Default parameters and destructuring can be combined, of course:
+默认参数和解构当然可以结合使用：
 
 ```js
 function vector([x, y, z] = []) { … }
 ```
 
-### Classes & lexical declarations in sloppy mode
+### 类 & 松散模式中的词法声明
 
-V8 has supported lexical declarations (`let`, `const`, block-local `function`) and classes since versions 4.1 and 4.2 respectively, but so far strict mode has been required in order to use them. As of V8 release 4.9, all of these features are now enabled outside of strict mode as well, per the ES2015 spec. This makes prototyping in the DevTools Console much easier, although we encourage developers in general to upgrade to strict mode for new code.
+V8自版本4.1和4.2起分别支持词法声明（`let`，`const`，块级局部`function`）和类，但迄今为止需要使用严格模式才能使用它们。从V8版本4.9开始，根据ES2015规范，这些功能在非严格模式下也可以使用。这使得在DevTools控制台中进行原型开发更加方便，尽管我们通常鼓励开发者为新代码升级到严格模式。
 
-### Regular expressions
+### 正则表达式
 
-V8 now supports the new [sticky flag](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky) on regular expressions. The sticky flag toggles whether searches in strings start from the beginning of the string (normal) or from the `lastIndex` property (sticky). This behavior is useful for efficiently parsing arbitrarily long input strings with many different regular expressions. To enable sticky searching, add the `y` flag to a regex: (e.g. `const regex = /foo/y;`).
+V8现在支持正则表达式的新[粘滞标志](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky)。粘滞标志切换搜索是在字符串开头（常规）还是从`lastIndex`属性开始（粘滞）。这种行为对于高效解析任意长的输入字符串以及使用多个不同的正则表达式非常有用。要启用粘滞搜索，只需在正则表达式中添加`y`标志：（例如：`const regex = /foo/y;`）。
 
-### Customizable `Object.prototype.toString` output
+### 可自定义的 `Object.prototype.toString` 输出
 
-Using `Symbol.toStringTag`, user-defined types can now return customized output when passed to `Object.prototype.toString` (either directly or as a result of string coercion):
+使用 `Symbol.toStringTag`，用户自定义类型现在可以在传递给 `Object.prototype.toString`（无论是直接还是作为字符串强制转换的结果）时返回自定义的输出：
 
 ```js
 class Custom {
@@ -132,12 +132,12 @@ String(new Custom);
 // → '[object Custom]'
 ```
 
-## Improved `Math.random()`
+## 改进的 `Math.random()`
 
-V8 v4.9 includes an improvement in the implementation of `Math.random()`. [As announced last month](/blog/math-random), we switched V8’s PRNG algorithm to [xorshift128+](http://vigna.di.unimi.it/ftp/papers/xorshiftplus.pdf) in order to provide higher-quality pseudo-randomness.
+V8 v4.9改进了`Math.random()`的实现。[如上月公告所示](/blog/math-random)，我们将V8的伪随机数生成器算法切换为[xorshift128+](http://vigna.di.unimi.it/ftp/papers/xorshiftplus.pdf)，以提供更高质量的伪随机性。
 
 ## V8 API
 
-Please check out our [summary of API changes](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit). This document gets regularly updated a few weeks after each major release.
+请查看我们的[API更改摘要](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit)。该文档通常会在每次主要版本发布几周后定期更新。
 
-Developers with an [active V8 checkout](https://v8.dev/docs/source-code#using-git) can use `git checkout -b 4.9 -t branch-heads/4.9` to experiment with the new features in V8 v4.9. Alternatively you can subscribe to [Chrome's Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+拥有[活动的V8检出副本](https://v8.dev/docs/source-code#using-git)的开发者可以使用`git checkout -b 4.9 -t branch-heads/4.9`来试验V8 v4.9中的新功能。或者，您可以订阅[Chrome的Beta频道](https://www.google.com/chrome/browser/beta.html)，并很快自行尝试新功能。

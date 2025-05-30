@@ -1,41 +1,41 @@
 ---
-title: "`at` method for relative indexing"
+title: "用于相对索引的`at`方法"
 author: "Shu-yu Guo ([@_shu](https://twitter.com/_shu))"
 avatars: 
   - "shu-yu-guo"
 date: 2021-07-13
 tags: 
   - ECMAScript
-description: "JavaScript now has a relative indexing method for Arrays, TypedArrays, and Strings."
+description: "JavaScript现在为数组、TypedArrays 和字符串新增了相对索引方法。"
 ---
 
-The new `at` method on `Array.prototype`, the various TypedArray prototypes, and `String.prototype` makes accessing an element nearer to the end of the collection easier and more succinct.
+新的`at`方法适用于`Array.prototype`、各种TypedArray原型和`String.prototype`，使得访问集合末尾附近的元素变得更容易和简洁。
 
-Accessing the Nth element from the end of a collection is a common operation. However, the usual ways to do so are verbose, like `my_array[my_array.length - N]`, or might not be performant, like `my_array.slice(-N)[0]`. The new `at` method makes this operation more ergonomic by interpreting negative indices to mean "from the end". The previous examples may be expressed as `my_array.at(-N)`.
+从集合末尾访问第N个元素是一种常见操作。然而，通常的做法较为冗长，比如`my_array[my_array.length - N]`，或者性能可能不佳，比如`my_array.slice(-N)[0]`。新的`at`方法通过解释负索引为“从末尾开始”使该操作更加符合人体工学。之前的示例可以表示为`my_array.at(-N)`。
 
 <!--truncate-->
-For uniformity, positive indices are also supported, and are equivalent to ordinary property access.
+为了统一性，也支持正索引，其等价于普通的属性访问。
 
-This new method is small enough that its full semantics may be understood by this compliant polyfill implementation below:
+这个新方法足够简单，其完整语义可以通过以下符合规范的polyfill实现来理解：
 
 ```js
 function at(n) {
-  // Convert the argument to an integer
+  // 将参数转换为整数
   n = Math.trunc(n) || 0;
-  // Allow negative indexing from the end
+  // 允许从末尾用负索引
   if (n < 0) n += this.length;
-  // Out-of-bounds access returns undefined
+  // 越界访问返回 undefined
   if (n < 0 || n >= this.length) return undefined;
-  // Otherwise, this is just normal property access
+  // 否则，这只是普通的属性访问
   return this[n];
 }
 ```
 
-## A word about Strings
+## 关于字符串的一点说明
 
-Since `at` ultimately performs ordinary indexing, calling `at` on String values returns code units, just as ordinary indexing would. And like ordinary indexing on Strings, code units may not be what you want for Unicode strings! Please consider if [`String.prototype.codePointAt()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt) is more appropriate for your use case.
+由于`at`最终执行的是普通的索引操作，在字符串值上调用`at`会返回代码单元，就像普通索引一样。不过，对于Unicode字符串，代码单元可能并不是你想要的！请考虑[`String.prototype.codePointAt()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt)是否更适合你的用例。
 
-## `at` method support
+## `at`方法支持情况
 
 <feature-support chrome="92"
                  firefox="90"

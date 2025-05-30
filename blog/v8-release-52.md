@@ -1,37 +1,37 @@
 ---
-title: "V8 release v5.2"
-author: "the V8 team"
+title: "V8 发布 v5.2"
+author: "V8 团队"
 date: "2016-06-04 13:33:37"
 tags: 
-  - release
-description: "V8 v5.2 includes support for ES2016 language features."
+  - 发布
+description: "V8 v5.2 包括对 ES2016 语言特性的支持。"
 ---
-Roughly every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before Chrome branches for a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 5.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.2), which will be in beta until it is released in coordination with Chrome 52 Stable. V8 5.2 is filled with all sorts of developer-facing goodies, so we’d like to give you a preview of some of the highlights in anticipation of the release in several weeks.
+大约每六周，我们会基于我们的[发布流程](/docs/release-process)创建一个新的 V8 分支。每个版本从 V8 的 Git 主分支直接分支而来，时间点正好在 Chrome 为 Chrome Beta 里程碑分支之前。今天，我们很高兴宣布我们的最新分支，[V8 版本 5.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/5.2)，它将在配合 Chrome 52 稳定版发布之前处于 Beta 状态。V8 5.2 包含了各种面向开发者的功能，因此我们想要提前预览一些亮点内容，以期几周后的发布。
 
 <!--truncate-->
-## ES2015 & ES2016 support
+## ES2015 和 ES2016 支持
 
-V8 v5.2 contains support for ES2015 (a.k.a. ES6) and ES2016 (a.k.a. ES7).
+V8 v5.2 包含对 ES2015（又称 ES6）和 ES2016（又称 ES7）的支持。
 
-### Exponentiation operator
+### 幂运算符
 
-This release contains support for the ES2016 exponentiation operator, an infix notation to replace `Math.pow`.
+此次发布包含对 ES2016 幂运算符的支持，这是对 `Math.pow` 的中缀表示替代。
 
 ```js
 let n = 3**3; // n == 27
 n **= 2; // n == 729
 ```
 
-### Evolving spec
+### 规范演进
 
-For more information on the complexities behind support for evolving specifications and continued standards discussion around web compatibility bugs and tail calls, see the V8 blog post [ES2015, ES2016, and beyond](/blog/modern-javascript).
+关于支持不断演进的规范以及围绕 Web 兼容性问题和尾调用的标准讨论的复杂性，更多信息请参见 V8 博客文章 [ES2015、ES2016 和更远](/blog/modern-javascript)。
 
-## Performance
+## 性能
 
-V8 v5.2 contains further optimizations to improve the performance of JavaScript built-ins, including improvements for Array operations like the isArray method, the in operator, and Function.prototype.bind. This is part of ongoing work to speed up built-ins based on new analysis of runtime call statistics on popular web pages. For more information, see the [V8 Google I/O 2016 talk](https://www.youtube.com/watch?v=N1swY14jiKc) and look for an upcoming blog post on performance optimizations gleaned from real-world websites.
+V8 v5.2 进一步优化了 JavaScript 内置函数的性能，包括对 Array 操作（如 isArray 方法、in 运算符和 Function.prototype.bind）的改进。这是基于对流行网页的运行时调用统计的新分析来加速内置函数的持续优化工作的一部分。更多信息请参见 [V8 Google I/O 2016 演讲](https://www.youtube.com/watch?v=N1swY14jiKc)，并关注即将发布的关于从实际网站中获取的性能优化的博客文章。
 
 ## V8 API
 
-Please check out our [summary of API changes](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit). This document gets regularly updated a few weeks after each major release.
+请查看我们的 [API 更改摘要](https://docs.google.com/document/d/1g8JFi8T_oAE_7uAri7Njtig7fKaPDfotU6huOa1alds/edit)。该文档通常会在每次重大发布的几周后定期更新。
 
-Developers with an [active V8 checkout](https://v8.dev/docs/source-code#using-git) can use `git checkout -b 5.2 -t branch-heads/5.2` to experiment with the new features in V8 v5.2. Alternatively you can [subscribe to Chrome's Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+拥有[活动 V8 检出](https://v8.dev/docs/source-code#using-git)的开发者可以使用 `git checkout -b 5.2 -t branch-heads/5.2` 体验 V8 v5.2 中的新功能。或者您可以[订阅 Chrome 的 Beta 频道](https://www.google.com/chrome/browser/beta.html)，并很快亲自试用这些新功能。

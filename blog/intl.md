@@ -1,5 +1,5 @@
 ---
-title: "Faster and more feature-rich internationalization APIs"
+title: "更快且功能更丰富的国际化 API"
 author: "[சத்யா குணசேகரன் (Sathya Gunasekaran)](https://twitter.com/_gsathya)"
 date: "2019-04-25 16:45:37"
 avatars: 
@@ -7,58 +7,58 @@ avatars:
 tags: 
   - ECMAScript
   - Intl
-description: "The JavaScript Internationalization API is growing, and its V8 implementation is getting faster!"
+description: "JavaScript 国际化 API 正在成长，其 V8 的实现变得更快了！"
 tweet: "1121424877142122500"
 ---
-[The ECMAScript Internationalization API Specification](https://tc39.es/ecma402/) (ECMA-402, or `Intl`) provides key locale-specific functionality such as date formatting, number formatting, plural form selection, and collation. The Chrome V8 and Google Internationalization teams have been collaborating on adding features to V8’s ECMA-402 implementation, while cleaning up technical debt and improving performance and interoperability with other browsers.
+[ECMAScript 国际化 API 规范](https://tc39.es/ecma402/) (ECMA-402，或 `Intl`) 提供了关键的区域特定功能，如日期格式化、数字格式化、复数形式选择和排序。Chrome V8 和 Google 国际化团队一直在合作，为 V8 的 ECMA-402 实现添加功能，同时清理技术债务并改善性能和与其他浏览器的互操作性。
 
 <!--truncate-->
-## Underlying architectural improvements
+## 底层架构改进
 
-Initially the ECMA-402 spec was implemented mostly in JavaScript using V8-extensions and lived outside the V8 codebase. Using the external Extension API meant that several of V8’s internally used APIs for type checking, lifetime management of external C++ objects and internal private data storage couldn’t be used. As part of improving startup performance, this implementation was later moved in to the V8 codebase to enable [snapshotting](/blog/custom-startup-snapshots) of these builtins.
+最初，ECMA-402 规范主要使用 V8 的扩展功能以 JavaScript 实现，并位于 V8 代码库之外。使用外部扩展 API 意味着 V8 内部用于类型检查、外部 C++ 对象的生命周期管理和内部私有数据存储的多个 API 无法使用。为了提高启动性能，这一实现后来被移入 V8 代码库，以启用这些内建功能的[快照生成](/blog/custom-startup-snapshots)。
 
-V8 uses specialized `JSObject`s with custom [shapes (hidden classes)](https://mathiasbynens.be/notes/shapes-ics) to describe built-in JavaScript objects specified by ECMAScript (like `Promise`s, `Map`s, `Set`s, etc). With this approach, V8 can pre-allocate the required number of internal slots and generate fast accesses to these, rather than grow the object one property at a time leading to slower performance and worse memory usage.
+V8 使用带有自定义[形状（隐藏类）](https://mathiasbynens.be/notes/shapes-ics)的特殊 `JSObject` 来描述 ECMAScript 指定的内置 JavaScript 对象（如 `Promise`、`Map`、`Set` 等）。通过这种方法，V8 可以预分配所需的内部槽并生成快速访问，而不是一次添加一个属性，从而导致性能下降和更差的内存使用。
 
-The `Intl` implementation was not modeled after such an architecture, as a consequence of the historic split. Instead, all the built-in JavaScript objects as specified by the Internationalization spec (like `NumberFormat`, `DateTimeFormat`) were generic `JSObject`s that had to transition through several property additions for their internal slots.
+`Intl` 的实现没有按照这种架构建模，这是由于历史上的分离所致。因此，国际化规范中指定的所有内置 JavaScript 对象（如 `NumberFormat`、`DateTimeFormat`）都是通用的 `JSObject`，需要通过添加多个属性来改变它们的内部槽。
 
-Another artifact of not having a specialized `JSObject`s was that type checking was now more complex. The type information was stored under a private symbol and type-checked on both the JS and C++ side using expensive property access, rather than just looking up its shape.
+没有专用 `JSObject` 的另一后果是类型检查变得更加复杂。类型信息存储在私有符号下，并通过昂贵的属性访问在 JS 和 C++ 端进行类型检查，而不是只查看其形状。
 
-### Modernizing the codebase
+### 现代化代码库
 
-With the current move away from writing self-hosted builtins in V8, it made sense to use this opportunity to modernize the ECMA402 implementation.
+随着目前逐渐远离在 V8 中编写自托管内建函数，现在正是现代化 ECMA402 实现的好时机。
 
-### Moving away from self-hosted JS
+### 摆脱自托管的 JS
 
-Although self-hosting lends itself to concise and readable code, the frequent usage of slow runtime calls to access ICU APIs led to performance issues. As a result, a lot of ICU functionality was duplicated in JavaScript to reduce the number of such runtime calls.
+虽然自托管使代码简洁且易于阅读，但频繁使用慢速运行时调用来访问 ICU API 导致了性能问题。因此，为了减少此类运行时调用的数量，很多 ICU 功能被重复实现于 JavaScript 中。
 
-By rewriting the builtins in C++, it became much faster to access the ICU APIs as there is no runtime call overhead now.
+通过在 C++ 中重写内建函数，现在访问 ICU API 更快了，因为没有运行时调用的额外开销。
 
-### Improving ICU
+### 改进 ICU
 
-ICU is a set of C/C++ libraries used by a large set of applications, including all the major JavaScript engines, for providing Unicode and globalization support. As part of switching `Intl` to ICU in V8’s implementation, we [found](https://unicode-org.atlassian.net/browse/ICU-20140) [and](https://unicode-org.atlassian.net/browse/ICU-9562) [fixed](https://unicode-org.atlassian.net/browse/ICU-20098) several ICU bugs.
+ICU 是一组 C/C++ 库，被包括所有主要 JavaScript 引擎在内的大量应用程序使用，用于提供 Unicode 和全球化支持。作为将 `Intl` 切换到 ICU 的 V8 实现的一部分，我们[发现](https://unicode-org.atlassian.net/browse/ICU-20140)了[许多](https://unicode-org.atlassian.net/browse/ICU-9562)[问题](https://unicode-org.atlassian.net/browse/ICU-20098)，并进行了修复。
 
-As part of implementing new proposals such as [`Intl.RelativeTimeFormat`](/features/intl-relativetimeformat), [`Intl.ListFormat`](/features/intl-listformat) and `Intl.Locale`, we’ve extended ICU by adding [several](https://unicode-org.atlassian.net/browse/ICU-13256) [new](https://unicode-org.atlassian.net/browse/ICU-20121) [APIs](https://unicode-org.atlassian.net/browse/ICU-20342) to support these new ECMAScript proposals.
+在实现新提案（例如 [`Intl.RelativeTimeFormat`](/features/intl-relativetimeformat)、[`Intl.ListFormat`](/features/intl-listformat) 和 `Intl.Locale`）的过程中，我们通过[增加](https://unicode-org.atlassian.net/browse/ICU-13256)[多个](https://unicode-org.atlassian.net/browse/ICU-20121)[新 API](https://unicode-org.atlassian.net/browse/ICU-20342) 来扩展 ICU，以支持这些新的 ECMAScript 提案。
 
-All of these additions help other JavaScript engines implement these proposals quicker now, pushing the web forward! For example, development is in progress in Firefox on implementing several new `Intl` APIs based on our ICU work.
+所有这些新增功能帮助其他 JavaScript 引擎更快地实现这些提案，将网络推向前进！例如，Firefox 正在基于我们的 ICU 工作实施多个新的 `Intl` API。
 
-## Performance
+## 性能
 
-As a result of this work, we improved the performance of the Internationalization API by optimizing several fast paths and caching the initialization of the various `Intl` objects and the `toLocaleString` methods on `Number.prototype`, `Date.prototype`, and `String.prototype`.
+由于这些工作，我们通过优化多个快速路径以及缓存各种 `Intl` 对象的初始化和 `Number.prototype`、`Date.prototype`、`String.prototype` 上的 `toLocaleString` 方法，提升了国际化 API 的性能。
 
-For example, creating a new `Intl.NumberFormat` object became around 24× faster.
+例如，创建一个新的 `Intl.NumberFormat` 对象变得快了约 24 倍。
 
-![[Microbenchmarks](https://cs.chromium.org/chromium/src/v8/test/js-perf-test/Intl/constructor.js) testing the performance of creating various `Intl` objects](/_img/intl/performance.svg)
+![[微基准测试](https://cs.chromium.org/chromium/src/v8/test/js-perf-test/Intl/constructor.js) 测试创建各种 `Intl` 对象的性能](/_img/intl/performance.svg)
 
-Note that for better performance, it’s recommended to explicitly create *and reuse* an `Intl.NumberFormat` or `Intl.DateTimeFormat` or `Intl.Collator` object, rather than calling methods like `toLocaleString` or `localeCompare`.
+请注意，为了更好的性能，建议显式创建 *并重复使用* `Intl.NumberFormat` 或 `Intl.DateTimeFormat` 或 `Intl.Collator` 对象，而不是调用像 `toLocaleString` 或 `localeCompare` 这样的方法。
 
-## New `Intl` features
+## 新的 `Intl` 功能
 
-All of this work has provided a great foundation to build new features on and we’re continuing to ship all the new Internationalization proposals that are in Stage 3.
+所有这些工作为构建新功能提供了良好的基础，我们正在继续发布所有处于第3阶段的新国际化提案。
 
-[`Intl.RelativeTimeFormat`](/features/intl-relativetimeformat) has shipped in Chrome 71, [`Intl.ListFormat`](/features/intl-listformat) has shipped in Chrome 72, [`Intl.Locale`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Locale) has shipped in Chrome 74, and [`dateStyle` and `timeStyle` options for `Intl.DateTimeFormat`](https://github.com/tc39/proposal-intl-datetime-style) and [BigInt support for `Intl.DateTimeFormat`](https://github.com/tc39/ecma402/pull/236) are shipping in Chrome 76. [`Intl.DateTimeFormat#formatRange`](https://github.com/tc39/proposal-intl-DateTimeFormat-formatRange), [`Intl.Segmenter`](https://github.com/tc39/proposal-intl-segmenter/), and [additional options for `Intl.NumberFormat`](https://github.com/tc39/proposal-unified-intl-numberformat/) are currently under development in V8, and we hope to ship them soon!
+[`Intl.RelativeTimeFormat`](/features/intl-relativetimeformat) 已在 Chrome 71 中推出，[`Intl.ListFormat`](/features/intl-listformat) 已在 Chrome 72 中推出，[`Intl.Locale`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Locale) 已在 Chrome 74 中推出，[`Intl.DateTimeFormat` 的 `dateStyle` 和 `timeStyle` 选项](https://github.com/tc39/proposal-intl-datetime-style)以及[为 `Intl.DateTimeFormat` 添加 BigInt 支持](https://github.com/tc39/ecma402/pull/236)已在 Chrome 76 中推出。[`Intl.DateTimeFormat#formatRange`](https://github.com/tc39/proposal-intl-DateTimeFormat-formatRange)、[`Intl.Segmenter`](https://github.com/tc39/proposal-intl-segmenter/) 和 [为 `Intl.NumberFormat` 添加更多选项](https://github.com/tc39/proposal-unified-intl-numberformat/)目前正在 V8 中开发，我们希望尽快发布它们！
 
-Many of these new APIs, and others further down the pipeline, are due to our work on standardizing new features to help developers with internationalization. [`Intl.DisplayNames`](https://github.com/tc39/proposal-intl-displaynames) is a Stage 1 proposal that allows users to localize the display names of language, region or script display names. [`Intl.DateTimeFormat#formatRange`](https://github.com/fabalbon/proposal-intl-DateTimeFormat-formatRange) is a Stage 3 proposal that specifies a way to format date ranges in a concise and locale-aware manner. [The unified `Intl.NumberFormat` API proposal](https://github.com/tc39/proposal-unified-intl-numberformat) is a Stage 3 proposal that improves `Intl.NumberFormat` by adding support for measurement units, currency and sign display policies, and scientific and compact notation. You can get involved in the future of ECMA-402 as well, by contributing at [its GitHub repository](https://github.com/tc39/ecma402).
+许多这些新的 API，以及其他正在研发中的功能，都是由于我们在标准化新特性方面的努力，以帮助开发人员进行国际化。[`Intl.DisplayNames`](https://github.com/tc39/proposal-intl-displaynames) 是一个第1阶段提案，允许用户本地化语言、地区或脚本显示名称的显示名称。[`Intl.DateTimeFormat#formatRange`](https://github.com/fabalbon/proposal-intl-DateTimeFormat-formatRange) 是一个第3阶段提案，规定一种能够以简洁和符合区域设置的方式格式化日期范围的方法。[统一的 `Intl.NumberFormat` API 提案](https://github.com/tc39/proposal-unified-intl-numberformat) 是一个第3阶段提案，通过支持测量单位、货币和符号显示策略以及科学和紧凑表示法来改进 `Intl.NumberFormat`。您也可以通过在 [其 GitHub 仓库](https://github.com/tc39/ecma402)上贡献来参与 ECMA-402 的未来发展。
 
-## Conclusion
+## 结论
 
-`Intl` provides a feature-rich API for several operations needed in internationalizing your web app, leaving the heavy lifting to the browser, without shipping as much data or code over the wire. Thinking through the proper use of these APIs can lead your UI to work better in different locales. Due to the work by the Google V8 and i18n teams in collaboration with TC39 and its ECMA-402 subgroup, you can now access more functionality with better performance, and expect further improvements over time.
+`Intl` 提供了一个功能丰富的 API，用于执行国际化所需的几项操作，将繁重的工作留给浏览器处理，无需通过网络传输过多的数据或代码。仔细思考这些 API 的正确使用可以使您的用户界面在不同区域设置中表现更好。由于 Google V8 和 i18n 团队与 TC39 及其 ECMA-402 子组的合作，您现在可以访问更多的功能、更好的性能，并期待随着时间的推移进一步改进。

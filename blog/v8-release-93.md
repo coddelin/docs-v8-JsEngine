@@ -1,45 +1,45 @@
 ---
-title: "V8 release v9.3"
+title: "V8版本9.3发布"
 author: "Ingvar Stepanyan ([@RReverser](https://twitter.com/RReverser))"
 avatars: 
  - "ingvar-stepanyan"
 date: 2021-08-09
 tags: 
- - release
-description: "V8 release v9.3 brings support for Object.hasOwn and Error causes, improves compilation performance and disables untrusted codegen mitigations on Android."
+ - 发布
+description: "V8版本9.3支持Object.hasOwn和Error原因，提升编译性能，并在Android上禁用不可信代码生成缓解措施。"
 tweet: ""
 ---
-Every six weeks, we create a new branch of V8 as part of our [release process](https://v8.dev/docs/release-process). Each version is branched from V8’s main Git branch immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 9.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.3), which is in beta until its release in coordination with Chrome 93 Stable in several weeks. V8 v9.3 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
+每六周我们都会在[发布流程](https://v8.dev/docs/release-process)的一部分中创建一个新的V8分支。每个版本都是在Chrome Beta里程碑之前，从V8的主Git分支分支出来的。今天，我们很高兴宣布我们的最新分支，[V8版本9.3](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/9.3)，将在接下来的几周内与Chrome 93稳定版协调发布之前进行beta测试。V8 v9.3包含各种面向开发者的实用功能。这篇文章对于一些重点功能提供了预览，以期待即将的发布。
 
 <!--truncate-->
 ## JavaScript
 
-### Sparkplug batch compilation
+### Sparkplug批量编译
 
-We released our super-fast new mid-tier JIT compiler [Sparkplug](https://v8.dev/blog/sparkplug) in v9.1. For security reasons V8 [write-protects](https://en.wikipedia.org/wiki/W%5EX) code memory that it generates, requiring it to flip permissions between writable (during compilation) and executable. This is currently implemented using `mprotect` calls. However, since Sparkplug generates code so quickly, the cost of calling `mprotect` for each individual compiled function became a major bottleneck in the compilation time. In V8 v9.3 we’re introducing batch compilation for Sparkplug: Instead of compiling each function individually, we compile multiple functions in a batch. This amortises the cost of flipping memory page permissions by doing it only once per batch.
+我们在v9.1中发布了超快的新中层JIT编译器[Sparkplug](https://v8.dev/blog/sparkplug)。出于安全考虑，V8对其生成的代码内存进行了[写保护](https://en.wikipedia.org/wiki/W%5EX)，在可写（编译期间）和可执行之间切换权限。这目前是通过调用`mprotect`实现的。然而，由于Sparkplug生成代码的速度非常快，为每个单独编译的函数调用`mprotect`的成本已成为编译时间的主要瓶颈。在V8 v9.3中，我们引入了Sparkplug的批量编译：而不是单独编译每个函数，我们改为批量编译多个函数。这通过每批只执行一次内存页权限切换来分摊成本。
 
-Batch compilation reduces overall compilation time (Ignition + Sparkplug) by up to 44% without regressing JavaScript execution. If we only look at the cost of compiling Sparkplug code the impact is obviously larger, e.g. a reduction of 82% for the `docs_scrolling` benchmark (see below) on Win 10. Surprisingly enough, batch compilation improved compilation performance by even more than the cost of W^X, since batching similar operations together tends to be better for the CPU anyway. In the chart below you can see the impact of W^X on compile time (Ignition + Sparkplug), and how well batch compilation mitigated that overhead.
+批量编译在不降低JavaScript执行性能的情况下，最多可将整体编译时间（Ignition + Sparkplug）减少44%。如果仅考虑编译Sparkplug代码的成本，影响显然更大，例如在Win 10上的`docs_scrolling`基准测试（见下图）中减少82%。令人惊讶的是，批量编译提升的编译性能甚至超过了W^X的成本，因为将相似的操作合并处理通常对CPU更有利。下图显示了W^X对编译时间（Ignition + Sparkplug）的影响，以及批量编译如何有效地缓解这种开销。
 
-![Benchmarks](/_img/v8-release-93/sparkplug.svg)
+![基准测试](/_img/v8-release-93/sparkplug.svg)
 
 ### `Object.hasOwn`
 
-`Object.hasOwn` is an easier-to-reach-for alias for `Object.prototype.hasOwnProperty.call`.
+`Object.hasOwn`是`Object.prototype.hasOwnProperty.call`更容易使用的别名。
 
-For example:
+例如：
 
 ```javascript
 Object.hasOwn({ prop: 42 }, 'prop')
 // → true
 ```
 
-Slightly more (but not much more!) details are available in our [feature explainer](https://v8.dev/features/object-has-own).
+有关稍微多一点（但并不多！）的详细信息，请查看我们的[功能说明](https://v8.dev/features/object-has-own)。
 
-### Error cause
+### Error原因
 
-Starting in v9.3, the various built-in `Error` constructors are extended to accept an options bag with a `cause` property for the second parameter. If such an options bag is passed, the value of the `cause` property is installed as an own property on the `Error` instance. This provides a standardized way to chain errors.
+从v9.3开始，各种内置的`Error`构造函数扩展为可接受一个带有`cause`属性的选项包作为第二个参数。如果传递了这样的选项包，`cause`属性的值将作为该`Error`实例的自有属性安装。这为链式错误提供了一种标准化的方法。
 
-For example:
+例如：
 
 ```javascript
 const parentError = new Error('parent');
@@ -48,18 +48,16 @@ console.log(error.cause === parentError);
 // → true
 ```
 
-As usual, please see our more in-depth [feature explainer](https://v8.dev/features/error-cause).
+如往常一样，请参阅我们更深入的[功能说明](https://v8.dev/features/error-cause)。
 
-## Untrusted code mitigations disabled on Android
+## 禁用Android上的不可信代码缓解措施
 
-Three years ago we introduced a set of [code generation mitigations](https://v8.dev/blog/spectre) to defend against Spectre attacks. We always realized that this was a temporary stop-gap that only provided partial protection against [Spectre](https://spectreattack.com/spectre.pdf) attacks. The only effective protection is to isolate websites via [Site Isolation](https://blog.chromium.org/2021/03/mitigating-side-channel-attacks.html).  Site Isolation has been enabled on Chrome on desktop devices for some time, however enabling full Site Isolation on Android has been more of a challenge due to resource constraints. However, as of Chrome 92, [Site Isolation on Android](https://security.googleblog.com/2021/07/protecting-more-with-site-isolation.html) has been enabled on many more sites that contain sensitive data.
+三年前，我们推出了一系列[代码生成缓解措施](https://v8.dev/blog/spectre)，以抵御Spectre攻击。我们始终意识到这是一个临时的权宜之计，仅能部分防御[Spectre](https://spectreattack.com/spectre.pdf)攻击。唯一有效的保护方法是通过[站点隔离](https://blog.chromium.org/2021/03/mitigating-side-channel-attacks.html)隔离网站。站点隔离已经在桌面设备上的Chrome中启用了一段时间，但是由于资源限制，在Android上启用完整的站点隔离是一项更大的挑战。然而，从Chrome 92开始，[Android上的站点隔离](https://security.googleblog.com/2021/07/protecting-more-with-site-isolation.html)已在更多包含敏感数据的网站上启用。
 
-Thus, we have decided to disable V8’s code generation mitigations for Spectre on Android. These mitigations are less effective than Site Isolation and impose a performance cost. Disabling them brings Android on par with desktop platforms, where they have been turned off since V8 v7.0. By disabling these mitigations we have seen some significant improvements in benchmark performance on Android.
+因此，我们决定在Android上禁用V8的Spectre代码生成缓解措施。这些缓解措施比站点隔离效果较弱，并且带来了性能成本。禁用这些缓解措施使Android的表现与桌面平台一致；在这些平台上，相关缓解措施自V8 v7.0起已被关闭。通过禁用这些缓解措施，我们在Android上的基准性能测试中看到了显著的改进。
 
-![Performance improvements](/_img/v8-release-93/code-mitigations.svg)
+![性能提升](/_img/v8-release-93/code-mitigations.svg)
 
 ## V8 API
 
-Please use `git log branch-heads/9.2..branch-heads/9.3 include/v8.h` to get a list of the API changes.
-
-Developers with an active V8 checkout can use `git checkout -b 9.3 -t branch-heads/9.3` to experiment with the new features in V8 v9.3. Alternatively you can [subscribe to Chrome’s Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+请使用`git log branch-heads/9.2..branch-heads/9.3 include/v8.h`获取API更改列表。

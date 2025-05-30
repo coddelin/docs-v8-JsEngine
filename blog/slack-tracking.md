@@ -1,17 +1,17 @@
 ---
-title: "Slack tracking in V8"
-author: "Michael Stanton ([@alpencoder](https://twitter.com/alpencoder)), renowned master of *slack*"
-description: "A detailed look into the V8 slack tracking mechanism."
+title: "V8中的Slack追踪"
+author: "Michael Stanton ([@alpencoder](https://twitter.com/alpencoder))，备受尊敬的*Slack*大师"
+description: "深入了解V8的Slack追踪机制。"
 avatars: 
  - "michael-stanton"
 date: "2020-09-24 14:00:00"
 tags: 
  - internals
 ---
-Slack tracking is a way to give new objects an initial size that is **larger than what they may actually use**, so they can have new properties added quickly. And then, after some period of time, to **magically return that unused space to the system**. Neat, huh?
+Slack追踪是一种为新对象分配**比它们实际需要更大的初始大小**的方法，以便快速添加新属性。然后，在一段时间后，**神奇地将未使用的空间归还给系统**。很酷吧？
 
 <!--truncate-->
-It’s especially useful because JavaScript doesn’t have static classes. The system can never see “at a glance” how many properties you have. The engine experiences them one by one. So when you read:
+这尤其有用，因为JavaScript没有静态类。系统无法“一眼看出”你有多少属性。引擎是一点点体验它们的。所以，当你读取:
 
 ```js
 function Peak(name, height) {
@@ -22,27 +22,27 @@ function Peak(name, height) {
 const m1 = new Peak('Matterhorn', 4478);
 ```
 
-You might think the engine has all it needs to perform well — you’ve told it the object has two properties, after all. However, V8 really has no idea what will come next. This object `m1` could be passed to another function that adds 10 more properties to it. Slack tracking comes out of this need to be responsive to whatever comes next in an environment without static compilation to infer overall structure. It’s like many other mechanisms in V8, whose basis is only things you can generally say about execution, like:
+你可能会认为引擎已经拥有了良好性能所需的一切——毕竟你告诉了它该对象有两个属性。然而，V8实际上并不知道接下来会发生什么。这个对象`m1`可能会被传递给其他函数，并向其添加10个新的属性。Slack追踪正是为了解决这种需求，即在没有静态编译来推断整体结构的环境中响应接下来发生的事情。这与V8中的许多机制类似，其基础只是你通常可以对执行提出的一些一般性观点，比如：
 
-- Most objects die soon, few live long — the garbage collection “generational hypothesis”.
-- The program does indeed have an organizational structure — we build [shapes or “hidden classes”](https://mathiasbynens.be/notes/shapes-ics) (we call these **maps** in V8) into the objects we see the programmer uses because we believe they will be useful. *BTW, [Fast Properties in V8](/blog/fast-properties) is a great post with interesting details about maps and property access.*
-- Programs have an initialization state, when everything is new and it’s hard to tell what’s important. Later, the important classes and functions can be identified through their steady use — our feedback regime and compiler pipeline grow out of this idea.
+- 大多数对象很快会死亡，仅少数存活很久——垃圾回收的“代假设”。
+- 程序确实有组织结构——我们为开发者使用的对象构建了[形状或“隐藏类”](https://mathiasbynens.be/notes/shapes-ics)（在V8中我们称这些为**map**），因为我们相信它们会有用。*顺便说一句，[Fast Properties in V8](/blog/fast-properties) 是一篇很棒的文章，提供了关于map和属性访问的有趣细节。*
+- 程序有一个初始化状态，当一切都是新的时，很难看出什么是重要的。后来，通过稳定使用可以识别出重要的类和函数——我们的反馈机制和编译器管道正是由这个理念发展而来的。
 
-Finally, and most importantly, the runtime environment must be very fast, otherwise we’re just philosophizing.
+最后，最重要的是，运行时环境必须非常快，否则我们只是在进行哲学讨论。
 
-Now, V8 could simply store properties in a backing store attached to the main object. Unlike properties that live directly in the object, this backing store can grow indefinitely through copying and replacing the pointer. However the fastest access to a property comes by avoiding that indirection and looking at a fixed offset from the start of the object. Below, I show the layout of a plain ol’ JavaScript object in the V8 heap with two in-object properties. The first three words are standard in every object (a pointer to the map, to the properties backing store, and to the elements backing store). You can see that the object can’t “grow” because it’s hard up against the next object in the heap:
+现在，V8可以简单地将属性存储在附加到主对象的后备存储中。与直接位于对象中的属性不同，这种后备存储可以通过复制和替换指针无限扩展。然而，访问属性的最快方式是避免这种间接访问，并在对象起始处的固定偏移处查找。下面，我展示了在V8堆中普通JavaScript对象的布局，其中有两个对象内属性。前三个字是每个对象中的标准内容（一个指向map的指针，一个指向属性后备存储的指针，和一个指向元素后备存储的指针）。你可以看到，该对象无法“增长”，因为它紧贴堆中的下一个对象：
 
 ![](/_img/slack-tracking/property-layout.svg)
 
 :::note
-**Note:** I left out the details of the property backing store because the only thing important about it for the moment is that it can be replaced at any time with a larger one. However, it too is an object on the V8 heap and has a map pointer like all objects that reside there.
+**注意:** 我省略了属性后备存储的详细信息，因为此刻唯一重要的是它可以随时被替换为更大的存储。然而，它也是V8堆中的一个对象，并且像所有驻留对象一样有一个map指针。
 :::
 
-So anyway, because of the performance provided by in-object properties, V8 is willing to give you extra space in each object, and **slack tracking** is the way it’s done. Eventually, you’ll settle down, stop adding new properties, and get down to the business of mining bitcoin or whatever.
+总之，由于对象内属性提供的性能，V8愿意在每个对象中给你额外空间，而**Slack追踪**是完成此操作的方法。最终，你会稳定下来，不再添加新属性，并开始挖掘比特币或做其他事情。
 
-How much “time” does V8 give you? Cleverly, it considers the number of times you’ve constructed a particular object. In fact, there is a counter in the map, and it’s initialized with one of the more mystical magic numbers in the system: **seven**.
+V8给了你多少“时间”？很巧妙，它考虑了你构造特定对象的次数。实际上，映射中有一个计数器，并以系统中一个更神秘的魔法数字**七**初始化。
 
-Another question: how does V8 know how much extra space in the object body to provide? It actually gets a hint from the compilation process, which offers an estimated number of properties to start with. This calculation includes the number of properties from the prototype object, going up the chain of prototypes recursively. Finally, for good measure it adds **eight** more (another magic number!). You can see this in `JSFunction::CalculateExpectedNofProperties()`:
+另一个问题：V8如何知道为对象体提供多少额外空间？它实际上从编译过程获得提示，编译过程提供了一个初始属性数的估算值。此计算包括从原型对象的属性数量，并递归向上遍历原型链。最后，为了确保有余量，它再添加了**八**个（另一个魔法数字！）。你可以在`JSFunction::CalculateExpectedNofProperties()`中看到这一点：
 
 ```cpp
 int JSFunction::CalculateExpectedNofProperties(Isolate* isolate,
@@ -55,8 +55,8 @@ int JSFunction::CalculateExpectedNofProperties(Isolate* isolate,
     if (!current->IsJSFunction()) break;
     Handle<JSFunction> func = Handle<JSFunction>::cast(current);
 
-    // The super constructor should be compiled for the number of expected
-    // properties to be available.
+    // 超类构造函数应该为期望的属性数量进行编译。
+    // 这是为了确保这些属性可用。
     Handle<SharedFunctionInfo> shared(func->shared(), isolate);
     IsCompiledScope is_compiled_scope(shared->is_compiled_scope(isolate));
     if (is_compiled_scope.is_compiled() ||
@@ -64,22 +64,20 @@ int JSFunction::CalculateExpectedNofProperties(Isolate* isolate,
                           &is_compiled_scope)) {
       DCHECK(shared->is_compiled());
       int count = shared->expected_nof_properties();
-      // Check that the estimate is sensible.
+      // 检查估算值是否合理。
       if (expected_nof_properties <= JSObject::kMaxInObjectProperties - count) {
         expected_nof_properties += count;
       } else {
         return JSObject::kMaxInObjectProperties;
       }
     } else {
-      // In case there was a compilation error proceed iterating in case there
-      // will be a builtin function in the prototype chain that requires
-      // certain number of in-object properties.
+      // 如果发生编译错误，继续迭代，
+      // 以防原型链中存在需要某些数量内置属性的内建函数。
       continue;
     }
   }
-  // In-object slack tracking will reclaim redundant inobject space
-  // later, so we can afford to adjust the estimate generously,
-  // meaning we over-allocate by at least 8 slots in the beginning.
+  // 对象中剩余空间的跟踪将在稍后回收多余的对象空间，
+  // 所以我们可以宽松地调整估算值，在开始时至少多分配8个插槽。
   if (expected_nof_properties > 0) {
     expected_nof_properties += 8;
     if (expected_nof_properties > JSObject::kMaxInObjectProperties) {
@@ -90,7 +88,7 @@ int JSFunction::CalculateExpectedNofProperties(Isolate* isolate,
 }
 ```
 
-Let’s have a look at our object `m1` from before:
+让我们回顾一下之前的对象 `m1`：
 
 ```js
 function Peak(name, height) {
@@ -101,7 +99,7 @@ function Peak(name, height) {
 const m1 = new Peak('Matterhorn', 4478);
 ```
 
-By the calculation in `JSFunction::CalculateExpectedNofProperties` and our `Peak()` function, we should have 2 in-object properties, and thanks to slack tracking, another 8 extra. We can print `m1` with `%DebugPrint()` (_this handy function exposes the map structure. You can use it by running `d8` with the flag `--allow-natives-syntax`_):
+根据 `JSFunction::CalculateExpectedNofProperties` 的计算以及我们的 `Peak()` 函数，我们应该拥有2个对象内的属性，再加上由于 slack tracking 特性，多增加8个。我们可以使用 `%DebugPrint()` 打印 `m1`（这个实用函数暴露了映射结构。可以通过带标志 `--allow-natives-syntax` 执行 `d8` 使用它）：
 
 ```
 > %DebugPrint(m1);
@@ -130,26 +128,26 @@ DebugPrint: 0x49fc866d: [JS_OBJECT_TYPE]
  - construction counter: 6
 ```
 
-Note the instance size of the object is 52. Object layout in V8 is like so:
+注意对象的实例大小是52。V8中的对象布局如下：
 
-| word | what                                                 |
+| word | 内容                                                  |
 | ---- | ---------------------------------------------------- |
-| 0    | the map                                              |
-| 1    | pointer to the properties array                      |
-| 2    | pointer to the elements array                        |
-| 3    | in-object field 1 (pointer to string `"Matterhorn"`) |
-| 4    | in-object field 2 (integer value `4478`)             |
-| 5    | unused in-object field 3                             |
-| …    | …                                                    |
-| 12   | unused in-object field 10                            |
+| 0    | 映射                                                 |
+| 1    | 指向属性数组的指针                                   |
+| 2    | 指向元素数组的指针                                   |
+| 3    | 对象内字段1（指向字符串 `"Matterhorn"` 的指针）      |
+| 4    | 对象内字段2（整数值 `4478`）                         |
+| 5    | 未使用的对象内字段3                                  |
+| …    | …                                                   |
+| 12   | 未使用的对象内字段10                                 |
 
-Pointer size is 4 in this 32-bit binary, so we’ve got those 3 initial words that every ordinary JavaScript object has, and then 10 extra words in the object. It tells us above, helpfully, that there are 8 “unused property fields”. So, we are experiencing slack tracking. Our objects are bloated, greedy consumers of precious bytes!
+在这个32位的二进制中，指针大小为4，所以我们有普通JavaScript对象的3个初始字，以及对象中10个额外字。它随后告诉我们，有8个“未使用的属性字段”。所以，我们正在经历 slack tracking。我们的对象膨胀了，贪婪地消耗宝贵的字节！
 
-How do we slim down? We use the construction counter field in the map. We reach zero and then decide we are done with slack tracking. However, if you construct more objects, you won’t see the counter above decreasing. Why?
+我们如何减小它？我们使用映射中的构造计数器字段。构造计数器达到零后，我们决定不再使用 slack tracking。然后，如果你构造更多的对象，你不会看到上面的计数器减少。为什么？
 
-Well, it’s because the map displayed above is not “the” map for a `Peak` object. It’s only a leaf map in a chain of maps descending from the **initial map** that the `Peak` object is given before executing the constructor code.
+这是因为上面显示的映射并不是 `Peak` 对象的“映射”。它只是映射链中从**初始映射**开始的一个叶子映射，而`Peak`对象在执行构造函数代码之前被赋予了初始映射。
 
-How to find the initial map? Happily, the function `Peak()` has a pointer to it. It’s the construction counter in the initial map that we use to control slack tracking:
+如何找到初始映射？幸运的是，函数 `Peak()` 有一个指针指向它。我们使用初始映射中的构造计数器来控制 slack tracking：
 
 ```
 > %DebugPrint(Peak);
@@ -158,41 +156,41 @@ DebugPrint: 0x31c12561: [Function] in OldSpace
  - map: 0x2a2821f5 <Map(HOLEY_ELEMENTS)> [FastProperties]
  - prototype: 0x31c034b5 <JSFunction (sfi = 0x36108421)>
  - elements: 0x28c821a1 <FixedArray[0]> [HOLEY_ELEMENTS]
- - function prototype: 0x37449c89 <Object map = 0x2a287335>
- - initial_map: 0x46f07295 <Map(HOLEY_ELEMENTS)>   // Here's the initial map.
- - shared_info: 0x31c12495 <SharedFunctionInfo Peak>
- - name: 0x31c12405 <String[4]: #Peak>
+ - 函数原型: 0x37449c89 <对象映射 = 0x2a287335>
+ - 初始映射: 0x46f07295 <映射(HOLEY_ELEMENTS)>   // 这是初始映射。
+ - 共享信息: 0x31c12495 <共享函数信息 Peak>
+ - 名称: 0x31c12405 <字符串[4]: #Peak>
 …
 
-d8> // %DebugPrintPtr allows you to print the initial map.
+d8> // %DebugPrintPtr 允许您打印初始映射。
 d8> %DebugPrintPtr(0x46f07295)
-DebugPrint: 0x46f07295: [Map]
- - type: JS_OBJECT_TYPE
- - instance size: 52
- - inobject properties: 10
- - elements kind: HOLEY_ELEMENTS
- - unused property fields: 10
- - enum length: invalid
- - back pointer: 0x28c02329 <undefined>
- - prototype_validity cell: 0x47f0232d <Cell value= 1>
- - instance descriptors (own) #0: 0x28c02135 <DescriptorArray[0]>
- - transitions #1: 0x46f0735d <Map(HOLEY_ELEMENTS)>
-     0x28c046f9: [String] in ReadOnlySpace: #name:
-         (transition to (const data field, attrs: [WEC]) @ Any) ->
-             0x46f0735d <Map(HOLEY_ELEMENTS)>
- - prototype: 0x5cc09c7d <Object map = 0x46f07335>
- - constructor: 0x21e92561 <JSFunction Peak (sfi = 0x21e92495)>
- - dependent code: 0x28c0212d <Other heap object (WEAK_FIXED_ARRAY_TYPE)>
- - construction counter: 5
+DebugPrint: 0x46f07295: [映射]
+ - 类型: JS_OBJECT_TYPE
+ - 实例大小: 52
+ - 对象内属性数量: 10
+ - 元素类型: HOLEY_ELEMENTS
+ - 未使用的属性字段数量: 10
+ - 枚举长度: 无效
+ - 回指: 0x28c02329 <未定义>
+ - 原型有效性单元: 0x47f0232d <单元值= 1>
+ - 实例描述符（自有）#0: 0x28c02135 <描述符数组[0]>
+ - 转换 #1: 0x46f0735d <映射(HOLEY_ELEMENTS)>
+     0x28c046f9: [字符串] 在 ReadOnlySpace 中: #名称:
+         (转换到(常量数据字段, 属性: [WEC]) @ Any) ->
+             0x46f0735d <映射(HOLEY_ELEMENTS)>
+ - 原型: 0x5cc09c7d <对象映射 = 0x46f07335>
+ - 构造函数: 0x21e92561 <JS函数 Peak (sfi = 0x21e92495)>
+ - 依赖代码: 0x28c0212d <其他堆对象 (WEAK_FIXED_ARRAY_TYPE)>
+ - 构造计数器: 5
 ```
 
-See how the construction counter is decremented to 5? If you’d like to find the initial map from the two-property map we showed above, you can follow its back pointer with the help of `%DebugPrintPtr()` until you reach a map with `undefined` in the back pointer slot. That will be this map above.
+看到构造计数器减少到5了吗？如果您希望从我们上面展示的两属性映射中找到初始映射，可以使用%DebugPrintPtr() 通过其回指直到找到一个在回指槽中包含`undefined`的映射。那就是上方的映射。
 
-Now, a map tree grows from the initial map, with a branch for each property added from that point. We call these branches _transitions_. In the above printout of the initial map, do you see the transition to the next map with the label “name”? The whole map tree thus far looks like this:
+现在，一棵映射树从初始映射开始成长，每次添加属性都会分出一个分支。我们称这些分支为过渡。在上面的初始映射打印中，您是否看到带有标签“名称”的过渡到下一个映射？直到目前为止，整个映射树看起来像这样：
 
-![(X, Y, Z) means (instance size, number of in-object properties, number of unused properties).](/_img/slack-tracking/root-map-1.svg)
+![(X, Y, Z) 表示 (实例大小, 对象内属性数量, 未使用属性数量).](/_img/slack-tracking/root-map-1.svg)
 
-These transitions based on property names are how the [“blind mole”](https://www.google.com/search?q=blind+mole&tbm=isch)" of JavaScript builds its maps behind you. This initial map is also stored in the function `Peak`, so when it’s used as a constructor, that map can be used to set up the `this` object.
+基于属性名称的这些过渡是JavaScript如何在后台构建其映射的。此初始映射还存储在函数 `Peak` 中，因此当它被用作构造函数时，可以使用该映射来设置 `this` 对象。
 
 ```js
 const m1 = new Peak('Matterhorn', 4478);
@@ -204,71 +202,71 @@ const m6 = new Peak('Watzmann', 2713);
 const m7 = new Peak('Eiger', 3970);
 ```
 
-The cool thing here is that after creating `m7`, running `%DebugPrint(m1)` again produces a marvellous new result:
+这里的妙处在于，在创建`m7`之后，再次运行`%DebugPrint(m1)`会产生一个奇妙的新结果：
 
 ```
 DebugPrint: 0x5cd08751: [JS_OBJECT_TYPE]
- - map: 0x4b387385 <Map(HOLEY_ELEMENTS)> [FastProperties]
- - prototype: 0x5cd086cd <Object map = 0x4b387335>
- - elements: 0x586421a1 <FixedArray[0]> [HOLEY_ELEMENTS]
- - properties: 0x586421a1 <FixedArray[0]> {
-    0x586446f9: [String] in ReadOnlySpace: #name:
-        0x51112439 <String[10]: #Matterhorn> (const data field 0)
-    0x51112415: [String] in OldSpace: #height:
-        4478 (const data field 1)
+ - 映射: 0x4b387385 <映射(HOLEY_ELEMENTS)> [FastProperties]
+ - 原型: 0x5cd086cd <对象映射 = 0x4b387335>
+ - 元素: 0x586421a1 <固定数组[0]> [HOLEY_ELEMENTS]
+ - 属性: 0x586421a1 <固定数组[0]> {
+    0x586446f9: [字符串] 在 ReadOnlySpace 中: #名称:
+        0x51112439 <字符串[10]: #Matterhorn> (常量数据字段 0)
+    0x51112415: [字符串] 在 OldSpace 中: #高度:
+        4478 (常量数据字段 1)
  }
-0x4b387385: [Map]
- - type: JS_OBJECT_TYPE
- - instance size: 20
- - inobject properties: 2
- - elements kind: HOLEY_ELEMENTS
- - unused property fields: 0
- - enum length: invalid
- - stable_map
- - back pointer: 0x4b38735d <Map(HOLEY_ELEMENTS)>
- - prototype_validity cell: 0x511128dd <Cell value= 0>
- - instance descriptors (own) #2: 0x5cd087e5 <DescriptorArray[2]>
- - prototype: 0x5cd086cd <Object map = 0x4b387335>
- - constructor: 0x511127cd <JSFunction Peak (sfi = 0x511125f5)>
- - dependent code: 0x5864212d <Other heap object (WEAK_FIXED_ARRAY_TYPE)>
- - construction counter: 0
+0x4b387385: [映射]
+ - 类型: JS_OBJECT_TYPE
+ - 实例大小: 20
+ - 对象内属性数量: 2
+ - 元素类型: HOLEY_ELEMENTS
+ - 未使用的属性字段数量: 0
+ - 枚举长度: 无效
+ - 稳定映射
+ - 回指: 0x4b38735d <映射(HOLEY_ELEMENTS)>
+ - 原型有效性单元: 0x511128dd <单元值= 0>
+ - 实例描述符（自有）#2: 0x5cd087e5 <描述符数组[2]>
+ - 原型: 0x5cd086cd <对象映射 = 0x4b387335>
+ - 构造函数: 0x511127cd <JS函数 Peak (sfi = 0x511125f5)>
+ - 依赖代码: 0x5864212d <其他堆对象 (WEAK_FIXED_ARRAY_TYPE)>
+ - 构造计数器: 0
 ```
 
-Our instance size is now 20, which is 5 words:
+我们的实例大小现在是20，即5个字：
 
-| word | what                            |
-| ---- | ------------------------------- |
-| 0    | the map                         |
-| 1    | pointer to the properties array |
-| 2    | pointer to the elements array   |
-| 3    | name                            |
-| 4    | height                          |
+| 字 | 内容                           |
+| ---- | ------------------------------ |
+| 0    | 映射                          |
+| 1    | 指向属性数组的指针            |
+| 2    | 指向元素数组的指针            |
+| 3    | 名称                          |
+| 4    | 高度                          |
 
-You’ll wonder how this happened. After all, if this object is laid out in memory, and used to have 10 properties, how can the system tolerate these 8 words laying around with no one to own them? It’s true that we never filled them with anything interesting — maybe that can help us.
+您可能会好奇这是如何发生的。毕竟，如果这个对象在内存中布局，并且过去有10个属性，系统怎么能容忍这8个没有任何归属的字词呢？事实是我们从未将它们填充任何有趣的内容 —— 或许这能够有所帮助。
 
-If you wonder why I’m worried about leaving these words laying around, there is some background you need to know about the garbage collector. Objects are laid out one after the other, and the V8 garbage collector keeps track of things in that memory by walking over it again and again. Starting at the first word in memory, it expects to find a pointer to a map. It reads the instance size from the map and then knows how far to step forward to the next valid object. For some classes it has to additionally compute a length, but that’s all there is to it.
+如果您好奇我为什么担心这些字词闲置，您需要了解一些关于垃圾收集器的背景知识。对象一个接一个地布局，V8垃圾收集器通过多次遍历内存中的这些对象来跟踪它们。从内存中的第一个字开始，它期望找到指向映射的指针。垃圾收集器会从映射中读取实例大小，然后知道向前移动多远以到达下一个有效对象。对于某些类，它还需要额外计算长度，但就是这么简单。
 
 ![](/_img/slack-tracking/gc-heap-1.svg)
 
-In the diagram above, the red boxes are the **maps**, and the white boxes the words that fill out the instance size of the object. The garbage collector can “walk” the heap by hopping from map to map.
+在上面的图表中，红色的框是**地图**，白色的框是填充对象实例大小的词条。垃圾收集器可以通过从地图跳到地图来“遍历”堆。
 
-So what happens if the map suddenly changes it’s instance size? Now when the GC (garbage collector) walks the heap it will find itself looking at a word that it didn’t see before. In the case of our `Peak` class, we change from taking up 13 words to only 5 (I colored the “unused property” words yellow):
+那么当地图的实例大小突然改变时会发生什么？现在，当GC（垃圾收集器）遍历堆时，它会发现自己看到了一个以前没有看到过的词条。在我们的 `Peak` 类的情况中，我们从占用13个词条减少到只有5个（我将“未使用的属性”词条标为黄色）：
 
 ![](/_img/slack-tracking/gc-heap-2.svg)
 
 ![](/_img/slack-tracking/gc-heap-3.svg)
 
-We can deal with this if we cleverly initialize those unused properties with a **“filler” map of instance size 4**. This way, the GC will lightly walk over them once they are exposed to the traversal.
+我们可以通过巧妙地使用一个**实例大小为4的“填充”地图**初始化这些未使用的属性来处理这种情况。这样，当它们暴露在遍历过程中时，GC会轻松地跨过它们。
 
 ![](/_img/slack-tracking/gc-heap-4.svg)
 
-This is expressed in the code in `Factory::InitializeJSObjectBody()`:
+这在代码中的 `Factory::InitializeJSObjectBody()` 方法中表现出来：
 
 ```cpp
 void Factory::InitializeJSObjectBody(Handle<JSObject> obj, Handle<Map> map,
                                      int start_offset) {
 
-  // <lines removed>
+  // <部分代码已删除>
 
   bool in_progress = map->IsInobjectSlackTrackingInProgress();
   Object filler;
@@ -282,48 +280,48 @@ void Factory::InitializeJSObjectBody(Handle<JSObject> obj, Handle<Map> map,
     map->FindRootMap(isolate()).InobjectSlackTrackingStep(isolate());
   }
 
-  // <lines removed>
+  // <部分代码已删除>
 }
 ```
 
-And so this is slack tracking in action. For each class you create, you can expect it to take up more memory for a while, but on the 7th instantiation we “call it good” and expose the leftover space for the GC to see. These one-word objects have no owners — that is, nobody points to them — so when a collection occurs they are freed up and living objects may be compacted to save space.
+这就是捷余追踪（slack tracking）正在发挥作用的表现。对于您创建的每个类，您可以预期它在一段时间内会占用更多内存，但在第7次实例化时我们认为“可以了”，并将剩余空间暴露给GC。这些单词条对象没有所有者——也就是说，没有指向它们的指针——所以当发生垃圾收集时，它们会被释放，并且活动对象可能会被压缩以节省空间。
 
-The diagram below reflects that slack tracking is **finished** for this initial map. Note that the instance size is now 20 (5 words: the map, the properties and elements arrays, and 2 more slots). Slack tracking respects the whole chain from the initial map. That is, if a descendent of the initial map ends up using all 10 of those initial extra properties, then the initial map keeps them, marking them as unused:
+下图反映了此初始地图的捷余追踪**完成**的状态。请注意，实例大小现在为20（5个词条：地图、属性和元素数组，以及额外的2个槽）。捷余追踪遵循从初始地图开始的整个链条。也就是说，如果初始地图的子代最终使用了全部10个初始额外属性，那么初始地图会保留它们，并将它们标记为未使用：
 
-![(X, Y, Z) means (instance size, number of in-object properties, number of unused properties).](/_img/slack-tracking/root-map-2.svg)
+![(X, Y, Z) 表示 (实例大小，内对象属性数量，未使用属性数量)。](/_img/slack-tracking/root-map-2.svg)
 
-Now that slack tracking is finished, what happens if we add another property to one of these `Peak` objects?
+现在捷余追踪已经完成，如果我们向这些 `Peak` 对象中的一个添加另一个属性会发生什么？
 
 ```js
-m1.country = 'Switzerland';
+m1.country = '瑞士';
 ```
 
-V8 has to go into the properties backing store. We end up with the following object layout:
+V8需要进入属性存储区域。我们最终得到以下对象布局：
 
-| word | value                                 |
+| 词条 | 值                                    |
 | ---- | ------------------------------------- |
-| 0    | map                                   |
-| 1    | pointer to a properties backing store |
-| 2    | pointer to elements (empty array)     |
-| 3    | pointer to string `"Matterhorn"`      |
+| 0    | 地图                                   |
+| 1    | 指向属性存储区的指针                     |
+| 2    | 指向元素（空数组）的指针                 |
+| 3    | 指向字符串 `"Matterhorn"` 的指针        |
 | 4    | `4478`                                |
 
-The properties backing store then looks like this:
+属性存储区看起来如下：
 
-| word | value                             |
+| 词条 | 值                                |
 | ---- | --------------------------------- |
-| 0    | map                               |
-| 1    | length (3)                        |
-| 2    | pointer to string `"Switzerland"` |
+| 0    | 地图                               |
+| 1    | 长度（3）                          |
+| 2    | 指向字符串 `"瑞士"` 的指针             |
 | 3    | `undefined`                       |
 | 4    | `undefined`                       |
 | 5    | `undefined`                       |
 
-We have those extra `undefined` values there in case you decide to add more properties. We kind of think you might, based on your behavior so far!
+我们有那些额外的 `undefined` 值，以防您决定添加更多属性。基于您迄今为止的行为，我们有点预计您可能会这么做！
 
-## Optional properties
+## 可选属性
 
-It may happen that you add properties in some cases only. Suppose if height is 4000 meters or more, you want to keep track of two additional properties, `prominence` and `isClimbed`:
+有时您可能只会添加属性。在某些情况下，比如如果高度是4000米或更高，您希望记录两个额外的属性 `prominence` 和 `isClimbed`：
 
 ```js
 function Peak(name, height, prominence, isClimbed) {
@@ -336,27 +334,27 @@ function Peak(name, height, prominence, isClimbed) {
 }
 ```
 
-You add a few of these different variants:
+您创建了几个不同的变种：
 
 ```js
-const m1 = new Peak('Wendelstein', 1838);
-const m2 = new Peak('Matterhorn', 4478, 1040, true);
-const m3 = new Peak('Zugspitze', 2962);
-const m4 = new Peak('Mont Blanc', 4810, 4695, true);
-const m5 = new Peak('Watzmann', 2713);
-const m6 = new Peak('Zinalrothorn', 4221, 490, true);
-const m7 = new Peak('Eiger', 3970);
+const m1 = new Peak('温德尔斯泰因', 1838);
+const m2 = new Peak('马特宏峰', 4478, 1040, true);
+const m3 = new Peak('楚格峰', 2962);
+const m4 = new Peak('勃朗峰', 4810, 4695, true);
+const m5 = new Peak('瓦茨曼山', 2713);
+const m6 = new Peak('齐纳尔罗峰', 4221, 490, true);
+const m7 = new Peak('艾格山', 3970);
 ```
 
-In this case, objects `m1`, `m3`, `m5`, and `m7` have one map, and objects `m2`, `m4`, and `m6` have a map further down the chain of descendents from the initial map because of the additional properties. When slack tracking is finished for this map family, there are **4** in-object properties instead of **2** like before, because slack tracking makes sure to keep sufficient room for the maximum number of in-object properties used by any descendents in the tree of maps below the initial map.
+在这种情况下，`m1`、`m3`、`m5` 和 `m7` 对象拥有一个地图，而因为额外的属性，`m2`、`m4` 和 `m6` 对象拥有初始地图的子代链中的一个地图。当这个地图家族完成捷余追踪后，**4** 个内对象属性取代了之前的 **2** 个，因为捷余追踪确保为初始地图以下的地图树中任何子代使用的最大内对象属性数量预留了足够的空间。
 
-Below shows the map family after running the code above, and of course, slack tracking is complete:
+下面展示了运行上述代码后地图家族的状态，捷余追踪已经完成：
 
-![(X, Y, Z) means (instance size, number of in-object properties, number of unused properties).](/_img/slack-tracking/root-map-3.svg)
+![(X, Y, Z) 表示 (实例大小，内对象属性数量，未使用属性数量)。](/_img/slack-tracking/root-map-3.svg)
 
-## How about optimized code?
+## 那么优化代码呢？
 
-Let’s compile some optimized code before slack tracking is finished. We’ll use a couple native syntax commands to force a optimized compile to happen before we finished slack tracking:
+在松弛跟踪完成之前，让我们编译一些优化的代码。我们会使用几个本地语法命令强制进行优化编译，以便在松弛跟踪完成之前实现优化编译：
 
 ```js
 function foo(a1, a2, a3, a4) {
@@ -370,79 +368,79 @@ const m2 = foo('Matterhorn', 4478, 1040, true);
 foo('Zugspitze', 2962);
 ```
 
-That should be enough to compile and run optimized code. We do something in TurboFan (the optimizing compiler) called [**Create Lowering**](https://source.chromium.org/chromium/chromium/src/+/master:v8/src/compiler/js-create-lowering.h;l=32;drc=ee9e7e404e5a3f75a3ca0489aaf80490f625ca27), where we inline the allocation of objects. That means the native code we produce emits instructions to ask the GC for the instance size of the object to allocate and then carefully initialize those fields. However, this code would be invalid if slack tracking were to stop at some later point. What can we do about that?
+这应该足够编译并运行优化后的代码了。我们在TurboFan（优化编译器）中执行一些操作，称为[**创建降级**](https://source.chromium.org/chromium/chromium/src/+/master:v8/src/compiler/js-create-lowering.h;l=32;drc=ee9e7e404e5a3f75a3ca0489aaf80490f625ca27)，其中我们将对象的分配进行内联。这意味着我们生成的本地代码会发出指令，要求GC分配对象的实例大小，然后小心初始化这些字段。然而，如果松弛跟踪在稍后某个时间点停止，这些代码将是无效的。对此我们能做什么？
 
-Easy-peasy! We just end slack tracking early for this map family. This makes sense because normally — we wouldn’t compile an optimized function until thousands of objects have been created. So slack tracking *should* be finished. If it’s not, too bad! The object must not be that important anyway if fewer than 7 of them have been created by this point. (Normally, remember, we are only optimizing after the program ran for a long time.)
+非常简单！我们只需提前结束这个映射家族的松弛跟踪。这是有道理的，因为通常我们不会在创建了数千个对象之前编译一个优化函数。因此，松弛跟踪*应该*已经完成。如果不是，太糟糕了！这个对象显然不是那么重要，无论如何已经只创建了不到7个。记住，通常情况下，我们只有在程序运行很长时间之后才进行优化。
 
-### Compiling on a background thread
+### 在后台线程上编译
 
-We can compile optimized code on the main thread, in which case we can get away with prematurely ending slack tracking with some calls to change the initial map because the world has been stopped. However, we do as much compilation as possible on a background thread. From this thread it would be dangerous to touch the initial map because it *might be changing on the main thread where JavaScript is running.* So our technique goes like this:
+我们可以在主线程上编译优化代码，在这种情况下，由于整个环境已经暂停，我们可以通过一些调用提前结束松弛跟踪并更改初始映射。然而，我们尽可能多地在后台线程上进行编译。在这个线程中，触碰初始映射是危险的，因为它*可能正在主线程上运行的JavaScript代码中发生变化*。因此，我们的方法如下：
 
-1. **Guess** that the instance size will be what it would be if you did stop slack tracking right now. Remember this size.
-1. When the compilation is almost done, we return to the main thread where we can safely force completion of slack tracking if it wasn’t already done.
-1. Check: is the instance size what we predicted? If so, **we are good!** If not, throw away the code object and try again later.
+1. **猜测**实例大小会是如果现在结束松弛跟踪时的大小。记住这个大小。
+1. 当编译即将完成时，我们返回到主线程，在那里我们可以安全地强制完成松弛跟踪（如果它尚未完成）。
+1. 检查：实例大小是否符合我们的预测？如果是，**我们很好！** 如果不是，丢弃代码对象并稍后重试。
 
-If you’d like to see this in code, have a look at the class [`InitialMapInstanceSizePredictionDependency`](https://source.chromium.org/chromium/chromium/src/+/master:v8/src/compiler/compilation-dependencies.cc?q=InitialMapInstanceSizePredictionDependency&ss=chromium%2Fchromium%2Fsrc) and how it’s used in `js-create-lowering.cc` to create inline allocations. You’ll see that the `PrepareInstall()` method is called on the main thread, which forces completion of slack tracking. Then method `Install()` checks if our guess on the instance size held up.
+如果你想在代码中看看这一点，可以查看类[`InitialMapInstanceSizePredictionDependency`](https://source.chromium.org/chromium/chromium/src/+/master:v8/src/compiler/compilation-dependencies.cc?q=InitialMapInstanceSizePredictionDependency&ss=chromium%2Fchromium%2Fsrc)及其在`js-create-lowering.cc`中的使用是如何创建内联分配的。你会看到`PrepareInstall()`方法在主线程上被调用，这强制完成松弛跟踪。然后`Install()`方法检查我们对实例大小的猜测是否成立。
 
-Here is the optimized code with the inlined allocation. First you see communication with the GC, checking to see if we can just bump a pointer forward by the instance size and take that (this is called bump-pointer allocation). Then, we start filling in fields of the new object:
+这里是包含内联分配的优化代码。首先，你会看到与GC的通信，检查我们是否可以通过实例大小简单地前移指针并采用这种方式（这称为提升指针分配）。然后，我们开始填充新对象的字段：
 
 ```asm
 …
 43  mov ecx,[ebx+0x5dfa4]
 49  lea edi,[ecx+0x1c]
-4c  cmp [ebx+0x5dfa8],edi       ;; hey GC, can we have 28 (0x1c) bytes please?
+4c  cmp [ebx+0x5dfa8],edi       ;; 嘿GC，能给我们28（0x1c）字节吗？
 52  jna 0x36ec4a5a  <+0x11a>
 
 58  lea edi,[ecx+0x1c]
-5b  mov [ebx+0x5dfa4],edi       ;; okay GC, we took it. KThxbye.
-61  add ecx,0x1                 ;; hells yes. ecx is my new object.
-64  mov edi,0x46647295          ;; object: 0x46647295 <Map(HOLEY_ELEMENTS)>
-69  mov [ecx-0x1],edi           ;; Store the INITIAL MAP.
-6c  mov edi,0x56f821a1          ;; object: 0x56f821a1 <FixedArray[0]>
-71  mov [ecx+0x3],edi           ;; Store the PROPERTIES backing store (empty)
-74  mov [ecx+0x7],edi           ;; Store the ELEMENTS backing store (empty)
-77  mov edi,0x56f82329          ;; object: 0x56f82329 <undefined>
-7c  mov [ecx+0xb],edi           ;; in-object property 1 <-- undefined
-7f  mov [ecx+0xf],edi           ;; in-object property 2 <-- undefined
-82  mov [ecx+0x13],edi          ;; in-object property 3 <-- undefined
-85  mov [ecx+0x17],edi          ;; in-object property 4 <-- undefined
-88  mov edi,[ebp+0xc]           ;; retrieve argument {a1}
+5b  mov [ebx+0x5dfa4],edi       ;; 好GC，我们拿走了。谢谢再见。
+61  add ecx,0x1                 ;; 太棒了。ecx是我的新对象。
+64  mov edi,0x46647295          ;; 对象：0x46647295 <Map(HOLEY_ELEMENTS)>
+69  mov [ecx-0x1],edi           ;; 存储初始映射。
+6c  mov edi,0x56f821a1          ;; 对象：0x56f821a1 <FixedArray[0]>
+71  mov [ecx+0x3],edi           ;; 存储属性支持存储（空）
+74  mov [ecx+0x7],edi           ;; 存储元素支持存储（空）
+77  mov edi,0x56f82329          ;; 对象：0x56f82329 <undefined>
+7c  mov [ecx+0xb],edi           ;; 内部属性1 <-- undefined
+7f  mov [ecx+0xf],edi           ;; 内部属性2 <-- undefined
+82  mov [ecx+0x13],edi          ;; 内部属性3 <-- undefined
+85  mov [ecx+0x17],edi          ;; 内部属性4 <-- undefined
+88  mov edi,[ebp+0xc]           ;; 获取参数 {a1}
 8b  test_w edi,0x1
 90  jz 0x36ec4a6d  <+0x12d>
-96  mov eax,0x4664735d          ;; object: 0x4664735d <Map(HOLEY_ELEMENTS)>
-9b  mov [ecx-0x1],eax           ;; push the map forward
+96  mov eax,0x4664735d          ;; 对象：0x4664735d <Map(HOLEY_ELEMENTS)>
+9b  mov [ecx-0x1],eax           ;; 推进映射
 9e  mov [ecx+0xb],edi           ;; name = {a1}
-a1  mov eax,[ebp+0x10]          ;; retrieve argument {a2}
+a1  mov eax,[ebp+0x10]          ;; 获取参数 {a2}
 a4  test al,0x1
 a6  jnz 0x36ec4a77  <+0x137>
-ac  mov edx,0x46647385          ;; object: 0x46647385 <Map(HOLEY_ELEMENTS)>
-b1  mov [ecx-0x1],edx           ;; push the map forward
+ac  mov edx,0x46647385          ;; 对象：0x46647385 <Map(HOLEY_ELEMENTS)>
+b1  mov [ecx-0x1],edx           ;; 推进映射
 b4  mov [ecx+0xf],eax           ;; height = {a2}
-b7  cmp eax,0x1f40              ;; is height >= 4000?
+b7  cmp eax,0x1f40              ;; 高度是否 >= 4000？
 bc  jng 0x36ec4a32  <+0xf2>
-                  -- B8 start --
-                  -- B9 start --
-c2  mov edx,[ebp+0x14]          ;; retrieve argument {a3}
+                  -- B8 开始 --
+                  -- B9 开始 --
+c2  mov edx,[ebp+0x14]          ;; 获取参数 {a3}
 c5  test_b dl,0x1
 c8  jnz 0x36ec4a81  <+0x141>
-ce  mov esi,0x466473ad          ;; object: 0x466473ad <Map(HOLEY_ELEMENTS)>
-d3  mov [ecx-0x1],esi           ;; push the map forward
+ce  mov esi,0x466473ad          ;; 对象: 0x466473ad <Map(HOLEY_ELEMENTS)>
+d3  mov [ecx-0x1],esi           ;; 推进 map
 d6  mov [ecx+0x13],edx          ;; prominence = {a3}
-d9  mov esi,[ebp+0x18]          ;; retrieve argument {a4}
+d9  mov esi,[ebp+0x18]          ;; 检索参数 {a4}
 dc  test_w esi,0x1
 e1  jz 0x36ec4a8b  <+0x14b>
-e7  mov edi,0x466473d5          ;; object: 0x466473d5 <Map(HOLEY_ELEMENTS)>
-ec  mov [ecx-0x1],edi           ;; push the map forward to the leaf map
+e7  mov edi,0x466473d5          ;; 对象: 0x466473d5 <Map(HOLEY_ELEMENTS)>
+ec  mov [ecx-0x1],edi           ;; 推进 map 到叶子 map
 ef  mov [ecx+0x17],esi          ;; isClimbed = {a4}
-                  -- B10 start (deconstruct frame) --
-f2  mov eax,ecx                 ;; get ready to return this great Peak object!
+                  -- B10 开始 (解构框架) --
+f2  mov eax,ecx                 ;; 准备返回这个棒的 Peak 对象!
 …
 ```
 
-BTW, to see all this you should have a debug build and pass a few flags. I put the code into a file and called:
+顺便提一下，要看到这一切，你需要一个调试构建并传递一些标志。我将代码放入文件并调用了:
 
 ```bash
 ./d8 --allow-natives-syntax --trace-opt --code-comments --print-opt-code mycode.js
 ```
 
-I hope this has been a fun exploration. I’d like to say a very special thanks to Igor Sheludko and Maya Armyanova for (patiently!) reviewing this post.
+希望这次探索能够带来乐趣。我特别感谢 Igor Sheludko 和 Maya Armyanova (耐心地!) 审核这篇文章。

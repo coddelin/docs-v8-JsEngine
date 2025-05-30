@@ -1,60 +1,60 @@
 ---
-title: "V8 release v7.2"
-author: "Andreas Haas, handler of traps"
+title: "V8 发布 v7.2"
+author: "Andreas Haas，陷阱处理者"
 avatars: 
   - andreas-haas
 date: "2018-12-18 11:48:21"
 tags: 
-  - release
-description: "V8 v7.2 features high-speed JavaScript parsing, faster async-await, reduced memory consumption on ia32, public class fields, and much more!"
+  - 发布
+description: "V8 v7.2 具有高速 JavaScript 解析、更快的 async-await、IA32 平台下的内存消耗减少、公共类字段及更多功能！"
 tweet: "1074978755934863361"
 ---
-Every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 7.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.2), which is in beta until its release in coordination with Chrome 72 Stable in several weeks. V8 v7.2 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
+每六周，我们会根据我们的[发布流程](/docs/release-process)创建一个新的 V8 分支。每个版本都在 Chrome Beta 的里程碑之前从 V8 的 Git 主分支分出。今天我们很高兴宣布最新的分支 [V8 版本 7.2](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.2)，其将在未来几周与 Chrome 72 稳定版同步发布。目前处于 Beta 状态。V8 v7.2 充满了各种面向开发者的好功能。这篇文章提供了即将发布的亮点预览。
 
 <!--truncate-->
-## Memory
+## 内存
 
-[Embedded builtins](/blog/embedded-builtins) are now supported and enabled by default on the ia32 architecture.
+[嵌入式内建函数](/blog/embedded-builtins)现在支持并默认在 IA32 架构上启用。
 
-## Performance
+## 性能
 
-### JavaScript parsing
+### JavaScript 解析
 
-On average web pages spend 9.5% of the V8 time at startup on parsing JavaScript. Thus we have focused on shipping V8’s fastest JavaScript parser yet with v7.2. We have drastically improved parsing speed across the board. Since v7.0 the parsing speed improved by roughly 30% on desktop. The following graph documents the impressive improvements on our real-world Facebook loading benchmark over the last months.
+平均来说，网页启动时花费的 V8 时间中有 9.5% 用于解析 JavaScript。因此，我们重点优化了 V8 并在 v7.2 中实现了最快的 JavaScript 解析器。解析速度显著提高。从 v7.0 开始，桌面端的解析速度大约提高了 30%。以下图表记录了最近几个月中我们在 Facebook 实际加载基准测试中的令人印象深刻的改进。
 
-![V8 parse time on facebook.com (lower is better)](/_img/v8-release-72/facebook-parse-time.png)
+![Facebook.com 上的 V8 解析时间（越低越好）](/_img/v8-release-72/facebook-parse-time.png)
 
-We have focused on the parser on different occasions. The following graphs show the improvements relative to the latest v7.2 release across several popular websites.
+我们在不同的情况下都集中关注了解析器。以下图表显示了相对于最新 v7.2 版本在几个常见网站上的改进。
 
-![V8 parse times relative to V8 v7.2 (lower is better)](/_img/v8-release-72/relative-parse-times.svg)
+![相对于 V8 v7.2 的解析时间（越低越好）](/_img/v8-release-72/relative-parse-times.svg)
 
-All in all, the recent improvements have reduced the average parse percentage from 9.5% to 7.5% resulting in faster load times and more responsive pages.
+总之，最近的改进使解析时间的平均占比从 9.5% 降低到 7.5%，从而加快了加载时间，使页面响应更快。
 
 ### `async`/`await`
 
-V8 v7.2 comes with [a faster `async`/`await` implementation](/blog/fast-async#await-under-the-hood), enabled by default. We have made [a spec proposal](https://github.com/tc39/ecma262/pull/1250) and are currently gathering web compatibility data in order for the change to be officially merged into the ECMAScript specification.
+V8 v7.2 提供了[更快的 `async`/`await` 实现](/blog/fast-async#await-under-the-hood)，默认启用。我们提出了[规范提案](https://github.com/tc39/ecma262/pull/1250)，目前正在收集网络兼容性数据，以便将更改正式合并到 ECMAScript 规范中。
 
-### Spread elements
+### 展开元素
 
-V8 v7.2 greatly improves the performance of spread elements when they occur at the front of the array literal, for example `[...x]` or `[...x, 1, 2]`. The improvement applies to spreading arrays, primitive strings, sets, map keys, map values, and — by extension — to `Array.from(x)`. For more details, see [our in-depth article on speeding up spread elements](/blog/spread-elements).
+当展开元素出现在数组字面量的前面，例如 `[...x]` 或 `[...x, 1, 2]` 时，V8 v7.2 显著提高了性能。此改进适用于展开数组、原始字符串、集合、映射键、映射值，以及由此扩展的 `Array.from(x)`。有关更多详细信息，请参阅[我们关于加速展开元素的深入文章](/blog/spread-elements)。
 
 ### WebAssembly
 
-We analyzed a number of WebAssembly benchmarks and used them to guide improved code generation in the top execution tier. In particular, V8 v7.2 enables node splitting in the optimizing compiler’s scheduler and loop rotation in the backend. We also improved wrapper caching and introduced custom wrappers that reduce overhead in calling imported JavaScript math functions. Additionally, we designed changes to the register allocator that improve performance for many code patterns that will land in a later version.
+我们分析了一些 WebAssembly 基准测试并利用它们指导顶级执行层的代码生成改进。特别是，V8 v7.2 在优化编译器的调度器中启用了节点拆分，并在后端引入了循环旋转。此外，我们改进了包装器缓存并引入了自定义包装器，从而减少调用导入的 JavaScript 数学函数的开销。此外，我们设计了一些寄存器分配器的更改，这些更改提高了将在以后的版本中实现的许多代码模式的性能。
 
-### Trap handlers
+### 陷阱处理器
 
-Trap handlers are improving the general throughput of WebAssembly code. They are implemented and available on Windows, macOS and Linux in V8 v7.2. In Chromium they are enabled on Linux. Windows and macOS will follow suit when there is confirmation regarding stability. We’re currently working on making them available on Android too.
+陷阱处理器提高了 WebAssembly 代码的一般吞吐量。它们已经在 V8 v7.2 中实现并可用于 Windows、macOS 和 Linux。它们已经在 Chromium 的 Linux 上启用。当稳定性得到确认后，Windows 和 macOS 也将开启。目前我们正在努力让它们在 Android 上也可用。
 
-## Async stack traces
+## 异步堆栈跟踪
 
-As [mentioned earlier](/blog/fast-async#improved-developer-experience), we’ve added a new feature called [zero-cost async stack traces](https://bit.ly/v8-zero-cost-async-stack-traces), which enriches the `error.stack` property with asynchronous call frames. It’s currently available behind the `--async-stack-traces` command-line flag.
+正如[之前提到的](/blog/fast-async#improved-developer-experience)，我们添加了一项称为[零成本异步堆栈跟踪](https://bit.ly/v8-zero-cost-async-stack-traces)的新功能，它通过异步调用帧丰富了 `error.stack` 属性。目前可以通过 `--async-stack-traces` 命令行标志启用。
 
-## JavaScript language features
+## JavaScript 语言功能
 
-### Public class fields
+### 公共类字段
 
-V8 v7.2 adds support for [public class fields](/features/class-fields). Instead of:
+V8 v7.2 增加了对[公共类字段](/features/class-fields)的支持。以往的写法如下：
 
 ```js
 class Animal {
@@ -69,12 +69,12 @@ class Cat extends Animal {
     this.likesBaths = false;
   }
   meow() {
-    console.log('Meow!');
+    console.log('喵喵！');
   }
 }
 ```
 
-…you can now write:
+现在可以这样写：
 
 ```js
 class Animal {
@@ -86,16 +86,16 @@ class Animal {
 class Cat extends Animal {
   likesBaths = false;
   meow() {
-    console.log('Meow!');
+    console.log('喵喵！');
   }
 }
 ```
 
-Support for [private class fields](/features/class-fields#private-class-fields) is planned for a future V8 release.
+对[私有类字段](/features/class-fields#private-class-fields)的支持计划在未来的 V8 版本中实现。
 
 ### `Intl.ListFormat`
 
-V8 v7.2 adds support for [the `Intl.ListFormat` proposal](/features/intl-listformat), enabling localized formatting of lists.
+V8 v7.2 增加了对[`Intl.ListFormat` 提案](/features/intl-listformat)的支持，从而启用列表的本地化格式化。
 
 ```js
 const lf = new Intl.ListFormat('en');
@@ -109,39 +109,39 @@ lf.format(['Frank', 'Christine', 'Flora', 'Harrison']);
 // → 'Frank, Christine, Flora, and Harrison'
 ```
 
-For more information and usage examples, check out [our `Intl.ListFormat` explainer](/features/intl-listformat).
+欲了解更多信息和使用示例，请查看[我们的 `Intl.ListFormat` 说明文档](/features/intl-listformat)。
 
-### Well-formed `JSON.stringify`
+### 合理格式的 `JSON.stringify`
 
-`JSON.stringify` now outputs escape sequences for lone surrogates, making its output valid Unicode (and representable in UTF-8):
+`JSON.stringify` 现在为独立代理添加了转义序列，使其输出为有效的 Unicode（可以用 UTF-8 表示）：
 
 ```js
-// Old behavior:
+// 旧行为：
 JSON.stringify('\uD800');
 // → '"�"'
 
-// New behavior:
+// 新行为：
 JSON.stringify('\uD800');
 // → '"\\ud800"'
 ```
 
-For more information, see [our well-formed `JSON.stringify` explainer](/features/well-formed-json-stringify).
+欲了解更多信息，请参阅[我们的合理格式 `JSON.stringify` 说明文档](/features/well-formed-json-stringify)。
 
-### Module namespace exports
+### 模块命名空间导出
 
-In [JavaScript modules](/features/modules), it was already possible to use the following syntax:
+在[JavaScript 模块](/features/modules)中，已经可以使用以下语法：
 
 ```js
 import * as utils from './utils.mjs';
 ```
 
-However, no symmetric `export` syntax existed… [until now](/features/module-namespace-exports):
+然而，以前并不存在对称的 `export` 语法...[直到现在](/features/module-namespace-exports)：
 
 ```js
 export * as utils from './utils.mjs';
 ```
 
-This is equivalent to the following:
+这等同于以下内容：
 
 ```js
 import * as utils from './utils.mjs';
@@ -150,6 +150,6 @@ export { utils };
 
 ## V8 API
 
-Please use `git log branch-heads/7.1..branch-heads/7.2 include/v8.h` to get a list of the API changes.
+请使用 `git log branch-heads/7.1..branch-heads/7.2 include/v8.h` 获取 API 变更列表。
 
-Developers with an [active V8 checkout](/docs/source-code#using-git) can use `git checkout -b 7.2 -t branch-heads/7.2` to experiment with the new features in V8 v7.2. Alternatively you can [subscribe to Chrome’s Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+拥有[活跃的 V8 checkout](/docs/source-code#using-git) 的开发者可以使用 `git checkout -b 7.2 -t branch-heads/7.2` 对 V8 v7.2 的新功能进行实验。或者，您可以[订阅 Chrome 的 Beta 频道](https://www.google.com/chrome/browser/beta.html)，并很快自己尝试新功能。

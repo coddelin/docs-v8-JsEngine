@@ -6,3 +6,6 @@
   },
   "exclude": [".docusaurus", "build"]
 }
+rsync -av --remove-source-files  ./i18n/zh/docusaurus-plugin-content-blog-feature-blog/current/ ./features/
+rsync -av --remove-source-files  ./i18n/zh/docusaurus-plugin-content-blog/current/ ./blog/
+rsync -av --remove-source-files  ./i18n/zh/docusaurus-plugin-content-docs/current/ ./docs/

@@ -1,61 +1,61 @@
 ---
-title: "V8 release v7.9"
-author: "Santiago Aboy Solanes, pointer compressor extraordinaire"
+title: "V8 版本 v7.9 发布"
+author: "Santiago Aboy Solanes，指针压缩高手"
 avatars: 
   - "santiago-aboy-solanes"
 date: 2019-11-20
 tags: 
-  - release
-description: "V8 v7.9 features removed deprecation for Double ⇒ Tagged transitions, handling API getters in builtins, OSR caching, and Wasm support for multiple code spaces."
+  - 发布
+description: "V8 v7.9 的功能包括移除了 Double ⇒ Tagged 转换的弃用处理，内建函数中处理 API getters，OSR 缓存，以及支持多代码空间的 WebAssembly。"
 tweet: "1197187184304050176"
 ---
-Every six weeks, we create a new branch of V8 as part of our [release process](/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 7.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.9), which is in beta until its release in coordination with Chrome 79 Stable in several weeks. V8 v7.9 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
+每六周我们都会基于 [发布流程](/docs/release-process) 创建一个新的 V8 分支。每个版本都是在 Chrome 测试版里程碑之前直接从 V8 的 Git 主分支分出。今天，我们很高兴地宣布最新的分支 [V8 version 7.9](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.9)。该版本目前处于测试版阶段，并将在几周内与 Chrome 79 稳定版同步发布。V8 v7.9 包含各种面向开发者的功能和改进。本文将提前预览其中的一些亮点。
 
 <!--truncate-->
-## Performance (size & speed)
+## 性能（大小与速度）
 
-### Removed deprecation for Double ⇒ Tagged transitions
+### 移除 Double ⇒ Tagged 转换的弃用处理
 
-You might remember from previous blog posts that V8 tracks how fields are represented in objects’ shapes. When the representation of a field changes, the current object’s shape has to be “deprecated”, and a new shape is created with the new field representation.
+您可能还记得在之前的博客文章中提到，V8 会跟踪对象形状中字段的表示方式。当字段的表示发生变化时，当前对象的形状必须被“弃用”，并创建一个新的形状来采用新的字段表示。
 
-One exception to this is when old field values are guaranteed to be compatible with the new representation. In those cases we can simply swap in the new representation in-place on the object shape, and it will still work for the old objects’ field values. In V8 v7.6 we enabled these in-place representation changes for Smi ⇒ Tagged and HeapObject ⇒ Tagged transitions, but we couldn’t avoid Double ⇒ Tagged because of our MutableHeapNumber optimisation.
+一个例外情况是，当旧的字段值可以保证与新的表示兼容时。在这种情况下，我们可以直接在对象形状上原地替换新的表示，这样仍然可以适用于旧对象的字段值。在 V8 v7.6 中，我们为 Smi ⇒ Tagged 和 HeapObject ⇒ Tagged 转换启用了这些原地表示变化，但由于使用了 MutableHeapNumber 优化，我们无法避免 Double ⇒ Tagged 的转变。
 
-In V8 v7.9, we got rid of MutableHeapNumber, and instead use HeapNumbers that are implicitly mutable when they belong to a Double representation field. This means we have to be a little more careful about dealing with HeapNumbers (which now are mutable if they are on a double field and immutable otherwise), but HeapNumbers are compatible with the Tagged representation, and therefore we can avoid deprecation in the Double ⇒ Tagged case as well.
+在 V8 v7.9 中，我们移除了 MutableHeapNumber，改为在 Double 表示字段中隐式使用可变的 HeapNumbers。这意味着我们需要更谨慎地处理 HeapNumbers（现在它们在双字段中是可变的，其他情况下是不可变的），但 HeapNumbers 与 Tagged 表示兼容，因此我们也可以避免 Double ⇒ Tagged 情况下的弃用。
 
-This relatively simple change improved the Speedometer AngularJS score by 4%.
+这个相对简单的变化使 Speedometer AngularJS 的得分提高了 4%。
 
-![Speedometer AngularJS score improvements](/_img/v8-release-79/speedometer-angularjs.svg)
+![Speedometer AngularJS 得分提升](/_img/v8-release-79/speedometer-angularjs.svg)
 
-### Handle API getters in builtins
+### 在内建函数中处理 API getters
 
-Previously, V8 would always miss to the C++ runtime when handling getters defined by the embedding API (such as Blink). These included getters defined in the HTML spec such as `Node.nodeType`, `Node.nodeName`, etc.
+以前，V8 在处理由嵌入 API（例如 Blink）定义的 getters 时总是会跳转到 C++ 运行时。这包括 HTML 规范中定义的 getters，如 `Node.nodeType`、`Node.nodeName` 等。
 
-V8 would do the entire prototype walk in the builtin to load the getter and then bail out to the runtime once it realizes that the getter is defined by the API. In the C++ runtime, it would walk the prototype chain to get the getter again before executing it, duplicating a lot of work.
+V8 会在内建函数中执行整个原型链遍历以加载 getter，然后在发现 getter 是由 API 定义时跳转到运行时。在 C++ 运行时，会再次遍历原型链以获取 getter，然后再执行它，这重复了很多工作。
 
-In general, [the inline caching (IC) mechanism](https://mathiasbynens.be/notes/shapes-ics) can help mitigate this as V8 would install an IC handler after the first miss to the C++ runtime. But with the new [lazy feedback allocation](https://v8.dev/blog/v8-release-77#lazy-feedback-allocation), V8 doesn’t install IC handlers until the function has been executed for some time.
+通常，[内联缓存（IC）机制](https://mathiasbynens.be/notes/shapes-ics) 可以通过在首次跳转到 C++ 运行时后安装一个 IC 处理器来缓解这种情况。但随着新的 [延迟反馈分配](https://v8.dev/blog/v8-release-77#lazy-feedback-allocation) 引入，在函数执行一段时间之前，V8 不会安装 IC 处理器。
 
-Now in V8 v7.9, these getters are handled in the builtins without having to miss to the C++ runtime even when they don’t have IC handlers installed, by taking advantage of special API stubs that can call directly into the API getter. This results in a 12% decrease in the amount of time spent in IC runtime in Speedometer’s Backbone and jQuery benchmark.
+现在，在 V8 v7.9 中，这些 getters 在内建函数中得到了直接处理，即使没有安装 IC 处理器，通过利用可以直接调用 API getter 的特殊 API 存根。这使得 Speedometer 的 Backbone 和 jQuery 基准测试中 IC 运行时的花费时间减少了 12%。
 
-![Speedometer Backbone and jQuery improvements](/_img/v8-release-79/speedometer.svg)
+![Speedometer Backbone 和 jQuery 提升](/_img/v8-release-79/speedometer.svg)
 
-### OSR caching
+### OSR 缓存
 
-When V8 identifies that certain functions are hot it marks them for optimization on the next call. When the function executes again, V8 compiles the function using the optimizing compiler and starts using the optimized code from the subsequent call. However, for functions with long running loops this is not sufficient. V8 uses a technique called on-stack replacement (OSR) to install optimized code for the currently executing function. This allows us to start using the optimized code during the first execution of the function, while it is stuck in a hot loop.
+当 V8 确认某些函数很热门时，会标记它们将在下一次调用时进行优化。当函数再次执行时，V8 使用优化编译器编译函数，并从后续调用开始使用优化代码。然而，对于包含长时间运行循环的函数，这并不够。V8 使用一种称为“在堆栈替换”（OSR）的技术来为当前正在执行的函数安装优化代码。这让我们可以在函数的第一次执行中，在它陷入一个热门循环时开始使用优化代码。
 
-If the function is executed a second time, it is very likely to be OSRed again. Before V8 v7.9 we needed to re-optimize the function again in order to OSR it. However, from v7.9 we added OSR caching to retain optimized code for OSR replacements, keyed by the loop header that was used as the entry point in the OSRed function. This has improved performance of some peak-performance benchmarks by 5–18%.
+如果函数被再次执行，则很可能再次进行 OSR。在 V8 v7.9 之前，我们需要再次重新优化函数以进行 OSR。然而，从 v7.9 开始，我们增加了 OSR 缓存来保留用于 OSR 替换的优化代码，以与被 OSR 函数中作为入口点的循环头部关联。这使某些峰值性能基准的性能提高了 5–18%。
 
-![OSR caching improvements](/_img/v8-release-79/osr-caching.svg)
+![OSR 缓存改进](/_img/v8-release-79/osr-caching.svg)
 
 ## WebAssembly
 
-### Support for multiple code spaces
+### 支持多个代码空间
 
-So far, each WebAssembly module consisted of exactly one code space on 64-bit architectures, which was reserved on module creation. This allowed us to use near calls within a module, but limited us to 128 MB of code space on arm64, and required to reserved 1 GB upfront on x64.
+到目前为止，每个 WebAssembly 模块都只有一个代码空间（针对 64 位架构），并且在创建模块时会预留该空间。这使我们能够在模块内部使用近距离调用，但在 arm64 上代码空间被限制为 128 MB，同时在 x64 上需预留 1 GB 的空间。
 
-In v7.9, V8 got support for multiple code spaces on 64-bit architectures. This allows us to only reserve the estimated needed code space, and add more code spaces later if needed. Far jump is used for calls between code spaces that are too far apart for near jumps. Instead of ~1000 WebAssembly modules per process V8 now supports several million, only limited by the actual amount of memory available.
+在 v7.9 中，V8 实现了对 64 位架构多个代码空间的支持。这使我们可以只预留估算需要的代码空间，并在需要时稍后添加更多代码空间。针对代码空间之间距离过远以至于无法使用近距离跳转的情况，会使用远跳。目前 V8 每个进程不再局限于约 1000 个 WebAssembly 模块，而是支持数百万模块，仅受实际可用内存的限制。
 
 ## V8 API
 
-Please use `git log branch-heads/7.8..branch-heads/7.9 include/v8.h` to get a list of the API changes.
+请使用 `git log branch-heads/7.8..branch-heads/7.9 include/v8.h` 查看 API 变更列表。
 
-Developers with an [active V8 checkout](/docs/source-code#using-git) can use `git checkout -b 7.9 -t branch-heads/7.9` to experiment with the new features in V8 v7.9. Alternatively you can [subscribe to Chrome’s Beta channel](https://www.google.com/chrome/browser/beta.html) and try the new features out yourself soon.
+拥有[当前 V8 检出版本](/docs/source-code#using-git)的开发者可以使用 `git checkout -b 7.9 -t branch-heads/7.9` 来试验 V8 v7.9 的新功能。或者你可以[订阅 Chrome 的 Beta 频道](https://www.google.com/chrome/browser/beta.html)，并很快自己体验这些新功能。
