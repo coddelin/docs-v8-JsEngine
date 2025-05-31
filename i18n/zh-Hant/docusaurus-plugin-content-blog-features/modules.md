@@ -398,7 +398,7 @@ Chrome 已經支持了提案的一部分（[`SignedExchanges`](https://wicg.gith
 ></script>
 ```
 
-<script> 標籤從瀏覽器的內建分層 API 集合（`std:virtual-scroller`）或指向 polyfill 的備用 URL 加載 `virtual-scroller` API。此 API 能執行網頁瀏覽器中 JS 模組可以執行的任何操作。一個例子是定義[自訂的 `<virtual-scroller>` 元素](https://www.chromestatus.com/feature/5673195159945216)，以便如下的 HTML 可根據需要逐步增強：
+`<script> `標籤從瀏覽器的內建分層 API 集合（`std:virtual-scroller`）或指向 polyfill 的備用 URL 加載 `virtual-scroller` API。此 API 能執行網頁瀏覽器中 JS 模組可以執行的任何操作。一個例子是定義[自訂的 `<virtual-scroller>` 元素](https://www.chromestatus.com/feature/5673195159945216)，以便如下的 HTML 可根據需要逐步增強：
 
 ```html
 <virtual-scroller>
