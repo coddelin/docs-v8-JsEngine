@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 设置语言列表（根据需要添加更多语言）
-languages=("en" "ja" "ko" "fr" "de" "es" "ru" "pt")
+languages=("en" "ja" "ko" "fr" "de" "es" "ru" "pt" "zh-Hant")
 
 # 插件前缀（默认博客是 docusaurus-plugin-content-blog）
 plugin_prefix="docusaurus-plugin-content-blog"
