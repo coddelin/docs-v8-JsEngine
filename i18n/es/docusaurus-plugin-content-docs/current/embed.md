@@ -118,7 +118,7 @@ Volviendo a [nuestro muy simple ejemplo de hola mundo](#hello-world), en el sigu
 
 Cuando se llama al destructor `HandleScope::~HandleScope`, el ámbito de manejo se elimina. Los objetos referenciados por los manejos dentro del ámbito de manejo eliminado son elegibles para ser eliminados en la siguiente recolección de basura si no hay otras referencias hacia ellos. El recolector de basura también puede eliminar los objetos `source_obj` y `script_obj` del montón ya que no están referenciados por ningún manejo ni son accesibles de otro modo desde JavaScript. Dado que el manejo de contexto es un manejo persistente, no se elimina cuando se sale del ámbito de manejo. La única manera de eliminar el manejo de contexto es llamar explícitamente a `Reset` sobre él.
 
-:::nota
+:::note
 **Nota:** A lo largo de este documento, el término "manejo" se refiere a un manejo local. Cuando se habla de un manejo persistente, ese término se usa en su totalidad.
 :::
 

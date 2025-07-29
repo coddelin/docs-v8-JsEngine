@@ -31,7 +31,7 @@ TurboFan在Speedometer中仍然有很大的影响：运行速度提升了1.5倍�
 
 ![未优化和已优化执行的Web性能基准测试对比](/_img/maglev/I-IT.svg)
 
-::: note
+:::note
 本文中的所有基准测试分数均使用Chrome 117.0.5897.3在13英寸的M2 Macbook Air上测得。
 :::
 

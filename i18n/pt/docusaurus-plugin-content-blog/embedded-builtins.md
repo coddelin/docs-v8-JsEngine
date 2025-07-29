@@ -156,6 +156,6 @@ Economias significativas adicionais de memória são esperadas uma vez que os ma
 
 Os builtins incorporados estão sendo lançados no x64 no Chrome 69, e plataformas móveis seguirão no Chrome 70. Espera-se que o suporte para ia32 seja lançado no final de 2018.
 
-:::nota
+:::note
 **Nota:** Todos os diagramas foram gerados usando a incrível ferramenta [Shaky Diagramming](https://mrale.ph/blog/2012/11/25/shaky-diagramming.html) de Vyacheslav Egorov.
 :::

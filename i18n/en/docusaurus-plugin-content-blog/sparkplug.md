@@ -65,7 +65,7 @@ for (; !iterator.done(); iterator.Advance()) {
 
 The lack of IR means that the compiler has limited optimisation opportunity, beyond very local peephole optimisations. It also means that we have to port the entire implementation separately to each architecture we support, since there’s no intermediate architecture-independent stage. But, it turns out that neither of these is a problem: a fast compiler is a simple compiler, so the code is pretty easy to port; and Sparkplug doesn’t need to do heavy optimisation, since we have a great optimising compiler later on in the pipeline anyway.
 
-::: note
+:::note
 Technically, we currently do two passes over the bytecode — one to discover loops, and a second one to generate the actual code. We’re planning on getting rid of the first one eventually though.
 :::
 
@@ -79,7 +79,7 @@ Let’s rewind a bit. Stack frames are how code execution stores function state;
 
 ![A stack frame, with stack and frame pointers](/_svg/sparkplug/basic-frame.svg)
 
-::: note
+:::note
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable no-inline-html -->
 At this point, roughly half of you will be screaming, saying “this diagram doesn’t make sense, stacks obviously grow in the opposite direction!”. Fear not, I made a button for you: <button id="flipStacksButton">I think stacks grow upwards</button>
@@ -92,7 +92,7 @@ When a function is called, the return address is pushed to the stack; this is po
 
 ![Stack frames for multiple calls](/_svg/sparkplug/machine-frame.svg)
 
-::: note
+:::note
 Strictly speaking, this is just a convention followed by the generated code, not a requirement. It’s a pretty universal one though; the only time it’s really broken is when stack frames are elided entirely, or when debugging side-tables can be used to walk stack frames instead.
 :::
 
@@ -143,7 +143,7 @@ So, how well does Sparkplug work in real life? We ran Chrome 91 with a couple of
 
 Spoiler alert: we’re pretty pleased.
 
-::: note
+:::note
 The below benchmarks list various bots running various operating systems. Although the operating system is prominent in the bot’s name, we don’t think it actually has much of an impact on the results. Rather, the different machines also have different CPU and memory configurations, which we believe are the majority source of differences.
 :::
 

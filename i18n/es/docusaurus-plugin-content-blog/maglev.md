@@ -31,7 +31,7 @@ TurboFan todavía tiene un gran impacto en Speedometer: ¡se ejecuta más de 1.5
 
 ![Benchmarks de rendimiento web que comparan la ejecución no optimizada y optimizada](/_img/maglev/I-IT.svg)
 
-::: nota
+:::note
 Todos los puntajes de benchmarks en esta publicación se midieron con Chrome 117.0.5897.3 en un Macbook Air M2 de 13”.
 :::
 

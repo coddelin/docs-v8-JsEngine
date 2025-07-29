@@ -65,7 +65,7 @@ for (; !iterator.done(); iterator.Advance()) {
 
 Das Fehlen von IR bedeutet, dass der Compiler nur begrenzte Optimierungsmöglichkeiten hat, außer sehr lokalen Peephole-Optimierungen. Es bedeutet auch, dass wir die gesamte Implementierung separat für jede unterstützte Architektur portieren müssen, da es keinen architekturunabhängigen Zwischenstadium gibt. Wie sich jedoch herausstellt, ist keines davon ein Problem: Ein schneller Compiler ist ein einfacher Compiler, sodass der Code ziemlich leicht zu portieren ist; und Sparkplug muss keine schweren Optimierungen durchführen, da wir später in der Pipeline ohnehin einen großartigen optimierenden Compiler haben.
 
-::: Hinweis
+:::note
 Technisch gesehen führen wir derzeit zwei Durchläufe über das Bytecode aus - einen, um Schleifen zu entdecken, und einen zweiten, um den eigentlichen Code zu generieren. Wir planen jedoch, den ersten Durchlauf irgendwann endgültig zu entfernen.
 :::
 
@@ -79,7 +79,7 @@ Spulen wir ein wenig zurück. Stack-Frames sind, wie Codeausführung den Funktio
 
 ![Ein Stack-Frame mit Stack- und Frame-Pointern](/_svg/sparkplug/basic-frame.svg)
 
-::: Hinweis
+:::note
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable no-inline-html -->
 An diesem Punkt wird ungefähr die Hälfte von Ihnen schreien und sagen: „Dieses Diagramm macht keinen Sinn, Stapel wachsen offensichtlich in die entgegengesetzte Richtung!“. Keine Sorge, ich habe einen Button für Sie erstellt: <button id="flipStacksButton">Ich denke, Stapel wachsen nach oben</button>
@@ -92,7 +92,7 @@ Wenn eine Funktion aufgerufen wird, wird die Rücksprungadresse auf den Stapel g
 
 ![Stack-Frames für mehrere Übertragungen](/_svg/sparkplug/machine-frame.svg)
 
-::: Hinweis
+:::note
 Genau genommen ist dies lediglich eine Konvention, die vom generierten Code befolgt wird, keine Voraussetzung. Es ist jedoch eine ziemlich universelle Konvention; die einzige Zeit, in der sie wirklich gebrochen wird, ist, wenn Stack-Frames vollständig ausgelassen werden oder wenn Debugging-Sidetables verwendet werden können, um Stack-Frames zu durchsuchen.
 :::
 
@@ -143,7 +143,7 @@ Wie gut funktioniert Sparkplug im wirklichen Leben? Wir haben Chrome 91 mit eini
 
 Spoiler-Alarm: Wir sind ziemlich zufrieden.
 
-::: Hinweis
+:::note
 Die unten aufgeführten Benchmarks zeigen verschiedene Bots, die verschiedene Betriebssysteme verwenden. Obwohl das Betriebssystem im Namen des Bots prominent ist, glauben wir, dass es tatsächlich keinen großen Einfluss auf die Ergebnisse hat. Vielmehr haben die verschiedenen Maschinen auch unterschiedliche CPU- und Speicherkonfigurationen, von denen wir glauben, dass sie die Hauptquelle der Unterschiede sind.
 :::
 

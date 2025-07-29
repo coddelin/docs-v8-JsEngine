@@ -179,7 +179,7 @@ Eventualmente, após ocorrer uma coleta de lixo, a instância de `MovingAvg` e o
 
 Mas ainda há um problema aqui: adicionamos um nível de indireção a `listener` encapsulando-o em um `WeakRef`, mas o wrapper em `addWeakListener` ainda está vazando pelo mesmo motivo de que `listener` estava vazando originalmente. Certamente, isso é um vazamento menor, já que apenas o wrapper está vazando ao invés de toda a instância de `MovingAvg`, mas ainda assim é um vazamento. A solução para isso é o recurso complementar ao `WeakRef`, `FinalizationRegistry`. Com a nova API `FinalizationRegistry`, podemos registrar um callback para ser executado quando o coletor de lixo limpar um objeto registrado. Esses callbacks são conhecidos como _finalizadores_.
 
-:::nota
+:::note
 **Nota:** O callback de finalização não é executado imediatamente após a coleta de lixo do listener de eventos, por isso, não o use para lógica ou métricas importantes. O momento da coleta de lixo e dos callbacks de finalização é indefinido. Na verdade, um motor que nunca realiza coleta de lixo estaria totalmente em conformidade. No entanto, é seguro presumir que os motores _vão_ realizar coleta de lixo, e os callbacks de finalização serão chamados em algum momento posterior, a menos que o ambiente seja descartado (como o fechamento da aba ou a finalização de um worker). Tenha essa incerteza em mente ao escrever código.
 :::
 
@@ -206,7 +206,7 @@ class MovingAvg {
 }
 ```
 
-:::nota
+:::note
 **Nota:** `gListenersRegistry` é uma variável global para garantir que os finalizadores sejam executados. Um `FinalizationRegistry` não é mantido ativo por objetos registrados nele. Se o registro em si for coletado pelo lixo, o finalizador pode não ser executado.
 :::
 

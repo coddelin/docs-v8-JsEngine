@@ -137,7 +137,7 @@ O projeto jsdom-proxy-benchmark compila a [especificação ECMAScript](https://g
 
 ![](/_img/optimizing-proxies/7.png)
 
-:::nota
+:::note
 **Nota:** Esses resultados foram fornecidos por [Timothy Gu](https://github.com/TimothyGu). Obrigado!
 :::
 

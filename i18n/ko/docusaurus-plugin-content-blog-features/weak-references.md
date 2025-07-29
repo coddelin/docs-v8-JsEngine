@@ -204,7 +204,7 @@ class MovingAvg {
 }
 ```
 
-:::참고
+:::note
 **참고:** `gListenersRegistry`는 최종화자가 실행되도록 하기 위해 전역 변수로 설정됩니다. `FinalizationRegistry`는 등록된 객체에 의해 유지되지 않습니다. 레지스트리가 가비지 컬렉션되면 최종화자가 실행되지 않을 수 있습니다.
 :::
 

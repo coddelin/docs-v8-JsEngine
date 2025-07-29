@@ -65,7 +65,7 @@ for (; !iterator.done(); iterator.Advance()) {
 
 La falta de IR significa que el compilador tiene oportunidades de optimización limitadas, más allá de optimizaciones muy locales. También significa que tenemos que portar toda la implementación por separado para cada arquitectura que respaldamos, ya que no hay una etapa intermedia independiente de la arquitectura. Pero resulta que ninguna de estas cosas es un problema: un compilador rápido es un compilador sencillo, por lo que el código es bastante fácil de portar; y Sparkplug no necesita realizar optimizaciones pesadas, ya que de todos modos tenemos un gran compilador optimizador más adelante en el proceso.
 
-::: nota
+:::note
 Técnicamente, actualmente realizamos dos pasadas del bytecode: una para descubrir bucles y otra para generar el código real. Aunque planeamos deshacernos de la primera eventualmente.
 :::
 
@@ -79,7 +79,7 @@ Rebobinemos un poco. Los marcos de pila son la forma en que la ejecución del c�
 
 ![Un marco de pila, con punteros de pila y marco](/_svg/sparkplug/basic-frame.svg)
 
-::: nota
+:::note
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable no-inline-html -->
 En este punto, aproximadamente la mitad de ustedes estará gritando, diciendo "¡este diagrama no tiene sentido, las pilas obviamente crecen en la dirección opuesta!". No teman, hice un botón para ustedes: <button id="flipStacksButton">Creo que las pilas crecen hacia arriba</button>
@@ -92,7 +92,7 @@ Cuando se llama a una función, la dirección de retorno se empuja hacia la pila
 
 ![Marcos de pila para múltiples llamadas](/_svg/sparkplug/machine-frame.svg)
 
-::: nota
+:::note
 Estrictamente hablando, esto es solo una convención seguida por el código generado, no un requisito. Sin embargo, es bastante universal; la única vez que realmente se rompe es cuando los marcos de pila se omiten por completo o cuando se pueden usar tablas auxiliares de depuración para recorrer los marcos de pila en su lugar.
 :::
 
@@ -143,7 +143,7 @@ Entonces, ¿qué tan bien funciona Sparkplug en la vida real? Ejecutamos Chrome 
 
 Spoiler: estamos bastante satisfechos.
 
-::: nota
+:::note
 Los benchmarks a continuación enumeran varios bots ejecutando varios sistemas operativos. Aunque el sistema operativo es prominente en el nombre del bot, no creemos que en realidad tenga mucho impacto en los resultados. Más bien, las diferentes máquinas también tienen diferentes configuraciones de CPU y memoria, que creemos son la principal fuente de diferencias.
 :::
 

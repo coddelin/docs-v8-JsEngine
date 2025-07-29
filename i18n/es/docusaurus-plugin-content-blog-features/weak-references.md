@@ -179,7 +179,7 @@ Finalmente, después de que ocurre una recolección de basura, la instancia de `
 
 Pero todavía hay un problema aquí: hemos añadido un nivel de indirección a `listener` al envolverlo en un `WeakRef`, pero el wrapper en `addWeakListener` sigue teniendo fugas por la misma razón que `listener` estaba teniendo fugas originalmente. Aunque, ciertamente, esta es una fuga más pequeña ya que solo el wrapper está teniendo fugas en lugar de toda la instancia de `MovingAvg`, pero sigue siendo una fuga. La solución a esto es la característica complementaria de `WeakRef`, `FinalizationRegistry`. Con la nueva API `FinalizationRegistry`, podemos registrar un callback para que se ejecute cuando el recolector de basura elimine un objeto registrado. Dichos callbacks se conocen como _finalizadores_.
 
-:::nota
+:::note
 **Nota:** La devolución de llamada de finalización no se ejecuta inmediatamente después de que el recolector de basura elimina el listener de eventos, por lo que no lo uses para lógica o métricas importantes. El momento de la recolección de basura y de las devoluciones de llamada de finalización es indefinido. De hecho, un motor que nunca recolecta basura sería completamente compatible. Sin embargo, es seguro asumir que los motores _sí_ recolectarán basura, y las devoluciones de llamada de finalización se ejecutarán en algún momento posterior, a menos que se descarte el entorno (como cuando se cierra la pestaña o finaliza el worker). Ten en cuenta esta incertidumbre al escribir código.
 :::
 
@@ -206,7 +206,7 @@ class MovingAvg {
 }
 ```
 
-:::nota
+:::note
 **Nota:** `gListenersRegistry` es una variable global para asegurar que los finalizadores se ejecuten. Un `FinalizationRegistry` no se mantiene vivo por los objetos registrados en él. Si un registro es recolectado como basura, su finalizador puede no ejecutarse.
 :::
 

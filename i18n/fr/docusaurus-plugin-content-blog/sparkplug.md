@@ -65,7 +65,7 @@ for (; !iterator.done(); iterator.Advance()) {
 
 Le manque d'IR signifie que le compilateur a des opportunités d'optimisation limitées, au-delà des très locales optimisations de fenêtres de code. Cela signifie également que nous devons porter l'intégralité de l'implémentation séparément pour chaque architecture que nous supportons, puisqu'il n'y a pas d'étape intermédiaire indépendante de l'architecture. Mais, il se trouve qu'aucun de ces éléments n'est problématique : un compilateur rapide est un compilateur simple, donc le code est assez facile à porter ; et Sparkplug n'a pas besoin d'une optimisation lourde, car nous avons de toute façon un excellent compilateur d'optimisation plus tard dans le pipeline.
 
-::: note
+:::note
 Techniquement, nous effectuons actuellement deux passes sur le bytecode — une pour découvrir les boucles, et une seconde pour générer le code réel. Nous prévoyons cependant de supprimer la première étape à terme.
 :::
 
@@ -79,7 +79,7 @@ Reprenons un peu. Les cadres de pile sont la manière dont l'exécution du code 
 
 ![Un cadre de pile, avec des pointeurs de cadre et de pile](/_svg/sparkplug/basic-frame.svg)
 
-::: note
+:::note
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable no-inline-html -->
 À ce stade, environ la moitié d'entre vous criera en disant : « Ce diagramme n'a pas de sens, les piles croissent évidemment dans l'autre direction ! ». Ne vous inquiétez pas, j'ai créé un bouton pour vous : <button id="flipStacksButton">Je pense que les piles croissent vers le haut</button>
@@ -92,7 +92,7 @@ Lorsqu'une fonction est appelée, l'adresse de retour est poussée dans la pile 
 
 ![Cadres de pile pour plusieurs appels](/_svg/sparkplug/machine-frame.svg)
 
-::: note
+:::note
 À strictement parler, ceci est juste une convention suivie par le code généré, non une exigence. C'est tout de même une convention assez universelle ; les seules exceptions proviennent lorsque les cadres de pile sont complètement elidés ou lorsque des tables auxiliaires de débogage peuvent être utilisées pour parcourir les cadres de pile.
 :::
 
@@ -143,7 +143,7 @@ Alors, comment fonctionne Sparkplug dans la vraie vie ? Nous avons exécuté Chr
 
 Spoiler alert : nous sommes assez satisfaits.
 
-::: note
+:::note
 Les benchmarks ci-dessous listent divers robots exécutant divers systèmes d'exploitation. Bien que le système d'exploitation soit proéminent dans le nom du robot, nous ne pensons pas qu'il ait réellement beaucoup d'impact sur les résultats. En revanche, les différentes machines ont également des configurations CPU et mémoire différentes, dont nous pensons qu'elles sont la principale source des différences.
 :::
 

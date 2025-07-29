@@ -201,7 +201,7 @@ class MovingAvg {
 }
 ```
 
-:::注意
+:::note
 **注意：** `gListenersRegistry` 是一个全局变量以确保终结回调能够执行。`FinalizationRegistry` 不会因其注册的对象而保持存活。如果注册表本身被垃圾回收，其终结回调可能不会执行。
 :::
 

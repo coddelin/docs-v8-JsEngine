@@ -65,7 +65,7 @@ for (; !iterator.done(); iterator.Advance()) {
 
 A falta de IR significa que o compilador tem oportunidades limitadas de otimização, além de otimizações locais muito simples. Também significa que temos que portar toda a implementação separadamente para cada arquitetura que suportamos, já que não há uma etapa intermediária independente de arquitetura. No entanto, verifica-se que nenhuma dessas limitações é um problema: um compilador rápido é um compilador simples, então o código é bastante fácil de portar; e o Sparkplug não precisa fazer otimizações pesadas, já que temos um ótimo compilador otimizador mais adiante no pipeline de execução.
 
-::: nota
+:::note
 Tecnicamente, atualmente realizamos duas passagens sobre o bytecode — uma para identificar loops, e a segunda para gerar o código real. Porém, estamos planejando eliminar a primeira etapa eventualmente.
 :::
 
@@ -79,7 +79,7 @@ Voltemos um pouco. Frames de pilha são como a execução de código armazena o 
 
 ![Um frame de pilha, com ponteiros de pilha e frame](/_svg/sparkplug/basic-frame.svg)
 
-::: nota
+:::note
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable no-inline-html -->
 Neste ponto, aproximadamente metade de vocês estará gritando, dizendo "esse diagrama não faz sentido, as pilhas obviamente crescem na direção oposta!" Não se preocupem, eu fiz um botão para vocês: <button id="flipStacksButton">Eu acho que as pilhas crescem para cima</button>
@@ -92,7 +92,7 @@ Quando uma função é chamada, o endereço de retorno é empilhado; isto é rem
 
 ![Frames de pilha para múltiplas chamadas](/_svg/sparkplug/machine-frame.svg)
 
-::: nota
+:::note
 Estritamente falando, isso é apenas uma convenção seguida pelo código gerado, não um requisito. Contudo, esta convenção é quase universal; a única vez em que é realmente quebrada é quando os frames de pilha são eliminados completamente, ou quando tabelas de depuração podem ser usadas para analisar os frames de pilha.
 :::
 
@@ -143,7 +143,7 @@ Então, quão bem o Sparkplug funciona na vida real? Rodamos o Chrome 91 com alg
 
 Spoiler: estamos bastante satisfeitos.
 
-::: note
+:::note
 Os benchmarks abaixo listam vários bots rodando vários sistemas operacionais. Embora o sistema operacional seja destacado no nome do bot, não acreditamos que isso tenha muito impacto nos resultados. Em vez disso, as diferentes máquinas também têm configurações diferentes de CPU e memória, que acreditamos serem a principal fonte das diferenças.
 :::
 

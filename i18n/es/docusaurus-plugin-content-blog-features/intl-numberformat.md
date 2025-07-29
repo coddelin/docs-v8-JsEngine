@@ -140,7 +140,7 @@ La _notación compacta_ utiliza símbolos específicos del idioma para represent
 }
 ```
 
-:::nota
+:::note
 **Nota:** De forma predeterminada, la notación compacta redondea al número entero más cercano, pero siempre conserva 2 dígitos significativos. Puedes configurar cualquiera de `{minimum,maximum}FractionDigits` o `{minimum,maximum}SignificantDigits` para anular ese comportamiento.
 :::
 

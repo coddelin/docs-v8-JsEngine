@@ -31,7 +31,7 @@ O TurboFan ainda tem um grande impacto no Speedometer: ele executa mais de 1,5 v
 
 ![Benchmarks de desempenho web comparando execução não otimizada e otimizada](/_img/maglev/I-IT.svg)
 
-::: nota
+:::note
 Todos os resultados dos benchmarks neste post foram medidos com o Chrome 117.0.5897.3 em um Macbook Air de 13” M2.
 :::
 

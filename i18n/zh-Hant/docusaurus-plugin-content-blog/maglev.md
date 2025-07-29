@@ -31,7 +31,7 @@ TurboFan 在 Speedometer 上仍有很大影響：執行速度快了 1.5 倍以�
 
 ![性能基準測試比較未優化和已優化執行](/_img/maglev/I-IT.svg)
 
-::: note
+:::note
 本文中所有的基準分數均使用 Chrome 117.0.5897.3 於一台 13” M2 Macbook Air 測量。
 :::
 

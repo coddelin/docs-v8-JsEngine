@@ -31,7 +31,7 @@ TurboFan hat immer noch eine große Auswirkung auf Speedometer: Es läuft über 
 
 ![Webleistungsbenchmarks im Vergleich von nicht optimierter und optimierter Ausführung](/_img/maglev/I-IT.svg)
 
-::: note
+:::note
 Alle Benchmark-Ergebnisse in diesem Beitrag wurden mit Chrome 117.0.5897.3 auf einem 13” M2 Macbook Air gemessen.
 :::
 

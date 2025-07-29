@@ -137,7 +137,7 @@ console.timeEnd('run');
 
 ![](/_img/optimizing-proxies/7.png)
 
-:::примечание
+:::note
 **Примечание:** Эти результаты были предоставлены [Timothy Gu](https://github.com/TimothyGu). Спасибо!
 :::
 

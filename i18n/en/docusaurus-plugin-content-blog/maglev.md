@@ -31,7 +31,7 @@ TurboFan still has a lot of impact on Speedometer: it runs over 1.5x as fast! Bu
 
 ![Web performance benchmarks comparing unoptimized and optimized execution](/_img/maglev/I-IT.svg)
 
-::: note
+:::note
 All the benchmark scores in this post were measured with Chrome 117.0.5897.3 on a 13” M2 Macbook Air.
 :::
 

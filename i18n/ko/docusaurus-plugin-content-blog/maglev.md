@@ -31,7 +31,7 @@ TurboFan은 Speedometer에서도 여전히 큰 영향을 미칩니다: 실행 �
 
 ![최적화되지 않은 실행 및 최적화된 실행 비교 웹 성능 벤치마크](/_img/maglev/I-IT.svg)
 
-::: note
+:::note
 이 게시물의 모든 벤치마크 점수는 13” M2 MacBook Air에서 Chrome 117.0.5897.3으로 측정되었습니다.
 :::
 

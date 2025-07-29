@@ -160,7 +160,7 @@ Cuando se usa como en el ejemplo anterior, `JSON.stringify()` garantiza devolver
 </script>
 ```
 
-:::nota
+:::note
 **Nota:** En el ejemplo anterior, el carácter crudo no escapado U+2028 se representa como `<U+2028>` para hacerlo más fácil de seguir.
 :::
 
@@ -168,7 +168,7 @@ JSON ⊂ ECMAScript no ayuda aquí, ya que solo afecta a los literales de cadena
 
 ¡A menos que se introduzca un post-procesamiento especial para esos dos caracteres, el fragmento de código anterior presenta una vulnerabilidad de scripting entre sitios (XSS)!
 
-:::nota
+:::note
 **Nota:** Es crucial procesar posteriormente la entrada controlada por el usuario para escapar cualquier secuencia de caracteres especiales, dependiendo del contexto. En este caso particular, estamos inyectando en una etiqueta `<script>`, por lo que debemos (también) [escapar `</script`, `<script`, y `<!-​-`](https://mathiasbynens.be/notes/etago#recommendations).
 :::
 

@@ -135,7 +135,7 @@ Aun así, recomendamos usar la extensión `.mjs` para módulos, por dos razones:
 1. Durante el desarrollo, la extensión `.mjs` hace que sea muy claro para ti y para cualquier otra persona que esté viendo tu proyecto que el archivo es un módulo y no un script clásico. (No siempre es posible discernirlo sólo viendo el código). Como se mencionó anteriormente, los módulos se tratan de manera diferente a los scripts clásicos, por lo que la diferencia es enormemente importante.
 1. Garantiza que tu archivo sea analizado como un módulo por entornos como [Node.js](https://nodejs.org/api/esm.html#enabling) y [`d8`](/docs/d8), y herramientas de construcción como [Babel](https://babeljs.io/docs/en/options#sourcetype). Si bien estos entornos y herramientas tienen maneras propietarias, mediante configuración, para interpretar archivos con otras extensiones como módulos, la extensión `.mjs` es la forma compatible para asegurarse de que los archivos se traten como módulos.
 
-:::nota
+:::note
 **Nota:** Para desplegar `.mjs` en la web, tu servidor web necesita estar configurado para servir archivos con esta extensión usando el encabezado `Content-Type: text/javascript` apropiado, como se mencionó anteriormente. Además, podría ser útil configurar tu editor para que trate los archivos `.mjs` como archivos `.js` para obtener resaltado de sintaxis. La mayoría de los editores modernos ya hacen esto por defecto.
 :::
 

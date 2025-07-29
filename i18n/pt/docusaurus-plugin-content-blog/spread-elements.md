@@ -92,7 +92,7 @@ Implementamos essa ideia simples usando [CSA](/blog/csa) para arrays _rápidos_,
 
 ![Melhoria de desempenho ao espalhar um array rápido](/_img/spread-elements/spread-fast-array.png)
 
-:::nota
+:::note
 **Nota:** Embora não mostrado aqui, o caminho rápido também se aplica quando os elementos espalhados são seguidos por outros componentes (por exemplo, `[...arr, 1, 2, 3]`), mas não quando são precedidos por outros (por exemplo, `[1, 2, 3, ...arr]`).
 :::
 

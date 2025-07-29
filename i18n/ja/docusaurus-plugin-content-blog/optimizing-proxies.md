@@ -137,7 +137,7 @@ jsdom-proxy-benchmarkプロジェクトは[ECMAScript仕様](https://github.com/
 
 ![](/_img/optimizing-proxies/7.png)
 
-:::注記
+:::note
 **注意:** これらの結果は [Timothy Gu](https://github.com/TimothyGu) によって提供されました。ありがとうございます！
 :::
 
